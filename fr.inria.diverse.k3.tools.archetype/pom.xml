@@ -4,12 +4,11 @@
 	<packaging>maven-archetype</packaging>
 	<name>Create a simple K3 project</name>
 	<url>http://kermeta.org</url>
-	<version>3.0-SNAPSHOT</version>
 
     <parent>
         <groupId>fr.inria.diverse.k3</groupId>
         <artifactId>fr.inria.diverse.k3.root</artifactId>
-        <version>3.0-SNAPSHOT</version>
+        <version>3.0.0-SNAPSHOT</version>
     </parent>
 
 	<build>
