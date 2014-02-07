@@ -45,7 +45,7 @@
 			<version>${xtend.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>fr.inria.diverse</groupId>
+			<groupId>fr.inria.diverse.k3</groupId>
 			<artifactId>fr.inria.diverse.k3.core</artifactId>
 			<version>${k3.version}</version>
 		</dependency>
