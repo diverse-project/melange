@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fr.inria.diverse.k3.tools</groupId>
 	<artifactId>fr.inria.diverse.k3.tools.root</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>3.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
 		<module>../fr.inria.diverse.k3.tools.archetype</module>
@@ -16,6 +16,14 @@
 		<xtend-repo.url>http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/</xtend-repo.url>
 		<kepler-repo.url>http://download.eclipse.org/releases/kepler/</kepler-repo.url>
 		<tycho-repo.url>https://oss.sonatype.org/content/groups/public/</tycho-repo.url>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<xtend.version>2.5.1</xtend.version>
+		<junit.version>4.11</junit.version>
+		<java.version>1.6</java.version>
+		<k3.version>3.0.0-SNAPSHOT</k3.version>
+		<maven-compiler-plugin.version>3.0</maven-compiler-plugin.version>
+		<maven-dependency-plugin.version>2.8</maven-dependency-plugin.version>
+		<emf.version>2.9.1-v20130827-0309</emf.version>
 	</properties>
 
 

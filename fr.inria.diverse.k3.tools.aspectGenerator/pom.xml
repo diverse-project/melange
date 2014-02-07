@@ -6,9 +6,10 @@
 	<name>kermeta3 aspect generator</name>
 
     <parent>
-        <groupId>fr.inria.diverse.k3</groupId>
-        <artifactId>fr.inria.diverse.k3.root</artifactId>
+        <groupId>fr.inria.diverse.k3.tools</groupId>
+        <artifactId>fr.inria.diverse.k3.tools.root</artifactId>
         <version>3.0.0-SNAPSHOT</version>
+		<relativePath>../fr.inria.diverse.k3.tools.root/pom.xml</relativePath>
     </parent>
 
 	<build>
