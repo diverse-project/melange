@@ -1,0 +1,45 @@
+grammar fr.inria.diverse.k3.sle.K3SLE with org.eclipse.xtext.xbase.Xbase
+
+import "http://www.inria.fr/diverse/k3/sle"
+
+MegamodelRoot:
+	('package' name = QualifiedName)?
+	(imports = XImportSection)?
+	(elements += Element)*
+;
+
+Element:
+	Metamodel | ModelType | Transformation
+;
+
+Metamodel:
+	'metamodel' name = ValidID (inheritanceRelation = Inheritance)?  '{'
+		(ecore = EcoreImport)?
+		(aspects += AspectImport)*
+	'}'
+;
+
+Inheritance:
+	'inherits' superMetamodel = [Metamodel | QualifiedName]
+;
+
+ModelType:
+	'modeltype' name = ValidID ('extract' extracted = [Metamodel | QualifiedName])? '{'
+		(ecore = EcoreImport)?
+	'}'
+;
+
+Transformation:
+	(main ?= '@Main')?
+	'transformation' (returnTypeRef = JvmTypeReference)? name = ValidID
+	'(' (parameters += FullJvmFormalParameter (',' parameters += FullJvmFormalParameter)*)? ')'
+	body = XBlockExpression
+;
+
+EcoreImport:
+	'ecore' uri = STRING ('with genmodel' genmodelUri = STRING)?
+;
+
+AspectImport:
+	'aspect' aspectRef = JvmTypeReference
+;

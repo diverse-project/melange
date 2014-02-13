@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<relativePath>../fr.inria.diverse.k3.sle.root/pom.xml</relativePath>
+		<groupId>fr.inria.diverse.k3.sle</groupId>
+		<artifactId>fr.inria.diverse.k3.sle.root</artifactId>
+		<version>0.1.0.beta</version>
+	</parent>
+
+	<artifactId>fr.inria.diverse.k3.sle.tests</artifactId>
+	<packaging>eclipse-test-plugin</packaging>
+
+	<name>K3SLE Language Tests</name>
+
+</project>
+

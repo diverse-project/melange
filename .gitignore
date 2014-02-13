@@ -1,0 +1,9 @@
+eclimd.log
+.metadata
+*.class
+*.jar
+*~
+src-gen/
+xtend-gen/
+bin/
+

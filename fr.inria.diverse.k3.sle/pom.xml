@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<relativePath>../fr.inria.diverse.k3.sle.root/pom.xml</relativePath>
+		<groupId>fr.inria.diverse.k3.sle</groupId>
+		<artifactId>fr.inria.diverse.k3.sle.root</artifactId>
+		<version>0.1.0.beta</version>
+	</parent>
+
+	<artifactId>fr.inria.diverse.k3.sle</artifactId>
+	<packaging>eclipse-plugin</packaging>
+
+	<name>K3SLE Language</name>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>${basedir}/src-gen</directory>
+						</fileset>
+						<fileset>
+							<directory>${basedir}/xtend-gen</directory>
+						</fileset>
+						<!-- clean ui plugin as well -->
+						<fileset>
+							<directory>${basedir}/../${project.artifactId}.ui/src-gen</directory>
+						</fileset>
+						<fileset>
+							<directory>${basedir}/../${project.artifactId}.ui/xtend-gen</directory>
+						</fileset>
+						<!-- clean test fragment as well -->
+						<fileset>
+							<directory>${basedir}/../${project.artifactId}.tests/src-gen</directory>
+						</fileset>
+						<fileset>
+							<directory>${basedir}/../${project.artifactId}.tests/xtend-gen</directory>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.2.1</version>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>java</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<includeProjectDependencies>false</includeProjectDependencies>
+					<includePluginDependencies>true</includePluginDependencies>
+					<mainClass>org.eclipse.emf.mwe2.launch.runtime.Mwe2Launcher</mainClass>
+					<arguments>
+						<argument>file://${project.basedir}/src/main/java/fr/inria/diverse/k3/sle/GenerateK3SLE.mwe2</argument>
+						<argument>
+							-p
+						</argument>
+						<argument>
+							runtimeProject=/${project.basedir}
+						</argument>
+					</arguments>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>fr.inria.diverse.k3.sle</groupId>
+						<artifactId>fr.inria.diverse.k3.sle.metamodel</artifactId>
+						<version>0.1.0.beta</version>
+					 </dependency>
+					<dependency>
+						<groupId>org.eclipse.xtext</groupId>
+						<artifactId>org.eclipse.xtext.xtext</artifactId>
+						<version>2.5.0</version>
+					</dependency>
+					<dependency>
+						<groupId>org.eclipse.xtext</groupId>
+						<artifactId>org.eclipse.xtext.xbase</artifactId>
+						<version>2.5.0</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.xtend</groupId>
+				<artifactId>xtend-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+        </build>
+	
+</project>

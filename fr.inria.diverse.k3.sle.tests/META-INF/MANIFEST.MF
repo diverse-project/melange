@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: fr.inria.diverse.k3.sle.tests
+Bundle-Vendor: DIVERSE
+Bundle-Version: 0.1.0.beta
+Bundle-SymbolicName: fr.inria.diverse.k3.sle.tests; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: fr.inria.diverse.k3.sle,
+ fr.inria.diverse.k3.sle.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.xtext.junit4,
+ org.eclipse.ui.workbench;resolution:=optional,
+ fr.inria.diverse.k3.sle.metamodel;bundle-version="0.1.0.beta",
+ org.eclipse.xtext.generator;bundle-version="2.5.1"
+Import-Package: org.apache.log4j,
+ org.junit;version="4.5.0",
+ org.junit.runner;version="4.5.0",
+ org.junit.runner.manipulation;version="4.5.0",
+ org.junit.runner.notification;version="4.5.0",
+ org.junit.runners;version="4.5.0",
+ org.junit.runners.model;version="4.5.0",
+ org.hamcrest.core
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: fr.inria.diverse.k3.sle
