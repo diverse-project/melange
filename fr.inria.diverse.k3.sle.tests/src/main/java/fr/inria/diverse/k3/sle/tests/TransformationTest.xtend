@@ -64,6 +64,10 @@ class TransformationTest
 			bar.call(x)
 			bar.call(baz.call)
 		}
+
+		transformation int add(int a, int b) {
+			return a + b
+		}
 		'''
 
 		root = input.parse
@@ -82,7 +86,7 @@ class TransformationTest
 
 	@Test
 	def testStructure() {
-		(0..3).forEach[assertTrue(root.elements.get(it) instanceof Transformation)]
+		(0..4).forEach[assertTrue(root.elements.get(it) instanceof Transformation)]
 	}
 
 	// Just to show how we can generate code
@@ -91,7 +95,7 @@ class TransformationTest
 		val fsa = new InMemoryFileSystemAccess
 		generator.doGenerate(root.eResource, fsa)
 
-		assertEquals(fsa.allFiles.size, 4)
+		assertEquals(fsa.allFiles.size, 5)
 
 		// Debug output
 		fsa.allFiles.forEach[filename, content |
@@ -177,6 +181,60 @@ class TransformationTest
 			assertEquals(main.parameterTypes.head, typeof(String[]))
 			assertTrue(Modifier.isStatic(main.modifiers))
 			assertTrue(Modifier.isPublic(main.modifiers))
+		]
+	}
+
+	@Test
+	def testAddCompilation() {
+		compiler.compile(input)[
+			val add = getCompiledClass("foo.add")
+
+			assertNotNull(add)
+			assertEquals(add.declaredMethods.size, 1)
+
+			val call = add.declaredMethods.head
+			assertEquals(call.name, "call")
+			assertEquals(call.returnType, typeof(int))
+			assertEquals(call.parameterTypes.size, 2)
+			assertTrue(call.parameterTypes.forall[it == typeof(int)])
+			assertTrue(Modifier.isStatic(call.modifiers))
+			assertTrue(Modifier.isPublic(call.modifiers))
+		]
+	}
+
+	@Test
+	def testFooRuntime() {
+		compiler.compile(input)[
+			val call = getCompiledClass("foo.foo").declaredMethods.head
+
+			assertNull(call.invoke(null))
+		]
+	}
+
+	@Test
+	def testBarRuntime() {
+		compiler.compile(input)[
+			val call = getCompiledClass("foo.bar").declaredMethods.head
+
+			assertNull(call.invoke(null, "bar"))
+		]
+	}
+
+	@Test
+	def testBazRuntime() {
+		compiler.compile(input)[
+			val call = getCompiledClass("foo.baz").declaredMethods.head
+
+			assertEquals(call.invoke(null), "baz")
+		]
+	}
+
+	@Test
+	def testAddRuntime() {
+		compiler.compile(input)[
+			val call = getCompiledClass("foo.add").declaredMethods.head
+
+			assertEquals(call.invoke(null, 27, 15), 42)
 		]
 	}
 }
