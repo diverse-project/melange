@@ -467,7 +467,7 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 							new org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl()
 						) ;
 
-						«transfo.fullyQualifiedName».call() ;
+						call() ;
 					'''
 					static = true
 				]

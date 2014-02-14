@@ -60,6 +60,10 @@ class SimpleParsingTest {
 			val fsm   =      Fsm.load("Simple.fsm",      FsmMT)
 			val tfsm  = TimedFsm.load("Simple.timedfsm", FsmMT)
 			val tfsm2 = TimedFsm.load("Simple.timedfsm", TimedFsmMT)
+			
+			bar.call(fsm)
+			bar.call(tfsm)
+			bar.call(tfsm2)
 		}
 		'''.parse
 	}
