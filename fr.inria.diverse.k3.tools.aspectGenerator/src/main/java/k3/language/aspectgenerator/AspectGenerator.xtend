@@ -127,10 +127,10 @@ class EPackageAspect {
 		}
 		
 		aspect.append("package " + pack + "\n\n")			
-		aspect.append("import fr.inria.triskell.k3.Aspect\n")
+		aspect.append("import fr.inria.diverse.k3.al.annotationprocessor.Aspect\n")
 		
 		if(context.isOverride) {
-			aspect.append("import fr.inria.triskell.k3.OverrideAspectMethod\n")			
+			aspect.append("import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod\n")			
 		}
 		
 		for (c : context.listNewClass)
