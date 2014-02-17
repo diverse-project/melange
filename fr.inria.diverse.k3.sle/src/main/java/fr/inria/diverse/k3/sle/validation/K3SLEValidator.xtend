@@ -1,5 +1,7 @@
 package fr.inria.diverse.k3.sle.validation
 
+import fr.inria.diverse.k3.sle.metamodel.k3sle.MegamodelRoot
+import fr.inria.diverse.k3.sle.metamodel.k3sle.Element
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
 import fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage
 
@@ -9,6 +11,16 @@ import org.eclipse.xtext.validation.Check
 
 class K3SLEValidator extends AbstractK3SLEValidator
 {
+	@Check
+	def checkNamesAreUnique(Element e) {
+		if ((e.eContainer as MegamodelRoot).elements.exists[e_ |
+			   e_ != e
+			&& e_.eClass == e.eClass
+			&& e_.name == e.name
+		])
+			error("Names must be unique", K3slePackage.Literals.ELEMENT__NAME)
+	}
+
 	@Check
 	def checkEcoreIsSet(Metamodel mm) {
 		if (mm.ecore?.uri === null && mm.inheritanceRelation?.superMetamodel?.ecore?.uri === null) {
