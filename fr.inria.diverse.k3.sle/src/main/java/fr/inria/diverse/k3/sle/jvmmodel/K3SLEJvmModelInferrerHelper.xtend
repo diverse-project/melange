@@ -37,6 +37,7 @@ import org.eclipse.xtext.naming.QualifiedName
 
 import org.eclipse.xtext.common.types.JvmCustomAnnotationValue
 import org.eclipse.xtext.common.types.JvmGenericType
+import org.eclipse.xtext.common.types.JvmFormalParameter
 
 import java.util.Collections
 import java.util.ArrayList
@@ -360,6 +361,11 @@ class K3SLEJvmModelInferrerHelper
 
 	static def Iterable<EClass> sortByClassInheritance(Iterable<EClass> classes) {
 		classes.sort(new ClassInheritanceComparator())
+	}
+
+	static def Iterable<JvmFormalParameter> filterModelTypes(Iterable<JvmFormalParameter> l) {
+		l.filter[p | p.parameterType.type instanceof JvmGenericType]
+		 .filter[p | (p.parameterType.type as JvmGenericType).extendedInterfaces.exists[i | i.simpleName == "IModelType"]]
 	}
 }
 

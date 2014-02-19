@@ -16,3 +16,9 @@ class ModelTypeException extends Exception
 		super(msg)
 	}
 }
+
+interface IMetamodel
+{
+	def void cast(Class<? extends IModelType> type)
+	def Class<? extends IModelType> getType()
+}

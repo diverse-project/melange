@@ -10,6 +10,7 @@ import fr.inria.diverse.k3.sle.metamodel.k3sle.K3sleFactory
 import fr.inria.diverse.k3.sle.lib.GenericAdapter
 import fr.inria.diverse.k3.sle.lib.IModelType
 import fr.inria.diverse.k3.sle.lib.EObjectAdapter
+import fr.inria.diverse.k3.sle.lib.IMetamodel
 
 import org.eclipse.emf.common.util.EList
 
@@ -239,25 +240,23 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 
 		acceptor.accept(mm.toClass(mm.fullyQualifiedName.normalize.toString))
 		.initializeLater[
-			val paramT = TypesFactory::eINSTANCE.createJvmWildcardTypeReference => [
-				//name = "T"
-				constraints += TypesFactory.eINSTANCE.createJvmLowerBound => [
-					typeReference = mm.newTypeRef(mm.fullyQualifiedName.normalize.toString)
+			val paramT = TypesFactory.eINSTANCE.createJvmWildcardTypeReference => [
+				constraints += TypesFactory.eINSTANCE.createJvmUpperBound => [
+					typeReference = mm.newTypeRef(IModelType)
 				]
 			]
 
 			superTypes += newTypeRef(GenericAdapter, newTypeRef(Resource))
 			mm.^implements.forEach[mt | superTypes += newTypeRef(mt.fullyQualifiedName.toString)]
+			superTypes += newTypeRef(IMetamodel)
 
 			members += mm.toField("type", mm.newTypeRef(Class, paramT))
 
 			members += mm.toConstructor[
 				parameters += mm.toParameter("a", mm.newTypeRef(Resource))
-				parameters += mm.toParameter("t", mm.newTypeRef(Class, paramT))
 
 				body = '''
 					super(a) ;
-					type = t ;
 				'''
 			]
 
@@ -279,6 +278,20 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 					}
 
 					return ret ;
+				'''
+			]
+
+			members += mm.toMethod("cast", newTypeRef(Void.TYPE))[
+				parameters += mm.toParameter("t", newTypeRef(Class, paramT))
+
+				body = '''
+					type = t ;
+				'''
+			]
+
+			members += mm.toMethod("getType", newTypeRef(Class, paramT))[
+				body = '''
+					return type ;
 				'''
 			]
 		]
@@ -443,12 +456,12 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 			// !!!
 			val returnType = transfo.returnTypeRef ?: transfo.newTypeRef(Void::TYPE)
 
-			members += transfo.toMethod("call", returnType)[
+			members += transfo.toMethod("call_wrapped", returnType)[
 				transfo.parameters.forEach[p |
 					parameters += transfo.toParameter(p.name, p.parameterType)
 				]
 				body = transfo.body
-				static = true
+				^static = true
 			]
 
 			if (transfo.main) {
@@ -467,9 +480,34 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 							new org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl()
 						) ;
 
-						call() ;
+						call_wrapped() ;
 					'''
-					static = true
+					^static = true
+				]
+			} else {
+				members += transfo.toMethod("call", returnType)[
+					val paramsList = new StringBuilder
+					transfo.parameters.forEach[p, i |
+						parameters += transfo.toParameter(p.name, p.parameterType)
+						if (i == 0) paramsList.append(p.name)
+						else paramsList.append(", " + p.name)
+					]
+
+					^static = true
+
+					body = '''
+						«FOR mt : transfo.parameters.filterModelTypes»
+						Class<? extends fr.inria.diverse.k3.sle.lib.IModelType> old«mt.name»Type = ((fr.inria.diverse.k3.sle.lib.IMetamodel) «mt.name»).getType() ;
+						«ENDFOR»
+						«FOR mt : transfo.parameters.filterModelTypes»
+						((fr.inria.diverse.k3.sle.lib.IMetamodel) «mt.name»).cast(«mt.parameterType.qualifiedName».class) ;
+						«ENDFOR»
+						«IF returnType.simpleName != "void"»«returnType.qualifiedName» ret = «ENDIF»call_wrapped(«paramsList») ;
+						«FOR mt : transfo.parameters.filterModelTypes»
+						((fr.inria.diverse.k3.sle.lib.IMetamodel) «mt.name»).cast(old«mt.name»Type) ;
+						«ENDFOR»
+						«IF returnType.simpleName != "void"»return ret ;«ENDIF»
+					'''
 				]
 			}
 		]
