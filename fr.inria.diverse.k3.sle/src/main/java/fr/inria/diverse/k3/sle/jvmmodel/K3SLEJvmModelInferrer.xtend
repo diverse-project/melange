@@ -268,7 +268,7 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 					«FOR r : pkg.EClassifiers.filter(EClass).filter[instanceTypeName === null].sortByClassInheritance»
 						if (o instanceof «mm.getFqnFor(r)») {
 							«mm.getFqnFor(r)» wrap = («mm.getFqnFor(r)») o ;
-							«FOR mt : mm.^implements»
+							«FOR mt : mm.^implements.filter[mt | mm.hasAdapterFor(mt, r)]»
 							if (type.equals(«mt.fullyQualifiedName.normalize.toString».class))
 								ret.add(new «mm.adapterNameFor(mt, r.name)»(wrap)) ;
 							else

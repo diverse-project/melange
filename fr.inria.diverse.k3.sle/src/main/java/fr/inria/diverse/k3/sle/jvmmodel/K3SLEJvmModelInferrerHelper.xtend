@@ -367,6 +367,11 @@ class K3SLEJvmModelInferrerHelper
 		l.filter[p | p.parameterType.type instanceof JvmGenericType]
 		 .filter[p | (p.parameterType.type as JvmGenericType).extendedInterfaces.exists[i | i.simpleName == "IModelType"]]
 	}
+
+	static def hasAdapterFor(Metamodel mm, ModelType mt, EClass cls) {
+		   mm.pkg.EClassifiers.filter(EClass).exists[name == cls.name]
+		&& mt.pkg.EClassifiers.filter(EClass).exists[name == cls.name]
+	}
 }
 
 // What about multiple inheritance?
