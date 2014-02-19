@@ -7,6 +7,9 @@ import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation
 
+import org.eclipse.xtext.generator.IGenerator
+import org.eclipse.xtext.generator.InMemoryFileSystemAccess
+
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
 import org.eclipse.xtext.junit4.util.ParseHelper
@@ -26,6 +29,7 @@ class SimpleParsingTest {
 
 	@Inject extension ParseHelper<MegamodelRoot>
 	@Inject extension ValidationTestHelper
+	@Inject IGenerator generator
 
 	MegamodelRoot root
 
@@ -124,6 +128,20 @@ class SimpleParsingTest {
 		assertEquals(tfsmmt.subtypingRelations.size, 1)
 		assertEquals(tfsmmt.subtypingRelations.head.subType, tfsmmt)
 		assertEquals(tfsmmt.subtypingRelations.head.superType, fsmmt)
+	}
+	
+	@Test
+	def testGeneration() {
+		val fsa = new InMemoryFileSystemAccess
+		generator.doGenerate(root.eResource, fsa)
+		
+		assertEquals(fsa.textFiles.size, 30)
+		
+		// Check for generation bug that
+		// replaces (valid) generic types with objects
+		fsa.textFiles.forEach[filename, content |
+			assertFalse(content.toString.contains('''*/Object'''))	
+		]
 	}
 
 	def getFsm()    { root.elements.get(0) as Metamodel }

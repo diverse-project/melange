@@ -89,21 +89,17 @@ class TransformationTest
 		(0..4).forEach[assertTrue(root.elements.get(it) instanceof Transformation)]
 	}
 
-	// Just to show how we can generate code
 	@Test
 	def testGeneration() {
 		val fsa = new InMemoryFileSystemAccess
 		generator.doGenerate(root.eResource, fsa)
 
-		assertEquals(fsa.allFiles.size, 5)
-		println("###"+fsa.toString+"###")
+		assertEquals(fsa.textFiles.size, 5)
 
-		// Debug output
-		fsa.allFiles.forEach[filename, content |
-			println('''
-				Generated «filename»:
-				«content»
-			''')
+		// Check for generation bug that
+		// replaces (valid) generic types with objects
+		fsa.textFiles.forEach[filename, content |
+			assertFalse(content.toString.contains('''*/Object'''))
 		]
 	}
 
