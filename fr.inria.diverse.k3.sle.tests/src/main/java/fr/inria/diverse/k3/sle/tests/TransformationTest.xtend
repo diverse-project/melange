@@ -124,7 +124,7 @@ class TransformationTest
 
 			val callw = foo.declaredMethods.findFirst[name == "call_wrapped"]
 			assertNotNull(callw)
-			assertEquals(callw.name, "call")
+			assertEquals(callw.name, "call_wrapped")
 			assertEquals(callw.returnType, Void::TYPE)
 			assertEquals(callw.parameterTypes.size, 0)
 			assertTrue(Modifier.isStatic(callw.modifiers))
