@@ -5,6 +5,7 @@ import java.util.List
 interface IModelType
 {
 	def List<Object> getContents()
+	def IFactory getFactory()
 }
 
 interface IFactory
@@ -15,10 +16,4 @@ class ModelTypeException extends Exception
 	new(String msg) {
 		super(msg)
 	}
-}
-
-interface IMetamodel
-{
-	def void cast(Class<? extends IModelType> type)
-	def Class<? extends IModelType> getType()
 }

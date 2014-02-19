@@ -10,7 +10,7 @@ import fr.inria.diverse.k3.sle.metamodel.k3sle.K3sleFactory
 import fr.inria.diverse.k3.sle.lib.GenericAdapter
 import fr.inria.diverse.k3.sle.lib.IModelType
 import fr.inria.diverse.k3.sle.lib.EObjectAdapter
-import fr.inria.diverse.k3.sle.lib.IMetamodel
+import fr.inria.diverse.k3.sle.lib.IFactory
 
 import org.eclipse.emf.common.util.EList
 
@@ -236,65 +236,64 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 					}
 				]
 			]
-		]
 
-		acceptor.accept(mm.toClass(mm.fullyQualifiedName.normalize.toString))
-		.initializeLater[
-			val paramT = TypesFactory.eINSTANCE.createJvmWildcardTypeReference => [
-				constraints += TypesFactory.eINSTANCE.createJvmUpperBound => [
-					typeReference = mm.newTypeRef(IModelType)
+			acceptor.accept(mm.toClass(mm.factoryAdapterNameFor(superType)))
+			.initializeLater[
+				superTypes += newTypeRef(superType.factoryName)
+
+				members += mm.toField("adaptee", newTypeRef(mm.getFactoryFqn))[
+					initializer = '''«mm.getFactoryFqn».eINSTANCE'''
+				]
+
+				superPkg.EClassifiers.filter(EClass).filter[!^abstract && !^interface].forEach[cls |
+					members += mm.toMethod("create" + cls.name, newTypeRef(superType.interfaceNameFor(cls.name)))[
+						body = '''
+							return new «mm.adapterNameFor(superType, cls.name)»(adaptee.create«cls.name»()) ;
+						'''
+					]
 				]
 			]
 
-			superTypes += newTypeRef(GenericAdapter, newTypeRef(Resource))
-			mm.^implements.forEach[mt | superTypes += newTypeRef(mt.fullyQualifiedName.toString)]
-			superTypes += newTypeRef(IMetamodel)
+			acceptor.accept(mm.toClass(mm.adapterNameFor(superType)))
+			.initializeLater[
+				superTypes += newTypeRef(GenericAdapter, newTypeRef(Resource))
+				superTypes += newTypeRef(superType.fullyQualifiedName.toString)
 
-			members += mm.toField("type", mm.newTypeRef(Class, paramT))
+				members += mm.toConstructor[
+					parameters += mm.toParameter("a", mm.newTypeRef(Resource))
 
-			members += mm.toConstructor[
-				parameters += mm.toParameter("a", mm.newTypeRef(Resource))
+					body = '''
+						super(a) ;
+					'''
+				]
 
-				body = '''
-					super(a) ;
-				'''
-			]
+				members += mm.toMethod("getContents", newTypeRef(List, newTypeRef(Object)))[
+					body = '''
+						java.util.List<java.lang.Object> ret = new java.util.ArrayList<java.lang.Object>() ;
 
-			members += mm.toMethod("getContents", newTypeRef(List, newTypeRef(Object)))[
-				body = '''
-					java.util.List<java.lang.Object> ret = new java.util.ArrayList<java.lang.Object>() ;
-
-					for (org.eclipse.emf.ecore.EObject o : adaptee.getContents()) {
-					«FOR r : pkg.EClassifiers.filter(EClass).filter[instanceTypeName === null].sortByClassInheritance»
-						if (o instanceof «mm.getFqnFor(r)») {
-							«mm.getFqnFor(r)» wrap = («mm.getFqnFor(r)») o ;
-							«FOR mt : mm.^implements.filter[mt | mm.hasAdapterFor(mt, r)]»
-							if (type.equals(«mt.fullyQualifiedName.normalize.toString».class))
+						for (org.eclipse.emf.ecore.EObject o : adaptee.getContents()) {
+						«FOR r : pkg.EClassifiers.filter(EClass).filter[mm.hasAdapterFor(superType, it) && instanceTypeName === null].sortByClassInheritance»
+							if (o instanceof «mm.getFqnFor(r)») {
+								«mm.getFqnFor(r)» wrap = («mm.getFqnFor(r)») o ;
 								ret.add(new «mm.adapterNameFor(mt, r.name)»(wrap)) ;
-							else
-							«ENDFOR» {}
-						} else
-					«ENDFOR» {}
-					}
+							} else
+						«ENDFOR» {}
+						}
 
-					return ret ;
-				'''
-			]
+						return ret ;
+					'''
+				]
 
-			members += mm.toMethod("cast", newTypeRef(Void.TYPE))[
-				parameters += mm.toParameter("t", newTypeRef(Class, paramT))
-
-				body = '''
-					type = t ;
-				'''
-			]
-
-			members += mm.toMethod("getType", newTypeRef(Class, paramT))[
-				body = '''
-					return type ;
-				'''
+				members += mm.toMethod("getFactory", newTypeRef(superType.factoryName))[
+					body = '''
+						return new «mm.factoryAdapterNameFor(superType)»() ;
+					'''
+				]
 			]
 		]
+
+		acceptor.accept(mm.toClass(mm.fullyQualifiedName.normalize.toString))
+		.initializeLater[]
 
 		if (mm.inheritanceRelation?.superMetamodel !== null) {
 			val superMM = mm.inheritanceRelation.superMetamodel
@@ -374,10 +373,24 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 		acceptor.accept(mt.toInterface(mt.fullyQualifiedName.normalize.toString, []))
 		.initializeLater[
 			superTypes += newTypeRef(IModelType)
-			mt.subtypingRelations.forEach[rel | superTypes += newTypeRef(rel.superType.fullyQualifiedName.normalize.toString)]
 
 			members += mt.toMethod("getContents", newTypeRef(List, newTypeRef(Object)))[
-				abstract = true
+				^abstract = true
+			]
+
+			members += mt.toMethod("getFactory", newTypeRef(mt.factoryName))[
+				^abstract = true
+			]
+		]
+
+		acceptor.accept(mt.toInterface(mt.factoryName, []))
+		.initializeLater[
+			superTypes += newTypeRef(IFactory)
+
+			mt.pkg.EClassifiers.filter(EClass).filter[!^abstract && !^interface].forEach[cls |
+				members += mt.toMethod("create" + cls.name, newTypeRef(mt.interfaceNameFor(cls.name)))[
+					^abstract = true
+				]
 			]
 		]
 
@@ -456,7 +469,7 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 			// !!!
 			val returnType = transfo.returnTypeRef ?: transfo.newTypeRef(Void::TYPE)
 
-			members += transfo.toMethod("call_wrapped", returnType)[
+			members += transfo.toMethod("call", returnType)[
 				transfo.parameters.forEach[p |
 					parameters += transfo.toParameter(p.name, p.parameterType)
 				]
@@ -474,40 +487,22 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 							«mm.getPackageFqn».eNS_URI,
 							«mm.getPackageFqn».eINSTANCE
 						) ;
+						«FOR mt : mm.^implements»
+						fr.inria.diverse.k3.sle.lib.AdaptersRegistry.getInstance().registerAdapter(
+							"«mm.fullyQualifiedName»",
+							"«mt.fullyQualifiedName»",
+							«mm.adapterNameFor(mt)».class
+						) ;
+						«ENDFOR»
 						«ENDFOR»
 						org.eclipse.emf.ecore.resource.Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
 							"*",
 							new org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl()
 						) ;
 
-						call_wrapped() ;
+						call() ;
 					'''
 					^static = true
-				]
-			} else {
-				members += transfo.toMethod("call", returnType)[
-					val paramsList = new StringBuilder
-					transfo.parameters.forEach[p, i |
-						parameters += transfo.toParameter(p.name, p.parameterType)
-						if (i == 0) paramsList.append(p.name)
-						else paramsList.append(", " + p.name)
-					]
-
-					^static = true
-
-					body = '''
-						«FOR mt : transfo.parameters.filterModelTypes»
-						Class<? extends fr.inria.diverse.k3.sle.lib.IModelType> old«mt.name»Type = ((fr.inria.diverse.k3.sle.lib.IMetamodel) «mt.name»).getType() ;
-						«ENDFOR»
-						«FOR mt : transfo.parameters.filterModelTypes»
-						((fr.inria.diverse.k3.sle.lib.IMetamodel) «mt.name»).cast(«mt.parameterType.qualifiedName».class) ;
-						«ENDFOR»
-						«IF returnType.simpleName != "void"»«returnType.qualifiedName» ret = «ENDIF»call_wrapped(«paramsList») ;
-						«FOR mt : transfo.parameters.filterModelTypes»
-						((fr.inria.diverse.k3.sle.lib.IMetamodel) «mt.name»).cast(old«mt.name»Type) ;
-						«ENDFOR»
-						«IF returnType.simpleName != "void"»return ret ;«ENDIF»
-					'''
 				]
 			}
 		]
@@ -556,6 +551,10 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 		mm.fullyQualifiedName.append("adapters").append(mt.fullyQualifiedName.lastSegment).append(cls + "Adapter").normalize.toString
 	}
 
+	def adapterNameFor(Metamodel mm, ModelType mt) {
+		mm.fullyQualifiedName.append("adapters").append(mt.fullyQualifiedName.lastSegment).append(mm.name + "Adapter").normalize.toString
+	}
+
 	def adapterNameFor(Metamodel mm, Metamodel superMM, String cls) {
 		mm.fullyQualifiedName.append("adapters").append(superMM.name).append(cls + "Adapter").normalize.toString
 	}
@@ -564,8 +563,16 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 		mm.fullyQualifiedName.append("adapters").append(mt.fullyQualifiedName.lastSegment).append(cls + "AdapterFactory").normalize.toString
 	}
 
+	def factoryAdapterNameFor(Metamodel mm, ModelType mt) {
+		mm.fullyQualifiedName.append("adapters").append(mt.fullyQualifiedName.lastSegment).append(mt.name + "FactoryAdapter").normalize.toString
+	}
+
 	def interfaceNameFor(ModelType mt, String cls) {
 		mt.fullyQualifiedName.append(cls).normalize.toString
+	}
+
+	def factoryName(ModelType mt) {
+		mt.fullyQualifiedName.append(mt.name + "Factory").normalize.toString
 	}
 }
 
