@@ -29,5 +29,6 @@ TODO
 * Automatically merge different Ecore inherited and/or imported
 * Write static semantic constraints on the abstract syntax
 * Manage annotations on Ecore file to specify which elements need to be exposed by the interface
-* Move the implements relationships discovery from generateAdapters to buildSubtypingHierarchy
+* ~~Move the implements relationships discovery from generateAdapters to buildSubtypingHierarchy~~
+* Automatically extract the exactType of any declared metamodel using a directive within it
 
