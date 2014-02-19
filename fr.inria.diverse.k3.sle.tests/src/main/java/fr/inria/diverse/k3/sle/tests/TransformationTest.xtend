@@ -114,12 +114,21 @@ class TransformationTest
 			assertNotNull(foo)
 			assertEquals(foo.declaredMethods.size, 2)
 
-			val call = foo.declaredMethods.head
+			val call = foo.declaredMethods.findFirst[name == "call"]
+			assertNotNull(call)
 			assertEquals(call.name, "call")
 			assertEquals(call.returnType, Void::TYPE)
 			assertEquals(call.parameterTypes.size, 0)
 			assertTrue(Modifier.isStatic(call.modifiers))
 			assertTrue(Modifier.isPublic(call.modifiers))
+
+			val callw = foo.declaredMethods.findFirst[name == "call_wrapped"]
+			assertNotNull(callw)
+			assertEquals(callw.name, "call")
+			assertEquals(callw.returnType, Void::TYPE)
+			assertEquals(callw.parameterTypes.size, 0)
+			assertTrue(Modifier.isStatic(callw.modifiers))
+			assertTrue(Modifier.isPublic(callw.modifiers))
 		]
 	}
 
@@ -131,13 +140,23 @@ class TransformationTest
 			assertNotNull(bar)
 			assertEquals(bar.declaredMethods.size, 2)
 
-			val call = bar.declaredMethods.head
+			val call = bar.declaredMethods.findFirst[name == "call"]
+			assertNotNull(call)
 			assertEquals(call.name, "call")
 			assertEquals(call.returnType, Void::TYPE)
 			assertEquals(call.parameterTypes.size, 1)
 			assertEquals(call.parameterTypes.head, typeof(String))
 			assertTrue(Modifier.isStatic(call.modifiers))
 			assertTrue(Modifier.isPublic(call.modifiers))
+
+			val callw = bar.declaredMethods.findFirst[name == "call_wrapped"]
+			assertNotNull(callw)
+			assertEquals(callw.name, "call_wrapped")
+			assertEquals(callw.returnType, Void::TYPE)
+			assertEquals(callw.parameterTypes.size, 1)
+			assertEquals(callw.parameterTypes.head, typeof(String))
+			assertTrue(Modifier.isStatic(callw.modifiers))
+			assertTrue(Modifier.isPublic(callw.modifiers))
 		]
 	}
 
@@ -149,12 +168,21 @@ class TransformationTest
 			assertNotNull(baz)
 			assertEquals(baz.declaredMethods.size, 2)
 
-			val call = baz.declaredMethods.head
+			val call = baz.declaredMethods.findFirst[name == "call"]
+			assertNotNull(call)
 			assertEquals(call.name, "call")
 			assertEquals(call.returnType, typeof(String))
 			assertEquals(call.parameterTypes.size, 0)
 			assertTrue(Modifier.isStatic(call.modifiers))
 			assertTrue(Modifier.isPublic(call.modifiers))
+
+			val callw = baz.declaredMethods.findFirst[name == "call_wrapped"]
+			assertNotNull(callw)
+			assertEquals(callw.name, "call_wrapped")
+			assertEquals(callw.returnType, typeof(String))
+			assertEquals(callw.parameterTypes.size, 0)
+			assertTrue(Modifier.isStatic(callw.modifiers))
+			assertTrue(Modifier.isPublic(callw.modifiers))
 		]
 	}
 
@@ -192,13 +220,23 @@ class TransformationTest
 			assertNotNull(add)
 			assertEquals(add.declaredMethods.size, 2)
 
-			val call = add.declaredMethods.head
+			val call = add.declaredMethods.findFirst[name == "call"]
+			assertNotNull(call)
 			assertEquals(call.name, "call")
 			assertEquals(call.returnType, typeof(int))
 			assertEquals(call.parameterTypes.size, 2)
 			assertTrue(call.parameterTypes.forall[it == typeof(int)])
 			assertTrue(Modifier.isStatic(call.modifiers))
 			assertTrue(Modifier.isPublic(call.modifiers))
+
+			val callw = add.declaredMethods.findFirst[name == "call_wrapped"]
+			assertNotNull(callw)
+			assertEquals(callw.name, "call_wrapped")
+			assertEquals(callw.returnType, typeof(int))
+			assertEquals(callw.parameterTypes.size, 2)
+			assertTrue(callw.parameterTypes.forall[it == typeof(int)])
+			assertTrue(Modifier.isStatic(callw.modifiers))
+			assertTrue(Modifier.isPublic(callw.modifiers))
 		]
 	}
 
