@@ -12,9 +12,6 @@ import org.eclipse.xtext.junit4.XtextRunner
 import org.eclipse.xtext.junit4.util.ParseHelper
 import org.eclipse.xtext.junit4.validation.ValidationTestHelper
 
-import org.eclipse.xtext.generator.IGenerator
-import org.eclipse.xtext.generator.InMemoryFileSystemAccess
-
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -29,7 +26,6 @@ class SimpleParsingTest {
 
 	@Inject extension ParseHelper<MegamodelRoot>
 	@Inject extension ValidationTestHelper
-	@Inject IGenerator generator
 
 	MegamodelRoot root
 
@@ -55,15 +51,19 @@ class SimpleParsingTest {
 
 		}
 
+		transformation baz(TimedFsmMT m) {
+
+		}
+
 		@Main
 		transformation main() {
 			val fsm   =      Fsm.load("Simple.fsm",      FsmMT)
 			val tfsm  = TimedFsm.load("Simple.timedfsm", FsmMT)
 			val tfsm2 = TimedFsm.load("Simple.timedfsm", TimedFsmMT)
-			
+
 			bar.call(fsm)
 			bar.call(tfsm)
-			bar.call(tfsm2)
+			baz.call(tfsm2)
 		}
 		'''.parse
 	}
@@ -84,12 +84,14 @@ class SimpleParsingTest {
 		assertTrue(root.elements.get(3) instanceof ModelType)
 		assertTrue(root.elements.get(4) instanceof Transformation)
 		assertTrue(root.elements.get(5) instanceof Transformation)
+		assertTrue(root.elements.get(6) instanceof Transformation)
 
 		assertEquals(fsm.name,    "Fsm")
 		assertEquals(tfsm.name,   "TimedFsm")
 		assertEquals(fsmmt.name,  "FsmMT")
 		assertEquals(tfsmmt.name, "TimedFsmMT")
 		assertEquals(bar.name,    "bar")
+		assertEquals(baz.name,    "baz")
 		assertEquals(main.name,   "main")
 	}
 
@@ -124,27 +126,11 @@ class SimpleParsingTest {
 		assertEquals(tfsmmt.subtypingRelations.head.superType, fsmmt)
 	}
 
-	// Just to show how we can generate code
-	@Test
-	def testGeneration() {
-		val fsa = new InMemoryFileSystemAccess
-		generator.doGenerate(root.eResource, fsa)
-
-		assertEquals(fsa.allFiles.size, 21)
-
-		// Debug output
-		fsa.allFiles.forEach[filename, content |
-			println('''
-				Generated «filename»:
-				«content»
-			''')
-		]
-	}
-
 	def getFsm()    { root.elements.get(0) as Metamodel }
 	def getTfsm()   { root.elements.get(1) as Metamodel }
 	def getFsmmt()  { root.elements.get(2) as ModelType }
 	def getTfsmmt() { root.elements.get(3) as ModelType }
 	def getBar()    { root.elements.get(4) as Transformation }
-	def getMain()   { root.elements.get(5) as Transformation }
+	def getBaz()    { root.elements.get(5) as Transformation }
+	def getMain()   { root.elements.get(6) as Transformation }
 }

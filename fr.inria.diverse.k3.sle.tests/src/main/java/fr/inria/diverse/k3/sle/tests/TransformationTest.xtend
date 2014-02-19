@@ -96,6 +96,7 @@ class TransformationTest
 		generator.doGenerate(root.eResource, fsa)
 
 		assertEquals(fsa.allFiles.size, 5)
+		println("###"+fsa.toString+"###")
 
 		// Debug output
 		fsa.allFiles.forEach[filename, content |
@@ -169,9 +170,9 @@ class TransformationTest
 			assertNotNull(mainC)
 			assertEquals(mainC.declaredMethods.size, 2)
 
-			val call = mainC.declaredMethods.findFirst[name == "call_wrapped"]
+			val call = mainC.declaredMethods.findFirst[name == "call"]
 			assertNotNull(call)
-			assertEquals(call.name, "call_wrapped")
+			assertEquals(call.name, "call")
 			assertEquals(call.returnType, Void::TYPE)
 			assertTrue(Modifier.isStatic(call.modifiers))
 			assertTrue(Modifier.isPublic(call.modifiers))
