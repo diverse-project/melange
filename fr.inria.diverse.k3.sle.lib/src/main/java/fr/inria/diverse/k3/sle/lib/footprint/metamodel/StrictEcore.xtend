@@ -2,22 +2,22 @@ package fr.inria.diverse.k3.sle.lib.footprint.metamodel
 
 import java.util.ArrayList
 import java.util.List
-import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EModelElement
 import org.eclipse.emf.ecore.EObject
 
 import static extension fr.inria.diverse.k3.sle.lib.footprint.metamodel.__SlicerAspect__.*
 
 class StrictEcore{
-	val List<EClass> inputEClass
+	val List<EModelElement> inputEModelElement
 	private val List<EObject> clonedElts = new ArrayList
 
-	new(List<EClass> inputEClass){
-		this.inputEClass = inputEClass
+	new(List<EModelElement> inputEModelElement){
+		this.inputEModelElement = inputEModelElement
 	}
 
 	def void slice(){
-		inputEClass?.forEach[visitToAddClasses(this)]
-		inputEClass?.forEach[visitToAddRelations(this)]
+		inputEModelElement?.forEach[visitToAddClasses(this)]
+		inputEModelElement?.forEach[visitToAddRelations(this)]
 //		save
 	}
 
