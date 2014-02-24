@@ -87,7 +87,7 @@ import org.eclipse.xtext.xbase.XUnaryOperation
 import org.eclipse.xtext.xbase.XVariableDeclaration
 import org.eclipse.xtext.xbase.XWhileExpression
 
-@Aspect(className=typeof(Object)) 
+@Aspect(className=typeof(Object))
 abstract class __SlicerAspect__ {
 	var boolean visitedForRelations = false
 	var boolean sliced = false
@@ -210,14 +210,16 @@ class JvmArrayTypeAspect extends JvmComponentTypeAspect{
 abstract class JvmDeclaredTypeAspect extends JvmMemberAspect{
 	@OverrideAspectMethod
 	def void _visitToAddClasses(K3TransfoFootprint theSlicer){
-		_self.super__visitToAddClasses(theSlicer)
+		_self.super_JvmMember__visitToAddClasses(theSlicer)
+		_self.super_JvmComponentType__visitToAddClasses(theSlicer)
 		_self.^superTypes.forEach[visitToAddClasses(theSlicer)]
 		_self.^members.forEach[visitToAddClasses(theSlicer)]
 
 	}
 	@OverrideAspectMethod
 	def void _visitToAddRelations(K3TransfoFootprint theSlicer){
-		_self.super__visitToAddRelations(theSlicer)
+		_self.super_JvmMember__visitToAddRelations(theSlicer)
+		_self.super_JvmComponentType__visitToAddRelations(theSlicer)
 		_self.^superTypes.forEach[_elt| _elt.visitToAddRelations(theSlicer)		]
 		_self.^members.forEach[_elt| _elt.visitToAddRelations(theSlicer)		]
 
@@ -228,13 +230,15 @@ abstract class JvmDeclaredTypeAspect extends JvmMemberAspect{
 class JvmTypeParameterAspect extends JvmComponentTypeAspect{
 	@OverrideAspectMethod
 	def void _visitToAddClasses(K3TransfoFootprint theSlicer){
-		_self.super__visitToAddClasses(theSlicer)
+		_self.super_JvmComponentType__visitToAddClasses(theSlicer)
+		_self.super_JvmConstraintOwner__visitToAddClasses(theSlicer)
 		_self.^declarator?.visitToAddClasses(theSlicer)
 
 	}
 	@OverrideAspectMethod
 	def void _visitToAddRelations(K3TransfoFootprint theSlicer){
-		_self.super__visitToAddRelations(theSlicer)
+		_self.super_JvmComponentType__visitToAddRelations(theSlicer)
+		_self.super_JvmConstraintOwner__visitToAddRelations(theSlicer)
 		if(_self.^declarator!=null){
 		_self.^declarator.visitToAddRelations(theSlicer)
 		}
@@ -372,12 +376,14 @@ class JvmEnumerationLiteralAspect extends JvmFieldAspect{
 class JvmGenericTypeAspect extends JvmDeclaredTypeAspect{
 	@OverrideAspectMethod
 	def void _visitToAddClasses(K3TransfoFootprint theSlicer){
-		_self.super__visitToAddClasses(theSlicer)
+		_self.super_JvmDeclaredType__visitToAddClasses(theSlicer)
+		_self.super_JvmTypeParameterDeclarator__visitToAddClasses(theSlicer)
 
 	}
 	@OverrideAspectMethod
 	def void _visitToAddRelations(K3TransfoFootprint theSlicer){
-		_self.super__visitToAddRelations(theSlicer)
+		_self.super_JvmDeclaredType__visitToAddRelations(theSlicer)
+		_self.super_JvmTypeParameterDeclarator__visitToAddRelations(theSlicer)
 
 	}
 }
@@ -439,12 +445,14 @@ class JvmGenericArrayTypeReferenceAspect extends JvmTypeReferenceAspect{
 class JvmWildcardTypeReferenceAspect extends JvmTypeReferenceAspect{
 	@OverrideAspectMethod
 	def void _visitToAddClasses(K3TransfoFootprint theSlicer){
-		_self.super__visitToAddClasses(theSlicer)
+		_self.super_JvmTypeReference__visitToAddClasses(theSlicer)
+		_self.super_JvmConstraintOwner__visitToAddClasses(theSlicer)
 
 	}
 	@OverrideAspectMethod
 	def void _visitToAddRelations(K3TransfoFootprint theSlicer){
-		_self.super__visitToAddRelations(theSlicer)
+		_self.super_JvmTypeReference__visitToAddRelations(theSlicer)
+		_self.super_JvmConstraintOwner__visitToAddRelations(theSlicer)
 
 	}
 }
@@ -535,14 +543,16 @@ class JvmFieldAspect extends JvmFeatureAspect{
 abstract class JvmExecutableAspect extends JvmFeatureAspect{
 	@OverrideAspectMethod
 	def void _visitToAddClasses(K3TransfoFootprint theSlicer){
-		_self.super__visitToAddClasses(theSlicer)
+		_self.super_JvmFeature__visitToAddClasses(theSlicer)
+		_self.super_JvmTypeParameterDeclarator__visitToAddClasses(theSlicer)
 		_self.^parameters.forEach[visitToAddClasses(theSlicer)]
 		_self.^exceptions.forEach[visitToAddClasses(theSlicer)]
 
 	}
 	@OverrideAspectMethod
 	def void _visitToAddRelations(K3TransfoFootprint theSlicer){
-		_self.super__visitToAddRelations(theSlicer)
+		_self.super_JvmFeature__visitToAddRelations(theSlicer)
+		_self.super_JvmTypeParameterDeclarator__visitToAddRelations(theSlicer)
 		_self.^parameters.forEach[_elt| _elt.visitToAddRelations(theSlicer)		]
 		_self.^exceptions.forEach[_elt| _elt.visitToAddRelations(theSlicer)		]
 

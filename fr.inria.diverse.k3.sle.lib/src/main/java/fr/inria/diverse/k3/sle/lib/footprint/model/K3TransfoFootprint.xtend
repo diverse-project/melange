@@ -1,7 +1,5 @@
 package fr.inria.diverse.k3.sle.lib.footprint.model
 
-import java.util.ArrayList
-import java.util.HashSet
 import java.util.List
 import java.util.Set
 import org.eclipse.xtext.common.types.JvmFormalParameter
@@ -10,10 +8,11 @@ import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.xbase.XExpression
 import static extension fr.inria.diverse.k3.sle.lib.footprint.model.__SlicerAspect__.*
 
+
 class K3TransfoFootprint{
 
-	public val Set<String> footprint = new HashSet
-	public val List<String> pkgs = new ArrayList
+	public val Set<String> footprint = newHashSet
+	public val List<String> pkgs = newArrayList
 	private def addQN(String qn) {
 		if(qn!=null && !qn.startsWith("java.") && !qn.startsWith("com.google.") && 
 			!qn.startsWith("sun.") && !qn.startsWith("javax.") && !qn.startsWith("com.sun") &&
