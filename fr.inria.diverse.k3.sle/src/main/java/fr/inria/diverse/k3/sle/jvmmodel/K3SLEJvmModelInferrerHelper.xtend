@@ -308,7 +308,7 @@ class K3SLEJvmModelInferrerHelper
 		) {
 			val className =
 				(asp.aspectRef.type as JvmGenericType).annotations
-					.findFirst[annotation.qualifiedName == "fr.inria.triskell.k3.Aspect"]
+					.findFirst[annotation.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Aspect"]
 					?.values.filter(JvmCustomAnnotationValue)
 					?.head?.values?.head?.toString
 
