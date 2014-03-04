@@ -13,27 +13,5 @@
 
 	<name>K3SLE Common Libraries</name>
 
-	<dependencies>
-		<dependency>
-			<groupId>fr.inria.diverse.k3.al</groupId>
-			<artifactId>fr.inria.diverse.k3.al.annotationprocessor</artifactId>
-			<version>${kermeta.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.xtend</groupId>
-			<artifactId>org.eclipse.xtend.lib</artifactId>
-			<version>${xtext.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.xtext</groupId>
-			<artifactId>org.eclipse.xtext.xbase</artifactId>
-			<version>${xtext.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.xtext</groupId>
-			<artifactId>org.eclipse.xtext.common.types</artifactId>
-			<version>${xtext.version}</version>
-		</dependency>
-	</dependencies>
 </project>
 
