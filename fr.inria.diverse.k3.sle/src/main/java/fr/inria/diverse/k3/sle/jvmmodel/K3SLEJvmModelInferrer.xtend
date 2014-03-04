@@ -158,7 +158,7 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 					.filter[cls.aspectizedBy(it)]
 					.forEach[asp |
 						(asp.aspectRef.type as JvmGenericType).declaredOperations
-						.filter[op | !op.simpleName.startsWith("priv") && !op.simpleName.startsWith("super_")]
+						.filter[op | !op.simpleName.startsWith("_privk3") && !op.simpleName.startsWith("super_")]
 						.filter[op | !members.exists[opp | opp.simpleName == op.simpleName]]
 						.forEach[op |
 							members += mm.toMethod(op.simpleName, mm.newTypeRef(op.returnType.qualifiedName))[
@@ -201,7 +201,7 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 						.filter[cls.aspectizedBy(it)]
 						.forEach[asp |
 							(asp.aspectRef.type as JvmGenericType).declaredOperations
-							.filter[op | !op.simpleName.startsWith("priv") && !op.simpleName.startsWith("super_")]
+							.filter[op | !op.simpleName.startsWith("_privk3") && !op.simpleName.startsWith("super_")]
 							.filter[op | !members.exists[opp | opp.simpleName == op.simpleName]]
 							.forEach[op |
 								members += mm.toMethod(op.simpleName, mm.newTypeRef(op.returnType.qualifiedName))[
@@ -456,7 +456,7 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 					.filter[cls.aspectizedBy(it)]
 					.forEach[asp |
 						(asp.aspectRef.type as JvmGenericType).declaredOperations
-						.filter[op | !op.simpleName.startsWith("priv") && !op.simpleName.startsWith("super_")]
+						.filter[op | !op.simpleName.startsWith("_privk3") && !op.simpleName.startsWith("super_")]
 						.filter[op | !members.exists[opp | opp.simpleName == op.simpleName]]
 						.forEach[op |
 							members += mt.toMethod(op.simpleName, mt.newTypeRef(op.returnType.qualifiedName))[

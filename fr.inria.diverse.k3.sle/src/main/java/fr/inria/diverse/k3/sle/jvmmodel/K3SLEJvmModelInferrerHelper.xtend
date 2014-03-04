@@ -229,7 +229,7 @@ class K3SLEJvmModelInferrerHelper
 
 			if (aspectized !== null) {
 				(asp.aspectRef.type as JvmGenericType).declaredOperations
-				.filter[op | !op.simpleName.startsWith("priv") && !op.simpleName.startsWith("super_")]
+				.filter[op | !op.simpleName.startsWith("_privk3") && !op.simpleName.startsWith("super_")]
 				.forEach[op |
 					// Create an attribute is these are getters/setters
 					aspectized.EOperations.add(
