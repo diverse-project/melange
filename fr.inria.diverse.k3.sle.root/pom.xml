@@ -27,22 +27,20 @@
 	</properties>
 
 	<repositories>
-                <repository>
-                        <id>K3</id>
-                        <layout>p2</layout>
-                        <url>https://ci.inria.fr/k3al/job/k3-al.eclipse/lastSuccessfulBuild/artifact/k3-al.eclipse/fr.inria.diverse.k3.al.p2updatesite/target/site/</url>
-		</repository>
-                <repository>
-                        <id>Kepler</id>
-                        <layout>p2</layout>
-                        <url>http://download.eclipse.org/releases/kepler</url>
-                </repository>
+		<!-- Update site  general repo for K3 except the currently build one (ie. k3-sle) -->	
 		<repository>
-			<id>Xtext Update Site</id>
-			<layout>p2</layout>
-			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/</url>
+                <id>K3-except-k3sle</id>
+                <layout>p2</layout>
+                <url>https://ci.inria.fr/k3al/job/k3-composite_updatesite/lastSuccessfulBuild/artifact/k3-composite_updatesite/k3.nightly.composite.updatesite/update/all-except-k3-sle/</url>
 		</repository>
-        </repositories>
+		
+		<!-- Update site Repo for thirdparty Dependencies -->
+        <repository>
+                <id>platform</id>
+                <layout>p2</layout>
+                <url>https://ci.inria.fr/k3al/job/k3-composite_updatesite/lastSuccessfulBuild/artifact/k3-composite_updatesite/k3.platform.composite.updatesite/update/</url>
+		</repository>
+    </repositories>
 
 	<build>
         <sourceDirectory>src/main/java/src-gen/</sourceDirectory>
