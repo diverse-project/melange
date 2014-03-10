@@ -92,7 +92,7 @@
 							<source>
 								String nightlyModifier = "${nightly.modifier}"
 								if ("${project.version}".contains("SNAPSHOT") ){
-									if( ! nightlyModifier.equals(".nighltly") ){
+									if( ! nightlyModifier.equals(".nightly") ){
 										fail("property nightly.modifier must be set to '.nightly' for SNAPSHOT versions. "+nightlyModifier)
 									}
 								} else if(! nightlyModifier.isEmpty() ){
