@@ -24,6 +24,7 @@
 		<tycho.version>0.19.0</tycho.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<xtext.version>2.5.3</xtext.version>
+		<nightly.modifier>.nightly</nightly.modifier> <!-- must be set to ".nightly" for SNAPSHOT and set to "" for release -->
 	</properties>
 
 	<repositories>
@@ -31,7 +32,7 @@
 		<repository>
                 <id>K3-except-k3sle</id>
                 <layout>p2</layout>
-                <url>https://ci.inria.fr/k3al/job/k3-composite_updatesite/lastSuccessfulBuild/artifact/k3-composite_updatesite/k3.nightly.composite.updatesite/update/all-except-k3-sle/</url>
+                <url>https://ci.inria.fr/k3al/job/k3-composite_updatesite/lastSuccessfulBuild/artifact/k3-composite_updatesite/k3${nightly.modifier}.composite.updatesite/update/all-except-k3-sle/</url>
 		</repository>
 		
 		<!-- Update site Repo for thirdparty Dependencies -->
@@ -73,6 +74,35 @@
 		</pluginManagement>
 		
 		<plugins>
+			<!-- calculate versions for some special cases -->
+			<!-- calculate the nightly modifier from the project version  -->
+			<plugin>
+				<groupId>org.codehaus.groovy.maven</groupId>
+				<artifactId>gmaven-plugin</artifactId>
+				<version>1.0</version>
+				<executions>
+					<execution>
+						<id>generate_nightly_modifier</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>execute</goal>
+						</goals>
+						<configuration>
+							<!-- setting the property in groovy doesn't work well with tycho, so I've implemented a check instead -->
+							<source>
+								String nightlyModifier = "${nightly.modifier}"
+								if ("${project.version}".contains("SNAPSHOT") ){
+									if( ! nightlyModifier.equals(".nighltly") ){
+										fail("property nightly.modifier must be set to '.nightly' for SNAPSHOT versions. "+nightlyModifier)
+									}
+								} else if(! nightlyModifier.isEmpty() ){
+									fail("property nightly.modifier must be empty for RELEASE versions. "+nightlyModifier)
+								}
+							</source>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-maven-plugin</artifactId>
