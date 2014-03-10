@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: fr.inria.diverse.k3.sle.lib
 Bundle-SymbolicName: fr.inria.diverse.k3.sle.lib;singleton:=true
-Bundle-Version: 0.1.0.beta
+Bundle-Version: 3.0.0.qualifier
 Bundle-Vendor: DIVERSE
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtend.lib;bundle-version="2.5.2",
