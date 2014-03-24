@@ -98,7 +98,7 @@ abstract class __SlicerAspect__ {
 			_self._visitToAddClasses(theSlicer)
 		}
 	}
-	
+
 	protected def void _visitToAddClasses(K3TransfoFootprint theSlicer){}
 
 	def void visitToAddRelations(K3TransfoFootprint theSlicer){
@@ -107,7 +107,7 @@ abstract class __SlicerAspect__ {
 			_self._visitToAddRelations(theSlicer)
 		}
 	}
-	
+
 	protected def void _visitToAddRelations(K3TransfoFootprint theSlicer){}
 
 	def void feedOpposites(){}

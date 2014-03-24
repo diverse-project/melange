@@ -22,13 +22,13 @@ public interface K3sleFactory extends EFactory {
 	K3sleFactory eINSTANCE = fr.inria.diverse.k3.sle.metamodel.k3sle.impl.K3sleFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Megamodel Root</em>'.
+	 * Returns a new object of class '<em>Model Typing Space</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Megamodel Root</em>'.
+	 * @return a new object of class '<em>Model Typing Space</em>'.
 	 * @generated
 	 */
-	MegamodelRoot createMegamodelRoot();
+	ModelTypingSpace createModelTypingSpace();
 
 	/**
 	 * Returns a new object of class '<em>Metamodel</em>'.

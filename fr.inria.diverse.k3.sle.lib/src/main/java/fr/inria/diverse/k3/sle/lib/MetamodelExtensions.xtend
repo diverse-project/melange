@@ -11,14 +11,17 @@ import java.util.HashMap
 class MetamodelExtensions
 {
 	// FIXME: re static-type me please
-	def static <MT extends IModelType, MM/*extends MT*/> MT load(Class<MM> mm, String uri, Class<MT> mt) {
+	def static <MT extends IModelType, MM/*extends MT*/> MT load(Class<MM> mm, String uri, Class<MT> mt) throws ModelTypeException {
 		val resSet = new ResourceSetImpl
 		val res = resSet.getResource(URI.createURI(uri), true)
 
 		if (AdaptersRegistry.instance.getAdapter(mm.name, mt.name) === null)
 			throw new ModelTypeException("Cannot find adapter for " + mm + " towards " + mt)
 
-		return AdaptersRegistry.instance.getAdapter(mm.name, mt.name).declaredConstructors.head.newInstance(res) as MT
+		val ret = AdaptersRegistry.instance.getAdapter(mm.name, mt.name).declaredConstructors.head.newInstance as GenericAdapter<Resource>
+		ret.setAdaptee(res)
+
+		return ret as MT
 	}
 }
 

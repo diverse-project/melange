@@ -34,7 +34,7 @@ abstract class __SlicerAspect__ {
 			_self._visitToAddClasses(theSlicer)
 		}
 	}
-	
+
 	protected def void _visitToAddClasses(StrictEcore theSlicer){}
 
 	def void visitToAddRelations(StrictEcore theSlicer){
@@ -43,7 +43,7 @@ abstract class __SlicerAspect__ {
 			_self._visitToAddRelations(theSlicer)
 		}
 	}
-	
+
 	protected def void _visitToAddRelations(StrictEcore theSlicer){}
 
 	def void feedOpposites(){}
@@ -386,7 +386,7 @@ abstract class EStructuralFeatureAspect extends ETypedElementAspect{
 
 		}
 	}
-	def boolean checkcard1(){ 
+	def boolean checkcard1(){
 		val feat = _self
 		feat.lowerBound>0
 	}

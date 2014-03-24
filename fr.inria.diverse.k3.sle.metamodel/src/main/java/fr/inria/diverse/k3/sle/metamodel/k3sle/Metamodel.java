@@ -21,8 +21,9 @@ import org.eclipse.emf.ecore.EPackage;
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getExactType <em>Exact Type</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getImplements <em>Implements</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getInheritanceRelation <em>Inheritance Relation</em>}</li>
- *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getPkg <em>Pkg</em>}</li>
- *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getGenmodel <em>Genmodel</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getPkgs <em>Pkgs</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getExactTypeRef <em>Exact Type Ref</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getGenmodels <em>Genmodels</em>}</li>
  * </ul>
  * </p>
  *
@@ -75,6 +76,7 @@ public interface Metamodel extends Element {
 
 	/**
 	 * Returns the value of the '<em><b>Exact Type</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType#getExtracted <em>Extracted</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Exact Type</em>' reference isn't clear,
@@ -84,7 +86,8 @@ public interface Metamodel extends Element {
 	 * @return the value of the '<em>Exact Type</em>' reference.
 	 * @see #setExactType(ModelType)
 	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getMetamodel_ExactType()
-	 * @model
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType#getExtracted
+	 * @model opposite="extracted" required="true"
 	 * @generated
 	 */
 	ModelType getExactType();
@@ -144,71 +147,61 @@ public interface Metamodel extends Element {
 	void setInheritanceRelation(Inheritance value);
 
 	/**
-	 * Returns the value of the '<em><b>Pkg</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Pkgs</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.ecore.EPackage}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Pkg</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Pkgs</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Pkg</em>' containment reference.
-	 * @see #setPkg(EPackage)
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getMetamodel_Pkg()
+	 * @return the value of the '<em>Pkgs</em>' containment reference list.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getMetamodel_Pkgs()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EPackage getPkg();
+	EList<EPackage> getPkgs();
 
 	/**
-	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getPkg <em>Pkg</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Pkg</em>' containment reference.
-	 * @see #getPkg()
-	 * @generated
-	 */
-	void setPkg(EPackage value);
-
-	/**
-	 * Returns the value of the '<em><b>Genmodel</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Exact Type Ref</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Genmodel</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Exact Type Ref</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Genmodel</em>' containment reference.
-	 * @see #setGenmodel(GenModel)
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getMetamodel_Genmodel()
+	 * @return the value of the '<em>Exact Type Ref</em>' attribute.
+	 * @see #setExactTypeRef(String)
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getMetamodel_ExactTypeRef()
+	 * @model
+	 * @generated
+	 */
+	String getExactTypeRef();
+
+	/**
+	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getExactTypeRef <em>Exact Type Ref</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Exact Type Ref</em>' attribute.
+	 * @see #getExactTypeRef()
+	 * @generated
+	 */
+	void setExactTypeRef(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Genmodels</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.codegen.ecore.genmodel.GenModel}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Genmodels</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Genmodels</em>' containment reference list.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getMetamodel_Genmodels()
 	 * @model containment="true"
 	 * @generated
 	 */
-	GenModel getGenmodel();
-
-	/**
-	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getGenmodel <em>Genmodel</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Genmodel</em>' containment reference.
-	 * @see #getGenmodel()
-	 * @generated
-	 */
-	void setGenmodel(GenModel value);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	void footprint();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	void merge();
+	EList<GenModel> getGenmodels();
 
 } // Metamodel

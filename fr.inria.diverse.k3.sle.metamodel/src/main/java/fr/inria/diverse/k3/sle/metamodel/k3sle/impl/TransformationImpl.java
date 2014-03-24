@@ -2,6 +2,7 @@
  */
 package fr.inria.diverse.k3.sle.metamodel.k3sle.impl;
 
+import fr.inria.diverse.k3.sle.metamodel.k3sle.Element;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation;
 
@@ -18,6 +19,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.xtext.common.types.JvmFormalParameter;
@@ -36,6 +38,8 @@ import org.eclipse.xtext.xbase.XExpression;
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.TransformationImpl#getParameters <em>Parameters</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.TransformationImpl#getBody <em>Body</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.TransformationImpl#getReturnTypeRef <em>Return Type Ref</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.TransformationImpl#getInput <em>Input</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.TransformationImpl#getOutput <em>Output</em>}</li>
  * </ul>
  * </p>
  *
@@ -91,6 +95,26 @@ public class TransformationImpl extends ElementImpl implements Transformation {
 	 * @ordered
 	 */
 	protected JvmTypeReference returnTypeRef;
+
+	/**
+	 * The cached value of the '{@link #getInput() <em>Input</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInput()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Element> input;
+
+	/**
+	 * The cached value of the '{@link #getOutput() <em>Output</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOutput()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Element> output;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -235,6 +259,30 @@ public class TransformationImpl extends ElementImpl implements Transformation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Element> getInput() {
+		if (input == null) {
+			input = new EObjectResolvingEList<Element>(Element.class, this, K3slePackage.TRANSFORMATION__INPUT);
+		}
+		return input;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Element> getOutput() {
+		if (output == null) {
+			output = new EObjectResolvingEList<Element>(Element.class, this, K3slePackage.TRANSFORMATION__OUTPUT);
+		}
+		return output;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -264,6 +312,10 @@ public class TransformationImpl extends ElementImpl implements Transformation {
 				return getBody();
 			case K3slePackage.TRANSFORMATION__RETURN_TYPE_REF:
 				return getReturnTypeRef();
+			case K3slePackage.TRANSFORMATION__INPUT:
+				return getInput();
+			case K3slePackage.TRANSFORMATION__OUTPUT:
+				return getOutput();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -290,6 +342,14 @@ public class TransformationImpl extends ElementImpl implements Transformation {
 			case K3slePackage.TRANSFORMATION__RETURN_TYPE_REF:
 				setReturnTypeRef((JvmTypeReference)newValue);
 				return;
+			case K3slePackage.TRANSFORMATION__INPUT:
+				getInput().clear();
+				getInput().addAll((Collection<? extends Element>)newValue);
+				return;
+			case K3slePackage.TRANSFORMATION__OUTPUT:
+				getOutput().clear();
+				getOutput().addAll((Collection<? extends Element>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -314,6 +374,12 @@ public class TransformationImpl extends ElementImpl implements Transformation {
 			case K3slePackage.TRANSFORMATION__RETURN_TYPE_REF:
 				setReturnTypeRef((JvmTypeReference)null);
 				return;
+			case K3slePackage.TRANSFORMATION__INPUT:
+				getInput().clear();
+				return;
+			case K3slePackage.TRANSFORMATION__OUTPUT:
+				getOutput().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -334,6 +400,10 @@ public class TransformationImpl extends ElementImpl implements Transformation {
 				return body != null;
 			case K3slePackage.TRANSFORMATION__RETURN_TYPE_REF:
 				return returnTypeRef != null;
+			case K3slePackage.TRANSFORMATION__INPUT:
+				return input != null && !input.isEmpty();
+			case K3slePackage.TRANSFORMATION__OUTPUT:
+				return output != null && !output.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

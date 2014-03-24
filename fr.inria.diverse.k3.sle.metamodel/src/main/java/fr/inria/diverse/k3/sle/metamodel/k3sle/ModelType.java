@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EPackage;
  * <ul>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType#getEcore <em>Ecore</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType#getSubtypingRelations <em>Subtyping Relations</em>}</li>
- *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType#getPkg <em>Pkg</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType#getPkgs <em>Pkgs</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType#getExtracted <em>Extracted</em>}</li>
  * </ul>
  * </p>
@@ -71,33 +71,24 @@ public interface ModelType extends Element {
 	EList<Subtyping> getSubtypingRelations();
 
 	/**
-	 * Returns the value of the '<em><b>Pkg</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Pkgs</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.ecore.EPackage}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Pkg</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Pkgs</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Pkg</em>' containment reference.
-	 * @see #setPkg(EPackage)
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getModelType_Pkg()
+	 * @return the value of the '<em>Pkgs</em>' containment reference list.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getModelType_Pkgs()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EPackage getPkg();
-
-	/**
-	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType#getPkg <em>Pkg</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Pkg</em>' containment reference.
-	 * @see #getPkg()
-	 * @generated
-	 */
-	void setPkg(EPackage value);
+	EList<EPackage> getPkgs();
 
 	/**
 	 * Returns the value of the '<em><b>Extracted</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getExactType <em>Exact Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Extracted</em>' reference isn't clear,
@@ -107,7 +98,8 @@ public interface ModelType extends Element {
 	 * @return the value of the '<em>Extracted</em>' reference.
 	 * @see #setExtracted(Metamodel)
 	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getModelType_Extracted()
-	 * @model
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getExactType
+	 * @model opposite="exactType"
 	 * @generated
 	 */
 	Metamodel getExtracted();

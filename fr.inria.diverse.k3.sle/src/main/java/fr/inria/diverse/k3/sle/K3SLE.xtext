@@ -2,19 +2,20 @@ grammar fr.inria.diverse.k3.sle.K3SLE with org.eclipse.xtext.xbase.Xbase
 
 import "http://www.inria.fr/diverse/k3/sle"
 
-MegamodelRoot:
+ModelTypingSpace:
 	('package' name = QualifiedName)?
 	(imports = XImportSection)?
 	(elements += Element)*
 ;
 
 Element:
-	Metamodel | ModelType | Transformation
+	Metamodel | EcoreModelType | Transformation
 ;
 
 Metamodel:
 	'metamodel' name = ValidID (inheritanceRelation = Inheritance)?  '{'
 		(ecore = EcoreImport)?
+		('exactType' exactTypeRef = ValidID)
 		(aspects += AspectImport)*
 	'}'
 ;
@@ -23,8 +24,8 @@ Inheritance:
 	'inherits' superMetamodel = [Metamodel | QualifiedName]
 ;
 
-ModelType:
-	'modeltype' name = ValidID ('extract' extracted = [Metamodel | QualifiedName])? '{'
+EcoreModelType returns ModelType:
+	'modeltype' name = ValidID '{'
 		(ecore = EcoreImport)?
 	'}'
 ;
@@ -37,7 +38,7 @@ Transformation:
 ;
 
 EcoreImport:
-	'ecore' uri = STRING ('with genmodel' genmodelUri = STRING)?
+	'ecore' uri = STRING ('withGenmodel' (genmodelUris += STRING (',' genmodelUris += STRING)*))?
 ;
 
 AspectImport:

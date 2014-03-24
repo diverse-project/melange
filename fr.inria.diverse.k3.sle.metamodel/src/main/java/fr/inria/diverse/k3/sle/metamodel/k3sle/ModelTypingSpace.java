@@ -10,23 +10,23 @@ import org.eclipse.xtext.xtype.XImportSection;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Megamodel Root</b></em>'.
+ * A representation of the model object '<em><b>Model Typing Space</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.MegamodelRoot#getElements <em>Elements</em>}</li>
- *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.MegamodelRoot#getImports <em>Imports</em>}</li>
- *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.MegamodelRoot#getName <em>Name</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace#getElements <em>Elements</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace#getImports <em>Imports</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
- * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getMegamodelRoot()
+ * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getModelTypingSpace()
  * @model
  * @generated
  */
-public interface MegamodelRoot extends EObject {
+public interface ModelTypingSpace extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Elements</b></em>' containment reference list.
 	 * The list contents are of type {@link fr.inria.diverse.k3.sle.metamodel.k3sle.Element}.
@@ -37,7 +37,7 @@ public interface MegamodelRoot extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Elements</em>' containment reference list.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getMegamodelRoot_Elements()
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getModelTypingSpace_Elements()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -53,14 +53,14 @@ public interface MegamodelRoot extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Imports</em>' containment reference.
 	 * @see #setImports(XImportSection)
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getMegamodelRoot_Imports()
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getModelTypingSpace_Imports()
 	 * @model containment="true"
 	 * @generated
 	 */
 	XImportSection getImports();
 
 	/**
-	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.MegamodelRoot#getImports <em>Imports</em>}' containment reference.
+	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace#getImports <em>Imports</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Imports</em>' containment reference.
@@ -79,14 +79,14 @@ public interface MegamodelRoot extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getMegamodelRoot_Name()
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getModelTypingSpace_Name()
 	 * @model
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.MegamodelRoot#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
@@ -95,4 +95,4 @@ public interface MegamodelRoot extends EObject {
 	 */
 	void setName(String value);
 
-} // MegamodelRoot
+} // ModelTypingSpace

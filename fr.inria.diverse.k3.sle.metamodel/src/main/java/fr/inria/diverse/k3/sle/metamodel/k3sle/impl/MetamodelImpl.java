@@ -9,8 +9,6 @@ import fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType;
 
-import java.lang.reflect.InvocationTargetException;
-
 import java.util.Collection;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
@@ -42,8 +40,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getExactType <em>Exact Type</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getImplements <em>Implements</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getInheritanceRelation <em>Inheritance Relation</em>}</li>
- *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getPkg <em>Pkg</em>}</li>
- *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getGenmodel <em>Genmodel</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getPkgs <em>Pkgs</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getExactTypeRef <em>Exact Type Ref</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getGenmodels <em>Genmodels</em>}</li>
  * </ul>
  * </p>
  *
@@ -101,24 +100,44 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	protected Inheritance inheritanceRelation;
 
 	/**
-	 * The cached value of the '{@link #getPkg() <em>Pkg</em>}' containment reference.
+	 * The cached value of the '{@link #getPkgs() <em>Pkgs</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPkg()
+	 * @see #getPkgs()
 	 * @generated
 	 * @ordered
 	 */
-	protected EPackage pkg;
+	protected EList<EPackage> pkgs;
 
 	/**
-	 * The cached value of the '{@link #getGenmodel() <em>Genmodel</em>}' containment reference.
+	 * The default value of the '{@link #getExactTypeRef() <em>Exact Type Ref</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getGenmodel()
+	 * @see #getExactTypeRef()
 	 * @generated
 	 * @ordered
 	 */
-	protected GenModel genmodel;
+	protected static final String EXACT_TYPE_REF_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getExactTypeRef() <em>Exact Type Ref</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExactTypeRef()
+	 * @generated
+	 * @ordered
+	 */
+	protected String exactTypeRef = EXACT_TYPE_REF_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getGenmodels() <em>Genmodels</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGenmodels()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<GenModel> genmodels;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -225,11 +244,33 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExactType(ModelType newExactType) {
+	public NotificationChain basicSetExactType(ModelType newExactType, NotificationChain msgs) {
 		ModelType oldExactType = exactType;
 		exactType = newExactType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, K3slePackage.METAMODEL__EXACT_TYPE, oldExactType, exactType));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, K3slePackage.METAMODEL__EXACT_TYPE, oldExactType, newExactType);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setExactType(ModelType newExactType) {
+		if (newExactType != exactType) {
+			NotificationChain msgs = null;
+			if (exactType != null)
+				msgs = ((InternalEObject)exactType).eInverseRemove(this, K3slePackage.MODEL_TYPE__EXTRACTED, ModelType.class, msgs);
+			if (newExactType != null)
+				msgs = ((InternalEObject)newExactType).eInverseAdd(this, K3slePackage.MODEL_TYPE__EXTRACTED, ModelType.class, msgs);
+			msgs = basicSetExactType(newExactType, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, K3slePackage.METAMODEL__EXACT_TYPE, newExactType, newExactType));
 	}
 
 	/**
@@ -292,23 +333,11 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EPackage getPkg() {
-		return pkg;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetPkg(EPackage newPkg, NotificationChain msgs) {
-		EPackage oldPkg = pkg;
-		pkg = newPkg;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, K3slePackage.METAMODEL__PKG, oldPkg, newPkg);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	public EList<EPackage> getPkgs() {
+		if (pkgs == null) {
+			pkgs = new EObjectContainmentEList<EPackage>(EPackage.class, this, K3slePackage.METAMODEL__PKGS);
 		}
-		return msgs;
+		return pkgs;
 	}
 
 	/**
@@ -316,83 +345,32 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPkg(EPackage newPkg) {
-		if (newPkg != pkg) {
-			NotificationChain msgs = null;
-			if (pkg != null)
-				msgs = ((InternalEObject)pkg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - K3slePackage.METAMODEL__PKG, null, msgs);
-			if (newPkg != null)
-				msgs = ((InternalEObject)newPkg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - K3slePackage.METAMODEL__PKG, null, msgs);
-			msgs = basicSetPkg(newPkg, msgs);
-			if (msgs != null) msgs.dispatch();
+	public String getExactTypeRef() {
+		return exactTypeRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setExactTypeRef(String newExactTypeRef) {
+		String oldExactTypeRef = exactTypeRef;
+		exactTypeRef = newExactTypeRef;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, K3slePackage.METAMODEL__EXACT_TYPE_REF, oldExactTypeRef, exactTypeRef));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<GenModel> getGenmodels() {
+		if (genmodels == null) {
+			genmodels = new EObjectContainmentEList<GenModel>(GenModel.class, this, K3slePackage.METAMODEL__GENMODELS);
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, K3slePackage.METAMODEL__PKG, newPkg, newPkg));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public GenModel getGenmodel() {
-		return genmodel;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetGenmodel(GenModel newGenmodel, NotificationChain msgs) {
-		GenModel oldGenmodel = genmodel;
-		genmodel = newGenmodel;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, K3slePackage.METAMODEL__GENMODEL, oldGenmodel, newGenmodel);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setGenmodel(GenModel newGenmodel) {
-		if (newGenmodel != genmodel) {
-			NotificationChain msgs = null;
-			if (genmodel != null)
-				msgs = ((InternalEObject)genmodel).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - K3slePackage.METAMODEL__GENMODEL, null, msgs);
-			if (newGenmodel != null)
-				msgs = ((InternalEObject)newGenmodel).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - K3slePackage.METAMODEL__GENMODEL, null, msgs);
-			msgs = basicSetGenmodel(newGenmodel, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, K3slePackage.METAMODEL__GENMODEL, newGenmodel, newGenmodel));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void footprint() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void merge() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return genmodels;
 	}
 
 	/**
@@ -403,6 +381,10 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case K3slePackage.METAMODEL__EXACT_TYPE:
+				if (exactType != null)
+					msgs = ((InternalEObject)exactType).eInverseRemove(this, K3slePackage.MODEL_TYPE__EXTRACTED, ModelType.class, msgs);
+				return basicSetExactType((ModelType)otherEnd, msgs);
 			case K3slePackage.METAMODEL__INHERITANCE_RELATION:
 				if (inheritanceRelation != null)
 					msgs = ((InternalEObject)inheritanceRelation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - K3slePackage.METAMODEL__INHERITANCE_RELATION, null, msgs);
@@ -423,12 +405,14 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 				return basicSetEcore(null, msgs);
 			case K3slePackage.METAMODEL__ASPECTS:
 				return ((InternalEList<?>)getAspects()).basicRemove(otherEnd, msgs);
+			case K3slePackage.METAMODEL__EXACT_TYPE:
+				return basicSetExactType(null, msgs);
 			case K3slePackage.METAMODEL__INHERITANCE_RELATION:
 				return basicSetInheritanceRelation(null, msgs);
-			case K3slePackage.METAMODEL__PKG:
-				return basicSetPkg(null, msgs);
-			case K3slePackage.METAMODEL__GENMODEL:
-				return basicSetGenmodel(null, msgs);
+			case K3slePackage.METAMODEL__PKGS:
+				return ((InternalEList<?>)getPkgs()).basicRemove(otherEnd, msgs);
+			case K3slePackage.METAMODEL__GENMODELS:
+				return ((InternalEList<?>)getGenmodels()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -452,10 +436,12 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 				return getImplements();
 			case K3slePackage.METAMODEL__INHERITANCE_RELATION:
 				return getInheritanceRelation();
-			case K3slePackage.METAMODEL__PKG:
-				return getPkg();
-			case K3slePackage.METAMODEL__GENMODEL:
-				return getGenmodel();
+			case K3slePackage.METAMODEL__PKGS:
+				return getPkgs();
+			case K3slePackage.METAMODEL__EXACT_TYPE_REF:
+				return getExactTypeRef();
+			case K3slePackage.METAMODEL__GENMODELS:
+				return getGenmodels();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -486,11 +472,16 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 			case K3slePackage.METAMODEL__INHERITANCE_RELATION:
 				setInheritanceRelation((Inheritance)newValue);
 				return;
-			case K3slePackage.METAMODEL__PKG:
-				setPkg((EPackage)newValue);
+			case K3slePackage.METAMODEL__PKGS:
+				getPkgs().clear();
+				getPkgs().addAll((Collection<? extends EPackage>)newValue);
 				return;
-			case K3slePackage.METAMODEL__GENMODEL:
-				setGenmodel((GenModel)newValue);
+			case K3slePackage.METAMODEL__EXACT_TYPE_REF:
+				setExactTypeRef((String)newValue);
+				return;
+			case K3slePackage.METAMODEL__GENMODELS:
+				getGenmodels().clear();
+				getGenmodels().addAll((Collection<? extends GenModel>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -519,11 +510,14 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 			case K3slePackage.METAMODEL__INHERITANCE_RELATION:
 				setInheritanceRelation((Inheritance)null);
 				return;
-			case K3slePackage.METAMODEL__PKG:
-				setPkg((EPackage)null);
+			case K3slePackage.METAMODEL__PKGS:
+				getPkgs().clear();
 				return;
-			case K3slePackage.METAMODEL__GENMODEL:
-				setGenmodel((GenModel)null);
+			case K3slePackage.METAMODEL__EXACT_TYPE_REF:
+				setExactTypeRef(EXACT_TYPE_REF_EDEFAULT);
+				return;
+			case K3slePackage.METAMODEL__GENMODELS:
+				getGenmodels().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -547,10 +541,12 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 				return implements_ != null && !implements_.isEmpty();
 			case K3slePackage.METAMODEL__INHERITANCE_RELATION:
 				return inheritanceRelation != null;
-			case K3slePackage.METAMODEL__PKG:
-				return pkg != null;
-			case K3slePackage.METAMODEL__GENMODEL:
-				return genmodel != null;
+			case K3slePackage.METAMODEL__PKGS:
+				return pkgs != null && !pkgs.isEmpty();
+			case K3slePackage.METAMODEL__EXACT_TYPE_REF:
+				return EXACT_TYPE_REF_EDEFAULT == null ? exactTypeRef != null : !EXACT_TYPE_REF_EDEFAULT.equals(exactTypeRef);
+			case K3slePackage.METAMODEL__GENMODELS:
+				return genmodels != null && !genmodels.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -561,16 +557,14 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	 * @generated
 	 */
 	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case K3slePackage.METAMODEL___FOOTPRINT:
-				footprint();
-				return null;
-			case K3slePackage.METAMODEL___MERGE:
-				merge();
-				return null;
-		}
-		return super.eInvoke(operationID, arguments);
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (exactTypeRef: ");
+		result.append(exactTypeRef);
+		result.append(')');
+		return result.toString();
 	}
 
 } //MetamodelImpl

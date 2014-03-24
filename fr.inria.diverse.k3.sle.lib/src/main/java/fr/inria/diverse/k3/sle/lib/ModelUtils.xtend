@@ -8,6 +8,9 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
+import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.emf.ecore.EClass
+import java.util.Collections
 
 class ModelUtils
 {
@@ -24,7 +27,7 @@ class ModelUtils
 		pkg.contents.get(0) as EPackage
 	}
 
-	def static loadGenModel(String path) {
+	def static loadGenmodel(String path) {
 		if (!EPackage.Registry.INSTANCE.containsKey(GenModelPackage.eNS_URI))
 			EPackage.Registry.INSTANCE.put(GenModelPackage.eNS_URI, GenModelPackage.eINSTANCE)
 

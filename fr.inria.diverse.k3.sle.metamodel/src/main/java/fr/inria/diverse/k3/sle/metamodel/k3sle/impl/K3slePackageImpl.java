@@ -8,9 +8,9 @@ import fr.inria.diverse.k3.sle.metamodel.k3sle.Element;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Inheritance;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.K3sleFactory;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage;
-import fr.inria.diverse.k3.sle.metamodel.k3sle.MegamodelRoot;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType;
+import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Subtyping;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation;
 
@@ -18,7 +18,6 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -43,7 +42,7 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass megamodelRootEClass = null;
+	private EClass modelTypingSpaceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -172,8 +171,8 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMegamodelRoot() {
-		return megamodelRootEClass;
+	public EClass getModelTypingSpace() {
+		return modelTypingSpaceEClass;
 	}
 
 	/**
@@ -181,8 +180,8 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMegamodelRoot_Elements() {
-		return (EReference)megamodelRootEClass.getEStructuralFeatures().get(0);
+	public EReference getModelTypingSpace_Elements() {
+		return (EReference)modelTypingSpaceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -190,8 +189,8 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMegamodelRoot_Imports() {
-		return (EReference)megamodelRootEClass.getEStructuralFeatures().get(1);
+	public EReference getModelTypingSpace_Imports() {
+		return (EReference)modelTypingSpaceEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -199,8 +198,8 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMegamodelRoot_Name() {
-		return (EAttribute)megamodelRootEClass.getEStructuralFeatures().get(2);
+	public EAttribute getModelTypingSpace_Name() {
+		return (EAttribute)modelTypingSpaceEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -280,7 +279,7 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMetamodel_Pkg() {
+	public EReference getMetamodel_Pkgs() {
 		return (EReference)metamodelEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -289,8 +288,8 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMetamodel_Genmodel() {
-		return (EReference)metamodelEClass.getEStructuralFeatures().get(6);
+	public EAttribute getMetamodel_ExactTypeRef() {
+		return (EAttribute)metamodelEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -298,17 +297,8 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getMetamodel__Footprint() {
-		return metamodelEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getMetamodel__Merge() {
-		return metamodelEClass.getEOperations().get(1);
+	public EReference getMetamodel_Genmodels() {
+		return (EReference)metamodelEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -343,7 +333,7 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelType_Pkg() {
+	public EReference getModelType_Pkgs() {
 		return (EReference)modelTypeEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -406,6 +396,24 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getTransformation_Input() {
+		return (EReference)transformationEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTransformation_Output() {
+		return (EReference)transformationEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getEcoreImport() {
 		return ecoreImportEClass;
 	}
@@ -424,7 +432,7 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEcoreImport_GenmodelUri() {
+	public EAttribute getEcoreImport_GenmodelUris() {
 		return (EAttribute)ecoreImportEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -444,6 +452,15 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 */
 	public EReference getAspectImport_AspectRef() {
 		return (EReference)aspectImportEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAspectImport_AspectedClass() {
+		return (EReference)aspectImportEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -528,10 +545,10 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 		isCreated = true;
 
 		// Create classes and their features
-		megamodelRootEClass = createEClass(MEGAMODEL_ROOT);
-		createEReference(megamodelRootEClass, MEGAMODEL_ROOT__ELEMENTS);
-		createEReference(megamodelRootEClass, MEGAMODEL_ROOT__IMPORTS);
-		createEAttribute(megamodelRootEClass, MEGAMODEL_ROOT__NAME);
+		modelTypingSpaceEClass = createEClass(MODEL_TYPING_SPACE);
+		createEReference(modelTypingSpaceEClass, MODEL_TYPING_SPACE__ELEMENTS);
+		createEReference(modelTypingSpaceEClass, MODEL_TYPING_SPACE__IMPORTS);
+		createEAttribute(modelTypingSpaceEClass, MODEL_TYPING_SPACE__NAME);
 
 		elementEClass = createEClass(ELEMENT);
 		createEAttribute(elementEClass, ELEMENT__NAME);
@@ -542,15 +559,14 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 		createEReference(metamodelEClass, METAMODEL__EXACT_TYPE);
 		createEReference(metamodelEClass, METAMODEL__IMPLEMENTS);
 		createEReference(metamodelEClass, METAMODEL__INHERITANCE_RELATION);
-		createEReference(metamodelEClass, METAMODEL__PKG);
-		createEReference(metamodelEClass, METAMODEL__GENMODEL);
-		createEOperation(metamodelEClass, METAMODEL___FOOTPRINT);
-		createEOperation(metamodelEClass, METAMODEL___MERGE);
+		createEReference(metamodelEClass, METAMODEL__PKGS);
+		createEAttribute(metamodelEClass, METAMODEL__EXACT_TYPE_REF);
+		createEReference(metamodelEClass, METAMODEL__GENMODELS);
 
 		modelTypeEClass = createEClass(MODEL_TYPE);
 		createEReference(modelTypeEClass, MODEL_TYPE__ECORE);
 		createEReference(modelTypeEClass, MODEL_TYPE__SUBTYPING_RELATIONS);
-		createEReference(modelTypeEClass, MODEL_TYPE__PKG);
+		createEReference(modelTypeEClass, MODEL_TYPE__PKGS);
 		createEReference(modelTypeEClass, MODEL_TYPE__EXTRACTED);
 
 		transformationEClass = createEClass(TRANSFORMATION);
@@ -558,13 +574,16 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 		createEReference(transformationEClass, TRANSFORMATION__PARAMETERS);
 		createEReference(transformationEClass, TRANSFORMATION__BODY);
 		createEReference(transformationEClass, TRANSFORMATION__RETURN_TYPE_REF);
+		createEReference(transformationEClass, TRANSFORMATION__INPUT);
+		createEReference(transformationEClass, TRANSFORMATION__OUTPUT);
 
 		ecoreImportEClass = createEClass(ECORE_IMPORT);
 		createEAttribute(ecoreImportEClass, ECORE_IMPORT__URI);
-		createEAttribute(ecoreImportEClass, ECORE_IMPORT__GENMODEL_URI);
+		createEAttribute(ecoreImportEClass, ECORE_IMPORT__GENMODEL_URIS);
 
 		aspectImportEClass = createEClass(ASPECT_IMPORT);
 		createEReference(aspectImportEClass, ASPECT_IMPORT__ASPECT_REF);
+		createEReference(aspectImportEClass, ASPECT_IMPORT__ASPECTED_CLASS);
 
 		inheritanceEClass = createEClass(INHERITANCE);
 		createEReference(inheritanceEClass, INHERITANCE__SUB_METAMODEL);
@@ -615,10 +634,10 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 		transformationEClass.getESuperTypes().add(this.getElement());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(megamodelRootEClass, MegamodelRoot.class, "MegamodelRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMegamodelRoot_Elements(), this.getElement(), null, "elements", null, 0, -1, MegamodelRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMegamodelRoot_Imports(), theXtypePackage.getXImportSection(), null, "imports", null, 0, 1, MegamodelRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMegamodelRoot_Name(), theEcorePackage.getEString(), "name", null, 0, 1, MegamodelRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(modelTypingSpaceEClass, ModelTypingSpace.class, "ModelTypingSpace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getModelTypingSpace_Elements(), this.getElement(), null, "elements", null, 0, -1, ModelTypingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModelTypingSpace_Imports(), theXtypePackage.getXImportSection(), null, "imports", null, 0, 1, ModelTypingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModelTypingSpace_Name(), theEcorePackage.getEString(), "name", null, 0, 1, ModelTypingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(elementEClass, Element.class, "Element", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -626,34 +645,34 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 		initEClass(metamodelEClass, Metamodel.class, "Metamodel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMetamodel_Ecore(), this.getEcoreImport(), null, "ecore", null, 0, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMetamodel_Aspects(), this.getAspectImport(), null, "aspects", null, 0, -1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMetamodel_ExactType(), this.getModelType(), null, "exactType", null, 0, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMetamodel_ExactType(), this.getModelType(), this.getModelType_Extracted(), "exactType", null, 1, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMetamodel_Implements(), this.getModelType(), null, "implements", null, 0, -1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMetamodel_InheritanceRelation(), this.getInheritance(), this.getInheritance_SubMetamodel(), "inheritanceRelation", null, 0, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMetamodel_Pkg(), theEcorePackage.getEPackage(), null, "pkg", null, 0, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMetamodel_Genmodel(), theGenModelPackage.getGenModel(), null, "genmodel", null, 0, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEOperation(getMetamodel__Footprint(), null, "footprint", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEOperation(getMetamodel__Merge(), null, "merge", 0, 1, IS_UNIQUE, IS_ORDERED);
+		initEReference(getMetamodel_Pkgs(), theEcorePackage.getEPackage(), null, "pkgs", null, 0, -1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMetamodel_ExactTypeRef(), theEcorePackage.getEString(), "exactTypeRef", null, 0, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMetamodel_Genmodels(), theGenModelPackage.getGenModel(), null, "genmodels", null, 0, -1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modelTypeEClass, ModelType.class, "ModelType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelType_Ecore(), this.getEcoreImport(), null, "ecore", null, 0, 1, ModelType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModelType_SubtypingRelations(), this.getSubtyping(), this.getSubtyping_SubType(), "subtypingRelations", null, 0, -1, ModelType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModelType_Pkg(), theEcorePackage.getEPackage(), null, "pkg", null, 0, 1, ModelType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModelType_Extracted(), this.getMetamodel(), null, "extracted", null, 0, 1, ModelType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModelType_Pkgs(), theEcorePackage.getEPackage(), null, "pkgs", null, 0, -1, ModelType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModelType_Extracted(), this.getMetamodel(), this.getMetamodel_ExactType(), "extracted", null, 0, 1, ModelType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(transformationEClass, Transformation.class, "Transformation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTransformation_Main(), ecorePackage.getEBoolean(), "main", null, 0, 1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransformation_Parameters(), theTypesPackage.getJvmFormalParameter(), null, "parameters", null, 0, -1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransformation_Body(), theXbasePackage.getXExpression(), null, "body", null, 1, 1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransformation_ReturnTypeRef(), theTypesPackage.getJvmTypeReference(), null, "returnTypeRef", null, 0, 1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransformation_Input(), this.getElement(), null, "input", null, 0, -1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransformation_Output(), this.getElement(), null, "output", null, 0, -1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(ecoreImportEClass, EcoreImport.class, "EcoreImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEcoreImport_Uri(), ecorePackage.getEString(), "uri", null, 0, 1, EcoreImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEcoreImport_GenmodelUri(), ecorePackage.getEString(), "genmodelUri", null, 0, 1, EcoreImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEcoreImport_GenmodelUris(), ecorePackage.getEString(), "genmodelUris", null, 0, -1, EcoreImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(aspectImportEClass, AspectImport.class, "AspectImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAspectImport_AspectRef(), theTypesPackage.getJvmTypeReference(), null, "aspectRef", null, 1, 1, AspectImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAspectImport_AspectedClass(), theEcorePackage.getEClass(), null, "aspectedClass", null, 0, 1, AspectImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(inheritanceEClass, Inheritance.class, "Inheritance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInheritance_SubMetamodel(), this.getMetamodel(), this.getMetamodel_InheritanceRelation(), "subMetamodel", null, 1, 1, Inheritance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

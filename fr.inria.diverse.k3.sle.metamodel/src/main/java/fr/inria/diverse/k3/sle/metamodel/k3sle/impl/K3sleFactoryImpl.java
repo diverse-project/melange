@@ -56,7 +56,7 @@ public class K3sleFactoryImpl extends EFactoryImpl implements K3sleFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case K3slePackage.MEGAMODEL_ROOT: return createMegamodelRoot();
+			case K3slePackage.MODEL_TYPING_SPACE: return createModelTypingSpace();
 			case K3slePackage.METAMODEL: return createMetamodel();
 			case K3slePackage.MODEL_TYPE: return createModelType();
 			case K3slePackage.TRANSFORMATION: return createTransformation();
@@ -74,9 +74,9 @@ public class K3sleFactoryImpl extends EFactoryImpl implements K3sleFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MegamodelRoot createMegamodelRoot() {
-		MegamodelRootImpl megamodelRoot = new MegamodelRootImpl();
-		return megamodelRoot;
+	public ModelTypingSpace createModelTypingSpace() {
+		ModelTypingSpaceImpl modelTypingSpace = new ModelTypingSpaceImpl();
+		return modelTypingSpace;
 	}
 
 	/**

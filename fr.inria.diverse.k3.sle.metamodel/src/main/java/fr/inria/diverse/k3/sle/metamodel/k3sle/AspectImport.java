@@ -2,6 +2,7 @@
  */
 package fr.inria.diverse.k3.sle.metamodel.k3sle;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.xtext.common.types.JvmTypeReference;
@@ -15,6 +16,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  * The following features are supported:
  * <ul>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport#getAspectRef <em>Aspect Ref</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport#getAspectedClass <em>Aspected Class</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,5 +50,31 @@ public interface AspectImport extends EObject {
 	 * @generated
 	 */
 	void setAspectRef(JvmTypeReference value);
+
+	/**
+	 * Returns the value of the '<em><b>Aspected Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Aspected Class</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Aspected Class</em>' reference.
+	 * @see #setAspectedClass(EClass)
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getAspectImport_AspectedClass()
+	 * @model
+	 * @generated
+	 */
+	EClass getAspectedClass();
+
+	/**
+	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport#getAspectedClass <em>Aspected Class</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Aspected Class</em>' reference.
+	 * @see #getAspectedClass()
+	 * @generated
+	 */
+	void setAspectedClass(EClass value);
 
 } // AspectImport

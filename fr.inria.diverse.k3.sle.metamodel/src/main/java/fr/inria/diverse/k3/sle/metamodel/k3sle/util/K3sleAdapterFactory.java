@@ -68,8 +68,8 @@ public class K3sleAdapterFactory extends AdapterFactoryImpl {
 	protected K3sleSwitch<Adapter> modelSwitch =
 		new K3sleSwitch<Adapter>() {
 			@Override
-			public Adapter caseMegamodelRoot(MegamodelRoot object) {
-				return createMegamodelRootAdapter();
+			public Adapter caseModelTypingSpace(ModelTypingSpace object) {
+				return createModelTypingSpaceAdapter();
 			}
 			@Override
 			public Adapter caseElement(Element object) {
@@ -124,16 +124,16 @@ public class K3sleAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.MegamodelRoot <em>Megamodel Root</em>}'.
+	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace <em>Model Typing Space</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.MegamodelRoot
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
 	 * @generated
 	 */
-	public Adapter createMegamodelRootAdapter() {
+	public Adapter createModelTypingSpaceAdapter() {
 		return null;
 	}
 

@@ -5,99 +5,17 @@ import com.google.common.collect.Iterators
 
 import java.util.Collection
 import java.util.List
+import java.util.ListIterator
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EStructuralFeature
-import org.eclipse.emf.common.util.EList
-import org.eclipse.emf.ecore.EOperation
-import org.eclipse.emf.common.notify.Notification
 import java.lang.reflect.InvocationTargetException
-import java.util.ListIterator
+import org.eclipse.emf.ecore.EOperation
+import org.eclipse.emf.common.util.EList
+import org.eclipse.emf.common.notify.Notification
 
-abstract class GenericAdapter<E> {
-	protected E adaptee
-
-	new(E a) { adaptee = a }
-	def E getAdaptee() { adaptee }
-}
-
-abstract class EObjectAdapter<E extends EObject> extends GenericAdapter<E> {
-	new(E a) { super(a) }
-
-	def eAllContents() {
-		adaptee.eAllContents
-	}
-
-	def eClass() {
-		adaptee.eClass
-	}
-
-	def eContainer() {
-		adaptee.eContainer
-	}
-
-	def eContainingFeature() {
-		adaptee.eContainingFeature
-	}
-
-	def eContainmentFeature() {
-		adaptee.eContainmentFeature
-	}
-
-	def eContents() {
-		adaptee.eContents
-	}
-
-	def eCrossReferences() {
-		adaptee.eCrossReferences
-	}
-
-	def eGet(EStructuralFeature feature) {
-		adaptee.eGet(feature)
-	}
-
-	def eGet(EStructuralFeature feature, boolean resolve) {
-		adaptee.eGet(feature, resolve)
-	}
-
-	def eInvoke(EOperation operation, EList<?> arguments) throws InvocationTargetException {
-		adaptee.eInvoke(operation, arguments)
-	}
-
-	def eIsProxy() {
-		adaptee.eIsProxy
-	}
-
-	def eIsSet(EStructuralFeature feature) {
-		adaptee.eIsSet(feature)
-	}
-
-	def eResource() {
-		adaptee.eResource
-	}
-
-	def eSet(EStructuralFeature feature, Object newValue) {
-		adaptee.eSet(feature, newValue)
-	}
-
-	def eUnset(EStructuralFeature feature) {
-		adaptee.eUnset(feature)
-	}
-
-	def eAdapters() {
-		adaptee.eAdapters
-	}
-
-	def eDeliver() {
-		adaptee.eDeliver
-	}
-
-	def eNotify(Notification notification) {
-		adaptee.eNotify(notification)
-	}
-
-	def eSetDeliver(boolean deliver) {
-		adaptee.eSetDeliver(deliver)
-	}
+interface GenericAdapter<E> {
+	def E getAdaptee()
+	def void setAdaptee(E a)
 }
 
 class ListAdapter<E, F> implements List<E>
@@ -141,7 +59,9 @@ class ListAdapter<E, F> implements List<E>
 	}
 
 	override get(int index) {
-		adapType.declaredConstructors.head.newInstance(adaptee.get(index)) as E
+		val adap = adapType.newInstance as GenericAdapter<F>
+		adap.adaptee = adaptee.get(index)
+		return adap as E
 	}
 
 	override indexOf(Object o) {
@@ -173,7 +93,9 @@ class ListAdapter<E, F> implements List<E>
 	}
 
 	override remove(int index) {
-		adapType.declaredConstructors.head.newInstance(adaptee.remove(index)) as E
+		val adap = adapType.newInstance as GenericAdapter<F>
+		adap.adaptee = adaptee.remove(index)
+		return adap as E
 	}
 
 	override removeAll(Collection<?> c) {
@@ -185,7 +107,9 @@ class ListAdapter<E, F> implements List<E>
 	}
 
 	override set(int index, E element) {
-		adapType.declaredConstructors.head.newInstance(adaptee.set(index, decapsulate(element))) as E
+		val adap = adapType.newInstance as GenericAdapter<F>
+		adap.adaptee = adaptee.set(index, decapsulate(element))
+		return adap as E
 	}
 
 	override size() {
@@ -206,6 +130,89 @@ class ListAdapter<E, F> implements List<E>
 
 	def decapsulate(Object e) {
 		(e as GenericAdapter<F>).adaptee
+	}
+}
+
+abstract class EObjectAdapter<E extends EObject> implements EObject, GenericAdapter<E> {
+	E adaptee
+
+	override getAdaptee() { adaptee }
+	override setAdaptee(E a) { adaptee = a }
+
+	override eAllContents() {
+		adaptee.eAllContents
+	}
+
+	override eClass() {
+		adaptee.eClass
+	}
+
+	override eContainer() {
+		adaptee.eContainer
+	}
+
+	override eContainingFeature() {
+		adaptee.eContainingFeature
+	}
+
+	override eContainmentFeature() {
+		adaptee.eContainmentFeature
+	}
+
+	override eContents() {
+		adaptee.eContents
+	}
+
+	override eCrossReferences() {
+		adaptee.eCrossReferences
+	}
+
+	override eGet(EStructuralFeature feature) {
+		adaptee.eGet(feature)
+	}
+
+	override eGet(EStructuralFeature feature, boolean resolve) {
+		adaptee.eGet(feature, resolve)
+	}
+
+	override eInvoke(EOperation operation, EList<?> arguments) throws InvocationTargetException {
+		adaptee.eInvoke(operation, arguments)
+	}
+
+	override eIsProxy() {
+		adaptee.eIsProxy
+	}
+
+	override eIsSet(EStructuralFeature feature) {
+		adaptee.eIsSet(feature)
+	}
+
+	override eResource() {
+		adaptee.eResource
+	}
+
+	override eSet(EStructuralFeature feature, Object newValue) {
+		adaptee.eSet(feature, newValue)
+	}
+
+	override eUnset(EStructuralFeature feature) {
+		adaptee.eUnset(feature)
+	}
+
+	override eAdapters() {
+		adaptee.eAdapters
+	}
+
+	override eDeliver() {
+		adaptee.eDeliver
+	}
+
+	override eNotify(Notification notification) {
+		adaptee.eNotify(notification)
+	}
+
+	override eSetDeliver(boolean deliver) {
+		adaptee.eSetDeliver(deliver)
 	}
 }
 
@@ -235,6 +242,8 @@ class IteratorTranslator<E, F> implements Function<E, F> {
 	new(Class<?> type) { adapType = type }
 
 	override apply(E arg) {
-		adapType.declaredConstructors.head.newInstance(arg) as F
+		val adap = adapType.newInstance as GenericAdapter<E>
+		adap.adaptee = arg
+		return adap as F
 	}
 }

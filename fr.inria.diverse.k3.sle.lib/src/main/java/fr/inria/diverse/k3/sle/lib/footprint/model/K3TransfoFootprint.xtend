@@ -14,12 +14,12 @@ class K3TransfoFootprint{
 	public val Set<String> footprint = newHashSet
 	public val List<String> pkgs = newArrayList
 	private def addQN(String qn) {
-		if(qn!=null && !qn.startsWith("java.") && !qn.startsWith("com.google.") && 
+		if(qn!=null && !qn.startsWith("java.") && !qn.startsWith("com.google.") &&
 			!qn.startsWith("sun.") && !qn.startsWith("javax.") && !qn.startsWith("com.sun") &&
 			!qn.startsWith("com.oracle") && !qn.startsWith("sunw."))
 			footprint.add(qn)
 	}
-	
+
 	val List<JvmFormalParameter> inputJvmFormalParameter
 	val List<JvmTypeReference> inputJvmTypeReference
 	val List<XExpression> inputXExpression

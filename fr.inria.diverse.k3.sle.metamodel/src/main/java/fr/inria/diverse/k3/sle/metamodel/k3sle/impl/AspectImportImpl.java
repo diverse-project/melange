@@ -24,6 +24,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  * The following features are implemented:
  * <ul>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.AspectImportImpl#getAspectRef <em>Aspect Ref</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.AspectImportImpl#getAspectedClass <em>Aspected Class</em>}</li>
  * </ul>
  * </p>
  *
@@ -39,6 +40,16 @@ public class AspectImportImpl extends MinimalEObjectImpl.Container implements As
 	 * @ordered
 	 */
 	protected JvmTypeReference aspectRef;
+
+	/**
+	 * The cached value of the '{@link #getAspectedClass() <em>Aspected Class</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAspectedClass()
+	 * @generated
+	 * @ordered
+	 */
+	protected EClass aspectedClass;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -107,6 +118,44 @@ public class AspectImportImpl extends MinimalEObjectImpl.Container implements As
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getAspectedClass() {
+		if (aspectedClass != null && aspectedClass.eIsProxy()) {
+			InternalEObject oldAspectedClass = (InternalEObject)aspectedClass;
+			aspectedClass = (EClass)eResolveProxy(oldAspectedClass);
+			if (aspectedClass != oldAspectedClass) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, K3slePackage.ASPECT_IMPORT__ASPECTED_CLASS, oldAspectedClass, aspectedClass));
+			}
+		}
+		return aspectedClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass basicGetAspectedClass() {
+		return aspectedClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAspectedClass(EClass newAspectedClass) {
+		EClass oldAspectedClass = aspectedClass;
+		aspectedClass = newAspectedClass;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, K3slePackage.ASPECT_IMPORT__ASPECTED_CLASS, oldAspectedClass, aspectedClass));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -126,6 +175,9 @@ public class AspectImportImpl extends MinimalEObjectImpl.Container implements As
 		switch (featureID) {
 			case K3slePackage.ASPECT_IMPORT__ASPECT_REF:
 				return getAspectRef();
+			case K3slePackage.ASPECT_IMPORT__ASPECTED_CLASS:
+				if (resolve) return getAspectedClass();
+				return basicGetAspectedClass();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -140,6 +192,9 @@ public class AspectImportImpl extends MinimalEObjectImpl.Container implements As
 		switch (featureID) {
 			case K3slePackage.ASPECT_IMPORT__ASPECT_REF:
 				setAspectRef((JvmTypeReference)newValue);
+				return;
+			case K3slePackage.ASPECT_IMPORT__ASPECTED_CLASS:
+				setAspectedClass((EClass)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -156,6 +211,9 @@ public class AspectImportImpl extends MinimalEObjectImpl.Container implements As
 			case K3slePackage.ASPECT_IMPORT__ASPECT_REF:
 				setAspectRef((JvmTypeReference)null);
 				return;
+			case K3slePackage.ASPECT_IMPORT__ASPECTED_CLASS:
+				setAspectedClass((EClass)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -170,6 +228,8 @@ public class AspectImportImpl extends MinimalEObjectImpl.Container implements As
 		switch (featureID) {
 			case K3slePackage.ASPECT_IMPORT__ASPECT_REF:
 				return aspectRef != null;
+			case K3slePackage.ASPECT_IMPORT__ASPECTED_CLASS:
+				return aspectedClass != null;
 		}
 		return super.eIsSet(featureID);
 	}

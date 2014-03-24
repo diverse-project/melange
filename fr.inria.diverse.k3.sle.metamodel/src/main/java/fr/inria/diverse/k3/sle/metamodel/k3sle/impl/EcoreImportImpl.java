@@ -5,12 +5,18 @@ package fr.inria.diverse.k3.sle.metamodel.k3sle.impl;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.EcoreImport;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +26,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.EcoreImportImpl#getUri <em>Uri</em>}</li>
- *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.EcoreImportImpl#getGenmodelUri <em>Genmodel Uri</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.EcoreImportImpl#getGenmodelUris <em>Genmodel Uris</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,24 +54,14 @@ public class EcoreImportImpl extends MinimalEObjectImpl.Container implements Eco
 	protected String uri = URI_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getGenmodelUri() <em>Genmodel Uri</em>}' attribute.
+	 * The cached value of the '{@link #getGenmodelUris() <em>Genmodel Uris</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getGenmodelUri()
+	 * @see #getGenmodelUris()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String GENMODEL_URI_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getGenmodelUri() <em>Genmodel Uri</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGenmodelUri()
-	 * @generated
-	 * @ordered
-	 */
-	protected String genmodelUri = GENMODEL_URI_EDEFAULT;
+	protected EList<String> genmodelUris;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -112,20 +108,11 @@ public class EcoreImportImpl extends MinimalEObjectImpl.Container implements Eco
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getGenmodelUri() {
-		return genmodelUri;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setGenmodelUri(String newGenmodelUri) {
-		String oldGenmodelUri = genmodelUri;
-		genmodelUri = newGenmodelUri;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, K3slePackage.ECORE_IMPORT__GENMODEL_URI, oldGenmodelUri, genmodelUri));
+	public EList<String> getGenmodelUris() {
+		if (genmodelUris == null) {
+			genmodelUris = new EDataTypeUniqueEList<String>(String.class, this, K3slePackage.ECORE_IMPORT__GENMODEL_URIS);
+		}
+		return genmodelUris;
 	}
 
 	/**
@@ -138,8 +125,8 @@ public class EcoreImportImpl extends MinimalEObjectImpl.Container implements Eco
 		switch (featureID) {
 			case K3slePackage.ECORE_IMPORT__URI:
 				return getUri();
-			case K3slePackage.ECORE_IMPORT__GENMODEL_URI:
-				return getGenmodelUri();
+			case K3slePackage.ECORE_IMPORT__GENMODEL_URIS:
+				return getGenmodelUris();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -149,14 +136,16 @@ public class EcoreImportImpl extends MinimalEObjectImpl.Container implements Eco
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case K3slePackage.ECORE_IMPORT__URI:
 				setUri((String)newValue);
 				return;
-			case K3slePackage.ECORE_IMPORT__GENMODEL_URI:
-				setGenmodelUri((String)newValue);
+			case K3slePackage.ECORE_IMPORT__GENMODEL_URIS:
+				getGenmodelUris().clear();
+				getGenmodelUris().addAll((Collection<? extends String>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -173,8 +162,8 @@ public class EcoreImportImpl extends MinimalEObjectImpl.Container implements Eco
 			case K3slePackage.ECORE_IMPORT__URI:
 				setUri(URI_EDEFAULT);
 				return;
-			case K3slePackage.ECORE_IMPORT__GENMODEL_URI:
-				setGenmodelUri(GENMODEL_URI_EDEFAULT);
+			case K3slePackage.ECORE_IMPORT__GENMODEL_URIS:
+				getGenmodelUris().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -190,8 +179,8 @@ public class EcoreImportImpl extends MinimalEObjectImpl.Container implements Eco
 		switch (featureID) {
 			case K3slePackage.ECORE_IMPORT__URI:
 				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
-			case K3slePackage.ECORE_IMPORT__GENMODEL_URI:
-				return GENMODEL_URI_EDEFAULT == null ? genmodelUri != null : !GENMODEL_URI_EDEFAULT.equals(genmodelUri);
+			case K3slePackage.ECORE_IMPORT__GENMODEL_URIS:
+				return genmodelUris != null && !genmodelUris.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -208,8 +197,8 @@ public class EcoreImportImpl extends MinimalEObjectImpl.Container implements Eco
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (uri: ");
 		result.append(uri);
-		result.append(", genmodelUri: ");
-		result.append(genmodelUri);
+		result.append(", genmodelUris: ");
+		result.append(genmodelUris);
 		result.append(')');
 		return result.toString();
 	}

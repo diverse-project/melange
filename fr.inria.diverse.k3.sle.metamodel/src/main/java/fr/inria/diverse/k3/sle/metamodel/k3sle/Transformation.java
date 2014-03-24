@@ -21,6 +21,8 @@ import org.eclipse.xtext.xbase.XExpression;
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation#getParameters <em>Parameters</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation#getBody <em>Body</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation#getReturnTypeRef <em>Return Type Ref</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation#getInput <em>Input</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation#getOutput <em>Output</em>}</li>
  * </ul>
  * </p>
  *
@@ -122,5 +124,37 @@ public interface Transformation extends Element {
 	 * @generated
 	 */
 	void setReturnTypeRef(JvmTypeReference value);
+
+	/**
+	 * Returns the value of the '<em><b>Input</b></em>' reference list.
+	 * The list contents are of type {@link fr.inria.diverse.k3.sle.metamodel.k3sle.Element}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Input</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Input</em>' reference list.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getTransformation_Input()
+	 * @model
+	 * @generated
+	 */
+	EList<Element> getInput();
+
+	/**
+	 * Returns the value of the '<em><b>Output</b></em>' reference list.
+	 * The list contents are of type {@link fr.inria.diverse.k3.sle.metamodel.k3sle.Element}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Output</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Output</em>' reference list.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getTransformation_Output()
+	 * @model
+	 * @generated
+	 */
+	EList<Element> getOutput();
 
 } // Transformation

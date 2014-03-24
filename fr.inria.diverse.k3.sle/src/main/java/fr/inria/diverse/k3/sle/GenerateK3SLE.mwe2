@@ -25,10 +25,10 @@ Workflow {
 			to = "classpath:/"
 		}
 		
-		uriMap = {
+		/*uriMap = {
 			from = "platform:/resource/fr.inria.diverse.k3.sle.metamodel/"
 			to = "classpath:/"
-		}
+		}*/
 		
 		scanClassPath = true
 		platformUri = "${runtimeProject}/.."

@@ -2,14 +2,14 @@ package fr.inria.diverse.k3.sle.lib
 
 import java.util.List
 
+interface IFactory
+{}
+
 interface IModelType
 {
 	def List<Object> getContents()
 	def IFactory getFactory()
 }
-
-interface IFactory
-{}
 
 class ModelTypeException extends Exception
 {

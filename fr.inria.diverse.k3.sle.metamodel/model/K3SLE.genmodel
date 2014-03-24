@@ -8,10 +8,10 @@
   <foreignModel>K3SLE.ecore</foreignModel>
   <genPackages prefix="K3sle" basePackage="fr.inria.diverse.k3.sle.metamodel" disposableProviderFactory="true"
       ecorePackage="K3SLE.ecore#/">
-    <genClasses ecoreClass="K3SLE.ecore#//MegamodelRoot">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//MegamodelRoot/elements"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//MegamodelRoot/imports"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute K3SLE.ecore#//MegamodelRoot/name"/>
+    <genClasses ecoreClass="K3SLE.ecore#//ModelTypingSpace">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//ModelTypingSpace/elements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//ModelTypingSpace/imports"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute K3SLE.ecore#//ModelTypingSpace/name"/>
     </genClasses>
     <genClasses image="false" ecoreClass="K3SLE.ecore#//Element">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute K3SLE.ecore#//Element/name"/>
@@ -22,15 +22,14 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference K3SLE.ecore#//Metamodel/exactType"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference K3SLE.ecore#//Metamodel/implements"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//Metamodel/inheritanceRelation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//Metamodel/pkg"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//Metamodel/genmodel"/>
-      <genOperations ecoreOperation="K3SLE.ecore#//Metamodel/footprint"/>
-      <genOperations ecoreOperation="K3SLE.ecore#//Metamodel/merge"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//Metamodel/pkgs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute K3SLE.ecore#//Metamodel/exactTypeRef"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//Metamodel/genmodels"/>
     </genClasses>
     <genClasses ecoreClass="K3SLE.ecore#//ModelType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//ModelType/ecore"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//ModelType/subtypingRelations"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//ModelType/pkg"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//ModelType/pkgs"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference K3SLE.ecore#//ModelType/extracted"/>
     </genClasses>
     <genClasses ecoreClass="K3SLE.ecore#//Transformation">
@@ -38,13 +37,16 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//Transformation/parameters"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//Transformation/body"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//Transformation/returnTypeRef"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference K3SLE.ecore#//Transformation/input"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference K3SLE.ecore#//Transformation/output"/>
     </genClasses>
     <genClasses ecoreClass="K3SLE.ecore#//EcoreImport">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute K3SLE.ecore#//EcoreImport/uri"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute K3SLE.ecore#//EcoreImport/genmodelUri"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute K3SLE.ecore#//EcoreImport/genmodelUris"/>
     </genClasses>
     <genClasses ecoreClass="K3SLE.ecore#//AspectImport">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//AspectImport/aspectRef"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference K3SLE.ecore#//AspectImport/aspectedClass"/>
     </genClasses>
     <genClasses ecoreClass="K3SLE.ecore#//Inheritance">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference K3SLE.ecore#//Inheritance/subMetamodel"/>

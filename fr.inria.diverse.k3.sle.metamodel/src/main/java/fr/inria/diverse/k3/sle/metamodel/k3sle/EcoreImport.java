@@ -2,6 +2,8 @@
  */
 package fr.inria.diverse.k3.sle.metamodel.k3sle;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -13,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.EcoreImport#getUri <em>Uri</em>}</li>
- *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.EcoreImport#getGenmodelUri <em>Genmodel Uri</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.EcoreImport#getGenmodelUris <em>Genmodel Uris</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,29 +51,19 @@ public interface EcoreImport extends EObject {
 	void setUri(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Genmodel Uri</b></em>' attribute.
+	 * Returns the value of the '<em><b>Genmodel Uris</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Genmodel Uri</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Genmodel Uris</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Genmodel Uri</em>' attribute.
-	 * @see #setGenmodelUri(String)
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getEcoreImport_GenmodelUri()
+	 * @return the value of the '<em>Genmodel Uris</em>' attribute list.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getEcoreImport_GenmodelUris()
 	 * @model
 	 * @generated
 	 */
-	String getGenmodelUri();
-
-	/**
-	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.EcoreImport#getGenmodelUri <em>Genmodel Uri</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Genmodel Uri</em>' attribute.
-	 * @see #getGenmodelUri()
-	 * @generated
-	 */
-	void setGenmodelUri(String value);
+	EList<String> getGenmodelUris();
 
 } // EcoreImport

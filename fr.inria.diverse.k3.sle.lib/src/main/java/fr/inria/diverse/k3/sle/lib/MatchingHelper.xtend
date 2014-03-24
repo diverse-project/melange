@@ -13,6 +13,8 @@ import java.util.Map
 import java.util.HashMap
 import java.util.Stack
 
+import fr.inria.diverse.k3.sle.lib.Logger
+
 class MatchingHelper
 {
 	EPackage pkgA
@@ -21,17 +23,17 @@ class MatchingHelper
 	Map<Pair<String, String>, Boolean> matches
 	Stack<String> currentMatching
 
-	new(EPackage a, EPackage b) {
+	def boolean match(EPackage a, EPackage b) {
 		pkgA = a
 		pkgB = b
-	}
 
-	def boolean match() {
+		if (pkgA === null || pkgB === null) {
+			println("This is null BRO")
+			return false
+		}
+
 		matches = new HashMap<Pair<String, String>, Boolean>
 		currentMatching = new Stack<String>
-
-		if (pkgA == null || pkgB == null)
-			return false
 
 		pkgB.EClassifiers.filter(EClass).forall[clsB |
 			pkgA.EClassifiers.filter(EClass).exists[clsA |
@@ -69,7 +71,8 @@ class MatchingHelper
 	def boolean match(EOperation opA, EOperation opB) {
 		val ret =
 		    opA.name == opB.name
-		&&  if (opA.EType instanceof EDataType || opB.EType instanceof EDataType)
+			// FIXME: Just a hack for now
+		&&  if (opA.EType instanceof EDataType || opB.EType instanceof EDataType || !pkgA.EClassifiers.contains(opA.EType))
 				opA.EType?.name == opB.EType?.name
 			else
 				(
@@ -97,6 +100,9 @@ class MatchingHelper
 						)
 				]
 			]
+
+		if (opA.name == opB.name && !ret)
+			Logger.log(opA + "doesn't match")
 
 		return ret
 	}
@@ -141,9 +147,9 @@ class MatchingHelper
 		&&  (attrA.changeable || !attrB.changeable)
 		&&  (attrA.unique == attrB.unique)
 		&&  (!attrA.ordered || attrB.ordered)
-		&&  if (attrA.EType instanceof EDataType || attrB.EType instanceof EDataType)
+		&&  if (attrA.EType instanceof EDataType && attrB.EType instanceof EDataType)
 				attrA.EType.name == attrB.EType.name
-			else
+			else if (attrA.EType instanceof EClass && attrB.EType instanceof EClass)
 				(
 					   pkgA.EClassifiers.contains(attrA.EType)
 					&& pkgB.EClassifiers.contains(attrB.EType)
@@ -152,8 +158,12 @@ class MatchingHelper
 					   (attrA.EType as EClass).EAllSuperTypes.contains(attrB.EType)
 					&& !attrA.changeable
 				)
+			else false
 		&&  (attrA.lowerBound == attrB.lowerBound)
 		&&  (attrA.upperBound == attrB.upperBound)
+
+		if (attrA.name == attrB.name && !ret)
+			Logger.log(attrA + "doesn't match")
 
 		return ret
 	}
@@ -168,6 +178,9 @@ class MatchingHelper
 		&&  (refA.lowerBound == refB.lowerBound)
 		&&  (refA.upperBound == refB.upperBound)
 		&&  (!(refA.EOpposite !== null) || (refB.EOpposite !== null && refA.EOpposite.name == refB.EOpposite.name))
+
+		if (refA.name == refB.name && !ret)
+			Logger.log(refA + "doesn't match")
 
 		return ret
 	}
