@@ -26,7 +26,7 @@
 							<directory>${basedir}/src-gen</directory>
 						</fileset>
 						<fileset>
-							<directory>${basedir}/xtend-gen</directory>
+                                                        <directory>${basedir}/src/main/xtend-gen</directory>
 						</fileset>
 						<!-- clean ui plugin as well -->
 						<fileset>
