@@ -33,14 +33,14 @@
 							<directory>${basedir}/../${project.artifactId}.ui/src-gen</directory>
 						</fileset>
 						<fileset>
-							<directory>${basedir}/../${project.artifactId}.ui/xtend-gen</directory>
+                                                        <directory>${basedir}/../${project.artifactId}.ui/src/main/xtend-gen</directory>
 						</fileset>
 						<!-- clean test fragment as well -->
 						<fileset>
 							<directory>${basedir}/../${project.artifactId}.tests/src-gen</directory>
 						</fileset>
 						<fileset>
-							<directory>${basedir}/../${project.artifactId}.tests/xtend-gen</directory>
+                                                        <directory>${basedir}/../${project.artifactId}.tests/src/main/xtend-gen</directory>
 						</fileset>
 					</filesets>
 				</configuration>

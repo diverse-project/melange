@@ -12,9 +12,6 @@ import java.util.List
 import java.util.Map
 import java.util.HashMap
 import java.util.Stack
-
-import fr.inria.diverse.k3.sle.lib.Logger
-
 class MatchingHelper
 {
 	EPackage pkgA
@@ -27,10 +24,8 @@ class MatchingHelper
 		pkgA = a
 		pkgB = b
 
-		if (pkgA === null || pkgB === null) {
-			println("This is null BRO")
+		if (pkgA === null || pkgB === null)
 			return false
-		}
 
 		matches = new HashMap<Pair<String, String>, Boolean>
 		currentMatching = new Stack<String>
@@ -101,9 +96,6 @@ class MatchingHelper
 				]
 			]
 
-		if (opA.name == opB.name && !ret)
-			Logger.log(opA + "doesn't match")
-
 		return ret
 	}
 
@@ -162,9 +154,6 @@ class MatchingHelper
 		&&  (attrA.lowerBound == attrB.lowerBound)
 		&&  (attrA.upperBound == attrB.upperBound)
 
-		if (attrA.name == attrB.name && !ret)
-			Logger.log(attrA + "doesn't match")
-
 		return ret
 	}
 
@@ -178,9 +167,6 @@ class MatchingHelper
 		&&  (refA.lowerBound == refB.lowerBound)
 		&&  (refA.upperBound == refB.upperBound)
 		&&  (!(refA.EOpposite !== null) || (refB.EOpposite !== null && refA.EOpposite.name == refB.EOpposite.name))
-
-		if (refA.name == refB.name && !ret)
-			Logger.log(refA + "doesn't match")
 
 		return ret
 	}
