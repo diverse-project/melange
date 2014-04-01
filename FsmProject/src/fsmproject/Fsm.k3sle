@@ -1,0 +1,38 @@
+package fsmproject
+
+import static extension fr.inria.diverse.k3.sle.lib.MetamodelExtensions.*
+
+import fsmproject.fsmmt.FSM
+
+metamodel Fsm {
+	ecore "platform:/resource/FsmMetamodel/model/FSM.ecore"
+	exactType FsmMT
+	aspect fsmproject.ExecutableFsmAspect
+	aspect fsmproject.ExecutableStateAspect
+	aspect fsmproject.ExecutableTransitionAspect
+}
+
+metamodel TimedFsm {
+	ecore "platform:/resource/TimedFsmMetamodel/model/TimedFSM.ecore"
+	exactType TimedFsmMT
+	aspect fsmproject.TimedFsmAspect
+	aspect fsmproject.TimedStateAspect
+	aspect fsmproject.TimedTransitionAspect
+}
+
+transformation execute(FsmMT fsm) {
+	val root = fsm.contents.head as FSM
+	
+	print("Output: ")
+	root.execute("adcdce")
+	println
+}
+
+@Main
+transformation main() {
+	val m1 =      Fsm.load("input/Simple.fsm",      FsmMT)
+	val m2 = TimedFsm.load("input/Simple.timedfsm", FsmMT)
+	
+	execute.call(m1)
+	execute.call(m2)
+}

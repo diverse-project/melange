@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: FsmInheritanceProject
+Bundle-SymbolicName: FsmInheritanceProject
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: fr.inria.diverse.k3.sle.lib;bundle-version="0.1.0",
+ org.eclipse.emf;bundle-version="2.6.0",
+ org.eclipse.emf.ecore.xmi;bundle-version="2.9.1",
+ FsmMetamodel;bundle-version="0.1.0",
+ TimedFsmGenerated;bundle-version="1.0.0",
+ fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version="3.0.0"

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<timedfsm:FSM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:timedfsm="http://timedfsm/" initialState="//@ownedState.0" finalState="//@ownedState.2 //@ownedState.3">
+  <ownedState name="1">
+    <outgoingTransition target="//@ownedState.1" input="a" output="1" time="2"/>
+    <outgoingTransition target="//@ownedState.2" input="b" output="2" time="5"/>
+  </ownedState>
+  <ownedState name="2" incomingTransition="//@ownedState.0/@outgoingTransition.0 //@ownedState.2/@outgoingTransition.0">
+    <outgoingTransition target="//@ownedState.2" input="d" output="4" time="3"/>
+    <outgoingTransition target="//@ownedState.3" input="e" output="5" time="11"/>
+  </ownedState>
+  <ownedState name="3" incomingTransition="//@ownedState.0/@outgoingTransition.1 //@ownedState.1/@outgoingTransition.0">
+    <outgoingTransition target="//@ownedState.1" input="c" output="3" time="5"/>
+  </ownedState>
+  <ownedState name="4" incomingTransition="//@ownedState.1/@outgoingTransition.1"/>
+</timedfsm:FSM>

@@ -1,0 +1,37 @@
+package fsminheritanceproject
+
+import static extension fr.inria.diverse.k3.sle.lib.MetamodelExtensions.*
+
+import fsminheritanceproject.fsmmt.FSM
+import fsminheritanceproject.FsmMT
+
+metamodel Fsm {
+	ecore "platform:/resource/FsmMetamodel/model/FSM.ecore"
+	exactType FsmMT
+	aspect fsminheritanceproject.ExecutableFsmAspect
+	aspect fsminheritanceproject.ExecutableStateAspect
+	aspect fsminheritanceproject.ExecutableTransitionAspect
+}
+
+metamodel TimedFsm inherits Fsm {
+	exactType TimedFsmMT
+	aspect fsminheritanceproject.TimedTransitionAspect
+}
+
+transformation execute(FsmMT fsm
+) {
+	val root = fsm.contents.head as FSM
+	
+	print("Output: ")
+	root.execute("adcdce")
+	println
+}
+
+@Main
+transformation main() {
+	val m1 =      Fsm.load("input/Simple.fsm",      FsmMT)
+	val m2 = TimedFsm.load("input/Simple.timedfsm", FsmMT)
+	
+	execute.call(m1)
+	execute.call(m2)
+}
