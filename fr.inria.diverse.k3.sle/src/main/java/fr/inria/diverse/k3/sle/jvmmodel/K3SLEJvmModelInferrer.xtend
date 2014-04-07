@@ -53,15 +53,13 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 
 	def dispatch infer(ModelTypingSpace typingSpace, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
 		root = typingSpace
-		println("isPreIndexingPhase=" + isPreIndexingPhase)
 
 		if (root.isValid) {
 			try {
 				isUnderGeneration = true
-				println("---- BEGIN ----")
+
 				val newMTs = new ArrayList<ModelType>
 				for (mm : root.metamodels) {
-					//val inferredMt = mm.inferExactType
 					val newMT = K3sleFactory.eINSTANCE.createModelType => [
 						name = mm.exactTypeRef
 					]
@@ -75,10 +73,9 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 					mm.exactType = root.modelTypes.findFirst[name == mm.exactTypeRef]
 				]
 
-				//if (!isPreIndexingPhase) {
 				root.completeAST
 				root.inferTypingRelations
-				root.printDebug
+				//root.printDebug
 				//if (!isPreIndexingPhase)
 				//	root.saveAs("platform:/resource/Output/AST.xmi")
 				//}
@@ -86,12 +83,8 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 				root.modelTypes.forEach[generateInterfaces(acceptor)]
 				root.metamodels.forEach[generateAdapters(acceptor)]
 				root.transformations.forEach[generateTransformation(acceptor)]
-
-				println("---- END ----")
 			} catch (Exception e) {
 				e.printStackTrace
-				//println("Exception: " + e.class + ": " + e.message)
-				//Logger.log("Exception: " + e.class + " : " + e.message)
 			} finally {
 				isUnderGeneration = false
 			}
