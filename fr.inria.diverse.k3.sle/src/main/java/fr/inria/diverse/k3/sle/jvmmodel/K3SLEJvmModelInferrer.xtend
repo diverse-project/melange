@@ -651,7 +651,7 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 	}
 
 	def generateTransformation(Transformation transfo, IJvmDeclaredTypeAcceptor acceptor) {
-		acceptor.accept(transfo.toClass(transfo.fullyQualifiedName.normalize.toString.toLowerCase))
+		acceptor.accept(transfo.toClass(transfo.className))
 		.initializeLater[
 			val returnType = transfo.returnTypeRef ?: transfo.newTypeRef(Void.TYPE)
 
@@ -729,6 +729,10 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 
 	def factoryAdapterNameFor(Metamodel mm, ModelType mt) {
 		mm.fullyQualifiedName.append("adapters").append(mt.fullyQualifiedName.lastSegment).append(mt.name + "FactoryAdapter").normalize.toString
+	}
+
+	def getClassName(Transformation t) {
+		t.fullyQualifiedName.skipLast(1).toLowerCase.append(t.name)
 	}
 
 	/*--- Type references helpers ---*/
