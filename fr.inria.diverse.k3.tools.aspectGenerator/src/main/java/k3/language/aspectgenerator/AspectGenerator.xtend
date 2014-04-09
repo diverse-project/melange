@@ -1,6 +1,6 @@
 package k3.language.aspectgenerator
 
-import fr.inria.triskell.k3.Aspect
+import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EClass
