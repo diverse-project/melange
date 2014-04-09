@@ -8,6 +8,7 @@
 	<modules>
 		<module>../fr.inria.diverse.k3.tools.archetype</module>
 		<module>../fr.inria.diverse.k3.tools.aspectGenerator</module>
+                <module>../fr.inria.diverse.k3.tools.xtext.testing</module>
 	</modules>
 
 	<properties>

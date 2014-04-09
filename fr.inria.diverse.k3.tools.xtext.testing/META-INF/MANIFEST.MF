@@ -2,4 +2,4 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: XtextTestingHelpers
 Bundle-SymbolicName: fr.inria.diverse.k3.tools.xtext.testing
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.1.0.beta
