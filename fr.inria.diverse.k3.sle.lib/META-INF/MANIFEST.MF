@@ -17,6 +17,5 @@ Require-Bundle: org.eclipse.xtend.lib;bundle-version="2.5.2",
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: fr.inria.diverse.k3.sle.lib,
  fr.inria.diverse.k3.sle.lib.footprint.metamodel,
- fr.inria.diverse.k3.sle.lib.footprint.model,
- fr.inria.diverse.k3.sle.lib.tests
+ fr.inria.diverse.k3.sle.lib.footprint.model
 
