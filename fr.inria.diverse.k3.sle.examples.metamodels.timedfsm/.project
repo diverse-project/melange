@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>FsmMetamodel</name>
+	<name>fr.inria.diverse.k3.sle.examples.metamodels.timedfsm</name>
 	<comment></comment>
 	<projects>
 	</projects>
