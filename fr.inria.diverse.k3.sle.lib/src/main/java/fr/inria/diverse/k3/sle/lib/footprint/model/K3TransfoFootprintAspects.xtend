@@ -2,7 +2,7 @@ package fr.inria.diverse.k3.sle.lib.footprint.model
 
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
-import org.eclipse.emf.ecore.EObject
+
 import org.eclipse.xtext.common.types.JvmAnnotationAnnotationValue
 import org.eclipse.xtext.common.types.JvmAnnotationReference
 import org.eclipse.xtext.common.types.JvmAnnotationTarget

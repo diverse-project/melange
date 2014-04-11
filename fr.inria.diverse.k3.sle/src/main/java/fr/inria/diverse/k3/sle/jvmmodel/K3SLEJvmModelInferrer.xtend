@@ -389,8 +389,6 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 							]
 
 							if (featureName === null) {
-								val retCls = mm.findClass(op.returnType.simpleName)
-
 								members += mm.toMethod(op.simpleName, retType)[
 									op.parameters.drop(1).forEach[p |
 										val pCls = superType.findClassifier(p.parameterType.simpleName)
@@ -564,7 +562,6 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 
 		if (mm.hasSuperMetamodel) {
 			val superMM = mm.inheritanceRelation.superMetamodel
-			val superPkg = superMM.pkgs.head
 
 			superMM.allClasses.forEach[cls |
 				val inCls = mm.allClasses.findFirst[name == cls.name]

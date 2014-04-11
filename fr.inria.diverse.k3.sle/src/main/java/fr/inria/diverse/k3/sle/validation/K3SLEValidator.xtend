@@ -12,7 +12,7 @@ import org.eclipse.xtext.common.types.JvmDeclaredType
 
 class K3SLEValidator extends AbstractK3SLEValidator
 {
-	/*@Check
+	@Check
 	def checkNamesAreUnique(Element e) {
 		if ((e.eContainer as ModelTypingSpace).elements.exists[e_ |
 			   e_ != e
@@ -69,6 +69,6 @@ class K3SLEValidator extends AbstractK3SLEValidator
 	def checkAspectsAreValid(Metamodel mm) {
 		if (!mm.aspects.forall[aspectRef?.type !== null && aspectRef.type instanceof JvmDeclaredType])
 			error("Imported aspect is invalid", K3slePackage.Literals.METAMODEL__ASPECTS)
-	}*/
+	}
 }
 

@@ -59,7 +59,7 @@ class ListAdapter<E, F> implements List<E>
 	}
 
 	override get(int index) {
-		val adap = adapType.newInstance as GenericAdapter<F>
+		val adap = adapType.newInstance
 		adap.adaptee = adaptee.get(index)
 		return adap as E
 	}
@@ -93,7 +93,7 @@ class ListAdapter<E, F> implements List<E>
 	}
 
 	override remove(int index) {
-		val adap = adapType.newInstance as GenericAdapter<F>
+		val adap = adapType.newInstance
 		adap.adaptee = adaptee.remove(index)
 		return adap as E
 	}
@@ -107,7 +107,7 @@ class ListAdapter<E, F> implements List<E>
 	}
 
 	override set(int index, E element) {
-		val adap = adapType.newInstance as GenericAdapter<F>
+		val adap = adapType.newInstance
 		adap.adaptee = adaptee.set(index, decapsulate(element))
 		return adap as E
 	}

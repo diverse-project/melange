@@ -239,7 +239,7 @@ class MetamodelExtensions
 			&& !annotations.exists[annotation.simpleName == "OverrideAspectMethod"]
 		]
 		.forEach[op |
-			val featureName = findFeatureNameFor(asp as JvmDeclaredType, op)
+			val featureName = findFeatureNameFor(asp, op)
 
 			if (featureName === null) {
 				val retCls = mm.findClass(op.returnType.simpleName)
