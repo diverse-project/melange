@@ -49,6 +49,21 @@
 				<version>${tycho.version}</version>
 				<extensions>true</extensions>
 			</plugin>
+                        <plugin>
+                                <groupId>org.eclipse.xtend</groupId>
+                                <artifactId>xtend-maven-plugin</artifactId>
+                                <version>${xtend.version}</version>
+                                <executions>
+                                        <execution>
+                                                <goals>
+                                                        <goal>compile</goal>
+                                                </goals>
+                                        </execution>
+                                </executions>
+                                <configuration>
+                                        <outputDirectory>src/main/xtend-gen</outputDirectory>
+                                </configuration>
+                        </plugin>
 		</plugins>
 	</build>
 
