@@ -5,7 +5,7 @@ import static extension fr.inria.diverse.k3.sle.lib.MetamodelExtensions.*
 import fsmproject.fsmmt.FSM
 
 metamodel Fsm {
-	ecore "platform:/resource/FsmMetamodel/model/FSM.ecore"
+	ecore "/home/dig/repositories/k3/k3-sle.examples/fr.inria.diverse.k3.sle.examples.fsm.metamodel/model/FSM.ecore"
 	exactType FsmMT
 	aspect fsmproject.ExecutableFsmAspect
 	aspect fsmproject.ExecutableStateAspect
@@ -13,7 +13,7 @@ metamodel Fsm {
 }
 
 metamodel TimedFsm {
-	ecore "platform:/resource/TimedFsmMetamodel/model/TimedFSM.ecore"
+	ecore "/home/dig/repositories/k3/k3-sle.examples/fr.inria.diverse.k3.sle.examples.fsm.metamodel/model/TimedFSM.ecore"
 	exactType TimedFsmMT
 	aspect fsmproject.TimedFsmAspect
 	aspect fsmproject.TimedStateAspect
