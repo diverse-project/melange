@@ -112,6 +112,6 @@ class EcoreExtensions
 	}
 
 	static def isEMFMapDetails(EReference ref) {
-		ref.name == "details" && ref.EReferenceType.name == "EStringToStringMapEntry"
+		ref?.name == "details" && ref.EReferenceType?.name == "EStringToStringMapEntry"
 	}
 }
