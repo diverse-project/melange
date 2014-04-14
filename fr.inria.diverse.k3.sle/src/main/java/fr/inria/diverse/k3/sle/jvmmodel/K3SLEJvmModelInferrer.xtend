@@ -538,7 +538,7 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 						java.util.List<java.lang.Object> ret = new java.util.ArrayList<java.lang.Object>() ;
 
 						for (org.eclipse.emf.ecore.EObject o : adaptee.getContents()) {
-						«FOR r : mm.allClasses.filter[mm.hasAdapterFor(superType, it) && instantiable && abstractable].sortByClassInheritance»
+						«FOR r : mm.allClasses.filter[name != "EObject" && mm.hasAdapterFor(superType, it) && instantiable && abstractable].sortByClassInheritance»
 							if (o instanceof «mm.getFqnFor(r)») {
 								«mm.getFqnFor(r)» wrap = («mm.getFqnFor(r)») o ;
 								«mm.adapterNameFor(superType, r)» adap = new «mm.adapterNameFor(superType, r)»() ;
