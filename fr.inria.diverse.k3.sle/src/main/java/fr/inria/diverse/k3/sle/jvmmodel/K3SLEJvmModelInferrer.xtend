@@ -545,7 +545,7 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 								adap.setAdaptee(wrap) ;
 								ret.add(adap) ;
 							} else
-						«ENDFOR» {}
+						«ENDFOR» ret.add(o) ;
 						}
 
 						return ret ;
