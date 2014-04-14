@@ -91,12 +91,6 @@ class EcoreTest
 		try {
 			// Consider moving these runtime dependencies somewhere else
 			setJavaCompilerClassPath(
-				typeof(fsm.FSM),
-				typeof(fsm.State),
-				typeof(fsm.Transition),
-				timedfsm.FSM,
-				timedfsm.State,
-				timedfsm.Transition,
 				fr.inria.diverse.k3.sle.lib.IModelType,
 				fr.inria.diverse.k3.sle.lib.GenericAdapter,
 				fr.inria.diverse.k3.sle.lib.ListAdapter,
@@ -112,9 +106,9 @@ class EcoreTest
 
 				val m = invokeTransfo("ecoretest.loadEcore")
 				assertNotNull(m)
-				val cls =  getCompiledClass("ecoretest.testListClassifiersCount")
-				val meth = cls.getMethod("call", getCompiledClass("ecoretest.EcoreMT"))
-				assertEquals(meth.invoke(null, m), 3)
+				assertEquals(getCompiledClass("ecoretest.testListClassifiersCount")
+					.getMethod("call", getCompiledClass("ecoretest.EcoreMT"))
+					.invoke(null, m), 3)
 			]
 		} catch (Exception e) {
 			e.printStackTrace
