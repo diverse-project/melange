@@ -1,0 +1,21 @@
+package ecoreproject
+
+import static extension fr.inria.diverse.k3.sle.lib.MetamodelExtensions.*
+
+metamodel Ecore {
+	ecore "file:/home/dig/repositories/k3/k3-sle.examples/org.eclipse.emf.ecore/model/Ecore.ecore"
+	exactType EcoreMT
+}
+
+transformation testListClassifiers(EcoreMT m) {
+	val root = m.contents.head as ecoreproject.ecoremt.EPackage
+	
+	root.EClassifiers.forEach[println("Found classifier " + name)]
+}
+
+@Main
+transformation main() {
+	val m = Ecore.load("input/FSM.ecore", EcoreMT)
+	
+	testListClassifiers.call(m)
+}
