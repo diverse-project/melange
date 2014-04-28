@@ -509,15 +509,19 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 			.initializeLater[
 				superTypes += mm.newTypeRef(superType.factoryName)
 
-				members += mm.toField("adaptee", mm.newTypeRef(mm.getFactoryFqn))[
-					initializer = '''«mm.getFactoryFqn».eINSTANCE'''
+				mm.pkgs.forEach[pkg |
+					members += mm.toField(pkg.nsPrefix + "Adaptee", mm.newTypeRef(mm.getFactoryFqnFor(pkg)))[
+						initializer = '''«mm.getFactoryFqnFor(pkg)».eINSTANCE'''
+					]
 				]
 
 				superType.allClasses.filter[instantiable].forEach[cls |
 					members += mm.toMethod("create" + cls.name, mm.newTypeRef(superType.interfaceNameFor(cls)))[
+						val associatedPkg = mm.pkgs.findFirst[EClassifiers.exists[name == cls.name]]
+
 						body = '''
 							«mm.adapterNameFor(superType, cls)» adap = new «mm.adapterNameFor(superType, cls)»() ;
-							adap.setAdaptee(adaptee.create«cls.name»()) ;
+							adap.setAdaptee(«associatedPkg.nsPrefix»Adaptee.create«cls.name»()) ;
 							return adap ;
 						'''
 					]

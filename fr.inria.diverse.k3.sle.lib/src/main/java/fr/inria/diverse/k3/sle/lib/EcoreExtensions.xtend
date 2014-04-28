@@ -1,5 +1,8 @@
 package fr.inria.diverse.k3.sle.lib
 
+import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
+import org.eclipse.emf.codegen.ecore.genmodel.GenModel
+
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.emf.ecore.EClass
@@ -7,9 +10,11 @@ import org.eclipse.emf.ecore.EcoreFactory
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.EReference
-import java.util.ArrayList
 import org.eclipse.emf.ecore.ENamedElement
 import org.eclipse.emf.ecore.EClassifier
+
+import java.util.ArrayList
+import java.util.List
 
 class EcoreExtensions
 {
@@ -96,6 +101,27 @@ class EcoreExtensions
 		]
 
 		return ret
+	}
+
+	static def void getAllSubPkgs(EPackage pkg, List<EPackage> ret) {
+		pkg.ESubpackages.forEach[p |
+			getAllSubPkgs(p, ret)
+			ret.add(p)
+		]
+	}
+
+	static def void getAllGenPkgs(GenModel gm, List<GenPackage> ret) {
+		gm.genPackages.forEach[gp |
+			getAllGenPkgs(gp, ret)
+			ret.add(gp)
+		]
+	}
+
+	static def void getAllGenPkgs(GenPackage gp, List<GenPackage> ret) {
+		gp.subGenPackages.forEach[gpp |
+			getAllGenPkgs(gpp, ret)
+			ret.add(gpp)
+		]
 	}
 
 	static def needsSetter(EStructuralFeature attr) {

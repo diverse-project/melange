@@ -100,6 +100,11 @@ class MetamodelExtensions
 					mm.pkgs += p
 			]
 
+			mm.allSubPkgs.forEach[p |
+				if (!mm.pkgs.exists[nsURI == p.nsURI])
+					mm.pkgs += p
+			]
+
 			if (mm.ecore.genmodelUris.size == 0) {
 				// FIXME
 				mm.ecore.genmodelUris += mm.ecore.uri.substring(0, mm.ecore.uri.lastIndexOf(".")) + ".genmodel"
@@ -173,14 +178,30 @@ class MetamodelExtensions
 	}
 
 	static def getFqnFor(Metamodel mm, EClassifier cls) {
+		val qnRet = new StringBuilder
 		val pkg = mm.pkgs.findFirst[EClassifiers.exists[name == cls.name]]
-		val genmodel = mm.genmodels.filterNull.findFirst[genPackages.exists[getEcorePackage.nsPrefix == pkg.nsPrefix]]
-		val genPkg = genmodel?.genPackages?.findFirst[getEcorePackage.nsPrefix == pkg.nsPrefix]
 
-		return if (genPkg?.basePackage !== null)
-			QualifiedName.create(genPkg.basePackage, genPkg.prefix, cls.name).normalize.toString
-		else
-			QualifiedName.create(genPkg.prefix, cls.name).normalize.toString
+		mm.genmodels.forEach[gm |
+			val allGp = newArrayList
+			getAllGenPkgs(gm, allGp)
+
+			allGp.forEach[gp |
+				if (gp.getEcorePackage.nsPrefix == pkg.nsPrefix)
+					if (gp?.basePackage !== null)
+						qnRet.append(QualifiedName.create(gp.basePackage, gp.prefix, cls.name).normalize.toString)
+					else
+						qnRet.append(QualifiedName.create(gp.prefix, cls.name).normalize.toString)
+			]
+		]
+
+		return qnRet.toString
+	}
+
+	static def getAllSubPkgs(Metamodel mm) {
+		val allSubPkgs = newArrayList
+		mm.pkgs.head.getAllSubPkgs(allSubPkgs)
+
+		return allSubPkgs
 	}
 
 	static def getPackageFqn(Metamodel mm) {
@@ -201,6 +222,19 @@ class MetamodelExtensions
 				QualifiedName.create(genPkg.basePackage, genPkg.prefix, genPkg.prefix + "Factory").normalize.toString
 			else
 				QualifiedName.create(genPkg.prefix, genPkg.prefix + "Factory").normalize.toString
+	}
+
+	static def getFactoryFqnFor(Metamodel mm, EPackage pkg) {
+		val allGp = newArrayList
+		getAllGenPkgs(mm.genmodels.head, allGp)
+
+		val genPkg = allGp.findFirst[gp | gp.getEcorePackage.nsURI == pkg.nsURI]
+
+		return if (genPkg.basePackage !== null)
+				QualifiedName.create(genPkg.basePackage, genPkg.prefix, genPkg.prefix + "Factory").normalize.toString
+			else
+				QualifiedName.create(genPkg.prefix, genPkg.prefix + "Factory").normalize.toString
+
 	}
 
 	static def hasAdapterFor(Metamodel mm, ModelType mt, EClassifier cls) {

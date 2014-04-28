@@ -10,14 +10,14 @@ import org.eclipse.emf.ecore.EClassifier
 
 class ModelTypeExtensions
 {
-	// TODO
+	//TODO
 	static def isValid(ModelType mt) {
 		true
 	}
 
 	// TODO FootprintedMT
 	static def completeAST(ModelType mt) {
-		if (mt.isImported) {
+		if(mt.isImported) {
 			val pkg = ModelUtils.loadPkg(mt.ecore.uri)
 
 			if (!mt.pkgs.exists[nsURI == pkg.nsURI])
@@ -43,9 +43,15 @@ class ModelTypeExtensions
 		mt.ecore !== null
 	}
 
-	// FIXME: More than one pkg BRO
+	static def getAllSubPkgs(ModelType mt) {
+		val allSubPkgs = newArrayList
+		mt.pkgs.head.getAllSubPkgs(allSubPkgs)
+
+		return allSubPkgs
+	}
+
 	static def subtypeOf(ModelType mt1, ModelType mt2) {
-		val x = new MatchingHelper
+		val x=new MatchingHelper
 		x.match(mt1.pkgs.head, mt2.pkgs.head)
 	}
 
@@ -66,7 +72,7 @@ class ModelTypeExtensions
 	}
 
 	static def isUml(ModelType mt, EClassifier cls) {
-		val pkg = mt.pkgs.findFirst[EClassifiers.exists[name == cls.name]]
-		return pkg.name == "uml"
+		val pkg=mt.pkgs.findFirst[EClassifiers.exists[name == cls.name]]
+		return pkg.name=="uml"
 	}
 }
