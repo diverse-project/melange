@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subpkg2:Subpkg2Class1 xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:subpkg2="http://subpkg2">
+  <mySubpkg2Class2>
+    <mySubpkg3Class1>
+      <mySubpkg3Class2/>
+      <mySubpkg3Class2/>
+    </mySubpkg3Class1>
+  </mySubpkg2Class2>
+</subpkg2:Subpkg2Class1>

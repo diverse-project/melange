@@ -18,7 +18,8 @@ Require-Bundle: fr.inria.diverse.k3.sle,
  fr.inria.diverse.k3.tools.xtext.testing;bundle-version="0.1.0",
  fr.inria.diverse.k3.sle.examples.metamodels.fsm;bundle-version="0.1.0",
  fr.inria.diverse.k3.sle.examples.metamodels.timedfsm;bundle-version="0.1.0",
- fr.inria.diverse.k3.sle.lib;bundle-version="3.0.0"
+ fr.inria.diverse.k3.sle.lib;bundle-version="3.0.0",
+ fr.inria.diverse.k3.sle.examples.metamodels.subpackages;bundle-version="0.1.0"
 Import-Package: org.apache.log4j,
  org.junit;version="4.5.0",
  org.junit.runner;version="4.5.0",
