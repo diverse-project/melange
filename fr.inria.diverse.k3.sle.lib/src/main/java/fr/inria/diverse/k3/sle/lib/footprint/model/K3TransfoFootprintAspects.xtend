@@ -1,10 +1,10 @@
 package fr.inria.diverse.k3.sle.lib.footprint.model
-
+ 
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
-import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EObject 
 import org.eclipse.xtext.common.types.JvmAnnotationAnnotationValue
-import org.eclipse.xtext.common.types.JvmAnnotationReference
+import org.eclipse.xtext.common.types.JvmAnnotationReference 
 import org.eclipse.xtext.common.types.JvmAnnotationTarget
 import org.eclipse.xtext.common.types.JvmAnnotationType
 import org.eclipse.xtext.common.types.JvmAnnotationValue
@@ -76,7 +76,7 @@ import org.eclipse.xtext.xbase.XListLiteral
 import org.eclipse.xtext.xbase.XMemberFeatureCall
 import org.eclipse.xtext.xbase.XNullLiteral
 import org.eclipse.xtext.xbase.XNumberLiteral
-import org.eclipse.xtext.xbase.XReturnExpression
+import org.eclipse.xtext.xbase.XReturnExpression 
 import org.eclipse.xtext.xbase.XSetLiteral
 import org.eclipse.xtext.xbase.XStringLiteral
 import org.eclipse.xtext.xbase.XSwitchExpression
@@ -91,6 +91,7 @@ import org.eclipse.xtext.xbase.XWhileExpression
 abstract class __SlicerAspect__ {
 	var boolean visitedForRelations = false
 	var boolean sliced = false
+	
 
 	def void visitToAddClasses(K3TransfoFootprint theSlicer){
 		if(!_self.sliced) {
@@ -106,7 +107,7 @@ abstract class __SlicerAspect__ {
 			_self.visitedForRelations = true
 			_self._visitToAddRelations(theSlicer)
 		}
-	}
+	} 
 
 	protected def void _visitToAddRelations(K3TransfoFootprint theSlicer){}
 

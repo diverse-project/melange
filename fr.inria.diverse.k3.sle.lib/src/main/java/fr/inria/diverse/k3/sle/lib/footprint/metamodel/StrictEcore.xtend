@@ -5,7 +5,7 @@ import java.util.List
 import org.eclipse.emf.ecore.EModelElement
 import org.eclipse.emf.ecore.EObject
 
-import static extension fr.inria.diverse.k3.sle.lib.footprint.metamodel.__SlicerAspect__.*
+import static extension fr.inria.diverse.k3.sle.lib.footprint.metamodel.__SlicerAspect__.* 
 
 class StrictEcore{
 	val List<EModelElement> inputEModelElement
