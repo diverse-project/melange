@@ -102,15 +102,15 @@ class ASTHelper
 
 // What about multiple inheritance?
 class ClassInheritanceComparator implements java.util.Comparator<EClass> {
-        override int compare(EClass clsA, EClass clsB)
-        {
-                if (clsA.EAllSuperTypes.contains(clsB))
-                        return -1
-                else if (clsB.EAllSuperTypes.contains(clsA))
-                        return 1
-                else
-                        return 0
-        }
+	override int compare(EClass clsA, EClass clsB)
+	{
+		if (clsA.EAllSuperTypes.contains(clsB))
+			return -1
+		else if (clsB.EAllSuperTypes.contains(clsA))
+			return 1
+		else
+			return 0
+	}
 }
 
 class ASTProcessingException extends Exception

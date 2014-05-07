@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.emf.ecore/src" modelPluginID="org.eclipse.emf.ecore"
+    runtimeJar="true" modelName="Ecore" updateClasspath="false" testsDirectory=""
+    booleanFlagsField="eFlags" booleanFlagsReservedBits="8" importerID="org.eclipse.emf.importer.ecore"
+    containmentProxies="true" minimalReflectiveMethods="false" complianceLevel="5.0"
+    language="en" operationReflection="true" decoration="Live">
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
+    <genAnnotations source="selectedPackages">
+      <details key="http://www.eclipse.org/emf/2002/Ecore" value="Ecore.xsd"/>
+    </genAnnotations>
+    <details key="directoryURI" value="."/>
+  </genAnnotations>
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter.xmi">
+    <genAnnotations source="selectedPackages">
+      <details key="http://www.eclipse.org/emf/2002/Ecore" value="EcoreXMI.xsd"/>
+    </genAnnotations>
+    <details key="directoryURI" value="."/>
+  </genAnnotations>
+  <foreignModel>Ecore.ecore</foreignModel>
+  <genPackages prefix="Ecore" basePackage="org.eclipse.emf" disposableProviderFactory="true"
+      multipleEditorPages="false" contentTypeIdentifier="org.eclipse.emf.ecore" ecorePackage="tests-inputs/metamodels/Ecore.ecore#/">
+    <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
+      <genAnnotations source="Ecore.xsd"/>
+    </genAnnotations>
+    <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter.xmi">
+      <genAnnotations source="EcoreXMI.xsd"/>
+    </genAnnotations>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EBigDecimal"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EBigInteger"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EBoolean"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EBooleanObject"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EByte"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EByteArray"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EByteObject"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EChar"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//ECharacterObject"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EDate"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EDiagnosticChain"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EDouble"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EDoubleObject"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EEList">
+      <genTypeParameters ecoreTypeParameter="tests-inputs/metamodels/Ecore.ecore#//EEList/E"/>
+    </genDataTypes>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EEnumerator"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EFeatureMap"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EFeatureMapEntry"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EFloat"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EFloatObject"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EInt"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EIntegerObject"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EJavaClass">
+      <genTypeParameters ecoreTypeParameter="tests-inputs/metamodels/Ecore.ecore#//EJavaClass/T"/>
+    </genDataTypes>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EJavaObject"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//ELong"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//ELongObject"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EMap">
+      <genTypeParameters ecoreTypeParameter="tests-inputs/metamodels/Ecore.ecore#//EMap/K"/>
+      <genTypeParameters ecoreTypeParameter="tests-inputs/metamodels/Ecore.ecore#//EMap/V"/>
+    </genDataTypes>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EResource"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EResourceSet"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EShort"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EShortObject"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EString"/>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//ETreeIterator">
+      <genTypeParameters ecoreTypeParameter="tests-inputs/metamodels/Ecore.ecore#//ETreeIterator/E"/>
+    </genDataTypes>
+    <genDataTypes ecoreDataType="tests-inputs/metamodels/Ecore.ecore#//EInvocationTargetException"/>
+    <genClasses ecoreClass="tests-inputs/metamodels/Ecore.ecore#//EAttribute">
+      <genFeatures createChild="false" propertyDescription="Whether the value of this attribute uniquely identifies an object within its containing resource"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//EAttribute/iD"/>
+      <genFeatures property="Readonly" createChild="false" propertyDescription="The data type of this attribute"
+          ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EAttribute/eAttributeType"/>
+    </genClasses>
+    <genClasses ecoreClass="tests-inputs/metamodels/Ecore.ecore#//EAnnotation">
+      <genFeatures createChild="false" propertyDescription="An identifier, typically an absolute URI, that uniquely identifies this kind of annotation"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//EAnnotation/source"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EAnnotation/details"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EAnnotation/eModelElement"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EAnnotation/contents"/>
+      <genFeatures notify="false" createChild="false" propertyDescription="Objects referenced by this annotation"
+          propertySortChoices="true" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EAnnotation/references"/>
+    </genClasses>
+    <genClasses ecoreClass="tests-inputs/metamodels/Ecore.ecore#//EClass">
+      <genFeatures createChild="false" propertyDescription="Whether instances of this class can be created"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//EClass/abstract"/>
+      <genFeatures createChild="false" propertyDescription="Whether no corresponding implementation will be generated for this class"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//EClass/interface"/>
+      <genFeatures createChild="false" propertyDescription="The immediate super types of this class"
+          propertySortChoices="true" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EClass/eSuperTypes"/>
+      <genFeatures property="None" children="true" createChild="true" propertyCategory=""
+          propertyDescription="The operations defined by this class" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EClass/eOperations"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EClass/eAllAttributes"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EClass/eAllReferences"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EClass/eReferences"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EClass/eAttributes"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EClass/eAllContainments"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EClass/eAllOperations"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EClass/eAllStructuralFeatures"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EClass/eAllSuperTypes"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EClass/eIDAttribute"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EClass/eStructuralFeatures"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EClass/eGenericSuperTypes"/>
+      <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EClass/eAllGenericSuperTypes"/>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EClass/isSuperTypeOf">
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EClass/isSuperTypeOf/someClass"/>
+      </genOperations>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EClass/getFeatureCount"/>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EClass/getEStructuralFeature">
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EClass/getEStructuralFeature/featureID"/>
+      </genOperations>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EClass/getFeatureID">
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EClass/getFeatureID/feature"/>
+      </genOperations>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EClass/getEStructuralFeature.1">
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EClass/getEStructuralFeature.1/featureName"/>
+      </genOperations>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EClass/getOperationCount"/>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EClass/getEOperation">
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EClass/getEOperation/operationID"/>
+      </genOperations>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EClass/getOperationID">
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EClass/getOperationID/operation"/>
+      </genOperations>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EClass/getOverride">
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EClass/getOverride/operation"/>
+      </genOperations>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EClass/getFeatureType">
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EClass/getFeatureType/feature"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="tests-inputs/metamodels/Ecore.ecore#//EClassifier">
+      <genFeatures createChild="false" propertyDescription="The erased instance class name denoted by this classifier"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//EClassifier/instanceClassName">
+        <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+      </genFeatures>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//EClassifier/instanceClass"/>
+      <genFeatures property="Readonly" createChild="false" propertyDescription="The default value for features of this type"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//EClassifier/defaultValue"/>
+      <genFeatures createChild="false" propertyDescription="The full instance type name denoted by this classifier"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//EClassifier/instanceTypeName"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EClassifier/ePackage"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EClassifier/eTypeParameters"/>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EClassifier/isInstance">
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EClassifier/isInstance/object"/>
+      </genOperations>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EClassifier/getClassifierID"/>
+    </genClasses>
+    <genClasses ecoreClass="tests-inputs/metamodels/Ecore.ecore#//EDataType">
+      <genFeatures createChild="false" propertyDescription="Whether a value of this data type can be serialized using the factory"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//EDataType/serializable"/>
+    </genClasses>
+    <genClasses ecoreClass="tests-inputs/metamodels/Ecore.ecore#//EEnum">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EEnum/eLiterals"/>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EEnum/getEEnumLiteral">
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EEnum/getEEnumLiteral/name"/>
+      </genOperations>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EEnum/getEEnumLiteral.1">
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EEnum/getEEnumLiteral.1/value"/>
+      </genOperations>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EEnum/getEEnumLiteralByLiteral">
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EEnum/getEEnumLiteralByLiteral/literal"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="tests-inputs/metamodels/Ecore.ecore#//EEnumLiteral">
+      <genFeatures createChild="false" propertyDescription="The integer value associated with this enumerator"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//EEnumLiteral/value"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//EEnumLiteral/instance"/>
+      <genFeatures createChild="false" propertyDescription="The literal value associated with this enumerator"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//EEnumLiteral/literal"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EEnumLiteral/eEnum"/>
+    </genClasses>
+    <genClasses ecoreClass="tests-inputs/metamodels/Ecore.ecore#//EFactory">
+      <genFeatures property="Readonly" createChild="false" propertyDescription="The package corresponding to this factory"
+          ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EFactory/ePackage"/>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EFactory/create">
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EFactory/create/eClass"/>
+      </genOperations>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EFactory/createFromString">
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EFactory/createFromString/eDataType"/>
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EFactory/createFromString/literalValue"/>
+      </genOperations>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EFactory/convertToString">
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EFactory/convertToString/eDataType"/>
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EFactory/convertToString/instanceValue"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="tests-inputs/metamodels/Ecore.ecore#//EModelElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EModelElement/eAnnotations"/>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EModelElement/getEAnnotation">
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EModelElement/getEAnnotation/source"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="tests-inputs/metamodels/Ecore.ecore#//ENamedElement">
+      <genFeatures createChild="false" propertyDescription="The name of this model element"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//ENamedElement/name"/>
+    </genClasses>
+    <genClasses ecoreClass="tests-inputs/metamodels/Ecore.ecore#//EObject">
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EObject/eClass"/>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EObject/eIsProxy"/>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EObject/eResource"/>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EObject/eContainer"/>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EObject/eContainingFeature"/>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EObject/eContainmentFeature"/>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EObject/eContents"/>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EObject/eAllContents"/>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EObject/eCrossReferences"/>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EObject/eGet">
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EObject/eGet/feature"/>
+      </genOperations>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EObject/eGet.1">
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EObject/eGet.1/feature"/>
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EObject/eGet.1/resolve"/>
+      </genOperations>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EObject/eSet">
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EObject/eSet/feature"/>
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EObject/eSet/newValue"/>
+      </genOperations>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EObject/eIsSet">
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EObject/eIsSet/feature"/>
+      </genOperations>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EObject/eUnset">
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EObject/eUnset/feature"/>
+      </genOperations>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EObject/eInvoke">
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EObject/eInvoke/operation"/>
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EObject/eInvoke/arguments"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="tests-inputs/metamodels/Ecore.ecore#//EOperation">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EOperation/eContainingClass"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EOperation/eTypeParameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EOperation/eParameters"/>
+      <genFeatures notify="false" createChild="false" propertyDescription="The exceptions thrown by this operation"
+          propertySortChoices="true" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EOperation/eExceptions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EOperation/eGenericExceptions"/>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EOperation/getOperationID"/>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EOperation/isOverrideOf">
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EOperation/isOverrideOf/someOperation"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="tests-inputs/metamodels/Ecore.ecore#//EPackage">
+      <genFeatures createChild="false" propertyCategory="" propertyDescription="The universally unique namespace identifier, typically an absolute URI, for this package"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//EPackage/nsURI"/>
+      <genFeatures createChild="false" propertyDescription="The namespace prefix used by default when serializing instances of the package's classes"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//EPackage/nsPrefix"/>
+      <genFeatures property="Readonly" createChild="false" propertyDescription="The factory corresponding to this package"
+          ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EPackage/eFactoryInstance">
+        <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EPackage/eClassifiers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EPackage/eSubpackages"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EPackage/eSuperPackage"/>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EPackage/getEClassifier">
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EPackage/getEClassifier/name"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="tests-inputs/metamodels/Ecore.ecore#//EParameter">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EParameter/eOperation"/>
+    </genClasses>
+    <genClasses ecoreClass="tests-inputs/metamodels/Ecore.ecore#//EReference">
+      <genFeatures createChild="false" propertyDescription="Whether this reference represents a composite relationship"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//EReference/containment"/>
+      <genFeatures property="Readonly" createChild="false" propertyDescription="Whether this reference has as its opposite a containment reference"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//EReference/container"/>
+      <genFeatures createChild="false" propertyDescription="Whether this reference resolves proxies automatically"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//EReference/resolveProxies"/>
+      <genFeatures createChild="false" propertyDescription="The reference that represents the bidirectional opposite of this reference"
+          propertySortChoices="true" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EReference/eOpposite"/>
+      <genFeatures property="Readonly" createChild="false" propertyDescription="The target class of the reference"
+          ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EReference/eReferenceType">
+        <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertyDescription="The attributes of the referenced class that uniquely identify a referenced instance"
+          propertySortChoices="true" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EReference/eKeys"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="tests-inputs/metamodels/Ecore.ecore#//EStructuralFeature">
+      <genFeatures createChild="false" propertyDescription="Whether the value of this feature can be changed"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//EStructuralFeature/changeable"/>
+      <genFeatures createChild="false" propertyDescription="Whether no field will be generated for this feature"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//EStructuralFeature/volatile"/>
+      <genFeatures createChild="false" propertyDescription="Whether the value of this feature will be serialized"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//EStructuralFeature/transient"/>
+      <genFeatures createChild="false" propertyDescription="The literal representation of the default value for this feature"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//EStructuralFeature/defaultValueLiteral"/>
+      <genFeatures property="Readonly" createChild="false" propertyDescription="The default value for this feature"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//EStructuralFeature/defaultValue">
+        <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+      </genFeatures>
+      <genFeatures createChild="false" propertyDescription="Whether the value space for this feature includes the state of not being set"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//EStructuralFeature/unsettable"/>
+      <genFeatures createChild="false" propertyDescription="Whether the value of this feature is derived from the values of other features"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//EStructuralFeature/derived"/>
+      <genFeatures property="Readonly" createChild="false" propertyDescription="The class that defines this feature"
+          ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EStructuralFeature/eContainingClass">
+        <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+      </genFeatures>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EStructuralFeature/getFeatureID"/>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EStructuralFeature/getContainerClass"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="tests-inputs/metamodels/Ecore.ecore#//ETypedElement">
+      <genFeatures createChild="false" propertyDescription="Whether the order in which values occur is meaningful"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//ETypedElement/ordered"/>
+      <genFeatures createChild="false" propertyDescription="Whether the same value may occur more than once"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//ETypedElement/unique"/>
+      <genFeatures createChild="false" propertyDescription="The minimum number of values that must occur"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//ETypedElement/lowerBound"/>
+      <genFeatures createChild="false" propertyDescription="The maximum number of values that may occur; -1 represents unbounded and -2 represents unspecified"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//ETypedElement/upperBound"/>
+      <genFeatures property="Readonly" createChild="false" propertyDescription="Whether more than one value may occur"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//ETypedElement/many">
+        <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+      </genFeatures>
+      <genFeatures property="Readonly" createChild="false" propertyDescription="Whether at least one value must occur"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//ETypedElement/required">
+        <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+      </genFeatures>
+      <genFeatures createChild="false" propertyDescription="The type of this element"
+          propertySortChoices="true" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//ETypedElement/eType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//ETypedElement/eGenericType"/>
+    </genClasses>
+    <genClasses ecoreClass="tests-inputs/metamodels/Ecore.ecore#//EStringToStringMapEntry">
+      <genFeatures createChild="false" propertyCategory="" propertyDescription="The key of this map entry"
+          ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//EStringToStringMapEntry/key"/>
+      <genFeatures createChild="false" propertyDescription="The value of this map entry"
+          propertyMultiLine="true" ecoreFeature="ecore:EAttribute tests-inputs/metamodels/Ecore.ecore#//EStringToStringMapEntry/value"/>
+    </genClasses>
+    <genClasses ecoreClass="tests-inputs/metamodels/Ecore.ecore#//EGenericType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EGenericType/eUpperBound"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EGenericType/eTypeArguments"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" propertyDescription="The erased type denoted by this generic type"
+          propertySortChoices="true" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EGenericType/eRawType">
+        <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EGenericType/eLowerBound"/>
+      <genFeatures notify="false" createChild="false" propertyDescription="The type parameter denoted by this generic type"
+          propertySortChoices="true" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EGenericType/eTypeParameter"/>
+      <genFeatures notify="false" createChild="false" propertyDescription="The classifier denoted by this generic type"
+          propertySortChoices="true" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//EGenericType/eClassifier"/>
+      <genOperations ecoreOperation="tests-inputs/metamodels/Ecore.ecore#//EGenericType/isInstance">
+        <genParameters ecoreParameter="tests-inputs/metamodels/Ecore.ecore#//EGenericType/isInstance/object"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="tests-inputs/metamodels/Ecore.ecore#//ETypeParameter">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tests-inputs/metamodels/Ecore.ecore#//ETypeParameter/eBounds"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
