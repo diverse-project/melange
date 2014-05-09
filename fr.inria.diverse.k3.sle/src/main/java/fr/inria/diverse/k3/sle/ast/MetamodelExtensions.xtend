@@ -105,6 +105,14 @@ class MetamodelExtensions
 					mm.pkgs += p
 			]
 
+			mm.^implements.forEach[mt |
+				mt.completeAST
+				mm.exactType.completeAST
+
+				if (!mm.typedBy(mt))
+					throw new ASTProcessingException('''«mm.name» doesn't match interface «mt.name»''')
+			]
+
 			if (mm.ecore.genmodelUris.size == 0) {
 				// FIXME
 				mm.ecore.genmodelUris += mm.ecore.uri.substring(0, mm.ecore.uri.lastIndexOf(".")) + ".genmodel"

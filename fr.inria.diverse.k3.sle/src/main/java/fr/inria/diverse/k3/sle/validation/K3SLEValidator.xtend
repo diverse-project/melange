@@ -5,6 +5,7 @@ import fr.inria.diverse.k3.sle.metamodel.k3sle.Element
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
 import fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage
 
+import fr.inria.diverse.k3.sle.lib.MatchingHelper
 import fr.inria.diverse.k3.sle.lib.ModelUtils
 
 import org.eclipse.xtext.validation.Check
@@ -69,6 +70,19 @@ class K3SLEValidator extends AbstractK3SLEValidator
 	def checkAspectsAreValid(Metamodel mm) {
 		if (!mm.aspects.forall[aspectRef?.type !== null && aspectRef.type instanceof JvmDeclaredType])
 			error("Imported aspect is invalid", K3slePackage.Literals.METAMODEL__ASPECTS)
+	}
+
+	@Check
+	def checkImplements(Metamodel mm) {
+		val mmPkg = ModelUtils.loadPkg(mm.ecore.uri)
+
+		mm.^implements
+		.forEach[mt |
+			val mtPkg = ModelUtils.loadPkg(mt.ecore.uri)
+
+			if (!new MatchingHelper().match(mmPkg, mtPkg))
+				error('''«mm.name» doesn't match the interface «mt.name»''', K3slePackage.Literals.ELEMENT__NAME)
+		]
 	}
 }
 

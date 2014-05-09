@@ -13,7 +13,9 @@ Element:
 ;
 
 Metamodel:
-	'metamodel' name = ValidID (inheritanceRelation = Inheritance)?  '{'
+	'metamodel' name = ValidID (inheritanceRelation = Inheritance)?
+	('implements' implements += [ModelType | QualifiedName] (',' implements += [ModelType | QualifiedName])*)?
+	'{'
 		(ecore = EcoreImport)?
 		('exactType' exactTypeRef = ValidID)
 		(aspects += AspectImport)*
