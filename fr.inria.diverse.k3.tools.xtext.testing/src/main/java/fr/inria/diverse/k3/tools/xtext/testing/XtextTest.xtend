@@ -18,12 +18,14 @@ public annotation XtextTest
 {
 	Class<?> rootType
 	String   inputFile
+	boolean  withValidation = true
 }
 
 class XtextTestProcessor extends AbstractClassProcessor
 {
 	private TypeReference rootType
 	private String inputFile
+	private boolean withValidation
 
 	override void doTransform(MutableClassDeclaration cls, extension TransformationContext ctx) {
 		val ann = cls.annotations.findFirst[annotationTypeDeclaration == XtextTest.newTypeReference.type]
@@ -35,11 +37,14 @@ class XtextTestProcessor extends AbstractClassProcessor
 
 		rootType = ann.getClassValue("rootType")
 		inputFile = ann.getStringValue("inputFile")
+		withValidation = ann.getBooleanValue("withValidation")
 
 		cls.generateFields(ctx)
 		cls.generateSetupMethod(ctx)
-		cls.generateParsingTest(ctx)
 		cls.generateEmfValidationTest(ctx)
+
+		if (withValidation)
+			cls.generateParsingTest(ctx)
 	}
 
 	def generateSetupMethod(MutableClassDeclaration cls, extension TransformationContext ctx) {
@@ -76,18 +81,19 @@ class XtextTestProcessor extends AbstractClassProcessor
 		cls.addMethod("testEmfValidation")[
 			addAnnotation(findTypeGlobally("org.junit.Test"))
 			body = '''
-				Assert.assertEquals(org.eclipse.emf.ecore.util.Diagnostician.INSTANCE.validate(root).getCode(), org.eclipse.emf.common.util.Diagnostic.OK);
+				org.junit.Assert.assertEquals(org.eclipse.emf.ecore.util.Diagnostician.INSTANCE.validate(root).getCode(), org.eclipse.emf.common.util.Diagnostic.OK);
 			'''
 		]
 	}
 
 	def generateFields(MutableClassDeclaration cls, extension TransformationContext ctx) {
 		// ValidationTestHelper
-		cls.addField("_validationTestHelper")[
-			addAnnotation(findTypeGlobally("com.google.inject.Inject"))
-			addAnnotation(findTypeGlobally("org.eclipse.xtext.xbase.lib.Extension"))
-			type = findTypeGlobally("org.eclipse.xtext.junit4.validation.ValidationTestHelper").newTypeReference
-		]
+		if (withValidation)
+			cls.addField("_validationTestHelper")[
+				addAnnotation(findTypeGlobally("com.google.inject.Inject"))
+				addAnnotation(findTypeGlobally("org.eclipse.xtext.xbase.lib.Extension"))
+				type = findTypeGlobally("org.eclipse.xtext.junit4.validation.ValidationTestHelper").newTypeReference
+			]
 
 		// ValidationTestHelper
 		cls.addField("_compilationTestHelper")[
