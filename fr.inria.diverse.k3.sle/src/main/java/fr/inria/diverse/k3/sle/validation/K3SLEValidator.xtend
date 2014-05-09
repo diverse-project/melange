@@ -80,7 +80,7 @@ class K3SLEValidator extends AbstractK3SLEValidator
 		.forEach[mt |
 			val mtPkg = ModelUtils.loadPkg(mt.ecore.uri)
 
-			if (!new MatchingHelper().match(mmPkg, mtPkg))
+			if (!MatchingHelper.instance.match(mmPkg, mtPkg))
 				error('''«mm.name» doesn't match the interface «mt.name»''', K3slePackage.Literals.ELEMENT__NAME)
 		]
 	}

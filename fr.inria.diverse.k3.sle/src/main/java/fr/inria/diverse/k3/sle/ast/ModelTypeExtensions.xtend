@@ -51,8 +51,7 @@ class ModelTypeExtensions
 	}
 
 	static def subtypeOf(ModelType mt1, ModelType mt2) {
-		val x=new MatchingHelper
-		x.match(mt1.pkgs.head, mt2.pkgs.head)
+		MatchingHelper.instance.match(mt1.pkgs.head, mt2.pkgs.head)
 	}
 
 	static def findClassifier(ModelType mt, String clsName) {

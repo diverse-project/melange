@@ -158,8 +158,7 @@ class MetamodelExtensions
 
 	// FIXME: More than one pkg bro
 	static def typedBy(Metamodel mm, ModelType mt) {
-		val x = new MatchingHelper
-		x.match(mm.exactType.pkgs.head, mt.pkgs.head)
+		MatchingHelper.instance.match(mm.exactType.pkgs.head, mt.pkgs.head)
 	}
 
 	static def hasSuperMetamodel(Metamodel mm) {
