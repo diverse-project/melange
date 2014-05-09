@@ -49,7 +49,7 @@ class MetamodelExtensions
 		true
 	}
 
-	static def completeAST(Metamodel mm) throws ASTProcessingException {
+	static def void completeAST(Metamodel mm) throws ASTProcessingException {
 		if (mm.hasSuperMetamodel) {
 			val rootPkg = mm.inheritanceRelation.superMetamodel.pkgs.head.copy(mm.name)
 
