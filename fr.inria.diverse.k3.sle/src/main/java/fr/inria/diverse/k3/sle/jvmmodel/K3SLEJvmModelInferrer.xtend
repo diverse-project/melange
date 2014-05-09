@@ -43,6 +43,8 @@ import static extension fr.inria.diverse.k3.sle.ast.ModelTypeExtensions.*
 import static extension fr.inria.diverse.k3.sle.ast.MetamodelExtensions.*
 import static extension fr.inria.diverse.k3.sle.lib.EcoreExtensions.*
 
+import fr.inria.diverse.k3.sle.ast.ASTProcessingException
+
 class K3SLEJvmModelInferrer extends AbstractModelInferrer
 {
 	@Inject extension JvmTypesBuilder
@@ -83,6 +85,8 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 				root.modelTypes.forEach[generateInterfaces(acceptor)]
 				root.metamodels.forEach[generateAdapters(acceptor)]
 				root.transformations.forEach[generateTransformation(acceptor)]
+			} catch (ASTProcessingException e) {
+				println("ASTProcessingException: " + e.message)
 			} catch (Exception e) {
 				e.printStackTrace
 			} finally {
