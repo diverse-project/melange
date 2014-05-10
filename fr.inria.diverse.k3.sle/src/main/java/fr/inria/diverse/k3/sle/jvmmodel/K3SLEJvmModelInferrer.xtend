@@ -35,6 +35,8 @@ import org.eclipse.emf.ecore.resource.Resource
 import java.util.ArrayList
 import java.util.List
 
+import org.apache.log4j.Logger
+
 import com.google.inject.Inject
 
 import static extension fr.inria.diverse.k3.sle.ast.ASTHelper.*
@@ -51,6 +53,7 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 	@Inject extension IQualifiedNameProvider
 
 	ModelTypingSpace root
+	Logger logger = Logger.getLogger(K3SLEJvmModelInferrer)
 
 	def dispatch infer(ModelTypingSpace typingSpace, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
 		root = typingSpace
@@ -83,9 +86,9 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 				root.metamodels.forEach[generateAdapters(acceptor)]
 				root.transformations.forEach[generateTransformation(acceptor)]
 			} catch (ASTProcessingException e) {
-				println("ASTProcessingException: " + e.message)
+				logger.error('''ASTProcessingException: «e.message»''', e)
 			} catch (Exception e) {
-				e.printStackTrace
+				logger.error('''Exception: «e.message»''', e)
 			}
 		}
 	}

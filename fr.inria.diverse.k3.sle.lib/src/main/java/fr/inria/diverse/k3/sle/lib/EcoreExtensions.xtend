@@ -66,17 +66,7 @@ class EcoreExtensions
 		]
 
 		val pkg = ModelUtils.loadPkg(pkgUri)
-
-		println("pkg.eResource="+pkg.eResource)
-		println("pkg.eContainer="+pkg.eContainer)
-
-		println("Trying to copy " + pkg)
 		pkg.EClassifiers.filter(EClass).forEach[cls |
-			//if (cls.eIsProxy)
-			//	EcoreUtil.resolve(cls, pkg)
-
-			//println("cls.eContainer="+(cls.eContainer as ENamedElement).name)
-
 			newPkg.EClassifiers += EcoreFactory.eINSTANCE.createEClass => [
 				^abstract = cls.^abstract
 				^interface = cls.^interface

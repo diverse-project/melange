@@ -72,7 +72,6 @@ class MetamodelExtensions
 					throw new ASTProcessingException("Cannot find annotation value for " + asp.aspectRef?.type)
 
 				val cls = mm.findClass(className)
-				println("aspClsName="+className)
 
 				if (cls === null)
 					throw new ASTProcessingException("Cannot find aspectized class for " + asp.aspectRef?.type)
@@ -296,7 +295,6 @@ class MetamodelExtensions
 								EParameters += EcoreFactory.eINSTANCE.createEParameter => [pp |
 									pp.name = p.simpleName
 									pp.EType = if (attrCls !== null) attrCls else EcorePackage.eINSTANCE.findClassifier("E" + p.parameterType.simpleName.toFirstUpper)
-									println("Found " + pp.EType)
 								]
 							}
 						]
@@ -418,8 +416,6 @@ class MetamodelExtensions
 	static def createGenModel(EPackage pkg, Metamodel mm, String ecoreLocation, String genModelLocation) {
 		val genModelFact = GenModelFactory.eINSTANCE
 		val genModel = genModelFact.createGenModel
-
-		println("GenModel for " + pkg)
 
 		genModel.complianceLevel = GenJDKLevel.JDK70_LITERAL
 		//genModel.modelDirectory = '''/«mm.project.name»/src-gen/'''

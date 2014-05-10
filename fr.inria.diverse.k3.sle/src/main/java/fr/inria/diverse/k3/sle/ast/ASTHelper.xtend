@@ -16,12 +16,16 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 
 import java.util.Collections
 
+import org.apache.log4j.Logger
+
 import static extension fr.inria.diverse.k3.sle.ast.MetamodelExtensions.*
 import static extension fr.inria.diverse.k3.sle.ast.ModelTypeExtensions.*
 import static extension fr.inria.diverse.k3.sle.ast.TransformationExtensions.*
 
 class ASTHelper
 {
+	static Logger logger = Logger.getLogger(ASTHelper)
+
 	static def isValid(ModelTypingSpace root) {
 		   !root.name.empty
 		&& root.metamodels.forall[isValid]
@@ -66,20 +70,20 @@ class ASTHelper
 
 	static def printDebug(ModelTypingSpace root) {
 		root.metamodels.forEach[mm |
-			println("MM " + mm.name)
-			print("\tpkgs = ") mm.pkgs.forEach[print(it.name + " ")] println
-			print("\tgenmodels = ") mm.genmodels.forEach[print(it.class + " ")] println
-			println("\tExactType = " + mm.exactType.name)
-			print("\tImplements = ") mm.^implements.forEach[print(it.name + " ")] println
-			println("\tsuperMM = " + mm.inheritanceRelation?.superMetamodel?.name)
-			print("\tAspects = ") mm.aspects.forEach[print(aspectRef.simpleName + " (" + aspectedClass.name + ") ")] println
+			logger.debug('''MM «mm.name»''')
+			logger.debug('''\tpkgs = «mm.pkgs.map[name].join(", ")»''')
+			logger.debug('''\tgenmodels = «mm.genmodels.map[it.class].join(", ")»''')
+			logger.debug('''\texactType = «mm.exactType.name»''')
+			logger.debug('''\timplements = «mm.^implements.map[name].join(", ")»''')
+			logger.debug('''\tsuperMM = «mm.inheritanceRelation?.superMetamodel?.name»''')
+			logger.debug('''\taspects = «mm.aspects.map[aspectRef.simpleName].join(", ")»''')
 		]
 
 		root.modelTypes.forEach[mt |
-			println("MT " + mt.name)
-			print("\tpkgs = ") mt.pkgs.forEach[print(it.name + " ")] println
-			println("\tExtracted = " + mt.extracted?.name)
-			print("\tsuperTypes = ") mt.subtypingRelations.forEach[print(it.superType?.name)] println
+			logger.debug('''MT «mt.name»''')
+			logger.debug('''pkgs = «mt.pkgs.map[name].join(", ")»''')
+			logger.debug('''extracted = «mt.extracted?.name»''')
+			logger.debug('''superTypes = «mt.subtypingRelations.map[superType?.name].join(", ")»''')
 		]
 	}
 
