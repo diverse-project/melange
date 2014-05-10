@@ -51,15 +51,12 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 	@Inject extension IQualifiedNameProvider
 
 	ModelTypingSpace root
-	boolean isUnderGeneration = false
 
 	def dispatch infer(ModelTypingSpace typingSpace, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
 		root = typingSpace
 
 		if (root.isValid) {
 			try {
-				isUnderGeneration = true
-
 				val newMTs = new ArrayList<ModelType>
 				for (mm : root.metamodels) {
 					val newMT = K3sleFactory.eINSTANCE.createModelType => [
@@ -89,8 +86,6 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 				println("ASTProcessingException: " + e.message)
 			} catch (Exception e) {
 				e.printStackTrace
-			} finally {
-				isUnderGeneration = false
 			}
 		}
 	}
