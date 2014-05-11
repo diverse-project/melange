@@ -10,6 +10,7 @@
 		<module>../fr.inria.diverse.k3.sle.examples.metamodels.fsm</module>
 		<module>../fr.inria.diverse.k3.sle.examples.metamodels.timedfsm</module>
                 <module>../fr.inria.diverse.k3.sle.examples.metamodels.subpackages</module>
+                <module>../fr.inria.diverse.k3.sle.examples.metamodels.exhaustive</module>
 	</modules>
 
 	<properties>
