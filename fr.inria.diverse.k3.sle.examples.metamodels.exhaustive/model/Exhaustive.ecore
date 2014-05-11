@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="exhaustive" nsURI="http://exhaustive/1.0" nsPrefix="exhaustive">
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractTest" abstract="true" eSuperTypes="#//OperationsTest"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InterfaceTest" abstract="true" interface="true"
+      eSuperTypes="#//OperationsTest"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MultipleSuperTest" eSuperTypes="#//AbstractTest #//InterfaceTest"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ReferencesTest" eSuperTypes="#//AbstractTest">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="changeableYes" eType="#//AbstractTest"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="changeableNo" eType="#//AbstractTest"
+        changeable="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containmentYes" eType="#//MultipleSuperTest"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referenceToGenerics">
+      <eGenericType eClassifier="#//GenericTest">
+        <eTypeArguments eClassifier="#//AbstractTest"/>
+        <eTypeArguments eClassifier="#//OperationsTest"/>
+      </eGenericType>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="opposite1" eType="#//AttributesTest"
+        eOpposite="#//AttributesTest/opposite2"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orderedFalse" ordered="false"
+        eType="#//AttributesTest"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resolveProxiesFalse" eType="#//AttributesTest"
+        resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transientTrue" eType="#//AttributesTest"
+        transient="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="uniqueFalse" unique="false"
+        eType="#//AttributesTest"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unsettableTrue" eType="#//AttributesTest"
+        unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="volatileTrue" eType="#//AttributesTest"
+        volatile="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="derivedYes" eType="#//AttributesTest"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="upperBoundN" upperBound="-1"
+        eType="#//AttributesTest"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="upperBound2" upperBound="2"
+        eType="#//AttributesTest"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lowerBound1" lowerBound="1"
+        eType="#//AttributesTest"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lowerBound2" lowerBound="2"
+        upperBound="-1" eType="#//AttributesTest"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AttributesTest" eSuperTypes="#//MultipleSuperTest #//InterfaceTest">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="changeableYes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="changeableNo" eType="#//SerializableEnumTest"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="#//SerializableDatatypeTest"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="derivedYes" eType="#//SerializableDatatypeTest"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="derivedNo" eType="#//UnserializableEnumTest"
+        defaultValueLiteral="literal1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="idYes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EShort"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="idNo" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EShort"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound0" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EShortObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBoundN" eType="#//SerializableEnumTest"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound0" eType="#//SerializableDatatypeTest"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBoundN" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="orderedYes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="orderenedNo">
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
+        <eTypeArguments/>
+      </eGenericType>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="transientYes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="transientNo" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uniqueYes" eType="#//SerializableEnumTest"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uniqueNo" eType="#//SerializableDatatypeTest"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unsettableYes" eType="#//SerializableDatatypeTest"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unsettableNo" eType="#//SerializableEnumTest"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="volatileYes" eType="#//SerializableDatatypeTest"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="volatileNo" eType="#//UnserializableEnumTest"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="opposite2" eType="#//ReferencesTest"
+        eOpposite="#//ReferencesTest/opposite1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="UnserializableDatatypeTest" instanceClassName="java.lang.Integer"
+      serializable="false"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="SerializableDatatypeTest" instanceClassName="java.lang.String"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="UnserializableEnumTest">
+    <eLiterals name="name1" value="1" literal="literal1"/>
+    <eLiterals name="name2" value="2" literal="literal2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SerializableEnumTest">
+    <eLiterals name="name3" value="3" literal="literal3"/>
+    <eLiterals name="name4" value="4" literal="literal4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationsTest">
+    <eOperations name="empty"/>
+    <eOperations name="lowerBound1" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByte"/>
+    <eOperations name="lowerBound2" lowerBound="2" upperBound="-1" eType="#//InterfaceTest"/>
+    <eOperations name="orderedNo" ordered="false"/>
+    <eOperations name="uniqueNo" unique="false"/>
+    <eOperations name="upperBound2" upperBound="2" eType="#//SerializableEnumTest"/>
+    <eOperations name="upperBoundN" upperBound="-1" eType="#//UnserializableDatatypeTest"/>
+    <eOperations name="manyParameters">
+      <eParameters name="p1" eType="#//AbstractTest"/>
+      <eParameters name="p2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GenericTest">
+    <eTypeParameters name="A"/>
+    <eTypeParameters name="B"/>
+    <eOperations name="genericOperationReturn">
+      <eGenericType eTypeParameter="#//GenericTest/B"/>
+    </eOperations>
+    <eOperations name="genericOperationParameters">
+      <eTypeParameters name="C">
+        <eBounds eClassifier="#//AbstractTest"/>
+      </eTypeParameters>
+    </eOperations>
+    <eOperations name="genericOperationThrow" eExceptions="#//CustomExceptionTest"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="genericAttr">
+      <eGenericType eTypeParameter="#//GenericTest/A"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GenericChildTest">
+    <eGenericSuperTypes eClassifier="#//GenericTest">
+      <eTypeArguments eClassifier="#//AbstractTest"/>
+      <eTypeArguments eClassifier="#//MultipleSuperTest"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="CustomExceptionTest" instanceClassName="java.lang.Exception"/>
+</ecore:EPackage>
