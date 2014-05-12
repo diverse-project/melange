@@ -280,7 +280,7 @@ class MetamodelExtensions
 		.filter[
 			   !simpleName.startsWith("_privk3")
 			&& !simpleName.startsWith("super_")
-			&& parameters.head?.name == "_self"
+			//&& parameters.head?.name == "_self"
 			&& !annotations.exists[annotation.simpleName == "OverrideAspectMethod"]
 		]
 		.forEach[op |

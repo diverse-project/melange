@@ -202,7 +202,7 @@ class MetamodelJvmModelInferrer
 						.filter[op |
 							   !op.simpleName.startsWith("_privk3")
 							&& !op.simpleName.startsWith("super_")
-							&& op.parameters.head?.name == "_self"
+							//&& op.parameters.head?.name == "_self"
 							&& !members.exists[opp | opp.simpleName == op.simpleName] // FIXME
 						]
 						.forEach[op |
