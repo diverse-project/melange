@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EcorePackage
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 
 import org.eclipse.xtext.common.types.JvmCustomAnnotationValue
+import org.eclipse.xtext.common.types.JvmTypeAnnotationValue
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmTypeParameterDeclarator
@@ -167,7 +168,11 @@ class MetamodelExtensions
 	static def getAspectAnnotationValue(AspectImport asp) {
 		// TODO: Remove hard-stringed dependency
 		val aspAnn = (asp.aspectRef.type as JvmDeclaredType)?.annotations.findFirst[annotation?.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Aspect"]
-		val aspVal = aspAnn?.values?.filter(JvmCustomAnnotationValue).head?.values?.head?.toString
+		val aspClassName = aspAnn?.values?.findFirst[valueName == "className"]
+		val aspVal = switch aspClassName {
+			JvmTypeAnnotationValue: aspClassName.values?.head?.simpleName
+			JvmCustomAnnotationValue: aspClassName.values?.head?.toString
+		}
 
 		if (aspVal !== null && aspVal.contains("."))
 			return aspVal.substring(aspVal.lastIndexOf(".") + 1, aspVal.length)
