@@ -179,7 +179,7 @@ class AspectsTest
 	}
 
 	@Test
-	def testRuntime() {
+	def testDynamicBinding() {
 		try {
 			// Consider moving these runtime dependencies somewhere else
 			setJavaCompilerClassPath(
