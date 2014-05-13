@@ -106,9 +106,10 @@ class EcoreTest
 
 				val m = invokeTransfo("ecoretest.loadEcore")
 				assertNotNull(m)
-				assertEquals(getCompiledClass("ecoretest.testListClassifiersCount")
-					.getMethod("call", getCompiledClass("ecoretest.EcoreMT"))
-					.invoke(null, m), 3)
+
+				val int i = invokeTransfo("ecoretest.testListClassifiersCount", #["ecoretest.EcoreMT"], #[m])
+
+				assertEquals(i, 3)
 			]
 		} catch (Exception e) {
 			e.printStackTrace

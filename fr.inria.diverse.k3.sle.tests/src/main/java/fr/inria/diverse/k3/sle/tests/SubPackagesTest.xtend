@@ -71,21 +71,15 @@ class SubPackagesTest
 				val m1 = invokeTransfo("subpackagestest.loadTopPkg")
 				val m2 = invokeTransfo("subpackagestest.loadSubPkg2")
 				val m3 = invokeTransfo("subpackagestest.loadSubPkg3")
-				
+
 				assertNotNull(m1)
 				assertNotNull(m2)
 				assertNotNull(m3)
-				
-				val a1 = getCompiledClass("subpackagestest.adapterName")
-					.getMethod("call", getCompiledClass("subpackagestest.SubPackagesTestMT"))
-					.invoke(null, m1) as String
-				val a2 = getCompiledClass("subpackagestest.adapterName")
-					.getMethod("call", getCompiledClass("subpackagestest.SubPackagesTestMT"))
-					.invoke(null, m2) as String
-				val a3 = getCompiledClass("subpackagestest.adapterName")
-					.getMethod("call", getCompiledClass("subpackagestest.SubPackagesTestMT"))
-					.invoke(null, m3) as String
-				
+
+				val String a1 = invokeTransfo("subpackagestest.adapterName", #["subpackagestest.SubPackagesTestMT"], #[m1])
+				val String a2 = invokeTransfo("subpackagestest.adapterName", #["subpackagestest.SubPackagesTestMT"], #[m2])
+				val String a3 = invokeTransfo("subpackagestest.adapterName", #["subpackagestest.SubPackagesTestMT"], #[m3])
+
 				assertTrue(a1.contains("TopClass1Adapter"))
 				assertTrue(a2.contains("Subpkg2Class1Adapter"))
 				assertTrue(a3.contains("Subpkg3Class1Adapter"))

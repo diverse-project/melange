@@ -209,21 +209,10 @@ class AspectsTest
 				assertNotNull(fsm)
 				assertNotNull(tfsm)
 
-				assertEquals(getCompiledClass("aspectstest.callFoo")
-					.getMethod("call", getCompiledClass("aspectstest.FsmMT"))
-					.invoke(null, fsm), "foo1")
-
-				assertEquals(getCompiledClass("aspectstest.callFoo")
-					.getMethod("call", getCompiledClass("aspectstest.FsmMT"))
-					.invoke(null, tfsm), "foo2")
-
-				assertEquals(getCompiledClass("aspectstest.callBar")
-					.getMethod("call", getCompiledClass("aspectstest.FsmMT"))
-					.invoke(null, fsm), "bar1")
-
-				assertEquals(getCompiledClass("aspectstest.callBar")
-					.getMethod("call", getCompiledClass("aspectstest.FsmMT"))
-					.invoke(null, tfsm), "bar2")
+				assertEquals(invokeTransfo("aspectstest.callFoo", #["aspectstest.FsmMT"], #[fsm]),  "foo1")
+				assertEquals(invokeTransfo("aspectstest.callFoo", #["aspectstest.FsmMT"], #[tfsm]), "foo2")
+				assertEquals(invokeTransfo("aspectstest.callBar", #["aspectstest.FsmMT"], #[fsm]),  "bar1")
+				assertEquals(invokeTransfo("aspectstest.callBar", #["aspectstest.FsmMT"], #[tfsm]), "bar2")
 			]
 		} catch (Exception e) {
 			e.printStackTrace
