@@ -44,18 +44,21 @@ class AspectsTest
 
 		assertTrue(root.elements.get(0) instanceof Metamodel)
 		assertTrue(root.elements.get(1) instanceof Metamodel)
-		assertTrue(root.elements.get(2) instanceof Transformation)
+		assertTrue(root.elements.get(2) instanceof Metamodel)
 		assertTrue(root.elements.get(3) instanceof Transformation)
 		assertTrue(root.elements.get(4) instanceof Transformation)
 		assertTrue(root.elements.get(5) instanceof Transformation)
 		assertTrue(root.elements.get(6) instanceof Transformation)
-		assertTrue(root.elements.get(7) instanceof ModelType)
+		assertTrue(root.elements.get(7) instanceof Transformation)
 		assertTrue(root.elements.get(8) instanceof ModelType)
+		assertTrue(root.elements.get(9) instanceof ModelType)
 
 		assertEquals(fsm.name,      "Fsm")
 		assertEquals(fsmMt.name,    "FsmMT")
 		assertEquals(tfsm.name,     "TimedFsm")
 		assertEquals(tfsmMt.name,   "TimedFsmMT")
+		assertEquals(ifsm.name,     "IncompatibleFsm")
+		assertEquals(ifsmMt.name,   "IncompatibleFsmMT")
 		assertEquals(callFoo.name,  "callFoo")
 		assertEquals(callBar.name,  "callBar")
 		assertEquals(loadFsm.name,  "loadFsm")
@@ -72,6 +75,29 @@ class AspectsTest
 		assertEquals(fsm.aspects.size, 1)
 		assertEquals(fsmAspect.aspectedClass.name, FsmPackage.eINSTANCE.getState.name)
 		assertNotNull(fsmAspect.aspectRef)
+		assertEquals(fsmAspect.aspectRef.type.simpleName, "StateAspect1")
+	}
+
+	@Test
+	def testAspectsImportTfsm() {
+		val tfsmAspect = tfsm.aspects.head
+
+		assertNotNull(tfsmAspect)
+		assertEquals(tfsm.aspects.size, 1)
+		assertEquals(tfsmAspect.aspectedClass.name, TimedfsmPackage.eINSTANCE.getState.name)
+		assertNotNull(tfsmAspect.aspectRef)
+		assertEquals(tfsmAspect.aspectRef.type.simpleName, "StateAspect2")
+	}
+
+	@Test
+	def testAspectsImportIfsm() {
+		val ifsmAspect = ifsm.aspects.head
+
+		assertNotNull(ifsmAspect)
+		assertEquals(ifsm.aspects.size, 1)
+		assertEquals(ifsmAspect.aspectedClass.name, FsmPackage.eINSTANCE.getState.name)
+		assertNotNull(ifsmAspect.aspectRef)
+		assertEquals(ifsmAspect.aspectRef.type.simpleName, "StateAspect3")
 	}
 
 	@Test
@@ -109,13 +135,26 @@ class AspectsTest
 	}
 
 	@Test
-	def testAspectsImportTfsm() {
-		val tfsmAspect = tfsm.aspects.head
+	def testEmfWeavingIfsm() {
+		val ifsmPkg = root.mm("IncompatibleFsm").pkgs.head
+		val stateCls = ifsmPkg.EClassifiers.findFirst[name == "State"] as EClass
 
-		assertNotNull(tfsmAspect)
-		assertEquals(tfsm.aspects.size, 1)
-		assertEquals(tfsmAspect.aspectedClass.name, TimedfsmPackage.eINSTANCE.getState.name)
-		assertNotNull(tfsmAspect.aspectRef)
+		assertNotNull(stateCls)
+		assertFalse(stateCls.EAttributes.exists[
+			   name == "foo"
+			&& EAttributeType.name == "EString"
+		])
+		assertFalse(stateCls.EOperations.exists[
+			   name == "bar"
+			&& EParameters.size == 0
+			&& EType.name == "EString"
+		])
+		assertTrue(stateCls.EOperations.exists[
+			   name == "baz"
+			&& EParameters.size == 1
+			&& EParameters.head.EType.name == "EString"
+			&& EType.name == "EInt"
+		])
 	}
 
 	@Test
@@ -128,6 +167,12 @@ class AspectsTest
 	def testRelationsTfsm() {
 		assertEquals(tfsmMt.extracted, tfsm)
 		assertEquals(tfsm.exactType, tfsmMt)
+	}
+
+	@Test
+	def testRelationsIFsm() {
+		assertEquals(ifsmMt.extracted, ifsm)
+		assertEquals(ifsm.exactType, ifsmMt)
 	}
 
 	@Test
@@ -144,6 +189,12 @@ class AspectsTest
 	}
 
 	@Test
+	def testImplementsIfsm() {
+		assertEquals(ifsm.^implements.size, 1)
+		assertTrue(ifsm.^implements.contains(ifsmMt))
+	}
+
+	@Test
 	def testInheritanceFsm() {
 		assertNull(fsm.inheritanceRelation)
 	}
@@ -151,6 +202,11 @@ class AspectsTest
 	@Test
 	def testInheritanceTfsm() {
 		assertNull(tfsm.inheritanceRelation)
+	}
+
+	@Test
+	def testInheritanceIfsm() {
+		assertNull(ifsm.inheritanceRelation)
 	}
 
 	@Test
@@ -165,11 +221,16 @@ class AspectsTest
 	}
 
 	@Test
+	def testSubtypingIfsm() {
+		assertEquals(ifsmMt.subtypingRelations.size, 0)
+	}
+
+	@Test
 	def testGeneration() {
 		val fsa = new InMemoryFileSystemAccess
 		generator.doGenerate(root.eResource, fsa)
 
-		assertEquals(fsa.textFiles.size, 32)
+		assertEquals(fsa.textFiles.size, 43)
 
 		// Check for generation bug that
 		// replaces (valid) generic types with Objects
@@ -222,11 +283,13 @@ class AspectsTest
 
 	def getFsm()      { root.elements.get(0) as Metamodel }
 	def getTfsm()     { root.elements.get(1) as Metamodel }
-	def getCallFoo()  { root.elements.get(2) as Transformation }
-	def getCallBar()  { root.elements.get(3) as Transformation }
-	def getLoadFsm()  { root.elements.get(4) as Transformation }
-	def getLoadTfsm() { root.elements.get(5) as Transformation }
-	def getTest()     { root.elements.get(6) as Transformation }
-	def getFsmMt()    { root.elements.get(7) as ModelType }
-	def getTfsmMt()   { root.elements.get(8) as ModelType }
+	def getIfsm()     { root.elements.get(2) as Metamodel }
+	def getCallFoo()  { root.elements.get(3) as Transformation }
+	def getCallBar()  { root.elements.get(4) as Transformation }
+	def getLoadFsm()  { root.elements.get(5) as Transformation }
+	def getLoadTfsm() { root.elements.get(6) as Transformation }
+	def getTest()     { root.elements.get(7) as Transformation }
+	def getFsmMt()    { root.elements.get(8) as ModelType }
+	def getTfsmMt()   { root.elements.get(9) as ModelType }
+	def getIfsmMt()   { root.elements.get(10) as ModelType }
 }

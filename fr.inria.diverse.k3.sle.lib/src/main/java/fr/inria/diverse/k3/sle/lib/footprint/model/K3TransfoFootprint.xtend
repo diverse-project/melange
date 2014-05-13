@@ -10,7 +10,7 @@ import static extension fr.inria.diverse.k3.sle.lib.footprint.model.__SlicerAspe
 
 
 
-class K3TransfoFootprint{ 
+class K3TransfoFootprint{
 
 	public val Set<String> footprint = newHashSet
 	public val List<String> pkgs = newArrayList
@@ -30,7 +30,7 @@ class K3TransfoFootprint{
 		this.inputJvmTypeReference = inputJvmTypeReference
 		this.inputXExpression = inputXExpression
 	}
- 
+
 	def void slice(){
 		onStart
 		inputJvmFormalParameter?.forEach[visitToAddClasses(this)]

@@ -76,7 +76,7 @@ import org.eclipse.xtext.xbase.XListLiteral
 import org.eclipse.xtext.xbase.XMemberFeatureCall
 import org.eclipse.xtext.xbase.XNullLiteral
 import org.eclipse.xtext.xbase.XNumberLiteral
-import org.eclipse.xtext.xbase.XReturnExpression 
+import org.eclipse.xtext.xbase.XReturnExpression
 import org.eclipse.xtext.xbase.XSetLiteral
 import org.eclipse.xtext.xbase.XStringLiteral
 import org.eclipse.xtext.xbase.XSwitchExpression
