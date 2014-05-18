@@ -190,7 +190,7 @@ class MetamodelExtensions
 				val retCls = mm.findClass(op.returnType.simpleName)
 
 				// FIXME
-				//if (!cls.EOperations.exists[name == op.simpleName]) {
+				if (!cls.EOperations.exists[name == op.simpleName]) {
 					cls.EOperations += EcoreFactory.eINSTANCE.createEOperation => [
 						name = op.simpleName
 						op.parameters.forEach[p, i |
@@ -206,8 +206,8 @@ class MetamodelExtensions
 						EType = if (retCls !== null) retCls else EcorePackage.eINSTANCE.findClassifier("E" + op.returnType.simpleName.toFirstUpper)
 						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
 					]
-				//}
-			} else if (!createdFeatures.contains(featureName)) {
+				}
+			} else if (!cls.EStructuralFeatures.exists[name == featureName]) {
 				val retType =
 					if (op.simpleName.startsWith("get") || op.parameters.size == 1)
 						op.returnType.type
