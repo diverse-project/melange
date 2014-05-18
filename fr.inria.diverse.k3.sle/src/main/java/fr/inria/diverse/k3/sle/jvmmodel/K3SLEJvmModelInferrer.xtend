@@ -29,38 +29,32 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 	def dispatch infer(ModelTypingSpace typingSpace, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
 		root = typingSpace
 
-		if (root.isValid) {
-			try {
-				val newMTs = new ArrayList<ModelType>
-				for (mm : root.metamodels) {
-					val newMT = K3sleFactory.eINSTANCE.createModelType => [
-						name = mm.exactTypeRef
-					]
-
-					if (!root.modelTypes.exists[name == newMT.name])
-						newMTs += newMT
-				}
-
-				root.elements += newMTs
-				root.metamodels.forEach[mm |
-					mm.exactType = root.modelTypes.findFirst[name == mm.exactTypeRef]
+		try {
+			val newMTs = new ArrayList<ModelType>
+			for (mm : root.metamodels) {
+				val newMT = K3sleFactory.eINSTANCE.createModelType => [
+					name = mm.exactTypeRef
 				]
 
-				root.completeAST
-				root.inferTypingRelations
-				//root.printDebug
-				//if (!isPreIndexingPhase)
-				//	root.saveAs("platform:/resource/Output/AST.xmi")
-				//}
-
-				root.modelTypes.forEach[generateInterfaces(acceptor)]
-				root.metamodels.forEach[generateAdapters(acceptor)]
-				root.transformations.forEach[generateTransformation(acceptor)]
-			} catch (ASTProcessingException e) {
-				logger.error('''ASTProcessingException: «e.message»''', e)
-			} catch (Exception e) {
-				logger.error('''Exception: «e.message»''', e)
+				if (!root.modelTypes.exists[name == newMT.name])
+					newMTs += newMT
 			}
+
+			root.elements += newMTs
+			root.metamodels.forEach[mm |
+				mm.exactType = root.modelTypes.findFirst[name == mm.exactTypeRef]
+			]
+
+			root.completeAST
+			root.inferTypingRelations
+
+			root.modelTypes.forEach[generateInterfaces(acceptor)]
+			root.metamodels.forEach[generateAdapters(acceptor)]
+			root.transformations.forEach[generateTransformation(acceptor)]
+		} catch (ASTProcessingException e) {
+			logger.error('''ASTProcessingException: «e.message»''', e)
+		} catch (Exception e) {
+			logger.error('''Exception: «e.message»''', e)
 		}
 	}
 }

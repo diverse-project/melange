@@ -10,11 +10,6 @@ import org.eclipse.emf.ecore.EClassifier
 
 class ModelTypeExtensions
 {
-	//TODO
-	static def isValid(ModelType mt) {
-		true
-	}
-
 	// TODO FootprintedMT
 	static def completeAST(ModelType mt) {
 		if(mt.isImported) {
@@ -71,7 +66,7 @@ class ModelTypeExtensions
 	}
 
 	static def isUml(ModelType mt, EClassifier cls) {
-		val pkg=mt.pkgs.findFirst[EClassifiers.exists[name == cls.name]]
-		return pkg.name=="uml"
+		val pkg = mt.pkgs.findFirst[EClassifiers.exists[name == cls.name]]
+		return pkg.name == "uml"
 	}
 }

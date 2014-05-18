@@ -26,13 +26,6 @@ class ASTHelper
 {
 	static Logger logger = Logger.getLogger(ASTHelper)
 
-	static def isValid(ModelTypingSpace root) {
-		   !root.name.empty
-		&& root.metamodels.forall[isValid]
-		&& root.modelTypes.forall[isValid]
-		&& root.transformations.forall[isValid]
-	}
-
 	static def void completeAST(ModelTypingSpace root) throws ASTProcessingException {
 		root.metamodels.forEach[completeAST]
 		root.modelTypes.forEach[completeAST]

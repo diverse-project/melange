@@ -45,11 +45,6 @@ import static extension fr.inria.diverse.k3.sle.lib.EcoreExtensions.*
 
 class MetamodelExtensions
 {
-	// TODO
-	static def isValid(Metamodel mm) {
-		true
-	}
-
 	static def void completeAST(Metamodel mm) throws ASTProcessingException {
 		if (mm.hasSuperMetamodel) {
 			val rootPkg = mm.inheritanceRelation.superMetamodel.pkgs.head.copy(mm.name)
