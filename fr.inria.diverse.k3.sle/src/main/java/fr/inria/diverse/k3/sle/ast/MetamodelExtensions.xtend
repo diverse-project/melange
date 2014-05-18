@@ -9,7 +9,7 @@ import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
 
 import java.io.IOException
 
-import java.util.ArrayList
+import java.util.List
 import java.util.Collection
 import java.util.Collections
 
@@ -45,13 +45,13 @@ import static extension fr.inria.diverse.k3.sle.lib.EcoreExtensions.*
 
 class MetamodelExtensions
 {
-	static def allAspects(Metamodel mm) {
-		val ret = new ArrayList<AspectImport>
+	static def List<AspectImport> allAspects(Metamodel mm) {
+		val ret = newArrayList
 
 		ret += mm.aspects
 
 		if (mm.hasSuperMetamodel)
-			ret += mm.inheritanceRelation.superMetamodel.aspects
+			ret += mm.inheritanceRelation.superMetamodel.allAspects
 
 		return ret
 	}
