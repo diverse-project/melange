@@ -176,18 +176,39 @@ class K3SLETyping
 	}
 
 	def dispatch boolean isValid(ModelTypingSpace root) {
-		true
+		   !root.name.empty
+		&& !root.metamodels.exists[mm | root.metamodels.exists[mm_ | mm != mm_ && mm.name == mm_.name]]
+		&& !root.modelTypes.exists[mt | root.modelTypes.exists[mt_ | mt != mt_ && mt.name == mt_.name]]
+		&& !root.transformations.exists[t | root.transformations.exists[t_ | t != t_ && t.name == t_.name]]
+		&& root.elements.forall[isValid]
 	}
 
 	def dispatch boolean isValid(Metamodel mm) {
-		true
+		   mm !== null
+		&& !mm.name.empty
+		&& (mm.inheritanceRelation !== null || mm.ecore?.uri !== null)
+		&& mm.aspects.forall[it !== null && aspectRef?.type instanceof JvmDeclaredType && aspectedClass !== null]
+		&& !mm.exactTypeRef.empty
+		&& mm.exactType !== null
+		&& mm.^implements.forall[it !== null]
+		&& mm.genmodels.forall[it !== null]
+		&& mm.pkgs.forall[it !== null]
 	}
 
 	def dispatch boolean isValid(ModelType mt) {
-		true
+		   mt !== null
+		&& !mt.name.empty
+		&& (mt.ecore?.uri !== null
+			|| mt.extracted !== null)
+		&& mt.subtypingRelations.forall[it !== null]
+		&& mt.pkgs.forall[it !== null]
 	}
 
 	def dispatch boolean isValid(Transformation t) {
-		true
+		   t !== null
+		&& !t.name.empty
+		&& t.parameters.forall[it !== null]
+		&& t.body !== null
+		// t.input / t.output?
 	}
 }
