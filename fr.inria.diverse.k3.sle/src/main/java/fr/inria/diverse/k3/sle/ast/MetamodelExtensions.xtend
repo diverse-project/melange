@@ -174,8 +174,6 @@ class MetamodelExtensions
 	// FIXME: Create referenced EClass if they don't exist yet
 	// FIXME: Consider finding EClassifier, not EClass
 	static def weaveAspect(Metamodel mm, EClass cls, JvmDeclaredType asp) {
-		val createdFeatures = new ArrayList<String>
-
 		asp.declaredOperations
 		.filter[
 			   !simpleName.startsWith("_privk3")
@@ -244,8 +242,6 @@ class MetamodelExtensions
 				} else {
 					// Create new EClass or fix the referenced type
 				}
-
-				createdFeatures += featureName
 			}
 		]
 	}
