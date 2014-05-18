@@ -26,32 +26,6 @@ class ASTHelper
 {
 	static Logger logger = Logger.getLogger(ASTHelper)
 
-	static def void completeAST(ModelTypingSpace root) throws ASTProcessingException {
-		root.metamodels.forEach[completeAST]
-		root.modelTypes.forEach[completeAST]
-		root.transformations.forEach[completeAST]
-	}
-
-	static def inferTypingRelations(ModelTypingSpace root) {
-		root.modelTypes
-		.forEach[mt1 |
-			root.modelTypes
-			.filter[mt2 | mt2 != mt1 && !mt1.subtypingRelations.exists[superType?.name == mt2?.name] && mt1.subtypeOf(mt2)]
-			.forEach[mt2 |
-				mt1.subtypingRelations += K3sleFactory.eINSTANCE.createSubtyping => [
-					subType = mt1
-					superType = mt2
-				]
-			]
-
-			root.metamodels
-			.filter[mm | !mm.^implements.exists[name == mt1.name] && mm.typedBy(mt1)]
-			.forEach[mm |
-				mm.^implements += mt1
-			]
-		]
-	}
-
 	static def saveAs(ModelTypingSpace root, String uri) {
 		Resource.Factory.Registry.INSTANCE.extensionToFactoryMap.put("*", new XMIResourceFactoryImpl)
 		val rs = new ResourceSetImpl

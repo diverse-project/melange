@@ -10,26 +10,6 @@ import org.eclipse.emf.ecore.EClassifier
 
 class ModelTypeExtensions
 {
-	// TODO FootprintedMT
-	static def completeAST(ModelType mt) {
-		if(mt.isImported) {
-			val pkg = ModelUtils.loadPkg(mt.ecore.uri)
-
-			if (!mt.pkgs.exists[nsURI == pkg.nsURI])
-				mt.pkgs += pkg
-
-			pkg.referencedPkgs.forEach[p |
-				if (!mt.pkgs.exists[nsURI == p.nsURI])
-					mt.pkgs += p
-			]
-		} else if (mt.isExtracted) {
-			mt.extracted.pkgs.forEach[p |
-				if (!mt.pkgs.exists[nsURI == p.nsURI])
-					mt.pkgs += p.copy
-			]
-		}
-	}
-
 	static def isExtracted(ModelType mt) {
 		mt.extracted !== null
 	}

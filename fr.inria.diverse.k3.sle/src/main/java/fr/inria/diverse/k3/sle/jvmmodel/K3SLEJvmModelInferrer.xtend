@@ -27,21 +27,22 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 
 	def dispatch infer(ModelTypingSpace typingSpace, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
 		root = typingSpace
-		typingHelper.complete(root)
 
-		if (typingHelper.isValid) {
-			try {
-				root.completeAST
-				root.inferTypingRelations
-	
-				root.modelTypes.forEach[generateInterfaces(acceptor)]
-				root.metamodels.forEach[generateAdapters(acceptor)]
-				root.transformations.forEach[generateTransformation(acceptor)]
-			} catch (ASTProcessingException e) {
-				logger.error('''ASTProcessingException: «e.message»''', e)
-			} catch (Exception e) {
-				logger.error('''Exception: «e.message»''', e)
+		try {
+			typingHelper.complete(root)
+
+			if (typingHelper.isValid(root)) {
+					typingHelper.complete(root)
+					typingHelper.inferTypingRelations(root)
+
+					root.modelTypes.forEach[generateInterfaces(acceptor)]
+					root.metamodels.forEach[generateAdapters(acceptor)]
+					root.transformations.forEach[generateTransformation(acceptor)]
 			}
+		} catch (ASTProcessingException e) {
+			logger.error('''ASTProcessingException: «e.message»''', e)
+		} catch (Exception e) {
+			logger.error('''Exception: «e.message»''', e)
 		}
 	}
 }
