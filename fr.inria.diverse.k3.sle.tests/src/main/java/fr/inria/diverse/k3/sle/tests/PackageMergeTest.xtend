@@ -49,7 +49,7 @@ class PackageMergeTest
 
 	@Test
 	def testMergeWithoutConflict1() {
-		val res = pkgA.mergeWith(pkgB)
+		val res = callMergeOperator(pkgA, pkgB, pkgC)
 
 		assertEquals(Diagnostician.INSTANCE.validate(res).getCode(), Diagnostic.OK)
 		assertTrue(EcoreUtil.equals(res, pkgC))
@@ -57,7 +57,7 @@ class PackageMergeTest
 
 	@Test
 	def testMergeWithoutConflict2() {
-		val res = pkgB.mergeWith(pkgA)
+		val res = callMergeOperator(pkgB, pkgA, pkgC)
 
 		assertEquals(Diagnostician.INSTANCE.validate(res).getCode(), Diagnostic.OK)
 		assertTrue(EcoreUtil.equals(res, pkgC))
@@ -65,7 +65,7 @@ class PackageMergeTest
 
 	@Test
 	def testMergeWithNewClasses1() {
-		val res = pkgA.mergeWith(pkgD)
+		val res = callMergeOperator(pkgA, pkgD, pkgE)
 
 		assertEquals(Diagnostician.INSTANCE.validate(res).getCode(), Diagnostic.OK)
 		assertTrue(EcoreUtil.equals(res, pkgE))
@@ -73,7 +73,7 @@ class PackageMergeTest
 
 	@Test
 	def testMergeWithNewClasses2() {
-		val res = pkgD.mergeWith(pkgA)
+		val res = callMergeOperator(pkgD, pkgA, pkgE)
 
 		assertEquals(Diagnostician.INSTANCE.validate(res).getCode(), Diagnostic.OK)
 		assertTrue(EcoreUtil.equals(res, pkgE))
@@ -101,7 +101,7 @@ class PackageMergeTest
 
 	@Test
 	def testMergeDisjoint1() {
-		val res = pkgB.mergeWith(pkgF)
+		val res = callMergeOperator(pkgB, pkgF, pkgG)
 
 		assertEquals(Diagnostician.INSTANCE.validate(res).getCode(), Diagnostic.OK)
 		assertTrue(EcoreUtil.equals(res, pkgG))
@@ -109,9 +109,20 @@ class PackageMergeTest
 
 	@Test
 	def testMergeDisjoint2() {
-		val res = pkgF.mergeWith(pkgB)
+		val res = callMergeOperator(pkgF, pkgB, pkgG)
 
 		assertEquals(Diagnostician.INSTANCE.validate(res).getCode(), Diagnostic.OK)
 		assertTrue(EcoreUtil.equals(res, pkgG))
+	}
+
+	// Just adapting packages features so that the equals() doesn't fail because of nsURI and the like
+	private def callMergeOperator(EPackage base, EPackage ext, EPackage expected) {
+		val res = base.mergeWith(ext)
+
+		res.name = expected.name
+		res.nsURI = expected.nsURI
+		res.nsPrefix = expected.nsPrefix
+
+		return res
 	}
 }
