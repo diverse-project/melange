@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.ENamedElement
-import org.eclipse.emf.ecore.EClassifier
 
 import java.util.ArrayList
 import java.util.List
@@ -23,7 +22,7 @@ class EcoreExtensions
 	}
 
 	static def findClassifier(EPackage pkg, String clsName) {
-		pkg.EClassifiers.filter(EClassifier).findFirst[name == clsName]
+		pkg.EClassifiers.findFirst[name == clsName]
 	}
 
 	static def isInstantiable(EClass cls) {
