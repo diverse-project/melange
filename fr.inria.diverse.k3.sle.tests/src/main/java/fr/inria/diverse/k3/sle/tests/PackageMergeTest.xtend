@@ -1,10 +1,9 @@
 package fr.inria.diverse.k3.sle.tests
 
+import fr.inria.diverse.k3.sle.tests.common.OrderAgnosticEqualityHelper
 import fr.inria.diverse.k3.sle.lib.PackageMergeException
 
 import org.eclipse.emf.ecore.EPackage
-
-import org.eclipse.emf.ecore.util.EcoreUtil
 
 import org.eclipse.emf.common.util.Diagnostic
 import org.eclipse.emf.common.util.URI
@@ -25,6 +24,7 @@ import static extension fr.inria.diverse.k3.sle.lib.PackageMerge.*
 
 class PackageMergeTest
 {
+	OrderAgnosticEqualityHelper equalityHelper = new OrderAgnosticEqualityHelper
 	EPackage pkgA
 	EPackage pkgB
 	EPackage pkgC
@@ -52,7 +52,7 @@ class PackageMergeTest
 		val res = callMergeOperator(pkgA, pkgB, pkgC)
 
 		assertEquals(Diagnostician.INSTANCE.validate(res).getCode(), Diagnostic.OK)
-		assertTrue(EcoreUtil.equals(res, pkgC))
+		assertTrue(equalityHelper.equals(res, pkgC))
 	}
 
 	@Test
@@ -60,7 +60,7 @@ class PackageMergeTest
 		val res = callMergeOperator(pkgB, pkgA, pkgC)
 
 		assertEquals(Diagnostician.INSTANCE.validate(res).getCode(), Diagnostic.OK)
-		assertTrue(EcoreUtil.equals(res, pkgC))
+		assertTrue(equalityHelper.equals(res, pkgC))
 	}
 
 	@Test
@@ -68,7 +68,7 @@ class PackageMergeTest
 		val res = callMergeOperator(pkgA, pkgD, pkgE)
 
 		assertEquals(Diagnostician.INSTANCE.validate(res).getCode(), Diagnostic.OK)
-		assertTrue(EcoreUtil.equals(res, pkgE))
+		assertTrue(equalityHelper.equals(res, pkgE))
 	}
 
 	@Test
@@ -76,7 +76,7 @@ class PackageMergeTest
 		val res = callMergeOperator(pkgD, pkgA, pkgE)
 
 		assertEquals(Diagnostician.INSTANCE.validate(res).getCode(), Diagnostic.OK)
-		assertTrue(EcoreUtil.equals(res, pkgE))
+		assertTrue(equalityHelper.equals(res, pkgE))
 	}
 
 	@Test(expected = PackageMergeException)
@@ -104,7 +104,7 @@ class PackageMergeTest
 		val res = callMergeOperator(pkgB, pkgF, pkgG)
 
 		assertEquals(Diagnostician.INSTANCE.validate(res).getCode(), Diagnostic.OK)
-		assertTrue(EcoreUtil.equals(res, pkgG))
+		assertTrue(equalityHelper.equals(res, pkgG))
 	}
 
 	@Test
@@ -112,7 +112,7 @@ class PackageMergeTest
 		val res = callMergeOperator(pkgF, pkgB, pkgG)
 
 		assertEquals(Diagnostician.INSTANCE.validate(res).getCode(), Diagnostic.OK)
-		assertTrue(EcoreUtil.equals(res, pkgG))
+		assertTrue(equalityHelper.equals(res, pkgG))
 	}
 
 	// Just adapting packages features so that the equals() doesn't fail because of nsURI and the like
