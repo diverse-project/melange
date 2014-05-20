@@ -40,7 +40,7 @@ TESTS
 - [ ] Subtyping algorithm
 - [ ] Referenced packages
 - [ ] Subpackages
-- [ ] Merge
+- [ ] Merge
 - [ ] Inheritance
 - [ ] Multiple inheritance
 
