@@ -1,19 +1,27 @@
 package fr.inria.diverse.k3.sle.typing
 
+import fr.inria.diverse.k3.sle.ast.ASTProcessingException
+
+import fr.inria.diverse.k3.sle.lib.ModelUtils
+
 import fr.inria.diverse.k3.sle.metamodel.k3sle.K3sleFactory
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
+import fr.inria.diverse.k3.sle.metamodel.k3sle.ResourceType
+
+import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.emf.ecore.EcoreFactory
+import org.eclipse.emf.ecore.EClass
+
+import org.eclipse.xtext.common.types.JvmDeclaredType
 
 import static extension fr.inria.diverse.k3.sle.ast.ASTHelper.*
 import static extension fr.inria.diverse.k3.sle.ast.MetamodelExtensions.*
 import static extension fr.inria.diverse.k3.sle.ast.ModelTypeExtensions.*
 
 import static extension fr.inria.diverse.k3.sle.lib.EcoreExtensions.*
-import fr.inria.diverse.k3.sle.lib.ModelUtils
-import fr.inria.diverse.k3.sle.ast.ASTProcessingException
-import org.eclipse.xtext.common.types.JvmDeclaredType
 
 class K3SLETyping
 {
@@ -59,42 +67,91 @@ class K3SLETyping
 
 	def dispatch void complete(Metamodel mm) {
 		if (mm.hasSuperMetamodel) {
-			val rootPkg = mm.inheritanceRelation.superMetamodel.pkgs.head.copy(mm.name)
+			// EMF resource = extension with inheritance
+			if (mm.resourceType == ResourceType.EMF) {
+				val pkg = ModelUtils.loadPkg(mm.inheritanceRelation.superMetamodel.ecore.uri)
 
-			val pkg = rootPkg
-			if (!mm.pkgs.exists[nsURI == pkg.nsURI])
-				mm.pkgs += pkg
+				val newPkg = EcoreFactory.eINSTANCE.createEPackage => [
+					name = mm.name.toLowerCase
+					nsURI = mm.resourceUri ?: '''http://«mm.name.toLowerCase»'''
+					nsPrefix = mm.name.toLowerCase
 
-			pkg.referencedPkgs.filterNull.forEach[p |
-				if (!mm.pkgs.exists[nsURI == p.nsURI])
-					mm.pkgs += p
-			]
+					pkg.EClassifiers.filter(EClass).forEach[cls |
+						EClassifiers += EcoreFactory.eINSTANCE.createEClass => [newCls |
+							newCls.name = cls.name
+							newCls.ESuperTypes += cls
+						]
+					]
+				]
 
-			mm.aspects.forEach[asp |
-				if (!(asp.aspectRef.type instanceof JvmDeclaredType))
-					throw new ASTProcessingException("Aspect must be a generic type: " + asp.aspectRef?.type)
+				if (!mm.pkgs.exists[nsURI == newPkg.nsURI])
+					mm.pkgs += newPkg
 
-				val className = asp.aspectAnnotationValue
+				mm.aspects.forEach[asp |
+					if (!(asp.aspectRef.type instanceof JvmDeclaredType))
+						throw new ASTProcessingException("Aspect must be a generic type: " + asp.aspectRef?.type)
 
-				if (className === null)
-					throw new ASTProcessingException("Cannot find annotation value for " + asp.aspectRef?.type)
+					val className = asp.aspectAnnotationValue
 
-				val cls = mm.findClass(className)
+					if (className === null)
+						throw new ASTProcessingException("Cannot find annotation value for " + asp.aspectRef?.type)
 
-				if (cls === null)
-					throw new ASTProcessingException("Cannot find aspectized class for " + asp.aspectRef?.type)
+					val cls = mm.findClass(className)
 
-				asp.aspectedClass = cls
+					if (cls === null)
+						throw new ASTProcessingException("Cannot find aspectized class for " + asp.aspectRef?.type)
 
-				mm.weaveAspect(asp.aspectedClass, asp.aspectRef.type as JvmDeclaredType)
-			]
+					asp.aspectedClass = cls
 
-			mm.createEcore
-			mm.pkgs.head.createGenModel(mm, mm.generationFolder + mm.name + ".ecore", mm.generationFolder + mm.name + ".genmodel")
+					mm.weaveAspect(asp.aspectedClass, asp.aspectRef.type as JvmDeclaredType)
+				]
 
-			val gm = ModelUtils.loadGenmodel(mm.generationFolder + mm.name + ".genmodel")
-			if (!mm.genmodels.exists[genPackages.exists[gp | gm.genPackages.exists[gpp | gpp.getEcorePackage?.nsURI == gp.getEcorePackage?.nsURI]]])
-				mm.genmodels += gm
+				val copy = EcoreUtil.copy(newPkg)
+				val ecoreUri = '''platform:/resource/«mm.project.name»/model/«mm.name».ecore'''
+				val genmodelUri = '''platform:/resource/«mm.project.name»/model/«mm.name».genmodel'''
+				val srcFolder = '''«mm.project.name»/src'''
+				copy.createEcore(ecoreUri)
+				copy.createGenModel(mm, ecoreUri, genmodelUri, srcFolder)
+
+				throw new ASTProcessingException("Gemoc: stop here")
+			} else {
+				val rootPkg = mm.inheritanceRelation.superMetamodel.pkgs.head.copy(mm.name)
+
+				val pkg = rootPkg
+				if (!mm.pkgs.exists[nsURI == pkg.nsURI])
+					mm.pkgs += pkg
+
+				pkg.referencedPkgs.filterNull.forEach[p |
+					if (!mm.pkgs.exists[nsURI == p.nsURI])
+						mm.pkgs += p
+				]
+
+				mm.aspects.forEach[asp |
+					if (!(asp.aspectRef.type instanceof JvmDeclaredType))
+						throw new ASTProcessingException("Aspect must be a generic type: " + asp.aspectRef?.type)
+
+					val className = asp.aspectAnnotationValue
+
+					if (className === null)
+						throw new ASTProcessingException("Cannot find annotation value for " + asp.aspectRef?.type)
+
+					val cls = mm.findClass(className)
+
+					if (cls === null)
+						throw new ASTProcessingException("Cannot find aspectized class for " + asp.aspectRef?.type)
+
+					asp.aspectedClass = cls
+
+					mm.weaveAspect(asp.aspectedClass, asp.aspectRef.type as JvmDeclaredType)
+				]
+
+				mm.createEcore
+				mm.pkgs.head.createGenModel(mm, mm.generationFolder + mm.name + ".ecore", mm.generationFolder + mm.name + ".genmodel")
+
+				val gm = ModelUtils.loadGenmodel(mm.generationFolder + mm.name + ".genmodel")
+				if (!mm.genmodels.exists[genPackages.exists[gp | gm.genPackages.exists[gpp | gpp.getEcorePackage?.nsURI == gp.getEcorePackage?.nsURI]]])
+					mm.genmodels += gm
+			}
 		} else {
 			val pkg = ModelUtils.loadPkg(mm.ecore.uri)
 

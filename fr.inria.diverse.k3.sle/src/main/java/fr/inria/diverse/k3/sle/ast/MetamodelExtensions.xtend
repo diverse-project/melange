@@ -1,7 +1,6 @@
 package fr.inria.diverse.k3.sle.ast
 
 import fr.inria.diverse.k3.sle.lib.MatchingHelper
-import fr.inria.diverse.k3.sle.lib.ModelUtils
 
 import fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
@@ -314,18 +313,19 @@ class MetamodelExtensions
 		}
 	}
 
-	static def createGenModel(EPackage pkg, Metamodel mm, String ecoreLocation, String genModelLocation) {
+	static def createGenModel(EPackage pkg, Metamodel mm, String ecoreLocation, String genModelLocation, String modelDirectory) {
 		val genModelFact = GenModelFactory.eINSTANCE
 		val genModel = genModelFact.createGenModel
 
 		genModel.complianceLevel = GenJDKLevel.JDK70_LITERAL
 		//genModel.modelDirectory = '''/«mm.project.name»/src-gen/'''
-		genModel.modelDirectory = '''/«mm.name»Generated/src/'''
+		genModel.modelDirectory = modelDirectory
 		genModel.foreignModel.add(ecoreLocation)
 		genModel.modelName = mm.name
 		//val usedPkg = ModelUtils.loadGenmodel(mm.inheritanceRelation?.superMetamodel?.ecore.genmodelUris.head)
 		//genModel.usedGenPackages += mm.inheritanceRelation?.superMetamodel?.genmodels.head.genPackages
 		//genModel.usedGenPackages += usedPkg.genPackages
+		genModel.usedGenPackages += mm.inheritanceRelation?.superMetamodel?.genmodels.head.genPackages
 		genModel.initialize(Collections.singleton(pkg))
 
 		val genPackage = genModel.genPackages.head
@@ -342,6 +342,10 @@ class MetamodelExtensions
 		} catch (IOException e) {
 			e.printStackTrace
 		}
+	}
+
+	static def createGenModel(EPackage pkg, Metamodel mm, String ecoreLocation, String genModelLocation) {
+		createGenModel(pkg, mm, ecoreLocation, genModelLocation, '''/«mm.name»Generated/src/''')
 	}
 
 	static def generateCode(GenModel genModel) {
