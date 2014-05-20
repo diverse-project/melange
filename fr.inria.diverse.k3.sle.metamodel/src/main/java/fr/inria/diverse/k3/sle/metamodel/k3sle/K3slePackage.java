@@ -4,6 +4,7 @@ package fr.inria.diverse.k3.sle.metamodel.k3sle;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -240,13 +241,31 @@ public interface K3slePackage extends EPackage {
 	int METAMODEL__GENMODELS = ELEMENT_FEATURE_COUNT + 7;
 
 	/**
+	 * The feature id for the '<em><b>Resource Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL__RESOURCE_TYPE = ELEMENT_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>Resource Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL__RESOURCE_URI = ELEMENT_FEATURE_COUNT + 9;
+
+	/**
 	 * The number of structural features of the '<em>Metamodel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 8;
+	int METAMODEL_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The number of operations of the '<em>Metamodel</em>' class.
@@ -607,6 +626,17 @@ public interface K3slePackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ResourceType <em>Resource Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.ResourceType
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.K3slePackageImpl#getResourceType()
+	 * @generated
+	 */
+	int RESOURCE_TYPE = 9;
+
+
+	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace <em>Model Typing Space</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -767,6 +797,28 @@ public interface K3slePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMetamodel_Genmodels();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getResourceType <em>Resource Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Resource Type</em>'.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getResourceType()
+	 * @see #getMetamodel()
+	 * @generated
+	 */
+	EAttribute getMetamodel_ResourceType();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getResourceUri <em>Resource Uri</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Resource Uri</em>'.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getResourceUri()
+	 * @see #getMetamodel()
+	 * @generated
+	 */
+	EAttribute getMetamodel_ResourceUri();
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType <em>Model Type</em>}'.
@@ -1027,6 +1079,16 @@ public interface K3slePackage extends EPackage {
 	EReference getSubtyping_SuperType();
 
 	/**
+	 * Returns the meta object for enum '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ResourceType <em>Resource Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Resource Type</em>'.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.ResourceType
+	 * @generated
+	 */
+	EEnum getResourceType();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1174,6 +1236,22 @@ public interface K3slePackage extends EPackage {
 		 * @generated
 		 */
 		EReference METAMODEL__GENMODELS = eINSTANCE.getMetamodel_Genmodels();
+
+		/**
+		 * The meta object literal for the '<em><b>Resource Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METAMODEL__RESOURCE_TYPE = eINSTANCE.getMetamodel_ResourceType();
+
+		/**
+		 * The meta object literal for the '<em><b>Resource Uri</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METAMODEL__RESOURCE_URI = eINSTANCE.getMetamodel_ResourceUri();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.ModelTypeImpl <em>Model Type</em>}' class.
@@ -1378,6 +1456,16 @@ public interface K3slePackage extends EPackage {
 		 * @generated
 		 */
 		EReference SUBTYPING__SUPER_TYPE = eINSTANCE.getSubtyping_SuperType();
+
+		/**
+		 * The meta object literal for the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ResourceType <em>Resource Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.ResourceType
+		 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.K3slePackageImpl#getResourceType()
+		 * @generated
+		 */
+		EEnum RESOURCE_TYPE = eINSTANCE.getResourceType();
 
 	}
 

@@ -11,6 +11,7 @@ import fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace;
+import fr.inria.diverse.k3.sle.metamodel.k3sle.ResourceType;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Subtyping;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation;
 
@@ -18,6 +19,7 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -99,6 +101,13 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 * @generated
 	 */
 	private EClass subtypingEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum resourceTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -299,6 +308,24 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 */
 	public EReference getMetamodel_Genmodels() {
 		return (EReference)metamodelEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMetamodel_ResourceType() {
+		return (EAttribute)metamodelEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMetamodel_ResourceUri() {
+		return (EAttribute)metamodelEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -522,6 +549,15 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getResourceType() {
+		return resourceTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public K3sleFactory getK3sleFactory() {
 		return (K3sleFactory)getEFactoryInstance();
 	}
@@ -562,6 +598,8 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 		createEReference(metamodelEClass, METAMODEL__PKGS);
 		createEAttribute(metamodelEClass, METAMODEL__EXACT_TYPE_REF);
 		createEReference(metamodelEClass, METAMODEL__GENMODELS);
+		createEAttribute(metamodelEClass, METAMODEL__RESOURCE_TYPE);
+		createEAttribute(metamodelEClass, METAMODEL__RESOURCE_URI);
 
 		modelTypeEClass = createEClass(MODEL_TYPE);
 		createEReference(modelTypeEClass, MODEL_TYPE__ECORE);
@@ -592,6 +630,9 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 		subtypingEClass = createEClass(SUBTYPING);
 		createEReference(subtypingEClass, SUBTYPING__SUB_TYPE);
 		createEReference(subtypingEClass, SUBTYPING__SUPER_TYPE);
+
+		// Create enums
+		resourceTypeEEnum = createEEnum(RESOURCE_TYPE);
 	}
 
 	/**
@@ -651,6 +692,8 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 		initEReference(getMetamodel_Pkgs(), theEcorePackage.getEPackage(), null, "pkgs", null, 0, -1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMetamodel_ExactTypeRef(), theEcorePackage.getEString(), "exactTypeRef", null, 0, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMetamodel_Genmodels(), theGenModelPackage.getGenModel(), null, "genmodels", null, 0, -1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMetamodel_ResourceType(), this.getResourceType(), "resourceType", "K3", 0, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMetamodel_ResourceUri(), theEcorePackage.getEString(), "resourceUri", null, 0, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modelTypeEClass, ModelType.class, "ModelType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelType_Ecore(), this.getEcoreImport(), null, "ecore", null, 0, 1, ModelType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -681,6 +724,11 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 		initEClass(subtypingEClass, Subtyping.class, "Subtyping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSubtyping_SubType(), this.getModelType(), this.getModelType_SubtypingRelations(), "subType", null, 1, 1, Subtyping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSubtyping_SuperType(), this.getModelType(), null, "superType", null, 1, 1, Subtyping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(resourceTypeEEnum, ResourceType.class, "ResourceType");
+		addEEnumLiteral(resourceTypeEEnum, ResourceType.K3);
+		addEEnumLiteral(resourceTypeEEnum, ResourceType.EMF);
 
 		// Create resource
 		createResource(eNS_URI);

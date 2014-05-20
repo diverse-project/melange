@@ -24,6 +24,8 @@ import org.eclipse.emf.ecore.EPackage;
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getPkgs <em>Pkgs</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getExactTypeRef <em>Exact Type Ref</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getGenmodels <em>Genmodels</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getResourceType <em>Resource Type</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getResourceUri <em>Resource Uri</em>}</li>
  * </ul>
  * </p>
  *
@@ -203,5 +205,61 @@ public interface Metamodel extends Element {
 	 * @generated
 	 */
 	EList<GenModel> getGenmodels();
+
+	/**
+	 * Returns the value of the '<em><b>Resource Type</b></em>' attribute.
+	 * The default value is <code>"K3"</code>.
+	 * The literals are from the enumeration {@link fr.inria.diverse.k3.sle.metamodel.k3sle.ResourceType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Resource Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Resource Type</em>' attribute.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.ResourceType
+	 * @see #setResourceType(ResourceType)
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getMetamodel_ResourceType()
+	 * @model default="K3"
+	 * @generated
+	 */
+	ResourceType getResourceType();
+
+	/**
+	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getResourceType <em>Resource Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Resource Type</em>' attribute.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.ResourceType
+	 * @see #getResourceType()
+	 * @generated
+	 */
+	void setResourceType(ResourceType value);
+
+	/**
+	 * Returns the value of the '<em><b>Resource Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Resource Uri</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Resource Uri</em>' attribute.
+	 * @see #setResourceUri(String)
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getMetamodel_ResourceUri()
+	 * @model
+	 * @generated
+	 */
+	String getResourceUri();
+
+	/**
+	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getResourceUri <em>Resource Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Resource Uri</em>' attribute.
+	 * @see #getResourceUri()
+	 * @generated
+	 */
+	void setResourceUri(String value);
 
 } // Metamodel

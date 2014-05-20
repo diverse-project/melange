@@ -16,10 +16,15 @@ Metamodel:
 	'metamodel' name = ValidID (inheritanceRelation = Inheritance)?
 	('implements' implements += [ModelType | QualifiedName] (',' implements += [ModelType | QualifiedName])*)?
 	'{'
+		('resource' resourceType = ResourceType ('uri' resourceUri = STRING)?)?
 		(ecore = EcoreImport)?
 		('exactType' exactTypeRef = ValidID)
 		(aspects += AspectImport)*
 	'}'
+;
+
+enum ResourceType:
+	K3 = 'K3' | EMF = 'EMF'
 ;
 
 Inheritance:

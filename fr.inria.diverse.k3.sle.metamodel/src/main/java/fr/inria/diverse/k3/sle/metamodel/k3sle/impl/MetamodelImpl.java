@@ -9,6 +9,7 @@ import fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType;
 
+import fr.inria.diverse.k3.sle.metamodel.k3sle.ResourceType;
 import java.util.Collection;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
@@ -43,6 +44,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getPkgs <em>Pkgs</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getExactTypeRef <em>Exact Type Ref</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getGenmodels <em>Genmodels</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getResourceType <em>Resource Type</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getResourceUri <em>Resource Uri</em>}</li>
  * </ul>
  * </p>
  *
@@ -138,6 +141,46 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	 * @ordered
 	 */
 	protected EList<GenModel> genmodels;
+
+	/**
+	 * The default value of the '{@link #getResourceType() <em>Resource Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResourceType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final ResourceType RESOURCE_TYPE_EDEFAULT = ResourceType.K3;
+
+	/**
+	 * The cached value of the '{@link #getResourceType() <em>Resource Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResourceType()
+	 * @generated
+	 * @ordered
+	 */
+	protected ResourceType resourceType = RESOURCE_TYPE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getResourceUri() <em>Resource Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResourceUri()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String RESOURCE_URI_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getResourceUri() <em>Resource Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResourceUri()
+	 * @generated
+	 * @ordered
+	 */
+	protected String resourceUri = RESOURCE_URI_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -378,6 +421,48 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ResourceType getResourceType() {
+		return resourceType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setResourceType(ResourceType newResourceType) {
+		ResourceType oldResourceType = resourceType;
+		resourceType = newResourceType == null ? RESOURCE_TYPE_EDEFAULT : newResourceType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, K3slePackage.METAMODEL__RESOURCE_TYPE, oldResourceType, resourceType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getResourceUri() {
+		return resourceUri;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setResourceUri(String newResourceUri) {
+		String oldResourceUri = resourceUri;
+		resourceUri = newResourceUri;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, K3slePackage.METAMODEL__RESOURCE_URI, oldResourceUri, resourceUri));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -442,6 +527,10 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 				return getExactTypeRef();
 			case K3slePackage.METAMODEL__GENMODELS:
 				return getGenmodels();
+			case K3slePackage.METAMODEL__RESOURCE_TYPE:
+				return getResourceType();
+			case K3slePackage.METAMODEL__RESOURCE_URI:
+				return getResourceUri();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -483,6 +572,12 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 				getGenmodels().clear();
 				getGenmodels().addAll((Collection<? extends GenModel>)newValue);
 				return;
+			case K3slePackage.METAMODEL__RESOURCE_TYPE:
+				setResourceType((ResourceType)newValue);
+				return;
+			case K3slePackage.METAMODEL__RESOURCE_URI:
+				setResourceUri((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -519,6 +614,12 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 			case K3slePackage.METAMODEL__GENMODELS:
 				getGenmodels().clear();
 				return;
+			case K3slePackage.METAMODEL__RESOURCE_TYPE:
+				setResourceType(RESOURCE_TYPE_EDEFAULT);
+				return;
+			case K3slePackage.METAMODEL__RESOURCE_URI:
+				setResourceUri(RESOURCE_URI_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -547,6 +648,10 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 				return EXACT_TYPE_REF_EDEFAULT == null ? exactTypeRef != null : !EXACT_TYPE_REF_EDEFAULT.equals(exactTypeRef);
 			case K3slePackage.METAMODEL__GENMODELS:
 				return genmodels != null && !genmodels.isEmpty();
+			case K3slePackage.METAMODEL__RESOURCE_TYPE:
+				return resourceType != RESOURCE_TYPE_EDEFAULT;
+			case K3slePackage.METAMODEL__RESOURCE_URI:
+				return RESOURCE_URI_EDEFAULT == null ? resourceUri != null : !RESOURCE_URI_EDEFAULT.equals(resourceUri);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -563,6 +668,10 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (exactTypeRef: ");
 		result.append(exactTypeRef);
+		result.append(", resourceType: ");
+		result.append(resourceType);
+		result.append(", resourceUri: ");
+		result.append(resourceUri);
 		result.append(')');
 		return result.toString();
 	}

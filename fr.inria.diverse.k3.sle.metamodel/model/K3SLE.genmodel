@@ -8,6 +8,10 @@
   <foreignModel>K3SLE.ecore</foreignModel>
   <genPackages prefix="K3sle" basePackage="fr.inria.diverse.k3.sle.metamodel" disposableProviderFactory="true"
       ecorePackage="K3SLE.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="K3SLE.ecore#//ResourceType">
+      <genEnumLiterals ecoreEnumLiteral="K3SLE.ecore#//ResourceType/K3"/>
+      <genEnumLiterals ecoreEnumLiteral="K3SLE.ecore#//ResourceType/EMF"/>
+    </genEnums>
     <genClasses ecoreClass="K3SLE.ecore#//ModelTypingSpace">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//ModelTypingSpace/elements"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//ModelTypingSpace/imports"/>
@@ -25,6 +29,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//Metamodel/pkgs"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute K3SLE.ecore#//Metamodel/exactTypeRef"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//Metamodel/genmodels"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute K3SLE.ecore#//Metamodel/resourceType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute K3SLE.ecore#//Metamodel/resourceUri"/>
     </genClasses>
     <genClasses ecoreClass="K3SLE.ecore#//ModelType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//ModelType/ecore"/>

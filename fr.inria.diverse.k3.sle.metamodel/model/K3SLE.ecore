@@ -28,6 +28,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="genmodels" upperBound="-1"
         eType="ecore:EClass ../../org.eclipse.emf.codegen.ecore/model/GenModel.ecore#//GenModel"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="resourceType" eType="#//ResourceType"
+        defaultValueLiteral="K3"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="resourceUri" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelType" eSuperTypes="#//Element">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ecore" eType="#//EcoreImport"
@@ -75,5 +78,9 @@
         eType="#//ModelType" eOpposite="#//ModelType/subtypingRelations"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="superType" lowerBound="1"
         eType="#//ModelType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ResourceType">
+    <eLiterals name="K3" literal="K3"/>
+    <eLiterals name="EMF" value="1" literal="EMF"/>
   </eClassifiers>
 </ecore:EPackage>
