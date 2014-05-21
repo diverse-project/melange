@@ -35,6 +35,7 @@ import org.eclipse.xtext.common.types.JvmTypeAnnotationValue
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmTypeParameterDeclarator
+import org.eclipse.xtext.common.types.JvmVisibility
 
 import org.eclipse.xtext.naming.QualifiedName
 
@@ -179,10 +180,10 @@ class MetamodelExtensions
 			&& !simpleName.startsWith("super_")
 			//&& parameters.head?.name == "_self"
 			&& !annotations.exists[annotation.simpleName == "OverrideAspectMethod"]
+			&& visibility == JvmVisibility.PUBLIC
 		]
 		.forEach[op |
 			val featureName = findFeatureNameFor(asp, op)
-
 			if (featureName === null) {
 				val retCls = mm.findClass(op.returnType.simpleName)
 
