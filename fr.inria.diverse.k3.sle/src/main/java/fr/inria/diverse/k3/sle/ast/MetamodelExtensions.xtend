@@ -88,6 +88,16 @@ class MetamodelExtensions
 		mm.allClassifiers.filter(EClassifier).findFirst[name == clsName]
 	}
 
+	static def findClassifierFor(Metamodel mm, String clsName) {
+		val cls = mm.findClass(clsName)
+		if (cls !== null)
+			return cls
+
+		val dt = EcorePackage.eINSTANCE.findClassifier("E" + clsName.toFirstUpper)
+		if (dt !== null)
+			return dt
+	}
+
 	static def getFqnFor(Metamodel mm, EClassifier cls) {
 		val qnRet = new StringBuilder
 		val pkg = mm.pkgs.findFirst[EClassifiers.exists[name == cls.name]]
@@ -171,6 +181,23 @@ class MetamodelExtensions
 		return pkg.name == "uml"
 	}
 
+	static def createDataType(EPackage pkg, String name, String instanceTypeName) {
+		val find = pkg.EClassifiers.findFirst[it.name == name && it.instanceTypeName == instanceTypeName]
+
+		if (find !== null) {
+			return find
+		} else {
+			val newDt = EcoreFactory.eINSTANCE.createEDataType => [dt |
+				dt.name = name
+				dt.instanceTypeName = instanceTypeName
+			]
+
+			pkg.EClassifiers += newDt
+
+			return newDt
+		}
+	}
+
 	// FIXME: Create referenced EClass if they don't exist yet
 	// FIXME: Consider finding EClassifier, not EClass
 	static def weaveAspect(Metamodel mm, EClass cls, JvmDeclaredType asp) {
@@ -185,7 +212,7 @@ class MetamodelExtensions
 		.forEach[op |
 			val featureName = findFeatureNameFor(asp, op)
 			if (featureName === null) {
-				val retCls = mm.findClass(op.returnType.simpleName)
+				val retCls = mm.findClassifierFor(op.returnType.simpleName)
 
 				// FIXME
 				if (!cls.EOperations.exists[name == op.simpleName]) {
@@ -193,15 +220,16 @@ class MetamodelExtensions
 						name = op.simpleName
 						op.parameters.forEach[p, i |
 							if (i > 0) {
-								val attrCls = mm.findClass(p.parameterType.simpleName)
+								val attrCls = mm.findClassifierFor(p.parameterType.simpleName)
 
 								EParameters += EcoreFactory.eINSTANCE.createEParameter => [pp |
 									pp.name = p.simpleName
-									pp.EType = if (attrCls !== null) attrCls else EcorePackage.eINSTANCE.findClassifier("E" + p.parameterType.simpleName.toFirstUpper)
+									pp.EType = if (attrCls !== null) attrCls else cls.EPackage.createDataType(p.parameterType.simpleName, p.parameterType.qualifiedName)
 								]
 							}
 						]
-						EType = if (retCls !== null) retCls else EcorePackage.eINSTANCE.findClassifier("E" + op.returnType.simpleName.toFirstUpper)
+						if (op.returnType.simpleName != "void")
+							EType = if (retCls !== null) retCls else cls.EPackage.createDataType(op.returnType.simpleName, op.returnType.qualifiedName)
 						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
 					]
 				}
@@ -241,6 +269,13 @@ class MetamodelExtensions
 					]
 				} else {
 					// Create new EClass or fix the referenced type
+					// For now, create appropriate datatype with instanceTypeName
+					cls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEAttribute => [
+						name = featureName
+						EType = cls.EPackage.createDataType(realType.simpleName, realType.qualifiedName)
+						upperBound = upperB
+						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
+					]
 				}
 			}
 		]
