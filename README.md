@@ -31,6 +31,7 @@ TODO
 - [X] Expose methods signatures in the interface
 - [ ] Define inheritance / aspects weaving, etc. in terms of metamodels merging
 - [ ] Define independently and use modeltypes algebra for any kind of operators
+- [ ] Support adaptation mechanisms between model types (at least through renaming)
 
 TESTS
 -----
