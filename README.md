@@ -5,7 +5,7 @@ TODO
 ----
 - [ ] Modeling in-the-large
 	- [ ] Metamodels attributes and operations
-	- [ ] Modeltypes attributes and operations
+	- [X] Modeltypes attributes and operations
 - [X] Aspects weaving
 	- [X] Weave aspects into a metamodel
 	- [ ] Allow definition of generic aspects (on modeltypes)
@@ -31,12 +31,15 @@ TODO
 - [X] Expose methods signatures in the interface
 - [ ] Define inheritance / aspects weaving, etc. in terms of metamodels merging
 - [ ] Define independently and use modeltypes algebra for any kind of operators
-- [ ] Support adaptation mechanisms between model types (at least through renaming)
+- [ ] Support adaptation mechanisms between model types (at least through renaming)
+- [ ] Manage visibilities, both when extracting interfaces and aspects' semantics
+- [ ] Allow transtyping @runtime between interfaces (ie. extensions/viewpoints)
+- [ ] Separate serialization of extensions via specialized EMF Resource
 
 TESTS
 -----
 - [ ] Aspects import
-- [ ] Aspects' partial metamodels inference
+- [ ] Aspects' partial metamodels inference
 - [ ] Aspects' dynamic biding and overloading
 - [ ] Subtyping algorithm
 - [ ] Referenced packages
