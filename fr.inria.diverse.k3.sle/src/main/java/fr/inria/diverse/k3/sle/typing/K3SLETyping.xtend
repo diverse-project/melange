@@ -106,7 +106,7 @@ class K3SLETyping
 					mm.weaveAspect(asp.aspectedClass, asp.aspectRef.type as JvmDeclaredType)
 				]
 
-				val copy = EcoreUtil.copy(newPkg)
+				val copy = EcoreUtil.copy(mm.pkgs.head)
 				val ecoreUri = '''platform:/resource/«mm.project.name»/model/«mm.name».ecore'''
 				val genmodelUri = '''platform:/resource/«mm.project.name»/model/«mm.name».genmodel'''
 				val srcFolder = '''«mm.project.name»/src'''
