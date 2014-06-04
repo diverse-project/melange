@@ -49,7 +49,7 @@ class XtextTestProcessor extends AbstractClassProcessor
 
 	def generateSetupMethod(MutableClassDeclaration cls, extension TransformationContext ctx) {
 		cls.addMethod("setUp")[
-			addAnnotation(findTypeGlobally("org.junit.Before"))
+			addAnnotation(findTypeGlobally("org.junit.Before").newAnnotationReference)
 			body = '''
 				try {
 					java.io.BufferedReader br = new java.io.BufferedReader(new java.io.FileReader("«inputFile»"));
@@ -70,7 +70,7 @@ class XtextTestProcessor extends AbstractClassProcessor
 
 	def generateParsingTest(MutableClassDeclaration cls, extension TransformationContext ctx) {
 		cls.addMethod("testParsing")[
-			addAnnotation(findTypeGlobally("org.junit.Test"))
+			addAnnotation(findTypeGlobally("org.junit.Test").newAnnotationReference)
 			body = '''
 				this._validationTestHelper.assertNoErrors(this.root);
 			'''
@@ -79,7 +79,7 @@ class XtextTestProcessor extends AbstractClassProcessor
 
 	def generateEmfValidationTest(MutableClassDeclaration cls, extension TransformationContext ctx) {
 		cls.addMethod("testEmfValidation")[
-			addAnnotation(findTypeGlobally("org.junit.Test"))
+			addAnnotation(findTypeGlobally("org.junit.Test").newAnnotationReference)
 			body = '''
 				org.junit.Assert.assertEquals(org.eclipse.emf.ecore.util.Diagnostician.INSTANCE.validate(root).getCode(), org.eclipse.emf.common.util.Diagnostic.OK);
 			'''
@@ -90,22 +90,22 @@ class XtextTestProcessor extends AbstractClassProcessor
 		// ValidationTestHelper
 		if (withValidation)
 			cls.addField("_validationTestHelper")[
-				addAnnotation(findTypeGlobally("com.google.inject.Inject"))
-				addAnnotation(findTypeGlobally("org.eclipse.xtext.xbase.lib.Extension"))
+				addAnnotation(findTypeGlobally("com.google.inject.Inject").newAnnotationReference)
+				addAnnotation(findTypeGlobally("org.eclipse.xtext.xbase.lib.Extension").newAnnotationReference)
 				type = findTypeGlobally("org.eclipse.xtext.junit4.validation.ValidationTestHelper").newTypeReference
 			]
 
 		// ValidationTestHelper
 		cls.addField("_compilationTestHelper")[
-			addAnnotation(findTypeGlobally("com.google.inject.Inject"))
-			addAnnotation(findTypeGlobally("org.eclipse.xtext.xbase.lib.Extension"))
+			addAnnotation(findTypeGlobally("com.google.inject.Inject").newAnnotationReference)
+			addAnnotation(findTypeGlobally("org.eclipse.xtext.xbase.lib.Extension").newAnnotationReference)
 			type = findTypeGlobally("org.eclipse.xtext.xbase.compiler.CompilationTestHelper").newTypeReference
 		]
 
 		// ParseHelper
 		cls.addField("_parseHelper")[
-			addAnnotation(findTypeGlobally("com.google.inject.Inject"))
-			addAnnotation(findTypeGlobally("org.eclipse.xtext.xbase.lib.Extension"))
+			addAnnotation(findTypeGlobally("com.google.inject.Inject").newAnnotationReference)
+			addAnnotation(findTypeGlobally("org.eclipse.xtext.xbase.lib.Extension").newAnnotationReference)
 			type = newTypeReference("org.eclipse.xtext.junit4.util.ParseHelper", rootType)
 		]
 

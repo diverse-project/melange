@@ -5,7 +5,7 @@ import java.io.FileWriter
 import java.io.File
 import java.util.List
 
-static class FileManager {
+class FileManager {
 	
 	def public static void writeFile(String pathProject, String nameFile, List<String> collectionPackage, String content) {
 		

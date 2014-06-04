@@ -4,4 +4,4 @@ Bundle-Name: XtextTestingHelpers
 Bundle-SymbolicName: fr.inria.diverse.k3.tools.xtext.testing
 Bundle-Version: 0.1.0.beta
 Export-Package: fr.inria.diverse.k3.tools.xtext.testing
-Require-Bundle: org.eclipse.xtend.lib;bundle-version="[2.5.3,2.6.0)"
+Require-Bundle: org.eclipse.xtend.lib;bundle-version="2.6.0"

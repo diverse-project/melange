@@ -13,15 +13,15 @@
 	</modules>
 
         <properties>
-		<tycho.version>0.18.0</tycho.version>
-		<tycho-extras.version>0.18.0</tycho-extras.version>
+		<tycho.version>0.20.0</tycho.version>
+		<tycho-extras.version>0.20.0</tycho-extras.version>
 		<xtend-repo.url>http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/</xtend-repo.url>
 		<kepler-repo.url>http://download.eclipse.org/releases/kepler/</kepler-repo.url>
 		<tycho-repo.url>https://oss.sonatype.org/content/groups/public/</tycho-repo.url>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<xtend.version>2.5.1</xtend.version>
+		<xtend.version>2.6.0</xtend.version>
 		<junit.version>4.11</junit.version>
-		<java.version>1.6</java.version>
+		<java.version>1.7</java.version>
 		<k3.version>3.0.0-SNAPSHOT</k3.version>
 		<maven-compiler-plugin.version>3.0</maven-compiler-plugin.version>
 		<maven-dependency-plugin.version>2.8</maven-dependency-plugin.version>
