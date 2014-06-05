@@ -1,6 +1,8 @@
 package fr.inria.diverse.k3.sle.ui.labeling
 
 import com.google.inject.Inject
+import fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport
+import org.eclipse.xtext.common.types.JvmDeclaredType
 
 /**
  * Provides labels for a EObjects.
@@ -11,16 +13,16 @@ class K3SLELabelProvider extends org.eclipse.xtext.xbase.ui.labeling.XbaseLabelP
 {
 	@Inject
 	new(org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider delegate) {
-		super(delegate);
+		super(delegate)
 	}
 
-	// Labels and icons can be computed like this:
+	def text(AspectImport asp) {
+		if (asp.aspectRef instanceof JvmDeclaredType) {
+			asp.aspectRef.simpleName + " -> " + asp.aspectedClass.name ?: "Unknown target"
+		} else "Unknown aspect"
+	}
 
-//	def text(Greeting ele) {
-//		'A greeting to ' + ele.name
-//	}
-//
-//	def image(Greeting ele) {
-//		'Greeting.gif'
-//	}
+	def image(AspectImport asp) {
+		"aspect.png"
+	}
 }
