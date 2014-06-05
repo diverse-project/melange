@@ -17,7 +17,7 @@ class K3SLELabelProvider extends org.eclipse.xtext.xbase.ui.labeling.XbaseLabelP
 	}
 
 	def text(AspectImport asp) {
-		if (asp.aspectRef instanceof JvmDeclaredType) {
+		if (asp?.aspectRef?.type instanceof JvmDeclaredType) {
 			asp.aspectRef.simpleName + " -> " + asp.aspectedClass.name ?: "Unknown target"
 		} else "Unknown aspect"
 	}
