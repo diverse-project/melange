@@ -200,36 +200,48 @@ class MetamodelExtensions
 
 	// FIXME: Create referenced EClass if they don't exist yet
 	// FIXME: Consider finding EClassifier, not EClass
+	/**
+	 * Try to infer the "modeling intention" of the aspect asp
+	 * and merge its features into cls
+	 */
 	static def weaveAspect(Metamodel mm, EClass cls, JvmDeclaredType asp) {
 		asp.declaredOperations
 		.filter[
+			// FIXME: Hard-coded strings
 			   !simpleName.startsWith("_privk3")
 			&& !simpleName.startsWith("super_")
-			//&& parameters.head?.name == "_self"
 			&& !annotations.exists[annotation.simpleName == "OverrideAspectMethod"]
 			&& visibility == JvmVisibility.PUBLIC
 		]
 		.forEach[op |
 			val featureName = findFeatureNameFor(asp, op)
+
+			// If we can't infer a feature name, it's obviously really an operation
 			if (featureName === null) {
 				val retCls = mm.findClassifierFor(op.returnType.simpleName)
 
-				// FIXME
 				if (!cls.EOperations.exists[name == op.simpleName]) {
 					cls.EOperations += EcoreFactory.eINSTANCE.createEOperation => [
 						name = op.simpleName
 						op.parameters.forEach[p, i |
+							// Skip first generic _self argument
 							if (i > 0) {
 								val attrCls = mm.findClassifierFor(p.parameterType.simpleName)
 
 								EParameters += EcoreFactory.eINSTANCE.createEParameter => [pp |
 									pp.name = p.simpleName
-									pp.EType = if (attrCls !== null) attrCls else cls.EPackage.createDataType(p.parameterType.simpleName, p.parameterType.qualifiedName)
+									pp.EType =
+										if (attrCls !== null) attrCls
+										else cls.EPackage.createDataType(p.parameterType.simpleName, p.parameterType.qualifiedName)
 								]
 							}
 						]
+
 						if (op.returnType.simpleName != "void")
-							EType = if (retCls !== null) retCls else cls.EPackage.createDataType(op.returnType.simpleName, op.returnType.qualifiedName)
+							EType =
+								if (retCls !== null) retCls
+								else cls.EPackage.createDataType(op.returnType.simpleName, op.returnType.qualifiedName)
+
 						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
 					]
 				}
@@ -281,6 +293,12 @@ class MetamodelExtensions
 		]
 	}
 
+	/**
+	 * Try to infer common patterns for getters/setters:
+	 *   (1) void setFeature(T) / T getFeature()
+	 *   (2) feature(T) / T feature()
+	 *   (3) null
+	 */
 	static def findFeatureNameFor(JvmDeclaredType type, JvmOperation op) {
 		if (
 			(  op.simpleName.startsWith("get")
