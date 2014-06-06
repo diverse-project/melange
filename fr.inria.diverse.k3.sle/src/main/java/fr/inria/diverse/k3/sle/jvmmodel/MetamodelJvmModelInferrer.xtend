@@ -6,11 +6,12 @@ import fr.inria.diverse.k3.sle.lib.GenericAdapter
 
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.naming.IQualifiedNameProvider
-import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
-import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 
 import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.common.types.TypesFactory
+
+import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EEnum
@@ -28,6 +29,7 @@ import static extension fr.inria.diverse.k3.sle.ast.NamingHelper.*
 import static extension fr.inria.diverse.k3.sle.ast.ModelTypeExtensions.*
 import static extension fr.inria.diverse.k3.sle.ast.MetamodelExtensions.*
 import static extension fr.inria.diverse.k3.sle.lib.EcoreExtensions.*
+import static extension fr.inria.diverse.k3.sle.utils.AspectToEcore.*
 
 class MetamodelJvmModelInferrer
 {
@@ -242,11 +244,12 @@ class MetamodelJvmModelInferrer
 
 										parameters += mm.toParameter(p.name, pType)
 									]
+
 									body = '''
 										«IF inherited»
 										«mm.adapterNameFor(superMM, cls)» clsAdaptee = new «mm.adapterNameFor(superMM, cls)»() ;
 										clsAdaptee.setAdaptee(adaptee) ;
-										«IF retType.type.simpleName != "void"»
+										«IF retType.type.simpleName != "void" && retType.type.simpleName != "null"»
 										«superMM.adapterNameFor(superType, retType.type.simpleName)» adap = new «superMM.adapterNameFor(superType, retType.type.simpleName)»() ;
 										adap.setAdaptee(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
 										return adap ;
@@ -257,7 +260,7 @@ class MetamodelJvmModelInferrer
 										«mm.adapterNameFor(superType, retType.type.simpleName)» adap = new «mm.adapterNameFor(superType, retType.type.simpleName)»() ;
 										adap.setAdaptee(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
 										return adap ;
-										«ELSEIF retType.type.simpleName != "void"»
+										«ELSEIF retType.type.simpleName != "void" && retType.type.simpleName != "null"»
 										return «asp.qualifiedName».«op.simpleName»(«paramsList») ;
 										«ELSE»
 										«asp.qualifiedName».«op.simpleName»(«paramsList») ;

@@ -495,6 +495,15 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getAspectImport_EcoreFragment() {
+		return (EReference)aspectImportEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getInheritance() {
 		return inheritanceEClass;
 	}
@@ -622,6 +631,7 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 		aspectImportEClass = createEClass(ASPECT_IMPORT);
 		createEReference(aspectImportEClass, ASPECT_IMPORT__ASPECT_REF);
 		createEReference(aspectImportEClass, ASPECT_IMPORT__ASPECTED_CLASS);
+		createEReference(aspectImportEClass, ASPECT_IMPORT__ECORE_FRAGMENT);
 
 		inheritanceEClass = createEClass(INHERITANCE);
 		createEReference(inheritanceEClass, INHERITANCE__SUB_METAMODEL);
@@ -716,6 +726,7 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 		initEClass(aspectImportEClass, AspectImport.class, "AspectImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAspectImport_AspectRef(), theTypesPackage.getJvmTypeReference(), null, "aspectRef", null, 1, 1, AspectImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAspectImport_AspectedClass(), theEcorePackage.getEClass(), null, "aspectedClass", null, 0, 1, AspectImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAspectImport_EcoreFragment(), theEcorePackage.getEPackage(), null, "ecoreFragment", null, 0, 1, AspectImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(inheritanceEClass, Inheritance.class, "Inheritance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInheritance_SubMetamodel(), this.getMetamodel(), this.getMetamodel_InheritanceRelation(), "subMetamodel", null, 1, 1, Inheritance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

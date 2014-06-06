@@ -11,6 +11,8 @@ import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.ENamedElement
+import org.eclipse.emf.ecore.EDataType
+import org.eclipse.emf.ecore.EcorePackage
 
 import java.util.ArrayList
 import java.util.List
@@ -35,6 +37,42 @@ class EcoreExtensions
 
 	static def isAspectSpecific(ENamedElement f) {
 		f.EAnnotations.exists[source == "aspect"]
+	}
+
+	static def getOrCreateClass(EPackage pkg, String name) {
+		val find = pkg.EClassifiers.filter(EClass).findFirst[it.name == name]
+
+		if (find !== null) {
+			return find
+		} else {
+			val newCls = EcoreFactory.eINSTANCE.createEClass => [cls |
+				cls.name = name
+			]
+
+			pkg.EClassifiers += newCls
+
+			return newCls
+		}
+	}
+
+	static def getOrCreateDataType(EPackage pkg, String name, String instanceTypeName) {
+		val find = pkg.EClassifiers.filter(EDataType).findFirst[it.name == name && it.instanceTypeName == instanceTypeName]
+		val findDt = EcorePackage.eINSTANCE.findClassifier("E" + name.toFirstUpper)
+
+		if (find !== null) {
+			return find
+		} else if (findDt !== null) {
+			return findDt
+		} else {
+			val newDt = EcoreFactory.eINSTANCE.createEDataType => [dt |
+				dt.name = name
+				dt.instanceTypeName = instanceTypeName
+			]
+
+			pkg.EClassifiers += newDt
+
+			return newDt
+		}
 	}
 
 	static def copy(EPackage pkg) {

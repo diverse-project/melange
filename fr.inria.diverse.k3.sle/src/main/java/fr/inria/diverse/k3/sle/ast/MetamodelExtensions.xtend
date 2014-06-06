@@ -9,7 +9,6 @@ import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
 import java.io.IOException
 
 import java.util.List
-import java.util.Collection
 import java.util.Collections
 
 import org.eclipse.core.resources.ResourcesPlugin
@@ -26,16 +25,12 @@ import org.eclipse.emf.common.util.BasicMonitor
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EPackage
-import org.eclipse.emf.ecore.EcoreFactory
 import org.eclipse.emf.ecore.EcorePackage
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 
 import org.eclipse.xtext.common.types.JvmCustomAnnotationValue
 import org.eclipse.xtext.common.types.JvmTypeAnnotationValue
 import org.eclipse.xtext.common.types.JvmDeclaredType
-import org.eclipse.xtext.common.types.JvmOperation
-import org.eclipse.xtext.common.types.JvmTypeParameterDeclarator
-import org.eclipse.xtext.common.types.JvmVisibility
 
 import org.eclipse.xtext.naming.QualifiedName
 
@@ -179,168 +174,6 @@ class MetamodelExtensions
 	static def isUml(Metamodel mm, EClassifier cls) {
 		val pkg = mm.pkgs.findFirst[EClassifiers.exists[name == cls.name]]
 		return pkg.name == "uml"
-	}
-
-	static def createDataType(EPackage pkg, String name, String instanceTypeName) {
-		val find = pkg.EClassifiers.findFirst[it.name == name && it.instanceTypeName == instanceTypeName]
-
-		if (find !== null) {
-			return find
-		} else {
-			val newDt = EcoreFactory.eINSTANCE.createEDataType => [dt |
-				dt.name = name
-				dt.instanceTypeName = instanceTypeName
-			]
-
-			pkg.EClassifiers += newDt
-
-			return newDt
-		}
-	}
-
-	// FIXME: Create referenced EClass if they don't exist yet
-	// FIXME: Consider finding EClassifier, not EClass
-	/**
-	 * Try to infer the "modeling intention" of the aspect asp
-	 * and merge its features into cls
-	 */
-	static def weaveAspect(Metamodel mm, EClass cls, JvmDeclaredType asp) {
-		asp.declaredOperations
-		.filter[
-			// FIXME: Hard-coded strings
-			   !simpleName.startsWith("_privk3")
-			&& !simpleName.startsWith("super_")
-			&& !annotations.exists[annotation.simpleName == "OverrideAspectMethod"]
-			&& visibility == JvmVisibility.PUBLIC
-		]
-		.forEach[op |
-			val featureName = findFeatureNameFor(asp, op)
-
-			// If we can't infer a feature name, it's obviously really an operation
-			if (featureName === null) {
-				val retCls = mm.findClassifierFor(op.returnType.simpleName)
-
-				if (!cls.EOperations.exists[name == op.simpleName]) {
-					cls.EOperations += EcoreFactory.eINSTANCE.createEOperation => [
-						name = op.simpleName
-						op.parameters.forEach[p, i |
-							// Skip first generic _self argument
-							if (i > 0) {
-								val attrCls = mm.findClassifierFor(p.parameterType.simpleName)
-
-								EParameters += EcoreFactory.eINSTANCE.createEParameter => [pp |
-									pp.name = p.simpleName
-									pp.EType =
-										if (attrCls !== null) attrCls
-										else cls.EPackage.createDataType(p.parameterType.simpleName, p.parameterType.qualifiedName)
-								]
-							}
-						]
-
-						if (op.returnType.simpleName != "void")
-							EType =
-								if (retCls !== null) retCls
-								else cls.EPackage.createDataType(op.returnType.simpleName, op.returnType.qualifiedName)
-
-						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
-					]
-				}
-			} else if (!cls.EStructuralFeatures.exists[name == featureName]) {
-				val retType =
-					if (op.simpleName.startsWith("get") || op.parameters.size == 1)
-						op.returnType.type
-					else
-						op.parameters.get(1).parameterType.type
-				val upperB = if (Collection.isAssignableFrom(retType.class)) -1 else 1
-				val realType =
-					if (
-						   Collection.isAssignableFrom(retType.class)
-						&& retType instanceof JvmTypeParameterDeclarator
-					)
-						(retType as JvmTypeParameterDeclarator).typeParameters.head
-					else
-						retType
-
-				val find = mm.findClass(realType.simpleName)
-				val dt = EcorePackage.eINSTANCE.findClassifier("E" + realType.simpleName.toFirstUpper)
-				if (find !== null) {
-					// Create EReference
-					cls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEReference => [
-						name = featureName
-						EType = find
-						upperBound = upperB
-						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
-					]
-				} else if (dt !== null) {
-					// Create EAttribute
-					cls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEAttribute => [
-						name = featureName
-						EType = dt
-						upperBound = upperB
-						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
-					]
-				} else {
-					// Create new EClass or fix the referenced type
-					// For now, create appropriate datatype with instanceTypeName
-					cls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEAttribute => [
-						name = featureName
-						EType = cls.EPackage.createDataType(realType.simpleName, realType.qualifiedName)
-						upperBound = upperB
-						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
-					]
-				}
-			}
-		]
-	}
-
-	/**
-	 * Try to infer common patterns for getters/setters:
-	 *   (1) void setFeature(T) / T getFeature()
-	 *   (2) feature(T) / T feature()
-	 *   (3) null
-	 */
-	static def findFeatureNameFor(JvmDeclaredType type, JvmOperation op) {
-		if (
-			(  op.simpleName.startsWith("get")
-			&& Character.isUpperCase(op.simpleName.charAt(3))
-			&& op.parameters.size == 1
-			&& op.returnType.simpleName != "void"
-			&& type.declaredOperations.exists[opp |
-				   opp.simpleName == op.simpleName.replaceFirst("get", "set")
-				&& opp.parameters.get(1).parameterType.qualifiedName == op.returnType.qualifiedName
-				&& opp.returnType.simpleName == "void"
-			])
-		||	(  op.simpleName.startsWith("set")
-			&& Character.isUpperCase(op.simpleName.charAt(3))
-			&& op.parameters.size == 2
-			&& op.returnType.simpleName == "void"
-			&& type.declaredOperations.exists[opp |
-				   opp.simpleName == op.simpleName.replaceFirst("set", "get")
-				&& opp.returnType.qualifiedName == op.parameters.get(1).parameterType.qualifiedName
-			])
-		)
-			op.simpleName.substring(3, op.simpleName.length).toFirstLower
-		else if (
-			type.declaredOperations.exists[opp |
-				   opp !== op
-				&& opp.simpleName == op.simpleName
-				&& ((
-					   op.parameters.size == 1
-					&& op.returnType.simpleName != "void"
-					&& opp.parameters.size == 2
-					&& opp.returnType.simpleName == "void"
-					&& op.returnType.qualifiedName == opp.parameters.get(1).parameterType.qualifiedName
-				) || (
-					opp.parameters.size == 1
-					&& opp.returnType.simpleName != "void"
-					&& op.parameters.size == 2
-					&& op.returnType.simpleName == "void"
-					&& op.parameters.get(1).parameterType.qualifiedName == opp.returnType.qualifiedName
-				))
-			]
-		)
-			op.simpleName
-		else null
 	}
 
 	static def createEcore(EPackage pkg, String uri) {

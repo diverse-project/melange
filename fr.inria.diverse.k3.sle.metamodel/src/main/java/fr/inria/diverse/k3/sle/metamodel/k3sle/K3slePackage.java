@@ -515,13 +515,22 @@ public interface K3slePackage extends EPackage {
 	int ASPECT_IMPORT__ASPECTED_CLASS = 1;
 
 	/**
+	 * The feature id for the '<em><b>Ecore Fragment</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_IMPORT__ECORE_FRAGMENT = 2;
+
+	/**
 	 * The number of structural features of the '<em>Aspect Import</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASPECT_IMPORT_FEATURE_COUNT = 2;
+	int ASPECT_IMPORT_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Aspect Import</em>' class.
@@ -1015,6 +1024,17 @@ public interface K3slePackage extends EPackage {
 	EReference getAspectImport_AspectedClass();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport#getEcoreFragment <em>Ecore Fragment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Ecore Fragment</em>'.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport#getEcoreFragment()
+	 * @see #getAspectImport()
+	 * @generated
+	 */
+	EReference getAspectImport_EcoreFragment();
+
+	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Inheritance <em>Inheritance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1404,6 +1424,14 @@ public interface K3slePackage extends EPackage {
 		 * @generated
 		 */
 		EReference ASPECT_IMPORT__ASPECTED_CLASS = eINSTANCE.getAspectImport_AspectedClass();
+
+		/**
+		 * The meta object literal for the '<em><b>Ecore Fragment</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASPECT_IMPORT__ECORE_FRAGMENT = eINSTANCE.getAspectImport_EcoreFragment();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.InheritanceImpl <em>Inheritance</em>}' class.

@@ -9,6 +9,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -25,6 +26,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  * <ul>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.AspectImportImpl#getAspectRef <em>Aspect Ref</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.AspectImportImpl#getAspectedClass <em>Aspected Class</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.AspectImportImpl#getEcoreFragment <em>Ecore Fragment</em>}</li>
  * </ul>
  * </p>
  *
@@ -50,6 +52,16 @@ public class AspectImportImpl extends MinimalEObjectImpl.Container implements As
 	 * @ordered
 	 */
 	protected EClass aspectedClass;
+
+	/**
+	 * The cached value of the '{@link #getEcoreFragment() <em>Ecore Fragment</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEcoreFragment()
+	 * @generated
+	 * @ordered
+	 */
+	protected EPackage ecoreFragment;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -156,11 +168,56 @@ public class AspectImportImpl extends MinimalEObjectImpl.Container implements As
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EPackage getEcoreFragment() {
+		return ecoreFragment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetEcoreFragment(EPackage newEcoreFragment, NotificationChain msgs) {
+		EPackage oldEcoreFragment = ecoreFragment;
+		ecoreFragment = newEcoreFragment;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, K3slePackage.ASPECT_IMPORT__ECORE_FRAGMENT, oldEcoreFragment, newEcoreFragment);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEcoreFragment(EPackage newEcoreFragment) {
+		if (newEcoreFragment != ecoreFragment) {
+			NotificationChain msgs = null;
+			if (ecoreFragment != null)
+				msgs = ((InternalEObject)ecoreFragment).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - K3slePackage.ASPECT_IMPORT__ECORE_FRAGMENT, null, msgs);
+			if (newEcoreFragment != null)
+				msgs = ((InternalEObject)newEcoreFragment).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - K3slePackage.ASPECT_IMPORT__ECORE_FRAGMENT, null, msgs);
+			msgs = basicSetEcoreFragment(newEcoreFragment, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, K3slePackage.ASPECT_IMPORT__ECORE_FRAGMENT, newEcoreFragment, newEcoreFragment));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case K3slePackage.ASPECT_IMPORT__ASPECT_REF:
 				return basicSetAspectRef(null, msgs);
+			case K3slePackage.ASPECT_IMPORT__ECORE_FRAGMENT:
+				return basicSetEcoreFragment(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -178,6 +235,8 @@ public class AspectImportImpl extends MinimalEObjectImpl.Container implements As
 			case K3slePackage.ASPECT_IMPORT__ASPECTED_CLASS:
 				if (resolve) return getAspectedClass();
 				return basicGetAspectedClass();
+			case K3slePackage.ASPECT_IMPORT__ECORE_FRAGMENT:
+				return getEcoreFragment();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -195,6 +254,9 @@ public class AspectImportImpl extends MinimalEObjectImpl.Container implements As
 				return;
 			case K3slePackage.ASPECT_IMPORT__ASPECTED_CLASS:
 				setAspectedClass((EClass)newValue);
+				return;
+			case K3slePackage.ASPECT_IMPORT__ECORE_FRAGMENT:
+				setEcoreFragment((EPackage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -214,6 +276,9 @@ public class AspectImportImpl extends MinimalEObjectImpl.Container implements As
 			case K3slePackage.ASPECT_IMPORT__ASPECTED_CLASS:
 				setAspectedClass((EClass)null);
 				return;
+			case K3slePackage.ASPECT_IMPORT__ECORE_FRAGMENT:
+				setEcoreFragment((EPackage)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -230,6 +295,8 @@ public class AspectImportImpl extends MinimalEObjectImpl.Container implements As
 				return aspectRef != null;
 			case K3slePackage.ASPECT_IMPORT__ASPECTED_CLASS:
 				return aspectedClass != null;
+			case K3slePackage.ASPECT_IMPORT__ECORE_FRAGMENT:
+				return ecoreFragment != null;
 		}
 		return super.eIsSet(featureID);
 	}
