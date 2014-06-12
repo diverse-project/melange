@@ -10,6 +10,7 @@ import java.io.IOException
 
 import java.util.List
 import java.util.Collections
+import java.util.Collection
 
 import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.core.runtime.Path
@@ -26,17 +27,21 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EcorePackage
+import org.eclipse.emf.ecore.EcoreFactory
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 
 import org.eclipse.xtext.common.types.JvmCustomAnnotationValue
 import org.eclipse.xtext.common.types.JvmTypeAnnotationValue
 import org.eclipse.xtext.common.types.JvmDeclaredType
+import org.eclipse.xtext.common.types.JvmVisibility
+import org.eclipse.xtext.common.types.JvmTypeParameterDeclarator
 
 import org.eclipse.xtext.naming.QualifiedName
 
 import static extension fr.inria.diverse.k3.sle.ast.ModelTypeExtensions.*
 import static extension fr.inria.diverse.k3.sle.ast.NamingHelper.*
 import static extension fr.inria.diverse.k3.sle.lib.EcoreExtensions.*
+import static extension fr.inria.diverse.k3.sle.utils.AspectToEcore.*
 
 class MetamodelExtensions
 {
@@ -174,6 +179,89 @@ class MetamodelExtensions
 	static def isUml(Metamodel mm, EClassifier cls) {
 		val pkg = mm.pkgs.findFirst[EClassifiers.exists[name == cls.name]]
 		return pkg.name == "uml"
+	}
+
+	// FIXME: Create referenced EClass if they don't exist yet
+	// FIXME: Consider finding EClassifier, not EClass
+	static def weaveAspect(Metamodel mm, EClass cls, JvmDeclaredType asp) {
+		asp.declaredOperations
+		.filter[
+			   !simpleName.startsWith("_privk3")
+			&& !simpleName.startsWith("super_")
+			//&& parameters.head?.name == "_self"
+			&& !annotations.exists[annotation.simpleName == "OverrideAspectMethod"]
+			&& visibility == JvmVisibility.PUBLIC
+		]
+		.forEach[op |
+			val featureName = findFeatureNameFor(asp, op)
+			if (featureName === null) {
+				val retCls = mm.findClassifierFor(op.returnType.simpleName)
+
+				// FIXME
+				if (!cls.EOperations.exists[name == op.simpleName]) {
+					cls.EOperations += EcoreFactory.eINSTANCE.createEOperation => [
+						name = op.simpleName
+						op.parameters.forEach[p, i |
+							if (i > 0) {
+								val attrCls = mm.findClassifierFor(p.parameterType.simpleName)
+
+								EParameters += EcoreFactory.eINSTANCE.createEParameter => [pp |
+									pp.name = p.simpleName
+									pp.EType = if (attrCls !== null) attrCls else cls.EPackage.getOrCreateDataType(p.parameterType.simpleName, p.parameterType.qualifiedName)
+								]
+							}
+						]
+						if (op.returnType.simpleName != "void")
+							EType = if (retCls !== null) retCls else cls.EPackage.getOrCreateDataType(op.returnType.simpleName, op.returnType.qualifiedName)
+						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
+					]
+				}
+			} else if (!cls.EStructuralFeatures.exists[name == featureName]) {
+				val retType =
+					if (op.simpleName.startsWith("get") || op.parameters.size == 1)
+						op.returnType.type
+					else
+						op.parameters.get(1).parameterType.type
+				val upperB = if (Collection.isAssignableFrom(retType.class)) -1 else 1
+				val realType =
+					if (
+						   Collection.isAssignableFrom(retType.class)
+						&& retType instanceof JvmTypeParameterDeclarator
+					)
+						(retType as JvmTypeParameterDeclarator).typeParameters.head
+					else
+						retType
+
+				val find = mm.findClass(realType.simpleName)
+				val dt = EcorePackage.eINSTANCE.findClassifier("E" + realType.simpleName.toFirstUpper)
+				if (find !== null) {
+					// Create EReference
+					cls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEReference => [
+						name = featureName
+						EType = find
+						upperBound = upperB
+						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
+					]
+				} else if (dt !== null) {
+					// Create EAttribute
+					cls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEAttribute => [
+						name = featureName
+						EType = dt
+						upperBound = upperB
+						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
+					]
+				} else {
+					// Create new EClass or fix the referenced type
+					// For now, create appropriate datatype with instanceTypeName
+					cls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEAttribute => [
+						name = featureName
+						EType = cls.EPackage.getOrCreateDataType(realType.simpleName, realType.qualifiedName)
+						upperBound = upperB
+						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
+					]
+				}
+			}
+		]
 	}
 
 	static def createEcore(EPackage pkg, String uri) {
