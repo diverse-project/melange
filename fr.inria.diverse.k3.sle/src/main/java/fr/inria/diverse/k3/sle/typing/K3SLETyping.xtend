@@ -141,7 +141,7 @@ class K3SLETyping
 
 				val pkg = rootPkg
 				if (!mm.pkgs.exists[nsURI == pkg.nsURI])
-					mm.pkgs += pkg.copy
+					mm.pkgs += pkg
 
 				pkg.referencedPkgs.filterNull.forEach[p |
 					if (!mm.pkgs.exists[nsURI == p.nsURI])
@@ -198,7 +198,7 @@ class K3SLETyping
 
 			// TODO: Check that loaded pkgs/genmodels match
 			if (!mm.pkgs.exists[nsURI == pkg.nsURI])
-				mm.pkgs += pkg.copy
+				mm.pkgs += pkg
 
 			pkg.referencedPkgs.forEach[p |
 				if (!mm.pkgs.exists[nsURI == p.nsURI])
@@ -207,7 +207,7 @@ class K3SLETyping
 
 			mm.allSubPkgs.forEach[p |
 				if (!mm.pkgs.exists[nsURI == p.nsURI])
-					mm.pkgs += p.copy
+					mm.pkgs += p
 			]
 
 			mm.^implements.forEach[mt |
@@ -274,7 +274,7 @@ class K3SLETyping
 			val pkg = ModelUtils.loadPkg(mt.ecore.uri)
 
 			if (!mt.pkgs.exists[nsURI == pkg.nsURI])
-				mt.pkgs += pkg.copy
+				mt.pkgs += pkg
 
 			pkg.referencedPkgs.forEach[p |
 				if (!mt.pkgs.exists[nsURI == p.nsURI])
