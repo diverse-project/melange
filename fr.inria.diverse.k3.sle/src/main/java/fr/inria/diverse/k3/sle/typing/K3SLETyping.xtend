@@ -85,6 +85,8 @@ class K3SLETyping
 					pkg.EClassifiers.filter(EClass).forEach[cls |
 						EClassifiers += EcoreFactory.eINSTANCE.createEClass => [newCls |
 							newCls.name = cls.name
+							newCls.^abstract = cls.^abstract
+							newCls.^interface = cls.^interface
 							newCls.ESuperTypes += cls
 						]
 					]

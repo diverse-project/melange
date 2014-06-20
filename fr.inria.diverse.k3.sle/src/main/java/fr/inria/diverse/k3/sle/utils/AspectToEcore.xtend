@@ -34,6 +34,8 @@ class AspectToEcore
 		// FIXME: Copy other EClass properties?
 		val aspCls = EcoreFactory.eINSTANCE.createEClass => [cls |
 			cls.name = baseCls.name
+			cls.^abstract = baseCls.^abstract
+			cls.^interface = baseCls.^interface
 		]
 
 		aspPkg.EClassifiers += aspCls
