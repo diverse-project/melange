@@ -114,6 +114,20 @@ class K3SLETyping
 					mm.weaveAspect(asp.aspectedClass, asp.aspectRef.type as JvmDeclaredType)
 				]
 
+				// Once everything's done, recreate the aspect hierarchy
+				// FIXME: Actually, we should look for the with=#[] parameter, not the only extendedClass
+				mm.aspects
+					.filter[(aspectRef.type as JvmDeclaredType).extendedClass !== null]
+					.forEach[
+						val superAspect = (aspectRef.type as JvmDeclaredType).extendedClass.type as JvmDeclaredType
+						val superClsName = superAspect.aspectAnnotationValue
+						if (superClsName !== null) {
+							val superCls = mm.findClass(superClsName)
+							if (superCls !== null)
+								aspectedClass.ESuperTypes += superCls
+						}
+					]
+
 				val copy = EcoreUtil.copy(mm.pkgs.head)
 				val ecoreUri = '''platform:/resource/«mm.project.name»/model/«mm.name».ecore'''
 				val genmodelUri = '''platform:/resource/«mm.project.name»/model/«mm.name».genmodel'''

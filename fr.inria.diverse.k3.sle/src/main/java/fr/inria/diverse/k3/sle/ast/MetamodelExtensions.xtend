@@ -66,8 +66,12 @@ class MetamodelExtensions
 	}
 
 	static def getAspectAnnotationValue(AspectImport asp) {
+		return (asp.aspectRef.type as JvmDeclaredType)?.aspectAnnotationValue
+	}
+
+	static def getAspectAnnotationValue(JvmDeclaredType t) {
 		// TODO: Remove hard-stringed dependency
-		val aspAnn = (asp.aspectRef.type as JvmDeclaredType)?.annotations.findFirst[annotation?.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Aspect"]
+		val aspAnn = t.annotations.findFirst[annotation?.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Aspect"]
 		val aspClassName = aspAnn?.values?.findFirst[valueName == "className"]
 		val aspVal = switch aspClassName {
 			JvmTypeAnnotationValue: aspClassName.values?.head?.simpleName
