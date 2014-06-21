@@ -142,6 +142,10 @@ class EcoreExtensions
 			getAllGenPkgs(gp, ret)
 			ret.add(gp)
 		]
+		gm.usedGenPackages.forEach[gp |
+			getAllGenPkgs(gp, ret)
+			ret.add(gp)
+		]
 	}
 
 	static def void getAllGenPkgs(GenPackage gp, List<GenPackage> ret) {
