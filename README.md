@@ -3,6 +3,7 @@ K3SLE
 
 TODO
 ----
+- [ ] **Externalize all AST-completion operations in a IDerivedStateComputer post-processor**
 - [ ] Modeling in-the-large
 	- [ ] Metamodels attributes and operations
 	- [X] Modeltypes attributes and operations
