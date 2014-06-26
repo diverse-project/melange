@@ -3,7 +3,7 @@ package ecoreproject
 import static extension fr.inria.diverse.k3.sle.lib.MetamodelExtensions.*
 
 metamodel Ecore {
-	ecore "file:/home/dig/repositories/k3/k3-sle.examples/org.eclipse.emf.ecore/model/Ecore.ecore"
+	ecore "platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore"
 	exactType EcoreMT
 }
 
