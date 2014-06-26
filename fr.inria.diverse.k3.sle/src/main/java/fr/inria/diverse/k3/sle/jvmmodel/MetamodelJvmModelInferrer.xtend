@@ -220,7 +220,7 @@ class MetamodelJvmModelInferrer
 									mm.newTypeRef(op.returnType.qualifiedName)
 
 							paramsList.append('''«IF inherited»clsAdaptee«ELSE»adaptee«ENDIF»''')
-							op.parameters.drop(1).forEach[p, i |
+							op.parameters.drop(if (op.parameters.head?.simpleName == "_self") 1 else 0).forEach[p, i |
 								paramsList.append('''
 								«IF inherited && superMM.hasAdapterFor(superType, p.parameterType.simpleName)»
 								, ((«superMM.adapterNameFor(superType, p.parameterType.simpleName)») «p.name»).getAdaptee()
@@ -234,7 +234,7 @@ class MetamodelJvmModelInferrer
 
 							if (featureName === null) {
 								members += mm.toMethod(op.simpleName, retType)[
-									op.parameters.drop(1).forEach[p |
+									op.parameters.drop(if (op.parameters.head?.simpleName == "_self") 1 else 0).forEach[p |
 										val pCls = superType.findClassifier(p.parameterType.simpleName)
 										val pType =
 											if (pCls !== null)
