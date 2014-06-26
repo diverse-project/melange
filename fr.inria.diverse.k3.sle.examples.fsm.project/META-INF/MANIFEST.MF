@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Project
+Bundle-SymbolicName: fr.inria.diverse.k3.sle.examples.fsm.project
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: org.eclipse.emf.ecore.xmi;bundle-version="2.10.0",
+ org.eclipse.emf;bundle-version="2.6.0",
+ fr.inria.diverse.k3.sle.lib;bundle-version="3.0.0",
+ fr.inria.diverse.k3.sle.examples.metamodels.fsm;bundle-version="0.1.0",
+ fr.inria.diverse.k3.sle.examples.metamodels.timedfsm;bundle-version="0.1.0",
+ fr.inria.diverse.k3.al.annotationprocessor;bundle-version="1.0.0"

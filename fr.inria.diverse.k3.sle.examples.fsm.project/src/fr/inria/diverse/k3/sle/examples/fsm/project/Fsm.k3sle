@@ -1,0 +1,38 @@
+package fr.inria.diverse.k3.sle.examples.fsm.project
+
+import fr.inria.diverse.k3.sle.examples.fsm.project.fsmmt.FSM
+
+import static extension fr.inria.diverse.k3.sle.lib.MetamodelExtensions.*
+
+metamodel Fsm {
+	ecore "platform:/resource/fr.inria.diverse.k3.sle.examples.metamodels.fsm/model/FSM.ecore"
+	exactType FsmMT
+	aspect fr.inria.diverse.k3.sle.examples.fsm.project.ExecutableFsmAspect
+	aspect fr.inria.diverse.k3.sle.examples.fsm.project.ExecutableStateAspect
+	aspect fr.inria.diverse.k3.sle.examples.fsm.project.ExecutableTransitionAspect
+}
+
+metamodel TimedFsm {
+	ecore "platform:/resource/fr.inria.diverse.k3.sle.examples.metamodels.timedfsm/model/TimedFSM.ecore"
+	exactType TimedFsmMT
+	aspect fr.inria.diverse.k3.sle.examples.fsm.project.TimedFsmAspect
+	aspect fr.inria.diverse.k3.sle.examples.fsm.project.TimedStateAspect
+	aspect fr.inria.diverse.k3.sle.examples.fsm.project.TimedTransitionAspect
+}
+
+transformation execute(FsmMT fsm) {
+	val root = fsm.contents.head as FSM
+	
+	print("Output: ")
+	//root.execute("adcdce")
+	println
+}
+
+@Main
+transformation main() {
+	val m1 =      Fsm.load("input/Simple.fsm",      FsmMT)
+	val m2 = TimedFsm.load("input/Simple.timedfsm", FsmMT)
+	
+	execute.call(m1)
+	execute.call(m2)
+}
