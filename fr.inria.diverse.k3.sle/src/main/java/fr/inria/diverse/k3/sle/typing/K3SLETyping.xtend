@@ -151,38 +151,41 @@ class K3SLETyping
 				// For each aspect, infer the corresponding ecore fragment
 				// and merge it into the base metamodel
 				mm.aspects.forEach[asp |
-					if (asp.aspectRef.type instanceof JvmDeclaredType) {
-						val className = asp.aspectAnnotationValue
+					if (!(asp.aspectRef.type instanceof JvmDeclaredType))
+						throw new ASTProcessingException("Aspect must be a generic type: " + asp.aspectRef?.type)
 
-						if (className !== null) {
-							val cls = mm.findClass(className)
+					val className = asp.aspectAnnotationValue
 
-							if (cls !== null) {
-								asp.aspectedClass = cls
-								asp.inferEcoreFragment
+					if (className === null)
+						throw new ASTProcessingException("Cannot find annotation value for " + asp.aspectRef?.type)
 
-								// TODO: Move that in an model algebra service
-								try {
-									val scope = new DefaultComparisonScope(asp.ecoreFragment, mm.pkgs.head, null)
-									val comparison = EMFCompare.builder.build.compare(scope)
+					val cls = mm.findClass(className)
 
-									val diffs = comparison.differences
-									diffs.filter[
-										   kind != DifferenceKind.ADD
-										&& !requires.exists[r | r.kind == DifferenceKind.ADD]
-									].forEach[
-										discard
-									]
+					if (cls === null)
+						throw new ASTProcessingException("Cannot find aspectized class for " + asp.aspectRef?.type)
 
-									val mergerRegistry = IMerger$RegistryImpl.createStandaloneInstance
-									val merger = new BatchMerger(mergerRegistry)
-									merger.copyAllLeftToRight(diffs, null)
-								} catch (Exception e) {
-									println("Got exception:")
-									e.printStackTrace
-								}
-							}
-						}
+					asp.aspectedClass = cls
+					asp.inferEcoreFragment
+
+					// TODO: Move that in an model algebra service
+					try {
+						val scope = new DefaultComparisonScope(asp.ecoreFragment, mm.pkgs.head, null)
+						val comparison = EMFCompare.builder.build.compare(scope)
+
+						val diffs = comparison.differences
+						diffs.filter[
+							   kind != DifferenceKind.ADD
+							&& !requires.exists[r | r.kind == DifferenceKind.ADD]
+						].forEach[
+							discard
+						]
+
+						val mergerRegistry = IMerger$RegistryImpl.createStandaloneInstance
+						val merger = new BatchMerger(mergerRegistry)
+						merger.copyAllLeftToRight(diffs, null)
+					} catch (Exception e) {
+						println("Got exception:")
+						e.printStackTrace
 					}
 				]
 
@@ -232,38 +235,41 @@ class K3SLETyping
 			// For each aspect, infer the corresponding ecore fragment
 			// and merge it into the base metamodel
 			mm.aspects.forEach[asp |
-				if (asp.aspectRef.type instanceof JvmDeclaredType) {
-					val className = asp.aspectAnnotationValue
+				if (!(asp.aspectRef.type instanceof JvmDeclaredType))
+					throw new ASTProcessingException("Aspect must be a generic type: " + asp.aspectRef?.type)
 
-					if (className !== null) {
-						val cls = mm.findClass(className)
+				val className = asp.aspectAnnotationValue
 
-						if (cls !== null) {
-							asp.aspectedClass = cls
-							asp.inferEcoreFragment
+				if (className === null)
+					throw new ASTProcessingException("Cannot find annotation value for " + asp.aspectRef?.type)
 
-							// TODO: Move that in an model algebra service
-							try {
-								val scope = new DefaultComparisonScope(asp.ecoreFragment, mm.pkgs.head, null)
-								val comparison = EMFCompare.builder.build.compare(scope)
+				val cls = mm.findClass(className)
 
-								val diffs = comparison.differences
-								diffs.filter[
-									   kind != DifferenceKind.ADD
-									&& !requires.exists[r | r.kind == DifferenceKind.ADD]
-								].forEach[
-									discard
-								]
+				if (cls === null)
+					throw new ASTProcessingException("Cannot find aspectized class for " + asp.aspectRef?.type)
 
-								val mergerRegistry = IMerger$RegistryImpl.createStandaloneInstance
-								val merger = new BatchMerger(mergerRegistry)
-								merger.copyAllLeftToRight(diffs, null)
-							} catch (Exception e) {
-								println("Got exception:")
-								e.printStackTrace
-							}
-						}
-					}
+				asp.aspectedClass = cls
+				asp.inferEcoreFragment
+
+				// TODO: Move that in an model algebra service
+				try {
+					val scope = new DefaultComparisonScope(asp.ecoreFragment, mm.pkgs.head, null)
+					val comparison = EMFCompare.builder.build.compare(scope)
+
+					val diffs = comparison.differences
+					diffs.filter[
+						   kind != DifferenceKind.ADD
+						&& !requires.exists[r | r.kind == DifferenceKind.ADD]
+					].forEach[
+						discard
+					]
+
+					val mergerRegistry = IMerger$RegistryImpl.createStandaloneInstance
+					val merger = new BatchMerger(mergerRegistry)
+					merger.copyAllLeftToRight(diffs, null)
+				} catch (Exception e) {
+					println("Got exception:")
+					e.printStackTrace
 				}
 			]
 		}
