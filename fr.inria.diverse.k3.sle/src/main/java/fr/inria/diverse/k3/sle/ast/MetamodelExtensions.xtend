@@ -292,6 +292,18 @@ class MetamodelExtensions
 		}
 	}
 
+	static def createExtendedMetamodel(Metamodel mm, String uri) {
+		val resSet = new ResourceSetImpl
+		val res = resSet.createResource(org.eclipse.emf.common.util.URI.createURI(uri))
+		res.contents.addAll(mm.pkgs)
+
+		try {
+			res.save(null)
+		} catch (IOException e) {
+			e.printStackTrace
+		}
+	}
+
 	static def createGenModel(EPackage pkg, Metamodel mm, String ecoreLocation, String genModelLocation, String modelDirectory) {
 		val genModelFact = GenModelFactory.eINSTANCE
 		val genModel = genModelFact.createGenModel
@@ -325,6 +337,37 @@ class MetamodelExtensions
 
 	static def createGenModel(EPackage pkg, Metamodel mm, String ecoreLocation, String genModelLocation) {
 		createGenModel(pkg, mm, ecoreLocation, genModelLocation, '''/«mm.name»Generated/src/''')
+	}
+
+	static def createExtendedGenmodel(Metamodel mm, String ecoreLocation, String genModelLocation, String modelDirectory) {
+		val genModelFact = GenModelFactory.eINSTANCE
+		val genModel = genModelFact.createGenModel
+
+		genModel.complianceLevel = GenJDKLevel.JDK70_LITERAL
+		//genModel.modelDirectory = '''/«mm.project.name»/src-gen/'''
+		genModel.modelDirectory = modelDirectory
+		genModel.foreignModel.add(ecoreLocation)
+		genModel.modelName = mm.name
+		//val usedPkg = ModelUtils.loadGenmodel(mm.inheritanceRelation?.superMetamodel?.ecore.genmodelUris.head)
+		//genModel.usedGenPackages += mm.inheritanceRelation?.superMetamodel?.genmodels.head.genPackages
+		//genModel.usedGenPackages += usedPkg.genPackages
+		genModel.usedGenPackages += mm.inheritanceRelation?.superMetamodel?.genmodels.head.genPackages
+		genModel.initialize(mm.pkgs)
+
+		val genPackage = genModel.genPackages.head
+		genPackage.prefix = mm.name.toLowerCase.toFirstUpper
+		//genPackage.basePackage = mm.name.toLowerCase
+
+		val resSet = new ResourceSetImpl
+		val res = resSet.createResource(org.eclipse.emf.common.util.URI.createURI(genModelLocation))
+		res.contents.add(genModel)
+
+		try {
+			res.save(null)
+			//genModel.generateCode
+		} catch (IOException e) {
+			e.printStackTrace
+		}
 	}
 
 	static def generateCode(GenModel genModel) {

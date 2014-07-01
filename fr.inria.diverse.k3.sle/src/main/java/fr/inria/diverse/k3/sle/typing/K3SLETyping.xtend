@@ -95,6 +95,26 @@ class K3SLETyping
 				if (!mm.pkgs.exists[nsURI == newPkg.nsURI])
 					mm.pkgs += newPkg
 
+				pkg.referencedPkgs.filterNull.forEach[p |
+					val nPkg = EcoreFactory.eINSTANCE.createEPackage => [
+						name = p.name
+						nsURI = p.nsURI
+						nsPrefix = p.nsPrefix
+
+						p.EClassifiers.filter(EClass).forEach[cls |
+							EClassifiers += EcoreFactory.eINSTANCE.createEClass => [newCls |
+								newCls.name = cls.name
+								newCls.^abstract = cls.^abstract
+								newCls.^interface = cls.^interface
+								newCls.ESuperTypes += cls
+							]
+						]
+					]
+
+					if (!mm.pkgs.exists[nsURI == nPkg.nsURI])
+						mm.pkgs += nPkg
+				]
+
 				mm.aspects.forEach[asp |
 					if (!(asp.aspectRef.type instanceof JvmDeclaredType))
 						throw new ASTProcessingException("Aspect must be a generic type: " + asp.aspectRef?.type)
@@ -132,8 +152,10 @@ class K3SLETyping
 				val ecoreUri = '''platform:/resource/«mm.project.name»/model/«mm.name».ecore'''
 				val genmodelUri = '''platform:/resource/«mm.project.name»/model/«mm.name».genmodel'''
 				val srcFolder = '''«mm.project.name»/src'''
-				copy.createEcore(ecoreUri)
-				copy.createGenModel(mm, ecoreUri, genmodelUri, srcFolder)
+				mm.createExtendedMetamodel(ecoreUri)
+				mm.createExtendedGenmodel(ecoreUri, genmodelUri, srcFolder)
+				//copy.createEcore(ecoreUri)
+				//copy.createGenModel(mm, ecoreUri, genmodelUri, srcFolder)
 
 				throw new ASTProcessingException("Gemoc: stop here")
 			} else {
