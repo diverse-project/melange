@@ -115,19 +115,26 @@ class EcoreExtensions
 		return newPkg
 	}
 
-	static def getReferencedPkgs(EPackage pkg) {
+	static def List<EPackage> getReferencedPkgs(EPackage pkg) {
 		val ret = new ArrayList<EPackage>
+		getReferencedPkgsRec(pkg, ret)
+		return ret
+	}
 
+	static def void getReferencedPkgsRec(EPackage pkg, List<EPackage> ret) {
 		EcoreUtil$ExternalCrossReferencer.find(pkg).filter[o, s | o instanceof EClass].forEach[cls, s|
 			var container = cls
+
 			while (container !== null && !(container instanceof EPackage))
 				container = container.eContainer
 
-			if (container !== null && !ret.contains(container))
-				ret += container as EPackage
-		]
+			val referenced = container as EPackage
 
-		return ret
+			if (referenced !== null && !ret.exists[nsURI == referenced.nsURI]) {
+				ret += referenced
+				referenced.getReferencedPkgsRec(ret)
+			}
+		]
 	}
 
 	static def void getAllSubPkgs(EPackage pkg, List<EPackage> ret) {
