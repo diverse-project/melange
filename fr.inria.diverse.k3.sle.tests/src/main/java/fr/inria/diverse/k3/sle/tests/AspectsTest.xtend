@@ -1,16 +1,37 @@
 package fr.inria.diverse.k3.sle.tests
 
-import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
+import com.google.inject.Inject
+
+import fr.inria.diverse.k3.sle.lib.GenericAdapter
+import fr.inria.diverse.k3.sle.lib.IModelType
+import fr.inria.diverse.k3.sle.lib.ListAdapter
+
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
+import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation
+
+import fr.inria.diverse.k3.sle.tests.aspects.fsm.StateAspect1
+import fr.inria.diverse.k3.sle.tests.aspects.fsm.StateAspect2
 
 import fr.inria.diverse.k3.sle.tests.common.K3SLETestHelper
 import fr.inria.diverse.k3.sle.tests.common.K3SLETestsInjectorProvider
 
 import fr.inria.diverse.k3.tools.xtext.testing.XtextTest
 
+import fsm.FSM
+import fsm.FsmPackage
+import fsm.State
+import fsm.Transition
+
+import org.eclipse.emf.common.util.EList
+
 import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EObject
+
+import org.eclipse.emf.ecore.resource.Resource
+
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.InMemoryFileSystemAccess
@@ -19,14 +40,12 @@ import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
 
 import org.junit.Test
+
 import org.junit.runner.RunWith
 
-import com.google.inject.Inject
+import timedfsm.TimedfsmPackage
 
 import static org.junit.Assert.*
-
-import fsm.FsmPackage
-import timedfsm.TimedfsmPackage
 
 @RunWith(XtextRunner)
 @InjectWith(K3SLETestsInjectorProvider)
@@ -244,23 +263,23 @@ class AspectsTest
 		try {
 			// Consider moving these runtime dependencies somewhere else
 			setJavaCompilerClassPath(
-				typeof(fsm.FSM),
-				typeof(fsm.State),
-				typeof(fsm.Transition),
+				typeof(FSM),
+				typeof(State),
+				typeof(Transition),
 				typeof(timedfsm.FSM),
 				typeof(timedfsm.State),
 				typeof(timedfsm.Transition),
-				fr.inria.diverse.k3.sle.tests.aspects.fsm.StateAspect1,
-				fr.inria.diverse.k3.sle.tests.aspects.fsm.StateAspect2,
-				fr.inria.diverse.k3.sle.lib.IModelType,
-				fr.inria.diverse.k3.sle.lib.GenericAdapter,
-				fr.inria.diverse.k3.sle.lib.ListAdapter,
-				org.eclipse.emf.ecore.resource.Resource,
-				org.eclipse.emf.ecore.EObject,
-				org.eclipse.emf.common.util.EList,
-				org.eclipse.xtext.xbase.lib.Exceptions,
-				org.eclipse.xtext.xbase.lib.IterableExtensions,
-				org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
+				StateAspect1,
+				StateAspect2,
+				IModelType,
+				GenericAdapter,
+				ListAdapter,
+				Resource,
+				EObject,
+				EList,
+				Exceptions,
+				IterableExtensions,
+				XMIResourceFactoryImpl
 			)
 			inputSequence.compile[
 				initialize("aspectstest.test")

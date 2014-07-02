@@ -1,11 +1,25 @@
 package fr.inria.diverse.k3.sle.tests
 
+import com.google.inject.Inject
+
+import fr.inria.diverse.k3.sle.lib.GenericAdapter
+import fr.inria.diverse.k3.sle.lib.IModelType
+import fr.inria.diverse.k3.sle.lib.ListAdapter
+
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
 
 import fr.inria.diverse.k3.sle.tests.common.K3SLETestHelper
 import fr.inria.diverse.k3.sle.tests.common.K3SLETestsInjectorProvider
 
 import fr.inria.diverse.k3.tools.xtext.testing.XtextTest
+
+import org.eclipse.emf.common.util.EList
+
+import org.eclipse.emf.ecore.EObject
+
+import org.eclipse.emf.ecore.resource.Resource
+
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.InMemoryFileSystemAccess
@@ -14,9 +28,20 @@ import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
 
 import org.junit.Test
+
 import org.junit.runner.RunWith
 
-import com.google.inject.Inject
+import toppkg.TopClass1
+import toppkg.TopClass2
+
+import toppkg.subpkg1.Subpkg1Class1
+import toppkg.subpkg1.Subpkg1Class2
+
+import toppkg.subpkg2.Subpkg2Class1
+import toppkg.subpkg2.Subpkg2Class2
+
+import toppkg.subpkg2.subpkg3.Subpkg3Class1
+import toppkg.subpkg2.subpkg3.Subpkg3Class2
 
 import static org.junit.Assert.*
 
@@ -47,23 +72,23 @@ class SubPackagesTest
 		try {
 			// Consider moving these runtime dependencies somewhere else
 			setJavaCompilerClassPath(
-				typeof(toppkg.TopClass1),
-				typeof(toppkg.TopClass2),
-				typeof(toppkg.subpkg1.Subpkg1Class1),
-				typeof(toppkg.subpkg1.Subpkg1Class2),
-				typeof(toppkg.subpkg2.Subpkg2Class1),
-				typeof(toppkg.subpkg2.Subpkg2Class2),
-				typeof(toppkg.subpkg2.subpkg3.Subpkg3Class1),
-				typeof(toppkg.subpkg2.subpkg3.Subpkg3Class2),
-				fr.inria.diverse.k3.sle.lib.IModelType,
-				fr.inria.diverse.k3.sle.lib.GenericAdapter,
-				fr.inria.diverse.k3.sle.lib.ListAdapter,
-				org.eclipse.emf.ecore.resource.Resource,
-				org.eclipse.emf.ecore.EObject,
-				org.eclipse.emf.common.util.EList,
-				org.eclipse.xtext.xbase.lib.Exceptions,
-				org.eclipse.xtext.xbase.lib.IterableExtensions,
-				org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
+				typeof(TopClass1),
+				typeof(TopClass2),
+				typeof(Subpkg1Class1),
+				typeof(Subpkg1Class2),
+				typeof(Subpkg2Class1),
+				typeof(Subpkg2Class2),
+				typeof(Subpkg3Class1),
+				typeof(Subpkg3Class2),
+				IModelType,
+				GenericAdapter,
+				ListAdapter,
+				Resource,
+				EObject,
+				EList,
+				Exceptions,
+				IterableExtensions,
+				XMIResourceFactoryImpl
 			)
 			inputSequence.compile[
 				initialize("subpackagestest.test")

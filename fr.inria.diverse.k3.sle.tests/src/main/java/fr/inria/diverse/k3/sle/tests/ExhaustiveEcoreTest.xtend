@@ -1,14 +1,39 @@
 package fr.inria.diverse.k3.sle.tests
 
-import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
+import com.google.inject.Inject
+
+import exhaustive.AbstractTest
+import exhaustive.AttributesTest
+import exhaustive.GenericChildTest
+import exhaustive.GenericTest
+import exhaustive.InterfaceTest
+import exhaustive.MultipleSuperTest
+import exhaustive.OperationsTest
+import exhaustive.ReferencesTest
+import exhaustive.SerializableEnumTest
+import exhaustive.UnserializableEnumTest
+
+import fr.inria.diverse.k3.sle.lib.GenericAdapter
+import fr.inria.diverse.k3.sle.lib.IModelType
+import fr.inria.diverse.k3.sle.lib.ListAdapter
+
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
+import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation
 
 import fr.inria.diverse.k3.sle.tests.common.K3SLETestHelper
 import fr.inria.diverse.k3.sle.tests.common.K3SLETestsInjectorProvider
 
 import fr.inria.diverse.k3.tools.xtext.testing.XtextTest
+
+import org.eclipse.emf.common.util.EList
+
+import org.eclipse.emf.ecore.EObject
+
+import org.eclipse.emf.ecore.resource.Resource
+
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.InMemoryFileSystemAccess
@@ -17,9 +42,8 @@ import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
 
 import org.junit.Test
-import org.junit.runner.RunWith
 
-import com.google.inject.Inject
+import org.junit.runner.RunWith
 
 import static org.junit.Assert.*
 
@@ -104,25 +128,25 @@ class ExhaustiveEcoreTest
 		try {
 			// Consider moving these runtime dependencies somewhere else
 			setJavaCompilerClassPath(
-				typeof(exhaustive.AbstractTest),
-				typeof(exhaustive.AttributesTest),
-				typeof(exhaustive.GenericChildTest),
-				typeof(exhaustive.GenericTest),
-				typeof(exhaustive.InterfaceTest),
-				typeof(exhaustive.MultipleSuperTest),
-				typeof(exhaustive.OperationsTest),
-				typeof(exhaustive.ReferencesTest),
-				typeof(exhaustive.SerializableEnumTest),
-				typeof(exhaustive.UnserializableEnumTest),
-				fr.inria.diverse.k3.sle.lib.IModelType,
-				fr.inria.diverse.k3.sle.lib.GenericAdapter,
-				fr.inria.diverse.k3.sle.lib.ListAdapter,
-				org.eclipse.emf.ecore.resource.Resource,
-				org.eclipse.emf.ecore.EObject,
-				org.eclipse.emf.common.util.EList,
-				org.eclipse.xtext.xbase.lib.Exceptions,
-				org.eclipse.xtext.xbase.lib.IterableExtensions,
-				org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
+				typeof(AbstractTest),
+				typeof(AttributesTest),
+				typeof(GenericChildTest),
+				typeof(GenericTest),
+				typeof(InterfaceTest),
+				typeof(MultipleSuperTest),
+				typeof(OperationsTest),
+				typeof(ReferencesTest),
+				typeof(SerializableEnumTest),
+				typeof(UnserializableEnumTest),
+				IModelType,
+				GenericAdapter,
+				ListAdapter,
+				Resource,
+				EObject,
+				EList,
+				Exceptions,
+				IterableExtensions,
+				XMIResourceFactoryImpl
 			)
 			inputSequence.compile[
 				initialize("exhaustiveecoretest.test")

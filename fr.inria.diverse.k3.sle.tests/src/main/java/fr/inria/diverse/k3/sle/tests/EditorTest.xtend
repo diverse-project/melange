@@ -1,5 +1,7 @@
 package fr.inria.diverse.k3.sle.tests
 
+import com.google.inject.Inject
+
 import fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
 
@@ -13,12 +15,11 @@ import fr.inria.diverse.k3.tools.xtext.testing.XtextTest
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
 
-import org.junit.Test
-import org.junit.runner.RunWith
-
-import com.google.inject.Inject
-
 import org.eclipse.xtext.junit4.validation.ValidationTestHelper
+
+import org.junit.Test
+
+import org.junit.runner.RunWith
 
 @RunWith(XtextRunner)
 @InjectWith(K3SLETestsInjectorProvider)
