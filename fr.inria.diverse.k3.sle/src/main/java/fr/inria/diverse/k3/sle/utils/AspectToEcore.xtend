@@ -1,18 +1,19 @@
 package fr.inria.diverse.k3.sle.utils
 
+import com.google.inject.Inject
+
+import fr.inria.diverse.k3.sle.lib.EcoreExtensions
+
 import fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport
+
+import java.util.Collection
 
 import org.eclipse.emf.ecore.EcoreFactory
 
 import org.eclipse.xtext.common.types.JvmDeclaredType
-import org.eclipse.xtext.common.types.JvmVisibility
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmTypeParameterDeclarator
-
-import fr.inria.diverse.k3.sle.lib.EcoreExtensions
-
-import java.util.Collection
-import com.google.inject.Inject
+import org.eclipse.xtext.common.types.JvmVisibility
 
 class AspectToEcore
 {

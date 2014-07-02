@@ -1,22 +1,25 @@
 package fr.inria.diverse.k3.sle.ast
 
-import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
+import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation
-import fr.inria.diverse.k3.sle.metamodel.k3sle.K3sleFactory
+
+import java.util.Collections
+import java.util.Comparator
+
+import org.apache.log4j.Logger
 
 import org.eclipse.emf.common.util.URI
 
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
-import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.EClass
+
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+
 import org.eclipse.emf.ecore.util.EcoreUtil
 
-import java.util.Collections
-
-import org.apache.log4j.Logger
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 
 class ASTHelper
 {
@@ -68,7 +71,7 @@ class ASTHelper
 }
 
 // What about multiple inheritance?
-class ClassInheritanceComparator implements java.util.Comparator<EClass> {
+class ClassInheritanceComparator implements Comparator<EClass> {
 	override int compare(EClass clsA, EClass clsB)
 	{
 		if (clsA.EAllSuperTypes.contains(clsB))

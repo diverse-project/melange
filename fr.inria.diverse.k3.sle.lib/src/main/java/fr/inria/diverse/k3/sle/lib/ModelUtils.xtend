@@ -1,13 +1,17 @@
 package fr.inria.diverse.k3.sle.lib
 
+import org.eclipse.emf.codegen.ecore.genmodel.GenModel
+import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage
+
 import org.eclipse.emf.common.util.URI
+
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EcorePackage
+
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
-import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage
-import org.eclipse.emf.codegen.ecore.genmodel.GenModel
 
 class ModelUtils
 {

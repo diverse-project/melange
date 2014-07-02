@@ -1,5 +1,10 @@
 package fr.inria.diverse.k3.sle.lib
 
+import java.util.HashMap
+import java.util.List
+import java.util.Map
+import java.util.Stack
+
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EDataType
@@ -8,10 +13,6 @@ import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EParameter
 import org.eclipse.emf.ecore.EReference
 
-import java.util.List
-import java.util.Map
-import java.util.HashMap
-import java.util.Stack
 class MatchingHelper
 {
 	EPackage pkgA

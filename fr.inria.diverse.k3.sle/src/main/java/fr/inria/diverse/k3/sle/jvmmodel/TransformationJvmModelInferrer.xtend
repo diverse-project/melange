@@ -1,17 +1,17 @@
 package fr.inria.diverse.k3.sle.jvmmodel
 
-import fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation
-import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
-
-import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
-import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
-
-import org.eclipse.xtext.naming.IQualifiedNameProvider
-
 import com.google.inject.Inject
 
 import fr.inria.diverse.k3.sle.ast.ASTHelper
 import fr.inria.diverse.k3.sle.ast.MetamodelExtensions
+
+import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
+import fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation
+
+import org.eclipse.xtext.naming.IQualifiedNameProvider
+
+import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
 class TransformationJvmModelInferrer
 {

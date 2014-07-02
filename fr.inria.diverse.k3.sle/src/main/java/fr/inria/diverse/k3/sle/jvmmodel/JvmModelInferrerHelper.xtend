@@ -1,5 +1,13 @@
 package fr.inria.diverse.k3.sle.jvmmodel
 
+import com.google.inject.Inject
+
+import fr.inria.diverse.k3.sle.ast.MetamodelExtensions
+import fr.inria.diverse.k3.sle.ast.ModelTypeExtensions
+import fr.inria.diverse.k3.sle.ast.NamingHelper
+
+import fr.inria.diverse.k3.sle.lib.EcoreExtensions
+
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation
@@ -11,15 +19,10 @@ import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EStructuralFeature
 
 import org.eclipse.xtext.common.types.JvmTypeReference
+
 import org.eclipse.xtext.naming.IQualifiedNameProvider
+
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
-
-import fr.inria.diverse.k3.sle.ast.NamingHelper
-import fr.inria.diverse.k3.sle.lib.EcoreExtensions
-import fr.inria.diverse.k3.sle.ast.ModelTypeExtensions
-import fr.inria.diverse.k3.sle.ast.MetamodelExtensions
-
-import com.google.inject.Inject
 
 class JvmModelInferrerHelper
 {

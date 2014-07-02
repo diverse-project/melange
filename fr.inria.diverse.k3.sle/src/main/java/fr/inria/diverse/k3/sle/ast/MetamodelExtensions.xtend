@@ -2,19 +2,23 @@ package fr.inria.diverse.k3.sle.ast
 
 import com.google.inject.Inject
 
+import fr.inria.diverse.k3.sle.lib.EcoreExtensions
 import fr.inria.diverse.k3.sle.lib.MatchingHelper
 
 import fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
 
+import fr.inria.diverse.k3.sle.utils.AspectToEcore
+
 import java.io.IOException
 
-import java.util.List
-import java.util.Collections
 import java.util.Collection
+import java.util.Collections
+import java.util.List
 
 import org.eclipse.core.resources.ResourcesPlugin
+
 import org.eclipse.core.runtime.Path
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenJDKLevel
@@ -24,26 +28,23 @@ import org.eclipse.emf.codegen.ecore.genmodel.generator.GenBaseGeneratorAdapter
 import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil
 
 import org.eclipse.emf.common.util.BasicMonitor
+import org.eclipse.emf.common.util.URI
 
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EPackage
-import org.eclipse.emf.ecore.EcorePackage
 import org.eclipse.emf.ecore.EcoreFactory
+import org.eclipse.emf.ecore.EcorePackage
+
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 
 import org.eclipse.xtext.common.types.JvmCustomAnnotationValue
-import org.eclipse.xtext.common.types.JvmTypeAnnotationValue
 import org.eclipse.xtext.common.types.JvmDeclaredType
-import org.eclipse.xtext.common.types.JvmVisibility
+import org.eclipse.xtext.common.types.JvmTypeAnnotationValue
 import org.eclipse.xtext.common.types.JvmTypeParameterDeclarator
+import org.eclipse.xtext.common.types.JvmVisibility
 
 import org.eclipse.xtext.naming.QualifiedName
-
-import fr.inria.diverse.k3.sle.ast.ModelTypeExtensions
-import fr.inria.diverse.k3.sle.ast.NamingHelper
-import fr.inria.diverse.k3.sle.utils.AspectToEcore
-import fr.inria.diverse.k3.sle.lib.EcoreExtensions
 
 class MetamodelExtensions
 {
@@ -278,7 +279,7 @@ class MetamodelExtensions
 
 	def createEcore(EPackage pkg, String uri) {
 		val resSet = new ResourceSetImpl
-    	val res = resSet.createResource(org.eclipse.emf.common.util.URI.createURI(uri))
+    	val res = resSet.createResource(URI.createURI(uri))
     	res.contents.add(pkg)
 
 		try {
@@ -290,7 +291,7 @@ class MetamodelExtensions
 
 	def createEcore(Metamodel mm) {
 		val resSet = new ResourceSetImpl
-    	val res = resSet.createResource(org.eclipse.emf.common.util.URI.createURI(mm.generationFolder + mm.name + ".ecore"))
+    	val res = resSet.createResource(URI.createURI(mm.generationFolder + mm.name + ".ecore"))
     	res.contents.add(mm.pkgs.head.copy)
 
 		try {
@@ -302,7 +303,7 @@ class MetamodelExtensions
 
 	def createExtendedMetamodel(Metamodel mm, String uri) {
 		val resSet = new ResourceSetImpl
-		val res = resSet.createResource(org.eclipse.emf.common.util.URI.createURI(uri))
+		val res = resSet.createResource(URI.createURI(uri))
 		res.contents.addAll(mm.pkgs)
 
 		try {
@@ -332,7 +333,7 @@ class MetamodelExtensions
 		//genPackage.basePackage = mm.name.toLowerCase
 
 		val resSet = new ResourceSetImpl
-		val res = resSet.createResource(org.eclipse.emf.common.util.URI.createURI(genModelLocation))
+		val res = resSet.createResource(URI.createURI(genModelLocation))
 		res.contents.add(genModel)
 
 		try {
@@ -367,7 +368,7 @@ class MetamodelExtensions
 		//genPackage.basePackage = mm.name.toLowerCase
 
 		val resSet = new ResourceSetImpl
-		val res = resSet.createResource(org.eclipse.emf.common.util.URI.createURI(genModelLocation))
+		val res = resSet.createResource(URI.createURI(genModelLocation))
 		res.contents.add(genModel)
 
 		try {
@@ -387,7 +388,7 @@ class MetamodelExtensions
 		generator.generate(
 			genModel,
 			GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE,
-			new BasicMonitor$Printing(System.out)
+			new BasicMonitor.Printing(System.out)
 		)
 	}
 

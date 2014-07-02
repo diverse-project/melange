@@ -1,11 +1,12 @@
 package fr.inria.diverse.k3.sle.ast
 
-import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.EAttribute
-import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EOperation
+import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.ecore.EStructuralFeature
 
 import org.eclipse.xtext.common.types.JvmOperation
+
 import org.eclipse.xtext.naming.QualifiedName
 
 class NamingHelper

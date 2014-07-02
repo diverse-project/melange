@@ -1,34 +1,38 @@
 package fr.inria.diverse.k3.sle.typing
 
-import fr.inria.diverse.k3.sle.ast.ASTProcessingException
+import com.google.inject.Inject
 
+import fr.inria.diverse.k3.sle.ast.ASTHelper
+import fr.inria.diverse.k3.sle.ast.ASTProcessingException
+import fr.inria.diverse.k3.sle.ast.MetamodelExtensions
+import fr.inria.diverse.k3.sle.ast.ModelTypeExtensions
+
+import fr.inria.diverse.k3.sle.lib.EcoreExtensions
 import fr.inria.diverse.k3.sle.lib.ModelUtils
 
 import fr.inria.diverse.k3.sle.metamodel.k3sle.K3sleFactory
-import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
-import fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation
-import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
+import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
+import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ResourceType
+import fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation
+
+import fr.inria.diverse.k3.sle.utils.AspectToEcore
 
 import org.eclipse.emf.compare.DifferenceKind
 import org.eclipse.emf.compare.EMFCompare
+
 import org.eclipse.emf.compare.merge.BatchMerger
 import org.eclipse.emf.compare.merge.IMerger
+
 import org.eclipse.emf.compare.scope.DefaultComparisonScope
 
-import org.eclipse.emf.ecore.util.EcoreUtil
-import org.eclipse.emf.ecore.EcoreFactory
 import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EcoreFactory
+
+import org.eclipse.emf.ecore.util.EcoreUtil
 
 import org.eclipse.xtext.common.types.JvmDeclaredType
-
-import fr.inria.diverse.k3.sle.ast.ASTHelper
-import fr.inria.diverse.k3.sle.ast.MetamodelExtensions
-import fr.inria.diverse.k3.sle.ast.ModelTypeExtensions
-import fr.inria.diverse.k3.sle.lib.EcoreExtensions
-import fr.inria.diverse.k3.sle.utils.AspectToEcore
-import com.google.inject.Inject
 
 class K3SLETyping
 {
@@ -210,7 +214,7 @@ class K3SLETyping
 							discard
 						]
 
-						val mergerRegistry = IMerger$RegistryImpl.createStandaloneInstance
+						val mergerRegistry = IMerger.RegistryImpl.createStandaloneInstance
 						val merger = new BatchMerger(mergerRegistry)
 						merger.copyAllLeftToRight(diffs, null)
 					} catch (Exception e) {
@@ -294,7 +298,7 @@ class K3SLETyping
 						discard
 					]
 
-					val mergerRegistry = IMerger$RegistryImpl.createStandaloneInstance
+					val mergerRegistry = IMerger.RegistryImpl.createStandaloneInstance
 					val merger = new BatchMerger(mergerRegistry)
 					merger.copyAllLeftToRight(diffs, null)
 				} catch (Exception e) {

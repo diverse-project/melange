@@ -1,16 +1,18 @@
 package fr.inria.diverse.k3.sle.validation
 
-import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
-import fr.inria.diverse.k3.sle.metamodel.k3sle.Element
-import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
-import fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage
+import com.google.inject.Inject
 
 import fr.inria.diverse.k3.sle.lib.MatchingHelper
 import fr.inria.diverse.k3.sle.lib.ModelUtils
 
-import org.eclipse.xtext.validation.Check
+import fr.inria.diverse.k3.sle.metamodel.k3sle.Element
+import fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage
+import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
+import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
+
 import org.eclipse.xtext.common.types.JvmDeclaredType
-import com.google.inject.Inject
+
+import org.eclipse.xtext.validation.Check
 
 class K3SLEValidator extends AbstractK3SLEValidator
 {

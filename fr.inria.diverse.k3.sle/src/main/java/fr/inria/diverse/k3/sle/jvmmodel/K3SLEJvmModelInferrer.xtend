@@ -1,19 +1,18 @@
 package fr.inria.diverse.k3.sle.jvmmodel
 
+import com.google.inject.Inject
+
+import fr.inria.diverse.k3.sle.ast.ASTHelper
 import fr.inria.diverse.k3.sle.ast.ASTProcessingException
 
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
-
-import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
-import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 
 import fr.inria.diverse.k3.sle.typing.K3SLETyping
 
 import org.apache.log4j.Logger
 
-import com.google.inject.Inject
-
-import fr.inria.diverse.k3.sle.ast.ASTHelper
+import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
+import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 
 class K3SLEJvmModelInferrer extends AbstractModelInferrer
 {

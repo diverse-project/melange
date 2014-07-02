@@ -1,17 +1,22 @@
 package fr.inria.diverse.k3.sle.lib
 
 import com.google.common.base.Function
+
 import com.google.common.collect.Iterators
+
+import java.lang.reflect.InvocationTargetException
 
 import java.util.Collection
 import java.util.List
 import java.util.ListIterator
-import org.eclipse.emf.ecore.EObject
-import org.eclipse.emf.ecore.EStructuralFeature
-import java.lang.reflect.InvocationTargetException
-import org.eclipse.emf.ecore.EOperation
-import org.eclipse.emf.common.util.EList
+
 import org.eclipse.emf.common.notify.Notification
+
+import org.eclipse.emf.common.util.EList
+
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EOperation
+import org.eclipse.emf.ecore.EStructuralFeature
 
 interface GenericAdapter<E> {
 	def E getAdaptee()

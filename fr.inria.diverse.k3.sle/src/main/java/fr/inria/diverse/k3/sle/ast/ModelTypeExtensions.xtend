@@ -1,14 +1,14 @@
 package fr.inria.diverse.k3.sle.ast
 
-import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
-import fr.inria.diverse.k3.sle.lib.ModelUtils
+import com.google.inject.Inject
 
-import fr.inria.diverse.k3.sle.lib.EcoreExtensions.*
+import fr.inria.diverse.k3.sle.lib.EcoreExtensions
 import fr.inria.diverse.k3.sle.lib.MatchingHelper
+
+import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
+
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
-import com.google.inject.Inject
-import fr.inria.diverse.k3.sle.lib.EcoreExtensions
 
 class ModelTypeExtensions
 {

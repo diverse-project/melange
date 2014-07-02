@@ -1,35 +1,39 @@
 package fr.inria.diverse.k3.sle.jvmmodel
 
+import com.google.inject.Inject
+
+import fr.inria.diverse.k3.sle.ast.ASTHelper
+import fr.inria.diverse.k3.sle.ast.MetamodelExtensions
+import fr.inria.diverse.k3.sle.ast.ModelTypeExtensions
+import fr.inria.diverse.k3.sle.ast.NamingHelper
+
 import fr.inria.diverse.k3.sle.lib.EObjectAdapter
-import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
+import fr.inria.diverse.k3.sle.lib.EcoreExtensions
 import fr.inria.diverse.k3.sle.lib.GenericAdapter
 
-import org.eclipse.xtext.common.types.JvmDeclaredType
-import org.eclipse.xtext.naming.IQualifiedNameProvider
+import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
 
-import org.eclipse.xtext.common.types.JvmTypeReference
-import org.eclipse.xtext.common.types.TypesFactory
-
-import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
-import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
-
-import org.eclipse.emf.ecore.EClass
-import org.eclipse.emf.ecore.EEnum
-import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.emf.common.util.EList
-import org.eclipse.emf.common.util.EMap
+import fr.inria.diverse.k3.sle.utils.AspectToEcore
 
 import java.util.ArrayList
 import java.util.List
 
-import com.google.inject.Inject
+import org.eclipse.emf.common.util.EList
+import org.eclipse.emf.common.util.EMap
 
-import fr.inria.diverse.k3.sle.ast.ASTHelper
-import fr.inria.diverse.k3.sle.ast.NamingHelper
-import fr.inria.diverse.k3.sle.ast.ModelTypeExtensions
-import fr.inria.diverse.k3.sle.ast.MetamodelExtensions
-import fr.inria.diverse.k3.sle.lib.EcoreExtensions
-import fr.inria.diverse.k3.sle.utils.AspectToEcore
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EEnum
+
+import org.eclipse.emf.ecore.resource.Resource
+
+import org.eclipse.xtext.common.types.JvmDeclaredType
+import org.eclipse.xtext.common.types.JvmTypeReference
+import org.eclipse.xtext.common.types.TypesFactory
+
+import org.eclipse.xtext.naming.IQualifiedNameProvider
+
+import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
 class MetamodelJvmModelInferrer
 {

@@ -1,25 +1,28 @@
 package fr.inria.diverse.k3.sle.jvmmodel
 
-import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
+import com.google.inject.Inject
+
+import fr.inria.diverse.k3.sle.ast.ModelTypeExtensions
+import fr.inria.diverse.k3.sle.ast.NamingHelper
+
+import fr.inria.diverse.k3.sle.lib.EcoreExtensions
 import fr.inria.diverse.k3.sle.lib.IFactory
 import fr.inria.diverse.k3.sle.lib.IModelType
+
+import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
+
+import java.util.ArrayList
+import java.util.List
 
 import org.eclipse.emf.common.util.EMap
 
 import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.common.types.TypesFactory
+
 import org.eclipse.xtext.naming.IQualifiedNameProvider
+
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
-
-import java.util.ArrayList
-import java.util.List
-
-import com.google.inject.Inject
-
-import fr.inria.diverse.k3.sle.ast.NamingHelper
-import fr.inria.diverse.k3.sle.ast.ModelTypeExtensions
-import fr.inria.diverse.k3.sle.lib.EcoreExtensions
 
 class ModelTypeJvmModelInferrer
 {

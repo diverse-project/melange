@@ -1,12 +1,12 @@
 package fr.inria.diverse.k3.sle.lib
 
-import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import java.util.HashMap
+import java.util.Map
 
 import org.eclipse.emf.common.util.URI
 
-import java.util.Map
-import java.util.HashMap
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 
 class MetamodelExtensions
 {

@@ -1,22 +1,24 @@
 package fr.inria.diverse.k3.sle.lib
 
-import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
-import org.eclipse.emf.codegen.ecore.genmodel.GenModel
-
-import org.eclipse.emf.ecore.EPackage
-import org.eclipse.emf.ecore.util.EcoreUtil
-import org.eclipse.emf.ecore.EClass
-import org.eclipse.emf.ecore.EcoreFactory
-import org.eclipse.emf.ecore.EAttribute
-import org.eclipse.emf.ecore.EStructuralFeature
-import org.eclipse.emf.ecore.EReference
-import org.eclipse.emf.ecore.ENamedElement
-import org.eclipse.emf.ecore.EDataType
-import org.eclipse.emf.ecore.EcorePackage
+import com.google.inject.Inject
 
 import java.util.ArrayList
 import java.util.List
-import com.google.inject.Inject
+
+import org.eclipse.emf.codegen.ecore.genmodel.GenModel
+import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
+
+import org.eclipse.emf.ecore.EAttribute
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EDataType
+import org.eclipse.emf.ecore.ENamedElement
+import org.eclipse.emf.ecore.EPackage
+import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.ecore.EStructuralFeature
+import org.eclipse.emf.ecore.EcoreFactory
+import org.eclipse.emf.ecore.EcorePackage
+
+import org.eclipse.emf.ecore.util.EcoreUtil
 
 class EcoreExtensions
 {
@@ -125,7 +127,7 @@ class EcoreExtensions
 	}
 
 	def void getReferencedPkgsRec(EPackage pkg, List<EPackage> ret) {
-		EcoreUtil$ExternalCrossReferencer.find(pkg).filter[o, s | o instanceof EClass].forEach[cls, s|
+		EcoreUtil.ExternalCrossReferencer.find(pkg).filter[o, s | o instanceof EClass].forEach[cls, s|
 			var container = cls
 
 			while (container !== null && !(container instanceof EPackage))
