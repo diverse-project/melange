@@ -7,10 +7,10 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
 
 /**
- * <p>Infers a JVM model from the source model.</p> 
+ * <p>Infers a JVM model from the source model.</p>
  *
- * <p>The JVM model should contain all elements that would appear in the Java code 
- * which is generated from the source model. Other models link against the JVM model rather than the source model.</p>     
+ * <p>The JVM model should contain all elements that would appear in the Java code
+ * which is generated from the source model. Other models link against the JVM model rather than the source model.</p>
  */
 class K3SLEJvmModelInferrer extends AbstractModelInferrer {
 
@@ -22,7 +22,7 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer {
 	/**
 	 * The dispatch method {@code infer} is called for each instance of the
 	 * given element's type that is contained in a resource.
-	 * 
+	 *
 	 * @param element
 	 *            the model to create one or more
 	 *            {@link org.eclipse.xtext.common.types.JvmDeclaredType declared
@@ -46,7 +46,7 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer {
 	 */
    	def dispatch void infer(ModelTypingSpace element, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
    		// Here you explain how your model is mapped to Java elements, by writing the actual translation code.
-   		
+
    		// An implementation for the initial hello world example could look like this:
 //   		acceptor.accept(element.toClass("my.company.greeting.MyGreetings"))
 //   			.initializeLater([

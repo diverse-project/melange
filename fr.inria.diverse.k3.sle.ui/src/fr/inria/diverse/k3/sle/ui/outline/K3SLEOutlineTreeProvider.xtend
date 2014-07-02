@@ -9,5 +9,5 @@ package fr.inria.diverse.k3.sle.ui.outline
  * see http://www.eclipse.org/Xtext/documentation.html#outline
  */
 class K3SLEOutlineTreeProvider extends org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider {
-	
+
 }
