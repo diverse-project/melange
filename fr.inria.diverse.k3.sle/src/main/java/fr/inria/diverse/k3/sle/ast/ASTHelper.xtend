@@ -18,15 +18,11 @@ import java.util.Collections
 
 import org.apache.log4j.Logger
 
-import static extension fr.inria.diverse.k3.sle.ast.MetamodelExtensions.*
-import static extension fr.inria.diverse.k3.sle.ast.ModelTypeExtensions.*
-import static extension fr.inria.diverse.k3.sle.ast.TransformationExtensions.*
-
 class ASTHelper
 {
-	static Logger logger = Logger.getLogger(ASTHelper)
+	Logger logger = Logger.getLogger(ASTHelper)
 
-	static def saveAs(ModelTypingSpace root, String uri) {
+	def saveAs(ModelTypingSpace root, String uri) {
 		Resource.Factory.Registry.INSTANCE.extensionToFactoryMap.put("*", new XMIResourceFactoryImpl)
 		val rs = new ResourceSetImpl
 		val res = rs.createResource(URI.createURI(uri))
@@ -35,7 +31,7 @@ class ASTHelper
 		res.save(Collections.EMPTY_MAP)
 	}
 
-	static def printDebug(ModelTypingSpace root) {
+	def printDebug(ModelTypingSpace root) {
 		root.metamodels.forEach[mm |
 			logger.debug('''MM «mm.name»''')
 			logger.debug('''\tpkgs = «mm.pkgs.map[name].join(", ")»''')
@@ -54,19 +50,19 @@ class ASTHelper
 		]
 	}
 
-	static def getMetamodels(ModelTypingSpace root) {
+	def getMetamodels(ModelTypingSpace root) {
 		root.elements.filter(Metamodel)
 	}
 
-	static def getModelTypes(ModelTypingSpace root) {
+	def getModelTypes(ModelTypingSpace root) {
 		root.elements.filter(ModelType)
 	}
 
-	static def getTransformations(ModelTypingSpace root) {
+	def getTransformations(ModelTypingSpace root) {
 		root.elements.filter(Transformation)
 	}
 
-	static def Iterable<EClass> sortByClassInheritance(Iterable<EClass> classes) {
+	def Iterable<EClass> sortByClassInheritance(Iterable<EClass> classes) {
 		classes.sort(new ClassInheritanceComparator())
 	}
 }

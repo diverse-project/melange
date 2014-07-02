@@ -14,7 +14,6 @@ import java.util.HashMap
 import java.util.Stack
 class MatchingHelper
 {
-	static MatchingHelper instance
 	EPackage pkgA
 	EPackage pkgB
 
@@ -170,12 +169,5 @@ class MatchingHelper
 		&&  (!(refA.EOpposite !== null) || (refB.EOpposite !== null && refA.EOpposite.name == refB.EOpposite.name))
 
 		return ret
-	}
-
-	static def getInstance() {
-		if (instance === null)
-			instance = new MatchingHelper
-
-		return instance
 	}
 }

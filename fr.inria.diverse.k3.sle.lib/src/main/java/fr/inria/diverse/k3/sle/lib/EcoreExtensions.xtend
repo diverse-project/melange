@@ -16,30 +16,33 @@ import org.eclipse.emf.ecore.EcorePackage
 
 import java.util.ArrayList
 import java.util.List
+import com.google.inject.Inject
 
 class EcoreExtensions
 {
-	static def findClass(EPackage pkg, String clsName) {
+	@Inject ModelUtils modelUtils
+
+	def findClass(EPackage pkg, String clsName) {
 		pkg.EClassifiers.filter(EClass).findFirst[name == clsName]
 	}
 
-	static def findClassifier(EPackage pkg, String clsName) {
+	def findClassifier(EPackage pkg, String clsName) {
 		pkg.EClassifiers.findFirst[name == clsName]
 	}
 
-	static def isInstantiable(EClass cls) {
+	def isInstantiable(EClass cls) {
 		!cls.^abstract && !cls.^interface && cls.instanceClass === null
 	}
 
-	static def isAbstractable(EClass cls) {
+	def isAbstractable(EClass cls) {
 		cls.instanceClass === null && cls.instanceTypeName === null
 	}
 
-	static def isAspectSpecific(ENamedElement f) {
+	def isAspectSpecific(ENamedElement f) {
 		f.EAnnotations.exists[source == "aspect"]
 	}
 
-	static def getOrCreateClass(EPackage pkg, String name) {
+	def getOrCreateClass(EPackage pkg, String name) {
 		val find = pkg.EClassifiers.filter(EClass).findFirst[it.name == name]
 
 		if (find !== null) {
@@ -55,7 +58,7 @@ class EcoreExtensions
 		}
 	}
 
-	static def getOrCreateDataType(EPackage pkg, String name, String instanceTypeName) {
+	def getOrCreateDataType(EPackage pkg, String name, String instanceTypeName) {
 		val find = pkg.EClassifiers.filter(EDataType).findFirst[it.name == name && it.instanceTypeName == instanceTypeName]
 		val findDt = EcorePackage.eINSTANCE.findClassifier("E" + name.toFirstUpper)
 
@@ -75,15 +78,15 @@ class EcoreExtensions
 		}
 	}
 
-	static def copy(EPackage pkg) {
+	def copy(EPackage pkg) {
 		pkg.copy(pkg.name, pkg.name, pkg.nsURI)
 	}
 
-	static def copy(EPackage pkg, String name) {
+	def copy(EPackage pkg, String name) {
 		pkg.copy(name, name.toLowerCase, '''http://«name.toLowerCase»/''')
 	}
 
-	static def copy(EPackage pkg, String pkgName, String prefix, String uri) {
+	def copy(EPackage pkg, String pkgName, String prefix, String uri) {
 		val newPkg = EcoreFactory.eINSTANCE.createEPackage => [
 			name = pkgName.toLowerCase
 			nsPrefix = prefix
@@ -95,14 +98,14 @@ class EcoreExtensions
 		return newPkg
 	}
 
-	static def createSubPackage(String pkgUri, String pkgName) {
+	def createSubPackage(String pkgUri, String pkgName) {
 		val newPkg = EcoreFactory.eINSTANCE.createEPackage => [
 			name = pkgName.toLowerCase
 			nsPrefix = pkgName.toLowerCase
 			nsURI = '''http://«pkgName.toLowerCase»/'''
 		]
 
-		val pkg = ModelUtils.loadPkg(pkgUri)
+		val pkg = modelUtils.loadPkg(pkgUri)
 		pkg.EClassifiers.filter(EClass).forEach[cls |
 			newPkg.EClassifiers += EcoreFactory.eINSTANCE.createEClass => [
 				^abstract = cls.^abstract
@@ -115,13 +118,13 @@ class EcoreExtensions
 		return newPkg
 	}
 
-	static def List<EPackage> getReferencedPkgs(EPackage pkg) {
+	def List<EPackage> getReferencedPkgs(EPackage pkg) {
 		val ret = new ArrayList<EPackage>
 		getReferencedPkgsRec(pkg, ret)
 		return ret
 	}
 
-	static def void getReferencedPkgsRec(EPackage pkg, List<EPackage> ret) {
+	def void getReferencedPkgsRec(EPackage pkg, List<EPackage> ret) {
 		EcoreUtil$ExternalCrossReferencer.find(pkg).filter[o, s | o instanceof EClass].forEach[cls, s|
 			var container = cls
 
@@ -137,14 +140,14 @@ class EcoreExtensions
 		]
 	}
 
-	static def void getAllSubPkgs(EPackage pkg, List<EPackage> ret) {
+	def void getAllSubPkgs(EPackage pkg, List<EPackage> ret) {
 		pkg.ESubpackages.forEach[p |
 			getAllSubPkgs(p, ret)
 			ret.add(p)
 		]
 	}
 
-	static def void getAllGenPkgs(GenModel gm, List<GenPackage> ret) {
+	def void getAllGenPkgs(GenModel gm, List<GenPackage> ret) {
 		gm.genPackages.forEach[gp |
 			getAllGenPkgs(gp, ret)
 			ret.add(gp)
@@ -155,14 +158,14 @@ class EcoreExtensions
 		]
 	}
 
-	static def void getAllGenPkgs(GenPackage gp, List<GenPackage> ret) {
+	def void getAllGenPkgs(GenPackage gp, List<GenPackage> ret) {
 		gp.subGenPackages.forEach[gpp |
 			getAllGenPkgs(gpp, ret)
 			ret.add(gpp)
 		]
 	}
 
-	static def needsSetter(EStructuralFeature attr) {
+	def needsSetter(EStructuralFeature attr) {
 		// TODO: Checks against EMF generation
 		switch (attr) {
 			EAttribute:
@@ -175,7 +178,7 @@ class EcoreExtensions
 		}
 	}
 
-	static def isEMFMapDetails(EReference ref) {
+	def isEMFMapDetails(EReference ref) {
 		ref?.name == "details" && ref.EReferenceType?.name == "EStringToStringMapEntry"
 	}
 }

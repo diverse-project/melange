@@ -13,11 +13,12 @@ import org.apache.log4j.Logger
 
 import com.google.inject.Inject
 
-import static extension fr.inria.diverse.k3.sle.ast.ASTHelper.*
+import fr.inria.diverse.k3.sle.ast.ASTHelper
 
 class K3SLEJvmModelInferrer extends AbstractModelInferrer
 {
 	@Inject K3SLETyping typingHelper
+	@Inject extension ASTHelper
 	@Inject extension ModelTypeJvmModelInferrer
 	@Inject extension MetamodelJvmModelInferrer
 	@Inject extension TransformationJvmModelInferrer

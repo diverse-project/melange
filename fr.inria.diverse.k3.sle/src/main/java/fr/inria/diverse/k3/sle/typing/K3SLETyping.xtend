@@ -23,14 +23,22 @@ import org.eclipse.emf.ecore.EClass
 
 import org.eclipse.xtext.common.types.JvmDeclaredType
 
-import static extension fr.inria.diverse.k3.sle.ast.ASTHelper.*
-import static extension fr.inria.diverse.k3.sle.ast.MetamodelExtensions.*
-import static extension fr.inria.diverse.k3.sle.ast.ModelTypeExtensions.*
-import static extension fr.inria.diverse.k3.sle.lib.EcoreExtensions.*
-import static extension fr.inria.diverse.k3.sle.utils.AspectToEcore.*
+import fr.inria.diverse.k3.sle.ast.ASTHelper
+import fr.inria.diverse.k3.sle.ast.MetamodelExtensions
+import fr.inria.diverse.k3.sle.ast.ModelTypeExtensions
+import fr.inria.diverse.k3.sle.lib.EcoreExtensions
+import fr.inria.diverse.k3.sle.utils.AspectToEcore
+import com.google.inject.Inject
 
 class K3SLETyping
 {
+	@Inject extension ASTHelper
+	@Inject extension MetamodelExtensions
+	@Inject extension ModelTypeExtensions
+	@Inject extension EcoreExtensions
+	@Inject extension AspectToEcore
+	@Inject ModelUtils modelUtils
+
 	def inferTypingRelations(ModelTypingSpace root) {
 		root.modelTypes
 		.forEach[mt1 |
@@ -75,7 +83,7 @@ class K3SLETyping
 		if (mm.hasSuperMetamodel) {
 			// EMF resource = extension with inheritance
 			if (mm.resourceType == ResourceType.EMF) {
-				val pkg = ModelUtils.loadPkg(mm.inheritanceRelation.superMetamodel.ecore.uri)
+				val pkg = modelUtils.loadPkg(mm.inheritanceRelation.superMetamodel.ecore.uri)
 
 				val newPkg = EcoreFactory.eINSTANCE.createEPackage => [
 					name = mm.name.toLowerCase
@@ -214,12 +222,12 @@ class K3SLETyping
 				mm.createEcore
 				mm.pkgs.head.createGenModel(mm, mm.generationFolder + mm.name + ".ecore", mm.generationFolder + mm.name + ".genmodel")
 
-				val gm = ModelUtils.loadGenmodel(mm.generationFolder + mm.name + ".genmodel")
+				val gm = modelUtils.loadGenmodel(mm.generationFolder + mm.name + ".genmodel")
 				if (!mm.genmodels.exists[genPackages.exists[gp | gm.genPackages.exists[gpp | gpp.getEcorePackage?.nsURI == gp.getEcorePackage?.nsURI]]])
 					mm.genmodels += gm
 			}
 		} else {
-			val pkg = ModelUtils.loadPkg(mm.ecore.uri)
+			val pkg = modelUtils.loadPkg(mm.ecore.uri)
 
 			// TODO: Check that loaded pkgs/genmodels match
 			if (!mm.pkgs.exists[nsURI == pkg.nsURI])
@@ -249,7 +257,7 @@ class K3SLETyping
 			}
 
 			mm.ecore.genmodelUris.forEach[
-				val gm = ModelUtils.loadGenmodel(it)
+				val gm = modelUtils.loadGenmodel(it)
 				if (!mm.genmodels.exists[genPackages.exists[gp | gm.genPackages.exists[gpp | gpp.getEcorePackage?.nsURI == gp.getEcorePackage?.nsURI]]])
 					mm.genmodels += gm
 			]
@@ -299,7 +307,7 @@ class K3SLETyping
 
 	def dispatch void complete(ModelType mt) {
 		if(mt.isImported) {
-			val pkg = ModelUtils.loadPkg(mt.ecore.uri)
+			val pkg = modelUtils.loadPkg(mt.ecore.uri)
 
 			if (!mt.pkgs.exists[nsURI == pkg.nsURI])
 				mt.pkgs += pkg

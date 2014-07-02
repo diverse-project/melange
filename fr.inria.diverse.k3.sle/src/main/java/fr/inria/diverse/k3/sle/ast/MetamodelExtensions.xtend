@@ -1,5 +1,7 @@
 package fr.inria.diverse.k3.sle.ast
 
+import com.google.inject.Inject
+
 import fr.inria.diverse.k3.sle.lib.MatchingHelper
 
 import fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport
@@ -38,14 +40,20 @@ import org.eclipse.xtext.common.types.JvmTypeParameterDeclarator
 
 import org.eclipse.xtext.naming.QualifiedName
 
-import static extension fr.inria.diverse.k3.sle.ast.ModelTypeExtensions.*
-import static extension fr.inria.diverse.k3.sle.ast.NamingHelper.*
-import static extension fr.inria.diverse.k3.sle.lib.EcoreExtensions.*
-import static extension fr.inria.diverse.k3.sle.utils.AspectToEcore.*
+import fr.inria.diverse.k3.sle.ast.ModelTypeExtensions
+import fr.inria.diverse.k3.sle.ast.NamingHelper
+import fr.inria.diverse.k3.sle.utils.AspectToEcore
+import fr.inria.diverse.k3.sle.lib.EcoreExtensions
 
 class MetamodelExtensions
 {
-	static def List<AspectImport> allAspects(Metamodel mm) {
+	@Inject extension EcoreExtensions
+	@Inject extension ModelTypeExtensions
+	@Inject extension NamingHelper
+	@Inject extension AspectToEcore
+	@Inject MatchingHelper matchingHelper
+
+	def List<AspectImport> allAspects(Metamodel mm) {
 		val ret = newArrayList
 
 		ret += mm.aspects
@@ -57,19 +65,19 @@ class MetamodelExtensions
 	}
 
 	// FIXME: More than one pkg bro
-	static def typedBy(Metamodel mm, ModelType mt) {
-		MatchingHelper.instance.match(mm.exactType.pkgs.head, mt.pkgs.head)
+	def typedBy(Metamodel mm, ModelType mt) {
+		matchingHelper.match(mm.exactType.pkgs.head, mt.pkgs.head)
 	}
 
-	static def hasSuperMetamodel(Metamodel mm) {
+	def hasSuperMetamodel(Metamodel mm) {
 		mm.inheritanceRelation?.superMetamodel !== null
 	}
 
-	static def getAspectAnnotationValue(AspectImport asp) {
+	def getAspectAnnotationValue(AspectImport asp) {
 		return (asp.aspectRef.type as JvmDeclaredType)?.aspectAnnotationValue
 	}
 
-	static def getAspectAnnotationValue(JvmDeclaredType t) {
+	def getAspectAnnotationValue(JvmDeclaredType t) {
 		// TODO: Remove hard-stringed dependency
 		val aspAnn = t.annotations.findFirst[annotation?.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Aspect"]
 		val aspClassName = aspAnn?.values?.findFirst[valueName == "className"]
@@ -84,15 +92,15 @@ class MetamodelExtensions
 		return aspVal
 	}
 
-	static def findClass(Metamodel mm, String clsName) {
+	def findClass(Metamodel mm, String clsName) {
 		mm.allClasses.filter(EClass).findFirst[name == clsName]
 	}
 
-	static def findClassifier(Metamodel mm, String clsName) {
+	def findClassifier(Metamodel mm, String clsName) {
 		mm.allClassifiers.filter(EClassifier).findFirst[name == clsName]
 	}
 
-	static def findClassifierFor(Metamodel mm, String clsName) {
+	def findClassifierFor(Metamodel mm, String clsName) {
 		val cls = mm.findClass(clsName)
 		if (cls !== null)
 			return cls
@@ -102,7 +110,7 @@ class MetamodelExtensions
 			return dt
 	}
 
-	static def getFqnFor(Metamodel mm, EClassifier cls) {
+	def getFqnFor(Metamodel mm, EClassifier cls) {
 		val qnRet = new StringBuilder
 		val pkg = mm.pkgs.findFirst[EClassifiers.exists[name == cls.name]]
 
@@ -122,14 +130,14 @@ class MetamodelExtensions
 		return qnRet.toString
 	}
 
-	static def getAllSubPkgs(Metamodel mm) {
+	def getAllSubPkgs(Metamodel mm) {
 		val allSubPkgs = newArrayList
 		mm.pkgs.head.getAllSubPkgs(allSubPkgs)
 
 		return allSubPkgs
 	}
 
-	static def getPackageFqn(Metamodel mm) {
+	def getPackageFqn(Metamodel mm) {
 		// TODO: Multiple genmodels
 		val genPkg = mm.genmodels.head.genPackages.head
 
@@ -139,7 +147,7 @@ class MetamodelExtensions
 				QualifiedName.create(genPkg.prefix, genPkg.prefix + "Package").normalize.toString
 	}
 
-	static def getFactoryFqn(Metamodel mm) {
+	def getFactoryFqn(Metamodel mm) {
 		// TODO: Multiple genmodels
 		val genPkg = mm.genmodels.head.genPackages.head
 
@@ -149,7 +157,7 @@ class MetamodelExtensions
 				QualifiedName.create(genPkg.prefix, genPkg.prefix + "Factory").normalize.toString
 	}
 
-	static def getFactoryFqnFor(Metamodel mm, EPackage pkg) {
+	def getFactoryFqnFor(Metamodel mm, EPackage pkg) {
 		val allGp = newArrayList
 		getAllGenPkgs(mm.genmodels.head, allGp)
 
@@ -162,32 +170,32 @@ class MetamodelExtensions
 
 	}
 
-	static def hasAdapterFor(Metamodel mm, ModelType mt, EClassifier cls) {
+	def hasAdapterFor(Metamodel mm, ModelType mt, EClassifier cls) {
 		mm.hasAdapterFor(mt, cls.name)
 	}
 
-	static def hasAdapterFor(Metamodel mm, ModelType mt, String find) {
+	def hasAdapterFor(Metamodel mm, ModelType mt, String find) {
 		   mm.^implements.exists[name == mt.name]
 		&& mm.allClasses.exists[name == find]
 		&& mt.allClasses.exists[name == find]
 	}
 
-	static def getAllClassifiers(Metamodel mm) {
+	def getAllClassifiers(Metamodel mm) {
 		mm.pkgs.map[EClassifiers].flatten
 	}
 
-	static def getAllClasses(Metamodel mm) {
+	def getAllClasses(Metamodel mm) {
 		mm.allClassifiers.filter(EClass)
 	}
 
-	static def isUml(Metamodel mm, EClassifier cls) {
+	def isUml(Metamodel mm, EClassifier cls) {
 		val pkg = mm.pkgs.findFirst[EClassifiers.exists[name == cls.name]]
 		return pkg.name == "uml"
 	}
 
 	// FIXME: Create referenced EClass if they don't exist yet
 	// FIXME: Consider finding EClassifier, not EClass
-	static def weaveAspect(Metamodel mm, EClass cls, JvmDeclaredType asp) {
+	def weaveAspect(Metamodel mm, EClass cls, JvmDeclaredType asp) {
 		asp.declaredOperations
 		.filter[
 			   !simpleName.startsWith("_privk3")
@@ -268,7 +276,7 @@ class MetamodelExtensions
 		]
 	}
 
-	static def createEcore(EPackage pkg, String uri) {
+	def createEcore(EPackage pkg, String uri) {
 		val resSet = new ResourceSetImpl
     	val res = resSet.createResource(org.eclipse.emf.common.util.URI.createURI(uri))
     	res.contents.add(pkg)
@@ -280,7 +288,7 @@ class MetamodelExtensions
 		}
 	}
 
-	static def createEcore(Metamodel mm) {
+	def createEcore(Metamodel mm) {
 		val resSet = new ResourceSetImpl
     	val res = resSet.createResource(org.eclipse.emf.common.util.URI.createURI(mm.generationFolder + mm.name + ".ecore"))
     	res.contents.add(mm.pkgs.head.copy)
@@ -292,7 +300,7 @@ class MetamodelExtensions
 		}
 	}
 
-	static def createExtendedMetamodel(Metamodel mm, String uri) {
+	def createExtendedMetamodel(Metamodel mm, String uri) {
 		val resSet = new ResourceSetImpl
 		val res = resSet.createResource(org.eclipse.emf.common.util.URI.createURI(uri))
 		res.contents.addAll(mm.pkgs)
@@ -304,7 +312,7 @@ class MetamodelExtensions
 		}
 	}
 
-	static def createGenModel(EPackage pkg, Metamodel mm, String ecoreLocation, String genModelLocation, String modelDirectory) {
+	def createGenModel(EPackage pkg, Metamodel mm, String ecoreLocation, String genModelLocation, String modelDirectory) {
 		val genModelFact = GenModelFactory.eINSTANCE
 		val genModel = genModelFact.createGenModel
 
@@ -335,11 +343,11 @@ class MetamodelExtensions
 		}
 	}
 
-	static def createGenModel(EPackage pkg, Metamodel mm, String ecoreLocation, String genModelLocation) {
+	def createGenModel(EPackage pkg, Metamodel mm, String ecoreLocation, String genModelLocation) {
 		createGenModel(pkg, mm, ecoreLocation, genModelLocation, '''/«mm.name»Generated/src/''')
 	}
 
-	static def createExtendedGenmodel(Metamodel mm, String ecoreLocation, String genModelLocation, String modelDirectory) {
+	def createExtendedGenmodel(Metamodel mm, String ecoreLocation, String genModelLocation, String modelDirectory) {
 		val genModelFact = GenModelFactory.eINSTANCE
 		val genModel = genModelFact.createGenModel
 
@@ -370,7 +378,7 @@ class MetamodelExtensions
 		}
 	}
 
-	static def generateCode(GenModel genModel) {
+	def generateCode(GenModel genModel) {
 		genModel.reconcile
 		genModel.canGenerate = true
 		genModel.validateModel = true
@@ -383,12 +391,12 @@ class MetamodelExtensions
 		)
 	}
 
-	static def getGenerationFolder(Metamodel mm) {
+	def getGenerationFolder(Metamodel mm) {
 		//return '''platform:/resource/«mm.project.name»/generated/«mm.name»/'''
 		return '''platform:/resource/«mm.name»Generated/model/«mm.name»/'''
 	}
 
-	static def getProject(Metamodel mm) {
+	def getProject(Metamodel mm) {
 		val platformString = mm.eResource.URI.toPlatformString(true)
 		return ResourcesPlugin.workspace.root.getFile(new Path(platformString)).project
 	}

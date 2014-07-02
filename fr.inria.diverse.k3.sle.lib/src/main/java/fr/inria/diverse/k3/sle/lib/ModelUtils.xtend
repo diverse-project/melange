@@ -11,7 +11,7 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenModel
 
 class ModelUtils
 {
-	def static loadPkg(String path) {
+	def loadPkg(String path) {
 		if (!EPackage.Registry.INSTANCE.containsKey(EcorePackage.eNS_URI))
 			EPackage.Registry.INSTANCE.put(EcorePackage.eNS_URI, EcorePackage.eINSTANCE)
 
@@ -24,7 +24,7 @@ class ModelUtils
 		pkg.contents.get(0) as EPackage
 	}
 
-	def static loadGenmodel(String path) {
+	def loadGenmodel(String path) {
 		if (!EPackage.Registry.INSTANCE.containsKey(GenModelPackage.eNS_URI))
 			EPackage.Registry.INSTANCE.put(GenModelPackage.eNS_URI, GenModelPackage.eINSTANCE)
 
@@ -37,4 +37,3 @@ class ModelUtils
 		pkg.contents.get(0) as GenModel
 	}
 }
-

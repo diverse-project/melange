@@ -10,11 +10,11 @@ import org.eclipse.xtext.naming.QualifiedName
 
 class NamingHelper
 {
-	static def normalize(QualifiedName name) {
+	def normalize(QualifiedName name) {
 		name.skipLast(1).toLowerCase.append(name.lastSegment.toFirstUpper)
 	}
 
-	static def getGetterName(EStructuralFeature f) {
+	def getGetterName(EStructuralFeature f) {
 		switch (f) {
 			EAttribute:
 				if (#["java.lang.Boolean", "boolean"].contains(f.EAttributeType.instanceClassName))
@@ -26,14 +26,14 @@ class NamingHelper
 		}
 	}
 
-	static def getGetterName(JvmOperation op) {
+	def getGetterName(JvmOperation op) {
 		if (#["java.lang.Boolean", "boolean"].contains(op.returnType.type.simpleName))
 			'''is«op.simpleName.toFirstUpper»'''.toString
 		else
 			'''get«op.simpleName.toFirstUpper»'''.toString
 	}
 
-	static def getUmlGetterName(EStructuralFeature f) {
+	def getUmlGetterName(EStructuralFeature f) {
 		switch (f) {
 			EAttribute:
 				if (#["java.lang.Boolean", "boolean"].contains(f.EAttributeType.instanceClassName))
@@ -45,15 +45,15 @@ class NamingHelper
 		}
 	}
 
-	static def getSetterName(EStructuralFeature f) {
+	def getSetterName(EStructuralFeature f) {
 		'''set«f.name.toFirstUpper»'''.toString
 	}
 
-	static def getSetterName(JvmOperation op) {
+	def getSetterName(JvmOperation op) {
 		'''set«op.simpleName.toFirstUpper»'''.toString
 	}
 
-	static def formatUmlOperationName(EOperation op) {
+	def formatUmlOperationName(EOperation op) {
 		val opName = op.name.toCamelCase
 
 		if (op.EParameters.head?.EType?.name == "EDiagnosticChain") {
@@ -63,7 +63,7 @@ class NamingHelper
 		return opName
 	}
 
-	static def formatUmlReferenceName(EReference ref) {
+	def formatUmlReferenceName(EReference ref) {
 		if (ref.name == "class")
 			return "class_"
 		else if (ref.many) {
@@ -80,7 +80,7 @@ class NamingHelper
 			return ref.name
 	}
 
-	static def toCamelCase(String s) {
+	def toCamelCase(String s) {
 		val parts = s.split("_")
 		val res = new StringBuilder
 

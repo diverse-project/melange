@@ -10,14 +10,16 @@ import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 import com.google.inject.Inject
 
-import static extension fr.inria.diverse.k3.sle.ast.ASTHelper.*
-import static extension fr.inria.diverse.k3.sle.ast.MetamodelExtensions.*
+import fr.inria.diverse.k3.sle.ast.ASTHelper
+import fr.inria.diverse.k3.sle.ast.MetamodelExtensions
 
 class TransformationJvmModelInferrer
 {
 	@Inject extension JvmModelInferrerHelper
 	@Inject extension JvmTypesBuilder
 	@Inject extension IQualifiedNameProvider
+	@Inject extension ASTHelper
+	@Inject extension MetamodelExtensions
 
 	def generateTransformation(Transformation transfo, IJvmDeclaredTypeAcceptor acceptor) {
 		acceptor.accept(transfo.toClass(transfo.className))

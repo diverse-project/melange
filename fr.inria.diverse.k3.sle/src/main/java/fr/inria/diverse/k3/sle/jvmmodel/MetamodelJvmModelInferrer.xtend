@@ -24,18 +24,24 @@ import java.util.List
 
 import com.google.inject.Inject
 
-import static extension fr.inria.diverse.k3.sle.ast.ASTHelper.*
-import static extension fr.inria.diverse.k3.sle.ast.NamingHelper.*
-import static extension fr.inria.diverse.k3.sle.ast.ModelTypeExtensions.*
-import static extension fr.inria.diverse.k3.sle.ast.MetamodelExtensions.*
-import static extension fr.inria.diverse.k3.sle.lib.EcoreExtensions.*
-import static extension fr.inria.diverse.k3.sle.utils.AspectToEcore.*
+import fr.inria.diverse.k3.sle.ast.ASTHelper
+import fr.inria.diverse.k3.sle.ast.NamingHelper
+import fr.inria.diverse.k3.sle.ast.ModelTypeExtensions
+import fr.inria.diverse.k3.sle.ast.MetamodelExtensions
+import fr.inria.diverse.k3.sle.lib.EcoreExtensions
+import fr.inria.diverse.k3.sle.utils.AspectToEcore
 
 class MetamodelJvmModelInferrer
 {
 	@Inject extension JvmModelInferrerHelper
 	@Inject extension JvmTypesBuilder
 	@Inject extension IQualifiedNameProvider
+	@Inject extension ASTHelper
+	@Inject extension NamingHelper
+	@Inject extension ModelTypeExtensions
+	@Inject extension MetamodelExtensions
+	@Inject extension EcoreExtensions
+	@Inject extension AspectToEcore
 
 	def generateAdapters(Metamodel mm, IJvmDeclaredTypeAcceptor acceptor) {
 		// TODO: Test when the subtype has more classes than the supertype and vice-versa

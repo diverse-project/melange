@@ -9,17 +9,20 @@ import org.eclipse.xtext.common.types.JvmVisibility
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmTypeParameterDeclarator
 
-import static extension fr.inria.diverse.k3.sle.lib.EcoreExtensions.*
+import fr.inria.diverse.k3.sle.lib.EcoreExtensions
 
 import java.util.Collection
+import com.google.inject.Inject
 
 class AspectToEcore
 {
+	@Inject extension EcoreExtensions
+
 	/**
 	 * Try to infer the "modeling intention" of the aspect aspImport
 	 * and put its features into a newly created EPackage
 	 */
-	static def inferEcoreFragment(AspectImport aspImport) {
+	def inferEcoreFragment(AspectImport aspImport) {
 		val aspect = aspImport.aspectRef.type as JvmDeclaredType
 		val baseCls = aspImport.aspectedClass
 		val basePkg = baseCls.EPackage
@@ -119,7 +122,7 @@ class AspectToEcore
 		aspImport.ecoreFragment = aspPkg
 	}
 
-	static def findFeatureNameFor(JvmDeclaredType type, JvmOperation op) {
+	def findFeatureNameFor(JvmDeclaredType type, JvmOperation op) {
 		if (
 			(  op.simpleName.startsWith("get")
 			&& Character.isUpperCase(op.simpleName.charAt(3))

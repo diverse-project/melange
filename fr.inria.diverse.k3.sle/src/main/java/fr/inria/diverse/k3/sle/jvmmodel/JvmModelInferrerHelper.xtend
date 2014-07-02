@@ -14,17 +14,21 @@ import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
-import static extension fr.inria.diverse.k3.sle.ast.NamingHelper.*
-import static extension fr.inria.diverse.k3.sle.lib.EcoreExtensions.*
-import static extension fr.inria.diverse.k3.sle.ast.ModelTypeExtensions.*
-import static extension fr.inria.diverse.k3.sle.ast.MetamodelExtensions.*
+import fr.inria.diverse.k3.sle.ast.NamingHelper
+import fr.inria.diverse.k3.sle.lib.EcoreExtensions
+import fr.inria.diverse.k3.sle.ast.ModelTypeExtensions
+import fr.inria.diverse.k3.sle.ast.MetamodelExtensions
 
 import com.google.inject.Inject
 
 class JvmModelInferrerHelper
 {
+	@Inject extension EcoreExtensions
+	@Inject extension ModelTypeExtensions
+	@Inject extension MetamodelExtensions
 	@Inject extension JvmTypesBuilder
 	@Inject extension IQualifiedNameProvider
+	@Inject extension NamingHelper
 
 	/*--- Getters / Setters  ---*/
 	def toGetterSignature(EStructuralFeature f, String name, JvmTypeReference type) {

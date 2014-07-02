@@ -17,15 +17,18 @@ import java.util.List
 
 import com.google.inject.Inject
 
-import static extension fr.inria.diverse.k3.sle.ast.NamingHelper.*
-import static extension fr.inria.diverse.k3.sle.ast.ModelTypeExtensions.*
-import static extension fr.inria.diverse.k3.sle.lib.EcoreExtensions.*
+import fr.inria.diverse.k3.sle.ast.NamingHelper
+import fr.inria.diverse.k3.sle.ast.ModelTypeExtensions
+import fr.inria.diverse.k3.sle.lib.EcoreExtensions
 
 class ModelTypeJvmModelInferrer
 {
 	@Inject extension JvmModelInferrerHelper
 	@Inject extension JvmTypesBuilder
 	@Inject extension IQualifiedNameProvider
+	@Inject extension NamingHelper
+	@Inject extension ModelTypeExtensions
+	@Inject extension EcoreExtensions
 
 	def generateInterfaces(ModelType mt, IJvmDeclaredTypeAcceptor acceptor) {
 		acceptor.accept(mt.toInterface(mt.fullyQualifiedName.toString, []))

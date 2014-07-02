@@ -10,9 +10,13 @@ import fr.inria.diverse.k3.sle.lib.ModelUtils
 
 import org.eclipse.xtext.validation.Check
 import org.eclipse.xtext.common.types.JvmDeclaredType
+import com.google.inject.Inject
 
 class K3SLEValidator extends AbstractK3SLEValidator
 {
+	@Inject ModelUtils modelUtils
+	@Inject MatchingHelper matchingHelper
+
 	@Check
 	def checkNamesAreUnique(Element e) {
 		if ((e.eContainer as ModelTypingSpace).elements.exists[e_ |
@@ -38,7 +42,7 @@ class K3SLEValidator extends AbstractK3SLEValidator
 			// !!!
 			val speculativeGenmodelPath = mm.ecore.uri.substring(0, mm.ecore.uri.lastIndexOf(".")) + ".genmodel"
 			try {
-				if (ModelUtils.loadGenmodel(speculativeGenmodelPath) !== null)
+				if (modelUtils.loadGenmodel(speculativeGenmodelPath) !== null)
 					warning("Using Genmodel file found at " + speculativeGenmodelPath, K3slePackage.Literals.METAMODEL__ECORE)
 				else error("A valid Genmodel file must be imported", K3slePackage.Literals.METAMODEL__ECORE)
 
@@ -51,7 +55,7 @@ class K3SLEValidator extends AbstractK3SLEValidator
 	@Check
 	def checkEcoreIsLoadable(Metamodel mm) {
 		try {
-			if (mm.ecore?.uri !== null && ModelUtils.loadPkg(mm.ecore.uri) === null) {
+			if (mm.ecore?.uri !== null && modelUtils.loadPkg(mm.ecore.uri) === null) {
 				error("Couldn't load specified Ecore", K3slePackage.Literals.METAMODEL__ECORE)
 			}
 		} catch (Exception e) {}
@@ -60,7 +64,7 @@ class K3SLEValidator extends AbstractK3SLEValidator
 	@Check
 	def checkGenModelIsLoadable(Metamodel mm) {
 		try {
-			if (mm.ecore?.genmodelUris.head !== null && ModelUtils.loadGenmodel(mm.ecore.genmodelUris.head) === null) {
+			if (mm.ecore?.genmodelUris.head !== null && modelUtils.loadGenmodel(mm.ecore.genmodelUris.head) === null) {
 				error("Couldn't load specified GenModel", K3slePackage.Literals.METAMODEL__ECORE)
 			}
 		} catch (Exception e) {}
@@ -74,13 +78,13 @@ class K3SLEValidator extends AbstractK3SLEValidator
 
 	@Check
 	def checkImplements(Metamodel mm) {
-		val mmPkg = ModelUtils.loadPkg(mm.ecore.uri)
+		val mmPkg = modelUtils.loadPkg(mm.ecore.uri)
 
 		mm.^implements
 		.forEach[mt |
-			val mtPkg = ModelUtils.loadPkg(mt.ecore.uri)
+			val mtPkg = modelUtils.loadPkg(mt.ecore.uri)
 
-			if (!MatchingHelper.instance.match(mmPkg, mtPkg))
+			if (!matchingHelper.match(mmPkg, mtPkg))
 				error(
 					'''«mm.name» doesn't match the interface «mt.name»''',
 					K3slePackage.Literals.ELEMENT__NAME,
