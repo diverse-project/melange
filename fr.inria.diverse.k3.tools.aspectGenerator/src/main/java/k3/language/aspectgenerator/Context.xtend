@@ -43,7 +43,7 @@ class Context {
 		result = result + "\t/*"
 		result = result + "\n\t* BE CAREFUL :"
 		result = result + "\n\t*"
-		result = result + "\n\t* This class inherits of multi superclass"
+		result = result + "\n\t* This class has more than one superclass"
 		result = result + "\n\t* please specify which parent you want with the 'super' expected calling"
 		result = result + "\n\t*\n\t*/\n\n"
 		

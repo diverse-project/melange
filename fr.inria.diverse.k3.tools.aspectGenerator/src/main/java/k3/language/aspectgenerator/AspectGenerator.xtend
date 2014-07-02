@@ -172,7 +172,7 @@ class EClassAspect {
 			
 			_self.addClass (context)
 			
-			scriptNewClass = scriptNewClass + "@Aspect(className=typeof(" + _self.name + "))\n"
+			scriptNewClass = scriptNewClass + "@Aspect(className=" + _self.name + ")\n"
 						
 			if (_self.abstract) {
 				scriptNewClass = scriptNewClass + "abstract class "
