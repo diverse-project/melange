@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EcoreFactory
 
 import org.eclipse.xtext.common.types.JvmDeclaredType
+import fr.inria.diverse.k3.sle.algebra.ModelTypeAlgebra
 
 class K3SLETyping
 {
@@ -40,6 +41,7 @@ class K3SLETyping
 	@Inject extension EcoreExtensions
 	@Inject extension AspectToEcore
 	@Inject ModelUtils modelUtils
+	@Inject ModelTypeAlgebra algebra
 
 	def inferTypingRelations(ModelTypingSpace root) {
 		root.modelTypes
@@ -199,26 +201,8 @@ class K3SLETyping
 					asp.aspectedClass = cls
 					asp.inferEcoreFragment
 
-					// TODO: Move that in an model algebra service
-					try {
-						val scope = new DefaultComparisonScope(asp.ecoreFragment, mm.pkgs.head, null)
-						val comparison = EMFCompare.builder.build.compare(scope)
-
-						val diffs = comparison.differences
-						diffs.filter[
-							   kind != DifferenceKind.ADD
-							&& !requires.exists[r | r.kind == DifferenceKind.ADD]
-						].forEach[
-							discard
-						]
-
-						val mergerRegistry = IMerger.RegistryImpl.createStandaloneInstance
-						val merger = new BatchMerger(mergerRegistry)
-						merger.copyAllLeftToRight(diffs, null)
-					} catch (Exception e) {
-						println("Got exception:")
-						e.printStackTrace
-					}
+					// FIXME: _not_ .head, could be any of them
+					algebra.weaveAspect(mm.pkgs.head, asp.ecoreFragment)
 				]
 
 				mm.createEcore
@@ -283,26 +267,8 @@ class K3SLETyping
 				asp.aspectedClass = cls
 				asp.inferEcoreFragment
 
-				// TODO: Move that in an model algebra service
-				try {
-					val scope = new DefaultComparisonScope(asp.ecoreFragment, mm.pkgs.head, null)
-					val comparison = EMFCompare.builder.build.compare(scope)
-
-					val diffs = comparison.differences
-					diffs.filter[
-						   kind != DifferenceKind.ADD
-						&& !requires.exists[r | r.kind == DifferenceKind.ADD]
-					].forEach[
-						discard
-					]
-
-					val mergerRegistry = IMerger.RegistryImpl.createStandaloneInstance
-					val merger = new BatchMerger(mergerRegistry)
-					merger.copyAllLeftToRight(diffs, null)
-				} catch (Exception e) {
-					println("Got exception:")
-					e.printStackTrace
-				}
+				// FIXME: _not_ .head, could be any of them
+				algebra.weaveAspect(mm.pkgs.head, asp.ecoreFragment)
 			]
 		}
 	}
