@@ -30,8 +30,6 @@ import org.eclipse.emf.compare.scope.DefaultComparisonScope
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EcoreFactory
 
-import org.eclipse.emf.ecore.util.EcoreUtil
-
 import org.eclipse.xtext.common.types.JvmDeclaredType
 
 class K3SLETyping
@@ -160,7 +158,7 @@ class K3SLETyping
 						}
 					]
 
-				val copy = EcoreUtil.copy(mm.pkgs.head)
+				//val copy = EcoreUtil.copy(mm.pkgs.head)
 				val ecoreUri = '''platform:/resource/«mm.project.name»/model/«mm.name».ecore'''
 				val genmodelUri = '''platform:/resource/«mm.project.name»/model/«mm.name».genmodel'''
 				val srcFolder = '''«mm.project.name»/src'''
