@@ -6,8 +6,7 @@ Bundle-Version: 3.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: DIVERSE
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6,
- JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: fr.inria.diverse.k3.sle.metamodel.k3sle,
  fr.inria.diverse.k3.sle.metamodel.k3sle.impl,
  fr.inria.diverse.k3.sle.metamodel.k3sle.util
