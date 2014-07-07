@@ -3,6 +3,7 @@ K3SLE
 
 TODO
 ----
+- [ ] Scala as an alternative target language
 - [ ] **Externalize all AST-completion operations in a IDerivedStateComputer post-processor**
 - [ ] Modeling in-the-large
 	- [ ] Metamodels attributes and operations
