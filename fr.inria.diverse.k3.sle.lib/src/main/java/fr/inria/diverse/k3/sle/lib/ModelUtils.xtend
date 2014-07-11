@@ -16,6 +16,10 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 class ModelUtils
 {
 	def loadPkg(String path) {
+		loadAllPkgs(path).head
+	}
+
+	def loadAllPkgs(String path) {
 		if (!EPackage.Registry.INSTANCE.containsKey(EcorePackage.eNS_URI))
 			EPackage.Registry.INSTANCE.put(EcorePackage.eNS_URI, EcorePackage.eINSTANCE)
 
@@ -25,7 +29,7 @@ class ModelUtils
 		val uri = URI.createURI(path)
 		val pkg = rs.getResource(uri, true)
 
-		pkg.contents.get(0) as EPackage
+		pkg.contents.filter(EPackage)
 	}
 
 	def loadGenmodel(String path) {

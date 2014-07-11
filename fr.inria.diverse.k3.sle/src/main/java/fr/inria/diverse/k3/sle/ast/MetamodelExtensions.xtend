@@ -2,8 +2,11 @@ package fr.inria.diverse.k3.sle.ast
 
 import com.google.inject.Inject
 
+import com.google.common.collect.Lists
+
 import fr.inria.diverse.k3.sle.lib.EcoreExtensions
 import fr.inria.diverse.k3.sle.lib.MatchingHelper
+import fr.inria.diverse.k3.sle.lib.ModelUtils
 
 import fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
@@ -52,6 +55,7 @@ class MetamodelExtensions
 	@Inject extension ModelTypeExtensions
 	@Inject extension NamingHelper
 	@Inject extension AspectToEcore
+	@Inject ModelUtils modelUtils
 	@Inject MatchingHelper matchingHelper
 
 	def List<AspectImport> allAspects(Metamodel mm) {
@@ -349,23 +353,20 @@ class MetamodelExtensions
 	}
 
 	def createExtendedGenmodel(Metamodel mm, String ecoreLocation, String genModelLocation, String modelDirectory) {
-		val genModelFact = GenModelFactory.eINSTANCE
-		val genModel = genModelFact.createGenModel
+		// FIXME: Stupid fix -> reopen the Ecore here to avoid Xtext-style cross-references in the genmodel
+		val pkgs = modelUtils.loadAllPkgs(ecoreLocation)
+		val parentGm = modelUtils.loadGenmodel(mm.inheritanceRelation?.superMetamodel?.ecore?.genmodelUris.head)
 
-		genModel.complianceLevel = GenJDKLevel.JDK70_LITERAL
-		//genModel.modelDirectory = '''/«mm.project.name»/src-gen/'''
-		genModel.modelDirectory = modelDirectory
-		genModel.foreignModel.add(ecoreLocation)
-		genModel.modelName = mm.name
-		//val usedPkg = ModelUtils.loadGenmodel(mm.inheritanceRelation?.superMetamodel?.ecore.genmodelUris.head)
-		//genModel.usedGenPackages += mm.inheritanceRelation?.superMetamodel?.genmodels.head.genPackages
-		//genModel.usedGenPackages += usedPkg.genPackages
-		genModel.usedGenPackages += mm.inheritanceRelation?.superMetamodel?.genmodels.head.genPackages
-		genModel.initialize(mm.pkgs)
-
-		val genPackage = genModel.genPackages.head
-		genPackage.prefix = mm.name.toLowerCase.toFirstUpper
-		//genPackage.basePackage = mm.name.toLowerCase
+		val genModel = GenModelFactory.eINSTANCE.createGenModel => [
+			it.complianceLevel = GenJDKLevel.JDK70_LITERAL
+			it.modelDirectory = modelDirectory
+			it.modelName = mm.name
+			it.modelPluginID = mm.name
+			it.usedGenPackages += parentGm.genPackages
+			it.foreignModel.add(ecoreLocation)
+			it.initialize(Lists.newArrayList(pkgs))
+			it.genPackages.forEach[basePackage = mm.name.toLowerCase]
+		]
 
 		val resSet = new ResourceSetImpl
 		val res = resSet.createResource(URI.createURI(genModelLocation))

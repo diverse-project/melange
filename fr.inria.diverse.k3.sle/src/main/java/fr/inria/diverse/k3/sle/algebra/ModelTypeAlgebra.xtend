@@ -6,7 +6,7 @@ import org.eclipse.emf.ecore.EPackage
 
 /**
  * Just to simplify some common operations for now
- * 
+ *
  * Should then be defined only in terms of metamodels/modeltypes
  * which will require important modifications to the metalanguage
  */

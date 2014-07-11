@@ -110,7 +110,8 @@ class K3SLETyping
 				pkg.referencedPkgs.filterNull.forEach[p |
 					val nPkg = EcoreFactory.eINSTANCE.createEPackage => [
 						name = p.name
-						nsURI = p.nsURI
+						nsURI = p.nsURI + "/extended" // Naively suffix all the packages so that
+						                              // they don't clash with the previous ones
 						nsPrefix = p.nsPrefix
 
 						p.EClassifiers.filter(EClass).forEach[cls |
