@@ -280,7 +280,7 @@ class MetamodelExtensions
 	def createEcore(EPackage pkg, String uri) {
 		val resSet = new ResourceSetImpl
     	val res = resSet.createResource(URI.createURI(uri))
-    	res.contents.add(pkg)
+    	res.contents.add(pkg.copy)
 
 		try {
 			res.save(null)
@@ -304,7 +304,7 @@ class MetamodelExtensions
 	def createExtendedMetamodel(Metamodel mm, String uri) {
 		val resSet = new ResourceSetImpl
 		val res = resSet.createResource(URI.createURI(uri))
-		res.contents.addAll(mm.pkgs)
+		res.contents.addAll(mm.pkgs.map[copy])
 
 		try {
 			res.save(null)
