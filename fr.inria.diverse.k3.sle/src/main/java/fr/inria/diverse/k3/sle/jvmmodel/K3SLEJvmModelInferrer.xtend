@@ -40,7 +40,7 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 					root.transformations.forEach[generateTransformation(acceptor)]
 			}
 		} catch (ASTProcessingException e) {
-			logger.error('''ASTProcessingException: «e.message»''', e)
+			logger.error('''ASTProcessingException: «e.message»''')
 		} catch (Exception e) {
 			logger.error('''Exception: «e.message»''', e)
 		}
