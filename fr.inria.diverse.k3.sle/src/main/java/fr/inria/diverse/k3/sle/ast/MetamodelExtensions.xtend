@@ -333,7 +333,7 @@ class MetamodelExtensions
 
 		try {
 			res.save(null)
-			genModel.generateCode
+			//genModel.generateCode
 		} catch (IOException e) {
 			e.printStackTrace
 		}
