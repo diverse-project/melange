@@ -172,6 +172,7 @@ class EcoreExtensions
 		switch (attr) {
 			EAttribute:
 				    attr.changeable
+				&& !attr.many
 				//&& !attr.derived
 			EReference:
 				    attr.changeable
