@@ -318,23 +318,14 @@ class MetamodelExtensions
 	}
 
 	def createGenModel(EPackage pkg, Metamodel mm, String ecoreLocation, String genModelLocation, String modelDirectory) {
-		val genModelFact = GenModelFactory.eINSTANCE
-		val genModel = genModelFact.createGenModel
-
-		genModel.complianceLevel = GenJDKLevel.JDK70_LITERAL
-		//genModel.modelDirectory = '''/«mm.project.name»/src-gen/'''
-		genModel.modelDirectory = modelDirectory
-		genModel.foreignModel.add(ecoreLocation)
-		genModel.modelName = mm.name
-		//val usedPkg = ModelUtils.loadGenmodel(mm.inheritanceRelation?.superMetamodel?.ecore.genmodelUris.head)
-		//genModel.usedGenPackages += mm.inheritanceRelation?.superMetamodel?.genmodels.head.genPackages
-		//genModel.usedGenPackages += usedPkg.genPackages
-		genModel.usedGenPackages += mm.inheritanceRelation?.superMetamodel?.genmodels.head.genPackages
-		genModel.initialize(Collections.singleton(pkg))
-
-		val genPackage = genModel.genPackages.head
-		genPackage.prefix = mm.name.toLowerCase.toFirstUpper
-		//genPackage.basePackage = mm.name.toLowerCase
+		val genModel = GenModelFactory.eINSTANCE.createGenModel => [
+			it.complianceLevel = GenJDKLevel.JDK70_LITERAL
+			it.modelDirectory = modelDirectory
+			it.foreignModel.add(ecoreLocation)
+			it.modelName = mm.name
+			it.usedGenPackages += mm.inheritanceRelation?.superMetamodel?.genmodels.head.genPackages
+			it.initialize(Collections.singleton(pkg))
+		]
 
 		val resSet = new ResourceSetImpl
 		val res = resSet.createResource(URI.createURI(genModelLocation))
