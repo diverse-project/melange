@@ -3,6 +3,7 @@
 package exhaustive;
 
 import java.util.Date;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -272,7 +273,7 @@ public interface AttributesTest extends MultipleSuperTest, InterfaceTest {
 	 * @return the value of the '<em>Lower Bound1</em>' attribute.
 	 * @see #setLowerBound1(Integer)
 	 * @see exhaustive.ExhaustivePackage#getAttributesTest_LowerBound1()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	Integer getLowerBound1();
@@ -288,30 +289,20 @@ public interface AttributesTest extends MultipleSuperTest, InterfaceTest {
 	void setLowerBound1(Integer value);
 
 	/**
-	 * Returns the value of the '<em><b>Lower Bound2</b></em>' attribute.
+	 * Returns the value of the '<em><b>Lower Bound2</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.Short}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Lower Bound2</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Lower Bound2</em>' attribute.
-	 * @see #setLowerBound2(Short)
+	 * @return the value of the '<em>Lower Bound2</em>' attribute list.
 	 * @see exhaustive.ExhaustivePackage#getAttributesTest_LowerBound2()
-	 * @model
+	 * @model lower="2"
 	 * @generated
 	 */
-	Short getLowerBound2();
-
-	/**
-	 * Sets the value of the '{@link exhaustive.AttributesTest#getLowerBound2 <em>Lower Bound2</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Lower Bound2</em>' attribute.
-	 * @see #getLowerBound2()
-	 * @generated
-	 */
-	void setLowerBound2(Short value);
+	EList<Short> getLowerBound2();
 
 	/**
 	 * Returns the value of the '<em><b>Lower Bound N</b></em>' attribute.
@@ -395,56 +386,36 @@ public interface AttributesTest extends MultipleSuperTest, InterfaceTest {
 	void setUpperBound1(Date value);
 
 	/**
-	 * Returns the value of the '<em><b>Upper Bound2</b></em>' attribute.
+	 * Returns the value of the '<em><b>Upper Bound2</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Upper Bound2</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Upper Bound2</em>' attribute.
-	 * @see #setUpperBound2(String)
+	 * @return the value of the '<em>Upper Bound2</em>' attribute list.
 	 * @see exhaustive.ExhaustivePackage#getAttributesTest_UpperBound2()
-	 * @model
+	 * @model upper="2"
 	 * @generated
 	 */
-	String getUpperBound2();
+	EList<String> getUpperBound2();
 
 	/**
-	 * Sets the value of the '{@link exhaustive.AttributesTest#getUpperBound2 <em>Upper Bound2</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Upper Bound2</em>' attribute.
-	 * @see #getUpperBound2()
-	 * @generated
-	 */
-	void setUpperBound2(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Upper Bound N</b></em>' attribute.
+	 * Returns the value of the '<em><b>Upper Bound N</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.Long}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Upper Bound N</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Upper Bound N</em>' attribute.
-	 * @see #setUpperBoundN(Long)
+	 * @return the value of the '<em>Upper Bound N</em>' attribute list.
 	 * @see exhaustive.ExhaustivePackage#getAttributesTest_UpperBoundN()
 	 * @model
 	 * @generated
 	 */
-	Long getUpperBoundN();
-
-	/**
-	 * Sets the value of the '{@link exhaustive.AttributesTest#getUpperBoundN <em>Upper Bound N</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Upper Bound N</em>' attribute.
-	 * @see #getUpperBoundN()
-	 * @generated
-	 */
-	void setUpperBoundN(Long value);
+	EList<Long> getUpperBoundN();
 
 	/**
 	 * Returns the value of the '<em><b>Ordered Yes</b></em>' attribute.

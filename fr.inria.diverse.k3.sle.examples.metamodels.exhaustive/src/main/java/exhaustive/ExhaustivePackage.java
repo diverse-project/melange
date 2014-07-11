@@ -795,7 +795,7 @@ public interface ExhaustivePackage extends EPackage {
 	int ATTRIBUTES_TEST__LOWER_BOUND1 = MULTIPLE_SUPER_TEST_FEATURE_COUNT + 8;
 
 	/**
-	 * The feature id for the '<em><b>Lower Bound2</b></em>' attribute.
+	 * The feature id for the '<em><b>Lower Bound2</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -831,7 +831,7 @@ public interface ExhaustivePackage extends EPackage {
 	int ATTRIBUTES_TEST__UPPER_BOUND1 = MULTIPLE_SUPER_TEST_FEATURE_COUNT + 12;
 
 	/**
-	 * The feature id for the '<em><b>Upper Bound2</b></em>' attribute.
+	 * The feature id for the '<em><b>Upper Bound2</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -840,7 +840,7 @@ public interface ExhaustivePackage extends EPackage {
 	int ATTRIBUTES_TEST__UPPER_BOUND2 = MULTIPLE_SUPER_TEST_FEATURE_COUNT + 13;
 
 	/**
-	 * The feature id for the '<em><b>Upper Bound N</b></em>' attribute.
+	 * The feature id for the '<em><b>Upper Bound N</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1542,10 +1542,10 @@ public interface ExhaustivePackage extends EPackage {
 	EAttribute getAttributesTest_LowerBound1();
 
 	/**
-	 * Returns the meta object for the attribute '{@link exhaustive.AttributesTest#getLowerBound2 <em>Lower Bound2</em>}'.
+	 * Returns the meta object for the attribute list '{@link exhaustive.AttributesTest#getLowerBound2 <em>Lower Bound2</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Lower Bound2</em>'.
+	 * @return the meta object for the attribute list '<em>Lower Bound2</em>'.
 	 * @see exhaustive.AttributesTest#getLowerBound2()
 	 * @see #getAttributesTest()
 	 * @generated
@@ -1586,10 +1586,10 @@ public interface ExhaustivePackage extends EPackage {
 	EAttribute getAttributesTest_UpperBound1();
 
 	/**
-	 * Returns the meta object for the attribute '{@link exhaustive.AttributesTest#getUpperBound2 <em>Upper Bound2</em>}'.
+	 * Returns the meta object for the attribute list '{@link exhaustive.AttributesTest#getUpperBound2 <em>Upper Bound2</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Upper Bound2</em>'.
+	 * @return the meta object for the attribute list '<em>Upper Bound2</em>'.
 	 * @see exhaustive.AttributesTest#getUpperBound2()
 	 * @see #getAttributesTest()
 	 * @generated
@@ -1597,10 +1597,10 @@ public interface ExhaustivePackage extends EPackage {
 	EAttribute getAttributesTest_UpperBound2();
 
 	/**
-	 * Returns the meta object for the attribute '{@link exhaustive.AttributesTest#getUpperBoundN <em>Upper Bound N</em>}'.
+	 * Returns the meta object for the attribute list '{@link exhaustive.AttributesTest#getUpperBoundN <em>Upper Bound N</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Upper Bound N</em>'.
+	 * @return the meta object for the attribute list '<em>Upper Bound N</em>'.
 	 * @see exhaustive.AttributesTest#getUpperBoundN()
 	 * @see #getAttributesTest()
 	 * @generated
@@ -2206,7 +2206,7 @@ public interface ExhaustivePackage extends EPackage {
 		EAttribute ATTRIBUTES_TEST__LOWER_BOUND1 = eINSTANCE.getAttributesTest_LowerBound1();
 
 		/**
-		 * The meta object literal for the '<em><b>Lower Bound2</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Lower Bound2</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -2238,7 +2238,7 @@ public interface ExhaustivePackage extends EPackage {
 		EAttribute ATTRIBUTES_TEST__UPPER_BOUND1 = eINSTANCE.getAttributesTest_UpperBound1();
 
 		/**
-		 * The meta object literal for the '<em><b>Upper Bound2</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Upper Bound2</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -2246,7 +2246,7 @@ public interface ExhaustivePackage extends EPackage {
 		EAttribute ATTRIBUTES_TEST__UPPER_BOUND2 = eINSTANCE.getAttributesTest_UpperBound2();
 
 		/**
-		 * The meta object literal for the '<em><b>Upper Bound N</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Upper Bound N</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

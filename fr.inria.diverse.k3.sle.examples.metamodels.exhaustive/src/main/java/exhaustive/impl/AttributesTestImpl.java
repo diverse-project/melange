@@ -8,15 +8,18 @@ import exhaustive.ReferencesTest;
 import exhaustive.SerializableEnumTest;
 import exhaustive.UnserializableEnumTest;
 
+import java.util.Collection;
 import java.util.Date;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -238,24 +241,14 @@ public class AttributesTestImpl extends MultipleSuperTestImpl implements Attribu
 	protected Integer lowerBound1 = LOWER_BOUND1_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getLowerBound2() <em>Lower Bound2</em>}' attribute.
+	 * The cached value of the '{@link #getLowerBound2() <em>Lower Bound2</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getLowerBound2()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Short LOWER_BOUND2_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getLowerBound2() <em>Lower Bound2</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLowerBound2()
-	 * @generated
-	 * @ordered
-	 */
-	protected Short lowerBound2 = LOWER_BOUND2_EDEFAULT;
+	protected EList<Short> lowerBound2;
 
 	/**
 	 * The default value of the '{@link #getLowerBoundN() <em>Lower Bound N</em>}' attribute.
@@ -318,44 +311,24 @@ public class AttributesTestImpl extends MultipleSuperTestImpl implements Attribu
 	protected Date upperBound1 = UPPER_BOUND1_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getUpperBound2() <em>Upper Bound2</em>}' attribute.
+	 * The cached value of the '{@link #getUpperBound2() <em>Upper Bound2</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getUpperBound2()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String UPPER_BOUND2_EDEFAULT = null;
+	protected EList<String> upperBound2;
 
 	/**
-	 * The cached value of the '{@link #getUpperBound2() <em>Upper Bound2</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUpperBound2()
-	 * @generated
-	 * @ordered
-	 */
-	protected String upperBound2 = UPPER_BOUND2_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getUpperBoundN() <em>Upper Bound N</em>}' attribute.
+	 * The cached value of the '{@link #getUpperBoundN() <em>Upper Bound N</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getUpperBoundN()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Long UPPER_BOUND_N_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getUpperBoundN() <em>Upper Bound N</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUpperBoundN()
-	 * @generated
-	 * @ordered
-	 */
-	protected Long upperBoundN = UPPER_BOUND_N_EDEFAULT;
+	protected EList<Long> upperBoundN;
 
 	/**
 	 * The default value of the '{@link #getOrderedYes() <em>Ordered Yes</em>}' attribute.
@@ -770,20 +743,11 @@ public class AttributesTestImpl extends MultipleSuperTestImpl implements Attribu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Short getLowerBound2() {
+	public EList<Short> getLowerBound2() {
+		if (lowerBound2 == null) {
+			lowerBound2 = new EDataTypeUniqueEList<Short>(Short.class, this, ExhaustivePackage.ATTRIBUTES_TEST__LOWER_BOUND2);
+		}
 		return lowerBound2;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setLowerBound2(Short newLowerBound2) {
-		Short oldLowerBound2 = lowerBound2;
-		lowerBound2 = newLowerBound2;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExhaustivePackage.ATTRIBUTES_TEST__LOWER_BOUND2, oldLowerBound2, lowerBound2));
 	}
 
 	/**
@@ -854,7 +818,10 @@ public class AttributesTestImpl extends MultipleSuperTestImpl implements Attribu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getUpperBound2() {
+	public EList<String> getUpperBound2() {
+		if (upperBound2 == null) {
+			upperBound2 = new EDataTypeUniqueEList<String>(String.class, this, ExhaustivePackage.ATTRIBUTES_TEST__UPPER_BOUND2);
+		}
 		return upperBound2;
 	}
 
@@ -863,32 +830,11 @@ public class AttributesTestImpl extends MultipleSuperTestImpl implements Attribu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUpperBound2(String newUpperBound2) {
-		String oldUpperBound2 = upperBound2;
-		upperBound2 = newUpperBound2;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExhaustivePackage.ATTRIBUTES_TEST__UPPER_BOUND2, oldUpperBound2, upperBound2));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Long getUpperBoundN() {
+	public EList<Long> getUpperBoundN() {
+		if (upperBoundN == null) {
+			upperBoundN = new EDataTypeUniqueEList<Long>(Long.class, this, ExhaustivePackage.ATTRIBUTES_TEST__UPPER_BOUND_N);
+		}
 		return upperBoundN;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setUpperBoundN(Long newUpperBoundN) {
-		Long oldUpperBoundN = upperBoundN;
-		upperBoundN = newUpperBoundN;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExhaustivePackage.ATTRIBUTES_TEST__UPPER_BOUND_N, oldUpperBoundN, upperBoundN));
 	}
 
 	/**
@@ -1261,6 +1207,7 @@ public class AttributesTestImpl extends MultipleSuperTestImpl implements Attribu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -1292,7 +1239,8 @@ public class AttributesTestImpl extends MultipleSuperTestImpl implements Attribu
 				setLowerBound1((Integer)newValue);
 				return;
 			case ExhaustivePackage.ATTRIBUTES_TEST__LOWER_BOUND2:
-				setLowerBound2((Short)newValue);
+				getLowerBound2().clear();
+				getLowerBound2().addAll((Collection<? extends Short>)newValue);
 				return;
 			case ExhaustivePackage.ATTRIBUTES_TEST__LOWER_BOUND_N:
 				setLowerBoundN((SerializableEnumTest)newValue);
@@ -1304,10 +1252,12 @@ public class AttributesTestImpl extends MultipleSuperTestImpl implements Attribu
 				setUpperBound1((Date)newValue);
 				return;
 			case ExhaustivePackage.ATTRIBUTES_TEST__UPPER_BOUND2:
-				setUpperBound2((String)newValue);
+				getUpperBound2().clear();
+				getUpperBound2().addAll((Collection<? extends String>)newValue);
 				return;
 			case ExhaustivePackage.ATTRIBUTES_TEST__UPPER_BOUND_N:
-				setUpperBoundN((Long)newValue);
+				getUpperBoundN().clear();
+				getUpperBoundN().addAll((Collection<? extends Long>)newValue);
 				return;
 			case ExhaustivePackage.ATTRIBUTES_TEST__ORDERED_YES:
 				setOrderedYes((Integer)newValue);
@@ -1382,7 +1332,7 @@ public class AttributesTestImpl extends MultipleSuperTestImpl implements Attribu
 				setLowerBound1(LOWER_BOUND1_EDEFAULT);
 				return;
 			case ExhaustivePackage.ATTRIBUTES_TEST__LOWER_BOUND2:
-				setLowerBound2(LOWER_BOUND2_EDEFAULT);
+				getLowerBound2().clear();
 				return;
 			case ExhaustivePackage.ATTRIBUTES_TEST__LOWER_BOUND_N:
 				setLowerBoundN(LOWER_BOUND_N_EDEFAULT);
@@ -1394,10 +1344,10 @@ public class AttributesTestImpl extends MultipleSuperTestImpl implements Attribu
 				setUpperBound1(UPPER_BOUND1_EDEFAULT);
 				return;
 			case ExhaustivePackage.ATTRIBUTES_TEST__UPPER_BOUND2:
-				setUpperBound2(UPPER_BOUND2_EDEFAULT);
+				getUpperBound2().clear();
 				return;
 			case ExhaustivePackage.ATTRIBUTES_TEST__UPPER_BOUND_N:
-				setUpperBoundN(UPPER_BOUND_N_EDEFAULT);
+				getUpperBoundN().clear();
 				return;
 			case ExhaustivePackage.ATTRIBUTES_TEST__ORDERED_YES:
 				setOrderedYes(ORDERED_YES_EDEFAULT);
@@ -1463,7 +1413,7 @@ public class AttributesTestImpl extends MultipleSuperTestImpl implements Attribu
 			case ExhaustivePackage.ATTRIBUTES_TEST__LOWER_BOUND1:
 				return LOWER_BOUND1_EDEFAULT == null ? lowerBound1 != null : !LOWER_BOUND1_EDEFAULT.equals(lowerBound1);
 			case ExhaustivePackage.ATTRIBUTES_TEST__LOWER_BOUND2:
-				return LOWER_BOUND2_EDEFAULT == null ? lowerBound2 != null : !LOWER_BOUND2_EDEFAULT.equals(lowerBound2);
+				return lowerBound2 != null && !lowerBound2.isEmpty();
 			case ExhaustivePackage.ATTRIBUTES_TEST__LOWER_BOUND_N:
 				return lowerBoundN != LOWER_BOUND_N_EDEFAULT;
 			case ExhaustivePackage.ATTRIBUTES_TEST__UPPER_BOUND0:
@@ -1471,9 +1421,9 @@ public class AttributesTestImpl extends MultipleSuperTestImpl implements Attribu
 			case ExhaustivePackage.ATTRIBUTES_TEST__UPPER_BOUND1:
 				return UPPER_BOUND1_EDEFAULT == null ? upperBound1 != null : !UPPER_BOUND1_EDEFAULT.equals(upperBound1);
 			case ExhaustivePackage.ATTRIBUTES_TEST__UPPER_BOUND2:
-				return UPPER_BOUND2_EDEFAULT == null ? upperBound2 != null : !UPPER_BOUND2_EDEFAULT.equals(upperBound2);
+				return upperBound2 != null && !upperBound2.isEmpty();
 			case ExhaustivePackage.ATTRIBUTES_TEST__UPPER_BOUND_N:
-				return UPPER_BOUND_N_EDEFAULT == null ? upperBoundN != null : !UPPER_BOUND_N_EDEFAULT.equals(upperBoundN);
+				return upperBoundN != null && !upperBoundN.isEmpty();
 			case ExhaustivePackage.ATTRIBUTES_TEST__ORDERED_YES:
 				return ORDERED_YES_EDEFAULT == null ? orderedYes != null : !ORDERED_YES_EDEFAULT.equals(orderedYes);
 			case ExhaustivePackage.ATTRIBUTES_TEST__ORDERENED_NO:
