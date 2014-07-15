@@ -19,14 +19,6 @@ import fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation
 
 import fr.inria.diverse.k3.sle.utils.AspectToEcore
 
-import org.eclipse.emf.compare.DifferenceKind
-import org.eclipse.emf.compare.EMFCompare
-
-import org.eclipse.emf.compare.merge.BatchMerger
-import org.eclipse.emf.compare.merge.IMerger
-
-import org.eclipse.emf.compare.scope.DefaultComparisonScope
-
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EcoreFactory
 
