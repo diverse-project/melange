@@ -8,23 +8,23 @@ metamodel Fsm {
 	ecore "platform:/resource/fr.inria.diverse.k3.sle.examples.metamodels.fsm/model/FSM.ecore"
 	exactType FsmMT
 	aspect fr.inria.diverse.k3.sle.examples.fsm.project.ExecutableFsmAspect
-	aspect fr.inria.diverse.k3.sle.examples.fsm.project.ExecutableStateAspect
-	aspect fr.inria.diverse.k3.sle.examples.fsm.project.ExecutableTransitionAspect
+	//aspect fr.inria.diverse.k3.sle.examples.fsm.project.ExecutableStateAspect
+	//aspect fr.inria.diverse.k3.sle.examples.fsm.project.ExecutableTransitionAspect
 }
 
 metamodel TimedFsm {
 	ecore "platform:/resource/fr.inria.diverse.k3.sle.examples.metamodels.timedfsm/model/TimedFSM.ecore"
 	exactType TimedFsmMT
 	aspect fr.inria.diverse.k3.sle.examples.fsm.project.TimedFsmAspect
-	aspect fr.inria.diverse.k3.sle.examples.fsm.project.TimedStateAspect
-	aspect fr.inria.diverse.k3.sle.examples.fsm.project.TimedTransitionAspect
+	//aspect fr.inria.diverse.k3.sle.examples.fsm.project.TimedStateAspect
+	//aspect fr.inria.diverse.k3.sle.examples.fsm.project.TimedTransitionAspect
 }
 
 transformation execute(FsmMT fsm) {
 	val root = fsm.contents.head as FSM
 	
 	print("Output: ")
-	//root.execute("adcdce")
+	root.execute("adcdce")
 	println
 }
 

@@ -8,4 +8,4 @@ Require-Bundle: org.eclipse.emf.ecore.xmi;bundle-version="2.10.0",
  fr.inria.diverse.k3.sle.lib;bundle-version="3.0.0",
  fr.inria.diverse.k3.sle.examples.metamodels.fsm;bundle-version="0.1.0",
  fr.inria.diverse.k3.sle.examples.metamodels.timedfsm;bundle-version="0.1.0",
- fr.inria.diverse.k3.al.annotationprocessor;bundle-version="1.0.0"
+ fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version="3.0.0"
