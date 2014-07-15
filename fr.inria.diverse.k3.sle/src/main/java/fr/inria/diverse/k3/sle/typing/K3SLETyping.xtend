@@ -92,6 +92,11 @@ class K3SLETyping
 							newCls.^abstract = cls.^abstract
 							newCls.^interface = cls.^interface
 							newCls.ESuperTypes += cls
+
+							if (cls.name == "EStringToStringMapEntry") { // Stupid workaround
+								newCls.instanceClassName = "java.util.Map$Entry"
+								newCls.instanceTypeName = "java.util.Map$Entry"
+							}
 						]
 					]
 				]
@@ -112,6 +117,11 @@ class K3SLETyping
 								newCls.^abstract = cls.^abstract
 								newCls.^interface = cls.^interface
 								newCls.ESuperTypes += cls
+
+								if (cls.name == "EStringToStringMapEntry") { // Stupid workaround
+									newCls.instanceClassName = "java.util.Map$Entry"
+									newCls.instanceTypeName = "java.util.Map$Entry"
+								}
 							]
 						]
 					]
