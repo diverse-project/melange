@@ -24,10 +24,7 @@ class ModelTypeExtensions
 	}
 
 	def getAllSubPkgs(ModelType mt) {
-		val allSubPkgs = newArrayList
-		mt.pkgs.head.getAllSubPkgs(allSubPkgs)
-
-		return allSubPkgs
+		mt.pkgs.head.allSubPkgs
 	}
 
 	def subtypeOf(ModelType mt1, ModelType mt2) {

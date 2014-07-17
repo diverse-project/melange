@@ -120,10 +120,7 @@ class MetamodelExtensions
 		val pkg = mm.pkgs.findFirst[EClassifiers.exists[name == cls.name]]
 
 		mm.genmodels.forEach[gm |
-			val allGp = newArrayList
-			getAllGenPkgs(gm, allGp)
-
-			allGp.forEach[gp |
+			gm.allGenPkgs.forEach[gp |
 				if (gp.getEcorePackage.nsURI == pkg.nsURI)
 					if (gp?.basePackage !== null)
 						qnRet.append(QualifiedName.create(gp.basePackage, gp.prefix, cls.name).normalize.toString)
@@ -136,10 +133,7 @@ class MetamodelExtensions
 	}
 
 	def getAllSubPkgs(Metamodel mm) {
-		val allSubPkgs = newArrayList
-		mm.pkgs.head.getAllSubPkgs(allSubPkgs)
-
-		return allSubPkgs
+		mm.pkgs.head.allSubPkgs
 	}
 
 	def getPackageFqn(Metamodel mm) {
@@ -163,10 +157,7 @@ class MetamodelExtensions
 	}
 
 	def getFactoryFqnFor(Metamodel mm, EPackage pkg) {
-		val allGp = newArrayList
-		getAllGenPkgs(mm.genmodels.head, allGp)
-
-		val genPkg = allGp.findFirst[gp | gp.getEcorePackage.nsURI == pkg.nsURI]
+		val genPkg = mm.genmodels.head.allGenPkgs.findFirst[gp | gp.getEcorePackage.nsURI == pkg.nsURI]
 
 		return if (genPkg.basePackage !== null)
 				QualifiedName.create(genPkg.basePackage, genPkg.prefix, genPkg.prefix + "Factory").normalize.toString

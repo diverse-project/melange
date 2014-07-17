@@ -142,27 +142,39 @@ class EcoreExtensions
 		]
 	}
 
-	def void getAllSubPkgs(EPackage pkg, List<EPackage> ret) {
+	def List<EPackage> getAllSubPkgs(EPackage pkg) {
+		val ret = newArrayList
+		getAllSubPkgsRec(pkg, ret)
+		return ret
+	}
+
+	def void getAllSubPkgsRec(EPackage pkg, List<EPackage> ret) {
 		pkg.ESubpackages.forEach[p |
-			getAllSubPkgs(p, ret)
+			getAllSubPkgsRec(p, ret)
 			ret.add(p)
 		]
 	}
 
-	def void getAllGenPkgs(GenModel gm, List<GenPackage> ret) {
+	def List<GenPackage> getAllGenPkgs(GenModel gm) {
+		val ret = newArrayList
+		getAllGenPkgsRec(gm, ret)
+		return ret
+	}
+
+	def void getAllGenPkgsRec(GenModel gm, List<GenPackage> ret) {
 		gm.genPackages.forEach[gp |
-			getAllGenPkgs(gp, ret)
+			getAllGenPkgsRec(gp, ret)
 			ret.add(gp)
 		]
 		gm.usedGenPackages.forEach[gp |
-			getAllGenPkgs(gp, ret)
+			getAllGenPkgsRec(gp, ret)
 			ret.add(gp)
 		]
 	}
 
-	def void getAllGenPkgs(GenPackage gp, List<GenPackage> ret) {
+	def void getAllGenPkgsRec(GenPackage gp, List<GenPackage> ret) {
 		gp.subGenPackages.forEach[gpp |
-			getAllGenPkgs(gpp, ret)
+			getAllGenPkgsRec(gpp, ret)
 			ret.add(gpp)
 		]
 	}
