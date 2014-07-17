@@ -124,7 +124,7 @@ class MetamodelExtensions
 			getAllGenPkgs(gm, allGp)
 
 			allGp.forEach[gp |
-				if (gp.getEcorePackage.nsPrefix == pkg.nsPrefix)
+				if (gp.getEcorePackage.nsURI == pkg.nsURI)
 					if (gp?.basePackage !== null)
 						qnRet.append(QualifiedName.create(gp.basePackage, gp.prefix, cls.name).normalize.toString)
 					else
