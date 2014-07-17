@@ -352,7 +352,7 @@ class MetamodelExtensions
 			it.complianceLevel = GenJDKLevel.JDK70_LITERAL
 			it.modelDirectory = modelDirectory
 			it.modelName = mm.name
-			it.modelPluginID = mm.name
+			//it.modelPluginID = mm.name
 			it.usedGenPackages += parentGm.genPackages
 			it.foreignModel.add(ecoreLocation)
 			it.initialize(Lists.newArrayList(pkgs))
