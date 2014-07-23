@@ -16,8 +16,12 @@ import java.util.List
 
 import org.eclipse.emf.common.util.EMap
 
+import org.eclipse.emf.ecore.EClass
+
 import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.common.types.TypesFactory
+
+import org.eclipse.xtext.common.types.util.TypeReferences
 
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 
@@ -32,6 +36,7 @@ class ModelTypeJvmModelInferrer
 	@Inject extension NamingHelper
 	@Inject extension ModelTypeExtensions
 	@Inject extension EcoreExtensions
+	@Inject TypeReferences typeReferences
 
 	def generateInterfaces(ModelType mt, IJvmDeclaredTypeAcceptor acceptor) {
 		acceptor.accept(mt.toInterface(mt.fullyQualifiedName.toString, []))
@@ -61,13 +66,19 @@ class ModelTypeJvmModelInferrer
 		mt.allClasses.filter[abstractable].forEach[cls |
 			acceptor.accept(mt.toInterface(mt.interfaceNameFor(cls), []))
 			.initializeLater[
-				cls.ESuperTypes.forEach[sup | superTypes += mt.newTypeRef(mt.interfaceNameFor(sup))]
-				// TODO: Generic super types
-				cls.EGenericSuperTypes.forEach[sup |]
+				// FIXME: Type bounds, and so on...
+				cls.EGenericSuperTypes.forEach[sup |
+					if (sup.EClassifier instanceof EClass) {
+						typeParameters += sup.EClassifier.ETypeParameters.map[
+							TypesFactory::eINSTANCE.createJvmTypeParameter => [p | p.name = name]
+						]
+						superTypes += mt.newTypeRef(mt.interfaceNameFor(sup.EClassifier as EClass),	typeParameters.map[t | typeReferences.createTypeRef(t).cloneWithProxies])
+					}
+				]
 
 				// TODO: Type parameters
 				cls.ETypeParameters.forEach[p |
-
+					typeParameters += TypesFactory::eINSTANCE.createJvmTypeParameter => [name = p.name]
 				]
 
 				cls.EAttributes.filter[!derived].forEach[attr |
