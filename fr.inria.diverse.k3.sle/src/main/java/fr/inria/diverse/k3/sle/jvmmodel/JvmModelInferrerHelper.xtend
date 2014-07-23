@@ -12,12 +12,16 @@ import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation
 
+import java.util.List
+
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EStructuralFeature
 
+import org.eclipse.xtext.common.types.JvmFormalParameter
+import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmTypeReference
 
 import org.eclipse.xtext.naming.IQualifiedNameProvider
@@ -125,6 +129,24 @@ class JvmModelInferrerHelper
 					ctx.newTypeRef(cls.instanceTypeName)
 				else throw new TypeReferenceException("EDataType should declare its instance class/type name: " + cls)
 		}
+	}
+
+	def overrides(JvmOperation o1, JvmOperation o2) {
+		   o1.simpleName == o2.simpleName
+		   // FIXME: Covariant return types
+		&& o1.returnType.qualifiedName == o2.returnType.qualifiedName
+		&& parameterEquals(o1.parameters, o2.parameters)
+	}
+
+	def parameterEquals(List<JvmFormalParameter> p1, List<JvmFormalParameter> p2) {
+		if (p1.size != p2.size)
+			return false
+
+		for (i : 0 ..< p1.size)
+			if (p1.get(i).parameterType.qualifiedName != p2.get(i).parameterType.qualifiedName)
+				return false
+
+		return true
 	}
 }
 

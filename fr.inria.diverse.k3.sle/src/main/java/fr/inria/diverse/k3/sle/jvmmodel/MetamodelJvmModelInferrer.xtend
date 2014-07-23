@@ -27,6 +27,8 @@ import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.resource.Resource
 
 import org.eclipse.xtext.common.types.JvmDeclaredType
+import org.eclipse.xtext.common.types.JvmMember
+import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.common.types.TypesFactory
 
@@ -46,6 +48,13 @@ class MetamodelJvmModelInferrer
 	@Inject extension MetamodelExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension AspectToEcore
+
+	def boolean +=(EList<JvmMember> members, JvmOperation m) {
+		if (!members.filter(JvmOperation).exists[overrides(m)])
+			members += (m as JvmMember)
+
+		false
+	}
 
 	def generateAdapters(Metamodel mm, IJvmDeclaredTypeAcceptor acceptor) {
 		// TODO: Test when the subtype has more classes than the supertype and vice-versa
