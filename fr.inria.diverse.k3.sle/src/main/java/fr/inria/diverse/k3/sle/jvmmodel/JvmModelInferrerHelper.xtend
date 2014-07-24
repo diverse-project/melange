@@ -69,6 +69,23 @@ class JvmModelInferrerHelper
 		return s
 	}
 
+	def toUnsetter(EStructuralFeature f, String name) {
+		val s = f.toMethod("unset" + name.toFirstUpper, f.newTypeRef(Void.TYPE))[
+			body = '''
+				adaptee.unset«name.toFirstUpper»() ;
+			'''
+		]
+
+		return s
+	}
+
+	def toUnsetterSignature(EStructuralFeature f, String name) {
+		val u = f.toUnsetter(name)
+		u.removeExistingBody
+
+		return u
+	}
+
 	/*--- Naming helpers ---*/
 	def getFactoryName(ModelType mt) {
 		mt.fullyQualifiedName.append(mt.name + "Factory").normalize.toString

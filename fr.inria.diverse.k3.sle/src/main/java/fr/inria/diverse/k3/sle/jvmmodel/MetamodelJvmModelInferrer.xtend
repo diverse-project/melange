@@ -100,6 +100,9 @@ class MetamodelJvmModelInferrer
 								'''
 							]
 						}
+
+						if (attr.unsettable)
+							members += attr.toUnsetter(attr.name)
 					]
 
 					cls.EAllReferences.filter[!isAspectSpecific].forEach[ref |
@@ -142,6 +145,9 @@ class MetamodelJvmModelInferrer
 								'''
 							]
 						}
+
+						if (ref.unsettable)
+							members += ref.toUnsetter(ref.name)
 					]
 
 					cls.EAllOperations.filter[!isAspectSpecific].forEach[op |
