@@ -18,7 +18,7 @@ class NamingHelper
 	def getGetterName(EStructuralFeature f) {
 		switch (f) {
 			EAttribute:
-				if (#["java.lang.Boolean", "boolean"].contains(f.EAttributeType.instanceClassName))
+				if (#["java.lang.Boolean", "boolean"].contains(f.EAttributeType.instanceClassName) && !f.many)
 					'''is«f.name.toFirstUpper»'''.toString
 				else
 					'''get«f.name.toFirstUpper»'''.toString
