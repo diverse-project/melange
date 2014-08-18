@@ -42,4 +42,12 @@ class K3SLELabelProvider extends org.eclipse.xtext.xbase.ui.labeling.XbaseLabelP
 	def image(AspectImport asp) {
 		"aspect.png"
 	}
+
+	def text(ModelType mt) {
+		'''«mt.name»«FOR t : mt.subtypingRelations BEFORE ' <# ' SEPARATOR ', '»«t.superType.name»«ENDFOR»'''.toString
+	}
+
+	def text(Metamodel mm) {
+		'''«mm.name»«IF mm.inheritanceRelation !== null» <: «mm.inheritanceRelation.superMetamodel.name»«ENDIF»'''.toString
+	}
 }
