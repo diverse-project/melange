@@ -162,20 +162,21 @@ class EcoreExtensions
 	}
 
 	def void getAllGenPkgsRec(GenModel gm, List<GenPackage> ret) {
-		gm.genPackages.forEach[gp |
-			getAllGenPkgsRec(gp, ret)
+		gm.genPackages.filter[gp | !ret.exists[getEcorePackage.nsURI == gp.getEcorePackage.nsURI]].forEach[gp |
 			ret.add(gp)
+			getAllGenPkgsRec(gp, ret)
 		]
-		gm.usedGenPackages.forEach[gp |
-			getAllGenPkgsRec(gp, ret)
+		gm.usedGenPackages.filter[gp | !ret.exists[getEcorePackage.nsURI == gp.getEcorePackage.nsURI]].forEach[gp |
 			ret.add(gp)
+			getAllGenPkgsRec(gp.genModel, ret)
+			getAllGenPkgsRec(gp, ret)
 		]
 	}
 
 	def void getAllGenPkgsRec(GenPackage gp, List<GenPackage> ret) {
-		gp.subGenPackages.forEach[gpp |
-			getAllGenPkgsRec(gpp, ret)
+		gp.subGenPackages.filter[gpp | !ret.exists[getEcorePackage.nsURI == gpp.getEcorePackage.nsURI]].forEach[gpp |
 			ret.add(gpp)
+			getAllGenPkgsRec(gpp, ret)
 		]
 	}
 
