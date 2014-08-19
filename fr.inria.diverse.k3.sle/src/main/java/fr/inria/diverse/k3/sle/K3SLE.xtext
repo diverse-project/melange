@@ -16,7 +16,7 @@ Metamodel:
 	'metamodel' name = ValidID (inheritanceRelation = Inheritance)?
 	('implements' implements += [ModelType | QualifiedName] (',' implements += [ModelType | QualifiedName])*)?
 	'{'
-		('resource' resourceType = ResourceType ('uri' resourceUri = STRING)?)?
+		('resource' resourceType = ResourceType ('uri' resourceUri = STRING | 'setup' resourceSetup = JvmTypeReference)?)?
 		(ecore = EcoreImport)?
 		('exactType' exactTypeRef = ValidID)
 		(aspects += AspectImport)*
@@ -24,7 +24,7 @@ Metamodel:
 ;
 
 enum ResourceType:
-	K3 = 'K3' | EMF = 'EMF'
+	K3 = 'K3' | EMF = 'EMF' | XTEXT = 'Xtext'
 ;
 
 Inheritance:
