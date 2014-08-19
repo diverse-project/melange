@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.xtext.common.types.JvmTypeReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,6 +47,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getGenmodels <em>Genmodels</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getResourceType <em>Resource Type</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getResourceUri <em>Resource Uri</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getResourceSetup <em>Resource Setup</em>}</li>
  * </ul>
  * </p>
  *
@@ -181,6 +183,16 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	 * @ordered
 	 */
 	protected String resourceUri = RESOURCE_URI_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getResourceSetup() <em>Resource Setup</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResourceSetup()
+	 * @generated
+	 * @ordered
+	 */
+	protected JvmTypeReference resourceSetup;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -463,6 +475,49 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public JvmTypeReference getResourceSetup() {
+		return resourceSetup;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetResourceSetup(JvmTypeReference newResourceSetup, NotificationChain msgs) {
+		JvmTypeReference oldResourceSetup = resourceSetup;
+		resourceSetup = newResourceSetup;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, K3slePackage.METAMODEL__RESOURCE_SETUP, oldResourceSetup, newResourceSetup);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setResourceSetup(JvmTypeReference newResourceSetup) {
+		if (newResourceSetup != resourceSetup) {
+			NotificationChain msgs = null;
+			if (resourceSetup != null)
+				msgs = ((InternalEObject)resourceSetup).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - K3slePackage.METAMODEL__RESOURCE_SETUP, null, msgs);
+			if (newResourceSetup != null)
+				msgs = ((InternalEObject)newResourceSetup).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - K3slePackage.METAMODEL__RESOURCE_SETUP, null, msgs);
+			msgs = basicSetResourceSetup(newResourceSetup, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, K3slePackage.METAMODEL__RESOURCE_SETUP, newResourceSetup, newResourceSetup));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -498,6 +553,8 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 				return ((InternalEList<?>)getPkgs()).basicRemove(otherEnd, msgs);
 			case K3slePackage.METAMODEL__GENMODELS:
 				return ((InternalEList<?>)getGenmodels()).basicRemove(otherEnd, msgs);
+			case K3slePackage.METAMODEL__RESOURCE_SETUP:
+				return basicSetResourceSetup(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -531,6 +588,8 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 				return getResourceType();
 			case K3slePackage.METAMODEL__RESOURCE_URI:
 				return getResourceUri();
+			case K3slePackage.METAMODEL__RESOURCE_SETUP:
+				return getResourceSetup();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -578,6 +637,9 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 			case K3slePackage.METAMODEL__RESOURCE_URI:
 				setResourceUri((String)newValue);
 				return;
+			case K3slePackage.METAMODEL__RESOURCE_SETUP:
+				setResourceSetup((JvmTypeReference)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -620,6 +682,9 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 			case K3slePackage.METAMODEL__RESOURCE_URI:
 				setResourceUri(RESOURCE_URI_EDEFAULT);
 				return;
+			case K3slePackage.METAMODEL__RESOURCE_SETUP:
+				setResourceSetup((JvmTypeReference)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -652,6 +717,8 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 				return resourceType != RESOURCE_TYPE_EDEFAULT;
 			case K3slePackage.METAMODEL__RESOURCE_URI:
 				return RESOURCE_URI_EDEFAULT == null ? resourceUri != null : !RESOURCE_URI_EDEFAULT.equals(resourceUri);
+			case K3slePackage.METAMODEL__RESOURCE_SETUP:
+				return resourceSetup != null;
 		}
 		return super.eIsSet(featureID);
 	}

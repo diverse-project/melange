@@ -36,7 +36,15 @@ public enum ResourceType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EMF(1, "EMF", "EMF");
+	EMF(1, "EMF", "EMF"), /**
+	 * The '<em><b>XTEXT</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #XTEXT_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	XTEXT(2, "XTEXT", "XTEXT");
 
 	/**
 	 * The '<em><b>K3</b></em>' literal value.
@@ -69,6 +77,21 @@ public enum ResourceType implements Enumerator {
 	public static final int EMF_VALUE = 1;
 
 	/**
+	 * The '<em><b>XTEXT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>XTEXT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #XTEXT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int XTEXT_VALUE = 2;
+
+	/**
 	 * An array of all the '<em><b>Resource Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,6 +101,7 @@ public enum ResourceType implements Enumerator {
 		new ResourceType[] {
 			K3,
 			EMF,
+			XTEXT,
 		};
 
 	/**
@@ -130,6 +154,7 @@ public enum ResourceType implements Enumerator {
 		switch (value) {
 			case K3_VALUE: return K3;
 			case EMF_VALUE: return EMF;
+			case XTEXT_VALUE: return XTEXT;
 		}
 		return null;
 	}

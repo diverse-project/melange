@@ -11,6 +11,7 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="K3SLE.ecore#//ResourceType">
       <genEnumLiterals ecoreEnumLiteral="K3SLE.ecore#//ResourceType/K3"/>
       <genEnumLiterals ecoreEnumLiteral="K3SLE.ecore#//ResourceType/EMF"/>
+      <genEnumLiterals ecoreEnumLiteral="K3SLE.ecore#//ResourceType/XTEXT"/>
     </genEnums>
     <genClasses ecoreClass="K3SLE.ecore#//ModelTypingSpace">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//ModelTypingSpace/elements"/>
@@ -31,6 +32,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//Metamodel/genmodels"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute K3SLE.ecore#//Metamodel/resourceType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute K3SLE.ecore#//Metamodel/resourceUri"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference K3SLE.ecore#//Metamodel/resourceSetup"/>
     </genClasses>
     <genClasses ecoreClass="K3SLE.ecore#//ModelType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//ModelType/ecore"/>

@@ -259,13 +259,22 @@ public interface K3slePackage extends EPackage {
 	int METAMODEL__RESOURCE_URI = ELEMENT_FEATURE_COUNT + 9;
 
 	/**
+	 * The feature id for the '<em><b>Resource Setup</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL__RESOURCE_SETUP = ELEMENT_FEATURE_COUNT + 10;
+
+	/**
 	 * The number of structural features of the '<em>Metamodel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 10;
+	int METAMODEL_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The number of operations of the '<em>Metamodel</em>' class.
@@ -830,6 +839,17 @@ public interface K3slePackage extends EPackage {
 	EAttribute getMetamodel_ResourceUri();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getResourceSetup <em>Resource Setup</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Resource Setup</em>'.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getResourceSetup()
+	 * @see #getMetamodel()
+	 * @generated
+	 */
+	EReference getMetamodel_ResourceSetup();
+
+	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType <em>Model Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1272,6 +1292,14 @@ public interface K3slePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute METAMODEL__RESOURCE_URI = eINSTANCE.getMetamodel_ResourceUri();
+
+		/**
+		 * The meta object literal for the '<em><b>Resource Setup</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference METAMODEL__RESOURCE_SETUP = eINSTANCE.getMetamodel_ResourceSetup();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.ModelTypeImpl <em>Model Type</em>}' class.

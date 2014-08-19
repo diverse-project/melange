@@ -333,6 +333,15 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getMetamodel_ResourceSetup() {
+		return (EReference)metamodelEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getModelType() {
 		return modelTypeEClass;
 	}
@@ -609,6 +618,7 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 		createEReference(metamodelEClass, METAMODEL__GENMODELS);
 		createEAttribute(metamodelEClass, METAMODEL__RESOURCE_TYPE);
 		createEAttribute(metamodelEClass, METAMODEL__RESOURCE_URI);
+		createEReference(metamodelEClass, METAMODEL__RESOURCE_SETUP);
 
 		modelTypeEClass = createEClass(MODEL_TYPE);
 		createEReference(modelTypeEClass, MODEL_TYPE__ECORE);
@@ -704,6 +714,7 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 		initEReference(getMetamodel_Genmodels(), theGenModelPackage.getGenModel(), null, "genmodels", null, 0, -1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMetamodel_ResourceType(), this.getResourceType(), "resourceType", "K3", 0, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMetamodel_ResourceUri(), theEcorePackage.getEString(), "resourceUri", null, 0, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMetamodel_ResourceSetup(), theTypesPackage.getJvmTypeReference(), null, "resourceSetup", null, 0, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modelTypeEClass, ModelType.class, "ModelType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelType_Ecore(), this.getEcoreImport(), null, "ecore", null, 0, 1, ModelType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -740,6 +751,7 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 		initEEnum(resourceTypeEEnum, ResourceType.class, "ResourceType");
 		addEEnumLiteral(resourceTypeEEnum, ResourceType.K3);
 		addEEnumLiteral(resourceTypeEEnum, ResourceType.EMF);
+		addEEnumLiteral(resourceTypeEEnum, ResourceType.XTEXT);
 
 		// Create resource
 		createResource(eNS_URI);

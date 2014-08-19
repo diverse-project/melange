@@ -7,6 +7,7 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.xtext.common.types.JvmTypeReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,6 +27,7 @@ import org.eclipse.emf.ecore.EPackage;
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getGenmodels <em>Genmodels</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getResourceType <em>Resource Type</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getResourceUri <em>Resource Uri</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getResourceSetup <em>Resource Setup</em>}</li>
  * </ul>
  * </p>
  *
@@ -261,5 +263,31 @@ public interface Metamodel extends Element {
 	 * @generated
 	 */
 	void setResourceUri(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Resource Setup</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Resource Setup</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Resource Setup</em>' containment reference.
+	 * @see #setResourceSetup(JvmTypeReference)
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getMetamodel_ResourceSetup()
+	 * @model containment="true"
+	 * @generated
+	 */
+	JvmTypeReference getResourceSetup();
+
+	/**
+	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getResourceSetup <em>Resource Setup</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Resource Setup</em>' containment reference.
+	 * @see #getResourceSetup()
+	 * @generated
+	 */
+	void setResourceSetup(JvmTypeReference value);
 
 } // Metamodel

@@ -31,6 +31,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="resourceType" eType="#//ResourceType"
         defaultValueLiteral="K3"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="resourceUri" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resourceSetup" eType="ecore:EClass ../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelType" eSuperTypes="#//Element">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ecore" eType="#//EcoreImport"
@@ -84,5 +86,6 @@
   <eClassifiers xsi:type="ecore:EEnum" name="ResourceType">
     <eLiterals name="K3" literal="K3"/>
     <eLiterals name="EMF" value="1" literal="EMF"/>
+    <eLiterals name="XTEXT" value="2" literal="XTEXT"/>
   </eClassifiers>
 </ecore:EPackage>
