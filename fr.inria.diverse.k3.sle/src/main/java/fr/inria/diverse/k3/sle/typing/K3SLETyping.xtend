@@ -247,7 +247,8 @@ class K3SLETyping
 
 			mm.ecore.genmodelUris.forEach[
 				val gm = modelUtils.loadGenmodel(it)
-				if (!mm.genmodels.exists[genPackages.exists[gp | gm.genPackages.exists[gpp | gpp.getEcorePackage?.nsURI == gp.getEcorePackage?.nsURI]]])
+
+				if (!mm.genmodels.exists[modelName == gm.modelName])
 					mm.genmodels += gm
 			]
 
