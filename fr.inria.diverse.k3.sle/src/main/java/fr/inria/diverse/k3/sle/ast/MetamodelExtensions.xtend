@@ -1,8 +1,8 @@
 package fr.inria.diverse.k3.sle.ast
 
-import com.google.inject.Inject
-
 import com.google.common.collect.Lists
+
+import com.google.inject.Inject
 
 import fr.inria.diverse.k3.sle.lib.EcoreExtensions
 import fr.inria.diverse.k3.sle.lib.MatchingHelper
@@ -27,7 +27,10 @@ import org.eclipse.core.runtime.Path
 import org.eclipse.emf.codegen.ecore.genmodel.GenJDKLevel
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
 import org.eclipse.emf.codegen.ecore.genmodel.GenModelFactory
+import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
+
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenBaseGeneratorAdapter
+
 import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil
 
 import org.eclipse.emf.common.util.BasicMonitor
@@ -383,5 +386,12 @@ class MetamodelExtensions
 	def getProject(Metamodel mm) {
 		val platformString = mm.eResource.URI.toPlatformString(true)
 		return ResourcesPlugin.workspace.root.getFile(new Path(platformString)).project
+	}
+
+	def getFqn(GenPackage gp) {
+		return if (gp.basePackage !== null)
+				QualifiedName.create(gp.basePackage, gp.prefix, gp.prefix + "Package").normalize.toString
+			else
+				QualifiedName.create(gp.prefix, gp.prefix + "Package").normalize.toString
 	}
 }

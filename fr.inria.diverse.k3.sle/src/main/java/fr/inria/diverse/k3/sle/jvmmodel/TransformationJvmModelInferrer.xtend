@@ -7,6 +7,7 @@ import fr.inria.diverse.k3.sle.ast.MetamodelExtensions
 
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation
+import fr.inria.diverse.k3.sle.metamodel.k3sle.ResourceType
 
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 
@@ -47,16 +48,26 @@ class TransformationJvmModelInferrer
 					// TODO: Remove hardcoded types in the following body code
 					body = '''
 						«FOR mm : root.metamodels»
-						org.eclipse.emf.ecore.EPackage.Registry.INSTANCE.put(
-							«mm.getPackageFqn».eNS_URI,
-							«mm.getPackageFqn».eINSTANCE
-						) ;
+							«IF mm.resourceType == ResourceType.XTEXT && mm.resourceSetup !== null»
+								«/* SIGH Dunno how to do that :( */»
+								«mm.resourceSetup.qualifiedName».doSetup() ;
+							«ELSE»
+								«FOR gm : mm.genmodels»
+									«FOR gp : gm.genPackages»
+										org.eclipse.emf.ecore.EPackage.Registry.INSTANCE.put(
+											"«gp.NSURI»",
+											«gp.fqn».eINSTANCE
+										) ;
+									«ENDFOR»
+								«ENDFOR»
+							«ENDIF»
+
 							«FOR mt : mm.^implements»
-							fr.inria.diverse.k3.sle.lib.AdaptersRegistry.getInstance().registerAdapter(
-								"«mm.fullyQualifiedName»",
-								"«mt.fullyQualifiedName»",
-								«mm.adapterNameFor(mt)».class
-							) ;
+								fr.inria.diverse.k3.sle.lib.AdaptersRegistry.getInstance().registerAdapter(
+									"«mm.fullyQualifiedName»",
+									"«mt.fullyQualifiedName»",
+									«mm.adapterNameFor(mt)».class
+								) ;
 							«ENDFOR»
 						«ENDFOR»
 
