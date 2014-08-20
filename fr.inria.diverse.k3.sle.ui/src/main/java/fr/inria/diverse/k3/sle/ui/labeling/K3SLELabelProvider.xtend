@@ -35,7 +35,7 @@ class K3SLELabelProvider extends org.eclipse.xtext.xbase.ui.labeling.XbaseLabelP
 
 	def text(AspectImport asp) {
 		if (asp.aspectRef.type instanceof JvmDeclaredType) {
-			'''«asp.aspectRef.type.simpleName»@«asp.aspectedClass?.name ?: "Unbinded target"»'''.toString
+			'''«asp.aspectRef.type.simpleName» @ «asp.aspectedClass?.name ?: "Unbinded target"»'''.toString
 		} else "Unbinded aspect"
 	}
 
@@ -48,6 +48,6 @@ class K3SLELabelProvider extends org.eclipse.xtext.xbase.ui.labeling.XbaseLabelP
 	}
 
 	def text(Metamodel mm) {
-		'''«mm.name»«IF mm.inheritanceRelation !== null» <: «mm.inheritanceRelation.superMetamodel.name»«ENDIF»'''.toString
+		'''«mm.name»«IF mm.inheritanceRelation !== null» <: «mm.inheritanceRelation.superMetamodel.name»«ENDIF»«FOR t : mm.implements BEFORE ' <# ' SEPARATOR ', '»«t.name»«ENDFOR»'''.toString
 	}
 }
