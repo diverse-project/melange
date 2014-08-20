@@ -44,10 +44,10 @@ class K3SLELabelProvider extends org.eclipse.xtext.xbase.ui.labeling.XbaseLabelP
 	}
 
 	def text(ModelType mt) {
-		'''«mt.name»«FOR t : mt.subtypingRelations BEFORE ' <# ' SEPARATOR ', '»«t.superType.name»«ENDFOR»'''.toString
+		'''«mt.name»«FOR t : mt.subtypingRelations BEFORE ' \u25C1 ' SEPARATOR ', '»«t.superType.name»«ENDFOR»'''.toString
 	}
 
 	def text(Metamodel mm) {
-		'''«mm.name»«IF mm.inheritanceRelation !== null» <: «mm.inheritanceRelation.superMetamodel.name»«ENDIF»«FOR t : mm.implements BEFORE ' <# ' SEPARATOR ', '»«t.name»«ENDFOR»'''.toString
+		'''«mm.name»«IF mm.inheritanceRelation !== null» «Character.valueOf('\u25C0')» «mm.inheritanceRelation.superMetamodel.name»«ENDIF»«FOR t : mm.implements BEFORE ' \u25C1 ' SEPARATOR ', '»«t.name»«ENDFOR»'''.toString
 	}
 }
