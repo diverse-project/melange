@@ -1,0 +1,24 @@
+package xtendsle
+
+import static extension fr.inria.diverse.k3.sle.lib.MetamodelExtensions.*
+
+metamodel Xbase {
+	resource Xtext setup org.eclipse.xtext.xbase.XbaseStandaloneSetup
+	ecore "platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore"
+	exactType XbaseMT
+}
+
+metamodel Xtend {
+	resource Xtext setup org.eclipse.xtend.core.XtendStandaloneSetup
+	ecore "platform:/resource/org.eclipse.xtend.core/model/Xtend.ecore"
+	exactType XtendMT
+	aspect xtendsle.XtendCompilerAspect
+}
+
+@Main
+transformation main() {
+	val m = Xtend.load("input/Test.xtend", XtendMT)
+	val file = m.contents.head as xtendsle.xtendmt.XtendFile
+
+	file.compile
+}
