@@ -11,13 +11,9 @@ import org.eclipse.xtend.core.xtend.XtendFile
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess
 
-import org.eclipse.xtext.parser.IEncodingProvider
-
-import org.eclipse.xtext.service.AbstractGenericModule
-
 @Aspect(className = XtendFile)
 class XtendCompilerAspect {
-	static final String OUTPUT_PATH = "sle-gen"
+	static final String OUTPUT_PATH = "sle-gen/xtend"
 
 	def void compile() {
 		val injector = new XtendStandaloneSetup().createInjectorAndDoEMFRegistration
@@ -27,14 +23,22 @@ class XtendCompilerAspect {
 		fsa.outputPath = _self.OUTPUT_PATH
 		Guice.createInjector(new EncodingProviderModule).injectMembers(fsa)
 
-		print("Compiling code...     ")
 		generator.doGenerate(_self.eResource, fsa)
-		println("Done.")
 	}
 }
 
-class EncodingProviderModule extends AbstractGenericModule {
-	def Class<? extends IEncodingProvider> bindIEncodingProvider() {
-		return typeof(IEncodingProvider.Runtime)
+@Aspect(className = XtendFile)
+class XtendDbcCompilerAspect {
+	static final String OUTPUT_PATH = "sle-gen/xtend-dbc"
+
+	def void compile() {
+		val injector = new XtendDbcStandaloneSetup().createInjectorAndDoEMFRegistration
+		val generator = injector.getInstance(typeof(IGenerator))
+		val fsa = new JavaIoFileSystemAccess
+
+		fsa.outputPath = _self.OUTPUT_PATH
+		Guice.createInjector(new EncodingProviderModule).injectMembers(fsa)
+
+		generator.doGenerate(_self.eResource, fsa)
 	}
 }
