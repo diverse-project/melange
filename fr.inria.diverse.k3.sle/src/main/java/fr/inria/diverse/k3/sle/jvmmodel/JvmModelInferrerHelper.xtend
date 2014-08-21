@@ -86,42 +86,6 @@ class JvmModelInferrerHelper
 		return u
 	}
 
-	/*--- Naming helpers ---*/
-	def getFactoryName(ModelType mt) {
-		mt.fullyQualifiedName.append(mt.name + "Factory").normalize.toString
-	}
-
-	def interfaceNameFor(ModelType mt, EClass cls) {
-		if (cls === null)
-			return ""
-
-		mt.fullyQualifiedName.append(cls.name).normalize.toString
-	}
-
-	def adapterNameFor(Metamodel mm, ModelType mt, EClass cls) {
-		mm.adapterNameFor(mt, cls.name)
-	}
-
-	def adapterNameFor(Metamodel mm, ModelType mt, String name) {
-		mm.fullyQualifiedName.append("adapters").append(mt.fullyQualifiedName.lastSegment).append(name + "Adapter").normalize.toString
-	}
-
-	def adapterNameFor(Metamodel mm, ModelType mt) {
-		mm.fullyQualifiedName.append("adapters").append(mt.fullyQualifiedName.lastSegment).append(mm.name + "Adapter").normalize.toString
-	}
-
-	def adapterNameFor(Metamodel mm, Metamodel superMM, EClass cls) {
-		mm.fullyQualifiedName.append("adapters").append(superMM.name).append(cls.name + "Adapter").normalize.toString
-	}
-
-	def factoryAdapterNameFor(Metamodel mm, ModelType mt) {
-		mm.fullyQualifiedName.append("adapters").append(mt.fullyQualifiedName.lastSegment).append(mt.name + "FactoryAdapter").normalize.toString
-	}
-
-	def getClassName(Transformation t) {
-		t.fullyQualifiedName.skipLast(1).toLowerCase.append(t.name)
-	}
-
 	/*--- Type references helpers ---*/
 	def newTypeRef(ModelType ctx, EClassifier cls) {
 		// TODO: Handle generics

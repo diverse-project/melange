@@ -27,7 +27,6 @@ import org.eclipse.core.runtime.Path
 import org.eclipse.emf.codegen.ecore.genmodel.GenJDKLevel
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
 import org.eclipse.emf.codegen.ecore.genmodel.GenModelFactory
-import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
 
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenBaseGeneratorAdapter
 
@@ -50,13 +49,10 @@ import org.eclipse.xtext.common.types.JvmTypeAnnotationValue
 import org.eclipse.xtext.common.types.JvmTypeParameterDeclarator
 import org.eclipse.xtext.common.types.JvmVisibility
 
-import org.eclipse.xtext.naming.QualifiedName
-
 class MetamodelExtensions
 {
 	@Inject extension EcoreExtensions
 	@Inject extension ModelTypeExtensions
-	@Inject extension NamingHelper
 	@Inject extension AspectToEcore
 	@Inject ModelUtils modelUtils
 	@Inject MatchingHelper matchingHelper
@@ -118,55 +114,8 @@ class MetamodelExtensions
 			return dt
 	}
 
-	def getFqnFor(Metamodel mm, EClassifier cls) {
-		val qnRet = new StringBuilder
-		val pkg = mm.pkgs.findFirst[EClassifiers.exists[name == cls.name]]
-
-		mm.genmodels.forEach[gm |
-			gm.allGenPkgs.forEach[gp |
-				if (gp.getEcorePackage.nsURI == pkg.nsURI)
-					if (gp?.basePackage !== null)
-						qnRet.append(QualifiedName.create(gp.basePackage, gp.prefix, cls.name).normalize.toString)
-					else
-						qnRet.append(QualifiedName.create(gp.prefix, cls.name).normalize.toString)
-			]
-		]
-
-		return qnRet.toString
-	}
-
 	def getAllSubPkgs(Metamodel mm) {
 		mm.pkgs.head.allSubPkgs
-	}
-
-	def getPackageFqn(Metamodel mm) {
-		// TODO: Multiple genmodels
-		val genPkg = mm.genmodels.head.genPackages.head
-
-		return if (genPkg.basePackage !== null)
-				QualifiedName.create(genPkg.basePackage, genPkg.prefix, genPkg.prefix + "Package").normalize.toString
-			else
-				QualifiedName.create(genPkg.prefix, genPkg.prefix + "Package").normalize.toString
-	}
-
-	def getFactoryFqn(Metamodel mm) {
-		// TODO: Multiple genmodels
-		val genPkg = mm.genmodels.head.genPackages.head
-
-		return if (genPkg.basePackage !== null)
-				QualifiedName.create(genPkg.basePackage, genPkg.prefix, genPkg.prefix + "Factory").normalize.toString
-			else
-				QualifiedName.create(genPkg.prefix, genPkg.prefix + "Factory").normalize.toString
-	}
-
-	def getFactoryFqnFor(Metamodel mm, EPackage pkg) {
-		val genPkg = mm.genmodels.head.allGenPkgs.findFirst[gp | gp.getEcorePackage.nsURI == pkg.nsURI]
-
-		return if (genPkg.basePackage !== null)
-				QualifiedName.create(genPkg.basePackage, genPkg.prefix, genPkg.prefix + "Factory").normalize.toString
-			else
-				QualifiedName.create(genPkg.prefix, genPkg.prefix + "Factory").normalize.toString
-
 	}
 
 	def hasAdapterFor(Metamodel mm, ModelType mt, EClassifier cls) {
@@ -386,12 +335,5 @@ class MetamodelExtensions
 	def getProject(Metamodel mm) {
 		val platformString = mm.eResource.URI.toPlatformString(true)
 		return ResourcesPlugin.workspace.root.getFile(new Path(platformString)).project
-	}
-
-	def getFqn(GenPackage gp) {
-		return if (gp.basePackage !== null)
-				QualifiedName.create(gp.basePackage, gp.prefix, gp.prefix + "Package").normalize.toString
-			else
-				QualifiedName.create(gp.prefix, gp.prefix + "Package").normalize.toString
 	}
 }

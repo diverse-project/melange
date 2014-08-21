@@ -3,11 +3,11 @@ package fr.inria.diverse.k3.sle.jvmmodel
 import com.google.inject.Inject
 
 import fr.inria.diverse.k3.sle.ast.ASTHelper
-import fr.inria.diverse.k3.sle.ast.MetamodelExtensions
+import fr.inria.diverse.k3.sle.ast.NamingHelper
 
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
-import fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ResourceType
+import fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation
 
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 
@@ -20,10 +20,10 @@ class TransformationJvmModelInferrer
 	@Inject extension JvmTypesBuilder
 	@Inject extension IQualifiedNameProvider
 	@Inject extension ASTHelper
-	@Inject extension MetamodelExtensions
+	@Inject extension NamingHelper
 
 	def generateTransformation(Transformation transfo, IJvmDeclaredTypeAcceptor acceptor) {
-		acceptor.accept(transfo.toClass(transfo.className))
+		acceptor.accept(transfo.toClass(transfo.className.toString))
 		.initializeLater[
 			val returnType = transfo.returnTypeRef ?: transfo.newTypeRef(Void.TYPE)
 
@@ -49,14 +49,13 @@ class TransformationJvmModelInferrer
 					body = '''
 						«FOR mm : root.metamodels»
 							«IF mm.resourceType == ResourceType.XTEXT && mm.resourceSetup !== null»
-								«/* SIGH Dunno how to do that :( */»
 								«mm.resourceSetup.qualifiedName».doSetup() ;
 							«ELSE»
 								«FOR gm : mm.genmodels»
 									«FOR gp : gm.genPackages»
 										org.eclipse.emf.ecore.EPackage.Registry.INSTANCE.put(
 											"«gp.NSURI»",
-											«gp.fqn».eINSTANCE
+											«gp.packageFqn».eINSTANCE
 										) ;
 									«ENDFOR»
 								«ENDFOR»

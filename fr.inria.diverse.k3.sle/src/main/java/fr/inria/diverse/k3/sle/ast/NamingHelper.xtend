@@ -1,18 +1,109 @@
 package fr.inria.diverse.k3.sle.ast
 
+import com.google.inject.Inject
+
+import fr.inria.diverse.k3.sle.lib.EcoreExtensions
+
+import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
+import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
+import fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation
+
+import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
+
 import org.eclipse.emf.ecore.EAttribute
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EOperation
+import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EStructuralFeature
 
 import org.eclipse.xtext.common.types.JvmOperation
 
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.naming.QualifiedName
 
 class NamingHelper
 {
+	@Inject extension EcoreExtensions
+	@Inject extension IQualifiedNameProvider
+
 	def normalize(QualifiedName name) {
-		name.skipLast(1).toLowerCase.append(name.lastSegment.toFirstUpper)
+		val res = new StringBuilder
+
+		res.append(name.skipLast(1).segments.map[toFirstLower].join("."))
+		res.append("." + name.lastSegment.toFirstUpper)
+		return res.toString
+	}
+
+	def getFqnFor(GenPackage gp, String name) {
+		return
+			if (gp.basePackage !== null)
+				QualifiedName.create(gp.basePackage, gp.prefix, name).normalize.toString
+			else
+				QualifiedName.create(gp.prefix, name).normalize.toString
+	}
+
+	def getPackageFqn(GenPackage gp) {
+		gp.getFqnFor(gp.prefix + "Package")
+	}
+
+	def getFactoryFqn(GenPackage gp) {
+		gp.getFqnFor(gp.prefix + "Factory")
+	}
+
+	def getFqnFor(Metamodel mm, EClassifier cls) {
+		val pkg = mm.pkgs.findFirst[EClassifiers.exists[name == cls.name]]
+		val gp = mm.genmodels.map[allGenPkgs].flatten.findFirst[getEcorePackage.nsURI == pkg.nsURI]
+
+		gp.getFqnFor(cls.name)
+	}
+
+	def getPackageFqn(Metamodel mm) {
+		mm.genmodels.head.genPackages.head.packageFqn
+	}
+
+	def getFactoryFqn(Metamodel mm) {
+		mm.genmodels.head.genPackages.head.factoryFqn
+	}
+
+	def getFactoryFqnFor(Metamodel mm, EPackage pkg) {
+		val gp = mm.genmodels.head.allGenPkgs.findFirst[gp | gp.getEcorePackage.nsURI == pkg.nsURI]
+
+		gp.factoryFqn
+
+	}
+
+	def getFactoryName(ModelType mt) {
+		mt.fullyQualifiedName.toLowerCase.append(mt.name + "Factory").normalize.toString
+	}
+
+	def interfaceNameFor(ModelType mt, EClass cls) {
+		mt.fullyQualifiedName.toLowerCase.append(cls.name).normalize.toString
+	}
+
+	def adapterNameFor(Metamodel mm, ModelType mt, EClass cls) {
+		mm.adapterNameFor(mt, cls.name)
+	}
+
+	def adapterNameFor(Metamodel mm, ModelType mt, String name) {
+		mm.fullyQualifiedName.append("adapters").append(mt.fullyQualifiedName.lastSegment).toLowerCase.append(name + "Adapter").normalize.toString
+	}
+
+	def adapterNameFor(Metamodel mm, ModelType mt) {
+		mm.fullyQualifiedName.append("adapters").append(mt.fullyQualifiedName.lastSegment).toLowerCase.append(mm.name + "Adapter").normalize.toString
+	}
+
+	def adapterNameFor(Metamodel mm, Metamodel superMM, EClass cls) {
+		mm.fullyQualifiedName.append("adapters").append(superMM.name).toLowerCase.append(cls.name + "Adapter").normalize.toString
+	}
+
+	def factoryAdapterNameFor(Metamodel mm, ModelType mt) {
+		mm.fullyQualifiedName.append("adapters").append(mt.fullyQualifiedName.lastSegment).toLowerCase.append(mt.name + "FactoryAdapter").normalize.toString
+	}
+
+	def getClassName(Transformation t) {
+		t.fullyQualifiedName.skipLast(1).toLowerCase.append(t.name)
 	}
 
 	def getGetterName(EStructuralFeature f) {
