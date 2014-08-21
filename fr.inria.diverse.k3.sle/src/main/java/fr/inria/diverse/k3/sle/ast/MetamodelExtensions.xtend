@@ -329,7 +329,7 @@ class MetamodelExtensions
 
 	def getGenerationFolder(Metamodel mm) {
 		//return '''platform:/resource/«mm.project.name»/generated/«mm.name»/'''
-		return '''platform:/resource/«mm.name»Generated/model/«mm.name»/'''
+		return '''platform:/resource/«mm.name»Generated/model/'''
 	}
 
 	def getProject(Metamodel mm) {
