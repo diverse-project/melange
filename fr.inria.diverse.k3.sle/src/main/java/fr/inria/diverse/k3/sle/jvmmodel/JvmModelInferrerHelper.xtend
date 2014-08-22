@@ -8,6 +8,7 @@ import fr.inria.diverse.k3.sle.ast.NamingHelper
 import fr.inria.diverse.k3.sle.lib.EcoreExtensions
 
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
+import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
 
 import java.util.List
 
@@ -72,8 +73,25 @@ class JvmModelInferrerHelper
 		return s
 	}
 
+	def JvmOperation toUnsetterCheck(EStructuralFeature f, String name) {
+		val s = f.toMethod("isSet" + name.toFirstUpper, f.newTypeRef(Boolean.TYPE))[
+			body = '''
+				return adaptee.isSet«name.toFirstUpper»() ;
+			'''
+		]
+
+		return s
+	}
+
 	def JvmOperation toUnsetterSignature(EStructuralFeature f, String name) {
 		val u = f.toUnsetter(name)
+		u.removeExistingBody
+
+		return u
+	}
+
+	def JvmOperation toUnsetterCheckSignature(EStructuralFeature f, String name) {
+		val u = f.toUnsetterCheck(name)
 		u.removeExistingBody
 
 		return u

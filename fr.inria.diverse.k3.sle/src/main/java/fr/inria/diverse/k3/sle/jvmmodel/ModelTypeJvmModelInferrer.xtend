@@ -90,8 +90,10 @@ class ModelTypeJvmModelInferrer
 					if (attr.needsSetter)
 						members += attr.toSetterSignature(attr.name, realType)
 
-					if (attr.unsettable)
+					if (attr.unsettable) {
 						members += attr.toUnsetterSignature(attr.name)
+						members += attr.toUnsetterCheckSignature(attr.name)
+					}
 				]
 
 				cls.EReferences.filter[!derived].forEach[ref |
@@ -107,8 +109,10 @@ class ModelTypeJvmModelInferrer
 					if (ref.needsSetter)
 						members += ref.toSetterSignature(refName, realType)
 
-					if (ref.unsettable)
+					if (ref.unsettable) {
 						members += ref.toUnsetterSignature(refName)
+						members += ref.toUnsetterCheckSignature(refName)
+					}
 				]
 
 				cls.EOperations.forEach[op |

@@ -101,8 +101,10 @@ class MetamodelJvmModelInferrer
 							]
 						}
 
-						if (attr.unsettable)
+						if (attr.unsettable) {
 							members += attr.toUnsetter(attr.name)
+							members += attr.toUnsetterCheck(attr.name)
+						}
 					]
 
 					cls.EAllReferences.filter[!isAspectSpecific].forEach[ref |
@@ -146,8 +148,10 @@ class MetamodelJvmModelInferrer
 							]
 						}
 
-						if (ref.unsettable)
+						if (ref.unsettable) {
 							members += ref.toUnsetter(ref.name)
+							members += ref.toUnsetterCheck(ref.name)
+						}
 					]
 
 					cls.EAllOperations.filter[!isAspectSpecific].forEach[op |
@@ -464,11 +468,16 @@ class MetamodelJvmModelInferrer
 							body = '''return adaptee.«attr.getterName»() ;'''
 						]
 
-						if (!attr.many && attr.changeable)
+						if (attr.needsSetter)
 							members += attr.toMethod(attr.setterName, mm.newTypeRef(Void::TYPE))[
 								parameters += attr.toParameter("o", baseType)
 								body = '''adaptee.«attr.setterName»(o) ;'''
 							]
+
+						if (attr.unsettable) {
+							members += attr.toUnsetter(attr.name)
+							members += attr.toUnsetterCheck(attr.name)
+						}
 					]
 
 					cls.EAllReferences.forEach[ref |
@@ -503,7 +512,7 @@ class MetamodelJvmModelInferrer
 									'''
 								]
 
-							if (ref.changeable)
+							if (ref.needsSetter)
 								members += ref.toMethod(ref.setterName, mm.newTypeRef(Void::TYPE))[
 										parameters += ref.toParameter("o", mm.newTypeRef(superMM.getFqnFor(ref.EReferenceType)))
 										body = '''
@@ -511,6 +520,11 @@ class MetamodelJvmModelInferrer
 											adaptee.«ref.setterName»(wrap.getAdaptee()) ;
 										'''
 									]
+
+							if (ref.unsettable) {
+								members += ref.toUnsetter(ref.name)
+								members += ref.toUnsetterCheck(ref.name)
+							}
 						}
 					]
 				]
