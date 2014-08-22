@@ -15,11 +15,11 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 
 class ModelUtils
 {
-	def loadPkg(String path) {
-		loadAllPkgs(path).head
+	def EPackage loadPkg(String path) {
+		return loadAllPkgs(path).head
 	}
 
-	def loadAllPkgs(String path) {
+	def Iterable<EPackage> loadAllPkgs(String path) {
 		if (!EPackage.Registry.INSTANCE.containsKey(EcorePackage.eNS_URI))
 			EPackage.Registry.INSTANCE.put(EcorePackage.eNS_URI, EcorePackage.eINSTANCE)
 
@@ -29,10 +29,10 @@ class ModelUtils
 		val uri = URI.createURI(path)
 		val pkg = rs.getResource(uri, true)
 
-		pkg.contents.filter(EPackage)
+		return pkg.contents.filter(EPackage)
 	}
 
-	def loadGenmodel(String path) {
+	def GenModel loadGenmodel(String path) {
 		if (!EPackage.Registry.INSTANCE.containsKey(GenModelPackage.eNS_URI))
 			EPackage.Registry.INSTANCE.put(GenModelPackage.eNS_URI, GenModelPackage.eINSTANCE)
 
@@ -42,6 +42,6 @@ class ModelUtils
 		val uri = URI.createURI(path)
 		val pkg = rs.getResource(uri, true)
 
-		pkg.contents.get(0) as GenModel
+		return pkg.contents.get(0) as GenModel
 	}
 }

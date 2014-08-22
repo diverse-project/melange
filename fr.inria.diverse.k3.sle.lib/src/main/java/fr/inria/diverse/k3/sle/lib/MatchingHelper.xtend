@@ -31,7 +31,7 @@ class MatchingHelper
 		matches = new HashMap<Pair<String, String>, Boolean>
 		currentMatching = new Stack<String>
 
-		pkgB.EClassifiers.filter(EClass).forall[clsB |
+		return pkgB.EClassifiers.filter(EClass).forall[clsB |
 			pkgA.EClassifiers.filter(EClass).exists[clsA |
 				clsA.match(clsB)
 			]
@@ -131,7 +131,7 @@ class MatchingHelper
 			rank = rank + 1
 		}
 
-		true
+		return true
 	}
 
 	def boolean match(EAttribute attrA, EAttribute attrB) {

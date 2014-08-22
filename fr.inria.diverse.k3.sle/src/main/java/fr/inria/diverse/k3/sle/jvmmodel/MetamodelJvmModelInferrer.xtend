@@ -53,10 +53,10 @@ class MetamodelJvmModelInferrer
 		if (!members.filter(JvmOperation).exists[overrides(m)])
 			members += (m as JvmMember)
 
-		false
+		return false
 	}
 
-	def generateAdapters(Metamodel mm, IJvmDeclaredTypeAcceptor acceptor) {
+	def void generateAdapters(Metamodel mm, IJvmDeclaredTypeAcceptor acceptor) {
 		// TODO: Test when the subtype has more classes than the supertype and vice-versa
 		mm.^implements.forEach[superType |
 			superType.allClasses.filter[abstractable].forEach[cls |

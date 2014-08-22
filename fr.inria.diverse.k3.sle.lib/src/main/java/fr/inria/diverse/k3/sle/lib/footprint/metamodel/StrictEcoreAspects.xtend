@@ -54,7 +54,7 @@ class EAttributeAspect extends EStructuralFeatureAspect{
 	@OverrideAspectMethod
 	def void _visitToAddClasses(StrictEcore theSlicer){
 		if(_self.checkcard1){
-		if(_self.clonedElt==null){
+		if(_self.clonedElt===null){
 			_self.clonedElt = EcoreFactoryImpl.eINSTANCE.createEAttribute
 			theSlicer.objectCloned(_self.clonedElt)
 		}
@@ -67,7 +67,7 @@ class EAttributeAspect extends EStructuralFeatureAspect{
 	def void _visitToAddRelations(StrictEcore theSlicer){
 		if(_self.checkcard1){
 		_self.super__visitToAddRelations(theSlicer)
-		if(_self.^EAttributeType!=null){
+		if(_self.^EAttributeType!==null){
 		_self.^EAttributeType.visitToAddRelations(theSlicer)
 		}
 
@@ -79,7 +79,7 @@ class EAttributeAspect extends EStructuralFeatureAspect{
 class EAnnotationAspect extends EModelElementAspect{
 	@OverrideAspectMethod
 	def void _visitToAddClasses(StrictEcore theSlicer){
-		if(_self.clonedElt==null){
+		if(_self.clonedElt===null){
 			_self.clonedElt = EcoreFactoryImpl.eINSTANCE.createEAnnotation
 			theSlicer.objectCloned(_self.clonedElt)
 		}
@@ -97,7 +97,7 @@ class EAnnotationAspect extends EModelElementAspect{
 class EClassAspect extends EClassifierAspect{
 	@OverrideAspectMethod
 	def void _visitToAddClasses(StrictEcore theSlicer){
-		if(_self.clonedElt==null){
+		if(_self.clonedElt===null){
 			_self.clonedElt = EcoreFactoryImpl.eINSTANCE.createEClass
 			theSlicer.objectCloned(_self.clonedElt)
 		}
@@ -111,13 +111,13 @@ class EClassAspect extends EClassifierAspect{
 	def void _visitToAddRelations(StrictEcore theSlicer){
 		_self.super__visitToAddRelations(theSlicer)
 		_self.^ESuperTypes.forEach[_elt| _elt.visitToAddRelations(theSlicer)
-			if(_self.sliced && _elt.sliced && _elt.clonedElt!=null) (_self.clonedElt as EClass).^ESuperTypes.add( _elt.clonedElt as EClass)
+			if(_self.sliced && _elt.sliced && _elt.clonedElt!==null) (_self.clonedElt as EClass).^ESuperTypes.add( _elt.clonedElt as EClass)
 		]
 		_self.^EStructuralFeatures.forEach[_elt| _elt.visitToAddRelations(theSlicer)
-			if(_self.sliced && _elt.sliced && _elt.clonedElt!=null) (_self.clonedElt as EClass).^EStructuralFeatures.add( _elt.clonedElt as EStructuralFeature)
+			if(_self.sliced && _elt.sliced && _elt.clonedElt!==null) (_self.clonedElt as EClass).^EStructuralFeatures.add( _elt.clonedElt as EStructuralFeature)
 		]
 		_self.^EOperations.forEach[_elt| _elt.visitToAddRelations(theSlicer)
-			if(_self.sliced && _elt.sliced && _elt.clonedElt!=null) (_self.clonedElt as EClass).^EOperations.add( _elt.clonedElt as EOperation)
+			if(_self.sliced && _elt.sliced && _elt.clonedElt!==null) (_self.clonedElt as EClass).^EOperations.add( _elt.clonedElt as EOperation)
 		]
 
 		if(_self.sliced) (_self.clonedElt as EClass).^abstract = _self.^abstract
@@ -138,7 +138,7 @@ abstract class EClassifierAspect extends ENamedElementAspect{
 	@OverrideAspectMethod
 	def void _visitToAddRelations(StrictEcore theSlicer){
 		_self.super__visitToAddRelations(theSlicer)
-		if(_self.^EPackage!=null){
+		if(_self.^EPackage!==null){
 		_self.^EPackage.visitToAddRelations(theSlicer)
 
 		if(_self.sliced && _self.^EPackage.sliced) (_self.EPackage.clonedElt as EPackage).^EClassifiers.add(_self.clonedElt as EClassifier)
@@ -155,7 +155,7 @@ abstract class EClassifierAspect extends ENamedElementAspect{
 class EDataTypeAspect extends EClassifierAspect{
 	@OverrideAspectMethod
 	def void _visitToAddClasses(StrictEcore theSlicer){
-		if(_self.clonedElt==null){
+		if(_self.clonedElt===null){
 			_self.clonedElt = EcoreFactoryImpl.eINSTANCE.createEDataType
 			theSlicer.objectCloned(_self.clonedElt)
 		}
@@ -173,7 +173,7 @@ class EDataTypeAspect extends EClassifierAspect{
 class EEnumAspect extends EDataTypeAspect{
 	@OverrideAspectMethod
 	def void _visitToAddClasses(StrictEcore theSlicer){
-		if(_self.clonedElt==null){
+		if(_self.clonedElt===null){
 			_self.clonedElt = EcoreFactoryImpl.eINSTANCE.createEEnum
 			theSlicer.objectCloned(_self.clonedElt)
 		}
@@ -195,7 +195,7 @@ class EEnumAspect extends EDataTypeAspect{
 class EEnumLiteralAspect extends ENamedElementAspect{
 	@OverrideAspectMethod
 	def void _visitToAddClasses(StrictEcore theSlicer){
-		if(_self.clonedElt==null){
+		if(_self.clonedElt===null){
 			_self.clonedElt = EcoreFactoryImpl.eINSTANCE.createEEnumLiteral
 			theSlicer.objectCloned(_self.clonedElt)
 		}
@@ -206,7 +206,7 @@ class EEnumLiteralAspect extends ENamedElementAspect{
 	@OverrideAspectMethod
 	def void _visitToAddRelations(StrictEcore theSlicer){
 		_self.super__visitToAddRelations(theSlicer)
-		if(_self.^EEnum!=null){
+		if(_self.^EEnum!==null){
 		_self.^EEnum.visitToAddRelations(theSlicer)
 
 		if(_self.sliced && _self.^EEnum.sliced) (_self.EEnum.clonedElt as EEnum).^ELiterals.add(_self.clonedElt as EEnumLiteral)
@@ -252,7 +252,7 @@ abstract class ENamedElementAspect extends EModelElementAspect{
 class EOperationAspect extends ETypedElementAspect{
 	@OverrideAspectMethod
 	def void _visitToAddClasses(StrictEcore theSlicer){
-		if(_self.clonedElt==null){
+		if(_self.clonedElt===null){
 			_self.clonedElt = EcoreFactoryImpl.eINSTANCE.createEOperation
 			theSlicer.objectCloned(_self.clonedElt)
 		}
@@ -267,7 +267,7 @@ class EOperationAspect extends ETypedElementAspect{
 		_self.^EParameters.forEach[_elt| _elt.visitToAddRelations(theSlicer)
 			if(_self.sliced && _elt.sliced) (_self.clonedElt as EOperation).^EParameters.add( _elt.clonedElt as EParameter)
 		]
-		if(_self.^EContainingClass!=null){
+		if(_self.^EContainingClass!==null){
 		_self.^EContainingClass.visitToAddRelations(theSlicer)
 
 		if(_self.sliced && _self.^EContainingClass.sliced) (_self.EContainingClass.clonedElt as EClass).^EOperations.add(_self.clonedElt as EOperation)
@@ -280,7 +280,7 @@ class EOperationAspect extends ETypedElementAspect{
 class EPackageAspect extends ENamedElementAspect{
 	@OverrideAspectMethod
 	def void _visitToAddClasses(StrictEcore theSlicer){
-		if(_self.clonedElt==null){
+		if(_self.clonedElt===null){
 			_self.clonedElt = EcoreFactoryImpl.eINSTANCE.createEPackage
 			theSlicer.objectCloned(_self.clonedElt)
 		}
@@ -292,7 +292,7 @@ class EPackageAspect extends ENamedElementAspect{
 	@OverrideAspectMethod
 	def void _visitToAddRelations(StrictEcore theSlicer){
 		_self.super__visitToAddRelations(theSlicer)
-		if(_self.^ESuperPackage!=null){
+		if(_self.^ESuperPackage!==null){
 		_self.^ESuperPackage.visitToAddRelations(theSlicer)
 
 		if(_self.sliced && _self.^ESuperPackage.sliced) (_self.ESuperPackage.clonedElt as EPackage).^ESubpackages.add(_self.clonedElt as EPackage)
@@ -308,7 +308,7 @@ class EPackageAspect extends ENamedElementAspect{
 class EParameterAspect extends ETypedElementAspect{
 	@OverrideAspectMethod
 	def void _visitToAddClasses(StrictEcore theSlicer){
-		if(_self.clonedElt==null){
+		if(_self.clonedElt===null){
 			_self.clonedElt = EcoreFactoryImpl.eINSTANCE.createEParameter
 			theSlicer.objectCloned(_self.clonedElt)
 		}
@@ -327,7 +327,7 @@ class EReferenceAspect extends EStructuralFeatureAspect{
 	@OverrideAspectMethod
 	def void _visitToAddClasses(StrictEcore theSlicer){
 		if(_self.checkcard1){
-		if(_self.clonedElt==null){
+		if(_self.clonedElt===null){
 			_self.clonedElt = EcoreFactoryImpl.eINSTANCE.createEReference
 			theSlicer.objectCloned(_self.clonedElt)
 		}
@@ -344,7 +344,7 @@ class EReferenceAspect extends EStructuralFeatureAspect{
 		if(_self.sliced) (_self.clonedElt as EReference).^containment = _self.^containment
 
 		if(_self.sliced) (_self.clonedElt as EReference).^resolveProxies = _self.^resolveProxies
-		if(_self.^EReferenceType!=null){
+		if(_self.^EReferenceType!==null){
 		_self.^EReferenceType.visitToAddRelations(theSlicer)
 		}
 
@@ -366,7 +366,7 @@ abstract class EStructuralFeatureAspect extends ETypedElementAspect{
 	def void _visitToAddRelations(StrictEcore theSlicer){
 		if(_self.checkcard1){
 		_self.super__visitToAddRelations(theSlicer)
-		if(_self.^EContainingClass!=null){
+		if(_self.^EContainingClass!==null){
 		_self.^EContainingClass.visitToAddRelations(theSlicer)
 
 		if(_self.sliced && _self.^EContainingClass.sliced) (_self.EContainingClass.clonedElt as EClass).^EStructuralFeatures.add(_self.clonedElt as EStructuralFeature)
@@ -388,7 +388,7 @@ abstract class EStructuralFeatureAspect extends ETypedElementAspect{
 	}
 	def boolean checkcard1(){
 		val feat = _self
-		feat.lowerBound>0
+		return feat.lowerBound>0
 	}
 }
 
@@ -403,7 +403,7 @@ abstract class ETypedElementAspect extends ENamedElementAspect{
 	@OverrideAspectMethod
 	def void _visitToAddRelations(StrictEcore theSlicer){
 		_self.super__visitToAddRelations(theSlicer)
-		if(_self.^EType!=null){
+		if(_self.^EType!==null){
 		_self.^EType.visitToAddRelations(theSlicer)
 
 		if(_self.sliced && _self.^EType.sliced) (_self.clonedElt as ETypedElement).^EType = _self.^EType.clonedElt as EClassifier
@@ -438,7 +438,7 @@ class EGenericTypeAspect extends __SlicerAspect__{
 class ETypeParameterAspect extends ENamedElementAspect{
 	@OverrideAspectMethod
 	def void _visitToAddClasses(StrictEcore theSlicer){
-		if(_self.clonedElt==null){
+		if(_self.clonedElt===null){
 			_self.clonedElt = EcoreFactoryImpl.eINSTANCE.createETypeParameter
 			theSlicer.objectCloned(_self.clonedElt)
 		}

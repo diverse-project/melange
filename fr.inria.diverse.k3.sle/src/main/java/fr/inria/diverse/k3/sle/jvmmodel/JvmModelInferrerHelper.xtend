@@ -2,15 +2,12 @@ package fr.inria.diverse.k3.sle.jvmmodel
 
 import com.google.inject.Inject
 
-import fr.inria.diverse.k3.sle.ast.MetamodelExtensions
 import fr.inria.diverse.k3.sle.ast.ModelTypeExtensions
 import fr.inria.diverse.k3.sle.ast.NamingHelper
 
 import fr.inria.diverse.k3.sle.lib.EcoreExtensions
 
-import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
-import fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation
 
 import java.util.List
 
@@ -24,21 +21,17 @@ import org.eclipse.xtext.common.types.JvmFormalParameter
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmTypeReference
 
-import org.eclipse.xtext.naming.IQualifiedNameProvider
-
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
 class JvmModelInferrerHelper
 {
 	@Inject extension EcoreExtensions
 	@Inject extension ModelTypeExtensions
-	@Inject extension MetamodelExtensions
 	@Inject extension JvmTypesBuilder
-	@Inject extension IQualifiedNameProvider
 	@Inject extension NamingHelper
 
 	/*--- Getters / Setters  ---*/
-	def toGetterSignature(EStructuralFeature f, String name, JvmTypeReference type) {
+	def JvmOperation toGetterSignature(EStructuralFeature f, String name, JvmTypeReference type) {
 		val g =	f.toGetter(name, type)
 		g.removeExistingBody
 
@@ -48,7 +41,7 @@ class JvmModelInferrerHelper
 		return g
 	}
 
-	def toUmlGetterSignature(EStructuralFeature f, String name, JvmTypeReference type) {
+	def JvmOperation toUmlGetterSignature(EStructuralFeature f, String name, JvmTypeReference type) {
 		val g =	f.toGetter(name, type)
 		g.removeExistingBody
 
@@ -62,14 +55,14 @@ class JvmModelInferrerHelper
 		return g
 	}
 
-	def toSetterSignature(EStructuralFeature f, String name, JvmTypeReference type) {
+	def JvmOperation toSetterSignature(EStructuralFeature f, String name, JvmTypeReference type) {
 		val s = f.toSetter(name, type)
 		s.removeExistingBody
 
 		return s
 	}
 
-	def toUnsetter(EStructuralFeature f, String name) {
+	def JvmOperation toUnsetter(EStructuralFeature f, String name) {
 		val s = f.toMethod("unset" + name.toFirstUpper, f.newTypeRef(Void.TYPE))[
 			body = '''
 				adaptee.unset«name.toFirstUpper»() ;
@@ -79,7 +72,7 @@ class JvmModelInferrerHelper
 		return s
 	}
 
-	def toUnsetterSignature(EStructuralFeature f, String name) {
+	def JvmOperation toUnsetterSignature(EStructuralFeature f, String name) {
 		val u = f.toUnsetter(name)
 		u.removeExistingBody
 
@@ -87,39 +80,39 @@ class JvmModelInferrerHelper
 	}
 
 	/*--- Type references helpers ---*/
-	def newTypeRef(ModelType ctx, EClassifier cls) {
+	def JvmTypeReference newTypeRef(ModelType ctx, EClassifier cls) {
 		// TODO: Handle generics
-		switch (cls) {
-			case null: ctx.newTypeRef(Object)
-			EClass:
-				if (cls.abstractable)
-					ctx.newTypeRef(ctx.interfaceNameFor(cls))
-				else if (cls.instanceClass !== null)
-					ctx.newTypeRef(cls.instanceClass.name)
-				else if (cls.instanceTypeName !== null)
-					ctx.newTypeRef(cls.instanceTypeName)
-				else throw new TypeReferenceException("Cannot find type reference for class " + cls)
-			EEnum:
-				if (ctx.isExtracted)
-					ctx.newTypeRef(ctx.extracted.getFqnFor(cls))
-				else throw new TypeReferenceException("A model type cannot explicitly define an enumeration: " + cls)
-			EDataType:
-				if (cls.instanceClass !== null)
-					ctx.newTypeRef(cls.instanceClass.name)
-				else if (cls.instanceTypeName !== null)
-					ctx.newTypeRef(cls.instanceTypeName)
-				else throw new TypeReferenceException("EDataType should declare its instance class/type name: " + cls)
-		}
+		return
+			switch (cls) {
+				case null: ctx.newTypeRef(Object)
+				EClass:
+					if (cls.abstractable)
+						ctx.newTypeRef(ctx.interfaceNameFor(cls))
+					else if (cls.instanceClass !== null)
+						ctx.newTypeRef(cls.instanceClass.name)
+					else if (cls.instanceTypeName !== null)
+						ctx.newTypeRef(cls.instanceTypeName)
+				EEnum:
+					if (ctx.isExtracted)
+						ctx.newTypeRef(ctx.extracted.getFqnFor(cls))
+				EDataType:
+					if (cls.instanceClass !== null)
+						ctx.newTypeRef(cls.instanceClass.name)
+					else if (cls.instanceTypeName !== null)
+						ctx.newTypeRef(cls.instanceTypeName)
+				default: ctx.newTypeRef(Object)
+			}
 	}
 
-	def overrides(JvmOperation o1, JvmOperation o2) {
+	def boolean overrides(JvmOperation o1, JvmOperation o2) {
+		return
 		   o1.simpleName == o2.simpleName
 		   // FIXME: Covariant return types
 		&& o1.returnType.qualifiedName == o2.returnType.qualifiedName
 		&& parameterEquals(o1.parameters, o2.parameters)
 	}
 
-	def parameterEquals(List<JvmFormalParameter> p1, List<JvmFormalParameter> p2) {
+	def boolean parameterEquals(List<JvmFormalParameter> p1, List<JvmFormalParameter> p2) {
 		if (p1.size != p2.size)
 			return false
 

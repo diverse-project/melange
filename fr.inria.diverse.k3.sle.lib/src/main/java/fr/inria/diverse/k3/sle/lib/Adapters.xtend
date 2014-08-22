@@ -34,7 +34,7 @@ class ListAdapter<E, F> implements List<E>
 	}
 
 	override add(E e) {
-		adaptee.add(decapsulate(e))
+		return adaptee.add(decapsulate(e))
 	}
 
 	override add(int index, E element) {
@@ -43,12 +43,12 @@ class ListAdapter<E, F> implements List<E>
 
 	override addAll(Collection<? extends E> c) {
 		c.forEach[adaptee.add(decapsulate(it))]
-		true
+		return true
 	}
 
 	override addAll(int index, Collection<? extends E> c) {
 		c.forEach[it, i | adaptee.add(index + i, decapsulate(it))]
-		true
+		return true
 	}
 
 	override clear() {
@@ -56,144 +56,162 @@ class ListAdapter<E, F> implements List<E>
 	}
 
 	override contains(Object o) {
-		adaptee.contains(o)
+		return adaptee.contains(o)
 	}
 
 	override containsAll(Collection<?> c) {
-		adaptee.containsAll(c)
+		return adaptee.containsAll(c)
 	}
 
 	override get(int index) {
-		val adap = adapType.newInstance
-		adap.adaptee = adaptee.get(index)
-		return adap as E
+		try {
+			val adap = adapType.newInstance
+			adap.adaptee = adaptee.get(index)
+			return adap as E
+		} catch (InstantiationException e) {
+			// ...
+		} catch (IllegalAccessException e) {
+			// ...
+		}
 	}
 
 	override indexOf(Object o) {
-		adaptee.indexOf(o)
+		return adaptee.indexOf(o)
 	}
 
 	override isEmpty() {
-		adaptee.isEmpty
+		return adaptee.isEmpty
 	}
 
 	override iterator() {
-		Iterators.transform(adaptee.iterator, new IteratorTranslator<F, E>(adapType))
+		return Iterators.transform(adaptee.iterator, new IteratorTranslator<F, E>(adapType))
 	}
 
 	override lastIndexOf(Object o) {
-		adaptee.lastIndexOf(decapsulate(o))
+		return adaptee.lastIndexOf(decapsulate(o))
 	}
 
 	override listIterator() {
-		Iterators.transform(adaptee.listIterator, new IteratorTranslator<F, E>(adapType)) as ListIterator<E>
+		return Iterators.transform(adaptee.listIterator, new IteratorTranslator<F, E>(adapType)) as ListIterator<E>
 	}
 
 	override listIterator(int index) {
-		Iterators.transform(adaptee.listIterator(index), new IteratorTranslator<F, E>(adapType)) as ListIterator<E>
+		return Iterators.transform(adaptee.listIterator(index), new IteratorTranslator<F, E>(adapType)) as ListIterator<E>
 	}
 
 	override remove(Object o) {
-		adaptee.remove(decapsulate(o))
+		return adaptee.remove(decapsulate(o))
 	}
 
 	override remove(int index) {
-		val adap = adapType.newInstance
-		adap.adaptee = adaptee.remove(index)
-		return adap as E
+		try {
+			val adap = adapType.newInstance
+			adap.adaptee = adaptee.remove(index)
+			return adap as E
+		} catch (InstantiationException e) {
+			// ...
+		} catch (IllegalAccessException e) {
+			// ...
+		}
 	}
 
 	override removeAll(Collection<?> c) {
-		adaptee.removeAll(c)
+		return adaptee.removeAll(c)
 	}
 
 	override retainAll(Collection<?> c) {
-		adaptee.retainAll(c)
+		return adaptee.retainAll(c)
 	}
 
 	override set(int index, E element) {
-		val adap = adapType.newInstance
-		adap.adaptee = adaptee.set(index, decapsulate(element))
-		return adap as E
+		try {
+			val adap = adapType.newInstance
+			adap.adaptee = adaptee.set(index, decapsulate(element))
+			return adap as E
+		} catch (InstantiationException e) {
+			// ...
+		} catch (IllegalAccessException e) {
+			// ...
+		}
 	}
 
 	override size() {
-		adaptee.size
+		return adaptee.size
 	}
 
 	override subList(int fromIndex, int toIndex) {
-		new ListAdapter<E, F>(adaptee.subList(fromIndex, toIndex), adapType)
+		return new ListAdapter<E, F>(adaptee.subList(fromIndex, toIndex), adapType)
 	}
 
 	override toArray() {
-		adaptee.toArray
+		return adaptee.toArray
 	}
 
 	override <T> toArray(T[] a) {
-		adaptee.toArray(a)
+		return adaptee.toArray(a)
 	}
 
-	def decapsulate(Object e) {
-		(e as GenericAdapter<F>).adaptee
+	def F decapsulate(Object e) {
+		return (e as GenericAdapter<F>).adaptee
 	}
 }
 
 abstract class EObjectAdapter<E extends EObject> implements EObject, GenericAdapter<E> {
 	E adaptee
 
-	override getAdaptee() { adaptee }
+	override getAdaptee() { return adaptee }
 	override setAdaptee(E a) { adaptee = a }
 
 	override eAllContents() {
-		adaptee.eAllContents
+		return adaptee.eAllContents
 	}
 
 	override eClass() {
-		adaptee.eClass
+		return adaptee.eClass
 	}
 
 	override eContainer() {
-		adaptee.eContainer
+		return adaptee.eContainer
 	}
 
 	override eContainingFeature() {
-		adaptee.eContainingFeature
+		return adaptee.eContainingFeature
 	}
 
 	override eContainmentFeature() {
-		adaptee.eContainmentFeature
+		return adaptee.eContainmentFeature
 	}
 
 	override eContents() {
-		adaptee.eContents
+		return adaptee.eContents
 	}
 
 	override eCrossReferences() {
-		adaptee.eCrossReferences
+		return adaptee.eCrossReferences
 	}
 
 	override eGet(EStructuralFeature feature) {
-		adaptee.eGet(feature)
+		return adaptee.eGet(feature)
 	}
 
 	override eGet(EStructuralFeature feature, boolean resolve) {
-		adaptee.eGet(feature, resolve)
+		return adaptee.eGet(feature, resolve)
 	}
 
 	override eInvoke(EOperation operation, EList<?> arguments) throws InvocationTargetException {
-		adaptee.eInvoke(operation, arguments)
+		return adaptee.eInvoke(operation, arguments)
 	}
 
 	override eIsProxy() {
-		adaptee.eIsProxy
+		return adaptee.eIsProxy
 	}
 
 	override eIsSet(EStructuralFeature feature) {
-		adaptee.eIsSet(feature)
+		return adaptee.eIsSet(feature)
 	}
 
 	override eResource() {
-		adaptee.eResource
+		return adaptee.eResource
 	}
 
 	override eSet(EStructuralFeature feature, Object newValue) {
@@ -205,11 +223,11 @@ abstract class EObjectAdapter<E extends EObject> implements EObject, GenericAdap
 	}
 
 	override eAdapters() {
-		adaptee.eAdapters
+		return adaptee.eAdapters
 	}
 
 	override eDeliver() {
-		adaptee.eDeliver
+		return adaptee.eDeliver
 	}
 
 	override eNotify(Notification notification) {
@@ -237,7 +255,15 @@ class EListAdapter<E, F> extends ListAdapter<E, F> implements EList<E>
 	}
 
 	override move(int newPosition, int oldPosition) {
-		adapType.declaredConstructors.head.newInstance(adaptee.move(newPosition, oldPosition)) as E
+		try {
+			return adapType.declaredConstructors.head.newInstance(adaptee.move(newPosition, oldPosition)) as E
+		} catch (InstantiationException e) {
+			// ...
+		} catch (IllegalAccessException e) {
+			// ...
+		} catch (InvocationTargetException e) {
+			// ...
+		}
 	}
 }
 
@@ -247,8 +273,14 @@ class IteratorTranslator<E, F> implements Function<E, F> {
 	new(Class<?> type) { adapType = type }
 
 	override apply(E arg) {
-		val adap = adapType.newInstance as GenericAdapter<E>
-		adap.adaptee = arg
-		return adap as F
+		try {
+			val adap = adapType.newInstance as GenericAdapter<E>
+			adap.adaptee = arg
+			return adap as F
+		} catch (InstantiationException e) {
+			// ...
+		} catch (IllegalAccessException e) {
+			// ...
+		}
 	}
 }

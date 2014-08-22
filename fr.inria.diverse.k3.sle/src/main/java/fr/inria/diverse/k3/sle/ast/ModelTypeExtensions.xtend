@@ -9,46 +9,47 @@ import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
 
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
+import java.util.List
+import org.eclipse.emf.ecore.EPackage
 
 class ModelTypeExtensions
 {
 	@Inject extension EcoreExtensions
 	@Inject MatchingHelper matchingHelper
 
-	def isExtracted(ModelType mt) {
-		mt.extracted !== null
+	def boolean isExtracted(ModelType mt) {
+		return mt.extracted !== null
 	}
 
-	def isImported(ModelType mt) {
-		mt.ecore !== null
+	def boolean isImported(ModelType mt) {
+		return mt.ecore !== null
 	}
 
-	def getAllSubPkgs(ModelType mt) {
-		mt.pkgs.head.allSubPkgs
+	def List<EPackage> getAllSubPkgs(ModelType mt) {
+		return mt.pkgs.head.allSubPkgs
 	}
 
-	def subtypeOf(ModelType mt1, ModelType mt2) {
-		matchingHelper.match(mt1.pkgs.head, mt2.pkgs.head)
+	def boolean subtypeOf(ModelType mt1, ModelType mt2) {
+		return matchingHelper.match(mt1.pkgs.head, mt2.pkgs.head)
 	}
 
-	def findClassifier(ModelType mt, String clsName) {
-		mt.allClassifiers.findFirst[name == clsName]
+	def EClassifier findClassifier(ModelType mt, String clsName) {
+		return mt.allClassifiers.findFirst[name == clsName]
 	}
 
-	def findClass(ModelType mt, String clsName) {
-		mt.allClasses.findFirst[name == clsName]
+	def EClass findClass(ModelType mt, String clsName) {
+		return mt.allClasses.findFirst[name == clsName]
 	}
 
-	def getAllClassifiers(ModelType mt) {
-		mt.pkgs.map[EClassifiers].flatten
+	def Iterable<EClassifier> getAllClassifiers(ModelType mt) {
+		return mt.pkgs.map[EClassifiers].flatten
 	}
 
-	def getAllClasses(ModelType mt) {
-		mt.allClassifiers.filter(EClass)
+	def Iterable<EClass> getAllClasses(ModelType mt) {
+		return mt.allClassifiers.filter(EClass)
 	}
 
-	def isUml(ModelType mt, EClassifier cls) {
-		val pkg = mt.pkgs.findFirst[EClassifiers.exists[name == cls.name]]
-		return pkg.name == "uml"
+	def boolean isUml(ModelType mt, EClassifier cls) {
+		return mt.pkgs.findFirst[EClassifiers.exists[name == cls.name]] == "uml"
 	}
 }

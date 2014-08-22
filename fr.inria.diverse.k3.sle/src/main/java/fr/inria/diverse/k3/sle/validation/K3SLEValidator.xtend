@@ -20,7 +20,7 @@ class K3SLEValidator extends AbstractK3SLEValidator
 	@Inject MatchingHelper matchingHelper
 
 	@Check
-	def checkNamesAreUnique(Element e) {
+	def void checkNamesAreUnique(Element e) {
 		if ((e.eContainer as ModelTypingSpace).elements.exists[e_ |
 			   e_ != e
 			&& e_.eClass == e.eClass
@@ -30,7 +30,7 @@ class K3SLEValidator extends AbstractK3SLEValidator
 	}
 
 	@Check
-	def checkEcoreIsSet(Metamodel mm) {
+	def void checkEcoreIsSet(Metamodel mm) {
 		if (mm.ecore?.uri === null && mm.inheritanceRelation?.superMetamodel?.ecore?.uri === null) {
 			error("A valid Ecore file must be imported", K3slePackage.Literals.METAMODEL__ECORE)
 		} else if (mm.ecore?.uri !== null && mm.inheritanceRelation?.superMetamodel?.ecore?.uri !== null) {
@@ -39,7 +39,7 @@ class K3SLEValidator extends AbstractK3SLEValidator
 	}
 
 	@Check
-	def checkGenModelIsSet(Metamodel mm) {
+	def void checkGenModelIsSet(Metamodel mm) {
 		if (mm.ecore?.uri !== null && mm.ecore?.uri.endsWith(".ecore") && mm.ecore?.genmodelUris.head === null) {
 			// !!!
 			val speculativeGenmodelPath = mm.ecore.uri.substring(0, mm.ecore.uri.lastIndexOf(".")) + ".genmodel"
@@ -55,7 +55,7 @@ class K3SLEValidator extends AbstractK3SLEValidator
 	}
 
 	@Check
-	def checkEcoreIsLoadable(Metamodel mm) {
+	def void checkEcoreIsLoadable(Metamodel mm) {
 		try {
 			if (mm.ecore?.uri !== null && modelUtils.loadPkg(mm.ecore.uri) === null) {
 				error("Couldn't load specified Ecore", K3slePackage.Literals.METAMODEL__ECORE)
@@ -64,7 +64,7 @@ class K3SLEValidator extends AbstractK3SLEValidator
 	}
 
 	@Check
-	def checkGenModelIsLoadable(Metamodel mm) {
+	def void checkGenModelIsLoadable(Metamodel mm) {
 		try {
 			if (mm.ecore?.genmodelUris.head !== null && modelUtils.loadGenmodel(mm.ecore.genmodelUris.head) === null) {
 				error("Couldn't load specified GenModel", K3slePackage.Literals.METAMODEL__ECORE)
@@ -73,13 +73,13 @@ class K3SLEValidator extends AbstractK3SLEValidator
 	}
 
 	@Check
-	def checkAspectsAreValid(Metamodel mm) {
+	def void checkAspectsAreValid(Metamodel mm) {
 		if (!mm.aspects.forall[aspectRef?.type !== null && aspectRef.type instanceof JvmDeclaredType])
 			error("Imported aspect is invalid", K3slePackage.Literals.METAMODEL__ASPECTS)
 	}
 
 	@Check
-	def checkImplements(Metamodel mm) {
+	def void checkImplements(Metamodel mm) {
 		val mmPkg = modelUtils.loadPkg(mm.ecore.uri)
 
 		mm.^implements

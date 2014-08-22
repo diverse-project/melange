@@ -23,7 +23,7 @@ class AspectToEcore
 	 * Try to infer the "modeling intention" of the aspect aspImport
 	 * and put its features into a newly created EPackage
 	 */
-	def inferEcoreFragment(AspectImport aspImport) {
+	def void inferEcoreFragment(AspectImport aspImport) {
 		val aspect = aspImport.aspectRef.type as JvmDeclaredType
 		val baseCls = aspImport.aspectedClass
 		val basePkg = baseCls.EPackage
@@ -123,7 +123,7 @@ class AspectToEcore
 		aspImport.ecoreFragment = aspPkg
 	}
 
-	def findFeatureNameFor(JvmDeclaredType type, JvmOperation op) {
+	def String findFeatureNameFor(JvmDeclaredType type, JvmOperation op) {
 		if (
 			(  op.simpleName.startsWith("get")
 			&& Character.isUpperCase(op.simpleName.charAt(3))
@@ -143,7 +143,7 @@ class AspectToEcore
 				&& opp.returnType.qualifiedName == op.parameters.get(1).parameterType.qualifiedName
 			])
 		)
-			op.simpleName.substring(3, op.simpleName.length).toFirstLower
+			return op.simpleName.substring(3, op.simpleName.length).toFirstLower
 		else if (
 			type.declaredOperations.exists[opp |
 				   opp !== op
@@ -163,7 +163,7 @@ class AspectToEcore
 				))
 			]
 		)
-			op.simpleName
-		else null
+			return op.simpleName
+		else return null
 	}
 }

@@ -38,7 +38,7 @@ class ModelTypeJvmModelInferrer
 	@Inject extension EcoreExtensions
 	@Inject TypeReferences typeReferences
 
-	def generateInterfaces(ModelType mt, IJvmDeclaredTypeAcceptor acceptor) {
+	def void generateInterfaces(ModelType mt, IJvmDeclaredTypeAcceptor acceptor) {
 		acceptor.accept(mt.toInterface(mt.fullyQualifiedName.toString, []))
 		.initializeLater[
 			superTypes += mt.newTypeRef(IModelType)

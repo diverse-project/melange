@@ -20,21 +20,27 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
 
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
+import java.io.IOException
 
 class ASTHelper
 {
 	Logger logger = Logger.getLogger(ASTHelper)
 
-	def saveAs(ModelTypingSpace root, String uri) {
+	def void saveAs(ModelTypingSpace root, String uri) {
 		Resource.Factory.Registry.INSTANCE.extensionToFactoryMap.put("*", new XMIResourceFactoryImpl)
 		val rs = new ResourceSetImpl
 		val res = rs.createResource(URI.createURI(uri))
 
 		res.contents.add(EcoreUtil.copy(root))
-		res.save(Collections.EMPTY_MAP)
+
+		try {
+			res.save(Collections.EMPTY_MAP)
+		} catch (IOException e) {
+			e.printStackTrace
+		}
 	}
 
-	def printDebug(ModelTypingSpace root) {
+	def void printDebug(ModelTypingSpace root) {
 		root.metamodels.forEach[mm |
 			logger.debug('''MM «mm.name»''')
 			logger.debug('''\tpkgs = «mm.pkgs.map[name].join(", ")»''')
@@ -53,20 +59,20 @@ class ASTHelper
 		]
 	}
 
-	def getMetamodels(ModelTypingSpace root) {
-		root.elements.filter(Metamodel)
+	def Iterable<Metamodel> getMetamodels(ModelTypingSpace root) {
+		return root.elements.filter(Metamodel)
 	}
 
-	def getModelTypes(ModelTypingSpace root) {
-		root.elements.filter(ModelType)
+	def Iterable<ModelType> getModelTypes(ModelTypingSpace root) {
+		return root.elements.filter(ModelType)
 	}
 
-	def getTransformations(ModelTypingSpace root) {
-		root.elements.filter(Transformation)
+	def Iterable<Transformation> getTransformations(ModelTypingSpace root) {
+		return root.elements.filter(Transformation)
 	}
 
 	def Iterable<EClass> sortByClassInheritance(Iterable<EClass> classes) {
-		classes.sort(new ClassInheritanceComparator())
+		return classes.sort(new ClassInheritanceComparator())
 	}
 }
 

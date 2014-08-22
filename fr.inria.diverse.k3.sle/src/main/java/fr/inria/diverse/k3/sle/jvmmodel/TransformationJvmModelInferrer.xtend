@@ -16,13 +16,12 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
 class TransformationJvmModelInferrer
 {
-	@Inject extension JvmModelInferrerHelper
 	@Inject extension JvmTypesBuilder
 	@Inject extension IQualifiedNameProvider
 	@Inject extension ASTHelper
 	@Inject extension NamingHelper
 
-	def generateTransformation(Transformation transfo, IJvmDeclaredTypeAcceptor acceptor) {
+	def void generateTransformation(Transformation transfo, IJvmDeclaredTypeAcceptor acceptor) {
 		acceptor.accept(transfo.toClass(transfo.className.toString))
 		.initializeLater[
 			val returnType = transfo.returnTypeRef ?: transfo.newTypeRef(Void.TYPE)

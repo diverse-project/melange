@@ -20,6 +20,7 @@ import java.util.Collection
 import java.util.Collections
 import java.util.List
 
+import org.eclipse.core.resources.IProject
 import org.eclipse.core.resources.ResourcesPlugin
 
 import org.eclipse.core.runtime.Path
@@ -69,19 +70,19 @@ class MetamodelExtensions
 	}
 
 	// FIXME: More than one pkg bro
-	def typedBy(Metamodel mm, ModelType mt) {
-		matchingHelper.match(mm.exactType.pkgs.head, mt.pkgs.head)
+	def boolean typedBy(Metamodel mm, ModelType mt) {
+		return matchingHelper.match(mm.exactType.pkgs.head, mt.pkgs.head)
 	}
 
-	def hasSuperMetamodel(Metamodel mm) {
-		mm.inheritanceRelation?.superMetamodel !== null
+	def boolean hasSuperMetamodel(Metamodel mm) {
+		return mm.inheritanceRelation?.superMetamodel !== null
 	}
 
-	def getAspectAnnotationValue(AspectImport asp) {
+	def String getAspectAnnotationValue(AspectImport asp) {
 		return (asp.aspectRef.type as JvmDeclaredType)?.aspectAnnotationValue
 	}
 
-	def getAspectAnnotationValue(JvmDeclaredType t) {
+	def String getAspectAnnotationValue(JvmDeclaredType t) {
 		// TODO: Remove hard-stringed dependency
 		val aspAnn = t.annotations.findFirst[annotation?.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Aspect"]
 		val aspClassName = aspAnn?.values?.findFirst[valueName == "className"]
@@ -96,15 +97,15 @@ class MetamodelExtensions
 		return aspVal
 	}
 
-	def findClass(Metamodel mm, String clsName) {
-		mm.allClasses.filter(EClass).findFirst[name == clsName]
+	def EClass findClass(Metamodel mm, String clsName) {
+		return mm.allClasses.filter(EClass).findFirst[name == clsName]
 	}
 
-	def findClassifier(Metamodel mm, String clsName) {
-		mm.allClassifiers.filter(EClassifier).findFirst[name == clsName]
+	def EClassifier findClassifier(Metamodel mm, String clsName) {
+		return mm.allClassifiers.filter(EClassifier).findFirst[name == clsName]
 	}
 
-	def findClassifierFor(Metamodel mm, String clsName) {
+	def EClassifier findClassifierFor(Metamodel mm, String clsName) {
 		val cls = mm.findClass(clsName)
 		if (cls !== null)
 			return cls
@@ -114,36 +115,36 @@ class MetamodelExtensions
 			return dt
 	}
 
-	def getAllSubPkgs(Metamodel mm) {
-		mm.pkgs.head.allSubPkgs
+	def List<EPackage> getAllSubPkgs(Metamodel mm) {
+		return mm.pkgs.head.allSubPkgs
 	}
 
-	def hasAdapterFor(Metamodel mm, ModelType mt, EClassifier cls) {
-		mm.hasAdapterFor(mt, cls.name)
+	def boolean hasAdapterFor(Metamodel mm, ModelType mt, EClassifier cls) {
+		return mm.hasAdapterFor(mt, cls.name)
 	}
 
-	def hasAdapterFor(Metamodel mm, ModelType mt, String find) {
+	def boolean hasAdapterFor(Metamodel mm, ModelType mt, String find) {
+		return
 		   mm.^implements.exists[name == mt.name]
 		&& mm.allClasses.exists[name == find]
 		&& mt.allClasses.exists[name == find]
 	}
 
-	def getAllClassifiers(Metamodel mm) {
-		mm.pkgs.map[EClassifiers].flatten
+	def Iterable<EClassifier> getAllClassifiers(Metamodel mm) {
+		return mm.pkgs.map[EClassifiers].flatten
 	}
 
-	def getAllClasses(Metamodel mm) {
-		mm.allClassifiers.filter(EClass)
+	def Iterable<EClass> getAllClasses(Metamodel mm) {
+		return mm.allClassifiers.filter(EClass)
 	}
 
-	def isUml(Metamodel mm, EClassifier cls) {
-		val pkg = mm.pkgs.findFirst[EClassifiers.exists[name == cls.name]]
-		return pkg.name == "uml"
+	def boolean isUml(Metamodel mm, EClassifier cls) {
+		return mm.pkgs.findFirst[EClassifiers.exists[name == cls.name]] == "uml"
 	}
 
 	// FIXME: Create referenced EClass if they don't exist yet
 	// FIXME: Consider finding EClassifier, not EClass
-	def weaveAspect(Metamodel mm, EClass cls, JvmDeclaredType asp) {
+	def void weaveAspect(Metamodel mm, EClass cls, JvmDeclaredType asp) {
 		asp.declaredOperations
 		.filter[
 			   !simpleName.startsWith("_privk3")
@@ -224,7 +225,7 @@ class MetamodelExtensions
 		]
 	}
 
-	def createEcore(EPackage pkg, String uri) {
+	def void createEcore(EPackage pkg, String uri) {
 		val resSet = new ResourceSetImpl
     	val res = resSet.createResource(URI.createURI(uri))
     	res.contents.add(pkg.copy)
@@ -236,7 +237,7 @@ class MetamodelExtensions
 		}
 	}
 
-	def createEcore(Metamodel mm) {
+	def void createEcore(Metamodel mm) {
 		val resSet = new ResourceSetImpl
     	val res = resSet.createResource(URI.createURI(mm.generationFolder + mm.name + ".ecore"))
     	res.contents.add(mm.pkgs.head.copy)
@@ -248,7 +249,7 @@ class MetamodelExtensions
 		}
 	}
 
-	def createExtendedMetamodel(Metamodel mm, String uri) {
+	def void createExtendedMetamodel(Metamodel mm, String uri) {
 		val resSet = new ResourceSetImpl
 		val res = resSet.createResource(URI.createURI(uri))
 		res.contents.addAll(mm.pkgs.map[copy])
@@ -260,7 +261,7 @@ class MetamodelExtensions
 		}
 	}
 
-	def createGenModel(EPackage pkg, Metamodel mm, String ecoreLocation, String genModelLocation, String modelDirectory) {
+	def void createGenModel(EPackage pkg, Metamodel mm, String ecoreLocation, String genModelLocation, String modelDirectory) {
 		val genModel = GenModelFactory.eINSTANCE.createGenModel => [
 			it.complianceLevel = GenJDKLevel.JDK70_LITERAL
 			it.modelDirectory = modelDirectory
@@ -282,11 +283,11 @@ class MetamodelExtensions
 		}
 	}
 
-	def createGenModel(EPackage pkg, Metamodel mm, String ecoreLocation, String genModelLocation) {
+	def void createGenModel(EPackage pkg, Metamodel mm, String ecoreLocation, String genModelLocation) {
 		createGenModel(pkg, mm, ecoreLocation, genModelLocation, '''/«mm.name»Generated/src/''')
 	}
 
-	def createExtendedGenmodel(Metamodel mm, String ecoreLocation, String genModelLocation, String modelDirectory) {
+	def void createExtendedGenmodel(Metamodel mm, String ecoreLocation, String genModelLocation, String modelDirectory) {
 		// FIXME: Stupid fix -> reopen the Ecore here to avoid Xtext-style cross-references in the genmodel
 		val pkgs = modelUtils.loadAllPkgs(ecoreLocation)
 		val parentGm = modelUtils.loadGenmodel(mm.inheritanceRelation?.superMetamodel?.ecore?.genmodelUris.head)
@@ -314,7 +315,7 @@ class MetamodelExtensions
 		}
 	}
 
-	def generateCode(GenModel genModel) {
+	def void generateCode(GenModel genModel) {
 		genModel.reconcile
 		genModel.canGenerate = true
 		genModel.validateModel = true
@@ -327,12 +328,12 @@ class MetamodelExtensions
 		)
 	}
 
-	def getGenerationFolder(Metamodel mm) {
+	def String getGenerationFolder(Metamodel mm) {
 		//return '''platform:/resource/«mm.project.name»/generated/«mm.name»/'''
 		return '''platform:/resource/«mm.name»Generated/model/'''
 	}
 
-	def getProject(Metamodel mm) {
+	def IProject getProject(Metamodel mm) {
 		val platformString = mm.eResource.URI.toPlatformString(true)
 		return ResourcesPlugin.workspace.root.getFile(new Path(platformString)).project
 	}

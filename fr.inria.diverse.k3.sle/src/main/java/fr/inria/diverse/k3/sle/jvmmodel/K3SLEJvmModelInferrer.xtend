@@ -25,7 +25,7 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 	ModelTypingSpace root
 	Logger logger = Logger.getLogger(K3SLEJvmModelInferrer)
 
-	def dispatch infer(ModelTypingSpace typingSpace, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
+	def dispatch void infer(ModelTypingSpace typingSpace, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
 		root = typingSpace
 
 		try {

@@ -35,7 +35,7 @@ class K3SLETyping
 	@Inject ModelUtils modelUtils
 	@Inject ModelTypeAlgebra algebra
 
-	def inferTypingRelations(ModelTypingSpace root) {
+	def void inferTypingRelations(ModelTypingSpace root) {
 		root.modelTypes
 		.forEach[mt1 |
 			root.modelTypes
@@ -55,7 +55,7 @@ class K3SLETyping
 		]
 	}
 
-	def dispatch void complete(ModelTypingSpace root) {
+	def dispatch void complete(ModelTypingSpace root) throws ASTProcessingException {
 		val newMTs = newArrayList
 
 		root.metamodels.forEach[mm |
@@ -75,7 +75,7 @@ class K3SLETyping
 		root.elements.forEach[complete]
 	}
 
-	def dispatch void complete(Metamodel mm) {
+	def dispatch void complete(Metamodel mm) throws ASTProcessingException {
 		if (mm.hasSuperMetamodel) {
 			// EMF resource = extension with inheritance
 			if (mm.resourceType == ResourceType.EMF) {
@@ -301,6 +301,7 @@ class K3SLETyping
 	}
 
 	def dispatch boolean isValid(ModelTypingSpace root) {
+		return
 		   !root.name.empty
 		&& !root.metamodels.exists[mm | root.metamodels.exists[mm_ | mm != mm_ && mm.name == mm_.name]]
 		&& !root.modelTypes.exists[mt | root.modelTypes.exists[mt_ | mt != mt_ && mt.name == mt_.name]]
@@ -309,6 +310,7 @@ class K3SLETyping
 	}
 
 	def dispatch boolean isValid(Metamodel mm) {
+		return
 		   mm !== null
 		&& !mm.name.empty
 		&& (mm.inheritanceRelation !== null || mm.ecore?.uri !== null)
@@ -321,6 +323,7 @@ class K3SLETyping
 	}
 
 	def dispatch boolean isValid(ModelType mt) {
+		return
 		   mt !== null
 		&& !mt.name.empty
 		&& (mt.ecore?.uri !== null
@@ -330,6 +333,7 @@ class K3SLETyping
 	}
 
 	def dispatch boolean isValid(Transformation t) {
+		return
 		   t !== null
 		&& !t.name.empty
 		&& t.parameters.forall[it !== null]

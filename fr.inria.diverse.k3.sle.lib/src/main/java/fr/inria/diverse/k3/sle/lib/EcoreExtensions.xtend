@@ -8,8 +8,8 @@ import java.util.List
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
 
-import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.ENamedElement
 import org.eclipse.emf.ecore.EPackage
@@ -24,27 +24,27 @@ class EcoreExtensions
 {
 	@Inject ModelUtils modelUtils
 
-	def findClass(EPackage pkg, String clsName) {
-		pkg.EClassifiers.filter(EClass).findFirst[name == clsName]
+	def EClass findClass(EPackage pkg, String clsName) {
+		return pkg.EClassifiers.filter(EClass).findFirst[name == clsName]
 	}
 
-	def findClassifier(EPackage pkg, String clsName) {
-		pkg.EClassifiers.findFirst[name == clsName]
+	def EClassifier findClassifier(EPackage pkg, String clsName) {
+		return pkg.EClassifiers.findFirst[name == clsName]
 	}
 
-	def isInstantiable(EClass cls) {
-		!cls.^abstract && !cls.^interface && cls.instanceClass === null
+	def boolean isInstantiable(EClass cls) {
+		return !cls.^abstract && !cls.^interface && cls.instanceClass === null
 	}
 
-	def isAbstractable(EClass cls) {
-		cls.instanceClass === null && cls.instanceTypeName === null
+	def boolean isAbstractable(EClass cls) {
+		return cls.instanceClass === null && cls.instanceTypeName === null
 	}
 
-	def isAspectSpecific(ENamedElement f) {
-		f.EAnnotations.exists[source == "aspect"]
+	def boolean isAspectSpecific(ENamedElement f) {
+		return f.EAnnotations.exists[source == "aspect"]
 	}
 
-	def getOrCreateClass(EPackage pkg, String name) {
+	def EClass getOrCreateClass(EPackage pkg, String name) {
 		val find = pkg.EClassifiers.filter(EClass).findFirst[it.name == name]
 
 		if (find !== null) {
@@ -60,7 +60,7 @@ class EcoreExtensions
 		}
 	}
 
-	def getOrCreateDataType(EPackage pkg, String name, String instanceTypeName) {
+	def EClassifier getOrCreateDataType(EPackage pkg, String name, String instanceTypeName) {
 		val find = pkg.EClassifiers.filter(EDataType).findFirst[it.name == name && it.instanceTypeName == instanceTypeName]
 		val findDt = EcorePackage.eINSTANCE.findClassifier("E" + name.toFirstUpper)
 
@@ -80,15 +80,15 @@ class EcoreExtensions
 		}
 	}
 
-	def copy(EPackage pkg) {
-		pkg.copy(pkg.name, pkg.name, pkg.nsURI)
+	def EPackage copy(EPackage pkg) {
+		return pkg.copy(pkg.name, pkg.name, pkg.nsURI)
 	}
 
-	def copy(EPackage pkg, String name) {
-		pkg.copy(name, name.toLowerCase, '''http://«name.toLowerCase»/''')
+	def EPackage copy(EPackage pkg, String name) {
+		return pkg.copy(name, name.toLowerCase, '''http://«name.toLowerCase»/''')
 	}
 
-	def copy(EPackage pkg, String pkgName, String prefix, String uri) {
+	def EPackage copy(EPackage pkg, String pkgName, String prefix, String uri) {
 		val newPkg = EcoreFactory.eINSTANCE.createEPackage => [
 			name = pkgName.toLowerCase
 			nsPrefix = prefix
@@ -100,7 +100,7 @@ class EcoreExtensions
 		return newPkg
 	}
 
-	def createSubPackage(String pkgUri, String pkgName) {
+	def EPackage createSubPackage(String pkgUri, String pkgName) {
 		val newPkg = EcoreFactory.eINSTANCE.createEPackage => [
 			name = pkgName.toLowerCase
 			nsPrefix = pkgName.toLowerCase
@@ -180,21 +180,12 @@ class EcoreExtensions
 		]
 	}
 
-	def needsSetter(EStructuralFeature attr) {
+	def boolean needsSetter(EStructuralFeature attr) {
 		// TODO: Checks against EMF generation
-		switch (attr) {
-			EAttribute:
-				    attr.changeable
-				&& !attr.many
-				//&& !attr.derived
-			EReference:
-				    attr.changeable
-				//&& !attr.derived
-				&& !attr.many
-		}
+		return attr.changeable && !attr.many
 	}
 
-	def isEMFMapDetails(EReference ref) {
-		ref?.name == "details" && ref.EReferenceType?.name == "EStringToStringMapEntry"
+	def boolean isEMFMapDetails(EReference ref) {
+		return ref?.name == "details" && ref.EReferenceType?.name == "EStringToStringMapEntry"
 	}
 }

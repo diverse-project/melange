@@ -7,11 +7,12 @@ import org.eclipse.emf.common.util.URI
 
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import java.lang.reflect.InvocationTargetException
 
 class MetamodelExtensions
 {
 	// FIXME: re static-type me please
-	def static <MT extends IModelType, MM/*extends MT*/> MT load(Class<MM> mm, String uri, Class<MT> mt) throws ModelTypeException {
+	def static <MT extends IModelType, MM/*extends MT*/> MT load(Class<MM> mm, String uri, Class<MT> mt) throws ModelTypeException , InstantiationException, IllegalAccessException, InvocationTargetException {
 		val resSet = new ResourceSetImpl
 		val res = resSet.getResource(URI.createURI(uri), true)
 
@@ -29,13 +30,13 @@ class AdaptersRegistry {
 	static AdaptersRegistry registry = new AdaptersRegistry
 	Map<Pair<String, String>, Class<? extends GenericAdapter<Resource>>> adaptersRegistry = new HashMap<Pair<String, String>, Class<? extends GenericAdapter<Resource>>>
 
-	static def getInstance() { registry }
+	static def AdaptersRegistry getInstance() { return registry }
 
-	def registerAdapter(String mm, String mt, Class<? extends GenericAdapter<Resource>> adapter) {
+	def void registerAdapter(String mm, String mt, Class<? extends GenericAdapter<Resource>> adapter) {
 		adaptersRegistry.put(mm -> mt, adapter)
 	}
 
-	def getAdapter(String mm, String mt) {
-		adaptersRegistry.get(mm -> mt)
+	def Class<? extends GenericAdapter<Resource>> getAdapter(String mm, String mt) {
+		return adaptersRegistry.get(mm -> mt)
 	}
 }
