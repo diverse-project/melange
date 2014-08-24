@@ -91,12 +91,6 @@ class EcoreTest
 		generator.doGenerate(root.eResource, fsa)
 
 		assertEquals(fsa.textFiles.size, 46)
-
-		// Check for generation bug that
-		// replaces (valid) generic types with Objects
-		fsa.textFiles.forEach[filename, content |
-			assertFalse(content.toString.contains('''*/'''))
-		]
 	}
 
 	@Test

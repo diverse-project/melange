@@ -4,7 +4,7 @@ import com.google.inject.Inject
 
 import exhaustive.AbstractTest
 import exhaustive.AttributesTest
-import exhaustive.GenericChildTest
+//import exhaustive.GenericChildTest
 import exhaustive.GenericTest
 import exhaustive.InterfaceTest
 import exhaustive.MultipleSuperTest
@@ -114,12 +114,6 @@ class ExhaustiveEcoreTest
 		generator.doGenerate(root.eResource, fsa)
 
 		assertEquals(fsa.textFiles.size, 63)
-
-		// Check for generation bug that
-		// replaces (valid) generic types with Objects
-		fsa.textFiles.forEach[filename, content |
-			assertFalse(content.toString.contains('''*/'''))
-		]
 	}
 
 	// Won't compile until generics are implented
@@ -130,7 +124,7 @@ class ExhaustiveEcoreTest
 			setJavaCompilerClassPath(
 				typeof(AbstractTest),
 				typeof(AttributesTest),
-				typeof(GenericChildTest),
+				//typeof(GenericChildTest),
 				typeof(GenericTest),
 				typeof(InterfaceTest),
 				typeof(MultipleSuperTest),
