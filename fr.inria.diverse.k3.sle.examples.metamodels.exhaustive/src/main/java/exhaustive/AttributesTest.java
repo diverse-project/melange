@@ -3,6 +3,7 @@
 package exhaustive;
 
 import java.util.Date;
+
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -293,7 +294,7 @@ public interface AttributesTest extends MultipleSuperTest, InterfaceTest {
 	 * The list contents are of type {@link java.lang.Short}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Lower Bound2</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Lower Bound2</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
@@ -390,7 +391,7 @@ public interface AttributesTest extends MultipleSuperTest, InterfaceTest {
 	 * The list contents are of type {@link java.lang.String}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Upper Bound2</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Upper Bound2</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
@@ -406,7 +407,7 @@ public interface AttributesTest extends MultipleSuperTest, InterfaceTest {
 	 * The list contents are of type {@link java.lang.Long}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Upper Bound N</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Upper Bound N</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
@@ -452,12 +453,12 @@ public interface AttributesTest extends MultipleSuperTest, InterfaceTest {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Orderened No</em>' attribute.
-	 * @see #setOrderenedNo(Class)
+	 * @see #setOrderenedNo(Boolean)
 	 * @see exhaustive.ExhaustivePackage#getAttributesTest_OrderenedNo()
 	 * @model
 	 * @generated
 	 */
-	Class<?> getOrderenedNo();
+	Boolean getOrderenedNo();
 
 	/**
 	 * Sets the value of the '{@link exhaustive.AttributesTest#getOrderenedNo <em>Orderened No</em>}' attribute.
@@ -467,7 +468,7 @@ public interface AttributesTest extends MultipleSuperTest, InterfaceTest {
 	 * @see #getOrderenedNo()
 	 * @generated
 	 */
-	void setOrderenedNo(Class<?> value);
+	void setOrderenedNo(Boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Transient Yes</b></em>' attribute.

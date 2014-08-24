@@ -121,9 +121,60 @@
       </eParameters>
     </eOperations>
     <eOperations name="genericOperationThrow" eExceptions="#//CustomExceptionTest"/>
+    <eOperations name="complexGenericOperation" upperBound="-1">
+      <eGenericType eClassifier="#//GenericTest">
+        <eTypeArguments eTypeParameter="#//GenericTest/complexGenericOperation/Y"/>
+        <eTypeArguments eClassifier="#//ReferencesTest"/>
+      </eGenericType>
+      <eTypeParameters name="X">
+        <eBounds eClassifier="#//AbstractTest"/>
+      </eTypeParameters>
+      <eTypeParameters name="Y">
+        <eBounds eTypeParameter="#//GenericTest/complexGenericOperation/X"/>
+      </eTypeParameters>
+    </eOperations>
+    <eOperations name="multipleBoundsGenericOperation">
+      <eGenericType eTypeParameter="#//GenericTest/multipleBoundsGenericOperation/U"/>
+      <eTypeParameters name="U">
+        <eBounds eClassifier="#//PartiallyBindedChildTest">
+          <eTypeArguments eTypeParameter="#//GenericTest/B"/>
+        </eBounds>
+        <eBounds eClassifier="#//AbstractTest"/>
+      </eTypeParameters>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="genericAttr">
       <eGenericType eTypeParameter="#//GenericTest/A"/>
     </eStructuralFeatures>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BindedChildTest">
+    <eGenericSuperTypes eClassifier="#//GenericTest">
+      <eTypeArguments eClassifier="#//AbstractTest"/>
+      <eTypeArguments eClassifier="#//MultipleSuperTest"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="CustomExceptionTest" instanceClassName="java.lang.Exception"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UnbindedChildTest">
+    <eTypeParameters name="C"/>
+    <eTypeParameters name="D"/>
+    <eGenericSuperTypes eClassifier="#//GenericTest">
+      <eTypeArguments eTypeParameter="#//UnbindedChildTest/C"/>
+      <eTypeArguments eTypeParameter="#//UnbindedChildTest/D"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PartiallyBindedChildTest">
+    <eTypeParameters name="E"/>
+    <eGenericSuperTypes eClassifier="#//GenericTest">
+      <eTypeArguments eTypeParameter="#//PartiallyBindedChildTest/E"/>
+      <eTypeArguments eClassifier="#//AbstractTest"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MultipleBoundsGeneric">
+    <eTypeParameters name="A">
+      <eBounds eClassifier="#//AbstractTest"/>
+      <eBounds eClassifier="#//OperationsTest"/>
+    </eTypeParameters>
+    <eTypeParameters name="B">
+      <eBounds eTypeParameter="#//MultipleBoundsGeneric/A"/>
+    </eTypeParameters>
+  </eClassifiers>
 </ecore:EPackage>

@@ -97,7 +97,7 @@ public class GenericTestImpl<A, B> extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public <C extends AbstractTest> void genericOperationParameters() {
+	public <C extends AbstractTest> void genericOperationParameters(C foo, GenericTest<A, C> bar) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -179,12 +179,13 @@ public class GenericTestImpl<A, B> extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
+	@SuppressWarnings({"rawtypes", "unchecked" })
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case ExhaustivePackage.GENERIC_TEST___GENERIC_OPERATION_RETURN:
 				return genericOperationReturn();
-			case ExhaustivePackage.GENERIC_TEST___GENERIC_OPERATION_PARAMETERS:
-				genericOperationParameters();
+			case ExhaustivePackage.GENERIC_TEST___GENERIC_OPERATION_PARAMETERS__ABSTRACTTEST_GENERICTEST:
+				genericOperationParameters((AbstractTest)arguments.get(0), (GenericTest)arguments.get(1));
 				return null;
 			case ExhaustivePackage.GENERIC_TEST___GENERIC_OPERATION_THROW:
 				try {

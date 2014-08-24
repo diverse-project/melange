@@ -67,15 +67,6 @@ public interface ExhaustiveFactory extends EFactory {
 	<A, B> GenericTest<A, B> createGenericTest();
 
 	/**
-	 * Returns a new object of class '<em>Generic Child Test</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Generic Child Test</em>'.
-	 * @generated
-	 */
-	GenericChildTest createGenericChildTest();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

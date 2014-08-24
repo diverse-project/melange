@@ -61,7 +61,7 @@ public interface GenericTest<A, B> extends EObject {
 	 * @model
 	 * @generated
 	 */
-	<C extends AbstractTest> void genericOperationParameters();
+	<C extends AbstractTest> void genericOperationParameters(C foo, GenericTest<A, C> bar);
 
 	/**
 	 * <!-- begin-user-doc -->

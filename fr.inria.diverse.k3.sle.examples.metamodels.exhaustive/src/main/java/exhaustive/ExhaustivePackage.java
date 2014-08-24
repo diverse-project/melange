@@ -1081,7 +1081,7 @@ public interface ExhaustivePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_TEST___GENERIC_OPERATION_PARAMETERS = 1;
+	int GENERIC_TEST___GENERIC_OPERATION_PARAMETERS__ABSTRACTTEST_GENERICTEST = 1;
 
 	/**
 	 * The operation id for the '<em>Generic Operation Throw</em>' operation.
@@ -1102,70 +1102,6 @@ public interface ExhaustivePackage extends EPackage {
 	int GENERIC_TEST_OPERATION_COUNT = 3;
 
 	/**
-	 * The meta object id for the '{@link exhaustive.impl.GenericChildTestImpl <em>Generic Child Test</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see exhaustive.impl.GenericChildTestImpl
-	 * @see exhaustive.impl.ExhaustivePackageImpl#getGenericChildTest()
-	 * @generated
-	 */
-	int GENERIC_CHILD_TEST = 7;
-
-	/**
-	 * The feature id for the '<em><b>Generic Attr</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_CHILD_TEST__GENERIC_ATTR = GENERIC_TEST__GENERIC_ATTR;
-
-	/**
-	 * The number of structural features of the '<em>Generic Child Test</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_CHILD_TEST_FEATURE_COUNT = GENERIC_TEST_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Generic Operation Return</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_CHILD_TEST___GENERIC_OPERATION_RETURN = GENERIC_TEST___GENERIC_OPERATION_RETURN;
-
-	/**
-	 * The operation id for the '<em>Generic Operation Parameters</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_CHILD_TEST___GENERIC_OPERATION_PARAMETERS = GENERIC_TEST___GENERIC_OPERATION_PARAMETERS;
-
-	/**
-	 * The operation id for the '<em>Generic Operation Throw</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_CHILD_TEST___GENERIC_OPERATION_THROW = GENERIC_TEST___GENERIC_OPERATION_THROW;
-
-	/**
-	 * The number of operations of the '<em>Generic Child Test</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_CHILD_TEST_OPERATION_COUNT = GENERIC_TEST_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link exhaustive.UnserializableEnumTest <em>Unserializable Enum Test</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1173,7 +1109,7 @@ public interface ExhaustivePackage extends EPackage {
 	 * @see exhaustive.impl.ExhaustivePackageImpl#getUnserializableEnumTest()
 	 * @generated
 	 */
-	int UNSERIALIZABLE_ENUM_TEST = 8;
+	int UNSERIALIZABLE_ENUM_TEST = 7;
 
 	/**
 	 * The meta object id for the '{@link exhaustive.SerializableEnumTest <em>Serializable Enum Test</em>}' enum.
@@ -1183,7 +1119,7 @@ public interface ExhaustivePackage extends EPackage {
 	 * @see exhaustive.impl.ExhaustivePackageImpl#getSerializableEnumTest()
 	 * @generated
 	 */
-	int SERIALIZABLE_ENUM_TEST = 9;
+	int SERIALIZABLE_ENUM_TEST = 8;
 
 	/**
 	 * The meta object id for the '<em>Unserializable Datatype Test</em>' data type.
@@ -1193,7 +1129,7 @@ public interface ExhaustivePackage extends EPackage {
 	 * @see exhaustive.impl.ExhaustivePackageImpl#getUnserializableDatatypeTest()
 	 * @generated
 	 */
-	int UNSERIALIZABLE_DATATYPE_TEST = 10;
+	int UNSERIALIZABLE_DATATYPE_TEST = 9;
 
 	/**
 	 * The meta object id for the '<em>Serializable Datatype Test</em>' data type.
@@ -1203,7 +1139,7 @@ public interface ExhaustivePackage extends EPackage {
 	 * @see exhaustive.impl.ExhaustivePackageImpl#getSerializableDatatypeTest()
 	 * @generated
 	 */
-	int SERIALIZABLE_DATATYPE_TEST = 11;
+	int SERIALIZABLE_DATATYPE_TEST = 10;
 
 	/**
 	 * The meta object id for the '<em>Custom Exception Test</em>' data type.
@@ -1213,7 +1149,7 @@ public interface ExhaustivePackage extends EPackage {
 	 * @see exhaustive.impl.ExhaustivePackageImpl#getCustomExceptionTest()
 	 * @generated
 	 */
-	int CUSTOM_EXCEPTION_TEST = 12;
+	int CUSTOM_EXCEPTION_TEST = 11;
 
 
 	/**
@@ -1850,14 +1786,14 @@ public interface ExhaustivePackage extends EPackage {
 	EOperation getGenericTest__GenericOperationReturn();
 
 	/**
-	 * Returns the meta object for the '{@link exhaustive.GenericTest#genericOperationParameters() <em>Generic Operation Parameters</em>}' operation.
+	 * Returns the meta object for the '{@link exhaustive.GenericTest#genericOperationParameters(exhaustive.AbstractTest, exhaustive.GenericTest) <em>Generic Operation Parameters</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Generic Operation Parameters</em>' operation.
-	 * @see exhaustive.GenericTest#genericOperationParameters()
+	 * @see exhaustive.GenericTest#genericOperationParameters(exhaustive.AbstractTest, exhaustive.GenericTest)
 	 * @generated
 	 */
-	EOperation getGenericTest__GenericOperationParameters();
+	EOperation getGenericTest__GenericOperationParameters__AbstractTest_GenericTest();
 
 	/**
 	 * Returns the meta object for the '{@link exhaustive.GenericTest#genericOperationThrow() <em>Generic Operation Throw</em>}' operation.
@@ -1868,16 +1804,6 @@ public interface ExhaustivePackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getGenericTest__GenericOperationThrow();
-
-	/**
-	 * Returns the meta object for class '{@link exhaustive.GenericChildTest <em>Generic Child Test</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Generic Child Test</em>'.
-	 * @see exhaustive.GenericChildTest
-	 * @generated
-	 */
-	EClass getGenericChildTest();
 
 	/**
 	 * Returns the meta object for enum '{@link exhaustive.UnserializableEnumTest <em>Unserializable Enum Test</em>}'.
@@ -2447,7 +2373,7 @@ public interface ExhaustivePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation GENERIC_TEST___GENERIC_OPERATION_PARAMETERS = eINSTANCE.getGenericTest__GenericOperationParameters();
+		EOperation GENERIC_TEST___GENERIC_OPERATION_PARAMETERS__ABSTRACTTEST_GENERICTEST = eINSTANCE.getGenericTest__GenericOperationParameters__AbstractTest_GenericTest();
 
 		/**
 		 * The meta object literal for the '<em><b>Generic Operation Throw</b></em>' operation.
@@ -2456,16 +2382,6 @@ public interface ExhaustivePackage extends EPackage {
 		 * @generated
 		 */
 		EOperation GENERIC_TEST___GENERIC_OPERATION_THROW = eINSTANCE.getGenericTest__GenericOperationThrow();
-
-		/**
-		 * The meta object literal for the '{@link exhaustive.impl.GenericChildTestImpl <em>Generic Child Test</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see exhaustive.impl.GenericChildTestImpl
-		 * @see exhaustive.impl.ExhaustivePackageImpl#getGenericChildTest()
-		 * @generated
-		 */
-		EClass GENERIC_CHILD_TEST = eINSTANCE.getGenericChildTest();
 
 		/**
 		 * The meta object literal for the '{@link exhaustive.UnserializableEnumTest <em>Unserializable Enum Test</em>}' enum.

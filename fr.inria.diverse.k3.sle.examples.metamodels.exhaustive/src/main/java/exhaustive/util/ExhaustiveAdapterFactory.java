@@ -96,10 +96,6 @@ public class ExhaustiveAdapterFactory extends AdapterFactoryImpl {
 				return createGenericTestAdapter();
 			}
 			@Override
-			public Adapter caseGenericChildTest(GenericChildTest object) {
-				return createGenericChildTestAdapter();
-			}
-			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -214,20 +210,6 @@ public class ExhaustiveAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createGenericTestAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link exhaustive.GenericChildTest <em>Generic Child Test</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see exhaustive.GenericChildTest
-	 * @generated
-	 */
-	public Adapter createGenericChildTestAdapter() {
 		return null;
 	}
 

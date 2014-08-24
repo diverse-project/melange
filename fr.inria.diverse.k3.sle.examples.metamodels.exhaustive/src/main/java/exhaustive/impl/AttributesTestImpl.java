@@ -15,10 +15,12 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 /**
@@ -351,6 +353,16 @@ public class AttributesTestImpl extends MultipleSuperTestImpl implements Attribu
 	protected Integer orderedYes = ORDERED_YES_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #getOrderenedNo() <em>Orderened No</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOrderenedNo()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Boolean ORDERENED_NO_EDEFAULT = null;
+
+	/**
 	 * The cached value of the '{@link #getOrderenedNo() <em>Orderened No</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -358,7 +370,7 @@ public class AttributesTestImpl extends MultipleSuperTestImpl implements Attribu
 	 * @generated
 	 * @ordered
 	 */
-	protected Class<?> orderenedNo;
+	protected Boolean orderenedNo = ORDERENED_NO_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getTransientYes() <em>Transient Yes</em>}' attribute.
@@ -863,7 +875,7 @@ public class AttributesTestImpl extends MultipleSuperTestImpl implements Attribu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Class<?> getOrderenedNo() {
+	public Boolean getOrderenedNo() {
 		return orderenedNo;
 	}
 
@@ -872,8 +884,8 @@ public class AttributesTestImpl extends MultipleSuperTestImpl implements Attribu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOrderenedNo(Class<?> newOrderenedNo) {
-		Class<?> oldOrderenedNo = orderenedNo;
+	public void setOrderenedNo(Boolean newOrderenedNo) {
+		Boolean oldOrderenedNo = orderenedNo;
 		orderenedNo = newOrderenedNo;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExhaustivePackage.ATTRIBUTES_TEST__ORDERENED_NO, oldOrderenedNo, orderenedNo));
@@ -1263,7 +1275,7 @@ public class AttributesTestImpl extends MultipleSuperTestImpl implements Attribu
 				setOrderedYes((Integer)newValue);
 				return;
 			case ExhaustivePackage.ATTRIBUTES_TEST__ORDERENED_NO:
-				setOrderenedNo((Class<?>)newValue);
+				setOrderenedNo((Boolean)newValue);
 				return;
 			case ExhaustivePackage.ATTRIBUTES_TEST__TRANSIENT_YES:
 				setTransientYes((Double)newValue);
@@ -1353,7 +1365,7 @@ public class AttributesTestImpl extends MultipleSuperTestImpl implements Attribu
 				setOrderedYes(ORDERED_YES_EDEFAULT);
 				return;
 			case ExhaustivePackage.ATTRIBUTES_TEST__ORDERENED_NO:
-				setOrderenedNo((Class<?>)null);
+				setOrderenedNo(ORDERENED_NO_EDEFAULT);
 				return;
 			case ExhaustivePackage.ATTRIBUTES_TEST__TRANSIENT_YES:
 				setTransientYes(TRANSIENT_YES_EDEFAULT);
@@ -1427,7 +1439,7 @@ public class AttributesTestImpl extends MultipleSuperTestImpl implements Attribu
 			case ExhaustivePackage.ATTRIBUTES_TEST__ORDERED_YES:
 				return ORDERED_YES_EDEFAULT == null ? orderedYes != null : !ORDERED_YES_EDEFAULT.equals(orderedYes);
 			case ExhaustivePackage.ATTRIBUTES_TEST__ORDERENED_NO:
-				return orderenedNo != null;
+				return ORDERENED_NO_EDEFAULT == null ? orderenedNo != null : !ORDERENED_NO_EDEFAULT.equals(orderenedNo);
 			case ExhaustivePackage.ATTRIBUTES_TEST__TRANSIENT_YES:
 				return transientYes != TRANSIENT_YES_EDEFAULT;
 			case ExhaustivePackage.ATTRIBUTES_TEST__TRANSIENT_NO:

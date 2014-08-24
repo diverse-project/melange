@@ -6,7 +6,6 @@ import exhaustive.AbstractTest;
 import exhaustive.AttributesTest;
 import exhaustive.ExhaustiveFactory;
 import exhaustive.ExhaustivePackage;
-import exhaustive.GenericChildTest;
 import exhaustive.GenericTest;
 import exhaustive.InterfaceTest;
 import exhaustive.MultipleSuperTest;
@@ -82,13 +81,6 @@ public class ExhaustivePackageImpl extends EPackageImpl implements ExhaustivePac
 	 * @generated
 	 */
 	private EClass genericTestEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass genericChildTestEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -722,7 +714,7 @@ public class ExhaustivePackageImpl extends EPackageImpl implements ExhaustivePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getGenericTest__GenericOperationParameters() {
+	public EOperation getGenericTest__GenericOperationParameters__AbstractTest_GenericTest() {
 		return genericTestEClass.getEOperations().get(1);
 	}
 
@@ -733,15 +725,6 @@ public class ExhaustivePackageImpl extends EPackageImpl implements ExhaustivePac
 	 */
 	public EOperation getGenericTest__GenericOperationThrow() {
 		return genericTestEClass.getEOperations().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getGenericChildTest() {
-		return genericChildTestEClass;
 	}
 
 	/**
@@ -882,10 +865,8 @@ public class ExhaustivePackageImpl extends EPackageImpl implements ExhaustivePac
 		genericTestEClass = createEClass(GENERIC_TEST);
 		createEAttribute(genericTestEClass, GENERIC_TEST__GENERIC_ATTR);
 		createEOperation(genericTestEClass, GENERIC_TEST___GENERIC_OPERATION_RETURN);
-		createEOperation(genericTestEClass, GENERIC_TEST___GENERIC_OPERATION_PARAMETERS);
+		createEOperation(genericTestEClass, GENERIC_TEST___GENERIC_OPERATION_PARAMETERS__ABSTRACTTEST_GENERICTEST);
 		createEOperation(genericTestEClass, GENERIC_TEST___GENERIC_OPERATION_THROW);
-
-		genericChildTestEClass = createEClass(GENERIC_CHILD_TEST);
 
 		// Create enums
 		unserializableEnumTestEEnum = createEEnum(UNSERIALIZABLE_ENUM_TEST);
@@ -934,12 +915,6 @@ public class ExhaustivePackageImpl extends EPackageImpl implements ExhaustivePac
 		referencesTestEClass.getESuperTypes().add(this.getAbstractTest());
 		attributesTestEClass.getESuperTypes().add(this.getMultipleSuperTest());
 		attributesTestEClass.getESuperTypes().add(this.getInterfaceTest());
-		EGenericType g1 = createEGenericType(this.getGenericTest());
-		EGenericType g2 = createEGenericType(this.getAbstractTest());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(this.getMultipleSuperTest());
-		g1.getETypeArguments().add(g2);
-		genericChildTestEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(abstractTestEClass, AbstractTest.class, "AbstractTest", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -952,8 +927,8 @@ public class ExhaustivePackageImpl extends EPackageImpl implements ExhaustivePac
 		initEReference(getReferencesTest_ChangeableYes(), this.getAbstractTest(), null, "changeableYes", null, 0, 1, ReferencesTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getReferencesTest_ChangeableNo(), this.getAbstractTest(), null, "changeableNo", null, 0, 1, ReferencesTest.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getReferencesTest_ContainmentYes(), this.getMultipleSuperTest(), null, "containmentYes", null, 0, 1, ReferencesTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		g1 = createEGenericType(this.getGenericTest());
-		g2 = createEGenericType(this.getAbstractTest());
+		EGenericType g1 = createEGenericType(this.getGenericTest());
+		EGenericType g2 = createEGenericType(this.getAbstractTest());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(this.getOperationsTest());
 		g1.getETypeArguments().add(g2);
@@ -988,10 +963,7 @@ public class ExhaustivePackageImpl extends EPackageImpl implements ExhaustivePac
 		initEAttribute(getAttributesTest_UpperBound2(), ecorePackage.getEString(), "upperBound2", null, 0, 2, AttributesTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttributesTest_UpperBoundN(), ecorePackage.getELongObject(), "upperBoundN", null, 0, -1, AttributesTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttributesTest_OrderedYes(), ecorePackage.getEIntegerObject(), "orderedYes", null, 0, 1, AttributesTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEJavaClass());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		initEAttribute(getAttributesTest_OrderenedNo(), g1, "orderenedNo", null, 0, 1, AttributesTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAttributesTest_OrderenedNo(), ecorePackage.getEBooleanObject(), "orderenedNo", null, 0, 1, AttributesTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttributesTest_TransientYes(), ecorePackage.getEDouble(), "transientYes", null, 0, 1, AttributesTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttributesTest_TransientNo(), ecorePackage.getELong(), "transientNo", null, 0, 1, AttributesTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttributesTest_UniqueYes(), this.getSerializableEnumTest(), "uniqueYes", null, 0, 1, AttributesTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1030,15 +1002,21 @@ public class ExhaustivePackageImpl extends EPackageImpl implements ExhaustivePac
 		g1 = createEGenericType(genericTestEClass_B);
 		initEOperation(op, g1);
 
-		op = initEOperation(getGenericTest__GenericOperationParameters(), null, "genericOperationParameters", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getGenericTest__GenericOperationParameters__AbstractTest_GenericTest(), null, "genericOperationParameters", 0, 1, IS_UNIQUE, IS_ORDERED);
 		ETypeParameter t1 = addETypeParameter(op, "C");
 		g1 = createEGenericType(this.getAbstractTest());
 		t1.getEBounds().add(g1);
+		g1 = createEGenericType(t1);
+		addEParameter(op, g1, "foo", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(this.getGenericTest());
+		g2 = createEGenericType(genericTestEClass_A);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(t1);
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "bar", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getGenericTest__GenericOperationThrow(), null, "genericOperationThrow", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getCustomExceptionTest());
-
-		initEClass(genericChildTestEClass, GenericChildTest.class, "GenericChildTest", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(unserializableEnumTestEEnum, UnserializableEnumTest.class, "UnserializableEnumTest");

@@ -62,7 +62,6 @@ public class ExhaustiveFactoryImpl extends EFactoryImpl implements ExhaustiveFac
 			case ExhaustivePackage.ATTRIBUTES_TEST: return createAttributesTest();
 			case ExhaustivePackage.OPERATIONS_TEST: return createOperationsTest();
 			case ExhaustivePackage.GENERIC_TEST: return createGenericTest();
-			case ExhaustivePackage.GENERIC_CHILD_TEST: return createGenericChildTest();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -158,16 +157,6 @@ public class ExhaustiveFactoryImpl extends EFactoryImpl implements ExhaustiveFac
 	public <A, B> GenericTest<A, B> createGenericTest() {
 		GenericTestImpl<A, B> genericTest = new GenericTestImpl<A, B>();
 		return genericTest;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public GenericChildTest createGenericChildTest() {
-		GenericChildTestImpl genericChildTest = new GenericChildTestImpl();
-		return genericChildTest;
 	}
 
 	/**
