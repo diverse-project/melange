@@ -163,16 +163,12 @@ class K3SLETyping
 						}
 					]
 
-				//val copy = EcoreUtil.copy(mm.pkgs.head)
 				val ecoreUri = '''platform:/resource/«mm.project.name»/model/«mm.name».ecore'''
 				val genmodelUri = '''platform:/resource/«mm.project.name»/model/«mm.name».genmodel'''
 				val srcFolder = '''«mm.project.name»/src'''
 				mm.createExtendedMetamodel(ecoreUri)
 				mm.createExtendedGenmodel(ecoreUri, genmodelUri, srcFolder)
-				//copy.createEcore(ecoreUri)
-				//copy.createGenModel(mm, ecoreUri, genmodelUri, srcFolder)
-
-				throw new ASTProcessingException("Gemoc: stop here")
+				throw new ASTProcessingException("Can't generate code for inheritance-based extended metamodels")
 			} else {
 				val rootPkg = mm.inheritanceRelation.superMetamodel.pkgs.head.copy(mm.name)
 
@@ -180,9 +176,14 @@ class K3SLETyping
 				if (!mm.pkgs.exists[nsURI == pkg.nsURI])
 					mm.pkgs += pkg
 
-				pkg.referencedPkgs.filterNull.forEach[p |
+				pkg.referencedPkgs.forEach[p |
 					if (!mm.pkgs.exists[nsURI == p.nsURI])
 						mm.pkgs += p.copy
+				]
+
+				mm.allSubPkgs.forEach[p |
+					if (!mm.pkgs.exists[nsURI == p.nsURI])
+						mm.pkgs += p
 				]
 
 				// For each aspect, infer the corresponding ecore fragment
@@ -297,47 +298,46 @@ class K3SLETyping
 	}
 
 	def dispatch void complete(Transformation t) {
-
+		// TODO
 	}
 
 	def dispatch boolean isValid(ModelTypingSpace root) {
 		return
-		   !root.name.empty
-		&& !root.metamodels.exists[mm | root.metamodels.exists[mm_ | mm != mm_ && mm.name == mm_.name]]
-		&& !root.modelTypes.exists[mt | root.modelTypes.exists[mt_ | mt != mt_ && mt.name == mt_.name]]
-		&& !root.transformations.exists[t | root.transformations.exists[t_ | t != t_ && t.name == t_.name]]
-		&& root.elements.forall[isValid]
+			   !root.name.empty
+			&& !root.metamodels.exists[mm | root.metamodels.exists[mm_ | mm != mm_ && mm.name == mm_.name]]
+			&& !root.modelTypes.exists[mt | root.modelTypes.exists[mt_ | mt != mt_ && mt.name == mt_.name]]
+			&& !root.transformations.exists[t | root.transformations.exists[t_ | t != t_ && t.name == t_.name]]
+			&& root.elements.forall[isValid]
 	}
 
 	def dispatch boolean isValid(Metamodel mm) {
 		return
-		   mm !== null
-		&& !mm.name.empty
-		&& (mm.inheritanceRelation !== null || mm.ecore?.uri !== null)
-		&& mm.aspects.forall[it !== null && aspectRef?.type instanceof JvmDeclaredType && aspectedClass !== null]
-		&& !mm.exactTypeRef.empty
-		&& mm.exactType !== null
-		&& mm.^implements.forall[it !== null]
-		&& mm.genmodels.forall[it !== null]
-		&& mm.pkgs.forall[it !== null]
+			   mm !== null
+			&& !mm.name.empty
+			&& (mm.inheritanceRelation !== null || mm.ecore?.uri !== null)
+			&& mm.aspects.forall[it !== null && aspectRef?.type instanceof JvmDeclaredType && aspectedClass !== null]
+			&& !mm.exactTypeRef.empty
+			&& mm.exactType !== null
+			&& mm.^implements.forall[it !== null]
+			&& mm.genmodels.forall[it !== null]
+			&& mm.pkgs.forall[it !== null]
 	}
 
 	def dispatch boolean isValid(ModelType mt) {
 		return
-		   mt !== null
-		&& !mt.name.empty
-		&& (mt.ecore?.uri !== null
-			|| mt.extracted !== null)
-		&& mt.subtypingRelations.forall[it !== null]
-		&& mt.pkgs.forall[it !== null]
+			   mt !== null
+			&& !mt.name.empty
+			&& (mt.ecore?.uri !== null
+				|| mt.extracted !== null)
+			&& mt.subtypingRelations.forall[it !== null]
+			&& mt.pkgs.forall[it !== null]
 	}
 
 	def dispatch boolean isValid(Transformation t) {
 		return
-		   t !== null
-		&& !t.name.empty
-		&& t.parameters.forall[it !== null]
-		&& t.body !== null
-		// t.input / t.output?
+			   t !== null
+			&& !t.name.empty
+			&& t.parameters.forall[it !== null]
+			&& t.body !== null
 	}
 }
