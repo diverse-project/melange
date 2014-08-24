@@ -13,6 +13,8 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
+import org.eclipse.emf.ecore.EDataType
+import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EReference
@@ -22,9 +24,6 @@ import org.eclipse.xtext.common.types.JvmOperation
 
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.naming.QualifiedName
-import org.eclipse.emf.ecore.EDataType
-import org.eclipse.emf.ecore.EEnum
-import org.eclipse.emf.ecore.EDataType
 
 class NamingHelper
 {
@@ -80,6 +79,18 @@ class NamingHelper
 			mm.genmodels.head.allGenPkgs
 			.findFirst[gp | gp.getEcorePackage.nsURI == pkg.nsURI]
 			.factoryFqn
+	}
+
+	def String getFqnFor(ModelType mt, EClassifier cls) {
+		return
+			switch (cls) {
+				EClass:
+					mt.interfaceNameFor(cls)
+				EEnum:
+					mt.extracted.getFqnFor(cls)
+				EDataType:
+					cls.instanceClass.name ?: cls.instanceTypeName
+			}
 	}
 
 	def String getFactoryName(ModelType mt) {
