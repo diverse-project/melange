@@ -22,6 +22,9 @@ import org.eclipse.xtext.common.types.JvmOperation
 
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.naming.QualifiedName
+import org.eclipse.emf.ecore.EDataType
+import org.eclipse.emf.ecore.EEnum
+import org.eclipse.emf.ecore.EDataType
 
 class NamingHelper
 {
@@ -54,10 +57,14 @@ class NamingHelper
 	}
 
 	def String getFqnFor(Metamodel mm, EClassifier cls) {
-		val pkg = mm.pkgs.findFirst[EClassifiers.exists[name == cls.name]]
-		val gp = mm.genmodels.map[allGenPkgs].flatten.findFirst[getEcorePackage.nsURI == pkg.nsURI]
-
-		return gp.getFqnFor(cls.name)
+		return
+			if (cls instanceof EClass || cls instanceof EEnum)
+				mm.genmodels
+					.map[allGenPkgs].flatten
+					.findFirst[getEcorePackage.nsURI == mm.pkgs.findFirst[EClassifiers.exists[name == cls.name]].nsURI]
+					.getFqnFor(cls.name)
+			else
+				cls.instanceClass?.name ?: cls.instanceClassName
 	}
 
 	def String getPackageFqn(Metamodel mm) {
@@ -69,10 +76,10 @@ class NamingHelper
 	}
 
 	def String getFactoryFqnFor(Metamodel mm, EPackage pkg) {
-		val gp = mm.genmodels.head.allGenPkgs.findFirst[gp | gp.getEcorePackage.nsURI == pkg.nsURI]
-
-		return gp.factoryFqn
-
+		return
+			mm.genmodels.head.allGenPkgs
+			.findFirst[gp | gp.getEcorePackage.nsURI == pkg.nsURI]
+			.factoryFqn
 	}
 
 	def String getFactoryName(ModelType mt) {
@@ -111,7 +118,7 @@ class NamingHelper
 		return
 			switch (f) {
 				EAttribute:
-					if (#["java.lang.Boolean", "boolean"].contains(f.EAttributeType.instanceClassName) && !f.many)
+					if (f.EAttributeType.instanceClassName == "boolean" && !f.many)
 						'''is«f.name.toFirstUpper»'''.toString
 					else
 						'''get«f.name.toFirstUpper»'''.toString
@@ -122,7 +129,7 @@ class NamingHelper
 
 	def String getGetterName(JvmOperation op) {
 		return
-			if (#["java.lang.Boolean", "boolean"].contains(op.returnType.type.simpleName))
+			if (op.returnType.type.simpleName == "boolean")
 				'''is«op.simpleName.toFirstUpper»'''.toString
 			else
 				'''get«op.simpleName.toFirstUpper»'''.toString
@@ -132,7 +139,7 @@ class NamingHelper
 		return
 			switch (f) {
 				EAttribute:
-					if (#["java.lang.Boolean", "boolean"].contains(f.EAttributeType.instanceClassName))
+					if (f.EAttributeType.instanceClassName == "boolean")
 						'''«f.name.toFirstUpper»'''.toString
 					else
 						'''get«f.name.toFirstUpper»'''.toString
@@ -172,8 +179,7 @@ class NamingHelper
 					'''«ref.name.substring(0, ref.name.length - 2).toFirstUpper»ices'''.toString
 				else
 					'''«ref.name.toFirstUpper»s'''.toString
-			}
-			else
+			} else
 				ref.name
 	}
 
