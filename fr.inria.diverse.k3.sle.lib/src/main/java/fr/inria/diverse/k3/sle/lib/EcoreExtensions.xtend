@@ -11,6 +11,7 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EDataType
+import org.eclipse.emf.ecore.EModelElement
 import org.eclipse.emf.ecore.ENamedElement
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EReference
@@ -42,6 +43,25 @@ class EcoreExtensions
 
 	def boolean isAspectSpecific(ENamedElement f) {
 		return f.EAnnotations.exists[source == "aspect"]
+	}
+
+	def boolean needsUnsetter(EStructuralFeature f) {
+		return
+			   f.unsettable
+			&& f.getGenmodelAnnotationValue("suppressedUnsetVisibility") != "true"
+	}
+
+	def boolean needsUnsetterChecker(EStructuralFeature f) {
+		return
+			   f.unsettable
+			&& f.getGenmodelAnnotationValue("suppressedIsSetVisibility") != "true"
+	}
+
+	def String getGenmodelAnnotationValue(EModelElement e, String key) {
+		return
+			e.getEAnnotation("http://www.eclipse.org/emf/2002/GenModel")
+			?.details?.findFirst[d | d.key == key]
+			?.value ?: ""
 	}
 
 	def EClass getOrCreateClass(EPackage pkg, String name) {
