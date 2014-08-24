@@ -33,6 +33,7 @@ class ModelTypeInferrer
 	@Inject extension ModelTypeExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension K3SLETypesBuilder
+	@Inject extension EnumInferrer
 
 	def void generateInterfaces(ModelType mt, IJvmDeclaredTypeAcceptor acceptor) {
 		acceptor.accept(mt.toInterface(mt.fullyQualifiedName.toString)[
@@ -153,5 +154,10 @@ class ModelTypeInferrer
 				]
 			])
 		]
+
+		if (mt.isImported)
+			mt.allEnums.forEach[enu |
+				mt.generateEnum(enu, acceptor)
+			]
 	}
 }

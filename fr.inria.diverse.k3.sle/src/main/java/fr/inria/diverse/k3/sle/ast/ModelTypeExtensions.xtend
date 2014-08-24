@@ -7,9 +7,11 @@ import fr.inria.diverse.k3.sle.lib.MatchingHelper
 
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
 
+import java.util.List
+
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
-import java.util.List
+import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EPackage
 
 class ModelTypeExtensions
@@ -47,6 +49,10 @@ class ModelTypeExtensions
 
 	def Iterable<EClass> getAllClasses(ModelType mt) {
 		return mt.allClassifiers.filter(EClass)
+	}
+
+	def Iterable<EEnum> getAllEnums(ModelType mt) {
+		return mt.allClassifiers.filter(EEnum)
 	}
 
 	def boolean isUml(ModelType mt, EClassifier cls) {

@@ -60,12 +60,16 @@ class K3SLETypesBuilder
 				ctx.newTypeRef(
 					ctx.getFqnFor(t.EClassifier),
 					t.ETypeArguments.map[ta |
-						if (ta.EClassifier !== null) {
-							// FIXME: Generic types can not be abstracted for now, fix them
-							//        Uncomment 2nd line when possible
-							ctx.newTypeRef(ctx.extracted.getFqnFor(ta.EClassifier))
+						if (ta.EClassifier !== null)
+							// FIXME: Generic types can not be abstracted for now
+							//        Uncomment when solved
+							//
 							//ctx.newTypeRef(ta.EClassifier, decl)
-						} else if (ta.ETypeParameter !== null)
+							if (ctx.isExtracted)
+								ctx.newTypeRef(ctx.extracted.getFqnFor(ta.EClassifier))
+							else
+								ctx.newTypeRef(ta.EClassifier, decl)
+						else if (ta.ETypeParameter !== null)
 							decl.createTypeParameterReference(ta.ETypeParameter.name)
 						else
 							TypesFactory.eINSTANCE.createJvmWildcardTypeReference
@@ -95,8 +99,7 @@ class K3SLETypesBuilder
 					else if (cls.instanceTypeName !== null)
 						ctx.newTypeRef(cls.instanceTypeName)
 				EEnum:
-					if (ctx.isExtracted)
-						ctx.newTypeRef(ctx.extracted.getFqnFor(cls))
+					ctx.newTypeRef(ctx.getFqnFor(cls))
 				EDataType:
 					if (cls.instanceClass !== null)
 						ctx.newTypeRef(cls.instanceClass.name)

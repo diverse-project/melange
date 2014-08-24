@@ -29,6 +29,7 @@ class NamingHelper
 {
 	@Inject extension EcoreExtensions
 	@Inject extension IQualifiedNameProvider
+	@Inject extension ModelTypeExtensions
 
 	def String normalize(QualifiedName name) {
 		val res = new StringBuilder
@@ -87,7 +88,10 @@ class NamingHelper
 				EClass:
 					mt.interfaceNameFor(cls)
 				EEnum:
-					mt.extracted.getFqnFor(cls)
+					if (mt.isExtracted)
+						mt.extracted.getFqnFor(cls)
+					else
+						mt.fullyQualifiedName.toLowerCase.append(cls.name).normalize.toString
 				EDataType:
 					cls.instanceClass.name ?: cls.instanceTypeName
 			}
