@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.ETypedElement
 
 import org.eclipse.xtext.common.types.JvmTypeParameterDeclarator
 import org.eclipse.xtext.common.types.JvmTypeReference
+import org.eclipse.xtext.common.types.TypesFactory
 
 import org.eclipse.xtext.common.types.util.TypeReferences
 
@@ -57,19 +58,17 @@ class K3SLETypesBuilder
 				decl.createTypeParameterReference(t.ETypeParameter.name)
 			else if (!t.ETypeArguments.empty)
 				ctx.newTypeRef(
-					switch (t.EClassifier) {
-						EClass:
-							ctx.interfaceNameFor(t.EClassifier as EClass)
-						EEnum:
-							ctx.extracted.getFqnFor(t.EClassifier)
-						EDataType:
-							t.EClassifier.instanceClass.name ?: t.EClassifier.instanceTypeName
-					},
+					ctx.getFqnFor(t.EClassifier),
 					t.ETypeArguments.map[ta |
-						if (ta.EClassifier !== null)
-							ctx.newTypeRef(ta.EClassifier, decl)
-						else if (ta.ETypeParameter !== null)
+						if (ta.EClassifier !== null) {
+							// FIXME: Generic types can not be abstracted for now, fix them
+							//        Uncomment 2nd line when possible
+							ctx.newTypeRef(ctx.extracted.getFqnFor(ta.EClassifier))
+							//ctx.newTypeRef(ta.EClassifier, decl)
+						} else if (ta.ETypeParameter !== null)
 							decl.createTypeParameterReference(ta.ETypeParameter.name)
+						else
+							TypesFactory.eINSTANCE.createJvmWildcardTypeReference
 					]
 				)
 			else if (t.EClassifier !== null)

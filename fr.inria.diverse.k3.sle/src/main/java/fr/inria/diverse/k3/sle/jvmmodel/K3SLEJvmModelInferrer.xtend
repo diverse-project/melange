@@ -18,9 +18,9 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 {
 	@Inject K3SLETyping typingHelper
 	@Inject extension ASTHelper
-	@Inject extension ModelTypeJvmModelInferrer
-	@Inject extension MetamodelJvmModelInferrer
-	@Inject extension TransformationJvmModelInferrer
+	@Inject extension ModelTypeInferrer
+	@Inject extension MetamodelInferrer
+	@Inject extension TransformationInferrer
 
 	ModelTypingSpace root
 	Logger logger = Logger.getLogger(K3SLEJvmModelInferrer)

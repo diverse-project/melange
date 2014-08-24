@@ -2,20 +2,7 @@ package fr.inria.diverse.k3.sle.jvmmodel
 
 import com.google.inject.Inject
 
-import fr.inria.diverse.k3.sle.ast.ModelTypeExtensions
-import fr.inria.diverse.k3.sle.ast.NamingHelper
-
-import fr.inria.diverse.k3.sle.lib.EcoreExtensions
-
-import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
-import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
-
 import java.util.List
-
-import org.eclipse.emf.ecore.EClass
-import org.eclipse.emf.ecore.EClassifier
-import org.eclipse.emf.ecore.EDataType
-import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EStructuralFeature
 
 import org.eclipse.xtext.common.types.JvmFormalParameter
@@ -26,17 +13,14 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
 class JvmModelInferrerHelper
 {
-	@Inject extension EcoreExtensions
-	@Inject extension ModelTypeExtensions
 	@Inject extension JvmTypesBuilder
-	@Inject extension NamingHelper
 
 	/*--- Getters / Setters  ---*/
 	def JvmOperation toGetterSignature(EStructuralFeature f, String name, JvmTypeReference type) {
 		val g =	f.toGetter(name, type)
 		g.removeExistingBody
 
-		if (#["java.lang.Boolean", "boolean"].contains(type.qualifiedName))
+		if (type.qualifiedName == "boolean")
 			g.simpleName = g.simpleName.replaceFirst("get", "is")
 
 		return g
@@ -49,7 +33,7 @@ class JvmModelInferrerHelper
 		if (
 			   g.simpleName.startsWith("isIs")
 			&& Character.isUpperCase(g.simpleName.charAt(4))
-			&& #["java.lang.Boolean", "boolean"].contains(type.qualifiedName)
+			&& type.qualifiedName == "boolean"
 		)
 			g.simpleName = g.simpleName.replaceFirst("is", "").toFirstLower
 
@@ -97,31 +81,6 @@ class JvmModelInferrerHelper
 		return u
 	}
 
-	/*--- Type references helpers ---*/
-	def JvmTypeReference newTypeRef(ModelType ctx, EClassifier cls) {
-		// TODO: Handle generics
-		return
-			switch (cls) {
-				case null: ctx.newTypeRef(Object)
-				EClass:
-					if (cls.abstractable)
-						ctx.newTypeRef(ctx.interfaceNameFor(cls))
-					else if (cls.instanceClass !== null)
-						ctx.newTypeRef(cls.instanceClass.name)
-					else if (cls.instanceTypeName !== null)
-						ctx.newTypeRef(cls.instanceTypeName)
-				EEnum:
-					if (ctx.isExtracted)
-						ctx.newTypeRef(ctx.extracted.getFqnFor(cls))
-				EDataType:
-					if (cls.instanceClass !== null)
-						ctx.newTypeRef(cls.instanceClass.name)
-					else if (cls.instanceTypeName !== null)
-						ctx.newTypeRef(cls.instanceTypeName)
-				default: ctx.newTypeRef(Object)
-			}
-	}
-
 	def boolean overrides(JvmOperation o1, JvmOperation o2) {
 		return
 		   o1.simpleName == o2.simpleName
@@ -139,12 +98,5 @@ class JvmModelInferrerHelper
 				return false
 
 		return true
-	}
-}
-
-class TypeReferenceException extends Exception
-{
-	new(String msg) {
-		super(msg)
 	}
 }
