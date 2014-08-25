@@ -378,67 +378,13 @@ public interface K3slePackage extends EPackage {
 	int TRANSFORMATION__NAME = ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Main</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSFORMATION__MAIN = ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSFORMATION__PARAMETERS = ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Body</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSFORMATION__BODY = ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Return Type Ref</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSFORMATION__RETURN_TYPE_REF = ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Input</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSFORMATION__INPUT = ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Output</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSFORMATION__OUTPUT = ELEMENT_FEATURE_COUNT + 5;
-
-	/**
 	 * The number of structural features of the '<em>Transformation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 6;
+	int TRANSFORMATION_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Transformation</em>' class.
@@ -644,6 +590,125 @@ public interface K3slePackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.SlicerImpl <em>Slicer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.SlicerImpl
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.K3slePackageImpl#getSlicer()
+	 * @generated
+	 */
+	int SLICER = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLICER__NAME = TRANSFORMATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Slicer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLICER__SLICER = TRANSFORMATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Slicer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLICER_FEATURE_COUNT = TRANSFORMATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Slicer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLICER_OPERATION_COUNT = TRANSFORMATION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.TransformationXBaseImpl <em>Transformation XBase</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.TransformationXBaseImpl
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.K3slePackageImpl#getTransformationXBase()
+	 * @generated
+	 */
+	int TRANSFORMATION_XBASE = 10;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSFORMATION_XBASE__NAME = TRANSFORMATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Body</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSFORMATION_XBASE__BODY = TRANSFORMATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Main</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSFORMATION_XBASE__MAIN = TRANSFORMATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSFORMATION_XBASE__PARAMETERS = TRANSFORMATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Return Type Ref</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSFORMATION_XBASE__RETURN_TYPE_REF = TRANSFORMATION_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Transformation XBase</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSFORMATION_XBASE_FEATURE_COUNT = TRANSFORMATION_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of operations of the '<em>Transformation XBase</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSFORMATION_XBASE_OPERATION_COUNT = TRANSFORMATION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ResourceType <em>Resource Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -651,7 +716,7 @@ public interface K3slePackage extends EPackage {
 	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.K3slePackageImpl#getResourceType()
 	 * @generated
 	 */
-	int RESOURCE_TYPE = 9;
+	int RESOURCE_TYPE = 11;
 
 
 	/**
@@ -914,72 +979,6 @@ public interface K3slePackage extends EPackage {
 	EClass getTransformation();
 
 	/**
-	 * Returns the meta object for the attribute '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation#isMain <em>Main</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Main</em>'.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation#isMain()
-	 * @see #getTransformation()
-	 * @generated
-	 */
-	EAttribute getTransformation_Main();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation#getParameters <em>Parameters</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Parameters</em>'.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation#getParameters()
-	 * @see #getTransformation()
-	 * @generated
-	 */
-	EReference getTransformation_Parameters();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation#getBody <em>Body</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Body</em>'.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation#getBody()
-	 * @see #getTransformation()
-	 * @generated
-	 */
-	EReference getTransformation_Body();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation#getReturnTypeRef <em>Return Type Ref</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Return Type Ref</em>'.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation#getReturnTypeRef()
-	 * @see #getTransformation()
-	 * @generated
-	 */
-	EReference getTransformation_ReturnTypeRef();
-
-	/**
-	 * Returns the meta object for the reference list '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation#getInput <em>Input</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Input</em>'.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation#getInput()
-	 * @see #getTransformation()
-	 * @generated
-	 */
-	EReference getTransformation_Input();
-
-	/**
-	 * Returns the meta object for the reference list '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation#getOutput <em>Output</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Output</em>'.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation#getOutput()
-	 * @see #getTransformation()
-	 * @generated
-	 */
-	EReference getTransformation_Output();
-
-	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.EcoreImport <em>Ecore Import</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1117,6 +1116,81 @@ public interface K3slePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSubtyping_SuperType();
+
+	/**
+	 * Returns the meta object for class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Slicer <em>Slicer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Slicer</em>'.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Slicer
+	 * @generated
+	 */
+	EClass getSlicer();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Slicer#getSlicer <em>Slicer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Slicer</em>'.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Slicer#getSlicer()
+	 * @see #getSlicer()
+	 * @generated
+	 */
+	EReference getSlicer_Slicer();
+
+	/**
+	 * Returns the meta object for class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.TransformationXBase <em>Transformation XBase</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Transformation XBase</em>'.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.TransformationXBase
+	 * @generated
+	 */
+	EClass getTransformationXBase();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.TransformationXBase#getBody <em>Body</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Body</em>'.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.TransformationXBase#getBody()
+	 * @see #getTransformationXBase()
+	 * @generated
+	 */
+	EReference getTransformationXBase_Body();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.TransformationXBase#isMain <em>Main</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Main</em>'.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.TransformationXBase#isMain()
+	 * @see #getTransformationXBase()
+	 * @generated
+	 */
+	EAttribute getTransformationXBase_Main();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.TransformationXBase#getParameters <em>Parameters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Parameters</em>'.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.TransformationXBase#getParameters()
+	 * @see #getTransformationXBase()
+	 * @generated
+	 */
+	EReference getTransformationXBase_Parameters();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.TransformationXBase#getReturnTypeRef <em>Return Type Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Return Type Ref</em>'.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.TransformationXBase#getReturnTypeRef()
+	 * @see #getTransformationXBase()
+	 * @generated
+	 */
+	EReference getTransformationXBase_ReturnTypeRef();
 
 	/**
 	 * Returns the meta object for enum '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ResourceType <em>Resource Type</em>}'.
@@ -1354,54 +1428,6 @@ public interface K3slePackage extends EPackage {
 		EClass TRANSFORMATION = eINSTANCE.getTransformation();
 
 		/**
-		 * The meta object literal for the '<em><b>Main</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TRANSFORMATION__MAIN = eINSTANCE.getTransformation_Main();
-
-		/**
-		 * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TRANSFORMATION__PARAMETERS = eINSTANCE.getTransformation_Parameters();
-
-		/**
-		 * The meta object literal for the '<em><b>Body</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TRANSFORMATION__BODY = eINSTANCE.getTransformation_Body();
-
-		/**
-		 * The meta object literal for the '<em><b>Return Type Ref</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TRANSFORMATION__RETURN_TYPE_REF = eINSTANCE.getTransformation_ReturnTypeRef();
-
-		/**
-		 * The meta object literal for the '<em><b>Input</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TRANSFORMATION__INPUT = eINSTANCE.getTransformation_Input();
-
-		/**
-		 * The meta object literal for the '<em><b>Output</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TRANSFORMATION__OUTPUT = eINSTANCE.getTransformation_Output();
-
-		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.EcoreImportImpl <em>Ecore Import</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1512,6 +1538,66 @@ public interface K3slePackage extends EPackage {
 		 * @generated
 		 */
 		EReference SUBTYPING__SUPER_TYPE = eINSTANCE.getSubtyping_SuperType();
+
+		/**
+		 * The meta object literal for the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.SlicerImpl <em>Slicer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.SlicerImpl
+		 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.K3slePackageImpl#getSlicer()
+		 * @generated
+		 */
+		EClass SLICER = eINSTANCE.getSlicer();
+
+		/**
+		 * The meta object literal for the '<em><b>Slicer</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SLICER__SLICER = eINSTANCE.getSlicer_Slicer();
+
+		/**
+		 * The meta object literal for the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.TransformationXBaseImpl <em>Transformation XBase</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.TransformationXBaseImpl
+		 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.K3slePackageImpl#getTransformationXBase()
+		 * @generated
+		 */
+		EClass TRANSFORMATION_XBASE = eINSTANCE.getTransformationXBase();
+
+		/**
+		 * The meta object literal for the '<em><b>Body</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TRANSFORMATION_XBASE__BODY = eINSTANCE.getTransformationXBase_Body();
+
+		/**
+		 * The meta object literal for the '<em><b>Main</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRANSFORMATION_XBASE__MAIN = eINSTANCE.getTransformationXBase_Main();
+
+		/**
+		 * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TRANSFORMATION_XBASE__PARAMETERS = eINSTANCE.getTransformationXBase_Parameters();
+
+		/**
+		 * The meta object literal for the '<em><b>Return Type Ref</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TRANSFORMATION_XBASE__RETURN_TYPE_REF = eINSTANCE.getTransformationXBase_ReturnTypeRef();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ResourceType <em>Resource Type</em>}' enum.

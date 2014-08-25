@@ -12,9 +12,12 @@ import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ResourceType;
+import fr.inria.diverse.k3.sle.metamodel.k3sle.Slicer;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Subtyping;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation;
 
+import fr.inria.diverse.k3.sle.metamodel.k3sle.TransformationXBase;
+import kompren.KomprenPackage;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -107,6 +110,20 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass slicerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass transformationXBaseEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum resourceTypeEEnum = null;
 
 	/**
@@ -157,6 +174,7 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 
 		// Initialize simple dependencies
 		GenModelPackage.eINSTANCE.eClass();
+		KomprenPackage.eINSTANCE.eClass();
 		XtypePackage.eINSTANCE.eClass();
 		XbasePackage.eINSTANCE.eClass();
 
@@ -396,60 +414,6 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTransformation_Main() {
-		return (EAttribute)transformationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTransformation_Parameters() {
-		return (EReference)transformationEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTransformation_Body() {
-		return (EReference)transformationEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTransformation_ReturnTypeRef() {
-		return (EReference)transformationEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTransformation_Input() {
-		return (EReference)transformationEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTransformation_Output() {
-		return (EReference)transformationEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getEcoreImport() {
 		return ecoreImportEClass;
 	}
@@ -567,6 +531,69 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getSlicer() {
+		return slicerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSlicer_Slicer() {
+		return (EReference)slicerEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTransformationXBase() {
+		return transformationXBaseEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTransformationXBase_Body() {
+		return (EReference)transformationXBaseEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTransformationXBase_Main() {
+		return (EAttribute)transformationXBaseEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTransformationXBase_Parameters() {
+		return (EReference)transformationXBaseEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTransformationXBase_ReturnTypeRef() {
+		return (EReference)transformationXBaseEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getResourceType() {
 		return resourceTypeEEnum;
 	}
@@ -627,12 +654,6 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 		createEReference(modelTypeEClass, MODEL_TYPE__EXTRACTED);
 
 		transformationEClass = createEClass(TRANSFORMATION);
-		createEAttribute(transformationEClass, TRANSFORMATION__MAIN);
-		createEReference(transformationEClass, TRANSFORMATION__PARAMETERS);
-		createEReference(transformationEClass, TRANSFORMATION__BODY);
-		createEReference(transformationEClass, TRANSFORMATION__RETURN_TYPE_REF);
-		createEReference(transformationEClass, TRANSFORMATION__INPUT);
-		createEReference(transformationEClass, TRANSFORMATION__OUTPUT);
 
 		ecoreImportEClass = createEClass(ECORE_IMPORT);
 		createEAttribute(ecoreImportEClass, ECORE_IMPORT__URI);
@@ -650,6 +671,15 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 		subtypingEClass = createEClass(SUBTYPING);
 		createEReference(subtypingEClass, SUBTYPING__SUB_TYPE);
 		createEReference(subtypingEClass, SUBTYPING__SUPER_TYPE);
+
+		slicerEClass = createEClass(SLICER);
+		createEReference(slicerEClass, SLICER__SLICER);
+
+		transformationXBaseEClass = createEClass(TRANSFORMATION_XBASE);
+		createEReference(transformationXBaseEClass, TRANSFORMATION_XBASE__BODY);
+		createEAttribute(transformationXBaseEClass, TRANSFORMATION_XBASE__MAIN);
+		createEReference(transformationXBaseEClass, TRANSFORMATION_XBASE__PARAMETERS);
+		createEReference(transformationXBaseEClass, TRANSFORMATION_XBASE__RETURN_TYPE_REF);
 
 		// Create enums
 		resourceTypeEEnum = createEEnum(RESOURCE_TYPE);
@@ -683,6 +713,7 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		GenModelPackage theGenModelPackage = (GenModelPackage)EPackage.Registry.INSTANCE.getEPackage(GenModelPackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
+		KomprenPackage theKomprenPackage = (KomprenPackage)EPackage.Registry.INSTANCE.getEPackage(KomprenPackage.eNS_URI);
 		XbasePackage theXbasePackage = (XbasePackage)EPackage.Registry.INSTANCE.getEPackage(XbasePackage.eNS_URI);
 
 		// Create type parameters
@@ -693,6 +724,8 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 		metamodelEClass.getESuperTypes().add(this.getElement());
 		modelTypeEClass.getESuperTypes().add(this.getElement());
 		transformationEClass.getESuperTypes().add(this.getElement());
+		slicerEClass.getESuperTypes().add(this.getTransformation());
+		transformationXBaseEClass.getESuperTypes().add(this.getTransformation());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(modelTypingSpaceEClass, ModelTypingSpace.class, "ModelTypingSpace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -722,13 +755,7 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 		initEReference(getModelType_Pkgs(), theEcorePackage.getEPackage(), null, "pkgs", null, 0, -1, ModelType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModelType_Extracted(), this.getMetamodel(), this.getMetamodel_ExactType(), "extracted", null, 0, 1, ModelType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(transformationEClass, Transformation.class, "Transformation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTransformation_Main(), ecorePackage.getEBoolean(), "main", null, 0, 1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTransformation_Parameters(), theTypesPackage.getJvmFormalParameter(), null, "parameters", null, 0, -1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTransformation_Body(), theXbasePackage.getXExpression(), null, "body", null, 1, 1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTransformation_ReturnTypeRef(), theTypesPackage.getJvmTypeReference(), null, "returnTypeRef", null, 0, 1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTransformation_Input(), this.getElement(), null, "input", null, 0, -1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTransformation_Output(), this.getElement(), null, "output", null, 0, -1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(transformationEClass, Transformation.class, "Transformation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(ecoreImportEClass, EcoreImport.class, "EcoreImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEcoreImport_Uri(), ecorePackage.getEString(), "uri", null, 0, 1, EcoreImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -746,6 +773,15 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 		initEClass(subtypingEClass, Subtyping.class, "Subtyping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSubtyping_SubType(), this.getModelType(), this.getModelType_SubtypingRelations(), "subType", null, 1, 1, Subtyping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSubtyping_SuperType(), this.getModelType(), null, "superType", null, 1, 1, Subtyping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(slicerEClass, Slicer.class, "Slicer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSlicer_Slicer(), theKomprenPackage.getSlicer(), null, "slicer", null, 1, 1, Slicer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(transformationXBaseEClass, TransformationXBase.class, "TransformationXBase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTransformationXBase_Body(), theXbasePackage.getXExpression(), null, "body", null, 1, 1, TransformationXBase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTransformationXBase_Main(), ecorePackage.getEBoolean(), "main", null, 0, 1, TransformationXBase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransformationXBase_Parameters(), theTypesPackage.getJvmFormalParameter(), null, "parameters", null, 0, -1, TransformationXBase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransformationXBase_ReturnTypeRef(), theTypesPackage.getJvmTypeReference(), null, "returnTypeRef", null, 0, 1, TransformationXBase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(resourceTypeEEnum, ResourceType.class, "ResourceType");

@@ -104,6 +104,14 @@ public class K3sleAdapterFactory extends AdapterFactoryImpl {
 				return createSubtypingAdapter();
 			}
 			@Override
+			public Adapter caseSlicer(Slicer object) {
+				return createSlicerAdapter();
+			}
+			@Override
+			public Adapter caseTransformationXBase(TransformationXBase object) {
+				return createTransformationXBaseAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -246,6 +254,34 @@ public class K3sleAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSubtypingAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Slicer <em>Slicer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Slicer
+	 * @generated
+	 */
+	public Adapter createSlicerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.TransformationXBase <em>Transformation XBase</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.TransformationXBase
+	 * @generated
+	 */
+	public Adapter createTransformationXBaseAdapter() {
 		return null;
 	}
 

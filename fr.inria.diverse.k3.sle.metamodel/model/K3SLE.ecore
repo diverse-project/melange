@@ -44,20 +44,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="extracted" eType="#//Metamodel"
         eOpposite="#//Metamodel/exactType"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Transformation" eSuperTypes="#//Element">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="main" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
-        eType="ecore:EClass ../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmFormalParameter"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="body" lowerBound="1" eType="ecore:EClass ../../org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="returnTypeRef" eType="ecore:EClass ../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="input" upperBound="-1"
-        eType="#//Element"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="output" upperBound="-1"
-        eType="#//Element"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Transformation" abstract="true" eSuperTypes="#//Element"/>
   <eClassifiers xsi:type="ecore:EClass" name="EcoreImport">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="genmodelUris" upperBound="-1"
@@ -87,5 +74,20 @@
     <eLiterals name="K3" literal="K3"/>
     <eLiterals name="EMF" value="1" literal="EMF"/>
     <eLiterals name="XTEXT" value="2" literal="XTEXT"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Slicer" eSuperTypes="#//Transformation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="slicer" lowerBound="1"
+        eType="ecore:EClass ../../fr.inria.diverse.kompren.model/model/kompren.ecore#//Slicer"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TransformationXBase" eSuperTypes="#//Transformation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" lowerBound="1" eType="ecore:EClass ../../org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="main" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+        eType="ecore:EClass ../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmFormalParameter"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="returnTypeRef" eType="ecore:EClass ../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference"
+        containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

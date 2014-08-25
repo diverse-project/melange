@@ -3,7 +3,7 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.inria.diverse.k3.sle.metamodel/src/main/java"
     modelPluginID="fr.inria.diverse.k3.sle.metamodel" modelName="K3SLE" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
-    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.emf.codegen.ecore/model/GenModel.genmodel#//genmodel ../../org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types ../../org.eclipse.xtext.xbase/model/Xbase.genmodel#//xtype ../../org.eclipse.xtext.xbase/model/Xbase.genmodel#//xbase"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.emf.codegen.ecore/model/GenModel.genmodel#//genmodel ../../fr.inria.diverse.kompren.model/model/kompren.genmodel#//kompren ../../org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types ../../org.eclipse.xtext.xbase/model/Xbase.genmodel#//xtype ../../org.eclipse.xtext.xbase/model/Xbase.genmodel#//xbase"
     operationReflection="true" importOrganizing="true">
   <foreignModel>K3SLE.ecore</foreignModel>
   <genPackages prefix="K3sle" basePackage="fr.inria.diverse.k3.sle.metamodel" disposableProviderFactory="true"
@@ -40,14 +40,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//ModelType/pkgs"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference K3SLE.ecore#//ModelType/extracted"/>
     </genClasses>
-    <genClasses ecoreClass="K3SLE.ecore#//Transformation">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute K3SLE.ecore#//Transformation/main"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//Transformation/parameters"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//Transformation/body"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//Transformation/returnTypeRef"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference K3SLE.ecore#//Transformation/input"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference K3SLE.ecore#//Transformation/output"/>
-    </genClasses>
+    <genClasses ecoreClass="K3SLE.ecore#//Transformation"/>
     <genClasses ecoreClass="K3SLE.ecore#//EcoreImport">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute K3SLE.ecore#//EcoreImport/uri"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute K3SLE.ecore#//EcoreImport/genmodelUris"/>
@@ -64,6 +57,15 @@
     <genClasses ecoreClass="K3SLE.ecore#//Subtyping">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference K3SLE.ecore#//Subtyping/subType"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference K3SLE.ecore#//Subtyping/superType"/>
+    </genClasses>
+    <genClasses ecoreClass="K3SLE.ecore#//Slicer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//Slicer/slicer"/>
+    </genClasses>
+    <genClasses ecoreClass="K3SLE.ecore#//TransformationXBase">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//TransformationXBase/body"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute K3SLE.ecore#//TransformationXBase/main"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//TransformationXBase/parameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//TransformationXBase/returnTypeRef"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

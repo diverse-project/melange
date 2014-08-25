@@ -11,10 +11,11 @@ Export-Package: fr.inria.diverse.k3.sle.metamodel.k3sle,
  fr.inria.diverse.k3.sle.metamodel.k3sle.impl,
  fr.inria.diverse.k3.sle.metamodel.k3sle.util
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.codegen.ecore;visibility:=reexport,
  org.eclipse.xtext.common.types;bundle-version="2.6.0";visibility:=reexport,
- org.eclipse.xtext.xbase;bundle-version="2.6.0"
+ org.eclipse.xtext.xbase;bundle-version="2.6.0";visibility:=reexport,
+ fr.inria.diverse.kompren.model;bundle-version="3.0.0";visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.xtext.xbase,
  org.eclipse.xtext.xtype

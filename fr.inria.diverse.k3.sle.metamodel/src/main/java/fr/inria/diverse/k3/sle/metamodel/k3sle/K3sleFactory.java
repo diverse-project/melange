@@ -49,15 +49,6 @@ public interface K3sleFactory extends EFactory {
 	ModelType createModelType();
 
 	/**
-	 * Returns a new object of class '<em>Transformation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Transformation</em>'.
-	 * @generated
-	 */
-	Transformation createTransformation();
-
-	/**
 	 * Returns a new object of class '<em>Ecore Import</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -92,6 +83,24 @@ public interface K3sleFactory extends EFactory {
 	 * @generated
 	 */
 	Subtyping createSubtyping();
+
+	/**
+	 * Returns a new object of class '<em>Slicer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Slicer</em>'.
+	 * @generated
+	 */
+	Slicer createSlicer();
+
+	/**
+	 * Returns a new object of class '<em>Transformation XBase</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Transformation XBase</em>'.
+	 * @generated
+	 */
+	TransformationXBase createTransformationXBase();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -60,11 +60,12 @@ public class K3sleFactoryImpl extends EFactoryImpl implements K3sleFactory {
 			case K3slePackage.MODEL_TYPING_SPACE: return createModelTypingSpace();
 			case K3slePackage.METAMODEL: return createMetamodel();
 			case K3slePackage.MODEL_TYPE: return createModelType();
-			case K3slePackage.TRANSFORMATION: return createTransformation();
 			case K3slePackage.ECORE_IMPORT: return createEcoreImport();
 			case K3slePackage.ASPECT_IMPORT: return createAspectImport();
 			case K3slePackage.INHERITANCE: return createInheritance();
 			case K3slePackage.SUBTYPING: return createSubtyping();
+			case K3slePackage.SLICER: return createSlicer();
+			case K3slePackage.TRANSFORMATION_XBASE: return createTransformationXBase();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -135,16 +136,6 @@ public class K3sleFactoryImpl extends EFactoryImpl implements K3sleFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Transformation createTransformation() {
-		TransformationImpl transformation = new TransformationImpl();
-		return transformation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EcoreImport createEcoreImport() {
 		EcoreImportImpl ecoreImport = new EcoreImportImpl();
 		return ecoreImport;
@@ -178,6 +169,26 @@ public class K3sleFactoryImpl extends EFactoryImpl implements K3sleFactory {
 	public Subtyping createSubtyping() {
 		SubtypingImpl subtyping = new SubtypingImpl();
 		return subtyping;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Slicer createSlicer() {
+		SlicerImpl slicer = new SlicerImpl();
+		return slicer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TransformationXBase createTransformationXBase() {
+		TransformationXBaseImpl transformationXBase = new TransformationXBaseImpl();
+		return transformationXBase;
 	}
 
 	/**
