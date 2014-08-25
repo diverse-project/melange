@@ -58,14 +58,14 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference K3SLE.ecore#//Subtyping/subType"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference K3SLE.ecore#//Subtyping/superType"/>
     </genClasses>
-    <genClasses ecoreClass="K3SLE.ecore#//Slicer">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//Slicer/slicer"/>
+    <genClasses ecoreClass="K3SLE.ecore#//KomprenSlicer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//KomprenSlicer/slicer"/>
     </genClasses>
-    <genClasses ecoreClass="K3SLE.ecore#//TransformationXBase">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//TransformationXBase/body"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute K3SLE.ecore#//TransformationXBase/main"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//TransformationXBase/parameters"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//TransformationXBase/returnTypeRef"/>
+    <genClasses ecoreClass="K3SLE.ecore#//XbaseTransformation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//XbaseTransformation/body"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute K3SLE.ecore#//XbaseTransformation/main"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//XbaseTransformation/parameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference K3SLE.ecore#//XbaseTransformation/returnTypeRef"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

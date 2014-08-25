@@ -7,6 +7,7 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.xtext.common.types.JvmTypeReference;
 
 /**
@@ -268,7 +269,7 @@ public interface Metamodel extends Element {
 	 * Returns the value of the '<em><b>Resource Setup</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Resource Setup</em>' reference isn't clear,
+	 * If the meaning of the '<em>Resource Setup</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->

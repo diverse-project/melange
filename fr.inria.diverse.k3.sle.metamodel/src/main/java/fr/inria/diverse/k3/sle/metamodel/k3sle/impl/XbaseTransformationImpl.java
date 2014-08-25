@@ -3,7 +3,7 @@
 package fr.inria.diverse.k3.sle.metamodel.k3sle.impl;
 
 import fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage;
-import fr.inria.diverse.k3.sle.metamodel.k3sle.TransformationXBase;
+import fr.inria.diverse.k3.sle.metamodel.k3sle.XbaseTransformation;
 
 import java.util.Collection;
 
@@ -27,21 +27,21 @@ import org.eclipse.xtext.xbase.XExpression;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Transformation XBase</b></em>'.
+ * An implementation of the model object '<em><b>Xbase Transformation</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.TransformationXBaseImpl#getBody <em>Body</em>}</li>
- *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.TransformationXBaseImpl#isMain <em>Main</em>}</li>
- *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.TransformationXBaseImpl#getParameters <em>Parameters</em>}</li>
- *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.TransformationXBaseImpl#getReturnTypeRef <em>Return Type Ref</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.XbaseTransformationImpl#getBody <em>Body</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.XbaseTransformationImpl#isMain <em>Main</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.XbaseTransformationImpl#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.XbaseTransformationImpl#getReturnTypeRef <em>Return Type Ref</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class TransformationXBaseImpl extends TransformationImpl implements TransformationXBase {
+public class XbaseTransformationImpl extends TransformationImpl implements XbaseTransformation {
 	/**
 	 * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -97,7 +97,7 @@ public class TransformationXBaseImpl extends TransformationImpl implements Trans
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TransformationXBaseImpl() {
+	protected XbaseTransformationImpl() {
 		super();
 	}
 
@@ -108,7 +108,7 @@ public class TransformationXBaseImpl extends TransformationImpl implements Trans
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return K3slePackage.Literals.TRANSFORMATION_XBASE;
+		return K3slePackage.Literals.XBASE_TRANSFORMATION;
 	}
 
 	/**
@@ -129,7 +129,7 @@ public class TransformationXBaseImpl extends TransformationImpl implements Trans
 		XExpression oldBody = body;
 		body = newBody;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, K3slePackage.TRANSFORMATION_XBASE__BODY, oldBody, newBody);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, K3slePackage.XBASE_TRANSFORMATION__BODY, oldBody, newBody);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -144,14 +144,14 @@ public class TransformationXBaseImpl extends TransformationImpl implements Trans
 		if (newBody != body) {
 			NotificationChain msgs = null;
 			if (body != null)
-				msgs = ((InternalEObject)body).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - K3slePackage.TRANSFORMATION_XBASE__BODY, null, msgs);
+				msgs = ((InternalEObject)body).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - K3slePackage.XBASE_TRANSFORMATION__BODY, null, msgs);
 			if (newBody != null)
-				msgs = ((InternalEObject)newBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - K3slePackage.TRANSFORMATION_XBASE__BODY, null, msgs);
+				msgs = ((InternalEObject)newBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - K3slePackage.XBASE_TRANSFORMATION__BODY, null, msgs);
 			msgs = basicSetBody(newBody, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, K3slePackage.TRANSFORMATION_XBASE__BODY, newBody, newBody));
+			eNotify(new ENotificationImpl(this, Notification.SET, K3slePackage.XBASE_TRANSFORMATION__BODY, newBody, newBody));
 	}
 
 	/**
@@ -172,7 +172,7 @@ public class TransformationXBaseImpl extends TransformationImpl implements Trans
 		boolean oldMain = main;
 		main = newMain;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, K3slePackage.TRANSFORMATION_XBASE__MAIN, oldMain, main));
+			eNotify(new ENotificationImpl(this, Notification.SET, K3slePackage.XBASE_TRANSFORMATION__MAIN, oldMain, main));
 	}
 
 	/**
@@ -182,7 +182,7 @@ public class TransformationXBaseImpl extends TransformationImpl implements Trans
 	 */
 	public EList<JvmFormalParameter> getParameters() {
 		if (parameters == null) {
-			parameters = new EObjectContainmentEList<JvmFormalParameter>(JvmFormalParameter.class, this, K3slePackage.TRANSFORMATION_XBASE__PARAMETERS);
+			parameters = new EObjectContainmentEList<JvmFormalParameter>(JvmFormalParameter.class, this, K3slePackage.XBASE_TRANSFORMATION__PARAMETERS);
 		}
 		return parameters;
 	}
@@ -205,7 +205,7 @@ public class TransformationXBaseImpl extends TransformationImpl implements Trans
 		JvmTypeReference oldReturnTypeRef = returnTypeRef;
 		returnTypeRef = newReturnTypeRef;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, K3slePackage.TRANSFORMATION_XBASE__RETURN_TYPE_REF, oldReturnTypeRef, newReturnTypeRef);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, K3slePackage.XBASE_TRANSFORMATION__RETURN_TYPE_REF, oldReturnTypeRef, newReturnTypeRef);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -220,14 +220,14 @@ public class TransformationXBaseImpl extends TransformationImpl implements Trans
 		if (newReturnTypeRef != returnTypeRef) {
 			NotificationChain msgs = null;
 			if (returnTypeRef != null)
-				msgs = ((InternalEObject)returnTypeRef).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - K3slePackage.TRANSFORMATION_XBASE__RETURN_TYPE_REF, null, msgs);
+				msgs = ((InternalEObject)returnTypeRef).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - K3slePackage.XBASE_TRANSFORMATION__RETURN_TYPE_REF, null, msgs);
 			if (newReturnTypeRef != null)
-				msgs = ((InternalEObject)newReturnTypeRef).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - K3slePackage.TRANSFORMATION_XBASE__RETURN_TYPE_REF, null, msgs);
+				msgs = ((InternalEObject)newReturnTypeRef).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - K3slePackage.XBASE_TRANSFORMATION__RETURN_TYPE_REF, null, msgs);
 			msgs = basicSetReturnTypeRef(newReturnTypeRef, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, K3slePackage.TRANSFORMATION_XBASE__RETURN_TYPE_REF, newReturnTypeRef, newReturnTypeRef));
+			eNotify(new ENotificationImpl(this, Notification.SET, K3slePackage.XBASE_TRANSFORMATION__RETURN_TYPE_REF, newReturnTypeRef, newReturnTypeRef));
 	}
 
 	/**
@@ -238,11 +238,11 @@ public class TransformationXBaseImpl extends TransformationImpl implements Trans
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case K3slePackage.TRANSFORMATION_XBASE__BODY:
+			case K3slePackage.XBASE_TRANSFORMATION__BODY:
 				return basicSetBody(null, msgs);
-			case K3slePackage.TRANSFORMATION_XBASE__PARAMETERS:
+			case K3slePackage.XBASE_TRANSFORMATION__PARAMETERS:
 				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
-			case K3slePackage.TRANSFORMATION_XBASE__RETURN_TYPE_REF:
+			case K3slePackage.XBASE_TRANSFORMATION__RETURN_TYPE_REF:
 				return basicSetReturnTypeRef(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -256,13 +256,13 @@ public class TransformationXBaseImpl extends TransformationImpl implements Trans
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case K3slePackage.TRANSFORMATION_XBASE__BODY:
+			case K3slePackage.XBASE_TRANSFORMATION__BODY:
 				return getBody();
-			case K3slePackage.TRANSFORMATION_XBASE__MAIN:
+			case K3slePackage.XBASE_TRANSFORMATION__MAIN:
 				return isMain();
-			case K3slePackage.TRANSFORMATION_XBASE__PARAMETERS:
+			case K3slePackage.XBASE_TRANSFORMATION__PARAMETERS:
 				return getParameters();
-			case K3slePackage.TRANSFORMATION_XBASE__RETURN_TYPE_REF:
+			case K3slePackage.XBASE_TRANSFORMATION__RETURN_TYPE_REF:
 				return getReturnTypeRef();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -277,17 +277,17 @@ public class TransformationXBaseImpl extends TransformationImpl implements Trans
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case K3slePackage.TRANSFORMATION_XBASE__BODY:
+			case K3slePackage.XBASE_TRANSFORMATION__BODY:
 				setBody((XExpression)newValue);
 				return;
-			case K3slePackage.TRANSFORMATION_XBASE__MAIN:
+			case K3slePackage.XBASE_TRANSFORMATION__MAIN:
 				setMain((Boolean)newValue);
 				return;
-			case K3slePackage.TRANSFORMATION_XBASE__PARAMETERS:
+			case K3slePackage.XBASE_TRANSFORMATION__PARAMETERS:
 				getParameters().clear();
 				getParameters().addAll((Collection<? extends JvmFormalParameter>)newValue);
 				return;
-			case K3slePackage.TRANSFORMATION_XBASE__RETURN_TYPE_REF:
+			case K3slePackage.XBASE_TRANSFORMATION__RETURN_TYPE_REF:
 				setReturnTypeRef((JvmTypeReference)newValue);
 				return;
 		}
@@ -302,16 +302,16 @@ public class TransformationXBaseImpl extends TransformationImpl implements Trans
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case K3slePackage.TRANSFORMATION_XBASE__BODY:
+			case K3slePackage.XBASE_TRANSFORMATION__BODY:
 				setBody((XExpression)null);
 				return;
-			case K3slePackage.TRANSFORMATION_XBASE__MAIN:
+			case K3slePackage.XBASE_TRANSFORMATION__MAIN:
 				setMain(MAIN_EDEFAULT);
 				return;
-			case K3slePackage.TRANSFORMATION_XBASE__PARAMETERS:
+			case K3slePackage.XBASE_TRANSFORMATION__PARAMETERS:
 				getParameters().clear();
 				return;
-			case K3slePackage.TRANSFORMATION_XBASE__RETURN_TYPE_REF:
+			case K3slePackage.XBASE_TRANSFORMATION__RETURN_TYPE_REF:
 				setReturnTypeRef((JvmTypeReference)null);
 				return;
 		}
@@ -326,13 +326,13 @@ public class TransformationXBaseImpl extends TransformationImpl implements Trans
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case K3slePackage.TRANSFORMATION_XBASE__BODY:
+			case K3slePackage.XBASE_TRANSFORMATION__BODY:
 				return body != null;
-			case K3slePackage.TRANSFORMATION_XBASE__MAIN:
+			case K3slePackage.XBASE_TRANSFORMATION__MAIN:
 				return main != MAIN_EDEFAULT;
-			case K3slePackage.TRANSFORMATION_XBASE__PARAMETERS:
+			case K3slePackage.XBASE_TRANSFORMATION__PARAMETERS:
 				return parameters != null && !parameters.isEmpty();
-			case K3slePackage.TRANSFORMATION_XBASE__RETURN_TYPE_REF:
+			case K3slePackage.XBASE_TRANSFORMATION__RETURN_TYPE_REF:
 				return returnTypeRef != null;
 		}
 		return super.eIsSet(featureID);
@@ -354,4 +354,4 @@ public class TransformationXBaseImpl extends TransformationImpl implements Trans
 		return result.toString();
 	}
 
-} //TransformationXBaseImpl
+} //XbaseTransformationImpl

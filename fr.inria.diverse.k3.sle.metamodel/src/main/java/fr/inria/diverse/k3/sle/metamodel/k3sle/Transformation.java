@@ -14,5 +14,4 @@ package fr.inria.diverse.k3.sle.metamodel.k3sle;
  * @generated
  */
 public interface Transformation extends Element {
-
 } // Transformation

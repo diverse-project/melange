@@ -25,6 +25,11 @@ Workflow {
 			to = "classpath:/"
 		}
 		
+		uriMap = {
+			from = "platform:/resource/fr.inria.diverse.kompren.model/"
+			to = "classpath:/"
+		}
+
 		/*uriMap = {
 			from = "platform:/resource/fr.inria.diverse.k3.sle.metamodel/"
 			to = "classpath:/"
@@ -37,6 +42,8 @@ Workflow {
 		registerGenModelFile = "platform:/resource/org.eclipse.xtext.xbase/model/Xbase.genmodel"
 		registerGeneratedEPackage = "fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage"
 		registerGenModelFile = "platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.genmodel"
+		registerGeneratedEPackage = "kompren.KomprenPackage"
+		registerGenModelFile = "platform:/resource/fr.inria.diverse.kompren.model/model/kompren.genmodel"
 	}
 	
 	component = DirectoryCleaner {

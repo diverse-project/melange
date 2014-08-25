@@ -85,22 +85,22 @@ public interface K3sleFactory extends EFactory {
 	Subtyping createSubtyping();
 
 	/**
-	 * Returns a new object of class '<em>Slicer</em>'.
+	 * Returns a new object of class '<em>Kompren Slicer</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Slicer</em>'.
+	 * @return a new object of class '<em>Kompren Slicer</em>'.
 	 * @generated
 	 */
-	Slicer createSlicer();
+	KomprenSlicer createKomprenSlicer();
 
 	/**
-	 * Returns a new object of class '<em>Transformation XBase</em>'.
+	 * Returns a new object of class '<em>Xbase Transformation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Transformation XBase</em>'.
+	 * @return a new object of class '<em>Xbase Transformation</em>'.
 	 * @generated
 	 */
-	TransformationXBase createTransformationXBase();
+	XbaseTransformation createXbaseTransformation();
 
 	/**
 	 * Returns the package supported by this factory.

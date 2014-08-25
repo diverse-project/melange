@@ -64,8 +64,8 @@ public class K3sleFactoryImpl extends EFactoryImpl implements K3sleFactory {
 			case K3slePackage.ASPECT_IMPORT: return createAspectImport();
 			case K3slePackage.INHERITANCE: return createInheritance();
 			case K3slePackage.SUBTYPING: return createSubtyping();
-			case K3slePackage.SLICER: return createSlicer();
-			case K3slePackage.TRANSFORMATION_XBASE: return createTransformationXBase();
+			case K3slePackage.KOMPREN_SLICER: return createKomprenSlicer();
+			case K3slePackage.XBASE_TRANSFORMATION: return createXbaseTransformation();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -176,9 +176,9 @@ public class K3sleFactoryImpl extends EFactoryImpl implements K3sleFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Slicer createSlicer() {
-		SlicerImpl slicer = new SlicerImpl();
-		return slicer;
+	public KomprenSlicer createKomprenSlicer() {
+		KomprenSlicerImpl komprenSlicer = new KomprenSlicerImpl();
+		return komprenSlicer;
 	}
 
 	/**
@@ -186,9 +186,9 @@ public class K3sleFactoryImpl extends EFactoryImpl implements K3sleFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TransformationXBase createTransformationXBase() {
-		TransformationXBaseImpl transformationXBase = new TransformationXBaseImpl();
-		return transformationXBase;
+	public XbaseTransformation createXbaseTransformation() {
+		XbaseTransformationImpl xbaseTransformation = new XbaseTransformationImpl();
+		return xbaseTransformation;
 	}
 
 	/**

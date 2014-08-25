@@ -4,8 +4,8 @@ package fr.inria.diverse.k3.sle.metamodel.k3sle;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.xtext.common.types.JvmTypeReference;
 
 /**

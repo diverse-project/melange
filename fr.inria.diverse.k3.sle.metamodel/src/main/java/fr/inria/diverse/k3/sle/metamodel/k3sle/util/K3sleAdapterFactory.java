@@ -104,12 +104,12 @@ public class K3sleAdapterFactory extends AdapterFactoryImpl {
 				return createSubtypingAdapter();
 			}
 			@Override
-			public Adapter caseSlicer(Slicer object) {
-				return createSlicerAdapter();
+			public Adapter caseKomprenSlicer(KomprenSlicer object) {
+				return createKomprenSlicerAdapter();
 			}
 			@Override
-			public Adapter caseTransformationXBase(TransformationXBase object) {
-				return createTransformationXBaseAdapter();
+			public Adapter caseXbaseTransformation(XbaseTransformation object) {
+				return createXbaseTransformationAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -258,30 +258,30 @@ public class K3sleAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Slicer <em>Slicer</em>}'.
+	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.KomprenSlicer <em>Kompren Slicer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Slicer
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.KomprenSlicer
 	 * @generated
 	 */
-	public Adapter createSlicerAdapter() {
+	public Adapter createKomprenSlicerAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.TransformationXBase <em>Transformation XBase</em>}'.
+	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.XbaseTransformation <em>Xbase Transformation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.TransformationXBase
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.XbaseTransformation
 	 * @generated
 	 */
-	public Adapter createTransformationXBaseAdapter() {
+	public Adapter createXbaseTransformationAdapter() {
 		return null;
 	}
 

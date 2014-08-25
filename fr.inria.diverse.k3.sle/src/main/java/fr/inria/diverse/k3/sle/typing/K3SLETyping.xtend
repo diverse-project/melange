@@ -11,11 +11,12 @@ import fr.inria.diverse.k3.sle.lib.EcoreExtensions
 import fr.inria.diverse.k3.sle.lib.ModelUtils
 
 import fr.inria.diverse.k3.sle.metamodel.k3sle.K3sleFactory
+import fr.inria.diverse.k3.sle.metamodel.k3sle.KomprenSlicer
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ResourceType
-import fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation
+import fr.inria.diverse.k3.sle.metamodel.k3sle.XbaseTransformation
 
 import fr.inria.diverse.k3.sle.utils.AspectToEcore
 
@@ -297,8 +298,12 @@ class K3SLETyping
 		}
 	}
 
-	def dispatch void complete(Transformation t) {
-		// TODO
+	def dispatch void complete(XbaseTransformation t) {
+		// ...
+	}
+
+	def dispatch void complete(KomprenSlicer t) {
+		// ...
 	}
 
 	def dispatch boolean isValid(ModelTypingSpace root) {
@@ -333,11 +338,16 @@ class K3SLETyping
 			&& mt.pkgs.forall[it !== null]
 	}
 
-	def dispatch boolean isValid(Transformation t) {
+	def dispatch boolean isValid(XbaseTransformation t) {
 		return
 			   t !== null
 			&& !t.name.empty
 			&& t.parameters.forall[it !== null]
 			&& t.body !== null
+	}
+
+	def dispatch boolean isValid(KomprenSlicer t) {
+		// TODO: Slicer validation
+		return true
 	}
 }

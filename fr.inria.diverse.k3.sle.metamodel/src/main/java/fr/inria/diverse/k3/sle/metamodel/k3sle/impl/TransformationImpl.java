@@ -4,6 +4,7 @@ package fr.inria.diverse.k3.sle.metamodel.k3sle.impl;
 
 import fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**

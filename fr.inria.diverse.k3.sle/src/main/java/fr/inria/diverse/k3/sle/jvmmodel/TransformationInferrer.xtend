@@ -7,7 +7,7 @@ import fr.inria.diverse.k3.sle.ast.NamingHelper
 
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ResourceType
-import fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation
+import fr.inria.diverse.k3.sle.metamodel.k3sle.XbaseTransformation
 
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 
@@ -21,7 +21,7 @@ class TransformationInferrer
 	@Inject extension ASTHelper
 	@Inject extension NamingHelper
 
-	def void generateTransformation(Transformation transfo, IJvmDeclaredTypeAcceptor acceptor) {
+	def void generateTransformation(XbaseTransformation transfo, IJvmDeclaredTypeAcceptor acceptor) {
 		acceptor.accept(transfo.toClass(transfo.className.toString))
 		.initializeLater[
 			val returnType = transfo.returnTypeRef ?: transfo.newTypeRef(Void.TYPE)

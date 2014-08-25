@@ -123,19 +123,19 @@ public class K3sleSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case K3slePackage.SLICER: {
-				Slicer slicer = (Slicer)theEObject;
-				T result = caseSlicer(slicer);
-				if (result == null) result = caseTransformation(slicer);
-				if (result == null) result = caseElement(slicer);
+			case K3slePackage.KOMPREN_SLICER: {
+				KomprenSlicer komprenSlicer = (KomprenSlicer)theEObject;
+				T result = caseKomprenSlicer(komprenSlicer);
+				if (result == null) result = caseTransformation(komprenSlicer);
+				if (result == null) result = caseElement(komprenSlicer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case K3slePackage.TRANSFORMATION_XBASE: {
-				TransformationXBase transformationXBase = (TransformationXBase)theEObject;
-				T result = caseTransformationXBase(transformationXBase);
-				if (result == null) result = caseTransformation(transformationXBase);
-				if (result == null) result = caseElement(transformationXBase);
+			case K3slePackage.XBASE_TRANSFORMATION: {
+				XbaseTransformation xbaseTransformation = (XbaseTransformation)theEObject;
+				T result = caseXbaseTransformation(xbaseTransformation);
+				if (result == null) result = caseTransformation(xbaseTransformation);
+				if (result == null) result = caseElement(xbaseTransformation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -279,32 +279,32 @@ public class K3sleSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Slicer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Kompren Slicer</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Slicer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Kompren Slicer</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSlicer(Slicer object) {
+	public T caseKomprenSlicer(KomprenSlicer object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Transformation XBase</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Xbase Transformation</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Transformation XBase</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Xbase Transformation</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTransformationXBase(TransformationXBase object) {
+	public T caseXbaseTransformation(XbaseTransformation object) {
 		return null;
 	}
 

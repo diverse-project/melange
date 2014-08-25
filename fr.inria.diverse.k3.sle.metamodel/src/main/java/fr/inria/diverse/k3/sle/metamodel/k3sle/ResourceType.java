@@ -36,7 +36,9 @@ public enum ResourceType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EMF(1, "EMF", "EMF"), /**
+	EMF(1, "EMF", "EMF"),
+
+	/**
 	 * The '<em><b>XTEXT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

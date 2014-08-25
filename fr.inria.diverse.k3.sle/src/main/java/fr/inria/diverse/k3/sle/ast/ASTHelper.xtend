@@ -1,9 +1,10 @@
 package fr.inria.diverse.k3.sle.ast
 
+import fr.inria.diverse.k3.sle.metamodel.k3sle.KomprenSlicer
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
-import fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation
+import fr.inria.diverse.k3.sle.metamodel.k3sle.XbaseTransformation
 
 import java.util.Collections
 import java.util.Comparator
@@ -67,8 +68,12 @@ class ASTHelper
 		return root.elements.filter(ModelType)
 	}
 
-	def Iterable<Transformation> getTransformations(ModelTypingSpace root) {
-		return root.elements.filter(Transformation)
+	def Iterable<XbaseTransformation> getTransformations(ModelTypingSpace root) {
+		return root.elements.filter(XbaseTransformation)
+	}
+
+	def Iterable<KomprenSlicer> getSlicers(ModelTypingSpace root) {
+		return root.elements.filter(KomprenSlicer)
 	}
 
 	def Iterable<EClass> sortByClassInheritance(Iterable<EClass> classes) {

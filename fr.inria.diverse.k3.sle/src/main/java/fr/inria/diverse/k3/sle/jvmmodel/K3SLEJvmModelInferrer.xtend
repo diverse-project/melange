@@ -21,6 +21,7 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 	@Inject extension ModelTypeInferrer
 	@Inject extension MetamodelInferrer
 	@Inject extension TransformationInferrer
+	@Inject extension KomprenInferrer
 
 	ModelTypingSpace root
 	Logger logger = Logger.getLogger(K3SLEJvmModelInferrer)
@@ -38,6 +39,7 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 					root.modelTypes.forEach[generateInterfaces(acceptor)]
 					root.metamodels.forEach[generateAdapters(acceptor)]
 					root.transformations.forEach[generateTransformation(acceptor)]
+					root.slicers.forEach[generateSlicer]
 			}
 		} catch (ASTProcessingException e) {
 			logger.error('''ASTProcessingException: «e.message»''')

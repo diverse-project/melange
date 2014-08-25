@@ -1,6 +1,8 @@
 grammar fr.inria.diverse.k3.sle.K3SLE with org.eclipse.xtext.xbase.Xbase
 
 import "http://www.inria.fr/diverse/k3/sle"
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+import "http://kompren/fr.inria.diverse.kompren" as kompren
 
 ModelTypingSpace:
 	('package' name = QualifiedName)?
@@ -9,7 +11,11 @@ ModelTypingSpace:
 ;
 
 Element:
-	Metamodel | EcoreModelType | Transformation
+	Metamodel | EcoreModelType | TransformationDecl
+;
+
+TransformationDecl returns Transformation:
+	XbaseTransformation | KomprenSlicer
 ;
 
 Metamodel:
@@ -37,11 +43,15 @@ EcoreModelType returns ModelType:
 	'}'
 ;
 
-Transformation:
+XbaseTransformation:
 	(main ?= '@Main')?
 	'transformation' (returnTypeRef = JvmTypeReference)? name = ValidID
 	'(' (parameters += FullJvmFormalParameter (',' parameters += FullJvmFormalParameter)*)? ')'
 	body = XBlockExpression
+;
+
+KomprenSlicer:
+	slicer = Slicer
 ;
 
 EcoreImport:
@@ -51,3 +61,33 @@ EcoreImport:
 AspectImport:
 	'aspect' aspectRef = JvmTypeReference
 ;
+
+/* --- Kompren Rules --- */
+Slicer returns kompren::Slicer: 'slicer' (active?='active')? (strict?='strict')? name=QualifiedName '{'
+		(('domain' ':' uriMetamodel+=STRING)+ &
+		('outputDomain' ':' outputMetamodel=STRING)? &
+		('input' ':' inputClasses+=[ecore::EClass|QualifiedName] ( "," inputClasses+=[ecore::EClass|QualifiedName])*) &
+		('radius' ':' radius=Radius)? &
+		(('slicedClass' ':' slicedElements+=SlicedClass) |
+		('slicedProperty' ':' slicedElements+=SlicedProperty))* &
+		('onStart' onStart=CODE_BLOCK)? &
+		('onEnd' onEnd=CODE_BLOCK)? &
+		('helper' helper=CODE_BLOCK)?)
+	'}';
+
+Constraint returns kompren::Constraint: name=ValidID expression=CODE_BLOCK;
+
+Radius returns kompren::Radius: {kompren::Radius} (focusedClasses+=[kompren::SlicedClass|QualifiedName] ( "," focusedClasses+=[kompren::SlicedClass|QualifiedName])* )?;
+
+SlicedClass returns kompren::SlicedClass: domain=[ecore::EClass|QualifiedName] (isOption?='option')? (ctx=VarDecl)? 
+	(expression=CODE_BLOCK)? ('constraint' ':' constraints+=Constraint)*;
+
+VarDecl returns kompren::VarDecl: varName=ValidID;
+
+SlicedProperty returns kompren::SlicedProperty:
+	domain=[ecore::EStructuralFeature|QualifiedName] (isOption?='option')? (opposite=OppositeCreation)? (src=VarDecl tgt=VarDecl)?
+		 (expression=CODE_BLOCK)? ('constraint' ':' constraints+=Constraint)*;
+
+OppositeCreation returns kompren::OppositeCreation: {kompren::OppositeCreation} 'opposite' '(' name=ValidID ')';
+
+terminal CODE_BLOCK : '[[' -> ']]';

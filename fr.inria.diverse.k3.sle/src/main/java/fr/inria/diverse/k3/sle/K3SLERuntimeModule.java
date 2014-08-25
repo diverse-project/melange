@@ -1,6 +1,6 @@
 package fr.inria.diverse.k3.sle ;
 
-import org.eclipse.xtext.resource.IDerivedStateComputer ;
+import org.eclipse.xtext.resource.IDerivedStateComputer;
 
 public class K3SLERuntimeModule extends fr.inria.diverse.k3.sle.AbstractK3SLERuntimeModule
 {

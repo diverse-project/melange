@@ -8,8 +8,8 @@ import fr.inria.diverse.k3.sle.metamodel.k3sle.Inheritance;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType;
-
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ResourceType;
+
 import java.util.Collection;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.eclipse.xtext.common.types.JvmTypeReference;
 
 /**

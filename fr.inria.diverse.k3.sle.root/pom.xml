@@ -5,8 +5,7 @@
 	<artifactId>fr.inria.diverse.k3.sle.root</artifactId>
 	<version>3.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-
-        <name>K3SLE Root Build Manager</name>
+	<name>K3SLE Root Build Manager</name>
 	
 	<modules>
 		<module>../fr.inria.diverse.k3.sle.lib</module>
@@ -19,7 +18,7 @@
 	</modules>
 
 	<properties>
-                <kermeta.version>3.0.0-SNAPSHOT</kermeta.version>
+		<kermeta.version>3.0.0-SNAPSHOT</kermeta.version>
 		<emf.version>2.9.1-v20130827-0309</emf.version>
 		<tycho.version>0.19.0</tycho.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -30,18 +29,25 @@
 	<repositories>
 		<!-- Update site  general repo for K3 except the currently build one (ie. k3-sle) -->	
 		<repository>
-                <id>K3-except-k3sle</id>
-                <layout>p2</layout>
-                <url>https://ci.inria.fr/k3al/job/k3-composite_updatesite/lastSuccessfulBuild/artifact/k3-composite_updatesite/k3${nightly.modifier}.composite.updatesite/update/all-except-k3-sle/</url>
+			<id>K3-except-k3sle</id>
+			<layout>p2</layout>
+			<url>https://ci.inria.fr/k3al/job/k3-composite_updatesite/lastSuccessfulBuild/artifact/k3-composite_updatesite/k3${nightly.modifier}.composite.updatesite/update/all-except-k3-sle/</url>
+		</repository>
+
+		<!-- Kompren -->
+		<repository>
+			<id>kompren</id>
+			<layout>p2</layout>
+			<url>http://www.kermeta.org/kompren/update/</url>
 		</repository>
 		
 		<!-- Update site Repo for thirdparty Dependencies -->
-        <repository>
-                <id>platform</id>
-                <layout>p2</layout>
-                <url>https://ci.inria.fr/k3al/job/k3-composite_updatesite/lastSuccessfulBuild/artifact/k3-composite_updatesite/k3.platform.composite.updatesite/update/</url>
+		<repository>
+			<id>platform</id>
+			<layout>p2</layout>
+			<url>https://ci.inria.fr/k3al/job/k3-composite_updatesite/lastSuccessfulBuild/artifact/k3-composite_updatesite/k3.platform.composite.updatesite/update/</url>
 		</repository>
-    </repositories>
+	</repositories>
 
 	<build>
         <sourceDirectory>src/main/java/src-gen/</sourceDirectory>
@@ -67,7 +73,7 @@
 						</execution>
 					</executions>
 					<configuration>
-                                                <outputDirectory>src/main/xtend-gen</outputDirectory>
+						<outputDirectory>src/main/xtend-gen</outputDirectory>
 					</configuration>
 				</plugin>
 			</plugins>
@@ -109,10 +115,11 @@
 				<version>${tycho.version}</version>
 				<extensions>true</extensions>
 			</plugin>
-                        <plugin>
-                                <groupId>org.eclipse.xtend</groupId>
-                                <artifactId>xtend-maven-plugin</artifactId>
-                        </plugin>
+			<plugin>
+				<groupId>org.eclipse.xtend</groupId>
+				<artifactId>xtend-maven-plugin</artifactId>
+			</plugin>
 		</plugins>
 	</build>
 </project>
+

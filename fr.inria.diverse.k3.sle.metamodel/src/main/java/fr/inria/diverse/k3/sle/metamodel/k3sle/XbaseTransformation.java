@@ -11,24 +11,24 @@ import org.eclipse.xtext.xbase.XExpression;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Transformation XBase</b></em>'.
+ * A representation of the model object '<em><b>Xbase Transformation</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.TransformationXBase#getBody <em>Body</em>}</li>
- *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.TransformationXBase#isMain <em>Main</em>}</li>
- *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.TransformationXBase#getParameters <em>Parameters</em>}</li>
- *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.TransformationXBase#getReturnTypeRef <em>Return Type Ref</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.XbaseTransformation#getBody <em>Body</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.XbaseTransformation#isMain <em>Main</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.XbaseTransformation#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.XbaseTransformation#getReturnTypeRef <em>Return Type Ref</em>}</li>
  * </ul>
  * </p>
  *
- * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getTransformationXBase()
+ * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getXbaseTransformation()
  * @model
  * @generated
  */
-public interface TransformationXBase extends Transformation {
+public interface XbaseTransformation extends Transformation {
 	/**
 	 * Returns the value of the '<em><b>Body</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -39,14 +39,14 @@ public interface TransformationXBase extends Transformation {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Body</em>' containment reference.
 	 * @see #setBody(XExpression)
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getTransformationXBase_Body()
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getXbaseTransformation_Body()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	XExpression getBody();
 
 	/**
-	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.TransformationXBase#getBody <em>Body</em>}' containment reference.
+	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.XbaseTransformation#getBody <em>Body</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Body</em>' containment reference.
@@ -65,14 +65,14 @@ public interface TransformationXBase extends Transformation {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Main</em>' attribute.
 	 * @see #setMain(boolean)
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getTransformationXBase_Main()
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getXbaseTransformation_Main()
 	 * @model
 	 * @generated
 	 */
 	boolean isMain();
 
 	/**
-	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.TransformationXBase#isMain <em>Main</em>}' attribute.
+	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.XbaseTransformation#isMain <em>Main</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Main</em>' attribute.
@@ -91,7 +91,7 @@ public interface TransformationXBase extends Transformation {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parameters</em>' containment reference list.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getTransformationXBase_Parameters()
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getXbaseTransformation_Parameters()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -107,14 +107,14 @@ public interface TransformationXBase extends Transformation {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Return Type Ref</em>' containment reference.
 	 * @see #setReturnTypeRef(JvmTypeReference)
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getTransformationXBase_ReturnTypeRef()
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getXbaseTransformation_ReturnTypeRef()
 	 * @model containment="true"
 	 * @generated
 	 */
 	JvmTypeReference getReturnTypeRef();
 
 	/**
-	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.TransformationXBase#getReturnTypeRef <em>Return Type Ref</em>}' containment reference.
+	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.XbaseTransformation#getReturnTypeRef <em>Return Type Ref</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Return Type Ref</em>' containment reference.
@@ -123,4 +123,4 @@ public interface TransformationXBase extends Transformation {
 	 */
 	void setReturnTypeRef(JvmTypeReference value);
 
-} // TransformationXBase
+} // XbaseTransformation
