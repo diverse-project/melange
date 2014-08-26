@@ -2,6 +2,8 @@ package fr.inria.diverse.k3.sle.typing
 
 import com.google.inject.Inject
 
+import fr.inria.diverse.k3.sle.algebra.ModelTypeAlgebra
+
 import fr.inria.diverse.k3.sle.ast.ASTHelper
 import fr.inria.diverse.k3.sle.ast.ASTProcessingException
 import fr.inria.diverse.k3.sle.ast.MetamodelExtensions
@@ -24,7 +26,8 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EcoreFactory
 
 import org.eclipse.xtext.common.types.JvmDeclaredType
-import fr.inria.diverse.k3.sle.algebra.ModelTypeAlgebra
+
+import org.eclipse.xtext.util.internal.Stopwatches
 
 class K3SLETyping
 {
@@ -37,6 +40,9 @@ class K3SLETyping
 	@Inject ModelTypeAlgebra algebra
 
 	def void inferTypingRelations(ModelTypingSpace root) {
+		val task = Stopwatches.forTask("K3SLETyping.inferTypingRelations")
+		task.start
+
 		root.modelTypes
 		.forEach[mt1 |
 			root.modelTypes
@@ -54,10 +60,14 @@ class K3SLETyping
 				mm.^implements += mt1
 			]
 		]
+
+		task.stop
 	}
 
 	def dispatch void complete(ModelTypingSpace root) throws ASTProcessingException {
+		val task = Stopwatches.forTask('''K3SLETyping.complete(«root.name»)''')
 		val newMTs = newArrayList
+		task.start
 
 		root.metamodels.forEach[mm |
 			val newMT = K3sleFactory.eINSTANCE.createModelType => [
@@ -74,6 +84,8 @@ class K3SLETyping
 		]
 
 		root.elements.forEach[complete]
+
+		task.stop
 	}
 
 	def dispatch void complete(Metamodel mm) throws ASTProcessingException {
@@ -133,7 +145,7 @@ class K3SLETyping
 
 				mm.aspects.forEach[asp |
 					if (!(asp.aspectRef.type instanceof JvmDeclaredType))
-						throw new ASTProcessingException("Aspect must be a generic type: " + asp.aspectRef?.type)
+						return
 
 					val className = asp.aspectAnnotationValue
 
@@ -191,7 +203,7 @@ class K3SLETyping
 				// and merge it into the base metamodel
 				mm.aspects.forEach[asp |
 					if (!(asp.aspectRef.type instanceof JvmDeclaredType))
-						throw new ASTProcessingException("Aspect must be a generic type: " + asp.aspectRef?.type)
+						return
 
 					val className = asp.aspectAnnotationValue
 
@@ -258,7 +270,7 @@ class K3SLETyping
 			// and merge it into the base metamodel
 			mm.aspects.forEach[asp |
 				if (!(asp.aspectRef.type instanceof JvmDeclaredType))
-					throw new ASTProcessingException("Aspect must be a generic type: " + asp.aspectRef?.type)
+					return
 
 				val className = asp.aspectAnnotationValue
 
