@@ -28,6 +28,9 @@ class MetaclassInterfaceInferrer
 	@Inject extension K3SLETypesBuilder
 
 	def void generateInterface(ModelType mt, EClass cls, IJvmDeclaredTypeAcceptor acceptor) {
+		//val task = Stopwatches.forTask('''MetaclassInterfaceInferrer.generateAdapter(«mt.name», «cls.name»''')
+		//task.start
+
 		acceptor.accept(mt.toInterface(mt.interfaceNameFor(cls))[intf |
 			cls.ETypeParameters.forEach[p |
 				intf.typeParameters += TypesFactory::eINSTANCE.createJvmTypeParameter => [name = p.name]
@@ -116,5 +119,7 @@ class MetaclassInterfaceInferrer
 				]
 			]
 		])
+
+		//task.stop
 	}
 }

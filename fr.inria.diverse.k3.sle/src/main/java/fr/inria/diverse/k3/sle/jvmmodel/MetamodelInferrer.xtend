@@ -12,6 +12,8 @@ import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
 
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 
+import org.eclipse.xtext.util.internal.Stopwatches
+
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
@@ -28,6 +30,9 @@ class MetamodelInferrer
 	@Inject extension InheritanceAdapterInferrer
 
 	def void generateAdapters(Metamodel mm, IJvmDeclaredTypeAcceptor acceptor) {
+		val task = Stopwatches.forTask('''MetamodelInferrer.generateAdapters(«mm.name»)''')
+		task.start
+
 		acceptor.accept(mm.toClass(mm.fullyQualifiedName.normalize.toString))
 		.initializeLater[]
 
@@ -42,5 +47,7 @@ class MetamodelInferrer
 
 		if (mm.hasSuperMetamodel)
 			mm.generateAdapters(mm.inheritanceRelation.superMetamodel, acceptor)
+
+		task.stop
 	}
 }

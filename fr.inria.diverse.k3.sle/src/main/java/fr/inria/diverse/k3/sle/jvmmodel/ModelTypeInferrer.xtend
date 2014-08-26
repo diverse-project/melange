@@ -17,6 +17,8 @@ import org.eclipse.xtext.common.types.TypesFactory
 
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 
+import org.eclipse.xtext.util.internal.Stopwatches
+
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
@@ -32,6 +34,9 @@ class ModelTypeInferrer
 	@Inject extension MetaclassInterfaceInferrer
 
 	def void generateInterfaces(ModelType mt, IJvmDeclaredTypeAcceptor acceptor) {
+		val task = Stopwatches.forTask('''ModelTypeInferrer.generateInterfaces(«mt.name»)''')
+		task.start
+
 		acceptor.accept(mt.toInterface(mt.fullyQualifiedName.toString)[
 			superTypes += mt.newTypeRef(IModelType)
 
@@ -68,5 +73,7 @@ class ModelTypeInferrer
 			mt.allEnums.forEach[enu |
 				mt.generateEnum(enu, acceptor)
 			]
+
+		task.stop
 	}
 }

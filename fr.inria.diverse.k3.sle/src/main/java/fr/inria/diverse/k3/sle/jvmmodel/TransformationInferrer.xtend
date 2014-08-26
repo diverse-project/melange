@@ -11,6 +11,8 @@ import fr.inria.diverse.k3.sle.metamodel.k3sle.XbaseTransformation
 
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 
+import org.eclipse.xtext.util.internal.Stopwatches
+
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
@@ -22,6 +24,9 @@ class TransformationInferrer
 	@Inject extension NamingHelper
 
 	def void generateTransformation(XbaseTransformation transfo, IJvmDeclaredTypeAcceptor acceptor) {
+		val task = Stopwatches.forTask('''TransformationInferrer.generateTransformation(«transfo.name»)''')
+		task.start
+
 		acceptor.accept(transfo.toClass(transfo.className.toString))
 		.initializeLater[
 			val returnType = transfo.returnTypeRef ?: transfo.newTypeRef(Void.TYPE)
@@ -79,5 +84,7 @@ class TransformationInferrer
 				]
 			}
 		]
+
+		task.stop
 	}
 }

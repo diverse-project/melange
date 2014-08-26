@@ -40,6 +40,8 @@ class MetaclassAdapterInferrer
 
 	def void generateAdapter(Metamodel mm, ModelType superType, EClass cls, IJvmDeclaredTypeAcceptor acceptor) {
 		val mmCls = mm.allClasses.findFirst[name == cls.name]
+		//val task = Stopwatches.forTask('''MetaclassAdapterInferrer.generateAdapter(«mm.name», «superType.name», «cls.name»''')
+		//task.start
 
 		acceptor.accept(mm.toClass(mm.adapterNameFor(superType, cls)))
 		.initializeLater[jvmCls |
@@ -365,6 +367,8 @@ class MetaclassAdapterInferrer
 				]
 			]
 		]
+
+		//task.stop
 	}
 
 	def boolean +=(EList<JvmMember> members, JvmOperation m) {

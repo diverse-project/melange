@@ -21,6 +21,8 @@ import org.eclipse.xtext.common.types.TypesFactory
 
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 
+import org.eclipse.xtext.util.internal.Stopwatches
+
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
@@ -36,6 +38,9 @@ class MetamodelAdapterInferrer
 	@Inject extension K3SLETypesBuilder
 
 	def void generateAdapter(Metamodel mm, ModelType superType, IJvmDeclaredTypeAcceptor acceptor) {
+		val task = Stopwatches.forTask('''MetamodelAdapterInferrer.generateAdapter(«mm.name», «superType.name»''')
+		task.start
+
 		acceptor.accept(mm.toClass(mm.factoryAdapterNameFor(superType)))
 		.initializeLater[
 			superTypes += mm.newTypeRef(superType.factoryName)
@@ -100,5 +105,7 @@ class MetamodelAdapterInferrer
 					'''
 			]
 		]
+
+		task.stop
 	}
 }

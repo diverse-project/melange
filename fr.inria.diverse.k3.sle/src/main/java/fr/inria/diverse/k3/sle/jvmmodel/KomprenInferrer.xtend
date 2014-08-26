@@ -19,12 +19,17 @@ import org.eclipse.xtext.generator.IOutputConfigurationProvider
 
 import org.eclipse.xtext.resource.IResourceServiceProvider
 
+import org.eclipse.xtext.util.internal.Stopwatches
+
 class KomprenInferrer
 {
 	@Inject IResourceServiceProvider.Registry reg
 
 	// FIXME: Buggy stuff + won't work in standalone mode
 	def void generateSlicer(KomprenSlicer transfo) {
+		val task = Stopwatches.forTask('''KomprenInferrer.generateSlicer(«transfo.slicer.name»)''')
+		task.start
+
 		val injector = reg.getResourceServiceProvider(URI.createURI("http://kompren/fr.inria.diverse.kompren"))
 		val generator = injector.get(IGenerator)
 		val fsa = injector.get(EclipseResourceFileSystemAccess2)
@@ -39,5 +44,7 @@ class KomprenInferrer
 		fsa.project = ResourcesPlugin.workspace.root.getFile(new Path(resURI)).project
 
 		generator.doGenerate(transfo.eResource, fsa)
+
+		task.stop
 	}
 }

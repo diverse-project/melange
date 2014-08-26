@@ -17,6 +17,8 @@ import org.eclipse.emf.ecore.EEnum
 
 import org.eclipse.xtext.common.types.TypesFactory
 
+import org.eclipse.xtext.util.internal.Stopwatches
+
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
@@ -30,6 +32,9 @@ class InheritanceAdapterInferrer
 	@Inject extension K3SLETypesBuilder
 
 	def void generateAdapters(Metamodel mm, Metamodel superMM, IJvmDeclaredTypeAcceptor acceptor) {
+		val task = Stopwatches.forTask('''InheritanceAdapterInferrer.generateAdapters(«mm.name», «superMM.name»)''')
+		task.start
+
 		superMM.allClasses.forEach[cls |
 			val inCls = mm.allClasses.findFirst[name == cls.name]
 
@@ -188,5 +193,7 @@ class InheritanceAdapterInferrer
 				]
 			]
 		]
+
+		task.stop
 	}
 }
