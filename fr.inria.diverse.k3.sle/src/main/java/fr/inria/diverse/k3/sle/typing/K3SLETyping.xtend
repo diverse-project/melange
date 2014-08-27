@@ -219,7 +219,7 @@ class K3SLETyping
 					asp.inferEcoreFragment
 
 					// FIXME: _not_ .head, could be any of them
-					algebra.weaveAspect(mm.pkgs.head, asp.ecoreFragment)
+					algebra.weaveAspect(mm, asp)
 				]
 
 				mm.createEcore
@@ -286,7 +286,7 @@ class K3SLETyping
 				asp.inferEcoreFragment
 
 				// FIXME: _not_ .head, could be any of them
-				algebra.weaveAspect(mm.pkgs.head, asp.ecoreFragment)
+				algebra.weaveAspect(mm, asp)
 			]
 		}
 	}
