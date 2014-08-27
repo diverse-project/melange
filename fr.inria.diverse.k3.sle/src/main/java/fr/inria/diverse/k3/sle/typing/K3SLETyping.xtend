@@ -145,7 +145,7 @@ class K3SLETyping
 
 				mm.aspects.forEach[asp |
 					if (!(asp.aspectRef.type instanceof JvmDeclaredType))
-						return
+						throw new ASTProcessingException("Aspect must be a generic type: " + asp.aspectRef?.type)
 
 					val className = asp.aspectAnnotationValue
 
@@ -203,7 +203,7 @@ class K3SLETyping
 				// and merge it into the base metamodel
 				mm.aspects.forEach[asp |
 					if (!(asp.aspectRef.type instanceof JvmDeclaredType))
-						return
+						throw new ASTProcessingException("Aspect must be a generic type: " + asp.aspectRef?.type)
 
 					val className = asp.aspectAnnotationValue
 
@@ -270,7 +270,7 @@ class K3SLETyping
 			// and merge it into the base metamodel
 			mm.aspects.forEach[asp |
 				if (!(asp.aspectRef.type instanceof JvmDeclaredType))
-					return
+					throw new ASTProcessingException("Aspect must be a generic type: " + asp.aspectRef?.type)
 
 				val className = asp.aspectAnnotationValue
 
