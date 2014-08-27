@@ -8,7 +8,6 @@ import java.lang.reflect.InvocationTargetException
 
 import java.util.Collection
 import java.util.List
-import java.util.ListIterator
 
 import org.eclipse.emf.common.notify.Notification
 
@@ -92,11 +91,15 @@ class ListAdapter<E, F> implements List<E>
 	}
 
 	override listIterator() {
-		return Iterators.transform(adaptee.listIterator, new IteratorTranslator<F, E>(adapType)) as ListIterator<E>
+		return new ListIteratorWrapper(
+			Iterators.transform(adaptee.listIterator, new IteratorTranslator<F, E>(adapType))
+		)
 	}
 
 	override listIterator(int index) {
-		return Iterators.transform(adaptee.listIterator(index), new IteratorTranslator<F, E>(adapType)) as ListIterator<E>
+		return new ListIteratorWrapper(
+			Iterators.transform(adaptee.listIterator(index), new IteratorTranslator<F, E>(adapType))
+		)
 	}
 
 	override remove(Object o) {
