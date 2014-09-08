@@ -22,9 +22,9 @@ Metamodel:
 	'metamodel' name = ValidID (inheritanceRelation = Inheritance)?
 	('implements' implements += [ModelType | QualifiedName] (',' implements += [ModelType | QualifiedName])*)?
 	'{'
-		('resource' resourceType = ResourceType ('uri' resourceUri = STRING | 'setup' xtextSetupRef = JvmTypeReference)?)?
-		('ecore' ecoreUri = STRING ('withGenmodel' (genmodelUris += STRING (',' genmodelUris += STRING)*))?)?
-		('exactType' exactTypeName = ValidID)
+		('resource' resourceType = ResourceType ('uri' resourceUri = STRING | 'setup' xtextSetupRef = JvmTypeReference)?)? &
+		('ecore' ecoreUri = STRING ('withGenmodel' (genmodelUris += STRING (',' genmodelUris += STRING)*))?)? &
+		('exactType' exactTypeName = ValidID) &
 		(aspects += Aspect)*
 	'}'
 ;
