@@ -18,6 +18,7 @@
 	</modules>
 
 	<properties>
+		<java.version>1.7</java.version>
 		<kermeta.version>3.0.0-SNAPSHOT</kermeta.version>
 		<emf.version>2.9.1-v20130827-0309</emf.version>
 		<tycho.version>0.21.0</tycho.version>
@@ -116,8 +117,18 @@
 				<extensions>true</extensions>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.eclipse.xtend</groupId>
 				<artifactId>xtend-maven-plugin</artifactId>
+				<version>${xtext.version}</version>
 			</plugin>
 		</plugins>
 	</build>
