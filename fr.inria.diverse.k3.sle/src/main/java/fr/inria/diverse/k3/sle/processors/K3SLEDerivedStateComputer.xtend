@@ -43,7 +43,7 @@ class K3SLEDerivedStateComputer extends JvmModelAssociator
 		// Pre-inferring processors
 		// TODO: AST completion & validation should go there
 		val root = resource.contents.head as ModelTypingSpace
-		processors.forEach[postProcess(root)]
+		processors.forEach[preProcess(root)]
 
 		super.installDerivedState(resource, preLinkingPhase)
 	}
