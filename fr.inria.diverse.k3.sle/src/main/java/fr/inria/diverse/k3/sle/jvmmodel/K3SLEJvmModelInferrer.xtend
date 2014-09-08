@@ -3,11 +3,11 @@ package fr.inria.diverse.k3.sle.jvmmodel
 import com.google.inject.Inject
 
 import fr.inria.diverse.k3.sle.ast.ASTHelper
+import fr.inria.diverse.k3.sle.ast.ASTPostProcessor
 import fr.inria.diverse.k3.sle.ast.ASTProcessingException
+import fr.inria.diverse.k3.sle.ast.ASTValidator
 
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
-
-import fr.inria.diverse.k3.sle.typing.K3SLETyping
 
 import org.apache.log4j.Logger
 
@@ -16,7 +16,8 @@ import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 
 class K3SLEJvmModelInferrer extends AbstractModelInferrer
 {
-	@Inject K3SLETyping typingHelper
+	@Inject ASTPostProcessor postProcessor
+	@Inject ASTValidator validator
 	@Inject extension ASTHelper
 	@Inject extension ModelTypeInferrer
 	@Inject extension MetamodelInferrer
@@ -30,11 +31,11 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 		root = typingSpace
 
 		try {
-			typingHelper.complete(root)
+			postProcessor.complete(root)
 
-			if (typingHelper.isValid(root)) {
-					typingHelper.complete(root)
-					typingHelper.inferTypingRelations(root)
+			if (validator.isValid(root)) {
+					postProcessor.complete(root)
+					postProcessor.inferTypingRelations(root)
 
 					root.modelTypes.forEach[generateInterfaces(acceptor)]
 					root.metamodels.forEach[generateAdapters(acceptor)]
