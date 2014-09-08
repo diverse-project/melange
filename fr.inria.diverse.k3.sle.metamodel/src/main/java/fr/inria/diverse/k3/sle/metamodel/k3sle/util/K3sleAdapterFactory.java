@@ -104,10 +104,6 @@ public class K3sleAdapterFactory extends AdapterFactoryImpl {
 				return createSubtypingAdapter();
 			}
 			@Override
-			public Adapter caseKomprenSlicer(KomprenSlicer object) {
-				return createKomprenSlicerAdapter();
-			}
-			@Override
 			public Adapter caseXbaseTransformation(XbaseTransformation object) {
 				return createXbaseTransformationAdapter();
 			}
@@ -254,20 +250,6 @@ public class K3sleAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSubtypingAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.KomprenSlicer <em>Kompren Slicer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.KomprenSlicer
-	 * @generated
-	 */
-	public Adapter createKomprenSlicerAdapter() {
 		return null;
 	}
 

@@ -85,15 +85,6 @@ public interface K3sleFactory extends EFactory {
 	Subtyping createSubtyping();
 
 	/**
-	 * Returns a new object of class '<em>Kompren Slicer</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Kompren Slicer</em>'.
-	 * @generated
-	 */
-	KomprenSlicer createKomprenSlicer();
-
-	/**
 	 * Returns a new object of class '<em>Xbase Transformation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

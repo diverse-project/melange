@@ -1258,7 +1258,7 @@ class XClosureAspect extends XExpressionAspect{
 		_self.super__visitToAddClasses(theSlicer)
 		_self.^declaredFormalParameters.forEach[visitToAddClasses(theSlicer)]
 		_self.^expression?.visitToAddClasses(theSlicer)
-		_self.^implicitParameter?.visitToAddClasses(theSlicer)
+//		_self.^implicitParameter?.visitToAddClasses(theSlicer)
 
 	}
 	@OverrideAspectMethod
@@ -1268,9 +1268,9 @@ class XClosureAspect extends XExpressionAspect{
 		if(_self.^expression!==null){
 		_self.^expression.visitToAddRelations(theSlicer)
 		}
-		if(_self.^implicitParameter!==null){
-		_self.^implicitParameter.visitToAddRelations(theSlicer)
-		}
+//		if(_self.^implicitParameter!==null){
+//		_self.^implicitParameter.visitToAddRelations(theSlicer)
+//		}
 
 	}
 }

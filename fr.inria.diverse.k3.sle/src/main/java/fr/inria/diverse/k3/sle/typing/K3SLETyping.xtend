@@ -13,7 +13,7 @@ import fr.inria.diverse.k3.sle.lib.EcoreExtensions
 import fr.inria.diverse.k3.sle.lib.ModelUtils
 
 import fr.inria.diverse.k3.sle.metamodel.k3sle.K3sleFactory
-import fr.inria.diverse.k3.sle.metamodel.k3sle.KomprenSlicer
+//import fr.inria.diverse.k3.sle.metamodel.k3sle.KomprenSlicer
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
@@ -314,9 +314,9 @@ class K3SLETyping
 		// ...
 	}
 
-	def dispatch void complete(KomprenSlicer t) {
-		// ...
-	}
+//	def dispatch void complete(KomprenSlicer t) {
+//		// ...
+//	}
 
 	def dispatch boolean isValid(ModelTypingSpace root) {
 		return
@@ -358,8 +358,8 @@ class K3SLETyping
 			&& t.body !== null
 	}
 
-	def dispatch boolean isValid(KomprenSlicer t) {
-		// TODO: Slicer validation
-		return true
-	}
+//	def dispatch boolean isValid(KomprenSlicer t) {
+//		// TODO: Slicer validation
+//		return true
+//	}
 }

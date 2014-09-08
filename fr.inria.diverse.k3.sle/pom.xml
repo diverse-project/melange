@@ -83,11 +83,11 @@
 						<artifactId>fr.inria.diverse.k3.sle.metamodel</artifactId>
 						<version>${project.version}</version>
 					</dependency>
-					<dependency>
+					<!--<dependency>
 						<groupId>fr.inria.diverse.kompren</groupId>
 						<artifactId>fr.inria.diverse.kompren.model</artifactId>
 						<version>3.0.0.v20140722-1602</version>
-					</dependency>
+					</dependency>-->
 					<dependency>
 						<groupId>org.eclipse.xtext</groupId>
 						<artifactId>org.eclipse.xtext.xtext</artifactId>

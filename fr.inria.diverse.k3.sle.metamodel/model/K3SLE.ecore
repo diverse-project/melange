@@ -75,11 +75,6 @@
     <eLiterals name="EMF" value="1" literal="EMF"/>
     <eLiterals name="XTEXT" value="2" literal="XTEXT"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="KomprenSlicer" eSuperTypes="#//Transformation">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="slicer" lowerBound="1"
-        eType="ecore:EClass ../../fr.inria.diverse.kompren.model/model/kompren.ecore#//Slicer"
-        containment="true"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XbaseTransformation" eSuperTypes="#//Transformation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" lowerBound="1" eType="ecore:EClass ../../org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression"
         containment="true"/>

@@ -20,7 +20,7 @@
 	<properties>
 		<kermeta.version>3.0.0-SNAPSHOT</kermeta.version>
 		<emf.version>2.9.1-v20130827-0309</emf.version>
-		<tycho.version>0.19.0</tycho.version>
+		<tycho.version>0.21.0</tycho.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<xtext.version>2.6.0</xtext.version>
 		<nightly.modifier>.nightly</nightly.modifier> <!-- must be set to ".nightly" for SNAPSHOT and set to "" for release -->
@@ -35,11 +35,11 @@
 		</repository>
 
 		<!-- Kompren -->
-		<repository>
+		<!--<repository>
 			<id>kompren</id>
 			<layout>p2</layout>
 			<url>http://www.kermeta.org/kompren/update/</url>
-		</repository>
+		</repository>-->
 		
 		<!-- Update site Repo for thirdparty Dependencies -->
 		<repository>

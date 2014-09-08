@@ -123,14 +123,6 @@ public class K3sleSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case K3slePackage.KOMPREN_SLICER: {
-				KomprenSlicer komprenSlicer = (KomprenSlicer)theEObject;
-				T result = caseKomprenSlicer(komprenSlicer);
-				if (result == null) result = caseTransformation(komprenSlicer);
-				if (result == null) result = caseElement(komprenSlicer);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case K3slePackage.XBASE_TRANSFORMATION: {
 				XbaseTransformation xbaseTransformation = (XbaseTransformation)theEObject;
 				T result = caseXbaseTransformation(xbaseTransformation);
@@ -275,21 +267,6 @@ public class K3sleSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSubtyping(Subtyping object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Kompren Slicer</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Kompren Slicer</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseKomprenSlicer(KomprenSlicer object) {
 		return null;
 	}
 

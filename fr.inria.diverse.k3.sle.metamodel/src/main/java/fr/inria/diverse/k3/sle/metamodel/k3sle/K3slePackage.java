@@ -589,52 +589,6 @@ public interface K3slePackage extends EPackage {
 	int SUBTYPING_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.KomprenSlicerImpl <em>Kompren Slicer</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.KomprenSlicerImpl
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.K3slePackageImpl#getKomprenSlicer()
-	 * @generated
-	 */
-	int KOMPREN_SLICER = 9;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KOMPREN_SLICER__NAME = TRANSFORMATION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Slicer</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KOMPREN_SLICER__SLICER = TRANSFORMATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Kompren Slicer</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KOMPREN_SLICER_FEATURE_COUNT = TRANSFORMATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Kompren Slicer</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KOMPREN_SLICER_OPERATION_COUNT = TRANSFORMATION_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.XbaseTransformationImpl <em>Xbase Transformation</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -642,7 +596,7 @@ public interface K3slePackage extends EPackage {
 	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.K3slePackageImpl#getXbaseTransformation()
 	 * @generated
 	 */
-	int XBASE_TRANSFORMATION = 10;
+	int XBASE_TRANSFORMATION = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -715,7 +669,7 @@ public interface K3slePackage extends EPackage {
 	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.K3slePackageImpl#getResourceType()
 	 * @generated
 	 */
-	int RESOURCE_TYPE = 11;
+	int RESOURCE_TYPE = 10;
 
 
 	/**
@@ -1117,27 +1071,6 @@ public interface K3slePackage extends EPackage {
 	EReference getSubtyping_SuperType();
 
 	/**
-	 * Returns the meta object for class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.KomprenSlicer <em>Kompren Slicer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Kompren Slicer</em>'.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.KomprenSlicer
-	 * @generated
-	 */
-	EClass getKomprenSlicer();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.KomprenSlicer#getSlicer <em>Slicer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Slicer</em>'.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.KomprenSlicer#getSlicer()
-	 * @see #getKomprenSlicer()
-	 * @generated
-	 */
-	EReference getKomprenSlicer_Slicer();
-
-	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.XbaseTransformation <em>Xbase Transformation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1537,24 +1470,6 @@ public interface K3slePackage extends EPackage {
 		 * @generated
 		 */
 		EReference SUBTYPING__SUPER_TYPE = eINSTANCE.getSubtyping_SuperType();
-
-		/**
-		 * The meta object literal for the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.KomprenSlicerImpl <em>Kompren Slicer</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.KomprenSlicerImpl
-		 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.K3slePackageImpl#getKomprenSlicer()
-		 * @generated
-		 */
-		EClass KOMPREN_SLICER = eINSTANCE.getKomprenSlicer();
-
-		/**
-		 * The meta object literal for the '<em><b>Slicer</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference KOMPREN_SLICER__SLICER = eINSTANCE.getKomprenSlicer_Slicer();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.XbaseTransformationImpl <em>Xbase Transformation</em>}' class.

@@ -23,10 +23,7 @@ Require-Bundle: org.eclipse.xtext;bundle-version="2.6.0";visibility:=reexport,
  org.eclipse.core.resources,
  org.eclipse.core.runtime,
  org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional,
- org.eclipse.emf.compare,
- fr.inria.diverse.kompren.compiler;bundle-version="3.0.0",
- fr.inria.diverse.kompren.xtext;bundle-version="3.0.0",
- org.eclipse.xtext.builder;bundle-version="2.6.2"
+ org.eclipse.emf.compare
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
