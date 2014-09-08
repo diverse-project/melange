@@ -29,7 +29,7 @@ import org.eclipse.xtext.common.types.JvmDeclaredType
 
 import org.eclipse.xtext.util.internal.Stopwatches
 
-class ASTPostProcessor
+class ASTCompleter
 {
 	@Inject extension ASTHelper
 	@Inject extension MetamodelExtensions

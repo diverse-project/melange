@@ -6,6 +6,6 @@ public class K3SLERuntimeModule extends fr.inria.diverse.k3.sle.AbstractK3SLERun
 {
 	@Override
 	public Class<? extends IDerivedStateComputer> bindIDerivedStateComputer() {
-		return fr.inria.diverse.k3.sle.postprocessing.K3SLEPostProcessor.class ;
+		return fr.inria.diverse.k3.sle.processors.K3SLEDerivedStateComputer.class ;
 	}
 }
