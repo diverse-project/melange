@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.EModelElement
 import org.eclipse.emf.ecore.ENamedElement
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EStructuralFeature
@@ -25,12 +26,24 @@ class EcoreExtensions
 {
 	@Inject ModelUtils modelUtils
 
+	def boolean emfEquals(EObject o1, EObject o2) {
+		return EcoreUtil.equals(o1, o2)
+	}
+
 	def EClass findClass(EPackage pkg, String clsName) {
 		return pkg.EClassifiers.filter(EClass).findFirst[name == clsName]
 	}
 
 	def EClassifier findClassifier(EPackage pkg, String clsName) {
 		return pkg.EClassifiers.findFirst[name == clsName]
+	}
+
+	def List<EClassifier> getAllClassifiers(List<EPackage> pkgs) {
+		return pkgs.map[EClassifiers].flatten.toList
+	}
+
+	def String getUniqueId(EClassifier it) {
+		return '''«EPackage.name»_«name»'''
 	}
 
 	def boolean isInstantiable(EClass cls) {

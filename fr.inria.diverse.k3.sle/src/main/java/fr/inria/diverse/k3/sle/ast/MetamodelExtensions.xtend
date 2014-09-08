@@ -4,8 +4,9 @@ import com.google.common.collect.Lists
 
 import com.google.inject.Inject
 
+import fr.inria.diverse.k3.sle.algebra.ModelTypeAlgebra
+
 import fr.inria.diverse.k3.sle.lib.EcoreExtensions
-import fr.inria.diverse.k3.sle.lib.MatchingHelper
 import fr.inria.diverse.k3.sle.lib.ModelUtils
 
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Aspect
@@ -56,7 +57,7 @@ class MetamodelExtensions
 	@Inject extension ModelTypeExtensions
 	@Inject extension AspectToEcore
 	@Inject ModelUtils modelUtils
-	@Inject MatchingHelper matchingHelper
+	@Inject ModelTypeAlgebra algebra
 
 	def List<Aspect> allAspects(Metamodel mm) {
 		val ret = newArrayList
@@ -69,9 +70,8 @@ class MetamodelExtensions
 		return ret
 	}
 
-	// FIXME: More than one pkg bro
-	def boolean typedBy(Metamodel mm, ModelType mt) {
-		return matchingHelper.match(mm.exactType.pkgs.head, mt.pkgs.head)
+	def boolean isTypedBy(Metamodel mm, ModelType mt) {
+		return algebra.isTypedBy(mm, mt)
 	}
 
 	def boolean hasSuperMetamodel(Metamodel mm) {

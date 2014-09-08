@@ -2,8 +2,9 @@ package fr.inria.diverse.k3.sle.ast
 
 import com.google.inject.Inject
 
+import fr.inria.diverse.k3.sle.algebra.ModelTypeAlgebra
+
 import fr.inria.diverse.k3.sle.lib.EcoreExtensions
-import fr.inria.diverse.k3.sle.lib.MatchingHelper
 
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
 
@@ -17,7 +18,7 @@ import org.eclipse.emf.ecore.EPackage
 class ModelTypeExtensions
 {
 	@Inject extension EcoreExtensions
-	@Inject MatchingHelper matchingHelper
+	@Inject ModelTypeAlgebra algebra
 
 	def boolean isExtracted(ModelType mt) {
 		return mt.extracted !== null
@@ -31,8 +32,8 @@ class ModelTypeExtensions
 		return mt.pkgs.head.allSubPkgs
 	}
 
-	def boolean subtypeOf(ModelType mt1, ModelType mt2) {
-		return matchingHelper.match(mt1.pkgs.head, mt2.pkgs.head)
+	def boolean isSubtypeOf(ModelType mt1, ModelType mt2) {
+		return algebra.isSubtypeOf(mt1, mt2)
 	}
 
 	def EClassifier findClassifier(ModelType mt, String clsName) {

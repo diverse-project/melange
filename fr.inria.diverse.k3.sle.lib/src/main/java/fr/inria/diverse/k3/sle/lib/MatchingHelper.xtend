@@ -1,5 +1,7 @@
 package fr.inria.diverse.k3.sle.lib
 
+import com.google.inject.Inject
+
 import java.util.HashMap
 import java.util.List
 import java.util.Map
@@ -15,82 +17,80 @@ import org.eclipse.emf.ecore.EReference
 
 class MatchingHelper
 {
-	EPackage pkgA
-	EPackage pkgB
+	List<EPackage> pkgsA
+	List<EPackage> pkgsB
+	@Inject extension EcoreExtensions
 
 	Map<Pair<String, String>, Boolean> matches
 	Stack<String> currentMatching
 
-	def boolean match(EPackage a, EPackage b) {
-		pkgA = a
-		pkgB = b
-
-		if (pkgA === null || pkgB === null)
-			return false
+	def boolean match(List<EPackage> l1, List<EPackage> l2) {
+		pkgsA = l1
+		pkgsB = l2
 
 		matches = new HashMap<Pair<String, String>, Boolean>
 		currentMatching = new Stack<String>
 
-		return pkgB.EClassifiers.filter(EClass).forall[clsB |
-			pkgA.EClassifiers.filter(EClass).exists[clsA |
-				clsA.match(clsB)
+		return pkgsB.allClassifiers.filter(EClass).forall[clsB |
+			pkgsA.allClassifiers.filter(EClass).exists[clsA |
+				clsA.internalMatch(clsB)
 			]
 		]
 	}
 
-	def boolean match(EClass clsA, EClass clsB) {
-		if (matches.containsKey(clsA.name -> clsB.name))
-			return matches.get(clsA.name -> clsB.name)
-		else if (!currentMatching.contains(clsB.name)) {
-				currentMatching.push(clsB.name)
+	private def boolean internalMatch(EClass clsA, EClass clsB) {
+		if (matches.containsKey(clsA.uniqueId -> clsB.uniqueId))
+			return matches.get(clsA.uniqueId -> clsB.uniqueId)
+		else if (!currentMatching.contains(clsB.uniqueId)) {
+				currentMatching.push(clsB.uniqueId)
 
 				val ret =
 				    clsA.name == clsB.name
 				&&  clsB.EOperations.forall[opB |
-						clsA.EOperations.exists[opA | opA.match(opB)]
+						clsA.EOperations.exists[opA | opA.internalMatch(opB)]
 					]
 				&&  clsB.EAttributes.forall[attrB |
-						clsA.EAttributes.exists[attrA | attrA.match(attrB)]
+						clsA.EAttributes.exists[attrA | attrA.internalMatch(attrB)]
 					]
 				&&  clsB.EReferences.forall[refB |
-						clsA.EReferences.exists[refA | refA.match(refB)]
+						clsA.EReferences.exists[refA | refA.internalMatch(refB)]
 					]
 
 				currentMatching.pop
-				matches.put(clsA.name -> clsB.name, ret)
+				matches.put(clsA.uniqueId -> clsB.uniqueId, ret)
 
 				return ret
 		} else
 			return true
 	}
 
-	def boolean match(EOperation opA, EOperation opB) {
+	private def boolean internalMatch(EOperation opA, EOperation opB) {
 		val ret =
 		    opA.name == opB.name
 			// FIXME: Just a hack for now
-		&&  if (opA.EType instanceof EDataType || opB.EType instanceof EDataType || !pkgA.EClassifiers.contains(opA.EType))
+		&&  if (opA.EType instanceof EDataType || opB.EType instanceof EDataType || !pkgsA.allClassifiers.contains(opA.EType))
 				opA.EType?.name == opB.EType?.name
 			else
 				(
-					   pkgA.EClassifiers.contains(opA.EType)
-					&& pkgB.EClassifiers.contains(opB.EType)
-					&& (opA.EType as EClass).match(opB.EType as EClass)
+					   pkgsA.allClassifiers.contains(opA.EType)
+					&& pkgsB.allClassifiers.contains(opB.EType)
+					&& (opA.EType as EClass).internalMatch(opB.EType as EClass)
 				) || (
 					opA.EType === null && opB.EType === null
 				) || (
 					   opA.EType instanceof EClass
 					&& (opA.EType as EClass).EAllSuperTypes.contains(opB.EType)
 				)
-		&&  opA.EParameters.match(opB.EParameters)
+		&&  opA.EParameters.internalMatch(opB.EParameters)
 		&&  opA.EExceptions.forall[excA |
 				opB.EExceptions.exists[excB |
 					if (excA instanceof EDataType || excB instanceof EDataType)
 						excA.name == excB.name
 					else
 						(
-							   pkgA.EClassifiers.contains(excA)
-							&& pkgB.EClassifiers.contains(excB)
-							&& (excA as EClass).match(excB as EClass)
+							   pkgsA.allClassifiers.contains(excA)
+							&& pkgsB.allClassifiers.contains(excB)
+							&& (excA as EClass).internalMatch(excB as EClass)
 						) || (
 							(excA as EClass).EAllSuperTypes.contains(excB)
 						)
@@ -100,7 +100,7 @@ class MatchingHelper
 		return ret
 	}
 
-	def boolean match(List<EParameter> paramsA, List<EParameter> paramsB) {
+	private def boolean internalMatch(List<EParameter> paramsA, List<EParameter> paramsB) {
 		var rank = 0
 
 		for (paramB : paramsB) {
@@ -112,9 +112,9 @@ class MatchingHelper
 			if (paramA.EType instanceof EDataType || paramB.EType instanceof EDataType)
 				if (paramA.EType.name != paramB.EType.name)
 					return false
-			else if (pkgA.EClassifiers.contains(paramA.EType)
-					&& pkgB.EClassifiers.contains(paramB.EType))
-				if (!(paramA.EType as EClass).match(paramB.EType as EClass))
+			else if (pkgsA.allClassifiers.contains(paramA.EType)
+					&& pkgsB.allClassifiers.contains(paramB.EType))
+				if (!(paramA.EType as EClass).internalMatch(paramB.EType as EClass))
 					return false
 			else
 				if (!(paramA.EType as EClass).EAllSuperTypes.contains(paramB.EType))
@@ -134,7 +134,7 @@ class MatchingHelper
 		return true
 	}
 
-	def boolean match(EAttribute attrA, EAttribute attrB) {
+	private def boolean internalMatch(EAttribute attrA, EAttribute attrB) {
 		val ret =
 		    attrA.name == attrB.name
 		&&  (attrA.changeable || !attrB.changeable)
@@ -144,9 +144,9 @@ class MatchingHelper
 				attrA.EType.name == attrB.EType.name
 			else if (attrA.EType instanceof EClass && attrB.EType instanceof EClass)
 				(
-					   pkgA.EClassifiers.contains(attrA.EType)
-					&& pkgB.EClassifiers.contains(attrB.EType)
-					&& (attrA.EType as EClass).match(attrB.EType as EClass)
+					   pkgsA.allClassifiers.contains(attrA.EType)
+					&& pkgsB.allClassifiers.contains(attrB.EType)
+					&& (attrA.EType as EClass).internalMatch(attrB.EType as EClass)
 				) || (
 					   (attrA.EType as EClass).EAllSuperTypes.contains(attrB.EType)
 					&& !attrA.changeable
@@ -158,7 +158,7 @@ class MatchingHelper
 		return ret
 	}
 
-	def boolean match(EReference refA, EReference refB) {
+	private def boolean internalMatch(EReference refA, EReference refB) {
 		val ret =
 		    refA.name == refB.name
 		&&  (refA.changeable || !refB.changeable)

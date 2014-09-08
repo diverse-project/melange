@@ -46,7 +46,7 @@ class K3SLETyping
 		root.modelTypes
 		.forEach[mt1 |
 			root.modelTypes
-			.filter[mt2 | mt2 != mt1 && !mt1.subtypingRelations.exists[superType?.name == mt2?.name] && mt1.subtypeOf(mt2)]
+			.filter[mt2 | mt2 != mt1 && !mt1.subtypingRelations.exists[superType?.name == mt2?.name] && mt1.isSubtypeOf(mt2)]
 			.forEach[mt2 |
 				mt1.subtypingRelations += K3sleFactory.eINSTANCE.createSubtyping => [
 					subType = mt1
@@ -55,7 +55,7 @@ class K3SLETyping
 			]
 
 			root.metamodels
-			.filter[mm | !mm.^implements.exists[name == mt1.name] && mm.typedBy(mt1)]
+			.filter[mm | !mm.^implements.exists[name == mt1.name] && mm.isTypedBy(mt1)]
 			.forEach[mm |
 				mm.^implements += mt1
 			]
@@ -250,7 +250,7 @@ class K3SLETyping
 				mt.complete
 				mm.exactType.complete
 
-				if (!mm.typedBy(mt))
+				if (!mm.isTypedBy(mt))
 					throw new ASTProcessingException('''«mm.name» doesn't match interface «mt.name»''')
 			]
 

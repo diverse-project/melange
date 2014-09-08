@@ -12,9 +12,22 @@ import org.eclipse.emf.compare.merge.IMerger
 import org.eclipse.emf.compare.scope.DefaultComparisonScope
 
 import org.eclipse.emf.ecore.EClass
+import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
+import fr.inria.diverse.k3.sle.lib.MatchingHelper
+import com.google.inject.Inject
 
 class EmfCompareAlgebra implements ModelTypeAlgebra
 {
+	@Inject MatchingHelper matchingHelper
+
+	override isSubtypeOf(ModelType mt1, ModelType mt2) {
+		matchingHelper.match(mt1.pkgs, mt2.pkgs)
+	}
+
+	override isTypedBy(Metamodel mm, ModelType mt) {
+		mm.exactType.isSubtypeOf(mt)
+	}
+
 	override weaveAspect(Metamodel mm, Aspect aspect) {
 		val base = mm.pkgs.findFirst[
 			EClassifiers.filter(EClass).exists[

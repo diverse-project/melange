@@ -4,6 +4,7 @@ import com.google.inject.ImplementedBy
 
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Aspect
+import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
 
 /**
  * Just to simplify some common operations for now
@@ -14,5 +15,7 @@ import fr.inria.diverse.k3.sle.metamodel.k3sle.Aspect
 @ImplementedBy(EmfCompareAlgebra)
 interface ModelTypeAlgebra
 {
+	def boolean isSubtypeOf(ModelType mt1, ModelType mt2)
+	def boolean isTypedBy(Metamodel mm, ModelType mt)
 	def void weaveAspect(Metamodel mm, Aspect aspect)
 }
