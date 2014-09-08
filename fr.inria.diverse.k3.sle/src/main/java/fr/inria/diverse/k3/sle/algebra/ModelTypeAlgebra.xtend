@@ -3,7 +3,7 @@ package fr.inria.diverse.k3.sle.algebra
 import com.google.inject.ImplementedBy
 
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
-import fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport
+import fr.inria.diverse.k3.sle.metamodel.k3sle.Aspect
 
 /**
  * Just to simplify some common operations for now
@@ -14,5 +14,5 @@ import fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport
 @ImplementedBy(EmfCompareAlgebra)
 interface ModelTypeAlgebra
 {
-	def void weaveAspect(Metamodel mm, AspectImport aspect)
+	def void weaveAspect(Metamodel mm, Aspect aspect)
 }

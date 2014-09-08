@@ -2,7 +2,7 @@ package fr.inria.diverse.k3.sle.ui.labeling
 
 import com.google.inject.Inject
 
-import fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport
+import fr.inria.diverse.k3.sle.metamodel.k3sle.Aspect
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation
@@ -33,13 +33,13 @@ class K3SLELabelProvider extends org.eclipse.xtext.xbase.ui.labeling.XbaseLabelP
 		"transformation.png"
 	}
 
-	def text(AspectImport asp) {
-		if (asp.aspectRef.type instanceof JvmDeclaredType) {
-			'''«asp.aspectRef.type.simpleName» @ «asp.aspectedClass?.name ?: "Unbinded target"»'''.toString
+	def text(Aspect asp) {
+		if (asp.aspectTypeRef.type instanceof JvmDeclaredType) {
+			'''«asp.aspectTypeRef.type.simpleName» @ «asp.aspectedClass?.name ?: "Unbinded target"»'''.toString
 		} else "Unbinded aspect"
 	}
 
-	def image(AspectImport asp) {
+	def image(Aspect asp) {
 		"aspect.png"
 	}
 

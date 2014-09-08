@@ -2,7 +2,6 @@
  */
 package fr.inria.diverse.k3.sle.metamodel.k3sle.impl;
 
-import fr.inria.diverse.k3.sle.metamodel.k3sle.EcoreImport;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType;
@@ -32,26 +31,16 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.ModelTypeImpl#getEcore <em>Ecore</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.ModelTypeImpl#getSubtypingRelations <em>Subtyping Relations</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.ModelTypeImpl#getPkgs <em>Pkgs</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.ModelTypeImpl#getExtracted <em>Extracted</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.ModelTypeImpl#getEcoreUri <em>Ecore Uri</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class ModelTypeImpl extends ElementImpl implements ModelType {
-	/**
-	 * The cached value of the '{@link #getEcore() <em>Ecore</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEcore()
-	 * @generated
-	 * @ordered
-	 */
-	protected EcoreImport ecore;
-
 	/**
 	 * The cached value of the '{@link #getSubtypingRelations() <em>Subtyping Relations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -83,6 +72,26 @@ public class ModelTypeImpl extends ElementImpl implements ModelType {
 	protected Metamodel extracted;
 
 	/**
+	 * The default value of the '{@link #getEcoreUri() <em>Ecore Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEcoreUri()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ECORE_URI_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getEcoreUri() <em>Ecore Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEcoreUri()
+	 * @generated
+	 * @ordered
+	 */
+	protected String ecoreUri = ECORE_URI_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -99,49 +108,6 @@ public class ModelTypeImpl extends ElementImpl implements ModelType {
 	@Override
 	protected EClass eStaticClass() {
 		return K3slePackage.Literals.MODEL_TYPE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EcoreImport getEcore() {
-		return ecore;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetEcore(EcoreImport newEcore, NotificationChain msgs) {
-		EcoreImport oldEcore = ecore;
-		ecore = newEcore;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, K3slePackage.MODEL_TYPE__ECORE, oldEcore, newEcore);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEcore(EcoreImport newEcore) {
-		if (newEcore != ecore) {
-			NotificationChain msgs = null;
-			if (ecore != null)
-				msgs = ((InternalEObject)ecore).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - K3slePackage.MODEL_TYPE__ECORE, null, msgs);
-			if (newEcore != null)
-				msgs = ((InternalEObject)newEcore).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - K3slePackage.MODEL_TYPE__ECORE, null, msgs);
-			msgs = basicSetEcore(newEcore, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, K3slePackage.MODEL_TYPE__ECORE, newEcore, newEcore));
 	}
 
 	/**
@@ -233,6 +199,27 @@ public class ModelTypeImpl extends ElementImpl implements ModelType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getEcoreUri() {
+		return ecoreUri;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEcoreUri(String newEcoreUri) {
+		String oldEcoreUri = ecoreUri;
+		ecoreUri = newEcoreUri;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, K3slePackage.MODEL_TYPE__ECORE_URI, oldEcoreUri, ecoreUri));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -255,8 +242,6 @@ public class ModelTypeImpl extends ElementImpl implements ModelType {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case K3slePackage.MODEL_TYPE__ECORE:
-				return basicSetEcore(null, msgs);
 			case K3slePackage.MODEL_TYPE__SUBTYPING_RELATIONS:
 				return ((InternalEList<?>)getSubtypingRelations()).basicRemove(otherEnd, msgs);
 			case K3slePackage.MODEL_TYPE__PKGS:
@@ -275,8 +260,6 @@ public class ModelTypeImpl extends ElementImpl implements ModelType {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case K3slePackage.MODEL_TYPE__ECORE:
-				return getEcore();
 			case K3slePackage.MODEL_TYPE__SUBTYPING_RELATIONS:
 				return getSubtypingRelations();
 			case K3slePackage.MODEL_TYPE__PKGS:
@@ -284,6 +267,8 @@ public class ModelTypeImpl extends ElementImpl implements ModelType {
 			case K3slePackage.MODEL_TYPE__EXTRACTED:
 				if (resolve) return getExtracted();
 				return basicGetExtracted();
+			case K3slePackage.MODEL_TYPE__ECORE_URI:
+				return getEcoreUri();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -297,9 +282,6 @@ public class ModelTypeImpl extends ElementImpl implements ModelType {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case K3slePackage.MODEL_TYPE__ECORE:
-				setEcore((EcoreImport)newValue);
-				return;
 			case K3slePackage.MODEL_TYPE__SUBTYPING_RELATIONS:
 				getSubtypingRelations().clear();
 				getSubtypingRelations().addAll((Collection<? extends Subtyping>)newValue);
@@ -310,6 +292,9 @@ public class ModelTypeImpl extends ElementImpl implements ModelType {
 				return;
 			case K3slePackage.MODEL_TYPE__EXTRACTED:
 				setExtracted((Metamodel)newValue);
+				return;
+			case K3slePackage.MODEL_TYPE__ECORE_URI:
+				setEcoreUri((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -323,9 +308,6 @@ public class ModelTypeImpl extends ElementImpl implements ModelType {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case K3slePackage.MODEL_TYPE__ECORE:
-				setEcore((EcoreImport)null);
-				return;
 			case K3slePackage.MODEL_TYPE__SUBTYPING_RELATIONS:
 				getSubtypingRelations().clear();
 				return;
@@ -334,6 +316,9 @@ public class ModelTypeImpl extends ElementImpl implements ModelType {
 				return;
 			case K3slePackage.MODEL_TYPE__EXTRACTED:
 				setExtracted((Metamodel)null);
+				return;
+			case K3slePackage.MODEL_TYPE__ECORE_URI:
+				setEcoreUri(ECORE_URI_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -347,16 +332,32 @@ public class ModelTypeImpl extends ElementImpl implements ModelType {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case K3slePackage.MODEL_TYPE__ECORE:
-				return ecore != null;
 			case K3slePackage.MODEL_TYPE__SUBTYPING_RELATIONS:
 				return subtypingRelations != null && !subtypingRelations.isEmpty();
 			case K3slePackage.MODEL_TYPE__PKGS:
 				return pkgs != null && !pkgs.isEmpty();
 			case K3slePackage.MODEL_TYPE__EXTRACTED:
 				return extracted != null;
+			case K3slePackage.MODEL_TYPE__ECORE_URI:
+				return ECORE_URI_EDEFAULT == null ? ecoreUri != null : !ECORE_URI_EDEFAULT.equals(ecoreUri);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (ecoreUri: ");
+		result.append(ecoreUri);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ModelTypeImpl

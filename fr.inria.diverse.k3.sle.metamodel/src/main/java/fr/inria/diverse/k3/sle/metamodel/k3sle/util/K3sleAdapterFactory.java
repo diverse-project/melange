@@ -88,12 +88,8 @@ public class K3sleAdapterFactory extends AdapterFactoryImpl {
 				return createTransformationAdapter();
 			}
 			@Override
-			public Adapter caseEcoreImport(EcoreImport object) {
-				return createEcoreImportAdapter();
-			}
-			@Override
-			public Adapter caseAspectImport(AspectImport object) {
-				return createAspectImportAdapter();
+			public Adapter caseAspect(Aspect object) {
+				return createAspectAdapter();
 			}
 			@Override
 			public Adapter caseInheritance(Inheritance object) {
@@ -198,30 +194,16 @@ public class K3sleAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.EcoreImport <em>Ecore Import</em>}'.
+	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Aspect <em>Aspect</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.EcoreImport
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Aspect
 	 * @generated
 	 */
-	public Adapter createEcoreImportAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport <em>Aspect Import</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport
-	 * @generated
-	 */
-	public Adapter createAspectImportAdapter() {
+	public Adapter createAspectAdapter() {
 		return null;
 	}
 

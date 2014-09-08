@@ -10,48 +10,48 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Aspect Import</b></em>'.
+ * A representation of the model object '<em><b>Aspect</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport#getAspectRef <em>Aspect Ref</em>}</li>
- *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport#getAspectedClass <em>Aspected Class</em>}</li>
- *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport#getEcoreFragment <em>Ecore Fragment</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Aspect#getAspectTypeRef <em>Aspect Type Ref</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Aspect#getAspectedClass <em>Aspected Class</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Aspect#getEcoreFragment <em>Ecore Fragment</em>}</li>
  * </ul>
  * </p>
  *
- * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getAspectImport()
+ * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getAspect()
  * @model
  * @generated
  */
-public interface AspectImport extends EObject {
+public interface Aspect extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Aspect Ref</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Aspect Type Ref</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Aspect Ref</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Aspect Type Ref</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Aspect Ref</em>' containment reference.
-	 * @see #setAspectRef(JvmTypeReference)
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getAspectImport_AspectRef()
+	 * @return the value of the '<em>Aspect Type Ref</em>' containment reference.
+	 * @see #setAspectTypeRef(JvmTypeReference)
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getAspect_AspectTypeRef()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	JvmTypeReference getAspectRef();
+	JvmTypeReference getAspectTypeRef();
 
 	/**
-	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport#getAspectRef <em>Aspect Ref</em>}' containment reference.
+	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Aspect#getAspectTypeRef <em>Aspect Type Ref</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Aspect Ref</em>' containment reference.
-	 * @see #getAspectRef()
+	 * @param value the new value of the '<em>Aspect Type Ref</em>' containment reference.
+	 * @see #getAspectTypeRef()
 	 * @generated
 	 */
-	void setAspectRef(JvmTypeReference value);
+	void setAspectTypeRef(JvmTypeReference value);
 
 	/**
 	 * Returns the value of the '<em><b>Aspected Class</b></em>' reference.
@@ -63,14 +63,14 @@ public interface AspectImport extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Aspected Class</em>' reference.
 	 * @see #setAspectedClass(EClass)
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getAspectImport_AspectedClass()
-	 * @model
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getAspect_AspectedClass()
+	 * @model required="true"
 	 * @generated
 	 */
 	EClass getAspectedClass();
 
 	/**
-	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport#getAspectedClass <em>Aspected Class</em>}' reference.
+	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Aspect#getAspectedClass <em>Aspected Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Aspected Class</em>' reference.
@@ -89,14 +89,14 @@ public interface AspectImport extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Ecore Fragment</em>' containment reference.
 	 * @see #setEcoreFragment(EPackage)
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getAspectImport_EcoreFragment()
-	 * @model containment="true"
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getAspect_EcoreFragment()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	EPackage getEcoreFragment();
 
 	/**
-	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport#getEcoreFragment <em>Ecore Fragment</em>}' containment reference.
+	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Aspect#getEcoreFragment <em>Ecore Fragment</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Ecore Fragment</em>' containment reference.
@@ -105,4 +105,4 @@ public interface AspectImport extends EObject {
 	 */
 	void setEcoreFragment(EPackage value);
 
-} // AspectImport
+} // Aspect

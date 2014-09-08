@@ -32,7 +32,7 @@ public interface Element extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getElement_Name()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	String getName();

@@ -49,22 +49,13 @@ public interface K3sleFactory extends EFactory {
 	ModelType createModelType();
 
 	/**
-	 * Returns a new object of class '<em>Ecore Import</em>'.
+	 * Returns a new object of class '<em>Aspect</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ecore Import</em>'.
+	 * @return a new object of class '<em>Aspect</em>'.
 	 * @generated
 	 */
-	EcoreImport createEcoreImport();
-
-	/**
-	 * Returns a new object of class '<em>Aspect Import</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Aspect Import</em>'.
-	 * @generated
-	 */
-	AspectImport createAspectImport();
+	Aspect createAspect();
 
 	/**
 	 * Returns a new object of class '<em>Inheritance</em>'.

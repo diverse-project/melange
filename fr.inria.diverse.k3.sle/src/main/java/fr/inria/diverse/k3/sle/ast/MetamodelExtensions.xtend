@@ -8,7 +8,7 @@ import fr.inria.diverse.k3.sle.lib.EcoreExtensions
 import fr.inria.diverse.k3.sle.lib.MatchingHelper
 import fr.inria.diverse.k3.sle.lib.ModelUtils
 
-import fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport
+import fr.inria.diverse.k3.sle.metamodel.k3sle.Aspect
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
 
@@ -58,7 +58,7 @@ class MetamodelExtensions
 	@Inject ModelUtils modelUtils
 	@Inject MatchingHelper matchingHelper
 
-	def List<AspectImport> allAspects(Metamodel mm) {
+	def List<Aspect> allAspects(Metamodel mm) {
 		val ret = newArrayList
 
 		ret += mm.aspects
@@ -78,8 +78,8 @@ class MetamodelExtensions
 		return mm.inheritanceRelation?.superMetamodel !== null
 	}
 
-	def String getAspectAnnotationValue(AspectImport asp) {
-		return (asp.aspectRef.type as JvmDeclaredType)?.aspectAnnotationValue
+	def String getAspectAnnotationValue(Aspect asp) {
+		return (asp.aspectTypeRef.type as JvmDeclaredType)?.aspectAnnotationValue
 	}
 
 	def String getAspectAnnotationValue(JvmDeclaredType t) {
@@ -290,7 +290,7 @@ class MetamodelExtensions
 	def void createExtendedGenmodel(Metamodel mm, String ecoreLocation, String genModelLocation, String modelDirectory) {
 		// FIXME: Stupid fix -> reopen the Ecore here to avoid Xtext-style cross-references in the genmodel
 		val pkgs = modelUtils.loadAllPkgs(ecoreLocation)
-		val parentGm = modelUtils.loadGenmodel(mm.inheritanceRelation?.superMetamodel?.ecore?.genmodelUris.head)
+		val parentGm = modelUtils.loadGenmodel(mm.inheritanceRelation?.superMetamodel?.genmodelUris.head)
 
 		val genModel = GenModelFactory.eINSTANCE.createGenModel => [
 			it.complianceLevel = GenJDKLevel.JDK70_LITERAL

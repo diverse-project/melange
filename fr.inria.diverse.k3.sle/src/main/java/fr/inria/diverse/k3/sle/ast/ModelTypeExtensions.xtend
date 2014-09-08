@@ -24,7 +24,7 @@ class ModelTypeExtensions
 	}
 
 	def boolean isImported(ModelType mt) {
-		return mt.ecore !== null
+		return mt.ecoreUri !== null
 	}
 
 	def List<EPackage> getAllSubPkgs(ModelType mt) {

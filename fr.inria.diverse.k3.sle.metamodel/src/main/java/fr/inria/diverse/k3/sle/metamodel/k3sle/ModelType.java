@@ -14,10 +14,10 @@ import org.eclipse.emf.ecore.EPackage;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType#getEcore <em>Ecore</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType#getSubtypingRelations <em>Subtyping Relations</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType#getPkgs <em>Pkgs</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType#getExtracted <em>Extracted</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType#getEcoreUri <em>Ecore Uri</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,32 +26,6 @@ import org.eclipse.emf.ecore.EPackage;
  * @generated
  */
 public interface ModelType extends Element {
-	/**
-	 * Returns the value of the '<em><b>Ecore</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Ecore</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Ecore</em>' containment reference.
-	 * @see #setEcore(EcoreImport)
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getModelType_Ecore()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EcoreImport getEcore();
-
-	/**
-	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType#getEcore <em>Ecore</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Ecore</em>' containment reference.
-	 * @see #getEcore()
-	 * @generated
-	 */
-	void setEcore(EcoreImport value);
-
 	/**
 	 * Returns the value of the '<em><b>Subtyping Relations</b></em>' containment reference list.
 	 * The list contents are of type {@link fr.inria.diverse.k3.sle.metamodel.k3sle.Subtyping}.
@@ -113,5 +87,31 @@ public interface ModelType extends Element {
 	 * @generated
 	 */
 	void setExtracted(Metamodel value);
+
+	/**
+	 * Returns the value of the '<em><b>Ecore Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Ecore Uri</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Ecore Uri</em>' attribute.
+	 * @see #setEcoreUri(String)
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getModelType_EcoreUri()
+	 * @model
+	 * @generated
+	 */
+	String getEcoreUri();
+
+	/**
+	 * Sets the value of the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType#getEcoreUri <em>Ecore Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Ecore Uri</em>' attribute.
+	 * @see #getEcoreUri()
+	 * @generated
+	 */
+	void setEcoreUri(String value);
 
 } // ModelType

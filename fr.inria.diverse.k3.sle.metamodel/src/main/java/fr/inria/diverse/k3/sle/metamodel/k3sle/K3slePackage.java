@@ -169,22 +169,13 @@ public interface K3slePackage extends EPackage {
 	int METAMODEL__NAME = ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Ecore</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METAMODEL__ECORE = ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Aspects</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__ASPECTS = ELEMENT_FEATURE_COUNT + 1;
+	int METAMODEL__ASPECTS = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Exact Type</b></em>' reference.
@@ -193,7 +184,7 @@ public interface K3slePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__EXACT_TYPE = ELEMENT_FEATURE_COUNT + 2;
+	int METAMODEL__EXACT_TYPE = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Implements</b></em>' reference list.
@@ -202,7 +193,7 @@ public interface K3slePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__IMPLEMENTS = ELEMENT_FEATURE_COUNT + 3;
+	int METAMODEL__IMPLEMENTS = ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Inheritance Relation</b></em>' containment reference.
@@ -211,7 +202,7 @@ public interface K3slePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__INHERITANCE_RELATION = ELEMENT_FEATURE_COUNT + 4;
+	int METAMODEL__INHERITANCE_RELATION = ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Pkgs</b></em>' containment reference list.
@@ -220,16 +211,16 @@ public interface K3slePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__PKGS = ELEMENT_FEATURE_COUNT + 5;
+	int METAMODEL__PKGS = ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Exact Type Ref</b></em>' attribute.
+	 * The feature id for the '<em><b>Exact Type Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__EXACT_TYPE_REF = ELEMENT_FEATURE_COUNT + 6;
+	int METAMODEL__EXACT_TYPE_NAME = ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Genmodels</b></em>' containment reference list.
@@ -238,7 +229,7 @@ public interface K3slePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__GENMODELS = ELEMENT_FEATURE_COUNT + 7;
+	int METAMODEL__GENMODELS = ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Resource Type</b></em>' attribute.
@@ -247,7 +238,7 @@ public interface K3slePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__RESOURCE_TYPE = ELEMENT_FEATURE_COUNT + 8;
+	int METAMODEL__RESOURCE_TYPE = ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Resource Uri</b></em>' attribute.
@@ -256,16 +247,34 @@ public interface K3slePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__RESOURCE_URI = ELEMENT_FEATURE_COUNT + 9;
+	int METAMODEL__RESOURCE_URI = ELEMENT_FEATURE_COUNT + 8;
 
 	/**
-	 * The feature id for the '<em><b>Resource Setup</b></em>' containment reference.
+	 * The feature id for the '<em><b>Xtext Setup Ref</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__RESOURCE_SETUP = ELEMENT_FEATURE_COUNT + 10;
+	int METAMODEL__XTEXT_SETUP_REF = ELEMENT_FEATURE_COUNT + 9;
+
+	/**
+	 * The feature id for the '<em><b>Ecore Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL__ECORE_URI = ELEMENT_FEATURE_COUNT + 10;
+
+	/**
+	 * The feature id for the '<em><b>Genmodel Uris</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL__GENMODEL_URIS = ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The number of structural features of the '<em>Metamodel</em>' class.
@@ -274,7 +283,7 @@ public interface K3slePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 11;
+	int METAMODEL_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 12;
 
 	/**
 	 * The number of operations of the '<em>Metamodel</em>' class.
@@ -305,22 +314,13 @@ public interface K3slePackage extends EPackage {
 	int MODEL_TYPE__NAME = ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Ecore</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_TYPE__ECORE = ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Subtyping Relations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_TYPE__SUBTYPING_RELATIONS = ELEMENT_FEATURE_COUNT + 1;
+	int MODEL_TYPE__SUBTYPING_RELATIONS = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Pkgs</b></em>' containment reference list.
@@ -329,7 +329,7 @@ public interface K3slePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_TYPE__PKGS = ELEMENT_FEATURE_COUNT + 2;
+	int MODEL_TYPE__PKGS = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Extracted</b></em>' reference.
@@ -338,7 +338,16 @@ public interface K3slePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_TYPE__EXTRACTED = ELEMENT_FEATURE_COUNT + 3;
+	int MODEL_TYPE__EXTRACTED = ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Ecore Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_TYPE__ECORE_URI = ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Model Type</em>' class.
@@ -396,69 +405,23 @@ public interface K3slePackage extends EPackage {
 	int TRANSFORMATION_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.EcoreImportImpl <em>Ecore Import</em>}' class.
+	 * The meta object id for the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.AspectImpl <em>Aspect</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.EcoreImportImpl
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.K3slePackageImpl#getEcoreImport()
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.AspectImpl
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.K3slePackageImpl#getAspect()
 	 * @generated
 	 */
-	int ECORE_IMPORT = 5;
+	int ASPECT = 5;
 
 	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * The feature id for the '<em><b>Aspect Type Ref</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ECORE_IMPORT__URI = 0;
-
-	/**
-	 * The feature id for the '<em><b>Genmodel Uris</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ECORE_IMPORT__GENMODEL_URIS = 1;
-
-	/**
-	 * The number of structural features of the '<em>Ecore Import</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ECORE_IMPORT_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Ecore Import</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ECORE_IMPORT_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.AspectImportImpl <em>Aspect Import</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.AspectImportImpl
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.K3slePackageImpl#getAspectImport()
-	 * @generated
-	 */
-	int ASPECT_IMPORT = 6;
-
-	/**
-	 * The feature id for the '<em><b>Aspect Ref</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASPECT_IMPORT__ASPECT_REF = 0;
+	int ASPECT__ASPECT_TYPE_REF = 0;
 
 	/**
 	 * The feature id for the '<em><b>Aspected Class</b></em>' reference.
@@ -467,7 +430,7 @@ public interface K3slePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASPECT_IMPORT__ASPECTED_CLASS = 1;
+	int ASPECT__ASPECTED_CLASS = 1;
 
 	/**
 	 * The feature id for the '<em><b>Ecore Fragment</b></em>' containment reference.
@@ -476,25 +439,25 @@ public interface K3slePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASPECT_IMPORT__ECORE_FRAGMENT = 2;
+	int ASPECT__ECORE_FRAGMENT = 2;
 
 	/**
-	 * The number of structural features of the '<em>Aspect Import</em>' class.
+	 * The number of structural features of the '<em>Aspect</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASPECT_IMPORT_FEATURE_COUNT = 3;
+	int ASPECT_FEATURE_COUNT = 3;
 
 	/**
-	 * The number of operations of the '<em>Aspect Import</em>' class.
+	 * The number of operations of the '<em>Aspect</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASPECT_IMPORT_OPERATION_COUNT = 0;
+	int ASPECT_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.InheritanceImpl <em>Inheritance</em>}' class.
@@ -504,7 +467,7 @@ public interface K3slePackage extends EPackage {
 	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.K3slePackageImpl#getInheritance()
 	 * @generated
 	 */
-	int INHERITANCE = 7;
+	int INHERITANCE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Sub Metamodel</b></em>' container reference.
@@ -550,7 +513,7 @@ public interface K3slePackage extends EPackage {
 	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.K3slePackageImpl#getSubtyping()
 	 * @generated
 	 */
-	int SUBTYPING = 8;
+	int SUBTYPING = 7;
 
 	/**
 	 * The feature id for the '<em><b>Sub Type</b></em>' container reference.
@@ -596,7 +559,7 @@ public interface K3slePackage extends EPackage {
 	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.K3slePackageImpl#getXbaseTransformation()
 	 * @generated
 	 */
-	int XBASE_TRANSFORMATION = 9;
+	int XBASE_TRANSFORMATION = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -669,7 +632,7 @@ public interface K3slePackage extends EPackage {
 	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.K3slePackageImpl#getResourceType()
 	 * @generated
 	 */
-	int RESOURCE_TYPE = 10;
+	int RESOURCE_TYPE = 9;
 
 
 	/**
@@ -747,17 +710,6 @@ public interface K3slePackage extends EPackage {
 	EClass getMetamodel();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getEcore <em>Ecore</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Ecore</em>'.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getEcore()
-	 * @see #getMetamodel()
-	 * @generated
-	 */
-	EReference getMetamodel_Ecore();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getAspects <em>Aspects</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -813,15 +765,15 @@ public interface K3slePackage extends EPackage {
 	EReference getMetamodel_Pkgs();
 
 	/**
-	 * Returns the meta object for the attribute '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getExactTypeRef <em>Exact Type Ref</em>}'.
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getExactTypeName <em>Exact Type Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Exact Type Ref</em>'.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getExactTypeRef()
+	 * @return the meta object for the attribute '<em>Exact Type Name</em>'.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getExactTypeName()
 	 * @see #getMetamodel()
 	 * @generated
 	 */
-	EAttribute getMetamodel_ExactTypeRef();
+	EAttribute getMetamodel_ExactTypeName();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getGenmodels <em>Genmodels</em>}'.
@@ -857,15 +809,37 @@ public interface K3slePackage extends EPackage {
 	EAttribute getMetamodel_ResourceUri();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getResourceSetup <em>Resource Setup</em>}'.
+	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getXtextSetupRef <em>Xtext Setup Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Resource Setup</em>'.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getResourceSetup()
+	 * @return the meta object for the containment reference '<em>Xtext Setup Ref</em>'.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getXtextSetupRef()
 	 * @see #getMetamodel()
 	 * @generated
 	 */
-	EReference getMetamodel_ResourceSetup();
+	EReference getMetamodel_XtextSetupRef();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getEcoreUri <em>Ecore Uri</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Ecore Uri</em>'.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getEcoreUri()
+	 * @see #getMetamodel()
+	 * @generated
+	 */
+	EAttribute getMetamodel_EcoreUri();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getGenmodelUris <em>Genmodel Uris</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Genmodel Uris</em>'.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getGenmodelUris()
+	 * @see #getMetamodel()
+	 * @generated
+	 */
+	EAttribute getMetamodel_GenmodelUris();
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType <em>Model Type</em>}'.
@@ -876,17 +850,6 @@ public interface K3slePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getModelType();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType#getEcore <em>Ecore</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Ecore</em>'.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType#getEcore()
-	 * @see #getModelType()
-	 * @generated
-	 */
-	EReference getModelType_Ecore();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType#getSubtypingRelations <em>Subtyping Relations</em>}'.
@@ -922,6 +885,17 @@ public interface K3slePackage extends EPackage {
 	EReference getModelType_Extracted();
 
 	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType#getEcoreUri <em>Ecore Uri</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Ecore Uri</em>'.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType#getEcoreUri()
+	 * @see #getModelType()
+	 * @generated
+	 */
+	EAttribute getModelType_EcoreUri();
+
+	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Transformation <em>Transformation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -932,79 +906,47 @@ public interface K3slePackage extends EPackage {
 	EClass getTransformation();
 
 	/**
-	 * Returns the meta object for class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.EcoreImport <em>Ecore Import</em>}'.
+	 * Returns the meta object for class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Aspect <em>Aspect</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Ecore Import</em>'.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.EcoreImport
+	 * @return the meta object for class '<em>Aspect</em>'.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Aspect
 	 * @generated
 	 */
-	EClass getEcoreImport();
+	EClass getAspect();
 
 	/**
-	 * Returns the meta object for the attribute '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.EcoreImport#getUri <em>Uri</em>}'.
+	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Aspect#getAspectTypeRef <em>Aspect Type Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Uri</em>'.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.EcoreImport#getUri()
-	 * @see #getEcoreImport()
+	 * @return the meta object for the containment reference '<em>Aspect Type Ref</em>'.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Aspect#getAspectTypeRef()
+	 * @see #getAspect()
 	 * @generated
 	 */
-	EAttribute getEcoreImport_Uri();
+	EReference getAspect_AspectTypeRef();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.EcoreImport#getGenmodelUris <em>Genmodel Uris</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Genmodel Uris</em>'.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.EcoreImport#getGenmodelUris()
-	 * @see #getEcoreImport()
-	 * @generated
-	 */
-	EAttribute getEcoreImport_GenmodelUris();
-
-	/**
-	 * Returns the meta object for class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport <em>Aspect Import</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Aspect Import</em>'.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport
-	 * @generated
-	 */
-	EClass getAspectImport();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport#getAspectRef <em>Aspect Ref</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Aspect Ref</em>'.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport#getAspectRef()
-	 * @see #getAspectImport()
-	 * @generated
-	 */
-	EReference getAspectImport_AspectRef();
-
-	/**
-	 * Returns the meta object for the reference '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport#getAspectedClass <em>Aspected Class</em>}'.
+	 * Returns the meta object for the reference '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Aspect#getAspectedClass <em>Aspected Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Aspected Class</em>'.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport#getAspectedClass()
-	 * @see #getAspectImport()
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Aspect#getAspectedClass()
+	 * @see #getAspect()
 	 * @generated
 	 */
-	EReference getAspectImport_AspectedClass();
+	EReference getAspect_AspectedClass();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport#getEcoreFragment <em>Ecore Fragment</em>}'.
+	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Aspect#getEcoreFragment <em>Ecore Fragment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Ecore Fragment</em>'.
-	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport#getEcoreFragment()
-	 * @see #getAspectImport()
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Aspect#getEcoreFragment()
+	 * @see #getAspect()
 	 * @generated
 	 */
-	EReference getAspectImport_EcoreFragment();
+	EReference getAspect_EcoreFragment();
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Inheritance <em>Inheritance</em>}'.
@@ -1220,14 +1162,6 @@ public interface K3slePackage extends EPackage {
 		EClass METAMODEL = eINSTANCE.getMetamodel();
 
 		/**
-		 * The meta object literal for the '<em><b>Ecore</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference METAMODEL__ECORE = eINSTANCE.getMetamodel_Ecore();
-
-		/**
 		 * The meta object literal for the '<em><b>Aspects</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1268,12 +1202,12 @@ public interface K3slePackage extends EPackage {
 		EReference METAMODEL__PKGS = eINSTANCE.getMetamodel_Pkgs();
 
 		/**
-		 * The meta object literal for the '<em><b>Exact Type Ref</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Exact Type Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute METAMODEL__EXACT_TYPE_REF = eINSTANCE.getMetamodel_ExactTypeRef();
+		EAttribute METAMODEL__EXACT_TYPE_NAME = eINSTANCE.getMetamodel_ExactTypeName();
 
 		/**
 		 * The meta object literal for the '<em><b>Genmodels</b></em>' containment reference list feature.
@@ -1300,12 +1234,28 @@ public interface K3slePackage extends EPackage {
 		EAttribute METAMODEL__RESOURCE_URI = eINSTANCE.getMetamodel_ResourceUri();
 
 		/**
-		 * The meta object literal for the '<em><b>Resource Setup</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Xtext Setup Ref</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference METAMODEL__RESOURCE_SETUP = eINSTANCE.getMetamodel_ResourceSetup();
+		EReference METAMODEL__XTEXT_SETUP_REF = eINSTANCE.getMetamodel_XtextSetupRef();
+
+		/**
+		 * The meta object literal for the '<em><b>Ecore Uri</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METAMODEL__ECORE_URI = eINSTANCE.getMetamodel_EcoreUri();
+
+		/**
+		 * The meta object literal for the '<em><b>Genmodel Uris</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METAMODEL__GENMODEL_URIS = eINSTANCE.getMetamodel_GenmodelUris();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.ModelTypeImpl <em>Model Type</em>}' class.
@@ -1316,14 +1266,6 @@ public interface K3slePackage extends EPackage {
 		 * @generated
 		 */
 		EClass MODEL_TYPE = eINSTANCE.getModelType();
-
-		/**
-		 * The meta object literal for the '<em><b>Ecore</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODEL_TYPE__ECORE = eINSTANCE.getModelType_Ecore();
 
 		/**
 		 * The meta object literal for the '<em><b>Subtyping Relations</b></em>' containment reference list feature.
@@ -1350,6 +1292,14 @@ public interface K3slePackage extends EPackage {
 		EReference MODEL_TYPE__EXTRACTED = eINSTANCE.getModelType_Extracted();
 
 		/**
+		 * The meta object literal for the '<em><b>Ecore Uri</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODEL_TYPE__ECORE_URI = eINSTANCE.getModelType_EcoreUri();
+
+		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.TransformationImpl <em>Transformation</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1360,48 +1310,22 @@ public interface K3slePackage extends EPackage {
 		EClass TRANSFORMATION = eINSTANCE.getTransformation();
 
 		/**
-		 * The meta object literal for the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.EcoreImportImpl <em>Ecore Import</em>}' class.
+		 * The meta object literal for the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.AspectImpl <em>Aspect</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.EcoreImportImpl
-		 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.K3slePackageImpl#getEcoreImport()
+		 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.AspectImpl
+		 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.K3slePackageImpl#getAspect()
 		 * @generated
 		 */
-		EClass ECORE_IMPORT = eINSTANCE.getEcoreImport();
+		EClass ASPECT = eINSTANCE.getAspect();
 
 		/**
-		 * The meta object literal for the '<em><b>Uri</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Aspect Type Ref</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ECORE_IMPORT__URI = eINSTANCE.getEcoreImport_Uri();
-
-		/**
-		 * The meta object literal for the '<em><b>Genmodel Uris</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ECORE_IMPORT__GENMODEL_URIS = eINSTANCE.getEcoreImport_GenmodelUris();
-
-		/**
-		 * The meta object literal for the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.AspectImportImpl <em>Aspect Import</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.AspectImportImpl
-		 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.impl.K3slePackageImpl#getAspectImport()
-		 * @generated
-		 */
-		EClass ASPECT_IMPORT = eINSTANCE.getAspectImport();
-
-		/**
-		 * The meta object literal for the '<em><b>Aspect Ref</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ASPECT_IMPORT__ASPECT_REF = eINSTANCE.getAspectImport_AspectRef();
+		EReference ASPECT__ASPECT_TYPE_REF = eINSTANCE.getAspect_AspectTypeRef();
 
 		/**
 		 * The meta object literal for the '<em><b>Aspected Class</b></em>' reference feature.
@@ -1409,7 +1333,7 @@ public interface K3slePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ASPECT_IMPORT__ASPECTED_CLASS = eINSTANCE.getAspectImport_AspectedClass();
+		EReference ASPECT__ASPECTED_CLASS = eINSTANCE.getAspect_AspectedClass();
 
 		/**
 		 * The meta object literal for the '<em><b>Ecore Fragment</b></em>' containment reference feature.
@@ -1417,7 +1341,7 @@ public interface K3slePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ASPECT_IMPORT__ECORE_FRAGMENT = eINSTANCE.getAspectImport_EcoreFragment();
+		EReference ASPECT__ECORE_FRAGMENT = eINSTANCE.getAspect_EcoreFragment();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.InheritanceImpl <em>Inheritance</em>}' class.

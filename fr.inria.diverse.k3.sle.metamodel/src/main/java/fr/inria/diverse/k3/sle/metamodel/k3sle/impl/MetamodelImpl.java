@@ -2,8 +2,7 @@
  */
 package fr.inria.diverse.k3.sle.metamodel.k3sle.impl;
 
-import fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport;
-import fr.inria.diverse.k3.sle.metamodel.k3sle.EcoreImport;
+import fr.inria.diverse.k3.sle.metamodel.k3sle.Aspect;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Inheritance;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage;
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel;
@@ -25,6 +24,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -38,33 +38,24 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getEcore <em>Ecore</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getAspects <em>Aspects</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getExactType <em>Exact Type</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getImplements <em>Implements</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getInheritanceRelation <em>Inheritance Relation</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getPkgs <em>Pkgs</em>}</li>
- *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getExactTypeRef <em>Exact Type Ref</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getExactTypeName <em>Exact Type Name</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getGenmodels <em>Genmodels</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getResourceType <em>Resource Type</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getResourceUri <em>Resource Uri</em>}</li>
- *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getResourceSetup <em>Resource Setup</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getXtextSetupRef <em>Xtext Setup Ref</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getEcoreUri <em>Ecore Uri</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getGenmodelUris <em>Genmodel Uris</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class MetamodelImpl extends ElementImpl implements Metamodel {
-	/**
-	 * The cached value of the '{@link #getEcore() <em>Ecore</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEcore()
-	 * @generated
-	 * @ordered
-	 */
-	protected EcoreImport ecore;
-
 	/**
 	 * The cached value of the '{@link #getAspects() <em>Aspects</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -73,7 +64,7 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AspectImport> aspects;
+	protected EList<Aspect> aspects;
 
 	/**
 	 * The cached value of the '{@link #getExactType() <em>Exact Type</em>}' reference.
@@ -116,24 +107,24 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	protected EList<EPackage> pkgs;
 
 	/**
-	 * The default value of the '{@link #getExactTypeRef() <em>Exact Type Ref</em>}' attribute.
+	 * The default value of the '{@link #getExactTypeName() <em>Exact Type Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExactTypeRef()
+	 * @see #getExactTypeName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String EXACT_TYPE_REF_EDEFAULT = null;
+	protected static final String EXACT_TYPE_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getExactTypeRef() <em>Exact Type Ref</em>}' attribute.
+	 * The cached value of the '{@link #getExactTypeName() <em>Exact Type Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExactTypeRef()
+	 * @see #getExactTypeName()
 	 * @generated
 	 * @ordered
 	 */
-	protected String exactTypeRef = EXACT_TYPE_REF_EDEFAULT;
+	protected String exactTypeName = EXACT_TYPE_NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getGenmodels() <em>Genmodels</em>}' containment reference list.
@@ -186,14 +177,44 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	protected String resourceUri = RESOURCE_URI_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getResourceSetup() <em>Resource Setup</em>}' containment reference.
+	 * The cached value of the '{@link #getXtextSetupRef() <em>Xtext Setup Ref</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getResourceSetup()
+	 * @see #getXtextSetupRef()
 	 * @generated
 	 * @ordered
 	 */
-	protected JvmTypeReference resourceSetup;
+	protected JvmTypeReference xtextSetupRef;
+
+	/**
+	 * The default value of the '{@link #getEcoreUri() <em>Ecore Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEcoreUri()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ECORE_URI_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getEcoreUri() <em>Ecore Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEcoreUri()
+	 * @generated
+	 * @ordered
+	 */
+	protected String ecoreUri = ECORE_URI_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getGenmodelUris() <em>Genmodel Uris</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGenmodelUris()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> genmodelUris;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -219,52 +240,9 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EcoreImport getEcore() {
-		return ecore;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetEcore(EcoreImport newEcore, NotificationChain msgs) {
-		EcoreImport oldEcore = ecore;
-		ecore = newEcore;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, K3slePackage.METAMODEL__ECORE, oldEcore, newEcore);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEcore(EcoreImport newEcore) {
-		if (newEcore != ecore) {
-			NotificationChain msgs = null;
-			if (ecore != null)
-				msgs = ((InternalEObject)ecore).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - K3slePackage.METAMODEL__ECORE, null, msgs);
-			if (newEcore != null)
-				msgs = ((InternalEObject)newEcore).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - K3slePackage.METAMODEL__ECORE, null, msgs);
-			msgs = basicSetEcore(newEcore, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, K3slePackage.METAMODEL__ECORE, newEcore, newEcore));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<AspectImport> getAspects() {
+	public EList<Aspect> getAspects() {
 		if (aspects == null) {
-			aspects = new EObjectContainmentEList<AspectImport>(AspectImport.class, this, K3slePackage.METAMODEL__ASPECTS);
+			aspects = new EObjectContainmentEList<Aspect>(Aspect.class, this, K3slePackage.METAMODEL__ASPECTS);
 		}
 		return aspects;
 	}
@@ -401,8 +379,8 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getExactTypeRef() {
-		return exactTypeRef;
+	public String getExactTypeName() {
+		return exactTypeName;
 	}
 
 	/**
@@ -410,11 +388,11 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExactTypeRef(String newExactTypeRef) {
-		String oldExactTypeRef = exactTypeRef;
-		exactTypeRef = newExactTypeRef;
+	public void setExactTypeName(String newExactTypeName) {
+		String oldExactTypeName = exactTypeName;
+		exactTypeName = newExactTypeName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, K3slePackage.METAMODEL__EXACT_TYPE_REF, oldExactTypeRef, exactTypeRef));
+			eNotify(new ENotificationImpl(this, Notification.SET, K3slePackage.METAMODEL__EXACT_TYPE_NAME, oldExactTypeName, exactTypeName));
 	}
 
 	/**
@@ -476,8 +454,8 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public JvmTypeReference getResourceSetup() {
-		return resourceSetup;
+	public JvmTypeReference getXtextSetupRef() {
+		return xtextSetupRef;
 	}
 
 	/**
@@ -485,11 +463,11 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetResourceSetup(JvmTypeReference newResourceSetup, NotificationChain msgs) {
-		JvmTypeReference oldResourceSetup = resourceSetup;
-		resourceSetup = newResourceSetup;
+	public NotificationChain basicSetXtextSetupRef(JvmTypeReference newXtextSetupRef, NotificationChain msgs) {
+		JvmTypeReference oldXtextSetupRef = xtextSetupRef;
+		xtextSetupRef = newXtextSetupRef;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, K3slePackage.METAMODEL__RESOURCE_SETUP, oldResourceSetup, newResourceSetup);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, K3slePackage.METAMODEL__XTEXT_SETUP_REF, oldXtextSetupRef, newXtextSetupRef);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -500,18 +478,51 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setResourceSetup(JvmTypeReference newResourceSetup) {
-		if (newResourceSetup != resourceSetup) {
+	public void setXtextSetupRef(JvmTypeReference newXtextSetupRef) {
+		if (newXtextSetupRef != xtextSetupRef) {
 			NotificationChain msgs = null;
-			if (resourceSetup != null)
-				msgs = ((InternalEObject)resourceSetup).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - K3slePackage.METAMODEL__RESOURCE_SETUP, null, msgs);
-			if (newResourceSetup != null)
-				msgs = ((InternalEObject)newResourceSetup).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - K3slePackage.METAMODEL__RESOURCE_SETUP, null, msgs);
-			msgs = basicSetResourceSetup(newResourceSetup, msgs);
+			if (xtextSetupRef != null)
+				msgs = ((InternalEObject)xtextSetupRef).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - K3slePackage.METAMODEL__XTEXT_SETUP_REF, null, msgs);
+			if (newXtextSetupRef != null)
+				msgs = ((InternalEObject)newXtextSetupRef).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - K3slePackage.METAMODEL__XTEXT_SETUP_REF, null, msgs);
+			msgs = basicSetXtextSetupRef(newXtextSetupRef, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, K3slePackage.METAMODEL__RESOURCE_SETUP, newResourceSetup, newResourceSetup));
+			eNotify(new ENotificationImpl(this, Notification.SET, K3slePackage.METAMODEL__XTEXT_SETUP_REF, newXtextSetupRef, newXtextSetupRef));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getEcoreUri() {
+		return ecoreUri;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEcoreUri(String newEcoreUri) {
+		String oldEcoreUri = ecoreUri;
+		ecoreUri = newEcoreUri;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, K3slePackage.METAMODEL__ECORE_URI, oldEcoreUri, ecoreUri));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<String> getGenmodelUris() {
+		if (genmodelUris == null) {
+			genmodelUris = new EDataTypeUniqueEList<String>(String.class, this, K3slePackage.METAMODEL__GENMODEL_URIS);
+		}
+		return genmodelUris;
 	}
 
 	/**
@@ -542,8 +553,6 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case K3slePackage.METAMODEL__ECORE:
-				return basicSetEcore(null, msgs);
 			case K3slePackage.METAMODEL__ASPECTS:
 				return ((InternalEList<?>)getAspects()).basicRemove(otherEnd, msgs);
 			case K3slePackage.METAMODEL__EXACT_TYPE:
@@ -554,8 +563,8 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 				return ((InternalEList<?>)getPkgs()).basicRemove(otherEnd, msgs);
 			case K3slePackage.METAMODEL__GENMODELS:
 				return ((InternalEList<?>)getGenmodels()).basicRemove(otherEnd, msgs);
-			case K3slePackage.METAMODEL__RESOURCE_SETUP:
-				return basicSetResourceSetup(null, msgs);
+			case K3slePackage.METAMODEL__XTEXT_SETUP_REF:
+				return basicSetXtextSetupRef(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -568,8 +577,6 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case K3slePackage.METAMODEL__ECORE:
-				return getEcore();
 			case K3slePackage.METAMODEL__ASPECTS:
 				return getAspects();
 			case K3slePackage.METAMODEL__EXACT_TYPE:
@@ -581,16 +588,20 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 				return getInheritanceRelation();
 			case K3slePackage.METAMODEL__PKGS:
 				return getPkgs();
-			case K3slePackage.METAMODEL__EXACT_TYPE_REF:
-				return getExactTypeRef();
+			case K3slePackage.METAMODEL__EXACT_TYPE_NAME:
+				return getExactTypeName();
 			case K3slePackage.METAMODEL__GENMODELS:
 				return getGenmodels();
 			case K3slePackage.METAMODEL__RESOURCE_TYPE:
 				return getResourceType();
 			case K3slePackage.METAMODEL__RESOURCE_URI:
 				return getResourceUri();
-			case K3slePackage.METAMODEL__RESOURCE_SETUP:
-				return getResourceSetup();
+			case K3slePackage.METAMODEL__XTEXT_SETUP_REF:
+				return getXtextSetupRef();
+			case K3slePackage.METAMODEL__ECORE_URI:
+				return getEcoreUri();
+			case K3slePackage.METAMODEL__GENMODEL_URIS:
+				return getGenmodelUris();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -604,12 +615,9 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case K3slePackage.METAMODEL__ECORE:
-				setEcore((EcoreImport)newValue);
-				return;
 			case K3slePackage.METAMODEL__ASPECTS:
 				getAspects().clear();
-				getAspects().addAll((Collection<? extends AspectImport>)newValue);
+				getAspects().addAll((Collection<? extends Aspect>)newValue);
 				return;
 			case K3slePackage.METAMODEL__EXACT_TYPE:
 				setExactType((ModelType)newValue);
@@ -625,8 +633,8 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 				getPkgs().clear();
 				getPkgs().addAll((Collection<? extends EPackage>)newValue);
 				return;
-			case K3slePackage.METAMODEL__EXACT_TYPE_REF:
-				setExactTypeRef((String)newValue);
+			case K3slePackage.METAMODEL__EXACT_TYPE_NAME:
+				setExactTypeName((String)newValue);
 				return;
 			case K3slePackage.METAMODEL__GENMODELS:
 				getGenmodels().clear();
@@ -638,8 +646,15 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 			case K3slePackage.METAMODEL__RESOURCE_URI:
 				setResourceUri((String)newValue);
 				return;
-			case K3slePackage.METAMODEL__RESOURCE_SETUP:
-				setResourceSetup((JvmTypeReference)newValue);
+			case K3slePackage.METAMODEL__XTEXT_SETUP_REF:
+				setXtextSetupRef((JvmTypeReference)newValue);
+				return;
+			case K3slePackage.METAMODEL__ECORE_URI:
+				setEcoreUri((String)newValue);
+				return;
+			case K3slePackage.METAMODEL__GENMODEL_URIS:
+				getGenmodelUris().clear();
+				getGenmodelUris().addAll((Collection<? extends String>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -653,9 +668,6 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case K3slePackage.METAMODEL__ECORE:
-				setEcore((EcoreImport)null);
-				return;
 			case K3slePackage.METAMODEL__ASPECTS:
 				getAspects().clear();
 				return;
@@ -671,8 +683,8 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 			case K3slePackage.METAMODEL__PKGS:
 				getPkgs().clear();
 				return;
-			case K3slePackage.METAMODEL__EXACT_TYPE_REF:
-				setExactTypeRef(EXACT_TYPE_REF_EDEFAULT);
+			case K3slePackage.METAMODEL__EXACT_TYPE_NAME:
+				setExactTypeName(EXACT_TYPE_NAME_EDEFAULT);
 				return;
 			case K3slePackage.METAMODEL__GENMODELS:
 				getGenmodels().clear();
@@ -683,8 +695,14 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 			case K3slePackage.METAMODEL__RESOURCE_URI:
 				setResourceUri(RESOURCE_URI_EDEFAULT);
 				return;
-			case K3slePackage.METAMODEL__RESOURCE_SETUP:
-				setResourceSetup((JvmTypeReference)null);
+			case K3slePackage.METAMODEL__XTEXT_SETUP_REF:
+				setXtextSetupRef((JvmTypeReference)null);
+				return;
+			case K3slePackage.METAMODEL__ECORE_URI:
+				setEcoreUri(ECORE_URI_EDEFAULT);
+				return;
+			case K3slePackage.METAMODEL__GENMODEL_URIS:
+				getGenmodelUris().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -698,8 +716,6 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case K3slePackage.METAMODEL__ECORE:
-				return ecore != null;
 			case K3slePackage.METAMODEL__ASPECTS:
 				return aspects != null && !aspects.isEmpty();
 			case K3slePackage.METAMODEL__EXACT_TYPE:
@@ -710,16 +726,20 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 				return inheritanceRelation != null;
 			case K3slePackage.METAMODEL__PKGS:
 				return pkgs != null && !pkgs.isEmpty();
-			case K3slePackage.METAMODEL__EXACT_TYPE_REF:
-				return EXACT_TYPE_REF_EDEFAULT == null ? exactTypeRef != null : !EXACT_TYPE_REF_EDEFAULT.equals(exactTypeRef);
+			case K3slePackage.METAMODEL__EXACT_TYPE_NAME:
+				return EXACT_TYPE_NAME_EDEFAULT == null ? exactTypeName != null : !EXACT_TYPE_NAME_EDEFAULT.equals(exactTypeName);
 			case K3slePackage.METAMODEL__GENMODELS:
 				return genmodels != null && !genmodels.isEmpty();
 			case K3slePackage.METAMODEL__RESOURCE_TYPE:
 				return resourceType != RESOURCE_TYPE_EDEFAULT;
 			case K3slePackage.METAMODEL__RESOURCE_URI:
 				return RESOURCE_URI_EDEFAULT == null ? resourceUri != null : !RESOURCE_URI_EDEFAULT.equals(resourceUri);
-			case K3slePackage.METAMODEL__RESOURCE_SETUP:
-				return resourceSetup != null;
+			case K3slePackage.METAMODEL__XTEXT_SETUP_REF:
+				return xtextSetupRef != null;
+			case K3slePackage.METAMODEL__ECORE_URI:
+				return ECORE_URI_EDEFAULT == null ? ecoreUri != null : !ECORE_URI_EDEFAULT.equals(ecoreUri);
+			case K3slePackage.METAMODEL__GENMODEL_URIS:
+				return genmodelUris != null && !genmodelUris.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -734,12 +754,16 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (exactTypeRef: ");
-		result.append(exactTypeRef);
+		result.append(" (exactTypeName: ");
+		result.append(exactTypeName);
 		result.append(", resourceType: ");
 		result.append(resourceType);
 		result.append(", resourceUri: ");
 		result.append(resourceUri);
+		result.append(", ecoreUri: ");
+		result.append(ecoreUri);
+		result.append(", genmodelUris: ");
+		result.append(genmodelUris);
 		result.append(')');
 		return result.toString();
 	}

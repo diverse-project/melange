@@ -49,7 +49,7 @@ class ASTHelper
 			logger.debug('''\texactType = «mm.exactType.name»''')
 			logger.debug('''\timplements = «mm.^implements.map[name].join(", ")»''')
 			logger.debug('''\tsuperMM = «mm.inheritanceRelation?.superMetamodel?.name»''')
-			logger.debug('''\taspects = «mm.aspects.map[aspectRef.simpleName].join(", ")»''')
+			logger.debug('''\taspects = «mm.aspects.map[aspectTypeRef.simpleName].join(", ")»''')
 		]
 
 		root.modelTypes.forEach[mt |

@@ -80,7 +80,7 @@ public interface ModelTypingSpace extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getModelTypingSpace_Name()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	String getName();

@@ -214,10 +214,10 @@ class MetaclassAdapterInferrer
 
 			mm.allAspects.filter[aspectedClass.name == cls.name]
 			.forEach[aspect |
-				val asp = aspect.aspectRef.type as JvmDeclaredType
+				val asp = aspect.aspectTypeRef.type as JvmDeclaredType
 				// FIXME: This should be checked in the recursive hierarchy
 				val superMM = mm.inheritanceRelation?.superMetamodel
-				val inherited = superMM !== null && superMM.aspects.exists[aspectRef.type.qualifiedName == asp.qualifiedName]
+				val inherited = superMM !== null && superMM.aspects.exists[aspectTypeRef.type.qualifiedName == asp.qualifiedName]
 
 				asp.declaredOperations
 				.filter[op |

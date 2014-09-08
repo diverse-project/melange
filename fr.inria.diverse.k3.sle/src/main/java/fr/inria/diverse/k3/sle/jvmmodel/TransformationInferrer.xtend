@@ -52,8 +52,8 @@ class TransformationInferrer
 					// TODO: Remove hardcoded types in the following body code
 					body = '''
 						«FOR mm : root.metamodels»
-							«IF mm.resourceType == ResourceType.XTEXT && mm.resourceSetup !== null»
-								«mm.resourceSetup.qualifiedName».doSetup() ;
+							«IF mm.resourceType == ResourceType.XTEXT && mm.xtextSetupRef !== null»
+								«mm.xtextSetupRef.qualifiedName».doSetup() ;
 							«ELSE»
 								«FOR gm : mm.genmodels»
 									«FOR gp : gm.genPackages»

@@ -99,15 +99,9 @@ public class K3sleSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case K3slePackage.ECORE_IMPORT: {
-				EcoreImport ecoreImport = (EcoreImport)theEObject;
-				T result = caseEcoreImport(ecoreImport);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case K3slePackage.ASPECT_IMPORT: {
-				AspectImport aspectImport = (AspectImport)theEObject;
-				T result = caseAspectImport(aspectImport);
+			case K3slePackage.ASPECT: {
+				Aspect aspect = (Aspect)theEObject;
+				T result = caseAspect(aspect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -211,32 +205,17 @@ public class K3sleSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ecore Import</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Aspect</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ecore Import</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Aspect</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseEcoreImport(EcoreImport object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Aspect Import</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Aspect Import</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAspectImport(AspectImport object) {
+	public T caseAspect(Aspect object) {
 		return null;
 	}
 

@@ -71,7 +71,7 @@ class K3SLETyping
 
 		root.metamodels.forEach[mm |
 			val newMT = K3sleFactory.eINSTANCE.createModelType => [
-				name = mm.exactTypeRef
+				name = mm.exactTypeName
 			]
 
 			if (!root.modelTypes.exists[name == newMT.name])
@@ -80,7 +80,7 @@ class K3SLETyping
 
 		root.elements += newMTs
 		root.metamodels.forEach[mm |
-			mm.exactType = root.modelTypes.findFirst[name == mm.exactTypeRef]
+			mm.exactType = root.modelTypes.findFirst[name == mm.exactTypeName]
 		]
 
 		root.elements.forEach[complete]
@@ -92,7 +92,7 @@ class K3SLETyping
 		if (mm.hasSuperMetamodel) {
 			// EMF resource = extension with inheritance
 			if (mm.resourceType == ResourceType.EMF) {
-				val pkg = modelUtils.loadPkg(mm.inheritanceRelation.superMetamodel.ecore.uri)
+				val pkg = modelUtils.loadPkg(mm.inheritanceRelation.superMetamodel.ecoreUri)
 
 				val newPkg = EcoreFactory.eINSTANCE.createEPackage => [
 					name = mm.name.toLowerCase
@@ -144,30 +144,30 @@ class K3SLETyping
 				]
 
 				mm.aspects.forEach[asp |
-					if (!(asp.aspectRef.type instanceof JvmDeclaredType))
-						throw new ASTProcessingException("Aspect must be a generic type: " + asp.aspectRef?.type)
+					if (!(asp.aspectTypeRef.type instanceof JvmDeclaredType))
+						throw new ASTProcessingException("Aspect must be a generic type: " + asp.aspectTypeRef?.type)
 
 					val className = asp.aspectAnnotationValue
 
 					if (className === null)
-						throw new ASTProcessingException("Cannot find annotation value for " + asp.aspectRef?.type)
+						throw new ASTProcessingException("Cannot find annotation value for " + asp.aspectTypeRef?.type)
 
 					val cls = mm.findClass(className)
 
 					if (cls === null)
-						throw new ASTProcessingException("Cannot find aspectized class for " + asp.aspectRef?.type)
+						throw new ASTProcessingException("Cannot find aspectized class for " + asp.aspectTypeRef?.type)
 
 					asp.aspectedClass = cls
 
-					mm.weaveAspect(asp.aspectedClass, asp.aspectRef.type as JvmDeclaredType)
+					mm.weaveAspect(asp.aspectedClass, asp.aspectTypeRef.type as JvmDeclaredType)
 				]
 
 				// Once everything's done, recreate the aspect hierarchy
 				// FIXME: Actually, we should look for the with=#[] parameter, not the only extendedClass
 				mm.aspects
-					.filter[(aspectRef.type as JvmDeclaredType).extendedClass !== null]
+					.filter[(aspectTypeRef.type as JvmDeclaredType).extendedClass !== null]
 					.forEach[
-						val superAspect = (aspectRef.type as JvmDeclaredType).extendedClass.type as JvmDeclaredType
+						val superAspect = (aspectTypeRef.type as JvmDeclaredType).extendedClass.type as JvmDeclaredType
 						val superClsName = superAspect.aspectAnnotationValue
 						if (superClsName !== null) {
 							val superCls = mm.findClass(superClsName)
@@ -202,18 +202,18 @@ class K3SLETyping
 				// For each aspect, infer the corresponding ecore fragment
 				// and merge it into the base metamodel
 				mm.aspects.forEach[asp |
-					if (!(asp.aspectRef.type instanceof JvmDeclaredType))
-						throw new ASTProcessingException("Aspect must be a generic type: " + asp.aspectRef?.type)
+					if (!(asp.aspectTypeRef.type instanceof JvmDeclaredType))
+						throw new ASTProcessingException("Aspect must be a generic type: " + asp.aspectTypeRef?.type)
 
 					val className = asp.aspectAnnotationValue
 
 					if (className === null)
-						throw new ASTProcessingException("Cannot find annotation value for " + asp.aspectRef?.type)
+						throw new ASTProcessingException("Cannot find annotation value for " + asp.aspectTypeRef?.type)
 
 					val cls = mm.findClass(className)
 
 					if (cls === null)
-						throw new ASTProcessingException("Cannot find aspectized class for " + asp.aspectRef?.type)
+						throw new ASTProcessingException("Cannot find aspectized class for " + asp.aspectTypeRef?.type)
 
 					asp.aspectedClass = cls
 					asp.inferEcoreFragment
@@ -230,7 +230,7 @@ class K3SLETyping
 					mm.genmodels += gm
 			}
 		} else {
-			val pkg = modelUtils.loadPkg(mm.ecore.uri)
+			val pkg = modelUtils.loadPkg(mm.ecoreUri)
 
 			// TODO: Check that loaded pkgs/genmodels match
 			if (!mm.pkgs.exists[nsURI == pkg.nsURI])
@@ -254,12 +254,12 @@ class K3SLETyping
 					throw new ASTProcessingException('''«mm.name» doesn't match interface «mt.name»''')
 			]
 
-			if (mm.ecore.genmodelUris.size == 0) {
+			if (mm.genmodelUris.size == 0) {
 				// FIXME
-				mm.ecore.genmodelUris += mm.ecore.uri.substring(0, mm.ecore.uri.lastIndexOf(".")) + ".genmodel"
+				mm.genmodelUris += mm.ecoreUri.substring(0, mm.ecoreUri.lastIndexOf(".")) + ".genmodel"
 			}
 
-			mm.ecore.genmodelUris.forEach[
+			mm.genmodelUris.forEach[
 				val gm = modelUtils.loadGenmodel(it)
 
 				if (!mm.genmodels.exists[modelName == gm.modelName])
@@ -269,18 +269,18 @@ class K3SLETyping
 			// For each aspect, infer the corresponding ecore fragment
 			// and merge it into the base metamodel
 			mm.aspects.forEach[asp |
-				if (!(asp.aspectRef.type instanceof JvmDeclaredType))
-					throw new ASTProcessingException("Aspect must be a generic type: " + asp.aspectRef?.type)
+				if (!(asp.aspectTypeRef.type instanceof JvmDeclaredType))
+					throw new ASTProcessingException("Aspect must be a generic type: " + asp.aspectTypeRef?.type)
 
 				val className = asp.aspectAnnotationValue
 
 				if (className === null)
-					throw new ASTProcessingException("Cannot find annotation value for " + asp.aspectRef?.type)
+					throw new ASTProcessingException("Cannot find annotation value for " + asp.aspectTypeRef?.type)
 
 				val cls = mm.findClass(className)
 
 				if (cls === null)
-					throw new ASTProcessingException("Cannot find aspectized class for " + asp.aspectRef?.type)
+					throw new ASTProcessingException("Cannot find aspectized class for " + asp.aspectTypeRef?.type)
 
 				asp.aspectedClass = cls
 				asp.inferEcoreFragment
@@ -293,7 +293,7 @@ class K3SLETyping
 
 	def dispatch void complete(ModelType mt) {
 		if(mt.isImported) {
-			val pkg = modelUtils.loadPkg(mt.ecore.uri)
+			val pkg = modelUtils.loadPkg(mt.ecoreUri)
 
 			if (!mt.pkgs.exists[nsURI == pkg.nsURI])
 				mt.pkgs += pkg
@@ -331,9 +331,9 @@ class K3SLETyping
 		return
 			   mm !== null
 			&& !mm.name.empty
-			&& (mm.inheritanceRelation !== null || mm.ecore?.uri !== null)
-			&& mm.aspects.forall[it !== null && aspectRef?.type instanceof JvmDeclaredType && aspectedClass !== null]
-			&& !mm.exactTypeRef.empty
+			&& (mm.inheritanceRelation !== null || mm.ecoreUri !== null)
+			&& mm.aspects.forall[it !== null && aspectTypeRef?.type instanceof JvmDeclaredType && aspectedClass !== null]
+			&& !mm.exactTypeName.empty
 			&& mm.exactType !== null
 			&& mm.^implements.forall[it !== null]
 			&& mm.genmodels.forall[it !== null]
@@ -344,7 +344,7 @@ class K3SLETyping
 		return
 			   mt !== null
 			&& !mt.name.empty
-			&& (mt.ecore?.uri !== null
+			&& (mt.ecoreUri !== null
 				|| mt.extracted !== null)
 			&& mt.subtypingRelations.forall[it !== null]
 			&& mt.pkgs.forall[it !== null]

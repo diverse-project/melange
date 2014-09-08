@@ -60,8 +60,7 @@ public class K3sleFactoryImpl extends EFactoryImpl implements K3sleFactory {
 			case K3slePackage.MODEL_TYPING_SPACE: return createModelTypingSpace();
 			case K3slePackage.METAMODEL: return createMetamodel();
 			case K3slePackage.MODEL_TYPE: return createModelType();
-			case K3slePackage.ECORE_IMPORT: return createEcoreImport();
-			case K3slePackage.ASPECT_IMPORT: return createAspectImport();
+			case K3slePackage.ASPECT: return createAspect();
 			case K3slePackage.INHERITANCE: return createInheritance();
 			case K3slePackage.SUBTYPING: return createSubtyping();
 			case K3slePackage.XBASE_TRANSFORMATION: return createXbaseTransformation();
@@ -135,19 +134,9 @@ public class K3sleFactoryImpl extends EFactoryImpl implements K3sleFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EcoreImport createEcoreImport() {
-		EcoreImportImpl ecoreImport = new EcoreImportImpl();
-		return ecoreImport;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AspectImport createAspectImport() {
-		AspectImportImpl aspectImport = new AspectImportImpl();
-		return aspectImport;
+	public Aspect createAspect() {
+		AspectImpl aspect = new AspectImpl();
+		return aspect;
 	}
 
 	/**

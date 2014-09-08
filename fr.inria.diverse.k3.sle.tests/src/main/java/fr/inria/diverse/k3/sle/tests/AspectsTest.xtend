@@ -93,8 +93,8 @@ class AspectsTest
 		assertNotNull(fsmAspect)
 		assertEquals(fsm.aspects.size, 1)
 		assertEquals(fsmAspect.aspectedClass.name, FsmPackage.eINSTANCE.getState.name)
-		assertNotNull(fsmAspect.aspectRef)
-		assertEquals(fsmAspect.aspectRef.type.simpleName, "StateAspect1")
+		assertNotNull(fsmAspect.aspectTypeRef)
+		assertEquals(fsmAspect.aspectTypeRef.type.simpleName, "StateAspect1")
 	}
 
 	@Test
@@ -104,8 +104,8 @@ class AspectsTest
 		assertNotNull(tfsmAspect)
 		assertEquals(tfsm.aspects.size, 1)
 		assertEquals(tfsmAspect.aspectedClass.name, TimedfsmPackage.eINSTANCE.getState.name)
-		assertNotNull(tfsmAspect.aspectRef)
-		assertEquals(tfsmAspect.aspectRef.type.simpleName, "StateAspect2")
+		assertNotNull(tfsmAspect.aspectTypeRef)
+		assertEquals(tfsmAspect.aspectTypeRef.type.simpleName, "StateAspect2")
 	}
 
 	@Test
@@ -115,8 +115,8 @@ class AspectsTest
 		assertNotNull(ifsmAspect)
 		assertEquals(ifsm.aspects.size, 1)
 		assertEquals(ifsmAspect.aspectedClass.name, FsmPackage.eINSTANCE.getState.name)
-		assertNotNull(ifsmAspect.aspectRef)
-		assertEquals(ifsmAspect.aspectRef.type.simpleName, "StateAspect3")
+		assertNotNull(ifsmAspect.aspectTypeRef)
+		assertEquals(ifsmAspect.aspectTypeRef.type.simpleName, "StateAspect3")
 	}
 
 	@Test

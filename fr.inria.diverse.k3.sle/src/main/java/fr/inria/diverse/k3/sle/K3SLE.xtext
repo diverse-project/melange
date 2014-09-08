@@ -22,10 +22,10 @@ Metamodel:
 	'metamodel' name = ValidID (inheritanceRelation = Inheritance)?
 	('implements' implements += [ModelType | QualifiedName] (',' implements += [ModelType | QualifiedName])*)?
 	'{'
-		('resource' resourceType = ResourceType ('uri' resourceUri = STRING | 'setup' resourceSetup = JvmTypeReference)?)?
-		(ecore = EcoreImport)?
-		('exactType' exactTypeRef = ValidID)
-		(aspects += AspectImport)*
+		('resource' resourceType = ResourceType ('uri' resourceUri = STRING | 'setup' xtextSetupRef = JvmTypeReference)?)?
+		('ecore' ecoreUri = STRING ('withGenmodel' (genmodelUris += STRING (',' genmodelUris += STRING)*))?)?
+		('exactType' exactTypeName = ValidID)
+		(aspects += Aspect)*
 	'}'
 ;
 
@@ -39,7 +39,7 @@ Inheritance:
 
 EcoreModelType returns ModelType:
 	'modeltype' name = ValidID '{'
-		(ecore = EcoreImport)?
+		'ecore' ecoreUri = STRING
 	'}'
 ;
 
@@ -54,12 +54,8 @@ XbaseTransformation:
 //	slicer = Slicer
 //;
 
-EcoreImport:
-	'ecore' uri = STRING ('withGenmodel' (genmodelUris += STRING (',' genmodelUris += STRING)*))?
-;
-
-AspectImport:
-	'aspect' aspectRef = JvmTypeReference
+Aspect:
+	'aspect' aspectTypeRef = JvmTypeReference
 ;
 
 /* --- Kompren Rules --- */

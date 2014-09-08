@@ -1,6 +1,6 @@
 package fr.inria.diverse.k3.sle.algebra
 
-import fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport
+import fr.inria.diverse.k3.sle.metamodel.k3sle.Aspect
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
 
 import org.eclipse.emf.compare.DifferenceKind
@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EClass
 
 class EmfCompareAlgebra implements ModelTypeAlgebra
 {
-	override weaveAspect(Metamodel mm, AspectImport aspect) {
+	override weaveAspect(Metamodel mm, Aspect aspect) {
 		val base = mm.pkgs.findFirst[
 			EClassifiers.filter(EClass).exists[
 				name == aspect.aspectedClass.name

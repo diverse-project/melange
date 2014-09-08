@@ -4,7 +4,7 @@ import com.google.inject.Inject
 
 import fr.inria.diverse.k3.sle.lib.EcoreExtensions
 
-import fr.inria.diverse.k3.sle.metamodel.k3sle.AspectImport
+import fr.inria.diverse.k3.sle.metamodel.k3sle.Aspect
 
 import java.util.Collection
 
@@ -23,8 +23,8 @@ class AspectToEcore
 	 * Try to infer the "modeling intention" of the aspect aspImport
 	 * and put its features into a newly created EPackage
 	 */
-	def void inferEcoreFragment(AspectImport aspImport) {
-		val aspect = aspImport.aspectRef.type as JvmDeclaredType
+	def void inferEcoreFragment(Aspect aspImport) {
+		val aspect = aspImport.aspectTypeRef.type as JvmDeclaredType
 		val baseCls = aspImport.aspectedClass
 		val basePkg = baseCls.EPackage
 
