@@ -47,6 +47,12 @@ class ModelTypeInferrer
 			members += mt.toMethod("getFactory", mt.newTypeRef(mt.factoryName))[
 				^abstract = true
 			]
+
+			members += mt.toMethod("save", mt.newTypeRef(Void.TYPE))[
+				parameters += mt.toParameter("uri", mt.newTypeRef(String))
+
+				exceptions += mt.newTypeRef(java.io.IOException)
+			]
 		])
 
 		acceptor.accept(mt.toInterface(mt.factoryName)[

@@ -104,6 +104,17 @@ class MetamodelAdapterInferrer
 						return new «mm.factoryAdapterNameFor(superType)»() ;
 					'''
 			]
+
+			members += mm.toMethod("save", mm.newTypeRef(Void.TYPE))[
+				parameters += mm.toParameter("uri", mm.newTypeRef(String))
+
+				body = '''
+					this.adaptee.setURI(org.eclipse.emf.common.util.URI.createURI(uri));
+					this.adaptee.save(null);
+				'''
+
+				exceptions += mm.newTypeRef(java.io.IOException)
+			]
 		]
 
 		task.stop

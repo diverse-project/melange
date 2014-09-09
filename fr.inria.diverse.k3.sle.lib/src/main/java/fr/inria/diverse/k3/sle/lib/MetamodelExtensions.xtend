@@ -12,12 +12,26 @@ import java.lang.reflect.InvocationTargetException
 class MetamodelExtensions
 {
 	// FIXME: re static-type me please
-	def static <MT extends IModelType, MM/*extends MT*/> MT load(Class<MM> mm, String uri, Class<MT> mt) throws ModelTypeException , InstantiationException, IllegalAccessException, InvocationTargetException {
+	def static <MT extends IModelType, MM/*extends MT*/> MT load(Class<MM> mm, String uri, Class<MT> mt) throws ModelTypeException, InstantiationException, IllegalAccessException, InvocationTargetException {
+		if (AdaptersRegistry.instance.getAdapter(mm.name, mt.name) === null)
+			throw new ModelTypeException("Cannot find adapter for " + mm + " towards " + mt)
+
 		val resSet = new ResourceSetImpl
 		val res = resSet.getResource(URI.createURI(uri), true)
 
+		val ret = AdaptersRegistry.instance.getAdapter(mm.name, mt.name).declaredConstructors.head.newInstance as GenericAdapter<Resource>
+		ret.setAdaptee(res)
+
+		return ret as MT
+	}
+
+	// FIXME: re static-type me please
+	def static <MT extends IModelType, MM/*extends MT*/> MT newInstance(Class<MM> mm, Class<MT> mt) throws ModelTypeException, InstantiationException, IllegalAccessException, InvocationTargetException {
 		if (AdaptersRegistry.instance.getAdapter(mm.name, mt.name) === null)
 			throw new ModelTypeException("Cannot find adapter for " + mm + " towards " + mt)
+
+		val resSet = new ResourceSetImpl
+		val res = resSet.createResource(URI.createURI(""))
 
 		val ret = AdaptersRegistry.instance.getAdapter(mm.name, mt.name).declaredConstructors.head.newInstance as GenericAdapter<Resource>
 		ret.setAdaptee(res)
