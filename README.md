@@ -4,6 +4,7 @@ K3SLE
 TODO
 ----
 
+- [ ] Capitalize adapters creation in dedicated factories
 - [ ] **Externalize all AST-completion operations in a IDerivedStateComputer post-processor**
 - [ ] Modeling in-the-large
 	- [ ] Metamodels attributes and operations
