@@ -77,20 +77,20 @@ class ASTHelper
 //	}
 
 	def Iterable<EClass> sortByClassInheritance(Iterable<EClass> classes) {
-		return classes.sort(new ClassInheritanceComparator())
-	}
-}
+		return classes.sort(new Comparator<EClass>() {
+			override compare(EClass clsA, EClass clsB) {
+				if (clsA.EAllSuperTypes.contains(clsB))
+					return -1
+				else if (clsB.EAllSuperTypes.contains(clsA))
+					return 1
+				else
+					return 0
+			}
 
-// What about multiple inheritance?
-class ClassInheritanceComparator implements Comparator<EClass> {
-	override int compare(EClass clsA, EClass clsB)
-	{
-		if (clsA.EAllSuperTypes.contains(clsB))
-			return -1
-		else if (clsB.EAllSuperTypes.contains(clsA))
-			return 1
-		else
-			return 0
+			override equals(Object obj) {
+				return false
+			}
+		})
 	}
 }
 
