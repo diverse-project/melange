@@ -1,5 +1,7 @@
 package fr.inria.diverse.k3.sle.processors
 
+import com.google.inject.Inject
+
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
 
 import java.util.List
@@ -16,19 +18,23 @@ import static org.eclipse.xtext.util.internal.Stopwatches.*
 
 class K3SLEDerivedStateComputer extends JvmModelAssociator
 {
-	List<? extends K3SLEProcessor> processors = #[
-		new ModelLoader,
-		new ASTValidator,
-		new ASTCompleter
-	]
+	List<K3SLEProcessor> processors = newArrayList
 
 	static final Logger log = Logger.getLogger(K3SLEDerivedStateComputer)
+
+	// FIXME: Because Guice's Multibinders aren't available,
+	//         quick & dirty solution
+	@Inject
+	new(ModelLoader l, ASTCompleter c, ASTValidator v) {
+		processors += l
+		processors += c
+		processors += v
+	}
 
 	override discardDerivedState(DerivedStateAwareResource resource) {
 		super.discardDerivedState(resource)
 
 		// Post-inferring processors
-		// TODO: AST completion & validation should go there
 		val root = resource.contents.head as ModelTypingSpace
 		processors.forEach[postProcess(root)]
 
@@ -41,7 +47,6 @@ class K3SLEDerivedStateComputer extends JvmModelAssociator
 		Stopwatches.enabled = true
 
 		// Pre-inferring processors
-		// TODO: AST completion & validation should go there
 		val root = resource.contents.head as ModelTypingSpace
 		processors.forEach[preProcess(root)]
 
