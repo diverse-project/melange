@@ -124,7 +124,7 @@ class MetaclassAdapterInferrer
 						parameters += ref.toParameter("o", refType)
 
 						body = '''
-							adaptee.«setterName»((«adapName») o).getAdaptee()) ;
+							adaptee.«setterName»(((«adapName») o).getAdaptee()) ;
 						'''
 					]
 				}
