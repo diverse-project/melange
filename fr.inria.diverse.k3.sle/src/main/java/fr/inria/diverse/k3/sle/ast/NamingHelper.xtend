@@ -82,6 +82,10 @@ class NamingHelper
 			.factoryFqn
 	}
 
+	def String getAdaptersFactoryNameFor(Metamodel mm, ModelType mt) {
+		return mm.fullyQualifiedName.append("adapters").append(mt.fullyQualifiedName.lastSegment).toLowerCase.append(mt.name + "AdaptersFactory").normalize.toString
+	}
+
 	def String getFqnFor(ModelType mt, EClassifier cls) {
 		return
 			switch (cls) {
@@ -119,6 +123,14 @@ class NamingHelper
 
 	def String adapterNameFor(Metamodel mm, Metamodel superMM, EClass cls) {
 		return mm.fullyQualifiedName.append("adapters").append(superMM.name).toLowerCase.append(cls.name + "Adapter").normalize.toString
+	}
+
+	def String simpleAdapterNameFor(Metamodel mm, ModelType mt, EClass cls) {
+		return mm.simpleAdapterNameFor(mt, cls.name)
+	}
+
+	def String simpleAdapterNameFor(Metamodel mm, ModelType mt, String name) {
+		return mm.fullyQualifiedName.append("adapters").append(mt.fullyQualifiedName.lastSegment).toLowerCase.append(name + "Adapter").lastSegment.toString
 	}
 
 	def String factoryAdapterNameFor(Metamodel mm, ModelType mt) {

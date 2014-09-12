@@ -45,6 +45,10 @@ class MetamodelAdapterInferrer
 		.initializeLater[
 			superTypes += mm.newTypeRef(superType.factoryName)
 
+			members += mm.toField("adaptersFactory", mm.newTypeRef(mm.getAdaptersFactoryNameFor(superType)))[
+				initializer = '''«mm.getAdaptersFactoryNameFor(superType)».getInstance()'''
+			]
+
 			mm.pkgs.forEach[pkg |
 				members += mm.toField(pkg.nsPrefix + "Adaptee", mm.newTypeRef(mm.getFactoryFqnFor(pkg)))[
 					initializer = '''«mm.getFactoryFqnFor(pkg)».eINSTANCE'''
@@ -60,9 +64,7 @@ class MetamodelAdapterInferrer
 					]
 
 					m.body = '''
-							«mm.adapterNameFor(superType, cls)» adap = new «mm.adapterNameFor(superType, cls)»() ;
-							adap.setAdaptee(«associatedPkg.nsPrefix»Adaptee.create«cls.name»()) ;
-							return adap ;
+							return adaptersFactory.create«mm.simpleAdapterNameFor(superType, cls)»(«associatedPkg.nsPrefix»Adaptee.create«cls.name»()) ;
 						'''
 				]
 
@@ -80,6 +82,10 @@ class MetamodelAdapterInferrer
 			members += mm.toGetter("adaptee", mm.newTypeRef(Resource))
 			members += mm.toSetter("adaptee", mm.newTypeRef(Resource))
 
+			members += mm.toField("adaptersFactory", mm.newTypeRef(mm.getAdaptersFactoryNameFor(superType)))[
+				initializer = '''«mm.getAdaptersFactoryNameFor(superType)».getInstance()'''
+			]
+
 			members += mm.toMethod("getContents", mm.newTypeRef(List, mm.newTypeRef(Object)))[
 				body = '''
 						java.util.List<java.lang.Object> ret = new java.util.ArrayList<java.lang.Object>() ;
@@ -88,9 +94,7 @@ class MetamodelAdapterInferrer
 						«FOR r : mm.allClasses.filter[name != "EObject" && mm.hasAdapterFor(superType, it) && instantiable && abstractable].sortByClassInheritance»
 							if (o instanceof «mm.getFqnFor(r)») {
 								«mm.getFqnFor(r)» wrap = («mm.getFqnFor(r)») o ;
-								«mm.adapterNameFor(superType, r)» adap = new «mm.adapterNameFor(superType, r)»() ;
-								adap.setAdaptee(wrap) ;
-								ret.add(adap) ;
+								ret.add(adaptersFactory.create«mm.simpleAdapterNameFor(superType, r)»(wrap)) ;
 							} else
 						«ENDFOR» ret.add(o) ;
 						}

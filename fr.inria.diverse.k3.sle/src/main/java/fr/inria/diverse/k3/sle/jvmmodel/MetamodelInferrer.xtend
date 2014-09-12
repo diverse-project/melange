@@ -74,6 +74,36 @@ class MetamodelInferrer
 			mt.allClasses.filter[abstractable].forEach[cls |
 				mm.generateAdapter(mt, cls, acceptor)
 			]
+
+			val adapFactName = mm.getAdaptersFactoryNameFor(mt)
+			acceptor.accept(mm.toClass(adapFactName))
+			.initializeLater[
+				members += mm.toField("instance", mm.newTypeRef(adapFactName))[static = true]
+
+				members += mm.toMethod("getInstance", mm.newTypeRef(adapFactName))[
+					static = true
+					body = '''
+						if (instance == null) {
+							instance = new «adapFactName»() ;
+						}
+						return instance ;
+					'''
+				]
+
+				mt.allClasses.filter[abstractable].forEach[cls |
+					val adapName = mm.adapterNameFor(mt, cls)
+
+					members += mm.toMethod('''create«cls.name»Adapter''', mm.newTypeRef(adapName))[
+						parameters += mm.toParameter("adaptee", mm.newTypeRef(mm.getFqnFor(cls)))
+
+						body = '''
+							«adapName» adap = new «adapName»() ;
+							adap.setAdaptee(adaptee) ;
+							return adap ;
+						'''
+					]
+				]
+			]
 		]
 
 		if (mm.hasSuperMetamodel)

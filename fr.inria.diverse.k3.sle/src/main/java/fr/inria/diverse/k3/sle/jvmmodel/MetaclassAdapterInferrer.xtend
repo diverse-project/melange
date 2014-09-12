@@ -62,6 +62,10 @@ class MetaclassAdapterInferrer
 			jvmCls.members += mm.toGetter("adaptee", mm.newTypeRef(mmCls, #[jvmCls]))
 			jvmCls.members += mm.toSetter("adaptee", mm.newTypeRef(mmCls, #[jvmCls]))
 
+			jvmCls.members += mm.toField("adaptersFactory", mm.newTypeRef(mm.getAdaptersFactoryNameFor(superType)))[
+				initializer = '''«mm.getAdaptersFactoryNameFor(superType)».getInstance()'''
+			]
+
 			cls.EAllAttributes.filter[!isAspectSpecific].forEach[attr |
 				val attrType = superType.newTypeRef(attr, #[jvmCls])
 				val getterName = if (!mm.isUml(attr.EContainingClass)) attr.getterName else attr.umlGetterName
@@ -110,9 +114,7 @@ class MetaclassAdapterInferrer
 									>(adaptee.«getterName»(), «adapName».class
 								) ;
 							«ELSE»
-								«adapName» adap = new «adapName»() ;
-								adap.setAdaptee(adaptee.«getterName»()) ;
-								return adap ;
+								return adaptersFactory.create«mm.simpleAdapterNameFor(superType, ref.EReferenceType)»(adaptee.«getterName»()) ;
 							«ENDIF»
 						'''
 					]
@@ -196,9 +198,7 @@ class MetaclassAdapterInferrer
 									>(adaptee.«opName»(«paramsList»), «mm.adapterNameFor(superType, op.EType as EClass)».class
 								) ;
 							«ELSE»
-								«mm.adapterNameFor(superType, op.EType as EClass)» adap = new «mm.adapterNameFor(superType, op.EType as EClass)»() ;
-								adap.setAdaptee(adaptee.«opName»(«paramsList»)) ;
-								return adap ;
+								return adaptersFactory.create«mm.simpleAdapterNameFor(superType, op.EType as EClass)»(adaptee.«opName»(«paramsList»)) ;
 							«ENDIF»
 						«ELSEIF op.EType !== null»
 							return adaptee.«opName»(«paramsList») ;
@@ -269,16 +269,12 @@ class MetaclassAdapterInferrer
 									«mm.adapterNameFor(superMM, cls)» clsAdaptee = new «mm.adapterNameFor(superMM, cls)»() ;
 									clsAdaptee.setAdaptee(adaptee) ;
 									«IF retType.type.simpleName != "void" && retType.type.simpleName != "null"»
-										«superMM.adapterNameFor(superType, retType.type.simpleName)» adap = new «superMM.adapterNameFor(superType, retType.type.simpleName)»() ;
-										adap.setAdaptee(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
-										return adap ;
+										return adaptersFactory.create«superMM.simpleAdapterNameFor(superType, retType.type.simpleName)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
 									«ELSE»
 										«asp.qualifiedName».«op.simpleName»(«paramsList») ;
 									«ENDIF»
 								«ELSEIF mm.hasAdapterFor(superType, retType?.type?.simpleName)»
-									«mm.adapterNameFor(superType, retType.type.simpleName)» adap = new «mm.adapterNameFor(superType, retType.type.simpleName)»() ;
-									adap.setAdaptee(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
-									return adap ;
+									return adaptersFactory.create«mm.simpleAdapterNameFor(superType, retType.type.simpleName)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
 								«ELSEIF retType.type.simpleName != "void" && retType.type.simpleName != "null"»
 									return «asp.qualifiedName».«op.simpleName»(«paramsList») ;
 								«ELSE»
@@ -307,16 +303,12 @@ class MetaclassAdapterInferrer
 										«mm.adapterNameFor(superMM, cls)» clsAdaptee = new «mm.adapterNameFor(superMM, cls)»() ;
 										clsAdaptee.setAdaptee(adaptee) ;
 										«IF retType.type.simpleName != "void"»
-											«superMM.adapterNameFor(superType, retType.type.simpleName)» adap = new «superMM.adapterNameFor(superType, retType.type.simpleName)»() ;
-											adap.setAdaptee(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
-											return adap ;
+											return adaptersFactory.create«superMM.simpleAdapterNameFor(superType, retType.type.simpleName)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
 										«ELSE»
 											«asp.qualifiedName».«op.simpleName»(«paramsList») ;
 										«ENDIF»
 									«ELSEIF mm.hasAdapterFor(superType, retType.type.simpleName)»
-										«mm.adapterNameFor(superType, retType.type.simpleName)» adap = new «mm.adapterNameFor(superType, retType.type.simpleName)»() ;
-										adap.setAdaptee(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
-										return adap ;
+										return adaptersFactory.create«mm.simpleAdapterNameFor(superType, retType.type.simpleName)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
 									«ELSEIF retType.type.simpleName != "void"»
 										return «asp.qualifiedName».«op.simpleName»(«paramsList») ;
 									«ELSE»
@@ -342,9 +334,7 @@ class MetaclassAdapterInferrer
 										clsAdaptee.setAdaptee(adaptee) ;
 										«IF retType.type.simpleName != "void"»
 											«IF mm.hasAdapterFor(superType, retType.type.simpleName)»
-												«superMM.adapterNameFor(superType, retType.type.simpleName)» adap = new «superMM.adapterNameFor(superType, retType.type.simpleName)»() ;
-												adap.setAdaptee(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
-												return adap ;
+												return adaptersFactory.create«superMM.simpleAdapterNameFor(superType, retType.type.simpleName)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
 											«ELSE»
 												return «asp.qualifiedName».«op.simpleName»(«paramsList») ;
 											«ENDIF»
@@ -352,9 +342,7 @@ class MetaclassAdapterInferrer
 											«asp.qualifiedName».«op.simpleName»(«paramsList») ;
 										«ENDIF»
 									«ELSEIF mm.hasAdapterFor(superType, retType.type.simpleName)»
-										«mm.adapterNameFor(superType, retType.type.simpleName)» adap = new «mm.adapterNameFor(superType, retType.type.simpleName)»() ;
-										adap.setAdaptee(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
-										return adap ;
+										return adaptersFactory.create«mm.simpleAdapterNameFor(superType, retType.type.simpleName)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
 										«ELSEIF retType.type.simpleName != "void"»
 											return «asp.qualifiedName».«op.simpleName»(«paramsList») ;
 									«ELSE»
