@@ -102,5 +102,11 @@ class K3SLEValidator extends AbstractK3SLEValidator
 				)
 		]
 	}
+
+	@Check
+	def void checkMetamodelTypeIsSet(Metamodel mm) {
+		if (mm.exactTypeName === null || mm.exactType === null)
+			error("exactType feature must be set", K3slePackage.Literals.METAMODEL__EXACT_TYPE_NAME)
+	}
 }
 
