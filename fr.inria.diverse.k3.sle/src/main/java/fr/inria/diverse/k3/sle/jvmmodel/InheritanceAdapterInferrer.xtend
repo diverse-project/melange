@@ -111,8 +111,7 @@ class InheritanceAdapterInferrer
 							jvmCls.members += ref.toMethod(ref.setterName, mm.newTypeRef(Void::TYPE))[
 									parameters += ref.toParameter("o", mm.newTypeRef(superMM.getFqnFor(ref.EReferenceType)))
 									body = '''
-										«adapName» wrap = («adapName») o ;
-										adaptee.«ref.setterName»(wrap.getAdaptee()) ;
+										adaptee.«ref.setterName»(((«adapName») o).getAdaptee()) ;
 									'''
 								]
 

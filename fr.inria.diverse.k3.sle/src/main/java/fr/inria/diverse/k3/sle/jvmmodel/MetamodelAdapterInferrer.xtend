@@ -93,8 +93,7 @@ class MetamodelAdapterInferrer
 						for (org.eclipse.emf.ecore.EObject o : adaptee.getContents()) {
 						«FOR r : mm.allClasses.filter[name != "EObject" && mm.hasAdapterFor(superType, it) && instantiable && abstractable].sortByClassInheritance»
 							if (o instanceof «mm.getFqnFor(r)») {
-								«mm.getFqnFor(r)» wrap = («mm.getFqnFor(r)») o ;
-								ret.add(adaptersFactory.create«mm.simpleAdapterNameFor(superType, r)»(wrap)) ;
+								ret.add(adaptersFactory.create«mm.simpleAdapterNameFor(superType, r)»((«mm.getFqnFor(r)») o)) ;
 							} else
 						«ENDFOR» ret.add(o) ;
 						}
