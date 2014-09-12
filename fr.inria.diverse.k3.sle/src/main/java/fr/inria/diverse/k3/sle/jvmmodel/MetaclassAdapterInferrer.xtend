@@ -132,7 +132,8 @@ class MetaclassAdapterInferrer
 					jvmCls.members += ref.toUnsetterCheck(ref.name)
 			]
 
-			cls.EAllOperations.filter[!isAspectSpecific].forEach[op |
+			cls.EAllOperations.sortByOverridingPriority.filter[!isAspectSpecific]
+			.forEach[op |
 				val opName = if (!mm.isUml(op.EContainingClass)) op.name else op.formatUmlOperationName
 
 				val newOp = op.toMethod(opName, null)[m |

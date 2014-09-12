@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 import java.io.IOException
+import org.eclipse.emf.ecore.EOperation
 
 class ASTHelper
 {
@@ -75,23 +76,6 @@ class ASTHelper
 //	def Iterable<KomprenSlicer> getSlicers(ModelTypingSpace root) {
 //		return root.elements.filter(KomprenSlicer)
 //	}
-
-	def Iterable<EClass> sortByClassInheritance(Iterable<EClass> classes) {
-		return classes.sort(new Comparator<EClass>() {
-			override compare(EClass clsA, EClass clsB) {
-				if (clsA.EAllSuperTypes.contains(clsB))
-					return -1
-				else if (clsB.EAllSuperTypes.contains(clsA))
-					return 1
-				else
-					return 0
-			}
-
-			override equals(Object obj) {
-				return false
-			}
-		})
-	}
 }
 
 class ASTProcessingException extends Exception

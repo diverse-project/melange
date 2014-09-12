@@ -3,7 +3,10 @@ package fr.inria.diverse.k3.sle.jvmmodel
 import com.google.inject.Inject
 
 import java.util.List
+
 import org.eclipse.emf.ecore.EStructuralFeature
+
+import org.eclipse.emf.ecore.resource.Resource
 
 import org.eclipse.xtext.common.types.JvmFormalParameter
 import org.eclipse.xtext.common.types.JvmOperation
@@ -11,9 +14,17 @@ import org.eclipse.xtext.common.types.JvmTypeReference
 
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
+import org.eclipse.xtext.xbase.typesystem.legacy.StandardTypeReferenceOwner
+
+import org.eclipse.xtext.xbase.typesystem.references.LightweightTypeReference
+import org.eclipse.xtext.xbase.typesystem.references.OwnedConverter
+
+import org.eclipse.xtext.xbase.typesystem.util.CommonTypeComputationServices
+
 class JvmModelInferrerHelper
 {
 	@Inject extension JvmTypesBuilder
+	@Inject CommonTypeComputationServices services
 
 	/*--- Getters / Setters  ---*/
 	def JvmOperation toGetterSignature(EStructuralFeature f, String name, JvmTypeReference type) {
@@ -83,10 +94,14 @@ class JvmModelInferrerHelper
 
 	def boolean overrides(JvmOperation o1, JvmOperation o2) {
 		return
-		   o1.simpleName == o2.simpleName
-		   // FIXME: Covariant return types
-		&& o1.returnType.qualifiedName == o2.returnType.qualifiedName
-		&& parameterEquals(o1.parameters, o2.parameters)
+			   o1.simpleName == o2.simpleName
+			&& o2.returnType.toLightweightTypeReference(o1.eResource).isAssignableFrom(o1.returnType.toLightweightTypeReference(o1.eResource))
+			&& parameterEquals(o1.parameters, o2.parameters)
+	}
+
+	def LightweightTypeReference toLightweightTypeReference(JvmTypeReference typeRef, Resource context) {
+		val converter = new OwnedConverter(new StandardTypeReferenceOwner(services, context))
+		return converter.toLightweightReference(typeRef)
 	}
 
 	def boolean parameterEquals(List<JvmFormalParameter> p1, List<JvmFormalParameter> p2) {

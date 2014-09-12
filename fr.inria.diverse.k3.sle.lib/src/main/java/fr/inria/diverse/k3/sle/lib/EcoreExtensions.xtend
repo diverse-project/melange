@@ -3,6 +3,7 @@ package fr.inria.diverse.k3.sle.lib
 import com.google.inject.Inject
 
 import java.util.ArrayList
+import java.util.Comparator
 import java.util.List
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
@@ -14,6 +15,7 @@ import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.EModelElement
 import org.eclipse.emf.ecore.ENamedElement
 import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EStructuralFeature
@@ -28,6 +30,49 @@ class EcoreExtensions
 
 	def boolean emfEquals(EObject o1, EObject o2) {
 		return EcoreUtil.equals(o1, o2)
+	}
+
+	def Iterable<EClass> sortByClassInheritance(Iterable<EClass> classes) {
+		return classes.sort(new Comparator<EClass>() {
+			override compare(EClass clsA, EClass clsB) {
+				if (clsA.EAllSuperTypes.contains(clsB))
+					return -1
+				else if (clsB.EAllSuperTypes.contains(clsA))
+					return 1
+				else
+					return 0
+			}
+
+			override equals(Object obj) {
+				return false
+			}
+		})
+	}
+
+	def Iterable<EOperation> sortByOverridingPriority(Iterable<EOperation> ops) {
+		return ops.sort(new Comparator<EOperation>() {
+			override compare(EOperation opA, EOperation opB) {
+				val retA = opA.EType
+				val retB = opB.EType
+
+				if (retA instanceof EClass) {
+					if (!(retB instanceof EClass))
+						return 1
+					else if (retA.EAllSuperTypes.contains(retB))
+						return -1
+				} else {
+					if (retB instanceof EClass)
+						return -1
+					else return 1
+				}
+
+				return 0
+			}
+
+			override equals(Object obj) {
+				return false
+			}
+		})
 	}
 
 	def EClass findClass(EPackage pkg, String clsName) {
