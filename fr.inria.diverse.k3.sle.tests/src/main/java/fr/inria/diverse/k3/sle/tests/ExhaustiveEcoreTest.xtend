@@ -113,7 +113,7 @@ class ExhaustiveEcoreTest
 		val fsa = new InMemoryFileSystemAccess
 		generator.doGenerate(root.eResource, fsa)
 
-		assertEquals(fsa.textFiles.size, 63)
+		assertEquals(fsa.textFiles.size, 67)
 	}
 
 	// Won't compile until generics are implented
