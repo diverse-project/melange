@@ -27,6 +27,10 @@ class ListAdapter<E, F> implements List<E>
 	List<F> adaptee
 	Class<? extends GenericAdapter<F>> adapType
 
+	def static <E, F> ListAdapter<E, F> newInstance(List<F> a, Class<? extends GenericAdapter<F>> type) {
+		return new ListAdapter<E, F>(a, type)
+	}
+
 	new(List<F> a, Class<? extends GenericAdapter<F>> type) {
 		adaptee = a
 		adapType = type

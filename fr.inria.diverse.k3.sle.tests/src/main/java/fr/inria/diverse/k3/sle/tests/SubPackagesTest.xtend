@@ -58,7 +58,7 @@ class SubPackagesTest
 		val fsa = new InMemoryFileSystemAccess
 		generator.doGenerate(root.eResource, fsa)
 
-		assertEquals(fsa.textFiles.size, 26)
+		assertEquals(fsa.textFiles.size, 27)
 	}
 
 	@Test

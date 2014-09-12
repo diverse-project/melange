@@ -249,7 +249,7 @@ class AspectsTest
 		val fsa = new InMemoryFileSystemAccess
 		generator.doGenerate(root.eResource, fsa)
 
-		assertEquals(fsa.textFiles.size, 43)
+		assertEquals(fsa.textFiles.size, 47)
 	}
 
 	@Test

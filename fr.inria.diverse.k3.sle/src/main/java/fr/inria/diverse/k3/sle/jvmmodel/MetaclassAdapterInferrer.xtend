@@ -108,11 +108,7 @@ class MetaclassAdapterInferrer
 					jvmCls.members += ref.toMethod(getterName, refType)[
 						body = '''
 							«IF ref.many»
-								return new fr.inria.diverse.k3.sle.lib.ListAdapter<
-									«superType.interfaceNameFor(ref.EReferenceType)»,
-									«mm.getFqnFor(mmRef.EReferenceType)»
-									>(adaptee.«getterName»(), «adapName».class
-								) ;
+								return fr.inria.diverse.k3.sle.lib.ListAdapter.newInstance(adaptee.«getterName»(), «adapName».class) ;
 							«ELSE»
 								return adaptersFactory.create«mm.simpleAdapterNameFor(superType, ref.EReferenceType)»(adaptee.«getterName»()) ;
 							«ENDIF»
@@ -191,11 +187,7 @@ class MetaclassAdapterInferrer
 					m.body = '''
 						«IF op.EType instanceof EClass && mm.hasAdapterFor(superType, cls)»
 							«IF op.many»
-								return new fr.inria.diverse.k3.sle.lib.ListAdapter<
-									«superType.interfaceNameFor(op.EType as EClass)»,
-									«mm.getFqnFor(op.EType)»
-									>(adaptee.«opName»(«paramsList»), «mm.adapterNameFor(superType, op.EType as EClass)».class
-								) ;
+								return fr.inria.diverse.k3.sle.lib.ListAdapter.newInstance(adaptee.«opName»(«paramsList»), «mm.adapterNameFor(superType, op.EType as EClass)».class) ;
 							«ELSE»
 								return adaptersFactory.create«mm.simpleAdapterNameFor(superType, op.EType as EClass)»(adaptee.«opName»(«paramsList»)) ;
 							«ENDIF»
