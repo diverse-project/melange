@@ -25,7 +25,8 @@ class K3SLEDerivedStateComputer extends JvmModelAssociator
 	// FIXME: Because Guice's Multibinders aren't available,
 	//         quick & dirty solution
 	@Inject
-	new(ModelLoader l, ASTCompleter c, ASTValidator v) {
+	new(ExactTypeInferrer e, ModelLoader l, ASTCompleter c, ASTValidator v) {
+		processors += e
 		processors += l
 		processors += c
 		processors += v

@@ -65,27 +65,7 @@ class ASTCompleter
 	}
 
 	def dispatch void complete(ModelTypingSpace root) throws ASTProcessingException {
-		val task = Stopwatches.forTask('''K3SLETyping.complete(«root.name»)''')
-		val newMTs = newArrayList
-		task.start
-
-		root.metamodels.forEach[mm |
-			val newMT = K3sleFactory.eINSTANCE.createModelType => [
-				name = mm.exactTypeName
-			]
-
-			if (!root.modelTypes.exists[name == newMT.name])
-				newMTs += newMT
-		]
-
-		root.elements += newMTs
-		root.metamodels.forEach[mm |
-			mm.exactType = root.modelTypes.findFirst[name == mm.exactTypeName]
-		]
-
 		root.elements.forEach[complete]
-
-		task.stop
 	}
 
 	def dispatch void complete(Metamodel mm) throws ASTProcessingException {
