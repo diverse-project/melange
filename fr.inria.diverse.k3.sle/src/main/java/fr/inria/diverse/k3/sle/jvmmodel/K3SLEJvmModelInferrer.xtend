@@ -33,15 +33,12 @@ class K3SLEJvmModelInferrer extends AbstractModelInferrer
 		try {
 			completer.complete(root)
 
-			if (validator.isValid(root)) {
-					completer.complete(root)
-					completer.inferTypingRelations(root)
+			completer.inferTypingRelations(root)
 
-					root.modelTypes.forEach[generateInterfaces(acceptor)]
-					root.metamodels.forEach[generateAdapters(acceptor)]
-					root.transformations.forEach[generateTransformation(acceptor)]
-//					root.slicers.forEach[generateSlicer]
-			}
+			root.modelTypes.forEach[generateInterfaces(acceptor)]
+			root.metamodels.forEach[generateAdapters(acceptor)]
+			root.transformations.forEach[generateTransformation(acceptor)]
+//			root.slicers.forEach[generateSlicer]
 		} catch (ASTProcessingException e) {
 			logger.error('''ASTProcessingException: «e.message»''')
 		} catch (Exception e) {
