@@ -1,28 +1,42 @@
 package fr.inria.diverse.k3.sle.examples.fsm.project
 
-import fr.inria.diverse.k3.sle.examples.fsm.project.fsmmt.FSM
+import fr.inria.diverse.k3.sle.examples.fsm.project.executablefsmmt.FSM
 
 import static extension fr.inria.diverse.k3.sle.lib.MetamodelExtensions.*
 
-metamodel Fsm {
+modeltype MinimalFsmMT {
+	ecore "platform:/resource/fr.inria.diverse.k3.sle.examples.metamodels.simplefsm/model/SimpleFSM.ecore"
+}
+
+metamodel SimpleFsm implements MinimalFsmMT {
+	ecore "platform:/resource/fr.inria.diverse.k3.sle.examples.metamodels.simplefsm/model/SimpleFSM.ecore"
+	exactType SimpleFsmMT
+}
+
+metamodel MultipleFinals inherits SimpleFsm {
+	exactType MultipleFinalsMT
+}
+
+metamodel CompositeFsm {
+	ecore "platform:/resource/fr.inria.diverse.k3.sle.examples.metamodels.compositefsm/model/CompositeFSM.ecore"
+	exactType CompositeFsmMT
+}
+
+metamodel ExecutableFsm {
 	ecore "platform:/resource/fr.inria.diverse.k3.sle.examples.metamodels.fsm/model/FSM.ecore"
-	exactType FsmMT
+	exactType ExecutableFsmMT
 	aspect fr.inria.diverse.k3.sle.examples.fsm.project.ExecutableFsmAspect
-	//aspect fr.inria.diverse.k3.sle.examples.fsm.project.ExecutableStateAspect
-	//aspect fr.inria.diverse.k3.sle.examples.fsm.project.ExecutableTransitionAspect
 }
 
 metamodel TimedFsm {
 	ecore "platform:/resource/fr.inria.diverse.k3.sle.examples.metamodels.timedfsm/model/TimedFSM.ecore"
 	exactType TimedFsmMT
 	aspect fr.inria.diverse.k3.sle.examples.fsm.project.TimedFsmAspect
-	//aspect fr.inria.diverse.k3.sle.examples.fsm.project.TimedStateAspect
-	//aspect fr.inria.diverse.k3.sle.examples.fsm.project.TimedTransitionAspect
 }
 
-transformation execute(FsmMT fsm) {
+transformation execute(ExecutableFsmMT fsm) {
 	val root = fsm.contents.head as FSM
-	
+
 	print("Output: ")
 	root.execute("adcdce")
 	println
@@ -30,8 +44,8 @@ transformation execute(FsmMT fsm) {
 
 @Main
 transformation main() {
-	val m1 =      Fsm.load("input/Simple.fsm",      FsmMT)
-	val m2 = TimedFsm.load("input/Simple.timedfsm", FsmMT)
+	val m1 = ExecutableFsm.load("input/Simple.fsm",      ExecutableFsmMT)
+	val m2 =      TimedFsm.load("input/Simple.timedfsm", ExecutableFsmMT)
 	
 	execute.call(m1)
 	execute.call(m2)
