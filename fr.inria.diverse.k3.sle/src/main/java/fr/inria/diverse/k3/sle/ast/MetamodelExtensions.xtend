@@ -262,13 +262,16 @@ class MetamodelExtensions
 	}
 
 	def void createGenModel(EPackage pkg, Metamodel mm, String ecoreLocation, String genModelLocation, String modelDirectory) {
+		// FIXME: Stupid fix -> reopen the Ecore here to avoid Xtext-style cross-references in the genmodel
+		val pkgs = modelUtils.loadAllPkgs(ecoreLocation)
+
 		val genModel = GenModelFactory.eINSTANCE.createGenModel => [
 			it.complianceLevel = GenJDKLevel.JDK70_LITERAL
 			it.modelDirectory = modelDirectory
 			it.foreignModel.add(ecoreLocation)
 			it.modelName = mm.name
-			it.usedGenPackages += mm.inheritanceRelation?.superMetamodel?.genmodels.head.genPackages
-			it.initialize(Collections.singleton(pkg))
+			//it.usedGenPackages += mm.inheritanceRelation?.superMetamodel?.genmodels.head.genPackages
+			it.initialize(Lists.newArrayList(pkgs))
 		]
 
 		val resSet = new ResourceSetImpl
@@ -284,7 +287,8 @@ class MetamodelExtensions
 	}
 
 	def void createGenModel(EPackage pkg, Metamodel mm, String ecoreLocation, String genModelLocation) {
-		createGenModel(pkg, mm, ecoreLocation, genModelLocation, '''/«mm.name»Generated/src/''')
+		//createGenModel(pkg, mm, ecoreLocation, genModelLocation, '''/«mm.name»Generated/src/''')
+		createGenModel(pkg, mm, ecoreLocation, genModelLocation, '''/«mm.project.name»/emf-gen''')
 	}
 
 	def void createExtendedGenmodel(Metamodel mm, String ecoreLocation, String genModelLocation, String modelDirectory) {
@@ -330,7 +334,8 @@ class MetamodelExtensions
 
 	def String getGenerationFolder(Metamodel mm) {
 		//return '''platform:/resource/«mm.project.name»/generated/«mm.name»/'''
-		return '''platform:/resource/«mm.name»Generated/model/'''
+		//return '''platform:/resource/«mm.name»Generated/model/'''
+		return '''platform:/resource/«mm.project.name»/model-gen/«mm.name»/'''
 	}
 
 	def IProject getProject(Metamodel mm) {
