@@ -13,10 +13,6 @@ metamodel SimpleFsm implements MinimalFsmMT {
 	exactType SimpleFsmMT
 }
 
-metamodel MultipleFinals inherits SimpleFsm {
-	exactType MultipleFinalsMT
-}
-
 metamodel CompositeFsm {
 	ecore "platform:/resource/fr.inria.diverse.k3.sle.examples.metamodels.compositefsm/model/CompositeFSM.ecore"
 	exactType CompositeFsmMT

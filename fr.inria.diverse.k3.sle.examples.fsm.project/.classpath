@@ -27,6 +27,5 @@
 			<attribute name="plugin_id" value="org.eclipse.emf.ecore"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/fr.inria.diverse.k3.sle.examples.fsm.aspects"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
