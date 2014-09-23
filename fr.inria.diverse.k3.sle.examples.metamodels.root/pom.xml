@@ -11,6 +11,8 @@
 		<module>../fr.inria.diverse.k3.sle.examples.metamodels.timedfsm</module>
                 <module>../fr.inria.diverse.k3.sle.examples.metamodels.subpackages</module>
                 <module>../fr.inria.diverse.k3.sle.examples.metamodels.exhaustive</module>
+		<module>../fr.inria.diverse.k3.sle.examples.metamodels.compositefsm</module>
+		<module>../fr.inria.diverse.k3.sle.examples.metamodels.simplefsm</module>
 	</modules>
 
 	<properties>

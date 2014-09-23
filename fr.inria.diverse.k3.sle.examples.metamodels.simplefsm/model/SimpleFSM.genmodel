@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ASCII"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.inria.diverse.k3.sle.examples.metamodels.simplefsm/src" modelPluginID="fr.inria.diverse.k3.sle.examples.metamodels.simplefsm" modelName="SimpleFSM" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>SimpleFSM.ecore</foreignModel>
+  <genPackages prefix="Simplefsm" disposableProviderFactory="true">
+    <ecorePackage href="SimpleFSM.ecore#/"/>
+    <genClasses>
+      <ecoreClass href="SimpleFSM.ecore#//FSM"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="SimpleFSM.ecore#//FSM/ownedState"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="SimpleFSM.ecore#//FSM/initialState"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="SimpleFSM.ecore#//State"/>
+      <genFeatures property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="SimpleFSM.ecore#//State/owningFSM"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="SimpleFSM.ecore#//State/name"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="SimpleFSM.ecore#//State/outgoingTransition"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="SimpleFSM.ecore#//State/incomingTransition"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="SimpleFSM.ecore#//Transition"/>
+      <genFeatures property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="SimpleFSM.ecore#//Transition/source"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="SimpleFSM.ecore#//Transition/target"/>
+      </genFeatures>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
