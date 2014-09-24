@@ -32,8 +32,10 @@ class EcoreExtensions
 		return EcoreUtil.equals(o1, o2)
 	}
 
+	// FIXME: Temporarily disabled
 	def Iterable<EClass> sortByClassInheritance(Iterable<EClass> classes) {
-		return classes.sort(new Comparator<EClass>() {
+		return classes
+		/*classes.sort(new Comparator<EClass>() {
 			override compare(EClass clsA, EClass clsB) {
 				if (clsA.EAllSuperTypes.contains(clsB))
 					return -1
@@ -46,7 +48,7 @@ class EcoreExtensions
 			override equals(Object obj) {
 				return false
 			}
-		})
+		})*/
 	}
 
 	// FIXME: Temporarily disabled
