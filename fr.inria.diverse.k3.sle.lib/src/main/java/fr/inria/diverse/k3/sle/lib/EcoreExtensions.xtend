@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EcoreFactory
 import org.eclipse.emf.ecore.EcorePackage
 
 import org.eclipse.emf.ecore.util.EcoreUtil
+import java.util.Collections
 
 class EcoreExtensions
 {
@@ -32,10 +33,8 @@ class EcoreExtensions
 		return EcoreUtil.equals(o1, o2)
 	}
 
-	// FIXME: Temporarily disabled
 	def Iterable<EClass> sortByClassInheritance(Iterable<EClass> classes) {
-		return classes
-		/*classes.sort(new Comparator<EClass>() {
+		Collections.sort(classes.toList, new Comparator<EClass>() {
 			override compare(EClass clsA, EClass clsB) {
 				if (clsA.EAllSuperTypes.contains(clsB))
 					return -1
@@ -48,13 +47,14 @@ class EcoreExtensions
 			override equals(Object obj) {
 				return false
 			}
-		})*/
+		})
+
+		return classes
 	}
 
 	// FIXME: Temporarily disabled
 	def Iterable<EOperation> sortByOverridingPriority(Iterable<EOperation> ops) {
-		return ops
-		/*ops.sort(new Comparator<EOperation>() {
+		Collections.sort(ops.toList, new Comparator<EOperation>() {
 			override compare(EOperation opA, EOperation opB) {
 				val retA = opA.EType
 				val retB = opB.EType
@@ -76,7 +76,9 @@ class EcoreExtensions
 			override equals(Object obj) {
 				return false
 			}
-		})*/
+		})
+
+		return ops
 	}
 
 	def EClass findClass(EPackage pkg, String clsName) {
