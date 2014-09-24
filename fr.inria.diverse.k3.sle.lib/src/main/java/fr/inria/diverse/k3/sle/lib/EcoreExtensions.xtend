@@ -49,8 +49,10 @@ class EcoreExtensions
 		})
 	}
 
+	// FIXME: Temporarily disabled
 	def Iterable<EOperation> sortByOverridingPriority(Iterable<EOperation> ops) {
-		return ops.sort(new Comparator<EOperation>() {
+		return ops
+		/*ops.sort(new Comparator<EOperation>() {
 			override compare(EOperation opA, EOperation opB) {
 				val retA = opA.EType
 				val retB = opB.EType
@@ -72,7 +74,7 @@ class EcoreExtensions
 			override equals(Object obj) {
 				return false
 			}
-		})
+		})*/
 	}
 
 	def EClass findClass(EPackage pkg, String clsName) {
