@@ -14,13 +14,13 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	</modules>
 
         <properties>
-		<tycho.version>0.19.0</tycho.version>
-		<tycho-extras.version>0.19.0</tycho-extras.version>
+		<tycho.version>0.21.0</tycho.version>
+		<tycho-extras.version>0.21.0</tycho-extras.version>
 		<xtend-repo.url>http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/</xtend-repo.url>
 		<kepler-repo.url>http://download.eclipse.org/releases/kepler/</kepler-repo.url>
 		<tycho-repo.url>https://oss.sonatype.org/content/groups/public/</tycho-repo.url>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<xtend.version>2.6.0</xtend.version>
+		<xtend.version>2.7.2</xtend.version>
 		<junit.version>4.11</junit.version>
 		<java.version>1.7</java.version>
 		<k3.version>3.0.0-SNAPSHOT</k3.version>
