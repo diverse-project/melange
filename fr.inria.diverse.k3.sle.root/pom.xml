@@ -23,7 +23,7 @@
 		<emf.version>2.9.1-v20130827-0309</emf.version>
 		<tycho.version>0.21.0</tycho.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<xtext.version>2.6.0</xtext.version>
+		<xtext.version>2.7.2</xtext.version>
 		<nightly.modifier>.nightly</nightly.modifier> <!-- must be set to ".nightly" for SNAPSHOT and set to "" for release -->
 	</properties>
 

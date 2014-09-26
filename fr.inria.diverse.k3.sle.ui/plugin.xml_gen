@@ -489,17 +489,29 @@
    </extension>
    <extension point="org.eclipse.ui.popupMenus">
       <viewerContribution
-         targetID="example.rulerContextMenuId"
+         targetID="fr.inria.diverse.k3.sle.K3SLE.ide.rulerContextMenu"
          id="fr.inria.diverse.k3.sle.K3SLE.ide.RulerPopupActions">
          <action
             label="Toggle Breakpoint"
             class="fr.inria.diverse.k3.sle.ui.K3SLEExecutableExtensionFactory:org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate"
-            menubarPath="additions"
+            menubarPath="debug"
             id="fr.inria.diverse.k3.sle.K3SLE.ide.rulerContextMenu.toggleBreakpointAction">
+         </action>
+         <action
+            label="Not used"
+            class="fr.inria.diverse.k3.sle.ui.K3SLEExecutableExtensionFactory:org.eclipse.debug.ui.actions.RulerEnableDisableBreakpointActionDelegate"
+            menubarPath="debug"
+            id="fr.inria.diverse.k3.sle.K3SLE.ide.rulerContextMenu.enableDisableBreakpointAction">
+         </action>
+         <action
+           label="Breakpoint Properties"
+           helpContextId="breakpoint_properties_action_context"
+           class="fr.inria.diverse.k3.sle.ui.K3SLEExecutableExtensionFactory:org.eclipse.jdt.debug.ui.actions.JavaBreakpointPropertiesRulerActionDelegate"
+           menubarPath="group.properties"
+           id="fr.inria.diverse.k3.sle.K3SLE.ide.rulerContextMenu.openBreapointPropertiesAction">
          </action>
       </viewerContribution>
    </extension>
-   
     <!-- Introduce Local Variable Refactoring -->
 	<extension point="org.eclipse.ui.handlers">
 		<handler 
