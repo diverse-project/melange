@@ -1,6 +1,7 @@
 package fr.inria.diverse.k3.sle.jvmmodel
 
 import com.google.inject.Inject
+import com.google.inject.Singleton
 
 import fr.inria.diverse.k3.sle.ast.ModelTypeExtensions
 import fr.inria.diverse.k3.sle.ast.NamingHelper
@@ -25,15 +26,22 @@ import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.common.types.TypesFactory
 
 import org.eclipse.xtext.common.types.util.TypeReferences
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
+import org.eclipse.emf.ecore.resource.ResourceSet
 
-import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
-
-class K3SLETypesBuilder extends AbstractModelInferrer
+@Singleton
+class K3SLETypesBuilder
 {
 	@Inject extension EcoreExtensions
 	@Inject extension ModelTypeExtensions
 	@Inject extension NamingHelper
 	@Inject TypeReferences typeReferences
+	@Inject JvmTypeReferenceBuilder$Factory builderFactory
+	@Inject extension JvmTypeReferenceBuilder builder
+
+	def void setContext(ResourceSet rs) {
+		builder = builderFactory.create(rs)
+	}
 
 	def dispatch JvmTypeReference typeRef(ModelType ctx, ETypedElement f, Iterable<JvmTypeParameterDeclarator> decl) {
 		val baseType =
@@ -160,6 +168,8 @@ class K3SLETypesBuilder extends AbstractModelInferrer
 	}
 
 	def JvmTypeReference createTypeParameterReference(JvmTypeParameterDeclarator[] lst, String find) {
-		return typeReferences.createTypeRef(lst.map[typeParameters].flatten.findFirst[name == find])
+		val findRef = lst.map[typeParameters].flatten.findFirst[name == find]
+		
+		return if (findRef !== null) typeReferences.createTypeRef(findRef) else Object.typeRef
 	}
 }

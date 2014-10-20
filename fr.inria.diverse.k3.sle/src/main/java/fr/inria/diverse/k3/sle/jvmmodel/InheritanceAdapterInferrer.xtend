@@ -19,11 +19,11 @@ import org.eclipse.xtext.common.types.TypesFactory
 
 import org.eclipse.xtext.util.internal.Stopwatches
 
-import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
-class InheritanceAdapterInferrer extends AbstractModelInferrer
+class InheritanceAdapterInferrer
 {
 	@Inject extension JvmModelInferrerHelper
 	@Inject extension JvmTypesBuilder
@@ -32,7 +32,7 @@ class InheritanceAdapterInferrer extends AbstractModelInferrer
 	@Inject extension EcoreExtensions
 	@Inject extension K3SLETypesBuilder
 
-	def void generateAdapters(Metamodel mm, Metamodel superMM, IJvmDeclaredTypeAcceptor acceptor) {
+	def void generateAdapters(Metamodel mm, Metamodel superMM, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
 		val task = Stopwatches.forTask('''InheritanceAdapterInferrer.generateAdapters(«mm.name», «superMM.name»)''')
 		task.start
 

@@ -19,11 +19,11 @@ import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 import org.eclipse.xtext.util.internal.Stopwatches
 
-import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
-class ModelTypeInferrer extends AbstractModelInferrer
+class ModelTypeInferrer
 {
 	@Inject extension JvmTypesBuilder
 	@Inject extension IQualifiedNameProvider
@@ -34,7 +34,7 @@ class ModelTypeInferrer extends AbstractModelInferrer
 	@Inject extension EnumInferrer
 	@Inject extension MetaclassInterfaceInferrer
 
-	def void generateInterfaces(ModelType mt, IJvmDeclaredTypeAcceptor acceptor) {
+	def void generateInterfaces(ModelType mt, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
 		val task = Stopwatches.forTask('''ModelTypeInferrer.generateInterfaces(«mt.name»)''')
 		task.start
 
@@ -73,12 +73,12 @@ class ModelTypeInferrer extends AbstractModelInferrer
 		])
 
 		mt.allClasses.filter[abstractable].forEach[cls |
-			mt.generateInterface(cls, acceptor)
+			mt.generateInterface(cls, acceptor, builder)
 		]
 
 		if (mt.isImported)
 			mt.allEnums.forEach[enu |
-				mt.generateEnum(enu, acceptor)
+				mt.generateEnum(enu, acceptor, builder)
 			]
 
 		task.stop

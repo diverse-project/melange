@@ -16,11 +16,11 @@ import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 import org.eclipse.xtext.util.internal.Stopwatches
 
-import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
-class MetamodelInferrer extends AbstractModelInferrer
+class MetamodelInferrer
 {
 	@Inject extension JvmTypesBuilder
 	@Inject extension IQualifiedNameProvider
@@ -32,7 +32,7 @@ class MetamodelInferrer extends AbstractModelInferrer
 	@Inject extension MetaclassAdapterInferrer
 	@Inject extension InheritanceAdapterInferrer
 
-	def void generateAdapters(Metamodel mm, IJvmDeclaredTypeAcceptor acceptor) {
+	def void generateAdapters(Metamodel mm, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
 		val task = Stopwatches.forTask('''MetamodelInferrer.generateAdapters(«mm.name»)''')
 		task.start
 
@@ -70,10 +70,10 @@ class MetamodelInferrer extends AbstractModelInferrer
 
 		// TODO: Test when the subtype has more classes than the supertype and vice-versa
 		mm.^implements.forEach[mt |
-			mm.generateAdapter(mt, acceptor)
+			mm.generateAdapter(mt, acceptor, builder)
 
 			mt.allClasses.filter[abstractable].forEach[cls |
-				mm.generateAdapter(mt, cls, acceptor)
+				mm.generateAdapter(mt, cls, acceptor, builder)
 			]
 
 			val adapFactName = mm.getAdaptersFactoryNameFor(mt)
@@ -108,7 +108,7 @@ class MetamodelInferrer extends AbstractModelInferrer
 		]
 
 		if (mm.hasSuperMetamodel)
-			mm.generateAdapters(mm.inheritanceRelation.superMetamodel, acceptor)
+			mm.generateAdapters(mm.inheritanceRelation.superMetamodel, acceptor, builder)
 
 		task.stop
 	}

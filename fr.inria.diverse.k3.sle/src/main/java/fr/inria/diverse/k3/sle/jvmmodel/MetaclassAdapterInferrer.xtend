@@ -24,11 +24,11 @@ import org.eclipse.xtext.common.types.JvmMember
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.TypesFactory
 
-import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
-class MetaclassAdapterInferrer extends AbstractModelInferrer
+class MetaclassAdapterInferrer
 {
 	@Inject extension JvmModelInferrerHelper
 	@Inject extension JvmTypesBuilder
@@ -39,7 +39,7 @@ class MetaclassAdapterInferrer extends AbstractModelInferrer
 	@Inject extension AspectToEcore
 	@Inject extension K3SLETypesBuilder
 
-	def void generateAdapter(Metamodel mm, ModelType superType, EClass cls, IJvmDeclaredTypeAcceptor acceptor) {
+	def void generateAdapter(Metamodel mm, ModelType superType, EClass cls, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
 		val mmCls = mm.allClasses.findFirst[name == cls.name]
 		//val task = Stopwatches.forTask('''MetaclassAdapterInferrer.generateAdapter(«mm.name», «superType.name», «cls.name»''')
 		//task.start

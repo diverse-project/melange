@@ -2,6 +2,9 @@ package fr.inria.diverse.k3.sle.processors
 
 import com.google.inject.Inject
 
+import fr.inria.diverse.k3.sle.jvmmodel.K3SLETypesBuilder
+import fr.inria.diverse.k3.sle.jvmmodel.JvmModelInferrerHelper
+
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
 
 import java.util.List
@@ -18,6 +21,8 @@ import static org.eclipse.xtext.util.internal.Stopwatches.*
 
 class K3SLEDerivedStateComputer extends JvmModelAssociator
 {
+	@Inject K3SLETypesBuilder builder
+	@Inject JvmModelInferrerHelper helper
 	List<K3SLEProcessor> processors = newArrayList
 
 	static final Logger log = Logger.getLogger(K3SLEDerivedStateComputer)
@@ -50,6 +55,10 @@ class K3SLEDerivedStateComputer extends JvmModelAssociator
 		// Pre-inferring processors
 		val root = resource.contents.head as ModelTypingSpace
 		processors.forEach[preProcess(root)]
+
+		// Setting context for non-inferrer helper classes
+		builder.setContext(resource.resourceSet)
+		helper.setContext(resource.resourceSet)
 
 		super.installDerivedState(resource, preLinkingPhase)
 	}

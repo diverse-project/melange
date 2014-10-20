@@ -22,11 +22,11 @@ import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 import org.eclipse.xtext.util.internal.Stopwatches
 
-import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
-class MetamodelAdapterInferrer extends AbstractModelInferrer
+class MetamodelAdapterInferrer
 {
 	@Inject extension JvmTypesBuilder
 	@Inject extension IQualifiedNameProvider
@@ -36,7 +36,7 @@ class MetamodelAdapterInferrer extends AbstractModelInferrer
 	@Inject extension EcoreExtensions
 	@Inject extension K3SLETypesBuilder
 
-	def void generateAdapter(Metamodel mm, ModelType superType, IJvmDeclaredTypeAcceptor acceptor) {
+	def void generateAdapter(Metamodel mm, ModelType superType, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
 		val task = Stopwatches.forTask('''MetamodelAdapterInferrer.generateAdapter(«mm.name», «superType.name»''')
 		task.start
 

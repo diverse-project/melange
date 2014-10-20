@@ -1,6 +1,7 @@
 package fr.inria.diverse.k3.sle.jvmmodel
 
 import com.google.inject.Inject
+import com.google.inject.Singleton
 
 import java.util.List
 
@@ -12,18 +13,26 @@ import org.eclipse.xtext.common.types.JvmFormalParameter
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmTypeReference
 
-import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
 import org.eclipse.xtext.xbase.typesystem.references.LightweightTypeReference
 import org.eclipse.xtext.xbase.typesystem.references.StandardTypeReferenceOwner
 
 import org.eclipse.xtext.xbase.typesystem.util.CommonTypeComputationServices
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
+import org.eclipse.emf.ecore.resource.ResourceSet
 
-class JvmModelInferrerHelper extends AbstractModelInferrer
+@Singleton
+class JvmModelInferrerHelper
 {
+	@Inject JvmTypeReferenceBuilder$Factory builderFactory
+	@Inject extension JvmTypeReferenceBuilder builder
 	@Inject extension JvmTypesBuilder
 	@Inject CommonTypeComputationServices services
+
+	def void setContext(ResourceSet rs) {
+		builder = builderFactory.create(rs)
+	}
 
 	/*--- Getters / Setters  ---*/
 	def JvmOperation toGetterSignature(EStructuralFeature f, String name, JvmTypeReference type) {
