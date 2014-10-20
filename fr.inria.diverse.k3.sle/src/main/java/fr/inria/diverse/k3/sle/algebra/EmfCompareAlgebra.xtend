@@ -21,11 +21,11 @@ class EmfCompareAlgebra implements ModelTypeAlgebra
 	@Inject MatchingHelper matchingHelper
 
 	override isSubtypeOf(ModelType mt1, ModelType mt2) {
-		matchingHelper.match(mt1.pkgs, mt2.pkgs)
+		return matchingHelper.match(mt1.pkgs, mt2.pkgs)
 	}
 
 	override isTypedBy(Metamodel mm, ModelType mt) {
-		mm.exactType.isSubtypeOf(mt)
+		return mm.exactType.isSubtypeOf(mt)
 	}
 
 	override weaveAspect(Metamodel mm, Aspect aspect) {
@@ -36,7 +36,7 @@ class EmfCompareAlgebra implements ModelTypeAlgebra
 		]
 
 		val scope = new DefaultComparisonScope(aspect, base, null)
-		val comparison = EMFCompare.builder.build.compare(scope)
+		val comparison = EMFCompare.builder().build.compare(scope)
 
 		val mergedDiffs = comparison.differences.filter[
 			   kind == DifferenceKind.ADD

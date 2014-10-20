@@ -7,13 +7,10 @@ import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
 import fr.inria.diverse.k3.sle.metamodel.k3sle.XbaseTransformation
 
 import java.util.Collections
-import java.util.Comparator
 
 import org.apache.log4j.Logger
 
 import org.eclipse.emf.common.util.URI
-
-import org.eclipse.emf.ecore.EClass
 
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
@@ -22,7 +19,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 import java.io.IOException
-import org.eclipse.emf.ecore.EOperation
 
 class ASTHelper
 {
