@@ -44,7 +44,7 @@ class MetaclassAdapterInferrer
 		//task.start
 
 		acceptor.accept(mm.toClass(mm.adapterNameFor(superType, cls)))
-		.initializeLater[jvmCls |
+		[jvmCls |
 			cls.ETypeParameters.forEach[p |
 				jvmCls.typeParameters += TypesFactory::eINSTANCE.createJvmTypeParameter => [name = p.name]
 			]

@@ -28,7 +28,7 @@ class TransformationInferrer
 		task.start
 
 		acceptor.accept(transfo.toClass(transfo.className.toString))
-		.initializeLater[
+		[
 			val returnType = transfo.returnTypeRef ?: transfo.newTypeRef(Void.TYPE)
 
 			members += transfo.toMethod("call", returnType)[

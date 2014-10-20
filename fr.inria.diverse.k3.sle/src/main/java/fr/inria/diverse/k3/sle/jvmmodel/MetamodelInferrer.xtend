@@ -36,7 +36,7 @@ class MetamodelInferrer
 		task.start
 
 		acceptor.accept(mm.toClass(mm.fullyQualifiedName.normalize.toString))
-		.initializeLater[
+		[
 			members += mm.toField("resource",  mm.newTypeRef(Resource))
 			members += mm.toGetter("resource", mm.newTypeRef(Resource))
 			members += mm.toSetter("resource", mm.newTypeRef(Resource))
@@ -77,7 +77,7 @@ class MetamodelInferrer
 
 			val adapFactName = mm.getAdaptersFactoryNameFor(mt)
 			acceptor.accept(mm.toClass(adapFactName))
-			.initializeLater[
+			[
 				members += mm.toField("instance", mm.newTypeRef(adapFactName))[static = true]
 
 				members += mm.toMethod("getInstance", mm.newTypeRef(adapFactName))[

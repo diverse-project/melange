@@ -39,7 +39,7 @@ class InheritanceAdapterInferrer
 			val inCls = mm.allClasses.findFirst[name == cls.name]
 
 			acceptor.accept(mm.toClass(mm.adapterNameFor(superMM, cls)))
-			.initializeLater[jvmCls |
+			[jvmCls |
 				jvmCls.superTypes += mm.newTypeRef(superMM.getFqnFor(cls))
 				jvmCls.superTypes += mm.newTypeRef(EObjectAdapter, mm.newTypeRef(inCls, #[jvmCls]))
 

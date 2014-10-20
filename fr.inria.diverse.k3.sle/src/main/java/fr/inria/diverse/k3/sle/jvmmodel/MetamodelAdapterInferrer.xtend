@@ -42,7 +42,7 @@ class MetamodelAdapterInferrer
 		task.start
 
 		acceptor.accept(mm.toClass(mm.factoryAdapterNameFor(superType)))
-		.initializeLater[
+		[
 			superTypes += mm.newTypeRef(superType.factoryName)
 
 			members += mm.toField("adaptersFactory", mm.newTypeRef(mm.getAdaptersFactoryNameFor(superType)))[
@@ -74,7 +74,7 @@ class MetamodelAdapterInferrer
 		]
 
 		acceptor.accept(mm.toClass(mm.adapterNameFor(superType)))
-		.initializeLater[
+		[
 			superTypes += mm.newTypeRef(GenericAdapter, mm.newTypeRef(Resource))
 			superTypes += mm.newTypeRef(superType.fullyQualifiedName.toString)
 
