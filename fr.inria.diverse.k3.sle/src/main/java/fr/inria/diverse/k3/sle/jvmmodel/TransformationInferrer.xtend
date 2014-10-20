@@ -30,7 +30,7 @@ class TransformationInferrer extends AbstractModelInferrer
 
 		acceptor.accept(transfo.toClass(transfo.className.toString))
 		[
-			val returnType = transfo.returnTypeRef ?: typeRef(Void.TYPE)
+			val returnType = transfo.returnTypeRef ?: Void::TYPE.typeRef
 
 			members += transfo.toMethod("call", returnType)[
 				^static = true
@@ -43,10 +43,10 @@ class TransformationInferrer extends AbstractModelInferrer
 			]
 
 			if (transfo.main) {
-				members += transfo.toMethod("main", typeRef(Void.TYPE))[
+				members += transfo.toMethod("main", Void::TYPE.typeRef)[
 					^static = true
 
-					parameters += transfo.toParameter("args", typeRef(String).addArrayTypeDimension)
+					parameters += transfo.toParameter("args", String.typeRef.addArrayTypeDimension)
 
 					val root = transfo.eContainer as ModelTypingSpace
 

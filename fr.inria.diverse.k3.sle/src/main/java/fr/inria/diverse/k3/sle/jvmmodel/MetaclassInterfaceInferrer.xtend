@@ -38,8 +38,7 @@ class MetaclassInterfaceInferrer extends AbstractModelInferrer
 			]
 
 			cls.EGenericSuperTypes.forEach[sup |
-				intf.superTypes += typeRef(
-					mt.interfaceNameFor(sup.EClassifier as EClass),
+				intf.superTypes += mt.interfaceNameFor(sup.EClassifier as EClass).typeRef(
 					sup.ETypeArguments.map[arg | mt.typeRef(arg, #[intf])]
 				)
 			]
@@ -64,7 +63,7 @@ class MetaclassInterfaceInferrer extends AbstractModelInferrer
 				val refName = if (!mt.isUml(cls)) ref.name else ref.formatUmlReferenceName
 
 				if (ref.isEMFMapDetails) // Special case: EMF Map$Entry
-					intf.members += ref.toMethod("getDetails", typeRef(EMap, typeRef(String), typeRef(String)))[^abstract = true]
+					intf.members += ref.toMethod("getDetails", EMap.typeRef(String.typeRef, String.typeRef))[^abstract = true]
 				else
 					intf.members += if (!mt.isUml(cls)) ref.toGetterSignature(refName, refType) else ref.toUmlGetterSignature(refName, refType)
 

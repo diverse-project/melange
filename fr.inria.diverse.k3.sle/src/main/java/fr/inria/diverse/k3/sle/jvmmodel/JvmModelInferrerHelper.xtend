@@ -12,18 +12,17 @@ import org.eclipse.xtext.common.types.JvmFormalParameter
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmTypeReference
 
+import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
-import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
 import org.eclipse.xtext.xbase.typesystem.references.LightweightTypeReference
 import org.eclipse.xtext.xbase.typesystem.references.StandardTypeReferenceOwner
 
 import org.eclipse.xtext.xbase.typesystem.util.CommonTypeComputationServices
 
-class JvmModelInferrerHelper
+class JvmModelInferrerHelper extends AbstractModelInferrer
 {
 	@Inject extension JvmTypesBuilder
-	@Inject extension JvmTypeReferenceBuilder
 	@Inject CommonTypeComputationServices services
 
 	/*--- Getters / Setters  ---*/
@@ -59,7 +58,7 @@ class JvmModelInferrerHelper
 	}
 
 	def JvmOperation toUnsetter(EStructuralFeature f, String name) {
-		val s = f.toMethod("unset" + name.toFirstUpper, typeRef(Void.TYPE))[
+		val s = f.toMethod("unset" + name.toFirstUpper, Void::TYPE.typeRef)[
 			body = '''
 				adaptee.unset«name.toFirstUpper»() ;
 			'''
@@ -69,7 +68,7 @@ class JvmModelInferrerHelper
 	}
 
 	def JvmOperation toUnsetterCheck(EStructuralFeature f, String name) {
-		val s = f.toMethod("isSet" + name.toFirstUpper, typeRef(Boolean.TYPE))[
+		val s = f.toMethod("isSet" + name.toFirstUpper, Boolean::TYPE.typeRef)[
 			body = '''
 				return adaptee.isSet«name.toFirstUpper»() ;
 			'''

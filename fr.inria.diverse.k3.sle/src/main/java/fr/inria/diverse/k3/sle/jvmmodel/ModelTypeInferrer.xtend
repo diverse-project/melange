@@ -39,25 +39,25 @@ class ModelTypeInferrer extends AbstractModelInferrer
 		task.start
 
 		acceptor.accept(mt.toInterface(mt.fullyQualifiedName.toString)[
-			superTypes += typeRef(IModelType)
+			superTypes += IModelType.typeRef
 
-			members += mt.toMethod("getContents", typeRef(List, typeRef(Object)))[
+			members += mt.toMethod("getContents", List.typeRef(Object.typeRef))[
 				^abstract = true
 			]
 
-			members += mt.toMethod("getFactory", typeRef(mt.factoryName))[
+			members += mt.toMethod("getFactory", mt.factoryName.typeRef)[
 				^abstract = true
 			]
 
-			members += mt.toMethod("save", typeRef(Void.TYPE))[
-				parameters += mt.toParameter("uri", typeRef(String))
+			members += mt.toMethod("save", Void::TYPE.typeRef)[
+				parameters += mt.toParameter("uri", String.typeRef)
 
-				exceptions += typeRef(java.io.IOException)
+				exceptions += java.io.IOException.typeRef
 			]
 		])
 
 		acceptor.accept(mt.toInterface(mt.factoryName)[
-			superTypes += typeRef(IFactory)
+			superTypes += IFactory.typeRef
 
 			mt.allClasses.filter[instantiable].forEach[cls |
 				members += mt.toMethod("create" + cls.name, null)[m |

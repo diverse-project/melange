@@ -26,13 +26,12 @@ import org.eclipse.xtext.common.types.TypesFactory
 
 import org.eclipse.xtext.common.types.util.TypeReferences
 
-import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
+import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 
-class K3SLETypesBuilder
+class K3SLETypesBuilder extends AbstractModelInferrer
 {
 	@Inject extension EcoreExtensions
 	@Inject extension ModelTypeExtensions
-	@Inject extension JvmTypeReferenceBuilder
 	@Inject extension NamingHelper
 	@Inject TypeReferences typeReferences
 
@@ -44,12 +43,12 @@ class K3SLETypesBuilder
 				case f.EType !== null:
 					ctx.typeRef(f.EType, decl)
 				EOperation:
-					typeRef(Void.TYPE)
+					Void::TYPE.typeRef
 				default:
-					typeRef(Object)
+					Object.typeRef
 			}
 
-		return if (f.many) typeRef(List, baseType) else baseType
+		return if (f.many) List.typeRef(baseType) else baseType
 	}
 
 	def dispatch JvmTypeReference typeRef(ModelType ctx, EGenericType t, Iterable<JvmTypeParameterDeclarator> decl) {
@@ -57,8 +56,7 @@ class K3SLETypesBuilder
 			if (t.ETypeParameter !== null)
 				decl.createTypeParameterReference(t.ETypeParameter.name)
 			else if (!t.ETypeArguments.empty)
-				typeRef(
-					ctx.getFqnFor(t.EClassifier),
+				ctx.getFqnFor(t.EClassifier).typeRef(
 					t.ETypeArguments.map[ta |
 						if (ta.EClassifier !== null)
 							// FIXME: Generic types can not be abstracted for now
@@ -66,7 +64,7 @@ class K3SLETypesBuilder
 							//
 							//typeRef(ta.EClassifier, decl)
 							if (ctx.isExtracted)
-								typeRef(ctx.extracted.getFqnFor(ta.EClassifier))
+								ctx.extracted.getFqnFor(ta.EClassifier).typeRef
 							else
 								ctx.typeRef(ta.EClassifier, decl)
 						else if (ta.ETypeParameter !== null)
@@ -78,35 +76,34 @@ class K3SLETypesBuilder
 			else if (t.EClassifier !== null)
 				ctx.typeRef(t.EClassifier, decl)
 			else
-				typeRef(Object)
+				Object.typeRef
 	}
 
 	def dispatch JvmTypeReference typeRef(ModelType ctx, EClassifier cls, Iterable<JvmTypeParameterDeclarator> decl) {
 		return
 			switch (cls) {
 				case null:
-					typeRef(Object)
+					Object.typeRef
 				EClass:
 					if (!cls.ETypeParameters.empty)
-						typeRef(
-							ctx.interfaceNameFor(cls),
+						ctx.interfaceNameFor(cls).typeRef(
 							cls.ETypeParameters.map[p | decl.createTypeParameterReference(p.name)]
 						)
 					else if (cls.abstractable)
-						typeRef(ctx.interfaceNameFor(cls))
+						ctx.interfaceNameFor(cls).typeRef
 					else if (cls.instanceClass !== null)
-						typeRef(cls.instanceClass.name)
+						cls.instanceClass.name.typeRef
 					else if (cls.instanceTypeName !== null)
-						typeRef(cls.instanceTypeName)
+						cls.instanceTypeName.typeRef
 				EEnum:
-					typeRef(ctx.getFqnFor(cls))
+					ctx.getFqnFor(cls).typeRef
 				EDataType:
 					if (cls.instanceClass !== null)
-						typeRef(cls.instanceClass.name)
+						cls.instanceClass.name.typeRef
 					else if (cls.instanceTypeName !== null)
-						typeRef(cls.instanceTypeName)
+						cls.instanceTypeName.typeRef
 				default:
-					typeRef(Object)
+					Object.typeRef
 			}
 	}
 
@@ -114,28 +111,27 @@ class K3SLETypesBuilder
 		return
 			switch (cls) {
 				case null:
-					typeRef(Object)
+					Object.typeRef
 				EClass:
 					if (!cls.ETypeParameters.empty)
-						typeRef(
-							ctx.getFqnFor(cls),
+						ctx.getFqnFor(cls).typeRef(
 							cls.ETypeParameters.map[p | decl.createTypeParameterReference(p.name)]
 						)
 					else if (cls.abstractable)
-						typeRef(ctx.getFqnFor(cls))
+						ctx.getFqnFor(cls).typeRef
 					else if (cls.instanceClass !== null)
-						typeRef(cls.instanceClass.name)
+						cls.instanceClass.name.typeRef
 					else if (cls.instanceTypeName !== null)
-						typeRef(cls.instanceTypeName)
+						cls.instanceTypeName.typeRef
 				EEnum:
-					typeRef(ctx.getFqnFor(cls))
+					ctx.getFqnFor(cls).typeRef
 				EDataType:
 					if (cls.instanceClass !== null)
-						typeRef(cls.instanceClass.name)
+						cls.instanceClass.name.typeRef
 					else if (cls.instanceTypeName !== null)
-						typeRef(cls.instanceTypeName)
+						cls.instanceTypeName.typeRef
 				default:
-					typeRef(Object)
+					Object.typeRef
 			}
 	}
 
@@ -143,23 +139,23 @@ class K3SLETypesBuilder
 		return
 			switch (cls) {
 				case null:
-					typeRef(Object)
+					Object.typeRef
 				EClass:
 					if (cls.abstractable)
-						typeRef(ctx.adapterNameFor(sup, cls))
+						ctx.adapterNameFor(sup, cls).typeRef
 					else if (cls.instanceClass !== null)
-						typeRef(cls.instanceClass.name)
+						cls.instanceClass.name.typeRef
 					else if (cls.instanceTypeName !== null)
-						typeRef(cls.instanceTypeName)
+						cls.instanceTypeName.typeRef
 				EEnum:
-					typeRef(sup.getFqnFor(cls))
+					sup.getFqnFor(cls).typeRef
 				EDataType:
 					if (cls.instanceClass !== null)
-						typeRef(cls.instanceClass.name)
+						cls.instanceClass.name.typeRef
 					else if (cls.instanceTypeName !== null)
-						typeRef(cls.instanceTypeName)
+						cls.instanceTypeName.typeRef
 				default:
-					typeRef(Object)
+					Object.typeRef
 			}
 	}
 

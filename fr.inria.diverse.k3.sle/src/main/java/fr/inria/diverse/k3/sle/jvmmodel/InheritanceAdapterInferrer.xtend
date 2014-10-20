@@ -41,8 +41,8 @@ class InheritanceAdapterInferrer extends AbstractModelInferrer
 
 			acceptor.accept(mm.toClass(mm.adapterNameFor(superMM, cls)))
 			[jvmCls |
-				jvmCls.superTypes += typeRef(superMM.getFqnFor(cls))
-				jvmCls.superTypes += typeRef(EObjectAdapter, mm.typeRef(inCls, #[jvmCls]))
+				jvmCls.superTypes += superMM.getFqnFor(cls).typeRef
+				jvmCls.superTypes += EObjectAdapter.typeRef(mm.typeRef(inCls, #[jvmCls]))
 
 				jvmCls.members += mm.toField("adaptee",  mm.typeRef(cls, #[jvmCls]))
 				jvmCls.members += mm.toGetter("adaptee", mm.typeRef(cls, #[jvmCls]))
@@ -51,20 +51,20 @@ class InheritanceAdapterInferrer extends AbstractModelInferrer
 				cls.EAllAttributes.forEach[attr |
 					val baseType =
 						if (attr.EAttributeType?.instanceClass !== null)
-							typeRef(attr.EAttributeType.instanceClass.name)
+							attr.EAttributeType.instanceClass.name.typeRef
 						else if (attr.EAttributeType !== null && attr.EAttributeType instanceof EEnum)
-							typeRef(superMM.getFqnFor(attr.EAttributeType))
+							superMM.getFqnFor(attr.EAttributeType).typeRef
 						else
-							typeRef(superMM.getFqnFor(inCls))
+							superMM.getFqnFor(inCls).typeRef
 
-					val returnType = if (attr.many) typeRef(EList, baseType) else baseType
+					val returnType = if (attr.many) EList.typeRef(baseType) else baseType
 
 					jvmCls.members += attr.toMethod(attr.getterName, returnType)[
 						body = '''return adaptee.«attr.getterName»() ;'''
 					]
 
 					if (attr.needsSetter)
-						jvmCls.members += attr.toMethod(attr.setterName, typeRef(Void::TYPE))[
+						jvmCls.members += attr.toMethod(attr.setterName,Void::TYPE.typeRef)[
 							parameters += attr.toParameter("o", baseType)
 							body = '''adaptee.«attr.setterName»(o) ;'''
 						]
@@ -81,12 +81,12 @@ class InheritanceAdapterInferrer extends AbstractModelInferrer
 					val adapName = mm.adapterNameFor(superMM, ref.EReferenceType)
 					val baseType =
 						if (ref.EReferenceType.instanceClass === null)
-							typeRef(superMM.getFqnFor(ref.EReferenceType))
+							superMM.getFqnFor(ref.EReferenceType).typeRef
 						else
-							typeRef(ref.EReferenceType.instanceClass.name)
+							ref.EReferenceType.instanceClass.name.typeRef
 
 					if (ref.many)
-						jvmCls.members += ref.toMethod(ref.getterName, typeRef(EList, baseType))[
+						jvmCls.members += ref.toMethod(ref.getterName, EList.typeRef(baseType))[
 							body = '''
 								«IF ref.EReferenceType.instanceClass !== null»
 								return adaptee.«ref.getterName»() ;
@@ -109,8 +109,8 @@ class InheritanceAdapterInferrer extends AbstractModelInferrer
 							]
 
 						if (ref.needsSetter)
-							jvmCls.members += ref.toMethod(ref.setterName, typeRef(Void::TYPE))[
-									parameters += ref.toParameter("o", typeRef(superMM.getFqnFor(ref.EReferenceType)))
+							jvmCls.members += ref.toMethod(ref.setterName, Void::TYPE.typeRef)[
+									parameters += ref.toParameter("o", superMM.getFqnFor(ref.EReferenceType).typeRef)
 									body = '''
 										adaptee.«ref.setterName»(((«adapName») o).getAdaptee()) ;
 									'''
@@ -125,8 +125,8 @@ class InheritanceAdapterInferrer extends AbstractModelInferrer
 				]
 
 				cls.EAllOperations.filter[!isAspectSpecific].forEach[op |
-					val baseType = if (op.EType !== null) typeRef(superMM.getFqnFor(op.EType)) else typeRef(Void.TYPE)
-					val realType = if (op.many) typeRef(EList, baseType) else baseType
+					val baseType = if (op.EType !== null) superMM.getFqnFor(op.EType).typeRef else Void::TYPE.typeRef
+					val realType = if (op.many) EList.typeRef(baseType) else baseType
 					val opName = if (!mm.isUml(op.EContainingClass)) op.name else op.formatUmlOperationName
 
 					jvmCls.members += op.toMethod(opName, realType)[
@@ -135,11 +135,10 @@ class InheritanceAdapterInferrer extends AbstractModelInferrer
 						op.EParameters.forEach[p, i |
 							val pType =
 							if (p.EGenericType !== null && p.EGenericType.ETypeArguments.size > 0)
-								typeRef(
-									superMM.getFqnFor(p.EGenericType?.EClassifier),
+								superMM.getFqnFor(p.EGenericType?.EClassifier).typeRef(
 									p.EGenericType.ETypeArguments.map[
 										if (EClassifier !== null)
-											typeRef(superMM.getFqnFor(EClassifier))
+											superMM.getFqnFor(EClassifier).typeRef
 										else
 											TypesFactory.eINSTANCE.createJvmWildcardTypeReference
 									]

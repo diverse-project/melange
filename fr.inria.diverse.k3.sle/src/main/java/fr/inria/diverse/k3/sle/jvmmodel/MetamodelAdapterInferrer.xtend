@@ -42,14 +42,14 @@ class MetamodelAdapterInferrer extends AbstractModelInferrer
 
 		acceptor.accept(mm.toClass(mm.factoryAdapterNameFor(superType)))
 		[
-			superTypes += typeRef(superType.factoryName)
+			superTypes += superType.factoryName.typeRef
 
-			members += mm.toField("adaptersFactory", typeRef(mm.getAdaptersFactoryNameFor(superType)))[
+			members += mm.toField("adaptersFactory", mm.getAdaptersFactoryNameFor(superType).typeRef)[
 				initializer = '''«mm.getAdaptersFactoryNameFor(superType)».getInstance()'''
 			]
 
 			mm.pkgs.forEach[pkg |
-				members += mm.toField(pkg.nsPrefix + "Adaptee", typeRef(mm.getFactoryFqnFor(pkg)))[
+				members += mm.toField(pkg.nsPrefix + "Adaptee", mm.getFactoryFqnFor(pkg).typeRef)[
 					initializer = '''«mm.getFactoryFqnFor(pkg)».eINSTANCE'''
 				]
 			]
@@ -74,18 +74,18 @@ class MetamodelAdapterInferrer extends AbstractModelInferrer
 
 		acceptor.accept(mm.toClass(mm.adapterNameFor(superType)))
 		[
-			superTypes += typeRef(GenericAdapter, typeRef(Resource))
-			superTypes += typeRef(superType.fullyQualifiedName.toString)
+			superTypes += GenericAdapter.typeRef(Resource.typeRef)
+			superTypes += superType.fullyQualifiedName.toString.typeRef
 
-			members += mm.toField("adaptee",  typeRef(Resource))
-			members += mm.toGetter("adaptee", typeRef(Resource))
-			members += mm.toSetter("adaptee", typeRef(Resource))
+			members += mm.toField("adaptee",  Resource.typeRef)
+			members += mm.toGetter("adaptee", Resource.typeRef)
+			members += mm.toSetter("adaptee", Resource.typeRef)
 
-			members += mm.toField("adaptersFactory", typeRef(mm.getAdaptersFactoryNameFor(superType)))[
+			members += mm.toField("adaptersFactory", mm.getAdaptersFactoryNameFor(superType).typeRef)[
 				initializer = '''«mm.getAdaptersFactoryNameFor(superType)».getInstance()'''
 			]
 
-			members += mm.toMethod("getContents", typeRef(List, typeRef(Object)))[
+			members += mm.toMethod("getContents", List.typeRef(Object.typeRef))[
 				body = '''
 						java.util.List<java.lang.Object> ret = new java.util.ArrayList<java.lang.Object>() ;
 
@@ -101,21 +101,21 @@ class MetamodelAdapterInferrer extends AbstractModelInferrer
 					'''
 			]
 
-			members += mm.toMethod("getFactory", typeRef(superType.factoryName))[
+			members += mm.toMethod("getFactory", superType.factoryName.typeRef)[
 				body = '''
 						return new «mm.factoryAdapterNameFor(superType)»() ;
 					'''
 			]
 
-			members += mm.toMethod("save", typeRef(Void.TYPE))[
-				parameters += mm.toParameter("uri", typeRef(String))
+			members += mm.toMethod("save", Void::TYPE.typeRef)[
+				parameters += mm.toParameter("uri", String.typeRef)
 
 				body = '''
 					this.adaptee.setURI(org.eclipse.emf.common.util.URI.createURI(uri));
 					this.adaptee.save(null);
 				'''
 
-				exceptions += typeRef(java.io.IOException)
+				exceptions += java.io.IOException.typeRef
 			]
 		]
 

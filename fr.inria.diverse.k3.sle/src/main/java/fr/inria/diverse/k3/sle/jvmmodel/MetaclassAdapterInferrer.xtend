@@ -50,7 +50,7 @@ class MetaclassAdapterInferrer extends AbstractModelInferrer
 				jvmCls.typeParameters += TypesFactory::eINSTANCE.createJvmTypeParameter => [name = p.name]
 			]
 
-			jvmCls.superTypes += typeRef(GenericAdapter, mm.typeRef(mmCls, #[jvmCls]))
+			jvmCls.superTypes += GenericAdapter.typeRef(mm.typeRef(mmCls, #[jvmCls]))
 			jvmCls.superTypes += superType.typeRef(cls, #[jvmCls])
 
 			// TODO: Generic super types
@@ -63,7 +63,7 @@ class MetaclassAdapterInferrer extends AbstractModelInferrer
 			jvmCls.members += mm.toGetter("adaptee", mm.typeRef(mmCls, #[jvmCls]))
 			jvmCls.members += mm.toSetter("adaptee", mm.typeRef(mmCls, #[jvmCls]))
 
-			jvmCls.members += mm.toField("adaptersFactory", typeRef(mm.getAdaptersFactoryNameFor(superType)))[
+			jvmCls.members += mm.toField("adaptersFactory", mm.getAdaptersFactoryNameFor(superType).typeRef)[
 				initializer = '''«mm.getAdaptersFactoryNameFor(superType)».getInstance()'''
 			]
 
@@ -79,7 +79,7 @@ class MetaclassAdapterInferrer extends AbstractModelInferrer
 				]
 
 				if (attr.needsSetter) {
-					jvmCls.members += attr.toMethod(setterName, typeRef(Void.TYPE))[
+					jvmCls.members += attr.toMethod(setterName, Void::TYPE.typeRef)[
 						parameters += attr.toParameter("o", attrType)
 						body = '''
 							adaptee.«setterName»(o) ;
@@ -101,7 +101,7 @@ class MetaclassAdapterInferrer extends AbstractModelInferrer
 				val setterName = ref.setterName
 
 				if (ref.isEMFMapDetails) // Special case: EMF Map$Entry
-					jvmCls.members += ref.toMethod("getDetails", typeRef(EMap, typeRef(String), typeRef(String)))[
+					jvmCls.members += ref.toMethod("getDetails", EMap.typeRef(String.typeRef, String.typeRef))[
 						body = '''return adaptee.getDetails() ;'''
 					]
 				else
@@ -116,7 +116,7 @@ class MetaclassAdapterInferrer extends AbstractModelInferrer
 					]
 
 				if (ref.needsSetter) {
-					jvmCls.members += ref.toMethod(setterName, typeRef(Void.TYPE))[
+					jvmCls.members += ref.toMethod(setterName, Void::TYPE.typeRef)[
 						parameters += ref.toParameter("o", refType)
 
 						body = '''

@@ -38,14 +38,14 @@ class MetamodelInferrer extends AbstractModelInferrer
 
 		acceptor.accept(mm.toClass(mm.fullyQualifiedName.normalize.toString))
 		[
-			members += mm.toField("resource",  typeRef(Resource))
-			members += mm.toGetter("resource", typeRef(Resource))
-			members += mm.toSetter("resource", typeRef(Resource))
+			members += mm.toField("resource",  Resource.typeRef)
+			members += mm.toGetter("resource", Resource.typeRef)
+			members += mm.toSetter("resource", Resource.typeRef)
 
 			mm.^implements.forEach[mt |
 				val adapName = mm.adapterNameFor(mt)
 
-				members += mm.toMethod("to" + mt.name, typeRef(mt.fullyQualifiedName.toString))[
+				members += mm.toMethod("to" + mt.name, mt.fullyQualifiedName.toString.typeRef)[
 					body = '''
 						«adapName» adaptee = new «adapName»() ;
 						adaptee.setAdaptee(resource) ;
@@ -53,9 +53,9 @@ class MetamodelInferrer extends AbstractModelInferrer
 					'''
 				]
 
-				members += mm.toMethod("load", typeRef(mm.fullyQualifiedName.normalize.toString))[
+				members += mm.toMethod("load", mm.fullyQualifiedName.normalize.toString.typeRef)[
 					^static = true
-					parameters += mm.toParameter("uri", typeRef(String))
+					parameters += mm.toParameter("uri", String.typeRef)
 
 					body = '''
 						org.eclipse.emf.ecore.resource.ResourceSet rs = new org.eclipse.emf.ecore.resource.impl.ResourceSetImpl() ;
@@ -79,9 +79,9 @@ class MetamodelInferrer extends AbstractModelInferrer
 			val adapFactName = mm.getAdaptersFactoryNameFor(mt)
 			acceptor.accept(mm.toClass(adapFactName))
 			[
-				members += mm.toField("instance", typeRef(adapFactName))[static = true]
+				members += mm.toField("instance", adapFactName.typeRef)[static = true]
 
-				members += mm.toMethod("getInstance", typeRef(adapFactName))[
+				members += mm.toMethod("getInstance", adapFactName.typeRef)[
 					static = true
 					body = '''
 						if (instance == null) {
@@ -94,8 +94,8 @@ class MetamodelInferrer extends AbstractModelInferrer
 				mt.allClasses.filter[abstractable].forEach[cls |
 					val adapName = mm.adapterNameFor(mt, cls)
 
-					members += mm.toMethod('''create«cls.name»Adapter''', typeRef(adapName))[
-						parameters += mm.toParameter("adaptee", typeRef(mm.getFqnFor(cls)))
+					members += mm.toMethod('''create«cls.name»Adapter''', adapName.typeRef)[
+						parameters += mm.toParameter("adaptee", mm.getFqnFor(cls).typeRef)
 
 						body = '''
 							«adapName» adap = new «adapName»() ;
