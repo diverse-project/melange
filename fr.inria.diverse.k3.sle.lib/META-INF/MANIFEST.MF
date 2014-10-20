@@ -16,7 +16,5 @@ Require-Bundle: org.eclipse.xtend.lib,
  fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version="3.0.0",
  com.google.inject;bundle-version="3.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: fr.inria.diverse.k3.sle.lib,
- fr.inria.diverse.k3.sle.lib.footprint.metamodel,
- fr.inria.diverse.k3.sle.lib.footprint.model
+Export-Package: fr.inria.diverse.k3.sle.lib
 
