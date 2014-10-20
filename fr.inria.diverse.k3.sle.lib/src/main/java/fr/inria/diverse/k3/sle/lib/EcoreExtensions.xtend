@@ -3,7 +3,6 @@ package fr.inria.diverse.k3.sle.lib
 import com.google.inject.Inject
 
 import java.util.ArrayList
-import java.util.Comparator
 import java.util.List
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
@@ -23,7 +22,6 @@ import org.eclipse.emf.ecore.EcoreFactory
 import org.eclipse.emf.ecore.EcorePackage
 
 import org.eclipse.emf.ecore.util.EcoreUtil
-import java.util.Collections
 
 class EcoreExtensions
 {
@@ -34,51 +32,34 @@ class EcoreExtensions
 	}
 
 	def Iterable<EClass> sortByClassInheritance(Iterable<EClass> classes) {
-		Collections.sort(classes.toList, new Comparator<EClass>() {
-			override compare(EClass clsA, EClass clsB) {
-				if (clsA.EAllSuperTypes.contains(clsB))
-					return -1
-				else if (clsB.EAllSuperTypes.contains(clsA))
-					return 1
-				else
-					return 0
-			}
-
-			override equals(Object obj) {
-				return false
-			}
-		})
-
-		return classes
+		return classes.sortWith[clsA, clsB |
+			if (clsA.EAllSuperTypes.contains(clsB))
+				return -1
+			else if (clsB.EAllSuperTypes.contains(clsA))
+				return 1
+			else
+				return 0
+		]
 	}
 
-	// FIXME: Temporarily disabled
 	def Iterable<EOperation> sortByOverridingPriority(Iterable<EOperation> ops) {
-		Collections.sort(ops.toList, new Comparator<EOperation>() {
-			override compare(EOperation opA, EOperation opB) {
-				val retA = opA.EType
-				val retB = opB.EType
+		return ops.sortWith[opA, opB |
+			val retA = opA.EType
+			val retB = opB.EType
 
-				if (retA instanceof EClass) {
-					if (!(retB instanceof EClass))
-						return 1
-					else if (retA.EAllSuperTypes.contains(retB))
-						return -1
-				} else {
-					if (retB instanceof EClass)
-						return -1
-					else return 1
-				}
-
-				return 0
+			if (retA instanceof EClass) {
+				if (!(retB instanceof EClass))
+					return 1
+				else if (retA.EAllSuperTypes.contains(retB))
+					return -1
+			} else {
+				if (retB instanceof EClass)
+					return -1
+				else return 1
 			}
 
-			override equals(Object obj) {
-				return false
-			}
-		})
-
-		return ops
+			return 0
+		]
 	}
 
 	def EClass findClass(EPackage pkg, String clsName) {
