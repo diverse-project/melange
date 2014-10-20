@@ -54,7 +54,9 @@ class K3SLEDerivedStateComputer extends JvmModelAssociator
 
 		// Pre-inferring processors
 		val root = resource.contents.head as ModelTypingSpace
-		processors.forEach[preProcess(root)]
+
+		if (root !== null)
+			processors.forEach[preProcess(root)]
 
 		// Setting context for non-inferrer helper classes
 		builder.setContext(resource.resourceSet)
