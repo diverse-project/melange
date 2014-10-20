@@ -15,10 +15,8 @@ import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
-import org.eclipse.xtext.xbase.typesystem.legacy.StandardTypeReferenceOwner
-
 import org.eclipse.xtext.xbase.typesystem.references.LightweightTypeReference
-import org.eclipse.xtext.xbase.typesystem.references.OwnedConverter
+import org.eclipse.xtext.xbase.typesystem.references.StandardTypeReferenceOwner
 
 import org.eclipse.xtext.xbase.typesystem.util.CommonTypeComputationServices
 
@@ -102,8 +100,7 @@ class JvmModelInferrerHelper
 	}
 
 	def LightweightTypeReference toLightweightTypeReference(JvmTypeReference typeRef, Resource context) {
-		val converter = new OwnedConverter(new StandardTypeReferenceOwner(services, context))
-		return converter.toLightweightReference(typeRef)
+		return new StandardTypeReferenceOwner(services, context).toLightweightTypeReference(typeRef)
 	}
 
 	def boolean parameterEquals(List<JvmFormalParameter> p1, List<JvmFormalParameter> p2) {
