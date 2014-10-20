@@ -5,7 +5,6 @@ import com.google.inject.Inject
 import fr.inria.diverse.k3.sle.ast.ASTCompleter
 import fr.inria.diverse.k3.sle.ast.ASTHelper
 import fr.inria.diverse.k3.sle.ast.ASTProcessingException
-import fr.inria.diverse.k3.sle.ast.ASTValidator
 
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
 
@@ -17,7 +16,6 @@ import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 class K3SLEJvmModelInferrer extends AbstractModelInferrer
 {
 	@Inject ASTCompleter completer
-	@Inject ASTValidator validator
 	@Inject extension ASTHelper
 	@Inject extension ModelTypeInferrer
 	@Inject extension MetamodelInferrer
