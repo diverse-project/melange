@@ -8,6 +8,9 @@
 	<name>K3SLE Root Build Manager</name>
 	
 	<modules>
+		<module>../../k3-al/fr.inria.diverse.k3.al.root</module>
+		<module>../../k3-sle.examples/fr.inria.diverse.k3.sle.examples.metamodels.root</module>
+		<module>../../k3-tools/fr.inria.diverse.k3.tools.root</module>
 		<module>../fr.inria.diverse.k3.sle.lib</module>
 		<module>../fr.inria.diverse.k3.sle.metamodel</module>
 		<module>../fr.inria.diverse.k3.sle</module>
