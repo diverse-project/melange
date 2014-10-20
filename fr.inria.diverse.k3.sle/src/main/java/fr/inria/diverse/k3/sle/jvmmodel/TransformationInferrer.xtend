@@ -13,14 +13,13 @@ import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 import org.eclipse.xtext.util.internal.Stopwatches
 
+import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
-import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
-class TransformationInferrer
+class TransformationInferrer extends AbstractModelInferrer
 {
 	@Inject extension JvmTypesBuilder
-	@Inject extension JvmTypeReferenceBuilder
 	@Inject extension IQualifiedNameProvider
 	@Inject extension ASTHelper
 	@Inject extension NamingHelper

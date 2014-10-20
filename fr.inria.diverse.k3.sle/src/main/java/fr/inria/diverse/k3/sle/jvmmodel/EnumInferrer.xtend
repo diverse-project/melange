@@ -8,10 +8,11 @@ import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
 
 import org.eclipse.emf.ecore.EEnum
 
+import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
-class EnumInferrer
+class EnumInferrer extends AbstractModelInferrer
 {
 	@Inject extension JvmTypesBuilder
 	@Inject extension NamingHelper

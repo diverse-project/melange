@@ -19,15 +19,14 @@ import org.eclipse.xtext.common.types.TypesFactory
 
 import org.eclipse.xtext.util.internal.Stopwatches
 
+import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
-import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
-class InheritanceAdapterInferrer
+class InheritanceAdapterInferrer extends AbstractModelInferrer
 {
 	@Inject extension JvmModelInferrerHelper
 	@Inject extension JvmTypesBuilder
-	@Inject extension JvmTypeReferenceBuilder
 	@Inject extension NamingHelper
 	@Inject extension MetamodelExtensions
 	@Inject extension EcoreExtensions

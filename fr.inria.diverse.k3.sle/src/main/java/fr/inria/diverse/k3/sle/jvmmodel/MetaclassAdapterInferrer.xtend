@@ -24,15 +24,14 @@ import org.eclipse.xtext.common.types.JvmMember
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.TypesFactory
 
+import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
-import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
-class MetaclassAdapterInferrer
+class MetaclassAdapterInferrer extends AbstractModelInferrer
 {
 	@Inject extension JvmModelInferrerHelper
 	@Inject extension JvmTypesBuilder
-	@Inject extension JvmTypeReferenceBuilder
 	@Inject extension NamingHelper
 	@Inject extension ModelTypeExtensions
 	@Inject extension MetamodelExtensions
