@@ -21,11 +21,13 @@ import org.eclipse.xtext.util.internal.Stopwatches
 
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
 class InheritanceAdapterInferrer
 {
 	@Inject extension JvmModelInferrerHelper
 	@Inject extension JvmTypesBuilder
+	@Inject extension JvmTypeReferenceBuilder
 	@Inject extension NamingHelper
 	@Inject extension MetamodelExtensions
 	@Inject extension EcoreExtensions
@@ -40,30 +42,30 @@ class InheritanceAdapterInferrer
 
 			acceptor.accept(mm.toClass(mm.adapterNameFor(superMM, cls)))
 			[jvmCls |
-				jvmCls.superTypes += mm.newTypeRef(superMM.getFqnFor(cls))
-				jvmCls.superTypes += mm.newTypeRef(EObjectAdapter, mm.newTypeRef(inCls, #[jvmCls]))
+				jvmCls.superTypes += typeRef(superMM.getFqnFor(cls))
+				jvmCls.superTypes += typeRef(EObjectAdapter, mm.typeRef(inCls, #[jvmCls]))
 
-				jvmCls.members += mm.toField("adaptee",  mm.newTypeRef(cls, #[jvmCls]))
-				jvmCls.members += mm.toGetter("adaptee", mm.newTypeRef(cls, #[jvmCls]))
-				jvmCls.members += mm.toSetter("adaptee", mm.newTypeRef(cls, #[jvmCls]))
+				jvmCls.members += mm.toField("adaptee",  mm.typeRef(cls, #[jvmCls]))
+				jvmCls.members += mm.toGetter("adaptee", mm.typeRef(cls, #[jvmCls]))
+				jvmCls.members += mm.toSetter("adaptee", mm.typeRef(cls, #[jvmCls]))
 
 				cls.EAllAttributes.forEach[attr |
 					val baseType =
 						if (attr.EAttributeType?.instanceClass !== null)
-							mm.newTypeRef(attr.EAttributeType.instanceClass.name)
+							typeRef(attr.EAttributeType.instanceClass.name)
 						else if (attr.EAttributeType !== null && attr.EAttributeType instanceof EEnum)
-							mm.newTypeRef(superMM.getFqnFor(attr.EAttributeType))
+							typeRef(superMM.getFqnFor(attr.EAttributeType))
 						else
-							mm.newTypeRef(superMM.getFqnFor(inCls))
+							typeRef(superMM.getFqnFor(inCls))
 
-					val returnType = if (attr.many) mm.newTypeRef(EList, baseType) else baseType
+					val returnType = if (attr.many) typeRef(EList, baseType) else baseType
 
 					jvmCls.members += attr.toMethod(attr.getterName, returnType)[
 						body = '''return adaptee.«attr.getterName»() ;'''
 					]
 
 					if (attr.needsSetter)
-						jvmCls.members += attr.toMethod(attr.setterName, mm.newTypeRef(Void::TYPE))[
+						jvmCls.members += attr.toMethod(attr.setterName, typeRef(Void::TYPE))[
 							parameters += attr.toParameter("o", baseType)
 							body = '''adaptee.«attr.setterName»(o) ;'''
 						]
@@ -80,12 +82,12 @@ class InheritanceAdapterInferrer
 					val adapName = mm.adapterNameFor(superMM, ref.EReferenceType)
 					val baseType =
 						if (ref.EReferenceType.instanceClass === null)
-							mm.newTypeRef(superMM.getFqnFor(ref.EReferenceType))
+							typeRef(superMM.getFqnFor(ref.EReferenceType))
 						else
-							mm.newTypeRef(ref.EReferenceType.instanceClass.name)
+							typeRef(ref.EReferenceType.instanceClass.name)
 
 					if (ref.many)
-						jvmCls.members += ref.toMethod(ref.getterName, mm.newTypeRef(EList, baseType))[
+						jvmCls.members += ref.toMethod(ref.getterName, typeRef(EList, baseType))[
 							body = '''
 								«IF ref.EReferenceType.instanceClass !== null»
 								return adaptee.«ref.getterName»() ;
@@ -108,8 +110,8 @@ class InheritanceAdapterInferrer
 							]
 
 						if (ref.needsSetter)
-							jvmCls.members += ref.toMethod(ref.setterName, mm.newTypeRef(Void::TYPE))[
-									parameters += ref.toParameter("o", mm.newTypeRef(superMM.getFqnFor(ref.EReferenceType)))
+							jvmCls.members += ref.toMethod(ref.setterName, typeRef(Void::TYPE))[
+									parameters += ref.toParameter("o", typeRef(superMM.getFqnFor(ref.EReferenceType)))
 									body = '''
 										adaptee.«ref.setterName»(((«adapName») o).getAdaptee()) ;
 									'''
@@ -124,8 +126,8 @@ class InheritanceAdapterInferrer
 				]
 
 				cls.EAllOperations.filter[!isAspectSpecific].forEach[op |
-					val baseType = if (op.EType !== null) op.newTypeRef(superMM.getFqnFor(op.EType)) else op.newTypeRef(Void.TYPE)
-					val realType = if (op.many) op.newTypeRef(EList, baseType) else baseType
+					val baseType = if (op.EType !== null) typeRef(superMM.getFqnFor(op.EType)) else typeRef(Void.TYPE)
+					val realType = if (op.many) typeRef(EList, baseType) else baseType
 					val opName = if (!mm.isUml(op.EContainingClass)) op.name else op.formatUmlOperationName
 
 					jvmCls.members += op.toMethod(opName, realType)[
@@ -134,17 +136,17 @@ class InheritanceAdapterInferrer
 						op.EParameters.forEach[p, i |
 							val pType =
 							if (p.EGenericType !== null && p.EGenericType.ETypeArguments.size > 0)
-								op.newTypeRef(
+								typeRef(
 									superMM.getFqnFor(p.EGenericType?.EClassifier),
 									p.EGenericType.ETypeArguments.map[
 										if (EClassifier !== null)
-											op.newTypeRef(superMM.getFqnFor(EClassifier))
+											typeRef(superMM.getFqnFor(EClassifier))
 										else
 											TypesFactory.eINSTANCE.createJvmWildcardTypeReference
 									]
 								)
 							else
-								mm.newTypeRef(superMM, p.EType)
+								mm.typeRef(superMM, p.EType)
 
 							parameters += op.toParameter(p.name, pType)
 
@@ -163,7 +165,7 @@ class InheritanceAdapterInferrer
 
 						// TODO: Manage exceptions
 						op.EExceptions.forEach[e |
-							exceptions += op.newTypeRef(if (e.instanceClass !== null) e.instanceClass.name else e.instanceTypeName)
+							exceptions += typeRef(if (e.instanceClass !== null) e.instanceClass.name else e.instanceTypeName)
 						]
 
 						// TODO: Manage generic exceptions

@@ -17,11 +17,13 @@ import org.eclipse.xtext.common.types.TypesFactory
 
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
 class MetaclassInterfaceInferrer
 {
 	@Inject extension JvmModelInferrerHelper
 	@Inject extension JvmTypesBuilder
+	@Inject extension JvmTypeReferenceBuilder
 	@Inject extension NamingHelper
 	@Inject extension ModelTypeExtensions
 	@Inject extension EcoreExtensions
@@ -37,14 +39,14 @@ class MetaclassInterfaceInferrer
 			]
 
 			cls.EGenericSuperTypes.forEach[sup |
-				intf.superTypes += mt.newTypeRef(
+				intf.superTypes += typeRef(
 					mt.interfaceNameFor(sup.EClassifier as EClass),
-					sup.ETypeArguments.map[arg | mt.newTypeRef(arg, #[intf])]
+					sup.ETypeArguments.map[arg | mt.typeRef(arg, #[intf])]
 				)
 			]
 
 			cls.EAttributes.filter[!derived].forEach[attr |
-				val attrType = mt.newTypeRef(attr, #[intf])
+				val attrType = mt.typeRef(attr, #[intf])
 
 				intf.members += if (!mt.isUml(cls)) attr.toGetterSignature(attr.name, attrType) else attr.toUmlGetterSignature(attr.name, attrType)
 
@@ -59,11 +61,11 @@ class MetaclassInterfaceInferrer
 			]
 
 			cls.EReferences.filter[!derived].forEach[ref |
-				val refType = mt.newTypeRef(ref, #[intf])
+				val refType = mt.typeRef(ref, #[intf])
 				val refName = if (!mt.isUml(cls)) ref.name else ref.formatUmlReferenceName
 
 				if (ref.isEMFMapDetails) // Special case: EMF Map$Entry
-					intf.members += ref.toMethod("getDetails", ref.newTypeRef(EMap, ref.newTypeRef(String), ref.newTypeRef(String)))[^abstract = true]
+					intf.members += ref.toMethod("getDetails", typeRef(EMap, typeRef(String), typeRef(String)))[^abstract = true]
 				else
 					intf.members += if (!mt.isUml(cls)) ref.toGetterSignature(refName, refType) else ref.toUmlGetterSignature(refName, refType)
 
@@ -94,7 +96,7 @@ class MetaclassInterfaceInferrer
 
 							if (b.EClassifier !== null) {
 								tp.constraints += TypesFactory.eINSTANCE.createJvmUpperBound => [
-									typeReference = mt.newTypeRef(b, #[m, intf])
+									typeReference = mt.typeRef(b, #[m, intf])
 								]
 							} else if (b.ETypeParameter !== null) {
 								tp.constraints += TypesFactory.eINSTANCE.createJvmUpperBound => [
@@ -105,17 +107,17 @@ class MetaclassInterfaceInferrer
 					]
 
 					op.EParameters.forEach[p |
-						m.parameters += op.toParameter(p.name, mt.newTypeRef(p, #[m, intf]))
+						m.parameters += op.toParameter(p.name, mt.typeRef(p, #[m, intf]))
 					]
 
 					op.EExceptions.forEach[e |
-						m.exceptions += mt.newTypeRef(e, #[m, intf])
+						m.exceptions += mt.typeRef(e, #[m, intf])
 					]
 
 					// TODO: Manage generic exceptions
 					op.EGenericExceptions.forEach[e |]
 				] => [m |
-					m.returnType = mt.newTypeRef(op, #[m, intf])
+					m.returnType = mt.typeRef(op, #[m, intf])
 				]
 			]
 		])

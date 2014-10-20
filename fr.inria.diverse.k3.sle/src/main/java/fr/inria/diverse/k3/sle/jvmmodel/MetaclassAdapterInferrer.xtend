@@ -26,11 +26,13 @@ import org.eclipse.xtext.common.types.TypesFactory
 
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
 class MetaclassAdapterInferrer
 {
 	@Inject extension JvmModelInferrerHelper
 	@Inject extension JvmTypesBuilder
+	@Inject extension JvmTypeReferenceBuilder
 	@Inject extension NamingHelper
 	@Inject extension ModelTypeExtensions
 	@Inject extension MetamodelExtensions
@@ -49,8 +51,8 @@ class MetaclassAdapterInferrer
 				jvmCls.typeParameters += TypesFactory::eINSTANCE.createJvmTypeParameter => [name = p.name]
 			]
 
-			jvmCls.superTypes += mm.newTypeRef(GenericAdapter, mm.newTypeRef(mmCls, #[jvmCls]))
-			jvmCls.superTypes += superType.newTypeRef(cls, #[jvmCls])
+			jvmCls.superTypes += typeRef(GenericAdapter, mm.typeRef(mmCls, #[jvmCls]))
+			jvmCls.superTypes += superType.typeRef(cls, #[jvmCls])
 
 			// TODO: Generic super types
 			cls.EGenericSuperTypes.forEach[sup |]
@@ -58,16 +60,16 @@ class MetaclassAdapterInferrer
 			// TODO: Type parameters
 			cls.ETypeParameters.forEach[p |]
 
-			jvmCls.members += mm.toField("adaptee",  mm.newTypeRef(mmCls, #[jvmCls]))
-			jvmCls.members += mm.toGetter("adaptee", mm.newTypeRef(mmCls, #[jvmCls]))
-			jvmCls.members += mm.toSetter("adaptee", mm.newTypeRef(mmCls, #[jvmCls]))
+			jvmCls.members += mm.toField("adaptee",  mm.typeRef(mmCls, #[jvmCls]))
+			jvmCls.members += mm.toGetter("adaptee", mm.typeRef(mmCls, #[jvmCls]))
+			jvmCls.members += mm.toSetter("adaptee", mm.typeRef(mmCls, #[jvmCls]))
 
-			jvmCls.members += mm.toField("adaptersFactory", mm.newTypeRef(mm.getAdaptersFactoryNameFor(superType)))[
+			jvmCls.members += mm.toField("adaptersFactory", typeRef(mm.getAdaptersFactoryNameFor(superType)))[
 				initializer = '''«mm.getAdaptersFactoryNameFor(superType)».getInstance()'''
 			]
 
 			cls.EAllAttributes.filter[!isAspectSpecific].forEach[attr |
-				val attrType = superType.newTypeRef(attr, #[jvmCls])
+				val attrType = superType.typeRef(attr, #[jvmCls])
 				val getterName = if (!mm.isUml(attr.EContainingClass)) attr.getterName else attr.umlGetterName
 				val setterName = attr.setterName
 
@@ -78,7 +80,7 @@ class MetaclassAdapterInferrer
 				]
 
 				if (attr.needsSetter) {
-					jvmCls.members += attr.toMethod(setterName, attr.newTypeRef(Void.TYPE))[
+					jvmCls.members += attr.toMethod(setterName, typeRef(Void.TYPE))[
 						parameters += attr.toParameter("o", attrType)
 						body = '''
 							adaptee.«setterName»(o) ;
@@ -94,14 +96,13 @@ class MetaclassAdapterInferrer
 			]
 
 			cls.EAllReferences.filter[!isAspectSpecific].forEach[ref |
-				val mmRef = mmCls.EAllReferences.findFirst[name == ref.name]
-				val refType = superType.newTypeRef(ref, #[jvmCls])
+				val refType = superType.typeRef(ref, #[jvmCls])
 				val adapName = mm.adapterNameFor(superType, ref.EReferenceType)
 				val getterName = if (!mm.isUml(ref.EContainingClass)) ref.getterName else ref.umlGetterName
 				val setterName = ref.setterName
 
 				if (ref.isEMFMapDetails) // Special case: EMF Map$Entry
-					jvmCls.members += ref.toMethod("getDetails", ref.newTypeRef(EMap, ref.newTypeRef(String), ref.newTypeRef(String)))[
+					jvmCls.members += ref.toMethod("getDetails", typeRef(EMap, typeRef(String), typeRef(String)))[
 						body = '''return adaptee.getDetails() ;'''
 					]
 				else
@@ -116,7 +117,7 @@ class MetaclassAdapterInferrer
 					]
 
 				if (ref.needsSetter) {
-					jvmCls.members += ref.toMethod(setterName, ref.newTypeRef(Void.TYPE))[
+					jvmCls.members += ref.toMethod(setterName, typeRef(Void.TYPE))[
 						parameters += ref.toParameter("o", refType)
 
 						body = '''
@@ -152,7 +153,7 @@ class MetaclassAdapterInferrer
 
 							if (b.EClassifier !== null) {
 								tp.constraints += TypesFactory.eINSTANCE.createJvmUpperBound => [
-									typeReference = superType.newTypeRef(b, #[m, jvmCls])
+									typeReference = superType.typeRef(b, #[m, jvmCls])
 								]
 							} else if (b.ETypeParameter !== null) {
 								tp.constraints += TypesFactory.eINSTANCE.createJvmUpperBound => [
@@ -163,7 +164,7 @@ class MetaclassAdapterInferrer
 					]
 
 					op.EParameters.forEach[p, i |
-						val pType = superType.newTypeRef(p, #[m, jvmCls])
+						val pType = superType.typeRef(p, #[m, jvmCls])
 
 						m.parameters += op.toParameter(p.name, pType)
 
@@ -179,7 +180,7 @@ class MetaclassAdapterInferrer
 
 					// TODO: Manage exceptions
 					op.EExceptions.forEach[e |
-						m.exceptions += op.newTypeRef(if (e.instanceClass !== null) e.instanceClass.name else e.instanceTypeName)
+						m.exceptions += typeRef(if (e.instanceClass !== null) e.instanceClass.name else e.instanceTypeName)
 					]
 
 					// TODO: Manage generic exceptions
@@ -200,7 +201,7 @@ class MetaclassAdapterInferrer
 					'''
 				]
 
-				newOp.returnType = superType.newTypeRef(op, #[newOp, jvmCls])
+				newOp.returnType = superType.typeRef(op, #[newOp, jvmCls])
 				jvmCls.members += newOp
 			]
 
@@ -224,11 +225,11 @@ class MetaclassAdapterInferrer
 					val mtCls = superType.findClassifier(op.returnType.simpleName)
 					val retType =
 						if (op.returnType.simpleName == "void")
-							mm.newTypeRef(Void.TYPE)
+							typeRef(Void.TYPE)
 						else if (mtCls !== null)
-							superType.newTypeRef(mtCls, #[jvmCls])
+							superType.typeRef(mtCls, #[jvmCls])
 						else
-							mm.newTypeRef(op.returnType.qualifiedName)
+							typeRef(op.returnType.qualifiedName)
 
 					paramsList.append('''«IF inherited»clsAdaptee«ELSE»adaptee«ENDIF»''')
 					op.parameters.drop(if (op.parameters.head?.simpleName == "_self") 1 else 0).forEach[p, i |
@@ -249,9 +250,9 @@ class MetaclassAdapterInferrer
 								val pCls = superType.findClassifier(p.parameterType.simpleName)
 								val pType =
 									if (pCls !== null)
-										superType.newTypeRef(pCls, #[jvmCls])
+										superType.typeRef(pCls, #[jvmCls])
 									else
-										mm.newTypeRef(p.parameterType.qualifiedName)
+										typeRef(p.parameterType.qualifiedName)
 
 								parameters += mm.toParameter(p.name, pType)
 							]
@@ -284,9 +285,9 @@ class MetaclassAdapterInferrer
 									val pCls = superType.findClassifier(p.parameterType.simpleName)
 									val pType =
 										if (pCls !== null)
-											superType.newTypeRef(pCls, #[jvmCls])
+											superType.typeRef(pCls, #[jvmCls])
 										else
-											mm.newTypeRef(p.parameterType.qualifiedName)
+											typeRef(p.parameterType.qualifiedName)
 
 									parameters += mm.toParameter(p.name, pType)
 								]
@@ -314,9 +315,9 @@ class MetaclassAdapterInferrer
 									val pCls = superType.findClassifier(p.parameterType.simpleName)
 									val pType =
 										if (pCls !== null)
-											superType.newTypeRef(pCls, #[jvmCls])
+											superType.typeRef(pCls, #[jvmCls])
 										else
-											mm.newTypeRef(p.parameterType.qualifiedName)
+											typeRef(p.parameterType.qualifiedName)
 
 									parameters += mm.toParameter(p.name, pType)
 								]

@@ -15,10 +15,12 @@ import org.eclipse.xtext.util.internal.Stopwatches
 
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
 class TransformationInferrer
 {
 	@Inject extension JvmTypesBuilder
+	@Inject extension JvmTypeReferenceBuilder
 	@Inject extension IQualifiedNameProvider
 	@Inject extension ASTHelper
 	@Inject extension NamingHelper
@@ -29,7 +31,7 @@ class TransformationInferrer
 
 		acceptor.accept(transfo.toClass(transfo.className.toString))
 		[
-			val returnType = transfo.returnTypeRef ?: transfo.newTypeRef(Void.TYPE)
+			val returnType = transfo.returnTypeRef ?: typeRef(Void.TYPE)
 
 			members += transfo.toMethod("call", returnType)[
 				^static = true
@@ -42,10 +44,10 @@ class TransformationInferrer
 			]
 
 			if (transfo.main) {
-				members += transfo.toMethod("main", transfo.newTypeRef(Void.TYPE))[
+				members += transfo.toMethod("main", typeRef(Void.TYPE))[
 					^static = true
 
-					parameters += transfo.toParameter("args", transfo.newTypeRef(String).addArrayTypeDimension)
+					parameters += transfo.toParameter("args", typeRef(String).addArrayTypeDimension)
 
 					val root = transfo.eContainer as ModelTypingSpace
 

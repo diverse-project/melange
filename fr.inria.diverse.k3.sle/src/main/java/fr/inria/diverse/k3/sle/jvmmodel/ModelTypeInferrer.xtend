@@ -21,10 +21,12 @@ import org.eclipse.xtext.util.internal.Stopwatches
 
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
 class ModelTypeInferrer
 {
 	@Inject extension JvmTypesBuilder
+	@Inject extension JvmTypeReferenceBuilder
 	@Inject extension IQualifiedNameProvider
 	@Inject extension NamingHelper
 	@Inject extension ModelTypeExtensions
@@ -38,25 +40,25 @@ class ModelTypeInferrer
 		task.start
 
 		acceptor.accept(mt.toInterface(mt.fullyQualifiedName.toString)[
-			superTypes += mt.newTypeRef(IModelType)
+			superTypes += typeRef(IModelType)
 
-			members += mt.toMethod("getContents", mt.newTypeRef(List, mt.newTypeRef(Object)))[
+			members += mt.toMethod("getContents", typeRef(List, typeRef(Object)))[
 				^abstract = true
 			]
 
-			members += mt.toMethod("getFactory", mt.newTypeRef(mt.factoryName))[
+			members += mt.toMethod("getFactory", typeRef(mt.factoryName))[
 				^abstract = true
 			]
 
-			members += mt.toMethod("save", mt.newTypeRef(Void.TYPE))[
-				parameters += mt.toParameter("uri", mt.newTypeRef(String))
+			members += mt.toMethod("save", typeRef(Void.TYPE))[
+				parameters += mt.toParameter("uri", typeRef(String))
 
-				exceptions += mt.newTypeRef(java.io.IOException)
+				exceptions += typeRef(java.io.IOException)
 			]
 		])
 
 		acceptor.accept(mt.toInterface(mt.factoryName)[
-			superTypes += mt.newTypeRef(IFactory)
+			superTypes += typeRef(IFactory)
 
 			mt.allClasses.filter[instantiable].forEach[cls |
 				members += mt.toMethod("create" + cls.name, null)[m |
@@ -66,7 +68,7 @@ class ModelTypeInferrer
 						m.typeParameters += TypesFactory.eINSTANCE.createJvmTypeParameter => [it.name = t.name]
 					]
 				] => [m |
-					m.returnType = mt.newTypeRef(cls, #[m])
+					m.returnType = mt.typeRef(cls, #[m])
 				]
 			]
 		])
