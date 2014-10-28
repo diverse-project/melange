@@ -51,8 +51,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="aspectedClass" lowerBound="1"
         eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ecoreFragment" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ecoreFragment" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Inheritance">

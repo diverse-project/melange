@@ -90,7 +90,7 @@ public interface Aspect extends EObject {
 	 * @return the value of the '<em>Ecore Fragment</em>' containment reference.
 	 * @see #setEcoreFragment(EPackage)
 	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getAspect_EcoreFragment()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EPackage getEcoreFragment();
