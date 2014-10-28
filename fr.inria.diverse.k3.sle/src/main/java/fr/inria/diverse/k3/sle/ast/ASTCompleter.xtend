@@ -158,7 +158,7 @@ class ASTCompleter
 
 				val ecoreUri = '''platform:/resource/«mm.project.name»/model/«mm.name».ecore'''
 				val genmodelUri = '''platform:/resource/«mm.project.name»/model/«mm.name».genmodel'''
-				val srcFolder = '''«mm.project.name»/src'''
+				val srcFolder = '''/«mm.project.name»/src'''
 				mm.createExtendedMetamodel(ecoreUri)
 				mm.createExtendedGenmodel(ecoreUri, genmodelUri, srcFolder)
 				throw new ASTProcessingException("Can't generate code for inheritance-based extended metamodels")
