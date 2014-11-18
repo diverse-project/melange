@@ -55,7 +55,7 @@ XbaseTransformation:
 //;
 
 Aspect:
-	'aspect' aspectTypeRef = JvmTypeReference
+	'with' aspectTypeRef = JvmTypeReference
 ;
 
 /* --- Kompren Rules --- */
