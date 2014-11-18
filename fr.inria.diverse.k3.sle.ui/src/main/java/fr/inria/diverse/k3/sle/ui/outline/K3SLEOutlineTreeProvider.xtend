@@ -12,15 +12,15 @@ import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
 
 class K3SLEOutlineTreeProvider extends DefaultOutlineTreeProvider
 {
-	def _isLeaf(Transformation t) {
-		true
+	def boolean _isLeaf(Transformation t) {
+		return true
 	}
 
-    def _createNode(IOutlineNode parentNode, JvmTypeReference ref) {
+    def void _createNode(IOutlineNode parentNode, JvmTypeReference ref) {
 		// Nope
     }
 
-    def _createNode(IOutlineNode parentNode, GenModel gm) {
+    def void _createNode(IOutlineNode parentNode, GenModel gm) {
 		// Nope
     }
 }

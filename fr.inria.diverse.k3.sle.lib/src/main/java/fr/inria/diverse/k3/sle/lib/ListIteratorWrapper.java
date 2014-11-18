@@ -25,16 +25,16 @@ import java.util.NoSuchElementException;
 /**
  * Shamefully copied from org.apache.commons.collections.iterators.ListIteratorWrapper
  */
-public class ListIteratorWrapper implements ListIterator {
+public class ListIteratorWrapper<E> implements ListIterator<E> {
 
     /** Message used when remove, set or add are called. */
     private static final String UNSUPPORTED_OPERATION_MESSAGE =
         "ListIteratorWrapper does not support optional operations of ListIterator.";
 
     /** The underlying iterator being decorated. */
-    private final Iterator iterator;
+    private final Iterator<E> iterator;
     /** The list being used to cache the iterator. */
-    private final List list = new ArrayList();
+    private final List<E> list = new ArrayList<E>();
 
     /** The current index of this iterator. */
     private int currentIndex = 0;
@@ -50,7 +50,7 @@ public class ListIteratorWrapper implements ListIterator {
      * @param iterator  the iterator to wrap
      * @throws NullPointerException if the iterator is null
      */
-    public ListIteratorWrapper(Iterator iterator) {
+    public ListIteratorWrapper(Iterator<E> iterator) {
         super();
         if (iterator == null) {
             throw new NullPointerException("Iterator must not be null");
@@ -100,13 +100,13 @@ public class ListIteratorWrapper implements ListIterator {
      * @return the next element from the iterator
      * @throws NoSuchElementException if there are no more elements
      */
-    public Object next() throws NoSuchElementException {
+    public E next() throws NoSuchElementException {
         if (currentIndex < wrappedIteratorIndex) {
             ++currentIndex;
             return list.get(currentIndex - 1);
         }
 
-        Object retval = iterator.next();
+        E retval = iterator.next();
         list.add(retval);
         ++currentIndex;
         ++wrappedIteratorIndex;
@@ -128,7 +128,7 @@ public class ListIteratorWrapper implements ListIterator {
      * @return the previous element
      * @throws NoSuchElementException  if there are no previous elements
      */
-    public Object previous() throws NoSuchElementException {
+    public E previous() throws NoSuchElementException {
         if (currentIndex == 0) {
             throw new NoSuchElementException();
         }
