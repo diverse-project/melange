@@ -18,7 +18,7 @@ public annotation XtextTest
 {
 	Class<?> rootType
 	String   inputFile
-	boolean  withValidation = true
+	boolean withValidation = true
 }
 
 class XtextTestProcessor extends AbstractClassProcessor
@@ -30,7 +30,7 @@ class XtextTestProcessor extends AbstractClassProcessor
 	override void doTransform(MutableClassDeclaration cls, extension TransformationContext ctx) {
 		val ann = cls.annotations.findFirst[annotationTypeDeclaration == XtextTest.newTypeReference.type]
 
-		if (ann == null) {
+		if (ann === null) {
 			cls.addError("Couldn't find annotation type XtextTest")
 			return
 		}
@@ -47,7 +47,7 @@ class XtextTestProcessor extends AbstractClassProcessor
 			cls.generateParsingTest(ctx)
 	}
 
-	def generateSetupMethod(MutableClassDeclaration cls, extension TransformationContext ctx) {
+	def void generateSetupMethod(MutableClassDeclaration cls, extension TransformationContext ctx) {
 		cls.addMethod("setUp")[
 			addAnnotation(findTypeGlobally("org.junit.Before").newAnnotationReference)
 			body = '''
@@ -68,7 +68,7 @@ class XtextTestProcessor extends AbstractClassProcessor
 		]
 	}
 
-	def generateParsingTest(MutableClassDeclaration cls, extension TransformationContext ctx) {
+	def void generateParsingTest(MutableClassDeclaration cls, extension TransformationContext ctx) {
 		cls.addMethod("testParsing")[
 			addAnnotation(findTypeGlobally("org.junit.Test").newAnnotationReference)
 			body = '''
@@ -77,7 +77,7 @@ class XtextTestProcessor extends AbstractClassProcessor
 		]
 	}
 
-	def generateEmfValidationTest(MutableClassDeclaration cls, extension TransformationContext ctx) {
+	def void generateEmfValidationTest(MutableClassDeclaration cls, extension TransformationContext ctx) {
 		cls.addMethod("testEmfValidation")[
 			addAnnotation(findTypeGlobally("org.junit.Test").newAnnotationReference)
 			body = '''
@@ -86,7 +86,7 @@ class XtextTestProcessor extends AbstractClassProcessor
 		]
 	}
 
-	def generateFields(MutableClassDeclaration cls, extension TransformationContext ctx) {
+	def void generateFields(MutableClassDeclaration cls, extension TransformationContext ctx) {
 		// ValidationTestHelper
 		if (withValidation)
 			cls.addField("_validationTestHelper")[
