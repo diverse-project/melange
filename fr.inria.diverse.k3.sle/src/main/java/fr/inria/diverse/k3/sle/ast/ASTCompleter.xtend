@@ -278,6 +278,11 @@ class ASTCompleter
 			if (!mt.pkgs.exists[nsURI == pkg.nsURI])
 				mt.pkgs += pkg
 
+			mt.allSubPkgs.forEach[p |
+				if (!mt.pkgs.exists[nsURI == p.nsURI])
+					mt.pkgs += p
+			]
+
 			pkg.referencedPkgs.forEach[p |
 				if (!mt.pkgs.exists[nsURI == p.nsURI])
 					mt.pkgs += p.copy
