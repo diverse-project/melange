@@ -8,6 +8,7 @@ import fr.inria.diverse.k3.sle.lib.ModelUtils
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Element
 import fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage
 import fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel
+import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType
 import fr.inria.diverse.k3.sle.metamodel.k3sle.ModelTypingSpace
 
 import java.util.Collections
@@ -29,6 +30,21 @@ class K3SLEValidator extends AbstractK3SLEValidator
 			&& e_.name == e.name
 		])
 			error("Names must be unique", K3slePackage.Literals.ELEMENT__NAME)
+	}
+
+	@Check
+	def void checkEcoreIsSet(ModelType mt) {
+		if (mt.ecoreUri === null || mt.ecoreUri.empty)
+			error("A valid Ecore file must be imported", K3slePackage.Literals.MODEL_TYPE__ECORE_URI)
+	}
+
+	@Check
+	def void checkEcoreIsLoadable(ModelType mt) {
+		try {
+			if (mt.ecoreUri !== null && modelUtils.loadPkg(mt.ecoreUri) === null) {
+				error("Couldn't load specified Ecore", K3slePackage.Literals.MODEL_TYPE__ECORE_URI)
+			}
+		} catch (Exception e) {}
 	}
 
 	@Check
