@@ -34,14 +34,14 @@ class K3SLEValidator extends AbstractK3SLEValidator
 
 	@Check
 	def void checkEcoreIsSet(ModelType mt) {
-		if (mt.ecoreUri === null || mt.ecoreUri.empty)
+		if (mt.extracted === null && (mt.ecoreUri === null || mt.ecoreUri.empty))
 			error("A valid Ecore file must be imported", K3slePackage.Literals.MODEL_TYPE__ECORE_URI)
 	}
 
 	@Check
 	def void checkEcoreIsLoadable(ModelType mt) {
 		try {
-			if (mt.ecoreUri !== null && modelUtils.loadPkg(mt.ecoreUri) === null) {
+			if (mt.extracted === null && mt.ecoreUri !== null && modelUtils.loadPkg(mt.ecoreUri) === null) {
 				error("Couldn't load specified Ecore", K3slePackage.Literals.MODEL_TYPE__ECORE_URI)
 			}
 		} catch (Exception e) {}
