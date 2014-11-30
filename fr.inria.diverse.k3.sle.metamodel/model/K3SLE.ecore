@@ -18,6 +18,8 @@
         eType="#//ModelType" eOpposite="#//ModelType/extracted"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="implements" upperBound="-1"
         eType="#//ModelType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="requires" upperBound="-1"
+        eType="#//ModelType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="inheritanceRelation" eType="#//Inheritance"
         containment="true" eOpposite="#//Inheritance/subMetamodel"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="pkgs" upperBound="-1" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"

@@ -41,6 +41,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getAspects <em>Aspects</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getExactType <em>Exact Type</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getImplements <em>Implements</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getRequires <em>Requires</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getInheritanceRelation <em>Inheritance Relation</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getPkgs <em>Pkgs</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.impl.MetamodelImpl#getExactTypeName <em>Exact Type Name</em>}</li>
@@ -85,6 +86,16 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	 * @ordered
 	 */
 	protected EList<ModelType> implements_;
+
+	/**
+	 * The cached value of the '{@link #getRequires() <em>Requires</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRequires()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ModelType> requires;
 
 	/**
 	 * The cached value of the '{@link #getInheritanceRelation() <em>Inheritance Relation</em>}' containment reference.
@@ -317,6 +328,18 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 			implements_ = new EObjectResolvingEList<ModelType>(ModelType.class, this, K3slePackage.METAMODEL__IMPLEMENTS);
 		}
 		return implements_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ModelType> getRequires() {
+		if (requires == null) {
+			requires = new EObjectResolvingEList<ModelType>(ModelType.class, this, K3slePackage.METAMODEL__REQUIRES);
+		}
+		return requires;
 	}
 
 	/**
@@ -584,6 +607,8 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 				return basicGetExactType();
 			case K3slePackage.METAMODEL__IMPLEMENTS:
 				return getImplements();
+			case K3slePackage.METAMODEL__REQUIRES:
+				return getRequires();
 			case K3slePackage.METAMODEL__INHERITANCE_RELATION:
 				return getInheritanceRelation();
 			case K3slePackage.METAMODEL__PKGS:
@@ -625,6 +650,10 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 			case K3slePackage.METAMODEL__IMPLEMENTS:
 				getImplements().clear();
 				getImplements().addAll((Collection<? extends ModelType>)newValue);
+				return;
+			case K3slePackage.METAMODEL__REQUIRES:
+				getRequires().clear();
+				getRequires().addAll((Collection<? extends ModelType>)newValue);
 				return;
 			case K3slePackage.METAMODEL__INHERITANCE_RELATION:
 				setInheritanceRelation((Inheritance)newValue);
@@ -677,6 +706,9 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 			case K3slePackage.METAMODEL__IMPLEMENTS:
 				getImplements().clear();
 				return;
+			case K3slePackage.METAMODEL__REQUIRES:
+				getRequires().clear();
+				return;
 			case K3slePackage.METAMODEL__INHERITANCE_RELATION:
 				setInheritanceRelation((Inheritance)null);
 				return;
@@ -722,6 +754,8 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 				return exactType != null;
 			case K3slePackage.METAMODEL__IMPLEMENTS:
 				return implements_ != null && !implements_.isEmpty();
+			case K3slePackage.METAMODEL__REQUIRES:
+				return requires != null && !requires.isEmpty();
 			case K3slePackage.METAMODEL__INHERITANCE_RELATION:
 				return inheritanceRelation != null;
 			case K3slePackage.METAMODEL__PKGS:

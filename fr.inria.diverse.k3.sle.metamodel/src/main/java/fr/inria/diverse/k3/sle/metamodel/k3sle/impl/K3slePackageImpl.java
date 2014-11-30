@@ -270,7 +270,7 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMetamodel_InheritanceRelation() {
+	public EReference getMetamodel_Requires() {
 		return (EReference)metamodelEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -279,7 +279,7 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMetamodel_Pkgs() {
+	public EReference getMetamodel_InheritanceRelation() {
 		return (EReference)metamodelEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -288,8 +288,17 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getMetamodel_Pkgs() {
+		return (EReference)metamodelEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getMetamodel_ExactTypeName() {
-		return (EAttribute)metamodelEClass.getEStructuralFeatures().get(5);
+		return (EAttribute)metamodelEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -298,7 +307,7 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 * @generated
 	 */
 	public EReference getMetamodel_Genmodels() {
-		return (EReference)metamodelEClass.getEStructuralFeatures().get(6);
+		return (EReference)metamodelEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -307,15 +316,6 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 * @generated
 	 */
 	public EAttribute getMetamodel_ResourceType() {
-		return (EAttribute)metamodelEClass.getEStructuralFeatures().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMetamodel_ResourceUri() {
 		return (EAttribute)metamodelEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -324,8 +324,17 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getMetamodel_ResourceUri() {
+		return (EAttribute)metamodelEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getMetamodel_XtextSetupRef() {
-		return (EReference)metamodelEClass.getEStructuralFeatures().get(9);
+		return (EReference)metamodelEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -334,7 +343,7 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 * @generated
 	 */
 	public EAttribute getMetamodel_EcoreUri() {
-		return (EAttribute)metamodelEClass.getEStructuralFeatures().get(10);
+		return (EAttribute)metamodelEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -343,7 +352,7 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 	 * @generated
 	 */
 	public EAttribute getMetamodel_GenmodelUris() {
-		return (EAttribute)metamodelEClass.getEStructuralFeatures().get(11);
+		return (EAttribute)metamodelEClass.getEStructuralFeatures().get(12);
 	}
 
 	/**
@@ -584,6 +593,7 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 		createEReference(metamodelEClass, METAMODEL__ASPECTS);
 		createEReference(metamodelEClass, METAMODEL__EXACT_TYPE);
 		createEReference(metamodelEClass, METAMODEL__IMPLEMENTS);
+		createEReference(metamodelEClass, METAMODEL__REQUIRES);
 		createEReference(metamodelEClass, METAMODEL__INHERITANCE_RELATION);
 		createEReference(metamodelEClass, METAMODEL__PKGS);
 		createEAttribute(metamodelEClass, METAMODEL__EXACT_TYPE_NAME);
@@ -678,6 +688,7 @@ public class K3slePackageImpl extends EPackageImpl implements K3slePackage {
 		initEReference(getMetamodel_Aspects(), this.getAspect(), null, "aspects", null, 0, -1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMetamodel_ExactType(), this.getModelType(), this.getModelType_Extracted(), "exactType", null, 1, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMetamodel_Implements(), this.getModelType(), null, "implements", null, 0, -1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMetamodel_Requires(), this.getModelType(), null, "requires", null, 0, -1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMetamodel_InheritanceRelation(), this.getInheritance(), this.getInheritance_SubMetamodel(), "inheritanceRelation", null, 0, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMetamodel_Pkgs(), theEcorePackage.getEPackage(), null, "pkgs", null, 0, -1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMetamodel_ExactTypeName(), theEcorePackage.getEString(), "exactTypeName", null, 0, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

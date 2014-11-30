@@ -196,13 +196,22 @@ public interface K3slePackage extends EPackage {
 	int METAMODEL__IMPLEMENTS = ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Requires</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL__REQUIRES = ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The feature id for the '<em><b>Inheritance Relation</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__INHERITANCE_RELATION = ELEMENT_FEATURE_COUNT + 3;
+	int METAMODEL__INHERITANCE_RELATION = ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Pkgs</b></em>' containment reference list.
@@ -211,7 +220,7 @@ public interface K3slePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__PKGS = ELEMENT_FEATURE_COUNT + 4;
+	int METAMODEL__PKGS = ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Exact Type Name</b></em>' attribute.
@@ -220,7 +229,7 @@ public interface K3slePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__EXACT_TYPE_NAME = ELEMENT_FEATURE_COUNT + 5;
+	int METAMODEL__EXACT_TYPE_NAME = ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Genmodels</b></em>' containment reference list.
@@ -229,7 +238,7 @@ public interface K3slePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__GENMODELS = ELEMENT_FEATURE_COUNT + 6;
+	int METAMODEL__GENMODELS = ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Resource Type</b></em>' attribute.
@@ -238,7 +247,7 @@ public interface K3slePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__RESOURCE_TYPE = ELEMENT_FEATURE_COUNT + 7;
+	int METAMODEL__RESOURCE_TYPE = ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Resource Uri</b></em>' attribute.
@@ -247,7 +256,7 @@ public interface K3slePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__RESOURCE_URI = ELEMENT_FEATURE_COUNT + 8;
+	int METAMODEL__RESOURCE_URI = ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Xtext Setup Ref</b></em>' containment reference.
@@ -256,7 +265,7 @@ public interface K3slePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__XTEXT_SETUP_REF = ELEMENT_FEATURE_COUNT + 9;
+	int METAMODEL__XTEXT_SETUP_REF = ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Ecore Uri</b></em>' attribute.
@@ -265,7 +274,7 @@ public interface K3slePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__ECORE_URI = ELEMENT_FEATURE_COUNT + 10;
+	int METAMODEL__ECORE_URI = ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Genmodel Uris</b></em>' attribute list.
@@ -274,7 +283,7 @@ public interface K3slePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__GENMODEL_URIS = ELEMENT_FEATURE_COUNT + 11;
+	int METAMODEL__GENMODEL_URIS = ELEMENT_FEATURE_COUNT + 12;
 
 	/**
 	 * The number of structural features of the '<em>Metamodel</em>' class.
@@ -283,7 +292,7 @@ public interface K3slePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 12;
+	int METAMODEL_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 13;
 
 	/**
 	 * The number of operations of the '<em>Metamodel</em>' class.
@@ -743,6 +752,17 @@ public interface K3slePackage extends EPackage {
 	EReference getMetamodel_Implements();
 
 	/**
+	 * Returns the meta object for the reference list '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getRequires <em>Requires</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Requires</em>'.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getRequires()
+	 * @see #getMetamodel()
+	 * @generated
+	 */
+	EReference getMetamodel_Requires();
+
+	/**
 	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getInheritanceRelation <em>Inheritance Relation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1184,6 +1204,14 @@ public interface K3slePackage extends EPackage {
 		 * @generated
 		 */
 		EReference METAMODEL__IMPLEMENTS = eINSTANCE.getMetamodel_Implements();
+
+		/**
+		 * The meta object literal for the '<em><b>Requires</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference METAMODEL__REQUIRES = eINSTANCE.getMetamodel_Requires();
 
 		/**
 		 * The meta object literal for the '<em><b>Inheritance Relation</b></em>' containment reference feature.

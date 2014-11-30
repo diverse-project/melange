@@ -21,6 +21,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getAspects <em>Aspects</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getExactType <em>Exact Type</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getImplements <em>Implements</em>}</li>
+ *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getRequires <em>Requires</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getInheritanceRelation <em>Inheritance Relation</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getPkgs <em>Pkgs</em>}</li>
  *   <li>{@link fr.inria.diverse.k3.sle.metamodel.k3sle.Metamodel#getExactTypeName <em>Exact Type Name</em>}</li>
@@ -97,6 +98,22 @@ public interface Metamodel extends Element {
 	 * @generated
 	 */
 	EList<ModelType> getImplements();
+
+	/**
+	 * Returns the value of the '<em><b>Requires</b></em>' reference list.
+	 * The list contents are of type {@link fr.inria.diverse.k3.sle.metamodel.k3sle.ModelType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Requires</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Requires</em>' reference list.
+	 * @see fr.inria.diverse.k3.sle.metamodel.k3sle.K3slePackage#getMetamodel_Requires()
+	 * @model
+	 * @generated
+	 */
+	EList<ModelType> getRequires();
 
 	/**
 	 * Returns the value of the '<em><b>Inheritance Relation</b></em>' containment reference.
