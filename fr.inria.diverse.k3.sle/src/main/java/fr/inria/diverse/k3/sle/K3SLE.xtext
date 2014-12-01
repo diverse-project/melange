@@ -21,6 +21,7 @@ TransformationDecl returns Transformation:
 Metamodel:
 	'metamodel' name = ValidID (inheritanceRelation = Inheritance)?
 	('implements' implements += [ModelType | QualifiedName] (',' implements += [ModelType | QualifiedName])*)?
+	('requires' requires += [ModelType | QualifiedName] (',' requires += [ModelType | QualifiedName])*)?
 	'{'
 		('resource' resourceType = ResourceType ('uri' resourceUri = STRING | 'setup' xtextSetupRef = JvmTypeReference)?)? &
 		('ecore' ecoreUri = STRING ('withGenmodel' (genmodelUris += STRING (',' genmodelUris += STRING)*))?)? &
