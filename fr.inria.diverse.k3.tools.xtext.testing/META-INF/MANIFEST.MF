@@ -5,4 +5,5 @@ Bundle-SymbolicName: fr.inria.diverse.k3.tools.xtext.testing
 Bundle-Version: 0.1.0.beta
 Export-Package: fr.inria.diverse.k3.tools.xtext.testing
 Require-Bundle: org.eclipse.xtend.lib
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7,
+ JavaSE-1.8
