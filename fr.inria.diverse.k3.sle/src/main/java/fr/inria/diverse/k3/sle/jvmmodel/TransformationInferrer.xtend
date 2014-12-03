@@ -25,7 +25,7 @@ class TransformationInferrer
 	@Inject extension NamingHelper
 
 	def void generateTransformation(XbaseTransformation transfo, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
-		val task = Stopwatches.forTask('''TransformationInferrer.generateTransformation(«transfo.name»)''')
+		val task = Stopwatches.forTask("generate transformations")
 		task.start
 
 		acceptor.accept(transfo.toClass(transfo.className.toString))

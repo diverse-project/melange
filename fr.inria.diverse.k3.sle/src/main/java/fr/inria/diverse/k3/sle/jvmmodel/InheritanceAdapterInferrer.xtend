@@ -33,7 +33,7 @@ class InheritanceAdapterInferrer
 	@Inject extension K3SLETypesBuilder
 
 	def void generateAdapters(Metamodel mm, Metamodel superMM, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
-		val task = Stopwatches.forTask('''InheritanceAdapterInferrer.generateAdapters(«mm.name», «superMM.name»)''')
+		val task = Stopwatches.forTask("generate inheritance adapters")
 		task.start
 
 		superMM.allClasses.forEach[cls |

@@ -35,7 +35,7 @@ class ModelTypeInferrer
 	@Inject extension MetaclassInterfaceInferrer
 
 	def void generateInterfaces(ModelType mt, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
-		val task = Stopwatches.forTask('''ModelTypeInferrer.generateInterfaces(«mt.name»)''')
+		val task = Stopwatches.forTask("generate model types")
 		task.start
 
 		acceptor.accept(mt.toInterface(mt.fullyQualifiedName.toString)[

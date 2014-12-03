@@ -49,6 +49,9 @@ class K3SLEDerivedStateComputer extends JvmModelAssociator
 	}
 
 	override installDerivedState(DerivedStateAwareResource resource, boolean preLinkingPhase) {
+		val task = Stopwatches.forTask("installing derived state")
+		task.start
+
 		// Activate stop watches before anything happens
 		Stopwatches.enabled = true
 
@@ -62,6 +65,7 @@ class K3SLEDerivedStateComputer extends JvmModelAssociator
 		builder.setContext(resource.resourceSet)
 		helper.setContext(resource.resourceSet)
 
+		task.stop
 		super.installDerivedState(resource, preLinkingPhase)
 	}
 }

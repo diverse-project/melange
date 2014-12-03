@@ -40,7 +40,7 @@ class ASTCompleter
 	@Inject ModelTypeAlgebra algebra
 
 	def void inferTypingRelations(ModelTypingSpace root) {
-		val task = Stopwatches.forTask("K3SLETyping.inferTypingRelations")
+		val task = Stopwatches.forTask("infering typing relations")
 		task.start
 
 		root.modelTypes
@@ -65,7 +65,12 @@ class ASTCompleter
 	}
 
 	def dispatch void complete(ModelTypingSpace root) throws ASTProcessingException {
+		val task = Stopwatches.forTask("Completing AST")
+		task.start
+
 		root.elements.forEach[complete]
+
+		task.stop
 	}
 
 	def dispatch void complete(Metamodel mm) throws ASTProcessingException {

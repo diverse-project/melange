@@ -15,6 +15,8 @@ import org.eclipse.emf.ecore.EClass
 
 import org.eclipse.xtext.common.types.TypesFactory
 
+import org.eclipse.xtext.util.internal.Stopwatches
+
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
@@ -29,8 +31,8 @@ class MetaclassInterfaceInferrer
 	@Inject extension K3SLETypesBuilder
 
 	def void generateInterface(ModelType mt, EClass cls, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
-		//val task = Stopwatches.forTask('''MetaclassInterfaceInferrer.generateAdapter(«mt.name», «cls.name»''')
-		//task.start
+		val task = Stopwatches.forTask("generate metaclass interfaces")
+		task.start
 
 		acceptor.accept(mt.toInterface(mt.interfaceNameFor(cls))[intf |
 			cls.ETypeParameters.forEach[p |
@@ -120,6 +122,6 @@ class MetaclassInterfaceInferrer
 			]
 		])
 
-		//task.stop
+		task.stop
 	}
 }

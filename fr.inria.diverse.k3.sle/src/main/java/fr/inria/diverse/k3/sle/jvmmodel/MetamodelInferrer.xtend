@@ -33,7 +33,7 @@ class MetamodelInferrer
 	@Inject extension InheritanceAdapterInferrer
 
 	def void generateAdapters(Metamodel mm, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
-		val task = Stopwatches.forTask('''MetamodelInferrer.generateAdapters(«mm.name»)''')
+		val task = Stopwatches.forTask("generate metamodels")
 		task.start
 
 		acceptor.accept(mm.toClass(mm.fullyQualifiedName.normalize.toString))

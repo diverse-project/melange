@@ -37,7 +37,7 @@ class MetamodelAdapterInferrer
 	@Inject extension K3SLETypesBuilder
 
 	def void generateAdapter(Metamodel mm, ModelType superType, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
-		val task = Stopwatches.forTask('''MetamodelAdapterInferrer.generateAdapter(«mm.name», «superType.name»''')
+		val task = Stopwatches.forTask("generate metamodel adapters")
 		task.start
 
 		acceptor.accept(mm.toClass(mm.factoryAdapterNameFor(superType)))

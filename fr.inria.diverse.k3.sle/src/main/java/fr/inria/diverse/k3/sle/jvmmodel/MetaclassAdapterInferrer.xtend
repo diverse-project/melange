@@ -24,6 +24,8 @@ import org.eclipse.xtext.common.types.JvmMember
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.TypesFactory
 
+import org.eclipse.xtext.util.internal.Stopwatches
+
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
@@ -40,9 +42,10 @@ class MetaclassAdapterInferrer
 	@Inject extension K3SLETypesBuilder
 
 	def void generateAdapter(Metamodel mm, ModelType superType, EClass cls, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
+		val task = Stopwatches.forTask("generate metaclass adapters")
+		task.start
+
 		val mmCls = mm.allClasses.findFirst[name == cls.name]
-		//val task = Stopwatches.forTask('''MetaclassAdapterInferrer.generateAdapter(«mm.name», «superType.name», «cls.name»''')
-		//task.start
 
 		acceptor.accept(mm.toClass(mm.adapterNameFor(superType, cls)))
 		[jvmCls |
@@ -348,7 +351,7 @@ class MetaclassAdapterInferrer
 			]
 		]
 
-		//task.stop
+		task.stop
 	}
 
 	def boolean +=(EList<JvmMember> members, JvmOperation m) {
