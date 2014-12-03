@@ -38,11 +38,11 @@ class K3SLEDerivedStateComputer extends JvmModelAssociator
 	}
 
 	override discardDerivedState(DerivedStateAwareResource resource) {
-		super.discardDerivedState(resource)
-
 		// Post-inferring processors
 		val root = resource.contents.head as ModelTypingSpace
 		processors.forEach[postProcess(root)]
+
+		super.discardDerivedState(resource)
 
 		// Print stop watches metrics
 		log.debug(Stopwatches.getPrintableStopwatchData)
