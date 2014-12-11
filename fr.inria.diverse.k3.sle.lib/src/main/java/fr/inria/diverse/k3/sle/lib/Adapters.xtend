@@ -15,6 +15,8 @@ import org.eclipse.emf.ecore.EObject
 
 import org.eclipse.emf.ecore.impl.BasicEObjectImpl
 
+import org.eclipse.emf.ecore.resource.Resource
+
 import org.eclipse.xtend.lib.annotations.Delegate
 
 interface GenericAdapter<E> {
@@ -214,5 +216,17 @@ class IteratorTranslator<E, F> implements Function<E, F> {
 		} catch (IllegalAccessException e) {
 			// ...
 		}
+	}
+}
+
+abstract class ResourceAdapter implements GenericAdapter<Resource>, Resource {
+	@Delegate protected Resource adaptee
+
+	override getAdaptee() {
+		return adaptee
+	}
+
+	override setAdaptee(Resource a) {
+		adaptee = a
 	}
 }
