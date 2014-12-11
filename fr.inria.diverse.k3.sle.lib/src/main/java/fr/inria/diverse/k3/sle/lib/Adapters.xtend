@@ -9,13 +9,11 @@ import java.lang.reflect.InvocationTargetException
 import java.util.Collection
 import java.util.List
 
-import org.eclipse.emf.common.notify.Notification
-
 import org.eclipse.emf.common.util.EList
 
 import org.eclipse.emf.ecore.EObject
-import org.eclipse.emf.ecore.EOperation
-import org.eclipse.emf.ecore.EStructuralFeature
+
+import org.eclipse.xtend.lib.annotations.Delegate
 
 interface GenericAdapter<E> {
 	def E getAdaptee()
@@ -164,86 +162,11 @@ class ListAdapter<E, F> implements List<E>
 }
 
 abstract class EObjectAdapter<E extends EObject> implements EObject, GenericAdapter<E> {
-	E adaptee
+	/** Best. Annotation. Ever. */
+	@Delegate E adaptee
 
 	override getAdaptee() { return adaptee }
 	override setAdaptee(E a) { adaptee = a }
-
-	override eAllContents() {
-		return adaptee.eAllContents
-	}
-
-	override eClass() {
-		return adaptee.eClass
-	}
-
-	override eContainer() {
-		return adaptee.eContainer
-	}
-
-	override eContainingFeature() {
-		return adaptee.eContainingFeature
-	}
-
-	override eContainmentFeature() {
-		return adaptee.eContainmentFeature
-	}
-
-	override eContents() {
-		return adaptee.eContents
-	}
-
-	override eCrossReferences() {
-		return adaptee.eCrossReferences
-	}
-
-	override eGet(EStructuralFeature feature) {
-		return adaptee.eGet(feature)
-	}
-
-	override eGet(EStructuralFeature feature, boolean resolve) {
-		return adaptee.eGet(feature, resolve)
-	}
-
-	override eInvoke(EOperation operation, EList<?> arguments) throws InvocationTargetException {
-		return adaptee.eInvoke(operation, arguments)
-	}
-
-	override eIsProxy() {
-		return adaptee.eIsProxy
-	}
-
-	override eIsSet(EStructuralFeature feature) {
-		return adaptee.eIsSet(feature)
-	}
-
-	override eResource() {
-		return adaptee.eResource
-	}
-
-	override eSet(EStructuralFeature feature, Object newValue) {
-		adaptee.eSet(feature, newValue)
-	}
-
-	override eUnset(EStructuralFeature feature) {
-		adaptee.eUnset(feature)
-	}
-
-	override eAdapters() {
-		return adaptee.eAdapters
-	}
-
-	override eDeliver() {
-		return adaptee.eDeliver
-	}
-
-	override eNotify(Notification notification) {
-		adaptee.eNotify(notification)
-	}
-
-	override eSetDeliver(boolean deliver) {
-		adaptee.eSetDeliver(deliver)
-	}
 }
 
 class EListAdapter<E, F> extends ListAdapter<E, F> implements EList<E>
