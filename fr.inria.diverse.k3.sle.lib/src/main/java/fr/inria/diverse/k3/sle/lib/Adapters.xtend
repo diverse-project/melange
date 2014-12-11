@@ -13,6 +13,8 @@ import org.eclipse.emf.common.util.EList
 
 import org.eclipse.emf.ecore.EObject
 
+import org.eclipse.emf.ecore.impl.BasicEObjectImpl
+
 import org.eclipse.xtend.lib.annotations.Delegate
 
 interface GenericAdapter<E> {
@@ -161,9 +163,9 @@ class ListAdapter<E, F> implements List<E>
 	}
 }
 
-abstract class EObjectAdapter<E extends EObject> implements EObject, GenericAdapter<E> {
+abstract class EObjectAdapter<E extends EObject> extends BasicEObjectImpl implements EObject, GenericAdapter<E> {
 	/** Best. Annotation. Ever. */
-	@Delegate E adaptee
+	@Delegate protected E adaptee
 
 	override getAdaptee() { return adaptee }
 	override setAdaptee(E a) { adaptee = a }
