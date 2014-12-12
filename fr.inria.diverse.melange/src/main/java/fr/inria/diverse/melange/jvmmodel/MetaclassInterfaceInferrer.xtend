@@ -12,6 +12,7 @@ import fr.inria.diverse.melange.metamodel.melange.ModelType
 import org.eclipse.emf.common.util.EMap
 
 import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EObject
 
 import org.eclipse.xtext.common.types.TypesFactory
 
@@ -35,6 +36,8 @@ class MetaclassInterfaceInferrer
 		task.start
 
 		acceptor.accept(mt.toInterface(mt.interfaceNameFor(cls))[intf |
+			intf.superTypes += EObject.typeRef
+
 			cls.ETypeParameters.forEach[p |
 				intf.typeParameters += TypesFactory::eINSTANCE.createJvmTypeParameter => [name = p.name]
 			]

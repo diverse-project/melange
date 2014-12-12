@@ -7,7 +7,7 @@ import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 
 import fr.inria.diverse.melange.lib.EcoreExtensions
-import fr.inria.diverse.melange.lib.GenericAdapter
+import fr.inria.diverse.melange.lib.EObjectAdapter
 
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
@@ -53,7 +53,7 @@ class MetaclassAdapterInferrer
 				jvmCls.typeParameters += TypesFactory::eINSTANCE.createJvmTypeParameter => [name = p.name]
 			]
 
-			jvmCls.superTypes += GenericAdapter.typeRef(mm.typeRef(mmCls, #[jvmCls]))
+			jvmCls.superTypes += EObjectAdapter.typeRef(mm.typeRef(mmCls, #[jvmCls]))
 			jvmCls.superTypes += superType.typeRef(cls, #[jvmCls])
 
 			// TODO: Generic super types

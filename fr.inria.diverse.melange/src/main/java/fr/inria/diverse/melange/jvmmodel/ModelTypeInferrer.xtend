@@ -11,7 +11,11 @@ import fr.inria.diverse.melange.lib.IModelType
 
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 
-import java.util.List
+import java.io.IOException
+
+import org.eclipse.emf.common.util.EList
+
+import org.eclipse.emf.ecore.EObject
 
 import org.eclipse.xtext.common.types.TypesFactory
 
@@ -20,8 +24,8 @@ import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.util.internal.Stopwatches
 
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
-import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
 class ModelTypeInferrer
 {
@@ -41,7 +45,7 @@ class ModelTypeInferrer
 		acceptor.accept(mt.toInterface(mt.fullyQualifiedName.toString)[
 			superTypes += IModelType.typeRef
 
-			members += mt.toMethod("getContents", List.typeRef(Object.typeRef))[
+			members += mt.toMethod("getContents", EList.typeRef(EObject.typeRef))[
 				^abstract = true
 			]
 
@@ -52,7 +56,7 @@ class ModelTypeInferrer
 			members += mt.toMethod("save", Void::TYPE.typeRef)[
 				parameters += mt.toParameter("uri", String.typeRef)
 
-				exceptions += java.io.IOException.typeRef
+				exceptions += IOException.typeRef
 			]
 		])
 
