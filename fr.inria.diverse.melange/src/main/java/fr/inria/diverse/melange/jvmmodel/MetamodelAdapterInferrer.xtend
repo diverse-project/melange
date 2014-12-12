@@ -7,14 +7,10 @@ import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 
 import fr.inria.diverse.melange.lib.EcoreExtensions
-import fr.inria.diverse.melange.lib.GenericAdapter
+import fr.inria.diverse.melange.lib.ResourceAdapter
 
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
-
-import java.util.List
-
-import org.eclipse.emf.ecore.resource.Resource
 
 import org.eclipse.xtext.common.types.TypesFactory
 
@@ -25,6 +21,8 @@ import org.eclipse.xtext.util.internal.Stopwatches
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
+import org.eclipse.emf.common.util.EList
+import org.eclipse.emf.ecore.EObject
 
 class MetamodelAdapterInferrer
 {
@@ -74,20 +72,16 @@ class MetamodelAdapterInferrer
 
 		acceptor.accept(mm.toClass(mm.adapterNameFor(superType)))
 		[
-			superTypes += GenericAdapter.typeRef(Resource.typeRef)
+			superTypes += ResourceAdapter.typeRef
 			superTypes += superType.fullyQualifiedName.toString.typeRef
-
-			members += mm.toField("adaptee",  Resource.typeRef)
-			members += mm.toGetter("adaptee", Resource.typeRef)
-			members += mm.toSetter("adaptee", Resource.typeRef)
 
 			members += mm.toField("adaptersFactory", mm.getAdaptersFactoryNameFor(superType).typeRef)[
 				initializer = '''«mm.getAdaptersFactoryNameFor(superType)».getInstance()'''
 			]
 
-			members += mm.toMethod("getContents", List.typeRef(Object.typeRef))[
+			members += mm.toMethod("getContents", EList.typeRef(EObject.typeRef))[
 				body = '''
-						java.util.List<java.lang.Object> ret = new java.util.ArrayList<java.lang.Object>() ;
+						org.eclipse.emf.common.util.EList<org.eclipse.emf.ecore.EObject> ret = new org.eclipse.emf.ecore.util.BasicInternalEList<org.eclipse.emf.ecore.EObject>(org.eclipse.emf.ecore.EObject.class) ;
 
 						for (org.eclipse.emf.ecore.EObject o : adaptee.getContents()) {
 						«FOR r : mm.allClasses.filter[name != "EObject" && mm.hasAdapterFor(superType, it) && instantiable && abstractable].sortByClassInheritance»

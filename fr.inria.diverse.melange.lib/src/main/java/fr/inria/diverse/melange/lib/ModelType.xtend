@@ -1,15 +1,17 @@
 package fr.inria.diverse.melange.lib
 
-import java.util.List
-
 import java.io.IOException
+
+import org.eclipse.emf.common.util.EList
+
+import org.eclipse.emf.ecore.EObject
 
 interface IFactory
 {}
 
 interface IModelType
 {
-	def List<Object> getContents()
+	def EList<EObject> getContents()
 	def IFactory getFactory()
 	def void save(String uri) throws IOException
 }
