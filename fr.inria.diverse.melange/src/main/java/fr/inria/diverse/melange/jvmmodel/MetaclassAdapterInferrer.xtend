@@ -62,10 +62,6 @@ class MetaclassAdapterInferrer
 			// TODO: Type parameters
 			cls.ETypeParameters.forEach[p |]
 
-			jvmCls.members += mm.toField("adaptee",  mm.typeRef(mmCls, #[jvmCls]))
-			jvmCls.members += mm.toGetter("adaptee", mm.typeRef(mmCls, #[jvmCls]))
-			jvmCls.members += mm.toSetter("adaptee", mm.typeRef(mmCls, #[jvmCls]))
-
 			jvmCls.members += mm.toField("adaptersFactory", mm.getAdaptersFactoryNameFor(superType).typeRef)[
 				initializer = '''«mm.getAdaptersFactoryNameFor(superType)».getInstance()'''
 			]
