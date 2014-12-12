@@ -33,4 +33,11 @@
          version="3.1.0.qualifier"
          unpack="false"/>
 
+   <plugin
+         id="fr.inria.diverse.melange.resource"
+         download-size="0"
+         install-size="0"
+         version="3.1.0.qualifier"
+         unpack="false"/>
+
 </feature>
