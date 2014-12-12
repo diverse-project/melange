@@ -13,7 +13,7 @@ import org.eclipse.emf.common.util.EList
 
 import org.eclipse.emf.ecore.EObject
 
-import org.eclipse.emf.ecore.impl.BasicEObjectImpl
+import org.eclipse.emf.ecore.impl.EObjectImpl
 
 import org.eclipse.emf.ecore.resource.Resource
 
@@ -165,7 +165,7 @@ class ListAdapter<E, F> implements List<E>
 	}
 }
 
-abstract class EObjectAdapter<E extends EObject> extends BasicEObjectImpl implements EObject, GenericAdapter<E> {
+abstract class EObjectAdapter<E extends EObject> extends EObjectImpl implements EObject, GenericAdapter<E> {
 	/** Best. Annotation. Ever. */
 	@Delegate protected E adaptee
 
