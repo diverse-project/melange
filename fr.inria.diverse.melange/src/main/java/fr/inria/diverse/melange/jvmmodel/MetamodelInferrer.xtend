@@ -42,6 +42,19 @@ class MetamodelInferrer
 			members += mm.toGetter("resource", Resource.typeRef)
 			members += mm.toSetter("resource", Resource.typeRef)
 
+			members += mm.toMethod("load", mm.fullyQualifiedName.normalize.toString.typeRef)[
+				^static = true
+				parameters += mm.toParameter("uri", String.typeRef)
+
+				body = '''
+					org.eclipse.emf.ecore.resource.ResourceSet rs = new org.eclipse.emf.ecore.resource.impl.ResourceSetImpl() ;
+					Resource res = rs.getResource(org.eclipse.emf.common.util.URI.createURI(uri), true) ;
+					«mm.name» mm = new «mm.name»() ;
+					mm.setResource(res) ;
+					return mm ;
+				'''
+			]
+
 			mm.^implements.forEach[mt |
 				val adapName = mm.adapterNameFor(mt)
 
@@ -50,19 +63,6 @@ class MetamodelInferrer
 						«adapName» adaptee = new «adapName»() ;
 						adaptee.setAdaptee(resource) ;
 						return adaptee ;
-					'''
-				]
-
-				members += mm.toMethod("load", mm.fullyQualifiedName.normalize.toString.typeRef)[
-					^static = true
-					parameters += mm.toParameter("uri", String.typeRef)
-
-					body = '''
-						org.eclipse.emf.ecore.resource.ResourceSet rs = new org.eclipse.emf.ecore.resource.impl.ResourceSetImpl() ;
-						Resource res = rs.getResource(org.eclipse.emf.common.util.URI.createURI(uri), true) ;
-						«mm.name» mm = new «mm.name»() ;
-						mm.setResource(res) ;
-						return mm ;
 					'''
 				]
 			]
