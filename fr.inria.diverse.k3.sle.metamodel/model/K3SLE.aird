@@ -25,7 +25,7 @@
               <styles xmi:type="notation:FilteringStyle" xmi:id="_DjWfIzc_EeS5cNixQKZkRQ"/>
             </children>
             <styles xmi:type="notation:ShapeStyle" xmi:id="_DjV4ETc_EeS5cNixQKZkRQ" fontName="Cantarell" fontHeight="8"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DjV4Ejc_EeS5cNixQKZkRQ" x="-36" y="144" height="15"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DjV4Ejc_EeS5cNixQKZkRQ" x="-48" y="144" height="51"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_DjXGNDc_EeS5cNixQKZkRQ" type="2003" element="_DiKzYDc_EeS5cNixQKZkRQ">
             <children xmi:type="notation:Node" xmi:id="_DjXtQjc_EeS5cNixQKZkRQ" type="5007"/>
@@ -46,31 +46,31 @@
               <styles xmi:type="notation:FilteringStyle" xmi:id="_DjYUVjc_EeS5cNixQKZkRQ"/>
             </children>
             <styles xmi:type="notation:ShapeStyle" xmi:id="_DjYUUTc_EeS5cNixQKZkRQ" fontName="Cantarell" fontHeight="8"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DjYUUjc_EeS5cNixQKZkRQ" x="24" y="240"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DjYUUjc_EeS5cNixQKZkRQ" x="-48" y="312"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_DjY7YDc_EeS5cNixQKZkRQ" type="2003" element="_DiPE0Dc_EeS5cNixQKZkRQ">
             <children xmi:type="notation:Node" xmi:id="_DjZicDc_EeS5cNixQKZkRQ" type="5007"/>
             <children xmi:type="notation:Node" xmi:id="_DjaJgDc_EeS5cNixQKZkRQ" type="7004">
-              <children xmi:type="notation:Node" xmi:id="_Djea9Dc_EeS5cNixQKZkRQ" type="3010" element="_Di5zMDc_EeS5cNixQKZkRQ">
-                <layoutConstraint xmi:type="notation:Location" xmi:id="_Djea9Tc_EeS5cNixQKZkRQ"/>
-              </children>
               <children xmi:type="notation:Node" xmi:id="_DjfCADc_EeS5cNixQKZkRQ" type="3010" element="_Di6aQDc_EeS5cNixQKZkRQ">
                 <layoutConstraint xmi:type="notation:Location" xmi:id="_DjfCATc_EeS5cNixQKZkRQ"/>
               </children>
               <children xmi:type="notation:Node" xmi:id="_DjfCAjc_EeS5cNixQKZkRQ" type="3010" element="_Di7BUDc_EeS5cNixQKZkRQ">
                 <layoutConstraint xmi:type="notation:Location" xmi:id="_DjfCAzc_EeS5cNixQKZkRQ"/>
               </children>
+              <children xmi:type="notation:Node" xmi:id="_ppr94IH6EeStQ6eskD7z6Q" type="3010" element="_poPzcIH6EeStQ6eskD7z6Q">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_ppr94YH6EeStQ6eskD7z6Q"/>
+              </children>
               <children xmi:type="notation:Node" xmi:id="_FxY7oDdNEeSsz4dswe2Ijw" type="3010" element="_FwVywDdNEeSsz4dswe2Ijw">
                 <layoutConstraint xmi:type="notation:Location" xmi:id="_FxY7oTdNEeSsz4dswe2Ijw"/>
               </children>
-              <children xmi:type="notation:Node" xmi:id="_GVgVUDdNEeSsz4dswe2Ijw" type="3010" element="_GUlIQDdNEeSsz4dswe2Ijw">
-                <layoutConstraint xmi:type="notation:Location" xmi:id="_GVgVUTdNEeSsz4dswe2Ijw"/>
+              <children xmi:type="notation:Node" xmi:id="_ppuaIIH6EeStQ6eskD7z6Q" type="3010" element="_poS2wIH6EeStQ6eskD7z6Q">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_ppuaIYH6EeStQ6eskD7z6Q"/>
               </children>
               <styles xmi:type="notation:SortingStyle" xmi:id="_DjaJgTc_EeS5cNixQKZkRQ"/>
               <styles xmi:type="notation:FilteringStyle" xmi:id="_DjaJgjc_EeS5cNixQKZkRQ"/>
             </children>
             <styles xmi:type="notation:ShapeStyle" xmi:id="_DjY7YTc_EeS5cNixQKZkRQ" fontName="Cantarell" fontHeight="8"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DjY7Yjc_EeS5cNixQKZkRQ" x="144" y="144" height="111"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DjY7Yjc_EeS5cNixQKZkRQ" x="144" y="144" height="123"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_DjaJgzc_EeS5cNixQKZkRQ" type="2003" element="_DiRhEDc_EeS5cNixQKZkRQ">
             <children xmi:type="notation:Node" xmi:id="_DjawkDc_EeS5cNixQKZkRQ" type="5007"/>
@@ -121,7 +121,7 @@
               <styles xmi:type="notation:FilteringStyle" xmi:id="_Djclwzc_EeS5cNixQKZkRQ"/>
             </children>
             <styles xmi:type="notation:ShapeStyle" xmi:id="_Djb-tTc_EeS5cNixQKZkRQ" fontName="Cantarell" fontHeight="8"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Djb-tjc_EeS5cNixQKZkRQ" x="612" y="264"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Djb-tjc_EeS5cNixQKZkRQ" x="636" y="288"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_DjclxDc_EeS5cNixQKZkRQ" type="2003" element="_DiY10Dc_EeS5cNixQKZkRQ">
             <children xmi:type="notation:Node" xmi:id="_DjdM0Dc_EeS5cNixQKZkRQ" type="5007"/>
@@ -163,7 +163,7 @@
           </edges>
           <edges xmi:type="notation:Edge" xmi:id="_DjjTcjc_EeS5cNixQKZkRQ" type="4001" element="_DjFZYDc_EeS5cNixQKZkRQ" source="_DjY7YDc_EeS5cNixQKZkRQ" target="_DjV4EDc_EeS5cNixQKZkRQ">
             <children xmi:type="notation:Node" xmi:id="_DjjTdjc_EeS5cNixQKZkRQ" type="6001">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DjjTdzc_EeS5cNixQKZkRQ" y="-10"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DjjTdzc_EeS5cNixQKZkRQ" x="-2" y="-8"/>
             </children>
             <children xmi:type="notation:Node" xmi:id="_Djj6gDc_EeS5cNixQKZkRQ" type="6002">
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Djj6gTc_EeS5cNixQKZkRQ" y="10"/>
@@ -173,7 +173,7 @@
             </children>
             <styles xmi:type="notation:ConnectorStyle" xmi:id="_DjjTczc_EeS5cNixQKZkRQ" routing="Rectilinear" jumpLinkStatus="Above"/>
             <styles xmi:type="notation:FontStyle" xmi:id="_DjjTdDc_EeS5cNixQKZkRQ" fontColor="7490599" fontName="Cantarell" fontHeight="8"/>
-            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_DjjTdTc_EeS5cNixQKZkRQ" points="[0, 0, 180, 60]$[-180, -60, 0, 0]"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_DjjTdTc_EeS5cNixQKZkRQ" points="[-98, 24, 121, -25]$[-160, 24, 59, -25]"/>
             <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Djj6hDc_EeS5cNixQKZkRQ" id="(0.4975124378109453,0.0)"/>
             <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Djj6hTc_EeS5cNixQKZkRQ" id="(0.5,1.0)"/>
           </edges>
@@ -189,7 +189,7 @@
             </children>
             <styles xmi:type="notation:ConnectorStyle" xmi:id="_Djj6hzc_EeS5cNixQKZkRQ" routing="Rectilinear" jumpLinkStatus="Above"/>
             <styles xmi:type="notation:FontStyle" xmi:id="_Djj6iDc_EeS5cNixQKZkRQ" fontColor="7490599" fontName="Cantarell" fontHeight="8"/>
-            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Djj6iTc_EeS5cNixQKZkRQ" points="[100, 72, -141, 5]$[237, 72, -4, 5]"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Djj6iTc_EeS5cNixQKZkRQ" points="[99, 84, -143, 17]$[238, 84, -4, 17]"/>
             <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_DjlIoDc_EeS5cNixQKZkRQ" id="(0.4975124378109453,0.0)"/>
             <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_DjlIoTc_EeS5cNixQKZkRQ" id="(0.041666666666666664,0.69)"/>
           </edges>
@@ -221,7 +221,7 @@
             </children>
             <styles xmi:type="notation:ConnectorStyle" xmi:id="_DjmWyDc_EeS5cNixQKZkRQ" routing="Rectilinear" jumpLinkStatus="Above"/>
             <styles xmi:type="notation:FontStyle" xmi:id="_DjmWyTc_EeS5cNixQKZkRQ" fontColor="7490599" fontName="Cantarell" fontHeight="8"/>
-            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_DjmWyjc_EeS5cNixQKZkRQ" points="[0, 0, -19, -60]$[19, 60, 0, 0]"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_DjmWyjc_EeS5cNixQKZkRQ" points="[-59, -73, 97, 169]$[-139, -73, 17, 169]$[-139, -144, 17, 98]"/>
             <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Djnk4Dc_EeS5cNixQKZkRQ" id="(0.5,1.0)"/>
             <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Djnk4Tc_EeS5cNixQKZkRQ" id="(0.5,0.0)"/>
           </edges>
@@ -333,9 +333,25 @@
             </children>
             <styles xmi:type="notation:ConnectorStyle" xmi:id="_DjsdYjc_EeS5cNixQKZkRQ" routing="Rectilinear" jumpLinkStatus="Above"/>
             <styles xmi:type="notation:FontStyle" xmi:id="_DjsdYzc_EeS5cNixQKZkRQ" fontName="Cantarell" fontHeight="8"/>
-            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_DjsdZDc_EeS5cNixQKZkRQ" points="[0, 0, 19, 60]$[-19, -60, 0, 0]"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_DjsdZDc_EeS5cNixQKZkRQ" points="[59, 91, -97, -151]$[157, 91, 1, -151]$[157, 144, 1, -98]"/>
             <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_DjtEcjc_EeS5cNixQKZkRQ" id="(0.5,0.0)"/>
             <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_DjtEczc_EeS5cNixQKZkRQ" id="(0.5,1.0)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_pp4LIIH6EeStQ6eskD7z6Q" type="4001" element="_pomYwIH6EeStQ6eskD7z6Q" source="_DjY7YDc_EeS5cNixQKZkRQ" target="_DjaJgzc_EeS5cNixQKZkRQ">
+            <children xmi:type="notation:Node" xmi:id="_pqXTUIH6EeStQ6eskD7z6Q" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pqXTUYH6EeStQ6eskD7z6Q" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_pqX6YIH6EeStQ6eskD7z6Q" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pqX6YYH6EeStQ6eskD7z6Q" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_pqYhcIH6EeStQ6eskD7z6Q" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pqYhcYH6EeStQ6eskD7z6Q" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_pp4LIYH6EeStQ6eskD7z6Q" routing="Rectilinear" jumpLinkStatus="Above"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_pp4LIoH6EeStQ6eskD7z6Q" fontColor="7490599" fontName="Cantarell" fontHeight="8"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_pp4LI4H6EeStQ6eskD7z6Q" points="[144, 144, 144, 144]$[480, 144, 480, 144]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_pqlVwIH6EeStQ6eskD7z6Q" id="(0.5,0.4954954954954955)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_pqlVwYH6EeStQ6eskD7z6Q" id="(0.5,0.5)"/>
           </edges>
         </data>
       </ownedAnnotationEntries>
@@ -377,15 +393,6 @@
               <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_blue']"/>
             </endLabelStyleDescription>
           </computedStyleDescriptions>
-          <computedStyleDescriptions xmi:type="style:EdgeStyleDescription" xmi:id="_DjN8Qzc_EeS5cNixQKZkRQ" sourceArrow="InputArrow" sizeComputationExpression="1" routingStyle="manhattan">
-            <strokeColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <beginLabelStyleDescription xmi:type="style:BeginLabelStyleDescription" xmi:id="_DjN8RDc_EeS5cNixQKZkRQ" labelFormat="bold" showIcon="false" labelExpression="service:renderEOpposite">
-              <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </beginLabelStyleDescription>
-            <endLabelStyleDescription xmi:type="style:EndLabelStyleDescription" xmi:id="_DjN8RTc_EeS5cNixQKZkRQ" labelFormat="bold" showIcon="false" labelExpression="service:render">
-              <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </endLabelStyleDescription>
-          </computedStyleDescriptions>
           <computedStyleDescriptions xmi:type="style:EdgeStyleDescription" xmi:id="_DjOjUzc_EeS5cNixQKZkRQ" sourceArrow="InputArrow" sizeComputationExpression="1" routingStyle="manhattan">
             <strokeColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <beginLabelStyleDescription xmi:type="style:BeginLabelStyleDescription" xmi:id="_DjOjVDc_EeS5cNixQKZkRQ" labelFormat="bold" showIcon="false" labelExpression="service:renderEOpposite">
@@ -416,12 +423,6 @@
             <backgroundColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
             <foregroundColor xmi:type="description:UserFixedColor" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@userColorsPalettes[name='Ecore%20Palette']/@entries[name='EClass']"/>
           </computedStyleDescriptions>
-          <computedStyleDescriptions xmi:type="style:FlatContainerStyleDescription" xmi:id="_6CYzUjdLEeSsz4dswe2Ijw" arcWidth="8" arcHeight="8" tooltipExpression="service:renderTooltip" roundedCorner="true" widthComputationExpression="12" heightComputationExpression="10" backgroundStyle="Liquid">
-            <borderColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
-            <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
-            <backgroundColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-            <foregroundColor xmi:type="description:UserFixedColor" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@userColorsPalettes[name='Ecore%20Palette']/@entries[name='EClass']"/>
-          </computedStyleDescriptions>
           <computedStyleDescriptions xmi:type="style:FlatContainerStyleDescription" xmi:id="_6CaBcjdLEeSsz4dswe2Ijw" arcWidth="8" arcHeight="8" tooltipExpression="service:renderTooltip" roundedCorner="true" widthComputationExpression="12" heightComputationExpression="10" backgroundStyle="Liquid">
             <borderColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
             <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
@@ -434,36 +435,12 @@
             <backgroundColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
             <foregroundColor xmi:type="description:UserFixedColor" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@userColorsPalettes[name='Ecore%20Palette']/@entries[name='EClass']"/>
           </computedStyleDescriptions>
-          <computedStyleDescriptions xmi:type="style:BundledImageDescription" xmi:id="_6CikUzdLEeSsz4dswe2Ijw" labelExpression="service:render" labelAlignment="LEFT" tooltipExpression="service:renderTooltip" sizeComputationExpression="1">
-            <borderColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
-            <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
-            <color xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-          </computedStyleDescriptions>
-          <computedStyleDescriptions xmi:type="style:BundledImageDescription" xmi:id="_6CjycjdLEeSsz4dswe2Ijw" labelExpression="service:render" labelAlignment="LEFT" tooltipExpression="service:renderTooltip" sizeComputationExpression="1">
-            <borderColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
-            <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
-            <color xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-          </computedStyleDescriptions>
-          <computedStyleDescriptions xmi:type="style:BundledImageDescription" xmi:id="_6CmOsjdLEeSsz4dswe2Ijw" labelExpression="service:render" labelAlignment="LEFT" tooltipExpression="service:renderTooltip" sizeComputationExpression="1">
-            <borderColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
-            <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
-            <color xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-          </computedStyleDescriptions>
           <computedStyleDescriptions xmi:type="style:EdgeStyleDescription" xmi:id="_6C6XwzdLEeSsz4dswe2Ijw" targetArrow="InputClosedArrow" sizeComputationExpression="1" routingStyle="tree">
             <strokeColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
             <beginLabelStyleDescription xmi:type="style:BeginLabelStyleDescription" xmi:id="_6C6XxDdLEeSsz4dswe2Ijw" labelFormat="italic" showIcon="false" labelExpression="service:superTypesLabel">
               <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </beginLabelStyleDescription>
             <centerLabelStyleDescription xmi:type="style:CenterLabelStyleDescription" xmi:id="_6C6XxTdLEeSsz4dswe2Ijw" showIcon="false">
-              <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
-            </centerLabelStyleDescription>
-          </computedStyleDescriptions>
-          <computedStyleDescriptions xmi:type="style:EdgeStyleDescription" xmi:id="_6C8M8jdLEeSsz4dswe2Ijw" targetArrow="InputClosedArrow" sizeComputationExpression="1" routingStyle="tree">
-            <strokeColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-            <beginLabelStyleDescription xmi:type="style:BeginLabelStyleDescription" xmi:id="_6C8M8zdLEeSsz4dswe2Ijw" labelFormat="italic" showIcon="false" labelExpression="service:superTypesLabel">
-              <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </beginLabelStyleDescription>
-            <centerLabelStyleDescription xmi:type="style:CenterLabelStyleDescription" xmi:id="_6C8M9DdLEeSsz4dswe2Ijw" showIcon="false">
               <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
             </centerLabelStyleDescription>
           </computedStyleDescriptions>
@@ -475,6 +452,25 @@
             <centerLabelStyleDescription xmi:type="style:CenterLabelStyleDescription" xmi:id="_6C-pMjdLEeSsz4dswe2Ijw" showIcon="false">
               <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
             </centerLabelStyleDescription>
+          </computedStyleDescriptions>
+          <computedStyleDescriptions xmi:type="style:BundledImageDescription" xmi:id="_poMJEoH6EeStQ6eskD7z6Q" labelFormat="bold" labelExpression="service:render" labelAlignment="LEFT" tooltipExpression="service:renderTooltip" sizeComputationExpression="1">
+            <borderColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </computedStyleDescriptions>
+          <computedStyleDescriptions xmi:type="style:BundledImageDescription" xmi:id="_poVTAIH6EeStQ6eskD7z6Q" labelFormat="bold" labelExpression="service:render" labelAlignment="LEFT" tooltipExpression="service:renderTooltip" sizeComputationExpression="1">
+            <borderColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </computedStyleDescriptions>
+          <computedStyleDescriptions xmi:type="style:EdgeStyleDescription" xmi:id="_poww0IH6EeStQ6eskD7z6Q" sourceArrow="InputArrow" targetArrow="FillDiamond" sizeComputationExpression="1" routingStyle="manhattan">
+            <strokeColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <beginLabelStyleDescription xmi:type="style:BeginLabelStyleDescription" xmi:id="_poww0YH6EeStQ6eskD7z6Q" labelFormat="bold" showIcon="false" labelExpression="service:renderEOpposite">
+              <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </beginLabelStyleDescription>
+            <endLabelStyleDescription xmi:type="style:EndLabelStyleDescription" xmi:id="_poww0oH6EeStQ6eskD7z6Q" labelFormat="bold" showIcon="false" labelExpression="service:render">
+              <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </endLabelStyleDescription>
           </computedStyleDescriptions>
           <cache xmi:type="diagram:DiagramElementMapping2ModelElement" xmi:id="_DjDkMjc_EeS5cNixQKZkRQ">
             <key xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
@@ -516,7 +512,7 @@
             <value xmi:type="diagram:ModelElement2ViewVariable" xmi:id="_DjN8QTc_EeS5cNixQKZkRQ">
               <key xmi:type="ecore:EReference" href="K3SLE.ecore#//Inheritance/subMetamodel"/>
               <value xmi:type="diagram:ViewVariable2ContainerVariable" xmi:id="_DjN8Qjc_EeS5cNixQKZkRQ" key="_DjNVMDc_EeS5cNixQKZkRQ">
-                <value xmi:type="diagram:ContainerVariable2StyleDescription" xmi:id="_DjN8Rjc_EeS5cNixQKZkRQ" value="_DjN8Qzc_EeS5cNixQKZkRQ">
+                <value xmi:type="diagram:ContainerVariable2StyleDescription" xmi:id="_DjN8Rjc_EeS5cNixQKZkRQ" value="_poww0IH6EeStQ6eskD7z6Q">
                   <key xmi:type="ecore:EPackage" href="K3SLE.ecore#/"/>
                 </value>
               </value>
@@ -556,14 +552,6 @@
                 </value>
               </value>
             </value>
-            <value xmi:type="diagram:ModelElement2ViewVariable" xmi:id="_6CYzUDdLEeSsz4dswe2Ijw">
-              <key xmi:type="ecore:EClass" href="K3SLE.ecore#//ModelType"/>
-              <value xmi:type="diagram:ViewVariable2ContainerVariable" xmi:id="_6CYzUTdLEeSsz4dswe2Ijw" key="_DiRhEDc_EeS5cNixQKZkRQ">
-                <value xmi:type="diagram:ContainerVariable2StyleDescription" xmi:id="_6CYzUzdLEeSsz4dswe2Ijw" value="_6CYzUjdLEeSsz4dswe2Ijw">
-                  <key xmi:type="ecore:EPackage" href="K3SLE.ecore#/"/>
-                </value>
-              </value>
-            </value>
             <value xmi:type="diagram:ModelElement2ViewVariable" xmi:id="_6CaBcDdLEeSsz4dswe2Ijw">
               <key xmi:type="ecore:EClass" href="K3SLE.ecore#//ModelTypingSpace"/>
               <value xmi:type="diagram:ViewVariable2ContainerVariable" xmi:id="_6CaBcTdLEeSsz4dswe2Ijw" key="_DiT9UDc_EeS5cNixQKZkRQ">
@@ -583,27 +571,19 @@
           </cache>
           <cache xmi:type="diagram:DiagramElementMapping2ModelElement" xmi:id="_6CikUDdLEeSsz4dswe2Ijw">
             <key xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
-            <value xmi:type="diagram:ModelElement2ViewVariable" xmi:id="_6CikUTdLEeSsz4dswe2Ijw">
-              <key xmi:type="ecore:EAttribute" href="K3SLE.ecore#//Metamodel/exactTypeRef"/>
-              <value xmi:type="diagram:ViewVariable2ContainerVariable" xmi:id="_6CikUjdLEeSsz4dswe2Ijw" key="_Di5zMDc_EeS5cNixQKZkRQ">
-                <value xmi:type="diagram:ContainerVariable2StyleDescription" xmi:id="_6CikVDdLEeSsz4dswe2Ijw" value="_6CikUzdLEeSsz4dswe2Ijw">
-                  <key xmi:type="ecore:EClass" href="K3SLE.ecore#//Metamodel"/>
-                </value>
-              </value>
-            </value>
-            <value xmi:type="diagram:ModelElement2ViewVariable" xmi:id="_6CjycDdLEeSsz4dswe2Ijw">
-              <key xmi:type="ecore:EAttribute" href="K3SLE.ecore#//Metamodel/resourceUri"/>
-              <value xmi:type="diagram:ViewVariable2ContainerVariable" xmi:id="_6CjycTdLEeSsz4dswe2Ijw" key="_Di7BUDc_EeS5cNixQKZkRQ">
-                <value xmi:type="diagram:ContainerVariable2StyleDescription" xmi:id="_6CkZgDdLEeSsz4dswe2Ijw" value="_6CjycjdLEeSsz4dswe2Ijw">
-                  <key xmi:type="ecore:EClass" href="K3SLE.ecore#//Metamodel"/>
-                </value>
-              </value>
-            </value>
             <value xmi:type="diagram:ModelElement2ViewVariable" xmi:id="_6CmOsDdLEeSsz4dswe2Ijw">
               <key xmi:type="ecore:EAttribute" href="K3SLE.ecore#//ModelTypingSpace/name"/>
               <value xmi:type="diagram:ViewVariable2ContainerVariable" xmi:id="_6CmOsTdLEeSsz4dswe2Ijw" key="_Di8PcDc_EeS5cNixQKZkRQ">
-                <value xmi:type="diagram:ContainerVariable2StyleDescription" xmi:id="_6CmOszdLEeSsz4dswe2Ijw" value="_6CmOsjdLEeSsz4dswe2Ijw">
+                <value xmi:type="diagram:ContainerVariable2StyleDescription" xmi:id="_6CmOszdLEeSsz4dswe2Ijw" value="_poVTAIH6EeStQ6eskD7z6Q">
                   <key xmi:type="ecore:EClass" href="K3SLE.ecore#//ModelTypingSpace"/>
+                </value>
+              </value>
+            </value>
+            <value xmi:type="diagram:ModelElement2ViewVariable" xmi:id="_poMJEIH6EeStQ6eskD7z6Q">
+              <key xmi:type="ecore:EAttribute" href="K3SLE.ecore#//Element/name"/>
+              <value xmi:type="diagram:ViewVariable2ContainerVariable" xmi:id="_poMJEYH6EeStQ6eskD7z6Q" key="_Di4lEDc_EeS5cNixQKZkRQ">
+                <value xmi:type="diagram:ContainerVariable2StyleDescription" xmi:id="_poMJE4H6EeStQ6eskD7z6Q" value="_poMJEoH6EeStQ6eskD7z6Q">
+                  <key xmi:type="ecore:EClass" href="K3SLE.ecore#//Element"/>
                 </value>
               </value>
             </value>
@@ -614,14 +594,6 @@
               <key xmi:type="ecore:EClass" href="K3SLE.ecore#//Metamodel"/>
               <value xmi:type="diagram:ViewVariable2ContainerVariable" xmi:id="_6C6XwjdLEeSsz4dswe2Ijw" key="_DjJq0Dc_EeS5cNixQKZkRQ">
                 <value xmi:type="diagram:ContainerVariable2StyleDescription" xmi:id="_6C6XxjdLEeSsz4dswe2Ijw" value="_6C6XwzdLEeSsz4dswe2Ijw">
-                  <key xmi:type="ecore:EPackage" href="K3SLE.ecore#/"/>
-                </value>
-              </value>
-            </value>
-            <value xmi:type="diagram:ModelElement2ViewVariable" xmi:id="_6C8M8DdLEeSsz4dswe2Ijw">
-              <key xmi:type="ecore:EClass" href="K3SLE.ecore#//ModelType"/>
-              <value xmi:type="diagram:ViewVariable2ContainerVariable" xmi:id="_6C8M8TdLEeSsz4dswe2Ijw" key="_DjK48Dc_EeS5cNixQKZkRQ">
-                <value xmi:type="diagram:ContainerVariable2StyleDescription" xmi:id="_6C8M9TdLEeSsz4dswe2Ijw" value="_6C8M8jdLEeSsz4dswe2Ijw">
                   <key xmi:type="ecore:EPackage" href="K3SLE.ecore#/"/>
                 </value>
               </value>
@@ -637,7 +609,7 @@
           </cache>
         </data>
       </ownedAnnotationEntries>
-      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_DiEswDc_EeS5cNixQKZkRQ" name="Aspect" tooltipText="&#xA;ERROR : The feature 'eType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@a30007b{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//AspectImport/aspectRef}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@5b461d41{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference}'&#xA;ERROR : The feature 'eReferenceType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@a30007b{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//AspectImport/aspectRef}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@5b461d41{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference}'&#xA;ERROR : The feature 'eRawType' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@3ae04532{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//AspectImport/aspectRef/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@5b461d41{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference}'&#xA;ERROR : The feature 'eClassifier' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@3ae04532{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//AspectImport/aspectRef/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@5b461d41{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference}'&#xA;ERROR : The feature 'eType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@556f9076{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//AspectImport/aspectedClass}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@45b3bdb6{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass}'&#xA;ERROR : The feature 'eReferenceType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@556f9076{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//AspectImport/aspectedClass}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@45b3bdb6{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass}'&#xA;ERROR : The feature 'eRawType' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@59def3d0{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//AspectImport/aspectedClass/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@45b3bdb6{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass}'&#xA;ERROR : The feature 'eClassifier' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@59def3d0{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//AspectImport/aspectedClass/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@45b3bdb6{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass}'&#xA;ERROR : The feature 'eType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@f755ecc{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//AspectImport/ecoreFragment}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@1b6c1b7a{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage}'&#xA;ERROR : The feature 'eReferenceType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@f755ecc{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//AspectImport/ecoreFragment}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@1b6c1b7a{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage}'&#xA;ERROR : The feature 'eRawType' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@3c590ac8{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//AspectImport/ecoreFragment/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@1b6c1b7a{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage}'&#xA;ERROR : The feature 'eClassifier' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@3c590ac8{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//AspectImport/ecoreFragment/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@1b6c1b7a{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage}'" incomingEdges="_DjFZYDc_EeS5cNixQKZkRQ" width="12" height="10">
+      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_DiEswDc_EeS5cNixQKZkRQ" name="Aspect" tooltipText="&#xA;ERROR : The feature 'eType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@7bde49e5{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Aspect/aspectTypeRef}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@557f33bc{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference}'&#xA;ERROR : The feature 'eReferenceType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@7bde49e5{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Aspect/aspectTypeRef}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@557f33bc{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference}'&#xA;ERROR : The feature 'eRawType' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@175eb69a{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Aspect/aspectTypeRef/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@557f33bc{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference}'&#xA;ERROR : The feature 'eClassifier' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@175eb69a{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Aspect/aspectTypeRef/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@557f33bc{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference}'" incomingEdges="_DjFZYDc_EeS5cNixQKZkRQ" width="12" height="10">
         <target xmi:type="ecore:EClass" href="K3SLE.ecore#//Aspect"/>
         <semanticElements xmi:type="ecore:EClass" href="K3SLE.ecore#//Aspect"/>
         <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -668,11 +640,10 @@
         <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_Di4lEDc_EeS5cNixQKZkRQ" name="name : EString" tooltipText="">
           <target xmi:type="ecore:EAttribute" href="K3SLE.ecore#//Element/name"/>
           <semanticElements xmi:type="ecore:EAttribute" href="K3SLE.ecore#//Element/name"/>
-          <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_Di4lETc_EeS5cNixQKZkRQ" labelAlignment="LEFT">
-            <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_Di4lEjc_EeS5cNixQKZkRQ"/>
-            <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
-            <borderColor xmi:type="viewpoint:RGBValues" xmi:id="_Di4lEzc_EeS5cNixQKZkRQ"/>
-            <color xmi:type="viewpoint:RGBValues" xmi:id="_Di4lFDc_EeS5cNixQKZkRQ"/>
+          <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_poN-QIH6EeStQ6eskD7z6Q" labelFormat="bold" labelAlignment="LEFT" description="_poMJEoH6EeStQ6eskD7z6Q">
+            <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_poN-QYH6EeStQ6eskD7z6Q"/>
+            <borderColor xmi:type="viewpoint:RGBValues" xmi:id="_poN-QoH6EeStQ6eskD7z6Q"/>
+            <color xmi:type="viewpoint:RGBValues" xmi:id="_poN-Q4H6EeStQ6eskD7z6Q"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
         </ownedElements>
@@ -692,7 +663,7 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
       </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_DiPE0Dc_EeS5cNixQKZkRQ" name="Metamodel" tooltipText="&#xA;ERROR : The feature 'eType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@489bc343{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/pkgs}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@79dcd2a{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage}'&#xA;ERROR : The feature 'eReferenceType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@489bc343{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/pkgs}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@79dcd2a{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage}'&#xA;ERROR : The feature 'eRawType' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@5d49e469{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/pkgs/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@79dcd2a{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage}'&#xA;ERROR : The feature 'eClassifier' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@5d49e469{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/pkgs/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@79dcd2a{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage}'&#xA;ERROR : The feature 'eType' of 'org.eclipse.emf.ecore.impl.EAttributeImpl@507acc2e{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/exactTypeRef}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EDataTypeImpl@660a81ad{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString}'&#xA;ERROR : The feature 'eAttributeType' of 'org.eclipse.emf.ecore.impl.EAttributeImpl@507acc2e{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/exactTypeRef}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EDataTypeImpl@660a81ad{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString}'&#xA;ERROR : The feature 'eRawType' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@1e32d958{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/exactTypeRef/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EDataTypeImpl@660a81ad{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString}'&#xA;ERROR : The feature 'eClassifier' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@1e32d958{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/exactTypeRef/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EDataTypeImpl@660a81ad{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString}'&#xA;ERROR : The feature 'eType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@186efe55{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/genmodels}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@3c3bbfd0{platform:/resource/org.eclipse.emf.codegen.ecore/model/GenModel.ecore#//GenModel}'&#xA;ERROR : The feature 'eReferenceType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@186efe55{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/genmodels}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@3c3bbfd0{platform:/resource/org.eclipse.emf.codegen.ecore/model/GenModel.ecore#//GenModel}'&#xA;ERROR : The feature 'eRawType' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@1c5b2fe5{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/genmodels/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@3c3bbfd0{platform:/resource/org.eclipse.emf.codegen.ecore/model/GenModel.ecore#//GenModel}'&#xA;ERROR : The feature 'eClassifier' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@1c5b2fe5{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/genmodels/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@3c3bbfd0{platform:/resource/org.eclipse.emf.codegen.ecore/model/GenModel.ecore#//GenModel}'&#xA;ERROR : The feature 'eType' of 'org.eclipse.emf.ecore.impl.EAttributeImpl@2af7905e{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/resourceUri}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EDataTypeImpl@28d4b53d{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString}'&#xA;ERROR : The feature 'eAttributeType' of 'org.eclipse.emf.ecore.impl.EAttributeImpl@2af7905e{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/resourceUri}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EDataTypeImpl@28d4b53d{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString}'&#xA;ERROR : The feature 'eRawType' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@26a571ee{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/resourceUri/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EDataTypeImpl@28d4b53d{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString}'&#xA;ERROR : The feature 'eClassifier' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@26a571ee{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/resourceUri/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EDataTypeImpl@28d4b53d{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString}'&#xA;ERROR : The feature 'eType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@1efb8afb{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/resourceSetup}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@370d89bf{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference}'&#xA;ERROR : The feature 'eReferenceType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@1efb8afb{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/resourceSetup}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@370d89bf{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference}'&#xA;ERROR : The feature 'eRawType' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@37dad414{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/resourceSetup/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@370d89bf{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference}'&#xA;ERROR : The feature 'eClassifier' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@37dad414{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/resourceSetup/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@370d89bf{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference}'" outgoingEdges="_DjFZYDc_EeS5cNixQKZkRQ _DjGAdzc_EeS5cNixQKZkRQ _DjJq0Dc_EeS5cNixQKZkRQ _DjOjUDc_EeS5cNixQKZkRQ" incomingEdges="_DjC9IDc_EeS5cNixQKZkRQ _DjNVMDc_EeS5cNixQKZkRQ" width="12" height="10">
+      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_DiPE0Dc_EeS5cNixQKZkRQ" name="Metamodel" tooltipText="&#xA;ERROR : The feature 'eType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@7c687851{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/genmodels}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@1ad8d69a{platform:/resource/org.eclipse.emf.codegen.ecore/model/GenModel.ecore#//GenModel}'&#xA;ERROR : The feature 'eReferenceType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@7c687851{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/genmodels}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@1ad8d69a{platform:/resource/org.eclipse.emf.codegen.ecore/model/GenModel.ecore#//GenModel}'&#xA;ERROR : The feature 'eRawType' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@1ef220cd{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/genmodels/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@1ad8d69a{platform:/resource/org.eclipse.emf.codegen.ecore/model/GenModel.ecore#//GenModel}'&#xA;ERROR : The feature 'eClassifier' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@1ef220cd{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/genmodels/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@1ad8d69a{platform:/resource/org.eclipse.emf.codegen.ecore/model/GenModel.ecore#//GenModel}'&#xA;ERROR : The feature 'eType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@44142403{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/xtextSetupRef}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@49c42fca{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference}'&#xA;ERROR : The feature 'eReferenceType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@44142403{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/xtextSetupRef}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@49c42fca{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference}'&#xA;ERROR : The feature 'eRawType' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@51f9152e{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/xtextSetupRef/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@49c42fca{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference}'&#xA;ERROR : The feature 'eClassifier' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@51f9152e{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/xtextSetupRef/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@49c42fca{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference}'" outgoingEdges="_DjFZYDc_EeS5cNixQKZkRQ _DjGAdzc_EeS5cNixQKZkRQ _DjJq0Dc_EeS5cNixQKZkRQ _DjOjUDc_EeS5cNixQKZkRQ _pomYwIH6EeStQ6eskD7z6Q" incomingEdges="_DjC9IDc_EeS5cNixQKZkRQ _DjNVMDc_EeS5cNixQKZkRQ" width="12" height="10">
         <target xmi:type="ecore:EClass" href="K3SLE.ecore#//Metamodel"/>
         <semanticElements xmi:type="ecore:EClass" href="K3SLE.ecore#//Metamodel"/>
         <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -705,16 +676,6 @@
           <foregroundColor xmi:type="viewpoint:RGBValues" xmi:id="_6CYMRDdLEeSsz4dswe2Ijw" red="255" green="252" blue="216"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_Di5zMDc_EeS5cNixQKZkRQ" name="exactTypeRef" tooltipText="&#xA;ERROR : The feature 'eType' of 'org.eclipse.emf.ecore.impl.EAttributeImpl@507acc2e{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/exactTypeRef}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EDataTypeImpl@660a81ad{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString}'&#xA;ERROR : The feature 'eAttributeType' of 'org.eclipse.emf.ecore.impl.EAttributeImpl@507acc2e{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/exactTypeRef}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EDataTypeImpl@660a81ad{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString}'&#xA;ERROR : The feature 'eRawType' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@1e32d958{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/exactTypeRef/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EDataTypeImpl@660a81ad{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString}'&#xA;ERROR : The feature 'eClassifier' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@1e32d958{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/exactTypeRef/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EDataTypeImpl@660a81ad{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString}'">
-          <target xmi:type="ecore:EAttribute" href="K3SLE.ecore#//Metamodel/exactTypeRef"/>
-          <semanticElements xmi:type="ecore:EAttribute" href="K3SLE.ecore#//Metamodel/exactTypeRef"/>
-          <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_6CikVTdLEeSsz4dswe2Ijw" labelAlignment="LEFT" description="_6CikUzdLEeSsz4dswe2Ijw">
-            <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_6CikVjdLEeSsz4dswe2Ijw" red="239" green="41" blue="41"/>
-            <borderColor xmi:type="viewpoint:RGBValues" xmi:id="_6CikVzdLEeSsz4dswe2Ijw" red="239" green="41" blue="41"/>
-            <color xmi:type="viewpoint:RGBValues" xmi:id="_6CikWDdLEeSsz4dswe2Ijw"/>
-          </ownedStyle>
-          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
-        </ownedElements>
         <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_Di6aQDc_EeS5cNixQKZkRQ" name="resourceType : ResourceType = K3" tooltipText="">
           <target xmi:type="ecore:EAttribute" href="K3SLE.ecore#//Metamodel/resourceType"/>
           <semanticElements xmi:type="ecore:EAttribute" href="K3SLE.ecore#//Metamodel/resourceType"/>
@@ -726,17 +687,29 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
         </ownedElements>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_Di7BUDc_EeS5cNixQKZkRQ" name="resourceUri" tooltipText="&#xA;ERROR : The feature 'eType' of 'org.eclipse.emf.ecore.impl.EAttributeImpl@2af7905e{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/resourceUri}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EDataTypeImpl@28d4b53d{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString}'&#xA;ERROR : The feature 'eAttributeType' of 'org.eclipse.emf.ecore.impl.EAttributeImpl@2af7905e{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/resourceUri}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EDataTypeImpl@28d4b53d{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString}'&#xA;ERROR : The feature 'eRawType' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@26a571ee{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/resourceUri/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EDataTypeImpl@28d4b53d{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString}'&#xA;ERROR : The feature 'eClassifier' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@26a571ee{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/resourceUri/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EDataTypeImpl@28d4b53d{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString}'">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_Di7BUDc_EeS5cNixQKZkRQ" name="resourceUri : EString" tooltipText="">
           <target xmi:type="ecore:EAttribute" href="K3SLE.ecore#//Metamodel/resourceUri"/>
           <semanticElements xmi:type="ecore:EAttribute" href="K3SLE.ecore#//Metamodel/resourceUri"/>
-          <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_6CkZgTdLEeSsz4dswe2Ijw" labelAlignment="LEFT" description="_6CjycjdLEeSsz4dswe2Ijw">
-            <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_6CkZgjdLEeSsz4dswe2Ijw" red="239" green="41" blue="41"/>
-            <borderColor xmi:type="viewpoint:RGBValues" xmi:id="_6CkZgzdLEeSsz4dswe2Ijw" red="239" green="41" blue="41"/>
-            <color xmi:type="viewpoint:RGBValues" xmi:id="_6CkZhDdLEeSsz4dswe2Ijw"/>
+          <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_poSPsIH6EeStQ6eskD7z6Q" labelAlignment="LEFT">
+            <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_poSPsYH6EeStQ6eskD7z6Q"/>
+            <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
+            <borderColor xmi:type="viewpoint:RGBValues" xmi:id="_poSPsoH6EeStQ6eskD7z6Q"/>
+            <color xmi:type="viewpoint:RGBValues" xmi:id="_poSPs4H6EeStQ6eskD7z6Q"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
         </ownedElements>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_FwVywDdNEeSsz4dswe2Ijw" name="ecoreUri : EString" tooltipText="&#xA;ERROR : The required feature 'eAttributeType' of 'org.eclipse.emf.ecore.impl.EAttributeImpl@e28c63d{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/newAttribute}' must be set&#xA;ERROR : The typed element must have a type">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_poPzcIH6EeStQ6eskD7z6Q" name="exactTypeName : EString" tooltipText="">
+          <target xmi:type="ecore:EAttribute" href="K3SLE.ecore#//Metamodel/exactTypeName"/>
+          <semanticElements xmi:type="ecore:EAttribute" href="K3SLE.ecore#//Metamodel/exactTypeName"/>
+          <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_poQagIH6EeStQ6eskD7z6Q" labelAlignment="LEFT">
+            <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_poQagYH6EeStQ6eskD7z6Q"/>
+            <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
+            <borderColor xmi:type="viewpoint:RGBValues" xmi:id="_poQagoH6EeStQ6eskD7z6Q"/>
+            <color xmi:type="viewpoint:RGBValues" xmi:id="_poQag4H6EeStQ6eskD7z6Q"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
+        </ownedElements>
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_FwVywDdNEeSsz4dswe2Ijw" name="ecoreUri : EString" tooltipText="">
           <target xmi:type="ecore:EAttribute" href="K3SLE.ecore#//Metamodel/ecoreUri"/>
           <semanticElements xmi:type="ecore:EAttribute" href="K3SLE.ecore#//Metamodel/ecoreUri"/>
           <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_I2DmgDdNEeSsz4dswe2Ijw" labelAlignment="LEFT">
@@ -747,32 +720,33 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
         </ownedElements>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_GUlIQDdNEeSsz4dswe2Ijw" name="genmodelUri : EString" tooltipText="&#xA;ERROR : The required feature 'eAttributeType' of 'org.eclipse.emf.ecore.impl.EAttributeImpl@61ee4026{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//Metamodel/newAttribute}' must be set&#xA;ERROR : The typed element must have a type">
-          <target xmi:type="ecore:EAttribute" href="K3SLE.ecore#//Metamodel/genmodelUri"/>
-          <semanticElements xmi:type="ecore:EAttribute" href="K3SLE.ecore#//Metamodel/genmodelUri"/>
-          <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_JdTzwDdNEeSsz4dswe2Ijw" labelAlignment="LEFT">
-            <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_JdTzwTdNEeSsz4dswe2Ijw"/>
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_poS2wIH6EeStQ6eskD7z6Q" name="genmodelUris : EString" tooltipText="">
+          <target xmi:type="ecore:EAttribute" href="K3SLE.ecore#//Metamodel/genmodelUris"/>
+          <semanticElements xmi:type="ecore:EAttribute" href="K3SLE.ecore#//Metamodel/genmodelUris"/>
+          <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_poTd0IH6EeStQ6eskD7z6Q" labelAlignment="LEFT">
+            <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_poTd0YH6EeStQ6eskD7z6Q"/>
             <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
-            <borderColor xmi:type="viewpoint:RGBValues" xmi:id="_JdTzwjdNEeSsz4dswe2Ijw"/>
-            <color xmi:type="viewpoint:RGBValues" xmi:id="_JdTzwzdNEeSsz4dswe2Ijw"/>
+            <borderColor xmi:type="viewpoint:RGBValues" xmi:id="_poTd0oH6EeStQ6eskD7z6Q"/>
+            <color xmi:type="viewpoint:RGBValues" xmi:id="_poTd04H6EeStQ6eskD7z6Q"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
         </ownedElements>
       </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_DiRhEDc_EeS5cNixQKZkRQ" name="ModelType" tooltipText="&#xA;ERROR : The feature 'eType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@146174a1{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//ModelType/pkgs}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@532f8a1f{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage}'&#xA;ERROR : The feature 'eReferenceType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@146174a1{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//ModelType/pkgs}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@532f8a1f{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage}'&#xA;ERROR : The feature 'eRawType' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@391f04e9{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//ModelType/pkgs/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@532f8a1f{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage}'&#xA;ERROR : The feature 'eClassifier' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@391f04e9{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//ModelType/pkgs/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@532f8a1f{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage}'" outgoingEdges="_DjK48Dc_EeS5cNixQKZkRQ _DjPKYDc_EeS5cNixQKZkRQ" incomingEdges="_DjGAdzc_EeS5cNixQKZkRQ _DjIcvDc_EeS5cNixQKZkRQ _DjOjUDc_EeS5cNixQKZkRQ" width="12" height="10">
+      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_DiRhEDc_EeS5cNixQKZkRQ" name="ModelType" tooltipText="" outgoingEdges="_DjK48Dc_EeS5cNixQKZkRQ _DjPKYDc_EeS5cNixQKZkRQ" incomingEdges="_DjGAdzc_EeS5cNixQKZkRQ _DjIcvDc_EeS5cNixQKZkRQ _DjOjUDc_EeS5cNixQKZkRQ _pomYwIH6EeStQ6eskD7z6Q" width="12" height="10">
         <target xmi:type="ecore:EClass" href="K3SLE.ecore#//ModelType"/>
         <semanticElements xmi:type="ecore:EClass" href="K3SLE.ecore#//ModelType"/>
         <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
         <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
         <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-        <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_6CZaYDdLEeSsz4dswe2Ijw" description="_6CYzUjdLEeSsz4dswe2Ijw" backgroundStyle="Liquid">
-          <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_6CZaYTdLEeSsz4dswe2Ijw" red="239" green="41" blue="41"/>
-          <borderColor xmi:type="viewpoint:RGBValues" xmi:id="_6CZaYjdLEeSsz4dswe2Ijw" red="239" green="41" blue="41"/>
-          <backgroundColor xmi:type="viewpoint:RGBValues" xmi:id="_6CZaYzdLEeSsz4dswe2Ijw" red="255" green="255" blue="255"/>
-          <foregroundColor xmi:type="viewpoint:RGBValues" xmi:id="_6CZaZDdLEeSsz4dswe2Ijw" red="255" green="252" blue="216"/>
+        <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_poFbYIH6EeStQ6eskD7z6Q" backgroundStyle="Liquid">
+          <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_poFbYYH6EeStQ6eskD7z6Q"/>
+          <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
+          <borderColor xmi:type="viewpoint:RGBValues" xmi:id="_poFbYoH6EeStQ6eskD7z6Q"/>
+          <backgroundColor xmi:type="viewpoint:RGBValues" xmi:id="_poFbY4H6EeStQ6eskD7z6Q" red="255" green="255" blue="255"/>
+          <foregroundColor xmi:type="viewpoint:RGBValues" xmi:id="_poFbZIH6EeStQ6eskD7z6Q" red="255" green="252" blue="216"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_ASwIsDdNEeSsz4dswe2Ijw" name="ecoreUri : EString" tooltipText="&#xA;ERROR : The required feature 'eAttributeType' of 'org.eclipse.emf.ecore.impl.EAttributeImpl@68e4fb82{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//ModelType/newAttribute}' must be set&#xA;ERROR : The typed element must have a type">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_ASwIsDdNEeSsz4dswe2Ijw" name="ecoreUri : EString" tooltipText="">
           <target xmi:type="ecore:EAttribute" href="K3SLE.ecore#//ModelType/ecoreUri"/>
           <semanticElements xmi:type="ecore:EAttribute" href="K3SLE.ecore#//ModelType/ecoreUri"/>
           <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_BXXAUDdNEeSsz4dswe2Ijw" labelAlignment="LEFT">
@@ -784,7 +758,7 @@
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
         </ownedElements>
       </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_DiT9UDc_EeS5cNixQKZkRQ" name="ModelTypingSpace" tooltipText="&#xA;ERROR : The feature 'eType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@62d00b63{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//ModelTypingSpace/imports}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@27191894{platform:/resource/org.eclipse.xtext.xbase/model/Xtype.ecore#//XImportSection}'&#xA;ERROR : The feature 'eReferenceType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@62d00b63{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//ModelTypingSpace/imports}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@27191894{platform:/resource/org.eclipse.xtext.xbase/model/Xtype.ecore#//XImportSection}'&#xA;ERROR : The feature 'eRawType' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@7f99e41f{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//ModelTypingSpace/imports/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@27191894{platform:/resource/org.eclipse.xtext.xbase/model/Xtype.ecore#//XImportSection}'&#xA;ERROR : The feature 'eClassifier' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@7f99e41f{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//ModelTypingSpace/imports/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@27191894{platform:/resource/org.eclipse.xtext.xbase/model/Xtype.ecore#//XImportSection}'&#xA;ERROR : The feature 'eType' of 'org.eclipse.emf.ecore.impl.EAttributeImpl@6327215b{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//ModelTypingSpace/name}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EDataTypeImpl@7bb2694e{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString}'&#xA;ERROR : The feature 'eAttributeType' of 'org.eclipse.emf.ecore.impl.EAttributeImpl@6327215b{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//ModelTypingSpace/name}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EDataTypeImpl@7bb2694e{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString}'&#xA;ERROR : The feature 'eRawType' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@504ff0ab{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//ModelTypingSpace/name/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EDataTypeImpl@7bb2694e{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString}'&#xA;ERROR : The feature 'eClassifier' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@504ff0ab{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//ModelTypingSpace/name/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EDataTypeImpl@7bb2694e{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString}'" outgoingEdges="_DjH1oDc_EeS5cNixQKZkRQ" width="12" height="10">
+      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_DiT9UDc_EeS5cNixQKZkRQ" name="ModelTypingSpace" tooltipText="&#xA;ERROR : The feature 'eType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@210a2d16{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//ModelTypingSpace/imports}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@1e3052fc{platform:/resource/org.eclipse.xtext.xbase/model/Xtype.ecore#//XImportSection}'&#xA;ERROR : The feature 'eReferenceType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@210a2d16{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//ModelTypingSpace/imports}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@1e3052fc{platform:/resource/org.eclipse.xtext.xbase/model/Xtype.ecore#//XImportSection}'&#xA;ERROR : The feature 'eRawType' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@2a9faab0{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//ModelTypingSpace/imports/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@1e3052fc{platform:/resource/org.eclipse.xtext.xbase/model/Xtype.ecore#//XImportSection}'&#xA;ERROR : The feature 'eClassifier' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@2a9faab0{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//ModelTypingSpace/imports/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@1e3052fc{platform:/resource/org.eclipse.xtext.xbase/model/Xtype.ecore#//XImportSection}'" outgoingEdges="_DjH1oDc_EeS5cNixQKZkRQ" width="12" height="10">
         <target xmi:type="ecore:EClass" href="K3SLE.ecore#//ModelTypingSpace"/>
         <semanticElements xmi:type="ecore:EClass" href="K3SLE.ecore#//ModelTypingSpace"/>
         <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -797,13 +771,13 @@
           <foregroundColor xmi:type="viewpoint:RGBValues" xmi:id="_6CaohDdLEeSsz4dswe2Ijw" red="255" green="252" blue="216"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_Di8PcDc_EeS5cNixQKZkRQ" name="name" tooltipText="&#xA;ERROR : The feature 'eType' of 'org.eclipse.emf.ecore.impl.EAttributeImpl@6327215b{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//ModelTypingSpace/name}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EDataTypeImpl@7bb2694e{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString}'&#xA;ERROR : The feature 'eAttributeType' of 'org.eclipse.emf.ecore.impl.EAttributeImpl@6327215b{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//ModelTypingSpace/name}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EDataTypeImpl@7bb2694e{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString}'&#xA;ERROR : The feature 'eRawType' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@504ff0ab{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//ModelTypingSpace/name/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EDataTypeImpl@7bb2694e{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString}'&#xA;ERROR : The feature 'eClassifier' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@504ff0ab{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//ModelTypingSpace/name/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EDataTypeImpl@7bb2694e{platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString}'">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_Di8PcDc_EeS5cNixQKZkRQ" name="name : EString" tooltipText="">
           <target xmi:type="ecore:EAttribute" href="K3SLE.ecore#//ModelTypingSpace/name"/>
           <semanticElements xmi:type="ecore:EAttribute" href="K3SLE.ecore#//ModelTypingSpace/name"/>
-          <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_6Cm1wDdLEeSsz4dswe2Ijw" labelAlignment="LEFT" description="_6CmOsjdLEeSsz4dswe2Ijw">
-            <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_6Cm1wTdLEeSsz4dswe2Ijw" red="239" green="41" blue="41"/>
-            <borderColor xmi:type="viewpoint:RGBValues" xmi:id="_6Cm1wjdLEeSsz4dswe2Ijw" red="239" green="41" blue="41"/>
-            <color xmi:type="viewpoint:RGBValues" xmi:id="_6Cm1wzdLEeSsz4dswe2Ijw"/>
+          <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_poV6EIH6EeStQ6eskD7z6Q" labelFormat="bold" labelAlignment="LEFT" description="_poVTAIH6EeStQ6eskD7z6Q">
+            <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_poV6EYH6EeStQ6eskD7z6Q"/>
+            <borderColor xmi:type="viewpoint:RGBValues" xmi:id="_poV6EoH6EeStQ6eskD7z6Q"/>
+            <color xmi:type="viewpoint:RGBValues" xmi:id="_poV6E4H6EeStQ6eskD7z6Q"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
         </ownedElements>
@@ -883,7 +857,7 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
       </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_DiaD8Dc_EeS5cNixQKZkRQ" name="XbaseTransformation" tooltipText="&#xA;ERROR : The feature 'eType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@62a2ab01{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//XbaseTransformation/body}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@567ff4a6{platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression}'&#xA;ERROR : The feature 'eReferenceType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@62a2ab01{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//XbaseTransformation/body}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@567ff4a6{platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression}'&#xA;ERROR : The feature 'eRawType' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@214ab7b2{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//XbaseTransformation/body/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@567ff4a6{platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression}'&#xA;ERROR : The feature 'eClassifier' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@214ab7b2{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//XbaseTransformation/body/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@567ff4a6{platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression}'&#xA;ERROR : The feature 'eType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@2589013e{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//XbaseTransformation/parameters}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@6a96eaa7{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmFormalParameter}'&#xA;ERROR : The feature 'eReferenceType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@2589013e{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//XbaseTransformation/parameters}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@6a96eaa7{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmFormalParameter}'&#xA;ERROR : The feature 'eRawType' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@30621831{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//XbaseTransformation/parameters/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@6a96eaa7{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmFormalParameter}'&#xA;ERROR : The feature 'eClassifier' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@30621831{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//XbaseTransformation/parameters/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@6a96eaa7{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmFormalParameter}'&#xA;ERROR : The feature 'eType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@45b0a0b2{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//XbaseTransformation/returnTypeRef}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@5a07b09c{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference}'&#xA;ERROR : The feature 'eReferenceType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@45b0a0b2{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//XbaseTransformation/returnTypeRef}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@5a07b09c{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference}'&#xA;ERROR : The feature 'eRawType' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@782251c7{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//XbaseTransformation/returnTypeRef/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@5a07b09c{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference}'&#xA;ERROR : The feature 'eClassifier' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@782251c7{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//XbaseTransformation/returnTypeRef/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@5a07b09c{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference}'" outgoingEdges="_DjMHEDc_EeS5cNixQKZkRQ" width="12" height="10">
+      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_DiaD8Dc_EeS5cNixQKZkRQ" name="XbaseTransformation" tooltipText="&#xA;ERROR : The feature 'eType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@45eb9cc9{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//XbaseTransformation/body}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@383976a0{platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression}'&#xA;ERROR : The feature 'eReferenceType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@45eb9cc9{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//XbaseTransformation/body}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@383976a0{platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression}'&#xA;ERROR : The feature 'eRawType' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@5ebca056{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//XbaseTransformation/body/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@383976a0{platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression}'&#xA;ERROR : The feature 'eClassifier' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@5ebca056{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//XbaseTransformation/body/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@383976a0{platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression}'&#xA;ERROR : The feature 'eType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@4c7364f0{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//XbaseTransformation/parameters}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@64891b3b{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmFormalParameter}'&#xA;ERROR : The feature 'eReferenceType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@4c7364f0{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//XbaseTransformation/parameters}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@64891b3b{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmFormalParameter}'&#xA;ERROR : The feature 'eRawType' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@1b42d882{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//XbaseTransformation/parameters/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@64891b3b{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmFormalParameter}'&#xA;ERROR : The feature 'eClassifier' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@1b42d882{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//XbaseTransformation/parameters/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@64891b3b{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmFormalParameter}'&#xA;ERROR : The feature 'eType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@28edc189{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//XbaseTransformation/returnTypeRef}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@c5bc21f{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference}'&#xA;ERROR : The feature 'eReferenceType' of 'org.eclipse.emf.ecore.impl.EReferenceImpl@28edc189{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//XbaseTransformation/returnTypeRef}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@c5bc21f{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference}'&#xA;ERROR : The feature 'eRawType' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@4c5f2b70{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//XbaseTransformation/returnTypeRef/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@c5bc21f{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference}'&#xA;ERROR : The feature 'eClassifier' of 'org.eclipse.emf.ecore.impl.EGenericTypeImpl@4c5f2b70{platform:/resource/fr.inria.diverse.k3.sle.metamodel/model/K3SLE.ecore#//XbaseTransformation/returnTypeRef/@eGenericType}' contains an unresolved proxy 'org.eclipse.emf.ecore.impl.EClassImpl@c5bc21f{platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference}'" outgoingEdges="_DjMHEDc_EeS5cNixQKZkRQ" width="12" height="10">
         <target xmi:type="ecore:EClass" href="K3SLE.ecore#//XbaseTransformation"/>
         <semanticElements xmi:type="ecore:EClass" href="K3SLE.ecore#//XbaseTransformation"/>
         <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -1006,13 +980,14 @@
       <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_DjK48Dc_EeS5cNixQKZkRQ" sourceNode="_DiRhEDc_EeS5cNixQKZkRQ" targetNode="_DiKzYDc_EeS5cNixQKZkRQ">
         <target xmi:type="ecore:EClass" href="K3SLE.ecore#//ModelType"/>
         <semanticElements xmi:type="ecore:EGenericType" href="K3SLE.ecore#//ModelType/@eGenericSuperTypes.0"/>
-        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_6C8M9jdLEeSsz4dswe2Ijw" description="_6C8M8jdLEeSsz4dswe2Ijw" targetArrow="InputClosedArrow" routingStyle="tree">
-          <strokeColor xmi:type="viewpoint:RGBValues" xmi:id="_6C8M9zdLEeSsz4dswe2Ijw" red="136" green="136" blue="136"/>
-          <beginLabelStyle xmi:type="diagram:BeginLabelStyle" xmi:id="_6C8M-DdLEeSsz4dswe2Ijw" labelFormat="italic" showIcon="false">
-            <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_6C8M-TdLEeSsz4dswe2Ijw"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_potGcIH6EeStQ6eskD7z6Q" targetArrow="InputClosedArrow" routingStyle="tree">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']/@style"/>
+          <strokeColor xmi:type="viewpoint:RGBValues" xmi:id="_potGcYH6EeStQ6eskD7z6Q" red="136" green="136" blue="136"/>
+          <beginLabelStyle xmi:type="diagram:BeginLabelStyle" xmi:id="_potGcoH6EeStQ6eskD7z6Q" labelFormat="italic" showIcon="false">
+            <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_potGc4H6EeStQ6eskD7z6Q"/>
           </beginLabelStyle>
-          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_6C8M-jdLEeSsz4dswe2Ijw" showIcon="false">
-            <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_6C8M-zdLEeSsz4dswe2Ijw" red="239" green="41" blue="41"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_potGdIH6EeStQ6eskD7z6Q" showIcon="false">
+            <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_potGdYH6EeStQ6eskD7z6Q"/>
           </centerLabelStyle>
         </ownedStyle>
         <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']"/>
@@ -1050,13 +1025,13 @@
         <target xmi:type="ecore:EReference" href="K3SLE.ecore#//Inheritance/subMetamodel"/>
         <semanticElements xmi:type="ecore:EReference" href="K3SLE.ecore#//Metamodel/inheritanceRelation"/>
         <semanticElements xmi:type="ecore:EReference" href="K3SLE.ecore#//Inheritance/subMetamodel"/>
-        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_DjN8Rzc_EeS5cNixQKZkRQ" description="_DjN8Qzc_EeS5cNixQKZkRQ" sourceArrow="InputArrow" routingStyle="manhattan">
-          <strokeColor xmi:type="viewpoint:RGBValues" xmi:id="_DjN8SDc_EeS5cNixQKZkRQ"/>
-          <beginLabelStyle xmi:type="diagram:BeginLabelStyle" xmi:id="_DjN8STc_EeS5cNixQKZkRQ" labelFormat="bold" showIcon="false">
-            <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_DjN8Sjc_EeS5cNixQKZkRQ"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_poww04H6EeStQ6eskD7z6Q" description="_poww0IH6EeStQ6eskD7z6Q" sourceArrow="InputArrow" targetArrow="FillDiamond" routingStyle="manhattan">
+          <strokeColor xmi:type="viewpoint:RGBValues" xmi:id="_poww1IH6EeStQ6eskD7z6Q"/>
+          <beginLabelStyle xmi:type="diagram:BeginLabelStyle" xmi:id="_poww1YH6EeStQ6eskD7z6Q" labelFormat="bold" showIcon="false">
+            <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_poww1oH6EeStQ6eskD7z6Q"/>
           </beginLabelStyle>
-          <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_DjN8Szc_EeS5cNixQKZkRQ" labelFormat="bold" showIcon="false">
-            <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_DjN8TDc_EeS5cNixQKZkRQ"/>
+          <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_poww14H6EeStQ6eskD7z6Q" labelFormat="bold" showIcon="false">
+            <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_poww2IH6EeStQ6eskD7z6Q"/>
           </endLabelStyle>
         </ownedStyle>
         <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='Bi-directional%20EC_EReference%20']"/>
@@ -1090,6 +1065,23 @@
           </endLabelStyle>
         </ownedStyle>
         <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='Bi-directional%20EC_EReference%20']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_pomYwIH6EeStQ6eskD7z6Q" name="[0..*] requires" sourceNode="_DiPE0Dc_EeS5cNixQKZkRQ" targetNode="_DiRhEDc_EeS5cNixQKZkRQ">
+        <target xmi:type="ecore:EReference" href="K3SLE.ecore#//Metamodel/requires"/>
+        <semanticElements xmi:type="ecore:EReference" href="K3SLE.ecore#//Metamodel/requires"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_popcEIH6EeStQ6eskD7z6Q" routingStyle="manhattan">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']/@style"/>
+          <strokeColor xmi:type="viewpoint:RGBValues" xmi:id="_popcEYH6EeStQ6eskD7z6Q"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_popcEoH6EeStQ6eskD7z6Q" showIcon="false">
+            <customFeatures>labelSize</customFeatures>
+            <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_popcE4H6EeStQ6eskD7z6Q"/>
+          </centerLabelStyle>
+          <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_popcFIH6EeStQ6eskD7z6Q" showIcon="false">
+            <customFeatures>labelSize</customFeatures>
+            <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_popcFYH6EeStQ6eskD7z6Q" red="39" green="76" blue="114"/>
+          </endLabelStyle>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
       </ownedDiagramElements>
       <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
       <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_ocowhDc-EeS5cNixQKZkRQ"/>
