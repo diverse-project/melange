@@ -21,13 +21,13 @@ metamodel CompositeFsm {
 metamodel ExecutableFsm {
 	ecore "platform:/resource/fr.inria.diverse.melange.examples.metamodels.fsm/model/FSM.ecore"
 	exactType ExecutableFsmMT
-	aspect fr.inria.diverse.melange.examples.fsm.project.ExecutableFsmAspect
+	with fr.inria.diverse.melange.examples.fsm.project.ExecutableFsmAspect
 }
 
 metamodel TimedFsm {
 	ecore "platform:/resource/fr.inria.diverse.melange.examples.metamodels.timedfsm/model/TimedFSM.ecore"
 	exactType TimedFsmMT
-	aspect fr.inria.diverse.melange.examples.fsm.project.TimedFsmAspect
+	with fr.inria.diverse.melange.examples.fsm.project.TimedFsmAspect
 }
 
 transformation execute(ExecutableFsmMT fsm) {
