@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<relativePath>../fr.inria.diverse.melange.root/pom.xml</relativePath>
+		<groupId>fr.inria.diverse.melange</groupId>
+		<artifactId>fr.inria.diverse.melange.root</artifactId>
+		<version>3.1.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>fr.inria.diverse.melange</artifactId>
+	<packaging>eclipse-plugin</packaging>
+
+	<name>Melange Language</name>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>${basedir}/src-gen</directory>
+						</fileset>
+						<fileset>
+                                                        <directory>${basedir}/src/main/xtend-gen</directory>
+						</fileset>
+						<!-- clean ui plugin as well -->
+						<fileset>
+							<directory>${basedir}/../${project.artifactId}.ui/src-gen</directory>
+						</fileset>
+						<fileset>
+                                                        <directory>${basedir}/../${project.artifactId}.ui/src/main/xtend-gen</directory>
+						</fileset>
+						<!-- clean test fragment as well -->
+						<fileset>
+							<directory>${basedir}/../${project.artifactId}.tests/src-gen</directory>
+						</fileset>
+						<fileset>
+                                                        <directory>${basedir}/../${project.artifactId}.tests/src/main/xtend-gen</directory>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.2.1</version>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>java</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					  <argLine>-Xmx1024m</argLine>
+					  <argLine>-Xms1024m</argLine>
+					  <argLine>-XX:PermSize=512m</argLine>
+					  <argLine>-XX:MaxPermSize=1024m</argLine>
+					<includeProjectDependencies>false</includeProjectDependencies>
+					<includePluginDependencies>true</includePluginDependencies>
+					<mainClass>org.eclipse.emf.mwe2.launch.runtime.Mwe2Launcher</mainClass>
+					<arguments>
+						<argument>file://${project.basedir}/src/main/java/fr/inria/diverse/melange/GenerateMelange.mwe2</argument>
+						<argument>
+							-p
+						</argument>
+						<argument>
+							runtimeProject=/${project.basedir}
+						</argument>
+
+					</arguments>
+				</configuration>
+                <dependencies>
+					<dependency>
+						<groupId>fr.inria.diverse.melange</groupId>
+						<artifactId>fr.inria.diverse.melange.metamodel</artifactId>
+						<version>${project.version}</version>
+					</dependency>
+					<!--<dependency>
+						<groupId>fr.inria.diverse.kompren</groupId>
+						<artifactId>fr.inria.diverse.kompren.model</artifactId>
+						<version>3.0.0.v20140722-1602</version>
+					</dependency>-->
+					<dependency>
+						<groupId>org.eclipse.xtext</groupId>
+						<artifactId>org.eclipse.xtext.xtext</artifactId>
+						<version>${xtext.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.eclipse.xtext</groupId>
+						<artifactId>org.eclipse.xtext.xbase</artifactId>
+						<version>${xtext.version}</version>
+					</dependency>
+                </dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.xtend</groupId>
+				<artifactId>xtend-maven-plugin</artifactId>
+				<configuration>
+					  <argLine>-Xmx1024m</argLine>
+					  <argLine>-Xms1024m</argLine>
+					  <argLine>-XX:PermSize=512m</argLine>
+					  <argLine>-XX:MaxPermSize=1024m</argLine>
+
+				</configuration>
+			</plugin>
+		</plugins>
+        </build>
+	
+</project>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<relativePath>../fr.inria.diverse.melange.root/pom.xml</relativePath>
+		<groupId>fr.inria.diverse.melange</groupId>
+		<artifactId>fr.inria.diverse.melange.root</artifactId>
+		<version>3.1.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>fr.inria.diverse.melange.tests</artifactId>
+	<packaging>eclipse-test-plugin</packaging>
+
+	<name>Melange Language Tests</name>
+
+</project>
+

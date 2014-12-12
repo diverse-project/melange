@@ -1,4 +1,4 @@
-K3SLE
+Melange
 =====
 
 TODO
@@ -53,6 +53,6 @@ TESTS
 
 TOWARDS STANDALONE
 ------------------
-- [ ] K3Resource
-- [ ] K3Metadata?
+- [ ] MelangeResource
+- [ ] MelangeMetadata?
 - [ ] ModelTypingSpace manager within Eclipse project or workspace

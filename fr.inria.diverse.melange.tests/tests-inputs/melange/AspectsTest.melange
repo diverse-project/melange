@@ -1,0 +1,45 @@
+package aspectstest
+
+import fr.inria.diverse.melange.tests.aspects.fsm.StateAspect1
+import fr.inria.diverse.melange.tests.aspects.fsm.StateAspect2
+import fr.inria.diverse.melange.tests.aspects.fsm.StateAspect3
+
+import static extension fr.inria.diverse.melange.lib.MetamodelExtensions.*
+
+metamodel Fsm {
+	ecore "tests-inputs/metamodels/FSM.ecore" withGenmodel "tests-inputs/metamodels/FSM.genmodel"
+	exactType FsmMT
+	with StateAspect1
+}
+
+metamodel TimedFsm {
+	ecore "tests-inputs/metamodels/TimedFSM.ecore" withGenmodel "tests-inputs/metamodels/TimedFSM.genmodel"
+	exactType TimedFsmMT
+	with StateAspect2
+}
+
+metamodel IncompatibleFsm {
+	ecore "tests-inputs/metamodels/FSM.ecore" withGenmodel "tests-inputs/metamodels/FSM.genmodel"
+	exactType IncompatibleFsmMT
+	with StateAspect3
+}
+
+transformation String callFoo(FsmMT m) {
+	val root = m.contents.head as aspectstest.fsmmt.FSM
+	val s = root.ownedState.head
+
+	return s.foo
+}
+
+transformation String callBar(FsmMT m) {
+	val root = m.contents.head as aspectstest.fsmmt.FSM
+	val s = root.ownedState.head
+	
+	return s.bar
+}
+
+transformation FsmMT loadFsm()  { return      Fsm.load("tests-inputs/models/Simple.fsm",      FsmMT) }
+transformation FsmMT loadTfsm() { return TimedFsm.load("tests-inputs/models/Simple.timedfsm", FsmMT) }
+
+@Main
+transformation test() {}
