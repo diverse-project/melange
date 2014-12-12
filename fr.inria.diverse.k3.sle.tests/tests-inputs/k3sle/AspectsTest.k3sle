@@ -9,19 +9,19 @@ import static extension fr.inria.diverse.k3.sle.lib.MetamodelExtensions.*
 metamodel Fsm {
 	ecore "tests-inputs/metamodels/FSM.ecore" withGenmodel "tests-inputs/metamodels/FSM.genmodel"
 	exactType FsmMT
-	aspect StateAspect1
+	with StateAspect1
 }
 
 metamodel TimedFsm {
 	ecore "tests-inputs/metamodels/TimedFSM.ecore" withGenmodel "tests-inputs/metamodels/TimedFSM.genmodel"
 	exactType TimedFsmMT
-	aspect StateAspect2
+	with StateAspect2
 }
 
 metamodel IncompatibleFsm {
 	ecore "tests-inputs/metamodels/FSM.ecore" withGenmodel "tests-inputs/metamodels/FSM.genmodel"
 	exactType IncompatibleFsmMT
-	aspect StateAspect3
+	with StateAspect3
 }
 
 transformation String callFoo(FsmMT m) {
