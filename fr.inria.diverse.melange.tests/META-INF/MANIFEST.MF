@@ -30,7 +30,7 @@ Import-Package: org.apache.log4j,
  org.junit.runners;version="4.5.0",
  org.junit.runners.model;version="4.5.0",
  org.hamcrest.core
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7,JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: fr.inria.diverse.melange.tests,
  fr.inria.diverse.melange.tests.aspects.fsm,
  fr.inria.diverse.melange.tests.common,

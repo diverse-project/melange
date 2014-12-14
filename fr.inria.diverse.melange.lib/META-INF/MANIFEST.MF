@@ -15,7 +15,6 @@ Require-Bundle: org.eclipse.xtend.lib,
  org.eclipse.emf.codegen.ecore;bundle-version="2.9.1",
  fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version="[3.1.0,3.2.0)",
  com.google.inject;bundle-version="3.0.0"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7,
- JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: fr.inria.diverse.melange.lib
 
