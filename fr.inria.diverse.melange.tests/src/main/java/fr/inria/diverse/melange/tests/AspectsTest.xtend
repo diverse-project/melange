@@ -56,7 +56,7 @@ class AspectsTest
 	@Inject IGenerator generator
 
 	@Test
-	def testStructure() {
+	def void testStructure() {
 		assertNotNull(root)
 		assertEquals(root.name, "aspectstest")
 		assertNotNull(root.imports)
@@ -87,7 +87,7 @@ class AspectsTest
 	}
 
 	@Test
-	def testAspectsImportFsm() {
+	def void testAspectsImportFsm() {
 		val fsmAspect = fsm.aspects.head
 
 		assertNotNull(fsmAspect)
@@ -98,7 +98,7 @@ class AspectsTest
 	}
 
 	@Test
-	def testAspectsImportTfsm() {
+	def void testAspectsImportTfsm() {
 		val tfsmAspect = tfsm.aspects.head
 
 		assertNotNull(tfsmAspect)
@@ -109,7 +109,7 @@ class AspectsTest
 	}
 
 	@Test
-	def testAspectsImportIfsm() {
+	def void testAspectsImportIfsm() {
 		val ifsmAspect = ifsm.aspects.head
 
 		assertNotNull(ifsmAspect)
@@ -120,7 +120,7 @@ class AspectsTest
 	}
 
 	@Test
-	def testEmfWeavingFsm() {
+	def void testEmfWeavingFsm() {
 		val fsmPkg = root.mm("Fsm").pkgs.head
 		val stateCls = fsmPkg.EClassifiers.findFirst[name == "State"] as EClass
 
@@ -137,7 +137,7 @@ class AspectsTest
 	}
 
 	@Test
-	def testEmfWeavingTfsm() {
+	def void testEmfWeavingTfsm() {
 		val tfsmPkg = root.mm("TimedFsm").pkgs.head
 		val stateCls = tfsmPkg.EClassifiers.findFirst[name == "State"] as EClass
 
@@ -154,7 +154,7 @@ class AspectsTest
 	}
 
 	@Test
-	def testEmfWeavingIfsm() {
+	def void testEmfWeavingIfsm() {
 		val ifsmPkg = root.mm("IncompatibleFsm").pkgs.head
 		val stateCls = ifsmPkg.EClassifiers.findFirst[name == "State"] as EClass
 
@@ -177,75 +177,75 @@ class AspectsTest
 	}
 
 	@Test
-	def testRelationsFsm() {
+	def void testRelationsFsm() {
 		assertEquals(fsmMt.extracted, fsm)
 		assertEquals(fsm.exactType, fsmMt)
 	}
 
 	@Test
-	def testRelationsTfsm() {
+	def void testRelationsTfsm() {
 		assertEquals(tfsmMt.extracted, tfsm)
 		assertEquals(tfsm.exactType, tfsmMt)
 	}
 
 	@Test
-	def testRelationsIFsm() {
+	def void testRelationsIFsm() {
 		assertEquals(ifsmMt.extracted, ifsm)
 		assertEquals(ifsm.exactType, ifsmMt)
 	}
 
 	@Test
-	def testImplementsFsm() {
+	def void testImplementsFsm() {
 		assertEquals(fsm.^implements.size, 1)
 		assertTrue(fsm.^implements.contains(fsmMt))
 	}
 
 	@Test
-	def testImplementsTfsm() {
+	def void testImplementsTfsm() {
 		assertEquals(tfsm.^implements.size, 2)
 		assertTrue(tfsm.^implements.contains(fsmMt))
 		assertTrue(tfsm.^implements.contains(tfsmMt))
 	}
 
 	@Test
-	def testImplementsIfsm() {
+	def void testImplementsIfsm() {
 		assertEquals(ifsm.^implements.size, 1)
 		assertTrue(ifsm.^implements.contains(ifsmMt))
 	}
 
 	@Test
-	def testInheritanceFsm() {
+	def void testInheritanceFsm() {
 		assertNull(fsm.inheritanceRelation)
 	}
 
 	@Test
-	def testInheritanceTfsm() {
+	def void testInheritanceTfsm() {
 		assertNull(tfsm.inheritanceRelation)
 	}
 
 	@Test
-	def testInheritanceIfsm() {
+	def void testInheritanceIfsm() {
 		assertNull(ifsm.inheritanceRelation)
 	}
 
 	@Test
-	def testSubtypingFsmMT() {
+	def void testSubtypingFsmMT() {
 		assertEquals(fsmMt.subtypingRelations.size, 0)
 	}
 
 	@Test
-	def testSubtypingTfsmMT() {
+	def void testSubtypingTfsmMT() {
 		assertEquals(tfsmMt.subtypingRelations.size, 1)
 		assertEquals(tfsmMt.subtypingRelations.head.superType, fsmMt)
 	}
 
 	@Test
-	def testSubtypingIfsm() {
+	def void testSubtypingIfsm() {
 		assertEquals(ifsmMt.subtypingRelations.size, 0)
 	}
 
 	@Test
-	def testGeneration() {
+	def void testGeneration() {
 		val fsa = new InMemoryFileSystemAccess
 		generator.doGenerate(root.eResource, fsa)
 
@@ -253,7 +253,7 @@ class AspectsTest
 	}
 
 	@Test
-	def testDynamicBinding() {
+	def void testDynamicBinding() {
 		try {
 			// Consider moving these runtime dependencies somewhere else
 			setJavaCompilerClassPath(
@@ -294,15 +294,15 @@ class AspectsTest
 		}
 	}
 
-	def getFsm()      { root.elements.get(0) as Metamodel }
-	def getTfsm()     { root.elements.get(1) as Metamodel }
-	def getIfsm()     { root.elements.get(2) as Metamodel }
-	def getCallFoo()  { root.elements.get(3) as XbaseTransformation }
-	def getCallBar()  { root.elements.get(4) as XbaseTransformation }
-	def getLoadFsm()  { root.elements.get(5) as XbaseTransformation }
-	def getLoadTfsm() { root.elements.get(6) as XbaseTransformation }
-	def getTest()     { root.elements.get(7) as XbaseTransformation }
-	def getFsmMt()    { root.elements.get(8) as ModelType }
-	def getTfsmMt()   { root.elements.get(9) as ModelType }
-	def getIfsmMt()   { root.elements.get(10) as ModelType }
+	def Metamodel getFsm()                { return root.elements.get(0) as Metamodel }
+	def Metamodel getTfsm()               { return root.elements.get(1) as Metamodel }
+	def Metamodel getIfsm()               { return root.elements.get(2) as Metamodel }
+	def XbaseTransformation getCallFoo()  { return root.elements.get(3) as XbaseTransformation }
+	def XbaseTransformation getCallBar()  { return root.elements.get(4) as XbaseTransformation }
+	def XbaseTransformation getLoadFsm()  { return root.elements.get(5) as XbaseTransformation }
+	def XbaseTransformation getLoadTfsm() { return root.elements.get(6) as XbaseTransformation }
+	def XbaseTransformation getTest()     { return root.elements.get(7) as XbaseTransformation }
+	def ModelType getFsmMt()              { return root.elements.get(8) as ModelType }
+	def ModelType getTfsmMt()             { return root.elements.get(9) as ModelType }
+	def ModelType getIfsmMt()             { return root.elements.get(10) as ModelType }
 }

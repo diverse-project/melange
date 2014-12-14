@@ -11,28 +11,41 @@ import java.util.List
 
 class MelangeTestHelper
 {
-	def mm(ModelTypingSpace root, String mmName) {
-		root.elements.filter(Metamodel).findFirst[name == mmName]
+	def Metamodel mm(ModelTypingSpace root, String mmName) {
+		return root.elements.filter(Metamodel).findFirst[name == mmName]
 	}
 
-	def mt(ModelTypingSpace root, String mtName) {
-		root.elements.filter(ModelType).findFirst[name == mtName]
+	def ModelType mt(ModelTypingSpace root, String mtName) {
+		return root.elements.filter(ModelType).findFirst[name == mtName]
 	}
 
-	def t(ModelTypingSpace root, String tName) {
-		root.elements.filter(Transformation).findFirst[name == tName]
+	def Transformation t(ModelTypingSpace root, String tName) {
+		return root.elements.filter(Transformation).findFirst[name == tName]
 	}
 
-	def initialize(Result res, String cls) {
+	def void initialize(Result res, String cls) {
 		val String[] p = null
-		res.getCompiledClass(cls)?.getMethod("main", typeof(String[]))?.invoke(null, p as Object)
+
+		try {
+			res.getCompiledClass(cls)?.getMethod("main", typeof(String[]))?.invoke(null, p as Object)
+		} catch (Exception e) {
+			// ...
+		}
 	}
 
 	def <T> T invokeTransfo(Result res, String cls) {
-		res.getCompiledClass(cls)?.getMethod("call", null)?.invoke(null, null) as T
+		try {
+			return res.getCompiledClass(cls)?.getMethod("call", null)?.invoke(null, null) as T
+		} catch (Exception e) {
+			// ...
+		}
 	}
 
 	def <T> T invokeTransfo(Result res, String cls, List<String> pTypes, List<Object> pValues) {
-		res.getCompiledClass(cls)?.getMethod("call", pTypes.map[res.getCompiledClass(it)])?.invoke(null, pValues?.toArray) as T
+		try {
+			return res.getCompiledClass(cls)?.getMethod("call", pTypes.map[res.getCompiledClass(it)])?.invoke(null, pValues?.toArray) as T
+		} catch (Exception e) {
+			// ...
+		}
 	}
 }

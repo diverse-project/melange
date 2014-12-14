@@ -27,7 +27,6 @@ class MelangeResource extends XMIResourceImpl
 	new(URI uri, String mt) {
 		super(uri)
 		expectedMT = mt
-		println("Loading " + uri + " as " + mt)
 	}
 
 	override getContents() {
@@ -37,28 +36,20 @@ class MelangeResource extends XMIResourceImpl
 		val pair = actualPkgUri -> expectedMT
 		val adapterCls = ModelTypeAdapter.Registry.INSTANCE.get(pair)
 
-		if (adapterCls === null)
-			throw new MelangeResourceException("Cannot find adapter class for " + pair + " in the registry.")
-
-		try {
-			val adapter = adapterCls.newInstance => [adaptee = res]
-
-			return adapter.contents
-		} catch (InstantiationException e) {
-			// ...
-			e.printStackTrace
-		} catch (IllegalAccessException e) {
-			// ...
-			e.printStackTrace
+		if (adapterCls !== null) {
+			try {
+				val adapter = adapterCls.newInstance => [adaptee = res]
+	
+				return adapter.contents
+			} catch (InstantiationException e) {
+				// ...
+				e.printStackTrace
+			} catch (IllegalAccessException e) {
+				// ...
+				e.printStackTrace
+			}
 		}
 
 		return null
-	}
-}
-
-class MelangeResourceException extends Exception
-{
-	new(String msg) {
-		super(msg)
 	}
 }

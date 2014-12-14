@@ -30,7 +30,7 @@ class EditorTest
 	@Inject extension ValidationTestHelper
 
 	@Test
-	def testInvalidImplements() {
+	def void testInvalidImplements() {
 		root.mm("FsmM").assertError(MelangePackage.eINSTANCE.metamodel, MelangeValidationConstants.METAMODEL_IMPLEMENTS_ERROR)
 	}
 }

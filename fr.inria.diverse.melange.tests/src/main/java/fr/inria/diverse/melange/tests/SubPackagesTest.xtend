@@ -54,7 +54,7 @@ class SubPackagesTest
 	@Inject IGenerator generator
 
 	@Test
-	def testGeneration() {
+	def void testGeneration() {
 		val fsa = new InMemoryFileSystemAccess
 		generator.doGenerate(root.eResource, fsa)
 
@@ -62,7 +62,7 @@ class SubPackagesTest
 	}
 
 	@Test
-	def testRuntime() {
+	def void testRuntime() {
 		try {
 			// Consider moving these runtime dependencies somewhere else
 			setJavaCompilerClassPath(

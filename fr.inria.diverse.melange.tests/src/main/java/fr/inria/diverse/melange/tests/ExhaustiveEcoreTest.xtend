@@ -56,7 +56,7 @@ class ExhaustiveEcoreTest
 	@Inject IGenerator generator
 
 	@Test
-	def testStructure() {
+	def void testStructure() {
 		assertNotNull(root)
 		assertEquals(root.name, "exhaustiveecoretest")
 		assertNotNull(root.imports)
@@ -75,7 +75,7 @@ class ExhaustiveEcoreTest
 	}
 
 	@Test
-	def testRelations() {
+	def void testRelations() {
 		assertEquals(exhaustive.exactType,    exhaustiveMt)
 		assertEquals(exhaustive2.exactType,   exhaustive2Mt)
 		assertEquals(exhaustiveMt.extracted,  exhaustive)
@@ -83,7 +83,7 @@ class ExhaustiveEcoreTest
 	}
 
 	@Test
-	def testImplements() {
+	def void testImplements() {
 		assertEquals(exhaustive.^implements.size, 2)
 		assertTrue(exhaustive.^implements.contains(exhaustiveMt))
 		assertTrue(exhaustive.^implements.contains(exhaustive2Mt))
@@ -94,13 +94,13 @@ class ExhaustiveEcoreTest
 	}
 
 	@Test
-	def testInheritance() {
+	def void testInheritance() {
 		assertNull(exhaustive.inheritanceRelation)
 		assertNull(exhaustive2.inheritanceRelation)
 	}
 
 	@Test
-	def testSubtyping() {
+	def void testSubtyping() {
 		assertEquals(exhaustiveMt.subtypingRelations.size, 1)
 		assertTrue(exhaustiveMt.subtypingRelations.map[superType].contains(exhaustive2Mt))
 
@@ -109,7 +109,7 @@ class ExhaustiveEcoreTest
 	}
 
 	@Test
-	def testGeneration() {
+	def void testGeneration() {
 		val fsa = new InMemoryFileSystemAccess
 		generator.doGenerate(root.eResource, fsa)
 
@@ -118,7 +118,7 @@ class ExhaustiveEcoreTest
 
 	// Won't compile until generics are implented
 	@Test
-	def testRuntime() {
+	def void testRuntime() {
 		try {
 			// Consider moving these runtime dependencies somewhere else
 			setJavaCompilerClassPath(
@@ -151,9 +151,9 @@ class ExhaustiveEcoreTest
 		}
 	}
 
-	def getExhaustive()    { root.elements.get(0) as Metamodel }
-	def getExhaustive2()   { root.elements.get(1) as Metamodel }
-	def getTest()          { root.elements.get(2) as Transformation }
-	def getExhaustiveMt()  { root.elements.get(3) as ModelType }
-	def getExhaustive2Mt() { root.elements.get(4) as ModelType }
+	def Metamodel getExhaustive()    { return root.elements.get(0) as Metamodel }
+	def Metamodel getExhaustive2()   { return root.elements.get(1) as Metamodel }
+	def Transformation getTest()     { return root.elements.get(2) as Transformation }
+	def ModelType getExhaustiveMt()  { return root.elements.get(3) as ModelType }
+	def ModelType getExhaustive2Mt() { return root.elements.get(4) as ModelType }
 }

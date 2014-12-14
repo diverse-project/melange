@@ -18,7 +18,7 @@ class OrderAgnosticEObjectComparator implements Comparator<EObject>
 	}
 
 	private def extractComparisonString(EObject o) {
-		o.toString.replaceAll(o.class.name, "").replaceAll(Integer.toHexString(o.hashCode), "")
+		return o.toString.replaceAll(o.class.name, "").replaceAll(Integer.toHexString(o.hashCode), "")
 	}
 }
 
@@ -32,6 +32,6 @@ class OrderAgnosticEqualityHelper extends EcoreUtil$EqualityHelper
 		Collections.sort(ll1, comparator)
 		Collections.sort(ll2, comparator)
 
-		super.equals(ll1, ll2)
+		return super.equals(ll1, ll2)
 	}
 }

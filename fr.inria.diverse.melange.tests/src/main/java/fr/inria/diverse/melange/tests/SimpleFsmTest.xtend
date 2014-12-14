@@ -49,7 +49,7 @@ class SimpleFsmTest
 	@Inject IGenerator generator
 
 	@Test
-	def testStructure() {
+	def void testStructure() {
 		assertNotNull(root)
 		assertEquals(root.name, "simplefsmtest")
 		assertNotNull(root.imports)
@@ -74,7 +74,7 @@ class SimpleFsmTest
 	}
 
 	@Test
-	def testRelations() {
+	def void testRelations() {
 		assertEquals(fsmmt.extracted, fsm)
 		assertEquals(tfsmmt.extracted, tfsm)
 		assertEquals(fsm.exactType, fsmmt)
@@ -82,7 +82,7 @@ class SimpleFsmTest
 	}
 
 	@Test
-	def testImplements() {
+	def void testImplements() {
 		assertEquals(fsm.^implements.size, 1)
 		assertEquals(tfsm.^implements.size, 2)
 
@@ -92,13 +92,13 @@ class SimpleFsmTest
 	}
 
 	@Test
-	def testInheritance() {
+	def void testInheritance() {
 		assertNull(fsm.inheritanceRelation)
 		assertNull(tfsm.inheritanceRelation)
 	}
 
 	@Test
-	def testSubtyping() {
+	def void testSubtyping() {
 		assertEquals(fsmmt.subtypingRelations.size, 0)
 		assertEquals(tfsmmt.subtypingRelations.size, 1)
 
@@ -107,7 +107,7 @@ class SimpleFsmTest
 	}
 
 	@Test
-	def testGeneration() {
+	def void testGeneration() {
 		val fsa = new InMemoryFileSystemAccess
 		generator.doGenerate(root.eResource, fsa)
 
@@ -115,7 +115,7 @@ class SimpleFsmTest
 	}
 
 	@Test
-	def testRuntime() {
+	def void testRuntime() {
 		try {
 			// Consider moving these runtime dependencies somewhere else
 			setJavaCompilerClassPath(
@@ -147,12 +147,12 @@ class SimpleFsmTest
 		}
 	}
 
-	def getFsm()      { root.elements.get(0) as Metamodel }
-	def getTfsm()     { root.elements.get(1) as Metamodel }
-	def getGetRoot()  { root.elements.get(2) as Transformation }
-	def getLoadFsm()  { root.elements.get(3) as Transformation }
-	def getLoadTfsm() { root.elements.get(4) as Transformation }
-	def getTest()     { root.elements.get(5) as Transformation }
-	def getFsmmt()    { root.elements.get(6) as ModelType }
-	def getTfsmmt()   { root.elements.get(7) as ModelType }
+	def Metamodel getFsm()           { return root.elements.get(0) as Metamodel }
+	def Metamodel getTfsm()          { return root.elements.get(1) as Metamodel }
+	def Transformation getGetRoot()  { return root.elements.get(2) as Transformation }
+	def Transformation getLoadFsm()  { return root.elements.get(3) as Transformation }
+	def Transformation getLoadTfsm() { return root.elements.get(4) as Transformation }
+	def Transformation getTest()     { return root.elements.get(5) as Transformation }
+	def ModelType getFsmmt()         { return root.elements.get(6) as ModelType }
+	def ModelType getTfsmmt()        { return root.elements.get(7) as ModelType }
 }

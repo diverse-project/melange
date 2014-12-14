@@ -1,11 +1,8 @@
 package fr.inria.diverse.melange.tests.common;
 
 import org.eclipse.core.resources.ResourcesPlugin;
-
 import org.eclipse.xtext.xbase.compiler.OnTheFlyJavaCompiler;
 import org.eclipse.xtext.xbase.compiler.OnTheFlyJavaCompiler.EclipseRuntimeDependentJavaCompiler;
-import org.eclipse.xtext.xbase.junit.evaluation.AbstractXbaseEvaluationTest;
-import org.eclipse.xtext.xbase.lib.Functions;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -26,6 +23,7 @@ public class MelangeTestsInjectorProvider extends MelangeInjectorProvider
 						return MelangeTestsInjectorProvider.class.getClassLoader();
 					}
 
+					@SuppressWarnings("unused")
 					public Class<? extends OnTheFlyJavaCompiler> bindOnTheFlyJavaCompiler() {
 						try {
 							if (ResourcesPlugin.getWorkspace() != null) {

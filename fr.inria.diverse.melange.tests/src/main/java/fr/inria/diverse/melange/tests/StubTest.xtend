@@ -15,7 +15,7 @@ import static org.junit.Assert.*
 @InjectWith(MelangeInjectorProvider)
 class StubTest {
 	@Test
-	def testStubTest() {
+	def void testStubTest() {
 		assertTrue(true)
 	}
 }

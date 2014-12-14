@@ -45,7 +45,7 @@ class EcoreTest
 	@Inject IGenerator generator
 
 	@Test
-	def testStructure() {
+	def void testStructure() {
 		assertNotNull(root)
 		assertEquals(root.name, "ecoretest")
 		assertNotNull(root.imports)
@@ -64,29 +64,29 @@ class EcoreTest
 	}
 
 	@Test
-	def testRelations() {
+	def void testRelations() {
 		assertEquals(ecoreMt.extracted, ecore)
 		assertEquals(ecore.exactType, ecoreMt)
 	}
 
 	@Test
-	def testImplements() {
+	def void testImplements() {
 		assertEquals(ecore.^implements.size, 1)
 		assertTrue(ecore.^implements.contains(ecoreMt))
 	}
 
 	@Test
-	def testInheritance() {
+	def void testInheritance() {
 		assertNull(ecore.inheritanceRelation)
 	}
 
 	@Test
-	def testSubtyping() {
+	def void testSubtyping() {
 		assertEquals(ecoreMt.subtypingRelations.size, 0)
 	}
 
 	@Test
-	def testGeneration() {
+	def void testGeneration() {
 		val fsa = new InMemoryFileSystemAccess
 		generator.doGenerate(root.eResource, fsa)
 
@@ -94,7 +94,7 @@ class EcoreTest
 	}
 
 	@Test
-	def testRuntime() {
+	def void testRuntime() {
 		try {
 			// Consider moving these runtime dependencies somewhere else
 			setJavaCompilerClassPath(
@@ -124,9 +124,9 @@ class EcoreTest
 		}
 	}
 
-	def getEcore()           { root.elements.get(0) as Metamodel }
-	def getTestClassifiers() { root.elements.get(1) as Transformation }
-	def getLoadEcore()       { root.elements.get(2) as Transformation }
-	def getTest()            { root.elements.get(3) as Transformation }
-	def getEcoreMt()         { root.elements.get(4) as ModelType }
+	def Metamodel getEcore()                { return root.elements.get(0) as Metamodel }
+	def Transformation getTestClassifiers() { return root.elements.get(1) as Transformation }
+	def Transformation getLoadEcore()       { return root.elements.get(2) as Transformation }
+	def Transformation getTest()            { return root.elements.get(3) as Transformation }
+	def ModelType getEcoreMt()              { return root.elements.get(4) as ModelType }
 }
