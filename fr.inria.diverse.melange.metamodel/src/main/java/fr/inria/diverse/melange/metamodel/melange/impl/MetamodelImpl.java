@@ -8,27 +8,18 @@ import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
 import fr.inria.diverse.melange.metamodel.melange.Metamodel;
 import fr.inria.diverse.melange.metamodel.melange.ModelType;
 import fr.inria.diverse.melange.metamodel.melange.ResourceType;
-
 import java.util.Collection;
-
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.xtext.common.types.JvmTypeReference;
 
 /**
@@ -43,20 +34,18 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getImplements <em>Implements</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getRequires <em>Requires</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getInheritanceRelation <em>Inheritance Relation</em>}</li>
- *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getPkgs <em>Pkgs</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getExactTypeName <em>Exact Type Name</em>}</li>
- *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getGenmodels <em>Genmodels</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getResourceType <em>Resource Type</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getResourceUri <em>Resource Uri</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getXtextSetupRef <em>Xtext Setup Ref</em>}</li>
- *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getEcoreUri <em>Ecore Uri</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getGenmodelUris <em>Genmodel Uris</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getGenmodels <em>Genmodels</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class MetamodelImpl extends ElementImpl implements Metamodel {
+public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 	/**
 	 * The cached value of the '{@link #getAspects() <em>Aspects</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -108,16 +97,6 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	protected Inheritance inheritanceRelation;
 
 	/**
-	 * The cached value of the '{@link #getPkgs() <em>Pkgs</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPkgs()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<EPackage> pkgs;
-
-	/**
 	 * The default value of the '{@link #getExactTypeName() <em>Exact Type Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -136,16 +115,6 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	 * @ordered
 	 */
 	protected String exactTypeName = EXACT_TYPE_NAME_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getGenmodels() <em>Genmodels</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGenmodels()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<GenModel> genmodels;
 
 	/**
 	 * The default value of the '{@link #getResourceType() <em>Resource Type</em>}' attribute.
@@ -198,26 +167,6 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	protected JvmTypeReference xtextSetupRef;
 
 	/**
-	 * The default value of the '{@link #getEcoreUri() <em>Ecore Uri</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEcoreUri()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String ECORE_URI_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getEcoreUri() <em>Ecore Uri</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEcoreUri()
-	 * @generated
-	 * @ordered
-	 */
-	protected String ecoreUri = ECORE_URI_EDEFAULT;
-
-	/**
 	 * The cached value of the '{@link #getGenmodelUris() <em>Genmodel Uris</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -226,6 +175,16 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	 * @ordered
 	 */
 	protected EList<String> genmodelUris;
+
+	/**
+	 * The cached value of the '{@link #getGenmodels() <em>Genmodels</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGenmodels()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<GenModel> genmodels;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -390,18 +349,6 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<EPackage> getPkgs() {
-		if (pkgs == null) {
-			pkgs = new EObjectContainmentEList<EPackage>(EPackage.class, this, MelangePackage.METAMODEL__PKGS);
-		}
-		return pkgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getExactTypeName() {
 		return exactTypeName;
 	}
@@ -520,27 +467,6 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getEcoreUri() {
-		return ecoreUri;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEcoreUri(String newEcoreUri) {
-		String oldEcoreUri = ecoreUri;
-		ecoreUri = newEcoreUri;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.METAMODEL__ECORE_URI, oldEcoreUri, ecoreUri));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<String> getGenmodelUris() {
 		if (genmodelUris == null) {
 			genmodelUris = new EDataTypeUniqueEList<String>(String.class, this, MelangePackage.METAMODEL__GENMODEL_URIS);
@@ -582,12 +508,10 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 				return basicSetExactType(null, msgs);
 			case MelangePackage.METAMODEL__INHERITANCE_RELATION:
 				return basicSetInheritanceRelation(null, msgs);
-			case MelangePackage.METAMODEL__PKGS:
-				return ((InternalEList<?>)getPkgs()).basicRemove(otherEnd, msgs);
-			case MelangePackage.METAMODEL__GENMODELS:
-				return ((InternalEList<?>)getGenmodels()).basicRemove(otherEnd, msgs);
 			case MelangePackage.METAMODEL__XTEXT_SETUP_REF:
 				return basicSetXtextSetupRef(null, msgs);
+			case MelangePackage.METAMODEL__GENMODELS:
+				return ((InternalEList<?>)getGenmodels()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -611,22 +535,18 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 				return getRequires();
 			case MelangePackage.METAMODEL__INHERITANCE_RELATION:
 				return getInheritanceRelation();
-			case MelangePackage.METAMODEL__PKGS:
-				return getPkgs();
 			case MelangePackage.METAMODEL__EXACT_TYPE_NAME:
 				return getExactTypeName();
-			case MelangePackage.METAMODEL__GENMODELS:
-				return getGenmodels();
 			case MelangePackage.METAMODEL__RESOURCE_TYPE:
 				return getResourceType();
 			case MelangePackage.METAMODEL__RESOURCE_URI:
 				return getResourceUri();
 			case MelangePackage.METAMODEL__XTEXT_SETUP_REF:
 				return getXtextSetupRef();
-			case MelangePackage.METAMODEL__ECORE_URI:
-				return getEcoreUri();
 			case MelangePackage.METAMODEL__GENMODEL_URIS:
 				return getGenmodelUris();
+			case MelangePackage.METAMODEL__GENMODELS:
+				return getGenmodels();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -658,16 +578,8 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 			case MelangePackage.METAMODEL__INHERITANCE_RELATION:
 				setInheritanceRelation((Inheritance)newValue);
 				return;
-			case MelangePackage.METAMODEL__PKGS:
-				getPkgs().clear();
-				getPkgs().addAll((Collection<? extends EPackage>)newValue);
-				return;
 			case MelangePackage.METAMODEL__EXACT_TYPE_NAME:
 				setExactTypeName((String)newValue);
-				return;
-			case MelangePackage.METAMODEL__GENMODELS:
-				getGenmodels().clear();
-				getGenmodels().addAll((Collection<? extends GenModel>)newValue);
 				return;
 			case MelangePackage.METAMODEL__RESOURCE_TYPE:
 				setResourceType((ResourceType)newValue);
@@ -678,12 +590,13 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 			case MelangePackage.METAMODEL__XTEXT_SETUP_REF:
 				setXtextSetupRef((JvmTypeReference)newValue);
 				return;
-			case MelangePackage.METAMODEL__ECORE_URI:
-				setEcoreUri((String)newValue);
-				return;
 			case MelangePackage.METAMODEL__GENMODEL_URIS:
 				getGenmodelUris().clear();
 				getGenmodelUris().addAll((Collection<? extends String>)newValue);
+				return;
+			case MelangePackage.METAMODEL__GENMODELS:
+				getGenmodels().clear();
+				getGenmodels().addAll((Collection<? extends GenModel>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -712,14 +625,8 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 			case MelangePackage.METAMODEL__INHERITANCE_RELATION:
 				setInheritanceRelation((Inheritance)null);
 				return;
-			case MelangePackage.METAMODEL__PKGS:
-				getPkgs().clear();
-				return;
 			case MelangePackage.METAMODEL__EXACT_TYPE_NAME:
 				setExactTypeName(EXACT_TYPE_NAME_EDEFAULT);
-				return;
-			case MelangePackage.METAMODEL__GENMODELS:
-				getGenmodels().clear();
 				return;
 			case MelangePackage.METAMODEL__RESOURCE_TYPE:
 				setResourceType(RESOURCE_TYPE_EDEFAULT);
@@ -730,11 +637,11 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 			case MelangePackage.METAMODEL__XTEXT_SETUP_REF:
 				setXtextSetupRef((JvmTypeReference)null);
 				return;
-			case MelangePackage.METAMODEL__ECORE_URI:
-				setEcoreUri(ECORE_URI_EDEFAULT);
-				return;
 			case MelangePackage.METAMODEL__GENMODEL_URIS:
 				getGenmodelUris().clear();
+				return;
+			case MelangePackage.METAMODEL__GENMODELS:
+				getGenmodels().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -758,22 +665,18 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 				return requires != null && !requires.isEmpty();
 			case MelangePackage.METAMODEL__INHERITANCE_RELATION:
 				return inheritanceRelation != null;
-			case MelangePackage.METAMODEL__PKGS:
-				return pkgs != null && !pkgs.isEmpty();
 			case MelangePackage.METAMODEL__EXACT_TYPE_NAME:
 				return EXACT_TYPE_NAME_EDEFAULT == null ? exactTypeName != null : !EXACT_TYPE_NAME_EDEFAULT.equals(exactTypeName);
-			case MelangePackage.METAMODEL__GENMODELS:
-				return genmodels != null && !genmodels.isEmpty();
 			case MelangePackage.METAMODEL__RESOURCE_TYPE:
 				return resourceType != RESOURCE_TYPE_EDEFAULT;
 			case MelangePackage.METAMODEL__RESOURCE_URI:
 				return RESOURCE_URI_EDEFAULT == null ? resourceUri != null : !RESOURCE_URI_EDEFAULT.equals(resourceUri);
 			case MelangePackage.METAMODEL__XTEXT_SETUP_REF:
 				return xtextSetupRef != null;
-			case MelangePackage.METAMODEL__ECORE_URI:
-				return ECORE_URI_EDEFAULT == null ? ecoreUri != null : !ECORE_URI_EDEFAULT.equals(ecoreUri);
 			case MelangePackage.METAMODEL__GENMODEL_URIS:
 				return genmodelUris != null && !genmodelUris.isEmpty();
+			case MelangePackage.METAMODEL__GENMODELS:
+				return genmodels != null && !genmodels.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -794,8 +697,6 @@ public class MetamodelImpl extends ElementImpl implements Metamodel {
 		result.append(resourceType);
 		result.append(", resourceUri: ");
 		result.append(resourceUri);
-		result.append(", ecoreUri: ");
-		result.append(ecoreUri);
 		result.append(", genmodelUris: ");
 		result.append(genmodelUris);
 		result.append(')');

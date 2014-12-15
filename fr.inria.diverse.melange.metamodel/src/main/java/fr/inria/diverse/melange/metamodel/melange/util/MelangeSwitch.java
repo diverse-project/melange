@@ -81,6 +81,7 @@ public class MelangeSwitch<T> extends Switch<T> {
 			case MelangePackage.METAMODEL: {
 				Metamodel metamodel = (Metamodel)theEObject;
 				T result = caseMetamodel(metamodel);
+				if (result == null) result = caseModelingElement(metamodel);
 				if (result == null) result = caseElement(metamodel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -88,6 +89,7 @@ public class MelangeSwitch<T> extends Switch<T> {
 			case MelangePackage.MODEL_TYPE: {
 				ModelType modelType = (ModelType)theEObject;
 				T result = caseModelType(modelType);
+				if (result == null) result = caseModelingElement(modelType);
 				if (result == null) result = caseElement(modelType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -122,6 +124,13 @@ public class MelangeSwitch<T> extends Switch<T> {
 				T result = caseXbaseTransformation(xbaseTransformation);
 				if (result == null) result = caseTransformation(xbaseTransformation);
 				if (result == null) result = caseElement(xbaseTransformation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MelangePackage.MODELING_ELEMENT: {
+				ModelingElement modelingElement = (ModelingElement)theEObject;
+				T result = caseModelingElement(modelingElement);
+				if (result == null) result = caseElement(modelingElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -261,6 +270,21 @@ public class MelangeSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseXbaseTransformation(XbaseTransformation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Modeling Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Modeling Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelingElement(ModelingElement object) {
 		return null;
 	}
 

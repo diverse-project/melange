@@ -11,7 +11,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Metamodel" eSuperTypes="#//Element">
+  <eClassifiers xsi:type="ecore:EClass" name="Metamodel" eSuperTypes="#//ModelingElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="aspects" upperBound="-1"
         eType="#//Aspect" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="exactType" lowerBound="1"
@@ -22,29 +22,23 @@
         eType="#//ModelType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="inheritanceRelation" eType="#//Inheritance"
         containment="true" eOpposite="#//Inheritance/subMetamodel"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pkgs" upperBound="-1" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="exactTypeName" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="genmodels" upperBound="-1"
-        eType="ecore:EClass ../../org.eclipse.emf.codegen.ecore/model/GenModel.ecore#//GenModel"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="resourceType" eType="#//ResourceType"
         defaultValueLiteral="MELANGE"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="resourceUri" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="xtextSetupRef" eType="ecore:EClass ../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ecoreUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="genmodelUris" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="genmodels" upperBound="-1"
+        eType="ecore:EClass ../../org.eclipse.emf.codegen.ecore/model/GenModel.ecore#//GenModel"
+        containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ModelType" eSuperTypes="#//Element">
+  <eClassifiers xsi:type="ecore:EClass" name="ModelType" eSuperTypes="#//ModelingElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subtypingRelations" upperBound="-1"
         eType="#//Subtyping" containment="true" eOpposite="#//Subtyping/subType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pkgs" upperBound="-1" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extracted" eType="#//Metamodel"
         eOpposite="#//Metamodel/exactType"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ecoreUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Transformation" abstract="true" eSuperTypes="#//Element"/>
   <eClassifiers xsi:type="ecore:EClass" name="Aspect">
@@ -68,11 +62,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="superType" lowerBound="1"
         eType="#//ModelType"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="ResourceType">
-    <eLiterals name="MELANGE" literal="MELANGE"/>
-    <eLiterals name="EMF" value="1" literal="EMF"/>
-    <eLiterals name="XTEXT" value="2" literal="XTEXT"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XbaseTransformation" eSuperTypes="#//Transformation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" lowerBound="1" eType="ecore:EClass ../../org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression"
         containment="true"/>
@@ -81,6 +70,16 @@
         eType="ecore:EClass ../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmFormalParameter"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="returnTypeRef" eType="ecore:EClass ../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ResourceType">
+    <eLiterals name="MELANGE" literal="MELANGE"/>
+    <eLiterals name="EMF" value="1" literal="EMF"/>
+    <eLiterals name="XTEXT" value="2" literal="XTEXT"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModelingElement" abstract="true" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ecoreUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pkgs" upperBound="-1" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"
         containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

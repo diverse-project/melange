@@ -3,11 +3,7 @@
 package fr.inria.diverse.melange.metamodel.melange;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
-
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.xtext.common.types.JvmTypeReference;
 
 /**
@@ -23,14 +19,12 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getImplements <em>Implements</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getRequires <em>Requires</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getInheritanceRelation <em>Inheritance Relation</em>}</li>
- *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getPkgs <em>Pkgs</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getExactTypeName <em>Exact Type Name</em>}</li>
- *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getGenmodels <em>Genmodels</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getResourceType <em>Resource Type</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getResourceUri <em>Resource Uri</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getXtextSetupRef <em>Xtext Setup Ref</em>}</li>
- *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getEcoreUri <em>Ecore Uri</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getGenmodelUris <em>Genmodel Uris</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getGenmodels <em>Genmodels</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,7 +32,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  * @model
  * @generated
  */
-public interface Metamodel extends Element {
+public interface Metamodel extends ModelingElement {
 	/**
 	 * Returns the value of the '<em><b>Aspects</b></em>' containment reference list.
 	 * The list contents are of type {@link fr.inria.diverse.melange.metamodel.melange.Aspect}.
@@ -142,22 +136,6 @@ public interface Metamodel extends Element {
 	 * @generated
 	 */
 	void setInheritanceRelation(Inheritance value);
-
-	/**
-	 * Returns the value of the '<em><b>Pkgs</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.ecore.EPackage}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Pkgs</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Pkgs</em>' containment reference list.
-	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getMetamodel_Pkgs()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<EPackage> getPkgs();
 
 	/**
 	 * Returns the value of the '<em><b>Exact Type Name</b></em>' attribute.
@@ -282,32 +260,6 @@ public interface Metamodel extends Element {
 	 * @generated
 	 */
 	void setXtextSetupRef(JvmTypeReference value);
-
-	/**
-	 * Returns the value of the '<em><b>Ecore Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Ecore Uri</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Ecore Uri</em>' attribute.
-	 * @see #setEcoreUri(String)
-	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getMetamodel_EcoreUri()
-	 * @model
-	 * @generated
-	 */
-	String getEcoreUri();
-
-	/**
-	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getEcoreUri <em>Ecore Uri</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Ecore Uri</em>' attribute.
-	 * @see #getEcoreUri()
-	 * @generated
-	 */
-	void setEcoreUri(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Genmodel Uris</b></em>' attribute list.

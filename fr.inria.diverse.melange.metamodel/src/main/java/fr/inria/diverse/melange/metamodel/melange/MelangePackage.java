@@ -150,6 +150,61 @@ public interface MelangePackage extends EPackage {
 	int ELEMENT_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelingElementImpl <em>Modeling Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.ModelingElementImpl
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getModelingElement()
+	 * @generated
+	 */
+	int MODELING_ELEMENT = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODELING_ELEMENT__NAME = ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Ecore Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODELING_ELEMENT__ECORE_URI = ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Pkgs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODELING_ELEMENT__PKGS = ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Modeling Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODELING_ELEMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Modeling Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODELING_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl <em>Metamodel</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -166,106 +221,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__NAME = ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Aspects</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METAMODEL__ASPECTS = ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Exact Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METAMODEL__EXACT_TYPE = ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Implements</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METAMODEL__IMPLEMENTS = ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Requires</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METAMODEL__REQUIRES = ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Inheritance Relation</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METAMODEL__INHERITANCE_RELATION = ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Pkgs</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METAMODEL__PKGS = ELEMENT_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Exact Type Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METAMODEL__EXACT_TYPE_NAME = ELEMENT_FEATURE_COUNT + 6;
-
-	/**
-	 * The feature id for the '<em><b>Genmodels</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METAMODEL__GENMODELS = ELEMENT_FEATURE_COUNT + 7;
-
-	/**
-	 * The feature id for the '<em><b>Resource Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METAMODEL__RESOURCE_TYPE = ELEMENT_FEATURE_COUNT + 8;
-
-	/**
-	 * The feature id for the '<em><b>Resource Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METAMODEL__RESOURCE_URI = ELEMENT_FEATURE_COUNT + 9;
-
-	/**
-	 * The feature id for the '<em><b>Xtext Setup Ref</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METAMODEL__XTEXT_SETUP_REF = ELEMENT_FEATURE_COUNT + 10;
+	int METAMODEL__NAME = MODELING_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Ecore Uri</b></em>' attribute.
@@ -274,7 +230,97 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__ECORE_URI = ELEMENT_FEATURE_COUNT + 11;
+	int METAMODEL__ECORE_URI = MODELING_ELEMENT__ECORE_URI;
+
+	/**
+	 * The feature id for the '<em><b>Pkgs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL__PKGS = MODELING_ELEMENT__PKGS;
+
+	/**
+	 * The feature id for the '<em><b>Aspects</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL__ASPECTS = MODELING_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Exact Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL__EXACT_TYPE = MODELING_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Implements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL__IMPLEMENTS = MODELING_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Requires</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL__REQUIRES = MODELING_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Inheritance Relation</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL__INHERITANCE_RELATION = MODELING_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Exact Type Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL__EXACT_TYPE_NAME = MODELING_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Resource Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL__RESOURCE_TYPE = MODELING_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Resource Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL__RESOURCE_URI = MODELING_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Xtext Setup Ref</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL__XTEXT_SETUP_REF = MODELING_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Genmodel Uris</b></em>' attribute list.
@@ -283,7 +329,16 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__GENMODEL_URIS = ELEMENT_FEATURE_COUNT + 12;
+	int METAMODEL__GENMODEL_URIS = MODELING_ELEMENT_FEATURE_COUNT + 9;
+
+	/**
+	 * The feature id for the '<em><b>Genmodels</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL__GENMODELS = MODELING_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The number of structural features of the '<em>Metamodel</em>' class.
@@ -292,7 +347,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 13;
+	int METAMODEL_FEATURE_COUNT = MODELING_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The number of operations of the '<em>Metamodel</em>' class.
@@ -301,7 +356,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
+	int METAMODEL_OPERATION_COUNT = MODELING_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypeImpl <em>Model Type</em>}' class.
@@ -320,34 +375,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_TYPE__NAME = ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Subtyping Relations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_TYPE__SUBTYPING_RELATIONS = ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Pkgs</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_TYPE__PKGS = ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Extracted</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_TYPE__EXTRACTED = ELEMENT_FEATURE_COUNT + 2;
+	int MODEL_TYPE__NAME = MODELING_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Ecore Uri</b></em>' attribute.
@@ -356,7 +384,34 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_TYPE__ECORE_URI = ELEMENT_FEATURE_COUNT + 3;
+	int MODEL_TYPE__ECORE_URI = MODELING_ELEMENT__ECORE_URI;
+
+	/**
+	 * The feature id for the '<em><b>Pkgs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_TYPE__PKGS = MODELING_ELEMENT__PKGS;
+
+	/**
+	 * The feature id for the '<em><b>Subtyping Relations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_TYPE__SUBTYPING_RELATIONS = MODELING_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Extracted</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_TYPE__EXTRACTED = MODELING_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Model Type</em>' class.
@@ -365,7 +420,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_TYPE_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 4;
+	int MODEL_TYPE_FEATURE_COUNT = MODELING_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Model Type</em>' class.
@@ -374,7 +429,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_TYPE_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
+	int MODEL_TYPE_OPERATION_COUNT = MODELING_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.TransformationImpl <em>Transformation</em>}' class.
@@ -641,7 +696,7 @@ public interface MelangePackage extends EPackage {
 	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getResourceType()
 	 * @generated
 	 */
-	int RESOURCE_TYPE = 9;
+	int RESOURCE_TYPE = 10;
 
 
 	/**
@@ -774,17 +829,6 @@ public interface MelangePackage extends EPackage {
 	EReference getMetamodel_InheritanceRelation();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getPkgs <em>Pkgs</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Pkgs</em>'.
-	 * @see fr.inria.diverse.melange.metamodel.melange.Metamodel#getPkgs()
-	 * @see #getMetamodel()
-	 * @generated
-	 */
-	EReference getMetamodel_Pkgs();
-
-	/**
 	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getExactTypeName <em>Exact Type Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -840,17 +884,6 @@ public interface MelangePackage extends EPackage {
 	EReference getMetamodel_XtextSetupRef();
 
 	/**
-	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getEcoreUri <em>Ecore Uri</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Ecore Uri</em>'.
-	 * @see fr.inria.diverse.melange.metamodel.melange.Metamodel#getEcoreUri()
-	 * @see #getMetamodel()
-	 * @generated
-	 */
-	EAttribute getMetamodel_EcoreUri();
-
-	/**
 	 * Returns the meta object for the attribute list '{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getGenmodelUris <em>Genmodel Uris</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -883,17 +916,6 @@ public interface MelangePackage extends EPackage {
 	EReference getModelType_SubtypingRelations();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link fr.inria.diverse.melange.metamodel.melange.ModelType#getPkgs <em>Pkgs</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Pkgs</em>'.
-	 * @see fr.inria.diverse.melange.metamodel.melange.ModelType#getPkgs()
-	 * @see #getModelType()
-	 * @generated
-	 */
-	EReference getModelType_Pkgs();
-
-	/**
 	 * Returns the meta object for the reference '{@link fr.inria.diverse.melange.metamodel.melange.ModelType#getExtracted <em>Extracted</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -903,17 +925,6 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getModelType_Extracted();
-
-	/**
-	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.ModelType#getEcoreUri <em>Ecore Uri</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Ecore Uri</em>'.
-	 * @see fr.inria.diverse.melange.metamodel.melange.ModelType#getEcoreUri()
-	 * @see #getModelType()
-	 * @generated
-	 */
-	EAttribute getModelType_EcoreUri();
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.Transformation <em>Transformation</em>}'.
@@ -1087,6 +1098,38 @@ public interface MelangePackage extends EPackage {
 	EReference getXbaseTransformation_ReturnTypeRef();
 
 	/**
+	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.ModelingElement <em>Modeling Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Modeling Element</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.ModelingElement
+	 * @generated
+	 */
+	EClass getModelingElement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.ModelingElement#getEcoreUri <em>Ecore Uri</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Ecore Uri</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.ModelingElement#getEcoreUri()
+	 * @see #getModelingElement()
+	 * @generated
+	 */
+	EAttribute getModelingElement_EcoreUri();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link fr.inria.diverse.melange.metamodel.melange.ModelingElement#getPkgs <em>Pkgs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Pkgs</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.ModelingElement#getPkgs()
+	 * @see #getModelingElement()
+	 * @generated
+	 */
+	EReference getModelingElement_Pkgs();
+
+	/**
 	 * Returns the meta object for enum '{@link fr.inria.diverse.melange.metamodel.melange.ResourceType <em>Resource Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1222,14 +1265,6 @@ public interface MelangePackage extends EPackage {
 		EReference METAMODEL__INHERITANCE_RELATION = eINSTANCE.getMetamodel_InheritanceRelation();
 
 		/**
-		 * The meta object literal for the '<em><b>Pkgs</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference METAMODEL__PKGS = eINSTANCE.getMetamodel_Pkgs();
-
-		/**
 		 * The meta object literal for the '<em><b>Exact Type Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1270,14 +1305,6 @@ public interface MelangePackage extends EPackage {
 		EReference METAMODEL__XTEXT_SETUP_REF = eINSTANCE.getMetamodel_XtextSetupRef();
 
 		/**
-		 * The meta object literal for the '<em><b>Ecore Uri</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute METAMODEL__ECORE_URI = eINSTANCE.getMetamodel_EcoreUri();
-
-		/**
 		 * The meta object literal for the '<em><b>Genmodel Uris</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1304,28 +1331,12 @@ public interface MelangePackage extends EPackage {
 		EReference MODEL_TYPE__SUBTYPING_RELATIONS = eINSTANCE.getModelType_SubtypingRelations();
 
 		/**
-		 * The meta object literal for the '<em><b>Pkgs</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODEL_TYPE__PKGS = eINSTANCE.getModelType_Pkgs();
-
-		/**
 		 * The meta object literal for the '<em><b>Extracted</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference MODEL_TYPE__EXTRACTED = eINSTANCE.getModelType_Extracted();
-
-		/**
-		 * The meta object literal for the '<em><b>Ecore Uri</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MODEL_TYPE__ECORE_URI = eINSTANCE.getModelType_EcoreUri();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.TransformationImpl <em>Transformation</em>}' class.
@@ -1464,6 +1475,32 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EReference XBASE_TRANSFORMATION__RETURN_TYPE_REF = eINSTANCE.getXbaseTransformation_ReturnTypeRef();
+
+		/**
+		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelingElementImpl <em>Modeling Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.inria.diverse.melange.metamodel.melange.impl.ModelingElementImpl
+		 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getModelingElement()
+		 * @generated
+		 */
+		EClass MODELING_ELEMENT = eINSTANCE.getModelingElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Ecore Uri</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODELING_ELEMENT__ECORE_URI = eINSTANCE.getModelingElement_EcoreUri();
+
+		/**
+		 * The meta object literal for the '<em><b>Pkgs</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODELING_ELEMENT__PKGS = eINSTANCE.getModelingElement_Pkgs();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.ResourceType <em>Resource Type</em>}' enum.

@@ -6,21 +6,13 @@ import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
 import fr.inria.diverse.melange.metamodel.melange.Metamodel;
 import fr.inria.diverse.melange.metamodel.melange.ModelType;
 import fr.inria.diverse.melange.metamodel.melange.Subtyping;
-
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -32,15 +24,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypeImpl#getSubtypingRelations <em>Subtyping Relations</em>}</li>
- *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypeImpl#getPkgs <em>Pkgs</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypeImpl#getExtracted <em>Extracted</em>}</li>
- *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypeImpl#getEcoreUri <em>Ecore Uri</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ModelTypeImpl extends ElementImpl implements ModelType {
+public class ModelTypeImpl extends ModelingElementImpl implements ModelType {
 	/**
 	 * The cached value of the '{@link #getSubtypingRelations() <em>Subtyping Relations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -52,16 +42,6 @@ public class ModelTypeImpl extends ElementImpl implements ModelType {
 	protected EList<Subtyping> subtypingRelations;
 
 	/**
-	 * The cached value of the '{@link #getPkgs() <em>Pkgs</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPkgs()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<EPackage> pkgs;
-
-	/**
 	 * The cached value of the '{@link #getExtracted() <em>Extracted</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,26 +50,6 @@ public class ModelTypeImpl extends ElementImpl implements ModelType {
 	 * @ordered
 	 */
 	protected Metamodel extracted;
-
-	/**
-	 * The default value of the '{@link #getEcoreUri() <em>Ecore Uri</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEcoreUri()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String ECORE_URI_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getEcoreUri() <em>Ecore Uri</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEcoreUri()
-	 * @generated
-	 * @ordered
-	 */
-	protected String ecoreUri = ECORE_URI_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -120,18 +80,6 @@ public class ModelTypeImpl extends ElementImpl implements ModelType {
 			subtypingRelations = new EObjectContainmentWithInverseEList<Subtyping>(Subtyping.class, this, MelangePackage.MODEL_TYPE__SUBTYPING_RELATIONS, MelangePackage.SUBTYPING__SUB_TYPE);
 		}
 		return subtypingRelations;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<EPackage> getPkgs() {
-		if (pkgs == null) {
-			pkgs = new EObjectContainmentEList<EPackage>(EPackage.class, this, MelangePackage.MODEL_TYPE__PKGS);
-		}
-		return pkgs;
 	}
 
 	/**
@@ -199,27 +147,6 @@ public class ModelTypeImpl extends ElementImpl implements ModelType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getEcoreUri() {
-		return ecoreUri;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEcoreUri(String newEcoreUri) {
-		String oldEcoreUri = ecoreUri;
-		ecoreUri = newEcoreUri;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.MODEL_TYPE__ECORE_URI, oldEcoreUri, ecoreUri));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -244,8 +171,6 @@ public class ModelTypeImpl extends ElementImpl implements ModelType {
 		switch (featureID) {
 			case MelangePackage.MODEL_TYPE__SUBTYPING_RELATIONS:
 				return ((InternalEList<?>)getSubtypingRelations()).basicRemove(otherEnd, msgs);
-			case MelangePackage.MODEL_TYPE__PKGS:
-				return ((InternalEList<?>)getPkgs()).basicRemove(otherEnd, msgs);
 			case MelangePackage.MODEL_TYPE__EXTRACTED:
 				return basicSetExtracted(null, msgs);
 		}
@@ -262,13 +187,9 @@ public class ModelTypeImpl extends ElementImpl implements ModelType {
 		switch (featureID) {
 			case MelangePackage.MODEL_TYPE__SUBTYPING_RELATIONS:
 				return getSubtypingRelations();
-			case MelangePackage.MODEL_TYPE__PKGS:
-				return getPkgs();
 			case MelangePackage.MODEL_TYPE__EXTRACTED:
 				if (resolve) return getExtracted();
 				return basicGetExtracted();
-			case MelangePackage.MODEL_TYPE__ECORE_URI:
-				return getEcoreUri();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -286,15 +207,8 @@ public class ModelTypeImpl extends ElementImpl implements ModelType {
 				getSubtypingRelations().clear();
 				getSubtypingRelations().addAll((Collection<? extends Subtyping>)newValue);
 				return;
-			case MelangePackage.MODEL_TYPE__PKGS:
-				getPkgs().clear();
-				getPkgs().addAll((Collection<? extends EPackage>)newValue);
-				return;
 			case MelangePackage.MODEL_TYPE__EXTRACTED:
 				setExtracted((Metamodel)newValue);
-				return;
-			case MelangePackage.MODEL_TYPE__ECORE_URI:
-				setEcoreUri((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -311,14 +225,8 @@ public class ModelTypeImpl extends ElementImpl implements ModelType {
 			case MelangePackage.MODEL_TYPE__SUBTYPING_RELATIONS:
 				getSubtypingRelations().clear();
 				return;
-			case MelangePackage.MODEL_TYPE__PKGS:
-				getPkgs().clear();
-				return;
 			case MelangePackage.MODEL_TYPE__EXTRACTED:
 				setExtracted((Metamodel)null);
-				return;
-			case MelangePackage.MODEL_TYPE__ECORE_URI:
-				setEcoreUri(ECORE_URI_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -334,30 +242,10 @@ public class ModelTypeImpl extends ElementImpl implements ModelType {
 		switch (featureID) {
 			case MelangePackage.MODEL_TYPE__SUBTYPING_RELATIONS:
 				return subtypingRelations != null && !subtypingRelations.isEmpty();
-			case MelangePackage.MODEL_TYPE__PKGS:
-				return pkgs != null && !pkgs.isEmpty();
 			case MelangePackage.MODEL_TYPE__EXTRACTED:
 				return extracted != null;
-			case MelangePackage.MODEL_TYPE__ECORE_URI:
-				return ECORE_URI_EDEFAULT == null ? ecoreUri != null : !ECORE_URI_EDEFAULT.equals(ecoreUri);
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (ecoreUri: ");
-		result.append(ecoreUri);
-		result.append(')');
-		return result.toString();
 	}
 
 } //ModelTypeImpl
