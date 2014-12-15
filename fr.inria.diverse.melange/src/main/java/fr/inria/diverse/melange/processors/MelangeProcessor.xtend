@@ -4,6 +4,6 @@ import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 
 interface MelangeProcessor
 {
-	def boolean preProcess(ModelTypingSpace root)
-	def boolean postProcess(ModelTypingSpace root)
+	def void preProcess(ModelTypingSpace root)
+	def void postProcess(ModelTypingSpace root)
 }

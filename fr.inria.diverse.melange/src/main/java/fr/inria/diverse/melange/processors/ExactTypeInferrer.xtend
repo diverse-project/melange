@@ -27,12 +27,9 @@ class ExactTypeInferrer implements MelangeProcessor
 		root.metamodels.forEach[mm |
 			mm.exactType = root.modelTypes.findFirst[name == mm.exactTypeName]
 		]
-
-		return true
 	}
 
 	override postProcess(ModelTypingSpace root) {
 		// ...
-		return true
 	}
 }
