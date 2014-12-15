@@ -10,6 +10,10 @@ import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 
 import org.apache.log4j.Logger
 
+import org.eclipse.emf.common.util.Diagnostic
+
+import org.eclipse.emf.ecore.util.Diagnostician
+
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 
@@ -28,19 +32,22 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 	def dispatch void infer(ModelTypingSpace typingSpace, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
 		root = typingSpace
 
-		try {
-			completer.complete(root)
+		if (Diagnostician.INSTANCE.validate(root) == Diagnostic.OK_INSTANCE) {
+			try {
+				completer.complete(root)
+				completer.inferTypingRelations(root)
 
-			completer.inferTypingRelations(root)
-
-			root.modelTypes.forEach[generateInterfaces(acceptor, _typeReferenceBuilder)]
-			root.metamodels.forEach[generateAdapters(acceptor, _typeReferenceBuilder)]
-			root.transformations.forEach[generateTransformation(acceptor, _typeReferenceBuilder)]
-//			root.slicers.forEach[generateSlicer]
-		} catch (ASTProcessingException e) {
-			logger.error('''ASTProcessingException: «e.message»''')
-		} catch (Exception e) {
-			logger.error('''Exception: «e.message»''', e)
+				root.modelTypes.forEach[generateInterfaces(acceptor, _typeReferenceBuilder)]
+				root.metamodels.forEach[generateAdapters(acceptor, _typeReferenceBuilder)]
+				root.transformations.forEach[generateTransformation(acceptor, _typeReferenceBuilder)]
+	//			root.slicers.forEach[generateSlicer]
+			} catch (ASTProcessingException e) {
+				logger.error('''ASTProcessingException: «e.message»''')
+			} catch (Exception e) {
+				logger.error('''Exception: «e.message»''', e)
+			}
+		} else {
+			logger.error('''Inferrer cannot proceed: there are errors in the model.''')
 		}
 	}
 }
