@@ -32,22 +32,22 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 	def dispatch void infer(ModelTypingSpace typingSpace, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
 		root = typingSpace
 
-		if (Diagnostician.INSTANCE.validate(root) == Diagnostic.OK_INSTANCE) {
-			try {
-				completer.complete(root)
-				completer.inferTypingRelations(root)
+		try {
+			completer.complete(root)
 
+			if (Diagnostician.INSTANCE.validate(typingSpace).severity != Diagnostic.ERROR) {
+				completer.inferTypingRelations(root)
 				root.modelTypes.forEach[generateInterfaces(acceptor, _typeReferenceBuilder)]
 				root.metamodels.forEach[generateAdapters(acceptor, _typeReferenceBuilder)]
 				root.transformations.forEach[generateTransformation(acceptor, _typeReferenceBuilder)]
-	//			root.slicers.forEach[generateSlicer]
-			} catch (ASTProcessingException e) {
-				logger.error('''ASTProcessingException: «e.message»''')
-			} catch (Exception e) {
-				logger.error('''Exception: «e.message»''', e)
+//				root.slicers.forEach[generateSlicer]
+			 } else {
+				logger.error('''Inferrer cannot proceed: there are errors in the model.''')
 			}
-		} else {
-			logger.error('''Inferrer cannot proceed: there are errors in the model.''')
+		} catch (ASTProcessingException e) {
+			logger.error('''ASTProcessingException: «e.message»''')
+		} catch (Exception e) {
+			logger.error('''Exception: «e.message»''', e)
 		}
 	}
 }
