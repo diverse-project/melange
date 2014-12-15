@@ -68,7 +68,9 @@ class ASTCompleter
 		val task = Stopwatches.forTask("Completing AST")
 		task.start
 
-		root.elements.forEach[complete]
+		root.metamodels.forEach[complete]
+		root.modelTypes.forEach[complete]
+		root.transformations.forEach[complete]
 
 		task.stop
 	}
@@ -229,14 +231,6 @@ class ASTCompleter
 			mm.allSubPkgs.forEach[p |
 				if (!mm.pkgs.exists[nsURI == p.nsURI])
 					mm.pkgs += p
-			]
-
-			mm.^implements.forEach[mt |
-				mt.complete
-				mm.exactType.complete
-
-				if (!mm.isTypedBy(mt))
-					throw new ASTProcessingException('''«mm.name» doesn't match interface «mt.name»''')
 			]
 
 			if (mm.genmodelUris.size == 0) {
