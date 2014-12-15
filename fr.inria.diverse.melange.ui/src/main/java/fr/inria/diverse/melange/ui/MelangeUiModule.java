@@ -7,4 +7,8 @@ public class MelangeUiModule extends fr.inria.diverse.melange.ui.AbstractMelange
 	public MelangeUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}
+
+	public Class<? extends org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage> bindLanguageRootPreferencePage() {
+	    return fr.inria.diverse.melange.ui.preferences.MelangePreferencePage.class;
+	}
 }

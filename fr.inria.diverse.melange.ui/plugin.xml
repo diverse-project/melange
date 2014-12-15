@@ -82,7 +82,7 @@
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            class="fr.inria.diverse.melange.ui.MelangeExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            class="fr.inria.diverse.melange.ui.preferences.MelangePreferencePage"
             id="fr.inria.diverse.melange.Melange"
             name="Melange">
             <keywordReference id="fr.inria.diverse.melange.ui.keyword_Melange"/>
@@ -479,7 +479,7 @@
    </extension>
    <extension point="org.eclipse.ui.editorActions">
       <editorContribution targetID="fr.inria.diverse.melange.Melange" 
-                          id="fr.inria.diverse.melange.Melange.ide.rulerActions">
+                          id="fr.inria.diverse.melange.Melange.rulerActions">
 	     <action
 	             label="Not Used"
 	             class="fr.inria.diverse.melange.ui.MelangeExecutableExtensionFactory:org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate"
@@ -490,26 +490,26 @@
    </extension>
    <extension point="org.eclipse.ui.popupMenus">
       <viewerContribution
-         targetID="fr.inria.diverse.melange.Melange.ide.rulerContextMenu"
-         id="fr.inria.diverse.melange.Melange.ide.RulerPopupActions">
+         targetID="fr.inria.diverse.melange.Melange.RulerContext"
+         id="fr.inria.diverse.melange.Melange.RulerPopupActions">
          <action
             label="Toggle Breakpoint"
             class="fr.inria.diverse.melange.ui.MelangeExecutableExtensionFactory:org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate"
             menubarPath="debug"
-            id="fr.inria.diverse.melange.Melange.ide.rulerContextMenu.toggleBreakpointAction">
+            id="fr.inria.diverse.melange.Melange.rulerContextMenu.toggleBreakpointAction">
          </action>
          <action
             label="Not used"
             class="fr.inria.diverse.melange.ui.MelangeExecutableExtensionFactory:org.eclipse.debug.ui.actions.RulerEnableDisableBreakpointActionDelegate"
             menubarPath="debug"
-            id="fr.inria.diverse.melange.Melange.ide.rulerContextMenu.enableDisableBreakpointAction">
+            id="fr.inria.diverse.melange.Melange.rulerContextMenu.enableDisableBreakpointAction">
          </action>
          <action
            label="Breakpoint Properties"
            helpContextId="breakpoint_properties_action_context"
            class="fr.inria.diverse.melange.ui.MelangeExecutableExtensionFactory:org.eclipse.jdt.debug.ui.actions.JavaBreakpointPropertiesRulerActionDelegate"
            menubarPath="group.properties"
-           id="fr.inria.diverse.melange.Melange.ide.rulerContextMenu.openBreapointPropertiesAction">
+           id="fr.inria.diverse.melange.Melange.rulerContextMenu.openBreapointPropertiesAction">
          </action>
       </viewerContribution>
    </extension>
