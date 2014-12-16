@@ -1,29 +1,21 @@
 package fr.inria.diverse.melange.tests
 
 import com.google.inject.Inject
-
 import fr.inria.diverse.melange.lib.MatchingHelper
-
 import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
-
 import java.util.Collections
-
 import org.eclipse.emf.common.util.URI
-
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.EPackage
-
+import org.eclipse.emf.ecore.EcoreFactory
 import org.eclipse.emf.ecore.resource.Resource
-
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl
-
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
-
 import org.junit.Before
 import org.junit.Test
-
 import org.junit.runner.RunWith
 
 import static org.junit.Assert.*
@@ -56,6 +48,13 @@ class MatchingTest
 	}
 
 	@Test
+	def void testExhaustiveSelfMatching() {
+		val exhaustivePkg = "tests-inputs/metamodels/Exhaustive.ecore".loadEcore
+
+		assertTrue(exhaustivePkg.simpleMatch(exhaustivePkg))
+	}
+
+	@Test
 	def void testValidMatching1() {
 		val fsmPkg =  "tests-inputs/metamodels/FSM.ecore".loadEcore
 		val tfsmPkg = "tests-inputs/metamodels/TimedFSM.ecore".loadEcore
@@ -81,12 +80,192 @@ class MatchingTest
 	}
 
 	@Test
-	def void testInvalidFsmRef() {
-		val fsmPkg = "tests-inputs/metamodels/FSM.ecore".loadEcore
-		val fsmRefPkg = "tests-inputs/metamodels/matching/FSMBadRef.ecore".loadEcore
+	def void testInvalidRef() {
+		val ecorePkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
+		val otherPkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
+		val refCls = otherPkg.EClassifiers.findFirst[name == "EReference"] as EClass
+		val opRef = refCls.EReferences.findFirst[name == "eOpposite"]
 
-		assertFalse(fsmPkg.simpleMatch(fsmRefPkg))
-		assertFalse(fsmRefPkg.simpleMatch(fsmPkg))
+		opRef.EType = otherPkg.EClassifiers.findFirst[name == "EClass"]
+
+		assertFalse(ecorePkg.simpleMatch(otherPkg))
+		assertFalse(otherPkg.simpleMatch(ecorePkg))
+	}
+
+	@Test
+	def void testEquivalentDatatypes1() {
+		val ecorePkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
+		val otherPkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
+		val namedCls = otherPkg.EClassifiers.findFirst[name == "ENamedElement"] as EClass
+		val nameAttr = namedCls.EAttributes.findFirst[name == "name"]
+		val oldDt = nameAttr.EType
+		val newDt = EcoreFactory.eINSTANCE.createEDataType => [
+			name = "MyString"
+			instanceTypeName = "java.lang.String"
+			serializable = true
+		]
+		otherPkg.EClassifiers += newDt
+
+		nameAttr.EType = newDt
+
+		assertTrue(ecorePkg.simpleMatch(otherPkg))
+		assertTrue(otherPkg.simpleMatch(ecorePkg))
+
+		nameAttr.EType = oldDt
+
+		assertTrue(ecorePkg.simpleMatch(otherPkg))
+		assertTrue(otherPkg.simpleMatch(ecorePkg))
+	}
+
+	@Test
+	def void testEquivalentDatatypes2() {
+		val ecorePkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
+		val otherPkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
+		val namedCls = otherPkg.EClassifiers.findFirst[name == "ENamedElement"] as EClass
+		val nameAttr = namedCls.EAttributes.findFirst[name == "name"]
+		val oldDt = nameAttr.EType
+		val newDt = EcoreFactory.eINSTANCE.createEDataType => [
+			name = "MyString"
+			instanceClassName = "java.lang.String"
+			serializable = true
+		]
+		otherPkg.EClassifiers += newDt
+
+		nameAttr.EType = newDt
+
+		assertTrue(ecorePkg.simpleMatch(otherPkg))
+		assertTrue(otherPkg.simpleMatch(ecorePkg))
+
+		nameAttr.EType = oldDt
+
+		assertTrue(ecorePkg.simpleMatch(otherPkg))
+		assertTrue(otherPkg.simpleMatch(ecorePkg))
+	}
+
+	@Test
+	def void testDifferentDatatypes1() {
+		val ecorePkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
+		val otherPkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
+		val namedCls = otherPkg.EClassifiers.findFirst[name == "ENamedElement"] as EClass
+		val nameAttr = namedCls.EAttributes.findFirst[name == "name"]
+
+		nameAttr.EType = otherPkg.EClassifiers.findFirst[name == "EInt"]
+
+		assertFalse(ecorePkg.simpleMatch(otherPkg))
+		assertFalse(otherPkg.simpleMatch(ecorePkg))
+	}
+
+	@Test
+	def void testDifferentDatatypes2() {
+		val ecorePkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
+		val otherPkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
+		val stringDt = otherPkg.EClassifiers.findFirst[name == "EString"] as EDataType
+
+		stringDt.instanceTypeName = "java.lang.Integer"
+
+		assertFalse(ecorePkg.simpleMatch(otherPkg))
+		assertFalse(otherPkg.simpleMatch(ecorePkg))
+	}
+
+	@Test
+	def void testDifferentDatatypes3() {
+		val ecorePkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
+		val otherPkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
+		val stringDt = otherPkg.EClassifiers.findFirst[name == "EString"] as EDataType
+
+		stringDt.instanceClassName = "java.lang.Integer"
+
+		assertFalse(ecorePkg.simpleMatch(otherPkg))
+		assertFalse(otherPkg.simpleMatch(ecorePkg))
+	}
+
+	@Test
+	def void testEquivalentEnums() {
+		val ecorePkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
+		val otherPkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
+		val attrCls1 = ecorePkg.EClassifiers.findFirst[name == "EAttribute"] as EClass
+		val attrCls2 = otherPkg.EClassifiers.findFirst[name == "EAttribute"] as EClass
+		val enum1 = EcoreFactory.eINSTANCE.createEEnum => [
+			name = "MyEnum"
+		]
+		val enum2 = EcoreFactory.eINSTANCE.createEEnum => [
+			name = "MyEnum"
+		]
+
+		ecorePkg.EClassifiers += enum1
+		otherPkg.EClassifiers += enum2
+
+		val newAttr1 = EcoreFactory.eINSTANCE.createEAttribute => [
+			name = "myAttr"
+			EType = ecorePkg.EClassifiers.findFirst[name == "EString"]
+		]
+		val newAttr2 = EcoreFactory.eINSTANCE.createEAttribute => [
+			name = "myAttr"
+			EType = otherPkg.EClassifiers.findFirst[name == "EString"]
+		]
+
+		attrCls1.EStructuralFeatures += newAttr1
+		attrCls2.EStructuralFeatures += newAttr2
+
+		assertTrue(ecorePkg.simpleMatch(otherPkg))
+		assertTrue(otherPkg.simpleMatch(ecorePkg))
+	}
+
+	@Test
+	def void testDifferentEnums() {
+		val ecorePkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
+		val otherPkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
+		val attrCls1 = ecorePkg.EClassifiers.findFirst[name == "EAttribute"] as EClass
+		val attrCls2 = otherPkg.EClassifiers.findFirst[name == "EAttribute"] as EClass
+		val enum1 = EcoreFactory.eINSTANCE.createEEnum => [
+			name = "MyEnum"
+		]
+		val enum2 = EcoreFactory.eINSTANCE.createEEnum => [
+			name = "MyOtherEnum"
+		]
+
+		ecorePkg.EClassifiers += enum1
+		otherPkg.EClassifiers += enum2
+
+		val newAttr1 = EcoreFactory.eINSTANCE.createEAttribute => [
+			name = "myAttr"
+			EType = enum1
+		]
+		val newAttr2 = EcoreFactory.eINSTANCE.createEAttribute => [
+			name = "myAttr"
+			EType = enum2
+		]
+
+		attrCls1.EStructuralFeatures += newAttr1
+		attrCls2.EStructuralFeatures += newAttr2
+
+		assertFalse(ecorePkg.simpleMatch(otherPkg))
+		assertFalse(otherPkg.simpleMatch(ecorePkg))
+	}
+
+	@Test
+	def void testMultiplicites() {
+		val fsmPkg = "tests-inputs/metamodels/FSM.ecore".loadEcore
+		val otherPkg = "tests-inputs/metamodels/FSM.ecore".loadEcore
+		val stateCls = otherPkg.EClassifiers.findFirst[name == "State"] as EClass
+		val outgoingRef = stateCls.EReferences.findFirst[name == "outgoingTransition"]
+
+		assertTrue(fsmPkg.simpleMatch(otherPkg))
+		assertTrue(otherPkg.simpleMatch(fsmPkg))
+
+		// Initial multiplicies are 0..*
+		outgoingRef.lowerBound = 1
+		assertFalse(otherPkg.simpleMatch(fsmPkg))
+
+		outgoingRef.upperBound = 1
+		assertFalse(otherPkg.simpleMatch(fsmPkg))
+
+		outgoingRef.upperBound = 5
+		assertFalse(otherPkg.simpleMatch(fsmPkg))
+
+		outgoingRef.lowerBound = 0
+		outgoingRef.upperBound = -1
+		assertTrue(otherPkg.simpleMatch(fsmPkg))
 	}
 
 	private def EPackage loadEcore(String uri) {
