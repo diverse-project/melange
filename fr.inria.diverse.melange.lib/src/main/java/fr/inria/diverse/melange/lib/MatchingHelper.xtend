@@ -5,6 +5,7 @@ import com.google.inject.Inject
 import java.util.HashMap
 import java.util.List
 import java.util.Map
+import java.util.Set
 import java.util.Stack
 
 import org.eclipse.emf.ecore.EAttribute
@@ -20,10 +21,11 @@ class MatchingHelper
 {
 	List<EPackage> pkgsA
 	List<EPackage> pkgsB
-	@Inject extension EcoreExtensions
-
 	Map<Pair<String, String>, Boolean> matches
 	Stack<String> currentMatching
+	Map<EClass, Set<EClass>> presumedMatching
+
+	@Inject extension EcoreExtensions
 
 	def boolean match(List<EPackage> l1, List<EPackage> l2) {
 		pkgsA = l1
@@ -31,12 +33,21 @@ class MatchingHelper
 
 		matches = new HashMap<Pair<String, String>, Boolean>
 		currentMatching = new Stack<String>
+		presumedMatching = new HashMap<EClass, Set<EClass>>
 
-		return pkgsB.allClassifiers.filter(EClass).forall[clsB |
+		val ret = pkgsB.allClassifiers.filter(EClass).forall[clsB |
 			pkgsA.allClassifiers.filter(EClass).exists[clsA |
 				clsA.internalMatch(clsB)
 			]
 		]
+
+		// We still need to check the presumably valid matchings
+		val postValidation = presumedMatching.keySet.forall[clsA |
+			val matchings = presumedMatching.get(clsA)
+			matchings.size == 1 && clsA.internalMatch(matchings.head)
+		]
+
+		return ret && postValidation
 	}
 
 	private def boolean internalMatch(EClass clsA, EClass clsB) {
@@ -61,8 +72,13 @@ class MatchingHelper
 				matches.put(clsA.uniqueId -> clsB.uniqueId, ret)
 
 				return ret
-		} else
+		} else {
+			if (presumedMatching.get(clsA) === null)
+				presumedMatching.put(clsA, newHashSet)
+			presumedMatching.get(clsA) += clsB
+
 			return true
+		}
 	}
 
 	private def boolean internalMatch(EOperation opA, EOperation opB) {
