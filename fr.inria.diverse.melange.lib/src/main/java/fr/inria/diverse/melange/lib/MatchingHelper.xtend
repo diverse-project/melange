@@ -168,6 +168,7 @@ class MatchingHelper
 		&&  (refA.lowerBound == refB.lowerBound)
 		&&  (refA.upperBound == refB.upperBound)
 		&&  (!(refA.EOpposite !== null) || (refB.EOpposite !== null && refA.EOpposite.name == refB.EOpposite.name))
+		&&  (refA.EReferenceType.internalMatch(refB.EReferenceType))
 
 		return ret
 	}
