@@ -25,6 +25,9 @@ import static org.junit.Assert.*
 class MatchingTest
 {
 	@Inject MatchingHelper helper
+	// Since we use it as main test data
+	EPackage ecorePkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
+	EPackage otherPkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
 
 	@Before
 	def void setUp() {
@@ -35,8 +38,6 @@ class MatchingTest
 
 	@Test
 	def void testEcoreSelfMatching() {
-		val ecorePkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
-
 		assertTrue(ecorePkg.simpleMatch(ecorePkg))
 	}
 
@@ -81,8 +82,6 @@ class MatchingTest
 
 	@Test
 	def void testInvalidRef() {
-		val ecorePkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
-		val otherPkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
 		val refCls = otherPkg.EClassifiers.findFirst[name == "EReference"] as EClass
 		val opRef = refCls.EReferences.findFirst[name == "eOpposite"]
 
@@ -94,8 +93,6 @@ class MatchingTest
 
 	@Test
 	def void testEquivalentDatatypes1() {
-		val ecorePkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
-		val otherPkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
 		val namedCls = otherPkg.EClassifiers.findFirst[name == "ENamedElement"] as EClass
 		val nameAttr = namedCls.EAttributes.findFirst[name == "name"]
 		val oldDt = nameAttr.EType
@@ -119,8 +116,6 @@ class MatchingTest
 
 	@Test
 	def void testEquivalentDatatypes2() {
-		val ecorePkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
-		val otherPkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
 		val namedCls = otherPkg.EClassifiers.findFirst[name == "ENamedElement"] as EClass
 		val nameAttr = namedCls.EAttributes.findFirst[name == "name"]
 		val oldDt = nameAttr.EType
@@ -144,8 +139,6 @@ class MatchingTest
 
 	@Test
 	def void testDifferentDatatypes1() {
-		val ecorePkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
-		val otherPkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
 		val namedCls = otherPkg.EClassifiers.findFirst[name == "ENamedElement"] as EClass
 		val nameAttr = namedCls.EAttributes.findFirst[name == "name"]
 
@@ -157,8 +150,6 @@ class MatchingTest
 
 	@Test
 	def void testDifferentDatatypes2() {
-		val ecorePkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
-		val otherPkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
 		val stringDt = otherPkg.EClassifiers.findFirst[name == "EString"] as EDataType
 
 		stringDt.instanceTypeName = "java.lang.Integer"
@@ -169,8 +160,6 @@ class MatchingTest
 
 	@Test
 	def void testDifferentDatatypes3() {
-		val ecorePkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
-		val otherPkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
 		val stringDt = otherPkg.EClassifiers.findFirst[name == "EString"] as EDataType
 
 		stringDt.instanceClassName = "java.lang.Integer"
@@ -181,8 +170,6 @@ class MatchingTest
 
 	@Test
 	def void testEquivalentEnums() {
-		val ecorePkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
-		val otherPkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
 		val attrCls1 = ecorePkg.EClassifiers.findFirst[name == "EAttribute"] as EClass
 		val attrCls2 = otherPkg.EClassifiers.findFirst[name == "EAttribute"] as EClass
 		val enum1 = EcoreFactory.eINSTANCE.createEEnum => [
@@ -213,8 +200,6 @@ class MatchingTest
 
 	@Test
 	def void testDifferentEnums() {
-		val ecorePkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
-		val otherPkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
 		val attrCls1 = ecorePkg.EClassifiers.findFirst[name == "EAttribute"] as EClass
 		val attrCls2 = otherPkg.EClassifiers.findFirst[name == "EAttribute"] as EClass
 		val enum1 = EcoreFactory.eINSTANCE.createEEnum => [
