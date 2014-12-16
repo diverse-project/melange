@@ -64,6 +64,31 @@ class MatchingTest
 		assertTrue(tfsmPkg.simpleMatch(fsmPkg))
 	}
 
+	@Test
+	def void testSelfCycleMatching() {
+		val cyclePkg = "tests-inputs/metamodels/matching/Cycle.ecore".loadEcore
+
+		assertTrue(cyclePkg.simpleMatch(cyclePkg))
+	}
+
+	@Test
+	def void testSubCycleMatching() {
+		val cyclePkg = "tests-inputs/metamodels/matching/Cycle.ecore".loadEcore
+		val subcyclePkg = "tests-inputs/metamodels/matching/SubCycle.ecore".loadEcore
+
+		assertTrue(subcyclePkg.simpleMatch(cyclePkg))
+		assertFalse(cyclePkg.simpleMatch(subcyclePkg))
+	}
+
+	@Test
+	def void testInvalidFsmRef() {
+		val fsmPkg = "tests-inputs/metamodels/FSM.ecore".loadEcore
+		val fsmRefPkg = "tests-inputs/metamodels/matching/FSMBadRef.ecore".loadEcore
+
+		assertFalse(fsmPkg.simpleMatch(fsmRefPkg))
+		assertFalse(fsmRefPkg.simpleMatch(fsmPkg))
+	}
+
 	private def EPackage loadEcore(String uri) {
 		val rs = new ResourceSetImpl
 		val res = rs.getResource(URI.createURI(uri), true)
