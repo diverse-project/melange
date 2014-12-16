@@ -144,8 +144,10 @@ class MatchingHelper
 		// TODO: Actually, it should also work when the underlying Java type
 		//        is a subtype of the underlying Java type of the super-datatype
 		&&  (
-			   (attrA.EAttributeType.instanceClassName == attrB.EAttributeType.instanceClassName)
-			|| (attrA.EAttributeType.instanceTypeName == attrB.EAttributeType.instanceTypeName)
+				(attrA.EAttributeType.instanceClassName == attrB.EAttributeType.instanceClassName
+				&& attrA.EAttributeType.instanceClassName !== null)
+			|| (attrA.EAttributeType.instanceTypeName == attrB.EAttributeType.instanceTypeName
+				&& attrA.EAttributeType.instanceTypeName !== null)
 			|| (
 				   attrA.EAttributeType instanceof EEnum && attrB.EAttributeType instanceof EEnum
 				&& attrA.EAttributeType.name == attrB.EAttributeType.name
