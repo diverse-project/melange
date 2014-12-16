@@ -26,14 +26,17 @@ class MatchingTest
 {
 	@Inject MatchingHelper helper
 	// Since we use it as main test data
-	EPackage ecorePkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
-	EPackage otherPkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
+	EPackage ecorePkg
+	EPackage otherPkg
 
 	@Before
 	def void setUp() {
 		Resource.Factory.Registry.INSTANCE.extensionToFactoryMap.put(
 			"ecore", new EcoreResourceFactoryImpl
 		)
+
+		ecorePkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
+		otherPkg = "tests-inputs/metamodels/Ecore.ecore".loadEcore
 	}
 
 	@Test
@@ -76,8 +79,21 @@ class MatchingTest
 		val cyclePkg = "tests-inputs/metamodels/matching/Cycle.ecore".loadEcore
 		val subcyclePkg = "tests-inputs/metamodels/matching/SubCycle.ecore".loadEcore
 
-		assertTrue(subcyclePkg.simpleMatch(cyclePkg))
 		assertFalse(cyclePkg.simpleMatch(subcyclePkg))
+		assertTrue(subcyclePkg.simpleMatch(cyclePkg))
+	}
+
+	@Test
+	def void testInvalidSubCycleMatching() {
+		val cyclePkg = "tests-inputs/metamodels/matching/Cycle.ecore".loadEcore
+		val subcyclePkg = "tests-inputs/metamodels/matching/SubCycle.ecore".loadEcore
+		val bCls = cyclePkg.EClassifiers.findFirst[name == "B"] as EClass
+		val myARef = bCls.EStructuralFeatures.findFirst[name == "myA"]
+
+		myARef.EType = bCls
+
+		assertFalse(cyclePkg.simpleMatch(subcyclePkg))
+		assertFalse(subcyclePkg.simpleMatch(cyclePkg))
 	}
 
 	@Test
@@ -229,7 +245,7 @@ class MatchingTest
 	}
 
 	@Test
-	def void testMultiplicites() {
+	def void testReferenceMultiplicites() {
 		val fsmPkg = "tests-inputs/metamodels/FSM.ecore".loadEcore
 		val otherPkg = "tests-inputs/metamodels/FSM.ecore".loadEcore
 		val stateCls = otherPkg.EClassifiers.findFirst[name == "State"] as EClass
@@ -242,15 +258,37 @@ class MatchingTest
 		outgoingRef.lowerBound = 1
 		assertFalse(otherPkg.simpleMatch(fsmPkg))
 
+		outgoingRef.lowerBound = 0
 		outgoingRef.upperBound = 1
 		assertFalse(otherPkg.simpleMatch(fsmPkg))
 
 		outgoingRef.upperBound = 5
 		assertFalse(otherPkg.simpleMatch(fsmPkg))
 
-		outgoingRef.lowerBound = 0
 		outgoingRef.upperBound = -1
 		assertTrue(otherPkg.simpleMatch(fsmPkg))
+	}
+
+	@Test
+	def void testAttributeMultiplicites() {
+		val fsmPkg = "tests-inputs/metamodels/FSM.ecore".loadEcore
+		val otherPkg = "tests-inputs/metamodels/FSM.ecore".loadEcore
+		val stateCls = otherPkg.EClassifiers.findFirst[name == "State"] as EClass
+		val nameAttr = stateCls.EAttributes.findFirst[name == "name"]
+
+		assertTrue(fsmPkg.simpleMatch(otherPkg))
+		assertTrue(otherPkg.simpleMatch(fsmPkg))
+
+		// Initial multiplicies are 0..1
+		nameAttr.lowerBound = 1
+		assertFalse(otherPkg.simpleMatch(fsmPkg))
+
+		nameAttr.lowerBound = 0
+		nameAttr.upperBound = 2
+		assertFalse(otherPkg.simpleMatch(fsmPkg))
+
+		nameAttr.upperBound = -1
+		assertFalse(otherPkg.simpleMatch(fsmPkg))
 	}
 
 	private def EPackage loadEcore(String uri) {
