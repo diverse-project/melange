@@ -10,6 +10,7 @@ import java.util.Stack
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EDataType
+import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EParameter
@@ -140,18 +141,16 @@ class MatchingHelper
 		&&  (attrA.changeable || !attrB.changeable)
 		&&  (attrA.unique == attrB.unique)
 		&&  (!attrA.ordered || attrB.ordered)
-		&&  if (attrA.EType instanceof EDataType && attrB.EType instanceof EDataType)
-				attrA.EType.name == attrB.EType.name
-			else if (attrA.EType instanceof EClass && attrB.EType instanceof EClass)
-				(
-					   pkgsA.allClassifiers.contains(attrA.EType)
-					&& pkgsB.allClassifiers.contains(attrB.EType)
-					&& (attrA.EType as EClass).internalMatch(attrB.EType as EClass)
-				) || (
-					   (attrA.EType as EClass).EAllSuperTypes.contains(attrB.EType)
-					&& !attrA.changeable
-				)
-			else false
+		// TODO: Actually, it should also work when the underlying Java type
+		//        is a subtype of the underlying Java type of the super-datatype
+		&&  (
+			   (attrA.EAttributeType.instanceClassName == attrB.EAttributeType.instanceClassName)
+			|| (attrA.EAttributeType.instanceTypeName == attrB.EAttributeType.instanceTypeName)
+			|| (
+				   attrA.EAttributeType instanceof EEnum && attrB.EAttributeType instanceof EEnum
+				&& attrA.EAttributeType.name == attrB.EAttributeType.name
+			)
+		)
 		&&  (attrA.lowerBound == attrB.lowerBound)
 		&&  (attrA.upperBound == attrB.upperBound)
 
