@@ -5,7 +5,7 @@ TODO
 ----
 
 - [ ] Capitalize adapters creation in dedicated factories
-- [ ] **Externalize all AST-completion operations in a IDerivedStateComputer post-processor**
+- [ ] Externalize all AST-completion operations in a IDerivedStateComputer post-processor
 - [ ] Modeling in-the-large
 	- [ ] Metamodels attributes and operations
 	- [X] Modeltypes attributes and operations
@@ -54,5 +54,11 @@ TESTS
 TOWARDS STANDALONE
 ------------------
 - [ ] MelangeResource
-- [ ] MelangeMetadata?
-- [ ] ModelTypingSpace manager within Eclipse project or workspace
+- [ ] MelangeMetadata?
+- [ ] ModelTypingSpace manager within Eclipse project or workspace
+
+PERFORMANCE
+-----------
+- [ ] Disable Xtext services (indexing, scoping, etc.) on EPackages and their subtree (which constitutes the biggest part of the overall AST)
+- [ ] Alternatively, remove ModelingElement from the AST and use an external hash table to keep track of the associated EPackages
+- [ ] Keep track of the generated artifacts (Melange/EMF) and regenerate them only when necessary
