@@ -8,8 +8,9 @@ import java.util.Map
 interface ModelTypeAdapter
 {
 	interface Registry extends Map<Pair<String, String>, Class<? extends ResourceAdapter>> {
-		// Make it global
+		// TODO: Make it global
 		Registry INSTANCE = ModelTypeAdapterRegistryImpl.getInstance()
+		def void registerAdapter(String pkgUri, String mt, Class<? extends ResourceAdapter> adapter)
 	}
 
 	static class ModelTypeAdapterRegistryImpl extends HashMap<Pair<String, String>, Class<? extends ResourceAdapter>> implements ModelTypeAdapter.Registry {
@@ -20,6 +21,10 @@ interface ModelTypeAdapter
 				instance = new ModelTypeAdapterRegistryImpl
 
 			return instance
+		}
+
+		override registerAdapter(String pkgUri, String mt, Class<? extends ResourceAdapter> adapter) {
+			put(pkgUri -> mt, adapter)
 		}
 	}
 }
