@@ -3,20 +3,17 @@
  
     <target name="process-xtend-gen" depends="dir.check" if="dir.exists">
         <echo message="" />
-        <echo message="Replacing in ${project.basedir}/xtend-gen" />
+	<echo message="Replacing in ${project.basedir}/src/main/xtend-gen" />
         <echo message="" />
  
-        <replace dir="${project.basedir}/xtend-gen" token='@SuppressWarnings("all")' value="">
+	<replace dir="${project.basedir}/src/main/xtend-gen" token='@SuppressWarnings("all")' value="">
             <include name="**/*.java" />
         </replace>
     </target>
  
     <target name="dir.check">
-        <echo message="" />
-        <echo message="Checking ${project.basedir}/xtend-gen" />
-        <echo message="" />
         <condition property="dir.exists">
-            <available file="${project.basedir}/xtend-gen" type="dir" />
+		<available file="${project.basedir}/src/main/xtend-gen" type="dir" />
         </condition>
     </target>
  
