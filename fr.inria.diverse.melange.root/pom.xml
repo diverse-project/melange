@@ -31,6 +31,8 @@
 		<tycho.version>0.21.0</tycho.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<xtext.version>2.7.3</xtext.version>
+		<sonar.language>java</sonar.language>
+		<sonar.exclusions>file:**/src-gen/**</sonar.exclusions>
 		<nightly.modifier>.nightly</nightly.modifier> <!-- must be set to ".nightly" for SNAPSHOT and set to "" for release -->
 	</properties>
 
@@ -166,6 +168,28 @@
 					<source>${java.version}</source>
 					<target>${java.version}</target>
 				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.7</version>
+				<executions>
+					<execution>
+						<id>process-xtend-gen</id>
+						<phase>process-sources</phase>
+						<configuration>
+							<skip>!${process-xtend-gen}</skip>
+							<target>
+								<property name="project.basedir" value="${project.basedir}" />
+								<ant antfile="${basedir}/../fr.inria.diverse.melange.root/process-xtend-gen.ant">
+									<target name="process-xtend-gen" />
+								</ant>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
