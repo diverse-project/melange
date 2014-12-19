@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
+Bundle-Name: Melange Resource
 Bundle-SymbolicName: fr.inria.diverse.melange.resource;singleton:=true
 Bundle-Version: 3.1.0.qualifier
-Bundle-Vendor: %providerName
+Bundle-Vendor: DIVERSE
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xmi;bundle-version="2.10.1",
  com.google.guava,

@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-Vendor: %providerName
+Bundle-Name: Melange Tests
+Bundle-Vendor: DIVERSE
 Bundle-Version: 3.1.0.qualifier
 Bundle-SymbolicName: fr.inria.diverse.melange.tests;singleton:=true
 Bundle-ActivationPolicy: lazy

@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
+Bundle-Name: Melange Logging
 Bundle-SymbolicName: fr.inria.diverse.melange.logging
 Bundle-Version: 3.1.0.qualifier
 Fragment-Host: org.apache.log4j;bundle-version="1.2.15"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Bundle-Vendor: %providerName
+Bundle-Vendor: DIVERSE
