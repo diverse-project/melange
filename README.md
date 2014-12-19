@@ -62,3 +62,5 @@ PERFORMANCE
 - [ ] Disable Xtext services (indexing, scoping, etc.) on EPackages and their subtree (which constitutes the biggest part of the overall AST)
 - [ ] Alternatively, remove ModelingElement from the AST and use an external hash table to keep track of the associated EPackages
 - [ ] Keep track of the generated artifacts (Melange/EMF) and regenerate them only when necessary
+- [ ] exactType should be immutable reference to the EPackages defining the metamodel they are extracted from. No need to copy anything
+
