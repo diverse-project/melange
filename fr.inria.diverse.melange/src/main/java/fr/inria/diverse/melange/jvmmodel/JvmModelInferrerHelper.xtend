@@ -5,9 +5,10 @@ import com.google.inject.Singleton
 
 import java.util.List
 
-import org.eclipse.emf.ecore.EStructuralFeature
+import org.eclipse.emf.ecore.EObject
 
 import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.emf.ecore.resource.ResourceSet
 
 import org.eclipse.xtext.common.types.JvmFormalParameter
 import org.eclipse.xtext.common.types.JvmOperation
@@ -20,7 +21,6 @@ import org.eclipse.xtext.xbase.typesystem.references.StandardTypeReferenceOwner
 
 import org.eclipse.xtext.xbase.typesystem.util.CommonTypeComputationServices
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
-import org.eclipse.emf.ecore.resource.ResourceSet
 
 @Singleton
 class JvmModelInferrerHelper
@@ -35,7 +35,7 @@ class JvmModelInferrerHelper
 	}
 
 	/*--- Getters / Setters  ---*/
-	def JvmOperation toGetterSignature(EStructuralFeature f, String name, JvmTypeReference type) {
+	def JvmOperation toGetterSignature(EObject f, String name, JvmTypeReference type) {
 		val g =	f.toGetter(name, type)
 		g.removeExistingBody
 
@@ -45,7 +45,7 @@ class JvmModelInferrerHelper
 		return g
 	}
 
-	def JvmOperation toUmlGetterSignature(EStructuralFeature f, String name, JvmTypeReference type) {
+	def JvmOperation toUmlGetterSignature(EObject f, String name, JvmTypeReference type) {
 		val g =	f.toGetter(name, type)
 		g.removeExistingBody
 
@@ -59,14 +59,14 @@ class JvmModelInferrerHelper
 		return g
 	}
 
-	def JvmOperation toSetterSignature(EStructuralFeature f, String name, JvmTypeReference type) {
+	def JvmOperation toSetterSignature(EObject f, String name, JvmTypeReference type) {
 		val s = f.toSetter(name, type)
 		s.removeExistingBody
 
 		return s
 	}
 
-	def JvmOperation toUnsetter(EStructuralFeature f, String name) {
+	def JvmOperation toUnsetter(EObject f, String name) {
 		val s = f.toMethod("unset" + name.toFirstUpper, Void::TYPE.typeRef)[
 			body = '''
 				adaptee.unset«name.toFirstUpper»() ;
@@ -76,7 +76,7 @@ class JvmModelInferrerHelper
 		return s
 	}
 
-	def JvmOperation toUnsetterCheck(EStructuralFeature f, String name) {
+	def JvmOperation toUnsetterCheck(EObject f, String name) {
 		val s = f.toMethod("isSet" + name.toFirstUpper, Boolean::TYPE.typeRef)[
 			body = '''
 				return adaptee.isSet«name.toFirstUpper»() ;
@@ -86,14 +86,14 @@ class JvmModelInferrerHelper
 		return s
 	}
 
-	def JvmOperation toUnsetterSignature(EStructuralFeature f, String name) {
+	def JvmOperation toUnsetterSignature(EObject f, String name) {
 		val u = f.toUnsetter(name)
 		u.removeExistingBody
 
 		return u
 	}
 
-	def JvmOperation toUnsetterCheckSignature(EStructuralFeature f, String name) {
+	def JvmOperation toUnsetterCheckSignature(EObject f, String name) {
 		val u = f.toUnsetterCheck(name)
 		u.removeExistingBody
 

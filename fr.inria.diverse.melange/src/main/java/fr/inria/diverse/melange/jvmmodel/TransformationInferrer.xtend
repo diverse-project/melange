@@ -3,6 +3,7 @@ package fr.inria.diverse.melange.jvmmodel
 import com.google.inject.Inject
 
 import fr.inria.diverse.melange.ast.ASTHelper
+import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
@@ -23,6 +24,7 @@ class TransformationInferrer
 	@Inject extension IQualifiedNameProvider
 	@Inject extension ASTHelper
 	@Inject extension NamingHelper
+	@Inject extension MetamodelExtensions
 
 	def void generateTransformation(XbaseTransformation transfo, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
 		val task = Stopwatches.forTask("generate transformations")

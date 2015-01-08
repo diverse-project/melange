@@ -51,16 +51,16 @@ class MetaclassInterfaceInferrer
 			cls.EAttributes.filter[!derived].forEach[attr |
 				val attrType = mt.typeRef(attr, #[intf])
 
-				intf.members += if (!mt.isUml(cls)) attr.toGetterSignature(attr.name, attrType) else attr.toUmlGetterSignature(attr.name, attrType)
+				intf.members += if (!mt.isUml(cls)) mt.toGetterSignature(attr.name, attrType) else mt.toUmlGetterSignature(attr.name, attrType)
 
 				if (attr.needsSetter)
-					intf.members += attr.toSetterSignature(attr.name, attrType)
+					intf.members += mt.toSetterSignature(attr.name, attrType)
 
 				if (attr.needsUnsetter)
-					intf.members += attr.toUnsetterSignature(attr.name)
+					intf.members += mt.toUnsetterSignature(attr.name)
 
 				if (attr.needsUnsetterChecker)
-					intf.members += attr.toUnsetterCheckSignature(attr.name)
+					intf.members += mt.toUnsetterCheckSignature(attr.name)
 			]
 
 			cls.EReferences.filter[!derived].forEach[ref |
@@ -68,24 +68,24 @@ class MetaclassInterfaceInferrer
 				val refName = if (!mt.isUml(cls)) ref.name else ref.formatUmlReferenceName
 
 				if (ref.isEMFMapDetails) // Special case: EMF Map$Entry
-					intf.members += ref.toMethod("getDetails", EMap.typeRef(String.typeRef, String.typeRef))[^abstract = true]
+					intf.members += mt.toMethod("getDetails", EMap.typeRef(String.typeRef, String.typeRef))[^abstract = true]
 				else
-					intf.members += if (!mt.isUml(cls)) ref.toGetterSignature(refName, refType) else ref.toUmlGetterSignature(refName, refType)
+					intf.members += if (!mt.isUml(cls)) mt.toGetterSignature(refName, refType) else mt.toUmlGetterSignature(refName, refType)
 
 				if (ref.needsSetter)
-					intf.members += ref.toSetterSignature(refName, refType)
+					intf.members += mt.toSetterSignature(refName, refType)
 
 				if (ref.needsUnsetter)
-					intf.members += ref.toUnsetterSignature(refName)
+					intf.members += mt.toUnsetterSignature(refName)
 
 				if (ref.needsUnsetterChecker)
-					intf.members += ref.toUnsetterCheckSignature(refName)
+					intf.members += mt.toUnsetterCheckSignature(refName)
 			]
 
 			cls.EOperations.forEach[op |
 				val opName = if (!mt.isUml(cls)) op.name else op.formatUmlOperationName
 
-				intf.members += op.toMethod(opName, null)[m |
+				intf.members += mt.toMethod(opName, null)[m |
 					op.ETypeParameters.forEach[t |
 						m.typeParameters += TypesFactory.eINSTANCE.createJvmTypeParameter => [tp |
 							tp.name = t.name
@@ -110,7 +110,7 @@ class MetaclassInterfaceInferrer
 					]
 
 					op.EParameters.forEach[p |
-						m.parameters += op.toParameter(p.name, mt.typeRef(p, #[m, intf]))
+						m.parameters += mt.toParameter(p.name, mt.typeRef(p, #[m, intf]))
 					]
 
 					op.EExceptions.forEach[e |

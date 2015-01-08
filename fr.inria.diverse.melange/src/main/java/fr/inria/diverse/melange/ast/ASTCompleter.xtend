@@ -34,6 +34,7 @@ class ASTCompleter
 	@Inject extension ASTHelper
 	@Inject extension MetamodelExtensions
 	@Inject extension ModelTypeExtensions
+	@Inject extension ModelingElementExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension AspectToEcore
 	@Inject ModelUtils modelUtils
@@ -79,7 +80,7 @@ class ASTCompleter
 		if (mm.hasSuperMetamodel) {
 			// EMF resource = extension with inheritance
 			if (mm.resourceType == ResourceType.EMF) {
-				val pkg = modelUtils.loadPkg(mm.inheritanceRelation.superMetamodel.ecoreUri)
+				val pkg = mm.pkgs.head
 
 				val newPkg = EcoreFactory.eINSTANCE.createEPackage => [
 					name = mm.name.toLowerCase
@@ -100,9 +101,6 @@ class ASTCompleter
 						]
 					]
 				]
-
-				if (!mm.pkgs.exists[nsURI == newPkg.nsURI])
-					mm.pkgs += newPkg
 
 				pkg.referencedPkgs.filterNull.forEach[p |
 					val nPkg = EcoreFactory.eINSTANCE.createEPackage => [
@@ -125,9 +123,6 @@ class ASTCompleter
 							]
 						]
 					]
-
-					if (!mm.pkgs.exists[nsURI == nPkg.nsURI])
-						mm.pkgs += nPkg
 				]
 
 				mm.aspects.forEach[asp |
@@ -170,21 +165,7 @@ class ASTCompleter
 				mm.createExtendedGenmodel(ecoreUri, genmodelUri, srcFolder)
 				throw new ASTProcessingException("Can't generate code for inheritance-based extended metamodels")
 			} else {
-				val rootPkg = mm.inheritanceRelation.superMetamodel.pkgs.head.copy(mm.name)
-
-				val pkg = rootPkg
-				if (!mm.pkgs.exists[nsURI == pkg.nsURI])
-					mm.pkgs += pkg
-
-				pkg.referencedPkgs.forEach[p |
-					if (!mm.pkgs.exists[nsURI == p.nsURI])
-						mm.pkgs += p.copy
-				]
-
-				mm.allSubPkgs.forEach[p |
-					if (!mm.pkgs.exists[nsURI == p.nsURI])
-						mm.pkgs += p
-				]
+				val pkg = mm.pkgs.head
 
 				// For each aspect, infer the corresponding ecore fragment
 				// and merge it into the base metamodel
@@ -217,34 +198,6 @@ class ASTCompleter
 					mm.genmodels += gm
 			}
 		} else {
-			val pkg = modelUtils.loadPkg(mm.ecoreUri)
-
-			// TODO: Check that loaded pkgs/genmodels match
-			if (!mm.pkgs.exists[nsURI == pkg.nsURI])
-				mm.pkgs += pkg
-
-			pkg.referencedPkgs.forEach[p |
-				if (!mm.pkgs.exists[nsURI == p.nsURI])
-					mm.pkgs += p.copy
-			]
-
-			mm.allSubPkgs.forEach[p |
-				if (!mm.pkgs.exists[nsURI == p.nsURI])
-					mm.pkgs += p
-			]
-
-			if (mm.genmodelUris.size == 0) {
-				// FIXME
-				mm.genmodelUris += mm.ecoreUri.substring(0, mm.ecoreUri.lastIndexOf(".")) + ".genmodel"
-			}
-
-			mm.genmodelUris.forEach[
-				val gm = modelUtils.loadGenmodel(it)
-
-				if (!mm.genmodels.exists[modelName == gm.modelName])
-					mm.genmodels += gm
-			]
-
 			// For each aspect, infer the corresponding ecore fragment
 			// and merge it into the base metamodel
 			mm.aspects.forEach[asp |
@@ -271,27 +224,7 @@ class ASTCompleter
 	}
 
 	def dispatch void complete(ModelType mt) {
-		if(mt.isImported) {
-			val pkg = modelUtils.loadPkg(mt.ecoreUri)
-
-			if (!mt.pkgs.exists[nsURI == pkg.nsURI])
-				mt.pkgs += pkg
-
-			mt.allSubPkgs.forEach[p |
-				if (!mt.pkgs.exists[nsURI == p.nsURI])
-					mt.pkgs += p
-			]
-
-			pkg.referencedPkgs.forEach[p |
-				if (!mt.pkgs.exists[nsURI == p.nsURI])
-					mt.pkgs += p.copy
-			]
-		} else if (mt.isExtracted) {
-			mt.extracted.pkgs.forEach[p |
-				if (!mt.pkgs.exists[nsURI == p.nsURI])
-					mt.pkgs += p.copy
-			]
-		}
+		// ...
 	}
 
 	def dispatch void complete(XbaseTransformation t) {

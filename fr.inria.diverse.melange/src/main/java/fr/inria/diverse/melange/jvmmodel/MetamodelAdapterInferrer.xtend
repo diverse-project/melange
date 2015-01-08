@@ -3,6 +3,7 @@ package fr.inria.diverse.melange.jvmmodel
 import com.google.inject.Inject
 
 import fr.inria.diverse.melange.ast.MetamodelExtensions
+import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 
@@ -33,6 +34,7 @@ class MetamodelAdapterInferrer
 	@Inject extension MetamodelExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension MelangeTypesBuilder
+	@Inject extension ModelingElementExtensions
 
 	def void generateAdapter(Metamodel mm, ModelType superType, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
 		val task = Stopwatches.forTask("generate metamodel adapters")

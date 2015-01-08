@@ -2,6 +2,8 @@ package fr.inria.diverse.melange.algebra
 
 import com.google.inject.Inject
 
+import fr.inria.diverse.melange.ast.ModelingElementExtensions
+
 import fr.inria.diverse.melange.lib.MatchingHelper
 
 import fr.inria.diverse.melange.metamodel.melange.Aspect
@@ -20,6 +22,7 @@ import org.eclipse.emf.ecore.EClass
 
 class EmfCompareAlgebra implements ModelTypeAlgebra
 {
+	@Inject extension ModelingElementExtensions
 	@Inject MatchingHelper matchingHelper
 
 	override isSubtypeOf(ModelType mt1, ModelType mt2) {
@@ -48,5 +51,7 @@ class EmfCompareAlgebra implements ModelTypeAlgebra
 		val mergerRegistry = IMerger.RegistryImpl.createStandaloneInstance
 		val merger = new BatchMerger(mergerRegistry)
 		merger.copyAllLeftToRight(mergedDiffs, null)
+
+		//mm.updatePkg(base.nsURI, base)
 	}
 }

@@ -14,6 +14,7 @@ import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 
 import fr.inria.diverse.melange.utils.AspectToEcore
+import fr.inria.diverse.melange.utils.EPackageRegistry
 
 import java.io.IOException
 
@@ -52,11 +53,17 @@ import org.eclipse.xtext.common.types.JvmVisibility
 
 class MetamodelExtensions
 {
+	@Inject extension ModelingElementExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension ModelTypeExtensions
 	@Inject extension AspectToEcore
 	@Inject ModelUtils modelUtils
 	@Inject ModelTypeAlgebra algebra
+	@Inject EPackageRegistry registry
+
+	def List<GenModel> getGenmodels(Metamodel mm) {
+		return registry.getGenModels(mm)
+	}
 
 	def List<Aspect> allAspects(Metamodel mm) {
 		val ret = newArrayList

@@ -1,10 +1,14 @@
 package fr.inria.diverse.melange.ast
 
+import com.google.inject.Inject
+
 //import fr.inria.diverse.melange.metamodel.melange.KomprenSlicer
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.XbaseTransformation
+
+import java.io.IOException
 
 import java.util.Collections
 
@@ -18,10 +22,11 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
 
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
-import java.io.IOException
 
 class ASTHelper
 {
+	@Inject extension ModelingElementExtensions
+	@Inject extension MetamodelExtensions
 	Logger logger = Logger.getLogger(ASTHelper)
 
 	def void saveAs(ModelTypingSpace root, String uri) {

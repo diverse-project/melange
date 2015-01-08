@@ -27,6 +27,8 @@ import org.eclipse.xtext.naming.QualifiedName
 
 class NamingHelper
 {
+	@Inject extension ModelingElementExtensions
+	@Inject extension MetamodelExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension IQualifiedNameProvider
 	@Inject extension ModelTypeExtensions

@@ -71,15 +71,15 @@ class MetaclassAdapterInferrer
 				val getterName = if (!mm.isUml(attr.EContainingClass)) attr.getterName else attr.umlGetterName
 				val setterName = attr.setterName
 
-				jvmCls.members += attr.toMethod(getterName, attrType)[
+				jvmCls.members += mm.toMethod(getterName, attrType)[
 					body = '''
 						return adaptee.«getterName»() ;
 					'''
 				]
 
 				if (attr.needsSetter) {
-					jvmCls.members += attr.toMethod(setterName, Void::TYPE.typeRef)[
-						parameters += attr.toParameter("o", attrType)
+					jvmCls.members += mm.toMethod(setterName, Void::TYPE.typeRef)[
+						parameters += mm.toParameter("o", attrType)
 						body = '''
 							adaptee.«setterName»(o) ;
 						'''
@@ -87,10 +87,10 @@ class MetaclassAdapterInferrer
 				}
 
 				if (attr.needsUnsetter)
-					jvmCls.members += attr.toUnsetter(attr.name)
+					jvmCls.members += mm.toUnsetter(attr.name)
 
 				if (attr.needsUnsetterChecker)
-					jvmCls.members += attr.toUnsetterCheck(attr.name)
+					jvmCls.members += mm.toUnsetterCheck(attr.name)
 			]
 
 			cls.EAllReferences.filter[!isAspectSpecific].forEach[ref |
@@ -100,11 +100,11 @@ class MetaclassAdapterInferrer
 				val setterName = ref.setterName
 
 				if (ref.isEMFMapDetails) // Special case: EMF Map$Entry
-					jvmCls.members += ref.toMethod("getDetails", EMap.typeRef(String.typeRef, String.typeRef))[
+					jvmCls.members += mm.toMethod("getDetails", EMap.typeRef(String.typeRef, String.typeRef))[
 						body = '''return adaptee.getDetails() ;'''
 					]
 				else
-					jvmCls.members += ref.toMethod(getterName, refType)[
+					jvmCls.members += mm.toMethod(getterName, refType)[
 						body = '''
 							«IF ref.many»
 								return fr.inria.diverse.melange.lib.ListAdapter.newInstance(adaptee.«getterName»(), «adapName».class) ;
@@ -115,8 +115,8 @@ class MetaclassAdapterInferrer
 					]
 
 				if (ref.needsSetter) {
-					jvmCls.members += ref.toMethod(setterName, Void::TYPE.typeRef)[
-						parameters += ref.toParameter("o", refType)
+					jvmCls.members += mm.toMethod(setterName, Void::TYPE.typeRef)[
+						parameters += mm.toParameter("o", refType)
 
 						body = '''
 							adaptee.«setterName»(((«adapName») o).getAdaptee()) ;
@@ -125,17 +125,17 @@ class MetaclassAdapterInferrer
 				}
 
 				if (ref.needsUnsetter)
-					jvmCls.members += ref.toUnsetter(ref.name)
+					jvmCls.members += mm.toUnsetter(ref.name)
 
 				if (ref.needsUnsetterChecker)
-					jvmCls.members += ref.toUnsetterCheck(ref.name)
+					jvmCls.members += mm.toUnsetterCheck(ref.name)
 			]
 
 			cls.EAllOperations.sortByOverridingPriority.filter[!isAspectSpecific]
 			.forEach[op |
 				val opName = if (!mm.isUml(op.EContainingClass)) op.name else op.formatUmlOperationName
 
-				val newOp = op.toMethod(opName, null)[m |
+				val newOp = mm.toMethod(opName, null)[m |
 					val paramsList = new StringBuilder
 
 					op.ETypeParameters.forEach[t |
@@ -164,7 +164,7 @@ class MetaclassAdapterInferrer
 					op.EParameters.forEach[p, i |
 						val pType = superType.typeRef(p, #[m, jvmCls])
 
-						m.parameters += op.toParameter(p.name, pType)
+						m.parameters += mm.toParameter(p.name, pType)
 
 						paramsList.append('''
 							«IF i > 0», «ENDIF»

@@ -11,6 +11,8 @@ import org.eclipse.xtext.common.types.JvmDeclaredType
 
 class ASTValidator
 {
+	@Inject extension ModelingElementExtensions
+	@Inject extension MetamodelExtensions
 	@Inject extension ASTHelper
 
 	def dispatch boolean isValid(ModelTypingSpace root) {

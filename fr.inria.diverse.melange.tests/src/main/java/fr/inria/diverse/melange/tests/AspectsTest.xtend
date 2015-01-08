@@ -2,6 +2,8 @@ package fr.inria.diverse.melange.tests
 
 import com.google.inject.Inject
 
+import fr.inria.diverse.melange.ast.ModelingElementExtensions
+
 import fr.inria.diverse.melange.lib.GenericAdapter
 import fr.inria.diverse.melange.lib.IModelType
 import fr.inria.diverse.melange.lib.ListAdapter
@@ -52,6 +54,7 @@ import static org.junit.Assert.*
 @XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/AspectsTest.melange", withValidation = true)
 class AspectsTest
 {
+	@Inject extension ModelingElementExtensions
 	@Inject extension MelangeTestHelper
 	@Inject IGenerator generator
 

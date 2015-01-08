@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EPackage
 
 class ModelTypeExtensions
 {
+	@Inject extension ModelingElementExtensions
 	@Inject extension EcoreExtensions
 	@Inject ModelTypeAlgebra algebra
 
