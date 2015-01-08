@@ -145,7 +145,10 @@ class MelangeValidator extends AbstractMelangeValidator
 
 	@Check
 	def void checkAspectHasAnnotation(Aspect a) {
-		if (a.aspectAnnotationValue === null || a.aspectAnnotationValue.length == 0)
+		if (
+			a.aspectTypeRef?.type instanceof JvmDeclaredType
+			&& (a.aspectAnnotationValue === null || a.aspectAnnotationValue.length == 0)
+		)
 			error(
 				"Cannot find @Aspect annotation",
 				MelangePackage.Literals.ASPECT__ASPECT_TYPE_REF,
