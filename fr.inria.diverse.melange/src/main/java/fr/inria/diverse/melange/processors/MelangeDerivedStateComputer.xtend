@@ -7,6 +7,8 @@ import fr.inria.diverse.melange.jvmmodel.JvmModelInferrerHelper
 
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 
+import fr.inria.diverse.melange.utils.EPackageRegistry
+
 import java.util.List
 
 import org.apache.log4j.Logger
@@ -24,6 +26,7 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 	@Inject MelangeTypesBuilder builder
 	@Inject JvmModelInferrerHelper helper
 	List<MelangeProcessor> processors = newArrayList
+	@Inject EPackageRegistry registry
 
 	static final Logger log = Logger.getLogger(MelangeDerivedStateComputer)
 
@@ -54,6 +57,9 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 
 		// Activate stop watches before anything happens
 		Stopwatches.enabled = true
+
+		// Reset EPackage registry
+		registry.reset
 
 		// Pre-inferring processors
 		val root = resource.contents.head as ModelTypingSpace
