@@ -2,9 +2,6 @@
  */
 package fr.inria.diverse.melange.metamodel.melange;
 
-import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,7 +12,6 @@ import org.eclipse.emf.ecore.EPackage;
  * The following features are supported:
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.ModelingElement#getEcoreUri <em>Ecore Uri</em>}</li>
- *   <li>{@link fr.inria.diverse.melange.metamodel.melange.ModelingElement#getPkgs <em>Pkgs</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,21 +45,5 @@ public interface ModelingElement extends Element {
 	 * @generated
 	 */
 	void setEcoreUri(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Pkgs</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.ecore.EPackage}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Pkgs</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Pkgs</em>' containment reference list.
-	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getModelingElement_Pkgs()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<EPackage> getPkgs();
 
 } // ModelingElement

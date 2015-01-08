@@ -9,7 +9,6 @@ import fr.inria.diverse.melange.metamodel.melange.Metamodel;
 import fr.inria.diverse.melange.metamodel.melange.ModelType;
 import fr.inria.diverse.melange.metamodel.melange.ResourceType;
 import java.util.Collection;
-import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -39,7 +38,6 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getResourceUri <em>Resource Uri</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getXtextSetupRef <em>Xtext Setup Ref</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getGenmodelUris <em>Genmodel Uris</em>}</li>
- *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getGenmodels <em>Genmodels</em>}</li>
  * </ul>
  * </p>
  *
@@ -175,16 +173,6 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 	 * @ordered
 	 */
 	protected EList<String> genmodelUris;
-
-	/**
-	 * The cached value of the '{@link #getGenmodels() <em>Genmodels</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGenmodels()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<GenModel> genmodels;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -370,18 +358,6 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<GenModel> getGenmodels() {
-		if (genmodels == null) {
-			genmodels = new EObjectContainmentEList<GenModel>(GenModel.class, this, MelangePackage.METAMODEL__GENMODELS);
-		}
-		return genmodels;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ResourceType getResourceType() {
 		return resourceType;
 	}
@@ -510,8 +486,6 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 				return basicSetInheritanceRelation(null, msgs);
 			case MelangePackage.METAMODEL__XTEXT_SETUP_REF:
 				return basicSetXtextSetupRef(null, msgs);
-			case MelangePackage.METAMODEL__GENMODELS:
-				return ((InternalEList<?>)getGenmodels()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -545,8 +519,6 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 				return getXtextSetupRef();
 			case MelangePackage.METAMODEL__GENMODEL_URIS:
 				return getGenmodelUris();
-			case MelangePackage.METAMODEL__GENMODELS:
-				return getGenmodels();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -594,10 +566,6 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 				getGenmodelUris().clear();
 				getGenmodelUris().addAll((Collection<? extends String>)newValue);
 				return;
-			case MelangePackage.METAMODEL__GENMODELS:
-				getGenmodels().clear();
-				getGenmodels().addAll((Collection<? extends GenModel>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -640,9 +608,6 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 			case MelangePackage.METAMODEL__GENMODEL_URIS:
 				getGenmodelUris().clear();
 				return;
-			case MelangePackage.METAMODEL__GENMODELS:
-				getGenmodels().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -675,8 +640,6 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 				return xtextSetupRef != null;
 			case MelangePackage.METAMODEL__GENMODEL_URIS:
 				return genmodelUris != null && !genmodelUris.isEmpty();
-			case MelangePackage.METAMODEL__GENMODELS:
-				return genmodels != null && !genmodels.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

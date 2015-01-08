@@ -3,7 +3,7 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.inria.diverse.melange.metamodel/src/main/java"
     modelPluginID="fr.inria.diverse.melange.metamodel" modelName="Melange" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
-    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.emf.codegen.ecore/model/GenModel.genmodel#//genmodel ../../org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types ../../org.eclipse.xtext.xbase/model/Xbase.genmodel#//xtype ../../org.eclipse.xtext.xbase/model/Xbase.genmodel#//xbase"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types ../../org.eclipse.xtext.xbase/model/Xbase.genmodel#//xtype ../../org.eclipse.xtext.xbase/model/Xbase.genmodel#//xbase"
     operationReflection="true" importOrganizing="true">
   <foreignModel>Melange.ecore</foreignModel>
   <genPackages prefix="Melange" basePackage="fr.inria.diverse.melange.metamodel" disposableProviderFactory="true"
@@ -32,7 +32,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Metamodel/resourceUri"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Metamodel/xtextSetupRef"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Metamodel/genmodelUris"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Metamodel/genmodels"/>
     </genClasses>
     <genClasses ecoreClass="Melange.ecore#//ModelType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//ModelType/subtypingRelations"/>
@@ -60,7 +59,6 @@
     </genClasses>
     <genClasses image="false" ecoreClass="Melange.ecore#//ModelingElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//ModelingElement/ecoreUri"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//ModelingElement/pkgs"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -2,7 +2,6 @@
  */
 package fr.inria.diverse.melange.metamodel.melange;
 
-import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.common.types.JvmTypeReference;
 
@@ -24,7 +23,6 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getResourceUri <em>Resource Uri</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getXtextSetupRef <em>Xtext Setup Ref</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getGenmodelUris <em>Genmodel Uris</em>}</li>
- *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getGenmodels <em>Genmodels</em>}</li>
  * </ul>
  * </p>
  *
@@ -162,22 +160,6 @@ public interface Metamodel extends ModelingElement {
 	 * @generated
 	 */
 	void setExactTypeName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Genmodels</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.codegen.ecore.genmodel.GenModel}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Genmodels</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Genmodels</em>' containment reference list.
-	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getMetamodel_Genmodels()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<GenModel> getGenmodels();
 
 	/**
 	 * Returns the value of the '<em><b>Resource Type</b></em>' attribute.
