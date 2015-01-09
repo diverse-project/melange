@@ -49,7 +49,7 @@ class MetamodelAdapterInferrer
 			]
 
 			mm.pkgs.forEach[pkg |
-				members += mm.toField(pkg.nsPrefix + "Adaptee", mm.getFactoryFqnFor(pkg).typeRef)[
+				members += mm.toField(pkg.name + "Adaptee", mm.getFactoryFqnFor(pkg).typeRef)[
 					initializer = '''«mm.getFactoryFqnFor(pkg)».eINSTANCE'''
 				]
 			]
@@ -63,7 +63,7 @@ class MetamodelAdapterInferrer
 					]
 
 					m.body = '''
-							return adaptersFactory.create«mm.simpleAdapterNameFor(superType, cls)»(«associatedPkg.nsPrefix»Adaptee.create«cls.name»()) ;
+							return adaptersFactory.create«mm.simpleAdapterNameFor(superType, cls)»(«associatedPkg.name»Adaptee.create«cls.name»()) ;
 						'''
 				]
 
