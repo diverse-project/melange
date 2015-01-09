@@ -231,7 +231,7 @@ class EcoreExtensions
 			ret.add(gp)
 			getAllGenPkgsRec(gp, ret)
 		]
-		gm.usedGenPackages.filter[gp | !ret.exists[getEcorePackage.nsURI == gp.getEcorePackage.nsURI]].forEach[gp |
+		gm.usedGenPackages.filter[gp | gp !== null && gp.getEcorePackage !== null && !ret.exists[getEcorePackage.nsURI == gp.getEcorePackage.nsURI]].forEach[gp |
 			ret.add(gp)
 			getAllGenPkgsRec(gp.genModel, ret)
 			getAllGenPkgsRec(gp, ret)
