@@ -86,7 +86,7 @@ class NamingHelper
 
 	def String getFactoryFqnFor(Metamodel mm, EPackage pkg) {
 		return
-			mm.genmodels.head.allGenPkgs
+			mm.genmodels.map[allGenPkgs].flatten
 			.findFirst[gp | gp.getEcorePackage.nsURI == pkg.nsURI]
 			.factoryFqn
 	}
