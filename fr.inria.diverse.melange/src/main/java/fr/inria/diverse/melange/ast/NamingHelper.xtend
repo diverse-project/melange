@@ -43,11 +43,18 @@ class NamingHelper
 	}
 
 	def String getFqnFor(GenPackage gp, String name) {
-		return
-			if (gp.basePackage !== null)
-				QualifiedName.create(gp.basePackage, gp.prefix, name).normalize.toString
-			else
-				QualifiedName.create(gp.prefix, name).normalize.toString
+		val segments = newArrayList
+
+		if (gp.basePackage !== null && gp.basePackage.length > 0)
+			segments += gp.basePackage
+		if (gp.prefix !== null && gp.prefix.length > 0)
+			segments += gp.prefix
+		if (gp.interfacePackageSuffix !== null && gp.interfacePackageSuffix.length > 0)
+			segments += gp.interfacePackageSuffix
+
+		segments += name
+
+		return QualifiedName::create(segments).normalize.toString
 	}
 
 	def String getPackageFqn(GenPackage gp) {
