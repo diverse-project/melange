@@ -1,7 +1,7 @@
 package fr.inria.diverse.melange.utils
 
-import com.google.common.collect.HashMultimap
-import com.google.common.collect.SetMultimap
+import com.google.common.collect.ArrayListMultimap
+import com.google.common.collect.ListMultimap
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
@@ -28,12 +28,12 @@ class EPackageRegistry
 	@Inject ModelUtils modelUtils
 	@Inject extension EcoreExtensions
 	@Inject extension ModelTypeExtensions
-	private SetMultimap<ModelingElement, EPackage> packages = HashMultimap.create
-	private SetMultimap<Metamodel, GenModel> genmodels = HashMultimap.create
+	private ListMultimap<ModelingElement, EPackage> packages = ArrayListMultimap.create
+	private ListMultimap<Metamodel, GenModel> genmodels = ArrayListMultimap.create
 
 	def void reset() {
-		packages = HashMultimap.create
-		genmodels = HashMultimap.create
+		packages = ArrayListMultimap.create
+		genmodels = ArrayListMultimap.create
 	}
 
 	def List<EPackage> getPackages(ModelingElement m) {
@@ -41,10 +41,13 @@ class EPackageRegistry
 			switch (m) {
 				case m.ecoreUri !== null: {
 					val root = modelUtils.loadPkg(m.ecoreUri)
+					val pkgs = newArrayList
 
-					packages.put(m, root)
-					packages.putAll(m, root.referencedPkgs.filter[nsURI != root.nsURI].map[EcoreUtil::copy(it)])
-					packages.putAll(m, root.allSubPkgs.filter[nsURI != root.nsURI])
+					pkgs += root
+					pkgs += root.referencedPkgs.filter[!pkgs.exists[p | nsURI == p.nsURI]].map[EcoreUtil::copy(it)]
+
+					packages.putAll(m, pkgs)
+					packages.putAll(m, pkgs.map[allSubPkgs].flatten.filter[!pkgs.exists[p | nsURI == p.nsURI]])
 				}
 				Metamodel:
 					if (m.inheritanceRelation.superMetamodel !== null) {
@@ -57,7 +60,7 @@ class EPackageRegistry
 			}
 		}
 
-		return packages.get(m).toList
+		return packages.get(m)
 	}
 
 	def List<GenModel> getGenModels(Metamodel mm) {
@@ -69,6 +72,6 @@ class EPackageRegistry
 			mm.genmodelUris.forEach[genmodels.put(mm, modelUtils.loadGenmodel(it))]
 		}
 
-		return genmodels.get(mm).toList
+		return genmodels.get(mm)
 	}
 }
