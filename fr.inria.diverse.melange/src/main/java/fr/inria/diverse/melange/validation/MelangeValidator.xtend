@@ -13,7 +13,6 @@ import fr.inria.diverse.melange.metamodel.melange.MelangePackage
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
-import fr.inria.diverse.melange.metamodel.melange.ModelingElement
 
 import java.util.Collections
 
@@ -80,17 +79,6 @@ class MelangeValidator extends AbstractMelangeValidator
 				"A valid Ecore file must be imported",
 				MelangePackage.Literals.MODELING_ELEMENT__ECORE_URI,
 				MelangeValidationConstants.METAMODEL_ECORE_EMPTY
-			)
-	}
-
-	@Check
-	def void checkEcoreUriIsValid(ModelingElement m) {
-		if (m.ecoreUri !== null && !(m.ecoreUri.startsWith("platform:/resource/")
-			|| m.ecoreUri.startsWith("platform:/plugin/")))
-			error(
-				"Only platform:/[resource|plugin]/ URIs are supported",
-				MelangePackage.Literals.MODELING_ELEMENT__ECORE_URI,
-				MelangeValidationConstants.MODELING_ELEMENT_ECORE_URI_INVALID
 			)
 	}
 
