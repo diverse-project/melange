@@ -83,6 +83,17 @@ class MelangeValidator extends AbstractMelangeValidator
 	}
 
 	@Check
+	def void checkEcoreUriIsValid(ModelingElement m) {
+		if (m.ecoreUri !== null && !(m.ecoreUri.startsWith("platform:/resource/")
+			|| m.ecoreUri.startsWith("platform:/plugin/")))
+			error(
+				"Only platform:/[resource|plugin]/ URIs are supported",
+				MelangePackage.Literals.MODELING_ELEMENT__ECORE_URI,
+				MelangeValidationConstants.MODELING_ELEMENT_ECORE_URI_INVALID
+			)
+	}
+
+	@Check
 	def void checkGenModelIsSet(Metamodel mm) {
 		if (mm.ecoreUri !== null && mm.ecoreUri.endsWith(".ecore") && mm.genmodelUris.head === null) {
 			// !!!
