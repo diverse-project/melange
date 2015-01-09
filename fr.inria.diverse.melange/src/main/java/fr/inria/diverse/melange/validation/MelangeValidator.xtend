@@ -84,7 +84,8 @@ class MelangeValidator extends AbstractMelangeValidator
 
 	@Check
 	def void checkEcoreUriIsValid(ModelingElement m) {
-		if (m.ecoreUri !== null && !m.ecoreUri.startsWith("platform:/resource/"))
+		if (m.ecoreUri !== null && (!m.ecoreUri.startsWith("platform:/resource/")
+			|| !m.ecoreUri.startsWith("platform:/plugin/"))
 			error(
 				"Only platform:/resource/ URIs are supported",
 				MelangePackage.Literals.MODELING_ELEMENT__ECORE_URI,
