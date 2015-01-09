@@ -13,6 +13,7 @@ import fr.inria.diverse.melange.metamodel.melange.MelangePackage
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
+import fr.inria.diverse.melange.metamodel.melange.ModelingElement
 
 import java.util.Collections
 
