@@ -1,12 +1,12 @@
 package fr.inria.diverse.melange.tests
 
+import adapters.fsm.adapters.fsmmt.FsmAdapter
+import adapters.timedfsm.adapters.fsmmt.TimedFsmAdapter
+
 import fr.inria.diverse.melange.resource.MelangeResource
 import fr.inria.diverse.melange.resource.MelangeResourceFactory
 import fr.inria.diverse.melange.resource.ModelTypeAdapter
-import adapters.fsm.adapters.fsmmt.FsmAdapter
-import adapters.fsmmt.FSM
-import adapters.timedfsm.adapters.fsmmt.TimedFsmAdapter
-import fsm.FsmPackage
+
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.Resource
@@ -14,9 +14,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.xmi.XMIResource
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
+
 import org.junit.Before
 import org.junit.Test
-import timedfsm.TimedfsmPackage
 
 import static org.junit.Assert.*
 
@@ -33,8 +33,8 @@ class ResourceTest
 		assertEquals(1, roots.size)
 
 		val root = roots.head
-		assertTrue(root instanceof FSM)
-		val fsm = root as FSM
+		assertTrue(root instanceof adapters.fsmmt.FSM)
+		val fsm = root as adapters.fsmmt.FSM
 		assertEquals(4, fsm.ownedState.size)
 	}
 
@@ -61,8 +61,8 @@ class ResourceTest
 		assertEquals(1, roots.size)
 
 		val root = roots.head
-		assertTrue(root instanceof FSM)
-		val fsm = root as FSM
+		assertTrue(root instanceof adapters.fsmmt.FSM)
+		val fsm = root as adapters.fsmmt.FSM
 		assertEquals(2, fsm.ownedState.size)
 	}
 
@@ -82,20 +82,20 @@ class ResourceTest
 		Resource.Factory.Registry.INSTANCE.extensionToFactoryMap.put("fsm", new XMIResourceFactoryImpl)
 		Resource.Factory.Registry.INSTANCE.extensionToFactoryMap.put("timedfsm", new XMIResourceFactoryImpl)
 		Resource.Factory.Registry.INSTANCE.protocolToFactoryMap.put("melange", new MelangeResourceFactory)
-		EPackage.Registry.INSTANCE.put(FsmPackage.eNS_URI, FsmPackage.eINSTANCE)
-		EPackage.Registry.INSTANCE.put(TimedfsmPackage.eNS_URI, TimedfsmPackage.eINSTANCE)
+		EPackage.Registry.INSTANCE.put(fsm.FsmPackage.eNS_URI, fsm.FsmPackage.eINSTANCE)
+		EPackage.Registry.INSTANCE.put(timedfsm.TimedfsmPackage.eNS_URI, timedfsm.TimedfsmPackage.eINSTANCE)
 		ModelTypeAdapter.Registry.INSTANCE.registerAdapter(
-			FsmPackage.eNS_URI,
+			fsm.FsmPackage.eNS_URI,
 			"FsmMT",
 			FsmAdapter
 		)
 		ModelTypeAdapter.Registry.INSTANCE.registerAdapter(
-			TimedfsmPackage.eNS_URI,
+			timedfsm.TimedfsmPackage.eNS_URI,
 			"FsmMT",
 			TimedFsmAdapter
 		)
 		ModelTypeAdapter.Registry.INSTANCE.registerAdapter(
-			TimedfsmPackage.eNS_URI,
+			timedfsm.TimedfsmPackage.eNS_URI,
 			"TimedFsmMT",
 			adapters.timedfsm.adapters.timedfsmmt.TimedFsmAdapter
 		)
