@@ -3,9 +3,9 @@ package fr.inria.diverse.melange.tests
 import fr.inria.diverse.melange.resource.MelangeResource
 import fr.inria.diverse.melange.resource.MelangeResourceFactory
 import fr.inria.diverse.melange.resource.ModelTypeAdapter
-import fr.inria.diverse.melange.tests.adapters.fsm.adapters.fsmmt.FsmAdapter
-import fr.inria.diverse.melange.tests.adapters.fsmmt.FSM
-import fr.inria.diverse.melange.tests.adapters.timedfsm.adapters.fsmmt.TimedFsmAdapter
+import adapters.fsm.adapters.fsmmt.FsmAdapter
+import adapters.fsmmt.FSM
+import adapters.timedfsm.adapters.fsmmt.TimedFsmAdapter
 import fsm.FsmPackage
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EPackage
@@ -47,8 +47,8 @@ class ResourceTest
 		assertEquals(1, roots.size)
 
 		val root = roots.head
-		assertTrue(root instanceof fr.inria.diverse.melange.tests.adapters.timedfsmmt.FSM)
-		val fsm = root as fr.inria.diverse.melange.tests.adapters.timedfsmmt.FSM
+		assertTrue(root instanceof adapters.timedfsmmt.FSM)
+		val fsm = root as adapters.timedfsmmt.FSM
 		assertEquals(2, fsm.ownedState.size)
 	}
 
@@ -97,7 +97,7 @@ class ResourceTest
 		ModelTypeAdapter.Registry.INSTANCE.registerAdapter(
 			TimedfsmPackage.eNS_URI,
 			"TimedFsmMT",
-			fr.inria.diverse.melange.tests.adapters.timedfsm.adapters.timedfsmmt.TimedFsmAdapter
+			adapters.timedfsm.adapters.timedfsmmt.TimedFsmAdapter
 		)
 	}
 
