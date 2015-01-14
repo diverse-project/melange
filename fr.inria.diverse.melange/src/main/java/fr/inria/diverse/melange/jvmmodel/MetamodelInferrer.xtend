@@ -19,6 +19,7 @@ import org.eclipse.xtext.util.internal.Stopwatches
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
+import fr.inria.diverse.melange.lib.IMetamodel
 
 class MetamodelInferrer
 {
@@ -38,6 +39,8 @@ class MetamodelInferrer
 
 		acceptor.accept(mm.toClass(mm.fullyQualifiedName.normalize.toString))
 		[
+			superTypes += IMetamodel.typeRef
+
 			members += mm.toField("resource",  Resource.typeRef)
 			members += mm.toGetter("resource", Resource.typeRef)
 			members += mm.toSetter("resource", Resource.typeRef)

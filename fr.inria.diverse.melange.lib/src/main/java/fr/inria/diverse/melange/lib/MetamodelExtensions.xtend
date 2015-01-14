@@ -11,6 +11,16 @@ import java.lang.reflect.InvocationTargetException
 
 class MetamodelExtensions
 {
+	def static <MM extends IMetamodel> MM load(Class<MM> mmCls, String uri) throws InstantiationException, IllegalAccessException {
+            val mm = mmCls.newInstance
+            val rs = new ResourceSetImpl
+            val res = rs.getResource(URI.createURI(uri), true)
+
+            mm.resource = res
+
+            return mm
+    }
+
 	// FIXME: re static-type me please
 	def static <MT extends IModelType, MM/*extends MT*/> MT load(Class<MM> mm, String uri, Class<MT> mt) throws ModelTypeException, InstantiationException, IllegalAccessException, InvocationTargetException {
 		if (AdaptersRegistry.instance.getAdapter(mm.name, mt.name) === null)

@@ -28,6 +28,8 @@ import org.eclipse.emf.ecore.EcoreFactory
 import org.eclipse.xtext.common.types.JvmDeclaredType
 
 import org.eclipse.xtext.util.internal.Stopwatches
+import fr.inria.diverse.melange.typesystem.MelangeTypesRegistry
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 class ASTCompleter
 {
@@ -39,6 +41,8 @@ class ASTCompleter
 	@Inject extension AspectToEcore
 	@Inject ModelUtils modelUtils
 	@Inject ModelTypeAlgebra algebra
+	@Inject MelangeTypesRegistry typesRegistry
+	@Inject extension IQualifiedNameProvider
 
 	def void inferTypingRelations(ModelTypingSpace root) {
 		val task = Stopwatches.forTask("infering typing relations")
@@ -53,12 +57,16 @@ class ASTCompleter
 					subType = mt1
 					superType = mt2
 				]
+
+				typesRegistry.registerSubtyping(mt1.fullyQualifiedName.toString, mt2)
 			]
 
 			root.metamodels
 			.filter[mm | !mm.^implements.exists[name == mt1.name] && mm.isTypedBy(mt1)]
 			.forEach[mm |
 				mm.^implements += mt1
+
+				typesRegistry.registerImplementation(mm.fullyQualifiedName.toString, mt1)
 			]
 		]
 

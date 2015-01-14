@@ -5,9 +5,16 @@ import java.io.IOException
 import org.eclipse.emf.common.util.EList
 
 import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.resource.Resource
 
 interface IFactory
 {}
+
+interface IMetamodel
+{
+	def Resource getResource()
+	def void setResource(Resource res)
+}
 
 interface IModelType
 {
