@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmMember
 import org.eclipse.xtext.common.types.JvmOperation
+import org.eclipse.xtext.common.types.JvmVisibility
 import org.eclipse.xtext.common.types.TypesFactory
 
 import org.eclipse.xtext.util.internal.Stopwatches
@@ -216,6 +217,7 @@ class MetaclassAdapterInferrer
 					&& !op.simpleName.startsWith("super_")
 					//&& op.parameters.head?.name == "_self"
 					&& !jvmCls.members.exists[opp | opp.simpleName == op.simpleName] // FIXME
+					&& op.visibility == JvmVisibility.PUBLIC
 				]
 				.forEach[op |
 					val paramsList = new StringBuilder
