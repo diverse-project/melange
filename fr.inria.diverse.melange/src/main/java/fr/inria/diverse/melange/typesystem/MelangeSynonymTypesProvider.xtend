@@ -2,9 +2,6 @@ package fr.inria.diverse.melange.typesystem
 
 import com.google.inject.Inject
 
-import fr.inria.diverse.melange.lib.IMetamodel
-import fr.inria.diverse.melange.lib.IModelType
-
 import org.eclipse.xtext.xbase.typesystem.computation.SynonymTypesProvider
 
 import org.eclipse.xtext.xbase.typesystem.conformance.ConformanceHint
@@ -30,15 +27,12 @@ class MelangeSynonymTypesProvider extends SynonymTypesProvider
 	@Inject MelangeTypesRegistry typesRegistry
 
 	override collectCustomSynonymTypes(LightweightTypeReference type, Acceptor acceptor) {
-		println("collectCustomSynonymTypes("+type+", "+acceptor+")")
 		typesRegistry.getImplementations(type.identifier).forEach[mt |
-			val ret = announceModelType(type.owner, mt.fullyQualifiedName.toString, acceptor)
-			println("impl("+type.identifier+", "+mt.name+") = " + ret)
+			announceModelType(type.owner, mt.fullyQualifiedName.toString, acceptor)
 		]
 
 		typesRegistry.getSubtypings(type.identifier).forEach[mt |
-			val ret = announceModelType(type.owner, mt.fullyQualifiedName.toString, acceptor)
-			println("sub("+type.identifier+", "+mt.name+") = " + ret)
+			announceModelType(type.owner, mt.fullyQualifiedName.toString, acceptor)
 		]
 
 		return super.collectCustomSynonymTypes(type, acceptor)
