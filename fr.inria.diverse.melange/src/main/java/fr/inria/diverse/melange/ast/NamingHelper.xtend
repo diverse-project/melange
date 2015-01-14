@@ -37,7 +37,7 @@ class NamingHelper
 		val res = new StringBuilder
 
 		res.append(name.skipLast(1).segments.map[toFirstLower].join("."))
-		res.append("." + name.lastSegment.toFirstUpper)
+		res.append("." + name.lastSegment/*.toFirstUpper*/)
 
 		return res.toString
 	}
