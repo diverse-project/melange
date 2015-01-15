@@ -90,7 +90,7 @@ class EcoreTest
 		val fsa = new InMemoryFileSystemAccess
 		generator.doGenerate(root.eResource, fsa)
 
-		assertEquals(fsa.textFiles.size, 42)
+		assertEquals(fsa.textFiles.size, 47)
 	}
 
 	@Test
