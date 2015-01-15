@@ -40,7 +40,7 @@ class EmfCompareAlgebra implements ModelTypeAlgebra
 			]
 		]
 
-		val scope = new DefaultComparisonScope(aspect, base, null)
+		val scope = new DefaultComparisonScope(aspect.ecoreFragment, base, null)
 		val comparison = EMFCompare.builder().build.compare(scope)
 
 		val mergedDiffs = comparison.differences.filter[
@@ -51,7 +51,5 @@ class EmfCompareAlgebra implements ModelTypeAlgebra
 		val mergerRegistry = IMerger.RegistryImpl.createStandaloneInstance
 		val merger = new BatchMerger(mergerRegistry)
 		merger.copyAllLeftToRight(mergedDiffs, null)
-
-		//mm.updatePkg(base.nsURI, base)
 	}
 }
