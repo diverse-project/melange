@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="fsm" nsURI="http://fsm/" nsPrefix="fsm">
+  <eClassifiers xsi:type="ecore:EClass" name="Transition">
+    <eOperations name="foo" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
+      <eParameters name="arg1" eType="#//A"/>
+      <eParameters name="arg2" eType="#//C"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="a" eType="#//A"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="b" upperBound="-1" eType="#//B"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="c" eType="#//C"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="A" instanceClassName="fr.inria.diverse.melange.tests.aspects.fsm.A"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="C">
+    <eLiterals name="X"/>
+    <eLiterals name="Y"/>
+    <eLiterals name="Z"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="B" instanceClassName="fr.inria.diverse.melange.tests.aspects.fsm.B"/>
+</ecore:EPackage>
