@@ -132,7 +132,7 @@ class EcoreExtensions
 
 		if (find !== null) {
 			return find
-		} else if (findDt !== null) {
+		} else if (name != "Object" && findDt !== null) {
 			return findDt
 		} else {
 			val newDt = EcoreFactory.eINSTANCE.createEDataType => [dt |
