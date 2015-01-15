@@ -75,7 +75,7 @@ class MetamodelInferrer
 		mm.^implements.forEach[mt |
 			mm.generateAdapter(mt, acceptor, builder)
 
-			mt.allClasses.filter[abstractable && instantiable].forEach[cls |
+			mt.allClasses.filter[abstractable].forEach[cls |
 				mm.generateAdapter(mt, cls, acceptor, builder)
 			]
 
@@ -94,7 +94,7 @@ class MetamodelInferrer
 					'''
 				]
 
-				mt.allClasses.filter[instantiable && abstractable].forEach[cls |
+				mt.allClasses.filter[abstractable].forEach[cls |
 					val adapName = mm.adapterNameFor(mt, cls)
 
 					members += mm.toMethod('''create«cls.name»Adapter''', adapName.typeRef)[
