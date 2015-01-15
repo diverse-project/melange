@@ -11,6 +11,7 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EDataType
+import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EModelElement
 import org.eclipse.emf.ecore.ENamedElement
 import org.eclipse.emf.ecore.EObject
@@ -109,7 +110,7 @@ class EcoreExtensions
 			?.value ?: ""
 	}
 
-	def EClass getOrCreateClass(EPackage pkg, String name) {
+	def EClassifier getOrCreateClass(EPackage pkg, String name) {
 		val find = pkg.EClassifiers.filter(EClass).findFirst[it.name == name]
 
 		if (find !== null) {
@@ -142,6 +143,25 @@ class EcoreExtensions
 			pkg.EClassifiers += newDt
 
 			return newDt
+		}
+	}
+
+	def EClassifier getOrCreateEnum(EPackage pkg, String name, Iterable<String> literals) {
+		val find = pkg.EClassifiers.filter(EEnum).findFirst[it.name == name]
+
+		if (find !== null) {
+			return find
+		} else {
+			val newE = EcoreFactory.eINSTANCE.createEEnum => [e |
+				e.name = name
+				e.ELiterals += literals.map[litValue | EcoreFactory.eINSTANCE.createEEnumLiteral => [lit |
+					lit.name = litValue
+				]]
+			]
+
+			pkg.EClassifiers += newE
+
+			return newE
 		}
 	}
 
