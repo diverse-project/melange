@@ -48,7 +48,7 @@ class AspectToEcoreTest
 		val pkg = "SimpleAttributes".aspectPkg
 		assertNotNull(pkg)
 
-		assertTrue(pkg.match("SimpleAttributes.ecore"))
+		assertMatch(pkg, "SimpleAttributes.ecore")
 	}
 
 	@Test
@@ -56,7 +56,7 @@ class AspectToEcoreTest
 		val pkg = "AttributesCollections".aspectPkg
 		assertNotNull(pkg)
 
-		assertTrue(pkg.match("AttributesCollections.ecore"))
+		assertMatch(pkg, "AttributesCollections.ecore")
 	}
 
 	@Test
@@ -64,7 +64,7 @@ class AspectToEcoreTest
 		val pkg = "SimpleReferences".aspectPkg
 		assertNotNull(pkg)
 
-		assertTrue(pkg.match("SimpleReferences.ecore"))
+		assertMatch(pkg, "SimpleReferences.ecore")
 	}
 
 	@Test
@@ -72,7 +72,7 @@ class AspectToEcoreTest
 		val pkg = "ReferencesCollections".aspectPkg
 		assertNotNull(pkg)
 
-		assertTrue(pkg.match("ReferencesCollections.ecore"))
+		assertMatch(pkg, "ReferencesCollections.ecore")
 	}
 
 	@Test
@@ -80,7 +80,7 @@ class AspectToEcoreTest
 		val pkg = "ExternalReferences".aspectPkg
 		assertNotNull(pkg)
 
-		assertTrue(pkg.match("ExternalReferences.ecore"))
+		assertMatch(pkg, "ExternalReferences.ecore")
 	}
 
 	@Test
@@ -88,7 +88,7 @@ class AspectToEcoreTest
 		val pkg = "Visibility".aspectPkg
 		assertNotNull(pkg)
 
-		assertTrue(pkg.match("Visibility.ecore"))
+		assertMatch(pkg, "Visibility.ecore")
 	}
 
 	@Test
@@ -96,10 +96,10 @@ class AspectToEcoreTest
 		val pkg = "Operations".aspectPkg
 		assertNotNull(pkg)
 
-		assertTrue(pkg.match("Operations.ecore"))
+		assertMatch(pkg, "Operations.ecore")
 	}
 
-	private def boolean match(EPackage pkg, String refEcore) {
+	private def void assertMatch(EPackage pkg, String refEcore) {
 		val rs = new ResourceSetImpl
 		val uri = URI::createURI("tests-inputs/aspect-to-ecore/" + refEcore)
 		val res = rs.getResource(uri, true)
@@ -125,7 +125,10 @@ class AspectToEcoreTest
 			}
 		).build.compare(scope)
 
-		return comparison.differences.empty
+		if (!comparison.differences.empty)
+			fail(comparison.differences.join(", "))
+
+		assertTrue(comparison.differences.empty)
 	}
 
 	private def EPackage getAspectPkg(String name) {
