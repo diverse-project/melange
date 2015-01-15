@@ -204,7 +204,10 @@ class MetaclassAdapterInferrer
 				jvmCls.members += newOp
 			]
 
-			mm.allAspects.filter[aspectedClass.name == cls.name]
+			mm.allAspects.filter[asp |
+				asp.aspectedClass.name == cls.name ||
+				cls.EAllSuperTypes.exists[asp.aspectedClass.name == name]
+			]
 			.forEach[aspect |
 				val asp = aspect.aspectTypeRef.type as JvmDeclaredType
 				// FIXME: This should be checked in the recursive hierarchy
