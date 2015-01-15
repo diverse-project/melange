@@ -11,13 +11,17 @@ import java.util.Collection
 import org.eclipse.emf.ecore.EcoreFactory
 
 import org.eclipse.xtext.common.types.JvmDeclaredType
+import org.eclipse.xtext.common.types.JvmEnumerationType
 import org.eclipse.xtext.common.types.JvmOperation
+import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
 import org.eclipse.xtext.common.types.JvmTypeParameterDeclarator
 import org.eclipse.xtext.common.types.JvmVisibility
 
+// FIXME: Duplicated code etc. this is so ugly
 class AspectToEcore
 {
 	@Inject extension EcoreExtensions
+	@Inject extension TypeReferencesHelper
 
 	/**
 	 * Try to infer the "modeling intention" of the aspect aspImport
@@ -54,10 +58,20 @@ class AspectToEcore
 		]
 		.forEach[op |
 			val featureName = findFeatureNameFor(aspect, op)
+			val opType = op.returnType.type
 
 			// If we can't infer a feature name, it's obviously really an operation
 			if (featureName === null) {
-				val retCls = basePkg.findClassifier(op.returnType.simpleName)
+				val isCollection =
+					op.returnType.isSubtypeOf(Collection) &&
+					opType instanceof JvmTypeParameterDeclarator
+				val upperB = if (isCollection) -1 else 1
+				val realType =
+					if (isCollection)
+						(op.returnType as JvmParameterizedTypeReference).arguments.head.type
+					else
+						op.returnType.type
+				val retCls = basePkg.findClassifier(realType.simpleName)
 
 				if (!aspCls.EOperations.exists[name == op.simpleName]) {
 					aspCls.EOperations += EcoreFactory.eINSTANCE.createEOperation => [
@@ -65,41 +79,62 @@ class AspectToEcore
 						op.parameters.forEach[p, i |
 							// Skip first generic _self argument
 							if (i > 0) {
-								val attrCls = basePkg.findClassifier(p.parameterType.simpleName)
+								val pType = p.parameterType.type
+								val isCollectionP =
+									p.parameterType.isSubtypeOf(Collection) &&
+									pType instanceof JvmTypeParameterDeclarator
+								val upperBP = if (isCollectionP) -1 else 1
+								val realTypeP =
+									if (isCollection)
+										(p.parameterType as JvmParameterizedTypeReference).arguments.head.type
+									else
+										pType
+								val attrCls = basePkg.findClassifier(realTypeP.simpleName)
 
 								EParameters += EcoreFactory.eINSTANCE.createEParameter => [pp |
 									pp.name = p.simpleName
+									pp.upperBound = upperBP
 									pp.EType =
-										if (attrCls !== null) aspPkg.getOrCreateClass(p.parameterType.simpleName)
-										else aspPkg.getOrCreateDataType(p.parameterType.simpleName, p.parameterType.qualifiedName)
+										if (attrCls !== null)
+											aspPkg.getOrCreateClass(realTypeP.simpleName)
+										else if (realTypeP instanceof JvmEnumerationType)
+											// FIXME: Ok for now, but we should also check literals values
+											aspPkg.getOrCreateEnum(realTypeP.simpleName, realTypeP.literals.map[simpleName])
+										else
+											aspPkg.getOrCreateDataType(realTypeP.simpleName, realTypeP.qualifiedName)
 								]
 							}
 						]
 
-						if (op.returnType.simpleName != "void" && op.returnType.simpleName !== "null")
+						if (op.returnType.simpleName != "void" && op.returnType.simpleName !== "null") {
+							upperBound = upperB
 							EType =
-								if (retCls !== null) aspPkg.getOrCreateClass(op.returnType.simpleName)
-								else aspPkg.getOrCreateDataType(op.returnType.simpleName, op.returnType.qualifiedName)
-
+								if (retCls !== null)
+									aspPkg.getOrCreateClass(realType.simpleName)
+								else if (realType instanceof JvmEnumerationType)
+									// FIXME: Ok for now, but we should also check literals values
+									aspPkg.getOrCreateEnum(realType.simpleName, realType.literals.map[simpleName])
+								else
+									aspPkg.getOrCreateDataType(realType.simpleName, realType.qualifiedName)
+						}
 						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
 					]
 				}
 			} else if (!aspCls.EStructuralFeatures.exists[name == featureName]) {
 				val retType =
 					if (op.simpleName.startsWith("get") || op.parameters.size == 1)
-						op.returnType.type
+						op.returnType
 					else
-						op.parameters.get(1).parameterType.type
-				val upperB = if (Collection.isAssignableFrom(retType.class)) -1 else 1
+						op.parameters.get(1).parameterType
+				val isCollection =
+					op.returnType.isSubtypeOf(Collection) &&
+					op.returnType.type instanceof JvmTypeParameterDeclarator
+				val upperB = if (isCollection) -1 else 1
 				val realType =
-					if (
-						   Collection.isAssignableFrom(retType.class)
-						&& retType instanceof JvmTypeParameterDeclarator
-					)
-						(retType as JvmTypeParameterDeclarator).typeParameters.head
+					if (isCollection)
+						(retType as JvmParameterizedTypeReference).arguments.head.type
 					else
-						retType
-
+						retType.type
 				val find = basePkg.findClassifier(realType.simpleName)
 				if (find !== null) {
 					// Create EReference
@@ -112,7 +147,12 @@ class AspectToEcore
 				} else {
 					aspCls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEAttribute => [
 						name = featureName
-						EType = aspPkg.getOrCreateDataType(realType.simpleName, realType.qualifiedName)
+						EType =
+							if (realType instanceof JvmEnumerationType)
+								// FIXME: Ok for now, but we should also check literals values
+								aspPkg.getOrCreateEnum(realType.simpleName, realType.literals.map[simpleName])
+							else
+								aspPkg.getOrCreateDataType(realType.simpleName, realType.qualifiedName)
 						upperBound = upperB
 						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
 					]
