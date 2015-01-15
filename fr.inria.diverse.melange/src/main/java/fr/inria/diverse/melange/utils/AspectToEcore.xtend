@@ -30,9 +30,9 @@ class AspectToEcore
 
 		val aspPkg = EcoreFactory.eINSTANCE.createEPackage => [
 			// These are anyway not really used
-			name = aspect.simpleName.toLowerCase
-			nsPrefix = name
-			nsURI = "http://" + name
+			name = aspImport.aspectedClass.EPackage.name
+			nsPrefix = aspImport.aspectedClass.EPackage.nsPrefix
+			nsURI = aspImport.aspectedClass.EPackage.nsURI
 		]
 
 		// FIXME: Copy other EClass properties?
