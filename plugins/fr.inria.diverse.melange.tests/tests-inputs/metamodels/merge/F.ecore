@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="f" nsURI="http://f/1.0" nsPrefix="f">
+  <eClassifiers xsi:type="ecore:EClass" name="X">
+    <eOperations name="foo"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ys" upperBound="-1" eType="#//Y"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Y">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="a" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+  </eClassifiers>
+</ecore:EPackage>

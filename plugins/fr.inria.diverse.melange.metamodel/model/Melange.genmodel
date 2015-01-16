@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.inria.diverse.melange.metamodel/src/main/java"
+    modelPluginID="fr.inria.diverse.melange.metamodel" modelName="Melange" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types ../../org.eclipse.xtext.xbase/model/Xbase.genmodel#//xtype ../../org.eclipse.xtext.xbase/model/Xbase.genmodel#//xbase"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>Melange.ecore</foreignModel>
+  <genPackages prefix="Melange" basePackage="fr.inria.diverse.melange.metamodel" disposableProviderFactory="true"
+      ecorePackage="Melange.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Melange.ecore#//ResourceType">
+      <genEnumLiterals ecoreEnumLiteral="Melange.ecore#//ResourceType/MELANGE"/>
+      <genEnumLiterals ecoreEnumLiteral="Melange.ecore#//ResourceType/EMF"/>
+      <genEnumLiterals ecoreEnumLiteral="Melange.ecore#//ResourceType/XTEXT"/>
+    </genEnums>
+    <genClasses ecoreClass="Melange.ecore#//ModelTypingSpace">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//ModelTypingSpace/elements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//ModelTypingSpace/imports"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//ModelTypingSpace/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Melange.ecore#//Element">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Element/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Melange.ecore#//Metamodel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Metamodel/aspects"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Metamodel/exactType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Metamodel/implements"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Metamodel/requires"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Metamodel/inheritanceRelation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Metamodel/exactTypeName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Metamodel/resourceType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Metamodel/resourceUri"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Metamodel/xtextSetupRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Metamodel/genmodelUris"/>
+    </genClasses>
+    <genClasses ecoreClass="Melange.ecore#//ModelType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//ModelType/subtypingRelations"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//ModelType/extracted"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Melange.ecore#//Transformation"/>
+    <genClasses ecoreClass="Melange.ecore#//Aspect">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Aspect/aspectTypeRef"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Aspect/aspectedClass"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Aspect/ecoreFragment"/>
+    </genClasses>
+    <genClasses ecoreClass="Melange.ecore#//Inheritance">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Melange.ecore#//Inheritance/subMetamodel"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Inheritance/superMetamodel"/>
+    </genClasses>
+    <genClasses ecoreClass="Melange.ecore#//Subtyping">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Melange.ecore#//Subtyping/subType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Subtyping/superType"/>
+    </genClasses>
+    <genClasses ecoreClass="Melange.ecore#//XbaseTransformation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//XbaseTransformation/body"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//XbaseTransformation/main"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//XbaseTransformation/parameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//XbaseTransformation/returnTypeRef"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Melange.ecore#//ModelingElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//ModelingElement/ecoreUri"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

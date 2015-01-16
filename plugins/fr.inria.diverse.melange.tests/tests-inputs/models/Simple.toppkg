@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toppkg:TopClass1 xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:toppkg="http://toppkg">
+  <myTopClass2/>
+  <mySubPkg1Class1/>
+  <mySubpkg2Class1>
+    <mySubpkg2Class2>
+      <mySubpkg3Class1>
+        <mySubpkg3Class2/>
+      </mySubpkg3Class1>
+    </mySubpkg2Class2>
+  </mySubpkg2Class1>
+</toppkg:TopClass1>

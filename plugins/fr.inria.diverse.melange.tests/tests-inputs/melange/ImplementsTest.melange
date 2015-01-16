@@ -1,0 +1,24 @@
+package implementstest
+
+modeltype FsmMT {
+	ecore "tests-inputs/metamodels/FSM.ecore"
+}
+
+modeltype TfsmMT {
+	ecore "tests-inputs/metamodels/TimedFSM.ecore"
+}
+
+metamodel Fsm implements FsmMT {
+	ecore "tests-inputs/metamodels/FSM.ecore" withGenmodel "tests-inputs/metamodels/FSM.genmodel"
+	exactType FsmMTT	
+}
+
+metamodel Tfsm implements FsmMT, TfsmMT {
+	ecore "tests-inputs/metamodels/TimedFSM.ecore" withGenmodel "tests-inputs/metamodels/TimedFSM.genmodel"
+	exactType TfsmMTT
+}
+
+metamodel FsmM implements TfsmMT {
+	ecore "tests-inputs/metamodels/FSM.ecore"
+	exactType FsmMTTT
+}

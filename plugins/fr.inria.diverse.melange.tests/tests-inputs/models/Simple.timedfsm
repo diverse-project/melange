@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<timedfsm:FSM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:timedfsm="http://timedfsm/" initialState="//@ownedState.0" finalState="//@ownedState.1">
+  <ownedState name="1">
+    <outgoingTransition target="//@ownedState.1" input="a" output="1" time="3"/>
+  </ownedState>
+  <ownedState name="2" incomingTransition="//@ownedState.0/@outgoingTransition.0"/>
+</timedfsm:FSM>

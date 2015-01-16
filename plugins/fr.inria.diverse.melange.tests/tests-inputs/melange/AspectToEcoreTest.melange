@@ -1,0 +1,21 @@
+package aspecttoecoretest
+
+import fr.inria.diverse.melange.tests.aspects.fsm.SimpleAttributes
+import fr.inria.diverse.melange.tests.aspects.fsm.AttributesCollections
+import fr.inria.diverse.melange.tests.aspects.fsm.SimpleReferences
+import fr.inria.diverse.melange.tests.aspects.fsm.ReferencesCollections
+import fr.inria.diverse.melange.tests.aspects.fsm.ExternalReferences
+import fr.inria.diverse.melange.tests.aspects.fsm.Visibility
+import fr.inria.diverse.melange.tests.aspects.fsm.Operations
+
+metamodel Fsm {
+	ecore "tests-inputs/metamodels/FSM.ecore" withGenmodel "tests-inputs/metamodels/FSM.genmodel"
+	exactType FsmMT
+	with SimpleAttributes
+	with AttributesCollections
+	with SimpleReferences
+	with ReferencesCollections
+	with ExternalReferences
+	with Visibility
+	with Operations
+}

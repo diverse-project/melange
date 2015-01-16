@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="fr.inria.diverse.melange.adapter" name="ModelTypeAdapter" schema="schema/fr.inria.diverse.melange.adapter.exsd"/>
+   <extension
+         point="org.eclipse.emf.ecore.protocol_parser">
+      <parser
+            class="fr.inria.diverse.melange.resource.MelangeResourceFactory"
+            protocolName="melange">
+      </parser>
+   </extension>
+
+</plugin>

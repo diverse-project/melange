@@ -1,0 +1,16 @@
+package exhaustiveecoretest
+
+import static extension fr.inria.diverse.melange.lib.MetamodelExtensions.*
+
+metamodel Exhaustive {
+	ecore "tests-inputs/metamodels/Exhaustive.ecore" withGenmodel "tests-inputs/metamodels/Exhaustive.genmodel"
+	exactType ExhaustiveMT
+}
+
+metamodel Exhaustive2 {
+	ecore "tests-inputs/metamodels/Exhaustive.ecore" withGenmodel "tests-inputs/metamodels/Exhaustive.genmodel"
+	exactType Exhaustive2MT
+}
+
+@Main
+transformation test() {}
