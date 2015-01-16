@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.inria.diverse.melange.examples.metamodels.compositefsm/src"
+    modelPluginID="fr.inria.diverse.melange.examples.metamodels.compositefsm" modelName="CompositeFSM"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="7.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>CompositeFSM.ecore</foreignModel>
+  <genPackages prefix="Compositefsm" disposableProviderFactory="true" ecorePackage="CompositeFSM.ecore#/">
+    <genClasses ecoreClass="CompositeFSM.ecore#//FSM">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompositeFSM.ecore#//FSM/ownedState"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CompositeFSM.ecore#//FSM/initialState"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CompositeFSM.ecore#//FSM/finalState"/>
+    </genClasses>
+    <genClasses ecoreClass="CompositeFSM.ecore#//State">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference CompositeFSM.ecore#//State/owningFSM"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CompositeFSM.ecore#//State/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompositeFSM.ecore#//State/outgoingTransition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CompositeFSM.ecore#//State/incomingTransition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CompositeFSM.ecore#//State/subStates"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CompositeFSM.ecore#//State/superState"/>
+    </genClasses>
+    <genClasses ecoreClass="CompositeFSM.ecore#//Transition">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference CompositeFSM.ecore#//Transition/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CompositeFSM.ecore#//Transition/target"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CompositeFSM.ecore#//Transition/input"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CompositeFSM.ecore#//Transition/output"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

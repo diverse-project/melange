@@ -1,0 +1,39 @@
+package xtendsle
+
+import static extension fr.inria.diverse.k3.sle.lib.MetamodelExtensions.*
+
+metamodel Xtend {
+	resource Xtext setup org.eclipse.xtend.core.XtendStandaloneSetup
+	ecore "platform:/resource/org.eclipse.xtend.core/model/Xtend.ecore"
+	exactType XtendMT
+	aspect xtendsle.XtendCompilerAspect
+}
+
+metamodel XtendDbc {
+	resource Xtext setup XtendDbcStandaloneSetup
+	ecore "platform:/resource/org.eclipse.xtend.core/model/Xtend.ecore"
+	exactType XtendDbcMT
+	aspect xtendsle.XtendDbcCompilerAspect
+}
+
+@Main
+transformation main() {
+	print("Loading Test.xtend as XtendMT...")
+	val m1 = Xtend.load("input/Test.xtend", XtendMT)
+	val file1 = m1.contents.head as xtendsle.xtendmt.XtendFile
+	println(" Done.")
+
+	print("Compiling to sle-gen/xtend...")
+	file1.compile
+	println(" Done.")
+	println
+
+	print("Loading Test.xtend as XtendDbcMT...")
+	val m2 = Xtend.load("input/Test.xtend", XtendDbcMT)
+	val file2 = m2.contents.head as xtendsle.xtenddbcmt.XtendFile
+	println(" Done.")
+
+	print("Compiling to sle-gen/xtend-dbc...")
+	file2.compile
+	println(" Done.")
+}
