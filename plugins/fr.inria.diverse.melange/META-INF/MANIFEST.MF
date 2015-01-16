@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Melange
 Bundle-Vendor: DIVERSE
-Bundle-Version: 3.1.0.qualifier
+Bundle-Version: 0.1.0.qualifier
 Bundle-SymbolicName: fr.inria.diverse.melange;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext;bundle-version="[2.7.0,2.8.0)";visibility:=reexport,
@@ -22,8 +22,8 @@ Require-Bundle: org.eclipse.xtext;bundle-version="[2.7.0,2.8.0)";visibility:=ree
  org.eclipse.core.runtime,
  org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional,
  org.eclipse.emf.compare,
- fr.inria.diverse.melange.lib;bundle-version="3.1.0",
- fr.inria.diverse.melange.metamodel;bundle-version="3.1.0"
+ fr.inria.diverse.melange.lib;bundle-version="0.1.0",
+ fr.inria.diverse.melange.metamodel;bundle-version="0.1.0"
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7

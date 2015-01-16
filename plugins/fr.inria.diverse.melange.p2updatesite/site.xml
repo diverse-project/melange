@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/fr.inria.diverse.melange.sdk_3.1.0.qualifier.jar" id="fr.inria.diverse.melange.sdk" version="3.1.0.qualifier">
+   <feature url="features/fr.inria.diverse.melange.sdk_0.1.0.qualifier.jar" id="fr.inria.diverse.melange.sdk" version="0.1.0.qualifier">
       <category name="Melange"/>
    </feature>
    <category-def name="Melange" label="Melange"/>
