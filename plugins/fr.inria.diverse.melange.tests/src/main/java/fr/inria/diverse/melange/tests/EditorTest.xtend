@@ -10,7 +10,7 @@ import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
 
 import fr.inria.diverse.melange.validation.MelangeValidationConstants
 
-import fr.inria.diverse.k3.tools.xtext.testing.XtextTest
+import fr.inria.diverse.melange.tools.xtext.testing.XtextTest
 
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner

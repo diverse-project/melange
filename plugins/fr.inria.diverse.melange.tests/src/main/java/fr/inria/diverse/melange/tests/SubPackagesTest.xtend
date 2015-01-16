@@ -11,7 +11,7 @@ import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.tests.common.MelangeTestHelper
 import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
 
-import fr.inria.diverse.k3.tools.xtext.testing.XtextTest
+import fr.inria.diverse.melange.tools.xtext.testing.XtextTest
 
 import org.eclipse.emf.common.util.EList
 

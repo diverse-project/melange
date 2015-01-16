@@ -2,7 +2,7 @@ package fr.inria.diverse.melange.tests
 
 import com.google.inject.Inject
 
-import fr.inria.diverse.k3.tools.xtext.testing.XtextTest
+import fr.inria.diverse.melange.tools.xtext.testing.XtextTest
 
 import fr.inria.diverse.melange.ast.ASTHelper
 

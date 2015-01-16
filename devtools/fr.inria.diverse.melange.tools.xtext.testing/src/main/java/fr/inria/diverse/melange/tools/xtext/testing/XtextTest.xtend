@@ -1,4 +1,4 @@
-package fr.inria.diverse.k3.tools.xtext.testing
+package fr.inria.diverse.melange.tools.xtext.testing
 
 import org.eclipse.xtend.lib.macro.Active
 import org.eclipse.xtend.lib.macro.AbstractClassProcessor
