@@ -11,9 +11,8 @@
 	<name>Melange Root Build Manager</name>
 	
 	<modules>
-		<module>../../k3-al/fr.inria.diverse.k3.al.root</module>
-		<module>../../k3-sle.examples/fr.inria.diverse.melange.examples.metamodels.root</module>
-		<module>../../k3-tools/fr.inria.diverse.k3.tools.root</module>
+		<module>../../examples/fr.inria.diverse.melange.examples.metamodels.root</module>
+		<module>../../devtools/fr.inria.diverse.melange.tools.root</module>
 		<module>../fr.inria.diverse.melange.lib</module>
 		<module>../fr.inria.diverse.melange.metamodel</module>
 		<module>../fr.inria.diverse.melange</module>
@@ -33,29 +32,26 @@
 		<xtext.version>2.7.3</xtext.version>
 		<sonar.language>java</sonar.language>
 		<sonar.exclusions>file:**/src-gen/**</sonar.exclusions>
-		<nightly.modifier>.nightly</nightly.modifier> <!-- must be set to ".nightly" for SNAPSHOT and set to "" for release -->
 	</properties>
 
 	<repositories>
-		<!-- Update site  general repo for K3 except the currently build one (ie. k3-sle) -->	
+		<!-- Luna repository -->
 		<repository>
-			<id>K3-except-k3sle</id>
+			<id>luna</id>
 			<layout>p2</layout>
-			<url>https://ci.inria.fr/k3al/job/k3-composite_updatesite/lastSuccessfulBuild/artifact/k3-composite_updatesite/k3${nightly.modifier}.composite.updatesite/update/all-except-k3-sle/</url>
+			<url>http://download.eclipse.org/releases/luna/</url>
 		</repository>
-
-		<!-- Kompren -->
-		<!--<repository>
-			<id>kompren</id>
-			<layout>p2</layout>
-			<url>http://www.kermeta.org/kompren/update/</url>
-		</repository>-->
-		
-		<!-- Update site Repo for thirdparty Dependencies -->
+		<!-- Xtext composite repository -->
 		<repository>
-			<id>platform</id>
+			<id>xtext</id>
 			<layout>p2</layout>
-			<url>https://ci.inria.fr/k3al/job/k3-composite_updatesite/lastSuccessfulBuild/artifact/k3-composite_updatesite/k3.platform.composite.updatesite/update/</url>
+			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/</url>
+		</repository>
+		<!-- K3AL repository -->
+		<repository>
+			<id>k3</id>
+			<layout>p2</layout>
+			<url>http://ci.inria.fr/k3al/view/Tous/job/k3-al.eclipse/lastSuccessfulBuild/artifact/k3-al.eclipse/fr.inria.diverse.k3.al.p2updatesite/target/site/</url>
 		</repository>
 	</repositories>
 
@@ -120,35 +116,6 @@
 		</pluginManagement>
 		
 		<plugins>
-			<!-- calculate versions for some special cases -->
-			<!-- calculate the nightly modifier from the project version  -->
-			<plugin>
-				<groupId>org.codehaus.groovy.maven</groupId>
-				<artifactId>gmaven-plugin</artifactId>
-				<version>1.0</version>
-				<executions>
-					<execution>
-						<id>generate_nightly_modifier</id>
-						<phase>validate</phase>
-						<goals>
-							<goal>execute</goal>
-						</goals>
-						<configuration>
-							<!-- setting the property in groovy doesn't work well with tycho, so I've implemented a check instead -->
-							<source>
-								String nightlyModifier = "${nightly.modifier}"
-								if ("${project.version}".contains("SNAPSHOT") ){
-									if( ! nightlyModifier.equals(".nightly") ){
-										fail("property nightly.modifier must be set to '.nightly' for SNAPSHOT versions. "+nightlyModifier)
-									}
-								} else if(! nightlyModifier.isEmpty() ){
-									fail("property nightly.modifier must be empty for RELEASE versions. "+nightlyModifier)
-								}
-							</source>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-maven-plugin</artifactId>
