@@ -1,2 +1,6 @@
 _site/
+.metadata/
+devtools/
+plugins/
+examples/
 
