@@ -5,5 +5,4 @@ tagline: Integrate your DSLs!
 ---
 {% include JB/setup %}
 
-Coming soon!
-
+Instructions for installing preliminary builds are available on the [download page](download.html).
