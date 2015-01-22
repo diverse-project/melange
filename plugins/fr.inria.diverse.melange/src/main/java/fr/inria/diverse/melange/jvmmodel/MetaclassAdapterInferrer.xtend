@@ -355,10 +355,10 @@ class MetaclassAdapterInferrer
 		task.stop
 	}
 
-	def boolean +=(EList<JvmMember> members, JvmOperation m) {
+	/*def boolean +=(EList<JvmMember> members, JvmOperation m) {
 		if (!members.filter(JvmOperation).exists[overrides(m)])
 			members += (m as JvmMember)
 
 		return false
-	}
+	}*/
 }
