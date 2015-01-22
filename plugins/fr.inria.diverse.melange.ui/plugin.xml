@@ -581,5 +581,24 @@
             extensions="melange">
     </provider>
   </extension>
+  <extension
+        point="org.eclipse.ui.newWizards">
+     <category
+           id="fr.inria.diverse.melange.category"
+           name="Melange">
+     </category>
+     <wizard
+           canFinishEarly="true"
+           category="fr.inria.diverse.melange.category"
+           class="fr.inria.diverse.melange.ui.wizards.NewMelangeProjectWizard"
+           icon="icons/melange.png"
+           id="fr.inria.diverse.melange.ui.wizards.NewMelangeProjectWizard"
+           name="Melange Project"
+           project="true">
+        <description>
+           Create a new Melange project.
+        </description>
+     </wizard>
+  </extension>
 
 </plugin>

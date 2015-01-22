@@ -20,7 +20,10 @@ Require-Bundle: fr.inria.diverse.melange;visibility:=reexport,
  org.eclipse.xtext.xbase.ui;bundle-version="[2.7.0,2.8.0)",
  fr.inria.diverse.melange.metamodel;bundle-version="0.1.0",
  org.eclipse.xtext.xbase.lib;bundle-version="[2.7.0,2.8.0)",
- org.eclipse.jdt.debug.ui
+ org.eclipse.jdt.debug.ui,
+ fr.inria.diverse.commons.eclipse.pde;bundle-version="1.0.0",
+ fr.inria.diverse.commons.eclipse,
+ org.eclipse.jdt.core
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7

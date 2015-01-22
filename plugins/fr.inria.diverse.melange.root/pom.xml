@@ -53,6 +53,13 @@
 			<layout>p2</layout>
 			<url>http://ci.inria.fr/k3al/view/Tous/job/k3-al.eclipse/lastSuccessfulBuild/artifact/k3-al.eclipse/fr.inria.diverse.k3.al.p2updatesite/target/site/</url>
 		</repository>
+		
+		<!-- Diverse commons repository -->
+		<repository>
+			<id>diverse-commons</id>
+			<layout>p2</layout>
+			<url>https://ci.inria.fr/diverse-commons/job/diverse-commons.eclipse.root/lastSuccessfulBuild/artifact/commons-eclipse/fr.inria.diverse.commons.eclipse.root/p2updatesite/target/repository/</url>
+		</repository>
 	</repositories>
 
 	<build>
