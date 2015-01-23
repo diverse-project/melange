@@ -51,6 +51,8 @@ import org.eclipse.xtext.common.types.JvmTypeAnnotationValue
 import org.eclipse.xtext.common.types.JvmTypeParameterDeclarator
 import org.eclipse.xtext.common.types.JvmVisibility
 
+import org.eclipse.xtext.naming.QualifiedName
+
 class MetamodelExtensions
 {
 	@Inject extension ModelingElementExtensions
@@ -101,6 +103,29 @@ class MetamodelExtensions
 			return aspVal.substring(aspVal.lastIndexOf(".") + 1, aspVal.length)
 
 		return aspVal
+	}
+
+	def boolean isGeneratedByMelange(Metamodel mm) {
+		return mm.inheritanceRelation?.superMetamodel !== null
+	}
+
+	def boolean runtimeHasBeenGenerated(Metamodel mm) {
+		return
+			if (mm.isGeneratedByMelange) {
+				val segments = newArrayList
+				val gp = mm.genmodels.head.genPackages.head
+
+				if (gp.basePackage !== null && gp.basePackage.length > 0)
+					segments += gp.basePackage
+				if (gp.prefix !== null && gp.prefix.length > 0)
+					segments += gp.prefix
+
+				val fqn = QualifiedName::create(segments).toString.toLowerCase
+				val expected = ".." + mm.genmodels.head.modelDirectory
+					+ "/" + fqn
+				return mm.project.getFolder(expected).exists
+			}
+			else true
 	}
 
 	def EClass findClass(Metamodel mm, String clsName) {
@@ -233,8 +258,8 @@ class MetamodelExtensions
 
 	def void createEcore(EPackage pkg, String uri) {
 		val resSet = new ResourceSetImpl
-    	val res = resSet.createResource(URI.createURI(uri))
-    	res.contents.add(pkg.copy)
+		val res = resSet.createResource(URI.createURI(uri))
+		res.contents.add(pkg.copy)
 
 		try {
 			res.save(null)
@@ -243,16 +268,19 @@ class MetamodelExtensions
 		}
 	}
 
-	def void createEcore(Metamodel mm) {
+	def URI createEcore(Metamodel mm, EPackage root) {
+		val ecoreUri = URI.createURI(mm.generationFolder + mm.name + ".ecore")
 		val resSet = new ResourceSetImpl
-    	val res = resSet.createResource(URI.createURI(mm.generationFolder + mm.name + ".ecore"))
-    	res.contents.add(mm.pkgs.head.copy)
+		val res = resSet.createResource(ecoreUri)
+		res.contents.add(root)
 
 		try {
 			res.save(null)
 		} catch (IOException e) {
 			e.printStackTrace
 		}
+
+		return ecoreUri
 	}
 
 	def void createExtendedMetamodel(Metamodel mm, String uri) {
@@ -341,7 +369,8 @@ class MetamodelExtensions
 	def String getGenerationFolder(Metamodel mm) {
 		//return '''platform:/resource/«mm.project.name»/generated/«mm.name»/'''
 		//return '''platform:/resource/«mm.name»Generated/model/'''
-		return '''platform:/resource/«mm.project.name»/model-gen/«mm.name»/'''
+		//return '''platform:/resource/«mm.project.name»/model-gen/«mm.name»/'''
+		return '''platform:/resource/«mm.project.name»/model-gen/'''
 	}
 
 	def IProject getProject(Metamodel mm) {
