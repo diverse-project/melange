@@ -1,15 +1,34 @@
 package fr.inria.diverse.melange.ui.quickfix
 
-class MelangeQuickfixProvider extends org.eclipse.xtext.xbase.ui.quickfix.XbaseQuickfixProvider
-{
+import com.google.inject.Inject
 
-//	@Fix(MyDslValidator::INVALID_NAME)
-//	def capitalizeName(Issue issue, IssueResolutionAcceptor acceptor) {
-//		acceptor.accept(issue, 'Capitalize name', 'Capitalize the name.', 'upcase.png') [
-//			context |
-//			val xtextDocument = context.xtextDocument
-//			val firstLetter = xtextDocument.get(issue.offset, 1)
-//			xtextDocument.replace(issue.offset, 1, firstLetter.toUpperCase)
-//		]
-//	}
+import fr.inria.diverse.melange.ast.MetamodelExtensions
+
+import fr.inria.diverse.melange.metamodel.melange.Metamodel
+
+import fr.inria.diverse.melange.validation.MelangeValidationConstants
+
+import org.eclipse.xtext.ui.editor.quickfix.Fix
+import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor
+
+import org.eclipse.xtext.validation.Issue
+
+import org.eclipse.xtext.xbase.ui.quickfix.XbaseQuickfixProvider
+
+class MelangeQuickfixProvider extends XbaseQuickfixProvider
+{
+	@Inject extension MetamodelExtensions
+
+	@Fix(MelangeValidationConstants::METAMODEL_NO_EMF_RUNTIME)
+	def void generateRuntime(Issue issue, IssueResolutionAcceptor acceptor) {
+		println("quickfix!")
+		acceptor.accept(
+			issue,
+			"Generate EMF Runtime",
+			"Generate EMF Runtime",
+			null)[element, context |
+				val mm = element as Metamodel
+				mm.genmodels.forEach[generateCode]
+			]
+	}
 }
