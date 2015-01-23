@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
@@ -143,7 +142,7 @@ public class SimpleMTTemplate extends MelangeTemplateSection {
 	}
 
 	protected void initializeFields(BaseProjectWizardFields data) {
-		String packageName = ((NewMelangeProjectWizardFields)data).projectName.replaceAll("[^a-zA-Z0-9\\._]", "_").toLowerCase(Locale.ENGLISH);
+		String packageName = getFormattedPackageName(((NewMelangeProjectWizardFields)data).projectName);
 		initializeOption(KEY_PACKAGE_NAME, packageName);
 		_data = (NewMelangeProjectWizardFields) data;
 	}
