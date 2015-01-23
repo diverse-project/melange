@@ -21,7 +21,6 @@ class MelangeQuickfixProvider extends XbaseQuickfixProvider
 
 	@Fix(MelangeValidationConstants::METAMODEL_NO_EMF_RUNTIME)
 	def void generateRuntime(Issue issue, IssueResolutionAcceptor acceptor) {
-		println("quickfix!")
 		acceptor.accept(
 			issue,
 			"Generate EMF Runtime",

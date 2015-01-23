@@ -67,8 +67,6 @@ class EPackageRegistry
 
 						m.ecoreUri = newUri.toString
 						m.genmodelUris += newGmUri
-						println("newEcoreUri="+newUri.toString)
-						println("newGmUri="+newGmUri)
 
 						packages.putAll(m, pkgsCopy)
 					}
