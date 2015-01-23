@@ -138,11 +138,11 @@ public class NewMelangeProjectWizard extends AbstractNewProjectWizardWithTemplat
 			description = project.getDescription();
 			addNature(description, "org.eclipse.jdt.core.javanature");
 			addNature(description, "org.eclipse.xtext.ui.shared.xtextNature");
-			String sourceFolderName= "src/";
+			//String sourceFolderName= "src/";
 			
 			createSettingsResourcePrefs(project, monitor);
 
-			IFolderUtils.createFolder(sourceFolderName + context.basePackageName, project, monitor);
+			//IFolderUtils.createFolder(sourceFolderName + context.basePackageName.replaceAll("\\.", "/"), project, monitor);
 			IFolderUtils.createFolder("src-gen", project, monitor);
 			
 			addNature(description, "org.eclipse.pde.PluginNature");

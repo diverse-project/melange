@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="fr.inria.diverse.commons.eclipse.pde.templates">
+      <template
+            class="fr.inria.diverse.melange.ui.templates.melange.SimpleMTTemplate"
+            contributingId="fr.inria.diverse.melange.ui.templates.template1"
+            id="fr.inria.diverse.melange.ui.templates.template_simple_mt"
+            name="User simple model type">
+      </template>
+   </extension>
+   <extension
+         point="fr.inria.diverse.commons.eclipse.pde.projectContent">      
+      <wizard
+            class="fr.inria.diverse.melange.ui.templates.melange.SimpleMTNewWizard"
+            id="fr.inria.diverse.melange.ui.templates.projectContent.SimpleMT"
+            name="User simple model type"
+            targetPluginId="fr.inria.diverse.melange.ui">
+         <description>
+            This template will generate a simple model type on top of the provided ecore file.
+         </description>
+      </wizard>
+   </extension>
+</plugin>

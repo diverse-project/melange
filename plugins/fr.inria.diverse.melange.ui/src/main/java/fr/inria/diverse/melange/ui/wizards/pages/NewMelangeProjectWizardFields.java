@@ -1,5 +1,6 @@
 package fr.inria.diverse.melange.ui.wizards.pages;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 
 import fr.inria.diverse.commons.eclipse.pde.wizards.pages.pde.ui.BaseProjectWizardFields;
@@ -21,7 +22,8 @@ public class NewMelangeProjectWizardFields extends BaseProjectWizardFields {
 	public boolean			useKMF = false;
 	public boolean			useSLE = false;*/
 
-	public String 			basePackageName;
+	//public String 			basePackageName;
+	
 	
 	
 	public NewMelangeProjectWizardFields () {
@@ -29,7 +31,7 @@ public class NewMelangeProjectWizardFields extends BaseProjectWizardFields {
 		
 		this.projectName 			= "org.sample.my_melange";
 		this.projectLocation 		= ResourcesPlugin.getWorkspace().getRoot().getLocation().toOSString();
-		this.basePackageName 		= this.projectName;
+		//this.basePackageName 		= this.projectName;
 		
 	}
 }
