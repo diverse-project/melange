@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/fr.inria.diverse.melange.sdk_0.1.0.201501231645.jar" id="fr.inria.diverse.melange.sdk" version="0.1.0.201501231645">
+      <category name="Melange"/>
+   </feature>
+   <category-def name="Melange" label="Melange"/>
+</site>
