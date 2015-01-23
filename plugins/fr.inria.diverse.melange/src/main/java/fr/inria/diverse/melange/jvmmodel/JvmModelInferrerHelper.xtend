@@ -15,6 +15,8 @@ import org.eclipse.xtext.common.types.JvmFormalParameter
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmTypeReference
 
+import org.eclipse.xtext.naming.QualifiedName
+
 import org.eclipse.xtext.xbase.compiler.JavaKeywords
 
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
@@ -105,6 +107,19 @@ class JvmModelInferrerHelper
 				name + "_"
 			else
 				name
+	}
+
+	def String getPrimitiveIfWrapType(String name) {
+		val fqn = QualifiedName::create(name.split("\\."))
+
+		if (#[
+				"java.lang.Boolean", "java.lang.Byte",
+				"java.lang.Double",	"java.lang.Float",
+				"java.lang.Integer", "java.lang.Long",
+				"java.lang.Short"
+			].contains(fqn.toString))
+			return fqn.lastSegment.toString.toLowerCase
+		else return name
 	}
 
 	def boolean overrides(JvmOperation o1, JvmOperation o2) {

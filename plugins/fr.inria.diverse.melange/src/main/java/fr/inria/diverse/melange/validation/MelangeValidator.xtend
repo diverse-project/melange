@@ -211,4 +211,17 @@ class MelangeValidator extends AbstractMelangeValidator
 				MelangeValidationConstants.METAMODEL_XTEXT_SETUP
 			)
 	}
+
+	@Check
+	def void checkRuntimeHasBeenGenerated(Metamodel mm) {
+		if (mm.isGeneratedByMelange && !mm.runtimeHasBeenGenerated) {
+			error(
+				  "Cannot find EMF runtime for" + mm.name
+				+ ". Please invoke code generation from the generated genmodel"
+				+ " (" + mm.genmodelUris.join(", ") + ")",
+				MelangePackage.Literals.MODELING_ELEMENT__ECORE_URI,
+				MelangeValidationConstants.METAMODEL_NO_EMF_RUNTIME
+			)
+		}
+	}
 }

@@ -6,6 +6,7 @@ import com.google.common.collect.ListMultimap
 import com.google.inject.Inject
 import com.google.inject.Singleton
 
+import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
 
 import fr.inria.diverse.melange.lib.EcoreExtensions
@@ -28,6 +29,7 @@ class EPackageRegistry
 	@Inject ModelUtils modelUtils
 	@Inject extension EcoreExtensions
 	@Inject extension ModelTypeExtensions
+	@Inject extension MetamodelExtensions
 	private ListMultimap<ModelingElement, EPackage> packages = ArrayListMultimap.create
 	private ListMultimap<Metamodel, GenModel> genmodels = ArrayListMultimap.create
 
@@ -51,7 +53,22 @@ class EPackageRegistry
 				}
 				Metamodel:
 					if (m.inheritanceRelation.superMetamodel !== null) {
-						packages.putAll(m, m.inheritanceRelation.superMetamodel.packages.map[EcoreUtil::copy(it)])
+						val pkgsCopy = m.inheritanceRelation.superMetamodel.packages.map[
+							val copy = EcoreUtil::copy(it)
+							copy.name = m.name.toLowerCase
+							copy.nsPrefix = copy.name
+							copy.nsURI = '''http://«copy.name»'''
+							return copy
+						]
+
+						val newUri = m.createEcore(pkgsCopy.head)
+						val newGmUri = newUri.trimFileExtension.appendFileExtension("genmodel").toString
+						pkgsCopy.head.createGenModel(m, newUri.toString, newGmUri)
+
+						m.ecoreUri = newUri.toString
+						m.genmodelUris += newGmUri
+
+						packages.putAll(m, pkgsCopy)
 					}
 				ModelType:
 					if (m.isExtracted) {

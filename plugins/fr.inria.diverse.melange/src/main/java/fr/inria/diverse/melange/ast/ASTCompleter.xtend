@@ -85,150 +85,26 @@ class ASTCompleter
 	}
 
 	def dispatch void complete(Metamodel mm) throws ASTProcessingException {
-		if (mm.hasSuperMetamodel) {
-			// EMF resource = extension with inheritance
-			if (mm.resourceType == ResourceType.EMF) {
-				val pkg = mm.pkgs.head
+		mm.aspects.forEach[asp |
+			if (!(asp.aspectTypeRef.type instanceof JvmDeclaredType))
+				throw new ASTProcessingException("Aspect must be a generic type: " + asp.aspectTypeRef?.type)
 
-				val newPkg = EcoreFactory.eINSTANCE.createEPackage => [
-					name = mm.name.toLowerCase
-					nsURI = mm.resourceUri ?: '''http://«mm.name.toLowerCase»'''
-					nsPrefix = mm.name.toLowerCase
+			val className = asp.aspectAnnotationValue
 
-					pkg.EClassifiers.filter(EClass).forEach[cls |
-						EClassifiers += EcoreFactory.eINSTANCE.createEClass => [newCls |
-							newCls.name = cls.name
-							newCls.^abstract = cls.^abstract
-							newCls.^interface = cls.^interface
-							newCls.ESuperTypes += cls
+			if (className === null)
+				throw new ASTProcessingException("Cannot find annotation value for " + asp.aspectTypeRef?.type)
 
-							if (cls.name == "EStringToStringMapEntry") { // Stupid workaround
-								newCls.instanceClassName = "java.util.Map$Entry"
-								newCls.instanceTypeName = "java.util.Map$Entry"
-							}
-						]
-					]
-				]
+			val cls = mm.findClass(className)
 
-				pkg.referencedPkgs.filterNull.forEach[p |
-					val nPkg = EcoreFactory.eINSTANCE.createEPackage => [
-						name = p.name
-						nsURI = p.nsURI + "/extended" // Naively suffix all the packages so that
-						                              // they don't clash with the previous ones
-						nsPrefix = p.nsPrefix
+			if (cls === null)
+				throw new ASTProcessingException("Cannot find aspectized class for " + asp.aspectTypeRef?.type)
 
-						p.EClassifiers.filter(EClass).forEach[cls |
-							EClassifiers += EcoreFactory.eINSTANCE.createEClass => [newCls |
-								newCls.name = cls.name
-								newCls.^abstract = cls.^abstract
-								newCls.^interface = cls.^interface
-								newCls.ESuperTypes += cls
+			asp.aspectedClass = cls
+			asp.inferEcoreFragment
 
-								if (cls.name == "EStringToStringMapEntry") { // Stupid workaround
-									newCls.instanceClassName = "java.util.Map$Entry"
-									newCls.instanceTypeName = "java.util.Map$Entry"
-								}
-							]
-						]
-					]
-				]
-
-				mm.aspects.forEach[asp |
-					if (!(asp.aspectTypeRef.type instanceof JvmDeclaredType))
-						throw new ASTProcessingException("Aspect must be a generic type: " + asp.aspectTypeRef?.type)
-
-					val className = asp.aspectAnnotationValue
-
-					if (className === null)
-						throw new ASTProcessingException("Cannot find annotation value for " + asp.aspectTypeRef?.type)
-
-					val cls = mm.findClass(className)
-
-					if (cls === null)
-						throw new ASTProcessingException("Cannot find aspectized class for " + asp.aspectTypeRef?.type)
-
-					asp.aspectedClass = cls
-
-					mm.weaveAspect(asp.aspectedClass, asp.aspectTypeRef.type as JvmDeclaredType)
-				]
-
-				// Once everything's done, recreate the aspect hierarchy
-				// FIXME: Actually, we should look for the with=#[] parameter, not the only extendedClass
-				mm.aspects
-					.filter[(aspectTypeRef.type as JvmDeclaredType).extendedClass !== null]
-					.forEach[
-						val superAspect = (aspectTypeRef.type as JvmDeclaredType).extendedClass.type as JvmDeclaredType
-						val superClsName = superAspect.aspectAnnotationValue
-						if (superClsName !== null) {
-							val superCls = mm.findClass(superClsName)
-							if (superCls !== null)
-								aspectedClass.ESuperTypes += superCls
-						}
-					]
-
-				val ecoreUri = '''platform:/resource/«mm.project.name»/model/«mm.name».ecore'''
-				val genmodelUri = '''platform:/resource/«mm.project.name»/model/«mm.name».genmodel'''
-				val srcFolder = '''/«mm.project.name»/src'''
-				mm.createExtendedMetamodel(ecoreUri)
-				mm.createExtendedGenmodel(ecoreUri, genmodelUri, srcFolder)
-				throw new ASTProcessingException("Can't generate code for inheritance-based extended metamodels")
-			} else {
-				val pkg = mm.pkgs.head
-
-				// For each aspect, infer the corresponding ecore fragment
-				// and merge it into the base metamodel
-				mm.aspects.forEach[asp |
-					if (!(asp.aspectTypeRef.type instanceof JvmDeclaredType))
-						throw new ASTProcessingException("Aspect must be a generic type: " + asp.aspectTypeRef?.type)
-
-					val className = asp.aspectAnnotationValue
-
-					if (className === null)
-						throw new ASTProcessingException("Cannot find annotation value for " + asp.aspectTypeRef?.type)
-
-					val cls = mm.findClass(className)
-
-					if (cls === null)
-						throw new ASTProcessingException("Cannot find aspectized class for " + asp.aspectTypeRef?.type)
-
-					asp.aspectedClass = cls
-					asp.inferEcoreFragment
-
-					// FIXME: _not_ .head, could be any of them
-					algebra.weaveAspect(mm, asp)
-				]
-
-				mm.createEcore
-				mm.pkgs.head.createGenModel(mm, mm.generationFolder + mm.name + ".ecore", mm.generationFolder + mm.name + ".genmodel")
-
-				val gm = modelUtils.loadGenmodel(mm.generationFolder + mm.name + ".genmodel")
-				if (!mm.genmodels.exists[genPackages.exists[gp | gm.genPackages.exists[gpp | gpp.getEcorePackage?.nsURI == gp.getEcorePackage?.nsURI]]])
-					mm.genmodels += gm
-			}
-		} else {
-			// For each aspect, infer the corresponding ecore fragment
-			// and merge it into the base metamodel
-			mm.aspects.forEach[asp |
-				if (!(asp.aspectTypeRef.type instanceof JvmDeclaredType))
-					throw new ASTProcessingException("Aspect must be a generic type: " + asp.aspectTypeRef?.type)
-
-				val className = asp.aspectAnnotationValue
-
-				if (className === null)
-					throw new ASTProcessingException("Cannot find annotation value for " + asp.aspectTypeRef?.type)
-
-				val cls = mm.findClass(className)
-
-				if (cls === null)
-					throw new ASTProcessingException("Cannot find aspectized class for " + asp.aspectTypeRef?.type)
-
-				asp.aspectedClass = cls
-				asp.inferEcoreFragment
-
-				// FIXME: _not_ .head, could be any of them
-				algebra.weaveAspect(mm, asp)
-			]
-		}
+			// FIXME: _not_ .head, could be any of them
+			algebra.weaveAspect(mm, asp)
+		]
 	}
 
 	def dispatch void complete(ModelType mt) {
