@@ -17,4 +17,5 @@ class MelangeValidationConstants
 	public static final String ASPECT_NOT_FOUND = "METAMODEL_ASPECT_NOT_FOUND"
 	public static final String ASPECT_NO_ANNOTATION = "METAMODEL_ASPECT_NO_ANNOTATION"
 	public static final String MODELING_ELEMENT_ECORE_URI_INVALID = "MODELING_ELEMENT_ECORE_URI_INVALID"
+	public static final String METAMODEL_NO_EMF_RUNTIME = "METAMODEL_NO_EMF_RUNTIME"
 }
