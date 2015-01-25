@@ -5,6 +5,7 @@ Melange language repository
 
 TODO
 ----
+- [ ] Directly embed Xcore into metamodel definitions
 - [X] Factorize adapters creation in dedicated factories
 - [ ] Externalize all AST-completion operations in a IDerivedStateComputer post-processor
 - [ ] In-the-large
