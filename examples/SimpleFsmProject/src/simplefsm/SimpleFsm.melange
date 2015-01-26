@@ -1,0 +1,24 @@
+package simplefsm
+
+metamodel Fsm {
+	ecore "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.fsm/model/FSM.ecore"
+	exactType FsmMT
+}
+
+metamodel TimedFsm {
+	ecore "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.timedfsm/model/TimedFSM.ecore"
+	exactType TimedFsmMT
+}
+
+transformation execute(FsmMT m) {
+	println(m)
+}
+
+@Main
+transformation main() {
+	val m1 = Fsm.load("input/Simple.fsm")
+	val m2 = TimedFsm.load("input/Simple.timedfsm")
+
+	execute.call(m1)
+	execute.call(m2)
+}
