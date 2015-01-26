@@ -4,6 +4,7 @@ import adapters.fsm.adapters.fsmmt.FsmAdapter
 import adapters.timedfsm.adapters.fsmmt.TimedFsmAdapter
 
 import fr.inria.diverse.melange.resource.MelangeResource
+import fr.inria.diverse.melange.resource.MelangeResourceException
 import fr.inria.diverse.melange.resource.MelangeResourceFactory
 import fr.inria.diverse.melange.resource.ModelTypeAdapter
 
@@ -73,6 +74,14 @@ class ResourceTest
 
 		assertTrue(res instanceof XMIResource)
 		assertFalse(res instanceof MelangeResource)
+	}
+
+	@Test(expected = MelangeResourceException)
+	def void testNoAdapter() {
+		val uri = "melange:/../fr.inria.diverse.melange.tests/tests-inputs/models/Simple.fsm?mt=Invalid"
+		val res = uri.getResource
+
+		println(res.contents.head)
 	}
 
 	@Before
