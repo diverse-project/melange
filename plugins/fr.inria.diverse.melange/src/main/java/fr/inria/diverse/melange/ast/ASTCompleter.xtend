@@ -9,21 +9,14 @@ import fr.inria.diverse.melange.ast.ASTProcessingException
 import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
 
-import fr.inria.diverse.melange.lib.EcoreExtensions
-import fr.inria.diverse.melange.lib.ModelUtils
-
 import fr.inria.diverse.melange.metamodel.melange.MelangeFactory
 //import fr.inria.diverse.melange.metamodel.melange.KomprenSlicer
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
-import fr.inria.diverse.melange.metamodel.melange.ResourceType
 import fr.inria.diverse.melange.metamodel.melange.XbaseTransformation
 
 import fr.inria.diverse.melange.utils.AspectToEcore
-
-import org.eclipse.emf.ecore.EClass
-import org.eclipse.emf.ecore.EcoreFactory
 
 import org.eclipse.xtext.common.types.JvmDeclaredType
 
@@ -36,10 +29,7 @@ class ASTCompleter
 	@Inject extension ASTHelper
 	@Inject extension MetamodelExtensions
 	@Inject extension ModelTypeExtensions
-	@Inject extension ModelingElementExtensions
-	@Inject extension EcoreExtensions
 	@Inject extension AspectToEcore
-	@Inject ModelUtils modelUtils
 	@Inject ModelTypeAlgebra algebra
 	@Inject MelangeTypesRegistry typesRegistry
 	@Inject extension IQualifiedNameProvider

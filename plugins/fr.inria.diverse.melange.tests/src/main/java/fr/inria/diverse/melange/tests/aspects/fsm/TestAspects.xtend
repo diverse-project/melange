@@ -66,7 +66,7 @@ class Visibility {
 
 	def void f1() {}
 	public def void f2() {}
-	protected def void f3() {}
+	protected def void f3() { _self.f4() }
 	private def void f4() {}
 }
 

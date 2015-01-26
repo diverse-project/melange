@@ -79,7 +79,7 @@ class ASTHelper
 //	}
 }
 
-class ASTProcessingException extends Exception
+class ASTProcessingException extends RuntimeException
 {
 	new(String msg) {
 		super(msg)
