@@ -14,7 +14,7 @@ import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 
 import fr.inria.diverse.melange.utils.AspectToEcore
-import fr.inria.diverse.melange.utils.EPackageRegistry
+import fr.inria.diverse.melange.utils.EPackageProvider
 
 import java.io.IOException
 
@@ -61,10 +61,10 @@ class MetamodelExtensions
 	@Inject extension AspectToEcore
 	@Inject ModelUtils modelUtils
 	@Inject ModelTypeAlgebra algebra
-	@Inject EPackageRegistry registry
+	@Inject EPackageProvider provider
 
 	def List<GenModel> getGenmodels(Metamodel mm) {
-		return registry.getGenModels(mm)
+		return provider.getGenModels(mm)
 	}
 
 	def List<Aspect> allAspects(Metamodel mm) {

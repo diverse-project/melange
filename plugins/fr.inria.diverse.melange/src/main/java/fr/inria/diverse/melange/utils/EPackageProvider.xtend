@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.util.EcoreUtil
 
 @Singleton
-class EPackageRegistry
+class EPackageProvider
 {
 	@Inject ModelUtils modelUtils
 	@Inject extension EcoreExtensions
