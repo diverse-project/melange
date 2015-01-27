@@ -21,6 +21,10 @@ class ModelTypeExtensions
 	@Inject extension EcoreExtensions
 	@Inject ModelTypeAlgebra algebra
 
+	def boolean getCanGenerate(ModelType mt) {
+		return !mt.pkgs.empty
+	}
+
 	def boolean isExtracted(ModelType mt) {
 		return mt.extracted !== null
 	}

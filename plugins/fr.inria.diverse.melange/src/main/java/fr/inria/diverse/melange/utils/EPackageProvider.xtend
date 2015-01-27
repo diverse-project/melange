@@ -40,6 +40,15 @@ class EPackageProvider
 
 	def List<EPackage> getPackages(ModelingElement m) {
 		if (!packages.containsKey(m)) {
+			if (m instanceof Metamodel) {
+				try {
+					if (m.project.getFile(m.localEcorePath).exists)
+						m.ecoreUri = m.localEcoreUri
+					else if (m.project.getFile(m.externalEcorePath).exists)
+						m.ecoreUri = m.externalEcoreUri
+				} catch (IllegalStateException e) {}
+			}
+
 			switch (m) {
 				case m.ecoreUri !== null: {
 					val root = modelUtils.loadPkg(m.ecoreUri)
@@ -61,12 +70,12 @@ class EPackageProvider
 							return copy
 						]
 
-						val newUri = m.createEcore(pkgsCopy.head)
-						val newGmUri = newUri.trimFileExtension.appendFileExtension("genmodel").toString
-						pkgsCopy.head.createGenModel(m, newUri.toString, newGmUri)
+//						val newUri = m.createEcore(pkgsCopy.head)
+//						val newGmUri = newUri.trimFileExtension.appendFileExtension("genmodel").toString
+//						pkgsCopy.head.createGenModel(m, newUri.toString, newGmUri)
 
-						m.ecoreUri = newUri.toString
-						m.genmodelUris += newGmUri
+//						m.ecoreUri = newUri.toString
+//						m.genmodelUris += newGmUri
 
 						packages.putAll(m, pkgsCopy)
 					}
@@ -82,10 +91,16 @@ class EPackageProvider
 
 	def List<GenModel> getGenModels(Metamodel mm) {
 		if (!genmodels.containsKey(mm)) {
-			if (mm.genmodelUris.size == 0 && mm.ecoreUri !== null) {
+			if (mm.genmodelUris.size == 0 && mm.ecoreUri !== null)
 				mm.genmodelUris += mm.ecoreUri.substring(0, mm.ecoreUri.lastIndexOf(".")) + ".genmodel"
+			else {
+				try {
+					if (mm.project.getFile(mm.localGenmodelPath).exists)
+						mm.genmodelUris += mm.localGenmodelUri
+					else if (mm.project.getFile(mm.externalGenmodelPath).exists)
+						mm.genmodelUris += mm.externalGenmodelUri
+				} catch (IllegalStateException e) {}
 			}
-
 			mm.genmodelUris.forEach[genmodels.put(mm, modelUtils.loadGenmodel(it))]
 		}
 
