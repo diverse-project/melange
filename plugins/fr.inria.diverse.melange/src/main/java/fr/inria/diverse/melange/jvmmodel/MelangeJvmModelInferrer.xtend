@@ -12,6 +12,8 @@ import org.apache.log4j.Logger
 
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
+import fr.inria.diverse.melange.ast.MetamodelExtensions
+import fr.inria.diverse.melange.ast.ModelTypeExtensions
 
 class MelangeJvmModelInferrer extends AbstractModelInferrer
 {
@@ -20,6 +22,8 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 	@Inject extension ModelTypeInferrer
 	@Inject extension MetamodelInferrer
 	@Inject extension TransformationInferrer
+	@Inject extension ModelTypeExtensions
+	@Inject extension MetamodelExtensions
 //	@Inject extension KomprenInferrer
 
 	ModelTypingSpace root
@@ -33,8 +37,8 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 
 //			if (Diagnostician.INSTANCE.validate(typingSpace).severity != Diagnostic.ERROR) {
 				completer.inferTypingRelations(root)
-				root.modelTypes.forEach[generateInterfaces(acceptor, _typeReferenceBuilder)]
-				root.metamodels.forEach[generateAdapters(acceptor, _typeReferenceBuilder)]
+				root.modelTypes.filter[canGenerate].forEach[generateInterfaces(acceptor, _typeReferenceBuilder)]
+				root.metamodels.filter[canGenerate].forEach[generateAdapters(acceptor, _typeReferenceBuilder)]
 				root.transformations.forEach[generateTransformation(acceptor, _typeReferenceBuilder)]
 //				root.slicers.forEach[generateSlicer]
 //			} else {
