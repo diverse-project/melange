@@ -7,6 +7,6 @@ class MelangePreferencesInitializer extends AbstractPreferenceInitializer
 	//@Inject IPreferenceStoreAccess access
 
 	override initializeDefaultPreferences() {
-		
+
 	}
 }

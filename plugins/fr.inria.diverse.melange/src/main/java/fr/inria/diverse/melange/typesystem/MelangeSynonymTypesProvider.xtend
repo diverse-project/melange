@@ -13,11 +13,11 @@ import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 /**
  * Extends Xbase with modeltype-specific type synonyms
- * 
+ *
  * For any type mm referring to a concrete metamodel, with
  * its implemented types mt_0..mt_n:
  *     - announce a synonym from mm to mt_i
- * 
+ *
  * For any type mt subtype of mt':
  *     - announce a synonym from mt to mt'
  */
