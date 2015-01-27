@@ -1,5 +1,6 @@
 package fr.inria.diverse.melange.ui
 
+import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import java.io.ByteArrayInputStream
 import java.io.IOException
 import java.io.InputStream
@@ -17,20 +18,30 @@ import org.eclipse.jdt.launching.JavaRuntime
 import org.eclipse.pde.internal.core.natures.PDE
 import org.eclipse.swt.widgets.Shell
 import org.eclipse.ui.PlatformUI
-import java.util.jar.Manifest
 
 class EclipseProjectHelper
 {
-	def static IProject createEMFRuntimeProject(String name) {
+	def static IProject createEMFRuntimeProject(Metamodel mm) {
 		try {
+			// FIXME: Everything's hardcoded...
+			val basePkg = mm.name.toLowerCase
+			val generatedEPackageExtension = '''
+				<extension point="org.eclipse.emf.ecore.generated_package">
+					<package
+						uri="http://«basePkg»/"
+						class="«basePkg».«mm.name»Package"
+						genModel="model/«mm.name».genmodel"/>
+				</extension>
+			'''
 			val project = createEclipseProject(
-				name,
+				mm.name + "Runtime",
 				#[JavaCore::NATURE_ID, PDE::PLUGIN_NATURE],
 				#[JavaCore::BUILDER_ID,	PDE::MANIFEST_BUILDER_ID, PDE::SCHEMA_BUILDER_ID],
 				#["src"],
 				#[],
 				#["org.eclipse.emf.ecore"],
-				#[],
+				#[basePkg, basePkg + ".impl", basePkg + ".util"],
+				#[generatedEPackageExtension],
 				new NullProgressMonitor, // FIXME
 				PlatformUI.getWorkbench.activeWorkbenchWindow.shell
 			)
@@ -54,6 +65,7 @@ class EclipseProjectHelper
 		Iterable<IProject> referencedProjects,
 		Iterable<String> requiredBundles,
 		Iterable<String> exportedPackages,
+		Iterable<String> extensions,
 		IProgressMonitor monitor,
 		Shell shell
 	) {
@@ -111,7 +123,8 @@ class EclipseProjectHelper
 			javaProject.setOutputLocation(binFolder.fullPath, new SubProgressMonitor(monitor, 1))
 
 			createManifest(name, requiredBundles, exportedPackages, monitor, project)
-			createBuildProperties(monitor, project, srcFolders)
+			createPluginXml(project, extensions, monitor)
+			createBuildProperties(project, srcFolders, monitor)
 
 			return project
 		} catch (Exception e) {
@@ -149,10 +162,29 @@ class EclipseProjectHelper
 		createFile("MANIFEST.MF", metaInf, content, monitor)
 	}
 
-	def static private void createBuildProperties(
-		IProgressMonitor monitor,
+	def static private void createPluginXml(
 		IProject project,
-		Iterable<String> srcFolders
+		Iterable<String> extensions,
+		IProgressMonitor monitor
+	) {
+		val content = '''
+			<?xml version="1.0" encoding="UTF-8"?>
+			<?eclipse version="3.0"?>
+
+			<plugin>
+
+			«FOR e : extensions»«e»
+			«ENDFOR»
+
+			</plugin>
+		'''
+		createFile("plugin.xml", project, content, monitor)
+	}
+
+	def static private void createBuildProperties(
+		IProject project,
+		Iterable<String> srcFolders,
+		IProgressMonitor monitor
 	) {
 		val content = '''
 			source.. = «FOR f : srcFolders SEPARATOR ",\\n  "»«f»«ENDFOR»
