@@ -52,13 +52,16 @@ class EPackageProvider
 			switch (m) {
 				case m.ecoreUri !== null: {
 					val root = modelUtils.loadPkg(m.ecoreUri)
-					val pkgs = newArrayList
 
-					pkgs += root
-					pkgs += root.referencedPkgs.filter[!pkgs.exists[p | nsURI == p.nsURI]].map[EcoreUtil::copy(it)]
+					if (root !== null) {
+						val pkgs = newArrayList
 
-					packages.putAll(m, pkgs)
-					packages.putAll(m, pkgs.map[allSubPkgs].flatten.filter[!pkgs.exists[p | nsURI == p.nsURI]])
+						pkgs += root
+						pkgs += root.referencedPkgs.filter[!pkgs.exists[p | nsURI == p.nsURI]].map[EcoreUtil::copy(it)]
+
+						packages.putAll(m, pkgs)
+						packages.putAll(m, pkgs.map[allSubPkgs].flatten.filter[!pkgs.exists[p | nsURI == p.nsURI]])
+					}
 				}
 				Metamodel:
 					if (m.inheritanceRelation.superMetamodel !== null) {
