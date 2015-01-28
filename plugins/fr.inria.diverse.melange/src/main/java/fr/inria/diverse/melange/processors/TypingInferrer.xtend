@@ -18,6 +18,8 @@ class TypingInferrer extends DispatchMelangeProcessor
 	@Inject MelangeTypesRegistry typesRegistry
 
 	def dispatch void preProcess(ModelTypingSpace root) {
+		typesRegistry.clear
+
 		root.modelTypes
 		.filter[name !== null]
 		.forEach[mt1 |
@@ -45,6 +47,5 @@ class TypingInferrer extends DispatchMelangeProcessor
 	def dispatch void postProcess(ModelTypingSpace root) {
 		root.metamodels.forEach[^implements.clear]
 		root.modelTypes.forEach[subtypingRelations.clear]
-		typesRegistry.clear
 	}
 }
