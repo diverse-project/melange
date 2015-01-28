@@ -66,7 +66,7 @@ class MetamodelExtensions
 	}
 
 	def boolean getCanGenerate(Metamodel mm) {
-		return !mm.pkgs.empty && !mm.genmodels.empty
+		return !mm.pkgs.empty && !mm.genmodels.empty && mm.aspects.forall[aspectedClass !== null]
 	}
 
 	def List<Aspect> allAspects(Metamodel mm) {

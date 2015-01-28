@@ -39,4 +39,9 @@ class MelangeTypesRegistry
 	def Collection<ModelType> getSubtypings(String mtFqn) {
 		return subtypingRelations.get(mtFqn)
 	}
+
+	def void clear() {
+		implementationRelations.clear
+		subtypingRelations.clear
+	}
 }

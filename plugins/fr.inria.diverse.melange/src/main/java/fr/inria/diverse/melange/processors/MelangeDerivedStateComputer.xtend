@@ -34,7 +34,9 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 	override discardDerivedState(DerivedStateAwareResource resource) {
 		// Post-inferring processors
 		val root = resource.contents.head as ModelTypingSpace
-		processors.forEach[postProcess(root)]
+
+		if (root !== null)
+			processors.forEach[postProcess(root)]
 
 		super.discardDerivedState(resource)
 
