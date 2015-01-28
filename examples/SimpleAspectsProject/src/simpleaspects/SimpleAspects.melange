@@ -1,0 +1,36 @@
+package simpleaspects
+
+import static extension fr.inria.diverse.melange.lib.MetamodelExtensions.*
+
+metamodel Fsm {
+	ecore "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.fsm/model/FSM.ecore"
+	exactType FsmMT
+	with simpleaspects.ExecutableFsmAspect
+	with simpleaspects.ExecutableStateAspect
+	with simpleaspects.ExecutableTransitionAspect
+}
+
+metamodel TimedFsm {
+	ecore "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.timedfsm/model/TimedFSM.ecore"
+	exactType TimedFsmMT
+	with simpleaspects.TimedFsmAspect
+	with simpleaspects.TimedStateAspect
+	with simpleaspects.TimedTransitionAspect
+}
+
+transformation execute(FsmMT m) {
+	val root = m.contents.head as simpleaspects.fsmmt.FSM
+
+	print("Output: ")
+	root.execute("adcdce")
+	println
+}
+
+@Main
+transformation main() {
+	val m1 =      Fsm.load("input/Simple.fsm", FsmMT)
+	val m2 = TimedFsm.load("input/Simple.timedfsm", FsmMT)
+
+	execute.call(m1)
+	execute.call(m2)
+}
