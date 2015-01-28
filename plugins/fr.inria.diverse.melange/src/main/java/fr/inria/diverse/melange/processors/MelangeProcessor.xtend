@@ -1,9 +1,9 @@
 package fr.inria.diverse.melange.processors
 
-import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
+import org.eclipse.emf.ecore.EObject
 
 interface MelangeProcessor
 {
-	def void preProcess(ModelTypingSpace root)
-	def void postProcess(ModelTypingSpace root)
+	def void preProcess(EObject object)
+	def void postProcess(EObject object)
 }

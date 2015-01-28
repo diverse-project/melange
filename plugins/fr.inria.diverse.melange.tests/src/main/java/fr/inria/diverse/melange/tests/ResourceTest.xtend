@@ -81,7 +81,7 @@ class ResourceTest
 		val uri = "melange:/../fr.inria.diverse.melange.tests/tests-inputs/models/Simple.fsm?mt=Invalid"
 		val res = uri.getResource
 
-		println(res.contents.head)
+		res.contents.head
 	}
 
 	@Before

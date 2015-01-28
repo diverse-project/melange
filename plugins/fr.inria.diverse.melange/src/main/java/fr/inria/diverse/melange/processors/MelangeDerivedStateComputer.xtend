@@ -1,22 +1,14 @@
 package fr.inria.diverse.melange.processors
 
 import com.google.inject.Inject
-
-import fr.inria.diverse.melange.jvmmodel.MelangeTypesBuilder
 import fr.inria.diverse.melange.jvmmodel.JvmModelInferrerHelper
-
+import fr.inria.diverse.melange.jvmmodel.MelangeTypesBuilder
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
-
 import fr.inria.diverse.melange.utils.EPackageProvider
-
 import java.util.List
-
 import org.apache.log4j.Logger
-
 import org.eclipse.xtext.resource.DerivedStateAwareResource
-
 import org.eclipse.xtext.util.internal.Stopwatches
-
 import org.eclipse.xtext.xbase.jvmmodel.JvmModelAssociator
 
 import static org.eclipse.xtext.util.internal.Stopwatches.*
@@ -33,11 +25,10 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 	// FIXME: Because Guice's Multibinders aren't available,
 	//         quick & dirty solution
 	@Inject
-	new(ExactTypeInferrer e, ModelLoader l, ASTCompleter c, ASTValidator v) {
+	new(AspectsWeaver a, ExactTypeInferrer e, TypingInferrer t) {
+		processors += a
 		processors += e
-		processors += l
-		processors += c
-		processors += v
+		processors += t
 	}
 
 	override discardDerivedState(DerivedStateAwareResource resource) {

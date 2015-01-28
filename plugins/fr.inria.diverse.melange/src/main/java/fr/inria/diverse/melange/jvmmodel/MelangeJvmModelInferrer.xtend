@@ -2,7 +2,6 @@ package fr.inria.diverse.melange.jvmmodel
 
 import com.google.inject.Inject
 
-import fr.inria.diverse.melange.ast.ASTCompleter
 import fr.inria.diverse.melange.ast.ASTHelper
 import fr.inria.diverse.melange.ast.ASTProcessingException
 
@@ -17,7 +16,6 @@ import fr.inria.diverse.melange.ast.ModelTypeExtensions
 
 class MelangeJvmModelInferrer extends AbstractModelInferrer
 {
-	@Inject ASTCompleter completer
 	@Inject extension ASTHelper
 	@Inject extension ModelTypeInferrer
 	@Inject extension MetamodelInferrer
@@ -33,10 +31,7 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 		root = typingSpace
 
 		try {
-			completer.complete(root)
-
 //			if (Diagnostician.INSTANCE.validate(typingSpace).severity != Diagnostic.ERROR) {
-				completer.inferTypingRelations(root)
 				root.modelTypes.filter[canGenerate].forEach[generateInterfaces(acceptor, _typeReferenceBuilder)]
 				root.metamodels.filter[canGenerate].forEach[generateAdapters(acceptor, _typeReferenceBuilder)]
 				root.transformations.forEach[generateTransformation(acceptor, _typeReferenceBuilder)]

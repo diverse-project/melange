@@ -57,8 +57,6 @@ class MelangeQuickfixProvider extends XbaseQuickfixProvider
 
 				val rs = mm.eResource.resourceSet
 				val project = projectProvider.getJavaProject(rs).project
-				println("javaP="+project)
-
 				val manifestFile = project.getFile("META-INF/MANIFEST.MF")
 
 				if (manifestFile !== null

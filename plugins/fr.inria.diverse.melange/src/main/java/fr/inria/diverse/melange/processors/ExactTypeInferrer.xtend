@@ -7,11 +7,11 @@ import fr.inria.diverse.melange.ast.ASTHelper
 import fr.inria.diverse.melange.metamodel.melange.MelangeFactory
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 
-class ExactTypeInferrer implements MelangeProcessor
+class ExactTypeInferrer extends DispatchMelangeProcessor
 {
 	@Inject extension ASTHelper
 
-	override preProcess(ModelTypingSpace root) {
+	def dispatch void preProcess(ModelTypingSpace root) {
 		val newMTs = newArrayList
 
 		root.metamodels.forEach[mm |
@@ -27,9 +27,5 @@ class ExactTypeInferrer implements MelangeProcessor
 		root.metamodels.forEach[mm |
 			mm.exactType = root.modelTypes.findFirst[name == mm.exactTypeName]
 		]
-	}
-
-	override postProcess(ModelTypingSpace root) {
-		// ...
 	}
 }
