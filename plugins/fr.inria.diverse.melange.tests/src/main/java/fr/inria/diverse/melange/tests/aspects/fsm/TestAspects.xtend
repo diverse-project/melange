@@ -15,32 +15,32 @@ import java.util.List
 
 @Aspect(className = State)
 class SimpleAttributes {
-	String foo
-	int i
-	boolean b
-	char c
-	long l
-	double d
-	float f
+	public String foo
+	public int i
+	public boolean b
+	public char c
+	public long l
+	public double d
+	public float f
 }
 
 @Aspect(className = Transition)
 class AttributesCollections {
-	List<String> ls
-	ArrayList<String> als
+	public List<String> ls
+	public ArrayList<String> als
 }
 
 @Aspect(className = FSM)
 class SimpleReferences {
-	State s
-	FSM f
+	public State s
+	public FSM f
 }
 
 @Aspect(className = State)
 class ReferencesCollections {
-	List<State> ls
-	ArrayList<FSM> lf
-	Collection<Transition> lt
+	public List<State> ls
+	public ArrayList<FSM> lf
+	public Collection<Transition> lt
 }
 
 interface A {}
@@ -50,9 +50,9 @@ enum C {
 }
 @Aspect(className = Transition)
 class ExternalReferences {
-	A a
-	List<B> b
-	C c
+	public A a
+	public List<B> b
+	public C c
 
 	def Object foo(A arg1, C arg2) { return null }
 }

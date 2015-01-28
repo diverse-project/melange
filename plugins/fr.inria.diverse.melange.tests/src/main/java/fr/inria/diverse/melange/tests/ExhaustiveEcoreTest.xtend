@@ -41,6 +41,7 @@ import org.eclipse.xtext.generator.InMemoryFileSystemAccess
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
 
+import org.junit.Ignore
 import org.junit.Test
 
 import org.junit.runner.RunWith
@@ -116,7 +117,7 @@ class ExhaustiveEcoreTest
 		assertEquals(fsa.textFiles.size, 67)
 	}
 
-	// Won't compile until generics are implented
+	@Ignore("Won't pass until generics can be fully abstracted")
 	@Test
 	def void testRuntime() {
 		try {
