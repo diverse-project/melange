@@ -61,7 +61,7 @@ public interface Subtyping extends EObject {
 	 * @return the value of the '<em>Super Type</em>' reference.
 	 * @see #setSuperType(ModelType)
 	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getSubtyping_SuperType()
-	 * @model required="true"
+	 * @model required="true" derived="true"
 	 * @generated
 	 */
 	ModelType getSuperType();
