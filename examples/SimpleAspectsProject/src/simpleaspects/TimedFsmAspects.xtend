@@ -13,7 +13,7 @@ import static extension simpleaspects.TimedTransitionAspect.*
 @Aspect(className = FSM)
 class TimedFsmAspect
 {
-	State current
+	public State current
 
 	def void execute(String input) {
 		if (_self.current == null)

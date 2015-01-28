@@ -13,7 +13,7 @@ import static extension simpleaspects.ExecutableTransitionAspect.*
 @Aspect(className = FSM)
 class ExecutableFsmAspect
 {
-	State current
+	public State current
 
 	def void execute(String input) {
 		if (_self.current == null)
