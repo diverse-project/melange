@@ -30,6 +30,7 @@ import org.eclipse.xtext.generator.InMemoryFileSystemAccess
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
 
+import org.junit.Ignore
 import org.junit.Test
 
 import org.junit.runner.RunWith
@@ -93,6 +94,7 @@ class EcoreTest
 		assertEquals(fsa.textFiles.size, 47)
 	}
 
+	@Ignore("Ecore isn't supported anymore, as its features clash with EObjectAdapter")
 	@Test
 	def void testRuntime() {
 		try {

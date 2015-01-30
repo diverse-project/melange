@@ -48,36 +48,34 @@ class MelangeResource implements Resource$Internal
 		expectedMt = melangeUri.query.split("=").get(1)
 	}
 
-	override getContents() {
+	override getContents() throws RuntimeException {
 		val objs = xmiResource.getContents()
 
-		if (!objs.empty) {
-			val actualPkgUri = objs.head.eClass.EPackage.nsURI
-			val pair = actualPkgUri -> expectedMt
-			val adapterCls = ModelTypeAdapter$Registry::INSTANCE.get(pair)
+		if (objs.empty)
+			return objs
 
-			if (adapterCls !== null) {
-				try {
-					val adapter = adapterCls.newInstance => [adaptee = xmiResource]
-					return adapter.contents
-				} catch (InstantiationException e) {
-					// ...
-					e.printStackTrace
-				} catch (IllegalAccessException e) {
-					// ...
-					e.printStackTrace
-				}
+		val actualPkgUri = objs.head.eClass.EPackage.nsURI
+		val pair = actualPkgUri -> expectedMt
+		val adapterCls = ModelTypeAdapter$Registry::INSTANCE.get(pair)
+
+		if (adapterCls !== null) {
+			try {
+				val adapter = adapterCls.newInstance => [adaptee = xmiResource]
+				return adapter.contents
+			} catch (InstantiationException e) {
+				throw new MelangeResourceException('''Cannot instantiate adapter type «adapterCls»''', e)
+			} catch (IllegalAccessException e) {
+				throw new MelangeResourceException('''Cannot access adapter type «adapterCls»''', e)
 			}
 		}
 
-		// FIXME: ...
-		return null
+		throw new MelangeResourceException('''No adapter class registered for «pair»''')
 	}
 
 	override getAllContents() {
 		// FIXME: Should perform adaptation here
 		println("FIXME: Should perform adaptation here")
-		return xmiResource.getAllContents()
+		return xmiResource.allContents
 	}
 
 	override getEObject(String uriFragment) {
@@ -93,8 +91,12 @@ class MelangeResource implements Resource$Internal
 	}
 }
 
-class MelangeResourceException extends Exception {
+class MelangeResourceException extends RuntimeException {
 	new(String msg) {
 		super(msg)
+	}
+
+	new(String msg, Exception cause) {
+		super(msg, cause)
 	}
 }

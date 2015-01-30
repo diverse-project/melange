@@ -45,12 +45,12 @@ class ModelOrientedXbaseCompiler extends XbaseCompiler
 			&& returned.isSubtypeOf(IModelType)
 			&& typesRegistry.getSubtypings(returned.identifier)
 			   .exists[fullyQualifiedName.toString == expected.identifier]
-		
+
 		if (isSubtype) {
 			// FIXME: Generated code is invalid
 			appendable.append('''((fr.inria.diverse.melange.lib.GenericAdapter<XXX>) ''')
 		}
-		
+
 		super.internalToConvertedExpression(expr, appendable)
 
 		if (isImplements) {

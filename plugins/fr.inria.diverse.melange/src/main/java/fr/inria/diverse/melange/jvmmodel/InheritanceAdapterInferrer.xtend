@@ -59,21 +59,21 @@ class InheritanceAdapterInferrer
 
 					val returnType = if (attr.many) EList.typeRef(baseType) else baseType
 
-					jvmCls.members += attr.toMethod(attr.getterName, returnType)[
+					jvmCls.members += mm.toMethod(attr.getterName, returnType)[
 						body = '''return adaptee.«attr.getterName»() ;'''
 					]
 
 					if (attr.needsSetter)
-						jvmCls.members += attr.toMethod(attr.setterName,Void::TYPE.typeRef)[
-							parameters += attr.toParameter("o", baseType)
+						jvmCls.members += mm.toMethod(attr.setterName,Void::TYPE.typeRef)[
+							parameters += mm.toParameter("o", baseType)
 							body = '''adaptee.«attr.setterName»(o) ;'''
 						]
 
 					if (attr.needsUnsetter)
-						jvmCls.members += attr.toUnsetter(attr.name)
+						jvmCls.members += mm.toUnsetter(attr.name)
 
 					if (attr.needsUnsetterChecker)
-						jvmCls.members += attr.toUnsetterCheck(attr.name)
+						jvmCls.members += mm.toUnsetterCheck(attr.name)
 				]
 
 				cls.EAllReferences.forEach[ref |
@@ -86,7 +86,7 @@ class InheritanceAdapterInferrer
 							ref.EReferenceType.instanceClass.name.typeRef
 
 					if (ref.many)
-						jvmCls.members += ref.toMethod(ref.getterName, EList.typeRef(baseType))[
+						jvmCls.members += mm.toMethod(ref.getterName, EList.typeRef(baseType))[
 							body = '''
 								«IF ref.EReferenceType.instanceClass !== null»
 								return adaptee.«ref.getterName»() ;
@@ -100,7 +100,7 @@ class InheritanceAdapterInferrer
 							'''
 						]
 					else {
-						jvmCls.members += ref.toMethod(ref.getterName, baseType)[
+						jvmCls.members += mm.toMethod(ref.getterName, baseType)[
 								body = '''
 									«adapName» adap = new «adapName»() ;
 									adap.setAdaptee(adaptee.«ref.getterName»()) ;
@@ -109,18 +109,18 @@ class InheritanceAdapterInferrer
 							]
 
 						if (ref.needsSetter)
-							jvmCls.members += ref.toMethod(ref.setterName, Void::TYPE.typeRef)[
-									parameters += ref.toParameter("o", superMM.getFqnFor(ref.EReferenceType).typeRef)
+							jvmCls.members += mm.toMethod(ref.setterName, Void::TYPE.typeRef)[
+									parameters += mm.toParameter("o", superMM.getFqnFor(ref.EReferenceType).typeRef)
 									body = '''
 										adaptee.«ref.setterName»(((«adapName») o).getAdaptee()) ;
 									'''
 								]
 
 						if (ref.needsUnsetter)
-							jvmCls.members += ref.toUnsetter(ref.name)
+							jvmCls.members += mm.toUnsetter(ref.name)
 
 						if (ref.needsUnsetterChecker)
-							jvmCls.members += ref.toUnsetterCheck(ref.name)
+							jvmCls.members += mm.toUnsetterCheck(ref.name)
 					}
 				]
 
@@ -129,7 +129,7 @@ class InheritanceAdapterInferrer
 					val realType = if (op.many) EList.typeRef(baseType) else baseType
 					val opName = if (!mm.isUml(op.EContainingClass)) op.name else op.formatUmlOperationName
 
-					jvmCls.members += op.toMethod(opName, realType)[
+					jvmCls.members += mm.toMethod(opName, realType)[
 						val paramsList = new StringBuilder
 
 						op.EParameters.forEach[p, i |
@@ -146,7 +146,7 @@ class InheritanceAdapterInferrer
 							else
 								mm.typeRef(superMM, p.EType)
 
-							parameters += op.toParameter(p.name, pType)
+							parameters += mm.toParameter(p.name, pType)
 
 							paramsList.append('''
 								«IF i > 0», «ENDIF»

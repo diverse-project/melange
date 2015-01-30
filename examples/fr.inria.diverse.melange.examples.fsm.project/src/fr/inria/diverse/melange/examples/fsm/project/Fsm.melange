@@ -5,27 +5,27 @@ import fr.inria.diverse.melange.examples.fsm.project.executablefsmmt.FSM
 import static extension fr.inria.diverse.melange.lib.MetamodelExtensions.*
 
 modeltype MinimalFsmMT {
-	ecore "platform:/resource/fr.inria.diverse.melange.examples.metamodels.simplefsm/model/SimpleFSM.ecore"
+	ecore "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.simplefsm/model/SimpleFSM.ecore"
 }
 
 metamodel SimpleFsm implements MinimalFsmMT {
-	ecore "platform:/resource/fr.inria.diverse.melange.examples.metamodels.simplefsm/model/SimpleFSM.ecore"
+	ecore "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.simplefsm/model/SimpleFSM.ecore"
 	exactType SimpleFsmMT
 }
 
 metamodel CompositeFsm {
-	ecore "platform:/resource/fr.inria.diverse.melange.examples.metamodels.compositefsm/model/CompositeFSM.ecore"
+	ecore "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.compositefsm/model/CompositeFSM.ecore"
 	exactType CompositeFsmMT
 }
 
 metamodel ExecutableFsm {
-	ecore "platform:/resource/fr.inria.diverse.melange.examples.metamodels.fsm/model/FSM.ecore"
+	ecore "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.fsm/model/FSM.ecore"
 	exactType ExecutableFsmMT
 	with fr.inria.diverse.melange.examples.fsm.project.ExecutableFsmAspect
 }
 
 metamodel TimedFsm {
-	ecore "platform:/resource/fr.inria.diverse.melange.examples.metamodels.timedfsm/model/TimedFSM.ecore"
+	ecore "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.timedfsm/model/TimedFSM.ecore"
 	exactType TimedFsmMT
 	with fr.inria.diverse.melange.examples.fsm.project.TimedFsmAspect
 }

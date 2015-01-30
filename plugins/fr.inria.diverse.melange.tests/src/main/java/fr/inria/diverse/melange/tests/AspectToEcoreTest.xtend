@@ -116,7 +116,7 @@ class AspectToEcoreTest
 							return ref == EcorePackage.Literals.EMODEL_ELEMENT__EANNOTATIONS
 							        || super.isIgnoredReference(match, ref)
 						}
-						
+
 						override boolean checkForOrderingChanges(EStructuralFeature f) {
 							return false
 						}

@@ -7,14 +7,13 @@ import com.google.inject.Inject
 import fr.inria.diverse.melange.algebra.ModelTypeAlgebra
 
 import fr.inria.diverse.melange.lib.EcoreExtensions
-import fr.inria.diverse.melange.lib.ModelUtils
 
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 
 import fr.inria.diverse.melange.utils.AspectToEcore
-import fr.inria.diverse.melange.utils.EPackageRegistry
+import fr.inria.diverse.melange.utils.EPackageProvider
 
 import java.io.IOException
 
@@ -59,12 +58,15 @@ class MetamodelExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension ModelTypeExtensions
 	@Inject extension AspectToEcore
-	@Inject ModelUtils modelUtils
 	@Inject ModelTypeAlgebra algebra
-	@Inject EPackageRegistry registry
+	@Inject EPackageProvider provider
 
 	def List<GenModel> getGenmodels(Metamodel mm) {
-		return registry.getGenModels(mm)
+		return provider.getGenModels(mm)
+	}
+
+	def boolean getCanGenerate(Metamodel mm) {
+		return !mm.pkgs.empty && !mm.genmodels.empty && mm.aspects.forall[aspectedClass !== null]
 	}
 
 	def List<Aspect> allAspects(Metamodel mm) {
@@ -103,29 +105,6 @@ class MetamodelExtensions
 			return aspVal.substring(aspVal.lastIndexOf(".") + 1, aspVal.length)
 
 		return aspVal
-	}
-
-	def boolean isGeneratedByMelange(Metamodel mm) {
-		return mm.inheritanceRelation?.superMetamodel !== null
-	}
-
-	def boolean runtimeHasBeenGenerated(Metamodel mm) {
-		return
-			if (mm.isGeneratedByMelange) {
-				val segments = newArrayList
-				val gp = mm.genmodels.head.genPackages.head
-
-				if (gp.basePackage !== null && gp.basePackage.length > 0)
-					segments += gp.basePackage
-				if (gp.prefix !== null && gp.prefix.length > 0)
-					segments += gp.prefix
-
-				val fqn = QualifiedName::create(segments).toString.toLowerCase
-				val expected = ".." + mm.genmodels.head.modelDirectory
-					+ "/" + fqn
-				return mm.project.getFolder(expected).exists
-			}
-			else true
 	}
 
 	def EClass findClass(Metamodel mm, String clsName) {
@@ -256,101 +235,98 @@ class MetamodelExtensions
 		]
 	}
 
-	def void createEcore(EPackage pkg, String uri) {
-		val resSet = new ResourceSetImpl
-		val res = resSet.createResource(URI.createURI(uri))
-		res.contents.add(pkg.copy)
-
-		try {
-			res.save(null)
-		} catch (IOException e) {
-			e.printStackTrace
-		}
+	def void createLocalEcore(Metamodel mm) {
+		mm.createEcore(mm.localEcoreUri)
 	}
 
-	def URI createEcore(Metamodel mm, EPackage root) {
-		val ecoreUri = URI.createURI(mm.generationFolder + mm.name + ".ecore")
-		val resSet = new ResourceSetImpl
-		val res = resSet.createResource(ecoreUri)
-		res.contents.add(root)
-
-		try {
-			res.save(null)
-		} catch (IOException e) {
-			e.printStackTrace
-		}
-
-		return ecoreUri
+	def void createLocalGenmodel(Metamodel mm) {
+		mm.createGenmodel(mm.localEcoreUri, mm.localGenmodelUri, mm.localGenerationPath)
 	}
 
-	def void createExtendedMetamodel(Metamodel mm, String uri) {
-		val resSet = new ResourceSetImpl
-		val res = resSet.createResource(URI.createURI(uri))
-		res.contents.addAll(mm.pkgs.map[copy])
-
-		try {
-			res.save(null)
-		} catch (IOException e) {
-			e.printStackTrace
-		}
+	def void createExternalEcore(Metamodel mm) {
+		mm.createEcore(mm.externalEcoreUri)
 	}
 
-	def void createGenModel(EPackage pkg, Metamodel mm, String ecoreLocation, String genModelLocation, String modelDirectory) {
-		// FIXME: Stupid fix -> reopen the Ecore here to avoid Xtext-style cross-references in the genmodel
-		val pkgs = modelUtils.loadAllPkgs(ecoreLocation)
-
-		val genModel = GenModelFactory.eINSTANCE.createGenModel => [
-			it.complianceLevel = GenJDKLevel.JDK70_LITERAL
-			it.modelDirectory = modelDirectory
-			it.foreignModel.add(ecoreLocation)
-			it.modelName = mm.name
-			//it.usedGenPackages += mm.inheritanceRelation?.superMetamodel?.genmodels.head.genPackages
-			it.initialize(Lists.newArrayList(pkgs))
-		]
-
-		val resSet = new ResourceSetImpl
-		val res = resSet.createResource(URI.createURI(genModelLocation))
-		res.contents.add(genModel)
-
-		try {
-			res.save(null)
-			//genModel.generateCode
-		} catch (IOException e) {
-			e.printStackTrace
-		}
+	def void createExternalGenmodel(Metamodel mm) {
+		mm.createGenmodel(mm.externalEcoreUri, mm.externalGenmodelUri, mm.externalGenerationPath)
 	}
 
-	def void createGenModel(EPackage pkg, Metamodel mm, String ecoreLocation, String genModelLocation) {
-		//createGenModel(pkg, mm, ecoreLocation, genModelLocation, '''/«mm.name»Generated/src/''')
-		createGenModel(pkg, mm, ecoreLocation, genModelLocation, '''/«mm.project.name»/emf-gen''')
+	def String getLocalEcorePath(Metamodel mm) {
+		return '''../«mm.project.name»/model-gen/«mm.name».ecore'''
 	}
 
-	def void createExtendedGenmodel(Metamodel mm, String ecoreLocation, String genModelLocation, String modelDirectory) {
-		// FIXME: Stupid fix -> reopen the Ecore here to avoid Xtext-style cross-references in the genmodel
-		val pkgs = modelUtils.loadAllPkgs(ecoreLocation)
-		val parentGm = modelUtils.loadGenmodel(mm.inheritanceRelation?.superMetamodel?.genmodelUris.head)
+	def String getLocalGenmodelPath(Metamodel mm) {
+		return '''../«mm.project.name»/model-gen/«mm.name».genmodel'''
+	}
 
-		val genModel = GenModelFactory.eINSTANCE.createGenModel => [
-			it.complianceLevel = GenJDKLevel.JDK70_LITERAL
-			it.modelDirectory = modelDirectory
-			it.modelName = mm.name
-			it.modelPluginID = mm.name
-			it.usedGenPackages += parentGm.genPackages
-			it.foreignModel.add(ecoreLocation)
-			it.initialize(Lists.newArrayList(pkgs))
-			it.genPackages.forEach[basePackage = mm.name.toLowerCase]
-		]
+	def String getLocalGenerationPath(Metamodel mm) {
+		return '''../«mm.project.name»/emf-gen/'''
+	}
 
-		val resSet = new ResourceSetImpl
-		val res = resSet.createResource(URI.createURI(genModelLocation))
-		res.contents.add(genModel)
+	def String getExternalEcorePath(Metamodel mm) {
+		return '''../«mm.externalRuntimeName»/model/«mm.name».ecore'''
+	}
 
-		try {
-			res.save(null)
-			//genModel.generateCode
-		} catch (IOException e) {
-			e.printStackTrace
-		}
+	def String getExternalGenmodelPath(Metamodel mm) {
+		return '''../«mm.externalRuntimeName»/model/«mm.name».genmodel'''
+	}
+
+	def String getExternalGenerationPath(Metamodel mm) {
+		return '''../«mm.externalRuntimeName»/src/'''
+	}
+
+	def String getLocalEcoreUri(Metamodel mm) {
+		return '''platform:/resource/«mm.project.name»/model-gen/«mm.name».ecore'''
+	}
+
+	def String getLocalGenmodelUri(Metamodel mm) {
+		return '''platform:/resource/«mm.project.name»/model-gen/«mm.name».genmodel'''
+	}
+
+	def String getExternalEcoreUri(Metamodel mm) {
+		return '''platform:/resource/«mm.externalRuntimeName»/model/«mm.name».ecore'''
+	}
+
+	def String getExternalGenmodelUri(Metamodel mm) {
+		return '''platform:/resource/«mm.externalRuntimeName»/model/«mm.name».genmodel'''
+	}
+
+	def String getExternalRuntimeName(Metamodel mm) {
+		return mm.name + "Runtime"
+	}
+
+	def boolean isGeneratedByMelange(Metamodel mm) {
+		return mm.inheritanceRelation?.superMetamodel !== null
+	}
+
+	def boolean getRuntimeHasBeenGenerated(Metamodel mm) {
+		if (mm.isGeneratedByMelange) {
+			val segments = newArrayList
+			val gp = mm.genmodels.head?.genPackages?.head
+
+			if (gp === null)
+				return false
+
+			if (gp.basePackage !== null && gp.basePackage.length > 0)
+				segments += gp.basePackage
+			if (gp.prefix !== null && gp.prefix.length > 0)
+				segments += gp.prefix
+
+			val fqn = QualifiedName::create(segments).toString.toLowerCase
+
+			if ((
+				   mm.project.getFile(mm.localEcorePath).exists
+				&& mm.project.getFile(mm.localGenmodelPath).exists
+				&& mm.project.getFolder(mm.localGenerationPath + fqn).exists
+			) || (
+				   mm.project.getFile(mm.externalEcorePath).exists
+				&& mm.project.getFile(mm.externalGenmodelPath).exists
+				&& mm.project.getFolder(mm.externalGenerationPath + fqn).exists
+			))
+				return true
+			else return false
+		} else
+			return true
 	}
 
 	def void generateCode(GenModel genModel) {
@@ -358,23 +334,48 @@ class MetamodelExtensions
 		genModel.canGenerate = true
 		genModel.validateModel = true
 
-		val generator = GenModelUtil.createGenerator(genModel)
+		val generator = GenModelUtil::createGenerator(genModel)
 		generator.generate(
 			genModel,
-			GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE,
-			new BasicMonitor.Printing(System.out)
+			GenBaseGeneratorAdapter::MODEL_PROJECT_TYPE,
+			new BasicMonitor.Printing(System::out)
 		)
-	}
-
-	def String getGenerationFolder(Metamodel mm) {
-		//return '''platform:/resource/«mm.project.name»/generated/«mm.name»/'''
-		//return '''platform:/resource/«mm.name»Generated/model/'''
-		//return '''platform:/resource/«mm.project.name»/model-gen/«mm.name»/'''
-		return '''platform:/resource/«mm.project.name»/model-gen/'''
 	}
 
 	def IProject getProject(Metamodel mm) {
 		val platformString = mm.eResource.URI.toPlatformString(true)
 		return ResourcesPlugin.workspace.root.getFile(new Path(platformString)).project
+	}
+
+	def private void createEcore(Metamodel mm, String uri) {
+		val resSet = new ResourceSetImpl
+		val res = resSet.createResource(URI::createURI(uri))
+		res.contents += mm.pkgs.head
+
+		try {
+			res.save(null)
+		} catch (IOException e) {
+			e.printStackTrace
+		}
+	}
+
+	def private void createGenmodel(Metamodel mm, String ecoreUri, String gmUri, String modelDirectory) {
+		val genmodel = GenModelFactory.eINSTANCE.createGenModel => [
+			it.complianceLevel = GenJDKLevel.JDK70_LITERAL
+			it.modelDirectory = modelDirectory.replaceFirst("platform:/resource", "")
+			it.foreignModel += ecoreUri
+			it.modelName = mm.name
+			it.initialize(Lists::newArrayList(mm.pkgs))
+		]
+
+		val resSet = new ResourceSetImpl
+		val res = resSet.createResource(URI::createURI(gmUri))
+		res.contents += genmodel
+
+		try {
+			res.save(null)
+		} catch (IOException e) {
+			e.printStackTrace
+		}
 	}
 }

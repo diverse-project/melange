@@ -169,7 +169,7 @@ class MelangeTypesBuilder
 
 	def JvmTypeReference createTypeParameterReference(JvmTypeParameterDeclarator[] lst, String find) {
 		val findRef = lst.map[typeParameters].flatten.findFirst[name == find]
-		
+
 		return if (findRef !== null) typeReferences.createTypeRef(findRef) else Object.typeRef
 	}
 }

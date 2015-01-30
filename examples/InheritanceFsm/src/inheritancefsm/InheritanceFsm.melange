@@ -1,0 +1,13 @@
+package inheritancefsm
+
+metamodel Fsm {
+	ecore "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.fsm/model/FSM.ecore"
+	exactType FsmMT
+}
+
+metamodel TimedFsm inherits Fsm {
+	exactType TimedFsmMT
+	with inheritancefsm.FSMAspect
+	with inheritancefsm.StateAspect
+	with inheritancefsm.TransitionAspect
+}

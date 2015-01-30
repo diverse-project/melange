@@ -9,35 +9,35 @@
          id="fr.inria.diverse.melange"
          download-size="0"
          install-size="0"
-         version="0.1.0"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="fr.inria.diverse.melange.lib"
          download-size="0"
          install-size="0"
-         version="0.1.0"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="fr.inria.diverse.melange.metamodel"
          download-size="0"
          install-size="0"
-         version="0.1.0"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="fr.inria.diverse.melange.resource"
          download-size="0"
          install-size="0"
-         version="0.1.0"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="fr.inria.diverse.melange.ui"
          download-size="0"
          install-size="0"
-         version="0.1.0"
+         version="0.0.0"
          unpack="false"/>
 
 </feature>

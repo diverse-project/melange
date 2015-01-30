@@ -101,7 +101,6 @@ public abstract class ModelingElementImpl extends ElementImpl implements Modelin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {

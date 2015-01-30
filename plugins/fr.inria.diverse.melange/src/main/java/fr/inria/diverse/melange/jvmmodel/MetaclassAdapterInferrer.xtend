@@ -14,14 +14,11 @@ import fr.inria.diverse.melange.metamodel.melange.ModelType
 
 import fr.inria.diverse.melange.utils.AspectToEcore
 
-import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.common.util.EMap
 
 import org.eclipse.emf.ecore.EClass
 
 import org.eclipse.xtext.common.types.JvmDeclaredType
-import org.eclipse.xtext.common.types.JvmMember
-import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmVisibility
 import org.eclipse.xtext.common.types.TypesFactory
 

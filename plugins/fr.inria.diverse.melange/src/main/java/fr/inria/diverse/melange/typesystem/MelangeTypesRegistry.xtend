@@ -16,7 +16,7 @@ class MelangeTypesRegistry
 	 * <MM, MT> <=> MM implements MT
 	 */
 	Multimap<String, ModelType> implementationRelations = ArrayListMultimap.create
-	
+
 	/**
 	 * <MT, MT'> <=> MT subtypeOf MT'
 	 */
@@ -26,7 +26,7 @@ class MelangeTypesRegistry
 		if (!implementationRelations.containsEntry(mm, mt))
 			implementationRelations.put(mm, mt)
 	}
-	
+
 	def void registerSubtyping(String subType, ModelType superType) {
 		if (!subtypingRelations.containsEntry(subType, superType))
 			subtypingRelations.put(subType, superType)
@@ -38,5 +38,10 @@ class MelangeTypesRegistry
 
 	def Collection<ModelType> getSubtypings(String mtFqn) {
 		return subtypingRelations.get(mtFqn)
+	}
+
+	def void clear() {
+		implementationRelations.clear
+		subtypingRelations.clear
 	}
 }
