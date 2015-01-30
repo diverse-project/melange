@@ -80,7 +80,7 @@ class ModelTypeInferrer
 			mt.generateInterface(cls, acceptor, builder)
 		]
 
-		if (mt.isImported)
+		//if (mt.isImported)
 			mt.allEnums.forEach[enu |
 				mt.generateEnum(enu, acceptor, builder)
 			]

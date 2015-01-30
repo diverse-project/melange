@@ -17,6 +17,7 @@ import fr.inria.diverse.melange.utils.AspectToEcore
 import org.eclipse.emf.common.util.EMap
 
 import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EEnum
 
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmVisibility
@@ -70,17 +71,28 @@ class MetaclassAdapterInferrer
 				val setterName = attr.setterName
 
 				jvmCls.members += mm.toMethod(getterName, attrType)[
-					body = '''
-						return adaptee.«getterName»() ;
-					'''
+					if (attr.EType instanceof EEnum)
+						body = '''
+							return «superType.getFqnFor(attr.EType)».get(adaptee.«getterName»().getValue());
+						'''
+					else
+						body = '''
+							return adaptee.«getterName»() ;
+						'''
 				]
 
 				if (attr.needsSetter) {
 					jvmCls.members += mm.toMethod(setterName, Void::TYPE.typeRef)[
 						parameters += mm.toParameter("o", attrType)
-						body = '''
-							adaptee.«setterName»(o) ;
-						'''
+
+						if (attr.EType instanceof EEnum)
+							body = '''
+								adaptee.«setterName»(«mm.getFqnFor(attr.EType)».get(o.getValue())) ;
+							'''
+						else
+							body = '''
+								adaptee.«setterName»(o) ;
+							'''
 					]
 				}
 
