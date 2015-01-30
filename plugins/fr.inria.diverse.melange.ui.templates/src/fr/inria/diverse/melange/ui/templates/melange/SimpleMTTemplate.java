@@ -81,7 +81,7 @@ public class SimpleMTTemplate extends MelangeTemplateSection {
 	private void createOptions() {
 		addOption(KEY_PACKAGE_NAME, MelangeTemplateMessages.SimpleMTTemplate_packageName, (String) null, 0);
 		addOption(MELANGE_FILE_NAME, MelangeTemplateMessages.SimpleMTTemplate_melangeFileName, MELANGE_FILE_NAME, 0);
-		addOption(KEY_METAMODEL_NAME, MelangeTemplateMessages.SimpleMTTemplate_melangeFileName, METAMODEL_NAME, 0);
+		addOption(KEY_METAMODEL_NAME, MelangeTemplateMessages.SimpleMTTemplate_melangeMetamodelName, METAMODEL_NAME, 0);
 		TemplateOption ecoreLocationOption  = new AbstractStringWithButtonOption(this, KEY_ECOREFILE_PATH, MelangeTemplateMessages.SimpleMTTemplate_ecoreFileLocation) {
 			@Override
 			public String doSelectButton() {
