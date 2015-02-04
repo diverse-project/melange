@@ -165,6 +165,7 @@ class MatchingHelper
 			|| (attrA.EAttributeType.instanceTypeName == attrB.EAttributeType.instanceTypeName
 				&& attrA.EAttributeType.instanceTypeName !== null)
 			|| (
+					// TODO: Should also check for literals compatibility
 				   attrA.EAttributeType instanceof EEnum && attrB.EAttributeType instanceof EEnum
 				&& attrA.EAttributeType.name == attrB.EAttributeType.name
 			)

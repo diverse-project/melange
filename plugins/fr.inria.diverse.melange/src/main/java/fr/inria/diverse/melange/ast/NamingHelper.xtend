@@ -101,9 +101,9 @@ class NamingHelper
 				EClass:
 					mt.interfaceNameFor(cls)
 				EEnum:
-					if (mt.isExtracted)
-						mt.extracted.getFqnFor(cls)
-					else
+//					if (mt.isExtracted)
+//						mt.extracted.getFqnFor(cls)
+//					else
 						mt.fullyQualifiedName.toLowerCase.append(cls.name).normalize.toString
 				EDataType:
 					cls.instanceClass.name ?: cls.instanceTypeName
