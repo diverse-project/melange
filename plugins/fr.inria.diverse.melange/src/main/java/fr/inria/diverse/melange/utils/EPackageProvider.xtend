@@ -64,7 +64,7 @@ class EPackageProvider
 					}
 				}
 				Metamodel:
-					if (m.inheritanceRelation.superMetamodel !== null) {
+					if (m.hasSuperMetamodel) {
 						val pkgsCopy = m.inheritanceRelation.superMetamodel.packages.map[
 							val copy = EcoreUtil::copy(it)
 							copy.name = m.name.toLowerCase
