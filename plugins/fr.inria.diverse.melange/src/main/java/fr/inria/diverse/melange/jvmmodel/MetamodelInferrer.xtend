@@ -110,8 +110,8 @@ class MetamodelInferrer
 			]
 		]
 
-		if (mm.hasSuperMetamodel)
-			mm.generateAdapters(mm.inheritanceRelation.superMetamodel, acceptor, builder)
+		//if (mm.hasSuperMetamodel)
+		//	mm.generateAdapters(mm.inheritanceRelation.superMetamodel, acceptor, builder)
 
 		task.stop
 	}
