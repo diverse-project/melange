@@ -41,12 +41,13 @@ class EPackageProvider
 	def List<EPackage> getPackages(ModelingElement m) {
 		if (!packages.containsKey(m)) {
 			if (m instanceof Metamodel) {
-				try {
-					if (m.project.getFile(m.localEcorePath).exists)
-						m.ecoreUri = m.localEcoreUri
-					else if (m.project.getFile(m.externalEcorePath).exists)
-						m.ecoreUri = m.externalEcoreUri
-				} catch (IllegalStateException e) {}
+				if (m.project !== null)
+					try {
+						if (m.project.getFile(m.localEcorePath).exists)
+							m.ecoreUri = m.localEcoreUri
+						else if (m.project.getFile(m.externalEcorePath).exists)
+							m.ecoreUri = m.externalEcoreUri
+					} catch (IllegalStateException e) {}
 			}
 
 			switch (m) {
@@ -97,12 +98,13 @@ class EPackageProvider
 			if (mm.genmodelUris.size == 0 && mm.ecoreUri !== null)
 				mm.genmodelUris += mm.ecoreUri.substring(0, mm.ecoreUri.lastIndexOf(".")) + ".genmodel"
 			else {
-				try {
-					if (mm.project.getFile(mm.localGenmodelPath).exists)
-						mm.genmodelUris += mm.localGenmodelUri
-					else if (mm.project.getFile(mm.externalGenmodelPath).exists)
-						mm.genmodelUris += mm.externalGenmodelUri
-				} catch (IllegalStateException e) {}
+				if (mm.project !== null)
+					try {
+						if (mm.project.getFile(mm.localGenmodelPath).exists)
+							mm.genmodelUris += mm.localGenmodelUri
+						else if (mm.project.getFile(mm.externalGenmodelPath).exists)
+							mm.genmodelUris += mm.externalGenmodelUri
+					} catch (IllegalStateException e) {}
 			}
 			mm.genmodelUris.forEach[genmodels.put(mm, modelUtils.loadGenmodel(it))]
 		}
