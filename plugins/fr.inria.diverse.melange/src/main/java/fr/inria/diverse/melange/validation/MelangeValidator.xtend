@@ -40,7 +40,7 @@ class MelangeValidator extends AbstractMelangeValidator
 	def void checkNamesAreUnique(Element e) {
 		if ((e.eContainer as ModelTypingSpace).elements.exists[e_ |
 			   e_ != e
-			&& e_.eClass == e.eClass
+			//&& e_.eClass == e.eClass
 			&& e_.name == e.name
 		])
 			error(
