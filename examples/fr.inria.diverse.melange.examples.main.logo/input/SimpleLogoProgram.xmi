@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ASCII"?>
+<asm:LogoProgram
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:asm="http://www.kermeta.org/kmlogo/asm"
+    xsi:schemaLocation="http://www.kermeta.org/kmlogo/asm ../../fr.inria.diverse.melange.examples.metamodel.logo/model/ASMLogo.ecore#//asm">
+  <instructions
+      xsi:type="asm:Forward">
+    <steps xsi:type="asm:Constant"
+        integerValue="10"/>
+  </instructions>
+  <instructions
+      xsi:type="asm:Left">
+    <angle xsi:type="asm:Constant"
+        integerValue="90"/>
+  </instructions>
+  <instructions
+      xsi:type="asm:Forward">
+    <steps xsi:type="asm:Constant"
+        integerValue="10"/>
+  </instructions>
+  <instructions
+      xsi:type="asm:Left">
+    <angle xsi:type="asm:Constant"
+        integerValue="90"/>
+  </instructions>
+  <instructions
+      xsi:type="asm:Forward">
+    <steps xsi:type="asm:Constant"
+        integerValue="10"/>
+  </instructions>
+  <instructions
+      xsi:type="asm:Left">
+    <angle xsi:type="asm:Constant"
+        integerValue="90"/>
+  </instructions>
+  <instructions
+      xsi:type="asm:Forward">
+    <steps xsi:type="asm:Constant"
+        integerValue="10"/>
+  </instructions>
+</asm:LogoProgram>

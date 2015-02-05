@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="kmlogo" nsURI="http://www.kermeta.org/kmlogo" nsPrefix="kmlogo">
+  <eClassifiers xsi:type="ecore:EDataType" name="Integer" instanceClassName="int"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Boolean" instanceClassName="java.lang.Boolean"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="String" instanceClassName="java.lang.String"/>
+  <eSubpackages name="asm" nsURI="http://www.kermeta.org/kmlogo/asm" nsPrefix="asm">
+    <eClassifiers xsi:type="ecore:EClass" name="Instruction" abstract="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Primitive" abstract="true" eSuperTypes="//asm/Instruction"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Back" eSuperTypes="//asm/Primitive">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="steps" lowerBound="1" eType="//asm/Expression" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Forward" eSuperTypes="//asm/Primitive">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="steps" lowerBound="1" eType="//asm/Expression" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Left" eSuperTypes="//asm/Primitive">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="angle" eType="//asm/Expression" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Right" eSuperTypes="//asm/Primitive">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="angle" eType="//asm/Expression" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PenDown" eSuperTypes="//asm/Primitive"/>
+    <eClassifiers xsi:type="ecore:EClass" name="PenUp" eSuperTypes="//asm/Primitive"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Clear" eSuperTypes="//asm/Primitive"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Expression" abstract="true" eSuperTypes="//asm/Instruction"/>
+    <eClassifiers xsi:type="ecore:EClass" name="BinaryExp" abstract="true" eSuperTypes="//asm/Expression">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" lowerBound="1" eType="//asm/Expression" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="rhs" lowerBound="1" eType="//asm/Expression" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Constant" eSuperTypes="//asm/Expression">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="integerValue" eType="//Integer"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ProcCall" eSuperTypes="//asm/Expression">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="actualArgs" upperBound="-1" eType="//asm/Expression" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="declaration" lowerBound="1" eType="//asm/ProcDeclaration" eOpposite="//asm/ProcDeclaration/procCall"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ProcDeclaration" eSuperTypes="//asm/Instruction">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="//String"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="//asm/Parameter" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="procCall" upperBound="-1" eType="//asm/ProcCall" eOpposite="//asm/ProcCall/declaration"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="instructions" upperBound="-1" eType="//asm/Instruction" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Block" eSuperTypes="//asm/Instruction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="instructions" upperBound="-1" eType="//asm/Instruction" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="If" eSuperTypes="//asm/ControlStructure">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="thenPart" lowerBound="1" eType="//asm/Block" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="elsePart" eType="//asm/Block" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ControlStructure" eSuperTypes="//asm/Instruction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="//asm/Expression" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Repeat" eSuperTypes="//asm/ControlStructure">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="block" lowerBound="1" eType="//asm/Block" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="While" eSuperTypes="//asm/ControlStructure">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="block" lowerBound="1" eType="//asm/Block" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Parameter">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="//String"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ParameterCall" eSuperTypes="//asm/Expression">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" lowerBound="1" eType="//asm/Parameter"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Plus" eSuperTypes="//asm/BinaryExp"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Minus" eSuperTypes="//asm/BinaryExp"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Mult" eSuperTypes="//asm/BinaryExp"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Div" eSuperTypes="//asm/BinaryExp"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Equals" eSuperTypes="//asm/BinaryExp"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Greater" eSuperTypes="//asm/BinaryExp"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Lower" eSuperTypes="//asm/BinaryExp"/>
+    <eClassifiers xsi:type="ecore:EClass" name="LogoProgram">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="instructions" upperBound="-1" eType="//asm/Instruction" containment="true"/>
+    </eClassifiers>
+  </eSubpackages>
+</ecore:EPackage>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated ASMLogo -->
+      <package
+            uri="http://www.kermeta.org/kmlogo"
+            class="kmlogo.KmlogoPackage"
+            genModel="model/ASMLogo.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated ASMLogo -->
+      <package
+            uri="http://www.kermeta.org/kmlogo/asm"
+            class="kmlogo.asm.AsmPackage"
+            genModel="model/ASMLogo.genmodel"/>
+   </extension>
+
+</plugin>

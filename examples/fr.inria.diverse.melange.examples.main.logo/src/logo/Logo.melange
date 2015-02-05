@@ -1,0 +1,49 @@
+package simplelogo
+
+import logo.Context
+
+metamodel Logo{
+	ecore "platform:/resource/fr.inria.diverse.melange.examples.metamodel.logo/model/ASMLogo.ecore"
+	exactType LogoMT
+	
+	with logo.LogoProgramAspect
+	with logo.InstructionAspect
+	with logo.PrimitiveAspect
+	with logo.BackAspect
+	with logo.ForwardAspect
+	with logo.LeftAspect
+	with logo.RightAspect
+	with logo.PenDownAspect
+	with logo.PenUpAspect
+	with logo.ClearAspect
+	with logo.ExpressionAspect
+	with logo.ConstantAspect
+	with logo.ProcCallAspect
+	with logo.BlockAspect
+	with logo.ControlStructureAspect
+	with logo.IfAspect
+	with logo.RepeatAspect
+	with logo.WhileAspect
+	with logo.ParameterAspect
+	with logo.ParameterCallAspect
+	with logo.BinaryExpAspect
+	with logo.PlusAspect
+	with logo.MinusAspect
+	with logo.MultAspect
+	with logo.DivAspect
+	with logo.EqualsAspect
+	with logo.GreaterAspect
+	with logo.LowerAspect
+	
+}
+
+transformation execute(LogoMT m) {
+	val root = m.contents.head as simplelogo.logomt.LogoProgram
+	root.eval(new Context())
+}
+
+@Main
+transformation main(){
+	val simpleProgram = Logo.load("input/SimpleLogoProgram.xmi")
+	execute.call(simpleProgram)
+}
