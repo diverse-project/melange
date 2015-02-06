@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EEnum
 
 import org.eclipse.xtext.common.types.JvmDeclaredType
+import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.common.types.JvmVisibility
 import org.eclipse.xtext.common.types.TypesFactory
 
@@ -273,15 +274,21 @@ class MetaclassAdapterInferrer
 								«IF inherited»
 									«mm.adapterNameFor(superMM, cls)» clsAdaptee = new «mm.adapterNameFor(superMM, cls)»() ;
 									clsAdaptee.setAdaptee(adaptee) ;
-									«IF retType.type.simpleName != "void" && retType.type.simpleName != "null"»
-										return adaptersFactory.create«superMM.simpleAdapterNameFor(superType, retType.type.simpleName)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
+									«IF retType.isValidReturnType»
+										«IF mm.hasAdapterFor(superType, retType.type.simpleName)»
+											return adaptersFactory.create«superMM.simpleAdapterNameFor(superType, retType.type.simpleName)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
+										«ELSE»
+											return «asp.qualifiedName».«op.simpleName»(«paramsList») ;
+										«ENDIF»
 									«ELSE»
 										«asp.qualifiedName».«op.simpleName»(«paramsList») ;
 									«ENDIF»
-								«ELSEIF mm.hasAdapterFor(superType, retType?.type?.simpleName)»
-									return adaptersFactory.create«mm.simpleAdapterNameFor(superType, retType.type.simpleName)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
-								«ELSEIF retType.type.simpleName != "void" && retType.type.simpleName != "null"»
-									return «asp.qualifiedName».«op.simpleName»(«paramsList») ;
+								«ELSEIF retType.isValidReturnType»
+									«IF mm.hasAdapterFor(superType, retType?.type?.simpleName)»
+										return adaptersFactory.create«mm.simpleAdapterNameFor(superType, retType.type.simpleName)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
+									«ELSE»
+										return «asp.qualifiedName».«op.simpleName»(«paramsList») ;
+									«ENDIF»
 								«ELSE»
 									«asp.qualifiedName».«op.simpleName»(«paramsList») ;
 								«ENDIF»
@@ -307,15 +314,21 @@ class MetaclassAdapterInferrer
 									«IF inherited»
 										«mm.adapterNameFor(superMM, cls)» clsAdaptee = new «mm.adapterNameFor(superMM, cls)»() ;
 										clsAdaptee.setAdaptee(adaptee) ;
-										«IF retType.type.simpleName != "void"»
-											return adaptersFactory.create«superMM.simpleAdapterNameFor(superType, retType.type.simpleName)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
+										«IF retType.isValidReturnType»
+											«IF mm.hasAdapterFor(superType, retType.type.simpleName)»
+												return adaptersFactory.create«superMM.simpleAdapterNameFor(superType, retType.type.simpleName)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
+											«ELSE»
+												return «asp.qualifiedName».«op.simpleName»(«paramsList») ;
+											«ENDIF»
 										«ELSE»
 											«asp.qualifiedName».«op.simpleName»(«paramsList») ;
 										«ENDIF»
-									«ELSEIF mm.hasAdapterFor(superType, retType.type.simpleName)»
-										return adaptersFactory.create«mm.simpleAdapterNameFor(superType, retType.type.simpleName)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
-									«ELSEIF retType.type.simpleName != "void"»
-										return «asp.qualifiedName».«op.simpleName»(«paramsList») ;
+									«ELSEIF retType.isValidReturnType»
+										«IF mm.hasAdapterFor(superType, retType.type.simpleName)»
+											return adaptersFactory.create«mm.simpleAdapterNameFor(superType, retType.type.simpleName)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
+										«ELSE»
+											return «asp.qualifiedName».«op.simpleName»(«paramsList») ;
+										«ENDIF»
 									«ELSE»
 										«asp.qualifiedName».«op.simpleName»(«paramsList») ;
 									«ENDIF»
@@ -337,7 +350,7 @@ class MetaclassAdapterInferrer
 									«IF inherited»
 										«mm.adapterNameFor(superMM, cls)» clsAdaptee = new «mm.adapterNameFor(superMM, cls)»() ;
 										clsAdaptee.setAdaptee(adaptee) ;
-										«IF retType.type.simpleName != "void"»
+										«IF retType.isValidReturnType»
 											«IF mm.hasAdapterFor(superType, retType.type.simpleName)»
 												return adaptersFactory.create«superMM.simpleAdapterNameFor(superType, retType.type.simpleName)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
 											«ELSE»
@@ -346,10 +359,12 @@ class MetaclassAdapterInferrer
 										«ELSE»
 											«asp.qualifiedName».«op.simpleName»(«paramsList») ;
 										«ENDIF»
-									«ELSEIF mm.hasAdapterFor(superType, retType.type.simpleName)»
-										return adaptersFactory.create«mm.simpleAdapterNameFor(superType, retType.type.simpleName)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
-										«ELSEIF retType.type.simpleName != "void"»
+									«ELSEIF retType.isValidReturnType»
+										«IF mm.hasAdapterFor(superType, retType.type.simpleName)»
+											return adaptersFactory.create«mm.simpleAdapterNameFor(superType, retType.type.simpleName)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
+										«ELSE»
 											return «asp.qualifiedName».«op.simpleName»(«paramsList») ;
+										«ENDIF»
 									«ELSE»
 										«asp.qualifiedName».«op.simpleName»(«paramsList») ;
 									«ENDIF»
@@ -362,6 +377,10 @@ class MetaclassAdapterInferrer
 		]
 
 		task.stop
+	}
+
+	private def boolean isValidReturnType(JvmTypeReference ref) {
+		return ref.type !== null && ref.type.simpleName != "void" && ref.type.simpleName != "null"
 	}
 
 	/*def boolean +=(EList<JvmMember> members, JvmOperation m) {
