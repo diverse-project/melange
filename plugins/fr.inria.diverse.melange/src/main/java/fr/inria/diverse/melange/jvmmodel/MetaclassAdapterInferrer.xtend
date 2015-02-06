@@ -14,6 +14,9 @@ import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 
 import fr.inria.diverse.melange.utils.AspectToEcore
+import fr.inria.diverse.melange.utils.TypeReferencesHelper
+
+import java.util.Collection
 
 import org.eclipse.emf.common.util.EMap
 
@@ -21,7 +24,9 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EEnum
 
 import org.eclipse.xtext.common.types.JvmDeclaredType
+import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
 import org.eclipse.xtext.common.types.JvmTypeReference
+import org.eclipse.xtext.common.types.JvmTypeParameterDeclarator
 import org.eclipse.xtext.common.types.JvmVisibility
 import org.eclipse.xtext.common.types.TypesFactory
 
@@ -41,6 +46,7 @@ class MetaclassAdapterInferrer
 	@Inject extension EcoreExtensions
 	@Inject extension AspectToEcore
 	@Inject extension MelangeTypesBuilder
+	@Inject extension TypeReferencesHelper
 
 	def void generateAdapter(Metamodel mm, ModelType superType, EClass cls, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
 		val task = Stopwatches.forTask("generate metaclass adapters")
@@ -238,12 +244,27 @@ class MetaclassAdapterInferrer
 				.forEach[op |
 					val paramsList = new StringBuilder
 					val featureName = asp.findFeatureNameFor(op)
-					val mtCls = superType.findClassifier(op.returnType.simpleName)
+					val isCollection =
+						op.returnType.isSubtypeOf(Collection) &&
+						op.returnType.type instanceof JvmTypeParameterDeclarator
+					val realType =
+						if (isCollection)
+							(op.returnType as JvmParameterizedTypeReference).arguments.head.type.simpleName
+						else
+							op.returnType.simpleName
+					val mtCls =
+						if (isCollection)
+							superType.findClass(realType)
+						else
+							superType.findClass(realType)
 					val retType =
 						if (op.returnType.simpleName == "void")
 							typeRef(Void.TYPE)
 						else if (mtCls !== null)
-							superType.typeRef(mtCls, #[jvmCls])
+							if (isCollection)
+								op.returnType.type.typeRef(superType.typeRef(mtCls, #[jvmCls]))
+							else
+								superType.typeRef(mtCls, #[jvmCls])
 						else
 							typeRef(op.returnType.qualifiedName.primitiveIfWrapType)
 
@@ -287,8 +308,12 @@ class MetaclassAdapterInferrer
 										«asp.qualifiedName».«op.simpleName»(«paramsList») ;
 									«ENDIF»
 								«ELSEIF retType.isValidReturnType»
-									«IF mm.hasAdapterFor(superType, retType?.type?.simpleName)»
-										return adaptersFactory.create«mm.simpleAdapterNameFor(superType, retType.type.simpleName)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
+									«IF mm.hasAdapterFor(superType, realType)»
+										«IF isCollection»
+											return fr.inria.diverse.melange.lib.ListAdapter.newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), «mm.adapterNameFor(superType, realType)».class) ;
+										«ELSE»
+											return adaptersFactory.create«mm.simpleAdapterNameFor(superType, realType)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
+										«ENDIF»
 									«ELSE»
 										return «asp.qualifiedName».«op.simpleName»(«paramsList») ;
 									«ENDIF»
@@ -298,7 +323,7 @@ class MetaclassAdapterInferrer
 							'''
 						]
 					} else {
-						val find = mm.findClass(retType.simpleName)
+						val find = mm.findClass(realType)
 						val opName = if (op.parameters.size == 1) op.getterName else op.setterName
 
 						if (find !== null) {
@@ -318,8 +343,8 @@ class MetaclassAdapterInferrer
 										«mm.adapterNameFor(superMM, cls)» clsAdaptee = new «mm.adapterNameFor(superMM, cls)»() ;
 										clsAdaptee.setAdaptee(adaptee) ;
 										«IF retType.isValidReturnType»
-											«IF mm.hasAdapterFor(superType, retType.type.simpleName)»
-												return adaptersFactory.create«superMM.simpleAdapterNameFor(superType, retType.type.simpleName)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
+											«IF mm.hasAdapterFor(superType, realType)»
+												return adaptersFactory.create«superMM.simpleAdapterNameFor(superType, realType)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
 											«ELSE»
 												return «asp.qualifiedName».«op.simpleName»(«paramsList») ;
 											«ENDIF»
@@ -327,8 +352,12 @@ class MetaclassAdapterInferrer
 											«asp.qualifiedName».«op.simpleName»(«paramsList») ;
 										«ENDIF»
 									«ELSEIF retType.isValidReturnType»
-										«IF mm.hasAdapterFor(superType, retType.type.simpleName)»
-											return adaptersFactory.create«mm.simpleAdapterNameFor(superType, retType.type.simpleName)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
+										«IF mm.hasAdapterFor(superType, realType)»
+											«IF isCollection»
+												return fr.inria.diverse.melange.lib.ListAdapter.newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), «mm.adapterNameFor(superType, realType)».class) ;
+											«ELSE»
+												return adaptersFactory.create«mm.simpleAdapterNameFor(superType, realType)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
+											«ENDIF»
 										«ELSE»
 											return «asp.qualifiedName».«op.simpleName»(«paramsList») ;
 										«ENDIF»
@@ -363,8 +392,12 @@ class MetaclassAdapterInferrer
 											«asp.qualifiedName».«op.simpleName»(«paramsList») ;
 										«ENDIF»
 									«ELSEIF retType.isValidReturnType»
-										«IF mm.hasAdapterFor(superType, retType.type.simpleName)»
-											return adaptersFactory.create«mm.simpleAdapterNameFor(superType, retType.type.simpleName)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
+										«IF mm.hasAdapterFor(superType, realType)»
+											«IF isCollection»
+												return fr.inria.diverse.melange.lib.ListAdapter.newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), «mm.adapterNameFor(superType, realType)».class) ;
+											«ELSE»
+												return adaptersFactory.create«mm.simpleAdapterNameFor(superType, realType)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
+											«ENDIF»
 										«ELSE»
 											return «asp.qualifiedName».«op.simpleName»(«paramsList») ;
 										«ENDIF»
