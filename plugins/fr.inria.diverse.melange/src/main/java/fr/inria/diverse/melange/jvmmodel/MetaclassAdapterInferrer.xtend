@@ -9,6 +9,7 @@ import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.EObjectAdapter
 
+import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 
@@ -218,6 +219,8 @@ class MetaclassAdapterInferrer
 				asp.aspectedClass.name == cls.name ||
 				cls.EAllSuperTypes.exists[asp.aspectedClass.name == name]
 			]
+			// So that the most precise aspect method is employed
+			.sortByOverridingPriority
 			.forEach[aspect |
 				val asp = aspect.aspectTypeRef.type as JvmDeclaredType
 				// FIXME: This should be checked in the recursive hierarchy
@@ -381,6 +384,19 @@ class MetaclassAdapterInferrer
 
 	private def boolean isValidReturnType(JvmTypeReference ref) {
 		return ref.type !== null && ref.type.simpleName != "void" && ref.type.simpleName != "null"
+	}
+
+	private def Iterable<Aspect> sortByOverridingPriority(Iterable<Aspect> aspects) {
+		return aspects.sortWith[aspA, aspB |
+			val clsA = aspA.aspectedClass
+			val clsB = aspB.aspectedClass
+
+			if (clsA.EAllSuperTypes.contains(clsB))
+				return -1
+			else if (clsB.EAllSuperTypes.contains(clsA))
+				return 1
+			else return 0
+		]
 	}
 
 	/*def boolean +=(EList<JvmMember> members, JvmOperation m) {
