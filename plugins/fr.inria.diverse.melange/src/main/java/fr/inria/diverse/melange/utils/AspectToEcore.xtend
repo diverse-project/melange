@@ -53,7 +53,7 @@ class AspectToEcore
 			// FIXME: Hard-coded strings
 			   !simpleName.startsWith("_privk3")
 			&& !simpleName.startsWith("super_")
-			&& !annotations.exists[annotation.simpleName == "OverrideAspectMethod"]
+//			&& !annotations.exists[annotation.simpleName == "OverrideAspectMethod"]
 			&& visibility == JvmVisibility.PUBLIC
 		]
 		.forEach[op |
