@@ -270,11 +270,21 @@ class MetaclassAdapterInferrer
 
 					paramsList.append('''«IF inherited»clsAdaptee«ELSE»adaptee«ENDIF»''')
 					op.parameters.drop(if (op.parameters.head?.simpleName == "_self") 1 else 0).forEach[p, i |
+						val isCollectionP =
+							p.parameterType.isSubtypeOf(Collection) &&
+							p.parameterType.type instanceof JvmTypeParameterDeclarator
+						val realTypeP =
+							if (isCollectionP)
+								(p.parameterType as JvmParameterizedTypeReference).arguments.head.type.simpleName
+							else
+								p.parameterType.simpleName
 						paramsList.append('''
 							«IF inherited && superMM.hasAdapterFor(superType, p.parameterType.simpleName)»
 								, ((«superMM.adapterNameFor(superType, p.parameterType.simpleName)») «p.name»).getAdaptee()
 							«ELSEIF mm.hasAdapterFor(superType, p.parameterType.simpleName)»
 								, ((«mm.adapterNameFor(superType, p.parameterType.simpleName)») «p.name»).getAdaptee()
+							«ELSEIF isCollectionP && mm.hasAdapterFor(superType, realTypeP)»
+								, ((fr.inria.diverse.melange.lib.ListAdapter) «p.name»).getAdaptee()
 							«ELSE»
 								, «p.name»
 							«ENDIF»
@@ -284,12 +294,23 @@ class MetaclassAdapterInferrer
 					if (featureName === null) {
 						jvmCls.members += mm.toMethod(op.simpleName, retType)[
 							op.parameters.drop(if (op.parameters.head?.simpleName == "_self") 1 else 0).forEach[p |
-								val pCls = superType.findClassifier(p.parameterType.simpleName)
-								val pType =
-									if (pCls !== null)
-										superType.typeRef(pCls, #[jvmCls])
+								val isCollectionP =
+									p.parameterType.isSubtypeOf(Collection) &&
+									p.parameterType.type instanceof JvmTypeParameterDeclarator
+								val realTypeP =
+									if (isCollectionP)
+										(p.parameterType as JvmParameterizedTypeReference).arguments.head.type.simpleName
 									else
-										typeRef(p.parameterType.qualifiedName.primitiveIfWrapType)
+										p.parameterType.simpleName
+								val pCls = superType.findClassifier(realTypeP)
+								val pType =
+										if (pCls !== null)
+											if (isCollectionP)
+												p.parameterType.type.typeRef(superType.typeRef(pCls, #[jvmCls]))
+											else
+												superType.typeRef(pCls, #[jvmCls])
+										else
+											typeRef(p.parameterType.qualifiedName.primitiveIfWrapType)
 
 								parameters += mm.toParameter(p.name, pType)
 							]
@@ -329,10 +350,21 @@ class MetaclassAdapterInferrer
 						if (find !== null) {
 							jvmCls.members += mm.toMethod(opName, retType)[
 								op.parameters.drop(1).forEach[p |
-									val pCls = superType.findClassifier(p.parameterType.simpleName)
+									val isCollectionP =
+										p.parameterType.isSubtypeOf(Collection) &&
+										p.parameterType.type instanceof JvmTypeParameterDeclarator
+									val realTypeP =
+										if (isCollectionP)
+											(p.parameterType as JvmParameterizedTypeReference).arguments.head.type.simpleName
+										else
+											p.parameterType.simpleName
+									val pCls = superType.findClassifier(realTypeP)
 									val pType =
 										if (pCls !== null)
-											superType.typeRef(pCls, #[jvmCls])
+											if (isCollectionP)
+												p.parameterType.type.typeRef(superType.typeRef(pCls, #[jvmCls]))
+											else
+												superType.typeRef(pCls, #[jvmCls])
 										else
 											typeRef(p.parameterType.qualifiedName.primitiveIfWrapType)
 
@@ -369,10 +401,21 @@ class MetaclassAdapterInferrer
 						} else {
 							jvmCls.members += mm.toMethod(opName, retType)[
 								op.parameters.drop(1).forEach[p |
-									val pCls = superType.findClassifier(p.parameterType.simpleName)
+									val isCollectionP =
+										p.parameterType.isSubtypeOf(Collection) &&
+										p.parameterType.type instanceof JvmTypeParameterDeclarator
+									val realTypeP =
+										if (isCollectionP)
+											(p.parameterType as JvmParameterizedTypeReference).arguments.head.type.simpleName
+										else
+											p.parameterType.simpleName
+									val pCls = superType.findClassifier(realTypeP)
 									val pType =
 										if (pCls !== null)
-											superType.typeRef(pCls, #[jvmCls])
+											if (isCollectionP)
+												p.parameterType.type.typeRef(superType.typeRef(pCls, #[jvmCls]))
+											else
+												superType.typeRef(pCls, #[jvmCls])
 										else
 											typeRef(p.parameterType.qualifiedName.primitiveIfWrapType)
 
