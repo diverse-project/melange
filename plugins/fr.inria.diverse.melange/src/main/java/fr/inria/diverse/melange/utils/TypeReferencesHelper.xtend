@@ -2,8 +2,11 @@ package fr.inria.diverse.melange.utils
 
 import com.google.inject.Inject
 
+import java.util.Collection
+
 import org.eclipse.emf.ecore.resource.Resource
 
+import org.eclipse.xtext.common.types.JvmTypeParameterDeclarator
 import org.eclipse.xtext.common.types.JvmTypeReference
 
 import org.eclipse.xtext.xbase.typesystem.references.LightweightTypeReference
@@ -25,5 +28,9 @@ class TypeReferencesHelper
 
 	def boolean isSubtypeOf(JvmTypeReference r1, JvmTypeReference r2) {
 		return r1.toLightweightTypeReference(r1.eResource).isSubtypeOf(r2.type)
+	}
+
+	def boolean isCollection(JvmTypeReference ref) {
+		return ref.isSubtypeOf(Collection) && ref.type instanceof JvmTypeParameterDeclarator
 	}
 }

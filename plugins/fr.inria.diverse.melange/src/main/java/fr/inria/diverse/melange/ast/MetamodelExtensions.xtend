@@ -12,12 +12,10 @@ import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 
-import fr.inria.diverse.melange.utils.AspectToEcore
 import fr.inria.diverse.melange.utils.EPackageProvider
 
 import java.io.IOException
 
-import java.util.Collection
 import java.util.List
 
 import org.eclipse.core.resources.IProject
@@ -39,7 +37,6 @@ import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EPackage
-import org.eclipse.emf.ecore.EcoreFactory
 import org.eclipse.emf.ecore.EcorePackage
 
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
@@ -47,8 +44,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.xtext.common.types.JvmCustomAnnotationValue
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmTypeAnnotationValue
-import org.eclipse.xtext.common.types.JvmTypeParameterDeclarator
-import org.eclipse.xtext.common.types.JvmVisibility
 
 import org.eclipse.xtext.naming.QualifiedName
 
@@ -57,7 +52,6 @@ class MetamodelExtensions
 	@Inject extension ModelingElementExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension ModelTypeExtensions
-	@Inject extension AspectToEcore
 	@Inject ModelTypeAlgebra algebra
 	@Inject EPackageProvider provider
 

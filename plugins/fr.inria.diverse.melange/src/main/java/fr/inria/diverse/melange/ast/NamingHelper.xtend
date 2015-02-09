@@ -31,7 +31,6 @@ class NamingHelper
 	@Inject extension MetamodelExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension IQualifiedNameProvider
-	@Inject extension ModelTypeExtensions
 
 	def String normalize(QualifiedName name) {
 		val res = new StringBuilder

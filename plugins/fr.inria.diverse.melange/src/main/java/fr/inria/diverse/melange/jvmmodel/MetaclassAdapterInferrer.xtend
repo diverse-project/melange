@@ -16,8 +16,6 @@ import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.utils.AspectToEcore
 import fr.inria.diverse.melange.utils.TypeReferencesHelper
 
-import java.util.Collection
-
 import org.eclipse.emf.common.util.EMap
 
 import org.eclipse.emf.ecore.EClass
@@ -26,7 +24,6 @@ import org.eclipse.emf.ecore.EEnum
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
 import org.eclipse.xtext.common.types.JvmTypeReference
-import org.eclipse.xtext.common.types.JvmTypeParameterDeclarator
 import org.eclipse.xtext.common.types.JvmVisibility
 import org.eclipse.xtext.common.types.TypesFactory
 
@@ -244,16 +241,13 @@ class MetaclassAdapterInferrer
 				.forEach[op |
 					val paramsList = new StringBuilder
 					val featureName = asp.findFeatureNameFor(op)
-					val isCollection =
-						op.returnType.isSubtypeOf(Collection) &&
-						op.returnType.type instanceof JvmTypeParameterDeclarator
 					val realType =
-						if (isCollection)
+						if (op.returnType.isCollection)
 							(op.returnType as JvmParameterizedTypeReference).arguments.head.type.simpleName
 						else
 							op.returnType.simpleName
 					val mtCls =
-						if (isCollection)
+						if (op.returnType.isCollection)
 							superType.findClass(realType)
 						else
 							superType.findClass(realType)
@@ -261,7 +255,7 @@ class MetaclassAdapterInferrer
 						if (op.returnType.simpleName == "void")
 							typeRef(Void.TYPE)
 						else if (mtCls !== null)
-							if (isCollection)
+							if (op.returnType.isCollection)
 								op.returnType.type.typeRef(superType.typeRef(mtCls, #[jvmCls]))
 							else
 								superType.typeRef(mtCls, #[jvmCls])
@@ -270,11 +264,8 @@ class MetaclassAdapterInferrer
 
 					paramsList.append('''«IF inherited»clsAdaptee«ELSE»adaptee«ENDIF»''')
 					op.parameters.drop(if (op.parameters.head?.simpleName == "_self") 1 else 0).forEach[p, i |
-						val isCollectionP =
-							p.parameterType.isSubtypeOf(Collection) &&
-							p.parameterType.type instanceof JvmTypeParameterDeclarator
 						val realTypeP =
-							if (isCollectionP)
+							if (p.parameterType.isCollection)
 								(p.parameterType as JvmParameterizedTypeReference).arguments.head.type.simpleName
 							else
 								p.parameterType.simpleName
@@ -283,7 +274,7 @@ class MetaclassAdapterInferrer
 								, ((«superMM.adapterNameFor(superType, p.parameterType.simpleName)») «p.name»).getAdaptee()
 							«ELSEIF mm.hasAdapterFor(superType, p.parameterType.simpleName)»
 								, ((«mm.adapterNameFor(superType, p.parameterType.simpleName)») «p.name»).getAdaptee()
-							«ELSEIF isCollectionP && mm.hasAdapterFor(superType, realTypeP)»
+							«ELSEIF p.parameterType.isCollection && mm.hasAdapterFor(superType, realTypeP)»
 								, ((fr.inria.diverse.melange.lib.ListAdapter) «p.name»).getAdaptee()
 							«ELSE»
 								, «p.name»
@@ -294,18 +285,15 @@ class MetaclassAdapterInferrer
 					if (featureName === null) {
 						jvmCls.members += mm.toMethod(op.simpleName, retType)[
 							op.parameters.drop(if (op.parameters.head?.simpleName == "_self") 1 else 0).forEach[p |
-								val isCollectionP =
-									p.parameterType.isSubtypeOf(Collection) &&
-									p.parameterType.type instanceof JvmTypeParameterDeclarator
 								val realTypeP =
-									if (isCollectionP)
+									if (p.parameterType.isCollection)
 										(p.parameterType as JvmParameterizedTypeReference).arguments.head.type.simpleName
 									else
 										p.parameterType.simpleName
 								val pCls = superType.findClassifier(realTypeP)
 								val pType =
 										if (pCls !== null)
-											if (isCollectionP)
+											if (p.parameterType.isCollection)
 												p.parameterType.type.typeRef(superType.typeRef(pCls, #[jvmCls]))
 											else
 												superType.typeRef(pCls, #[jvmCls])
@@ -330,7 +318,7 @@ class MetaclassAdapterInferrer
 									«ENDIF»
 								«ELSEIF retType.isValidReturnType»
 									«IF mm.hasAdapterFor(superType, realType)»
-										«IF isCollection»
+										«IF op.returnType.isCollection»
 											return fr.inria.diverse.melange.lib.ListAdapter.newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), «mm.adapterNameFor(superType, realType)».class) ;
 										«ELSE»
 											return adaptersFactory.create«mm.simpleAdapterNameFor(superType, realType)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
@@ -350,18 +338,15 @@ class MetaclassAdapterInferrer
 						if (find !== null) {
 							jvmCls.members += mm.toMethod(opName, retType)[
 								op.parameters.drop(1).forEach[p |
-									val isCollectionP =
-										p.parameterType.isSubtypeOf(Collection) &&
-										p.parameterType.type instanceof JvmTypeParameterDeclarator
 									val realTypeP =
-										if (isCollectionP)
+										if (p.parameterType.isCollection)
 											(p.parameterType as JvmParameterizedTypeReference).arguments.head.type.simpleName
 										else
 											p.parameterType.simpleName
 									val pCls = superType.findClassifier(realTypeP)
 									val pType =
 										if (pCls !== null)
-											if (isCollectionP)
+											if (p.parameterType.isCollection)
 												p.parameterType.type.typeRef(superType.typeRef(pCls, #[jvmCls]))
 											else
 												superType.typeRef(pCls, #[jvmCls])
@@ -385,7 +370,7 @@ class MetaclassAdapterInferrer
 										«ENDIF»
 									«ELSEIF retType.isValidReturnType»
 										«IF mm.hasAdapterFor(superType, realType)»
-											«IF isCollection»
+											«IF op.returnType.isCollection»
 												return fr.inria.diverse.melange.lib.ListAdapter.newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), «mm.adapterNameFor(superType, realType)».class) ;
 											«ELSE»
 												return adaptersFactory.create«mm.simpleAdapterNameFor(superType, realType)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
@@ -401,18 +386,15 @@ class MetaclassAdapterInferrer
 						} else {
 							jvmCls.members += mm.toMethod(opName, retType)[
 								op.parameters.drop(1).forEach[p |
-									val isCollectionP =
-										p.parameterType.isSubtypeOf(Collection) &&
-										p.parameterType.type instanceof JvmTypeParameterDeclarator
 									val realTypeP =
-										if (isCollectionP)
+										if (p.parameterType.isCollection)
 											(p.parameterType as JvmParameterizedTypeReference).arguments.head.type.simpleName
 										else
 											p.parameterType.simpleName
 									val pCls = superType.findClassifier(realTypeP)
 									val pType =
 										if (pCls !== null)
-											if (isCollectionP)
+											if (p.parameterType.isCollection)
 												p.parameterType.type.typeRef(superType.typeRef(pCls, #[jvmCls]))
 											else
 												superType.typeRef(pCls, #[jvmCls])
@@ -436,7 +418,7 @@ class MetaclassAdapterInferrer
 										«ENDIF»
 									«ELSEIF retType.isValidReturnType»
 										«IF mm.hasAdapterFor(superType, realType)»
-											«IF isCollection»
+											«IF op.returnType.isCollection»
 												return fr.inria.diverse.melange.lib.ListAdapter.newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), «mm.adapterNameFor(superType, realType)».class) ;
 											«ELSE»
 												return adaptersFactory.create«mm.simpleAdapterNameFor(superType, realType)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;

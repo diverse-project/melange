@@ -6,15 +6,12 @@ import fr.inria.diverse.melange.lib.EcoreExtensions
 
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 
-import java.util.Collection
-
 import org.eclipse.emf.ecore.EcoreFactory
 
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmEnumerationType
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
-import org.eclipse.xtext.common.types.JvmTypeParameterDeclarator
 import org.eclipse.xtext.common.types.JvmVisibility
 
 // FIXME: Duplicated code etc. this is so ugly
@@ -58,16 +55,12 @@ class AspectToEcore
 		]
 		.forEach[op |
 			val featureName = findFeatureNameFor(aspect, op)
-			val opType = op.returnType.type
 
 			// If we can't infer a feature name, it's obviously really an operation
 			if (featureName === null) {
-				val isCollection =
-					op.returnType.isSubtypeOf(Collection) &&
-					opType instanceof JvmTypeParameterDeclarator
-				val upperB = if (isCollection) -1 else 1
+				val upperB = if (op.returnType.isCollection) -1 else 1
 				val realType =
-					if (isCollection)
+					if (op.returnType.isCollection)
 						(op.returnType as JvmParameterizedTypeReference).arguments.head.type
 					else
 						op.returnType.type
@@ -80,12 +73,9 @@ class AspectToEcore
 							// Skip first generic _self argument
 							if (i > 0) {
 								val pType = p.parameterType.type
-								val isCollectionP =
-									p.parameterType.isSubtypeOf(Collection) &&
-									pType instanceof JvmTypeParameterDeclarator
-								val upperBP = if (isCollectionP) -1 else 1
+								val upperBP = if (p.parameterType.isCollection) -1 else 1
 								val realTypeP =
-									if (isCollectionP)
+									if (p.parameterType.isCollection)
 										(p.parameterType as JvmParameterizedTypeReference).arguments.head.type
 									else
 										pType
@@ -126,12 +116,9 @@ class AspectToEcore
 						op.returnType
 					else
 						op.parameters.get(1).parameterType
-				val isCollection =
-					op.returnType.isSubtypeOf(Collection) &&
-					op.returnType.type instanceof JvmTypeParameterDeclarator
-				val upperB = if (isCollection) -1 else 1
+				val upperB = if (op.returnType.isCollection) -1 else 1
 				val realType =
-					if (isCollection)
+					if (op.returnType.isCollection)
 						(retType as JvmParameterizedTypeReference).arguments.head.type
 					else
 						retType.type

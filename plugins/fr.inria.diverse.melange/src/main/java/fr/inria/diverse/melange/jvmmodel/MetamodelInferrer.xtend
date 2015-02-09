@@ -2,7 +2,7 @@ package fr.inria.diverse.melange.jvmmodel
 
 import com.google.inject.Inject
 
-import fr.inria.diverse.melange.ast.MetamodelExtensions
+//import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 
@@ -27,11 +27,11 @@ class MetamodelInferrer
 	@Inject extension IQualifiedNameProvider
 	@Inject extension NamingHelper
 	@Inject extension ModelTypeExtensions
-	@Inject extension MetamodelExtensions
+//	@Inject extension MetamodelExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension MetamodelAdapterInferrer
 	@Inject extension MetaclassAdapterInferrer
-	@Inject extension InheritanceAdapterInferrer
+//	@Inject extension InheritanceAdapterInferrer
 
 	def void generateAdapters(Metamodel mm, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
 		val task = Stopwatches.forTask("generate metamodels")
