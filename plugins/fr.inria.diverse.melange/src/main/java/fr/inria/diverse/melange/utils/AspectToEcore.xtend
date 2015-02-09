@@ -85,7 +85,7 @@ class AspectToEcore
 									pType instanceof JvmTypeParameterDeclarator
 								val upperBP = if (isCollectionP) -1 else 1
 								val realTypeP =
-									if (isCollection)
+									if (isCollectionP)
 										(p.parameterType as JvmParameterizedTypeReference).arguments.head.type
 									else
 										pType
