@@ -24,7 +24,7 @@ interface GenericAdapter<E> {
 	def void setAdaptee(E a)
 }
 
-class ListAdapter<E, F> implements List<E>
+class ListAdapter<E, F> implements GenericAdapter<List<F>>, List<E>
 {
 	List<F> adaptee
 	Class<? extends GenericAdapter<F>> adapType
@@ -162,6 +162,14 @@ class ListAdapter<E, F> implements List<E>
 
 	def F decapsulate(Object e) {
 		return (e as GenericAdapter<F>).adaptee
+	}
+
+	override getAdaptee() {
+		return adaptee
+	}
+
+	override setAdaptee(List<F> a) {
+		adaptee = a
 	}
 }
 
