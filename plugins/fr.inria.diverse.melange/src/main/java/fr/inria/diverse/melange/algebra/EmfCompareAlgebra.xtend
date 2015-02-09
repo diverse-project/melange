@@ -19,6 +19,8 @@ import org.eclipse.emf.compare.merge.IMerger
 import org.eclipse.emf.compare.scope.DefaultComparisonScope
 
 import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.ENamedElement
+import org.eclipse.emf.ecore.EcorePackage
 
 class EmfCompareAlgebra implements ModelTypeAlgebra
 {
@@ -44,8 +46,12 @@ class EmfCompareAlgebra implements ModelTypeAlgebra
 		val comparison = EMFCompare.builder().build.compare(scope)
 
 		val mergedDiffs = comparison.differences.filter[
-			   kind == DifferenceKind.ADD
-			|| requires.exists[kind == DifferenceKind.ADD]
+			   (kind == DifferenceKind.ADD
+			|| requires.exists[kind == DifferenceKind.ADD])
+			&&
+			if (match.left instanceof ENamedElement && match.right instanceof ENamedElement)
+				match.left.eGet(EcorePackage.Literals.ENAMED_ELEMENT__NAME) == match.right.eGet(EcorePackage.Literals.ENAMED_ELEMENT__NAME)
+			else true
 		]
 
 		val mergerRegistry = IMerger.RegistryImpl.createStandaloneInstance
