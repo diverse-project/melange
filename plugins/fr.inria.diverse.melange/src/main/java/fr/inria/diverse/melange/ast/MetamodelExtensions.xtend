@@ -154,7 +154,7 @@ class MetamodelExtensions
 
 	// FIXME: Create referenced EClass if they don't exist yet
 	// FIXME: Consider finding EClassifier, not EClass
-	def void weaveAspect(Metamodel mm, EClass cls, JvmDeclaredType asp) {
+	/*def void weaveAspect(Metamodel mm, EClass cls, JvmDeclaredType asp) {
 		asp.declaredOperations
 		.filter[
 			   !simpleName.startsWith("_privk3")
@@ -233,7 +233,7 @@ class MetamodelExtensions
 				}
 			}
 		]
-	}
+	}*/
 
 	def void createLocalEcore(Metamodel mm) {
 		mm.createEcore(mm.localEcoreUri)
