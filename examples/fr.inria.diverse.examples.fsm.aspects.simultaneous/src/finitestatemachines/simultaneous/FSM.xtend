@@ -1,20 +1,19 @@
 package finitestatemachines.simultaneous
 
-import java.util.ArrayList
-
-import finitestatemachines.StateMachine
-import finitestatemachines.State
-import finitestatemachines.InitialState
-import finitestatemachines.Transition
+import FSM.interfaces.Context
 import finitestatemachines.FinalState
-import finitestatemachines.Pseudostate
 import finitestatemachines.Fork
-
+import finitestatemachines.InitialState
+import finitestatemachines.Pseudostate
+import finitestatemachines.State
+import finitestatemachines.StateMachine
+import finitestatemachines.Transition
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
+import java.util.ArrayList
+import java.util.List
 
 import static extension finitestatemachines.simultaneous.StateAspect.*
-import java.util.List
 
 //
 // *.*

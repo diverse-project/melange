@@ -1,14 +1,14 @@
 package finitestatemachines.simultaneous
 
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
+import FSM.interfaces.Context
+import FSM.interfaces.Interpreter
+import finitestatemachines.FinitestatemachinesPackage
+import finitestatemachines.StateMachine
+import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.Resource
-import finitestatemachines.FinitestatemachinesPackage
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.emf.common.util.URI
-import finitestatemachines.StateMachine
-
-import FSM.interfaces.Interpreter
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 
 import static extension finitestatemachines.simultaneous.StateMachineAspect.*
 
@@ -16,7 +16,7 @@ class SimultaneousInterpreter implements Interpreter {
 	
 	override execute(String modelPath, String input){
 		var String expression = input
-		var finitestatemachines.simultaneous.Context context = new Context(expression)
+		var Context context = new Context(expression)
 		
 		var fact = new XMIResourceFactoryImpl
 		if (!EPackage.Registry.INSTANCE.containsKey(FinitestatemachinesPackage.eNS_URI)) {

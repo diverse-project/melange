@@ -1,5 +1,7 @@
 package finitestatemachines.simultaneous
 
+import FSM.interfaces.Context
+
 import static extension finitestatemachines.simultaneous.StateAspect.*
 
 class ForkThread extends Thread {

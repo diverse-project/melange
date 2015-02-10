@@ -1,14 +1,14 @@
 package finitestatemachines.simultaneous
 
-import java.util.ArrayList
-
-import finitestatemachines.StateMachine
-import finitestatemachines.Transition
+import FSM.interfaces.Context
 import finitestatemachines.Fork
 import finitestatemachines.Join
+import finitestatemachines.StateMachine
+import finitestatemachines.Transition
+import java.util.ArrayList
 
-import static extension finitestatemachines.simultaneous.StateMachineAspect.*
 import static extension finitestatemachines.simultaneous.StateAspect.*
+import static extension finitestatemachines.simultaneous.StateMachineAspect.*
 
 //
 // *.*
@@ -22,7 +22,7 @@ class SimultaneousEventsThread extends Thread {
 	StateMachine stateMachine
 	Context context
 	ArrayList<finitestatemachines.State> currentState
-	ArrayList<finitestatemachines.Transition> currentTransitions
+	ArrayList<Transition> currentTransitions
 	
 	/**
 	 * Constructor of the class. Initializes the attributes with the values
@@ -33,7 +33,7 @@ class SimultaneousEventsThread extends Thread {
 		stateMachine = _stateMachine
 		context = _context
 		currentState = new ArrayList<finitestatemachines.State>()
-		currentTransitions = new ArrayList<finitestatemachines.Transition>()
+		currentTransitions = new ArrayList<Transition>()
 	}
 	
 	/**

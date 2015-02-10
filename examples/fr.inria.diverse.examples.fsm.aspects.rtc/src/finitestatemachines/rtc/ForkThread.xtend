@@ -1,5 +1,7 @@
 package finitestatemachines.rtc
 
+import FSM.interfaces.Context
+
 import static extension finitestatemachines.rtc.StateAspect.*
 
 class ForkThread extends Thread {

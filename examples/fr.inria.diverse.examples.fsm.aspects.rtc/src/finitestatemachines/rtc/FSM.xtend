@@ -1,21 +1,20 @@
 package finitestatemachines.rtc
 
+import FSM.interfaces.Context
+import finitestatemachines.FinalState
+import finitestatemachines.Fork
+import finitestatemachines.InitialState
+import finitestatemachines.Join
+import finitestatemachines.Pseudostate
+import finitestatemachines.State
+import finitestatemachines.StateMachine
+import finitestatemachines.Transition
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
-
-import finitestatemachines.Fork
-import finitestatemachines.Join
-import finitestatemachines.FinalState
-import finitestatemachines.Pseudostate
-import finitestatemachines.StateMachine
-
-import finitestatemachines.State
-import finitestatemachines.InitialState
-import finitestatemachines.Transition
+import java.util.ArrayList
+import java.util.List
 
 import static extension finitestatemachines.rtc.StateAspect.*
-import java.util.List
-import java.util.ArrayList
 
 //
 // *.*

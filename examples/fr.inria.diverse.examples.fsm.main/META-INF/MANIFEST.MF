@@ -14,7 +14,8 @@ Require-Bundle: org.eclipse.xtend.lib;bundle-version="2.7.0";visibility:=private
  fr.inria.diverse.examples.fsm.metamodel;bundle-version="1.0.0",
  fr.inria.diverse.examples.fsm.aspects.rtc;bundle-version="1.0.0",
  fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version="3.1.0",
- fr.inria.diverse.examples.fsm.aspects.simultaneous;bundle-version="1.0.0"
+ fr.inria.diverse.examples.fsm.aspects.simultaneous;bundle-version="1.0.0",
+ fr.inria.diverse.examples.fsm.aspects.interfaces;bundle-version="1.0.0"
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 
