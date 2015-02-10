@@ -1,0 +1,60 @@
+package finitestatemachines
+
+// Implementation 1: State machines that comply to the Run-To-Completion policy: UML and Rhapsody.
+metamodel FiniteStateMachineRTC{
+	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel/models/fsm.ecore"
+	exactType FiniteStateMachineRTCMT
+
+	with finitestatemachines.rtc.StateMachineAspect
+	with finitestatemachines.rtc.StateAspect
+	with finitestatemachines.rtc.FinalStateAspect
+	with finitestatemachines.rtc.InitialStateAspect
+	with finitestatemachines.rtc.PseudostateAspect
+	with finitestatemachines.rtc.ForkAspect
+	with finitestatemachines.rtc.TransitionAspect 
+} 
+
+transformation executeRTC(FiniteStateMachineRTCMT stateMachine, String input, String outputFile){
+	val root = stateMachine.contents.head as finitestatemachines.finitestatemachinertcmt.StateMachine
+	root.eval(new finitestatemachines.rtc.Context(input), outputFile)
+}
+
+
+
+
+
+
+
+//// Implementation 2: State machines that accept simultaneous events: Classical statecharts.
+//metamodel FiniteStateMachineSimultaneous{
+//	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel/models/fsm.ecore"
+//	exactType FiniteStateMachineSimultaneousMT
+//	
+//	with finitestatemachines.simultaneous.StateMachineAspect
+//	with finitestatemachines.simultaneous.StateAspect
+//	with finitestatemachines.simultaneous.FinalStateAspect
+//	with finitestatemachines.simultaneous.InitialStateAspect
+//	with finitestatemachines.simultaneous.PseudostateAspect
+//	with finitestatemachines.simultaneous.ForkAspect
+//	with finitestatemachines.simultaneous.TransitionAspect
+//}
+//
+//transformation executeSimultaneous(FiniteStateMachineSimultaneousMT stateMachine, String input, String outputFile){
+//	val root = stateMachine.contents.head as finitestatemachines.finitestatemachinesimultaneousmt.StateMachine
+//	root.eval(new finitestatemachines.simultaneous.Context(input), outputFile)
+//}
+//
+//// Execution of the state machines.
+//@Main
+//transformation main(){
+//	val simpleProgram = FiniteStateMachineRTC.load("input/dummie.xmi")
+//	executeRTC.call(simpleProgram, "{x;y;z,o;p;q}", "input/dummie-output " + 
+//		System.currentTimeMillis + ".pdf")
+//}
+
+//@Main
+//transformation main(){
+//	val simpleProgram = FiniteStateMachineSimultaneousMT.load("input/dummie.xmi")
+//	executeSimultaneous.call(simpleProgram, "{x;y;z,o;p;q}", "input/dummie-output " + 
+//		System.currentTimeMillis + ".pdf")
+//}
