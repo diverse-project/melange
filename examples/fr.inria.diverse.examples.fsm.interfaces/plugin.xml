@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated ifsm -->
+      <package
+            uri="http://fr.inria.diverse.examples.ifsm"
+            class="ifinitestatemachines.IfinitestatemachinesPackage"
+            genModel="models/ifsm.genmodel"/>
+   </extension>
+
+</plugin>

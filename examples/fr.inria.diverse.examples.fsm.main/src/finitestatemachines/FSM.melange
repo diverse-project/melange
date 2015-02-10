@@ -1,7 +1,11 @@
 package finitestatemachines
 
+//modeltype IStateMachine{
+//	ecore "platform:/resource/fr.inria.diverse.examples.fsm.interfaces/models/ifsm.ecore"
+//}
+
 // Implementation 1: State machines that comply to the Run-To-Completion policy: UML and Rhapsody.
-metamodel FiniteStateMachineRTC{
+metamodel FiniteStateMachineRTC /**implements IStateMachine*/ {
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel/models/fsm.ecore"
 	exactType FiniteStateMachineRTCMT
 
