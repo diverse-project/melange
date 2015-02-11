@@ -14,6 +14,9 @@ import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
 import org.eclipse.xtext.common.types.JvmVisibility
 
+/**
+ * This class creates an EPackage corresponding to an aspect.
+ */
 // FIXME: Duplicated code etc. this is so ugly
 class AspectToEcore
 {

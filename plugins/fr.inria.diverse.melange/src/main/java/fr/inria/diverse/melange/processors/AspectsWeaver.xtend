@@ -7,6 +7,9 @@ import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.utils.AspectToEcore
 import org.eclipse.xtext.common.types.JvmDeclaredType
 
+/**
+ * This class merges all aspects into the Metamodel
+ */
 class AspectsWeaver extends DispatchMelangeProcessor
 {
 	@Inject ModelTypeAlgebra algebra
