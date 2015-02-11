@@ -260,7 +260,8 @@ class MetaclassAdapterInferrer
 							else
 								superType.typeRef(mtCls, #[jvmCls])
 						else
-							typeRef(op.returnType.qualifiedName.primitiveIfWrapType)
+							op.returnType.primitiveIfWrapType
+							//typeRef(op.returnType.qualifiedName.primitiveIfWrapType)
 
 					paramsList.append('''«IF inherited»clsAdaptee«ELSE»adaptee«ENDIF»''')
 					op.parameters.drop(if (op.parameters.head?.simpleName == "_self") 1 else 0).forEach[p, i |
@@ -298,7 +299,8 @@ class MetaclassAdapterInferrer
 											else
 												superType.typeRef(pCls, #[jvmCls])
 										else
-											typeRef(p.parameterType.qualifiedName.primitiveIfWrapType)
+											p.parameterType.primitiveIfWrapType
+											//typeRef(p.parameterType.qualifiedName.primitiveIfWrapType)
 
 								parameters += mm.toParameter(p.name, pType)
 							]
@@ -351,7 +353,8 @@ class MetaclassAdapterInferrer
 											else
 												superType.typeRef(pCls, #[jvmCls])
 										else
-											typeRef(p.parameterType.qualifiedName.primitiveIfWrapType)
+											p.parameterType.primitiveIfWrapType
+											//typeRef(p.parameterType.qualifiedName.primitiveIfWrapType)
 
 									parameters += mm.toParameter(p.name, pType)
 								]
@@ -399,7 +402,8 @@ class MetaclassAdapterInferrer
 											else
 												superType.typeRef(pCls, #[jvmCls])
 										else
-											typeRef(p.parameterType.qualifiedName.primitiveIfWrapType)
+											p.parameterType.primitiveIfWrapType
+											//typeRef(p.parameterType.qualifiedName.primitiveIfWrapType)
 
 									parameters += mm.toParameter(p.name, pType)
 								]

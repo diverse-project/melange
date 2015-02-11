@@ -109,7 +109,8 @@ class JvmModelInferrerHelper
 				name
 	}
 
-	def String getPrimitiveIfWrapType(String name) {
+	def JvmTypeReference getPrimitiveIfWrapType(JvmTypeReference ref) {
+		val name = ref.qualifiedName
 		val fqn = QualifiedName::create(name.split("\\."))
 
 		if (#[
@@ -118,8 +119,8 @@ class JvmModelInferrerHelper
 				"java.lang.Integer", "java.lang.Long",
 				"java.lang.Short"
 			].contains(fqn.toString))
-			return fqn.lastSegment.toString.toLowerCase
-		else return name
+			return fqn.lastSegment.toString.toLowerCase.typeRef
+		else return ref
 	}
 
 	def boolean overrides(JvmOperation o1, JvmOperation o2) {
