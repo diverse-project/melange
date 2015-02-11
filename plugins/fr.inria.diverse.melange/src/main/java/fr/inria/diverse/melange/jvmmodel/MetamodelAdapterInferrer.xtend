@@ -25,6 +25,9 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.ecore.EObject
 
+/**
+ * This class generates Java classes that implement a Model type for a Metamodel
+ */
 class MetamodelAdapterInferrer
 {
 	@Inject extension JvmTypesBuilder

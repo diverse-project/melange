@@ -21,6 +21,9 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import fr.inria.diverse.melange.lib.IMetamodel
 
+/**
+ * This class generates Java classes that implements a Metamodel.
+ */
 class MetamodelInferrer
 {
 	@Inject extension JvmTypesBuilder

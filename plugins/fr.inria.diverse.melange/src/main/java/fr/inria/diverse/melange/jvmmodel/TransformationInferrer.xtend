@@ -18,6 +18,9 @@ import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
+/**
+ * This class generates a Java class for a Transformation
+ */
 class TransformationInferrer
 {
 	@Inject extension JvmTypesBuilder

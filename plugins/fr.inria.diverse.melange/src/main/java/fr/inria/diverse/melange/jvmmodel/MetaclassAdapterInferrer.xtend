@@ -33,6 +33,9 @@ import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
+/**
+ * This class generates a Java class that implements an Object type for a Metaclass.
+ */
 class MetaclassAdapterInferrer
 {
 	@Inject extension JvmModelInferrerHelper

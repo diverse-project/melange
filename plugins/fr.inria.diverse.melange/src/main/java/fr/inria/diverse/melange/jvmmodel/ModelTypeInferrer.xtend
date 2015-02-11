@@ -27,6 +27,14 @@ import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
+/**
+ * This class generates Java source code for a Model Type.
+ * 
+ * Are generated:
+ * - A Java interface for the Model type
+ * - An abstract factory to create each Object type of the Model type
+ * - Java interfaces for each Object type
+ */
 class ModelTypeInferrer
 {
 	@Inject extension JvmTypesBuilder

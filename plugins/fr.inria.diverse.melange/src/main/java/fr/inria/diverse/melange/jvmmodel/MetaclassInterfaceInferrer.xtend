@@ -22,6 +22,9 @@ import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
+/**
+ * This class generate a Java interface corresponding to an Object type. 
+ */
 class MetaclassInterfaceInferrer
 {
 	@Inject extension JvmModelInferrerHelper
