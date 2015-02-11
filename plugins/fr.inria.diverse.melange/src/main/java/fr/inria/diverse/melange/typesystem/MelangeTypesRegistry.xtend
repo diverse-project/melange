@@ -9,6 +9,9 @@ import java.util.Collection
 
 import com.google.inject.Singleton
 
+/**
+ * This class store Model type hierarchy
+ */
 @Singleton
 class MelangeTypesRegistry
 {
