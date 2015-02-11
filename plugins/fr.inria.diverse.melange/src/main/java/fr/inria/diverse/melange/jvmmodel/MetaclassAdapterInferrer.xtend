@@ -48,6 +48,16 @@ class MetaclassAdapterInferrer
 	@Inject extension MelangeTypesBuilder
 	@Inject extension TypeReferencesHelper
 
+	/**
+	 * Creates a Java class that implements an Object type from {@link superType} and delegates operations
+	 * to {@link cls}. (Adapter design  pattern)
+	 * 
+	 * @param mm
+	 * @param superType Model type implemented by {@link mm}
+	 * @param cls Metaclass corresponding to an Object type in {@link superType}
+	 * @param acceptor 
+	 * @param builder
+	 */
 	def void generateAdapter(Metamodel mm, ModelType superType, EClass cls, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
 		val task = Stopwatches.forTask("generate metaclass adapters")
 		task.start

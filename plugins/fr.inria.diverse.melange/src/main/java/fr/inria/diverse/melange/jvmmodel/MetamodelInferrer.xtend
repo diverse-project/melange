@@ -22,7 +22,7 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import fr.inria.diverse.melange.lib.IMetamodel
 
 /**
- * This class generates Java classes that implements a Metamodel.
+ * This class manages generation of Java classes that implements a Metamodel.
  */
 class MetamodelInferrer
 {
@@ -36,6 +36,18 @@ class MetamodelInferrer
 	@Inject extension MetaclassAdapterInferrer
 //	@Inject extension InheritanceAdapterInferrer
 
+	/**
+	 * Creates:
+	 * - A Java class for {@link mm}
+	 * - A Java class for each Model type in {@link mm}
+	 * - A concrete factory for each Model type
+	 * - A factory to create adapters for each Model type
+	 * - Adapters for each Object type in Model types
+	 * 
+	 * @param mm
+	 * @param acceptor
+	 * @param builder
+	 */
 	def void generateAdapters(Metamodel mm, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
 		val task = Stopwatches.forTask("generate metamodels")
 		task.start

@@ -19,7 +19,7 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
 /**
- * This class generates a Java class for a Transformation
+ * This class manages the Java code generation for Transformation
  */
 class TransformationInferrer
 {
@@ -29,6 +29,13 @@ class TransformationInferrer
 	@Inject extension NamingHelper
 	@Inject extension MetamodelExtensions
 
+	/**
+	 * Creates a Java class for {@link transfo}
+	 * 
+	 * @param transfo
+	 * @param acceptor
+	 * @param builder
+	 */
 	def void generateTransformation(XbaseTransformation transfo, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
 		val task = Stopwatches.forTask("generate transformations")
 		task.start
