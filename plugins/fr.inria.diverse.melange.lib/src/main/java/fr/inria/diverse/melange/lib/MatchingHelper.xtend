@@ -17,6 +17,9 @@ import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EParameter
 import org.eclipse.emf.ecore.EReference
 
+/**
+ * This class manages the type comparison between groups of types
+ */
 class MatchingHelper
 {
 	List<EPackage> pkgsA
@@ -27,6 +30,10 @@ class MatchingHelper
 
 	@Inject extension EcoreExtensions
 
+	/**
+	 * Return true if each metaclass in {@link l2} have an equivalent
+	 * metaclass in {@link l1} that is matching
+	 */
 	def boolean match(List<EPackage> l1, List<EPackage> l2) {
 		pkgsA = l1
 		pkgsB = l2
@@ -50,6 +57,11 @@ class MatchingHelper
 		return ret && postValidation
 	}
 
+	/**
+	 * Return true if both classes have the same name and
+	 * each operations, attributes or references in {@link clsB}
+	 * have an equivalent element in {@link clsA} that is matching
+	 */
 	private def boolean internalMatch(EClass clsA, EClass clsB) {
 		if (matches.containsKey(clsA.uniqueId -> clsB.uniqueId))
 			return matches.get(clsA.uniqueId -> clsB.uniqueId)
@@ -80,7 +92,11 @@ class MatchingHelper
 			return true
 		}
 	}
-
+	
+	/**
+	 * Return true if both operations have same name and return types,
+	 * parameters and exceptions are matching
+	 */
 	private def boolean internalMatch(EOperation opA, EOperation opB) {
 		val ret =
 		    opA.name == opB.name
@@ -117,8 +133,12 @@ class MatchingHelper
 		return ret
 	}
 
+	/**
+	 * Return true if paramsB.size() < paramsA.size() and
+	 * each parameters in both list are matching
+	 */
 	private def boolean internalMatch(List<EParameter> paramsA, List<EParameter> paramsB) {
-		var rank = 0
+		var rank = 0 //index in paramsB
 
 		for (paramB : paramsB) {
 			if (rank >= paramsA.size)
@@ -151,6 +171,10 @@ class MatchingHelper
 		return true
 	}
 
+	/**
+	 * Return true if both attributes have the same name, the same properties
+	 * and their types have same name.
+	 */
 	private def boolean internalMatch(EAttribute attrA, EAttribute attrB) {
 		val ret =
 		    attrA.name == attrB.name
@@ -176,6 +200,10 @@ class MatchingHelper
 		return ret
 	}
 
+	/**
+	 * Return true if both references have the same name, same properties and
+	 * the type of {@link refA}  is matching the type of {@link refB}
+	 */
 	private def boolean internalMatch(EReference refA, EReference refB) {
 		val ret =
 		    refA.name == refB.name
