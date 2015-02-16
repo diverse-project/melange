@@ -33,6 +33,7 @@ import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.common.types.JvmGenericType
+import org.eclipse.xtext.common.types.JvmOperation
 
 /**
  * This class generates a Java class that implements an Object type for a Metaclass.
@@ -97,6 +98,9 @@ class MetaclassAdapterInferrer
 		task.stop
 	}
 
+	/**
+	 * Creates accessors/mutators for attributes defined in {@link cls} and add them to {@link jvmCls}
+	 */
 	private def  void processAttributes(JvmGenericType jvmCls, EClass cls, Metamodel mm, ModelType superType, extension JvmTypeReferenceBuilder builder){
 		cls.EAllAttributes.filter[!isAspectSpecific].forEach[attr |
 				val attrType = superType.typeRef(attr, #[jvmCls])
@@ -136,6 +140,9 @@ class MetaclassAdapterInferrer
 			]
 	}
 	
+	/**
+	 * Creates accessors/mutators for references defined in {@link cls} and add them to {@link jvmCls}
+	 */
 	private def void processReferences(JvmGenericType jvmCls, EClass cls, Metamodel mm, ModelType superType, extension JvmTypeReferenceBuilder builder){
 		cls.EAllReferences.filter[!isAspectSpecific].forEach[ref |
 				val refType = superType.typeRef(ref, #[jvmCls])
@@ -176,6 +183,9 @@ class MetaclassAdapterInferrer
 			]
 	}
 	
+	/**
+	 * Creates proxy methods for each operations defined in {@link cls} and add them to {@link jvmCls}.
+	 */
 	private def void processOperations(JvmGenericType jvmCls, EClass cls, Metamodel mm, ModelType superType, extension JvmTypeReferenceBuilder builder){
 		cls.EAllOperations.sortByOverridingPriority.filter[!isAspectSpecific]
 			.forEach[op |
@@ -250,6 +260,9 @@ class MetaclassAdapterInferrer
 			]
 	}
 	
+	/**
+	 * Creates methods for operations defined in aspects and add them to {@link jvmCls}.
+	 */
 	private def void processAspects(JvmGenericType jvmCls, EClass cls, Metamodel mm, ModelType superType, extension JvmTypeReferenceBuilder builder){
 		mm.allAspects.filter[asp |
 				asp.aspectedClass.name == cls.name ||
@@ -315,159 +328,110 @@ class MetaclassAdapterInferrer
 						''')
 					]
 
+					var opName_ = op.simpleName
+					var drop_ = 1
+					var realType_ = retType.type.simpleName
+					
 					if (featureName === null) {
-						jvmCls.members += mm.toMethod(op.simpleName, retType)[
-							op.parameters.drop(if (op.parameters.head?.simpleName == "_self") 1 else 0).forEach[p |
-								val realTypeP =
-									if (p.parameterType.isCollection)
-										(p.parameterType as JvmParameterizedTypeReference).arguments.head.type.simpleName
-									else
-										p.parameterType.simpleName
-								val pCls = superType.findClassifier(realTypeP)
-								val pType =
-										if (pCls !== null)
-											if (p.parameterType.isCollection)
-												p.parameterType.type.typeRef(superType.typeRef(pCls, #[jvmCls]))
-											else
-												superType.typeRef(pCls, #[jvmCls])
-										else
-											typeRef(p.parameterType.qualifiedName.primitiveIfWrapType)
-
-								parameters += mm.toParameter(p.name, pType)
-							]
-
-							body = '''
-								«IF inherited»
-									«mm.adapterNameFor(superMM, cls)» clsAdaptee = new «mm.adapterNameFor(superMM, cls)»() ;
-									clsAdaptee.setAdaptee(adaptee) ;
-									«IF retType.isValidReturnType»
-										«IF mm.hasAdapterFor(superType, retType.type.simpleName)»
-											return adaptersFactory.create«superMM.simpleAdapterNameFor(superType, retType.type.simpleName)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
-										«ELSE»
-											return «asp.qualifiedName».«op.simpleName»(«paramsList») ;
-										«ENDIF»
-									«ELSE»
-										«asp.qualifiedName».«op.simpleName»(«paramsList») ;
-									«ENDIF»
-								«ELSEIF retType.isValidReturnType»
-									«IF mm.hasAdapterFor(superType, realType)»
-										«IF op.returnType.isCollection»
-											return fr.inria.diverse.melange.lib.ListAdapter.newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), «mm.adapterNameFor(superType, realType)».class) ;
-										«ELSE»
-											return adaptersFactory.create«mm.simpleAdapterNameFor(superType, realType)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
-										«ENDIF»
-									«ELSE»
-										return «asp.qualifiedName».«op.simpleName»(«paramsList») ;
-									«ENDIF»
-								«ELSE»
-									«asp.qualifiedName».«op.simpleName»(«paramsList») ;
-								«ENDIF»
-							'''
-						]
+						drop_ = if (op.parameters.head?.simpleName == "_self") 1 else 0
 					} else {
 						val find = mm.findClass(realType)
-						val opName = if (op.parameters.size == 1) op.getterName else op.setterName
+						
+						opName_ = if (op.parameters.size == 1) op.getterName else op.setterName
 
 						if (find !== null) {
-							jvmCls.members += mm.toMethod(opName, retType)[
-								op.parameters.drop(1).forEach[p |
-									val realTypeP =
-										if (p.parameterType.isCollection)
-											(p.parameterType as JvmParameterizedTypeReference).arguments.head.type.simpleName
-										else
-											p.parameterType.simpleName
-									val pCls = superType.findClassifier(realTypeP)
-									val pType =
-										if (pCls !== null)
-											if (p.parameterType.isCollection)
-												p.parameterType.type.typeRef(superType.typeRef(pCls, #[jvmCls]))
-											else
-												superType.typeRef(pCls, #[jvmCls])
-										else
-											typeRef(p.parameterType.qualifiedName.primitiveIfWrapType)
-
-									parameters += mm.toParameter(p.name, pType)
-								]
-								body = '''
-									«IF inherited»
-										«mm.adapterNameFor(superMM, cls)» clsAdaptee = new «mm.adapterNameFor(superMM, cls)»() ;
-										clsAdaptee.setAdaptee(adaptee) ;
-										«IF retType.isValidReturnType»
-											«IF mm.hasAdapterFor(superType, realType)»
-												return adaptersFactory.create«superMM.simpleAdapterNameFor(superType, realType)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
-											«ELSE»
-												return «asp.qualifiedName».«op.simpleName»(«paramsList») ;
-											«ENDIF»
-										«ELSE»
-											«asp.qualifiedName».«op.simpleName»(«paramsList») ;
-										«ENDIF»
-									«ELSEIF retType.isValidReturnType»
-										«IF mm.hasAdapterFor(superType, realType)»
-											«IF op.returnType.isCollection»
-												return fr.inria.diverse.melange.lib.ListAdapter.newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), «mm.adapterNameFor(superType, realType)».class) ;
-											«ELSE»
-												return adaptersFactory.create«mm.simpleAdapterNameFor(superType, realType)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
-											«ENDIF»
-										«ELSE»
-											return «asp.qualifiedName».«op.simpleName»(«paramsList») ;
-										«ENDIF»
-									«ELSE»
-										«asp.qualifiedName».«op.simpleName»(«paramsList») ;
-									«ENDIF»
-								'''
-							]
-						} else {
-							jvmCls.members += mm.toMethod(opName, retType)[
-								op.parameters.drop(1).forEach[p |
-									val realTypeP =
-										if (p.parameterType.isCollection)
-											(p.parameterType as JvmParameterizedTypeReference).arguments.head.type.simpleName
-										else
-											p.parameterType.simpleName
-									val pCls = superType.findClassifier(realTypeP)
-									val pType =
-										if (pCls !== null)
-											if (p.parameterType.isCollection)
-												p.parameterType.type.typeRef(superType.typeRef(pCls, #[jvmCls]))
-											else
-												superType.typeRef(pCls, #[jvmCls])
-										else
-											typeRef(p.parameterType.qualifiedName.primitiveIfWrapType)
-
-									parameters += mm.toParameter(p.name, pType)
-								]
-								body = '''
-									«IF inherited»
-										«mm.adapterNameFor(superMM, cls)» clsAdaptee = new «mm.adapterNameFor(superMM, cls)»() ;
-										clsAdaptee.setAdaptee(adaptee) ;
-										«IF retType.isValidReturnType»
-											«IF mm.hasAdapterFor(superType, retType.type.simpleName)»
-												return adaptersFactory.create«superMM.simpleAdapterNameFor(superType, retType.type.simpleName)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
-											«ELSE»
-												return «asp.qualifiedName».«op.simpleName»(«paramsList») ;
-											«ENDIF»
-										«ELSE»
-											«asp.qualifiedName».«op.simpleName»(«paramsList») ;
-										«ENDIF»
-									«ELSEIF retType.isValidReturnType»
-										«IF mm.hasAdapterFor(superType, realType)»
-											«IF op.returnType.isCollection»
-												return fr.inria.diverse.melange.lib.ListAdapter.newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), «mm.adapterNameFor(superType, realType)».class) ;
-											«ELSE»
-												return adaptersFactory.create«mm.simpleAdapterNameFor(superType, realType)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
-											«ENDIF»
-										«ELSE»
-											return «asp.qualifiedName».«op.simpleName»(«paramsList») ;
-										«ENDIF»
-									«ELSE»
-										«asp.qualifiedName».«op.simpleName»(«paramsList») ;
-									«ENDIF»
-								'''
-							]
+							realType_ = realType
 						}
 					}
+					
+					makeMethod(	opName_,
+								drop_,
+								realType_,
+								jvmCls,
+								op,
+								realType,
+								asp,
+								inherited,
+								cls,
+								mm,
+								retType,
+								paramsList,
+								superMM,
+								superType,
+								builder
+							  )
 				]
 			]
+	}
+
+	/**
+	 * Create a method named {@link opName_} and add it in {@link jvmClas}
+	 */
+	private def void makeMethod(
+								String opName_,
+								int dropParameters_,
+								String realType_,
+								JvmGenericType jvmCls,
+								JvmOperation op,
+								String realType,
+								JvmDeclaredType asp,
+								boolean inherited,
+								EClass cls,
+								Metamodel mm,
+								JvmTypeReference retType,
+								StringBuilder paramsList,
+								Metamodel superMM,
+								ModelType superType,
+								extension JvmTypeReferenceBuilder builder
+								){
+									
+		jvmCls.members += mm.toMethod(opName_, retType)[
+								op.parameters.drop(dropParameters_).forEach[p |
+									val realTypeP =
+										if (p.parameterType.isCollection)
+											(p.parameterType as JvmParameterizedTypeReference).arguments.head.type.simpleName
+										else
+											p.parameterType.simpleName
+									val pCls = superType.findClassifier(realTypeP)
+									val pType =
+										if (pCls !== null)
+											if (p.parameterType.isCollection)
+												p.parameterType.type.typeRef(superType.typeRef(pCls, #[jvmCls]))
+											else
+												superType.typeRef(pCls, #[jvmCls])
+										else
+											typeRef(p.parameterType.qualifiedName.primitiveIfWrapType)
+
+									parameters += mm.toParameter(p.name, pType)
+								]
+								body = '''
+									«IF inherited»
+										«mm.adapterNameFor(superMM, cls)» clsAdaptee = new «mm.adapterNameFor(superMM, cls)»() ;
+										clsAdaptee.setAdaptee(adaptee) ;
+										«IF retType.isValidReturnType»
+											«IF mm.hasAdapterFor(superType, realType_)»
+												return adaptersFactory.create«superMM.simpleAdapterNameFor(superType, realType_)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
+											«ELSE»
+												return «asp.qualifiedName».«op.simpleName»(«paramsList») ;
+											«ENDIF»
+										«ELSE»
+											«asp.qualifiedName».«op.simpleName»(«paramsList») ;
+										«ENDIF»
+									«ELSEIF retType.isValidReturnType»
+										«IF mm.hasAdapterFor(superType, realType)»
+											«IF op.returnType.isCollection»
+												return fr.inria.diverse.melange.lib.ListAdapter.newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), «mm.adapterNameFor(superType, realType)».class) ;
+											«ELSE»
+												return adaptersFactory.create«mm.simpleAdapterNameFor(superType, realType)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
+											«ENDIF»
+										«ELSE»
+											return «asp.qualifiedName».«op.simpleName»(«paramsList») ;
+										«ENDIF»
+									«ELSE»
+										«asp.qualifiedName».«op.simpleName»(«paramsList») ;
+									«ENDIF»
+								'''
+							]
 	}
 
 	private def boolean isValidReturnType(JvmTypeReference ref) {
