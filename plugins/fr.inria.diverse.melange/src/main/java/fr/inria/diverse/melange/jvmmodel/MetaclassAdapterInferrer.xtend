@@ -32,6 +32,7 @@ import org.eclipse.xtext.util.internal.Stopwatches
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
+import org.eclipse.xtext.common.types.JvmGenericType
 
 /**
  * This class generates a Java class that implements an Object type for a Metaclass.
@@ -83,7 +84,21 @@ class MetaclassAdapterInferrer
 				initializer = '''«mm.getAdaptersFactoryNameFor(superType)».getInstance()'''
 			]
 
-			cls.EAllAttributes.filter[!isAspectSpecific].forEach[attr |
+			processAttributes(jvmCls,cls,mm,superType,builder)
+			
+			processReferences(jvmCls,cls,mm,superType,builder)
+			
+			processOperations(jvmCls,cls,mm,superType,builder)
+			
+			processAspects(jvmCls,cls,mm,superType,builder)
+			
+		]
+
+		task.stop
+	}
+
+	private def  void processAttributes(JvmGenericType jvmCls, EClass cls, Metamodel mm, ModelType superType, extension JvmTypeReferenceBuilder builder){
+		cls.EAllAttributes.filter[!isAspectSpecific].forEach[attr |
 				val attrType = superType.typeRef(attr, #[jvmCls])
 				val getterName = if (!mm.isUml(attr.EContainingClass)) attr.getterName else attr.umlGetterName
 				val setterName = attr.setterName
@@ -98,7 +113,6 @@ class MetaclassAdapterInferrer
 							return adaptee.«getterName»() ;
 						'''
 				]
-
 				if (attr.needsSetter) {
 					jvmCls.members += mm.toMethod(setterName, Void::TYPE.typeRef)[
 						parameters += mm.toParameter("o", attrType)
@@ -120,8 +134,10 @@ class MetaclassAdapterInferrer
 				if (attr.needsUnsetterChecker)
 					jvmCls.members += mm.toUnsetterCheck(attr.name)
 			]
-
-			cls.EAllReferences.filter[!isAspectSpecific].forEach[ref |
+	}
+	
+	private def void processReferences(JvmGenericType jvmCls, EClass cls, Metamodel mm, ModelType superType, extension JvmTypeReferenceBuilder builder){
+		cls.EAllReferences.filter[!isAspectSpecific].forEach[ref |
 				val refType = superType.typeRef(ref, #[jvmCls])
 				val adapName = mm.adapterNameFor(superType, ref.EReferenceType)
 				val getterName = if (!mm.isUml(ref.EContainingClass)) ref.getterName else ref.umlGetterName
@@ -158,8 +174,10 @@ class MetaclassAdapterInferrer
 				if (ref.needsUnsetterChecker)
 					jvmCls.members += mm.toUnsetterCheck(ref.name)
 			]
-
-			cls.EAllOperations.sortByOverridingPriority.filter[!isAspectSpecific]
+	}
+	
+	private def void processOperations(JvmGenericType jvmCls, EClass cls, Metamodel mm, ModelType superType, extension JvmTypeReferenceBuilder builder){
+		cls.EAllOperations.sortByOverridingPriority.filter[!isAspectSpecific]
 			.forEach[op |
 				val opName = if (!mm.isUml(op.EContainingClass)) op.name else op.formatUmlOperationName
 
@@ -230,8 +248,10 @@ class MetaclassAdapterInferrer
 				newOp.returnType = superType.typeRef(op, #[newOp, jvmCls])
 				jvmCls.members += newOp
 			]
-
-			mm.allAspects.filter[asp |
+	}
+	
+	private def void processAspects(JvmGenericType jvmCls, EClass cls, Metamodel mm, ModelType superType, extension JvmTypeReferenceBuilder builder){
+		mm.allAspects.filter[asp |
 				asp.aspectedClass.name == cls.name ||
 				cls.EAllSuperTypes.exists[asp.aspectedClass.name == name]
 			]
@@ -448,9 +468,6 @@ class MetaclassAdapterInferrer
 					}
 				]
 			]
-		]
-
-		task.stop
 	}
 
 	private def boolean isValidReturnType(JvmTypeReference ref) {
