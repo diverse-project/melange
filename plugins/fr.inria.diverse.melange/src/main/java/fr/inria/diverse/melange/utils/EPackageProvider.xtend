@@ -41,13 +41,13 @@ class EPackageProvider
 	def List<EPackage> getPackages(ModelingElement m) {
 		if (!packages.containsKey(m)) {
 			if (m instanceof Metamodel) {
-				if (m.project !== null)
-					try {
+				try {
+					if (m.project !== null)
 						if (m.project.getFile(m.localEcorePath).exists)
 							m.ecoreUri = m.localEcoreUri
 						else if (m.project.getFile(m.externalEcorePath).exists)
 							m.ecoreUri = m.externalEcoreUri
-					} catch (IllegalStateException e) {}
+				} catch (IllegalStateException e) {}
 			}
 
 			switch (m) {
@@ -98,13 +98,13 @@ class EPackageProvider
 			if (mm.genmodelUris.size == 0 && mm.ecoreUri !== null)
 				mm.genmodelUris += mm.ecoreUri.substring(0, mm.ecoreUri.lastIndexOf(".")) + ".genmodel"
 			else {
-				if (mm.project !== null)
-					try {
+				try {
+					if (mm.project !== null)
 						if (mm.project.getFile(mm.localGenmodelPath).exists)
 							mm.genmodelUris += mm.localGenmodelUri
 						else if (mm.project.getFile(mm.externalGenmodelPath).exists)
 							mm.genmodelUris += mm.externalGenmodelUri
-					} catch (IllegalStateException e) {}
+				} catch (IllegalStateException e) {}
 			}
 			mm.genmodelUris.forEach[genmodels.put(mm, modelUtils.loadGenmodel(it))]
 		}
