@@ -46,12 +46,18 @@ import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmTypeAnnotationValue
 
 import org.eclipse.xtext.naming.QualifiedName
+import fr.inria.diverse.commons.asm.shade.DirectoryShader
+import fr.inria.diverse.commons.asm.shade.ShadeRequest
+import java.io.File
+import fr.inria.diverse.commons.asm.shade.relocation.SimpleRelocator
+import fr.inria.diverse.commons.asm.shade.relocation.Relocator
 
 class MetamodelExtensions
 {
 	@Inject extension ModelingElementExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension ModelTypeExtensions
+	@Inject extension NamingHelper
 	@Inject ModelTypeAlgebra algebra
 	@Inject EPackageProvider provider
 
@@ -99,6 +105,59 @@ class MetamodelExtensions
 			return aspVal.substring(aspVal.lastIndexOf(".") + 1, aspVal.length)
 
 		return aspVal
+	}
+
+	def boolean isDefinedOver(Aspect asp, Metamodel mm) {
+		false
+	}
+
+	def boolean canBeCopiedFor(Aspect asp, Metamodel mm) {
+		true
+	}
+
+	/**
+	 * Full of bugs
+	 */
+	def void copyFor(Aspect asp, Metamodel mm) {
+//		val shader = new DirectoryShader
+//		val request = new ShadeRequest
+//		val relocators = new java.util.ArrayList<Relocator>
+//		val sourceEmfNamespace = "fsm"
+//		val targetEmfNamespace = "timedfsm"
+//		val sourceAspectNamespace = "atgm.aspects"
+//		val targetAspectNamespace = "atgm.extended.aspects"
+//		val sourceAspectFolder = "/home/dig/repositories/melange/examples/gemoc/ATGM.aspects/xtend-gen/"
+//		val targetAspectFolder = "/home/dig/repositories/melange/examples/gemoc/my.dest.project/src/"
+		val shader = new DirectoryShader
+		val request = new ShadeRequest
+		val relocators = new java.util.ArrayList<Relocator>
+		val sourceEmfNamespace = "fsm"
+		val targetEmfNamespace = mm.packageFqn
+		val sourceAspectNamespace = asp.aspectTypeRef.identifier.substring(0, asp.aspectTypeRef.identifier.lastIndexOf("."))
+		val targetAspectNamespace = "atgm.extended.aspects"
+		val sourceAspectFolder = "/home/dig/repositories/melange/examples/gemoc/ATGM.aspects/xtend-gen/"
+		val targetAspectFolder = "/home/dig/repositories/melange/examples/gemoc/my.dest.project/src/"
+		
+		println("sourceEmfNamespace = " + sourceEmfNamespace)
+		println("targetEmfNamespace = " + targetEmfNamespace)
+		println("sourceAspectNamespace = " + sourceAspectNamespace)
+		println("targetAspectNamespace = " + targetAspectNamespace)
+		println("sourceAspectFolder = " + sourceAspectFolder)
+		println("targetAspectFolder = " + targetAspectFolder)
+		
+		relocators += new SimpleRelocator(sourceEmfNamespace, targetEmfNamespace, null, #[])
+		relocators += new SimpleRelocator(sourceAspectNamespace, targetAspectNamespace, null, #[])
+		
+		request.inputFolders = #{new File(sourceAspectFolder)}
+		request.outputFolder = new File(targetAspectFolder)
+		request.filters = #[]
+		request.relocators = relocators
+		
+		try {
+			shader.shade(request)
+		} catch (IOException e) {
+			// ...
+		}
 	}
 
 	def EClass findClass(Metamodel mm, String clsName) {

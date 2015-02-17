@@ -16,6 +16,10 @@ class AspectsWeaver extends DispatchMelangeProcessor
 	def dispatch void preProcess(Metamodel mm) {
 		mm.aspects.forEach[asp |
 			if (asp.aspectTypeRef?.type instanceof JvmDeclaredType) {
+				if (!asp.isDefinedOver(mm) && asp.canBeCopiedFor(mm)) {
+					asp.copyFor(mm)
+				}
+				
 				val className = asp.aspectAnnotationValue
 				val cls = mm.findClass(className)
 				asp.aspectedClass = cls
