@@ -145,8 +145,8 @@ class NamingHelper
 		return mm.fullyQualifiedName.append("adapters").append(mt.fullyQualifiedName.lastSegment).toLowerCase.append(mt.name + "FactoryAdapter").normalize.toString
 	}
 
-	def QualifiedName getClassName(Transformation t) {
-		return t.fullyQualifiedName.skipLast(1).toLowerCase.append(t.name)
+	def String getClassName(Transformation t) {
+		return t.fullyQualifiedName.skipLast(1).toLowerCase.append(t.name).toString
 	}
 
 	def String getGetterName(EStructuralFeature f) {

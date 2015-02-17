@@ -30,7 +30,7 @@ class TransformationInferrer
 		val task = Stopwatches.forTask("generate transformations")
 		task.start
 
-		acceptor.accept(transfo.toClass(transfo.className.toString))
+		acceptor.accept(transfo.toClass(transfo.className))
 		[
 			val returnType = transfo.returnTypeRef ?: Void::TYPE.typeRef
 
