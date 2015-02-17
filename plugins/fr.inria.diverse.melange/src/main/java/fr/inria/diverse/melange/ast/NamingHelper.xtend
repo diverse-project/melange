@@ -6,6 +6,7 @@ import fr.inria.diverse.melange.lib.EcoreExtensions
 
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
+import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.Transformation
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
@@ -147,6 +148,10 @@ class NamingHelper
 
 	def String getClassName(Transformation t) {
 		return t.fullyQualifiedName.skipLast(1).toLowerCase.append(t.name).toString
+	}
+
+	def String getStandaloneSetupClassName(ModelTypingSpace root) {
+		return root.fullyQualifiedName + ".StandaloneSetup"
 	}
 
 	def String getGetterName(EStructuralFeature f) {
