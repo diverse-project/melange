@@ -77,7 +77,7 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 							«FOR gm : mm.genmodels»
 								«FOR gp : gm.genPackages»
 									org.eclipse.emf.ecore.EPackage.Registry.INSTANCE.put(
-										"«gp.NSURI»",
+										«gp.packageFqn».eNS_URI,
 										«gp.packageFqn».eINSTANCE
 									) ;
 								«ENDFOR»
