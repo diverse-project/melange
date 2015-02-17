@@ -134,7 +134,7 @@ class EcoreExtensions
 			"java.lang.Short"
 		]
 
-		val ecoreDtName = "E" + name.toFirstUpper + if (primitiveTypes.contains(instanceTypeName)) "Object"
+		val ecoreDtName = "E" + name.toFirstUpper + if (primitiveTypes.contains(instanceTypeName)) "Object" else ""
 		val find = pkg.EClassifiers.filter(EDataType).findFirst[it.name == name && it.instanceTypeName == instanceTypeName]
 		val findDt = EcorePackage.eINSTANCE.findClassifier(ecoreDtName)
 
