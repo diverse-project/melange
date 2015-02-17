@@ -1,16 +1,27 @@
 package fr.inria.diverse.melange.tests.common
 
-import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
+import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.Transformation
 
-import org.eclipse.xtext.xbase.compiler.CompilationTestHelper$Result
+import java.io.IOException
 
 import java.util.List
 
+import javax.inject.Inject
+
+import org.eclipse.xtext.util.IAcceptor
+
+import org.eclipse.xtext.xbase.compiler.CompilationTestHelper
+import org.eclipse.xtext.xbase.compiler.CompilationTestHelper.Result
+
+import org.junit.Assert
+
 class MelangeTestHelper
 {
+	@Inject extension CompilationTestHelper
+
 	def Metamodel mm(ModelTypingSpace root, String mmName) {
 		return root.elements.filter(Metamodel).findFirst[name == mmName]
 	}
@@ -47,5 +58,21 @@ class MelangeTestHelper
 		} catch (Exception e) {
 			// ...
 		}
+	}
+
+	def void assertCompilesTo(CharSequence source, String filename, CharSequence expected) throws IOException {
+		compile(source, new IAcceptor<CompilationTestHelper.Result>() {
+			override void accept(Result r) {
+				Assert.assertEquals(expected.toString, r.getGeneratedCode(filename))
+			}
+		})
+	}
+
+	def void assertGeneratedCodeContains(CharSequence source, String filename, CharSequence expected) throws IOException {
+		compile(source, new IAcceptor<CompilationTestHelper.Result>() {
+			override void accept(Result r) {
+				Assert.assertTrue(r.getGeneratedCode(filename).contains(expected.toString))
+			}
+		})
 	}
 }
