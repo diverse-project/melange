@@ -127,8 +127,16 @@ class EcoreExtensions
 	}
 
 	def EClassifier getOrCreateDataType(EPackage pkg, String name, String instanceTypeName) {
+		val primitiveTypes = #[
+			"java.lang.Boolean", "java.lang.Byte",
+			"java.lang.Double",  "java.lang.Float",
+			"java.lang.Integer", "java.lang.Long",
+			"java.lang.Short"
+		]
+
+		val ecoreDtName = "E" + name.toFirstUpper + if (primitiveTypes.contains(instanceTypeName)) "Object"
 		val find = pkg.EClassifiers.filter(EDataType).findFirst[it.name == name && it.instanceTypeName == instanceTypeName]
-		val findDt = EcorePackage.eINSTANCE.findClassifier("E" + name.toFirstUpper)
+		val findDt = EcorePackage.eINSTANCE.findClassifier(ecoreDtName)
 
 		if (find !== null) {
 			return find
