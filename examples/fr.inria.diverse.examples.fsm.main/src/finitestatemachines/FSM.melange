@@ -11,11 +11,6 @@ metamodel FiniteStateMachineRTC /**implements IStateMachine*/ {
 
 	with finitestatemachines.rtc.StateMachineAspect
 	with finitestatemachines.rtc.StateAspect
-	with finitestatemachines.rtc.FinalStateAspect
-	with finitestatemachines.rtc.InitialStateAspect
-	with finitestatemachines.rtc.PseudostateAspect
-	with finitestatemachines.rtc.ForkAspect
-	with finitestatemachines.rtc.TransitionAspect 
 } 
 
 //// Implementation 2: State machines that accept simultaneous events: Classical statecharts.
@@ -25,11 +20,6 @@ metamodel FiniteStateMachineSimultaneous{
 	
 	with finitestatemachines.simultaneous.StateMachineAspect
 	with finitestatemachines.simultaneous.StateAspect
-	with finitestatemachines.simultaneous.FinalStateAspect
-	with finitestatemachines.simultaneous.InitialStateAspect
-	with finitestatemachines.simultaneous.PseudostateAspect
-	with finitestatemachines.simultaneous.ForkAspect
-	with finitestatemachines.simultaneous.TransitionAspect
 }
 
 transformation execute(FiniteStateMachineRTCMT stateMachine, String input, String outputFile){
@@ -41,10 +31,10 @@ transformation execute(FiniteStateMachineRTCMT stateMachine, String input, Strin
 @Main
 transformation main(){
 	val simpleProgram = FiniteStateMachineRTC.load("input/dummie.xmi")
-	execute.call(simpleProgram, "{x;y;z,o;p;q}", "input/dummie-output " + 
+	execute.call(simpleProgram, "{x;y;z,o;p;q}", "output/dummie-output " + 
 		System.currentTimeMillis + ".pdf")
 
 	val simpleProgram2 = FiniteStateMachineSimultaneous.load("input/dummie.xmi")
-	execute.call(simpleProgram2, "{x;y;z,o;p;q}", "input/dummie-output " + 
+	execute.call(simpleProgram2, "{x;y;z,o;p;q}", "output/dummie-output " + 
 		System.currentTimeMillis + ".pdf")
 }
