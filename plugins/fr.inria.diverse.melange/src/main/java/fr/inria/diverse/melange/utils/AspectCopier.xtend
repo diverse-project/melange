@@ -45,6 +45,8 @@ class AspectCopier
 	@Inject extension NamingHelper
 	static Logger log = Logger.getLogger(AspectCopier)
 
+	// FIXME: We should first check that aspects are importable (i.e. defined
+	//         on a type group this metamodel is a subtype of)
 	def void copyAspectTo(Aspect asp, Metamodel mm) {
 		val task = Stopwatches.forTask("copying aspects in new type group")
 		task.start
@@ -76,7 +78,9 @@ class AspectCopier
 		})
 
 		val sourceAspectFolder = projectPathTmp.toString + "/xtend-gen/"
-		val targetAspectFolder = projectPathTmp.toString + "/../" + mm.externalAspectsRuntimeName + "/src/"
+		// FIXME: This project needs to be created beforehand
+		// FIXME: Should generate in a new source folder src-gen instead
+		val targetAspectFolder = projectPathTmp.toString + "/../" + targetAspectNamespace + "/src/"
 		val sourceFolderFile = new File(sourceAspectFolder)
 		val targetFolderFile = new File(targetAspectFolder)
 
@@ -90,12 +94,12 @@ class AspectCopier
 
 		try {
 			log.debug('''Copying aspect «asp.aspectTypeRef.identifier» to «mm.name»:''')
-			log.debug('''	sourceEmfNamespace = «sourceEmfNamespace»''')
-			log.debug('''	targetEmfNamespace = «targetEmfNamespace»''')
+			log.debug('''	sourceEmfNamespace    = «sourceEmfNamespace»''')
+			log.debug('''	targetEmfNamespace    = «targetEmfNamespace»''')
 			log.debug('''	sourceAspectNamespace = «sourceAspectNamespace»''')
 			log.debug('''	targetAspectNamespace = «targetAspectNamespace»''')
-			log.debug('''	sourceAspectFolder = «sourceAspectFolder»''')
-			log.debug('''	targetAspectFolder = «targetAspectFolder»''')
+			log.debug('''	sourceAspectFolder    = «sourceAspectFolder»''')
+			log.debug('''	targetAspectFolder    = «targetAspectFolder»''')
 			shader.shade(request)
 		} catch (IOException e) {
 			log.debug("Copy failed", e)
