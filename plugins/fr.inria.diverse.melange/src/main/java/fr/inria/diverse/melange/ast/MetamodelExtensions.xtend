@@ -313,6 +313,10 @@ class MetamodelExtensions
 		return mm.name + "Runtime"
 	}
 
+	def String getExternalAspectsRuntimeName(Metamodel mm) {
+		return mm.name.toLowerCase + ".aspects"
+	}
+
 	def boolean isGeneratedByMelange(Metamodel mm) {
 		return mm.inheritanceRelation?.superMetamodel !== null
 	}

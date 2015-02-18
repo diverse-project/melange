@@ -29,31 +29,24 @@ class AspectCopier
 	@Inject extension NamingHelper
 
 	def void copyAspectTo(Aspect asp, Metamodel mm) {
-//		val shader = new DirectoryShader
-//		val request = new ShadeRequest
-//		val relocators = new java.util.ArrayList<Relocator>
-//		val sourceEmfNamespace = "fsm"
-//		val targetEmfNamespace = "timedfsm"
-//		val sourceAspectNamespace = "atgm.aspects"
-//		val targetAspectNamespace = "atgm.extended.aspects"
-//		val sourceAspectFolder = "/home/dig/repositories/melange/examples/gemoc/ATGM.aspects/xtend-gen/"
-//		val targetAspectFolder = "/home/dig/repositories/melange/examples/gemoc/my.dest.project/src/"
 		val shader = new DirectoryShader
 		val request = new ShadeRequest
 		val relocators = new ArrayList<Relocator>
-		val sourceEmfNamespace = (asp.aspectTypeRef.type as JvmDeclaredType).aspectAnnotationValueType.toQualifiedName.skipLast(1).toString
-		val targetEmfNamespace = mm.packageFqn.toQualifiedName.skipLast(1).toString
-		val sourceAspectNamespace = asp.aspectTypeRef.identifier.substring(0, asp.aspectTypeRef.identifier.lastIndexOf("."))
-		val sourceAspectFqn = sourceAspectNamespace.toQualifiedName
-		val targetAspectNamespace = sourceAspectFqn.skipLast(2).append(mm.name.toLowerCase).append(sourceAspectFqn.lastSegment).toString
+		val sourceEmfNamespace = (asp.aspectTypeRef.type as JvmDeclaredType).aspectAnnotationValueType.toQualifiedName.skipLast(1)
+		val targetEmfNamespace = mm.packageFqn.toQualifiedName.skipLast(1)
+		val sourceAspectNamespace = asp.aspectTypeRef.identifier.toQualifiedName.skipLast(1)
+		val targetAspectNamespace = sourceAspectNamespace.skipLast(2).append(mm.name.toLowerCase).append(sourceAspectNamespace.lastSegment)
 
 		val projectPathTmp = new StringBuilder
 		mm.project.workspace.root.accept(new IResourceVisitor {
 			override visit(IResource resource) throws CoreException {
 				if (resource instanceof IFile) {
-					if (resource.name == asp.aspectTypeRef.simpleName + ".java") {
-						val projectPath = resource.project.locationURI.toString.replaceFirst("file:", "")
-						projectPathTmp.append(projectPath.toString)
+					val resourcePath = resource.locationURI.path
+					val toBeMatched = asp.aspectTypeRef.identifier.replace(".", "/") + ".java"
+					if (resourcePath.endsWith(toBeMatched)) {
+						val projectPath = resource.project.locationURI.path
+						if (projectPathTmp.length == 0)
+							projectPathTmp.append(projectPath)
 					}
 					return false
 				}
@@ -63,19 +56,12 @@ class AspectCopier
 		})
 
 		val sourceAspectFolder = projectPathTmp.toString + "/xtend-gen/"
-		val targetAspectFolder = projectPathTmp.toString + "/../plop/src/"
+		val targetAspectFolder = projectPathTmp.toString + "/../" + mm.externalAspectsRuntimeName + "/src/"
 		val sourceFolderFile = new File(sourceAspectFolder)
 		val targetFolderFile = new File(targetAspectFolder)
 
-		println("sourceEmfNamespace = " + sourceEmfNamespace)
-		println("targetEmfNamespace = " + targetEmfNamespace)
-		println("sourceAspectNamespace = " + sourceAspectNamespace)
-		println("targetAspectNamespace = " + targetAspectNamespace)
-		println("sourceAspectFolder = " + sourceAspectFolder)
-		println("targetAspectFolder = " + targetAspectFolder)
-
-		relocators += new SimpleRelocator(sourceEmfNamespace, targetEmfNamespace, null, #[])
-		relocators += new SimpleRelocator(sourceAspectNamespace, targetAspectNamespace, null, #[])
+		relocators += new SimpleRelocator(sourceEmfNamespace.toString, targetEmfNamespace.toString, null, #[])
+		relocators += new SimpleRelocator(sourceAspectNamespace.toString, targetAspectNamespace.toString, null, #[])
 
 		request.inputFolders = #{sourceFolderFile}
 		request.outputFolder = targetFolderFile
