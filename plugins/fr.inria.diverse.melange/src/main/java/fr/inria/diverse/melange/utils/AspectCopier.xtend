@@ -2,22 +2,38 @@ package fr.inria.diverse.melange.utils
 
 import fr.inria.diverse.commons.asm.shade.DirectoryShader
 import fr.inria.diverse.commons.asm.shade.ShadeRequest
+
 import fr.inria.diverse.commons.asm.shade.relocation.Relocator
 import fr.inria.diverse.commons.asm.shade.relocation.SimpleRelocator
+
 import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
+
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
+
 import java.io.File
 import java.io.IOException
+
 import java.util.ArrayList
+
 import javax.inject.Inject
+
+import org.apache.log4j.Logger
+
 import org.eclipse.core.resources.IFile
 import org.eclipse.core.resources.IResource
 import org.eclipse.core.resources.IResourceVisitor
+
 import org.eclipse.core.runtime.CoreException
+
 import org.eclipse.xtext.common.types.JvmDeclaredType
+
 import org.eclipse.xtext.naming.IQualifiedNameConverter
+
+import org.eclipse.xtext.util.internal.Stopwatches
+
+import static fr.inria.diverse.melange.utils.AspectCopier.*
 
 /**
  * Baaah, full of sh*t
@@ -27,8 +43,12 @@ class AspectCopier
 	@Inject extension MetamodelExtensions
 	@Inject extension IQualifiedNameConverter
 	@Inject extension NamingHelper
+	static Logger log = Logger.getLogger(AspectCopier)
 
 	def void copyAspectTo(Aspect asp, Metamodel mm) {
+		val task = Stopwatches.forTask("copying aspects in new type group")
+		task.start
+
 		val shader = new DirectoryShader
 		val request = new ShadeRequest
 		val relocators = new ArrayList<Relocator>
@@ -69,9 +89,18 @@ class AspectCopier
 		request.relocators = relocators
 
 		try {
+			log.debug('''Copying aspect «asp.aspectTypeRef.identifier» to «mm.name»:''')
+			log.debug('''	sourceEmfNamespace = «sourceEmfNamespace»''')
+			log.debug('''	targetEmfNamespace = «targetEmfNamespace»''')
+			log.debug('''	sourceAspectNamespace = «sourceAspectNamespace»''')
+			log.debug('''	targetAspectNamespace = «targetAspectNamespace»''')
+			log.debug('''	sourceAspectFolder = «sourceAspectFolder»''')
+			log.debug('''	targetAspectFolder = «targetAspectFolder»''')
 			shader.shade(request)
 		} catch (IOException e) {
-			// ...
+			log.debug("Copy failed", e)
+		} finally {
+			task.stop
 		}
 	}
 }
