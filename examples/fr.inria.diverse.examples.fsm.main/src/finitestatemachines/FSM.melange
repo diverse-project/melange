@@ -68,6 +68,16 @@ metamodel FiniteStateMachineCompositeSimultaneous{
 	with finitestatemachines.composite.simultaneous.CompositeStateAspect
 }
 
+metamodel FiniteStateMachineTimedCompositeSimultaneous{
+	ecore "platform:/resource/fr.inria.diverse.example.fsm.metamodel.composite/model/fsm.ecore"
+	exactType FiniteStateMachineTimedCompositeSimultaneousMT
+	
+	with finitestatemachines.timed.composite.simultaneous.StateMachineAspect
+	with finitestatemachines.timed.composite.simultaneous.StateAspect
+	with finitestatemachines.timed.composite.simultaneous.CompositeStateAspect
+	with finitestatemachines.timed.composite.simultaneous.TransitionAspect
+}
+
 //transformation execute(FiniteStateMachineRTCMT stateMachine, String input, String outputFile){
 //	val root = stateMachine.contents.head as finitestatemachines.finitestatemachinertcmt.StateMachine
 //	root.eval(new FSM.interfaces.Context(input), outputFile)
