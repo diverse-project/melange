@@ -2,35 +2,22 @@ package fr.inria.diverse.melange.utils
 
 import fr.inria.diverse.commons.asm.shade.DirectoryShader
 import fr.inria.diverse.commons.asm.shade.ShadeRequest
-
 import fr.inria.diverse.commons.asm.shade.relocation.Relocator
 import fr.inria.diverse.commons.asm.shade.relocation.SimpleRelocator
-
 import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
-
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
-
 import java.io.File
 import java.io.IOException
-
 import java.util.ArrayList
-
 import javax.inject.Inject
-
 import org.apache.log4j.Logger
-
 import org.eclipse.core.resources.IFile
 import org.eclipse.core.resources.IResource
 import org.eclipse.core.resources.IResourceVisitor
-
 import org.eclipse.core.runtime.CoreException
-
-import org.eclipse.xtext.common.types.JvmDeclaredType
-
 import org.eclipse.xtext.naming.IQualifiedNameConverter
-
 import org.eclipse.xtext.util.internal.Stopwatches
 
 import static fr.inria.diverse.melange.utils.AspectCopier.*
@@ -47,14 +34,14 @@ class AspectCopier
 
 	// FIXME: We should first check that aspects are importable (i.e. defined
 	//         on a type group this metamodel is a subtype of)
-	def void copyAspectTo(Aspect asp, Metamodel mm) {
+	def String copyAspectTo(Aspect asp, Metamodel mm) {
 		val task = Stopwatches.forTask("copying aspects in new type group")
 		task.start
 
 		val shader = new DirectoryShader
 		val request = new ShadeRequest
 		val relocators = new ArrayList<Relocator>
-		val sourceEmfNamespace = (asp.aspectTypeRef.type as JvmDeclaredType).aspectAnnotationValueType.toQualifiedName.skipLast(1)
+		val sourceEmfNamespace = asp.targetedNamespace
 		val targetEmfNamespace = mm.packageFqn.toQualifiedName.skipLast(1)
 		val sourceAspectNamespace = asp.aspectTypeRef.identifier.toQualifiedName.skipLast(1)
 		val targetAspectNamespace = sourceAspectNamespace.skipLast(2).append(mm.name.toLowerCase).append(sourceAspectNamespace.lastSegment)
@@ -83,6 +70,7 @@ class AspectCopier
 		val targetAspectFolder = projectPathTmp.toString + "/../" + targetAspectNamespace + "/src/"
 		val sourceFolderFile = new File(sourceAspectFolder)
 		val targetFolderFile = new File(targetAspectFolder)
+		val targetProject = mm.project.workspace.root.getProject(targetAspectNamespace.toString)
 
 		relocators += new SimpleRelocator(sourceEmfNamespace.toString, targetEmfNamespace.toString, null, #[])
 		relocators += new SimpleRelocator(sourceAspectNamespace.toString, targetAspectNamespace.toString, null, #[])
@@ -101,8 +89,14 @@ class AspectCopier
 			log.debug('''	sourceAspectFolder    = «sourceAspectFolder»''')
 			log.debug('''	targetAspectFolder    = «targetAspectFolder»''')
 			shader.shade(request)
+			targetProject.refreshLocal(IResource.DEPTH_INFINITE, null)
+			return '''«targetAspectNamespace».«asp.aspectTypeRef.simpleName»'''
 		} catch (IOException e) {
 			log.debug("Copy failed", e)
+			return null
+		} catch (CoreException e) {
+			log.debug("Refresh failed", e)
+			return null
 		} finally {
 			task.stop
 		}

@@ -44,6 +44,7 @@ import org.eclipse.xtext.common.types.JvmCustomAnnotationValue
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmTypeAnnotationValue
 
+import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.QualifiedName
 
 import org.eclipse.xtext.xbase.XFeatureCall
@@ -53,6 +54,8 @@ class MetamodelExtensions
 	@Inject extension ModelingElementExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension ModelTypeExtensions
+	@Inject extension IQualifiedNameConverter
+	@Inject extension NamingHelper
 	@Inject ModelTypeAlgebra algebra
 	@Inject EPackageProvider provider
 
@@ -116,10 +119,17 @@ class MetamodelExtensions
 		return aspVal
 	}
 
-	def boolean isDefinedOver(Aspect asp, Metamodel mm) {
-		return false
+	def QualifiedName getTargetedNamespace(Aspect asp) {
+		return (asp.aspectTypeRef.type as JvmDeclaredType).aspectAnnotationValueType.toQualifiedName.skipLast(1)
 	}
 
+	def boolean isDefinedOver(Aspect asp, Metamodel mm) {
+		return mm.packageFqn.toQualifiedName.skipLast(1).toString == asp.targetedNamespace.toString
+	}
+
+	// FIXME: We should check that the original mm is a super-type of mm
+	// Hard to find the metamodel declaration or the corresponding Ecore file
+	// in the workspace...
 	def boolean canBeCopiedFor(Aspect asp, Metamodel mm) {
 		return true
 	}

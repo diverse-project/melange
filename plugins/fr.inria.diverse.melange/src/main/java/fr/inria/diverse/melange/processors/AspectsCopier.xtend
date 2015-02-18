@@ -10,16 +10,22 @@ import javax.inject.Inject
 
 import org.eclipse.xtext.common.types.JvmDeclaredType
 
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
+
 class AspectsCopier extends DispatchMelangeProcessor
 {
 	@Inject AspectCopier copier
 	@Inject extension MetamodelExtensions
+	@Inject JvmTypeReferenceBuilder.Factory builderFactory
 
 	def dispatch void preProcess(Metamodel mm) {
 		mm.aspects.forEach[asp |
 			if (asp.aspectTypeRef?.type instanceof JvmDeclaredType) {
 				if (!asp.isDefinedOver(mm) && asp.canBeCopiedFor(mm)) {
-					copier.copyAspectTo(asp, mm)
+					val typeRefBuilder = builderFactory.create(mm.eResource.resourceSet)
+					val newAspectFqn = copier.copyAspectTo(asp, mm)
+					val newAspectRef = typeRefBuilder.typeRef(newAspectFqn)
+					asp.aspectTypeRef = newAspectRef
 				}
 			}
 		]
