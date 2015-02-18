@@ -2,21 +2,35 @@ package fr.inria.diverse.melange.utils
 
 import fr.inria.diverse.commons.asm.shade.DirectoryShader
 import fr.inria.diverse.commons.asm.shade.ShadeRequest
+
 import fr.inria.diverse.commons.asm.shade.relocation.Relocator
 import fr.inria.diverse.commons.asm.shade.relocation.SimpleRelocator
+
 import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
+
+import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
+
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
+
 import java.io.File
 import java.io.IOException
+
 import java.util.ArrayList
+
 import javax.inject.Inject
+
 import org.apache.log4j.Logger
+
 import org.eclipse.core.resources.IFile
 import org.eclipse.core.resources.IResource
 import org.eclipse.core.resources.IResourceVisitor
+
 import org.eclipse.core.runtime.CoreException
+
+import org.eclipse.emf.common.util.URI
+
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.util.internal.Stopwatches
 
@@ -38,6 +52,7 @@ class AspectCopier
 		val task = Stopwatches.forTask("copying aspects in new type group")
 		task.start
 
+		val ws = mm.project.workspace.root
 		val shader = new DirectoryShader
 		val request = new ShadeRequest
 		val relocators = new ArrayList<Relocator>
@@ -47,7 +62,8 @@ class AspectCopier
 		val targetAspectNamespace = sourceAspectNamespace.skipLast(2).append(mm.name.toLowerCase).append(sourceAspectNamespace.lastSegment)
 
 		val projectPathTmp = new StringBuilder
-		mm.project.workspace.root.accept(new IResourceVisitor {
+		val projectNameTmp = new StringBuilder
+		ws.accept(new IResourceVisitor {
 			override visit(IResource resource) throws CoreException {
 				if (resource instanceof IFile) {
 					val resourcePath = resource.locationURI.path
@@ -56,6 +72,8 @@ class AspectCopier
 						val projectPath = resource.project.locationURI.path
 						if (projectPathTmp.length == 0)
 							projectPathTmp.append(projectPath)
+						if (projectNameTmp.length == 0)
+							projectNameTmp.append(resource.project.name)
 					}
 					return false
 				}
@@ -65,11 +83,25 @@ class AspectCopier
 		})
 
 		val sourceAspectFolder = projectPathTmp.toString + "/xtend-gen/"
-		val targetAspectFolder = projectPathTmp.toString + "/../" + targetAspectNamespace + "/src/"
+		val targetAspectFolder = projectPathTmp.toString + "/../" + targetAspectNamespace + "/src-gen/"
 		val sourceFolderFile = new File(sourceAspectFolder)
 		val targetFolderFile = new File(targetAspectFolder)
+		val sourceProject = ws.getProject(projectNameTmp.toString)
+		val findTargetProject = ws.getProject(targetAspectNamespace.toString)
+		val ecoreUri = URI::createURI(mm.ecoreUri)
+		val emfRuntimeProject = ecoreUri.segment(1)
+		val targetProject =
+			if (findTargetProject.exists)
+				findTargetProject
+			else
+				EclipseProjectHelper::createAspectsRuntimeProject(
+					sourceProject,
+					targetAspectNamespace.toString,
+					targetAspectNamespace.toString,
+					emfRuntimeProject
+				)
 
-		val targetProject = mm.project.workspace.root.getProject(targetAspectNamespace.toString)
+		EclipseProjectHelper::addDependencies(mm.project, #[targetProject.name])
 
 		relocators += new SimpleRelocator(sourceEmfNamespace.toString, targetEmfNamespace.toString, null, #[])
 		relocators += new SimpleRelocator(sourceAspectNamespace.toString, targetAspectNamespace.toString, null, #[])

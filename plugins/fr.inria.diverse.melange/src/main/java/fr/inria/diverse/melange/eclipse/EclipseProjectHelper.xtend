@@ -1,26 +1,123 @@
 package fr.inria.diverse.melange.eclipse
 
+import com.google.common.base.Splitter
+
+import com.google.common.collect.Sets
+
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
+
+import java.io.BufferedInputStream
+import java.io.BufferedOutputStream
 import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.io.InputStream
+import java.io.OutputStream
+
+import org.apache.log4j.Logger
+
 import org.eclipse.core.resources.IContainer
 import org.eclipse.core.resources.IFile
 import org.eclipse.core.resources.IProject
 import org.eclipse.core.resources.ResourcesPlugin
+
 import org.eclipse.core.runtime.CoreException
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.core.runtime.NullProgressMonitor
 import org.eclipse.core.runtime.Path
 import org.eclipse.core.runtime.SubProgressMonitor
+
 import org.eclipse.jdt.core.JavaCore
+
 import org.eclipse.jdt.launching.JavaRuntime
+
 import org.eclipse.pde.internal.core.natures.PDE
-import org.eclipse.swt.widgets.Shell
-import org.eclipse.ui.PlatformUI
+
+import org.eclipse.xtext.util.MergeableManifest
 
 class EclipseProjectHelper
 {
+	static Logger log = Logger.getLogger(EclipseProjectHelper)
+
+	def static IProject createAspectsRuntimeProject(
+		IProject original,
+		String projectName,
+		String generatedPackage,
+		String emfRuntimeBundle
+	) {
+		val dependencies = Sets::newHashSet(original.dependencies)
+		dependencies += "org.eclipse.emf.ecore"
+		dependencies += "fr.inria.diverse.k3.al.annotationprocessor.plugin"
+		dependencies += emfRuntimeBundle
+
+		val project = createEclipseProject(
+			projectName,
+			#[JavaCore::NATURE_ID, PDE::PLUGIN_NATURE],
+			#[JavaCore::BUILDER_ID,	PDE::MANIFEST_BUILDER_ID, PDE::SCHEMA_BUILDER_ID],
+			#["src-gen"],
+			#[],
+			dependencies, // + copy dependency from originating project
+			#[generatedPackage],
+			#[],
+			new NullProgressMonitor
+		)
+
+		log.debug('''Runtime aspects project «project» created.''')
+
+		return project
+	}
+
+	def static Iterable<String> getDependencies(IProject project) {
+		val manifestFile = project.getFile("META-INF/MANIFEST.MF")
+
+		if (manifestFile !== null
+			&& manifestFile.exists
+			&& manifestFile.accessible
+		) {
+			var InputStream input = null
+			try {
+				input = manifestFile.contents
+				val manifest = new MergeableManifest(input)
+				val attrs = manifest.mainAttributes
+				val bundles = Splitter.on(",").omitEmptyStrings.trimResults.split(attrs.getValue("Require-Bundle"))
+				return bundles.map[it.split(";").head]
+			} finally {
+				if (input !== null)
+					input.close
+			}
+		}
+	}
+
+	def static void addDependencies(IProject project, Iterable<String> bundles) {
+		val manifestFile = project.getFile("META-INF/MANIFEST.MF")
+
+		if (manifestFile !== null
+			&& manifestFile.exists
+			&& manifestFile.accessible
+			&& !manifestFile.resourceAttributes.readOnly
+		) {
+			var OutputStream output = null
+			var InputStream input = null
+			try {
+				input = manifestFile.contents
+				val manifest = new MergeableManifest(input)
+				manifest.addRequiredBundles(Sets::newHashSet(bundles))
+				val out = new ByteArrayOutputStream
+				output = new BufferedOutputStream(out)
+				manifest.write(output)
+				val in = new ByteArrayInputStream(out.toByteArray)
+				input = new BufferedInputStream(in)
+				manifestFile.setContents(input, true, true, null)
+				bundles.forEach[log.debug('''Dependendency «it» added to «project»''')]
+			} finally {
+				if (output !== null)
+					output.close
+				if (input !== null)
+					input.close
+			}
+		}
+	}
+
 	def static IProject createEMFRuntimeProject(Metamodel mm) {
 		try {
 			// FIXME: Everything's hardcoded...
@@ -42,12 +139,13 @@ class EclipseProjectHelper
 				#["org.eclipse.emf.ecore"],
 				#[basePkg, basePkg + ".impl", basePkg + ".util"],
 				#[generatedEPackageExtension],
-				new NullProgressMonitor, // FIXME
-				PlatformUI.getWorkbench.activeWorkbenchWindow.shell
+				new NullProgressMonitor
 			)
 
 			val modelFolder = project.getFolder("model")
 			modelFolder.create(false, true, null)
+
+			log.debug('''Runtime EMF project «project» created.''')
 
 			return project
 		} catch (Exception e) {
@@ -66,8 +164,7 @@ class EclipseProjectHelper
 		Iterable<String> requiredBundles,
 		Iterable<String> exportedPackages,
 		Iterable<String> extensions,
-		IProgressMonitor monitor,
-		Shell shell
+		IProgressMonitor monitor
 	) {
 		try {
 			monitor.beginTask("", 10)
