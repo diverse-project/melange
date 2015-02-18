@@ -65,11 +65,10 @@ class AspectCopier
 		})
 
 		val sourceAspectFolder = projectPathTmp.toString + "/xtend-gen/"
-		// FIXME: This project needs to be created beforehand
-		// FIXME: Should generate in a new source folder src-gen instead
 		val targetAspectFolder = projectPathTmp.toString + "/../" + targetAspectNamespace + "/src/"
 		val sourceFolderFile = new File(sourceAspectFolder)
 		val targetFolderFile = new File(targetAspectFolder)
+
 		val targetProject = mm.project.workspace.root.getProject(targetAspectNamespace.toString)
 
 		relocators += new SimpleRelocator(sourceEmfNamespace.toString, targetEmfNamespace.toString, null, #[])

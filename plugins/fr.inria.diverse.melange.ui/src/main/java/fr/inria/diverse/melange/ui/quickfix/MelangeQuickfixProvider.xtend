@@ -3,7 +3,7 @@ package fr.inria.diverse.melange.ui.quickfix
 import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
-import fr.inria.diverse.melange.ui.EclipseProjectHelper
+import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
 import fr.inria.diverse.melange.validation.MelangeValidationConstants
 import java.io.BufferedInputStream
 import java.io.BufferedOutputStream

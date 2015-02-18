@@ -1,4 +1,4 @@
-package fr.inria.diverse.melange.ui
+package fr.inria.diverse.melange.eclipse
 
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import java.io.ByteArrayInputStream
