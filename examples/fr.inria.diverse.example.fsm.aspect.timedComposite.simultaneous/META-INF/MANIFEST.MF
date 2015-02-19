@@ -9,5 +9,5 @@ Require-Bundle: org.eclipse.xtend.lib,
  com.google.guava,
  org.eclipse.xtext.xbase.lib,
  fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version="3.0.0",
- fr.inria.diverse.example.fsm.metamodel.composite;bundle-version="0.0.0";visibility:=reexport,
+ fr.inria.diverse.example.fsm.metamodel.timedComposite;bundle-version="0.0.0";visibility:=reexport,
  fr.inria.diverse.examples.fsm.interfaces;bundle-version="1.0.0"

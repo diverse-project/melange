@@ -1,20 +1,20 @@
 package finitestatemachines.timed.composite.simultaneous
 
 import FSM.interfaces.Context
-import finitestatemachinescomposite.FinalState
-import finitestatemachinescomposite.Fork
-import finitestatemachinescomposite.InitialState
-import finitestatemachinescomposite.Pseudostate
-import finitestatemachinescomposite.State
-import finitestatemachinescomposite.StateMachine
-import finitestatemachinescomposite.Transition
+import finitestatemachinestimedcomposite.FinalState
+import finitestatemachinestimedcomposite.Fork
+import finitestatemachinestimedcomposite.InitialState
+import finitestatemachinestimedcomposite.Pseudostate
+import finitestatemachinestimedcomposite.State
+import finitestatemachinestimedcomposite.StateMachine
+import finitestatemachinestimedcomposite.Transition
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
 import java.util.ArrayList
 import java.util.List
 
 import static extension finitestatemachines.timed.composite.simultaneous.StateAspect.*
-import finitestatemachinescomposite.CompositeState
+import finitestatemachinestimedcomposite.CompositeState
 
 //
 // *.*
@@ -146,9 +146,6 @@ class CompositeStateAspect extends StateAspect {
 
 @Aspect(className=Transition)
 class TransitionAspect {
-	
-	public int time = 0
-	
 	def public void process(Context context) {
 		Context.stateWorking(_self.time)
 	}
