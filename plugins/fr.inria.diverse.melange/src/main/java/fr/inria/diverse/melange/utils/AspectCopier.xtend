@@ -2,35 +2,24 @@ package fr.inria.diverse.melange.utils
 
 import fr.inria.diverse.commons.asm.shade.DirectoryShader
 import fr.inria.diverse.commons.asm.shade.ShadeRequest
-
 import fr.inria.diverse.commons.asm.shade.relocation.Relocator
 import fr.inria.diverse.commons.asm.shade.relocation.SimpleRelocator
-
 import fr.inria.diverse.melange.ast.MetamodelExtensions
+import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
-
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
-
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
-
 import java.io.File
 import java.io.IOException
-
 import java.util.ArrayList
-
 import javax.inject.Inject
-
 import org.apache.log4j.Logger
-
 import org.eclipse.core.resources.IFile
 import org.eclipse.core.resources.IResource
 import org.eclipse.core.resources.IResourceVisitor
-
 import org.eclipse.core.runtime.CoreException
-
 import org.eclipse.emf.common.util.URI
-
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.util.internal.Stopwatches
 
@@ -41,6 +30,7 @@ import static fr.inria.diverse.melange.utils.AspectCopier.*
  */
 class AspectCopier
 {
+	@Inject extension ModelingElementExtensions
 	@Inject extension MetamodelExtensions
 	@Inject extension IQualifiedNameConverter
 	@Inject extension NamingHelper
@@ -88,6 +78,9 @@ class AspectCopier
 		val targetFolderFile = new File(targetAspectFolder)
 		val sourceProject = ws.getProject(projectNameTmp.toString)
 		val findTargetProject = ws.getProject(targetAspectNamespace.toString)
+		// FIXME: Just to have a first call of the EPackageProvider
+		//        in order to set the ecoreUri when inherited
+		val x = mm.pkgs
 		val ecoreUri = URI::createURI(mm.ecoreUri)
 		val emfRuntimeProject = ecoreUri.segment(1)
 		val targetProject =
