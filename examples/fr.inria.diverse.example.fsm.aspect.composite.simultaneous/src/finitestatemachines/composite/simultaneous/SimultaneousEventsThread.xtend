@@ -115,7 +115,7 @@ class SimultaneousEventsThread extends Thread {
 				val ArrayList<ForkThread> threads = new ArrayList<ForkThread>()
 				initStates.forEach[init |
 					currentState.add(init)
-					stateMachine.currentState.add(target)
+					stateMachine.currentState.add(init)
 					var ForkThread _forkThread = new ForkThread(init, context);
 					threads.add(_forkThread)
 					_forkThread.start

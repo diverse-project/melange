@@ -23,20 +23,37 @@ import finitestatemachinescomposite.State
 import finitestatemachinescomposite.StateMachine
 import finitestatemachinescomposite.Fork
 import finitestatemachinescomposite.Join
+import finitestatemachinescomposite.CompositeState
+import java.util.List
+import java.util.ArrayList
 
 class Printer {
 	
 	/**
-	 * Prints in the console the final state of the states machine 
-	 * i.e., the schedule after the evaluation
+	 * Prints time final state of the states machine i.e., the schedule after the evaluation
 	 */
 	def public void printFinalStateInConsole(StateMachine stateMachine){
 		for(State _state : stateMachine.states){
-			
-			if(!(_state instanceof Fork) && !(_state instanceof Join))
-				println("   - State: " + _state.name + " [initialTime: " + _state.initialTime 
-					+ " finalTime: " + _state.finalTime + "]")
+			printState(_state)
 		}
+	}
+	
+	def void printState(State _state){
+		
+		if (!(_state instanceof Fork) && !(_state instanceof Join)) {
+			println(
+				"   - State: " + _state.name + " [initialTime: " + _state.initialTime + " finalTime: " +
+					_state.finalTime + "]")
+
+			if (_state instanceof CompositeState) {
+				val composite = _state as CompositeState
+				printSubStates(composite)
+			}
+		}
+	}
+	
+	def void printSubStates(CompositeState composite){
+		composite.regions.map[r|r.states].flatten.forEach[s|printState(s)]
 	}
 	
 	/**
@@ -53,19 +70,55 @@ class Printer {
 	 * Returns the Gantt model according to the final state of the state machine. 
 	 */
 	def public static IntervalCategoryDataset createDataset(StateMachine stateMachine) {
-		var TaskSeries s1 = new TaskSeries("State Machine");
+		val TaskSeries s1 = new TaskSeries("State Machine");
 		
 		for(State _state : stateMachine.states){
-			if(!(_state instanceof Fork) && !(_state instanceof Join)){
-				s1.add(new Task(_state.name, new SimpleTimePeriod(new Date(_state.initialTime),
-					new Date(_state.finalTime))))
-			}
+			createTasks(_state).forEach[t|s1.add(t)]
 		}
 		
 		var TaskSeriesCollection collection = new TaskSeriesCollection();
         collection.add(s1);
 		
 		return collection as IntervalCategoryDataset;
+	}
+	
+	def static List<Task> createTasks(State _state){
+		val List<Task> res = new ArrayList<Task>()
+		
+		if (_state instanceof CompositeState) {
+				val composite = _state as CompositeState
+				val subTasks = createCompositeTasks(composite)
+				res.addAll(subTasks)
+				
+				val Date min = subTasks.min[a,b| 
+					if(a.duration.start < b.duration.start) -1
+					else 1
+				]
+				.duration.start
+				
+				val Date max = subTasks.max[a,b| 
+					if(a.duration.end < b.duration.end) -1
+					else 1
+				]
+				.duration.end
+				
+				res.add(new Task(_state.name, new SimpleTimePeriod(min,
+					max)))
+		}
+		else if(!(_state instanceof Fork) && !(_state instanceof Join)){
+			res.add(new Task(_state.name, new SimpleTimePeriod(new Date(_state.initialTime),
+				new Date(_state.finalTime))))
+		}
+		
+		return res
+	}
+	
+	def static List<Task> createCompositeTasks(CompositeState composite){
+		val List<Task> res = new ArrayList<Task>()
+		
+		composite.regions.map[r|r.states].flatten.forEach[s|res.addAll(createTasks(s))]
+		
+		return res
 	}
 	
 	/**

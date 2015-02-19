@@ -107,4 +107,8 @@ transformation main(){
 	val simpleProgram5 = FiniteStateMachineComposite.load("input/compositedummie.xmi")
 	execute.call(simpleProgram5, "{x;y;z,o;p;q}", "output/RTCcompositedummie-output " + 
 		System.currentTimeMillis + ".pdf")
+		
+	val simpleProgram6 = FiniteStateMachineCompositeSimultaneous.load("input/compositedummie.xmi")
+	execute.call(simpleProgram6, "{x;y;z,o;p;q}", "output/SIMULTcompositedummie-output " + 
+		System.currentTimeMillis + ".pdf")
 }
