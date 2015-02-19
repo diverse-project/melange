@@ -19,6 +19,7 @@ Require-Bundle: org.eclipse.xtend.lib;bundle-version="2.7.0";visibility:=private
  fr.inria.diverse.example.fsm.aspect.composite;bundle-version="1.0.0",
  fr.inria.diverse.example.fsm.metamodel.composite;bundle-version="1.0.0",
  fr.inria.diverse.example.fsm.metamodel.timed;bundle-version="1.0.0",
+ fr.inria.diverse.example.fsm.metamodel.timedComposite;bundle-version="1.0.0",
  fr.inria.diverse.examples.fsm.interfaces;bundle-version="1.0.0",
  fr.inria.diverse.example.fsm.aspects.timedComposite;bundle-version="1.0.0",
  fr.inria.diverse.example.fsm.aspect.timed.simultaneous;bundle-version="1.0.0",
