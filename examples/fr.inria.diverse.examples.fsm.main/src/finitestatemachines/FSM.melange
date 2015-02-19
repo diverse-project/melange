@@ -51,7 +51,7 @@ metamodel FiniteStateMachineTimedComposite{
 }
 
 metamodel FiniteStateMachineTimedSimultaneous{
-	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel/models/fsm.ecore"
+	ecore "platform:/resource/fr.inria.diverse.example.fsm.metamodel.timed/model/fsm.ecore"
 	exactType FiniteStateMachineTimedSimultaneousMT
 	
 	with finitestatemachines.timed.simultaneous.StateMachineAspect

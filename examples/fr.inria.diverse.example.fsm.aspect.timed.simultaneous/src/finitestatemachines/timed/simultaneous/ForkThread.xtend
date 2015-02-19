@@ -6,10 +6,10 @@ import static extension finitestatemachines.timed.simultaneous.StateAspect.*
 
 class ForkThread extends Thread {
 	
-	finitestatemachines.State state
+	finitestatemachinestimed.State state
 	Context context
 	
-	new (finitestatemachines.State _state, Context _context){
+	new (finitestatemachinestimed.State _state, Context _context){
 		state = _state
 		context = _context
 	}

@@ -1,13 +1,13 @@
 package finitestatemachines.timed.simultaneous
 
 import FSM.interfaces.Context
-import finitestatemachines.FinalState
-import finitestatemachines.Fork
-import finitestatemachines.InitialState
-import finitestatemachines.Pseudostate
-import finitestatemachines.State
-import finitestatemachines.StateMachine
-import finitestatemachines.Transition
+import finitestatemachinestimed.FinalState
+import finitestatemachinestimed.Fork
+import finitestatemachinestimed.InitialState
+import finitestatemachinestimed.Pseudostate
+import finitestatemachinestimed.State
+import finitestatemachinestimed.StateMachine
+import finitestatemachinestimed.Transition
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
 import java.util.ArrayList
@@ -120,9 +120,6 @@ class StateAspect {
 
 @Aspect(className=Transition)
 class TransitionAspect {
-	
-	int time = 0
-	
 	def public void process(Context context) {
 		Context.stateWorking(_self.time)
 	}

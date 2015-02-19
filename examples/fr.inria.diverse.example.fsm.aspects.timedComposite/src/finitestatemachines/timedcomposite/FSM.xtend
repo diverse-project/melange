@@ -223,7 +223,7 @@ class CompositeStateAspect extends StateAspect {
 @Aspect(className=Transition)
 class TransitionAspect {
 	
-	int time = 0
+	public int time = 0
 	
 	def public void process(Context context) {
 		Context.stateWorking(_self.time)

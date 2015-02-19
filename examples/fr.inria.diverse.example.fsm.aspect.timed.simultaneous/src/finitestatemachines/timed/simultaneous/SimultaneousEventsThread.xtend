@@ -1,10 +1,10 @@
 package finitestatemachines.timed.simultaneous
 
 import FSM.interfaces.Context
-import finitestatemachines.Fork
-import finitestatemachines.Join
-import finitestatemachines.StateMachine
-import finitestatemachines.Transition
+import finitestatemachinestimed.Fork
+import finitestatemachinestimed.Join
+import finitestatemachinestimed.StateMachine
+import finitestatemachinestimed.Transition
 import java.util.ArrayList
 
 import static extension finitestatemachines.timed.simultaneous.StateAspect.*
@@ -22,7 +22,7 @@ class SimultaneousEventsThread extends Thread {
 	String event
 	StateMachine stateMachine
 	Context context
-	ArrayList<finitestatemachines.State> currentState
+	ArrayList<finitestatemachinestimed.State> currentState
 	ArrayList<Transition> currentTransitions
 	
 	/**
@@ -33,7 +33,7 @@ class SimultaneousEventsThread extends Thread {
 		event = _event
 		stateMachine = _stateMachine
 		context = _context
-		currentState = new ArrayList<finitestatemachines.State>()
+		currentState = new ArrayList<finitestatemachinestimed.State>()
 		currentTransitions = new ArrayList<Transition>()
 	}
 	
@@ -41,9 +41,9 @@ class SimultaneousEventsThread extends Thread {
 	 * Runs the thread!
 	 */
 	override run(){
-		var ArrayList<finitestatemachines.State> attendedStates = new ArrayList<finitestatemachines.State>()
+		var ArrayList<finitestatemachinestimed.State> attendedStates = new ArrayList<finitestatemachinestimed.State>()
 		
-		for(finitestatemachines.State _state : stateMachine.currentState){
+		for(finitestatemachinestimed.State _state : stateMachine.currentState){
 			for(Transition transition : _state.outgoing){
 				if(transition.trigger != null && 
 					transition.trigger.expression.equals(event)){
@@ -52,7 +52,7 @@ class SimultaneousEventsThread extends Thread {
 			}
 		}
 		
-		for(finitestatemachines.State _state : currentState){
+		for(finitestatemachinestimed.State _state : currentState){
 			for(Transition transition : _state.outgoing){
 				if(transition.trigger.expression.equals(event)){
 					attendedStates.add(_state)
@@ -107,10 +107,10 @@ class SimultaneousEventsThread extends Thread {
 		
 		// Join: If the current state is followed by a Join, we need to jump to it.
 		//		there are neither guards nor triggers in this kind of situation. 
-		var ArrayList<finitestatemachines.State> toAdd = new ArrayList<finitestatemachines.State>()
-		var ArrayList<finitestatemachines.State> toRemove = new ArrayList<finitestatemachines.State>()
+		var ArrayList<finitestatemachinestimed.State> toAdd = new ArrayList<finitestatemachinestimed.State>()
+		var ArrayList<finitestatemachinestimed.State> toRemove = new ArrayList<finitestatemachinestimed.State>()
 		
-		for(finitestatemachines.State _state : currentState){
+		for(finitestatemachinestimed.State _state : currentState){
 			if(_state.outgoing.size() > 0 && _state.outgoing.get(0).target instanceof Join){
 				
 				if(!toAdd.contains(_state.outgoing.get(0).target) && 

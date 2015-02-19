@@ -19,10 +19,10 @@ import com.itextpdf.awt.DefaultFontMapper
 import java.awt.Graphics2D
 import java.awt.geom.Rectangle2D
 
-import finitestatemachines.State
-import finitestatemachines.StateMachine
-import finitestatemachines.Fork
-import finitestatemachines.Join
+import finitestatemachinestimed.State
+import finitestatemachinestimed.StateMachine
+import finitestatemachinestimed.Fork
+import finitestatemachinestimed.Join
 
 class Printer {
 	
