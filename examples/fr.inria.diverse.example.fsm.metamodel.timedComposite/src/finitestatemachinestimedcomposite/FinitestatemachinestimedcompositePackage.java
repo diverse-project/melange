@@ -38,7 +38,7 @@ public interface FinitestatemachinestimedcompositePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://fr.inria.diverse.examples.fsm.composite";
+	String eNS_URI = "http://fr.inria.diverse.examples.fsm.timedcomposite";
 
 	/**
 	 * The package namespace name.
