@@ -23,7 +23,7 @@ metamodel FiniteStateMachineSimultaneous{
 }
 
 metamodel FiniteStateMachineTimed {
-	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel/models/fsm.ecore"
+	ecore "platform:/resource/fr.inria.diverse.example.fsm.metamodel.timed/model/fsm.ecore"
 	exactType FiniteStateMachineTimedMT
 	
 	with finitestatemachines.timed.StateMachineAspect
@@ -78,19 +78,23 @@ metamodel FiniteStateMachineTimedCompositeSimultaneous{
 	with finitestatemachines.timed.composite.simultaneous.TransitionAspect
 }
 
-//transformation execute(FiniteStateMachineRTCMT stateMachine, String input, String outputFile){
-//	val root = stateMachine.contents.head as finitestatemachines.finitestatemachinertcmt.StateMachine
-//	root.eval(new FSM.interfaces.Context(input), outputFile)
-//}
-//
-//// Execution of the state machines.
-//@Main
-//transformation main(){
+transformation execute(FiniteStateMachineRTCMT stateMachine, String input, String outputFile){
+	val root = stateMachine.contents.head as finitestatemachines.finitestatemachinertcmt.StateMachine
+	root.eval(new FSM.interfaces.Context(input), outputFile)
+}
+
+// Execution of the state machines.
+@Main
+transformation main(){
 //	val simpleProgram = FiniteStateMachineRTC.load("input/dummie.xmi")
 //	execute.call(simpleProgram, "{x;y;z,o;p;q}", "output/dummie-output " + 
 //		System.currentTimeMillis + ".pdf")
-//
+
 //	val simpleProgram2 = FiniteStateMachineSimultaneous.load("input/dummie.xmi")
 //	execute.call(simpleProgram2, "{x;y;z,o;p;q}", "output/dummie-output " + 
 //		System.currentTimeMillis + ".pdf")
-//}
+
+	val simpleProgram3 = FiniteStateMachineTimed.load("input/dummie.xmi")
+	execute.call(simpleProgram3, "{x;y;z,o;p;q}", "output/dummie-output " + 
+		System.currentTimeMillis + ".pdf")
+}
