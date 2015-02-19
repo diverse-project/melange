@@ -406,7 +406,7 @@ class MetamodelExtensions
 	def private void createGenmodel(Metamodel mm, String ecoreUri, String gmUri, String modelDirectory) {
 		val genmodel = GenModelFactory.eINSTANCE.createGenModel => [
 			it.complianceLevel = GenJDKLevel.JDK70_LITERAL
-			it.modelDirectory = modelDirectory.replaceFirst("platform:/resource", "")
+			it.modelDirectory = modelDirectory.replaceFirst("platform:/resource", "").replaceFirst("..", "")
 			it.foreignModel += ecoreUri
 			it.modelName = mm.name
 			it.modelPluginID = mm.externalRuntimeName
