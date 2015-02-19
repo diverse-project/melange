@@ -93,6 +93,8 @@ class AspectCopier
 					targetAspectNamespace.toString,
 					emfRuntimeProject
 				)
+//		val filenameToBeFound = '''/src-gen/«targetAspectNamespace.toString.replace(".", "/")»/«asp.aspectTypeRef.simpleName».java'''
+//		val fileToBeFound = targetProject.getFile(filenameToBeFound)
 
 		EclipseProjectHelper::addDependencies(mm.project, #[targetProject.name])
 
@@ -112,8 +114,11 @@ class AspectCopier
 			log.debug('''	targetAspectNamespace = «targetAspectNamespace»''')
 			log.debug('''	sourceAspectFolder    = «sourceAspectFolder»''')
 			log.debug('''	targetAspectFolder    = «targetAspectFolder»''')
-			shader.shade(request)
-			targetProject.refreshLocal(IResource.DEPTH_INFINITE, null)
+
+//			if (!fileToBeFound.exists) {
+				shader.shade(request)
+				targetProject.refreshLocal(IResource.DEPTH_INFINITE, null)
+//			}
 			return '''«targetAspectNamespace».«asp.aspectTypeRef.simpleName»'''
 		} catch (IOException e) {
 			log.debug("Copy failed", e)
