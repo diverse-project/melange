@@ -16,17 +16,21 @@ class AspectsCopier extends DispatchMelangeProcessor
 	@Inject JvmTypeReferenceBuilder.Factory builderFactory
 
 	def dispatch void preProcess(Metamodel mm) {
-		if (!mm.isGeneratedByMelange || mm.runtimeHasBeenGenerated) {
-			mm.aspects.forEach[asp |
-				if (asp.aspectTypeRef?.type instanceof JvmDeclaredType) {
-					if (!asp.isDefinedOver(mm) && asp.canBeCopiedFor(mm)) {
-						val typeRefBuilder = builderFactory.create(mm.eResource.resourceSet)
-						val newAspectFqn = copier.copyAspectTo(asp, mm)
-						val newAspectRef = typeRefBuilder.typeRef(newAspectFqn)
-						asp.aspectTypeRef = newAspectRef
+		try{
+			if (!mm.isGeneratedByMelange || mm.runtimeHasBeenGenerated) {
+				mm.aspects.forEach[asp |
+					if (asp.aspectTypeRef?.type instanceof JvmDeclaredType) {
+						if (!asp.isDefinedOver(mm) && asp.canBeCopiedFor(mm)) {
+							val typeRefBuilder = builderFactory.create(mm.eResource.resourceSet)
+							val newAspectFqn = copier.copyAspectTo(asp, mm)
+							val newAspectRef = typeRefBuilder.typeRef(newAspectFqn)
+							asp.aspectTypeRef = newAspectRef
+						}
 					}
-				}
-			]
+				]
+			}		
+		} catch (Exception e){
+			println("something went wrong during this phase "+e.message)
 		}
 	}
 }

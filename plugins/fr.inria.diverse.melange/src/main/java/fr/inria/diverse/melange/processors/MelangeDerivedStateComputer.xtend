@@ -24,8 +24,12 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 
 	// FIXME: Because Guice's Multibinders aren't available,
 	//         quick & dirty solution
+	/** 
+	 * The parameters of this constructor define the list of the processors and the order in which they'll be applied
+	 */
 	@Inject
-	new(AspectsCopier c, AspectsWeaver a, ExactTypeInferrer e, TypingInferrer t) {
+	new(EcoreUriInferrer i, AspectsCopier c, AspectsWeaver a, ExactTypeInferrer e, TypingInferrer t) {
+		processors += i
 		processors += c
 		processors += a
 		processors += e

@@ -73,9 +73,8 @@ class AspectCopier
 		})
 
 		val sourceAspectFolder = projectPathTmp.toString + "/xtend-gen/"
-		val targetAspectFolder = projectPathTmp.toString + "/../" + targetAspectNamespace + "/src-gen/"
+		//val targetAspectFolder = projectPathTmp.toString + "/../" + targetAspectNamespace + "/src-gen/"
 		val sourceFolderFile = new File(sourceAspectFolder)
-		val targetFolderFile = new File(targetAspectFolder)
 		val sourceProject = ws.getProject(projectNameTmp.toString)
 		val findTargetProject = ws.getProject(targetAspectNamespace.toString)
 		// FIXME: Just to have a first call of the EPackageProvider
@@ -93,13 +92,16 @@ class AspectCopier
 					targetAspectNamespace.toString,
 					emfRuntimeProject
 				)
+		//ws.getProject(targetAspectNamespace.toString).rawLocation
+		val targetAspectFolder = ws.getProject(targetAspectNamespace.toString).locationURI.path + "/src-gen/"
+		val targetFolderFile = new File(targetAspectFolder)
 //		val filenameToBeFound = '''/src-gen/«targetAspectNamespace.toString.replace(".", "/")»/«asp.aspectTypeRef.simpleName».java'''
 //		val fileToBeFound = targetProject.getFile(filenameToBeFound)
 
 		EclipseProjectHelper::addDependencies(mm.project, #[targetProject.name])
 
-		relocators += new SimpleRelocator(sourceEmfNamespace.toString, targetEmfNamespace.toString, null, #[])
 		relocators += new SimpleRelocator(sourceAspectNamespace.toString, targetAspectNamespace.toString, null, #[])
+		relocators += new SimpleRelocator(sourceEmfNamespace.toString, targetEmfNamespace.toString, null, #[])
 
 		request.inputFolders = #{sourceFolderFile}
 		request.outputFolder = targetFolderFile
