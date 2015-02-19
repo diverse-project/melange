@@ -118,7 +118,7 @@ class EclipseProjectHelper
 		}
 	}
 
-	def static IProject createEMFRuntimeProject(Metamodel mm) {
+	def static IProject createEMFRuntimeProject(String projectName, Metamodel mm) {
 		try {
 			// FIXME: Everything's hardcoded...
 			val basePkg = mm.name.toLowerCase
@@ -131,7 +131,7 @@ class EclipseProjectHelper
 				</extension>
 			'''
 			val project = createEclipseProject(
-				mm.name + "Runtime",
+				projectName,
 				#[JavaCore::NATURE_ID, PDE::PLUGIN_NATURE],
 				#[JavaCore::BUILDER_ID,	PDE::MANIFEST_BUILDER_ID, PDE::SCHEMA_BUILDER_ID],
 				#["src"],

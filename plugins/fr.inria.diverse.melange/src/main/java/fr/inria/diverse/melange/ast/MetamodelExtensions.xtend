@@ -320,7 +320,16 @@ class MetamodelExtensions
 	}
 
 	def String getExternalRuntimeName(Metamodel mm) {
-		return mm.name + "Runtime"
+		if (mm.ecoreUri !== null) {
+			val originalProjectName = URI::createURI(mm.ecoreUri).segment(1)
+
+			return originalProjectName
+		} else if (mm.inheritanceRelation.superMetamodel.ecoreUri !== null) {
+			val originalProjectName = URI::createURI(mm.inheritanceRelation.superMetamodel.ecoreUri).segment(1)
+			val newProjectName = originalProjectName.toQualifiedName.skipLast(1).append(mm.name.toLowerCase).append("model")
+
+			return newProjectName.toString
+		}
 	}
 
 	def String getExternalAspectsRuntimeName(Metamodel mm) {
@@ -345,7 +354,6 @@ class MetamodelExtensions
 				segments += gp.prefix
 
 			val fqn = QualifiedName::create(segments).toString.toLowerCase
-
 			if ((
 				   mm.project.getFile(mm.localEcorePath).exists
 				&& mm.project.getFile(mm.localGenmodelPath).exists
