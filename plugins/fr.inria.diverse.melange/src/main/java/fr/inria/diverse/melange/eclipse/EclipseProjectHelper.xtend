@@ -2,7 +2,6 @@ package fr.inria.diverse.melange.eclipse
 
 import com.google.common.base.Splitter
 import com.google.common.collect.Sets
-import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import java.io.BufferedInputStream
 import java.io.BufferedOutputStream
@@ -11,7 +10,6 @@ import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
-import javax.inject.Inject
 import org.apache.log4j.Logger
 import org.eclipse.core.resources.IContainer
 import org.eclipse.core.resources.IFile
@@ -28,7 +26,6 @@ import org.eclipse.xtext.util.MergeableManifest
 
 class EclipseProjectHelper
 {
-	@Inject static extension MetamodelExtensions
 	static Logger log = Logger.getLogger(EclipseProjectHelper)
 
 	def static IProject createAspectsRuntimeProject(
@@ -110,7 +107,7 @@ class EclipseProjectHelper
 		}
 	}
 
-	def static IProject createEMFRuntimeProject(Metamodel mm) {
+	def static IProject createEMFRuntimeProject(String projectName, Metamodel mm) {
 		try {
 			// FIXME: Everything's hardcoded...
 			val basePkg = mm.name.toLowerCase
@@ -123,7 +120,7 @@ class EclipseProjectHelper
 				</extension>
 			'''
 			val project = createEclipseProject(
-				mm.externalRuntimeName,
+				projectName,
 				#[JavaCore::NATURE_ID, PDE::PLUGIN_NATURE],
 				#[JavaCore::BUILDER_ID,	PDE::MANIFEST_BUILDER_ID, PDE::SCHEMA_BUILDER_ID],
 				#["src"],
