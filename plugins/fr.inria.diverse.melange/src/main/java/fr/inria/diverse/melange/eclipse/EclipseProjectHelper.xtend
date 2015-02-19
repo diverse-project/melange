@@ -207,11 +207,8 @@ class EclipseProjectHelper
 
 				classpathEntries.add(0, JavaCore::newSourceEntry(container.fullPath))
 			]
-
-			classpathEntries +=
-				JavaRuntime::getLibraryLocations(JavaRuntime::defaultVMInstall)
-				.map[JavaCore::newLibraryEntry(systemLibraryPath, null, null)]
-
+		
+			classpathEntries += JavaCore::newContainerEntry(new Path("org.eclipse.jdt.launching.JRE_CONTAINER"))
 			classpathEntries += JavaCore::newContainerEntry(new Path("org.eclipse.pde.core.requiredPlugins"))
 
 			val binFolder = project.getFolder("bin")
