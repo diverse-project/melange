@@ -1,11 +1,9 @@
 package fr.inria.diverse.melange.eclipse
 
 import com.google.common.base.Splitter
-
 import com.google.common.collect.Sets
-
+import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
-
 import java.io.BufferedInputStream
 import java.io.BufferedOutputStream
 import java.io.ByteArrayInputStream
@@ -13,30 +11,24 @@ import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
-
+import javax.inject.Inject
 import org.apache.log4j.Logger
-
 import org.eclipse.core.resources.IContainer
 import org.eclipse.core.resources.IFile
 import org.eclipse.core.resources.IProject
 import org.eclipse.core.resources.ResourcesPlugin
-
 import org.eclipse.core.runtime.CoreException
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.core.runtime.NullProgressMonitor
 import org.eclipse.core.runtime.Path
 import org.eclipse.core.runtime.SubProgressMonitor
-
 import org.eclipse.jdt.core.JavaCore
-
-import org.eclipse.jdt.launching.JavaRuntime
-
 import org.eclipse.pde.internal.core.natures.PDE
-
 import org.eclipse.xtext.util.MergeableManifest
 
 class EclipseProjectHelper
 {
+	@Inject static extension MetamodelExtensions
 	static Logger log = Logger.getLogger(EclipseProjectHelper)
 
 	def static IProject createAspectsRuntimeProject(
@@ -118,7 +110,7 @@ class EclipseProjectHelper
 		}
 	}
 
-	def static IProject createEMFRuntimeProject(String projectName, Metamodel mm) {
+	def static IProject createEMFRuntimeProject(Metamodel mm) {
 		try {
 			// FIXME: Everything's hardcoded...
 			val basePkg = mm.name.toLowerCase
@@ -131,7 +123,7 @@ class EclipseProjectHelper
 				</extension>
 			'''
 			val project = createEclipseProject(
-				projectName,
+				mm.externalRuntimeName,
 				#[JavaCore::NATURE_ID, PDE::PLUGIN_NATURE],
 				#[JavaCore::BUILDER_ID,	PDE::MANIFEST_BUILDER_ID, PDE::SCHEMA_BUILDER_ID],
 				#["src"],
