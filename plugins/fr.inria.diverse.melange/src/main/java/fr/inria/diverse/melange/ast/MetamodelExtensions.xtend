@@ -409,6 +409,7 @@ class MetamodelExtensions
 			it.modelDirectory = modelDirectory.replaceFirst("platform:/resource", "")
 			it.foreignModel += ecoreUri
 			it.modelName = mm.name
+			it.modelPluginID = mm.externalRuntimeName
 			it.initialize(Lists::newArrayList(mm.pkgs))
 		]
 
