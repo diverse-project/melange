@@ -32,46 +32,51 @@ class AdapterExtensionPointProcessor extends DispatchMelangeProcessor
 	private static final String ADAPTER_MODELTYPE_NAME_ATTR = "modeltype_name"
 
 	def dispatch void preProcess(ModelTypingSpace root) {
-		val project = root.metamodels.head.project
-		val pluginXml = PDEProject::getPluginXml(project)
-		val pluginModel = PDECore::getDefault.modelManager.findModel(project)
-		val fModel = new WorkspacePluginModel(pluginXml, false)
-		val pluginBase = fModel.pluginBase
-		val melangeResourcePlugin = PDECore::getDefault.modelManager.allModels.findFirst[
-			bundleDescription.name == MELANGE_RESOURCE_PLUGIN
-		]
-		val adapterExtensionPoint = melangeResourcePlugin.extensions.extensionPoints.findFirst[
-			fullId == ADAPTER_EXTENSION_POINT
-		]
+		if (root.metamodels.size > 0) {
+			val project = root.metamodels.head.project
 
-		fModel.editable = true
-		fModel.load
-
-		if (pluginModel !== null && melangeResourcePlugin !== null && adapterExtensionPoint !== null && pluginBase !== null) {
-			root.metamodels.forEach[mm |
-				mm.^implements.forEach[mt |
-					val resourceAdapterName = mm.adapterNameFor(mt)
-					val newExtension = fModel.factory.createExtension
-					val adapterElement = fModel.factory.createElement(newExtension)
-
-					try {
-						adapterElement.setName(ADAPTER_ELEMENT_NAME)
-						adapterElement.setAttribute(ADAPTER_CLASS_ATTR, resourceAdapterName)
-						adapterElement.setAttribute(ADAPTER_METAMODEL_URI_ATTR, mm.packageUri)
-						adapterElement.setAttribute(ADAPTER_MODELTYPE_NAME_ATTR, mt.name)
-						newExtension.point = adapterExtensionPoint.id
-						newExtension.add(adapterElement)
-						if (!newExtension.isInTheModel) {
-							fModel.extensions.add(newExtension)
-							log.debug('''Registered new adapter contribution <«mm.name», «mt.name», «resourceAdapterName»> in plugin.xml''')
-						}
-					} catch (CoreException e) {
-						log.debug('''Failed to register new adapter contribution''', e)
-					}
+			if (project !== null) {
+				val pluginXml = PDEProject::getPluginXml(project)
+				val pluginModel = PDECore::getDefault.modelManager.findModel(project)
+				val fModel = new WorkspacePluginModel(pluginXml, false)
+				val pluginBase = fModel.pluginBase
+				val melangeResourcePlugin = PDECore::getDefault.modelManager.allModels.findFirst[
+					bundleDescription.name == MELANGE_RESOURCE_PLUGIN
 				]
-			]
-		}
+				val adapterExtensionPoint = melangeResourcePlugin.extensions.extensionPoints.findFirst[
+					fullId == ADAPTER_EXTENSION_POINT
+				]
 
-		fModel.save
+				fModel.editable = true
+				fModel.load
+
+				if (pluginModel !== null && melangeResourcePlugin !== null && adapterExtensionPoint !== null && pluginBase !== null) {
+					root.metamodels.forEach[mm |
+						mm.^implements.forEach[mt |
+							val resourceAdapterName = mm.adapterNameFor(mt)
+							val newExtension = fModel.factory.createExtension
+							val adapterElement = fModel.factory.createElement(newExtension)
+
+							try {
+								adapterElement.setName(ADAPTER_ELEMENT_NAME)
+								adapterElement.setAttribute(ADAPTER_CLASS_ATTR, resourceAdapterName)
+								adapterElement.setAttribute(ADAPTER_METAMODEL_URI_ATTR, mm.packageUri)
+								adapterElement.setAttribute(ADAPTER_MODELTYPE_NAME_ATTR, mt.name)
+								newExtension.point = adapterExtensionPoint.id
+								newExtension.add(adapterElement)
+								if (!newExtension.isInTheModel) {
+									fModel.extensions.add(newExtension)
+									log.debug('''Registered new adapter contribution <«mm.name», «mt.name», «resourceAdapterName»> in plugin.xml''')
+								}
+							} catch (CoreException e) {
+								log.debug('''Failed to register new adapter contribution''', e)
+							}
+						]
+					]
+				}
+
+				fModel.save
+			}
+		}
 	}
 }
