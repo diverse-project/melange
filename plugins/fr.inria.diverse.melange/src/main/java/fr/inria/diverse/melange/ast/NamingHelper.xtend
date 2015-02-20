@@ -65,6 +65,10 @@ class NamingHelper
 		return gp.getFqnFor(gp.prefix + "Factory")
 	}
 
+	def String getPackageUri(GenPackage gp) {
+		return gp.getEcorePackage.nsURI
+	}
+
 	def String getFqnFor(Metamodel mm, EClassifier cls) {
 		return
 			if (cls instanceof EClass || cls instanceof EEnum)
@@ -78,6 +82,10 @@ class NamingHelper
 
 	def String getPackageFqn(Metamodel mm) {
 		return mm.genmodels.head.genPackages.head.packageFqn
+	}
+
+	def String getPackageUri(Metamodel mm) {
+		return mm.genmodels.head.genPackages.head.packageUri
 	}
 
 	def String getFactoryFqn(Metamodel mm) {
