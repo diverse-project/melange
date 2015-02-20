@@ -8,7 +8,7 @@ import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 
 import fr.inria.diverse.melange.lib.EcoreExtensions
-import fr.inria.diverse.melange.lib.ResourceAdapter
+import fr.inria.diverse.melange.adapters.ResourceAdapter
 
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType

@@ -1,6 +1,6 @@
 package adapters.fsm.adapters.fsmmt;
 
-import fr.inria.diverse.melange.lib.EObjectAdapter;
+import fr.inria.diverse.melange.adapters.EObjectAdapter;
 import fsm.FSM;
 
 import java.util.List;
@@ -13,7 +13,7 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements adapters.fsmmt.FS
   private FsmMTAdaptersFactory adaptersFactory = adapters.fsm.adapters.fsmmt.FsmMTAdaptersFactory.getInstance();
   
   public List<State> getOwnedState() {
-    return fr.inria.diverse.melange.lib.ListAdapter.newInstance(adaptee.getOwnedState(), adapters.fsm.adapters.fsmmt.StateAdapter.class) ;
+    return fr.inria.diverse.melange.adapters.ListAdapter.newInstance(adaptee.getOwnedState(), adapters.fsm.adapters.fsmmt.StateAdapter.class) ;
   }
   
   public State getInitialState() {
@@ -25,6 +25,6 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements adapters.fsmmt.FS
   }
   
   public List<State> getFinalState() {
-    return fr.inria.diverse.melange.lib.ListAdapter.newInstance(adaptee.getFinalState(), adapters.fsm.adapters.fsmmt.StateAdapter.class) ;
+    return fr.inria.diverse.melange.adapters.ListAdapter.newInstance(adaptee.getFinalState(), adapters.fsm.adapters.fsmmt.StateAdapter.class) ;
   }
 }

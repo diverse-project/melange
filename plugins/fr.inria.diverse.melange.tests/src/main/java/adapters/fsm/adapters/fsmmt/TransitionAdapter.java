@@ -2,7 +2,7 @@ package adapters.fsm.adapters.fsmmt;
 
 import adapters.fsm.adapters.fsmmt.FsmMTAdaptersFactory;
 import adapters.fsmmt.State;
-import fr.inria.diverse.melange.lib.EObjectAdapter;
+import fr.inria.diverse.melange.adapters.EObjectAdapter;
 import fsm.Transition;
 
 @SuppressWarnings("all")

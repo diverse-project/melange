@@ -1,6 +1,6 @@
 package adapters.timedfsm.adapters.fsmmt;
 
-import fr.inria.diverse.melange.lib.EObjectAdapter;
+import fr.inria.diverse.melange.adapters.EObjectAdapter;
 
 import java.util.List;
 
@@ -30,10 +30,10 @@ public class StateAdapter extends EObjectAdapter<State> implements adapters.fsmm
   }
   
   public List<Transition> getOutgoingTransition() {
-    return fr.inria.diverse.melange.lib.ListAdapter.newInstance(adaptee.getOutgoingTransition(), adapters.timedfsm.adapters.fsmmt.TransitionAdapter.class) ;
+    return fr.inria.diverse.melange.adapters.ListAdapter.newInstance(adaptee.getOutgoingTransition(), adapters.timedfsm.adapters.fsmmt.TransitionAdapter.class) ;
   }
   
   public List<Transition> getIncomingTransition() {
-    return fr.inria.diverse.melange.lib.ListAdapter.newInstance(adaptee.getIncomingTransition(), adapters.timedfsm.adapters.fsmmt.TransitionAdapter.class) ;
+    return fr.inria.diverse.melange.adapters.ListAdapter.newInstance(adaptee.getIncomingTransition(), adapters.timedfsm.adapters.fsmmt.TransitionAdapter.class) ;
   }
 }

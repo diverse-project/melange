@@ -2,11 +2,14 @@ package fr.inria.diverse.melange.tests
 
 import com.google.inject.Inject
 
-import fr.inria.diverse.melange.lib.GenericAdapter
+import fr.inria.diverse.melange.adapters.GenericAdapter
+import fr.inria.diverse.melange.adapters.ListAdapter
+
 import fr.inria.diverse.melange.lib.IModelType
-import fr.inria.diverse.melange.lib.ListAdapter
 
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
+
+import fr.inria.diverse.melange.resource.ModelTypeAdapter
 
 import fr.inria.diverse.melange.tests.common.MelangeTestHelper
 import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
@@ -14,8 +17,6 @@ import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
 import fr.inria.diverse.melange.tools.xtext.testing.XtextTest
 
 import org.eclipse.emf.common.util.EList
-
-import org.eclipse.emf.ecore.EObject
 
 import org.eclipse.emf.ecore.resource.Resource
 
@@ -32,16 +33,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 import toppkg.TopClass1
-import toppkg.TopClass2
-
-import toppkg.subpkg1.Subpkg1Class1
-import toppkg.subpkg1.Subpkg1Class2
-
-import toppkg.subpkg2.Subpkg2Class1
-import toppkg.subpkg2.Subpkg2Class2
-
-import toppkg.subpkg2.subpkg3.Subpkg3Class1
-import toppkg.subpkg2.subpkg3.Subpkg3Class2
 
 import static org.junit.Assert.*
 
@@ -58,7 +49,7 @@ class SubPackagesTest
 		val fsa = new InMemoryFileSystemAccess
 		generator.doGenerate(root.eResource, fsa)
 
-		assertEquals(fsa.textFiles.size, 27)
+		assertEquals(fsa.textFiles.size, 28)
 	}
 
 	@Test
@@ -67,21 +58,13 @@ class SubPackagesTest
 			// Consider moving these runtime dependencies somewhere else
 			setJavaCompilerClassPath(
 				typeof(TopClass1),
-				typeof(TopClass2),
-				typeof(Subpkg1Class1),
-				typeof(Subpkg1Class2),
-				typeof(Subpkg2Class1),
-				typeof(Subpkg2Class2),
-				typeof(Subpkg3Class1),
-				typeof(Subpkg3Class2),
+				ModelTypeAdapter,
 				IModelType,
 				GenericAdapter,
 				ListAdapter,
 				Resource,
-				EObject,
 				EList,
 				Exceptions,
-				IterableExtensions,
 				XMIResourceFactoryImpl
 			)
 			inputSequence.compile[

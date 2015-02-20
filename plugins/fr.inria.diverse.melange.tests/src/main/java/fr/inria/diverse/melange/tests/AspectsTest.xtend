@@ -4,17 +4,19 @@ import com.google.inject.Inject
 
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
 
-import fr.inria.diverse.melange.lib.GenericAdapter
+import fr.inria.diverse.melange.adapters.GenericAdapter
+import fr.inria.diverse.melange.adapters.ListAdapter
+
 import fr.inria.diverse.melange.lib.IModelType
-import fr.inria.diverse.melange.lib.ListAdapter
 
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.XbaseTransformation
 
+import fr.inria.diverse.melange.resource.ModelTypeAdapter
+
 import fr.inria.diverse.melange.tests.aspects.fsm.StateAspect1
-import fr.inria.diverse.melange.tests.aspects.fsm.StateAspect2
 
 import fr.inria.diverse.melange.tests.common.MelangeTestHelper
 import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
@@ -23,8 +25,6 @@ import fr.inria.diverse.melange.tools.xtext.testing.XtextTest
 
 import fsm.FSM
 import fsm.FsmPackage
-import fsm.State
-import fsm.Transition
 
 import org.eclipse.emf.common.util.EList
 
@@ -252,7 +252,7 @@ class AspectsTest
 		val fsa = new InMemoryFileSystemAccess
 		generator.doGenerate(root.eResource, fsa)
 
-		assertEquals(fsa.textFiles.size, 47)
+		assertEquals(fsa.textFiles.size, 48)
 	}
 
 	@Test
@@ -261,13 +261,9 @@ class AspectsTest
 			// Consider moving these runtime dependencies somewhere else
 			setJavaCompilerClassPath(
 				typeof(FSM),
-				typeof(State),
-				typeof(Transition),
 				typeof(timedfsm.FSM),
-				typeof(timedfsm.State),
-				typeof(timedfsm.Transition),
 				StateAspect1,
-				StateAspect2,
+				ModelTypeAdapter,
 				IModelType,
 				GenericAdapter,
 				ListAdapter,
@@ -275,7 +271,6 @@ class AspectsTest
 				EObject,
 				EList,
 				Exceptions,
-				IterableExtensions,
 				XMIResourceFactoryImpl
 			)
 			inputSequence.compile[

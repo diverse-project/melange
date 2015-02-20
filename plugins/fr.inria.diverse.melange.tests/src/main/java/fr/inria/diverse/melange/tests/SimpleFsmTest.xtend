@@ -2,14 +2,17 @@ package fr.inria.diverse.melange.tests
 
 import com.google.inject.Inject
 
-import fr.inria.diverse.melange.lib.GenericAdapter
+import fr.inria.diverse.melange.adapters.GenericAdapter
+import fr.inria.diverse.melange.adapters.ListAdapter
+
 import fr.inria.diverse.melange.lib.IModelType
-import fr.inria.diverse.melange.lib.ListAdapter
 
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.Transformation
+
+import fr.inria.diverse.melange.resource.ModelTypeAdapter
 
 import fr.inria.diverse.melange.tests.common.MelangeTestHelper
 import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
@@ -17,8 +20,6 @@ import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
 import fr.inria.diverse.melange.tools.xtext.testing.XtextTest
 
 import fsm.FSM
-import fsm.State
-import fsm.Transition
 
 import org.eclipse.emf.common.util.EList
 
@@ -111,7 +112,7 @@ class SimpleFsmTest
 		val fsa = new InMemoryFileSystemAccess
 		generator.doGenerate(root.eResource, fsa)
 
-		assertEquals(fsa.textFiles.size, 34)
+		assertEquals(fsa.textFiles.size, 35)
 	}
 
 	@Test
@@ -120,19 +121,15 @@ class SimpleFsmTest
 			// Consider moving these runtime dependencies somewhere else
 			setJavaCompilerClassPath(
 				typeof(FSM),
-				typeof(State),
-				typeof(Transition),
 				timedfsm.FSM,
-				timedfsm.State,
-				timedfsm.Transition,
 				IModelType,
 				GenericAdapter,
 				ListAdapter,
+				ModelTypeAdapter,
 				Resource,
 				EObject,
 				EList,
 				Exceptions,
-				IterableExtensions,
 				XMIResourceFactoryImpl
 			)
 			inputSequence.compile[

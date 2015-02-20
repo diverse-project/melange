@@ -2,7 +2,7 @@ package adapters.timedfsm.adapters.timedfsmmt;
 
 import adapters.timedfsm.adapters.timedfsmmt.TimedFsmMTAdaptersFactory;
 import adapters.timedfsmmt.State;
-import fr.inria.diverse.melange.lib.EObjectAdapter;
+import fr.inria.diverse.melange.adapters.EObjectAdapter;
 import timedfsm.Transition;
 
 @SuppressWarnings("all")

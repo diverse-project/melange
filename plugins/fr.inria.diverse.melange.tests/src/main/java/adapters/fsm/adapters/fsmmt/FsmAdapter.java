@@ -1,6 +1,6 @@
 package adapters.fsm.adapters.fsmmt;
 
-import fr.inria.diverse.melange.lib.ResourceAdapter;
+import fr.inria.diverse.melange.adapters.ResourceAdapter;
 
 import java.io.IOException;
 

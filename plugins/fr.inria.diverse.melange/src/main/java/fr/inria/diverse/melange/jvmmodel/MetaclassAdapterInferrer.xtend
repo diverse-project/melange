@@ -7,7 +7,7 @@ import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 
 import fr.inria.diverse.melange.lib.EcoreExtensions
-import fr.inria.diverse.melange.lib.EObjectAdapter
+import fr.inria.diverse.melange.adapters.EObjectAdapter
 
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
@@ -122,7 +122,7 @@ class MetaclassAdapterInferrer
 					jvmCls.members += mm.toMethod(getterName, refType)[
 						body = '''
 							«IF ref.many»
-								return fr.inria.diverse.melange.lib.ListAdapter.newInstance(adaptee.«getterName»(), «adapName».class) ;
+								return fr.inria.diverse.melange.adapters.ListAdapter.newInstance(adaptee.«getterName»(), «adapName».class) ;
 							«ELSE»
 								return adaptersFactory.create«mm.simpleAdapterNameFor(superType, ref.EReferenceType)»(adaptee.«getterName»()) ;
 							«ENDIF»
@@ -202,7 +202,7 @@ class MetaclassAdapterInferrer
 					m.body = '''
 						«IF op.EType instanceof EClass && mm.hasAdapterFor(superType, cls)»
 							«IF op.many»
-								return fr.inria.diverse.melange.lib.ListAdapter.newInstance(adaptee.«opName»(«paramsList»), «mm.adapterNameFor(superType, op.EType as EClass)».class) ;
+								return fr.inria.diverse.melange.adapters.ListAdapter.newInstance(adaptee.«opName»(«paramsList»), «mm.adapterNameFor(superType, op.EType as EClass)».class) ;
 							«ELSE»
 								return adaptersFactory.create«mm.simpleAdapterNameFor(superType, op.EType as EClass)»(adaptee.«opName»(«paramsList»)) ;
 							«ENDIF»
@@ -276,7 +276,7 @@ class MetaclassAdapterInferrer
 							«ELSEIF mm.hasAdapterFor(superType, p.parameterType.simpleName)»
 								, ((«mm.adapterNameFor(superType, p.parameterType.simpleName)») «p.name»).getAdaptee()
 							«ELSEIF p.parameterType.isCollection && mm.hasAdapterFor(superType, realTypeP)»
-								, ((fr.inria.diverse.melange.lib.ListAdapter) «p.name»).getAdaptee()
+								, ((fr.inria.diverse.melange.adapters.ListAdapter) «p.name»).getAdaptee()
 							«ELSE»
 								, «p.name»
 							«ENDIF»
@@ -321,7 +321,7 @@ class MetaclassAdapterInferrer
 								«ELSEIF retType.isValidReturnType»
 									«IF mm.hasAdapterFor(superType, realType)»
 										«IF op.returnType.isCollection»
-											return fr.inria.diverse.melange.lib.ListAdapter.newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), «mm.adapterNameFor(superType, realType)».class) ;
+											return fr.inria.diverse.melange.adapters.ListAdapter.newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), «mm.adapterNameFor(superType, realType)».class) ;
 										«ELSE»
 											return adaptersFactory.create«mm.simpleAdapterNameFor(superType, realType)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
 										«ENDIF»
@@ -374,7 +374,7 @@ class MetaclassAdapterInferrer
 									«ELSEIF retType.isValidReturnType»
 										«IF mm.hasAdapterFor(superType, realType)»
 											«IF op.returnType.isCollection»
-												return fr.inria.diverse.melange.lib.ListAdapter.newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), «mm.adapterNameFor(superType, realType)».class) ;
+												return fr.inria.diverse.melange.adapters.ListAdapter.newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), «mm.adapterNameFor(superType, realType)».class) ;
 											«ELSE»
 												return adaptersFactory.create«mm.simpleAdapterNameFor(superType, realType)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
 											«ENDIF»
@@ -423,7 +423,7 @@ class MetaclassAdapterInferrer
 									«ELSEIF retType.isValidReturnType»
 										«IF mm.hasAdapterFor(superType, realType)»
 											«IF op.returnType.isCollection»
-												return fr.inria.diverse.melange.lib.ListAdapter.newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), «mm.adapterNameFor(superType, realType)».class) ;
+												return fr.inria.diverse.melange.adapters.ListAdapter.newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), «mm.adapterNameFor(superType, realType)».class) ;
 											«ELSE»
 												return adaptersFactory.create«mm.simpleAdapterNameFor(superType, realType)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
 											«ENDIF»
