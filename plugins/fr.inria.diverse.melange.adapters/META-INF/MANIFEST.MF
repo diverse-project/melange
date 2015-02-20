@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Melange Adapters
+Bundle-SymbolicName: fr.inria.diverse.melange.adapters;singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Bundle-Vendor: DIVERSE
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
+Require-Bundle: com.google.guava,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.xtend.lib,
+ org.eclipse.xtend.lib.macro,
+ org.eclipse.emf.ecore;bundle-version="2.10.2"
+Export-Package: fr.inria.diverse.melange.adapters
+
