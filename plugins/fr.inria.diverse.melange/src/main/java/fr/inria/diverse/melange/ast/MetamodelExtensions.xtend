@@ -383,12 +383,16 @@ class MetamodelExtensions
 	}
 
 	def IProject getProject(Metamodel mm) {
-		val res = mm.eResource
+		try {
+			val res = mm.eResource
 
-		return
-			if (res !== null)
-				ResourcesPlugin.workspace.root.getFile(new Path(res.URI.toPlatformString(true))).project
-			else null
+			return
+				if (res !== null)
+					ResourcesPlugin.workspace.root.getFile(new Path(res.URI.toPlatformString(true))).project
+				else null
+		} catch (IllegalStateException e) {
+			return null
+		}
 	}
 
 	def private void createEcore(Metamodel mm, String uri) {
