@@ -49,6 +49,8 @@ import org.eclipse.xtext.naming.QualifiedName
 
 import org.eclipse.xtext.xbase.XFeatureCall
 
+import org.apache.log4j.Logger
+
 class MetamodelExtensions
 {
 	@Inject extension ModelingElementExtensions
@@ -58,6 +60,7 @@ class MetamodelExtensions
 	@Inject extension NamingHelper
 	@Inject ModelTypeAlgebra algebra
 	@Inject EPackageProvider provider
+	static Logger log = Logger.getLogger(MetamodelExtensions)
 
 	def List<GenModel> getGenmodels(Metamodel mm) {
 		return provider.getGenModels(mm)
@@ -124,13 +127,28 @@ class MetamodelExtensions
 	}
 
 	def boolean isDefinedOver(Aspect asp, Metamodel mm) {
-		return mm.packageFqn.toQualifiedName.skipLast(1).toString == asp.targetedNamespace.toString
+		try{
+			return mm.packageFqn.toQualifiedName.skipLast(1).toString == asp.targetedNamespace.toString
+		} catch (java.lang.IllegalArgumentException e){
+			val unresolvedProxyAspect = (asp.aspectTypeRef.type as JvmDeclaredType).annotations.exists[annotation.eIsProxy]
+			if(unresolvedProxyAspect){
+				log.debug("annotationProcessor dependency missing, please add k3al.annotationprocessor to the classpath ", e)
+				return false	
+			}
+			else 
+				throw e
+		}
 	}
 
 	// FIXME: We should check that the original mm is a super-type of mm
 	// Hard to find the metamodel declaration or the corresponding Ecore file
 	// in the workspace...
 	def boolean canBeCopiedFor(Aspect asp, Metamodel mm) {
+		val unresolvedProxyAspect = (asp.aspectTypeRef.type as JvmDeclaredType).annotations.exists[annotation.eIsProxy]
+		if(unresolvedProxyAspect){
+			// cannot copy the aspect because we don't have a correct dependency to the annotation processor 
+			return false
+		}
 		return true
 	}
 
