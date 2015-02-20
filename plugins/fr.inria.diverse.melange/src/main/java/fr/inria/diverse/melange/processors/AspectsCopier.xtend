@@ -1,7 +1,6 @@
 package fr.inria.diverse.melange.processors
 
 import fr.inria.diverse.melange.ast.MetamodelExtensions
-import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.utils.AspectCopier
 import javax.inject.Inject
@@ -11,7 +10,6 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
 class AspectsCopier extends DispatchMelangeProcessor
 {
-	@Inject extension ModelingElementExtensions
 	@Inject AspectCopier copier
 	@Inject extension MetamodelExtensions
 	@Inject JvmTypeReferenceBuilder.Factory builderFactory
