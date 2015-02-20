@@ -16,6 +16,7 @@
 		<module>../fr.inria.diverse.melange.lib</module>
 		<module>../fr.inria.diverse.melange.metamodel</module>
 		<module>../fr.inria.diverse.melange</module>
+		<module>../fr.inria.diverse.melange.adapters</module>
 		<module>../fr.inria.diverse.melange.resource</module>
 		<module>../fr.inria.diverse.melange.ui</module>
 		<module>../fr.inria.diverse.melange.ui.templates</module>
