@@ -23,8 +23,7 @@ Require-Bundle: fr.inria.diverse.melange;visibility:=reexport,
  org.eclipse.jdt.debug.ui,
  fr.inria.diverse.commons.eclipse.pde;visibility:=reexport,
  fr.inria.diverse.commons.eclipse;visibility:=reexport,
- org.eclipse.jdt.core,
- org.eclipse.jdt.launching;bundle-version="3.7.101"
+ org.eclipse.jdt.core;bundle-version="3.10.0"
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7

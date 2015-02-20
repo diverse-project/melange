@@ -26,7 +26,6 @@ import org.eclipse.core.runtime.Path
 import org.eclipse.emf.codegen.ecore.genmodel.GenJDKLevel
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
 import org.eclipse.emf.codegen.ecore.genmodel.GenModelFactory
-
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenBaseGeneratorAdapter
 
 import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil
@@ -45,13 +44,18 @@ import org.eclipse.xtext.common.types.JvmCustomAnnotationValue
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmTypeAnnotationValue
 
+import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.QualifiedName
+
+import org.eclipse.xtext.xbase.XFeatureCall
 
 class MetamodelExtensions
 {
 	@Inject extension ModelingElementExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension ModelTypeExtensions
+	@Inject extension IQualifiedNameConverter
+	@Inject extension NamingHelper
 	@Inject ModelTypeAlgebra algebra
 	@Inject EPackageProvider provider
 
@@ -100,6 +104,36 @@ class MetamodelExtensions
 
 		return aspVal
 	}
+
+	def String getAspectAnnotationValueType(JvmDeclaredType t) {
+		val aspAnn = t.annotations.findFirst[annotation?.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Aspect"]
+		val aspClassName = aspAnn?.values?.findFirst[valueName == "className"]
+		val aspVal = switch aspClassName {
+			JvmTypeAnnotationValue: aspClassName.values?.head?.qualifiedName
+			JvmCustomAnnotationValue: {
+				val feature = aspClassName.values?.head as XFeatureCall
+				feature.feature.qualifiedName
+			}
+		}
+
+		return aspVal
+	}
+
+	def QualifiedName getTargetedNamespace(Aspect asp) {
+		return (asp.aspectTypeRef.type as JvmDeclaredType).aspectAnnotationValueType.toQualifiedName.skipLast(1)
+	}
+
+	def boolean isDefinedOver(Aspect asp, Metamodel mm) {
+		return mm.packageFqn.toQualifiedName.skipLast(1).toString == asp.targetedNamespace.toString
+	}
+
+	// FIXME: We should check that the original mm is a super-type of mm
+	// Hard to find the metamodel declaration or the corresponding Ecore file
+	// in the workspace...
+	def boolean canBeCopiedFor(Aspect asp, Metamodel mm) {
+		return true
+	}
+
 
 	def EClass findClass(Metamodel mm, String clsName) {
 		return mm.allClasses.filter(EClass).findFirst[name == clsName]
@@ -286,7 +320,20 @@ class MetamodelExtensions
 	}
 
 	def String getExternalRuntimeName(Metamodel mm) {
-		return mm.name + "Runtime"
+		if (mm.ecoreUri !== null) {
+			val originalProjectName = URI::createURI(mm.ecoreUri).segment(1)
+
+			return originalProjectName
+		} else if (mm.inheritanceRelation.superMetamodel.ecoreUri !== null) {
+			val originalProjectName = URI::createURI(mm.inheritanceRelation.superMetamodel.ecoreUri).segment(1)
+			val newProjectName = originalProjectName.toQualifiedName.skipLast(1).append(mm.name.toLowerCase).append("model")
+
+			return newProjectName.toString
+		}
+	}
+
+	def String getExternalAspectsRuntimeName(Metamodel mm) {
+		return mm.name.toLowerCase + ".aspects"
 	}
 
 	def boolean isGeneratedByMelange(Metamodel mm) {
@@ -307,7 +354,6 @@ class MetamodelExtensions
 				segments += gp.prefix
 
 			val fqn = QualifiedName::create(segments).toString.toLowerCase
-
 			if ((
 				   mm.project.getFile(mm.localEcorePath).exists
 				&& mm.project.getFile(mm.localGenmodelPath).exists
@@ -360,9 +406,10 @@ class MetamodelExtensions
 	def private void createGenmodel(Metamodel mm, String ecoreUri, String gmUri, String modelDirectory) {
 		val genmodel = GenModelFactory.eINSTANCE.createGenModel => [
 			it.complianceLevel = GenJDKLevel.JDK70_LITERAL
-			it.modelDirectory = modelDirectory.replaceFirst("platform:/resource", "")
+			it.modelDirectory = modelDirectory.replaceFirst("platform:/resource", "").replaceFirst("..", "")
 			it.foreignModel += ecoreUri
 			it.modelName = mm.name
+			it.modelPluginID = mm.externalRuntimeName
 			it.initialize(Lists::newArrayList(mm.pkgs))
 		]
 

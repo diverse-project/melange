@@ -42,7 +42,7 @@ class EPackageProvider
 		if (!packages.containsKey(m)) {
 			if (m instanceof Metamodel) {
 				try {
-					if (m.project !== null)
+					if (m.isGeneratedByMelange && m.project !== null)
 						if (m.project.getFile(m.localEcorePath).exists)
 							m.ecoreUri = m.localEcoreUri
 						else if (m.project.getFile(m.externalEcorePath).exists)
@@ -99,7 +99,7 @@ class EPackageProvider
 				mm.genmodelUris += mm.ecoreUri.substring(0, mm.ecoreUri.lastIndexOf(".")) + ".genmodel"
 			else {
 				try {
-					if (mm.project !== null)
+					if (mm.isGeneratedByMelange && mm.project !== null)
 						if (mm.project.getFile(mm.localGenmodelPath).exists)
 							mm.genmodelUris += mm.localGenmodelUri
 						else if (mm.project.getFile(mm.externalGenmodelPath).exists)
@@ -108,7 +108,6 @@ class EPackageProvider
 			}
 			mm.genmodelUris.forEach[genmodels.put(mm, modelUtils.loadGenmodel(it))]
 		}
-
 		return genmodels.get(mm)
 	}
 }
