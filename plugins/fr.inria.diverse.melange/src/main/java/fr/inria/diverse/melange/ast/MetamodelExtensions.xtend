@@ -387,7 +387,7 @@ class MetamodelExtensions
 			val res = mm.eResource
 
 			return
-				if (res !== null)
+				if (res !== null && res.URI.toPlatformString(true) !== null)
 					ResourcesPlugin.workspace.root.getFile(new Path(res.URI.toPlatformString(true))).project
 				else null
 		} catch (IllegalStateException e) {
