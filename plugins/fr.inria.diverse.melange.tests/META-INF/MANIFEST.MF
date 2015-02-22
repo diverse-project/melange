@@ -5,16 +5,11 @@ Bundle-Vendor: DIVERSE
 Bundle-Version: 0.1.0.qualifier
 Bundle-SymbolicName: fr.inria.diverse.melange.tests;singleton:=true
 Bundle-ActivationPolicy: lazy
-Require-Bundle: fr.inria.diverse.melange,
- fr.inria.diverse.melange.ui,
- org.eclipse.core.runtime,
+Require-Bundle: fr.inria.diverse.melange.ui,
  org.eclipse.xtext.junit4;bundle-version="[2.7.0,2.8.0)",
- org.eclipse.ui.workbench;resolution:=optional,
  org.eclipse.xtext.generator;bundle-version="[2.7.0,2.8.0)",
  org.eclipse.xtext.xbase.junit;bundle-version="[2.7.0,2.8.0)",
  fr.inria.diverse.melange.metamodel;bundle-version="0.1.0",
- org.eclipse.jdt.core;bundle-version="3.9.2",
- org.objectweb.asm;bundle-version="3.3.1",
  fr.inria.diverse.melange.tools.xtext.testing;bundle-version="0.1.0",
  fr.inria.diverse.melange.examples.metamodels.fsm;bundle-version="0.1.0",
  fr.inria.diverse.melange.examples.metamodels.timedfsm;bundle-version="0.1.0",
@@ -24,15 +19,18 @@ Require-Bundle: fr.inria.diverse.melange,
  fr.inria.diverse.melange.resource;bundle-version="0.1.0",
  org.eclipse.emf.compare;bundle-version="3.1.1",
  fr.inria.diverse.melange.adapters;bundle-version="0.1.0",
- fr.inria.diverse.melange.lib;bundle-version="0.1.0"
-Import-Package: org.apache.log4j,
+ fr.inria.diverse.melange.lib;bundle-version="0.1.0",
+ fr.inria.diverse.melange,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.workbench;resolution:=optional,
+ org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional
+Import-Package: org.hamcrest.core,
  org.junit;version="4.5.0",
  org.junit.runner;version="4.5.0",
  org.junit.runner.manipulation;version="4.5.0",
  org.junit.runner.notification;version="4.5.0",
  org.junit.runners;version="4.5.0",
- org.junit.runners.model;version="4.5.0",
- org.hamcrest.core
+ org.junit.runners.model;version="4.5.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: fr.inria.diverse.melange.tests,
  fr.inria.diverse.melange.tests.aspects.fsm,
