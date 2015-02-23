@@ -51,7 +51,7 @@ class AdapterExtensionPointProcessor extends DispatchMelangeProcessor
 				fModel.load
 
 				if (pluginModel !== null && melangeResourcePlugin !== null && adapterExtensionPoint !== null && pluginBase !== null) {
-					root.metamodels.forEach[mm |
+					root.metamodels.filter[isComplete].forEach[mm |
 						mm.^implements.forEach[mt |
 							val resourceAdapterName = mm.adapterNameFor(mt)
 							val newExtension = fModel.factory.createExtension
