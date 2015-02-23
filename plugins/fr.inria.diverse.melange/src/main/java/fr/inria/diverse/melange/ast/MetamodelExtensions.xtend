@@ -1,53 +1,36 @@
 package fr.inria.diverse.melange.ast
 
 import com.google.common.collect.Lists
-
 import com.google.inject.Inject
-
 import fr.inria.diverse.melange.algebra.ModelTypeAlgebra
-
 import fr.inria.diverse.melange.lib.EcoreExtensions
-
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
-
 import fr.inria.diverse.melange.utils.EPackageProvider
-
 import java.io.IOException
-
 import java.util.List
-
 import org.eclipse.core.resources.IProject
 import org.eclipse.core.resources.ResourcesPlugin
-
 import org.eclipse.core.runtime.Path
-
 import org.eclipse.emf.codegen.ecore.genmodel.GenJDKLevel
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
 import org.eclipse.emf.codegen.ecore.genmodel.GenModelFactory
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenBaseGeneratorAdapter
-
 import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil
-
 import org.eclipse.emf.common.util.BasicMonitor
 import org.eclipse.emf.common.util.URI
-
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EcorePackage
-
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-
 import org.eclipse.xtext.common.types.JvmCustomAnnotationValue
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmTypeAnnotationValue
-
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.QualifiedName
-
-import org.eclipse.xtext.xbase.XFeatureCall
+import org.eclipse.xtext.xbase.XAbstractFeatureCall
 
 class MetamodelExtensions
 {
@@ -111,7 +94,7 @@ class MetamodelExtensions
 		val aspVal = switch aspClassName {
 			JvmTypeAnnotationValue: aspClassName.values?.head?.qualifiedName
 			JvmCustomAnnotationValue: {
-				val feature = aspClassName.values?.head as XFeatureCall
+				val feature = aspClassName.values?.head as XAbstractFeatureCall
 				feature.feature.qualifiedName
 			}
 		}
