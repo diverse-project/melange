@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Simultaneous
+Bundle-SymbolicName: fr.inria.diverse.examples.fsm.aspects.timed.simultaneous
+Bundle-Version: 1.0.0.qualifier
+Export-Package: finitestatemachines.timed.simultaneous
+Require-Bundle: org.eclipse.xtend.lib,
+ org.eclipse.xtend.lib.macro,
+ com.google.guava,
+ org.eclipse.xtext.xbase.lib,
+ fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version="3.0.0",
+ fr.inria.diverse.examples.fsm.metamodel.timed;bundle-version="0.0.0";visibility:=reexport,
+ fr.inria.diverse.examples.fsm.interfaces;bundle-version="1.0.0"
