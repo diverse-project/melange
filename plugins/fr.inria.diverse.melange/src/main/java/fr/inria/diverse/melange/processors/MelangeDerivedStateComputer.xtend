@@ -13,6 +13,11 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmModelAssociator
 
 import static org.eclipse.xtext.util.internal.Stopwatches.*
 
+/**
+ * This class merge aspects into the base model of the metamodel,
+ * creates Model types for each Exact types and compute the
+ * Model type hierarchy 
+ */
 class MelangeDerivedStateComputer extends JvmModelAssociator
 {
 	@Inject MelangeTypesBuilder builder

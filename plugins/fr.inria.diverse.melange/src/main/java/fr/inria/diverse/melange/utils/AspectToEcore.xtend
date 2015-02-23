@@ -14,6 +14,9 @@ import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
 import org.eclipse.xtext.common.types.JvmVisibility
 
+/**
+ * This class creates an EPackage corresponding to an aspect.
+ */
 // FIXME: Duplicated code etc. this is so ugly
 class AspectToEcore
 {
@@ -149,7 +152,14 @@ class AspectToEcore
 
 		aspImport.ecoreFragment = aspPkg
 	}
-
+	
+	/**
+	 * If {@link op} is a getter or a setter return the name of the corresponding feature.
+	 * Otherwise return null
+	 * 
+	 * @param type Aspect where {@link op} is defined
+	 * @param op Method defined in {@link type}
+	 */
 	def String findFeatureNameFor(JvmDeclaredType type, JvmOperation op) {
 		if (
 			(  op.simpleName.startsWith("get")

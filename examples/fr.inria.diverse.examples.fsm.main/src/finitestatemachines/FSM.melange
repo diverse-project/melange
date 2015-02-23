@@ -41,10 +41,10 @@ transformation execute(FiniteStateMachineRTCMT stateMachine, String input, Strin
 @Main
 transformation main(){
 	val simpleProgram = FiniteStateMachineRTC.load("input/dummie.xmi")
-	execute.call(simpleProgram, "{x;y;z,o;p;q}", "input/dummie-output " + 
+	execute.call(simpleProgram, "{x;y;z,o;p;q}", "output/dummie-output " + 
 		System.currentTimeMillis + ".pdf")
 
 	val simpleProgram2 = FiniteStateMachineSimultaneous.load("input/dummie.xmi")
-	execute.call(simpleProgram2, "{x;y;z,o;p;q}", "input/dummie-output " + 
+	execute.call(simpleProgram2, "{x;y;z,o;p;q}", "output/dummie-output " + 
 		System.currentTimeMillis + ".pdf")
 }

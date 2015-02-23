@@ -25,6 +25,10 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.ecore.EObject
 
+/**
+ * This class manages the generation of the Java code  that bind a Metamodel 
+ * to its Model type
+ */
 class MetamodelAdapterInferrer
 {
 	@Inject extension JvmTypesBuilder
@@ -36,6 +40,15 @@ class MetamodelAdapterInferrer
 	@Inject extension MelangeTypesBuilder
 	@Inject extension ModelingElementExtensions
 
+	/**
+	 * Creates a concrete factory for Object type of {@link superType} &
+	 * creates a Java class for {@link mm} which implements {@link superType}
+	 * 
+	 * @param mm
+	 * @param superType Model type implemented by {@link mm}
+	 * @param acceptor
+	 * @param builder
+	 */
 	def void generateAdapter(Metamodel mm, ModelType superType, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
 		val task = Stopwatches.forTask("generate metamodel adapters")
 		task.start

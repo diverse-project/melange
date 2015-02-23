@@ -25,7 +25,7 @@ import static extension finitestatemachines.simultaneous.StateAspect.*
 @Aspect(className=StateMachine)
 class StateMachineAspect {
 	
-	List<State> currentState = null;
+	public List<State> currentState = null;
 	List<Transition> currentTransitions = null
 	
 	/**

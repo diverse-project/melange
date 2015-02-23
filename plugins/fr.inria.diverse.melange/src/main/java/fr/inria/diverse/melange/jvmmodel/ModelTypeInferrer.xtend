@@ -27,6 +27,9 @@ import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
+/**
+ * This class manages generation of Java interfaces for a Model Type.
+ */
 class ModelTypeInferrer
 {
 	@Inject extension JvmTypesBuilder
@@ -38,6 +41,16 @@ class ModelTypeInferrer
 	@Inject extension EnumInferrer
 	@Inject extension MetaclassInterfaceInferrer
 
+	/**
+	 * Creates:<br>
+ 	 * - A Java interface for {@link mt}<br>
+ 	 * - An abstract factory to create each Object type of {@link mt}<br>
+ 	 * - Java interfaces for each Object type
+ 	 * 
+	 * @param mt Model type
+	 * @param acceptor
+	 * @param builder
+	 */
 	def void generateInterfaces(ModelType mt, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
 		val task = Stopwatches.forTask("generate model types")
 		task.start
