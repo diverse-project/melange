@@ -21,7 +21,7 @@ class ModelTypeExtensions
 	@Inject extension EcoreExtensions
 	@Inject ModelTypeAlgebra algebra
 
-	def boolean getCanGenerate(ModelType mt) {
+	def boolean getIsComplete(ModelType mt) {
 		return !mt.pkgs.empty
 	}
 

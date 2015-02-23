@@ -63,7 +63,7 @@ class MetamodelExtensions
 		return provider.getGenModels(mm)
 	}
 
-	def boolean getCanGenerate(Metamodel mm) {
+	def boolean getIsComplete(Metamodel mm) {
 		return !mm.pkgs.empty && !mm.genmodels.empty && mm.aspects.forall[aspectedClass !== null]
 	}
 
