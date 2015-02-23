@@ -5,7 +5,6 @@ import fr.inria.diverse.melange.algebra.ModelTypeAlgebra
 import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.utils.AspectToEcore
-import org.eclipse.xtext.common.types.JvmDeclaredType
 
 class AspectsWeaver extends DispatchMelangeProcessor
 {
@@ -15,7 +14,7 @@ class AspectsWeaver extends DispatchMelangeProcessor
 
 	def dispatch void preProcess(Metamodel mm) {
 		mm.aspects.forEach[asp |
-			if (asp.aspectTypeRef?.type instanceof JvmDeclaredType) {
+			if (asp.isComplete) {
 				val className = asp.aspectAnnotationValue
 				val cls = mm.findClass(className)
 				asp.aspectedClass = cls

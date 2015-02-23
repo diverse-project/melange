@@ -50,6 +50,13 @@ class MetamodelExtensions
 		return !mm.pkgs.empty && !mm.genmodels.empty && mm.aspects.forall[aspectedClass !== null]
 	}
 
+	def boolean getIsComplete(Aspect asp) {
+		return
+			asp.aspectTypeRef?.type !== null
+			&& asp.aspectTypeRef.type instanceof JvmDeclaredType
+			&& asp.aspectAnnotationValue !== null
+	}
+
 	def List<Aspect> allAspects(Metamodel mm) {
 		val ret = newArrayList
 
