@@ -24,6 +24,8 @@ import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.util.internal.Stopwatches
 
 import static fr.inria.diverse.melange.utils.AspectCopier.*
+import fr.inria.diverse.commons.asm.shade.resource.K3AspectPropertiesTransformer
+import fr.inria.diverse.commons.asm.shade.resource.ResourceTransformer
 
 /**
  * Baaah, full of sh*t
@@ -93,7 +95,7 @@ class AspectCopier
 					emfRuntimeProject
 				)
 		//ws.getProject(targetAspectNamespace.toString).rawLocation
-		val targetAspectFolder = ws.getProject(targetAspectNamespace.toString).locationURI.path + "/src-gen/"
+		val targetAspectFolder = findTargetProject.locationURI.path + "/src-gen/"
 		val targetFolderFile = new File(targetAspectFolder)
 //		val filenameToBeFound = '''/src-gen/«targetAspectNamespace.toString.replace(".", "/")»/«asp.aspectTypeRef.simpleName».java'''
 //		val fileToBeFound = targetProject.getFile(filenameToBeFound)
@@ -106,6 +108,7 @@ class AspectCopier
 		request.inputFolders = #{sourceFolderFile}
 		request.outputFolder = targetFolderFile
 		request.filters = #[]
+		request.resourceTransformers = #[]
 		request.relocators = relocators
 
 		try {
@@ -118,8 +121,19 @@ class AspectCopier
 			log.debug('''	targetAspectFolder    = «targetAspectFolder»''')
 
 //			if (!fileToBeFound.exists) {
-				shader.shade(request)
-				targetProject.refreshLocal(IResource.DEPTH_INFINITE, null)
+			shader.shade(request)
+			
+			log.debug('''Copying META-INF aspect_properties «asp.aspectTypeRef.identifier» to «mm.name»:''')	
+			val sourceMetaInfFolder = projectPathTmp.toString + "/META-INF/"
+			val sourceMetaInfFile = new File(sourceMetaInfFolder)	
+			val targetMetaInfFile = new File(findTargetProject.locationURI.path + "/META-INF/")
+			request.inputFolders = #{sourceMetaInfFile}
+			request.outputFolder = targetMetaInfFile
+			request.resourceTransformers = #[new K3AspectPropertiesTransformer(targetAspectNamespace.toString) as ResourceTransformer]
+			
+			shader.shade(request)
+				
+			targetProject.refreshLocal(IResource.DEPTH_INFINITE, null)
 //			}
 			return '''«targetAspectNamespace».«asp.aspectTypeRef.simpleName»'''
 		} catch (IOException e) {
@@ -128,6 +142,10 @@ class AspectCopier
 		} catch (CoreException e) {
 			log.debug("Refresh failed", e)
 			return null
+		} catch (Exception e) {
+			log.error("Unexpected error", e)
+			return null
+		
 		} finally {
 			task.stop
 		}
