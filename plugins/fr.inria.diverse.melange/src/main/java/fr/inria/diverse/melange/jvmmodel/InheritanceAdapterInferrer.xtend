@@ -23,6 +23,7 @@ import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
+@Deprecated
 class InheritanceAdapterInferrer
 {
 	@Inject extension JvmModelInferrerHelper
