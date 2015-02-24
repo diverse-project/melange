@@ -2,35 +2,32 @@ package fr.inria.diverse.melange.jvmmodel
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-
 import fr.inria.diverse.melange.utils.TypeReferencesHelper
-
 import java.util.List
-
 import org.eclipse.emf.ecore.EObject
-
 import org.eclipse.emf.ecore.resource.ResourceSet
-
 import org.eclipse.xtext.common.types.JvmFormalParameter
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmTypeReference
-
 import org.eclipse.xtext.xbase.compiler.JavaKeywords
-
+import org.eclipse.xtext.xbase.jvmmodel.JvmAnnotationReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
 @Singleton
 class JvmModelInferrerHelper
 {
-	@Inject JvmTypeReferenceBuilder.Factory builderFactory
-	@Inject extension JvmTypeReferenceBuilder builder
+	@Inject JvmTypeReferenceBuilder.Factory typeBuilderFactory
+	@Inject JvmAnnotationReferenceBuilder.Factory annotationBuilderFactory
+	@Inject extension JvmTypeReferenceBuilder typeBuilder
+	@Inject extension JvmAnnotationReferenceBuilder annotationBuilder
 	@Inject extension JvmTypesBuilder
 	@Inject extension JavaKeywords
 	@Inject extension TypeReferencesHelper
 
 	def void setContext(ResourceSet rs) {
-		builder = builderFactory.create(rs)
+		typeBuilder = typeBuilderFactory.create(rs)
+		annotationBuilder = annotationBuilderFactory.create(rs)
 	}
 
 	/*--- Getters / Setters  ---*/
@@ -67,6 +64,8 @@ class JvmModelInferrerHelper
 
 	def JvmOperation toUnsetter(EObject f, String name) {
 		val s = f.toMethod("unset" + name.toFirstUpper, Void::TYPE.typeRef)[
+			annotations += Override.annotationRef
+
 			body = '''
 				adaptee.unset«name.toFirstUpper»() ;
 			'''
@@ -77,6 +76,8 @@ class JvmModelInferrerHelper
 
 	def JvmOperation toUnsetterCheck(EObject f, String name) {
 		val s = f.toMethod("isSet" + name.toFirstUpper, Boolean::TYPE.typeRef)[
+			annotations += Override.annotationRef
+
 			body = '''
 				return adaptee.isSet«name.toFirstUpper»() ;
 			'''

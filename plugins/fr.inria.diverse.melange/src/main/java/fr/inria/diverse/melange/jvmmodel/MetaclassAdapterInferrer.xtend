@@ -26,6 +26,7 @@ import org.eclipse.xtext.common.types.JvmVisibility
 import org.eclipse.xtext.common.types.TypesFactory
 import org.eclipse.xtext.util.internal.Stopwatches
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
+import org.eclipse.xtext.xbase.jvmmodel.JvmAnnotationReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
@@ -43,6 +44,8 @@ class MetaclassAdapterInferrer
 	@Inject extension AspectToEcore
 	@Inject extension MelangeTypesBuilder
 	@Inject extension TypeReferencesHelper
+	@Inject extension JvmAnnotationReferenceBuilder$Factory jvmAnnotationReferenceBuilderFactory
+	extension JvmAnnotationReferenceBuilder jvmAnnotationReferenceBuilder
 	extension JvmTypeReferenceBuilder typeRefBuilder
 
 	/**
@@ -57,6 +60,7 @@ class MetaclassAdapterInferrer
 	 */
 	def void generateAdapter(Metamodel mm, ModelType superType, EClass cls, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
 		typeRefBuilder = builder
+		jvmAnnotationReferenceBuilder = jvmAnnotationReferenceBuilderFactory.create(mm.eResource.resourceSet)
 		val task = Stopwatches.forTask("generate metaclass adapters")
 		task.start
 
@@ -99,6 +103,8 @@ class MetaclassAdapterInferrer
 		val setterName = attr.setterName
 
 		jvmCls.members += mm.toMethod(getterName, attrType)[
+			annotations += Override.annotationRef
+
 			if (attr.EType instanceof EEnum)
 				body = '''
 					return «superType.getFqnFor(attr.EType)».get(adaptee.«getterName»().getValue());
@@ -111,6 +117,7 @@ class MetaclassAdapterInferrer
 
 		if (attr.needsSetter) {
 			jvmCls.members += mm.toMethod(setterName, Void::TYPE.typeRef)[
+				annotations += Override.annotationRef
 				parameters += mm.toParameter("o", attrType)
 
 				if (attr.EType instanceof EEnum)
@@ -146,6 +153,8 @@ class MetaclassAdapterInferrer
 			]
 		else
 			jvmCls.members += mm.toMethod(getterName, refType)[
+				annotations += Override.annotationRef
+
 				body = '''
 					«IF ref.many»
 						return fr.inria.diverse.melange.adapters.ListAdapter.newInstance(adaptee.«getterName»(), «adapName».class) ;
@@ -157,6 +166,7 @@ class MetaclassAdapterInferrer
 
 		if (ref.needsSetter) {
 			jvmCls.members += mm.toMethod(setterName, Void::TYPE.typeRef)[
+				annotations += Override.annotationRef
 				parameters += mm.toParameter("o", refType)
 
 				body = '''
@@ -179,6 +189,8 @@ class MetaclassAdapterInferrer
 		val opName = if (!mm.isUml(op.EContainingClass)) op.name else op.formatUmlOperationName
 
 		val newOp = mm.toMethod(opName, null)[m |
+			m.annotations += Override.annotationRef
+
 			val paramsList = new StringBuilder
 
 			op.ETypeParameters.forEach[t |
@@ -311,6 +323,8 @@ class MetaclassAdapterInferrer
 			else 1
 
 		jvmCls.members += mm.toMethod(opName, retType)[
+			annotations += Override.annotationRef
+
 			op.parameters.drop(drop).forEach[p |
 				val realTypeP =
 					if (p.parameterType.isCollection)

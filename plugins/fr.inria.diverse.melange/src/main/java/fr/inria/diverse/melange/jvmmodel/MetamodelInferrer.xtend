@@ -1,25 +1,17 @@
 package fr.inria.diverse.melange.jvmmodel
 
 import com.google.inject.Inject
-
-//import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
-
 import fr.inria.diverse.melange.lib.EcoreExtensions
-
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
-
-import org.eclipse.emf.ecore.resource.Resource
-
-import org.eclipse.xtext.naming.IQualifiedNameProvider
-
-import org.eclipse.xtext.util.internal.Stopwatches
-
-import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
-import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
-import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import fr.inria.diverse.melange.lib.IMetamodel
+import fr.inria.diverse.melange.metamodel.melange.Metamodel
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.xtext.naming.IQualifiedNameProvider
+import org.eclipse.xtext.util.internal.Stopwatches
+import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
 /**
  * This class manages generation of Java classes that implements a Metamodel.
@@ -30,11 +22,9 @@ class MetamodelInferrer
 	@Inject extension IQualifiedNameProvider
 	@Inject extension NamingHelper
 	@Inject extension ModelTypeExtensions
-//	@Inject extension MetamodelExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension MetamodelAdapterInferrer
 	@Inject extension MetaclassAdapterInferrer
-//	@Inject extension InheritanceAdapterInferrer
 
 	/**
 	 * Creates:
