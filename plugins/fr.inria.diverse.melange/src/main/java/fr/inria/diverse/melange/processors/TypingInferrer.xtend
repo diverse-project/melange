@@ -9,6 +9,9 @@ import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.typesystem.MelangeTypesRegistry
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 
+/**
+ * This class computes and store the typing hierarchy of Model types
+ */
 class TypingInferrer extends DispatchMelangeProcessor
 {
 	@Inject extension ASTHelper

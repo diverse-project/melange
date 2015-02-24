@@ -19,6 +19,9 @@ import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
+/**
+ * This class manages Java source code generation for a Melange model
+ */
 class MelangeJvmModelInferrer extends AbstractModelInferrer
 {
 	@Inject extension ASTHelper
@@ -34,11 +37,19 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 
 	static final Logger logger = Logger.getLogger(MelangeJvmModelInferrer)
 
+	/**
+	 * Create Java source code for each Model types, Metamodels and Transformations
+	 * defined in {@link typingSpace}  
+	 * 
+	 * @param root Melange model
+	 * @param acceptor
+	 * @param isPreIndexingPhase
+	 */
 	def dispatch void infer(ModelTypingSpace root, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
 		try {
 //			if (Diagnostician.INSTANCE.validate(typingSpace).severity != Diagnostic.ERROR) {
-				root.modelTypes.filter[canGenerate].forEach[generateInterfaces(acceptor, _typeReferenceBuilder)]
-				root.metamodels.filter[canGenerate].forEach[generateAdapters(acceptor, _typeReferenceBuilder)]
+				root.modelTypes.filter[isComplete].forEach[generateInterfaces(acceptor, _typeReferenceBuilder)]
+				root.metamodels.filter[isComplete].forEach[generateAdapters(acceptor, _typeReferenceBuilder)]
 				root.transformations.forEach[generateTransformation(acceptor, _typeReferenceBuilder)]
 				root.createStandaloneSetup(acceptor)
 //				root.slicers.forEach[generateSlicer]

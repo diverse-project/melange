@@ -22,6 +22,9 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.ENamedElement
 import org.eclipse.emf.ecore.EcorePackage
 
+/**
+ * This class merges the EPackage built from an Aspect into the targeted Metaclass
+ */
 class EmfCompareAlgebra implements ModelTypeAlgebra
 {
 	@Inject extension ModelingElementExtensions
