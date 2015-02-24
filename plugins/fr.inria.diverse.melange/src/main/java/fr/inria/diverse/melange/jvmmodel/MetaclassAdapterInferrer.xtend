@@ -84,13 +84,7 @@ class MetaclassAdapterInferrer
 			cls.EAllAttributes.filter[!isAspectSpecific].forEach[processAttribute(mm, superType, jvmCls)]
 			cls.EAllReferences.filter[!isAspectSpecific].forEach[processReference(mm, superType, jvmCls)]
 			cls.EAllOperations.sortByOverridingPriority.filter[!isAspectSpecific].forEach[processOperation(mm, superType, jvmCls)]
-
-			mm.allAspects.filter[asp |
-				   asp.aspectedClass.name == cls.name
-				|| cls.EAllSuperTypes.exists[asp.aspectedClass.name == name]
-			]
-			.sortByOverridingPriority
-			.forEach[processAspect(mm, superType, jvmCls)]
+			mm.findAspectsOn(cls).sortByOverridingPriority.forEach[processAspect(mm, superType, jvmCls)]
 		]
 
 		task.stop

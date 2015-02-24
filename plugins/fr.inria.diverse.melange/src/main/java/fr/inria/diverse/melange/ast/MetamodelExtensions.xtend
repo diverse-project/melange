@@ -68,6 +68,14 @@ class MetamodelExtensions
 		return ret
 	}
 
+	def Iterable<Aspect> findAspectsOn(Metamodel mm, EClass cls) {
+		return
+			mm.allAspects.filter[asp |
+				   asp.aspectedClass.name == cls.name
+				|| cls.EAllSuperTypes.exists[asp.aspectedClass.name == name]
+			]
+	}
+
 	def boolean isTypedBy(Metamodel mm, ModelType mt) {
 		return algebra.isTypedBy(mm, mt)
 	}
