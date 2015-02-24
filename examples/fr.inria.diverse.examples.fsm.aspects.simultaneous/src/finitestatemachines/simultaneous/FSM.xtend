@@ -25,7 +25,7 @@ import static extension finitestatemachines.simultaneous.StateAspect.*
 @Aspect(className=StateMachine)
 class StateMachineAspect {
 	
-	List<State> currentState = null;
+	public List<State> currentState = null;
 	List<Transition> currentTransitions = null
 	
 	/**
@@ -116,48 +116,4 @@ class StateAspect {
 		Context.stateWorking(1000)
 		_self.finalTime = (System.currentTimeMillis) as int
 	}
-}
-
-//
-// *.*
-// ASPECT
-/**
- * FinalStateAspect: Implements the semantics of the concept FinalState
- */
-@Aspect(className=FinalState)
-class FinalStateAspect extends StateAspect {
-	@OverrideAspectMethod
-	def public void eval (Context context) { 
-		_self.super_eval(context)
-	}
-}
-
-@Aspect(className=InitialState)
-class InitialStateAspect extends StateAspect {
-	@OverrideAspectMethod
-	def public void eval (Context context) { 
-		_self.super_eval(context)
-	}
-}
-
-@Aspect(className=Pseudostate)
-class PseudostateAspect extends StateAspect {
-	@OverrideAspectMethod
-	def public void eval (Context context) { 
-		_self.super_eval(context)
-	}
-}
-
-@Aspect(className=Fork)
-class ForkAspect extends PseudostateAspect {
-	
-	@OverrideAspectMethod
-	def public void eval (Context context) {
-		
-	}
-}
-
-@Aspect(className=Transition)
-class TransitionAspect {
-	
 }

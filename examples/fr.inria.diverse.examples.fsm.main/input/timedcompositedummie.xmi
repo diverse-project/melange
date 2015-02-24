@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ASCII"?>
+<finitestatemachinestimedcomposite:StateMachine
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:finitestatemachinestimedcomposite="http://fr.inria.diverse.examples.fsm.timedcomposite"
+    xsi:schemaLocation="http://fr.inria.diverse.examples.fsm.timedcomposite ../../fr.inria.diverse.example.fsm.metamodel.timedComposite/model/fsm.ecore"
+    name="Dummie">
+  <states xsi:type="finitestatemachinestimedcomposite:InitialState"
+      name="Init"
+      outgoing="//@transitions.0"/>
+  <states xsi:type="finitestatemachinestimedcomposite:FinalState"
+      name="End"
+      incoming="//@transitions.5"/>
+  <states name="A"
+      outgoing="//@transitions.1"
+      incoming="//@transitions.0"/>
+  <states name="F"
+      outgoing="//@transitions.5"
+      incoming="//@transitions.4"/>
+  <states xsi:type="finitestatemachinestimedcomposite:CompositeState"
+      name="Top"
+      outgoing="//@transitions.4"
+      incoming="//@transitions.1">
+    <regions
+        parent="//@states.4">
+      <states
+          xsi:type="finitestatemachinestimedcomposite:InitialState"
+          name="B"
+          outgoing="//@transitions.2"
+          parentState="//@states.4"/>
+      <states
+          xsi:type="finitestatemachinestimedcomposite:FinalState"
+          name="D"
+          incoming="//@transitions.2"
+          parentState="//@states.4"/>
+    </regions>
+    <regions
+        parent="//@states.4">
+      <states
+          xsi:type="finitestatemachinestimedcomposite:InitialState"
+          name="C"
+          outgoing="//@transitions.3"
+          parentState="//@states.4"/>
+      <states
+          xsi:type="finitestatemachinestimedcomposite:FinalState"
+          name="E"
+          incoming="//@transitions.3"
+          parentState="//@states.4"/>
+    </regions>
+  </states>
+  <transitions
+      name="x"
+      target="//@states.2"
+      source="//@states.0">
+    <trigger
+        expression="x"/>
+  </transitions>
+  <transitions
+      name="y"
+      target="//@states.4"
+      source="//@states.2"
+      time="200">
+    <trigger
+        expression="y"/>
+  </transitions>
+  <transitions
+      name="z"
+      target="//@states.4/@regions.0/@states.1"
+      source="//@states.4/@regions.0/@states.0">
+    <trigger
+        expression="z"/>
+  </transitions>
+  <transitions
+      name="o"
+      target="//@states.4/@regions.1/@states.1"
+      source="//@states.4/@regions.1/@states.0"
+      time="500">
+    <trigger
+        expression="o"/>
+  </transitions>
+  <transitions
+      name="p"
+      target="//@states.3"
+      source="//@states.4">
+    <trigger
+        expression="p"/>
+  </transitions>
+  <transitions
+      name="q"
+      target="//@states.1"
+      source="//@states.3"
+      time="200">
+    <trigger
+        expression="q"/>
+  </transitions>
+</finitestatemachinestimedcomposite:StateMachine>
