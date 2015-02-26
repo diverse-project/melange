@@ -11,7 +11,14 @@ metamodel TimedFsm {
 }
 
 transformation execute(FsmMT m) {
-	println(m)
+	val root = m.contents.head as simplefsm.fsmmt.FSM
+
+	root.ownedState.forEach[
+		println("State " + name)
+		outgoingTransition.forEach[
+			println("\tTransition " + input)
+		]
+	]
 }
 
 @Main

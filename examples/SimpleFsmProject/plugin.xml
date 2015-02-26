@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+
+   <extension
+         point="fr.inria.diverse.melange.adapter">
+      <adapter
+            metamodel_uri="http://fsm/"
+            class="simplefsm.fsm.adapters.fsmmt.FsmAdapter"
+            modeltype_name="FsmMT">
+      </adapter>
+   </extension>
+   <extension
+         point="fr.inria.diverse.melange.adapter">
+      <adapter
+            metamodel_uri="http://timedfsm/"
+            class="simplefsm.timedfsm.adapters.fsmmt.TimedFsmAdapter"
+            modeltype_name="FsmMT">
+      </adapter>
+   </extension>
+   <extension
+         point="fr.inria.diverse.melange.adapter">
+      <adapter
+            metamodel_uri="http://timedfsm/"
+            class="simplefsm.timedfsm.adapters.timedfsmmt.TimedFsmAdapter"
+            modeltype_name="TimedFsmMT">
+      </adapter>
+   </extension>
+
+</plugin>

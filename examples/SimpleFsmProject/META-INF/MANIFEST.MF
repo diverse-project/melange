@@ -8,4 +8,5 @@ Require-Bundle: fr.inria.diverse.melange.examples.metamodels.fsm;bundle-version=
  org.eclipse.emf.ecore.xmi;bundle-version="2.10.2",
  fr.inria.diverse.melange.lib;bundle-version="0.1.0",
  fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version="3.1.0",
- fr.inria.diverse.melange.resource;bundle-version="0.1.0"
+ fr.inria.diverse.melange.resource;bundle-version="0.1.0",
+ fr.inria.diverse.melange.adapters;bundle-version="0.1.0"
