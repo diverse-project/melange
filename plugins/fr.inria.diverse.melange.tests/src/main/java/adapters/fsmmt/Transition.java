@@ -1,7 +1,6 @@
 package adapters.fsmmt;
 
 import org.eclipse.emf.ecore.EObject;
-
 import adapters.fsmmt.State;
 
 @SuppressWarnings("all")

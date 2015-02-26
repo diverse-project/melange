@@ -1,9 +1,7 @@
 package adapters.fsmmt;
 
 import java.util.List;
-
 import org.eclipse.emf.ecore.EObject;
-
 import adapters.fsmmt.FSM;
 import adapters.fsmmt.Transition;
 

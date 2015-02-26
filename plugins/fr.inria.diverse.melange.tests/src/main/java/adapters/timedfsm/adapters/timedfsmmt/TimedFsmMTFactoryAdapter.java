@@ -13,14 +13,17 @@ public class TimedFsmMTFactoryAdapter implements TimedFsmMTFactory {
   
   private TimedfsmFactory timedfsmAdaptee = timedfsm.TimedfsmFactory.eINSTANCE;
   
+  @Override
   public FSM createFSM() {
     return adaptersFactory.createFSMAdapter(timedfsmAdaptee.createFSM()) ;
   }
   
+  @Override
   public State createState() {
     return adaptersFactory.createStateAdapter(timedfsmAdaptee.createState()) ;
   }
   
+  @Override
   public Transition createTransition() {
     return adaptersFactory.createTransitionAdapter(timedfsmAdaptee.createTransition()) ;
   }

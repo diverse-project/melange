@@ -1,9 +1,7 @@
 package adapters.timedfsmmt;
 
 import java.util.List;
-
 import org.eclipse.emf.ecore.EObject;
-
 import adapters.timedfsmmt.State;
 
 @SuppressWarnings("all")

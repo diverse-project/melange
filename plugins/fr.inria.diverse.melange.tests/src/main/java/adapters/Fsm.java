@@ -1,11 +1,11 @@
 package adapters;
 
+import fr.inria.diverse.melange.lib.IMetamodel;
 import org.eclipse.emf.ecore.resource.Resource;
-
 import adapters.FsmMT;
 
 @SuppressWarnings("all")
-public class Fsm {
+public class Fsm implements IMetamodel {
   private Resource resource;
   
   public Resource getResource() {

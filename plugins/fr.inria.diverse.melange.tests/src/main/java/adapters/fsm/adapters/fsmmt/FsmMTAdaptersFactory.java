@@ -1,14 +1,17 @@
 package adapters.fsm.adapters.fsmmt;
 
-import adapters.fsm.adapters.fsmmt.FSMAdapter;
-import adapters.fsm.adapters.fsmmt.StateAdapter;
-import adapters.fsm.adapters.fsmmt.TransitionAdapter;
+import fr.inria.diverse.melange.adapters.AdaptersFactory;
+import fr.inria.diverse.melange.adapters.EObjectAdapter;
 import fsm.FSM;
 import fsm.State;
 import fsm.Transition;
+import org.eclipse.emf.ecore.EObject;
+import adapters.fsm.adapters.fsmmt.FSMAdapter;
+import adapters.fsm.adapters.fsmmt.StateAdapter;
+import adapters.fsm.adapters.fsmmt.TransitionAdapter;
 
 @SuppressWarnings("all")
-public class FsmMTAdaptersFactory {
+public class FsmMTAdaptersFactory implements AdaptersFactory {
   private static FsmMTAdaptersFactory instance;
   
   public static FsmMTAdaptersFactory getInstance() {
@@ -16,6 +19,16 @@ public class FsmMTAdaptersFactory {
     	instance = new adapters.fsm.adapters.fsmmt.FsmMTAdaptersFactory() ;
     }
     return instance ;
+  }
+  
+  public EObjectAdapter createAdapter(final EObject o) {
+    if (o instanceof fsm.FSM)
+    	return createFSMAdapter((fsm.FSM) o) ;
+    if (o instanceof fsm.State)
+    	return createStateAdapter((fsm.State) o) ;
+    if (o instanceof fsm.Transition)
+    	return createTransitionAdapter((fsm.Transition) o) ;
+    return null ;
   }
   
   public FSMAdapter createFSMAdapter(final FSM adaptee) {

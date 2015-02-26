@@ -1,5 +1,8 @@
 package adapters.timedfsm.adapters.timedfsmmt;
 
+import fr.inria.diverse.melange.adapters.AdaptersFactory;
+import fr.inria.diverse.melange.adapters.EObjectAdapter;
+import org.eclipse.emf.ecore.EObject;
 import adapters.timedfsm.adapters.timedfsmmt.FSMAdapter;
 import adapters.timedfsm.adapters.timedfsmmt.StateAdapter;
 import adapters.timedfsm.adapters.timedfsmmt.TransitionAdapter;
@@ -8,7 +11,7 @@ import timedfsm.State;
 import timedfsm.Transition;
 
 @SuppressWarnings("all")
-public class TimedFsmMTAdaptersFactory {
+public class TimedFsmMTAdaptersFactory implements AdaptersFactory {
   private static TimedFsmMTAdaptersFactory instance;
   
   public static TimedFsmMTAdaptersFactory getInstance() {
@@ -16,6 +19,16 @@ public class TimedFsmMTAdaptersFactory {
     	instance = new adapters.timedfsm.adapters.timedfsmmt.TimedFsmMTAdaptersFactory() ;
     }
     return instance ;
+  }
+  
+  public EObjectAdapter createAdapter(final EObject o) {
+    if (o instanceof timedfsm.FSM)
+    	return createFSMAdapter((timedfsm.FSM) o) ;
+    if (o instanceof timedfsm.State)
+    	return createStateAdapter((timedfsm.State) o) ;
+    if (o instanceof timedfsm.Transition)
+    	return createTransitionAdapter((timedfsm.Transition) o) ;
+    return null ;
   }
   
   public FSMAdapter createFSMAdapter(final FSM adaptee) {
