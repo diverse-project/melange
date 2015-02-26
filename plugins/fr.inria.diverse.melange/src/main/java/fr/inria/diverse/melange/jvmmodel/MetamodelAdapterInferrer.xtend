@@ -113,6 +113,17 @@ class MetamodelAdapterInferrer
 					'''
 			]
 
+			members += mm.toMethod("getEObject", EObject.typeRef)[
+				annotations += Override.annotationRef
+				parameters += mm.toParameter("uriFragment", String.typeRef)
+
+				body = '''
+					return adaptersFactory.createAdapter(adaptee.getEObject(uriFragment)) ;
+				'''
+			]
+
+			// FIXME: Should also override getAllContents() to perform adaptation
+
 			members += mm.toMethod("getFactory", superType.factoryName.typeRef)[
 				annotations += Override.annotationRef
 
