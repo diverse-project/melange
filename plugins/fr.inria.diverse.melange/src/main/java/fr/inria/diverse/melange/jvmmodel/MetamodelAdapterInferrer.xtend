@@ -101,11 +101,12 @@ class MetamodelAdapterInferrer
 						org.eclipse.emf.common.util.EList<org.eclipse.emf.ecore.EObject> ret = new org.eclipse.emf.ecore.util.BasicInternalEList<org.eclipse.emf.ecore.EObject>(org.eclipse.emf.ecore.EObject.class) ;
 
 						for (org.eclipse.emf.ecore.EObject o : adaptee.getContents()) {
-						«FOR r : mm.allClasses.filter[name != "EObject" && mm.hasAdapterFor(superType, it) && instantiable && abstractable].sortByClassInheritance»
-							if (o instanceof «mm.getFqnFor(r)») {
-								ret.add(adaptersFactory.create«mm.simpleAdapterNameFor(superType, r)»((«mm.getFqnFor(r)») o)) ;
-							} else
-						«ENDFOR» ret.add(o) ;
+							fr.inria.diverse.melange.adapters.EObjectAdapter adap = adaptersFactory.createAdapter(o) ;
+
+							if (adap != null)
+								ret.add(adap) ;
+							else
+								ret.add(o) ;
 						}
 
 						return ret ;

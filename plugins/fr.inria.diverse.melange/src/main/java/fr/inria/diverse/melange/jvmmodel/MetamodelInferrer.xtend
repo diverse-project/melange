@@ -1,11 +1,14 @@
 package fr.inria.diverse.melange.jvmmodel
 
 import com.google.inject.Inject
+import fr.inria.diverse.melange.adapters.EObjectAdapter
+import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.IMetamodel
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.util.internal.Stopwatches
@@ -22,6 +25,7 @@ class MetamodelInferrer
 	@Inject extension IQualifiedNameProvider
 	@Inject extension NamingHelper
 	@Inject extension ModelTypeExtensions
+	@Inject extension MetamodelExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension MetamodelAdapterInferrer
 	@Inject extension MetaclassAdapterInferrer
@@ -96,6 +100,18 @@ class MetamodelInferrer
 							instance = new «adapFactName»() ;
 						}
 						return instance ;
+					'''
+				]
+
+				members += mm.toMethod("createAdapter", EObjectAdapter.typeRef)[
+					parameters += mm.toParameter("o", EObject.typeRef)
+
+					body = '''
+						«FOR cls : mt.allClasses.filter[mm.hasAdapterFor(mt, it) && instantiable && abstractable]»
+						if (o instanceof «mm.getFqnFor(cls)»)
+							return create«cls.name»Adapter((«mm.getFqnFor(cls)») o) ;
+						«ENDFOR»
+						return null ;
 					'''
 				]
 
