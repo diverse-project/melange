@@ -11,10 +11,12 @@ import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.utils.AspectToEcore
 import fr.inria.diverse.melange.utils.TypeReferencesHelper
+import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.common.util.EMap
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EEnum
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.common.types.JvmDeclaredType
@@ -84,6 +86,36 @@ class MetaclassAdapterInferrer
 			jvmCls.members += mm.toField("adaptersFactory", mm.getAdaptersFactoryNameFor(superType).typeRef)[
 				initializer = '''«mm.getAdaptersFactoryNameFor(superType)».getInstance()'''
 			]
+
+			// Override EMF's reflection layer to perform adaptation
+			jvmCls.members += mm.toMethod("eContainer", EObject.typeRef)[
+				annotations += Override.annotationRef
+
+				body = '''
+					return adaptersFactory.createAdapter(adaptee.eContainer()) ;
+				'''
+			]
+
+			jvmCls.members += mm.toMethod("eContents", EList.typeRef(EObject.typeRef))[
+				annotations += Override.annotationRef
+
+				body = '''
+					org.eclipse.emf.common.util.EList<org.eclipse.emf.ecore.EObject> ret = new org.eclipse.emf.ecore.util.BasicInternalEList<org.eclipse.emf.ecore.EObject>(org.eclipse.emf.ecore.EObject.class) ;
+
+						for (org.eclipse.emf.ecore.EObject o : adaptee.eContents()) {
+							fr.inria.diverse.melange.adapters.EObjectAdapter adap = adaptersFactory.createAdapter(o) ;
+
+							if (adap != null)
+								ret.add(adap) ;
+							else
+								ret.add(o) ;
+						}
+
+						return ret ;
+				'''
+			]
+
+			// TODO: Also override eAllContents() to perform adaptation
 
 			cls.EAllAttributes.filter[!isAspectSpecific].forEach[processAttribute(mm, superType, jvmCls)]
 			cls.EAllReferences.filter[!isAspectSpecific].forEach[processReference(mm, superType, jvmCls)]
