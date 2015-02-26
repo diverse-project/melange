@@ -179,6 +179,18 @@ abstract class EObjectAdapter<E extends EObject> extends EObjectImpl implements 
 
 	override getAdaptee() { return adaptee }
 	override setAdaptee(E a) { adaptee = a }
+
+	override eContainer() {
+		throw new UnsupportedOperationException("FIXME: Should perform adaptation here")
+	}
+
+	override eContents() {
+		throw new UnsupportedOperationException("FIXME: Should perform adaptation here")
+	}
+
+	override eAllContents() {
+		throw new UnsupportedOperationException("FIXME: Should perform adaptation here")
+	}
 }
 
 class EListAdapter<E, F> extends ListAdapter<E, F> implements EList<E>
@@ -236,5 +248,17 @@ abstract class ResourceAdapter implements GenericAdapter<Resource>, Resource {
 
 	override setAdaptee(Resource a) {
 		adaptee = a
+	}
+
+	override getContents() {
+		throw new UnsupportedOperationException("FIXME: Should perform adaptation here")
+	}
+
+	override getAllContents() {
+		throw new UnsupportedOperationException("FIXME: Should perform adaptation here")
+	}
+
+	override getEObject(String uriFragment) {
+		throw new UnsupportedOperationException("FIXME: Should perform adaptation here")
 	}
 }
