@@ -11,12 +11,10 @@ import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.utils.AspectToEcore
 import fr.inria.diverse.melange.utils.TypeReferencesHelper
-import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.common.util.EMap
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EEnum
-import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.common.types.JvmDeclaredType

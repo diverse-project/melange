@@ -2,7 +2,6 @@ package fr.inria.diverse.melange.jvmmodel
 
 import com.google.inject.Inject
 import fr.inria.diverse.melange.adapters.ResourceAdapter
-import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
@@ -10,8 +9,6 @@ import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import java.io.IOException
-import org.eclipse.emf.common.util.EList
-import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.common.types.TypesFactory
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.util.internal.Stopwatches
@@ -30,7 +27,6 @@ class MetamodelAdapterInferrer
 	@Inject extension IQualifiedNameProvider
 	@Inject extension NamingHelper
 	@Inject extension ModelTypeExtensions
-	@Inject extension MetamodelExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension MelangeTypesBuilder
 	@Inject extension ModelingElementExtensions
