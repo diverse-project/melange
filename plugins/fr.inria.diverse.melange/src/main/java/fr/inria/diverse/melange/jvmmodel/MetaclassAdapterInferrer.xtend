@@ -87,31 +87,9 @@ class MetaclassAdapterInferrer
 				initializer = '''«mm.getAdaptersFactoryNameFor(superType)».getInstance()'''
 			]
 
-			// Override EMF's reflection layer to perform adaptation
-			jvmCls.members += mm.toMethod("eContainer", EObject.typeRef)[
-				annotations += Override.annotationRef
-
+			jvmCls.members += mm.toConstructor[
 				body = '''
-					return adaptersFactory.createAdapter(adaptee.eContainer()) ;
-				'''
-			]
-
-			jvmCls.members += mm.toMethod("eContents", EList.typeRef(EObject.typeRef))[
-				annotations += Override.annotationRef
-
-				body = '''
-					org.eclipse.emf.common.util.EList<org.eclipse.emf.ecore.EObject> ret = new org.eclipse.emf.ecore.util.BasicInternalEList<org.eclipse.emf.ecore.EObject>(org.eclipse.emf.ecore.EObject.class) ;
-
-						for (org.eclipse.emf.ecore.EObject o : adaptee.eContents()) {
-							fr.inria.diverse.melange.adapters.EObjectAdapter adap = adaptersFactory.createAdapter(o) ;
-
-							if (adap != null)
-								ret.add(adap) ;
-							else
-								ret.add(o) ;
-						}
-
-						return ret ;
+					super(«mm.getAdaptersFactoryNameFor(superType)».getInstance()) ;
 				'''
 			]
 

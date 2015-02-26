@@ -90,39 +90,11 @@ class MetamodelAdapterInferrer
 			superTypes += ResourceAdapter.typeRef
 			superTypes += superType.fullyQualifiedName.toString.typeRef
 
-			members += mm.toField("adaptersFactory", mm.getAdaptersFactoryNameFor(superType).typeRef)[
-				initializer = '''«mm.getAdaptersFactoryNameFor(superType)».getInstance()'''
-			]
-
-			members += mm.toMethod("getContents", EList.typeRef(EObject.typeRef))[
-				annotations += Override.annotationRef
-
+			members += mm.toConstructor[
 				body = '''
-						org.eclipse.emf.common.util.EList<org.eclipse.emf.ecore.EObject> ret = new org.eclipse.emf.ecore.util.BasicInternalEList<org.eclipse.emf.ecore.EObject>(org.eclipse.emf.ecore.EObject.class) ;
-
-						for (org.eclipse.emf.ecore.EObject o : adaptee.getContents()) {
-							fr.inria.diverse.melange.adapters.EObjectAdapter adap = adaptersFactory.createAdapter(o) ;
-
-							if (adap != null)
-								ret.add(adap) ;
-							else
-								ret.add(o) ;
-						}
-
-						return ret ;
-					'''
-			]
-
-			members += mm.toMethod("getEObject", EObject.typeRef)[
-				annotations += Override.annotationRef
-				parameters += mm.toParameter("uriFragment", String.typeRef)
-
-				body = '''
-					return adaptersFactory.createAdapter(adaptee.getEObject(uriFragment)) ;
+					super(«mm.getAdaptersFactoryNameFor(superType)».getInstance()) ;
 				'''
 			]
-
-			// FIXME: Should also override getAllContents() to perform adaptation
 
 			members += mm.toMethod("getFactory", superType.factoryName.typeRef)[
 				annotations += Override.annotationRef

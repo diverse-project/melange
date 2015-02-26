@@ -1,6 +1,7 @@
 package fr.inria.diverse.melange.jvmmodel
 
 import com.google.inject.Inject
+import fr.inria.diverse.melange.adapters.AdaptersFactory
 import fr.inria.diverse.melange.adapters.EObjectAdapter
 import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
@@ -91,6 +92,8 @@ class MetamodelInferrer
 			val adapFactName = mm.getAdaptersFactoryNameFor(mt)
 			acceptor.accept(mm.toClass(adapFactName))
 			[
+				superTypes += AdaptersFactory.typeRef
+
 				members += mm.toField("instance", adapFactName.typeRef)[static = true]
 
 				members += mm.toMethod("getInstance", adapFactName.typeRef)[

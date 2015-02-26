@@ -1,22 +1,15 @@
 package fr.inria.diverse.melange.adapters
 
 import com.google.common.base.Function
-
 import com.google.common.collect.Iterators
-
 import java.lang.reflect.InvocationTargetException
-
 import java.util.Collection
 import java.util.List
-
 import org.eclipse.emf.common.util.EList
-
 import org.eclipse.emf.ecore.EObject
-
 import org.eclipse.emf.ecore.impl.EObjectImpl
-
 import org.eclipse.emf.ecore.resource.Resource
-
+import org.eclipse.emf.ecore.util.BasicInternalEList
 import org.eclipse.xtend.lib.annotations.Delegate
 
 interface GenericAdapter<E> {
@@ -176,16 +169,27 @@ class ListAdapter<E, F> implements GenericAdapter<List<F>>, List<E>
 abstract class EObjectAdapter<E extends EObject> extends EObjectImpl implements EObject, GenericAdapter<E> {
 	/** Best. Annotation. Ever. */
 	@Delegate protected E adaptee
+	protected AdaptersFactory adaptersFactory
+
+	new(AdaptersFactory factory) {
+		adaptersFactory = factory
+	}
 
 	override getAdaptee() { return adaptee }
 	override setAdaptee(E a) { adaptee = a }
 
 	override eContainer() {
-		throw new UnsupportedOperationException("FIXME: Should perform adaptation here")
+		return adaptersFactory.createAdapter(adaptee.eContainer)
 	}
 
 	override eContents() {
-		throw new UnsupportedOperationException("FIXME: Should perform adaptation here")
+		val ret = new BasicInternalEList<EObject>(EObject) ;
+
+		adaptee.eContents.forEach[o |
+			ret += adaptersFactory.createAdapter(o) ?: o
+		]
+
+		return ret
 	}
 
 	override eAllContents() {
@@ -241,6 +245,11 @@ class IteratorTranslator<E, F> implements Function<E, F> {
 
 abstract class ResourceAdapter implements GenericAdapter<Resource>, Resource {
 	@Delegate protected Resource adaptee
+	protected AdaptersFactory adaptersFactory
+
+	new(AdaptersFactory factory) {
+		adaptersFactory = factory
+	}
 
 	override getAdaptee() {
 		return adaptee
@@ -251,7 +260,13 @@ abstract class ResourceAdapter implements GenericAdapter<Resource>, Resource {
 	}
 
 	override getContents() {
-		throw new UnsupportedOperationException("FIXME: Should perform adaptation here")
+		val ret = new BasicInternalEList<EObject>(EObject) ;
+
+		adaptee.contents.forEach[o |
+			ret += adaptersFactory.createAdapter(o) ?: o
+		]
+
+		return ret
 	}
 
 	override getAllContents() {
@@ -259,6 +274,10 @@ abstract class ResourceAdapter implements GenericAdapter<Resource>, Resource {
 	}
 
 	override getEObject(String uriFragment) {
-		throw new UnsupportedOperationException("FIXME: Should perform adaptation here")
+		return adaptersFactory.createAdapter(adaptee.getEObject(uriFragment))
 	}
+}
+
+interface AdaptersFactory {
+	def EObjectAdapter<EObject> createAdapter(EObject o)
 }
