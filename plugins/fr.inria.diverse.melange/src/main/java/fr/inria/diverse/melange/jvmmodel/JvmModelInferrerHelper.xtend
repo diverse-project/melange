@@ -102,9 +102,9 @@ class JvmModelInferrerHelper
 
 	def String getSafeName(String name) {
 		return
-			if (name.isJavaKeyword)
-				name + "_"
-			else
+//			if (name.isJavaKeyword)
+//				name + "_"
+//			else
 				name
 	}
 
