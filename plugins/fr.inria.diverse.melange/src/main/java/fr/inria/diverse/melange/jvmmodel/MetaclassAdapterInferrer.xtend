@@ -91,8 +91,8 @@ class MetaclassAdapterInferrer
 
 			// TODO: Also override eAllContents() to perform adaptation
 
-			cls.EAllAttributes.filter[!isAspectSpecific].forEach[processAttribute(mm, superType, jvmCls)]
-			cls.EAllReferences.filter[!isAspectSpecific].forEach[processReference(mm, superType, jvmCls)]
+			cls.EAllAttributes.filter[!isAspectSpecific && !derived].forEach[processAttribute(mm, superType, jvmCls)]
+			cls.EAllReferences.filter[!isAspectSpecific && !derived].forEach[processReference(mm, superType, jvmCls)]
 			cls.EAllOperations.sortByOverridingPriority.filter[!isAspectSpecific].forEach[processOperation(mm, superType, jvmCls)]
 			mm.findAspectsOn(cls).sortByOverridingPriority.forEach[processAspect(mm, superType, jvmCls)]
 		]
