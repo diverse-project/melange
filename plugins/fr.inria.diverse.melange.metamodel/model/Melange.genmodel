@@ -28,6 +28,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Metamodel/requires"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Metamodel/inheritanceRelation"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Metamodel/exactTypeName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Metamodel/exactTypeUri"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Metamodel/resourceType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Metamodel/resourceUri"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Metamodel/xtextSetupRef"/>
@@ -36,6 +37,7 @@
     <genClasses ecoreClass="Melange.ecore#//ModelType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//ModelType/subtypingRelations"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//ModelType/extracted"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//ModelType/mtUri"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Melange.ecore#//Transformation"/>
     <genClasses ecoreClass="Melange.ecore#//Aspect">

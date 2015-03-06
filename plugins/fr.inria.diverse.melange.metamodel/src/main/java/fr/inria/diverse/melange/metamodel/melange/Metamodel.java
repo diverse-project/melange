@@ -19,6 +19,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getRequires <em>Requires</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getInheritanceRelation <em>Inheritance Relation</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getExactTypeName <em>Exact Type Name</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getExactTypeUri <em>Exact Type Uri</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getResourceType <em>Resource Type</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getResourceUri <em>Resource Uri</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getXtextSetupRef <em>Xtext Setup Ref</em>}</li>
@@ -160,6 +161,32 @@ public interface Metamodel extends ModelingElement {
 	 * @generated
 	 */
 	void setExactTypeName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Exact Type Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Exact Type Uri</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Exact Type Uri</em>' attribute.
+	 * @see #setExactTypeUri(String)
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getMetamodel_ExactTypeUri()
+	 * @model
+	 * @generated
+	 */
+	String getExactTypeUri();
+
+	/**
+	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getExactTypeUri <em>Exact Type Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Exact Type Uri</em>' attribute.
+	 * @see #getExactTypeUri()
+	 * @generated
+	 */
+	void setExactTypeUri(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Resource Type</b></em>' attribute.
