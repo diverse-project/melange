@@ -5,7 +5,7 @@
    <extension
          point="org.eclipse.emf.ecore.protocol_parser">
       <parser
-            class="fr.inria.diverse.melange.resource.MelangeResourceFactory"
+            class="fr.inria.diverse.melange.resource.MelangeResourceFactoryImpl"
             protocolName="melange">
       </parser>
    </extension>
