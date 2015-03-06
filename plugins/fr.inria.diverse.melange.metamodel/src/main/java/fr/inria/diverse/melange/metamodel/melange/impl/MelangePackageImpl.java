@@ -298,7 +298,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMetamodel_ResourceType() {
+	public EAttribute getMetamodel_ExactTypeUri() {
 		return (EAttribute)metamodelEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -307,7 +307,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMetamodel_ResourceUri() {
+	public EAttribute getMetamodel_ResourceType() {
 		return (EAttribute)metamodelEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -316,8 +316,17 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getMetamodel_ResourceUri() {
+		return (EAttribute)metamodelEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getMetamodel_XtextSetupRef() {
-		return (EReference)metamodelEClass.getEStructuralFeatures().get(8);
+		return (EReference)metamodelEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -326,7 +335,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * @generated
 	 */
 	public EAttribute getMetamodel_GenmodelUris() {
-		return (EAttribute)metamodelEClass.getEStructuralFeatures().get(9);
+		return (EAttribute)metamodelEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -354,6 +363,15 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 */
 	public EReference getModelType_Extracted() {
 		return (EReference)modelTypeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getModelType_MtUri() {
+		return (EAttribute)modelTypeEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -570,6 +588,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		createEReference(metamodelEClass, METAMODEL__REQUIRES);
 		createEReference(metamodelEClass, METAMODEL__INHERITANCE_RELATION);
 		createEAttribute(metamodelEClass, METAMODEL__EXACT_TYPE_NAME);
+		createEAttribute(metamodelEClass, METAMODEL__EXACT_TYPE_URI);
 		createEAttribute(metamodelEClass, METAMODEL__RESOURCE_TYPE);
 		createEAttribute(metamodelEClass, METAMODEL__RESOURCE_URI);
 		createEReference(metamodelEClass, METAMODEL__XTEXT_SETUP_REF);
@@ -578,6 +597,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		modelTypeEClass = createEClass(MODEL_TYPE);
 		createEReference(modelTypeEClass, MODEL_TYPE__SUBTYPING_RELATIONS);
 		createEReference(modelTypeEClass, MODEL_TYPE__EXTRACTED);
+		createEAttribute(modelTypeEClass, MODEL_TYPE__MT_URI);
 
 		transformationEClass = createEClass(TRANSFORMATION);
 
@@ -663,6 +683,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		initEReference(getMetamodel_Requires(), this.getModelType(), null, "requires", null, 0, -1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMetamodel_InheritanceRelation(), this.getInheritance(), this.getInheritance_SubMetamodel(), "inheritanceRelation", null, 0, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMetamodel_ExactTypeName(), theEcorePackage.getEString(), "exactTypeName", null, 0, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMetamodel_ExactTypeUri(), theEcorePackage.getEString(), "exactTypeUri", null, 0, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMetamodel_ResourceType(), this.getResourceType(), "resourceType", "MELANGE", 0, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMetamodel_ResourceUri(), theEcorePackage.getEString(), "resourceUri", null, 0, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMetamodel_XtextSetupRef(), theTypesPackage.getJvmTypeReference(), null, "xtextSetupRef", null, 0, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -671,6 +692,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		initEClass(modelTypeEClass, ModelType.class, "ModelType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelType_SubtypingRelations(), this.getSubtyping(), this.getSubtyping_SubType(), "subtypingRelations", null, 0, -1, ModelType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModelType_Extracted(), this.getMetamodel(), this.getMetamodel_ExactType(), "extracted", null, 0, 1, ModelType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModelType_MtUri(), theEcorePackage.getEString(), "mtUri", null, 0, 1, ModelType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(transformationEClass, Transformation.class, "Transformation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypeImpl#getSubtypingRelations <em>Subtyping Relations</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypeImpl#getExtracted <em>Extracted</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypeImpl#getMtUri <em>Mt Uri</em>}</li>
  * </ul>
  * </p>
  *
@@ -50,6 +51,26 @@ public class ModelTypeImpl extends ModelingElementImpl implements ModelType {
 	 * @ordered
 	 */
 	protected Metamodel extracted;
+
+	/**
+	 * The default value of the '{@link #getMtUri() <em>Mt Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMtUri()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String MT_URI_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getMtUri() <em>Mt Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMtUri()
+	 * @generated
+	 * @ordered
+	 */
+	protected String mtUri = MT_URI_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -147,6 +168,27 @@ public class ModelTypeImpl extends ModelingElementImpl implements ModelType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getMtUri() {
+		return mtUri;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMtUri(String newMtUri) {
+		String oldMtUri = mtUri;
+		mtUri = newMtUri;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.MODEL_TYPE__MT_URI, oldMtUri, mtUri));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -190,6 +232,8 @@ public class ModelTypeImpl extends ModelingElementImpl implements ModelType {
 			case MelangePackage.MODEL_TYPE__EXTRACTED:
 				if (resolve) return getExtracted();
 				return basicGetExtracted();
+			case MelangePackage.MODEL_TYPE__MT_URI:
+				return getMtUri();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -210,6 +254,9 @@ public class ModelTypeImpl extends ModelingElementImpl implements ModelType {
 			case MelangePackage.MODEL_TYPE__EXTRACTED:
 				setExtracted((Metamodel)newValue);
 				return;
+			case MelangePackage.MODEL_TYPE__MT_URI:
+				setMtUri((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -228,6 +275,9 @@ public class ModelTypeImpl extends ModelingElementImpl implements ModelType {
 			case MelangePackage.MODEL_TYPE__EXTRACTED:
 				setExtracted((Metamodel)null);
 				return;
+			case MelangePackage.MODEL_TYPE__MT_URI:
+				setMtUri(MT_URI_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -244,8 +294,26 @@ public class ModelTypeImpl extends ModelingElementImpl implements ModelType {
 				return subtypingRelations != null && !subtypingRelations.isEmpty();
 			case MelangePackage.MODEL_TYPE__EXTRACTED:
 				return extracted != null;
+			case MelangePackage.MODEL_TYPE__MT_URI:
+				return MT_URI_EDEFAULT == null ? mtUri != null : !MT_URI_EDEFAULT.equals(mtUri);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (mtUri: ");
+		result.append(mtUri);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ModelTypeImpl
