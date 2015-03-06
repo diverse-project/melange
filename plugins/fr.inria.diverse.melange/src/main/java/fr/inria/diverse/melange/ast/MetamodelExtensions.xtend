@@ -409,18 +409,6 @@ class MetamodelExtensions
 			else null
 	}
 
-	def private void createEcore(Metamodel mm, String uri) {
-		val resSet = new ResourceSetImpl
-		val res = resSet.createResource(URI::createURI(uri))
-		res.contents += mm.pkgs.head
-
-		try {
-			res.save(null)
-		} catch (IOException e) {
-			e.printStackTrace
-		}
-	}
-
 	def private void createGenmodel(Metamodel mm, String ecoreUri, String gmUri, String modelDirectory) {
 		val genmodel = GenModelFactory.eINSTANCE.createGenModel => [
 			it.complianceLevel = GenJDKLevel.JDK70_LITERAL
