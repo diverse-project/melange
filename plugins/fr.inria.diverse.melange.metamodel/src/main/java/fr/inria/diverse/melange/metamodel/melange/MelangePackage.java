@@ -278,13 +278,22 @@ public interface MelangePackage extends EPackage {
 	int METAMODEL__EXACT_TYPE_NAME = MODELING_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Exact Type Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL__EXACT_TYPE_URI = MODELING_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
 	 * The feature id for the '<em><b>Resource Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__RESOURCE_TYPE = MODELING_ELEMENT_FEATURE_COUNT + 6;
+	int METAMODEL__RESOURCE_TYPE = MODELING_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Resource Uri</b></em>' attribute.
@@ -293,7 +302,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__RESOURCE_URI = MODELING_ELEMENT_FEATURE_COUNT + 7;
+	int METAMODEL__RESOURCE_URI = MODELING_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Xtext Setup Ref</b></em>' containment reference.
@@ -302,7 +311,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__XTEXT_SETUP_REF = MODELING_ELEMENT_FEATURE_COUNT + 8;
+	int METAMODEL__XTEXT_SETUP_REF = MODELING_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Genmodel Uris</b></em>' attribute list.
@@ -311,7 +320,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__GENMODEL_URIS = MODELING_ELEMENT_FEATURE_COUNT + 9;
+	int METAMODEL__GENMODEL_URIS = MODELING_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The number of structural features of the '<em>Metamodel</em>' class.
@@ -320,7 +329,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL_FEATURE_COUNT = MODELING_ELEMENT_FEATURE_COUNT + 10;
+	int METAMODEL_FEATURE_COUNT = MODELING_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The number of operations of the '<em>Metamodel</em>' class.
@@ -378,13 +387,22 @@ public interface MelangePackage extends EPackage {
 	int MODEL_TYPE__EXTRACTED = MODELING_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Mt Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_TYPE__MT_URI = MODELING_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Model Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_TYPE_FEATURE_COUNT = MODELING_ELEMENT_FEATURE_COUNT + 2;
+	int MODEL_TYPE_FEATURE_COUNT = MODELING_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Model Type</em>' class.
@@ -804,6 +822,17 @@ public interface MelangePackage extends EPackage {
 	EAttribute getMetamodel_ExactTypeName();
 
 	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getExactTypeUri <em>Exact Type Uri</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Exact Type Uri</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Metamodel#getExactTypeUri()
+	 * @see #getMetamodel()
+	 * @generated
+	 */
+	EAttribute getMetamodel_ExactTypeUri();
+
+	/**
 	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getResourceType <em>Resource Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -878,6 +907,17 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getModelType_Extracted();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.ModelType#getMtUri <em>Mt Uri</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Mt Uri</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.ModelType#getMtUri()
+	 * @see #getModelType()
+	 * @generated
+	 */
+	EAttribute getModelType_MtUri();
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.Transformation <em>Transformation</em>}'.
@@ -1215,6 +1255,14 @@ public interface MelangePackage extends EPackage {
 		EAttribute METAMODEL__EXACT_TYPE_NAME = eINSTANCE.getMetamodel_ExactTypeName();
 
 		/**
+		 * The meta object literal for the '<em><b>Exact Type Uri</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METAMODEL__EXACT_TYPE_URI = eINSTANCE.getMetamodel_ExactTypeUri();
+
+		/**
 		 * The meta object literal for the '<em><b>Resource Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1271,6 +1319,14 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODEL_TYPE__EXTRACTED = eINSTANCE.getModelType_Extracted();
+
+		/**
+		 * The meta object literal for the '<em><b>Mt Uri</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODEL_TYPE__MT_URI = eINSTANCE.getModelType_MtUri();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.TransformationImpl <em>Transformation</em>}' class.

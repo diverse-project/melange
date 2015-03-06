@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.ModelType#getSubtypingRelations <em>Subtyping Relations</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.ModelType#getExtracted <em>Extracted</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.ModelType#getMtUri <em>Mt Uri</em>}</li>
  * </ul>
  * </p>
  *
@@ -67,5 +68,31 @@ public interface ModelType extends ModelingElement {
 	 * @generated
 	 */
 	void setExtracted(Metamodel value);
+
+	/**
+	 * Returns the value of the '<em><b>Mt Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Mt Uri</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Mt Uri</em>' attribute.
+	 * @see #setMtUri(String)
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getModelType_MtUri()
+	 * @model
+	 * @generated
+	 */
+	String getMtUri();
+
+	/**
+	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.ModelType#getMtUri <em>Mt Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Mt Uri</em>' attribute.
+	 * @see #getMtUri()
+	 * @generated
+	 */
+	void setMtUri(String value);
 
 } // ModelType
