@@ -19,6 +19,10 @@ import org.dozer.loader.api.BeanMappingBuilder
 import org.dozer.loader.api.FieldsMappingOptions
 
 import static extension fr.inria.diverse.melange.resource.loader.EcoreHelper.*
+import org.dozer.config.BeanContainer
+import org.dozer.util.DozerClassLoader
+import java.net.URL
+import org.dozer.loader.api.TypeMappingOptions
 
 class DozerLoader implements ExtensionsAwareLoader
 {
@@ -81,10 +85,54 @@ class DozerLoader implements ExtensionsAwareLoader
 
 		return newRes
 	}
+	
+	
+//	public def Resource loadBaseAsExtended(URI baseModelURI, EPackage expectedPackage) throws PackageCompatibilityException {
+//		val baseResource = loadModel(baseModelURI, true) // Just propagate thrown exceptions if any
+//		val rs = baseResource.resourceSet
+//
+//		pkgBase = baseResource.contents.head.eClass.EPackage
+//
+//		val mapper = new DozerBeanMapper
+//		val builder = new BaseToExtendedBuilder(pkgBase, expectedPackage)
+//
+//		val extendedURI = baseModelURI.appendSegment("extended")
+//		val extendedResource = rs.createResource(extendedURI)
+//
+//		mapper.addMapping(builder)
+//		baseResource.contents.forEach[o |
+//			extendedResource.contents += mapper.map(o, pkgExtended.EClassifiers.findFirst[name == o.eClass.name].implementationClass) as EObject
+//		]
+//		extendedResource.contents.addAll(baseResource.contents)
+//		return extendedResource
+//	}
+	
+	public def Resource loadBaseAsExtended(Resource baseResource, EPackage expectedPackage) throws PackageCompatibilityException 
+	{
+		val resourceSet = new ResourceSetImpl
 
+		val basePackage = baseResource.contents.head.eClass.EPackage
+		val mapper = new DozerBeanMapper
+		val builder = new BaseToExtendedBuilder(basePackage, expectedPackage)
+
+		val extendedURI = URI.createURI("modelAsExtended")
+		val extendedResource = resourceSet.createResource(extendedURI)
+
+		mapper.addMapping(builder)
+		baseResource.getContents().forEach[o |
+			extendedResource.getContents() += mapper.map(o, expectedPackage.EClassifiers.findFirst[name == o.eClass.name].implementationClass) as EObject
+		]
+		//extendedResource.contents.addAll(baseResource.contents)
+		return extendedResource
+	}
+	
 	private def loadModel(String uri, boolean loadOnDemand) {
+		return loadModel(URI.createURI(uri), loadOnDemand)
+	}
+
+	private def loadModel(URI uri, boolean loadOnDemand) {
 		val rs = new ResourceSetImpl
-		val res = rs.getResource(URI.createURI(uri), loadOnDemand)
+		val res = rs.getResource(uri, loadOnDemand)
 
 		return res
 	}
@@ -151,14 +199,22 @@ class BaseToExtendedBuilder extends BeanMappingBuilder
 	}
 
 	override protected configure() {
+		
+		val classLoader = new OsgiDozerClassLoader
+		BeanContainer.getInstance.classLoader = classLoader
+		
 		pkgBase.EClassifiers.filter(EClass).forEach[cls |
 			val extendedCls = pkgExtended.EClassifiers.filter(EClass).findFirst[name == cls.name]
+
 			val baseImpl = cls.implementationClass
 			val extendedImpl = extendedCls.implementationClass
+			classLoader.updateContext(baseImpl, extendedImpl)
 
+				// borner la recherche
 			val map = mapping(
 				baseImpl,
-				extendedImpl
+				extendedImpl,
+				TypeMappingOptions.oneWay()
 			)
 
 			cls.EReferences
@@ -176,4 +232,44 @@ class BaseToExtendedBuilder extends BeanMappingBuilder
 			]
 		]
 	}
+	
+}
+
+public class OsgiDozerClassLoader implements DozerClassLoader {
+
+	private ClassLoader _cl1;
+	private ClassLoader _cl2;
+   
+    override loadClass(String className) {
+        try {
+            return _cl1.loadClass(className);
+        } catch (ClassNotFoundException e1) {
+	        try {
+	            return _cl2.loadClass(className);
+	        } catch (ClassNotFoundException e2) {
+	            return null;
+	        }
+        }
+    }
+ 
+	override loadResource(String uri) 
+	{        
+        var url = _cl1.getResource(uri);
+		if (url == null)
+		{
+	        url = _cl2.getResource(uri);			
+		}         
+        if (url == null) 
+        {
+            url = class.classLoader.getResource(uri);
+        }         
+        return url;
+    }
+	
+	def updateContext(Class<?> class1, Class<?> class2) 
+	{
+		_cl1 = class1.classLoader
+		_cl2 = class2.classLoader
+	}
+	
 }
