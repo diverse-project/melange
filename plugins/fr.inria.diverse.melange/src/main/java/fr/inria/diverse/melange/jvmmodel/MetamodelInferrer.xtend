@@ -110,7 +110,7 @@ class MetamodelInferrer
 					parameters += mm.toParameter("o", EObject.typeRef)
 
 					body = '''
-						«FOR cls : mt.allClasses.filter[mm.hasAdapterFor(mt, it) && instantiable && abstractable]»
+						«FOR cls : mt.allClasses.filter[mm.hasAdapterFor(mt, it) && instantiable && abstractable].sortByClassInheritance»
 						if (o instanceof «mm.getFqnFor(cls)»)
 							return create«cls.name»Adapter((«mm.getFqnFor(cls)») o) ;
 						«ENDFOR»
