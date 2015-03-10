@@ -1,4 +1,4 @@
-package finitestatemachines.composite
+package finitestatemachines.composite.rhapsody
 
 import org.jfree.data.category.IntervalCategoryDataset
 import org.jfree.data.gantt.TaskSeries

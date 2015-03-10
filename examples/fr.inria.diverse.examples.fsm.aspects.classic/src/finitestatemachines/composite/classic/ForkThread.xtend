@@ -1,8 +1,8 @@
-package finitestatemachines.composite
+package finitestatemachines.composite.classic
 
 import FSM.interfaces.Context
 
-import static extension finitestatemachines.composite.StateAspect.*
+import static extension finitestatemachines.composite.classic.StateAspect.*
 
 class ForkThread extends Thread {
 	

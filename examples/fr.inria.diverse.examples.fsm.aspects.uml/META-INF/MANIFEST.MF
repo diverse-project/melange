@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Composite
 Bundle-SymbolicName: fr.inria.diverse.examples.fsm.aspects.uml
 Bundle-Version: 1.0.0.qualifier
-Export-Package: finitestatemachines.composite
+Export-Package: finitestatemachines.composite.uml
 Require-Bundle: org.eclipse.xtend.lib,
  org.eclipse.xtend.lib.macro,
  com.google.guava,

@@ -1,4 +1,4 @@
-package finitestatemachines.composite
+package finitestatemachines.composite.uml
 
 import FSM.interfaces.Context
 import finitestatemachinescomposite.Fork
@@ -12,10 +12,10 @@ import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
 import java.util.ArrayList
 import java.util.List
 
-import static extension finitestatemachines.composite.StateMachineAspect.*
-import static extension finitestatemachines.composite.StateAspect.*
-import static extension finitestatemachines.composite.TransitionAspect.*
-import static extension finitestatemachines.composite.CompositeStateAspect.*
+import static extension finitestatemachines.composite.uml.StateMachineAspect.*
+import static extension finitestatemachines.composite.uml.StateAspect.*
+import static extension finitestatemachines.composite.uml.TransitionAspect.*
+import static extension finitestatemachines.composite.uml.CompositeStateAspect.*
 import finitestatemachinescomposite.CompositeState
 import finitestatemachinescomposite.Action
 import java.util.Set
@@ -39,7 +39,7 @@ class StateMachineAspect {
 	 * Evaluates the input and sequentially executes the steps in the state machine. 
 	 */
 	 
-	def private void eval (Context context, String filePath) {
+	def public void eval (Context context, String filePath) {
 		println("\nExecuting the state machine. Please wait for the results...\n")
 		println(" ... executing input ...\n")
 		
@@ -67,7 +67,7 @@ class StateMachineAspect {
 		_self.currentTransitions = new ArrayList<Transition>()
 		
 		for(String event : eventsGroup){
-			for(State state : _self.getHigherCurrent(event)){
+			for(State state : _self.getDeepestCurrent(event)){
 				state.getActiveTransitions(event).forEach[fire(context)]
 			}
 		}

@@ -1,4 +1,4 @@
-package finitestatemachines.composite
+package finitestatemachines.composite.rhapsody
 
 import FSM.interfaces.Context
 import finitestatemachinescomposite.Fork
@@ -12,10 +12,10 @@ import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
 import java.util.ArrayList
 import java.util.List
 
-import static extension finitestatemachines.composite.StateMachineAspect.*
-import static extension finitestatemachines.composite.StateAspect.*
-import static extension finitestatemachines.composite.TransitionAspect.*
-import static extension finitestatemachines.composite.CompositeStateAspect.*
+import static extension finitestatemachines.composite.rhapsody.StateMachineAspect.*
+import static extension finitestatemachines.composite.rhapsody.StateAspect.*
+import static extension finitestatemachines.composite.rhapsody.TransitionAspect.*
+import static extension finitestatemachines.composite.rhapsody.CompositeStateAspect.*
 import finitestatemachinescomposite.CompositeState
 import finitestatemachinescomposite.Action
 import java.util.Set
@@ -39,7 +39,7 @@ class StateMachineAspect {
 	 * Evaluates the input and sequentially executes the steps in the state machine. 
 	 */
 	 
-	def private void eval (Context context, String filePath) {
+	def public void eval (Context context, String filePath) {
 		println("\nExecuting the state machine. Please wait for the results...\n")
 		println(" ... executing input ...\n")
 		
@@ -363,11 +363,12 @@ class TransitionAspect {
 			fsm.removeCurrentState(_self.source)
 		}
 		
-		val target = _self.target
-		target.eval(context)
 		
 		val Action action = _self.action
 		_self.stateMachine.update(action)
+		
+		val target = _self.target
+		target.eval(context)
 		
 	}
 }
