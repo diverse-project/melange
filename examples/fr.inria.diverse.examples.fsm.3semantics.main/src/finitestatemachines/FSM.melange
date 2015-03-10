@@ -1,0 +1,56 @@
+package finitestatemachines
+
+import static extension fr.inria.diverse.melange.lib.MetamodelExtensions.*
+
+
+metamodel FiniteStateMachineUML{
+	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.composite/model/fsm.ecore"
+	exactType FiniteStateMachineUMLMT
+	
+	with finitestatemachines.composite.uml.StateMachineAspect
+	with finitestatemachines.composite.uml.StateAspect
+	with finitestatemachines.composite.uml.CompositeStateAspect
+	with finitestatemachines.composite.uml.TransitionAspect
+}
+
+metamodel FiniteStateMachineRhapsody{
+	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.composite/model/fsm.ecore"
+	exactType FiniteStateMachineRhapsodyMT
+	
+	with finitestatemachines.composite.rhapsody.StateMachineAspect
+	with finitestatemachines.composite.rhapsody.StateAspect
+	with finitestatemachines.composite.rhapsody.CompositeStateAspect
+	with finitestatemachines.composite.rhapsody.TransitionAspect
+}
+
+metamodel FiniteStateMachineClassic{
+	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.composite/model/fsm.ecore"
+	exactType FiniteStateMachineClassicMT
+	
+	with finitestatemachines.composite.classic.StateMachineAspect
+	with finitestatemachines.composite.classic.StateAspect
+	with finitestatemachines.composite.classic.CompositeStateAspect
+	with finitestatemachines.composite.classic.TransitionAspect
+}
+
+
+transformation execute(FiniteStateMachineUMLMT stateMachine, String input, String outputFile){
+	val root = stateMachine.contents.head as finitestatemachines.finitestatemachineumlmt.StateMachine
+	root.eval(new FSM.interfaces.Context(input), outputFile)
+}
+
+// Execution of the state machines.
+@Main
+transformation main(){
+	val simpleProgram = FiniteStateMachineUML.load("input/exampleComposite.xmi")
+	execute.call(simpleProgram, "{x;y;z,o;p;q}", "output/UML-output " + 
+		System.currentTimeMillis + ".pdf")
+
+	val simpleProgram2 = FiniteStateMachineRhapsody.load("input/exampleComposite.xmi")
+	execute.call(simpleProgram2, "{x;y;z,o;p;q}", "output/Rhapsody-output " + 
+		System.currentTimeMillis + ".pdf")
+
+	val simpleProgram3 = FiniteStateMachineClassic.load("input/exampleComposite.xmi")
+	execute.call(simpleProgram3, "{x;y;z,o;p;q}", "output/Classic-output " + 
+		System.currentTimeMillis + ".pdf")
+}

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ASCII"?>
+<finitestatemachinescomposite:StateMachine
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:finitestatemachinescomposite="http://fr.inria.diverse.examples.fsm.composite"
+    xsi:schemaLocation="http://fr.inria.diverse.examples.fsm.composite ../../fr.inria.diverse.examples.fsm.metamodel.composite/model/fsm.ecore"
+    name="Dummie">
+  <states xsi:type="finitestatemachinescomposite:InitialState"
+      name="init"
+      outgoing="//@transitions.0"/>
+  <states xsi:type="finitestatemachinescomposite:CompositeState"
+      name="S1"
+      outgoing="//@transitions.6"
+      incoming="//@transitions.0">
+    <regions>
+      <states
+          xsi:type="finitestatemachinescomposite:InitialState"
+          name="initS1"
+          outgoing="//@transitions.1"/>
+      <states
+          name="S2"
+          outgoing="//@transitions.2"
+          incoming="//@transitions.1"/>
+      <states
+          xsi:type="finitestatemachinescomposite:CompositeState"
+          name="S3"
+          incoming="//@transitions.2">
+        <regions>
+          <states
+              xsi:type="finitestatemachinescomposite:InitialState"
+              name="initS3"
+              outgoing="//@transitions.3"/>
+          <states
+              name="S4"
+              incoming="//@transitions.4"/>
+          <states
+              name="S5"
+              incoming="//@transitions.5"/>
+          <states
+              name="Choice"
+              outgoing="//@transitions.4 //@transitions.5"
+              incoming="//@transitions.3"/>
+        </regions>
+      </states>
+    </regions>
+  </states>
+  <states name="S6"
+      incoming="//@transitions.6"/>
+  <transitions
+      name="init->S1"
+      target="//@states.1"
+      source="//@states.0">
+    <action
+        variable="a"
+        value="true"/>
+  </transitions>
+  <transitions
+      name="initS1->S2"
+      target="//@states.1/@regions.0/@states.1"
+      source="//@states.1/@regions.0/@states.0"/>
+  <transitions
+      name="S2->S3"
+      target="//@states.1/@regions.0/@states.2"
+      source="//@states.1/@regions.0/@states.1">
+    <trigger
+        expression="e"/>
+    <action
+        variable="a"/>
+  </transitions>
+  <transitions
+      name="InitS3->Choice"
+      target="//@states.1/@regions.0/@states.2/@regions.0/@states.3"
+      source="//@states.1/@regions.0/@states.2/@regions.0/@states.0"/>
+  <transitions
+      name="Choice->S4"
+      target="//@states.1/@regions.0/@states.2/@regions.0/@states.1"
+      source="//@states.1/@regions.0/@states.2/@regions.0/@states.3">
+    <guard expression="a"/>
+  </transitions>
+  <transitions
+      name="Choice->S5"
+      target="//@states.1/@regions.0/@states.2/@regions.0/@states.2"
+      source="//@states.1/@regions.0/@states.2/@regions.0/@states.3">
+    <guard expression="!a"/>
+  </transitions>
+  <transitions
+      name="S1->S6"
+      target="//@states.2"
+      source="//@states.1">
+    <trigger
+        expression="e"/>
+  </transitions>
+</finitestatemachinescomposite:StateMachine>
