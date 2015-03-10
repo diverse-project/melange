@@ -32,7 +32,7 @@ import finitestatemachinescomposite.FinitestatemachinescompositeFactory
 @Aspect(className=StateMachine)
 class StateMachineAspect {
 	
-	public Set<State> currentState = null
+	List<State> currentState = null
 	List<Transition> currentTransitions = null
 	
 	/**
@@ -73,6 +73,9 @@ class StateMachineAspect {
 		}
 	}
 	
+	def public List<State> getAllCurrentStates(){
+		return _self.currentState
+	}
 
 	/*
 	 * Get all states concerned by this event and remove those contained 
@@ -125,8 +128,8 @@ class StateMachineAspect {
 	/**
 	 * Returns the (unique?) initial state of the state machine. 
 	 */
-	def private Set<State> getInitialState(){
-		var HashSet<State> answer = new HashSet<State>()
+	def private List<State> getInitialState(){
+		var List<State> answer = new ArrayList<State>()
 		for(State state : _self.states){
 			if(state instanceof InitialState) answer.add(state)
 		}
@@ -252,7 +255,7 @@ class StateAspect {
 		else if(_self instanceof Join){
 			val join = _self as Join
 			val sources = join.incoming.map[source]
-			if(fsm.currentState.containsAll(sources)){
+			if(fsm.allCurrentStates.containsAll(sources)){
 				
 				sources.forEach[s |
 					//TODO: copied from Transition.fire() 
