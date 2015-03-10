@@ -67,10 +67,59 @@ class StateMachineAspect {
 		_self.currentTransitions = new ArrayList<Transition>()
 		
 		for(String event : eventsGroup){
-			for(State state : _self.currentState){
+			for(State state : _self.getDeepestCurrent(event)){
 				state.getActiveTransitions(event).forEach[fire(context)]
 			}
 		}
+	}
+	
+
+	/*
+	 * Get all states concerned by this event and remove those contained 
+	 */
+	def private List<State> getHigherCurrent(String event){
+		val List<State> res = new ArrayList<State>()
+		
+		val List<State> candidates = new ArrayList<State>()
+		for(State state : _self.currentState){
+			if(!state.getActiveTransitions(event).isEmpty){
+				candidates.add(state)
+			}
+		}
+		
+		candidates.forEach[state |
+			val parents = state.allParents
+			//Check if state is a top element
+			if(!candidates.exists[c | parents.contains(c)]){
+				res.add(state)
+			}
+		]
+		
+		return res
+	}
+	
+	/*
+	 * Get all the deepest states concerned by this event
+	 */
+	def private List<State> getDeepestCurrent(String event){
+		val List<State> res = new ArrayList<State>()
+		
+		val List<State> candidates = new ArrayList<State>()
+		for(State state : _self.currentState){
+			if(!state.getActiveTransitions(event).isEmpty){
+				candidates.add(state)
+			}
+		}
+		
+		candidates.forEach[state |
+			val children = state.allChildren
+			//Check if state has no candidate children 
+			if(!candidates.exists[c | children.contains(c)]){
+				res.add(state)
+			}
+		]
+		
+		return res
 	}
 	
 	/**
@@ -154,6 +203,30 @@ class StateAspect {
 		}
 		return res;
 	}
+	
+	def public List<State> getAllParents(){
+		val res = new ArrayList<State>()
+		
+		if(_self.parentState != null){
+			res.addAll(_self.parentState.allParents)
+			res.add(_self.parentState)
+		}
+		
+		return res
+	}
+	
+	def public List<State> getAllChildren(){
+		val res = new ArrayList<State>()
+	
+		if(_self instanceof CompositeState){
+			val composite = _self as CompositeState
+			val subStates = composite.regions.map[states].flatten
+			val allSubStates = subStates.map[s|s.getAllChildren].flatten
+			res.addAll(allSubStates)
+		}
+	
+		return res
+	} 
 	
 	def public void eval (Context context){
 		
