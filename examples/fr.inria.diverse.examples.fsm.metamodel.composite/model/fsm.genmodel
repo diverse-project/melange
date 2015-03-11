@@ -71,6 +71,9 @@
       <genFeatures property="None" children="true" createChild="true">
         <ecoreFeature xsi:type="ecore:EReference" href="fsm.ecore#//Transition/guard"/>
       </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="fsm.ecore#//Transition/action"/>
+      </genFeatures>
     </genClasses>
     <genClasses>
       <ecoreClass href="fsm.ecore#//TimedTransition"/>
