@@ -141,13 +141,29 @@ class StateMachineAspect {
 	 * <String>=<true|false>
 	 */
 	def public boolean isValid(String expression){
-		val segments = expression.split("=")
-		val varName = segments.get(0)
-		val varValue = segments.get(1)
-		
-		var variable = _self.variables.findFirst[name == varName]
-		if(variable != null){
-			return variable.value == varValue
+		if(expression.contains("=")){
+			val segments = expression.split("=")
+			val varName = segments.get(0)
+			val varValue = segments.get(1)
+			
+			var variable = _self.variables.findFirst[name == varName]
+			if(variable != null){
+				return variable.value == varValue
+			}
+		}
+		else if(expression.startsWith("!")){
+			val varName = expression.substring(1)
+			var variable = _self.variables.findFirst[name == varName]
+			if(variable != null){
+				return !(variable.value)
+			}
+		}
+		else{
+			val varName = expression.substring(0)
+			var variable = _self.variables.findFirst[name == varName]
+			if(variable != null){
+				return variable.value
+			}
 		}
 		return false
 	}
@@ -198,8 +214,12 @@ class StateAspect {
 	def public List<Transition> getActiveTransitions(String event){
 		val List<Transition> res = new ArrayList<Transition>();
 		for(Transition transition : _self.outgoing){
-			if(event == null || transition.trigger.expression.equals(event)){
-				if(_self.stateMachine.isValid(transition.guard.expression)){
+			if( (event == null && transition.trigger == null) ||
+				transition.trigger.expression.equals(event)
+			){
+				if(transition.guard == null ||
+					_self.stateMachine.isValid(transition.guard.expression)
+				){
 					res.add(transition)
 				}
 			}
@@ -225,6 +245,7 @@ class StateAspect {
 			val composite = _self as CompositeState
 			val subStates = composite.regions.map[states].flatten
 			val allSubStates = subStates.map[s|s.getAllChildren].flatten
+			res.addAll(subStates)
 			res.addAll(allSubStates)
 		}
 	
@@ -232,7 +253,7 @@ class StateAspect {
 	} 
 	
 	def public void eval (Context context){
-		
+		println(_self.name)
 		val fsm = _self.stateMachine
 		
 		if(_self instanceof Fork){
@@ -327,11 +348,6 @@ class StateAspect {
 
 @Aspect(className=CompositeState)
 class CompositeStateAspect extends StateAspect {
-	
-	@OverrideAspectMethod
-	def public void eval(Context context) {
-		//Do nothing
-	}
 	
 	/**
 	 * Get all sub states
