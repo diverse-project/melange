@@ -12,41 +12,56 @@
   <states xsi:type="finitestatemachinescomposite:CompositeState"
       name="S1"
       outgoing="//@transitions.6"
-      incoming="//@transitions.0">
+      incoming="//@transitions.0"
+      stateMachine="/">
     <regions>
       <states
           xsi:type="finitestatemachinescomposite:InitialState"
           name="initS1"
-          outgoing="//@transitions.1"/>
+          outgoing="//@transitions.1"
+          stateMachine="/"
+          parentState="//@states.1"/>
       <states
           name="S2"
           outgoing="//@transitions.2"
-          incoming="//@transitions.1"/>
+          incoming="//@transitions.1"
+          stateMachine="/"
+          parentState="//@states.1"/>
       <states
           xsi:type="finitestatemachinescomposite:CompositeState"
           name="S3"
-          incoming="//@transitions.2">
+          incoming="//@transitions.2"
+          stateMachine="/">
         <regions>
           <states
               xsi:type="finitestatemachinescomposite:InitialState"
               name="initS3"
-              outgoing="//@transitions.3"/>
+              outgoing="//@transitions.3"
+              stateMachine="/"
+              parentState="//@states.1/@regions.0/@states.2"/>
           <states
               name="S4"
-              incoming="//@transitions.4"/>
+              incoming="//@transitions.4"
+              stateMachine="/"
+              parentState="//@states.1/@regions.0/@states.2"/>
           <states
               name="S5"
-              incoming="//@transitions.5"/>
+              incoming="//@transitions.5"
+              stateMachine="/"
+              parentState="//@states.1/@regions.0/@states.2"/>
           <states
               name="Choice"
               outgoing="//@transitions.4 //@transitions.5"
-              incoming="//@transitions.3"/>
+              incoming="//@transitions.3"
+              stateMachine="/"
+              parentState="//@states.1/@regions.0/@states.2"/>
         </regions>
       </states>
     </regions>
   </states>
   <states name="S6"
-      incoming="//@transitions.6"/>
+      incoming="//@transitions.6"
+      stateMachine="/"/>
   <transitions
       name="init->S1"
       target="//@states.1"

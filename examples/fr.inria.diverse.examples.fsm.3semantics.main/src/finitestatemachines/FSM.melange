@@ -43,14 +43,14 @@ transformation execute(FiniteStateMachineUMLMT stateMachine, String input, Strin
 @Main
 transformation main(){
 	val simpleProgram = FiniteStateMachineUML.load("input/exampleComposite.xmi")
-	execute.call(simpleProgram, "{x;y;z,o;p;q}", "output/UML-output " + 
+	execute.call(simpleProgram, "{e}", "output/UML-output " + 
 		System.currentTimeMillis + ".pdf")
 
 	val simpleProgram2 = FiniteStateMachineRhapsody.load("input/exampleComposite.xmi")
-	execute.call(simpleProgram2, "{x;y;z,o;p;q}", "output/Rhapsody-output " + 
+	execute.call(simpleProgram2, "{e}", "output/Rhapsody-output " + 
 		System.currentTimeMillis + ".pdf")
 
 	val simpleProgram3 = FiniteStateMachineClassic.load("input/exampleComposite.xmi")
-	execute.call(simpleProgram3, "{x;y;z,o;p;q}", "output/Classic-output " + 
+	execute.call(simpleProgram3, "{e}", "output/Classic-output " + 
 		System.currentTimeMillis + ".pdf")
 }
