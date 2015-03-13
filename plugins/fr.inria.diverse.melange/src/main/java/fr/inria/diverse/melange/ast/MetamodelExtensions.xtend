@@ -344,14 +344,28 @@ class MetamodelExtensions
 			return originalProjectName
 		} else if (mm.inheritanceRelation.superMetamodel.ecoreUri !== null) {
 			val originalProjectName = URI::createURI(mm.inheritanceRelation.superMetamodel.ecoreUri).segment(1)
-			val newProjectName = originalProjectName.toQualifiedName.skipLast(1).append(mm.name.toLowerCase).append("model")
-
-			return newProjectName.toString
+			
+			// compute a name as smartly as possible and try to follow the user naming convention
+			if (originalProjectName.toQualifiedName.segmentCount == 1){
+				return mm.name.toLowerCase
+			} else { 
+				if(originalProjectName.toQualifiedName.lastSegment.equals("model")){
+					return originalProjectName.toQualifiedName.skipLast(1).append(mm.name.toLowerCase).append("model").toString
+				} else {
+					return originalProjectName.toQualifiedName.append(mm.name.toLowerCase).toString
+				}
+				
+			}
 		}
 	}
 
 	def String getExternalAspectsRuntimeName(Metamodel mm) {
-		return mm.name.toLowerCase + ".aspects"
+		val externalRuntimeName = getExternalRuntimeName(mm).toQualifiedName
+		if(externalRuntimeName.lastSegment.equals("model")){
+			return externalRuntimeName.skipLast(1).append("aspects").toString
+		}else{
+			return externalRuntimeName.append("aspects").toString
+		}
 	}
 
 	def boolean isGeneratedByMelange(Metamodel mm) {
