@@ -123,7 +123,9 @@ class MetamodelExtensions
 	}
 
 	def QualifiedName getTargetedNamespace(Aspect asp) {
-		return (asp.aspectTypeRef.type as JvmDeclaredType).aspectAnnotationValueType.toQualifiedName.skipLast(1)
+		val aavt = (asp.aspectTypeRef.type as JvmDeclaredType).aspectAnnotationValueType
+		val aavt2 = (asp.aspectTypeRef.type as JvmDeclaredType).aspectAnnotationValueType
+		return aavt.toQualifiedName.skipLast(1)
 	}
 
 	def boolean isDefinedOver(Aspect asp, Metamodel mm) {
