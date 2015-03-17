@@ -6,5 +6,6 @@ group: navigation
 
 {% include JB/setup %}
 
-Coming soon!
+Under construction. Please have a look at the [quickstart guide](../quickstart.html).
+
 
