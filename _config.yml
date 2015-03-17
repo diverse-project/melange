@@ -8,7 +8,7 @@ highlighter: pygments
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : "Melange: Integrate your DSLs!"
+title : "Melange"
 tagline: Integrate your DSLs!
 description: "Website and documentation of Melange, an open-source language for software language engineering and domain-specific languages integration."
 author :
