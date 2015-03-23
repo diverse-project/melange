@@ -11,7 +11,7 @@ ModelTypingSpace:
 ;
 
 Element:
-	Metamodel | EcoreModelType | TransformationDecl
+	Metamodel | EcoreModelType | TransformationDecl | Mapping
 ;
 
 TransformationDecl returns Transformation:
@@ -57,6 +57,22 @@ XbaseTransformation:
 
 Aspect:
 	'with' aspectTypeRef = JvmTypeReference
+;
+
+Mapping returns Mapping:
+	"map" from=STRING "to" to=STRING "{"
+		(rules+=ClassMapping)*
+	"}" 
+;
+
+ClassMapping returns ClassBinding:
+	from=STRING "to" to=STRING "{"
+		(properties+=PropertyMapping)*
+	"}"
+;
+
+PropertyMapping returns PropertyBinding:
+	from=STRING ":" to=STRING
 ;
 
 /* --- Kompren Rules --- */

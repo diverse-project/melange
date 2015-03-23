@@ -64,6 +64,9 @@ public class MelangeFactoryImpl extends EFactoryImpl implements MelangeFactory {
 			case MelangePackage.INHERITANCE: return createInheritance();
 			case MelangePackage.SUBTYPING: return createSubtyping();
 			case MelangePackage.XBASE_TRANSFORMATION: return createXbaseTransformation();
+			case MelangePackage.MAPPING: return createMapping();
+			case MelangePackage.CLASS_BINDING: return createClassBinding();
+			case MelangePackage.PROPERTY_BINDING: return createPropertyBinding();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -167,6 +170,36 @@ public class MelangeFactoryImpl extends EFactoryImpl implements MelangeFactory {
 	public XbaseTransformation createXbaseTransformation() {
 		XbaseTransformationImpl xbaseTransformation = new XbaseTransformationImpl();
 		return xbaseTransformation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Mapping createMapping() {
+		MappingImpl mapping = new MappingImpl();
+		return mapping;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ClassBinding createClassBinding() {
+		ClassBindingImpl classBinding = new ClassBindingImpl();
+		return classBinding;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PropertyBinding createPropertyBinding() {
+		PropertyBindingImpl propertyBinding = new PropertyBindingImpl();
+		return propertyBinding;
 	}
 
 	/**
