@@ -19,6 +19,9 @@ class ModelTypeSerializer extends DispatchMelangeProcessor
 	@Inject extension ModelingElementExtensions
 
 	def dispatch void preProcess(ModelType mt) {
+		if (!mt.isComplete)
+			return
+
 		val userDefinedUri =
 			if (mt.isExtracted) mt.extracted.exactTypeUri
 			else mt.mtUri
@@ -28,17 +31,22 @@ class ModelTypeSerializer extends DispatchMelangeProcessor
 		val resource = mt.eResource
 
 		if (resource !== null) {
-			val project = ResourcesPlugin.workspace.root.getFile(new Path(resource.URI.toPlatformString(true))).project
+			try
+			{
+				val project = ResourcesPlugin.workspace.root.getFile(new Path(resource.URI.toPlatformString(true))).project
 
-			if (project !== null) {
-				val ecoreUri = '''platform:/resource/«project.name»/model-gen/«mt.name».ecore'''
+				if (project !== null) {
+					val ecoreUri = '''platform:/resource/«project.name»/model-gen/«mt.name».ecore'''
 
-				log.debug('''Registering new EPackage for «mt.name» in EMF registry''')
-				if (!EPackage.Registry.INSTANCE.containsKey(mt.pkgs.head.nsURI))
-					EPackage.Registry.INSTANCE.put(mt.pkgs.head.nsURI, mt.pkgs.head)
+					log.debug('''Registering new EPackage for «mt.name» in EMF registry''')
+					if (!EPackage.Registry.INSTANCE.containsKey(mt.pkgs.head.nsURI))
+						EPackage.Registry.INSTANCE.put(mt.pkgs.head.nsURI, mt.pkgs.head)
 
-				log.debug('''Serializing Ecore interface description for «mt.name» in «ecoreUri»''')
-				mt.createEcore(ecoreUri, mtUri)
+					log.debug('''Serializing Ecore interface description for «mt.name» in «ecoreUri»''')
+					mt.createEcore(ecoreUri, mtUri)
+				}
+			} catch (IllegalStateException e) {
+				// ...
 			}
 		}
 	}
