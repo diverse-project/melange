@@ -27,12 +27,12 @@ class EnumInferrer
 			// FIXME: Xtext's generator bug: should put an ";"
 			//         if no literals
 			enu.ELiterals.forEach[lit |
-				members += mt.toEnumerationLiteral(lit.name)[
+				members += mt.toEnumerationLiteral(lit.name.toUpperCase)[
 					// FIXME
-					//initializer = '''«lit.name»(0, "A", "B")'''
+					//initializer = '''«lit.name.toUpperCase»(0, "A", "B")'''
 				]
 
-				members += mt.toField(lit.name + "_VALUE", int.typeRef)[
+				members += mt.toField(lit.name.toUpperCase + "_VALUE", int.typeRef)[
 					^static = true
 					^final = true
 					visibility = JvmVisibility::PUBLIC
@@ -40,19 +40,19 @@ class EnumInferrer
 				]
 			]
 
-			members += mt.toField("VALUES_ARRAY", mt.getFqnFor(enu).typeRef.addArrayTypeDimension)[
+			members += mt.toField("VALUES_ARRAY", it.typeRef.addArrayTypeDimension)[
 				^static = true
 				^final = true
 				initializer = '''
 					new «enu.name»[] {
 						«FOR lit : enu.ELiterals»
-						«lit.name»,
+						«lit.name.toUpperCase»,
 						«ENDFOR»
 					};
 				'''
 			]
 
-			members += mt.toField("VALUES", List.typeRef(mt.getFqnFor(enu).typeRef))[
+			members += mt.toField("VALUES", List.typeRef(it.typeRef))[
 				^static = true
 				^final = true
 				initializer = '''
@@ -98,7 +98,7 @@ class EnumInferrer
 						«FOR lit : enu.ELiterals»
 						«IF !values.contains(lit.value)»
 						/* «values += lit.value» */
-						case «lit.name»_VALUE: return «lit.name»;
+						case «lit.name.toUpperCase»_VALUE: return «lit.name.toUpperCase»;
 						«ENDIF»
 						«ENDFOR»
 					}
