@@ -4,7 +4,6 @@ import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.utils.AspectCopier
 import javax.inject.Inject
-import org.apache.log4j.Logger
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
 class AspectsCopier extends DispatchMelangeProcessor
@@ -12,7 +11,6 @@ class AspectsCopier extends DispatchMelangeProcessor
 	@Inject AspectCopier copier
 	@Inject extension MetamodelExtensions
 	@Inject JvmTypeReferenceBuilder.Factory builderFactory
-	static Logger log = Logger.getLogger(AspectsCopier)
 
 	def dispatch void preProcess(Metamodel mm) {
 		if (!mm.isGeneratedByMelange || mm.runtimeHasBeenGenerated) {
