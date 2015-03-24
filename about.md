@@ -8,6 +8,7 @@ group: navigation
 Melange is developed within the [DiverSE](http://diverse.irisa.fr) research team, joint to INRIA and IRISA.
 
 The main contributors are:
+
 * Olivier Barais
 * Arnaud Blouin
 * Benoit Combemale
@@ -18,6 +19,7 @@ The main contributors are:
 * Didier Vojtisek
 
 Former contributors:
+
 * Robert B. France
 * Clément Guy
 * Jim Steel
