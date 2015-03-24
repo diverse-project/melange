@@ -44,7 +44,7 @@ class MetaclassAdapterInferrer
 	@Inject extension AspectToEcore
 	@Inject extension MelangeTypesBuilder
 	@Inject extension TypeReferencesHelper
-	@Inject extension JvmAnnotationReferenceBuilder$Factory jvmAnnotationReferenceBuilderFactory
+	@Inject extension JvmAnnotationReferenceBuilder.Factory jvmAnnotationReferenceBuilderFactory
 	extension JvmAnnotationReferenceBuilder jvmAnnotationReferenceBuilder
 	extension JvmTypeReferenceBuilder typeRefBuilder
 
@@ -91,9 +91,9 @@ class MetaclassAdapterInferrer
 
 			// TODO: Also override eAllContents() to perform adaptation
 
-			cls.EAllAttributes.filter[!isAspectSpecific && !derived].forEach[processAttribute(mm, superType, jvmCls)]
-			cls.EAllReferences.filter[!isAspectSpecific && !derived].forEach[processReference(mm, superType, jvmCls)]
-			cls.EAllOperations.sortByOverridingPriority.filter[!isAspectSpecific].forEach[processOperation(mm, superType, jvmCls)]
+			cls.EAllAttributes.filter[!isAspectSpecific].forEach[processAttribute(mm, superType, jvmCls)]
+			cls.EAllReferences.filter[!isAspectSpecific].forEach[processReference(mm, superType, jvmCls)]
+			cls.EAllOperations.sortByOverridingPriority.filter[!hasSuppressedVisibility && !isAspectSpecific].forEach[processOperation(mm, superType, jvmCls)]
 			mm.findAspectsOn(cls).sortByOverridingPriority.forEach[processAspect(mm, superType, jvmCls)]
 		]
 
@@ -105,94 +105,96 @@ class MetaclassAdapterInferrer
 	 */
 	private def void processAttribute(EAttribute attr, Metamodel mm, ModelType superType, JvmGenericType jvmCls) {
 		val attrType = superType.typeRef(attr, #[jvmCls])
-		val getterName = if (!mm.isUml(attr.EContainingClass)) attr.getterName else attr.umlGetterName
-		val setterName = attr.setterName
 
-		jvmCls.members += mm.toMethod(getterName, attrType)[
+		jvmCls.members += mm.toMethod(attr.getterName, attrType)[
 			annotations += Override.annotationRef
 
 			if (attr.EType instanceof EEnum)
 				body = '''
-					return «superType.getFqnFor(attr.EType)».get(adaptee.«getterName»().getValue());
+					return «superType.getFqnFor(attr.EType)».get(adaptee.«attr.getterName»().getValue());
 				'''
 			else
 				body = '''
-					return adaptee.«getterName»() ;
+					return adaptee.«attr.getterName»() ;
 				'''
 		]
 
 		if (attr.needsSetter) {
-			jvmCls.members += mm.toMethod(setterName, Void::TYPE.typeRef)[
+			jvmCls.members += mm.toMethod(attr.setterName, Void::TYPE.typeRef)[
 				annotations += Override.annotationRef
 				parameters += mm.toParameter("o", attrType)
 
 				if (attr.EType instanceof EEnum)
 					body = '''
-						adaptee.«setterName»(«mm.getFqnFor(attr.EType)».get(o.getValue())) ;
+						adaptee.«attr.setterName»(«mm.getFqnFor(attr.EType)».get(o.getValue())) ;
 					'''
 				else
 					body = '''
-						adaptee.«setterName»(o) ;
+						adaptee.«attr.setterName»(o) ;
 					'''
 			]
 		}
 
 		if (attr.needsUnsetter)
-			jvmCls.members += mm.toUnsetter(attr.name)
+			jvmCls.members += mm.toUnsetter(attr)
 
 		if (attr.needsUnsetterChecker)
-			jvmCls.members += mm.toUnsetterCheck(attr.name)
+			jvmCls.members += mm.toUnsetterCheck(attr)
 	}
 
 	/**
 	 * Creates accessors/mutators for references defined in {@link cls} and add them to {@link jvmCls}
 	 */
 	private def void processReference(EReference ref, Metamodel mm, ModelType superType, JvmGenericType jvmCls) {
+		if (ref.name == "eAnnotations") {
+			jvmCls.members += mm.toMethod("getEAnnotations", "org.eclipse.emf.common.util.EList".typeRef("org.eclipse.emf.ecore.EAnnotation".typeRef))[
+				body = ''' return null; '''
+			]
+			return			
+		}
 		val refType = superType.typeRef(ref, #[jvmCls])
 		val adapName = mm.adapterNameFor(superType, ref.EReferenceType)
-		val getterName = if (!mm.isUml(ref.EContainingClass)) ref.getterName else ref.umlGetterName
-		val setterName = ref.setterName
 
 		if (ref.isEMFMapDetails) // Special case: EMF Map$Entry
 			jvmCls.members += mm.toMethod("getDetails", EMap.typeRef(String.typeRef, String.typeRef))[
 				body = '''return adaptee.getDetails() ;'''
 			]
 		else
-			jvmCls.members += mm.toMethod(getterName, refType)[
+			jvmCls.members += mm.toMethod(ref.getterName, refType)[
 				annotations += Override.annotationRef
 
 				body = '''
 					«IF ref.many»
-						return fr.inria.diverse.melange.adapters.ListAdapter.newInstance(adaptee.«getterName»(), «adapName».class) ;
+						return fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.«ref.getterName»(), «adapName».class) ;
 					«ELSE»
-						return adaptersFactory.create«mm.simpleAdapterNameFor(superType, ref.EReferenceType)»(adaptee.«getterName»()) ;
+						return adaptersFactory.create«mm.simpleAdapterNameFor(superType, ref.EReferenceType)»(adaptee.«ref.getterName»()) ;
 					«ENDIF»
 				'''
 			]
 
 		if (ref.needsSetter) {
-			jvmCls.members += mm.toMethod(setterName, Void::TYPE.typeRef)[
+			jvmCls.members += mm.toMethod(ref.setterName, Void::TYPE.typeRef)[
 				annotations += Override.annotationRef
 				parameters += mm.toParameter("o", refType)
 
 				body = '''
-					adaptee.«setterName»(((«adapName») o).getAdaptee()) ;
+					adaptee.«ref.setterName»(((«adapName») o).getAdaptee()) ;
 				'''
 			]
 		}
 
 		if (ref.needsUnsetter)
-			jvmCls.members += mm.toUnsetter(ref.name)
+			jvmCls.members += mm.toUnsetter(ref)
 
 		if (ref.needsUnsetterChecker)
-			jvmCls.members += mm.toUnsetterCheck(ref.name)
+			jvmCls.members += mm.toUnsetterCheck(ref)
 	}
 
 	/**
 	 * Creates proxy methods for each operations defined in {@link cls} and add them to {@link jvmCls}.
 	 */
 	private def void processOperation(EOperation op, Metamodel mm, ModelType superType, JvmGenericType jvmCls) {
-		val opName = if (!mm.isUml(op.EContainingClass)) op.name else op.formatUmlOperationName
+		val opName = if (!op.EContainingClass.EPackage.isUml) op.name else op.formatUmlOperationName
 
 		val newOp = mm.toMethod(opName, null)[m |
 			m.annotations += Override.annotationRef
@@ -223,7 +225,13 @@ class MetaclassAdapterInferrer
 
 			paramsList.append('''«FOR p : op.EParameters SEPARATOR ","»
 				«IF p.EType instanceof EClass && mm.hasAdapterFor(superType, p.EType)»
-					((«mm.adapterNameFor(superType, p.EType as EClass)») «p.name»).getAdaptee()
+					«IF p.many»
+						((fr.inria.diverse.melange.adapters.EListAdapter) «p.name»).getAdaptee()
+					«ELSE»
+						((«mm.adapterNameFor(superType, p.EType as EClass)») «p.name»).getAdaptee()
+					«ENDIF»
+				«ELSEIF p.EType instanceof EEnum»
+					«mm.getFqnFor(p.EType)».get(«p.name».getValue())
 				«ELSE»
 					«p.name»
 				«ENDIF»«ENDFOR»
@@ -242,7 +250,7 @@ class MetaclassAdapterInferrer
 			m.body = '''
 				«IF op.EType instanceof EClass && mm.hasAdapterFor(superType, op.EType)»
 					«IF op.many»
-						return fr.inria.diverse.melange.adapters.ListAdapter.newInstance(adaptee.«opName»(«paramsList»), «mm.adapterNameFor(superType, op.EType as EClass)».class) ;
+						return fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.«opName»(«paramsList»), «mm.adapterNameFor(superType, op.EType as EClass)».class) ;
 					«ELSE»
 						return adaptersFactory.create«mm.simpleAdapterNameFor(superType, op.EType as EClass)»(adaptee.«opName»(«paramsList»)) ;
 					«ENDIF»
@@ -312,7 +320,7 @@ class MetaclassAdapterInferrer
 				«IF mm.hasAdapterFor(superType, p.parameterType.simpleName)»
 					, ((«mm.adapterNameFor(superType, p.parameterType.simpleName)») «p.name»).getAdaptee()
 				«ELSEIF p.parameterType.isCollection && mm.hasAdapterFor(superType, realTypeP)»
-					, ((fr.inria.diverse.melange.adapters.ListAdapter) «p.name»).getAdaptee()
+					, ((fr.inria.diverse.melange.adapters.EListAdapter) «p.name»).getAdaptee()
 				«ELSE»
 					, «p.name»
 				«ENDIF»
@@ -361,7 +369,7 @@ class MetaclassAdapterInferrer
 					«IF retType.isValidReturnType»
 						«IF mm.hasAdapterFor(superType, realType)»
 							«IF op.returnType.isCollection»
-								return fr.inria.diverse.melange.adapters.ListAdapter.newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), «mm.adapterNameFor(superType, realType)».class) ;
+								return fr.inria.diverse.melange.adapters.EListAdapter.newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), «mm.adapterNameFor(superType, realType)».class) ;
 							«ELSE»
 								return adaptersFactory.create«mm.simpleAdapterNameFor(superType, realType)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
 							«ENDIF»

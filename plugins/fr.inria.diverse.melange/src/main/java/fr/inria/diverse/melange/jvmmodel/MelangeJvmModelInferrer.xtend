@@ -1,20 +1,15 @@
 package fr.inria.diverse.melange.jvmmodel
 
 import com.google.inject.Inject
-
 import fr.inria.diverse.melange.ast.ASTHelper
 import fr.inria.diverse.melange.ast.ASTProcessingException
 import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
-
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.ResourceType
-
 import org.apache.log4j.Logger
-
 import org.eclipse.xtext.naming.IQualifiedNameProvider
-
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder

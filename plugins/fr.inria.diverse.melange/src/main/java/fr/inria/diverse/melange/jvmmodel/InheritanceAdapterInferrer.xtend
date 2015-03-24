@@ -71,10 +71,10 @@ class InheritanceAdapterInferrer
 						]
 
 					if (attr.needsUnsetter)
-						jvmCls.members += mm.toUnsetter(attr.name)
+						jvmCls.members += mm.toUnsetter(attr)
 
 					if (attr.needsUnsetterChecker)
-						jvmCls.members += mm.toUnsetterCheck(attr.name)
+						jvmCls.members += mm.toUnsetterCheck(attr)
 				]
 
 				cls.EAllReferences.forEach[ref |
@@ -118,10 +118,10 @@ class InheritanceAdapterInferrer
 								]
 
 						if (ref.needsUnsetter)
-							jvmCls.members += mm.toUnsetter(ref.name)
+							jvmCls.members += mm.toUnsetter(ref)
 
 						if (ref.needsUnsetterChecker)
-							jvmCls.members += mm.toUnsetterCheck(ref.name)
+							jvmCls.members += mm.toUnsetterCheck(ref)
 					}
 				]
 
