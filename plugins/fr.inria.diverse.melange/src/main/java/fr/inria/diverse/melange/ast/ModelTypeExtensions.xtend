@@ -49,8 +49,8 @@ class ModelTypeExtensions
 		return mt.allClasses.findFirst[name == clsName]
 	}
 
-	def Iterable<EClassifier> getAllClassifiers(ModelType mt) {
-		return mt.pkgs.map[EClassifiers].flatten
+	def List<EClassifier> getAllClassifiers(ModelType mt) {
+		return mt.pkgs.map[EClassifiers].flatten.toList
 	}
 
 	def Iterable<EClass> getAllClasses(ModelType mt) {
@@ -59,9 +59,5 @@ class ModelTypeExtensions
 
 	def Iterable<EEnum> getAllEnums(ModelType mt) {
 		return mt.allClassifiers.filter(EEnum)
-	}
-
-	def boolean isUml(ModelType mt, EClassifier cls) {
-		return mt.pkgs.findFirst[EClassifiers.exists[name == cls.name]] == "uml"
 	}
 }
