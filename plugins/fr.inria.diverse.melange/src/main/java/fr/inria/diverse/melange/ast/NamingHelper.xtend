@@ -102,6 +102,10 @@ class NamingHelper
 	def String getAdaptersFactoryNameFor(Metamodel mm, ModelType mt) {
 		return mm.fullyQualifiedName.append("adapters").append(mt.fullyQualifiedName.lastSegment).toLowerCase.append(mt.name + "AdaptersFactory").normalize.toString
 	}
+	
+	def String getMappersFactoryNameFor(ModelType sourceMT, ModelType targetMT) {
+		return sourceMT.fullyQualifiedName.append("mappers").append(targetMT.fullyQualifiedName.lastSegment).toLowerCase.append(targetMT.name + "MappersFactory").normalize.toString
+	}
 
 	def String getFqnFor(ModelType mt, EClassifier cls) {
 		return
@@ -144,6 +148,10 @@ class NamingHelper
 	
 	def String mapperNameFor(ModelType sourceMT, ModelType targetMT, EClass targetClass){
 		return sourceMT.fullyQualifiedName.append("mappers").append(targetMT.fullyQualifiedName.lastSegment).toLowerCase.append(targetClass.name + "Mapper").normalize.toString
+	}
+	
+	def String simpleMapperNameFor(ModelType sourceMT, ModelType targetMT, EClass targetClass){
+		return targetClass.name + "Mapper"
 	}
 
 	def String simpleAdapterNameFor(Metamodel mm, ModelType mt, EClass cls) {

@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.EMap
 import org.eclipse.xtext.common.types.TypesFactory
 import org.eclipse.emf.ecore.EClass
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
+import fr.inria.diverse.melange.metamodel.melange.PropertyBinding
 
 class MetaclassMapperInferrer
 {
@@ -39,7 +40,7 @@ class MetaclassMapperInferrer
 		jvmAnnotationReferenceBuilder = jvmAnnotationReferenceBuilderFactory.create(targetMT.extracted.eResource.resourceSet)
 		
 		
-		val sourceClass = sourceMT.allClasses.findFirst[name == binding.from] 
+		val sourceClass = sourceMT.allClasses.findFirst[name == binding.from]
 		val targetClass = targetMT.allClasses.findFirst[name == binding.to]
 		
 		val mapperName = sourceMT.mapperNameFor(targetMT,targetClass)
@@ -48,79 +49,155 @@ class MetaclassMapperInferrer
 			
 			jvmCls.superTypes += EObjectAdapter.typeRef(sourceMT.interfaceNameFor(sourceClass).typeRef)
 			jvmCls.superTypes += targetMT.interfaceNameFor(targetClass).typeRef
+			
+			jvmCls.members += targetMT.toField("adaptersFactory", sourceMT.getMappersFactoryNameFor(targetMT).typeRef)
 
-			targetClass.EAllAttributes.filter[!derived].forEach[processAttribute(sourceMT, targetMT, jvmCls)]
-			targetClass.EAllReferences.filter[!derived].forEach[processReference(sourceMT, targetMT, jvmCls)]
+			jvmCls.members += targetMT.toConstructor[
+				body = '''
+					super(«sourceMT.getMappersFactoryNameFor(targetMT)».getInstance()) ;
+				'''
+			]
+
+			targetClass.EAllAttributes.filter[!derived].forEach[targetAttr |
+				val propBinding = binding.properties.findFirst[propBinding | propBinding.to == targetAttr.name]
+				if(propBinding != null){
+					val sourceAttr = sourceClass.EAllAttributes.findFirst[name == propBinding.from]
+					processAttribute(sourceAttr,targetAttr,sourceMT, targetMT, jvmCls)
+				}
+				else{
+					processAttribute(null,targetAttr,sourceMT, targetMT, jvmCls)
+				}
+			]
+			targetClass.EAllReferences.filter[!derived].forEach[targetRef |
+				val propBinding = binding.properties.findFirst[propBinding | propBinding.to == targetRef.name]
+				if(propBinding != null){
+					val sourceRef = sourceClass.EAllReferences.findFirst[name == propBinding.from]
+					processReference(sourceRef,targetRef,sourceMT, targetMT, jvmCls)
+				}
+				else{
+					processReference(null,targetRef,sourceMT, targetMT, jvmCls)
+				}
+			]
 			targetClass.EAllOperations.sortByOverridingPriority.forEach[processOperation(sourceMT, targetMT, jvmCls)]
 		]
 	}
 	
-	private def void processAttribute(EAttribute attr, ModelType sourceMT, ModelType targetMT, JvmGenericType jvmCls) {
-		val attrType = targetMT.typeRef(attr, #[jvmCls])
-		val getterName = if (!targetMT.extracted.isUml(attr.EContainingClass)) attr.getterName else attr.umlGetterName
-		val setterName = attr.setterName
+	/**
+	 * @sourceAttr == null means we can use getter/setter
+	 */
+	private def void processAttribute(EAttribute sourceAttr, EAttribute targetAttr, ModelType sourceMT, ModelType targetMT, JvmGenericType jvmCls) {
 		
-		jvmCls.members += attr.toMethod(getterName, attrType)[
-			annotations += Override.annotationRef
+		val attrType = targetMT.typeRef(targetAttr, #[jvmCls])
+		val getterName = if (!targetMT.extracted.isUml(targetAttr.EContainingClass)) targetAttr.getterName else targetAttr.umlGetterName
+		val setterName = targetAttr.setterName
+		
+		var mappedGetter = ""
+		var mappedSetter = ""
+		if(sourceAttr != null){
+			mappedGetter = if (!sourceMT.extracted.isUml(sourceAttr.EContainingClass)) sourceAttr.getterName else sourceAttr.umlGetterName
+			mappedSetter = sourceAttr.setterName
+		}
+		val mappedGetterName = mappedGetter
+		val mappedSetterName = mappedSetter
+		
+		jvmCls.members += targetMT.toMethod(getterName, attrType)[
+//			annotations += Override.annotationRef
 
-			if (attr.EType instanceof EEnum)
+			if(sourceAttr == null){
 				body = '''
-					return «targetMT.getFqnFor(attr.EType)».get(adaptee.«getterName»().getValue());
+					throw new UnsupportedOperationException("This attribute is not mapped");
 				'''
-			else//TODO: do the mapping
+			}
+			else if (targetAttr.EType instanceof EEnum)
 				body = '''
-					return adaptee.«getterName»() ; 
+					return «targetMT.getFqnFor(targetAttr.EType)».get(adaptee.«getterName»().getValue());
+				'''
+			else
+				body = '''
+					return adaptee.«mappedGetterName»() ; 
 				'''
 		]
 
-		if (attr.needsSetter) {
-			jvmCls.members += attr.toMethod(setterName, Void::TYPE.typeRef)[
-				annotations += Override.annotationRef
-				parameters += attr.toParameter("o", attrType)
+		if (targetAttr.needsSetter) {
+			jvmCls.members += targetMT.toMethod(setterName, Void::TYPE.typeRef)[
+//				annotations += Override.annotationRef
+				parameters += targetMT.toParameter("o", attrType)
 
-				if (attr.EType instanceof EEnum)
+				if(sourceAttr == null){
 					body = '''
-						adaptee.«setterName»(«targetMT.getFqnFor(attr.EType)».get(o.getValue())) ;
+						throw new UnsupportedOperationException("This attribute is not mapped");
 					'''
-				else //TODO: do the mapping
+				}
+				else if (targetAttr.EType instanceof EEnum)
 					body = '''
-						adaptee.«setterName»(o) ;
+						adaptee.«mappedSetterName»(«targetMT.getFqnFor(targetAttr.EType)».get(o.getValue())) ;
+					'''
+				else
+					body = '''
+						adaptee.«mappedSetterName»(o) ;
 					'''
 			]
 		}
 	}
 	
-	private def void processReference(EReference ref, ModelType sourceMT, ModelType targetMT, JvmGenericType jvmCls) {
-		val refType = targetMT.typeRef(ref, #[jvmCls])
-		val mapName = sourceMT.mapperNameFor(targetMT, ref.EReferenceType)
-		val getterName = if (!targetMT.extracted.isUml(ref.EContainingClass)) ref.getterName else ref.umlGetterName
-		val setterName = ref.setterName
+	/**
+	 * @sourceRef == null means we can use getter/setter
+	 */
+	private def void processReference(EReference sourceRef, EReference targetRef, ModelType sourceMT, ModelType targetMT, JvmGenericType jvmCls) {
+		
+		val refType = targetMT.typeRef(targetRef, #[jvmCls])
+		val mapName = sourceMT.mapperNameFor(targetMT, targetRef.EReferenceType)
+		val getterName = if (!targetMT.extracted.isUml(targetRef.EContainingClass)) targetRef.getterName else targetRef.umlGetterName
+		val setterName = targetRef.setterName
+		
+		var mappedGetter = ""
+		var mappedSetter = ""
+		if(sourceRef != null){
+			mappedGetter = if (!sourceMT.extracted.isUml(sourceRef.EContainingClass)) sourceRef.getterName else sourceRef.umlGetterName
+			mappedSetter = sourceRef.setterName
+		}
+		val mappedGetterName = mappedGetter
+		val mappedSetterName = mappedSetter
 
-		if (ref.isEMFMapDetails) // Special case: EMF Map$Entry
-			jvmCls.members += ref.toMethod("getDetails", EMap.typeRef(String.typeRef, String.typeRef))[
+		if (targetRef.isEMFMapDetails) // Special case: EMF Map$Entry
+			jvmCls.members += targetMT.toMethod("getDetails", EMap.typeRef(String.typeRef, String.typeRef))[
 				body = '''return adaptee.getDetails() ;'''
 			]
-		else//TODO: do the mapping
-			jvmCls.members += ref.toMethod(getterName, refType)[
-				annotations += Override.annotationRef
+		else
+			jvmCls.members += targetMT.toMethod(getterName, refType)[
+//				annotations += Override.annotationRef
 
-				body = '''
-					«IF ref.many»
-						return fr.inria.diverse.melange.adapters.ListAdapter.newInstance(adaptee.«getterName»(), «mapName».class) ;
+				if(sourceRef == null){
+					body = '''
+						throw new UnsupportedOperationException("This method is not mapped");
+					'''
+				}
+				else{
+					body = '''
+					«IF targetRef.many»
+						return fr.inria.diverse.melange.adapters.ListAdapter.newInstance(adaptee.«mappedGetterName»(), «mapName».class) ;
 					«ELSE»
-						return adaptersFactory.create«sourceMT.mapperNameFor(targetMT, ref.EReferenceType)»(adaptee.«getterName»()) ;
+						return adaptersFactory.create«sourceMT.simpleMapperNameFor(targetMT, targetRef.EReferenceType)»(adaptee.«mappedGetterName»()) ;
 					«ENDIF»
 				'''
+				}
 			]
 
-		if (ref.needsSetter) {//TODO: do the mapping
-			jvmCls.members += ref.toMethod(setterName, Void::TYPE.typeRef)[
-				annotations += Override.annotationRef
-				parameters += ref.toParameter("o", refType)
+		if (targetRef.needsSetter) {
+			jvmCls.members += targetMT.toMethod(setterName, Void::TYPE.typeRef)[
+//				annotations += Override.annotationRef
+				parameters += targetMT.toParameter("o", refType)
 
-				body = '''
-					adaptee.«setterName»(((«mapName») o).getAdaptee()) ;
-				'''
+				if(sourceRef == null){
+					body = '''
+						throw new UnsupportedOperationException("This method is not mapped");
+					'''
+				}
+				else{
+					body = '''
+						adaptee.«mappedSetterName»(((«mapName») o).getAdaptee()) ;
+					'''
+				}
 			]
 		}
 	}
@@ -129,9 +206,7 @@ class MetaclassMapperInferrer
 		val opName = if (!targetMT.extracted.isUml(op.EContainingClass)) op.name else op.formatUmlOperationName
 		
 		val newOp = op.toMethod(opName, null)[m |
-			m.annotations += Override.annotationRef
-
-//			val paramsList = new StringBuilder
+//			m.annotations += Override.annotationRef
 
 			op.ETypeParameters.forEach[t |
 				m.typeParameters += TypesFactory.eINSTANCE.createJvmTypeParameter => [tp |
@@ -155,14 +230,6 @@ class MetaclassMapperInferrer
 				]
 			]
 
-//			paramsList.append('''«FOR p : op.EParameters SEPARATOR ","»
-//				«IF p.EType instanceof EClass && mm.hasAdapterFor(superType, p.EType)»
-//					((«mm.adapterNameFor(superType, p.EType as EClass)») «p.name»).getAdaptee()
-//				«ELSE»
-//					«p.name»
-//				«ENDIF»«ENDFOR»
-//			''')
-
 			op.EParameters.forEach[p | m.parameters += op.toParameter(p.name, targetMT.typeRef(p, #[m, jvmCls]))]
 
 			// TODO: Manage exceptions
@@ -172,20 +239,10 @@ class MetaclassMapperInferrer
 
 			// TODO: Manage generic exceptions
 			op.EGenericExceptions.forEach[e |]
-
-//			m.body = '''
-//				«IF op.EType instanceof EClass && mm.hasAdapterFor(superType, op.EType)»
-//					«IF op.many»
-//						return fr.inria.diverse.melange.adapters.ListAdapter.newInstance(adaptee.«opName»(«paramsList»), «mm.adapterNameFor(superType, op.EType as EClass)».class) ;
-//					«ELSE»
-//						return adaptersFactory.create«mm.simpleAdapterNameFor(superType, op.EType as EClass)»(adaptee.«opName»(«paramsList»)) ;
-//					«ENDIF»
-//				«ELSEIF op.EType !== null»
-//					return adaptee.«opName»(«paramsList») ;
-//				«ELSE»
-//					adaptee.«opName»(«paramsList») ;
-//				«ENDIF»
-//			'''
+			
+			m.body = '''
+				throw new UnsupportedOperationException("This method is not mapped");
+			'''
 		]
 
 		newOp.returnType = targetMT.typeRef(op, #[newOp, jvmCls])
