@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
 
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
+import fr.inria.diverse.melange.metamodel.melange.Mapping
 
 class ASTHelper
 {
@@ -72,6 +73,10 @@ class ASTHelper
 
 	def Iterable<XbaseTransformation> getTransformations(ModelTypingSpace root) {
 		return root.elements.filter(XbaseTransformation)
+	}
+	
+	def Iterable<Mapping> getMappings(ModelTypingSpace root) {
+		return root.elements.filter(Mapping)
 	}
 
 //	def Iterable<KomprenSlicer> getSlicers(ModelTypingSpace root) {

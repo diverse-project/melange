@@ -28,6 +28,7 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 	@Inject extension ModelTypeInferrer
 	@Inject extension MetamodelInferrer
 	@Inject extension TransformationInferrer
+	@Inject extension MappersInferrer
 	@Inject extension ModelTypeExtensions
 	@Inject extension MetamodelExtensions
 	@Inject extension JvmTypesBuilder
@@ -50,6 +51,7 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 //			if (Diagnostician.INSTANCE.validate(typingSpace).severity != Diagnostic.ERROR) {
 				root.modelTypes.filter[isComplete].forEach[generateInterfaces(acceptor, _typeReferenceBuilder)]
 				root.metamodels.filter[isComplete].forEach[generateAdapters(acceptor, _typeReferenceBuilder)]
+				root.mappings.forEach[generateMappers(root, acceptor, _typeReferenceBuilder)]
 				root.transformations.forEach[generateTransformation(acceptor, _typeReferenceBuilder)]
 				root.createStandaloneSetup(acceptor)
 //				root.slicers.forEach[generateSlicer]
