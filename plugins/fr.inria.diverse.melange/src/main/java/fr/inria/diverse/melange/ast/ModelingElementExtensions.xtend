@@ -17,11 +17,15 @@ class ModelingElementExtensions
 		return registry.getPackages(m)
 	}
 
-	def void createEcore(ModelingElement m, String uri) {
+	def EPackage createEcore(ModelingElement m, String uri) {
 		m.createEcore(uri, null)
 	}
 
-	def void createEcore(ModelingElement m, String uri, String pkgUri) {
+	/**
+ 	 * create the ecore for this ModelingElement
+ 	 * return the root package  
+ 	 */
+	def EPackage createEcore(ModelingElement m, String uri, String pkgUri) {
 		val resSet = new ResourceSetImpl
 		val res = resSet.createResource(URI::createURI(uri))
 		val rootPkg = m.pkgs.head
@@ -36,5 +40,6 @@ class ModelingElementExtensions
 		} catch (IOException e) {
 			e.printStackTrace
 		}
+		return rootPkg
 	}
 }

@@ -37,17 +37,18 @@ class ModelTypeSerializer extends DispatchMelangeProcessor
 				val project = ResourcesPlugin.workspace.root.getFile(new Path(resource.URI.toPlatformString(true))).project
 	
 				if (project !== null) {
-					val ecoreUri = '''platform:/resource/«project.name»/model-gen/«mt.name».ecore'''
-	
-					log.debug('''Registering new EPackage for «mt.name» in EMF registry''')
-					if(mt.pkgs.head == null){
-						return // cannot process until it is completely defined
-					}
-					if (!EPackage.Registry.INSTANCE.containsKey(mt.pkgs.head.nsURI))
-						EPackage.Registry.INSTANCE.put(mt.pkgs.head.nsURI, mt.pkgs.head)
+					val ecoreUri = '''platform:/resource/«project.name»/model-gen/«mt.name».ecore'''	
 	
 					log.debug('''Serializing Ecore interface description for «mt.name» in «ecoreUri»''')
-					mt.createEcore(ecoreUri, mtUri)
+					val pkg = mt.createEcore(ecoreUri, mtUri)
+					
+					log.debug('''Registering new EPackage for «mt.name» in EMF registry''')
+					if(pkg == null){
+						return // cannot process until it is completely defined
+					}
+					if (!EPackage.Registry.INSTANCE.containsKey(mtUri))
+						EPackage.Registry.INSTANCE.put(mtUri, pkg)
+					
 				}
 			}
 		
