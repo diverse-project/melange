@@ -91,6 +91,10 @@ class EcoreExtensions
 		return f.EAnnotations.exists[source == "aspect"]
 	}
 
+	def boolean hasSuppressedVisibility(ENamedElement f) {
+		return f.getGenmodelAnnotationValue("suppressedVisibility") == "true"
+	}
+
 	def boolean needsUnsetter(EStructuralFeature f) {
 		return
 			   f.unsettable
@@ -228,7 +232,7 @@ class EcoreExtensions
 
 			val referenced = container as EPackage
 
-			if (referenced !== null && !ret.exists[nsURI == referenced.nsURI]) {
+			if (referenced !== null && !ret.exists[nsURI == referenced.nsURI] && !referenced.isEcore) {
 				ret += referenced
 				referenced.getReferencedPkgsRec(ret)
 			}
@@ -280,5 +284,13 @@ class EcoreExtensions
 
 	def boolean isEMFMapDetails(EReference ref) {
 		return ref?.name == "details" && ref.EReferenceType?.name == "EStringToStringMapEntry"
+	}
+
+	def boolean isEcore(EPackage pkg) {
+		return pkg.nsURI == "http://www.eclipse.org/emf/2002/Ecore"
+	}
+
+	def boolean isUml(EPackage pkg) {
+		return pkg.name == "uml"
 	}
 }
