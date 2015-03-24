@@ -29,9 +29,15 @@ class MetaclassMapperInferrer
 	@Inject extension EcoreExtensions
 	@Inject extension MelangeTypesBuilder
 	@Inject extension ModelTypeExtensions
+	@Inject extension JvmAnnotationReferenceBuilder$Factory jvmAnnotationReferenceBuilderFactory
+	
 	extension JvmAnnotationReferenceBuilder jvmAnnotationReferenceBuilder
 	extension JvmTypeReferenceBuilder typeRefBuilder
+	
 	def void generateMapper(ClassBinding binding, ModelType sourceMT, ModelType targetMT, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
+		typeRefBuilder = builder
+		jvmAnnotationReferenceBuilder = jvmAnnotationReferenceBuilderFactory.create(targetMT.extracted.eResource.resourceSet)
+		
 		
 		val sourceClass = sourceMT.allClasses.findFirst[name == binding.from] 
 		val targetClass = targetMT.allClasses.findFirst[name == binding.to]
@@ -42,7 +48,7 @@ class MetaclassMapperInferrer
 			
 			jvmCls.superTypes += EObjectAdapter.typeRef(sourceMT.interfaceNameFor(sourceClass).typeRef)
 			jvmCls.superTypes += targetMT.interfaceNameFor(targetClass).typeRef
-			
+
 			targetClass.EAllAttributes.filter[!derived].forEach[processAttribute(sourceMT, targetMT, jvmCls)]
 			targetClass.EAllReferences.filter[!derived].forEach[processReference(sourceMT, targetMT, jvmCls)]
 			targetClass.EAllOperations.sortByOverridingPriority.forEach[processOperation(sourceMT, targetMT, jvmCls)]
