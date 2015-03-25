@@ -61,7 +61,7 @@ Aspect:
 ;
 
 Mapping returns Mapping:
-	"map" from=STRING "to" to=STRING "{"
+	"map" "[" name=STRING "]" from=STRING "to" to=STRING "{"
 		(rules+=ClassMapping)*
 	"}" 
 ;

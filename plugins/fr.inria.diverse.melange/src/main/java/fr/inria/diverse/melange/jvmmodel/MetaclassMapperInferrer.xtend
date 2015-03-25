@@ -2,7 +2,6 @@ package fr.inria.diverse.melange.jvmmodel
 
 import com.google.inject.Inject
 import fr.inria.diverse.melange.adapters.EObjectAdapter
-import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.metamodel.melange.ClassBinding
 import fr.inria.diverse.melange.metamodel.melange.ModelType
@@ -18,14 +17,11 @@ import org.eclipse.emf.ecore.EEnum
 import org.eclipse.xtext.xbase.jvmmodel.JvmAnnotationReferenceBuilder
 import org.eclipse.emf.common.util.EMap
 import org.eclipse.xtext.common.types.TypesFactory
-import org.eclipse.emf.ecore.EClass
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
-import fr.inria.diverse.melange.metamodel.melange.PropertyBinding
 
 class MetaclassMapperInferrer
 {
 	@Inject extension JvmTypesBuilder
-	@Inject extension MetamodelExtensions
 	@Inject extension NamingHelper
 	@Inject extension EcoreExtensions
 	@Inject extension MelangeTypesBuilder
@@ -58,7 +54,7 @@ class MetaclassMapperInferrer
 				'''
 			]
 
-			targetClass.EAllAttributes.filter[!derived].forEach[targetAttr |
+			targetClass.EAllAttributes.forEach[targetAttr |
 				val propBinding = binding.properties.findFirst[propBinding | propBinding.to == targetAttr.name]
 				if(propBinding != null){
 					val sourceAttr = sourceClass.EAllAttributes.findFirst[name == propBinding.from]
@@ -68,7 +64,7 @@ class MetaclassMapperInferrer
 					processAttribute(null,targetAttr,sourceMT, targetMT, jvmCls)
 				}
 			]
-			targetClass.EAllReferences.filter[!derived].forEach[targetRef |
+			targetClass.EAllReferences.forEach[targetRef |
 				val propBinding = binding.properties.findFirst[propBinding | propBinding.to == targetRef.name]
 				if(propBinding != null){
 					val sourceRef = sourceClass.EAllReferences.findFirst[name == propBinding.from]
@@ -88,19 +84,8 @@ class MetaclassMapperInferrer
 	private def void processAttribute(EAttribute sourceAttr, EAttribute targetAttr, ModelType sourceMT, ModelType targetMT, JvmGenericType jvmCls) {
 		
 		val attrType = targetMT.typeRef(targetAttr, #[jvmCls])
-		val getterName = if (!targetMT.extracted.isUml(targetAttr.EContainingClass)) targetAttr.getterName else targetAttr.umlGetterName
-		val setterName = targetAttr.setterName
-		
-		var mappedGetter = ""
-		var mappedSetter = ""
-		if(sourceAttr != null){
-			mappedGetter = if (!sourceMT.extracted.isUml(sourceAttr.EContainingClass)) sourceAttr.getterName else sourceAttr.umlGetterName
-			mappedSetter = sourceAttr.setterName
-		}
-		val mappedGetterName = mappedGetter
-		val mappedSetterName = mappedSetter
-		
-		jvmCls.members += targetMT.toMethod(getterName, attrType)[
+
+		jvmCls.members += targetMT.toMethod(targetAttr.getterName, attrType)[
 //			annotations += Override.annotationRef
 
 			if(sourceAttr == null){
@@ -110,16 +95,16 @@ class MetaclassMapperInferrer
 			}
 			else if (targetAttr.EType instanceof EEnum)
 				body = '''
-					return «targetMT.getFqnFor(targetAttr.EType)».get(adaptee.«getterName»().getValue());
+					return «targetMT.getFqnFor(targetAttr.EType)».get(adaptee.«sourceAttr.getterName»().getValue());
 				'''
 			else
 				body = '''
-					return adaptee.«mappedGetterName»() ; 
+					return adaptee.«sourceAttr.getterName»() ; 
 				'''
 		]
 
 		if (targetAttr.needsSetter) {
-			jvmCls.members += targetMT.toMethod(setterName, Void::TYPE.typeRef)[
+			jvmCls.members += targetMT.toMethod(targetAttr.setterName, Void::TYPE.typeRef)[
 //				annotations += Override.annotationRef
 				parameters += targetMT.toParameter("o", attrType)
 
@@ -130,11 +115,11 @@ class MetaclassMapperInferrer
 				}
 				else if (targetAttr.EType instanceof EEnum)
 					body = '''
-						adaptee.«mappedSetterName»(«targetMT.getFqnFor(targetAttr.EType)».get(o.getValue())) ;
+						adaptee.«sourceAttr.setterName»(«targetMT.getFqnFor(targetAttr.EType)».get(o.getValue())) ;
 					'''
 				else
 					body = '''
-						adaptee.«mappedSetterName»(o) ;
+						adaptee.«sourceAttr.setterName»(o) ;
 					'''
 			]
 		}
@@ -143,28 +128,17 @@ class MetaclassMapperInferrer
 	/**
 	 * @sourceRef == null means we can use getter/setter
 	 */
-	private def void processReference(EReference sourceRef, EReference targetRef, ModelType sourceMT, ModelType targetMT, JvmGenericType jvmCls) {
+	private def void processReference(EReference sourceRef, EReference targetRef, ModelType sourceMT, ModelType targetMT, JvmGenericType jvmCls) {	
 		
 		val refType = targetMT.typeRef(targetRef, #[jvmCls])
 		val mapName = sourceMT.mapperNameFor(targetMT, targetRef.EReferenceType)
-		val getterName = if (!targetMT.extracted.isUml(targetRef.EContainingClass)) targetRef.getterName else targetRef.umlGetterName
-		val setterName = targetRef.setterName
-		
-		var mappedGetter = ""
-		var mappedSetter = ""
-		if(sourceRef != null){
-			mappedGetter = if (!sourceMT.extracted.isUml(sourceRef.EContainingClass)) sourceRef.getterName else sourceRef.umlGetterName
-			mappedSetter = sourceRef.setterName
-		}
-		val mappedGetterName = mappedGetter
-		val mappedSetterName = mappedSetter
 
 		if (targetRef.isEMFMapDetails) // Special case: EMF Map$Entry
 			jvmCls.members += targetMT.toMethod("getDetails", EMap.typeRef(String.typeRef, String.typeRef))[
 				body = '''return adaptee.getDetails() ;'''
 			]
 		else
-			jvmCls.members += targetMT.toMethod(getterName, refType)[
+			jvmCls.members += targetMT.toMethod(targetRef.getterName, refType)[
 //				annotations += Override.annotationRef
 
 				if(sourceRef == null){
@@ -175,16 +149,16 @@ class MetaclassMapperInferrer
 				else{
 					body = '''
 					«IF targetRef.many»
-						return fr.inria.diverse.melange.adapters.ListAdapter.newInstance(adaptee.«mappedGetterName»(), «mapName».class) ;
+						return fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.«sourceRef.getterName»(), «mapName».class) ;
 					«ELSE»
-						return adaptersFactory.create«sourceMT.simpleMapperNameFor(targetMT, targetRef.EReferenceType)»(adaptee.«mappedGetterName»()) ;
+						return adaptersFactory.create«sourceMT.simpleMapperNameFor(targetMT, targetRef.EReferenceType)»(adaptee.«sourceRef.getterName»()) ;
 					«ENDIF»
 				'''
 				}
 			]
 
 		if (targetRef.needsSetter) {
-			jvmCls.members += targetMT.toMethod(setterName, Void::TYPE.typeRef)[
+			jvmCls.members += targetMT.toMethod(targetRef.setterName, Void::TYPE.typeRef)[
 //				annotations += Override.annotationRef
 				parameters += targetMT.toParameter("o", refType)
 
@@ -195,7 +169,7 @@ class MetaclassMapperInferrer
 				}
 				else{
 					body = '''
-						adaptee.«mappedSetterName»(((«mapName») o).getAdaptee()) ;
+						adaptee.«sourceRef.setterName»(((«mapName») o).getAdaptee()) ;
 					'''
 				}
 			]
@@ -203,7 +177,7 @@ class MetaclassMapperInferrer
 	}
 	
 	private def void processOperation(EOperation op, ModelType sourceMT, ModelType targetMT, JvmGenericType jvmCls) {
-		val opName = if (!targetMT.extracted.isUml(op.EContainingClass)) op.name else op.formatUmlOperationName
+		val opName = if (!op.EContainingClass.EPackage.isUml) op.name else op.formatUmlOperationName
 		
 		val newOp = op.toMethod(opName, null)[m |
 //			m.annotations += Override.annotationRef
