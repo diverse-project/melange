@@ -25,5 +25,6 @@ class AspectsCopier extends DispatchMelangeProcessor
 				}
 			]
 		}
+			
 	}
 }

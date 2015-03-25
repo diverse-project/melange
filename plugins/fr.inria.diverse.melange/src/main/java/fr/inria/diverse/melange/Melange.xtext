@@ -25,7 +25,7 @@ Metamodel:
 	'{'
 		('resource' resourceType = ResourceType ('uri' resourceUri = STRING | 'setup' xtextSetupRef = JvmTypeReference)?)? &
 		('ecore' ecoreUri = STRING ('withGenmodel' (genmodelUris += STRING (',' genmodelUris += STRING)*))?)? &
-		('exactType' exactTypeName = ValidID) &
+		('exactType' exactTypeName = ValidID ('uri' exactTypeUri = STRING)?) &
 		(aspects += Aspect)*
 	'}'
 ;
@@ -40,7 +40,8 @@ Inheritance:
 
 EcoreModelType returns ModelType:
 	'modeltype' name = ValidID '{'
-		'ecore' ecoreUri = STRING
+		'ecore' ecoreUri = STRING &
+		('uri' mtUri = STRING)?
 	'}'
 ;
 

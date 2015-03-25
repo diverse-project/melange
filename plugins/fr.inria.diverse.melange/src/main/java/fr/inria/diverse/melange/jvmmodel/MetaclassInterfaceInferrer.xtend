@@ -1,26 +1,17 @@
 package fr.inria.diverse.melange.jvmmodel
 
 import com.google.inject.Inject
-
-import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
-
 import fr.inria.diverse.melange.lib.EcoreExtensions
-
 import fr.inria.diverse.melange.metamodel.melange.ModelType
-
 import org.eclipse.emf.common.util.EMap
-
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EObject
-
 import org.eclipse.xtext.common.types.TypesFactory
-
 import org.eclipse.xtext.util.internal.Stopwatches
-
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
-import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
 /**
  * This class manages creation of Java interface corresponding to Object type. 
@@ -30,7 +21,6 @@ class MetaclassInterfaceInferrer
 	@Inject extension JvmModelInferrerHelper
 	@Inject extension JvmTypesBuilder
 	@Inject extension NamingHelper
-	@Inject extension ModelTypeExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension MelangeTypesBuilder
 
@@ -59,42 +49,41 @@ class MetaclassInterfaceInferrer
 				)
 			]
 
-			cls.EAttributes.filter[!derived].forEach[attr |
+			cls.EAttributes.forEach[attr |
 				val attrType = mt.typeRef(attr, #[intf])
 
-				intf.members += if (!mt.isUml(cls)) mt.toGetterSignature(attr.name, attrType) else mt.toUmlGetterSignature(attr.name, attrType)
+				intf.members += mt.toGetterSignature(attr, attrType)
 
 				if (attr.needsSetter)
-					intf.members += mt.toSetterSignature(attr.name, attrType)
+					intf.members += mt.toSetterSignature(attr, attrType)
 
 				if (attr.needsUnsetter)
-					intf.members += mt.toUnsetterSignature(attr.name)
+					intf.members += mt.toUnsetterSignature(attr)
 
 				if (attr.needsUnsetterChecker)
-					intf.members += mt.toUnsetterCheckSignature(attr.name)
+					intf.members += mt.toUnsetterCheckSignature(attr)
 			]
 
-			cls.EReferences.filter[!derived].forEach[ref |
+			cls.EReferences.forEach[ref |
 				val refType = mt.typeRef(ref, #[intf])
-				val refName = if (!mt.isUml(cls)) ref.name else ref.formatUmlReferenceName
 
 				if (ref.isEMFMapDetails) // Special case: EMF Map$Entry
 					intf.members += mt.toMethod("getDetails", EMap.typeRef(String.typeRef, String.typeRef))[^abstract = true]
 				else
-					intf.members += if (!mt.isUml(cls)) mt.toGetterSignature(refName, refType) else mt.toUmlGetterSignature(refName, refType)
+					intf.members += mt.toGetterSignature(ref, refType)
 
 				if (ref.needsSetter)
-					intf.members += mt.toSetterSignature(refName, refType)
+					intf.members += mt.toSetterSignature(ref, refType)
 
 				if (ref.needsUnsetter)
-					intf.members += mt.toUnsetterSignature(refName)
+					intf.members += mt.toUnsetterSignature(ref)
 
 				if (ref.needsUnsetterChecker)
-					intf.members += mt.toUnsetterCheckSignature(refName)
+					intf.members += mt.toUnsetterCheckSignature(ref)
 			]
 
-			cls.EOperations.forEach[op |
-				val opName = if (!mt.isUml(cls)) op.name else op.formatUmlOperationName
+			cls.EOperations.filter[!hasSuppressedVisibility].forEach[op |
+				val opName = if (!cls.EPackage.isUml) op.name else op.formatUmlOperationName
 
 				intf.members += mt.toMethod(opName, null)[m |
 					op.ETypeParameters.forEach[t |
@@ -138,4 +127,11 @@ class MetaclassInterfaceInferrer
 
 		task.stop
 	}
+
+//	def boolean +=(EList<JvmMember> members, JvmOperation m) {
+//		if (!members.filter(JvmOperation).exists[overrides(m)])
+//			members += (m as JvmMember)
+//
+//		return false
+//	}
 }

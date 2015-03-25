@@ -2,14 +2,15 @@ package fr.inria.diverse.melange.jvmmodel
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
+import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.utils.TypeReferencesHelper
 import java.util.List
 import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.xtext.common.types.JvmFormalParameter
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmTypeReference
-import org.eclipse.xtext.xbase.compiler.JavaKeywords
 import org.eclipse.xtext.xbase.jvmmodel.JvmAnnotationReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
@@ -22,8 +23,8 @@ class JvmModelInferrerHelper
 	@Inject extension JvmTypeReferenceBuilder typeBuilder
 	@Inject extension JvmAnnotationReferenceBuilder annotationBuilder
 	@Inject extension JvmTypesBuilder
-	@Inject extension JavaKeywords
 	@Inject extension TypeReferencesHelper
+	@Inject extension NamingHelper
 
 	def void setContext(ResourceSet rs) {
 		typeBuilder = typeBuilderFactory.create(rs)
@@ -31,87 +32,58 @@ class JvmModelInferrerHelper
 	}
 
 	/*--- Getters / Setters  ---*/
-	def JvmOperation toGetterSignature(EObject f, String name, JvmTypeReference type) {
-		val g =	f.toGetter(name, type)
-		g.removeExistingBody
-
-		if (type.qualifiedName == "boolean")
-			g.simpleName = g.simpleName.replaceFirst("get", "is")
-
-		return g
+	def JvmOperation toGetterSignature(EObject o, EStructuralFeature f, JvmTypeReference type) {
+		return o.toMethod(f.getterName, type)[]
 	}
 
-	def JvmOperation toUmlGetterSignature(EObject f, String name, JvmTypeReference type) {
-		val g =	f.toGetter(name, type)
-		g.removeExistingBody
-
-		if (
-			   g.simpleName.startsWith("isIs")
-			&& Character.isUpperCase(g.simpleName.charAt(4))
-			&& type.qualifiedName == "boolean"
-		)
-			g.simpleName = g.simpleName.replaceFirst("is", "").toFirstLower
-
-		return g
+	def JvmOperation toSetterSignature(EObject o, EStructuralFeature f, JvmTypeReference type) {
+		return o.toMethod(f.setterName, Void::TYPE.typeRef)[
+			parameters += o.toParameter('''new«f.name.toFirstUpper»''', type)
+		]
 	}
 
-	def JvmOperation toSetterSignature(EObject f, String name, JvmTypeReference type) {
-		val s = f.toSetter(name.safeName, type)
-		s.removeExistingBody
-
-		return s
-	}
-
-	def JvmOperation toUnsetter(EObject f, String name) {
-		val s = f.toMethod("unset" + name.toFirstUpper, Void::TYPE.typeRef)[
-			annotations += Override.annotationRef
+	def JvmOperation toUnsetter(EObject o, EStructuralFeature f) {
+		val s = o.toMethod(f.unsetterName, Void::TYPE.typeRef)[
+//			annotations += Override.annotationRef
 
 			body = '''
-				adaptee.unset«name.toFirstUpper»() ;
+				adaptee.«f.unsetterName»() ;
 			'''
 		]
 
 		return s
 	}
 
-	def JvmOperation toUnsetterCheck(EObject f, String name) {
-		val s = f.toMethod("isSet" + name.toFirstUpper, Boolean::TYPE.typeRef)[
-			annotations += Override.annotationRef
+	def JvmOperation toUnsetterCheck(EObject o, EStructuralFeature f) {
+		val s = o.toMethod(f.unsetterCheckName, Boolean::TYPE.typeRef)[
+//			annotations += Override.annotationRef
 
 			body = '''
-				return adaptee.isSet«name.toFirstUpper»() ;
+				return adaptee.«f.unsetterCheckName»() ;
 			'''
 		]
 
 		return s
 	}
 
-	def JvmOperation toUnsetterSignature(EObject f, String name) {
-		val u = f.toUnsetter(name.safeName)
+	def JvmOperation toUnsetterSignature(EObject o, EStructuralFeature f) {
+		val u = o.toUnsetter(f)
 		u.removeExistingBody
 
 		return u
 	}
 
-	def JvmOperation toUnsetterCheckSignature(EObject f, String name) {
-		val u = f.toUnsetterCheck(name.safeName)
+	def JvmOperation toUnsetterCheckSignature(EObject o, EStructuralFeature f) {
+		val u = o.toUnsetterCheck(f)
 		u.removeExistingBody
 
 		return u
-	}
-
-	def String getSafeName(String name) {
-		return
-//			if (name.isJavaKeyword)
-//				name + "_"
-//			else
-				name
 	}
 
 	def boolean overrides(JvmOperation o1, JvmOperation o2) {
 		return
 			   o1.simpleName == o2.simpleName
-			&& o2.returnType.isSubtypeOf(o1.returnType)
+			&& ((o1.returnType === null && o2.returnType === null) || o2.returnType.isSubtypeOf(o1.returnType))
 			&& parameterEquals(o1.parameters, o2.parameters)
 	}
 

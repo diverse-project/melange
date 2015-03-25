@@ -142,6 +142,18 @@ class MelangeValidator extends AbstractMelangeValidator
 				MelangeValidationConstants.ASPECT_NOT_FOUND
 			)
 	}
+	
+	@Check
+	def void checkHasAnnotationProcessorDependency(Aspect asp) {
+		if (asp.aspectTypeRef?.type !== null && asp.aspectTypeRef.type instanceof JvmDeclaredType && 
+			(asp.aspectTypeRef.type as JvmDeclaredType).annotations.exists[annotation.eIsProxy]
+		)
+			error(
+				"Cannot find dependency to annotation processor. Please add k3.al.annotationprocessor",
+				MelangePackage.Literals.ASPECT__ASPECT_TYPE_REF,
+				MelangeValidationConstants.INVALID_ASPECT_IMPORT
+			)
+	}
 
 	@Check
 	def void checkAspectHasAnnotation(Aspect a) {

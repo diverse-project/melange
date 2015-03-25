@@ -36,7 +36,7 @@ class NamingHelper
 	def String normalize(QualifiedName name) {
 		val res = new StringBuilder
 
-		res.append(name.skipLast(1).segments.map[toFirstLower].join("."))
+		res.append(name.skipLast(1).segments.map[toLowerCase].join("."))
 		res.append("." + name.lastSegment/*.toFirstUpper*/)
 
 		return res.toString
@@ -127,7 +127,11 @@ class NamingHelper
 	}
 
 	def String interfaceNameFor(ModelType mt, EClass cls) {
-		return mt.fullyQualifiedName.toLowerCase.append(cls.name).normalize.toString
+		return
+			if (cls.EPackage.isEcore)
+				"org.eclipse.emf.ecore." + cls.name
+			else
+				mt.fullyQualifiedName.toLowerCase.append(cls.name).normalize.toString
 	}
 
 	def String adapterNameFor(Metamodel mm, ModelType mt, EClass cls) {
@@ -177,22 +181,24 @@ class NamingHelper
 	def String getGetterName(EStructuralFeature f) {
 		return
 			switch (f) {
+				case f.EContainingClass.EPackage.isUml:
+					f.umlGetterName
 				EAttribute:
 					if (f.EAttributeType.instanceClassName == "boolean" && !f.many)
-						'''is«f.name.toFirstUpper»'''.toString
+						'''is«f.name.toFirstUpper»'''
 					else
-						'''get«f.name.toFirstUpper»'''.toString
+						'''get«f.name.toFirstUpper»'''
 				EReference:
-					'''get«f.name.toFirstUpper»'''.toString
+					'''get«f.name.toFirstUpper»'''
 			}
 	}
 
 	def String getGetterName(JvmOperation op) {
 		return
 			if (op.returnType.type.simpleName == "boolean")
-				'''is«op.simpleName.toFirstUpper»'''.toString
+				'''is«op.simpleName.toFirstUpper»'''
 			else
-				'''get«op.simpleName.toFirstUpper»'''.toString
+				'''get«op.simpleName.toFirstUpper»'''
 	}
 
 	def String getUmlGetterName(EStructuralFeature f) {
@@ -200,47 +206,80 @@ class NamingHelper
 			switch (f) {
 				EAttribute:
 					if (f.EAttributeType.instanceClassName == "boolean")
-						'''«f.name.toFirstUpper»'''.toString
+						if (f.name.startsWith("is") && Character::isUpperCase(f.name.charAt(2)))
+							'''«f.formatUmlFeatureName»'''
+						else if (f.many)
+							'''get«f.formatUmlFeatureName.toFirstUpper»'''
+						else
+							'''is«f.formatUmlFeatureName.toFirstUpper»'''
 					else
-						'''get«f.name.toFirstUpper»'''.toString
+						'''get«f.formatUmlFeatureName.toFirstUpper»'''
 				EReference:
-					'''get«f.formatUmlReferenceName.toFirstUpper»'''.toString
+					'''get«f.formatUmlFeatureName.toFirstUpper»'''
 			}
 	}
 
+	def String getUmlSetterName(EStructuralFeature f) {
+		return '''set«f.formatUmlFeatureName.toFirstUpper»'''
+	}
+
 	def String getSetterName(EStructuralFeature f) {
-		return '''set«f.name.toFirstUpper»'''.toString
+		return
+			if (f.EContainingClass.EPackage.isUml)
+				f.umlSetterName
+			else
+				'''set«f.name.toFirstUpper»'''
 	}
 
 	def String getSetterName(JvmOperation op) {
-		return '''set«op.simpleName.toFirstUpper»'''.toString
+		return '''set«op.simpleName.toFirstUpper»'''
+	}
+
+	def String getUnsetterName(EStructuralFeature f) {
+		return
+			if (f.EContainingClass.EPackage.isUml)
+				'''unset«f.formatUmlFeatureName.toFirstUpper»'''
+			else
+				'''unset«f.name.toFirstUpper»'''
+	}
+
+	def String getUnsetterCheckName(EStructuralFeature f) {
+		return
+			if (f.EContainingClass.EPackage.isUml)
+				'''isSet«f.formatUmlFeatureName.toFirstUpper»'''
+			else
+				'''isSet«f.name.toFirstUpper»'''
 	}
 
 	def String formatUmlOperationName(EOperation op) {
 		val opName = op.name.toCamelCase
 
 		if (op.EParameters.head?.EType?.name == "EDiagnosticChain") {
-			return '''validate«opName.toFirstUpper»'''.toString
+			return '''validate«opName.toFirstUpper»'''
 		}
 
 		return opName
 	}
 
-	def String formatUmlReferenceName(EReference ref) {
+	def String formatUmlFeatureName(EStructuralFeature f) {
 		return
-			if (ref.name == "class")
+			if (f.name == "class")
 				"class_"
-			else if (ref.many) {
-				if (ref.name.endsWith("es"))
-					'''«ref.name.toFirstUpper»es'''.toString
-				else if (ref.name.endsWith("y"))
-					'''«ref.name.substring(0, ref.name.length - 1).toFirstUpper»ies'''.toString
-				else if (ref.name.endsWith("ex"))
-					'''«ref.name.substring(0, ref.name.length - 2).toFirstUpper»ices'''.toString
+			else if (f.many) {
+				if (f.name.endsWith("es"))
+					'''«f.name»es'''
+				else if (f.name.endsWith("y") && !f.name.endsWith("By"))
+					'''«f.name.substring(0, f.name.length - 1)»ies'''
+				else if (f.name.endsWith("ex"))
+					'''«f.name.substring(0, f.name.length - 2)»ices'''
+				else if (f.name.endsWith("ss"))
+					'''«f.name»es'''
+				else if (!f.name.endsWith("Data"))
+					'''«f.name»s'''
 				else
-					'''«ref.name.toFirstUpper»s'''.toString
+					f.name
 			} else
-				ref.name
+				f.name
 	}
 
 	def String toCamelCase(String s) {

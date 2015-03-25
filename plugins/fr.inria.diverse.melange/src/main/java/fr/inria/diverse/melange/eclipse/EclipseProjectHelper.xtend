@@ -23,6 +23,7 @@ import org.eclipse.core.runtime.SubProgressMonitor
 import org.eclipse.jdt.core.JavaCore
 import org.eclipse.pde.internal.core.natures.PDE
 import org.eclipse.xtext.util.MergeableManifest
+import org.eclipse.core.runtime.IPath
 
 class EclipseProjectHelper
 {
@@ -162,13 +163,16 @@ class EclipseProjectHelper
 			val workspace = ResourcesPlugin.workspace
 			val project = workspace.root.getProject(name)
 
-			if (project.exists)
-				project.delete(true, true, new SubProgressMonitor(monitor, 1))
+			var IPath previousProjectLocation = null
+			if (project.exists){
+				previousProjectLocation = project.location
+				project.delete(true, true, new SubProgressMonitor(monitor, 1))				
+			}
 
 			val javaProject = JavaCore::create(project)
 			val description = workspace.newProjectDescription(name)
 
-			description.location = null
+			description.location = previousProjectLocation
 			project.create(description, new SubProgressMonitor(monitor, 1))
 
 			val classpathEntries = newArrayList

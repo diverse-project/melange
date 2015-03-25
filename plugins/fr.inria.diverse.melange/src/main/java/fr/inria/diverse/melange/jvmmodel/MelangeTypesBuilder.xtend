@@ -2,17 +2,12 @@ package fr.inria.diverse.melange.jvmmodel
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
-
 import fr.inria.diverse.melange.lib.EcoreExtensions
-
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
-
-import java.util.List
-
+import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EDataType
@@ -20,14 +15,13 @@ import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EGenericType
 import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.ETypedElement
-
+import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.xtext.common.types.JvmTypeParameterDeclarator
 import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.common.types.TypesFactory
-
 import org.eclipse.xtext.common.types.util.TypeReferences
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
-import org.eclipse.emf.ecore.resource.ResourceSet
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
 @Singleton
 class MelangeTypesBuilder
@@ -36,8 +30,9 @@ class MelangeTypesBuilder
 	@Inject extension ModelTypeExtensions
 	@Inject extension NamingHelper
 	@Inject TypeReferences typeReferences
-	@Inject JvmTypeReferenceBuilder$Factory builderFactory
+	@Inject JvmTypeReferenceBuilder.Factory builderFactory
 	@Inject extension JvmTypeReferenceBuilder builder
+	@Inject extension JvmTypesBuilder
 
 	def void setContext(ResourceSet rs) {
 		builder = builderFactory.create(rs)
@@ -56,7 +51,7 @@ class MelangeTypesBuilder
 					Object.typeRef
 			}
 
-		return if (f.many) List.typeRef(baseType) else baseType
+		return if (f.many) EList.typeRef(baseType.cloneWithProxies) else baseType
 	}
 
 	def dispatch JvmTypeReference typeRef(ModelType ctx, EGenericType t, Iterable<JvmTypeParameterDeclarator> decl) {

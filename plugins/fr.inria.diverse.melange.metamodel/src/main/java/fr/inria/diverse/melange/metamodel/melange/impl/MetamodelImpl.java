@@ -34,6 +34,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getRequires <em>Requires</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getInheritanceRelation <em>Inheritance Relation</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getExactTypeName <em>Exact Type Name</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getExactTypeUri <em>Exact Type Uri</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getResourceType <em>Resource Type</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getResourceUri <em>Resource Uri</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getXtextSetupRef <em>Xtext Setup Ref</em>}</li>
@@ -113,6 +114,26 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 	 * @ordered
 	 */
 	protected String exactTypeName = EXACT_TYPE_NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getExactTypeUri() <em>Exact Type Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExactTypeUri()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String EXACT_TYPE_URI_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getExactTypeUri() <em>Exact Type Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExactTypeUri()
+	 * @generated
+	 * @ordered
+	 */
+	protected String exactTypeUri = EXACT_TYPE_URI_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getResourceType() <em>Resource Type</em>}' attribute.
@@ -358,6 +379,27 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getExactTypeUri() {
+		return exactTypeUri;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setExactTypeUri(String newExactTypeUri) {
+		String oldExactTypeUri = exactTypeUri;
+		exactTypeUri = newExactTypeUri;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.METAMODEL__EXACT_TYPE_URI, oldExactTypeUri, exactTypeUri));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ResourceType getResourceType() {
 		return resourceType;
 	}
@@ -511,6 +553,8 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 				return getInheritanceRelation();
 			case MelangePackage.METAMODEL__EXACT_TYPE_NAME:
 				return getExactTypeName();
+			case MelangePackage.METAMODEL__EXACT_TYPE_URI:
+				return getExactTypeUri();
 			case MelangePackage.METAMODEL__RESOURCE_TYPE:
 				return getResourceType();
 			case MelangePackage.METAMODEL__RESOURCE_URI:
@@ -552,6 +596,9 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 				return;
 			case MelangePackage.METAMODEL__EXACT_TYPE_NAME:
 				setExactTypeName((String)newValue);
+				return;
+			case MelangePackage.METAMODEL__EXACT_TYPE_URI:
+				setExactTypeUri((String)newValue);
 				return;
 			case MelangePackage.METAMODEL__RESOURCE_TYPE:
 				setResourceType((ResourceType)newValue);
@@ -596,6 +643,9 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 			case MelangePackage.METAMODEL__EXACT_TYPE_NAME:
 				setExactTypeName(EXACT_TYPE_NAME_EDEFAULT);
 				return;
+			case MelangePackage.METAMODEL__EXACT_TYPE_URI:
+				setExactTypeUri(EXACT_TYPE_URI_EDEFAULT);
+				return;
 			case MelangePackage.METAMODEL__RESOURCE_TYPE:
 				setResourceType(RESOURCE_TYPE_EDEFAULT);
 				return;
@@ -632,6 +682,8 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 				return inheritanceRelation != null;
 			case MelangePackage.METAMODEL__EXACT_TYPE_NAME:
 				return EXACT_TYPE_NAME_EDEFAULT == null ? exactTypeName != null : !EXACT_TYPE_NAME_EDEFAULT.equals(exactTypeName);
+			case MelangePackage.METAMODEL__EXACT_TYPE_URI:
+				return EXACT_TYPE_URI_EDEFAULT == null ? exactTypeUri != null : !EXACT_TYPE_URI_EDEFAULT.equals(exactTypeUri);
 			case MelangePackage.METAMODEL__RESOURCE_TYPE:
 				return resourceType != RESOURCE_TYPE_EDEFAULT;
 			case MelangePackage.METAMODEL__RESOURCE_URI:
@@ -656,6 +708,8 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (exactTypeName: ");
 		result.append(exactTypeName);
+		result.append(", exactTypeUri: ");
+		result.append(exactTypeUri);
 		result.append(", resourceType: ");
 		result.append(resourceType);
 		result.append(", resourceUri: ");
