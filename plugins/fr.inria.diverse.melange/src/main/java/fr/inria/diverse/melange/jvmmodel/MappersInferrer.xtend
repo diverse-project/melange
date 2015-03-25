@@ -157,4 +157,28 @@ class MappersInferrer{
 			]
 		]
 	}
+	
+	def void generateConverter(Iterable<Mapping> mappings, ModelTypingSpace root, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder){
+		
+		acceptor.accept(root.toClass(root.name + ".Converter"))
+		[
+			mappings.forEach[mapping |
+				val sourceMT = root.modelTypes.findFirst[name == mapping.from]
+				val targetMT = root.modelTypes.findFirst[name == mapping.to]
+				
+				members += root.toMethod("to"+targetMT.name, targetMT.fullyQualifiedName.toString.typeRef)[
+					^static = true
+					parameters += root.toParameter("sourceMT", sourceMT.fullyQualifiedName.toString.typeRef)
+					
+					val mapperClassName = sourceMT.mapperNameFor(targetMT)
+					//FIXME: the cast to ResourceAdapter is a workaround
+					body = '''
+						«mapperClassName» adapter = new «mapperClassName»() ;
+						adapter.setAdaptee((fr.inria.diverse.melange.adapters.ResourceAdapter)sourceMT) ;
+						return adapter ;
+					'''
+				]
+			]
+		]
+	}
 }
