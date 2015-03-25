@@ -17,15 +17,21 @@ import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.xtext.common.types.JvmMember
+import fr.inria.diverse.melange.adapters.ResourceAdapter
+import org.eclipse.xtext.xbase.jvmmodel.JvmAnnotationReferenceBuilder
+import java.io.IOException
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 class MappersInferrer{
 	
 	@Inject extension JvmTypesBuilder
+	@Inject extension IQualifiedNameProvider
 	@Inject extension ModelTypeExtensions
 	@Inject extension ASTHelper
 	@Inject extension MetaclassMapperInferrer
 	@Inject extension NamingHelper
-	@Inject extension EcoreExtensions
+	@Inject extension JvmAnnotationReferenceBuilder$Factory jvmAnnotationReferenceBuilderFactory
+	extension JvmAnnotationReferenceBuilder jvmAnnotationReferenceBuilder
 	
 	def void generateMappers(Mapping mapping, ModelTypingSpace root, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder){
 		val task = Stopwatches.forTask("generate mapping")
@@ -37,12 +43,19 @@ class MappersInferrer{
 		//Generate Mapper Factory
 		generateMapperFactory(mapping,sourceMT,targetMT,acceptor,builder)
 		
+		//Generate ModelType implementation for targetMT
+		generateModelTypeMapper(sourceMT,targetMT,acceptor,builder)
+		
 		//Generate all Mapper classes
 		mapping.rules.forEach[classMapping | classMapping.generateMapper(sourceMT, targetMT, acceptor, builder)]
 		
 		task.stop
 	}
 	
+	/**
+	 * Generate a factory that create Mapper objects.
+	 * These Mapper objects adapt {@link sourceMT} objects to {@link targetMT} objects
+	 */
 	def void generateMapperFactory(Mapping mapping, ModelType sourceMT, ModelType targetMT, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder){
 		val adapFactName = sourceMT.getMappersFactoryNameFor(targetMT)
 		acceptor.accept(sourceMT.toClass(adapFactName))
@@ -95,6 +108,53 @@ class MappersInferrer{
 				adap.setAdaptee(adaptee) ;
 				return adap ;
 			'''
+		]
+	}
+	
+	/**
+	 * Generate a concrete implementation class for {@link targetMT} interface to adapt {@link sourceMT}
+	 */
+	def void generateModelTypeMapper(ModelType sourceMT, ModelType targetMT, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder){
+		
+		acceptor.accept(targetMT.toClass(sourceMT.mapperNameFor(targetMT)))
+		[
+			superTypes += ResourceAdapter.typeRef
+			superTypes += targetMT.fullyQualifiedName.toString.typeRef
+
+			members += targetMT.toConstructor[
+				body = '''
+					super(«sourceMT.getMappersFactoryNameFor(targetMT)».getInstance()) ;
+				'''
+			]
+			
+			//FIXME
+			members += targetMT.toMethod("getFactory", targetMT.factoryName.typeRef)[
+//				annotations += Override.annotationRef
+
+				body = '''
+						return null;
+					'''
+			]
+
+//			members += targetMT.toMethod("getFactory", superType.factoryName.typeRef)[
+//				annotations += Override.annotationRef
+//
+//				body = '''
+//						return new «mm.factoryAdapterNameFor(superType)»() ;
+//					'''
+//			]
+
+			members += targetMT.toMethod("save", Void::TYPE.typeRef)[
+//				annotations += Override.annotationRef
+				parameters += targetMT.toParameter("uri", String.typeRef)
+
+				body = '''
+					this.adaptee.setURI(org.eclipse.emf.common.util.URI.createURI(uri));
+					this.adaptee.save(null);
+				'''
+
+				exceptions += IOException.typeRef
+			]
 		]
 	}
 }
