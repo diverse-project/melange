@@ -26,6 +26,7 @@ import org.eclipse.xtext.util.internal.Stopwatches
 import static fr.inria.diverse.melange.utils.AspectCopier.*
 import fr.inria.diverse.commons.asm.shade.resource.K3AspectPropertiesTransformer
 import fr.inria.diverse.commons.asm.shade.resource.ResourceTransformer
+import org.eclipse.xtext.naming.QualifiedName
 
 /**
  * Baaah, full of sh*t
@@ -36,6 +37,7 @@ class AspectCopier
 	@Inject extension MetamodelExtensions
 	@Inject extension IQualifiedNameConverter
 	@Inject extension NamingHelper
+	@Inject ErrorHelper errorHelper
 	static Logger log = Logger.getLogger(AspectCopier)
 
 	// FIXME: We should first check that aspects are importable (i.e. defined
@@ -50,8 +52,15 @@ class AspectCopier
 		val relocators = new ArrayList<Relocator>
 		val sourceEmfNamespace = asp.targetedNamespace
 		val targetEmfNamespace = mm.packageFqn.toQualifiedName.skipLast(1)
+				
 		val sourceAspectNamespace = asp.aspectTypeRef.identifier.toQualifiedName.skipLast(1)
-		val targetAspectNamespace = sourceAspectNamespace.skipLast(2).append(mm.name.toLowerCase).append(sourceAspectNamespace.lastSegment)
+		
+		
+		if(sourceEmfNamespace.equals(sourceAspectNamespace)){
+			errorHelper.addError(asp, "Melange cannot correctly handle aspect classes if they use the same package name as the aspectized emf classes, please move the aspect classes in a dedicated package", null)
+		}
+		val targetAspectNamespace = getAspectTargetNamespace(sourceAspectNamespace,mm)
+		
 
 		val projectPathTmp = new StringBuilder
 		val projectNameTmp = new StringBuilder
@@ -149,5 +158,20 @@ class AspectCopier
 		} finally {
 			task.stop
 		}
+	}
+	
+	def protected QualifiedName getAspectTargetNamespace(QualifiedName sourceAspectNamespace , Metamodel mm){
+		val postfix = if(sourceAspectNamespace.segmentCount > 1 &&(sourceAspectNamespace.lastSegment.equals("aspect") 
+				|| sourceAspectNamespace.lastSegment.equals("aspects")
+				|| sourceAspectNamespace.lastSegment.equals("k3dsa")
+				)){ sourceAspectNamespace.lastSegment } else{"aspect"}
+				
+		
+		if(sourceAspectNamespace.segmentCount > 2){
+			return sourceAspectNamespace.skipLast(2).append(mm.name.toLowerCase).append(postfix)
+		} else {
+				return sourceAspectNamespace.skipLast(1).append(mm.name.toLowerCase).append(postfix)
+		}
+
 	}
 }

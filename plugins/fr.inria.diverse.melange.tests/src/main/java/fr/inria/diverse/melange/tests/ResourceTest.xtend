@@ -3,9 +3,9 @@ package fr.inria.diverse.melange.tests
 import adapters.fsm.adapters.fsmmt.FsmAdapter
 import adapters.timedfsm.adapters.fsmmt.TimedFsmAdapter
 
-import fr.inria.diverse.melange.resource.MelangeResource
+import fr.inria.diverse.melange.resource.MelangeResourceImpl
 import fr.inria.diverse.melange.resource.MelangeResourceException
-import fr.inria.diverse.melange.resource.MelangeResourceFactory
+import fr.inria.diverse.melange.resource.MelangeResourceFactoryImpl
 import fr.inria.diverse.melange.resource.ModelTypeAdapter
 
 import org.eclipse.emf.common.util.URI
@@ -73,7 +73,7 @@ class ResourceTest
 		val res = uri.getResource
 
 		assertTrue(res instanceof XMIResource)
-		assertFalse(res instanceof MelangeResource)
+		assertFalse(res instanceof MelangeResourceImpl)
 	}
 
 	@Test(expected = MelangeResourceException)
@@ -90,7 +90,7 @@ class ResourceTest
 
 		Resource.Factory.Registry.INSTANCE.extensionToFactoryMap.put("fsm", new XMIResourceFactoryImpl)
 		Resource.Factory.Registry.INSTANCE.extensionToFactoryMap.put("timedfsm", new XMIResourceFactoryImpl)
-		Resource.Factory.Registry.INSTANCE.protocolToFactoryMap.put("melange", new MelangeResourceFactory)
+		Resource.Factory.Registry.INSTANCE.protocolToFactoryMap.put("melange", new MelangeResourceFactoryImpl)
 		EPackage.Registry.INSTANCE.put(fsm.FsmPackage.eNS_URI, fsm.FsmPackage.eINSTANCE)
 		EPackage.Registry.INSTANCE.put(timedfsm.TimedfsmPackage.eNS_URI, timedfsm.TimedfsmPackage.eINSTANCE)
 		ModelTypeAdapter.Registry.INSTANCE.registerAdapter(
