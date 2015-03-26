@@ -38,7 +38,7 @@ class MetaclassInterfaceInferrer
 
 		acceptor.accept(mt.toInterface(mt.interfaceNameFor(cls))[intf |
 			intf.superTypes += EObject.typeRef
-
+		]).initializeLater[intf |
 			cls.ETypeParameters.forEach[p |
 				intf.typeParameters += TypesFactory::eINSTANCE.createJvmTypeParameter => [name = p.name]
 			]
@@ -123,7 +123,7 @@ class MetaclassInterfaceInferrer
 					m.returnType = mt.typeRef(op, #[m, intf])
 				]
 			]
-		])
+		]
 
 		task.stop
 	}
