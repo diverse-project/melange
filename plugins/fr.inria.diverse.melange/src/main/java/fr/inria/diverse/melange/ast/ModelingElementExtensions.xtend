@@ -5,6 +5,9 @@ import fr.inria.diverse.melange.metamodel.melange.ModelingElement
 import fr.inria.diverse.melange.utils.EPackageProvider
 import java.io.IOException
 import java.util.List
+import org.eclipse.core.runtime.IProgressMonitor
+import org.eclipse.core.runtime.Status
+import org.eclipse.core.runtime.jobs.Job
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
@@ -64,11 +67,17 @@ class ModelingElementExtensions
 
 		res.contents += copy
 
-		try {
-			res.save(null)
-		} catch (IOException e) {
-			e.printStackTrace
-		}
+		new Job("Serializing Ecore") {
+			override run(IProgressMonitor monitor) {
+				try {
+					res.save(null)
+				} catch (IOException e) {
+					e.printStackTrace
+				}
+
+				return Status.OK_STATUS
+			}
+		}.schedule
 
 		return rootPkg
 	}
