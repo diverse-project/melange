@@ -32,9 +32,9 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 
 		try {
 //			if (Diagnostician.INSTANCE.validate(typingSpace).severity != Diagnostic.ERROR) {
-				root.modelTypes.filter[canGenerate].forEach[generateInterfaces(acceptor, _typeReferenceBuilder)]
-				root.metamodels.filter[canGenerate].forEach[generateAdapters(acceptor, _typeReferenceBuilder)]
-				root.transformations.forEach[generateTransformation(acceptor, _typeReferenceBuilder)]
+//				root.modelTypes.filter[canGenerate].forEach[generateInterfaces(acceptor, _typeReferenceBuilder)]
+//				root.metamodels.filter[canGenerate].forEach[generateAdapters(acceptor, _typeReferenceBuilder)]
+//				root.transformations.forEach[generateTransformation(acceptor, _typeReferenceBuilder)]
 //				root.slicers.forEach[generateSlicer]
 //			} else {
 //				logger.error('''Inferrer cannot proceed: there are errors in the model.''')
