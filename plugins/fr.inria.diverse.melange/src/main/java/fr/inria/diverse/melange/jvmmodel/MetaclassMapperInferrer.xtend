@@ -18,6 +18,8 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmAnnotationReferenceBuilder
 import org.eclipse.emf.common.util.EMap
 import org.eclipse.xtext.common.types.TypesFactory
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
+import fr.inria.diverse.melange.metamodel.melange.Metamodel
+import fr.inria.diverse.melange.ast.MetamodelExtensions
 
 class MetaclassMapperInferrer
 {
@@ -26,31 +28,32 @@ class MetaclassMapperInferrer
 	@Inject extension EcoreExtensions
 	@Inject extension MelangeTypesBuilder
 	@Inject extension ModelTypeExtensions
+	@Inject extension MetamodelExtensions
 	@Inject extension JvmAnnotationReferenceBuilder$Factory jvmAnnotationReferenceBuilderFactory
 	
 	extension JvmAnnotationReferenceBuilder jvmAnnotationReferenceBuilder
 	extension JvmTypeReferenceBuilder typeRefBuilder
 	
-	def void generateMapper(ClassBinding binding, ModelType sourceMT, ModelType targetMT, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
+	def void generateMapper(ClassBinding binding, Metamodel sourceModel, ModelType targetMT, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
 		typeRefBuilder = builder
 		jvmAnnotationReferenceBuilder = jvmAnnotationReferenceBuilderFactory.create(targetMT.extracted.eResource.resourceSet)
 		
 		
-		val sourceClass = sourceMT.allClasses.findFirst[name == binding.from]
+		val sourceClass = sourceModel.allClasses.findFirst[name == binding.from]
 		val targetClass = targetMT.allClasses.findFirst[name == binding.to]
 		
-		val mapperName = sourceMT.mapperNameFor(targetMT,targetClass)
+		val mapperName = sourceModel.mapperNameFor(targetMT,targetClass)
 		acceptor.accept(binding.toClass(mapperName))
 		[jvmCls |
 			
-			jvmCls.superTypes += EObjectAdapter.typeRef(sourceMT.interfaceNameFor(sourceClass).typeRef)
+			jvmCls.superTypes += EObjectAdapter.typeRef(sourceModel.typeRef(sourceClass, #[jvmCls]))
 			jvmCls.superTypes += targetMT.interfaceNameFor(targetClass).typeRef
 			
-			jvmCls.members += targetMT.toField("adaptersFactory", sourceMT.getMappersFactoryNameFor(targetMT).typeRef)
+			jvmCls.members += targetMT.toField("adaptersFactory", sourceModel.getMappersFactoryNameFor(targetMT).typeRef)
 
 			jvmCls.members += targetMT.toConstructor[
 				body = '''
-					super(«sourceMT.getMappersFactoryNameFor(targetMT)».getInstance()) ;
+					super(«sourceModel.getMappersFactoryNameFor(targetMT)».getInstance()) ;
 				'''
 			]
 
@@ -58,30 +61,30 @@ class MetaclassMapperInferrer
 				val propBinding = binding.properties.findFirst[propBinding | propBinding.to == targetAttr.name]
 				if(propBinding != null){
 					val sourceAttr = sourceClass.EAllAttributes.findFirst[name == propBinding.from]
-					processAttribute(sourceAttr,targetAttr,sourceMT, targetMT, jvmCls)
+					processAttribute(sourceAttr,targetAttr, targetMT, jvmCls)
 				}
 				else{
-					processAttribute(null,targetAttr,sourceMT, targetMT, jvmCls)
+					processAttribute(null,targetAttr, targetMT, jvmCls)
 				}
 			]
 			targetClass.EAllReferences.forEach[targetRef |
 				val propBinding = binding.properties.findFirst[propBinding | propBinding.to == targetRef.name]
 				if(propBinding != null){
 					val sourceRef = sourceClass.EAllReferences.findFirst[name == propBinding.from]
-					processReference(sourceRef,targetRef,sourceMT, targetMT, jvmCls)
+					processReference(sourceRef,targetRef,sourceModel, targetMT, jvmCls)
 				}
 				else{
-					processReference(null,targetRef,sourceMT, targetMT, jvmCls)
+					processReference(null,targetRef,sourceModel, targetMT, jvmCls)
 				}
 			]
-			targetClass.EAllOperations.sortByOverridingPriority.forEach[processOperation(sourceMT, targetMT, jvmCls)]
+			targetClass.EAllOperations.sortByOverridingPriority.forEach[processOperation(targetMT, jvmCls)]
 		]
 	}
 	
 	/**
-	 * @sourceAttr == null means we can use getter/setter
+	 * @sourceAttr != null means we can use getter/setter
 	 */
-	private def void processAttribute(EAttribute sourceAttr, EAttribute targetAttr, ModelType sourceMT, ModelType targetMT, JvmGenericType jvmCls) {
+	private def void processAttribute(EAttribute sourceAttr, EAttribute targetAttr, ModelType targetMT, JvmGenericType jvmCls) {
 		
 		val attrType = targetMT.typeRef(targetAttr, #[jvmCls])
 
@@ -126,12 +129,12 @@ class MetaclassMapperInferrer
 	}
 	
 	/**
-	 * @sourceRef == null means we can use getter/setter
+	 * @sourceRef != null means we can use getter/setter
 	 */
-	private def void processReference(EReference sourceRef, EReference targetRef, ModelType sourceMT, ModelType targetMT, JvmGenericType jvmCls) {	
+	private def void processReference(EReference sourceRef, EReference targetRef, Metamodel sourceModel, ModelType targetMT, JvmGenericType jvmCls) {	
 		
 		val refType = targetMT.typeRef(targetRef, #[jvmCls])
-		val mapName = sourceMT.mapperNameFor(targetMT, targetRef.EReferenceType)
+		val mapName = sourceModel.mapperNameFor(targetMT, targetRef.EReferenceType)
 
 		if (targetRef.isEMFMapDetails) // Special case: EMF Map$Entry
 			jvmCls.members += targetMT.toMethod("getDetails", EMap.typeRef(String.typeRef, String.typeRef))[
@@ -151,7 +154,7 @@ class MetaclassMapperInferrer
 					«IF targetRef.many»
 						return fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.«sourceRef.getterName»(), «mapName».class) ;
 					«ELSE»
-						return adaptersFactory.create«sourceMT.simpleMapperNameFor(targetMT, targetRef.EReferenceType)»(adaptee.«sourceRef.getterName»()) ;
+						return adaptersFactory.create«sourceModel.simpleMapperNameFor(targetMT, targetRef.EReferenceType)»(adaptee.«sourceRef.getterName»()) ;
 					«ENDIF»
 				'''
 				}
@@ -176,7 +179,7 @@ class MetaclassMapperInferrer
 		}
 	}
 	
-	private def void processOperation(EOperation op, ModelType sourceMT, ModelType targetMT, JvmGenericType jvmCls) {
+	private def void processOperation(EOperation op, ModelType targetMT, JvmGenericType jvmCls) {
 		val opName = if (!op.EContainingClass.EPackage.isUml) op.name else op.formatUmlOperationName
 		
 		val newOp = op.toMethod(opName, null)[m |

@@ -103,8 +103,8 @@ class NamingHelper
 		return mm.fullyQualifiedName.append("adapters").append(mt.fullyQualifiedName.lastSegment).toLowerCase.append(mt.name + "AdaptersFactory").normalize.toString
 	}
 	
-	def String getMappersFactoryNameFor(ModelType sourceMT, ModelType targetMT) {
-		return sourceMT.fullyQualifiedName.append("mappers").append(targetMT.fullyQualifiedName.lastSegment).toLowerCase.append(targetMT.name + "MappersFactory").normalize.toString
+	def String getMappersFactoryNameFor(Metamodel sourceModel, ModelType targetMT) {
+		return sourceModel.fullyQualifiedName.append("mappers").append(targetMT.fullyQualifiedName.lastSegment).toLowerCase.append(targetMT.name + "MappersFactory").normalize.toString
 	}
 
 	def String getFqnFor(ModelType mt, EClassifier cls) {
@@ -154,11 +154,11 @@ class NamingHelper
 		return mm.fullyQualifiedName.append("adapters").append(superMM.name).toLowerCase.append(cls.name + "Adapter").normalize.toString
 	}
 	
-	def String mapperNameFor(ModelType sourceMT, ModelType targetMT, EClass targetClass){
-		return sourceMT.fullyQualifiedName.append("mappers").append(targetMT.fullyQualifiedName.lastSegment).toLowerCase.append(targetClass.name + "Mapper").normalize.toString
+	def String mapperNameFor(Metamodel sourceModel, ModelType targetMT, EClass targetClass){
+		return sourceModel.fullyQualifiedName.append("mappers").append(targetMT.fullyQualifiedName.lastSegment).toLowerCase.append(targetClass.name + "Mapper").normalize.toString
 	}
 	
-	def String simpleMapperNameFor(ModelType sourceMT, ModelType targetMT, EClass targetClass){
+	def String simpleMapperNameFor(Metamodel sourceModel, ModelType targetMT, EClass targetClass){
 		return targetClass.name + "Mapper"
 	}
 
