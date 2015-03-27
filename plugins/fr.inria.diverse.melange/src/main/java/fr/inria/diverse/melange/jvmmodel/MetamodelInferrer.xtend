@@ -16,12 +16,15 @@ import org.eclipse.xtext.util.internal.Stopwatches
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
+import fr.inria.diverse.melange.ast.ASTHelper
 
 /**
  * This class manages generation of Java classes that implements a Metamodel.
  */
 class MetamodelInferrer
 {
+	@Inject extension ASTHelper
 	@Inject extension JvmTypesBuilder
 	@Inject extension IQualifiedNameProvider
 	@Inject extension NamingHelper
@@ -43,7 +46,7 @@ class MetamodelInferrer
 	 * @param acceptor
 	 * @param builder
 	 */
-	def void generateAdapters(Metamodel mm, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
+	def void generateAdapters(Metamodel mm, ModelTypingSpace root, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
 		val task = Stopwatches.forTask("generate metamodels")
 		task.start
 
@@ -76,6 +79,20 @@ class MetamodelInferrer
 						«adapName» adaptee = new «adapName»() ;
 						adaptee.setAdaptee(resource) ;
 						return adaptee ;
+					'''
+				]
+			]
+			
+			root.mappings.filter[from == mm.name].forEach[ bind |
+				val mt = root.metamodels.findFirst[bind.to == name].exactType
+				
+				val adapName = mm.mapperNameFor(mt)
+
+				members += mm.toMethod("to" + mt.name, mt.fullyQualifiedName.toString.typeRef)[
+					body = '''
+						«adapName» adapter = new «adapName»() ;
+						adapter.setAdaptee(resource) ;
+						return adapter ;
 					'''
 				]
 			]

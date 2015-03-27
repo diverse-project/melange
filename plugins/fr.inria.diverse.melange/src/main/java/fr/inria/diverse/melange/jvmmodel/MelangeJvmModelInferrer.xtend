@@ -45,7 +45,7 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 		try {
 //			if (Diagnostician.INSTANCE.validate(typingSpace).severity != Diagnostic.ERROR) {
 				root.modelTypes.filter[isComplete].forEach[generateInterfaces(acceptor, _typeReferenceBuilder)]
-				root.metamodels.filter[isComplete].forEach[generateAdapters(acceptor, _typeReferenceBuilder)]
+				root.metamodels.filter[isComplete].forEach[generateAdapters(root, acceptor, _typeReferenceBuilder)]
 				root.mappings.forEach[generateMappers(root, acceptor, _typeReferenceBuilder)]
 				root.transformations.forEach[generateTransformation(acceptor, _typeReferenceBuilder)]
 				root.createStandaloneSetup(acceptor)
