@@ -146,8 +146,8 @@ class NamingHelper
 		return mm.fullyQualifiedName.append("adapters").append(mt.fullyQualifiedName.lastSegment).toLowerCase.append(mm.name + "Adapter").normalize.toString
 	}
 	
-	def String mapperNameFor(ModelType sourceMT, ModelType targetMT) {
-		return sourceMT.fullyQualifiedName.append("mappers").append(targetMT.fullyQualifiedName.lastSegment).toLowerCase.append(sourceMT.name + "Adapter").normalize.toString
+	def String mapperNameFor(Metamodel sourceModel, ModelType targetMT) {
+		return sourceModel.fullyQualifiedName.append("mappers").append(targetMT.fullyQualifiedName.lastSegment).toLowerCase.append(sourceModel.name + "Adapter").normalize.toString
 	}
 
 	def String adapterNameFor(Metamodel mm, Metamodel superMM, EClass cls) {

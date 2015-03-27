@@ -47,7 +47,6 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 				root.modelTypes.filter[isComplete].forEach[generateInterfaces(acceptor, _typeReferenceBuilder)]
 				root.metamodels.filter[isComplete].forEach[generateAdapters(acceptor, _typeReferenceBuilder)]
 				root.mappings.forEach[generateMappers(root, acceptor, _typeReferenceBuilder)]
-				root.mappings.generateConverter(root, acceptor, _typeReferenceBuilder)
 				root.transformations.forEach[generateTransformation(acceptor, _typeReferenceBuilder)]
 				root.createStandaloneSetup(acceptor)
 //				root.slicers.forEach[generateSlicer]

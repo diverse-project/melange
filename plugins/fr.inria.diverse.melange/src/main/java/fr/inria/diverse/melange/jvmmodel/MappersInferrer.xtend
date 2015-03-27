@@ -21,12 +21,15 @@ import fr.inria.diverse.melange.adapters.ResourceAdapter
 import org.eclipse.xtext.xbase.jvmmodel.JvmAnnotationReferenceBuilder
 import java.io.IOException
 import org.eclipse.xtext.naming.IQualifiedNameProvider
+import fr.inria.diverse.melange.metamodel.melange.Metamodel
+import fr.inria.diverse.melange.ast.MetamodelExtensions
 
 class MappersInferrer{
 	
 	@Inject extension JvmTypesBuilder
 	@Inject extension IQualifiedNameProvider
 	@Inject extension ModelTypeExtensions
+	@Inject extension MetamodelExtensions
 	@Inject extension ASTHelper
 	@Inject extension MetaclassMapperInferrer
 	@Inject extension NamingHelper
@@ -37,17 +40,17 @@ class MappersInferrer{
 		val task = Stopwatches.forTask("generate mapping")
 		task.start
 		
-		val sourceMT = root.modelTypes.findFirst[name == mapping.from]
+		val sourceModel = root.metamodels.findFirst[name == mapping.from]
 		val targetMT = root.modelTypes.findFirst[name == mapping.to]
 		
 		//Generate Mapper Factory
-		generateMapperFactory(mapping,sourceMT,targetMT,acceptor,builder)
+		generateMapperFactory(mapping,sourceModel,targetMT,acceptor,builder)
 		
 		//Generate ModelType implementation for targetMT
-		generateModelTypeMapper(sourceMT,targetMT,acceptor,builder)
+		generateModelTypeMapper(sourceModel,targetMT,acceptor,builder)
 		
 		//Generate all Mapper classes
-		mapping.rules.forEach[classMapping | classMapping.generateMapper(sourceMT, targetMT, acceptor, builder)]
+		mapping.rules.forEach[classMapping | classMapping.generateMapper(sourceModel, targetMT, acceptor, builder)]
 		
 		task.stop
 	}
@@ -56,15 +59,15 @@ class MappersInferrer{
 	 * Generate a factory that create Mapper objects.
 	 * These Mapper objects adapt {@link sourceMT} objects to {@link targetMT} objects
 	 */
-	def void generateMapperFactory(Mapping mapping, ModelType sourceMT, ModelType targetMT, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder){
-		val adapFactName = sourceMT.getMappersFactoryNameFor(targetMT)
-		acceptor.accept(sourceMT.toClass(adapFactName))
+	def void generateMapperFactory(Mapping mapping, Metamodel sourceModel, ModelType targetMT, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder){
+		val adapFactName = sourceModel.getMappersFactoryNameFor(targetMT)
+		acceptor.accept(sourceModel.toClass(adapFactName))
 		[
 			superTypes += AdaptersFactory.typeRef
 
-			members += sourceMT.toField("instance", adapFactName.typeRef)[static = true]
+			members += sourceModel.toField("instance", adapFactName.typeRef)[static = true]
 
-			members += sourceMT.toMethod("getInstance", adapFactName.typeRef)[
+			members += sourceModel.toMethod("getInstance", adapFactName.typeRef)[
 				static = true
 				body = '''
 					if (instance == null) {
@@ -74,22 +77,22 @@ class MappersInferrer{
 				'''
 			]
 
-			members += sourceMT.toMethod("createAdapter", EObjectAdapter.typeRef)[
-				parameters += sourceMT.toParameter("o", EObject.typeRef)
+			members += sourceModel.toMethod("createAdapter", EObjectAdapter.typeRef)[
+				parameters += sourceModel.toParameter("o", EObject.typeRef)
 
 				body = '''
 					«FOR classMapping : mapping.rules»
-					if (o instanceof «sourceMT.getFqnFor(sourceMT.allClasses.findFirst[name == classMapping.from])»)
-						return create«targetMT.allClasses.findFirst[name == classMapping.to].name»Mapper((«sourceMT.getFqnFor(sourceMT.allClasses.findFirst[name == classMapping.from])») o) ;
+					if (o instanceof «sourceModel.getFqnFor(sourceModel.allClasses.findFirst[name == classMapping.from])»)
+						return create«targetMT.allClasses.findFirst[name == classMapping.to].name»Mapper((«sourceModel.getFqnFor(sourceModel.allClasses.findFirst[name == classMapping.from])») o) ;
 					«ENDFOR»
 					return null;
 				'''
 			]
 			
 			mapping.rules.forEach[classMapping | 
-				val sourceClass = sourceMT.allClasses.findFirst[name == classMapping.from]
+				val sourceClass = sourceModel.allClasses.findFirst[name == classMapping.from]
 				val targetClass = targetMT.allClasses.findFirst[name == classMapping.to]
-				members += generateCreateMapper(sourceClass,targetClass,sourceMT,targetMT,builder)
+				members += generateCreateMapper(sourceClass,targetClass,sourceModel,targetMT,builder)
 			]
 		]
 	}
@@ -97,11 +100,11 @@ class MappersInferrer{
 	/**
 	 * Return a method that creates a Mapper object.
 	 */
-	def JvmMember generateCreateMapper(EClass sourceClass, EClass targetClass, ModelType sourceMT, ModelType targetMT, extension JvmTypeReferenceBuilder builder){
-		val adapName = sourceMT.mapperNameFor(targetMT, targetClass)
+	def JvmMember generateCreateMapper(EClass sourceClass, EClass targetClass, Metamodel sourceModel, ModelType targetMT, extension JvmTypeReferenceBuilder builder){
+		val adapName = sourceModel.mapperNameFor(targetMT, targetClass)
 		
-		sourceMT.toMethod('''create«targetClass.name»Mapper''', adapName.typeRef)[
-			parameters += sourceMT.toParameter("adaptee", sourceMT.getFqnFor(sourceClass).typeRef)
+		sourceModel.toMethod('''create«targetClass.name»Mapper''', adapName.typeRef)[
+			parameters += sourceModel.toParameter("adaptee", sourceModel.getFqnFor(sourceClass).typeRef)
 
 			body = '''
 				«adapName» adap = new «adapName»() ;
@@ -114,16 +117,16 @@ class MappersInferrer{
 	/**
 	 * Generate a concrete implementation class for {@link targetMT} interface to adapt {@link sourceMT}
 	 */
-	def void generateModelTypeMapper(ModelType sourceMT, ModelType targetMT, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder){
+	def void generateModelTypeMapper(Metamodel sourceModel, ModelType targetMT, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder){
 		
-		acceptor.accept(targetMT.toClass(sourceMT.mapperNameFor(targetMT)))
+		acceptor.accept(targetMT.toClass(sourceModel.mapperNameFor(targetMT)))
 		[
 			superTypes += ResourceAdapter.typeRef
 			superTypes += targetMT.fullyQualifiedName.toString.typeRef
 
 			members += targetMT.toConstructor[
 				body = '''
-					super(«sourceMT.getMappersFactoryNameFor(targetMT)».getInstance()) ;
+					super(«sourceModel.getMappersFactoryNameFor(targetMT)».getInstance()) ;
 				'''
 			]
 			
@@ -154,30 +157,6 @@ class MappersInferrer{
 				'''
 
 				exceptions += IOException.typeRef
-			]
-		]
-	}
-	
-	def void generateConverter(Iterable<Mapping> mappings, ModelTypingSpace root, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder){
-		
-		acceptor.accept(root.toClass(root.name + ".Converter"))
-		[
-			mappings.forEach[mapping |
-				val sourceMT = root.modelTypes.findFirst[name == mapping.from]
-				val targetMT = root.modelTypes.findFirst[name == mapping.to]
-				
-				members += root.toMethod("to"+targetMT.name, targetMT.fullyQualifiedName.toString.typeRef)[
-					^static = true
-					parameters += root.toParameter("sourceMT", sourceMT.fullyQualifiedName.toString.typeRef)
-					
-					val mapperClassName = sourceMT.mapperNameFor(targetMT)
-					//FIXME: the cast to ResourceAdapter is a workaround
-					body = '''
-						«mapperClassName» adapter = new «mapperClassName»() ;
-						adapter.setAdaptee((fr.inria.diverse.melange.adapters.ResourceAdapter)sourceMT) ;
-						return adapter ;
-					'''
-				]
 			]
 		]
 	}
