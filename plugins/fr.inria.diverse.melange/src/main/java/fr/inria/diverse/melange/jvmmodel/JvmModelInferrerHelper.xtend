@@ -44,7 +44,7 @@ class JvmModelInferrerHelper
 
 	def JvmOperation toUnsetter(EObject o, EStructuralFeature f) {
 		val s = o.toMethod(f.unsetterName, Void::TYPE.typeRef)[
-//			annotations += Override.annotationRef
+			annotations += Override.annotationRef
 
 			body = '''
 				adaptee.«f.unsetterName»() ;
@@ -56,7 +56,7 @@ class JvmModelInferrerHelper
 
 	def JvmOperation toUnsetterCheck(EObject o, EStructuralFeature f) {
 		val s = o.toMethod(f.unsetterCheckName, Boolean::TYPE.typeRef)[
-//			annotations += Override.annotationRef
+			annotations += Override.annotationRef
 
 			body = '''
 				return adaptee.«f.unsetterCheckName»() ;
@@ -67,17 +67,11 @@ class JvmModelInferrerHelper
 	}
 
 	def JvmOperation toUnsetterSignature(EObject o, EStructuralFeature f) {
-		val u = o.toUnsetter(f)
-		u.removeExistingBody
-
-		return u
+		return o.toMethod(f.unsetterName, Void::TYPE.typeRef)[]
 	}
 
 	def JvmOperation toUnsetterCheckSignature(EObject o, EStructuralFeature f) {
-		val u = o.toUnsetterCheck(f)
-		u.removeExistingBody
-
-		return u
+		return o.toMethod(f.unsetterCheckName, Boolean::TYPE.typeRef)[]
 	}
 
 	def boolean overrides(JvmOperation o1, JvmOperation o2) {
