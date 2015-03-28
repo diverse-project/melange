@@ -16,6 +16,7 @@ import org.eclipse.core.resources.IFile
 import org.eclipse.core.resources.IProject
 import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.core.runtime.CoreException
+import org.eclipse.core.runtime.IPath
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.core.runtime.NullProgressMonitor
 import org.eclipse.core.runtime.Path
@@ -23,7 +24,6 @@ import org.eclipse.core.runtime.SubProgressMonitor
 import org.eclipse.jdt.core.JavaCore
 import org.eclipse.pde.internal.core.natures.PDE
 import org.eclipse.xtext.util.MergeableManifest
-import org.eclipse.core.runtime.IPath
 
 class EclipseProjectHelper
 {

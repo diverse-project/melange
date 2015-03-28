@@ -1,19 +1,13 @@
 package fr.inria.diverse.melange.compiler
 
 import com.google.inject.Inject
-
 import fr.inria.diverse.melange.lib.IMetamodel
 import fr.inria.diverse.melange.lib.IModelType
-
 import fr.inria.diverse.melange.typesystem.MelangeTypesRegistry
-
 import org.eclipse.xtext.naming.IQualifiedNameProvider
-
 import org.eclipse.xtext.xbase.XCastedExpression
 import org.eclipse.xtext.xbase.XExpression
-
 import org.eclipse.xtext.xbase.compiler.XbaseCompiler
-
 import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable
 
 class ModelOrientedXbaseCompiler extends XbaseCompiler

@@ -1,28 +1,21 @@
 package fr.inria.diverse.melange.resource.loader
 
+import org.dozer.DozerBeanMapper
+import org.dozer.config.BeanContainer
+import org.dozer.loader.api.BeanMappingBuilder
+import org.dozer.loader.api.FieldsMappingOptions
+import org.dozer.loader.api.TypeMappingOptions
+import org.dozer.util.DozerClassLoader
 import org.eclipse.emf.common.util.URI
-
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EPackage
-
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-
 import org.eclipse.emf.ecore.util.EcoreUtil
-
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 
-import org.dozer.DozerBeanMapper
-
-import org.dozer.loader.api.BeanMappingBuilder
-import org.dozer.loader.api.FieldsMappingOptions
-
 import static extension fr.inria.diverse.melange.resource.loader.EcoreHelper.*
-import org.dozer.config.BeanContainer
-import org.dozer.util.DozerClassLoader
-import java.net.URL
-import org.dozer.loader.api.TypeMappingOptions
 
 class DozerLoader implements ExtensionsAwareLoader
 {
@@ -34,11 +27,11 @@ class DozerLoader implements ExtensionsAwareLoader
 		pkgExtended = extended
 
 		// Regular EMF Registration
-		Resource$Factory$Registry.INSTANCE.extensionToFactoryMap.put(base.nsPrefix,     new XMIResourceFactoryImpl)
-		Resource$Factory$Registry.INSTANCE.extensionToFactoryMap.put(extended.nsPrefix, new XMIResourceFactoryImpl)
+		Resource.Factory.Registry.INSTANCE.extensionToFactoryMap.put(base.nsPrefix,     new XMIResourceFactoryImpl)
+		Resource.Factory.Registry.INSTANCE.extensionToFactoryMap.put(extended.nsPrefix, new XMIResourceFactoryImpl)
 
-		EPackage$Registry.INSTANCE.put(base.nsURI,     base)
-		EPackage$Registry.INSTANCE.put(extended.nsURI, extended)
+		EPackage.Registry.INSTANCE.put(base.nsURI,     base)
+		EPackage.Registry.INSTANCE.put(extended.nsURI, extended)
 	}
 
 	override loadExtendedAsBase(String uri, boolean loadOnDemand) throws PackageCompatibilityException {
@@ -237,39 +230,30 @@ class BaseToExtendedBuilder extends BeanMappingBuilder
 
 public class OsgiDozerClassLoader implements DozerClassLoader {
 
-	private ClassLoader _cl1;
-	private ClassLoader _cl2;
+	private ClassLoader cl1
+	private ClassLoader cl2
    
     override loadClass(String className) {
         try {
-            return _cl1.loadClass(className);
+            return cl1.loadClass(className)
         } catch (ClassNotFoundException e1) {
 	        try {
-	            return _cl2.loadClass(className);
+	            return cl2.loadClass(className)
 	        } catch (ClassNotFoundException e2) {
-	            return null;
+	            return null
 	        }
         }
     }
  
-	override loadResource(String uri) 
-	{        
-        var url = _cl1.getResource(uri);
-		if (url == null)
-		{
-	        url = _cl2.getResource(uri);			
-		}         
-        if (url == null) 
-        {
-            url = class.classLoader.getResource(uri);
-        }         
-        return url;
+	override loadResource(String uri) {
+		return
+			cl1.getResource(uri) ?:
+			cl2.getResource(uri) ?:
+			class.classLoader.getResource(uri)
     }
-	
-	def updateContext(Class<?> class1, Class<?> class2) 
-	{
-		_cl1 = class1.classLoader
-		_cl2 = class2.classLoader
+
+	def void updateContext(Class<?> class1, Class<?> class2) {
+		cl1 = class1.classLoader
+		cl2 = class2.classLoader
 	}
-	
 }

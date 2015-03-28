@@ -74,13 +74,6 @@ class JvmModelInferrerHelper
 	}
 
 	def JvmOperation toUnsetterCheckSignature(EObject o, EStructuralFeature f) {
-		val u = o.toUnsetterCheck(f)
-		u.removeExistingBody
-
-		return u
-	}
-
-	def JvmOperation toUnsetterCheckSignature(EObject o, EStructuralFeature f) {
 		return o.toMethod(f.unsetterCheckName, Boolean::TYPE.typeRef)[]
 	}
 

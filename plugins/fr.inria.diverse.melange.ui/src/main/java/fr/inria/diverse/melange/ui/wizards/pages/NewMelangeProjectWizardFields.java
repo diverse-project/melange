@@ -1,6 +1,5 @@
 package fr.inria.diverse.melange.ui.wizards.pages;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 
 import fr.inria.diverse.commons.eclipse.pde.wizards.pages.pde.ui.BaseProjectWizardFields;

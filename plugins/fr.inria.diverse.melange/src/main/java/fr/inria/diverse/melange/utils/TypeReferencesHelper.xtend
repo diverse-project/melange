@@ -1,17 +1,12 @@
 package fr.inria.diverse.melange.utils
 
 import com.google.inject.Inject
-
 import java.util.Collection
-
 import org.eclipse.emf.ecore.resource.Resource
-
 import org.eclipse.xtext.common.types.JvmTypeParameterDeclarator
 import org.eclipse.xtext.common.types.JvmTypeReference
-
 import org.eclipse.xtext.xbase.typesystem.references.LightweightTypeReference
 import org.eclipse.xtext.xbase.typesystem.references.StandardTypeReferenceOwner
-
 import org.eclipse.xtext.xbase.typesystem.util.CommonTypeComputationServices
 
 class TypeReferencesHelper

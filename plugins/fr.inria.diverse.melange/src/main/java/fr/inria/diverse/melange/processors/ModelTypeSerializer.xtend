@@ -8,7 +8,6 @@ import org.apache.log4j.Logger
 import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.core.runtime.Path
 import org.eclipse.emf.ecore.EPackage
-import fr.inria.diverse.melange.utils.ErrorHelper
 
 /**
  * Serializes an Ecore for each model type and registers it

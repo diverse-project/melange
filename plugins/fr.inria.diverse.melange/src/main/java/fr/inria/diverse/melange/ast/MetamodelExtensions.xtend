@@ -10,6 +10,7 @@ import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.utils.EPackageProvider
 import java.io.IOException
 import java.util.List
+import org.apache.log4j.Logger
 import org.eclipse.core.resources.IProject
 import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.core.runtime.Path
@@ -31,10 +32,6 @@ import org.eclipse.xtext.common.types.JvmTypeAnnotationValue
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.xbase.XAbstractFeatureCall
-
-import org.apache.log4j.Logger
-
-import org.apache.log4j.Logger
 
 class MetamodelExtensions
 {
@@ -136,7 +133,7 @@ class MetamodelExtensions
 			return mm.genmodels.filterNull.map[genPackages].flatten.filterNull.exists[
 				packageFqn.toQualifiedName.skipLast(1).toString == asp.targetedNamespace.toString
 			]
-		} catch (java.lang.IllegalArgumentException e){
+		} catch (IllegalArgumentException e){
 			val unresolvedProxyAspect = (asp.aspectTypeRef.type as JvmDeclaredType).annotations.exists[annotation.eIsProxy]
 			if(unresolvedProxyAspect){
 				log.debug("annotationProcessor dependency missing, please add k3al.annotationprocessor to the classpath ", e)

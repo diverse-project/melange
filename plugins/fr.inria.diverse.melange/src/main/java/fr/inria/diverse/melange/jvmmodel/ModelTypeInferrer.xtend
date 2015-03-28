@@ -1,28 +1,18 @@
 package fr.inria.diverse.melange.jvmmodel
 
 import com.google.inject.Inject
-
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
-
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.IFactory
 import fr.inria.diverse.melange.lib.IModelType
-
 import fr.inria.diverse.melange.metamodel.melange.ModelType
-
 import java.io.IOException
-
 import org.eclipse.emf.common.util.EList
-
 import org.eclipse.emf.ecore.EObject
-
 import org.eclipse.xtext.common.types.TypesFactory
-
 import org.eclipse.xtext.naming.IQualifiedNameProvider
-
 import org.eclipse.xtext.util.internal.Stopwatches
-
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder

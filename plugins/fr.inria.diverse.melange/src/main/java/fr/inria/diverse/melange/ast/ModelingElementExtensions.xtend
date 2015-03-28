@@ -5,9 +5,6 @@ import fr.inria.diverse.melange.metamodel.melange.ModelingElement
 import fr.inria.diverse.melange.utils.EPackageProvider
 import java.io.IOException
 import java.util.List
-import org.eclipse.emf.common.util.URI
-import org.eclipse.emf.ecore.EPackage
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.core.runtime.Status
 import org.eclipse.core.runtime.jobs.Job

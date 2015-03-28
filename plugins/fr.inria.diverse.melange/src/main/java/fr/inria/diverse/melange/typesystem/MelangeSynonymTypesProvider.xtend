@@ -1,15 +1,12 @@
 package fr.inria.diverse.melange.typesystem
 
 import com.google.inject.Inject
-
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.xbase.typesystem.computation.SynonymTypesProvider
-
 import org.eclipse.xtext.xbase.typesystem.conformance.ConformanceHint
-
 import org.eclipse.xtext.xbase.typesystem.references.ITypeReferenceOwner
 import org.eclipse.xtext.xbase.typesystem.references.LightweightTypeReference
 import org.eclipse.xtext.xbase.typesystem.references.ParameterizedTypeReference
-import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 /**
  * Extends Xbase with modeltype-specific type synonyms

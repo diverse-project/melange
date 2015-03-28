@@ -4,6 +4,8 @@ import fr.inria.diverse.commons.asm.shade.DirectoryShader
 import fr.inria.diverse.commons.asm.shade.ShadeRequest
 import fr.inria.diverse.commons.asm.shade.relocation.Relocator
 import fr.inria.diverse.commons.asm.shade.relocation.SimpleRelocator
+import fr.inria.diverse.commons.asm.shade.resource.K3AspectPropertiesTransformer
+import fr.inria.diverse.commons.asm.shade.resource.ResourceTransformer
 import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
@@ -21,12 +23,10 @@ import org.eclipse.core.resources.IResourceVisitor
 import org.eclipse.core.runtime.CoreException
 import org.eclipse.emf.common.util.URI
 import org.eclipse.xtext.naming.IQualifiedNameConverter
+import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.util.internal.Stopwatches
 
 import static fr.inria.diverse.melange.utils.AspectCopier.*
-import fr.inria.diverse.commons.asm.shade.resource.K3AspectPropertiesTransformer
-import fr.inria.diverse.commons.asm.shade.resource.ResourceTransformer
-import org.eclipse.xtext.naming.QualifiedName
 
 /**
  * Baaah, full of sh*t

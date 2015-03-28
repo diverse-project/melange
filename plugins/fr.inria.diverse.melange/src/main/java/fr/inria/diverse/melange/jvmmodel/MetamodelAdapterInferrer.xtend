@@ -30,7 +30,7 @@ class MetamodelAdapterInferrer
 	@Inject extension EcoreExtensions
 	@Inject extension MelangeTypesBuilder
 	@Inject extension ModelingElementExtensions
-	@Inject extension JvmAnnotationReferenceBuilder$Factory jvmAnnotationReferenceBuilderFactory
+	@Inject extension JvmAnnotationReferenceBuilder.Factory jvmAnnotationReferenceBuilderFactory
 	extension JvmAnnotationReferenceBuilder jvmAnnotationReferenceBuilder
 
 	/**
