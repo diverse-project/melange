@@ -80,6 +80,10 @@ class JvmModelInferrerHelper
 		return u
 	}
 
+	def JvmOperation toUnsetterCheckSignature(EObject o, EStructuralFeature f) {
+		return o.toMethod(f.unsetterCheckName, Boolean::TYPE.typeRef)[]
+	}
+
 	def boolean overrides(JvmOperation o1, JvmOperation o2) {
 		return
 			   o1.simpleName == o2.simpleName

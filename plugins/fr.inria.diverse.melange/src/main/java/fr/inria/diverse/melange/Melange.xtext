@@ -19,7 +19,7 @@ TransformationDecl returns Transformation:
 ;
 
 Metamodel:
-	'metamodel' name = ValidID (inheritanceRelation = Inheritance)?
+	'language' name = ValidID (inheritanceRelation = Inheritance)?
 	('implements' implements += [ModelType | QualifiedName] (',' implements += [ModelType | QualifiedName])*)?
 	('requires' requires += [ModelType | QualifiedName] (',' requires += [ModelType | QualifiedName])*)?
 	'{'
