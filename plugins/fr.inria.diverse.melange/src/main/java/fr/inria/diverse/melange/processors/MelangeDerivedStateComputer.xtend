@@ -42,6 +42,7 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 		AdapterExtensionPointProcessor p,
 		ModelTypeSerializer s
 	) {
+	new(EcoreUriInferrer i, AspectsCopier c, AspectsWeaver a, ExactTypeInferrer e, TypingInferrer t, ModelTypeSerializer s) {
 		processors += i
 		processors += c
 		processors += a
