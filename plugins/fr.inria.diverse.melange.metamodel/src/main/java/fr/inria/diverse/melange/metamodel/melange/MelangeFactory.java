@@ -85,6 +85,33 @@ public interface MelangeFactory extends EFactory {
 	XbaseTransformation createXbaseTransformation();
 
 	/**
+	 * Returns a new object of class '<em>Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mapping</em>'.
+	 * @generated
+	 */
+	Mapping createMapping();
+
+	/**
+	 * Returns a new object of class '<em>Class Binding</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Class Binding</em>'.
+	 * @generated
+	 */
+	ClassBinding createClassBinding();
+
+	/**
+	 * Returns a new object of class '<em>Property Binding</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Property Binding</em>'.
+	 * @generated
+	 */
+	PropertyBinding createPropertyBinding();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

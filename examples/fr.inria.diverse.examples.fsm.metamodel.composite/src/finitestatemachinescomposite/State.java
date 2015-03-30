@@ -66,7 +66,11 @@ public interface State extends NamedElement {
 	 * Returns the value of the '<em><b>State Machine</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
+<<<<<<< HEAD
 	 * If the meaning of the '<em>State Machine</em>' reference isn't clear,
+=======
+	 * If the meaning of the '<em>State Machine</em>' container reference isn't clear,
+>>>>>>> mapping
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->

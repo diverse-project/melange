@@ -7,6 +7,7 @@ import finitestatemachinescomposite.FinitestatemachinescompositePackage;
 import finitestatemachinescomposite.State;
 import finitestatemachinescomposite.StateMachine;
 import finitestatemachinescomposite.Transition;
+<<<<<<< HEAD
 
 import java.util.Collection;
 
@@ -20,6 +21,15 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+=======
+import java.util.Collection;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+>>>>>>> mapping
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
