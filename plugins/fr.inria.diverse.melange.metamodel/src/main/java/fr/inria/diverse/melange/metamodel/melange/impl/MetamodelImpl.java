@@ -4,6 +4,7 @@ package fr.inria.diverse.melange.metamodel.melange.impl;
 
 import fr.inria.diverse.melange.metamodel.melange.Aspect;
 import fr.inria.diverse.melange.metamodel.melange.Inheritance;
+import fr.inria.diverse.melange.metamodel.melange.Mapping;
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
 import fr.inria.diverse.melange.metamodel.melange.Metamodel;
 import fr.inria.diverse.melange.metamodel.melange.ModelType;
@@ -18,6 +19,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.xtext.common.types.JvmTypeReference;
 
@@ -39,6 +41,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getResourceUri <em>Resource Uri</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getXtextSetupRef <em>Xtext Setup Ref</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getGenmodelUris <em>Genmodel Uris</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getMappings <em>Mappings</em>}</li>
  * </ul>
  * </p>
  *
@@ -194,6 +197,16 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 	 * @ordered
 	 */
 	protected EList<String> genmodelUris;
+
+	/**
+	 * The cached value of the '{@link #getMappings() <em>Mappings</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMappings()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Mapping> mappings;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -497,6 +510,19 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Mapping> getMappings() {
+		if (mappings == null) {
+			mappings = new EObjectWithInverseEList<Mapping>(Mapping.class, this, MelangePackage.METAMODEL__MAPPINGS, MelangePackage.MAPPING__FROM);
+		}
+		return mappings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -508,6 +534,8 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 				if (inheritanceRelation != null)
 					msgs = ((InternalEObject)inheritanceRelation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MelangePackage.METAMODEL__INHERITANCE_RELATION, null, msgs);
 				return basicSetInheritanceRelation((Inheritance)otherEnd, msgs);
+			case MelangePackage.METAMODEL__MAPPINGS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getMappings()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -528,6 +556,8 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 				return basicSetInheritanceRelation(null, msgs);
 			case MelangePackage.METAMODEL__XTEXT_SETUP_REF:
 				return basicSetXtextSetupRef(null, msgs);
+			case MelangePackage.METAMODEL__MAPPINGS:
+				return ((InternalEList<?>)getMappings()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -563,6 +593,8 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 				return getXtextSetupRef();
 			case MelangePackage.METAMODEL__GENMODEL_URIS:
 				return getGenmodelUris();
+			case MelangePackage.METAMODEL__MAPPINGS:
+				return getMappings();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -613,6 +645,10 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 				getGenmodelUris().clear();
 				getGenmodelUris().addAll((Collection<? extends String>)newValue);
 				return;
+			case MelangePackage.METAMODEL__MAPPINGS:
+				getMappings().clear();
+				getMappings().addAll((Collection<? extends Mapping>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -658,6 +694,9 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 			case MelangePackage.METAMODEL__GENMODEL_URIS:
 				getGenmodelUris().clear();
 				return;
+			case MelangePackage.METAMODEL__MAPPINGS:
+				getMappings().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -692,6 +731,8 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 				return xtextSetupRef != null;
 			case MelangePackage.METAMODEL__GENMODEL_URIS:
 				return genmodelUris != null && !genmodelUris.isEmpty();
+			case MelangePackage.METAMODEL__MAPPINGS:
+				return mappings != null && !mappings.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

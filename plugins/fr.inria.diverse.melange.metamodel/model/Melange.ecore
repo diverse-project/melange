@@ -31,6 +31,8 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="genmodelUris" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" upperBound="-1"
+        eType="#//Mapping" resolveProxies="false" eOpposite="#//Mapping/from"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelType" eSuperTypes="#//ModelingElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subtypingRelations" upperBound="-1"
@@ -80,10 +82,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ecoreUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Mapping" eSuperTypes="#//Element">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="from" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="to" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rules" upperBound="-1"
         eType="#//ClassBinding" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="from" eType="#//Metamodel"
+        resolveProxies="false" eOpposite="#//Metamodel/mappings"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="to" eType="#//ModelType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassBinding">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="from" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

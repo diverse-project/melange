@@ -323,13 +323,22 @@ public interface MelangePackage extends EPackage {
 	int METAMODEL__GENMODEL_URIS = MODELING_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
+	 * The feature id for the '<em><b>Mappings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL__MAPPINGS = MODELING_ELEMENT_FEATURE_COUNT + 11;
+
+	/**
 	 * The number of structural features of the '<em>Metamodel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL_FEATURE_COUNT = MODELING_ELEMENT_FEATURE_COUNT + 11;
+	int METAMODEL_FEATURE_COUNT = MODELING_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
 	 * The number of operations of the '<em>Metamodel</em>' class.
@@ -690,31 +699,31 @@ public interface MelangePackage extends EPackage {
 	int MAPPING__NAME = ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>From</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAPPING__FROM = ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>To</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAPPING__TO = ELEMENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Rules</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING__RULES = ELEMENT_FEATURE_COUNT + 2;
+	int MAPPING__RULES = ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>From</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING__FROM = ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>To</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING__TO = ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Mapping</em>' class.
@@ -1042,6 +1051,17 @@ public interface MelangePackage extends EPackage {
 	EAttribute getMetamodel_GenmodelUris();
 
 	/**
+	 * Returns the meta object for the reference list '{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getMappings <em>Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Mappings</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Metamodel#getMappings()
+	 * @see #getMetamodel()
+	 * @generated
+	 */
+	EReference getMetamodel_Mappings();
+
+	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.ModelType <em>Model Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1287,26 +1307,26 @@ public interface MelangePackage extends EPackage {
 	EClass getMapping();
 
 	/**
-	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.Mapping#getFrom <em>From</em>}'.
+	 * Returns the meta object for the reference '{@link fr.inria.diverse.melange.metamodel.melange.Mapping#getFrom <em>From</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>From</em>'.
+	 * @return the meta object for the reference '<em>From</em>'.
 	 * @see fr.inria.diverse.melange.metamodel.melange.Mapping#getFrom()
 	 * @see #getMapping()
 	 * @generated
 	 */
-	EAttribute getMapping_From();
+	EReference getMapping_From();
 
 	/**
-	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.Mapping#getTo <em>To</em>}'.
+	 * Returns the meta object for the reference '{@link fr.inria.diverse.melange.metamodel.melange.Mapping#getTo <em>To</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>To</em>'.
+	 * @return the meta object for the reference '<em>To</em>'.
 	 * @see fr.inria.diverse.melange.metamodel.melange.Mapping#getTo()
 	 * @see #getMapping()
 	 * @generated
 	 */
-	EAttribute getMapping_To();
+	EReference getMapping_To();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link fr.inria.diverse.melange.metamodel.melange.Mapping#getRules <em>Rules</em>}'.
@@ -1578,6 +1598,14 @@ public interface MelangePackage extends EPackage {
 		EAttribute METAMODEL__GENMODEL_URIS = eINSTANCE.getMetamodel_GenmodelUris();
 
 		/**
+		 * The meta object literal for the '<em><b>Mappings</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference METAMODEL__MAPPINGS = eINSTANCE.getMetamodel_Mappings();
+
+		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypeImpl <em>Model Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1778,20 +1806,20 @@ public interface MelangePackage extends EPackage {
 		EClass MAPPING = eINSTANCE.getMapping();
 
 		/**
-		 * The meta object literal for the '<em><b>From</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>From</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MAPPING__FROM = eINSTANCE.getMapping_From();
+		EReference MAPPING__FROM = eINSTANCE.getMapping_From();
 
 		/**
-		 * The meta object literal for the '<em><b>To</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>To</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MAPPING__TO = eINSTANCE.getMapping_To();
+		EReference MAPPING__TO = eINSTANCE.getMapping_To();
 
 		/**
 		 * The meta object literal for the '<em><b>Rules</b></em>' containment reference list feature.

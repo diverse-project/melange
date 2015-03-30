@@ -12,9 +12,9 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Mapping#getRules <em>Rules</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Mapping#getFrom <em>From</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Mapping#getTo <em>To</em>}</li>
- *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Mapping#getRules <em>Rules</em>}</li>
  * </ul>
  * </p>
  *
@@ -24,56 +24,58 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Mapping extends Element {
 	/**
-	 * Returns the value of the '<em><b>From</b></em>' attribute.
+	 * Returns the value of the '<em><b>From</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getMappings <em>Mappings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>From</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>From</em>' attribute.
-	 * @see #setFrom(String)
+	 * @return the value of the '<em>From</em>' reference.
+	 * @see #setFrom(Metamodel)
 	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getMapping_From()
-	 * @model
+	 * @see fr.inria.diverse.melange.metamodel.melange.Metamodel#getMappings
+	 * @model opposite="mappings" resolveProxies="false"
 	 * @generated
 	 */
-	String getFrom();
+	Metamodel getFrom();
 
 	/**
-	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.Mapping#getFrom <em>From</em>}' attribute.
+	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.Mapping#getFrom <em>From</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>From</em>' attribute.
+	 * @param value the new value of the '<em>From</em>' reference.
 	 * @see #getFrom()
 	 * @generated
 	 */
-	void setFrom(String value);
+	void setFrom(Metamodel value);
 
 	/**
-	 * Returns the value of the '<em><b>To</b></em>' attribute.
+	 * Returns the value of the '<em><b>To</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>To</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>To</em>' attribute.
-	 * @see #setTo(String)
+	 * @return the value of the '<em>To</em>' reference.
+	 * @see #setTo(ModelType)
 	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getMapping_To()
 	 * @model
 	 * @generated
 	 */
-	String getTo();
+	ModelType getTo();
 
 	/**
-	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.Mapping#getTo <em>To</em>}' attribute.
+	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.Mapping#getTo <em>To</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>To</em>' attribute.
+	 * @param value the new value of the '<em>To</em>' reference.
 	 * @see #getTo()
 	 * @generated
 	 */
-	void setTo(String value);
+	void setTo(ModelType value);
 
 	/**
 	 * Returns the value of the '<em><b>Rules</b></em>' containment reference list.

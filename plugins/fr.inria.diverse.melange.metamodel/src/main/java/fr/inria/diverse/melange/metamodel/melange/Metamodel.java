@@ -24,6 +24,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getResourceUri <em>Resource Uri</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getXtextSetupRef <em>Xtext Setup Ref</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getGenmodelUris <em>Genmodel Uris</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getMappings <em>Mappings</em>}</li>
  * </ul>
  * </p>
  *
@@ -285,5 +286,23 @@ public interface Metamodel extends ModelingElement {
 	 * @generated
 	 */
 	EList<String> getGenmodelUris();
+
+	/**
+	 * Returns the value of the '<em><b>Mappings</b></em>' reference list.
+	 * The list contents are of type {@link fr.inria.diverse.melange.metamodel.melange.Mapping}.
+	 * It is bidirectional and its opposite is '{@link fr.inria.diverse.melange.metamodel.melange.Mapping#getFrom <em>From</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Mappings</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Mappings</em>' reference list.
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getMetamodel_Mappings()
+	 * @see fr.inria.diverse.melange.metamodel.melange.Mapping#getFrom
+	 * @model opposite="from" resolveProxies="false"
+	 * @generated
+	 */
+	EList<Mapping> getMappings();
 
 } // Metamodel

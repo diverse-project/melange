@@ -61,7 +61,7 @@ Aspect:
 ;
 
 Mapping returns Mapping:
-	"map" "[" name=STRING "]" from=STRING "to" to=STRING "{"
+	"map" name=STRING from=[Metamodel | QualifiedName] "to" to=[ModelType | QualifiedName] "{"
 		(rules+=ClassMapping)*
 	"}" 
 ;
