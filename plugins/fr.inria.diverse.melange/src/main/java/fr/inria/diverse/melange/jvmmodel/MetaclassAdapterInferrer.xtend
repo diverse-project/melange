@@ -6,7 +6,9 @@ import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
+import fr.inria.diverse.melange.lib.MappingExtensions
 import fr.inria.diverse.melange.metamodel.melange.Aspect
+import fr.inria.diverse.melange.metamodel.melange.Mapping
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.utils.AspectToEcore
@@ -45,6 +47,7 @@ class MetaclassAdapterInferrer
 	@Inject extension MelangeTypesBuilder
 	@Inject extension TypeReferencesHelper
 	@Inject extension JvmAnnotationReferenceBuilder.Factory jvmAnnotationReferenceBuilderFactory
+	@Inject extension MappingExtensions
 	extension JvmAnnotationReferenceBuilder jvmAnnotationReferenceBuilder
 	extension JvmTypeReferenceBuilder typeRefBuilder
 
@@ -64,7 +67,8 @@ class MetaclassAdapterInferrer
 		val task = Stopwatches.forTask("generate metaclass adapters")
 		task.start
 
-		val mmCls = mm.allClasses.findFirst[name == cls.name]
+		val mapping = mm.mappings.findFirst[to == superType]
+		val mmCls = mm.allClasses.findFirst[mapping.namesMatch(it, cls)]
 
 		acceptor.accept(mm.toClass(mm.adapterNameFor(superType, cls)))
 		[jvmCls |
@@ -91,8 +95,8 @@ class MetaclassAdapterInferrer
 
 			// TODO: Also override eAllContents() to perform adaptation
 
-			cls.EAllAttributes.filter[!isAspectSpecific].forEach[processAttribute(mm, superType, jvmCls)]
-			cls.EAllReferences.filter[!isAspectSpecific].forEach[processReference(mm, superType, jvmCls)]
+			cls.EAllAttributes.filter[!isAspectSpecific].forEach[processAttribute(mmCls, mm, superType, mapping, jvmCls)]
+			cls.EAllReferences.filter[!isAspectSpecific].forEach[processReference(mmCls, mm, superType, mapping, jvmCls)]
 			cls.EAllOperations.sortByOverridingPriority.filter[!hasSuppressedVisibility && !isAspectSpecific].forEach[processOperation(mm, superType, jvmCls)]
 			mm.findAspectsOn(cls).sortByOverridingPriority.forEach[processAspect(mm, superType, jvmCls)]
 		]
@@ -103,19 +107,20 @@ class MetaclassAdapterInferrer
 	/**
 	 * Creates accessors/mutators for attribute {@link attr} and add them to {@link jvmCls}
 	 */
-	private def void processAttribute(EAttribute attr, Metamodel mm, ModelType superType, JvmGenericType jvmCls) {
+	private def void processAttribute(EAttribute attr, EClass mmCls, Metamodel mm, ModelType superType, Mapping mapping, JvmGenericType jvmCls) {
 		val attrType = superType.typeRef(attr, #[jvmCls])
+		val mmAttr = mapping.findCorrespondingFeature(mmCls, attr)
 
 		jvmCls.members += mm.toMethod(attr.getterName, attrType)[
 			annotations += Override.annotationRef
 
 			if (attr.EType instanceof EEnum)
 				body = '''
-					return «superType.getFqnFor(attr.EType)».get(adaptee.«attr.getterName»().getValue());
+					return «superType.getFqnFor(attr.EType)».get(adaptee.«mmAttr.getterName»().getValue());
 				'''
 			else
 				body = '''
-					return adaptee.«attr.getterName»() ;
+					return adaptee.«mmAttr.getterName»() ;
 				'''
 		]
 
@@ -126,11 +131,11 @@ class MetaclassAdapterInferrer
 
 				if (attr.EType instanceof EEnum)
 					body = '''
-						adaptee.«attr.setterName»(«mm.getFqnFor(attr.EType)».get(o.getValue())) ;
+						adaptee.«mmAttr.setterName»(«mm.getFqnFor(superType, attr.EType)».get(o.getValue())) ;
 					'''
 				else
 					body = '''
-						adaptee.«attr.setterName»(o) ;
+						adaptee.«mmAttr.setterName»(o) ;
 					'''
 			]
 		}
@@ -145,7 +150,7 @@ class MetaclassAdapterInferrer
 	/**
 	 * Creates accessors/mutators for references defined in {@link cls} and add them to {@link jvmCls}
 	 */
-	private def void processReference(EReference ref, Metamodel mm, ModelType superType, JvmGenericType jvmCls) {
+	private def void processReference(EReference ref, EClass mmCls, Metamodel mm, ModelType superType, Mapping mapping, JvmGenericType jvmCls) {
 		if (ref.name == "eAnnotations") {
 			jvmCls.members += mm.toMethod("getEAnnotations", "org.eclipse.emf.common.util.EList".typeRef("org.eclipse.emf.ecore.EAnnotation".typeRef))[
 				body = ''' return null; '''
@@ -154,6 +159,7 @@ class MetaclassAdapterInferrer
 		}
 		val refType = superType.typeRef(ref, #[jvmCls])
 		val adapName = mm.adapterNameFor(superType, ref.EReferenceType)
+		val mmRef = mapping.findCorrespondingFeature(mmCls, ref)
 
 		if (ref.isEMFMapDetails) // Special case: EMF Map$Entry
 			jvmCls.members += mm.toMethod("getDetails", EMap.typeRef(String.typeRef, String.typeRef))[
@@ -165,9 +171,9 @@ class MetaclassAdapterInferrer
 
 				body = '''
 					«IF ref.many»
-						return fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.«ref.getterName»(), «adapName».class) ;
+						return fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.«mmRef.getterName»(), «adapName».class) ;
 					«ELSE»
-						return adaptersFactory.create«mm.simpleAdapterNameFor(superType, ref.EReferenceType)»(adaptee.«ref.getterName»()) ;
+						return adaptersFactory.create«mm.simpleAdapterNameFor(superType, ref.EReferenceType)»(adaptee.«mmRef.getterName»()) ;
 					«ENDIF»
 				'''
 			]
@@ -178,7 +184,7 @@ class MetaclassAdapterInferrer
 				parameters += mm.toParameter("o", refType)
 
 				body = '''
-					adaptee.«ref.setterName»(((«adapName») o).getAdaptee()) ;
+					adaptee.«mmRef.setterName»(((«adapName») o).getAdaptee()) ;
 				'''
 			]
 		}
@@ -231,7 +237,7 @@ class MetaclassAdapterInferrer
 						((«mm.adapterNameFor(superType, p.EType as EClass)») «p.name»).getAdaptee()
 					«ENDIF»
 				«ELSEIF p.EType instanceof EEnum»
-					«mm.getFqnFor(p.EType)».get(«p.name».getValue())
+					«mm.getFqnFor(superType, p.EType)».get(«p.name».getValue())
 				«ELSE»
 					«p.name»
 				«ENDIF»«ENDFOR»

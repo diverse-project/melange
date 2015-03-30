@@ -3,12 +3,15 @@ package fr.inria.diverse.melange.jvmmodel
 import com.google.inject.Inject
 import fr.inria.diverse.melange.adapters.AdaptersFactory
 import fr.inria.diverse.melange.adapters.EObjectAdapter
+import fr.inria.diverse.melange.ast.ASTHelper
 import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.IMetamodel
+import fr.inria.diverse.melange.lib.MappingExtensions
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
+import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.naming.IQualifiedNameProvider
@@ -16,8 +19,6 @@ import org.eclipse.xtext.util.internal.Stopwatches
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
-import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
-import fr.inria.diverse.melange.ast.ASTHelper
 
 /**
  * This class manages generation of Java classes that implements a Metamodel.
@@ -31,6 +32,7 @@ class MetamodelInferrer
 	@Inject extension ModelTypeExtensions
 	@Inject extension MetamodelExtensions
 	@Inject extension EcoreExtensions
+	@Inject extension MappingExtensions
 	@Inject extension MetamodelAdapterInferrer
 	@Inject extension MetaclassAdapterInferrer
 
@@ -100,6 +102,7 @@ class MetamodelInferrer
 
 		// TODO: Test when the subtype has more classes than the supertype and vice-versa
 		mm.^implements.forEach[mt |
+			val mapping = mm.mappings.findFirst[to == mt]
 			mm.generateAdapter(mt, acceptor, builder)
 
 			mt.allClasses.filter[abstractable].forEach[cls |
@@ -155,9 +158,10 @@ class MetamodelInferrer
 
 				mt.allClasses.filter[abstractable].forEach[cls |
 					val adapName = mm.adapterNameFor(mt, cls)
+					val mmCls = mm.allClasses.findFirst[mapping.namesMatch(it, cls)]
 
 					members += mm.toMethod('''create«cls.name»Adapter''', adapName.typeRef)[
-						parameters += mm.toParameter("adaptee", mm.getFqnFor(cls).typeRef)
+						parameters += mm.toParameter("adaptee", mm.getFqnFor(mmCls).typeRef)
 
 						body = '''
 							«adapName» adap = new «adapName»() ;

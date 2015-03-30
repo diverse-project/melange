@@ -6,6 +6,7 @@ import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
+import fr.inria.diverse.melange.lib.MappingExtensions
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import java.io.IOException
@@ -30,6 +31,7 @@ class MetamodelAdapterInferrer
 	@Inject extension EcoreExtensions
 	@Inject extension MelangeTypesBuilder
 	@Inject extension ModelingElementExtensions
+	@Inject extension MappingExtensions
 	@Inject extension JvmAnnotationReferenceBuilder.Factory jvmAnnotationReferenceBuilderFactory
 	extension JvmAnnotationReferenceBuilder jvmAnnotationReferenceBuilder
 
@@ -46,6 +48,7 @@ class MetamodelAdapterInferrer
 		jvmAnnotationReferenceBuilder = jvmAnnotationReferenceBuilderFactory.create(mm.eResource.resourceSet)
 		val task = Stopwatches.forTask("generate metamodel adapters")
 		task.start
+		val mapping = mm.mappings.findFirst[to == superType]
 
 		acceptor.accept(mm.toClass(mm.factoryAdapterNameFor(superType)))
 		[
@@ -65,14 +68,15 @@ class MetamodelAdapterInferrer
 				val newCreate = mm.toMethod("create" + cls.name, null)[m |
 					m.annotations += Override.annotationRef
 
-					val associatedPkg = mm.pkgs.findFirst[EClassifiers.exists[name == cls.name]]
+					val associatedPkg = mm.pkgs.findFirst[EClassifiers.exists[mapping.namesMatch(it, cls)]]
+					val associatedCls = mapping?.rules?.findFirst[to == cls.name]?.from ?: cls.name
 
 					cls.ETypeParameters.forEach[t |
 						m.typeParameters += TypesFactory.eINSTANCE.createJvmTypeParameter => [it.name = t.name]
 					]
 
 					m.body = '''
-							return adaptersFactory.create«mm.simpleAdapterNameFor(superType, cls)»(«associatedPkg.name»Adaptee.create«cls.name»()) ;
+							return adaptersFactory.create«mm.simpleAdapterNameFor(superType, cls)»(«associatedPkg.name»Adaptee.create«associatedCls»()) ;
 						'''
 				]
 

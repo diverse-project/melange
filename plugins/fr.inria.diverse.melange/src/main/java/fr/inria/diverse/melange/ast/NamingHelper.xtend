@@ -1,16 +1,12 @@
 package fr.inria.diverse.melange.ast
 
 import com.google.inject.Inject
-
 import fr.inria.diverse.melange.lib.EcoreExtensions
-
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.Transformation
-
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
-
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
@@ -20,9 +16,7 @@ import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EStructuralFeature
-
 import org.eclipse.xtext.common.types.JvmOperation
-
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.naming.QualifiedName
 
@@ -69,15 +63,23 @@ class NamingHelper
 		return gp.getEcorePackage.nsURI
 	}
 
-	def String getFqnFor(Metamodel mm, EClassifier cls) {
+	def String getFqnFor(Metamodel mm, ModelType mt, EClassifier cls) {
+		val mapping = mm.mappings.findFirst[to == mt]
+		val mappingName = mapping?.rules?.findFirst[to == cls.name]?.from
+		val realName = mappingName ?: cls.name
+
 		return
 			if (cls instanceof EClass || cls instanceof EEnum)
 				mm.genmodels
 					.map[allGenPkgs].flatten
-					.findFirst[getEcorePackage.nsURI == mm.pkgs.findFirst[EClassifiers.exists[name == cls.name]].nsURI]
-					.getFqnFor(cls.name)
+					.findFirst[getEcorePackage.nsURI == mm.pkgs.findFirst[EClassifiers.exists[name == realName]].nsURI]
+					.getFqnFor(realName)
 			else
 				cls.instanceClass?.name ?: cls.instanceClassName
+	}
+
+	def String getFqnFor(Metamodel mm, EClassifier cls) {
+		return mm.getFqnFor(null, cls)
 	}
 
 	def String getPackageFqn(Metamodel mm) {
