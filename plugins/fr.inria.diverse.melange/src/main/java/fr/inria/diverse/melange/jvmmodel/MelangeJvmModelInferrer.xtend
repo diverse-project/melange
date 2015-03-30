@@ -80,8 +80,8 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 						«IF mm.resourceType == ResourceType.XTEXT && mm.xtextSetupRef !== null»
 							«mm.xtextSetupRef.qualifiedName».doSetup() ;
 						«ELSE»
-							«FOR gm : mm.genmodels»
-								«FOR gp : gm.genPackages»
+							«FOR gm : mm.genmodels.filterNull»
+								«FOR gp : gm.genPackages.filterNull»
 									org.eclipse.emf.ecore.EPackage.Registry.INSTANCE.put(
 										«gp.packageFqn».eNS_URI,
 										«gp.packageFqn».eINSTANCE
