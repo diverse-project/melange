@@ -181,7 +181,7 @@ class MelangeValidator extends AbstractMelangeValidator
 			val mtPkg = modelUtils.loadPkg(mt.ecoreUri)
 
 			if (!matchingHelper.match(
-				Collections.singletonList(mmPkg), Collections.singletonList(mtPkg)
+				Collections.singletonList(mmPkg), Collections.singletonList(mtPkg), null
 			))
 				error(
 					'''«mm.name» doesn't match the interface «mt.name»''',

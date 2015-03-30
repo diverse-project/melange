@@ -1,21 +1,22 @@
 package fr.inria.diverse.melange.lib
 
 import com.google.inject.Inject
-
+import fr.inria.diverse.melange.metamodel.melange.Mapping
 import java.util.HashMap
 import java.util.List
 import java.util.Map
 import java.util.Set
 import java.util.Stack
-
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.EEnum
+import org.eclipse.emf.ecore.ENamedElement
 import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EParameter
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.ecore.EStructuralFeature
 
 /**
  * This class manages the type comparison between groups of types
@@ -27,6 +28,7 @@ class MatchingHelper
 	Map<Pair<String, String>, Boolean> matches
 	Stack<String> currentMatching
 	Map<EClass, Set<EClass>> presumedMatching
+	Mapping mapping
 
 	@Inject extension EcoreExtensions
 
@@ -34,9 +36,10 @@ class MatchingHelper
 	 * Return true if each metaclass in {@link l2} have an equivalent
 	 * metaclass in {@link l1} that is matching
 	 */
-	def boolean match(List<EPackage> l1, List<EPackage> l2) {
+	def boolean match(List<EPackage> l1, List<EPackage> l2, Mapping map) {
 		pkgsA = l1
 		pkgsB = l2
+		mapping = map
 
 		matches = new HashMap<Pair<String, String>, Boolean>
 		currentMatching = new Stack<String>
@@ -69,7 +72,7 @@ class MatchingHelper
 				currentMatching.push(clsB.uniqueId)
 
 				val ret =
-				    clsA.name == clsB.name
+				    namesMatch(clsA, clsB)
 				&&  clsB.EOperations.forall[opB |
 						clsA.EOperations.exists[opA | opA.internalMatch(opB)]
 					]
@@ -99,10 +102,10 @@ class MatchingHelper
 	 */
 	private def boolean internalMatch(EOperation opA, EOperation opB) {
 		val ret =
-		    opA.name == opB.name
+		    namesMatch(opA, opB)
 			// FIXME: Just a hack for now
 		&&  if (opA.EType instanceof EDataType || opB.EType instanceof EDataType || !pkgsA.allClassifiers.contains(opA.EType))
-				opA.EType?.name == opB.EType?.name
+				namesMatch(opA.EType, opB.EType)
 			else
 				(
 					   pkgsA.allClassifiers.contains(opA.EType)
@@ -118,7 +121,7 @@ class MatchingHelper
 		&&  opA.EExceptions.forall[excA |
 				opB.EExceptions.exists[excB |
 					if (excA instanceof EDataType || excB instanceof EDataType)
-						excA.name == excB.name
+						namesMatch(excA, excB)
 					else
 						(
 							   pkgsA.allClassifiers.contains(excA)
@@ -147,7 +150,7 @@ class MatchingHelper
 			val paramA = paramsA.get(rank)
 
 			if (paramA.EType instanceof EDataType || paramB.EType instanceof EDataType)
-				if (paramA.EType.name != paramB.EType.name)
+				if (namesMatch(paramA.EType, paramB.EType))
 					return false
 			else if (pkgsA.allClassifiers.contains(paramA.EType)
 					&& pkgsB.allClassifiers.contains(paramB.EType))
@@ -177,7 +180,7 @@ class MatchingHelper
 	 */
 	private def boolean internalMatch(EAttribute attrA, EAttribute attrB) {
 		val ret =
-		    attrA.name == attrB.name
+		    namesMatch(attrA, attrB)
 		&&  (attrA.changeable || !attrB.changeable)
 		&&  (attrA.unique == attrB.unique)
 		&&  (!attrA.ordered || attrB.ordered)
@@ -191,7 +194,7 @@ class MatchingHelper
 			|| (
 					// TODO: Should also check for literals compatibility
 				   attrA.EAttributeType instanceof EEnum && attrB.EAttributeType instanceof EEnum
-				&& attrA.EAttributeType.name == attrB.EAttributeType.name
+				&& namesMatch(attrA.EAttributeType, attrB.EAttributeType)
 			)
 		)
 		&&  (attrA.lowerBound == attrB.lowerBound)
@@ -206,16 +209,35 @@ class MatchingHelper
 	 */
 	private def boolean internalMatch(EReference refA, EReference refB) {
 		val ret =
-		    refA.name == refB.name
+		    namesMatch(refA, refB)
 		&&  (refA.changeable || !refB.changeable)
 		&&  (refA.containment == refB.containment)
 		&&  (refA.unique == refB.unique)
 		&&  (!refA.ordered || refB.ordered)
 		&&  (refA.lowerBound == refB.lowerBound)
 		&&  (refA.upperBound == refB.upperBound)
-		&&  (!(refA.EOpposite !== null) || (refB.EOpposite !== null && refA.EOpposite.name == refB.EOpposite.name))
+		&&  (!(refA.EOpposite !== null) || (refB.EOpposite !== null && namesMatch(refA.EOpposite, refB.EOpposite)))
 		&&  (refA.EReferenceType.internalMatch(refB.EReferenceType))
 
 		return ret
+	}
+
+	private def boolean namesMatch(ENamedElement e1, ENamedElement e2) {
+		return
+			if (e1 === null || e2 === null)
+				false
+			else if (e1.name == e2.name)
+				true
+			else if (mapping !== null) {
+				if (e1 instanceof EClass && e2 instanceof EClass)
+					mapping.rules.exists[from == e1.name && to == e2.name]
+				else if (e1 instanceof EStructuralFeature && e2 instanceof EStructuralFeature)
+					mapping.rules.exists[r |
+						r.from == (e1 as EStructuralFeature).EContainingClass.name
+						&& r.to == (e2 as EStructuralFeature).EContainingClass.name
+						&& r.properties.exists[p | p.from == e1.name && p.to == e2.name]
+					]
+				else false
+			} else false
 	}
 }

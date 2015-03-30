@@ -37,11 +37,11 @@ class EmfCompareAlgebra implements ModelTypeAlgebra
 	@Inject MatchingHelper matchingHelper
 
 	override isSubtypeOf(ModelType mt1, ModelType mt2) {
-		return matchingHelper.match(mt1.pkgs, mt2.pkgs)
+		return matchingHelper.match(mt1.pkgs, mt2.pkgs, null)
 	}
 
 	override isTypedBy(Metamodel mm, ModelType mt) {
-		return mm.exactType.isSubtypeOf(mt)
+		return matchingHelper.match(mm.pkgs, mt.pkgs, mm.mappings.findFirst[to == mt])
 	}
 
 	override weaveAspect(Metamodel mm, Aspect aspect) {
