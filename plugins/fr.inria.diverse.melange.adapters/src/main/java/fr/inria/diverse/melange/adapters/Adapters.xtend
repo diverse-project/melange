@@ -195,6 +195,10 @@ abstract class EObjectAdapter<E extends EObject> extends EObjectImpl implements 
 	override eAllContents() {
 		throw new UnsupportedOperationException("FIXME: Should perform adaptation here")
 	}
+
+	override toString() {
+		return '''Adap<«class.name»>(«adaptee»)'''
+	}
 }
 
 class EListAdapter<E, F> implements GenericAdapter<EList<F>>, EList<E>
@@ -412,6 +416,10 @@ abstract class ResourceAdapter implements GenericAdapter<Resource>, Resource {
 
 	override getEObject(String uriFragment) {
 		return adaptersFactory.createAdapter(adaptee.getEObject(uriFragment))
+	}
+
+	override toString() {
+		return '''Adap<«class.name»>(«adaptee»)'''
 	}
 }
 
