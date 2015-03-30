@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: MappingMelange
+Bundle-SymbolicName: MappingMelange;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: org.eclipse.emf.ecore.xmi;bundle-version="2.10.2",
+ fr.inria.diverse.melange.adapters;bundle-version="0.1.0",
+ fr.inria.diverse.melange.lib;bundle-version="0.1.0",
+ fr.inria.diverse.melange.resource;bundle-version="0.1.0",
+ fr.inria.diverse.examples.fsm.metamodel;bundle-version="1.0.0",
+ otherfsm;bundle-version="0.1.0"

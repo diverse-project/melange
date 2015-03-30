@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="finitestatemachines" nsURI="http://fr.inria.diverse.examples.fsm" nsPrefix="finitestatemachines">
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StateMachine" eSuperTypes="//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="states2" upperBound="-1" eType="//State2" containment="true" eOpposite="//State2/stateMachine2"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transitions2" upperBound="-1" eType="//Transition2" containment="true" eOpposite="//Transition2/stateMachine"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="State2" eSuperTypes="//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoing" upperBound="-1" eType="//Transition2" eOpposite="//Transition2/source"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incoming" upperBound="-1" eType="//Transition2" eOpposite="//Transition2/target"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stateMachine2" eType="//StateMachine" eOpposite="//StateMachine/states2"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="initialTime2">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="finalTime">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FinalState" eSuperTypes="//State2"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InitialState" eSuperTypes="//State2"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Transition2" eSuperTypes="//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1" eType="//State2" eOpposite="//State2/incoming"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1" eType="//State2" eOpposite="//State2/outgoing"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="trigger" eType="//Trigger2" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stateMachine" lowerBound="1" eType="//StateMachine" eOpposite="//StateMachine/transitions2"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="initialTime">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="finalTime2">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TimedTransition" eSuperTypes="//Transition2">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Trigger2">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Pseudostate" eSuperTypes="//State2"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Fork" eSuperTypes="//Pseudostate"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Join2" eSuperTypes="//Pseudostate"/>
+</ecore:EPackage>
