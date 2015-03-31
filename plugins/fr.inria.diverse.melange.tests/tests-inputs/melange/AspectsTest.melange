@@ -6,19 +6,19 @@ import fr.inria.diverse.melange.tests.aspects.fsm.StateAspect3
 
 import static extension fr.inria.diverse.melange.lib.MetamodelExtensions.*
 
-metamodel Fsm {
+language Fsm {
 	ecore "tests-inputs/metamodels/FSM.ecore" withGenmodel "tests-inputs/metamodels/FSM.genmodel"
 	exactType FsmMT
 	with StateAspect1
 }
 
-metamodel TimedFsm {
+language TimedFsm {
 	ecore "tests-inputs/metamodels/TimedFSM.ecore" withGenmodel "tests-inputs/metamodels/TimedFSM.genmodel"
 	exactType TimedFsmMT
 	with StateAspect2
 }
 
-metamodel IncompatibleFsm {
+language IncompatibleFsm {
 	ecore "tests-inputs/metamodels/FSM.ecore" withGenmodel "tests-inputs/metamodels/FSM.genmodel"
 	exactType IncompatibleFsmMT
 	with StateAspect3

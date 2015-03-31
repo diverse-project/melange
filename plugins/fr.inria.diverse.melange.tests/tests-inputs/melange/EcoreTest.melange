@@ -2,7 +2,7 @@ package ecoretest
 
 import static extension fr.inria.diverse.melange.lib.MetamodelExtensions.*
 
-metamodel Ecore {
+language Ecore {
 	ecore "tests-inputs/metamodels/Ecore.ecore"
 	exactType EcoreMT
 }

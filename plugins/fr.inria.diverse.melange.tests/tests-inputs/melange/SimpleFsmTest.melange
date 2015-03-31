@@ -2,12 +2,12 @@ package simplefsmtest
 
 import static extension fr.inria.diverse.melange.lib.MetamodelExtensions.*
 
-metamodel Fsm {
+language Fsm {
 	ecore "tests-inputs/metamodels/FSM.ecore" withGenmodel "tests-inputs/metamodels/FSM.genmodel"
 	exactType FsmMT
 }
 
-metamodel TimedFsm {
+language TimedFsm {
 	ecore "tests-inputs/metamodels/TimedFSM.ecore" withGenmodel "tests-inputs/metamodels/TimedFSM.genmodel"
 	exactType TimedFsmMT
 }

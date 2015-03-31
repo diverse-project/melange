@@ -2,7 +2,7 @@ package subpackagestest
 
 import static extension fr.inria.diverse.melange.lib.MetamodelExtensions.*
 
-metamodel SubPackagesTest {
+language SubPackagesTest {
 	ecore "tests-inputs/metamodels/PackagesTest.ecore" withGenmodel "tests-inputs/metamodels/PackagesTest.genmodel"
 	exactType SubPackagesTestMT
 }
