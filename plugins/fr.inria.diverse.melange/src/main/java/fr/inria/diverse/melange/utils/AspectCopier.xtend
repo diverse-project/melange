@@ -48,6 +48,10 @@ class AspectCopier
 		task.start
 
 		val project = mm.eResource.project
+
+		if (project === null)
+			return null
+
 		val ws = project.workspace.root
 		val shader = new DirectoryShader
 		val request = new ShadeRequest
