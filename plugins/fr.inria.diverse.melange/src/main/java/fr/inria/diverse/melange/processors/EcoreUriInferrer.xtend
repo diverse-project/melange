@@ -1,6 +1,7 @@
 package fr.inria.diverse.melange.processors
 
 import fr.inria.diverse.melange.ast.MetamodelExtensions
+import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import javax.inject.Inject
 
@@ -9,18 +10,16 @@ import javax.inject.Inject
  */
 class EcoreUriInferrer extends DispatchMelangeProcessor
 {
-//	@Inject extension ModelingElementExtensions
 	@Inject extension MetamodelExtensions
-//	@Inject JvmTypeReferenceBuilder.Factory builderFactory
+	@Inject extension EclipseProjectHelper
 
 	def dispatch void preProcess(Metamodel mm) {
-		
-		try {
-			if (mm.isGeneratedByMelange && mm.project !== null)
-				if (mm.project.getFile(mm.localEcorePath).exists)
-					mm.ecoreUri = mm.localEcoreUri
-				else if (mm.project.getFile(mm.externalEcorePath).exists)
-					mm.ecoreUri = mm.externalEcoreUri
-		} catch (IllegalStateException e) {}
+		val project = mm.eResource.project
+
+		if (mm.isGeneratedByMelange && project !== null)
+			if (project.getFile(mm.localEcorePath).exists)
+				mm.ecoreUri = mm.localEcoreUri
+			else if (project.getFile(mm.externalEcorePath).exists)
+				mm.ecoreUri = mm.externalEcoreUri
 	}
 }

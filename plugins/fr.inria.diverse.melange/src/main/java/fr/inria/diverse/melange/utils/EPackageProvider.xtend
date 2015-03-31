@@ -2,24 +2,18 @@ package fr.inria.diverse.melange.utils
 
 import com.google.common.collect.ArrayListMultimap
 import com.google.common.collect.ListMultimap
-
 import com.google.inject.Inject
 import com.google.inject.Singleton
-
 import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
-
+import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.ModelUtils
-
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelingElement
-
 import java.util.List
-
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
-
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.util.EcoreUtil
 
@@ -30,6 +24,7 @@ class EPackageProvider
 	@Inject extension EcoreExtensions
 	@Inject extension ModelTypeExtensions
 	@Inject extension MetamodelExtensions
+	@Inject extension EclipseProjectHelper
 	private ListMultimap<ModelingElement, EPackage> packages = ArrayListMultimap.create
 	private ListMultimap<Metamodel, GenModel> genmodels = ArrayListMultimap.create
 
@@ -41,13 +36,12 @@ class EPackageProvider
 	def List<EPackage> getPackages(ModelingElement m) {
 		if (!packages.containsKey(m)) {
 			if (m instanceof Metamodel) {
-				try {
-					if (m.isGeneratedByMelange && m.project !== null)
-						if (m.project.getFile(m.localEcorePath).exists)
-							m.ecoreUri = m.localEcoreUri
-						else if (m.project.getFile(m.externalEcorePath).exists)
-							m.ecoreUri = m.externalEcoreUri
-				} catch (IllegalStateException e) {}
+				val project = m.eResource.project
+				if (m.isGeneratedByMelange && project !== null)
+					if (project.getFile(m.localEcorePath).exists)
+						m.ecoreUri = m.localEcoreUri
+					else if (project.getFile(m.externalEcorePath).exists)
+						m.ecoreUri = m.externalEcoreUri
 			}
 
 			switch (m) {
@@ -98,13 +92,12 @@ class EPackageProvider
 			if (mm.genmodelUris.size == 0 && mm.ecoreUri !== null)
 				mm.genmodelUris += mm.ecoreUri.substring(0, mm.ecoreUri.lastIndexOf(".")) + ".genmodel"
 			else {
-				try {
-					if (mm.isGeneratedByMelange && mm.project !== null)
-						if (mm.project.getFile(mm.localGenmodelPath).exists)
-							mm.genmodelUris += mm.localGenmodelUri
-						else if (mm.project.getFile(mm.externalGenmodelPath).exists)
-							mm.genmodelUris += mm.externalGenmodelUri
-				} catch (IllegalStateException e) {}
+				val project = mm.eResource.project
+				if (mm.isGeneratedByMelange && project !== null)
+					if (project.getFile(mm.localGenmodelPath).exists)
+						mm.genmodelUris += mm.localGenmodelUri
+					else if (project.getFile(mm.externalGenmodelPath).exists)
+						mm.genmodelUris += mm.externalGenmodelUri
 			}
 			mm.genmodelUris.forEach[genmodels.put(mm, modelUtils.loadGenmodel(it))]
 		}

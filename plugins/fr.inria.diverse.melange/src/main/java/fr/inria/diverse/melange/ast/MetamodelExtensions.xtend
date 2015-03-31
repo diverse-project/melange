@@ -3,6 +3,7 @@ package fr.inria.diverse.melange.ast
 import com.google.common.collect.Lists
 import com.google.inject.Inject
 import fr.inria.diverse.melange.algebra.ModelTypeAlgebra
+import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
@@ -11,9 +12,6 @@ import fr.inria.diverse.melange.utils.EPackageProvider
 import java.io.IOException
 import java.util.List
 import org.apache.log4j.Logger
-import org.eclipse.core.resources.IProject
-import org.eclipse.core.resources.ResourcesPlugin
-import org.eclipse.core.runtime.Path
 import org.eclipse.emf.codegen.ecore.genmodel.GenJDKLevel
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
 import org.eclipse.emf.codegen.ecore.genmodel.GenModelFactory
@@ -40,6 +38,7 @@ class MetamodelExtensions
 	@Inject extension ModelTypeExtensions
 	@Inject extension IQualifiedNameConverter
 	@Inject extension NamingHelper
+	@Inject extension EclipseProjectHelper
 	@Inject ModelTypeAlgebra algebra
 	@Inject EPackageProvider provider
 	static Logger log = Logger.getLogger(MetamodelExtensions)
@@ -302,15 +301,15 @@ class MetamodelExtensions
 	}
 
 	def String getLocalEcorePath(Metamodel mm) {
-		return '''../«mm.project.name»/model-gen/«mm.name».ecore'''
+		return '''../«mm.eResource.project.name»/model-gen/«mm.name».ecore'''
 	}
 
 	def String getLocalGenmodelPath(Metamodel mm) {
-		return '''../«mm.project.name»/model-gen/«mm.name».genmodel'''
+		return '''../«mm.eResource.project.name»/model-gen/«mm.name».genmodel'''
 	}
 
 	def String getLocalGenerationPath(Metamodel mm) {
-		return '''../«mm.project.name»/emf-gen/'''
+		return '''../«mm.eResource.project.name»/emf-gen/'''
 	}
 
 	def String getExternalEcorePath(Metamodel mm) {
@@ -326,11 +325,11 @@ class MetamodelExtensions
 	}
 
 	def String getLocalEcoreUri(Metamodel mm) {
-		return '''platform:/resource/«mm.project.name»/model-gen/«mm.name».ecore'''
+		return '''platform:/resource/«mm.eResource.project.name»/model-gen/«mm.name».ecore'''
 	}
 
 	def String getLocalGenmodelUri(Metamodel mm) {
-		return '''platform:/resource/«mm.project.name»/model-gen/«mm.name».genmodel'''
+		return '''platform:/resource/«mm.eResource.project.name»/model-gen/«mm.name».genmodel'''
 	}
 
 	def String getExternalEcoreUri(Metamodel mm) {
@@ -380,8 +379,9 @@ class MetamodelExtensions
 		if (mm.isGeneratedByMelange) {
 			val segments = newArrayList
 			val gp = mm.genmodels.head?.genPackages?.head
+			val project = mm.eResource.project
 
-			if (gp === null)
+			if (gp === null || project === null)
 				return false
 
 			if (gp.basePackage !== null && gp.basePackage.length > 0)
@@ -391,13 +391,13 @@ class MetamodelExtensions
 
 			val fqn = QualifiedName::create(segments).toString.toLowerCase
 			if ((
-				   mm.project.getFile(mm.localEcorePath).exists
-				&& mm.project.getFile(mm.localGenmodelPath).exists
-				&& mm.project.getFolder(mm.localGenerationPath + fqn).exists
+				   project.getFile(mm.localEcorePath).exists
+				&& project.getFile(mm.localGenmodelPath).exists
+				&& project.getFolder(mm.localGenerationPath + fqn).exists
 			) || (
-				   mm.project.getFile(mm.externalEcorePath).exists
-				&& mm.project.getFile(mm.externalGenmodelPath).exists
-				&& mm.project.getFolder(mm.externalGenerationPath + fqn).exists
+				   project.getFile(mm.externalEcorePath).exists
+				&& project.getFile(mm.externalGenmodelPath).exists
+				&& project.getFolder(mm.externalGenerationPath + fqn).exists
 			))
 				return true
 			else return false
@@ -416,19 +416,6 @@ class MetamodelExtensions
 			GenBaseGeneratorAdapter::MODEL_PROJECT_TYPE,
 			new BasicMonitor.Printing(System::out)
 		)
-	}
-
-	def IProject getProject(Metamodel mm) {
-		try {
-			val res = mm.eResource
-
-			return
-				if (res !== null && res.URI.toPlatformString(true) !== null)
-					ResourcesPlugin.workspace.root.getFile(new Path(res.URI.toPlatformString(true))).project
-				else null
-		} catch (IllegalStateException e) {
-			return null
-		}
 	}
 
 	def private void createGenmodel(Metamodel mm, String ecoreUri, String gmUri, String modelDirectory) {

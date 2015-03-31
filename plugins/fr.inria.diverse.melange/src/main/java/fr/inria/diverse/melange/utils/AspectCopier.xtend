@@ -37,6 +37,7 @@ class AspectCopier
 	@Inject extension MetamodelExtensions
 	@Inject extension IQualifiedNameConverter
 	@Inject extension NamingHelper
+	@Inject extension EclipseProjectHelper
 	@Inject ErrorHelper errorHelper
 	static Logger log = Logger.getLogger(AspectCopier)
 
@@ -46,7 +47,8 @@ class AspectCopier
 		val task = Stopwatches.forTask("copying aspects in new type group")
 		task.start
 
-		val ws = mm.project.workspace.root
+		val project = mm.eResource.project
+		val ws = project.workspace.root
 		val shader = new DirectoryShader
 		val request = new ShadeRequest
 		val relocators = new ArrayList<Relocator>
@@ -109,7 +111,7 @@ class AspectCopier
 //		val filenameToBeFound = '''/src-gen/«targetAspectNamespace.toString.replace(".", "/")»/«asp.aspectTypeRef.simpleName».java'''
 //		val fileToBeFound = targetProject.getFile(filenameToBeFound)
 
-		EclipseProjectHelper::addDependencies(mm.project, #[targetProject.name])
+		EclipseProjectHelper::addDependencies(project, #[targetProject.name])
 
 		relocators += new SimpleRelocator(sourceAspectNamespace.toString, targetAspectNamespace.toString, null, #[])
 		relocators += new SimpleRelocator(sourceEmfNamespace.toString, targetEmfNamespace.toString, null, #[])

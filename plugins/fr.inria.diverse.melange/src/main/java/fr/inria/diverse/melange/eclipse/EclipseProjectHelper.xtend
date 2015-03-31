@@ -21,6 +21,7 @@ import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.core.runtime.NullProgressMonitor
 import org.eclipse.core.runtime.Path
 import org.eclipse.core.runtime.SubProgressMonitor
+import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.jdt.core.JavaCore
 import org.eclipse.pde.internal.core.natures.PDE
 import org.eclipse.xtext.util.MergeableManifest
@@ -28,6 +29,17 @@ import org.eclipse.xtext.util.MergeableManifest
 class EclipseProjectHelper
 {
 	static Logger log = Logger.getLogger(EclipseProjectHelper)
+
+	def IProject getProject(Resource res) {
+		try {
+			return
+				if (res !== null && res.URI.toPlatformString(true) !== null)
+					ResourcesPlugin.workspace.root.getFile(new Path(res.URI.toPlatformString(true))).project
+				else null
+		} catch (IllegalStateException e) {
+			return null
+		}
+	}
 
 	def static IProject createAspectsRuntimeProject(
 		IProject original,
