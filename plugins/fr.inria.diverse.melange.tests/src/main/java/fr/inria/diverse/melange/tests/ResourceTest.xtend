@@ -23,7 +23,7 @@ import static org.junit.Assert.*
 
 class ResourceTest
 {
-	ResourceSet rs
+/*	ResourceSet rs
 
 	@Test
 	def void testExactLoad1() {
@@ -113,4 +113,5 @@ class ResourceTest
 	private def getResource(String uri) {
 		return rs.getResource(URI::createURI(uri), true)
 	}
+*/
 }
