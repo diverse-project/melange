@@ -32,7 +32,7 @@
 		<emf.version>2.9.1-v20130827-0309</emf.version>
 		<tycho.version>0.21.0</tycho.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<xtext.version>2.7.3</xtext.version>
+		<xtext.version>2.8.1</xtext.version>
 		<sonar.language>java</sonar.language>
 		<sonar.exclusions>file:**/src-gen/**</sonar.exclusions>
 	</properties>

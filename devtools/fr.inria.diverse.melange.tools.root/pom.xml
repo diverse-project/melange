@@ -17,7 +17,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<eclipse-repo.url>http://download.eclipse.org/releases/luna/</eclipse-repo.url>
 		<tycho-repo.url>https://oss.sonatype.org/content/groups/public/</tycho-repo.url>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<xtend.version>2.7.3</xtend.version>
+		<xtend.version>2.8.1</xtend.version>
 		<java.version>1.7</java.version>
 	</properties>
 
