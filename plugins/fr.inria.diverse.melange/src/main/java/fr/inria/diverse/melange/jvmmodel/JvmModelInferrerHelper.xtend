@@ -33,11 +33,14 @@ class JvmModelInferrerHelper
 
 	/*--- Getters / Setters  ---*/
 	def JvmOperation toGetterSignature(EObject o, EStructuralFeature f, JvmTypeReference type) {
-		return o.toMethod(f.getterName, type)[]
+		return o.toMethod(f.getterName, type)[
+			^abstract = true
+		]
 	}
 
 	def JvmOperation toSetterSignature(EObject o, EStructuralFeature f, JvmTypeReference type) {
 		return o.toMethod(f.setterName, Void::TYPE.typeRef)[
+			^abstract = true
 			parameters += o.toParameter('''new«f.name.toFirstUpper»''', type)
 		]
 	}
@@ -67,14 +70,15 @@ class JvmModelInferrerHelper
 	}
 
 	def JvmOperation toUnsetterSignature(EObject o, EStructuralFeature f) {
-		val u = o.toUnsetter(f)
-		u.removeExistingBody
-
-		return u
+		return o.toMethod(f.unsetterName, Void::TYPE.typeRef)[
+			^abstract = true
+		]
 	}
 
 	def JvmOperation toUnsetterCheckSignature(EObject o, EStructuralFeature f) {
-		return o.toMethod(f.unsetterCheckName, Boolean::TYPE.typeRef)[]
+		return o.toMethod(f.unsetterCheckName, Boolean::TYPE.typeRef)[
+			^abstract = true
+		]
 	}
 
 	def boolean overrides(JvmOperation o1, JvmOperation o2) {

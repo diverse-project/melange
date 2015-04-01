@@ -86,6 +86,8 @@ class MetaclassInterfaceInferrer
 				val opName = if (!cls.EPackage.isUml) op.name else op.formatUmlOperationName
 
 				intf.members += mt.toMethod(opName, null)[m |
+					m.^abstract = true
+
 					op.ETypeParameters.forEach[t |
 						m.typeParameters += TypesFactory.eINSTANCE.createJvmTypeParameter => [tp |
 							tp.name = t.name

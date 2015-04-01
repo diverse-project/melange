@@ -57,8 +57,8 @@ class ModelTypeInferrer
 			]
 
 			members += mt.toMethod("save", Void::TYPE.typeRef)[
+				^abstract = true
 				parameters += mt.toParameter("uri", String.typeRef)
-
 				exceptions += IOException.typeRef
 			]
 		])
