@@ -339,9 +339,13 @@ class MetaclassAdapterInferrer
 		val correspondingCls = superType.findClass(aspect.aspectedClass.name)
 
 		// If the super type doesn't expose this method, we don't need to generate it
+		val correspondingFeature = correspondingCls.EAllStructuralFeatures.findFirst[name == featureName]
+		val isSetter = correspondingFeature !== null && op.parameters.size == 2
 		if (
-			   correspondingCls.EAllStructuralFeatures.exists[name == featureName]
-			|| correspondingCls.EAllOperations.exists[name == opName]) 
+			(correspondingFeature !== null || correspondingCls.EAllOperations.exists[name == opName])
+			&&
+			(!isSetter || correspondingFeature.needsSetter)
+		)
 		{
 			jvmCls.members += mm.toMethod(opName, retType)[
 				annotations += Override.annotationRef
