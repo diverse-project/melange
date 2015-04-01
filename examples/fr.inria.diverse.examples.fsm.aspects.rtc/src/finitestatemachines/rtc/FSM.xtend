@@ -1,18 +1,16 @@
 package finitestatemachines.rtc
 
 import FSM.interfaces.Context
-import finitestatemachines.FinalState
 import finitestatemachines.Fork
 import finitestatemachines.InitialState
 import finitestatemachines.Join
-import finitestatemachines.Pseudostate
 import finitestatemachines.State
 import finitestatemachines.StateMachine
 import finitestatemachines.Transition
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
-import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
 import java.util.ArrayList
-import java.util.List
+import org.eclipse.emf.common.util.BasicEList
+import org.eclipse.emf.common.util.EList
 
 import static extension finitestatemachines.rtc.StateAspect.*
 
@@ -26,8 +24,8 @@ import static extension finitestatemachines.rtc.StateAspect.*
 @Aspect(className=StateMachine)
 class StateMachineAspect {
 	
-	List<State> currentState = null
-	List<Transition> currentTransitions = null
+	EList<State> currentState = null
+	EList<Transition> currentTransitions = null
 	
 	/**
 	 * Evaluates the input and sequentially executes the steps in the state machine. 
@@ -37,12 +35,12 @@ class StateMachineAspect {
 		println("\nExecuting the state machine. Please wait for the results...\n")
 		println(" ... executing input ...\n")
 		
-		var ArrayList<ArrayList<String>> events = context.events
+		var ArrayList<EList<String>> events = context.events
 		
 		_self.currentState = _self.getInitialState()
 		_self.currentState.get(0).eval(context)
 		
-		for(ArrayList<String> eventsGroup : events){
+		for(EList<String> eventsGroup : events){
 			println("  input item: " + eventsGroup + " time: " + (System.currentTimeMillis as int))
 			_self.step(context, eventsGroup)
 		}
@@ -56,9 +54,9 @@ class StateMachineAspect {
 	 * Performs a step in the state machine i.e., reads an entry of the input stack and executes it.
 	 * If there are several events in the same step they are executed sequentially.  
 	 */
-	def private void step(Context context, ArrayList<String> eventsGroup){
+	def private void step(Context context, EList<String> eventsGroup){
 		// In this case, the current transitions are local to the step. 
-		_self.currentTransitions = new ArrayList<Transition>()
+		_self.currentTransitions = new BasicEList<Transition>()
 		var ArrayList<State> attendedStates = new ArrayList<State>()
 		
 		for(String event : eventsGroup){
@@ -134,8 +132,8 @@ class StateMachineAspect {
 	/**
 	 * Returns the (unique?) initial state of the state machine. 
 	 */
-	def private ArrayList<State> getInitialState(){
-		var ArrayList<State> answer = new ArrayList<State>()
+	def private EList<State> getInitialState(){
+		var answer = new BasicEList<State>()
 		for(State state : _self.states){
 			if(state instanceof InitialState) answer.add(state)
 		}return answer

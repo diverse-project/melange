@@ -1,17 +1,15 @@
 package finitestatemachines.simultaneous
 
 import FSM.interfaces.Context
-import finitestatemachines.FinalState
-import finitestatemachines.Fork
 import finitestatemachines.InitialState
-import finitestatemachines.Pseudostate
 import finitestatemachines.State
 import finitestatemachines.StateMachine
 import finitestatemachines.Transition
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
-import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
 import java.util.ArrayList
 import java.util.List
+import org.eclipse.emf.common.util.BasicEList
+import org.eclipse.emf.common.util.EList
 
 import static extension finitestatemachines.simultaneous.StateAspect.*
 
@@ -25,8 +23,8 @@ import static extension finitestatemachines.simultaneous.StateAspect.*
 @Aspect(className=StateMachine)
 class StateMachineAspect {
 	
-	public List<State> currentState = null;
-	List<Transition> currentTransitions = null
+	public EList<State> currentState = null;
+	EList<Transition> currentTransitions = null
 	
 	/**
 	 * Evaluates the input and sequentially executes the steps in the state machine. 
@@ -35,12 +33,12 @@ class StateMachineAspect {
 		println("\nExecuting the state machine. Please wait for the results...\n")
 		println(" ... executing input ...\n")
 		
-		var ArrayList<ArrayList<String>> events = context.events
+		var ArrayList<EList<String>> events = context.events
 		
 		_self.currentState = _self.getInitialState()
 		_self.currentState.get(0).eval(context)
 		
-		for(ArrayList<String> eventsGroup : events){
+		for(EList<String> eventsGroup : events){
 			println("  input item: " + eventsGroup + " time: " + (System.currentTimeMillis as int))
 			_self.step(context, eventsGroup)
 		}
@@ -54,8 +52,8 @@ class StateMachineAspect {
 	 * Performs a step in the state machine i.e., reads an entry of the input stack and executes it.
 	 * If there are several events in the same step they are executed in parallel. 
 	 */
-	def public void step(Context context, List<String> eventsGroup){
-		_self.currentTransitions = new ArrayList<Transition>()
+	def public void step(Context context, EList<String> eventsGroup){
+		_self.currentTransitions = new BasicEList<Transition>()
 
 		var ArrayList<Thread> threads = new ArrayList<Thread>()
 		for(String event : eventsGroup){
@@ -77,8 +75,8 @@ class StateMachineAspect {
 	/**
 	 * Returns the (unique?) initial state of the state machine. 
 	 */
-	def private List<State> getInitialState(){
-		var ArrayList<State> answer = new ArrayList<State>()
+	def private EList<State> getInitialState(){
+		var answer = new BasicEList<State>()
 		for(State state : _self.states){
 			if(state instanceof InitialState) answer.add(state)
 		}return answer
@@ -87,14 +85,14 @@ class StateMachineAspect {
 	/**
 	 * Removes a list of states from the currentStates list.
 	 */
-	def public synchronized void removeCurrentStates(List<State> statesToRemove){
+	def public synchronized void removeCurrentStates(EList<State> statesToRemove){
 		_self.currentState.removeAll(statesToRemove)
 	}
 	
 	/**
 	 * Removes a list of states from the currentStates list.
 	 */
-	def public synchronized void addCurrentStates(List<State> statesToAdd){
+	def public synchronized void addCurrentStates(EList<State> statesToAdd){
 		for(State _state : statesToAdd){
 			if(!_self.currentState.contains(_state))
 				_self.currentState.add(_state)
