@@ -98,6 +98,11 @@ class MetamodelExtensions
 			JvmCustomAnnotationValue: aspClassName.values?.head?.toString
 		}
 
+		// Xtext 2.8+
+		if (aspVal !== null && aspVal.matches("<implicit:.*?>")) {
+			return aspVal.substring(aspVal.lastIndexOf(".") + 1, aspVal.length - 1)
+		}
+
 		if (aspVal !== null && aspVal.contains("."))
 			return aspVal.substring(aspVal.lastIndexOf(".") + 1, aspVal.length)
 
