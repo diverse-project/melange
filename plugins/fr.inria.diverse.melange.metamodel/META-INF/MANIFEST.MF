@@ -14,5 +14,5 @@ Require-Bundle: org.eclipse.emf.codegen.ecore;visibility:=reexport,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.xtext.common.types;visibility:=reexport,
- org.eclipse.xtext.xbase;bundle-version="[2.7.0,2.8.0)";visibility:=reexport
+ org.eclipse.xtext.xbase;bundle-version="[2.8.0,2.9.0)";visibility:=reexport
 Bundle-ActivationPolicy: lazy
