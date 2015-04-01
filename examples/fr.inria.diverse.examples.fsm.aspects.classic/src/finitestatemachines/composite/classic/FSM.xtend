@@ -1,6 +1,9 @@
 package finitestatemachines.composite.classic
 
 import FSM.interfaces.Context
+import finitestatemachinescomposite.Action
+import finitestatemachinescomposite.CompositeState
+import finitestatemachinescomposite.FinitestatemachinescompositeFactory
 import finitestatemachinescomposite.Fork
 import finitestatemachinescomposite.InitialState
 import finitestatemachinescomposite.Join
@@ -8,19 +11,15 @@ import finitestatemachinescomposite.State
 import finitestatemachinescomposite.StateMachine
 import finitestatemachinescomposite.Transition
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
-import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
 import java.util.ArrayList
 import java.util.List
+import org.eclipse.emf.common.util.BasicEList
+import org.eclipse.emf.common.util.EList
 
-import static extension finitestatemachines.composite.classic.StateMachineAspect.*
-import static extension finitestatemachines.composite.classic.StateAspect.*
-import static extension finitestatemachines.composite.classic.TransitionAspect.*
 import static extension finitestatemachines.composite.classic.CompositeStateAspect.*
-import finitestatemachinescomposite.CompositeState
-import finitestatemachinescomposite.Action
-import java.util.Set
-import java.util.HashSet
-import finitestatemachinescomposite.FinitestatemachinescompositeFactory
+import static extension finitestatemachines.composite.classic.StateAspect.*
+import static extension finitestatemachines.composite.classic.StateMachineAspect.*
+import static extension finitestatemachines.composite.classic.TransitionAspect.*
 
 //
 // *.*
@@ -32,8 +31,8 @@ import finitestatemachinescomposite.FinitestatemachinescompositeFactory
 @Aspect(className=StateMachine)
 class StateMachineAspect {
 	
-	List<State> currentState = null
-	List<Transition> currentTransitions = null
+	EList<State> currentState = null
+	EList<Transition> currentTransitions = null
 	
 	/**
 	 * Evaluates the input and sequentially executes the steps in the state machine. 
@@ -43,12 +42,12 @@ class StateMachineAspect {
 		println("\nExecuting the state machine. Please wait for the results...\n")
 		println(" ... executing input ...\n")
 		
-		var ArrayList<ArrayList<String>> events = context.events
+		var ArrayList<EList<String>> events = context.events
 		
 		_self.currentState = _self.getInitialState()
 		_self.currentState.get(0).eval(context)
 		
-		for(ArrayList<String> eventsGroup : events){
+		for(EList<String> eventsGroup : events){
 			println("  input item: " + eventsGroup + " time: " + (System.currentTimeMillis as int))
 			_self.step(context, eventsGroup)
 		}
@@ -62,9 +61,9 @@ class StateMachineAspect {
 	 * Performs a step in the state machine i.e., reads an entry of the input stack and executes it.
 	 * If there are several events in the same step they are executed sequentially.  
 	 */
-	def private void step(Context context, ArrayList<String> eventsGroup){
+	def private void step(Context context, EList<String> eventsGroup){
 		// In this case, the current transitions are local to the step. 
-		_self.currentTransitions = new ArrayList<Transition>()
+		_self.currentTransitions = new BasicEList<Transition>()
 		
 		for(String event : eventsGroup){
 			for(State state : _self.getHigherCurrent(event)){
@@ -73,15 +72,15 @@ class StateMachineAspect {
 		}
 	}
 	
-	def public List<State> getAllCurrentStates(){
+	def public EList<State> getAllCurrentStates(){
 		return _self.currentState
 	}
 
 	/*
 	 * Get all states concerned by this event and remove those contained 
 	 */
-	def private List<State> getHigherCurrent(String event){
-		val List<State> res = new ArrayList<State>()
+	def private EList<State> getHigherCurrent(String event){
+		val res = new BasicEList<State>()
 		
 		val List<State> candidates = new ArrayList<State>()
 		for(State state : _self.currentState){
@@ -104,8 +103,8 @@ class StateMachineAspect {
 	/*
 	 * Get all the deepest states concerned by this event
 	 */
-	def private List<State> getDeepestCurrent(String event){
-		val List<State> res = new ArrayList<State>()
+	def private EList<State> getDeepestCurrent(String event){
+		val res = new BasicEList<State>()
 		
 		val List<State> candidates = new ArrayList<State>()
 		for(State state : _self.currentState){
@@ -128,8 +127,8 @@ class StateMachineAspect {
 	/**
 	 * Returns the (unique?) initial state of the state machine. 
 	 */
-	def private List<State> getInitialState(){
-		var List<State> answer = new ArrayList<State>()
+	def private EList<State> getInitialState(){
+		var answer = new BasicEList<State>()
 		for(State state : _self.states){
 			if(state instanceof InitialState) answer.add(state)
 		}
@@ -211,8 +210,8 @@ class StateAspect {
 	 * Get transitions that can be fired by this event
 	 * If even is null all transitions without event are candidate 
 	 */
-	def public List<Transition> getActiveTransitions(String event){
-		val List<Transition> res = new ArrayList<Transition>();
+	def public EList<Transition> getActiveTransitions(String event){
+		val res = new BasicEList<Transition>();
 		for(Transition transition : _self.outgoing){
 			if( (event == null && transition.trigger == null) ||
 				transition.trigger.expression.equals(event)
@@ -227,8 +226,8 @@ class StateAspect {
 		return res;
 	}
 	
-	def public List<State> getAllParents(){
-		val res = new ArrayList<State>()
+	def public EList<State> getAllParents(){
+		val res = new BasicEList<State>()
 		
 		if(_self.parentState != null){
 			res.addAll(_self.parentState.allParents)
@@ -238,8 +237,8 @@ class StateAspect {
 		return res
 	}
 	
-	def public List<State> getAllChildren(){
-		val res = new ArrayList<State>()
+	def public EList<State> getAllChildren(){
+		val res = new BasicEList<State>()
 	
 		if(_self instanceof CompositeState){
 			val composite = _self as CompositeState
@@ -352,8 +351,8 @@ class CompositeStateAspect extends StateAspect {
 	/**
 	 * Get all sub states
 	 */
-	def public List<State> getAllStates(){
-		var ArrayList<State> attendedStates = new ArrayList<State>()
+	def public EList<State> getAllStates(){
+		var attendedStates = new BasicEList<State>()
 		var subStates = _self.regions.map[r | r.states].flatten
 		while(!subStates.isEmpty){
 			attendedStates.addAll(subStates)

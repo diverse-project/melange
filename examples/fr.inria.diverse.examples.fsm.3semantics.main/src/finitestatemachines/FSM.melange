@@ -2,8 +2,7 @@ package finitestatemachines
 
 import static extension fr.inria.diverse.melange.lib.MetamodelExtensions.*
 
-
-metamodel FiniteStateMachineUML{
+language FiniteStateMachineUML{
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.composite/model/fsm.ecore"
 	exactType FiniteStateMachineUMLMT
 	
@@ -13,7 +12,7 @@ metamodel FiniteStateMachineUML{
 	with finitestatemachines.composite.uml.TransitionAspect
 }
 
-metamodel FiniteStateMachineRhapsody{
+language FiniteStateMachineRhapsody{
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.composite/model/fsm.ecore"
 	exactType FiniteStateMachineRhapsodyMT
 	
@@ -23,7 +22,7 @@ metamodel FiniteStateMachineRhapsody{
 	with finitestatemachines.composite.rhapsody.TransitionAspect
 }
 
-metamodel FiniteStateMachineClassic{
+language FiniteStateMachineClassic{
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.composite/model/fsm.ecore"
 	exactType FiniteStateMachineClassicMT
 	
@@ -32,7 +31,6 @@ metamodel FiniteStateMachineClassic{
 	with finitestatemachines.composite.classic.CompositeStateAspect
 	with finitestatemachines.composite.classic.TransitionAspect
 }
-
 
 transformation execute(FiniteStateMachineUMLMT stateMachine, String input, String outputFile){
 	val root = stateMachine.contents.head as finitestatemachines.finitestatemachineumlmt.StateMachine
