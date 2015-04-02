@@ -1,11 +1,11 @@
 package simplefsm
 
-metamodel Fsm {
+language Fsm {
 	ecore "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.fsm/model/FSM.ecore"
 	exactType FsmMT
 }
 
-metamodel TimedFsm {
+language TimedFsm {
 	ecore "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.timedfsm/model/TimedFSM.ecore"
 	exactType TimedFsmMT
 }
