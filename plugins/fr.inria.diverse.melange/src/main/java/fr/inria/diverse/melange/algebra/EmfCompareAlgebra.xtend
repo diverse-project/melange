@@ -79,6 +79,7 @@ class EmfCompareAlgebra implements ModelTypeAlgebra
 				EMFCompareRCPPlugin.getDefault.getMatchEngineFactoryRegistry
 			else
 				MatchEngineFactoryRegistryImpl.createStandaloneInstance
+		val registry = EMFCompareRCPPlugin.getDefault.getMatchEngineFactoryRegistry
 		val engineFactory = new MatchEngineFactoryImpl(nameMatcher, comparisonFactory) {
 			override getMatchEngine() {
 				return matchEngine
