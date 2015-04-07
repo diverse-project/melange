@@ -7,7 +7,7 @@ import static extension fr.inria.diverse.melange.lib.MetamodelExtensions.*
 //}
 
 // Implementation 1: State machines that comply to the Run-To-Completion policy: UML and Rhapsody.
-metamodel FiniteStateMachineRTC /**implements IStateMachine*/ {
+language FiniteStateMachineRTC /**implements IStateMachine*/ {
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel/models/fsm.ecore"
 	exactType FiniteStateMachineRTCMT
 
@@ -16,7 +16,7 @@ metamodel FiniteStateMachineRTC /**implements IStateMachine*/ {
 } 
 
 // Implementation 2: State machines that accept simultaneous events: Classical statecharts.
-metamodel FiniteStateMachineSimultaneous{
+language FiniteStateMachineSimultaneous{
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel/models/fsm.ecore"
 	exactType FiniteStateMachineSimultaneousMT
 	
@@ -24,7 +24,7 @@ metamodel FiniteStateMachineSimultaneous{
 	with finitestatemachines.simultaneous.StateAspect
 }
 
-metamodel FiniteStateMachineTimed {
+language FiniteStateMachineTimed {
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.timed/model/fsm.ecore"
 	exactType FiniteStateMachineTimedMT
 	
@@ -33,7 +33,7 @@ metamodel FiniteStateMachineTimed {
 	with finitestatemachines.timed.TransitionAspect
 }
 
-metamodel FiniteStateMachineComposite{
+language FiniteStateMachineComposite{
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.composite/model/fsm.ecore"
 	exactType FiniteStateMachineCompositeMT
 	
@@ -42,7 +42,7 @@ metamodel FiniteStateMachineComposite{
 	with finitestatemachines.composite.CompositeStateAspect
 }
 
-metamodel FiniteStateMachineTimedComposite{
+language FiniteStateMachineTimedComposite{
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.timedComposite/model/fsm.ecore"
 	exactType FiniteStateMachineTimedCompositeMT
 	
@@ -52,7 +52,7 @@ metamodel FiniteStateMachineTimedComposite{
 	with finitestatemachines.timedcomposite.TransitionAspect
 }
 
-metamodel FiniteStateMachineTimedSimultaneous{
+language FiniteStateMachineTimedSimultaneous{
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.timed/model/fsm.ecore"
 	exactType FiniteStateMachineTimedSimultaneousMT
 	
@@ -61,7 +61,7 @@ metamodel FiniteStateMachineTimedSimultaneous{
 	with finitestatemachines.timed.simultaneous.TransitionAspect
 }
 
-metamodel FiniteStateMachineCompositeSimultaneous{
+language FiniteStateMachineCompositeSimultaneous{
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.composite/model/fsm.ecore"
 	exactType FiniteStateMachineCompositeSimultaneousMT
 	
@@ -70,7 +70,7 @@ metamodel FiniteStateMachineCompositeSimultaneous{
 	with finitestatemachines.composite.simultaneous.CompositeStateAspect
 }
 
-metamodel FiniteStateMachineTimedCompositeSimultaneous{
+language FiniteStateMachineTimedCompositeSimultaneous{
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.timedComposite/model/fsm.ecore"
 	exactType FiniteStateMachineTimedCompositeSimultaneousMT
 	

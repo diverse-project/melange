@@ -6,6 +6,8 @@ import finitestatemachines.Join
 import finitestatemachines.StateMachine
 import finitestatemachines.Transition
 import java.util.ArrayList
+import org.eclipse.emf.common.util.BasicEList
+import org.eclipse.emf.common.util.EList
 
 import static extension finitestatemachines.simultaneous.StateAspect.*
 import static extension finitestatemachines.simultaneous.StateMachineAspect.*
@@ -40,7 +42,7 @@ class SimultaneousEventsThread extends Thread {
 	 * Runs the thread!
 	 */
 	override run(){
-		var ArrayList<finitestatemachines.State> attendedStates = new ArrayList<finitestatemachines.State>()
+		var EList<finitestatemachines.State> attendedStates = new BasicEList<finitestatemachines.State>()
 		
 		for(finitestatemachines.State _state : stateMachine.currentState){
 			for(Transition transition : _state.outgoing){
@@ -103,8 +105,8 @@ class SimultaneousEventsThread extends Thread {
 		
 		// Join: If the current state is followed by a Join, we need to jump to it.
 		//		there are neither guards nor triggers in this kind of situation. 
-		var ArrayList<finitestatemachines.State> toAdd = new ArrayList<finitestatemachines.State>()
-		var ArrayList<finitestatemachines.State> toRemove = new ArrayList<finitestatemachines.State>()
+		var EList<finitestatemachines.State> toAdd = new BasicEList<finitestatemachines.State>()
+		var EList<finitestatemachines.State> toRemove = new BasicEList<finitestatemachines.State>()
 		
 		for(finitestatemachines.State _state : currentState){
 			if(_state.outgoing.size() > 0 && _state.outgoing.get(0).target instanceof Join){

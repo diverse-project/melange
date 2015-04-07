@@ -2,7 +2,7 @@ package simpleaspects
 
 import static extension fr.inria.diverse.melange.lib.MetamodelExtensions.*
 
-metamodel Fsm {
+language Fsm {
 	ecore "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.fsm/model/FSM.ecore"
 	exactType FsmMT
 	with simpleaspects.ExecutableFsmAspect
@@ -10,7 +10,7 @@ metamodel Fsm {
 	with simpleaspects.ExecutableTransitionAspect
 }
 
-metamodel TimedFsm {
+language TimedFsm {
 	ecore "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.timedfsm/model/TimedFSM.ecore"
 	exactType TimedFsmMT
 	with simpleaspects.TimedFsmAspect

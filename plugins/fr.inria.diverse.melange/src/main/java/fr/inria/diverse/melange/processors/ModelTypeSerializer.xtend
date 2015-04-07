@@ -42,3 +42,4 @@ class ModelTypeSerializer extends DispatchMelangeProcessor
 		}
 	}
 }
+

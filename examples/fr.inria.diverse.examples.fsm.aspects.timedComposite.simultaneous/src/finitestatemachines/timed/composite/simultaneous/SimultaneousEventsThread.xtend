@@ -1,18 +1,20 @@
 package finitestatemachines.timed.composite.simultaneous
 
 import FSM.interfaces.Context
+import finitestatemachinestimedcomposite.CompositeState
 import finitestatemachinestimedcomposite.Fork
+import finitestatemachinestimedcomposite.InitialState
 import finitestatemachinestimedcomposite.Join
 import finitestatemachinestimedcomposite.StateMachine
 import finitestatemachinestimedcomposite.Transition
 import java.util.ArrayList
+import org.eclipse.emf.common.util.BasicEList
+import org.eclipse.emf.common.util.EList
 
+import static extension finitestatemachines.timed.composite.simultaneous.CompositeStateAspect.*
 import static extension finitestatemachines.timed.composite.simultaneous.StateAspect.*
 import static extension finitestatemachines.timed.composite.simultaneous.StateMachineAspect.*
-import static extension finitestatemachines.timed.composite.simultaneous.CompositeStateAspect.*
 import static extension finitestatemachines.timed.composite.simultaneous.TransitionAspect.*
-import finitestatemachinestimedcomposite.CompositeState
-import finitestatemachinestimedcomposite.InitialState
 
 //
 // *.*
@@ -44,7 +46,7 @@ class SimultaneousEventsThread extends Thread {
 	 * Runs the thread!
 	 */
 	override run(){
-		var ArrayList<finitestatemachinestimedcomposite.State> attendedStates = new ArrayList<finitestatemachinestimedcomposite.State>()
+		var EList<finitestatemachinestimedcomposite.State> attendedStates = new BasicEList<finitestatemachinestimedcomposite.State>()
 		
 		for(finitestatemachinestimedcomposite.State _state : stateMachine.currentState){
 			for(Transition transition : _state.outgoing){
@@ -150,8 +152,8 @@ class SimultaneousEventsThread extends Thread {
 		
 		// Join: If the current state is followed by a Join, we need to jump to it.
 		//		there are neither guards nor triggers in this kind of situation. 
-		var ArrayList<finitestatemachinestimedcomposite.State> toAdd = new ArrayList<finitestatemachinestimedcomposite.State>()
-		var ArrayList<finitestatemachinestimedcomposite.State> toRemove = new ArrayList<finitestatemachinestimedcomposite.State>()
+		var EList<finitestatemachinestimedcomposite.State> toAdd = new BasicEList<finitestatemachinestimedcomposite.State>()
+		var EList<finitestatemachinestimedcomposite.State> toRemove = new BasicEList<finitestatemachinestimedcomposite.State>()
 		
 		for(finitestatemachinestimedcomposite.State _state : currentState){
 			if(_state.outgoing.size() > 0 && _state.outgoing.get(0).target instanceof Join){

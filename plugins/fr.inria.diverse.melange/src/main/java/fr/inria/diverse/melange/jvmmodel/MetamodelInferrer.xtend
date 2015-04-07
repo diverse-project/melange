@@ -112,6 +112,14 @@ class MetamodelInferrer
 				superTypes += AdaptersFactory.typeRef
 
 				members += mm.toField("instance", adapFactName.typeRef)[static = true]
+				
+				members += mm.toField("register" , "java.util.WeakHashMap".typeRef(EObject.typeRef,EObjectAdapter.typeRef))
+				
+				members += mm.toConstructor[
+					body = '''
+						register = new WeakHashMap();
+					'''
+				]
 
 				members += mm.toMethod("getInstance", adapFactName.typeRef)[
 					static = true
@@ -127,10 +135,20 @@ class MetamodelInferrer
 					parameters += mm.toParameter("o", EObject.typeRef)
 
 					body = '''
-						«FOR cls : mt.allClasses.filter[mm.hasAdapterFor(mt, it) && instantiable && abstractable].sortByClassInheritance»
-						if (o instanceof «mm.getFqnFor(cls)»)
-							return create«cls.name»Adapter((«mm.getFqnFor(cls)») o) ;
-						«ENDFOR»
+						EObjectAdapter res = register.get(o);
+						if(res != null){
+							 return res;
+						}
+						else{
+							«FOR cls : mt.allClasses.filter[mm.hasAdapterFor(mt, it) && instantiable && abstractable].sortByClassInheritance»
+							if (o instanceof «mm.getFqnFor(cls)»){
+								res = create«cls.name»Adapter((«mm.getFqnFor(cls)») o) ;
+								register.put(o,res);
+								return res;
+							}
+							«ENDFOR»
+						}
+					
 						return null ;
 					'''
 				]
