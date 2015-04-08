@@ -40,6 +40,7 @@ import org.junit.runner.RunWith
 
 import static org.junit.Assert.*
 
+@Ignore("Ecore isn't supported anymore, as its features clash with EObjectAdapter")
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
 @XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/EcoreTest.melange")
@@ -97,7 +98,6 @@ class EcoreTest
 		assertEquals(fsa.textFiles.size, 48)
 	}
 
-	@Ignore("Ecore isn't supported anymore, as its features clash with EObjectAdapter")
 	@Test
 	def void testRuntime() {
 		try {
