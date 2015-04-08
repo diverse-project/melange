@@ -103,7 +103,7 @@ class MatchingHelper
 		val ret =
 		    mapping.namesMatch(opA, opB)
 			// FIXME: Just a hack for now
-		&&  if (opA.EType instanceof EDataType || opB.EType instanceof EDataType || !pkgsA.allClassifiers.contains(opA.EType))
+		&&  if (opA.EType instanceof EDataType || opB.EType instanceof EDataType)// || !pkgsA.allClassifiers.contains(opA.EType))
 				mapping.namesMatch(opA.EType, opB.EType)
 			else
 				(
