@@ -124,13 +124,18 @@ class MetamodelExtensions
 
 	def QualifiedName getTargetedNamespace(Aspect asp) {
 		val aavt = (asp.aspectTypeRef.type as JvmDeclaredType).aspectAnnotationValueType
-		val aavt2 = (asp.aspectTypeRef.type as JvmDeclaredType).aspectAnnotationValueType
-		return aavt.toQualifiedName.skipLast(1)
+		return
+			if (aavt !== null)
+				aavt.toQualifiedName.skipLast(1)
+			else
+				QualifiedName::create
 	}
 
 	def boolean isDefinedOver(Aspect asp, Metamodel mm) {
-		try{
-			return mm.packageFqn.toQualifiedName.skipLast(1).toString == asp.targetedNamespace.toString
+		try {
+			return mm.genmodels.filterNull.map[genPackages].flatten.filterNull.exists[
+				packageFqn.toQualifiedName.skipLast(1).toString == asp.targetedNamespace.toString
+			]
 		} catch (java.lang.IllegalArgumentException e){
 			val unresolvedProxyAspect = (asp.aspectTypeRef.type as JvmDeclaredType).annotations.exists[annotation.eIsProxy]
 			if(unresolvedProxyAspect){

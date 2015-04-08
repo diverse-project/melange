@@ -48,10 +48,9 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 	def dispatch void infer(ModelTypingSpace root, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
 		try {
 //			if (Diagnostician.INSTANCE.validate(typingSpace).severity != Diagnostic.ERROR) {
-				root.modelTypes.filter[isComplete].forEach[generateInterfaces(acceptor, _typeReferenceBuilder)]
-				root.metamodels.filter[isComplete].forEach[generateAdapters(acceptor, _typeReferenceBuilder)]
-				root.transformations.forEach[generateTransformation(acceptor, _typeReferenceBuilder)]
-				root.createStandaloneSetup(acceptor)
+//				root.modelTypes.filter[canGenerate].forEach[generateInterfaces(acceptor, _typeReferenceBuilder)]
+//				root.metamodels.filter[canGenerate].forEach[generateAdapters(acceptor, _typeReferenceBuilder)]
+//				root.transformations.forEach[generateTransformation(acceptor, _typeReferenceBuilder)]
 //				root.slicers.forEach[generateSlicer]
 //			} else {
 //				logger.error('''Inferrer cannot proceed: there are errors in the model.''')

@@ -58,10 +58,11 @@ class EPackageProvider
 						val pkgs = newArrayList
 
 						pkgs += root
-						pkgs += root.referencedPkgs.filter[!pkgs.exists[p | nsURI == p.nsURI]].map[EcoreUtil::copy(it)]
+						pkgs += root.referencedPkgs.filter[!pkgs.exists[p | nsURI == p.nsURI]]
 
 						packages.putAll(m, pkgs)
 						packages.putAll(m, pkgs.map[allSubPkgs].flatten.filter[!pkgs.exists[p | nsURI == p.nsURI]])
+						pkgs.forEach[ESubpackages.clear]
 					}
 				}
 				Metamodel:
