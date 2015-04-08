@@ -7,7 +7,7 @@
             class="fr.inria.diverse.melange.ui.templates.melange.SimpleMTTemplate"
             contributingId="fr.inria.diverse.melange.ui.templates.template1"
             id="fr.inria.diverse.melange.ui.templates.template_simple_mt"
-            name="User simple model type">
+            name="Simple Melange project">
       </template>
    </extension>
    <extension
@@ -15,10 +15,10 @@
       <wizard
             class="fr.inria.diverse.melange.ui.templates.melange.SimpleMTNewWizard"
             id="fr.inria.diverse.melange.ui.templates.projectContent.SimpleMT"
-            name="User simple model type"
+            name="Simple Melange project"
             targetPluginId="fr.inria.diverse.melange.ui">
          <description>
-            This template will generate a simple model type on top of the provided ecore file.
+            This template includes the definition of a language, its model type and a simple transformation.
          </description>
       </wizard>
    </extension>

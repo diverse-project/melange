@@ -1,35 +1,43 @@
 package fr.inria.diverse.melange.ui.wizards
 
-class MelangeFilesTemplates {
-
-	def public static String buildProperties () {
-		return '''source.. = src/,\
-           xtend-gen/
-output.. = bin/
-bin.includes = plugin.xml,\
-           META-INF/,\
-           .
-'''
+class MelangeFilesTemplates
+{
+	def public static String getBuildProperties() {
+		return '''
+			source.. = src/,\
+			           src-gen/,\
+			           xtend-gen/
+			bin.includes = plugin.xml,\
+			               META-INF/,\
+			               .
+		'''
 	}
-
 
 	def public static String getK3SLEStub(String pkgName, String ecoreUri, String mmName) {
-		return '''package «pkgName»
+		return '''
+			package «pkgName»
 
-metamodel «mmName» {
-	ecore «ecoreUri»
-	exactType «mmName»MT
-}
+			language «mmName» {
+				ecore «ecoreUri»
+				exactType «mmName»MT
+			}
 
-@Main
-transformation main() {
-	println("Hello, SLE!")
-}
-'''
+			transformation foo(«mmName»MT m) {
+				val root = m.contents.head
+				println(root)
+			}
+
+			@Main
+			transformation main() {
+				println("Hello, SLE!")
+			}
+		'''
 	}
 
-	def	public static String eclipseResourcePrefs() {
-		return '''eclipse.preferences.version=1
-encoding/<project>=UTF-8'''
+	def	public static String getEclipseResourcePrefs() {
+		return '''
+			eclipse.preferences.version=1
+			encoding/<project>=UTF-8
+		'''
 	}
 }
