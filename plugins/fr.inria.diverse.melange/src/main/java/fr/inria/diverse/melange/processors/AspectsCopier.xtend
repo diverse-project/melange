@@ -1,14 +1,9 @@
 package fr.inria.diverse.melange.processors
 
+import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.utils.AspectCopier
-import javax.inject.Inject
-<<<<<<< HEAD
-=======
-import org.apache.log4j.Logger
-import org.eclipse.xtext.common.types.JvmDeclaredType
->>>>>>> aspects-type-group
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
 class AspectsCopier extends DispatchMelangeProcessor
@@ -16,7 +11,6 @@ class AspectsCopier extends DispatchMelangeProcessor
 	@Inject AspectCopier copier
 	@Inject extension MetamodelExtensions
 	@Inject JvmTypeReferenceBuilder.Factory builderFactory
-<<<<<<< HEAD
 
 	def dispatch void preProcess(Metamodel mm) {
 		if (!mm.isGeneratedByMelange || mm.runtimeHasBeenGenerated) {
