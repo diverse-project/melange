@@ -7,6 +7,7 @@ import fr.inria.diverse.melange.lib.MatchingHelper
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
+import org.eclipse.core.runtime.Platform
 import org.eclipse.emf.compare.DifferenceKind
 import org.eclipse.emf.compare.EMFCompare
 import org.eclipse.emf.compare.match.DefaultComparisonFactory
@@ -14,6 +15,7 @@ import org.eclipse.emf.compare.match.DefaultEqualityHelperFactory
 import org.eclipse.emf.compare.match.DefaultMatchEngine
 import org.eclipse.emf.compare.match.eobject.IdentifierEObjectMatcher
 import org.eclipse.emf.compare.match.impl.MatchEngineFactoryImpl
+import org.eclipse.emf.compare.match.impl.MatchEngineFactoryRegistryImpl
 import org.eclipse.emf.compare.merge.BatchMerger
 import org.eclipse.emf.compare.merge.IMerger
 import org.eclipse.emf.compare.rcp.EMFCompareRCPPlugin
@@ -72,7 +74,11 @@ class EmfCompareAlgebra implements ModelTypeAlgebra
 		])
 		val comparisonFactory = new DefaultComparisonFactory(new DefaultEqualityHelperFactory)
 		val matchEngine = new DefaultMatchEngine(nameMatcher, comparisonFactory)
-		val registry = EMFCompareRCPPlugin.getDefault.getMatchEngineFactoryRegistry
+		val registry =
+			if (Platform.isRunning)
+				EMFCompareRCPPlugin.getDefault.getMatchEngineFactoryRegistry
+			else
+				MatchEngineFactoryRegistryImpl.createStandaloneInstance
 		val engineFactory = new MatchEngineFactoryImpl(nameMatcher, comparisonFactory) {
 			override getMatchEngine() {
 				return matchEngine
