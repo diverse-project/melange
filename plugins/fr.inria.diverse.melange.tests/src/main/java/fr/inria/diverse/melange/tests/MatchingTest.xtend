@@ -299,6 +299,6 @@ class MatchingTest
 	}
 
 	private def boolean simpleMatch(EPackage pkgA, EPackage pkgB) {
-		return helper.match(Collections.singletonList(pkgA), Collections.singletonList(pkgB))
+		return helper.match(Collections.singletonList(pkgA), Collections.singletonList(pkgB), null)
 	}
 }
