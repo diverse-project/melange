@@ -56,6 +56,7 @@ class EPackageProvider
 
 						packages.putAll(m, pkgs)
 						packages.putAll(m, pkgs.map[allSubPkgs].flatten.filter[!pkgs.exists[p | nsURI == p.nsURI]])
+						pkgs.forEach[ESubpackages.clear]
 					}
 				}
 				Metamodel:

@@ -1,13 +1,10 @@
 package fr.inria.diverse.melange.lib
 
 import com.google.inject.Inject
-
 import java.util.ArrayList
 import java.util.List
-
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
-
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EDataType
@@ -21,7 +18,6 @@ import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.EcoreFactory
 import org.eclipse.emf.ecore.EcorePackage
-
 import org.eclipse.emf.ecore.util.EcoreUtil
 
 class EcoreExtensions
@@ -75,8 +71,20 @@ class EcoreExtensions
 		return pkgs.map[EClassifiers].flatten.toList
 	}
 
-	def String getUniqueId(EClassifier it) {
-		return '''«EPackage.name»_«name»'''
+	def dispatch String getUniqueId(EPackage it) {
+		return '''«IF ESuperPackage !== null»«ESuperPackage.uniqueId»_«ENDIF»«name»'''
+	}
+
+	def dispatch String getUniqueId(EClassifier it) {
+		return '''«EPackage.uniqueId»_«name»'''
+	}
+
+	def dispatch String getUniqueId(EOperation it) {
+		return '''«EContainingClass.uniqueId»_«name»'''
+	}
+
+	def dispatch String getUniqueId(EStructuralFeature it) {
+		return '''«EContainingClass.uniqueId»_«name»'''
 	}
 
 	def boolean isInstantiable(EClass cls) {
