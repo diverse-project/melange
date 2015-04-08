@@ -28,7 +28,7 @@ public class NewMelangeProjectWizardFields extends BaseProjectWizardFields {
 	public NewMelangeProjectWizardFields () {
 		super();
 		
-		this.projectName 			= "org.sample.my_melange";
+		this.projectName 			= "org.sample.melangeproject";
 		this.projectLocation 		= ResourcesPlugin.getWorkspace().getRoot().getLocation().toOSString();
 		//this.basePackageName 		= this.projectName;
 		

@@ -40,10 +40,10 @@ import fr.inria.diverse.melange.ui.wizards.pages.NewMelangeProjectWizardFields;
 
 public class SimpleMTTemplate extends MelangeTemplateSection {
 	public static final String KEY_MELANGE_FILE_NAME = "melangeFileName"; //$NON-NLS-1$
-	public static final String MELANGE_FILE_NAME = "sample"; //$NON-NLS-1$
+	public static final String MELANGE_FILE_NAME = "Hello.melange"; //$NON-NLS-1$
 	public static final String KEY_ASPECTCLASS_POSTFIX = "aspectClassPostfix"; //$NON-NLS-1$
 	public static final String KEY_METAMODEL_NAME = "metamodelName"; //$NON-NLS-1$
-	public static final String METAMODEL_NAME = "MyMetamodel"; //$NON-NLS-1$
+	public static final String METAMODEL_NAME = "MyLanguage"; //$NON-NLS-1$
 	public static final String KEY_ECOREFILE_PATH = "ecoreFilePath"; //$NON-NLS-1$
 
 
@@ -166,7 +166,7 @@ public class SimpleMTTemplate extends MelangeTemplateSection {
 	protected String getFormattedPackageName(String id) {
 		String packageName = super.getFormattedPackageName(id);
 		if (packageName.length() != 0)
-			return packageName + ".actions"; //$NON-NLS-1$
+			return packageName; //$NON-NLS-1$
 		return "actions"; //$NON-NLS-1$
 	}
 	
@@ -179,7 +179,8 @@ public class SimpleMTTemplate extends MelangeTemplateSection {
 	@Override
 	public String getReplacementString(String fileName, String key) {
 		// TODO Auto-generated method stub
-		return super.getReplacementString(fileName, key);
+		String s = super.getReplacementString(fileName, key);
+		return s;
 	}
 
 	/* (non-Javadoc)

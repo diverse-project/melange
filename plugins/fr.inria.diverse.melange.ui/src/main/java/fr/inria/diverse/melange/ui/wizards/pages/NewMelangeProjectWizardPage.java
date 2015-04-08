@@ -85,7 +85,7 @@ public class NewMelangeProjectWizardPage extends WizardPage {
 		grpGeneral.setLayout(new GridLayout(4, false));
 
 		lblProjectName = new Label(grpGeneral, SWT.NONE);
-		lblProjectName.setText("project name ");
+		lblProjectName.setText("Project name");
 		new Label(grpGeneral, SWT.NONE);
 		new Label(grpGeneral, SWT.NONE);
 		new Label(grpGeneral, SWT.NONE);
@@ -104,7 +104,7 @@ public class NewMelangeProjectWizardPage extends WizardPage {
 		});
 		
 		btnCheckLocation = new Button(grpGeneral, SWT.CHECK);
-		btnCheckLocation.setText("use default location");
+		btnCheckLocation.setText("Use default location");
 		btnCheckLocation.setSelection(true);
 		new Label(grpGeneral, SWT.NONE);
 		new Label(grpGeneral, SWT.NONE);

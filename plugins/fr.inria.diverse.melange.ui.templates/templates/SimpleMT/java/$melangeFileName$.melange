@@ -2,22 +2,21 @@ package $packageName$
 
 import static extension fr.inria.diverse.melange.lib.MetamodelExtensions.*
 
-metamodel $metamodelName$ {
+language $metamodelName$ {
 	ecore "platform:/resource/$ecoreFilePath$"
 	exactType $metamodelName$MT
 }
 
 
-transformation execute($metamodelName$MT mymodel) {
-	val root = mymodel.contents.head as $metamodelName$
+transformation foo($metamodelName$MT model) {
+	val root = model.contents.head
 
-	print("root: ")
-	println(root)
+	print("root: " + root)
 }
 
 @Main
 transformation main() {
-	val m1 = $metamodelName$.load("input/Simple.xmi",      $metamodelName$MT)
+	val m1 = $metamodelName$.load("input/Simple.xmi", $metamodelName$MT)
 	
-	execute.call(m1)
+	foo.call(m1)
 }

@@ -169,6 +169,8 @@ public class NewMelangeProjectWizard extends AbstractNewProjectWizardWithTemplat
 			manifestChanger.addPluginDependency("org.eclipse.emf.ecore", "2.8.0", true, true);
 			manifestChanger.addPluginDependency("org.eclipse.emf.common", "2.8.0", true, true);
 			manifestChanger.addPluginDependency("fr.inria.diverse.melange.lib", "0.1.0", true, true);
+			manifestChanger.addPluginDependency("fr.inria.diverse.melange.resource", "0.1.0", true, true);
+			manifestChanger.addPluginDependency("fr.inria.diverse.melange.adapters", "0.1.0", true, true);
 			
 			manifestChanger.writeManifest(project.getFile("META-INF/MANIFEST.MF"));
 			createPlugInFile(project, monitor);
@@ -211,7 +213,7 @@ public class NewMelangeProjectWizard extends AbstractNewProjectWizardWithTemplat
 		IContainer currentContainer = project;
 		IFile file = currentContainer.getFile(new Path(path));
 		
-		String contents = MelangeFilesTemplates.buildProperties();
+		String contents = MelangeFilesTemplates.getBuildProperties();
 		IFileUtils.writeInFile(file, contents, monitor);   
     }
     
@@ -223,7 +225,7 @@ public class NewMelangeProjectWizard extends AbstractNewProjectWizardWithTemplat
 		IContainer currentContainer = project;
 		IFile file = currentContainer.getFile(new Path(path));
 		
-		String contents = MelangeFilesTemplates.eclipseResourcePrefs();
+		String contents = MelangeFilesTemplates.getEclipseResourcePrefs();
 		IFileUtils.writeInFile(file, contents, monitor);   
     }
     
