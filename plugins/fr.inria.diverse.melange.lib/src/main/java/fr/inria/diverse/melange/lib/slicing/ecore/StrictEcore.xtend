@@ -1,6 +1,6 @@
-package fr.inria.diverse.melange.lib.slicing
+package fr.inria.diverse.melange.lib.slicing.ecore
 
-import static extension fr.inria.diverse.melange.lib.slicing.__SlicerAspect__.*
+import static extension fr.inria.diverse.melange.lib.slicing.ecore.__SlicerAspect__.*
 import java.io.IOException
 
 class StrictEcore{

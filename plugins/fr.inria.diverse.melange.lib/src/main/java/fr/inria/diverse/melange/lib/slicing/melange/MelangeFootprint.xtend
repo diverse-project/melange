@@ -1,16 +1,15 @@
-package k3transfofootprint
+package fr.inria.diverse.melange.lib.slicing.melange
 
-import static extension k3transfofootprint.__SlicerAspect__.*
-import static extension k3transfofootprint.orgeclipsextextcommontypesJvmTypeReferenceAspect.*
-import static extension k3transfofootprint.orgeclipsextextcommontypesJvmIdentifiableElementAspect.*
-class K3TransfoFootprint{
+import static extension fr.inria.diverse.melange.lib.slicing.melange.__SlicerAspect__.*
 
+class MelangeFootprint
+{
 	public val java.util.Set<String> footprint = newHashSet
 	private def addQN(String qn) {
-		if(qn!=null && !qn.startsWith("java.") && !qn.startsWith("com.google.") && 
+		if(qn!==null && !qn.startsWith("java.") && !qn.startsWith("com.google.") && 
 			!qn.startsWith("sun.") && !qn.startsWith("javax.") && !qn.startsWith("com.sun") &&
 			!qn.startsWith("com.oracle") && !qn.startsWith("sunw."))
-			footprint.add(qn)
+			return footprint.add(qn)
 	} 
 	
 	val java.util.List<org.eclipse.xtext.common.types.JvmFormalParameter> inputJvmFormalParameter

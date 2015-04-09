@@ -1,10 +1,10 @@
-package fr.inria.diverse.melange.lib.slicing
+package fr.inria.diverse.melange.lib.slicing.ecore
 
-import static extension fr.inria.diverse.melange.lib.slicing.orgeclipseemfecoreEClassifierAspect.*
-import static extension fr.inria.diverse.melange.lib.slicing.orgeclipseemfecoreETypedElementAspect.*
-import static extension fr.inria.diverse.melange.lib.slicing.orgeclipseemfecoreEOperationAspect.*
-import static extension fr.inria.diverse.melange.lib.slicing.orgeclipseemfecoreEAnnotationAspect.*
-import static extension fr.inria.diverse.melange.lib.slicing.orgeclipseemfecoreETypeParameterAspect.*
+import static extension fr.inria.diverse.melange.lib.slicing.ecore.orgeclipseemfecoreEClassifierAspect.*
+import static extension fr.inria.diverse.melange.lib.slicing.ecore.orgeclipseemfecoreETypedElementAspect.*
+import static extension fr.inria.diverse.melange.lib.slicing.ecore.orgeclipseemfecoreEOperationAspect.*
+import static extension fr.inria.diverse.melange.lib.slicing.ecore.orgeclipseemfecoreEAnnotationAspect.*
+import static extension fr.inria.diverse.melange.lib.slicing.ecore.orgeclipseemfecoreETypeParameterAspect.*
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
 
