@@ -33,7 +33,6 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 	 * The parameters of this constructor define the list of the processors and the order in which they'll be applied
 	 */
 	@Inject
-<<<<<<< HEAD
 	new(
 		EcoreUriInferrer i,
 		AspectsCopier c,
@@ -43,18 +42,12 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 		AdapterExtensionPointProcessor p,
 		ModelTypeSerializer s
 	) {
-=======
-	new(EcoreUriInferrer i, AspectsCopier c, AspectsWeaver a, ExactTypeInferrer e, TypingInferrer t, ModelTypeSerializer s) {
->>>>>>> d70f2e51b025044318444275fa756e0e4c66e9d2
 		processors += i
 		processors += c
 		processors += a
 		processors += e
 		processors += t
-<<<<<<< HEAD
 		processors += p
-=======
->>>>>>> d70f2e51b025044318444275fa756e0e4c66e9d2
 		processors += s
 	}
 
