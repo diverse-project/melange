@@ -12,11 +12,11 @@ group: navigation
 
 ## Getting started
 
-### Outline
+#### Outline
 
-### Generated files
+#### Generated files
 
-### Concepts
+## Concepts
 
 #### Language
 
@@ -60,10 +60,10 @@ transformation main(){
 }
 ```
 
-### Load a model
+#### Load a model
 
-### Call a transformation
+#### Call a transformation
 
-### Execution the main transformation
+#### Execution the main transformation
 
 ## A concrete example
