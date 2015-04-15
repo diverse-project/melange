@@ -22,9 +22,11 @@ class TypeReferencesHelper
 	}
 
 	def boolean isSubtypeOf(JvmTypeReference ref, Class<?> cls) {
+		val lightweightRef = ref?.toLightweightTypeReference(ref?.eResource)
+
 		return
-			if (ref !== null)
-				ref.toLightweightTypeReference(ref.eResource).isSubtypeOf(cls)
+			if (lightweightRef !== null)
+				lightweightRef.isSubtypeOf(cls)
 			else
 				false
 	}
