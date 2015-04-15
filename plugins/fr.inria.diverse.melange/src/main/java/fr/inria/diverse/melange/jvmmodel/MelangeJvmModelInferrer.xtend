@@ -97,6 +97,10 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 						"*",
 						new org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl()
 					) ;
+					org.eclipse.emf.ecore.resource.Resource.Factory.Registry.INSTANCE.getProtocolToFactoryMap().put(
+						"melange",
+						new fr.inria.diverse.melange.resource.MelangeResourceFactoryImpl()
+					) ;
 				'''
 			]
 
