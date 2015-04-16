@@ -34,31 +34,31 @@ language FiniteStateMachineClassic{
 
 #### Model type
 
-```
+~~~
 modeltype FSMmt{
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.composite/model/fsm.ecore"
 }
-```
+~~~
 
 #### Transformation
 
-```
+~~~
 transformation execute(FiniteStateMachineUMLMT stateMachine, String input, String outputFile){
 	val root = stateMachine.contents.head as finitestatemachines.finitestatemachineumlmt.StateMachine
 	root.eval(new FSM.interfaces.Context(input), outputFile)
 }
-```
+~~~
 
 ## Main transformation
 
-```
+~~~
 @Main
 transformation main(){
 	val simpleProgram = FiniteStateMachineUML.load("input/exampleComposite.xmi")
 	execute.call(simpleProgram, "{e}", "output/UML-output " + 
 		System.currentTimeMillis + ".pdf")
 }
-```
+~~~
 
 #### Load a model
 
