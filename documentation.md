@@ -20,7 +20,7 @@ group: navigation
 
 #### Language
 
-```
+~~~
 language FiniteStateMachineClassic{
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.composite/model/fsm.ecore"
 	exactType FiniteStateMachineClassicMT
@@ -30,7 +30,7 @@ language FiniteStateMachineClassic{
 	with finitestatemachines.composite.classic.CompositeStateAspect
 	with finitestatemachines.composite.classic.TransitionAspect
 }
-```
+~~~
 
 #### Model type
 
