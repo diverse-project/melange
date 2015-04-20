@@ -50,7 +50,9 @@ Congratulation, you created you first Melange project !
 #### Outline
 
 The outline shows an overview of your project.
+
 It display the main Melange elements in your project:
+
 * Languages: Represented by a colored icon before its name. It may be followed by the operator triangle (meaning "typed by") and a list of ModelType.
   It can be composed by:
   * Aspects: Represented by an icon "brick" before its name, ending with the operator '@' (meaning weaved on) and the name the base class.
