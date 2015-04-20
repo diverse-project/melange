@@ -101,11 +101,15 @@ We have :
 
 #### Model type
 
+In Melange Languages are typed. Their exactType are their default type but you can create news one, independantly of languages by the keyword `modeltype`.
+
 ~~~
 modeltype FSMmt{
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.composite/model/fsm.ecore"
 }
 ~~~
+
+Like for `Language` we use the keyword `ecore` to locate an .ecore file. This Ecore will define the model type.
 
 #### Transformation
 
