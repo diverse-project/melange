@@ -113,12 +113,27 @@ Like for `Language` we use the keyword `ecore` to locate an .ecore file. This Ec
 
 #### Transformation
 
+Transformation is the concept of Melange that use the others main concepts. 
+Basically a transformation will manipulate instances of languages. The required ModelType of inputs allows to check their validity. 
+It will raise an error if we use instances of language not typed by the ModelType of the input.
+
+An example of transformation
+
 ~~~
 transformation execute(FiniteStateMachineUMLMT stateMachine, String input, String outputFile){
 	val root = stateMachine.contents.head as finitestatemachines.finitestatemachineumlmt.StateMachine
 	root.eval(new FSM.interfaces.Context(input), outputFile)
 }
 ~~~
+
+Here we have:
+
+* `transformation` <br>
+  This keyword is used to declare the transformation named 'execute'
+* A list of inputs <br>
+  You can set a list of inputs, typed by ModelTypes or by Java types.
+* A list of instructions <br>
+  The used language is the same used to define aspects: [Xtend](https://eclipse.org/xtend/).
 
 ## Main transformation
 
