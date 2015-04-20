@@ -137,6 +137,9 @@ Here we have:
 
 ## Main transformation
 
+Their is a special transformation: the entry point of your program.
+We use the annotation `@Main` to specify which one is your first transformation.
+
 ~~~
 @Main
 transformation main(){
@@ -148,8 +151,14 @@ transformation main(){
 
 #### Load a model
 
+In order to load a model, your language provide a method `load(String)` that takes as parameter a path to a serialized model file.
+
 #### Call a transformation
 
-#### Execution the main transformation
+To call a transformation, each one provide a mathod `call(...)` that takes parameters if defined.
+
+#### Launch the program
+
+To launch your program, look inside the folder `src-gen` (where Melange generates Java files) and inside the package defined in your `.melange` right clic on the class named after your main transformation and select `Run As > Java Application`.
 
 ## A concrete example
