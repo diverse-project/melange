@@ -17,7 +17,7 @@ This chapter explains how to install a working IDE for Melange.
 2. In order to add behavior on models we also need **Kermeta3**, a tool providing an action language able to manipulate your model.
    Add the [update site](http://kermeta.org/k3/update/) (`Menu Help > Install new software...`) and check Divers Common & Kermeta3.
 3. Melange depends on **Xtext** to run.
-   Get the [lastest release] (https://eclipse.org/Xtext/download.html) and add it with the update site (`Menu Help > Install new software...`).
+   Get the [lastest release](https://eclipse.org/Xtext/download.html) and add it with the update site (`Menu Help > Install new software...`).
 4. The last dependency is **EMF Compare**, used in the type system of Melange. 
    Get the [lastest release](https://www.eclipse.org/emf/compare/download.html) and add it with the update site (`Menu Help > Install new software...`).
 
