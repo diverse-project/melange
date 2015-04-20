@@ -89,13 +89,13 @@ language FiniteStateMachineClassic{
 
 We have :
 
-* The keyword `language` <br>
+* `language` <br>
   This keyword means your want to declare a Language. It is mandatory to set the ecore & exactType properties.
-* The keyword `ecore` <br>
+* `ecore` <br>
   This keyword is followed by the location of a .ecore file, which will be the base of your model. It follows the [Eclipse platform URLs convention](http://help.eclipse.org/luna/index.jsp?topic=%2Forg.eclipse.platform.doc.isv%2Freference%2Fmisc%2Fplatform-scheme-uri.html). Usually the url looks like "platform:/resource/your.model.project/model/yourmodel.ecore".
-* The keyword `exactType` <br>
+* `exactType` <br>
   This keyword is followed by the name you want for the type of your model.
-* The keyword `with` <br>
+* `with` <br>
   This keyword is used to apply ascpects on your Ecore model. You just need to set the fully qualified name of your class. Make sure your META-INF/MANIFEST.MF requires the project of your model.
 
 #### Model type
