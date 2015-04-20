@@ -97,6 +97,7 @@ We have :
   This keyword is followed by the name you want for the type of your model.
 * `with` <br>
   This keyword is used to apply ascpects on your Ecore model. You just need to set the fully qualified name of your class. Make sure your META-INF/MANIFEST.MF requires the project of your model.
+ If you want to define you own aspects you can get learn how to do in the [Kermeta3 documentation](https://github.com/diverse-project/k3/wiki)
 
 #### Model type
 
