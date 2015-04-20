@@ -53,12 +53,17 @@ The outline shows an overview of your project.
 
 It display the main Melange elements in your project:
 
-* Languages: Represented by a colored icon before its name. It may be followed by the operator triangle (meaning "typed by") and a list of ModelType.
+* Languages: ![language image](images/outline-language.png) <br>
+  Represented by a colored icon before its name. It may be followed by the operator triangle (meaning "typed by") and a list of ModelType.
   It can be composed by:
-  * Aspects: Represented by an icon "brick" before its name, ending with the operator '@' (meaning weaved on) and the name the base class.
-  * Ecore: Represented by an icon "package" before its name.
-* ModelTypes: Represented by an icon "package" before its name.
-* Transformations: Represented by an icon "arrows" before its name
+  * Aspects: ![aspect image](images/outline-aspect.png) <br>
+    Represented by an icon "brick" before its name, ending with the operator '@' (meaning weaved on) and the name the base class.
+  * Ecore: ![ecore image](images/outline-package.png) <br>
+    Represented by an icon "package" before its name.
+* ModelTypes: ![modeltype image](images/outline-modeltype.png) <br>
+  Represented by an icon "Text" before its name.
+* Transformations: ![transformation image](images/outline-transformation.png) <br>
+  Represented by an icon "arrows" before its name
 
 #### Generated files
 
