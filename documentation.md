@@ -55,7 +55,7 @@ It display the main Melange elements in your project:
 
 * Languages: ![language image](images/outline-language.png) <br>
   Represented by a colored icon before its name. It may be followed by the operator triangle (meaning "typed by") and a list of ModelType.
-  It can be composed by:
+  It can be composed of:
   * Aspects: ![aspect image](images/outline-aspect.png) <br>
     Represented by an icon "brick" before its name, ending with the operator '@' (meaning weaved on) and the name the base class.
   * Ecore: ![ecore image](images/outline-package.png) <br>
@@ -71,6 +71,9 @@ It display the main Melange elements in your project:
 
 #### Language
 
+Melange is designed to play with languages. So one of the main elements is naturally the Language.
+
+Here's an example to explain how to define one of them:
 ~~~
 language FiniteStateMachineClassic{
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.composite/model/fsm.ecore"
@@ -82,6 +85,15 @@ language FiniteStateMachineClassic{
 	with finitestatemachines.composite.classic.TransitionAspect
 }
 ~~~
+We have :
+* The keyword `language`
+  This keyword means your want to declare a Language. It is mandatory to set the ecore & exactType properties.
+* The keyword `ecore`
+  This keyword is followed by the location of a .ecore file, which will be the base of your model. It follows the [Eclipse platform URLs convention](http://help.eclipse.org/luna/index.jsp?topic=%2Forg.eclipse.platform.doc.isv%2Freference%2Fmisc%2Fplatform-scheme-uri.html). Usually the url looks like "platform:/resource/your.model.project/model/yourmodel.ecore".
+* The keyword `exactType`
+  This keyword is followed by the name you want for the type of your model.
+* The keyword `with`
+  This keyword is used to apply ascpects on your Ecore model. You just need to set the fully qualified name of your class. Make sure your META-INF/MANIFEST.MF requires the project of your model.
 
 #### Model type
 
