@@ -88,6 +88,7 @@ language FiniteStateMachineClassic{
 ~~~
 
 We have :
+
 * The keyword `language` <br>
   This keyword means your want to declare a Language. It is mandatory to set the ecore & exactType properties.
 * The keyword `ecore` <br>
