@@ -30,7 +30,7 @@ First you need to create a project defining a metamodel. It will contains the .e
 1. Change to a Java perspective if needed (`Menu Window > Open Perspective > Java`).
 2. Go in `File > New > Project...` and select `Eclipse Modeling Framework > Empty EMF Project`, then clic `Next`
 3. Name your project "org.sample.metamodel.fsm", then `Finish`.
-4. Get the Finite State Machine metamodel define by this (.ecore)[https://github.com/diverse-project/melange/blob/master/examples/fr.inria.diverse.examples.fsm.metamodel/models/fsm.ecore] and add it in the model folder of your project.
+4. Get the Finite State Machine metamodel define by this [.ecore file](https://github.com/diverse-project/melange/blob/master/examples/fr.inria.diverse.examples.fsm.metamodel/models/fsm.ecore) and add it in the model folder of your project.
 5. Right clic on the model folder, `New > Other...` and select `Eclipse Modeling Framework > EMF Generator Model`, then `Next`
 6. Name it "fsm.genmodel" and put it in model folder, then `Next`.
 7. Select Ecore model, then `Next`
