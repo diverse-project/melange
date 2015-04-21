@@ -600,5 +600,20 @@
         </description>
      </wizard>
   </extension>
+  <extension
+        point="org.eclipse.ui.views">
+     <category
+           id="fr.inria.diverse.melange.ui.views.melangeCategory"
+           name="Melange">
+     </category>
+     <e4view
+           category="fr.inria.diverse.melange.ui.views.melangeCategory"
+           class="fr.inria.diverse.melange.ui.views.LanguageRegistryView"
+           icon="icons/melange.png"
+           id="fr.inria.diverse.melange.ui.languageRegistryView"
+           name="Language Registry"
+           restorable="true">
+     </e4view>
+  </extension>
 
 </plugin>
