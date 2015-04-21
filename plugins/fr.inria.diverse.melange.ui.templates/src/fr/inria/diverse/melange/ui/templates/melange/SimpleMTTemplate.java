@@ -28,7 +28,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.BundleException;
 
-import fr.inria.diverse.commons.eclipse.pde.classpath.ManifestChanger;
+import fr.inria.diverse.commons.eclipse.pde.manifest.ManifestChanger;
 import fr.inria.diverse.commons.eclipse.pde.wizards.pages.pde.ui.BaseProjectWizardFields;
 import fr.inria.diverse.commons.eclipse.pde.wizards.pages.pde.ui.templates.AbstractStringWithButtonOption;
 import fr.inria.diverse.commons.eclipse.pde.wizards.pages.pde.ui.templates.TemplateOption;
@@ -195,7 +195,7 @@ public class SimpleMTTemplate extends MelangeTemplateSection {
 		try {
 			manifestChanger = new ManifestChanger(project.getFile("META-INF/MANIFEST.MF"));
 			manifestChanger.addPluginDependency(this.ecoreIFile.getProject().getName(), "0.0.0", false, true);
-			manifestChanger.writeManifest(project.getFile("META-INF/MANIFEST.MF"));
+			manifestChanger.commit();
 		} catch (IOException | BundleException e) {
 			Activator.logErrorMessage(e.getMessage(), e);
 		}
