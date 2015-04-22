@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension-point id="fr.inria.diverse.melange.adapter" name="ModelTypeAdapter" schema="schema/fr.inria.diverse.melange.adapter.exsd"/>
+   <extension-point id="fr.inria.diverse.melange.language" name="Melange Language Registry" schema="schema/fr.inria.diverse.melange.language.exsd"/>
+   <extension-point id="fr.inria.diverse.melange.modeltype" name="Melange ModelType Registry" schema="schema/fr.inria.diverse.melange.modeltype.exsd"/>
    <extension
          point="org.eclipse.emf.ecore.protocol_parser">
       <parser

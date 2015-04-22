@@ -3,7 +3,7 @@
 <schema targetNamespace="fr.inria.diverse.melange.resource" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="fr.inria.diverse.melange.resource" id="fr.inria.diverse.melange.adapter" name="ModelTypeAdapter"/>
+         <meta.schema plugin="fr.inria.diverse.melange.resource" id="fr.inria.diverse.melange.language" name="Melange Language Registry"/>
       </appinfo>
       <documentation>
          [Enter description of this extension point.]
@@ -17,9 +17,9 @@
          </appinfo>
       </annotation>
       <complexType>
-         <choice>
-            <element ref="adapter"/>
-         </choice>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="language"/>
+         </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
                <documentation>
@@ -47,20 +47,48 @@
       </complexType>
    </element>
 
-   <element name="adapter">
+   <element name="language">
       <complexType>
-         <attribute name="metamodel_uri" type="string" use="required">
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="adapter"/>
+         </sequence>
+         <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
                   
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="modeltype_name" type="string" use="required">
+         <attribute name="exactType" type="string" use="required">
             <annotation>
                <documentation>
                   
                </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="fr.inria.diverse.melange.modeltype/modeltype/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="adapter">
+      <complexType>
+         <attribute name="modeltypeId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="fr.inria.diverse.melange.modeltype/modeltype/@id"/>
+               </appinfo>
             </annotation>
          </attribute>
          <attribute name="class" type="string" use="required">
@@ -69,7 +97,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn="fr.inria.diverse.melange.lib.ResourceAdapter:"/>
+                  <meta.attribute kind="java" basedOn="fr.inria.diverse.melange.adapters.ResourceAdapter:"/>
                </appinfo>
             </annotation>
          </attribute>
