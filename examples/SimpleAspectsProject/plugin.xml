@@ -2,28 +2,41 @@
 <plugin>
 
    <extension
-         point="fr.inria.diverse.melange.adapter">
-      <adapter
-            metamodel_uri="http://fsm/"
-            class="simpleaspects.fsm.adapters.fsmmt.FsmAdapter"
-            modeltype_name="FsmMT">
-      </adapter>
+         point="fr.inria.diverse.melange.modeltype">
+      <modeltype
+            uri="http://fsmmt/"
+            id="simpleaspects.FsmMT">
+      </modeltype>
+      <modeltype
+            uri="http://timedfsmmt/"
+            id="simpleaspects.TimedFsmMT">
+         <subtyping
+               modeltypeId="simpleaspects.FsmMT">
+         </subtyping>
+      </modeltype>
    </extension>
    <extension
-         point="fr.inria.diverse.melange.adapter">
-      <adapter
-            metamodel_uri="http://timedfsm/"
-            class="simpleaspects.timedfsm.adapters.fsmmt.TimedFsmAdapter"
-            modeltype_name="FsmMT">
-      </adapter>
-   </extension>
-   <extension
-         point="fr.inria.diverse.melange.adapter">
-      <adapter
-            metamodel_uri="http://timedfsm/"
-            class="simpleaspects.timedfsm.adapters.timedfsmmt.TimedFsmAdapter"
-            modeltype_name="TimedFsmMT">
-      </adapter>
+         point="fr.inria.diverse.melange.language">
+      <language
+            exactType="simpleaspects.FsmMT"
+            id="simpleaspects.Fsm">
+         <adapter
+               class="simpleaspects.fsm.adapters.fsmmt.FsmAdapter"
+               modeltypeId="simpleaspects.FsmMT">
+         </adapter>
+      </language>
+      <language
+            exactType="simpleaspects.TimedFsmMT"
+            id="simpleaspects.TimedFsm">
+         <adapter
+               class="simpleaspects.timedfsm.adapters.fsmmt.TimedFsmAdapter"
+               modeltypeId="simpleaspects.FsmMT">
+         </adapter>
+         <adapter
+               class="simpleaspects.timedfsm.adapters.timedfsmmt.TimedFsmAdapter"
+               modeltypeId="simpleaspects.TimedFsmMT">
+         </adapter>
+      </language>
    </extension>
 
 </plugin>
