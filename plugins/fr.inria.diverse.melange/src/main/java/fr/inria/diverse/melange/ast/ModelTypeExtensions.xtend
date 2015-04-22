@@ -1,15 +1,10 @@
 package fr.inria.diverse.melange.ast
 
 import com.google.inject.Inject
-
 import fr.inria.diverse.melange.algebra.ModelTypeAlgebra
-
 import fr.inria.diverse.melange.lib.EcoreExtensions
-
 import fr.inria.diverse.melange.metamodel.melange.ModelType
-
 import java.util.List
-
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EEnum
@@ -20,6 +15,13 @@ class ModelTypeExtensions
 	@Inject extension ModelingElementExtensions
 	@Inject extension EcoreExtensions
 	@Inject ModelTypeAlgebra algebra
+
+	def String getUri(ModelType mt) {
+		val userDefinedUri =
+			if (mt.isExtracted) mt.extracted.exactTypeUri
+			else mt.mtUri
+		return userDefinedUri ?: '''http://«mt.name.toLowerCase»/'''
+	}
 
 	def boolean getIsComplete(ModelType mt) {
 		return !mt.pkgs.empty

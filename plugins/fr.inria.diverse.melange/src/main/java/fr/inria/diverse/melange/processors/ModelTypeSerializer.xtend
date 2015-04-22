@@ -22,11 +22,6 @@ class ModelTypeSerializer extends DispatchMelangeProcessor
 		if (!mt.isComplete)
 			return
 
-		val userDefinedUri =
-			if (mt.isExtracted) mt.extracted.exactTypeUri
-			else mt.mtUri
-		val mtUri = userDefinedUri ?: '''http://«mt.name.toLowerCase»/'''
-
 		// TODO: Need to maintain a cache here...
 		val project = mt.eResource.project
 
@@ -38,7 +33,7 @@ class ModelTypeSerializer extends DispatchMelangeProcessor
 				EPackage.Registry.INSTANCE.put(mt.pkgs.head.nsURI, mt.pkgs.head)
 
 			log.debug('''Serializing Ecore interface description for «mt.name» in «ecoreUri»''')
-			mt.createEcore(ecoreUri, mtUri)
+			mt.createEcore(ecoreUri, mt.uri)
 		}
 	}
 }
