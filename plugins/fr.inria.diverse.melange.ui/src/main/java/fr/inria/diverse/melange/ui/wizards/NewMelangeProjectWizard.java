@@ -23,7 +23,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
-import fr.inria.diverse.commons.eclipse.pde.classpath.ManifestChanger;
+import fr.inria.diverse.commons.eclipse.pde.manifest.ManifestChanger;
 import fr.inria.diverse.commons.eclipse.pde.wizards.pages.pde.AbstractNewProjectWizardWithTemplates;
 import fr.inria.diverse.commons.eclipse.pde.wizards.pages.pde.ui.IProjectContentWizard;
 import fr.inria.diverse.commons.eclipse.pde.wizards.pages.pde.ui.ProjectTemplateApplicationOperation;
@@ -172,7 +172,7 @@ public class NewMelangeProjectWizard extends AbstractNewProjectWizardWithTemplat
 			manifestChanger.addPluginDependency("fr.inria.diverse.melange.resource", "0.1.0", true, true);
 			manifestChanger.addPluginDependency("fr.inria.diverse.melange.adapters", "0.1.0", true, true);
 			
-			manifestChanger.writeManifest(project.getFile("META-INF/MANIFEST.MF"));
+			manifestChanger.commit();
 			createPlugInFile(project, monitor);
 			createBuildProperties(project, monitor);			
 		} catch (Exception e) {
