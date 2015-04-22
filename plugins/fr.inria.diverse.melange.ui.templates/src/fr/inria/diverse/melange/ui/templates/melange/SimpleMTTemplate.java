@@ -40,7 +40,7 @@ import fr.inria.diverse.melange.ui.wizards.pages.NewMelangeProjectWizardFields;
 
 public class SimpleMTTemplate extends MelangeTemplateSection {
 	public static final String KEY_MELANGE_FILE_NAME = "melangeFileName"; //$NON-NLS-1$
-	public static final String MELANGE_FILE_NAME = "Hello.melange"; //$NON-NLS-1$
+	public static final String MELANGE_FILE_NAME = "Hello"; //$NON-NLS-1$
 	public static final String KEY_ASPECTCLASS_POSTFIX = "aspectClassPostfix"; //$NON-NLS-1$
 	public static final String KEY_METAMODEL_NAME = "metamodelName"; //$NON-NLS-1$
 	public static final String METAMODEL_NAME = "MyLanguage"; //$NON-NLS-1$
@@ -80,7 +80,7 @@ public class SimpleMTTemplate extends MelangeTemplateSection {
 
 	private void createOptions() {
 		addOption(KEY_PACKAGE_NAME, MelangeTemplateMessages.SimpleMTTemplate_packageName, (String) null, 0);
-		addOption(MELANGE_FILE_NAME, MelangeTemplateMessages.SimpleMTTemplate_melangeFileName, MELANGE_FILE_NAME, 0);
+		addOption(KEY_MELANGE_FILE_NAME, MelangeTemplateMessages.SimpleMTTemplate_melangeFileName, MELANGE_FILE_NAME, 0);
 		addOption(KEY_METAMODEL_NAME, MelangeTemplateMessages.SimpleMTTemplate_melangeMetamodelName, METAMODEL_NAME, 0);
 		TemplateOption ecoreLocationOption  = new AbstractStringWithButtonOption(this, KEY_ECOREFILE_PATH, MelangeTemplateMessages.SimpleMTTemplate_ecoreFileLocation) {
 			@Override
