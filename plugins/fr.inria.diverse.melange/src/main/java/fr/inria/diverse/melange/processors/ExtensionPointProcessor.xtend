@@ -12,6 +12,7 @@ import org.eclipse.core.runtime.CoreException
 import org.eclipse.pde.internal.core.PDECore
 import org.eclipse.pde.internal.core.plugin.WorkspacePluginModel
 import org.eclipse.pde.internal.core.project.PDEProject
+import org.eclipse.xtext.documentation.IEObjectDocumentationProvider
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 /**
@@ -29,6 +30,7 @@ class ExtensionPointProcessor extends DispatchMelangeProcessor
 	@Inject extension ASTHelper
 	@Inject extension EclipseProjectHelper
 	@Inject extension IQualifiedNameProvider
+	@Inject IEObjectDocumentationProvider documentationProvider
 
 	private static Logger log = Logger::getLogger(ExtensionPointProcessor)
 
@@ -69,11 +71,14 @@ class ExtensionPointProcessor extends DispatchMelangeProcessor
 					modelTypes.forEach[mt |
 						try {
 							val fqn = mt.fullyQualifiedName.toString
+							val doc = documentationProvider.getDocumentation(mt)
 							val modeltypeElement = fModel.factory.createElement(newExtension)
 							modeltypeElement.name = "modeltype"
 							modeltypeElement.setAttribute("id", fqn)
 							modeltypeElement.setAttribute("uri", mt.uri)
-//							modeltypeElement.setAttribute("description", "...")
+
+							if (doc !== null && !doc.empty)
+								modeltypeElement.setAttribute("description", doc)
 
 							// Register subtypings
 							mt.subtypingRelations.forEach[superMt |
@@ -101,11 +106,14 @@ class ExtensionPointProcessor extends DispatchMelangeProcessor
 					metamodels.forEach[mm |
 						try {
 							val fqn = mm.fullyQualifiedName.toString
+							val doc = documentationProvider.getDocumentation(mm)
 							val languageElement = fModel.factory.createElement(newExtension)
 							languageElement.name = "language"
 							languageElement.setAttribute("id", fqn)
 							languageElement.setAttribute("exactType", mm.exactType.fullyQualifiedName.toString)
-//							modeltypeElement.setAttribute("description", "...")
+
+							if (doc !== null && !doc.empty)
+								languageElement.setAttribute("description", doc)
 
 							// Register adapters
 							mm.implements.forEach[mt |
