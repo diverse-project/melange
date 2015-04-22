@@ -614,6 +614,14 @@
            name="Language Registry"
            restorable="true">
      </e4view>
+     <e4view
+           category="fr.inria.diverse.melange.ui.views.melangeCategory"
+           class="fr.inria.diverse.melange.ui.views.ModelTypeRegistryView"
+           icon="icons/modeltype.png"
+           id="fr.inria.diverse.melange.ui.modeltypeRegistryView"
+           name="Model Type Registry"
+           restorable="true">
+     </e4view>
   </extension>
 
 </plugin>

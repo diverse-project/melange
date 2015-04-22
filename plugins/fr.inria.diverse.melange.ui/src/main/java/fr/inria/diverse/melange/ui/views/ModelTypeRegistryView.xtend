@@ -12,9 +12,9 @@ import org.eclipse.swt.SWT
 import org.eclipse.swt.layout.GridData
 import org.eclipse.swt.widgets.Composite
 
-class LanguageRegistryView
+class ModelTypeRegistryView
 {
-	private static final String LANGUAGE_EXTENSION_ID = "fr.inria.diverse.melange.language"
+	private static final String MODELTYPE_EXTENSION_ID = "fr.inria.diverse.melange.modeltype"
 
 	TableViewer viewer
 
@@ -25,7 +25,7 @@ class LanguageRegistryView
 		createColumns(viewer)
 
 		viewer.contentProvider = ArrayContentProvider.instance
-		viewer.input = Platform.extensionRegistry.getConfigurationElementsFor(LANGUAGE_EXTENSION_ID)
+		viewer.input = Platform.extensionRegistry.getConfigurationElementsFor(MODELTYPE_EXTENSION_ID)
 
 		viewer.table.headerVisible = true
 		viewer.table.linesVisible = true
@@ -57,10 +57,10 @@ class LanguageRegistryView
 
 		new TableViewerColumn(viewer, SWT.NONE) => [
 			column.width = 300
-			column.text = "Exact Type"
+			column.text = "URI"
 			setLabelProvider(new ColumnLabelProvider {
 				override getText(Object o) {
-					return (o as IConfigurationElement).getAttribute("exactType")
+					return (o as IConfigurationElement).getAttribute("uri")
 				}
 			})
 		]
@@ -75,17 +75,17 @@ class LanguageRegistryView
 //			})
 //		]
 
-		new TableViewerColumn(viewer, SWT.NONE) => [
-			column.width = 500
-			column.text = "Implements"
-			setLabelProvider(new ColumnLabelProvider {
-				override getText(Object o) {
-					return (o as IConfigurationElement).getChildren("adapter").map[a |
-						a.getAttribute("modeltypeId")
-					].join(", ")
-				}
-			})
-		]
+//		new TableViewerColumn(viewer, SWT.NONE) => [
+//			column.width = 500
+//			column.text = "Subtype Of"
+//			setLabelProvider(new ColumnLabelProvider {
+//				override getText(Object o) {
+//					return (o as IConfigurationElement).getChildren("adapter").map[a |
+//						a.getAttribute("modeltypeId")
+//					].join(", ")
+//				}
+//			})
+//		]
 
 		new TableViewerColumn(viewer, SWT.NONE) => [
 			column.width = 300
