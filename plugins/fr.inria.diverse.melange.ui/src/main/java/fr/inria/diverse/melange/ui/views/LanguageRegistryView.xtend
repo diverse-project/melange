@@ -9,6 +9,7 @@ import org.eclipse.jface.viewers.ColumnLabelProvider
 import org.eclipse.jface.viewers.TableViewer
 import org.eclipse.jface.viewers.TableViewerColumn
 import org.eclipse.swt.SWT
+import org.eclipse.swt.layout.GridData
 import org.eclipse.swt.widgets.Composite
 
 class LanguageRegistryView
@@ -28,6 +29,14 @@ class LanguageRegistryView
 		
 		viewer.table.headerVisible = true
 		viewer.table.linesVisible = true
+
+		viewer.control.layoutData = new GridData => [
+			horizontalAlignment = SWT.FILL
+			verticalAlignment = SWT.FILL
+			horizontalSpan = 2
+			grabExcessHorizontalSpace = true
+			grabExcessVerticalSpace = true
+		]
 	}
 
 	@Focus
