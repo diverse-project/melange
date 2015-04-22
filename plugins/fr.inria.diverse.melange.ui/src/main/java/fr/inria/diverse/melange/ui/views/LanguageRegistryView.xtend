@@ -14,18 +14,18 @@ import org.eclipse.swt.widgets.Composite
 
 class LanguageRegistryView
 {
-	private static final String ADAPTER_ID = "fr.inria.diverse.melange.adapter"
+	private static final String LANGUAGE_EXTENSION_ID = "fr.inria.diverse.melange.language"
+
 	TableViewer viewer
 
 	@PostConstruct
 	def void createView(Composite parent) {
-		val registry = Platform.extensionRegistry
 		viewer = new TableViewer(parent, SWT.BORDER)
 
 		createColumns(viewer)
 
 		viewer.contentProvider = ArrayContentProvider.instance
-		viewer.input = registry.getConfigurationElementsFor(ADAPTER_ID)
+		viewer.input = Platform.extensionRegistry.getConfigurationElementsFor(LANGUAGE_EXTENSION_ID)
 		
 		viewer.table.headerVisible = true
 		viewer.table.linesVisible = true
@@ -47,30 +47,52 @@ class LanguageRegistryView
 	private def void createColumns(TableViewer viewer) {
 		new TableViewerColumn(viewer, SWT.NONE) => [
 			column.width = 300
-			column.text = "Metamodel URI"
+			column.text = "Identifier"
 			setLabelProvider(new ColumnLabelProvider {
 				override getText(Object o) {
-					return (o as IConfigurationElement).getAttribute("metamodel_uri")
+					return (o as IConfigurationElement).getAttribute("id")
 				}
 			})
 		]
 
 		new TableViewerColumn(viewer, SWT.NONE) => [
 			column.width = 300
-			column.text = "ModelType Name"
+			column.text = "Exact Type"
 			setLabelProvider(new ColumnLabelProvider {
 				override getText(Object o) {
-					return (o as IConfigurationElement).getAttribute("modeltype_name")
+					return (o as IConfigurationElement).getAttribute("exactType")
+				}
+			})
+		]
+
+//		new TableViewerColumn(viewer, SWT.NONE) => [
+//			column.width = 300
+//			column.text = "Description"
+//			setLabelProvider(new ColumnLabelProvider {
+//				override getText(Object o) {
+//					return (o as IConfigurationElement).getAttribute("description")
+//				}
+//			})
+//		]
+
+		new TableViewerColumn(viewer, SWT.NONE) => [
+			column.width = 500
+			column.text = "Implements"
+			setLabelProvider(new ColumnLabelProvider {
+				override getText(Object o) {
+					return (o as IConfigurationElement).getChildren("adapter").map[a |
+						a.getAttribute("modeltypeId")
+					].join(", ")
 				}
 			})
 		]
 
 		new TableViewerColumn(viewer, SWT.NONE) => [
 			column.width = 300
-			column.text = "Adapter Class"
+			column.text = "Contributor"
 			setLabelProvider(new ColumnLabelProvider {
 				override getText(Object o) {
-					return (o as IConfigurationElement).getAttribute("class")
+					return (o as IConfigurationElement).contributor.name
 				}
 			})
 		]
