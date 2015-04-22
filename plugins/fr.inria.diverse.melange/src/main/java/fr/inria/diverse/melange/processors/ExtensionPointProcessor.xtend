@@ -72,21 +72,23 @@ class ExtensionPointProcessor extends DispatchMelangeProcessor
 						try {
 							val fqn = mt.fullyQualifiedName.toString
 							val doc = documentationProvider.getDocumentation(mt)
-							val modeltypeElement = fModel.factory.createElement(newExtension)
-							modeltypeElement.name = "modeltype"
-							modeltypeElement.setAttribute("id", fqn)
-							modeltypeElement.setAttribute("uri", mt.uri)
+							val modeltypeElement = fModel.factory.createElement(newExtension) => [
+								name = "modeltype"
+								setAttribute("id", fqn)
+								setAttribute("uri", mt.uri)
 
-							if (doc !== null && !doc.empty)
-								modeltypeElement.setAttribute("description", doc)
+								if (doc !== null && !doc.empty)
+									setAttribute("description", doc)
+							]
 
 							// Register subtypings
 							mt.subtypingRelations.forEach[superMt |
-								val subtypingElement = fModel.factory.createElement(modeltypeElement)
-								subtypingElement.name = "subtyping"
-								subtypingElement.setAttribute("modeltypeId", superMt.superType.fullyQualifiedName.toString)
-								modeltypeElement.add(subtypingElement)
+								modeltypeElement.add(fModel.factory.createElement(modeltypeElement) => [
+									name = "subtyping"
+									setAttribute("modeltypeId", superMt.superType.fullyQualifiedName.toString)									
+								])
 							]
+
 							newExtension.add(modeltypeElement)
 							if (!newExtension.isInTheModel) {
 								fModel.extensions.add(newExtension)
@@ -107,22 +109,22 @@ class ExtensionPointProcessor extends DispatchMelangeProcessor
 						try {
 							val fqn = mm.fullyQualifiedName.toString
 							val doc = documentationProvider.getDocumentation(mm)
-							val languageElement = fModel.factory.createElement(newExtension)
-							languageElement.name = "language"
-							languageElement.setAttribute("id", fqn)
-							languageElement.setAttribute("exactType", mm.exactType.fullyQualifiedName.toString)
+							val languageElement = fModel.factory.createElement(newExtension) => [
+								name = "language"
+								setAttribute("id", fqn)
+								setAttribute("exactType", mm.exactType.fullyQualifiedName.toString)
 
-							if (doc !== null && !doc.empty)
-								languageElement.setAttribute("description", doc)
+								if (doc !== null && !doc.empty)
+									setAttribute("description", doc)	
+							]
 
 							// Register adapters
 							mm.implements.forEach[mt |
-								val resourceAdapterName = mm.adapterNameFor(mt)
-								val adapterElement = fModel.factory.createElement(languageElement)
-								adapterElement.name = "adapter"
-								adapterElement.setAttribute("modeltypeId", mt.fullyQualifiedName.toString)
-								adapterElement.setAttribute("class", resourceAdapterName)
-								languageElement.add(adapterElement)
+								languageElement.add(fModel.factory.createElement(languageElement) => [
+									name = "adapter"
+									setAttribute("modeltypeId", mt.fullyQualifiedName.toString)
+									setAttribute("class", mm.adapterNameFor(mt))
+								])
 							]
 
 							newExtension.add(languageElement)
