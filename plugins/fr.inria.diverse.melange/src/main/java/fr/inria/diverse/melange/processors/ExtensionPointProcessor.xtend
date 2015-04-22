@@ -74,6 +74,14 @@ class ExtensionPointProcessor extends DispatchMelangeProcessor
 							modeltypeElement.setAttribute("id", fqn)
 							modeltypeElement.setAttribute("uri", mt.uri)
 //							modeltypeElement.setAttribute("description", "...")
+
+							// Register subtypings
+							mt.subtypingRelations.forEach[superMt |
+								val subtypingElement = fModel.factory.createElement(modeltypeElement)
+								subtypingElement.name = "subtyping"
+								subtypingElement.setAttribute("modeltypeId", superMt.superType.fullyQualifiedName.toString)
+								modeltypeElement.add(subtypingElement)
+							]
 							newExtension.add(modeltypeElement)
 							if (!newExtension.isInTheModel) {
 								fModel.extensions.add(newExtension)

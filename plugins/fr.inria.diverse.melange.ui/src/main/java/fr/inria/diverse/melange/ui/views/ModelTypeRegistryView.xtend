@@ -75,17 +75,17 @@ class ModelTypeRegistryView
 //			})
 //		]
 
-//		new TableViewerColumn(viewer, SWT.NONE) => [
-//			column.width = 500
-//			column.text = "Subtype Of"
-//			setLabelProvider(new ColumnLabelProvider {
-//				override getText(Object o) {
-//					return (o as IConfigurationElement).getChildren("adapter").map[a |
-//						a.getAttribute("modeltypeId")
-//					].join(", ")
-//				}
-//			})
-//		]
+		new TableViewerColumn(viewer, SWT.NONE) => [
+			column.width = 500
+			column.text = "Subtype Of"
+			setLabelProvider(new ColumnLabelProvider {
+				override getText(Object o) {
+					return (o as IConfigurationElement).getChildren("subtyping").map[e |
+						e.getAttribute("modeltypeId")
+					].join(", ")
+				}
+			})
+		]
 
 		new TableViewerColumn(viewer, SWT.NONE) => [
 			column.width = 300

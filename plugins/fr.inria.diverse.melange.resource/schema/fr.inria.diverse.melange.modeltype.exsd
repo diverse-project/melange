@@ -49,6 +49,9 @@
 
    <element name="modeltype">
       <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="subtyping"/>
+         </sequence>
          <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
@@ -68,6 +71,21 @@
                <documentation>
                   
                </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="subtyping">
+      <complexType>
+         <attribute name="modeltypeId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="fr.inria.diverse.melange.modeltype/modeltype/@id"/>
+               </appinfo>
             </annotation>
          </attribute>
       </complexType>
