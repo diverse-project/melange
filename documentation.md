@@ -65,8 +65,6 @@ It display the main Melange elements in your project:
 * Transformations: ![transformation image](images/outline-transformation.png) <br>
   Represented by an icon "arrows" before its name
 
-#### Generated files
-
 ## Features
 
 #### Language
@@ -155,5 +153,3 @@ Here we :
 ## Run your project
 
 Look inside the folder `src-gen` (where Melange generates Java files) and inside the package defined in your `.melange` right clic on the class named after your main transformation and select `Run As > Java Application`.
-
-## A concrete example
