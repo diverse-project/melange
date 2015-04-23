@@ -17,7 +17,10 @@ Require-Bundle: org.eclipse.xtend.lib;bundle-version="2.7.0";visibility:=private
  fr.inria.diverse.examples.fsm.metamodel.composite;bundle-version="1.0.0",
  fr.inria.diverse.examples.fsm.aspects.rhapsody;bundle-version="1.0.0",
  fr.inria.diverse.examples.fsm.aspects.uml;bundle-version="1.0.0",
- fr.inria.diverse.examples.fsm.aspects.classic;bundle-version="1.0.0"
+ fr.inria.diverse.examples.fsm.aspects.classic;bundle-version="1.0.0",
+ finitestatemachines.finitestatemachineuml.aspect,
+ finitestatemachines.finitestatemachinerhapsody.aspect,
+ finitestatemachines.finitestatemachineclassic.aspect
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 

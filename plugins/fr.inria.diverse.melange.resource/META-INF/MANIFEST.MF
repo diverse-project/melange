@@ -6,11 +6,13 @@ Bundle-Version: 0.1.0.qualifier
 Bundle-Vendor: DIVERSE
 Require-Bundle: org.eclipse.emf.ecore.xmi;bundle-version="2.10.1",
  org.eclipse.xtend.lib,
- fr.inria.diverse.melange.adapters;bundle-version="0.1.0"
+ fr.inria.diverse.melange.adapters;bundle-version="0.1.0",
+ org.eclipse.core.runtime;bundle-version="3.10.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Export-Package: fr.inria.diverse.melange.resource,
  fr.inria.diverse.melange.resource.loader
 Bundle-ClassPath: lib/dozer-standalone.jar,
  .
+Bundle-Activator: fr.inria.diverse.melange.resource.Activator
 

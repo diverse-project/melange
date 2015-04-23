@@ -19,6 +19,7 @@
          point="fr.inria.diverse.melange.language">
       <language
             exactType="simplefsm.FsmMT"
+            uri="http://fsm/"
             id="simplefsm.Fsm">
          <adapter
                class="simplefsm.fsm.adapters.fsmmt.FsmAdapter"
@@ -27,6 +28,7 @@
       </language>
       <language
             exactType="simplefsm.TimedFsmMT"
+            uri="http://timedfsm/"
             id="simplefsm.TimedFsm">
          <adapter
                class="simplefsm.timedfsm.adapters.fsmmt.TimedFsmAdapter"
