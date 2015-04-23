@@ -57,10 +57,10 @@ class LanguageRegistryView
 
 		new TableViewerColumn(viewer, SWT.NONE) => [
 			column.width = 300
-			column.text = "Exact Type"
+			column.text = "URI"
 			setLabelProvider(new ColumnLabelProvider {
 				override getText(Object o) {
-					return (o as IConfigurationElement).getAttribute("exactType")
+					return (o as IConfigurationElement).getAttribute("uri")
 				}
 			})
 		]
@@ -71,6 +71,16 @@ class LanguageRegistryView
 			setLabelProvider(new ColumnLabelProvider {
 				override getText(Object o) {
 					return (o as IConfigurationElement).getAttribute("description")
+				}
+			})
+		]
+
+		new TableViewerColumn(viewer, SWT.NONE) => [
+			column.width = 300
+			column.text = "Exact Type"
+			setLabelProvider(new ColumnLabelProvider {
+				override getText(Object o) {
+					return (o as IConfigurationElement).getAttribute("exactType")
 				}
 			})
 		]

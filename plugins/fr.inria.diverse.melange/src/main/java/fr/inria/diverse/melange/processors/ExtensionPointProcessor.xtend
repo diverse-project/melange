@@ -3,6 +3,7 @@ package fr.inria.diverse.melange.processors
 import fr.inria.diverse.melange.ast.ASTHelper
 import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
+import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
@@ -25,6 +26,7 @@ import org.eclipse.xtext.naming.IQualifiedNameProvider
 class ExtensionPointProcessor extends DispatchMelangeProcessor
 {
 	@Inject extension NamingHelper
+	@Inject extension ModelingElementExtensions
 	@Inject extension MetamodelExtensions
 	@Inject extension ModelTypeExtensions
 	@Inject extension ASTHelper
@@ -113,6 +115,7 @@ class ExtensionPointProcessor extends DispatchMelangeProcessor
 								name = "language"
 								setAttribute("id", fqn)
 								setAttribute("exactType", mm.exactType.fullyQualifiedName.toString)
+								setAttribute("uri", mm.pkgs.head.nsURI)
 
 								if (doc !== null && !doc.empty)
 									setAttribute("description", doc)	

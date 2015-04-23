@@ -59,6 +59,20 @@
                </documentation>
             </annotation>
          </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="uri" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
          <attribute name="exactType" type="string" use="required">
             <annotation>
                <documentation>
@@ -67,13 +81,6 @@
                <appinfo>
                   <meta.attribute kind="identifier" basedOn="fr.inria.diverse.melange.modeltype/modeltype/@id"/>
                </appinfo>
-            </annotation>
-         </attribute>
-         <attribute name="description" type="string">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
             </annotation>
          </attribute>
       </complexType>
