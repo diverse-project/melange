@@ -21,7 +21,7 @@ This chapter explains how to install a working IDE for Melange.
 4. The last dependency is **EMF Compare**, used in the type system of Melange. 
    Get the [lastest release](https://www.eclipse.org/emf/compare/download.html) and add it with the update site (`Menu Help > Install new software...`).
 
-## Getting started
+## Creating new project
 
 In this chapter you will learn how to quickly start a Melange project with the wizard.
 
@@ -67,7 +67,7 @@ It display the main Melange elements in your project:
 
 #### Generated files
 
-## Concepts
+## Features
 
 #### Language
 
