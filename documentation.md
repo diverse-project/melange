@@ -135,9 +135,7 @@ Here we have:
 * A list of instructions <br>
   The used language is the same used to define aspects: [Xtend](https://eclipse.org/xtend/).
 
-## Main transformation
-
-Their is a special transformation: the entry point of your program.
+Their is a special transformation: the entry point of your project.
 We use the annotation `@Main` to specify which one is your first transformation.
 
 ~~~
@@ -149,16 +147,13 @@ transformation main(){
 }
 ~~~
 
-#### Load a model
+Here we :
 
-In order to load a model, your language provide a method `load(String)` that takes as parameter a path to a serialized model file.
+ * Load a model : your language provide a method `load(String)` that takes as parameter a path to a serialized model file.
+ * Call a transformation : each one provide a mathod `call(...)` that takes parameters if defined.
 
-#### Call a transformation
+## Run your project
 
-To call a transformation, each one provide a mathod `call(...)` that takes parameters if defined.
-
-#### Launch the program
-
-To launch your program, look inside the folder `src-gen` (where Melange generates Java files) and inside the package defined in your `.melange` right clic on the class named after your main transformation and select `Run As > Java Application`.
+Look inside the folder `src-gen` (where Melange generates Java files) and inside the package defined in your `.melange` right clic on the class named after your main transformation and select `Run As > Java Application`.
 
 ## A concrete example
