@@ -29,16 +29,8 @@ class MelangePreferencePage extends LanguageRootPreferencePage
 
 		addField(
 			new BooleanFieldEditor(
-				MelangePreferencesConstants.EMF_COMPLIANT_INTERFACES,
-				"Generate EMF-compliant interfaces",
-				composite
-			)
-		)
-
-		addField(
-			new BooleanFieldEditor(
-				MelangePreferencesConstants.GENERATE_EMF_ARTIFACTS,
-				"Automatically generate EMF runtime for newly generated artifacts",
+				MelangePreferencesConstants.GENERATE_ADAPTERS_CODE,
+				"Always generate adapters code",
 				composite
 			)
 		)

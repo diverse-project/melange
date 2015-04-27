@@ -8,6 +8,7 @@ import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.ResourceType
+import fr.inria.diverse.melange.preferences.MelangePreferencesAccess
 import org.apache.log4j.Logger
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
@@ -42,22 +43,24 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 	 * @param isPreIndexingPhase
 	 */
 	def dispatch void infer(ModelTypingSpace root, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
-		try {
-//			if (Diagnostician.INSTANCE.validate(typingSpace).severity != Diagnostic.ERROR) {
-				root.modelTypes.filter[isComplete].forEach[generateInterfaces(acceptor, _typeReferenceBuilder)]
-				root.metamodels.filter[isComplete].forEach[generateAdapters(root, acceptor, _typeReferenceBuilder)]
-//				root.mappings.forEach[generateMappers(root, acceptor, _typeReferenceBuilder)]
-				root.transformations.forEach[generateTransformation(acceptor, _typeReferenceBuilder)]
-				root.createStandaloneSetup(acceptor)
-//				root.slicers.forEach[generateSlicer]
-//			} else {
-//				logger.error('''Inferrer cannot proceed: there are errors in the model.''')
-//			}
-		} catch (ASTProcessingException e) {
-			logger.error('''ASTProcessingException: «e.message»''')
-		} catch (Exception e) {
-			logger.error('''Exception: «e.message»''', e)
-		}
+		if (MelangePreferencesAccess.instance.generateAdaptersCode) {
+			try {
+	//			if (Diagnostician.INSTANCE.validate(typingSpace).severity != Diagnostic.ERROR) {
+					root.modelTypes.filter[isComplete].forEach[generateInterfaces(acceptor, _typeReferenceBuilder)]
+					root.metamodels.filter[isComplete].forEach[generateAdapters(root, acceptor, _typeReferenceBuilder)]
+	//				root.mappings.forEach[generateMappers(root, acceptor, _typeReferenceBuilder)]
+					root.transformations.forEach[generateTransformation(acceptor, _typeReferenceBuilder)]
+					root.createStandaloneSetup(acceptor)
+	//				root.slicers.forEach[generateSlicer]
+	//			} else {
+	//				logger.error('''Inferrer cannot proceed: there are errors in the model.''')
+	//			}
+			} catch (ASTProcessingException e) {
+				logger.error('''ASTProcessingException: «e.message»''')
+			} catch (Exception e) {
+				logger.error('''Exception: «e.message»''', e)
+			}
+		} // else shhh...
 	}
 
 	/**

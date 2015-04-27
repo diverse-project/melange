@@ -12,7 +12,6 @@ class MelangePreferencesInitializer extends AbstractPreferenceInitializer
 
 	override initializeDefaultPreferences() {
 		val store = MelangeActivator.instance.preferenceStore
-		store.setDefault(MelangePreferencesConstants.EMF_COMPLIANT_INTERFACES, true)
-		store.setDefault(MelangePreferencesConstants.GENERATE_EMF_ARTIFACTS, true)
+		store.setDefault(MelangePreferencesConstants.GENERATE_ADAPTERS_CODE, true)
 	}
 }
