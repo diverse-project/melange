@@ -1,7 +1,7 @@
 package fr.inria.diverse.melange.ui.preferences
 
 import com.google.inject.Inject
-import fr.inria.diverse.melange.utils.MelangePreferencesConstants
+import fr.inria.diverse.melange.preferences.MelangePreferencesConstants
 import org.eclipse.xtext.ui.editor.preferences.IPreferenceStoreAccess
 
 class MelangePreferences

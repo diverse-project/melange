@@ -1,4 +1,4 @@
-package fr.inria.diverse.melange.utils
+package fr.inria.diverse.melange.preferences
 
 class MelangePreferencesConstants
 {
