@@ -79,6 +79,12 @@ class ModelingElementExtensions
 			}
 		}.schedule
 
+		try {
+			res.save(null)
+		} catch (IOException e) {
+			e.printStackTrace
+		}
+
 		return rootPkg
 	}
 }

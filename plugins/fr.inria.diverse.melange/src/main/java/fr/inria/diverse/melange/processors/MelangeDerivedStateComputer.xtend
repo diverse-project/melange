@@ -13,6 +13,11 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmModelAssociator
 
 import static org.eclipse.xtext.util.internal.Stopwatches.*
 
+/**
+ * This class merge aspects into the base model of the metamodel,
+ * creates Model types for each Exact types and compute the
+ * Model type hierarchy 
+ */
 class MelangeDerivedStateComputer extends JvmModelAssociator
 {
 	@Inject MelangeTypesBuilder builder
@@ -28,12 +33,21 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 	 * The parameters of this constructor define the list of the processors and the order in which they'll be applied
 	 */
 	@Inject
-	new(EcoreUriInferrer i, AspectsCopier c, AspectsWeaver a, ExactTypeInferrer e, TypingInferrer t, ModelTypeSerializer s) {
+	new(
+		EcoreUriInferrer i,
+		AspectsCopier c,
+		AspectsWeaver a,
+		ExactTypeInferrer e,
+		TypingInferrer t,
+		AdapterExtensionPointProcessor p,
+		ModelTypeSerializer s
+	) {
 		processors += i
 		processors += c
 		processors += a
 		processors += e
 		processors += t
+		processors += p
 		processors += s
 	}
 

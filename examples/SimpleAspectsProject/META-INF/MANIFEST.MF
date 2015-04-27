@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: SimpleAspectsProject
-Bundle-SymbolicName: SimpleAspectsProject
+Bundle-SymbolicName: SimpleAspectsProject;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Export-Package: simpleaspects,
  simpleaspects.fsm.adapters.fsmmt,
@@ -10,4 +10,6 @@ Require-Bundle: fr.inria.diverse.melange.examples.metamodels.fsm;bundle-version=
  fr.inria.diverse.melange.lib;bundle-version="0.1.0",
  org.eclipse.emf.ecore.xmi;bundle-version="2.10.2",
  fr.inria.diverse.melange.examples.metamodels.timedfsm;bundle-version="0.1.0",
- fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version="3.1.0"
+ fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version="3.1.0",
+ fr.inria.diverse.melange.adapters;bundle-version="0.1.0",
+ fr.inria.diverse.melange.resource;bundle-version="0.1.0"

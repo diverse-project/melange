@@ -22,6 +22,9 @@ import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
+/**
+ * This class manages creation of Java interface corresponding to Object type. 
+ */
 class MetaclassInterfaceInferrer
 {
 	@Inject extension JvmModelInferrerHelper
@@ -31,6 +34,14 @@ class MetaclassInterfaceInferrer
 	@Inject extension EcoreExtensions
 	@Inject extension MelangeTypesBuilder
 
+	/**
+	 * Creates an interface based on elements defined in {@link cls} and provide it to {@link acceptor}
+	 * 
+	 * @param mt Model type
+	 * @param cls Metaclass corresponding to an Object type in {@link mt}
+	 * @param acceptor 
+	 * @param builder
+	 */
 	def void generateInterface(ModelType mt, EClass cls, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
 		val task = Stopwatches.forTask("generate metaclass interfaces")
 		task.start

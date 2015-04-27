@@ -7,6 +7,10 @@ import fr.inria.diverse.melange.ast.ASTHelper
 import fr.inria.diverse.melange.metamodel.melange.MelangeFactory
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 
+/**
+ * This class creates new Model types corresponding to Exact types of each Metamodel
+ * and add them in the Melange model
+ */
 class ExactTypeInferrer extends DispatchMelangeProcessor
 {
 	@Inject extension ASTHelper

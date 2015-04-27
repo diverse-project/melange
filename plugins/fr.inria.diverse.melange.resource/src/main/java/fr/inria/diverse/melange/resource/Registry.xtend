@@ -1,6 +1,6 @@
 package fr.inria.diverse.melange.resource
 
-import fr.inria.diverse.melange.lib.ResourceAdapter
+import fr.inria.diverse.melange.adapters.ResourceAdapter
 
 import java.util.HashMap
 import java.util.Map

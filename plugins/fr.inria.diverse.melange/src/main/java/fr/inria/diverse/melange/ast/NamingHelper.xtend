@@ -6,6 +6,7 @@ import fr.inria.diverse.melange.lib.EcoreExtensions
 
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
+import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.Transformation
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
@@ -64,6 +65,10 @@ class NamingHelper
 		return gp.getFqnFor(gp.prefix + "Factory")
 	}
 
+	def String getPackageUri(GenPackage gp) {
+		return gp.getEcorePackage.nsURI
+	}
+
 	def String getFqnFor(Metamodel mm, EClassifier cls) {
 		return
 			if (cls instanceof EClass || cls instanceof EEnum)
@@ -77,6 +82,10 @@ class NamingHelper
 
 	def String getPackageFqn(Metamodel mm) {
 		return mm.genmodels.head.genPackages.head.packageFqn
+	}
+
+	def String getPackageUri(Metamodel mm) {
+		return mm.genmodels.head.genPackages.head.packageUri
 	}
 
 	def String getFactoryFqn(Metamodel mm) {
@@ -145,8 +154,12 @@ class NamingHelper
 		return mm.fullyQualifiedName.append("adapters").append(mt.fullyQualifiedName.lastSegment).toLowerCase.append(mt.name + "FactoryAdapter").normalize.toString
 	}
 
-	def QualifiedName getClassName(Transformation t) {
-		return t.fullyQualifiedName.skipLast(1).toLowerCase.append(t.name)
+	def String getClassName(Transformation t) {
+		return t.fullyQualifiedName.skipLast(1).toLowerCase.append(t.name).toString
+	}
+
+	def String getStandaloneSetupClassName(ModelTypingSpace root) {
+		return root.fullyQualifiedName + ".StandaloneSetup"
 	}
 
 	def String getGetterName(EStructuralFeature f) {

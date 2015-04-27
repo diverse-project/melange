@@ -1,13 +1,17 @@
 package fr.inria.diverse.melange.lib
 
+import fr.inria.diverse.melange.adapters.GenericAdapter
+
+import java.lang.reflect.InvocationTargetException
+
 import java.util.HashMap
 import java.util.Map
 
 import org.eclipse.emf.common.util.URI
 
 import org.eclipse.emf.ecore.resource.Resource
+
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import java.lang.reflect.InvocationTargetException
 
 class MetamodelExtensions
 {

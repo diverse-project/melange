@@ -5,7 +5,7 @@ import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 
-import fr.inria.diverse.melange.lib.EObjectAdapter
+import fr.inria.diverse.melange.adapters.EObjectAdapter
 import fr.inria.diverse.melange.lib.EcoreExtensions
 
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
@@ -23,6 +23,7 @@ import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
+@Deprecated
 class InheritanceAdapterInferrer
 {
 	@Inject extension JvmModelInferrerHelper

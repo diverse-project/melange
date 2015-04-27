@@ -35,5 +35,6 @@ class AspectsCopier extends DispatchMelangeProcessor
 			log.error("Unexpected error", e)
 			errorHelper.addError(mm, "Unexpected error in AspectsCopier: "+e.message+", please analyze the log", null)
 		}
+			
 	}
 }
