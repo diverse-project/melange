@@ -652,5 +652,11 @@
             name="Compile">
       </command>
    </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="fr.inria.diverse.melange.ui.preferences.MelangePreferencesInitializer">
+      </initializer>
+   </extension>
 
 </plugin>
