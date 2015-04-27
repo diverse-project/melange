@@ -1,19 +1,14 @@
 package fr.inria.diverse.melange.ui.preferences
 
 import fr.inria.diverse.melange.ui.internal.MelangeActivator
-
+import fr.inria.diverse.melange.utils.MelangePreferencesConstants
 import org.eclipse.jface.preference.BooleanFieldEditor
-
 import org.eclipse.swt.SWT
-
 import org.eclipse.swt.layout.GridData
 import org.eclipse.swt.layout.GridLayout
-
 import org.eclipse.swt.widgets.Composite
 import org.eclipse.swt.widgets.Group
-
 import org.eclipse.ui.IWorkbench
-
 import org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage
 
 class MelangePreferencePage extends LanguageRootPreferencePage
@@ -34,7 +29,7 @@ class MelangePreferencePage extends LanguageRootPreferencePage
 
 		addField(
 			new BooleanFieldEditor(
-				MelangePreferences.EMF_COMPLIANT_INTERFACES,
+				MelangePreferencesConstants.EMF_COMPLIANT_INTERFACES,
 				"Generate EMF-compliant interfaces",
 				composite
 			)
@@ -42,7 +37,7 @@ class MelangePreferencePage extends LanguageRootPreferencePage
 
 		addField(
 			new BooleanFieldEditor(
-				MelangePreferences.GENERATE_EMF_ARTIFACTS,
+				MelangePreferencesConstants.GENERATE_EMF_ARTIFACTS,
 				"Automatically generate EMF runtime for newly generated artifacts",
 				composite
 			)

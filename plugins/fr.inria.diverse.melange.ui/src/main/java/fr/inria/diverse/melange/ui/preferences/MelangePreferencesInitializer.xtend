@@ -1,6 +1,7 @@
 package fr.inria.diverse.melange.ui.preferences
 
 import fr.inria.diverse.melange.ui.internal.MelangeActivator
+import fr.inria.diverse.melange.utils.MelangePreferencesConstants
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer
 
 class MelangePreferencesInitializer extends AbstractPreferenceInitializer
@@ -11,7 +12,7 @@ class MelangePreferencesInitializer extends AbstractPreferenceInitializer
 
 	override initializeDefaultPreferences() {
 		val store = MelangeActivator.instance.preferenceStore
-		store.setDefault(MelangePreferences.EMF_COMPLIANT_INTERFACES, true)
-		store.setDefault(MelangePreferences.GENERATE_EMF_ARTIFACTS, true)
+		store.setDefault(MelangePreferencesConstants.EMF_COMPLIANT_INTERFACES, true)
+		store.setDefault(MelangePreferencesConstants.GENERATE_EMF_ARTIFACTS, true)
 	}
 }
