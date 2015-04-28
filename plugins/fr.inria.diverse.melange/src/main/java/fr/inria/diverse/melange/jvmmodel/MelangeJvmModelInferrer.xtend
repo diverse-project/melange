@@ -118,7 +118,7 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 							) ;
 							fr.inria.diverse.melange.resource.ModelTypeAdapter.Registry.INSTANCE.registerAdapter(
 								  "«mm.packageUri»",
-								  "«mt.name»",
+								  "«mt.fullyQualifiedName»",
 								  «mm.adapterNameFor(mt)».class
 							) ;
 						«ENDFOR»
