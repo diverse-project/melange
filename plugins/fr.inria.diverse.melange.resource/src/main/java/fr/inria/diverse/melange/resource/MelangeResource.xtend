@@ -3,11 +3,13 @@ package fr.inria.diverse.melange.resource
 import java.io.IOException
 import java.util.Map
 import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl
 import org.eclipse.xtend.lib.annotations.Delegate
-import org.eclipse.emf.ecore.EPackage
+import fr.inria.diverse.melange.resource.loader.DozerLoader
+import fr.inria.diverse.melange.resource.loader.ExtensionsAwareLoader
 
 class MelangeResourceUtils
 {
@@ -50,6 +52,7 @@ class MelangeResourceImpl implements Resource.Internal
 	@Delegate Resource.Internal wrappedResource
 	String expectedMt
 	String expectedMm
+	DozerLoader loader = new DozerLoader
 
 	new(URI uri) {
 		// FIXME: Retrieve the currently-used one
@@ -73,6 +76,9 @@ class MelangeResourceImpl implements Resource.Internal
 		val actualPkgUri = objs.head.eClass.EPackage.nsURI
 		val actualLanguage = MelangeRegistry.INSTANCE.getLanguageByUri(actualPkgUri)
 
+		if (actualLanguage === null)
+			throw new MelangeResourceException("Cannot find a registered language with URI " + actualPkgUri)
+
 		if (expectedMt !== null) {
 			val adapterCls = actualLanguage.getAdapterFor(expectedMt)
 
@@ -90,6 +96,36 @@ class MelangeResourceImpl implements Resource.Internal
 			throw new MelangeResourceException('''No adapter class registered for <«actualLanguage.identifier», «expectedMt»>''')
 		}
 		else if (expectedMm !== null) {
+			val expectedLanguage = MelangeRegistry.INSTANCE.getLanguageByIdentifier(expectedMm)
+
+			if (expectedLanguage === null)
+				throw new MelangeResourceException("Cannot find a registered language with URI " + expectedMm)
+
+			val actualMt = MelangeRegistry.INSTANCE.getModelTypeByIdentifier(actualLanguage.exactType)
+			val expectedMt = MelangeRegistry.INSTANCE.getModelTypeByIdentifier(expectedLanguage.exactType)
+
+			if (actualMt.identifier == expectedMt.identifier) {
+				// Nothing to do
+				return wrappedResource.contents
+			}
+			else if (actualMt.superTypes.contains(expectedMt.identifier)) {
+				// Downcast
+//				val actualPkg = EPackage.Registry.INSTANCE.getEPackage(actualLanguage.uri)
+//				val expectedPkg = EPackage.Registry.INSTANCE.getEPackage(expectedLanguage.uri)
+//				loader.initialize(actualPkg, expectedPkg)
+//				return loader.loadExtendedAsBase(wrappedResource, expectedPkg).contents
+				return wrappedResource.contents
+			}
+			else if (expectedMt.superTypes.contains(actualMt.identifier)) {
+				// Downcast
+				val actualPkg = EPackage.Registry.INSTANCE.getEPackage(actualLanguage.uri)
+				val expectedPkg = EPackage.Registry.INSTANCE.getEPackage(expectedLanguage.uri)
+				loader.initialize(actualPkg, expectedPkg)
+				return loader.loadBaseAsExtended(wrappedResource, expectedPkg).contents
+			}
+			else
+				// No typing hierarchy found
+				throw new MelangeResourceException('''«actualMt.identifier» cannot be transtyped to «expectedMt.identifier»''')
 //			val expectedPkg = EPackage.Registry.INSTANCE.getEPackage(expectedMm)
 //			if (contents == null)
 //			{
@@ -100,7 +136,7 @@ class MelangeResourceImpl implements Resource.Internal
 //				
 //				contents = objs
 //			}
-			return wrappedResource.contents
+//			return wrappedResource.contents
 		}
 		else
 			return objs
