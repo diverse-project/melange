@@ -167,6 +167,14 @@ class StateAspect {
 }
 ~~~
 
+Then you need some imports at the begin of Aspect.xtend to enable the call of aspect's methods for base classes
+
+~~~xtend
+import static extension finitestatemachines.StateAspect.*
+import static extension finitestatemachines.StateMachineAspect.*
+import static extension finitestatemachines.TransitionAspect.*
+~~~
+
 For more details, have a look at the Kermeta 3 documentation : [Defining aspects](https://github.com/diverse-project/k3/wiki/Defining-aspects-in-Kermeta-3)
 
 #### Others FSM
