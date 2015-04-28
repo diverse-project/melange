@@ -14,7 +14,7 @@ import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.XbaseTransformation
 
-import fr.inria.diverse.melange.resource.ModelTypeAdapter
+import fr.inria.diverse.melange.resource.MelangeRegistry
 
 import fr.inria.diverse.melange.tests.aspects.fsm.StateAspect1
 
@@ -263,7 +263,7 @@ class AspectsTest
 				typeof(FSM),
 				typeof(timedfsm.FSM),
 				StateAspect1,
-				ModelTypeAdapter,
+				MelangeRegistry,
 				IModelType,
 				GenericAdapter,
 				ListAdapter,

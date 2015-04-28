@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl
 import org.eclipse.xtend.lib.annotations.Delegate
+import org.eclipse.emf.ecore.EPackage
 
 class MelangeResourceUtils
 {
@@ -70,10 +71,10 @@ class MelangeResourceImpl implements Resource.Internal
 			return objs
 
 		val actualPkgUri = objs.head.eClass.EPackage.nsURI
+		val actualLanguage = MelangeRegistry.INSTANCE.getLanguageByUri(actualPkgUri)
 
 		if (expectedMt !== null) {
-			val pair = actualPkgUri -> expectedMt
-			val adapterCls = ModelTypeAdapter.Registry::INSTANCE.get(pair)
+			val adapterCls = actualLanguage.getAdapterFor(expectedMt)
 
 			if (adapterCls !== null) {
 				try {
@@ -86,9 +87,10 @@ class MelangeResourceImpl implements Resource.Internal
 				}
 			}
 
-			throw new MelangeResourceException('''No adapter class registered for «pair»''')
+			throw new MelangeResourceException('''No adapter class registered for <«actualLanguage.identifier», «expectedMt»>''')
 		}
 		else if (expectedMm !== null) {
+//			val expectedPkg = EPackage.Registry.INSTANCE.getEPackage(expectedMm)
 //			if (contents == null)
 //			{
 //				val fallbackUri = URI.melangeURIToPlatformURI

@@ -12,7 +12,7 @@ import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.Transformation
 
-import fr.inria.diverse.melange.resource.ModelTypeAdapter
+import fr.inria.diverse.melange.resource.MelangeRegistry
 
 import fr.inria.diverse.melange.tests.common.MelangeTestHelper
 import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
@@ -106,7 +106,7 @@ class EcoreTest
 				IModelType,
 				GenericAdapter,
 				ListAdapter,
-				ModelTypeAdapter,
+				MelangeRegistry,
 				Resource,
 				EObject,
 				EList,

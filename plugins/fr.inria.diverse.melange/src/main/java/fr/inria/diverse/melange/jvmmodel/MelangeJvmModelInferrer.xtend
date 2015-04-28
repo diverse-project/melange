@@ -65,7 +65,7 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 
 	/**
 	 * Creates a generic StandaloneSetup class meant to be used for
-	 * registering metamodels' EPackages and adapters in a standalone context.
+	 * registering language, interfaces and adapters in a standalone context.
 	 */
 	def void createStandaloneSetup(ModelTypingSpace root, IJvmDeclaredTypeAcceptor acceptor) {
 		acceptor.accept(root.toClass(root.standaloneSetupClassName))
@@ -110,18 +110,33 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 			members += root.toMethod("doAdaptersRegistration", Void::TYPE.typeRef)[
 				body = '''
 					«FOR mm : root.metamodels»
+						fr.inria.diverse.melange.resource.MelangeRegistryImpl.LanguageDescriptorImpl «mm.name.toFirstLower» = new fr.inria.diverse.melange.resource.MelangeRegistryImpl.LanguageDescriptorImpl(
+							"«mm.fullyQualifiedName»", "«mm.documentation»", "«mm.packageUri»", "«mm.exactType.fullyQualifiedName»"
+						) ;
 						«FOR mt : mm.^implements»
 							fr.inria.diverse.melange.lib.AdaptersRegistry.getInstance().registerAdapter(
 								"«mm.fullyQualifiedName»",
 								"«mt.fullyQualifiedName»",
 								«mm.adapterNameFor(mt)».class
 							) ;
-							fr.inria.diverse.melange.resource.ModelTypeAdapter.Registry.INSTANCE.registerAdapter(
-								  "«mm.packageUri»",
-								  "«mt.fullyQualifiedName»",
-								  «mm.adapterNameFor(mt)».class
-							) ;
+							«mm.name.toFirstLower».addAdapter("«mt.fullyQualifiedName»", «mm.adapterNameFor(mt)».class) ;
 						«ENDFOR»
+						fr.inria.diverse.melange.resource.MelangeRegistry.INSTANCE.getLanguageMap().put(
+							"«mm.fullyQualifiedName»",
+							«mm.name.toFirstLower»
+						) ;
+					«ENDFOR»
+					«FOR mt : root.modelTypes»
+						fr.inria.diverse.melange.resource.MelangeRegistryImpl.ModelTypeDescriptorImpl «mt.name.toFirstLower» = new fr.inria.diverse.melange.resource.MelangeRegistryImpl.ModelTypeDescriptorImpl(
+							"«mt.fullyQualifiedName»", "«mt.documentation»", "«mt.uri»"
+						) ;
+						«FOR superMt : mt.subtypingRelations»
+							«mt.name.toFirstLower».addSuperType("«superMt.superType.fullyQualifiedName»") ;
+						«ENDFOR»
+						fr.inria.diverse.melange.resource.MelangeRegistry.INSTANCE.getModelTypeMap().put(
+							"«mt.fullyQualifiedName»",
+							«mt.name.toFirstLower»
+						) ;
 					«ENDFOR»
 				'''
 			]

@@ -9,7 +9,7 @@ import fr.inria.diverse.melange.lib.IModelType
 
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 
-import fr.inria.diverse.melange.resource.ModelTypeAdapter
+import fr.inria.diverse.melange.resource.MelangeRegistry
 
 import fr.inria.diverse.melange.tests.common.MelangeTestHelper
 import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
@@ -58,7 +58,7 @@ class SubPackagesTest
 			// Consider moving these runtime dependencies somewhere else
 			setJavaCompilerClassPath(
 				typeof(TopClass1),
-				ModelTypeAdapter,
+				MelangeRegistry,
 				IModelType,
 				GenericAdapter,
 				ListAdapter,
