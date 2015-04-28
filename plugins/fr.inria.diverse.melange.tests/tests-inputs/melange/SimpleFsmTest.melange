@@ -1,7 +1,5 @@
 package simplefsmtest
 
-import static extension fr.inria.diverse.melange.lib.MetamodelExtensions.*
-
 language Fsm {
 	ecore "tests-inputs/metamodels/FSM.ecore" withGenmodel "tests-inputs/metamodels/FSM.genmodel"
 	exactType FsmMT
@@ -16,8 +14,8 @@ transformation simplefsmtest.fsmmt.FSM getRoot(FsmMT fsm) {
 	return fsm.contents.head as simplefsmtest.fsmmt.FSM
 }
 
-transformation FsmMT loadFsm()  { return      Fsm.load("tests-inputs/models/Simple.fsm", FsmMT) }
-transformation FsmMT loadTFsm() { return TimedFsm.load("tests-inputs/models/Simple.fsm", FsmMT) }
+transformation FsmMT loadFsm()  { return      Fsm.load("tests-inputs/models/Simple.fsm") }
+transformation FsmMT loadTFsm() { return TimedFsm.load("tests-inputs/models/Simple.fsm") }
 
 @Main
 transformation test() {}

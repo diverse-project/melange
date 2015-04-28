@@ -4,8 +4,6 @@ import fr.inria.diverse.melange.tests.aspects.fsm.StateAspect1
 import fr.inria.diverse.melange.tests.aspects.fsm.StateAspect2
 import fr.inria.diverse.melange.tests.aspects.fsm.StateAspect3
 
-import static extension fr.inria.diverse.melange.lib.MetamodelExtensions.*
-
 language Fsm {
 	ecore "tests-inputs/metamodels/FSM.ecore" withGenmodel "tests-inputs/metamodels/FSM.genmodel"
 	exactType FsmMT
@@ -38,8 +36,8 @@ transformation String callBar(FsmMT m) {
 	return s.bar
 }
 
-transformation FsmMT loadFsm()  { return      Fsm.load("tests-inputs/models/Simple.fsm",      FsmMT) }
-transformation FsmMT loadTfsm() { return TimedFsm.load("tests-inputs/models/Simple.timedfsm", FsmMT) }
+transformation FsmMT loadFsm()  { return      Fsm.load("tests-inputs/models/Simple.fsm") }
+transformation FsmMT loadTfsm() { return TimedFsm.load("tests-inputs/models/Simple.timedfsm") }
 
 @Main
 transformation test() {}

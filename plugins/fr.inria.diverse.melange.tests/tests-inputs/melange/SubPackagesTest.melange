@@ -1,7 +1,5 @@
 package subpackagestest
 
-import static extension fr.inria.diverse.melange.lib.MetamodelExtensions.*
-
 language SubPackagesTest {
 	ecore "tests-inputs/metamodels/PackagesTest.ecore" withGenmodel "tests-inputs/metamodels/PackagesTest.genmodel"
 	exactType SubPackagesTestMT
@@ -11,9 +9,9 @@ transformation String adapterName(SubPackagesTestMT m) {
 	return m.contents.head.toString
 }
 
-transformation SubPackagesTestMT loadTopPkg()  { return SubPackagesTest.load("tests-inputs/models/Simple.toppkg",  SubPackagesTestMT) }
-transformation SubPackagesTestMT loadSubPkg2() { return SubPackagesTest.load("tests-inputs/models/Simple.subpkg2", SubPackagesTestMT) }
-transformation SubPackagesTestMT loadSubPkg3() { return SubPackagesTest.load("tests-inputs/models/Simple.subpkg3", SubPackagesTestMT) }
+transformation SubPackagesTestMT loadTopPkg()  { return SubPackagesTest.load("tests-inputs/models/Simple.toppkg") }
+transformation SubPackagesTestMT loadSubPkg2() { return SubPackagesTest.load("tests-inputs/models/Simple.subpkg2") }
+transformation SubPackagesTestMT loadSubPkg3() { return SubPackagesTest.load("tests-inputs/models/Simple.subpkg3") }
 
 @Main
 transformation test() {}
