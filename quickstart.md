@@ -99,16 +99,12 @@ In this section we will use Kermeta 3 to add behavior on our model.
     - org.sample.timedcompositefsm
  3. Change the name of the "sample" package for "org.sample.simplefsm" (right click `Refactor > Rename...`)
  4. Create a new file "Aspects.xtend" in this package (right click `New > File`) and open it.
- 5. Write 
-
-~~~xtend
-package org.sample.simplefsm;
-
-import fr.inria.diverse.k3.al.annotationprocessor.Aspect
-~~~
-
-It declare the package and import the annotation from Kermeta 3 that we will use to declare aspect.
-
+ 5. Declare the containing package and import the annotation from Kermeta 3 that we will use to define aspect. 
+    ~~~xtend
+    package org.sample.simplefsm;
+    
+    import fr.inria.diverse.k3.al.annotationprocessor.Aspect
+    ~~~
  6. We want to define behavior on elements of our model. Kermeta 3 allows us to add new properties and
     operations in existing classes without extending them.
     All we just need to do is writing a new class and using the K3's annotation to weave it on the base class.
