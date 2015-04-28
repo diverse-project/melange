@@ -100,15 +100,20 @@ In this section we will use Kermeta 3 to add behavior on our model.
  3. Change the name of the "sample" package for "org.sample.simplefsm" (right click `Refactor > Rename...`)
  4. Create a new file "Aspects.xtend" in this package (right click `New > File`) and open it.
  5. Write 
-    `package org.sample.simplefsm;
 
-     import fr.inria.diverse.k3.al.annotationprocessor.Aspect` 
+~~~xtend
+package org.sample.simplefsm;
+
+import fr.inria.diverse.k3.al.annotationprocessor.Aspect
+~~~
+
     It declare the package and import the annotation from Kermeta 3 that we will use to declare aspect.
  6. We want to define behavior on elements of our model. Kermeta 3 allows us to add new properties and
     operations in existing classes without extending them.
     All we just need to do is writing a new class and using the K3's annotation to weave it on the base class.
 
 For example for the Transition:
+
 ~~~xtend
 @Aspect(className=Transition)
 class TransitionAspect {
@@ -124,9 +129,11 @@ class TransitionAspect {
 	}
 }
 ~~~
+
 With the **@Aspect** we re-open the class "Transition" to add a method fire() implementing its behavior.
 
 The attribute 'currentState' does'nt exist in StateMachine but we can add it by aspect:
+
 ~~~xtend
 @Aspect(className=StateMachine)
 	class StateMachineAspect {
