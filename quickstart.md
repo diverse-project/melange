@@ -21,8 +21,8 @@ In this chapter we will create four differents languages which are variations of
 ### What is a Finite State Machine
 
 >It is conceived as an abstract machine that can be in one of a finite number of states. The machine is in only one state at a time; the state it is in at any given time is called the current state. It can change from one state to another when initiated by a triggering event or condition; this is called a transition. A particular FSM is defined by a list of its states, and the triggering condition for each transition.
-
-![FSM](http://upload.wikimedia.org/wikipedia/commons/d/d8/Automate-impair.png)
+>
+>![FSM](http://upload.wikimedia.org/wikipedia/commons/d/d8/Automate-impair.png)
 
 [From Wikipedia](http://en.wikipedia.org/wiki/Finite-state_machine)
 
