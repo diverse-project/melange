@@ -44,6 +44,7 @@ The variations of FSM language we will design are:
 #### Simple FSM
 
 If we do a list of elements for our language we have:
+
  - A State Machine
  - Some States
  - An Initial State (it's the entry point of the State Machine)
