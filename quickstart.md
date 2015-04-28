@@ -14,7 +14,7 @@ We will first design 4 differents languages close enough that we would write one
 
 ## Variants of language
 
-Melange is a tool to manipulate languages and we will explore its possibilities. But first we need a familly of languages.
+Melange is a tool to manipulate languages and we will explore its possibilities. But first we need a family of languages.
 
 In this chapter we will create four differents languages which are variations of Finite State Machine language.
 
@@ -199,6 +199,19 @@ We add same changes as Timed and Composite FSM
 ## The Melange world
 
 ### New project
+
+To create a Melange project using your family of language:
+
+ 1. Go in the menu `File > New > Project...` and select `Melange > Melange Project`, then clic `Next`.
+ 2. Put "org.melange.fsm" in Project name and clic `Next`.
+ 3. Check `Create a plug-in using one of the templates` and select `Simple Melange project`, then `Next`.
+ 4. Set "org.sample.fsm" as package, and change language name to SimpleFSM. Browse the location to select fsm.ecore from the Simple FSM project, then `Finish`.
+ 5. Open the `META-INF/MANIFEST.MF` and in the `dependencies` tab add Plug-ins
+    - org.sample.timedfsm
+    - org.sample.compositefsm
+    - org.sample.timedcompositefsm
+    org.sample.simplefsm should be already there thanks to the wizard.
+ 6. In the .melange file, copy-paste the `language SimpleFSM{...}` for other languages (and adapt them).
 
 ### Interface of language : the Model Type
 
