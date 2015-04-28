@@ -107,7 +107,8 @@ package org.sample.simplefsm;
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 ~~~
 
-    It declare the package and import the annotation from Kermeta 3 that we will use to declare aspect.
+It declare the package and import the annotation from Kermeta 3 that we will use to declare aspect.
+
  6. We want to define behavior on elements of our model. Kermeta 3 allows us to add new properties and
     operations in existing classes without extending them.
     All we just need to do is writing a new class and using the K3's annotation to weave it on the base class.
