@@ -88,6 +88,81 @@ Generate the Java code:
 
 ##### Weaving aspects
 
+In this section we will use Kermeta 3 to add behavior on our model.
+
+ 1. Go in `File > New > Project...` and select `Kermeta 3 > K3 Project`
+    Name your project "org.sample.simplefsm.aspect" and click on `Finish`
+ 2. Open the `META-INF/MANIFEST.MF` and in the `dependencies` tab add Plug-ins
+    - org.sample.simplefsm
+    - org.sample.timedfsm
+    - org.sample.compositefsm
+    - org.sample.timedcompositefsm
+ 3. Change the name of the "sample" package for "org.sample.simplefsm" (right click `Refactor > Rename...`)
+ 4. Create a new file "Aspects.xtend" in this package (right click `New > File`) and open it.
+ 5. Write 
+    `package org.sample.simplefsm;
+
+     import fr.inria.diverse.k3.al.annotationprocessor.Aspect` 
+    It declare the package and import the annotation from Kermeta 3 that we will use to declare aspect.
+ 6. We want to define behavior on elements of our model. Kermeta 3 allows us to add new properties and
+    operations in existing classes without extending them.
+    All we just need to do is writing a new class and using the K3's annotation to weave it on the base class.
+
+For example for the Transition:
+~~~xtend
+@Aspect(className=Transition)
+class TransitionAspect {
+	
+	def public void fire(){
+		
+		val fsm = _self.stateMachine
+
+		val target = _self.target
+		_self.stateMachine.currentState = target
+
+		println("fire : " + _self.event)
+	}
+}
+~~~
+With the **@Aspect** we re-open the class "Transition" to add a method fire() implementing its behavior.
+
+The attribute 'currentState' does'nt exist in StateMachine but we can add it by aspect:
+~~~xtend
+@Aspect(className=StateMachine)
+	class StateMachineAspect {
+		State currentState
+
+		def void init(){
+			currentState = _self.states.findFirst[InitialState]
+		}
+
+      def void eval(List<String> event){
+			init()
+			event.forEach[ event |
+				val transition = currentState.getActiveTransition(event)
+				transition?.fire()
+			]
+      }
+	}
+}
+~~~
+
+And of course State need getActiveTransition(String):
+
+~~~xtend
+@Aspect(className=StateMachine)
+class StateMachineAspect {
+	def public Transition getActiveTransitions(String event){
+		_self.outgoing?.forEach[ transition |
+			if(transition.event == event) return transition
+		]
+		return null
+	}
+}
+~~~
+
+For more details, have a look at the Kermeta 3 documentation : [Defining aspects](https://github.com/diverse-project/k3/wiki/Defining-aspects-in-Kermeta-3)
+
 #### Others FSM
 
 For other variantes of FSM language process in the same way as for the Simple FSM project.
