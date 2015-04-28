@@ -57,6 +57,8 @@ Each point of this list will be an element in the model representing our languag
 Melange is based on the Eclipse Modeling Framework to defining languages.
 EMF provide editors creating models that we will use to define our Simple FSM language.
 
+Define the model:
+
  1. Go in `File > New > Project...` and select `Eclipse Modeling Framework > Empty EMF Project`, then click `Next`<br>
     Name your project "org.sample.metamodel.fsm", then `Finish`.
  2. Right click on the 'model' folder and go in `New > Others ...`<br>
@@ -71,6 +73,15 @@ EMF provide editors creating models that we will use to define our Simple FSM la
     In the Properties view name it 'event' and set EType to EString.<br>
  6. To link elements to each other you can add EReference with the right click on EClass.<br>
     In the Properties view name and set EType to the targeted EClass. You can also change lower/upper bound and the containment properties if needed.
+
+Generate Java code:
+
+  1. Right clic on the model folder, `New > Other...` and select `Eclipse Modeling Framework > EMF Generator Model`, then `Next`
+  2. Name it "fsm.genmodel" and put it in model folder, then `Next`.
+  3. Select Ecore model, then `Next`
+  4. `Browse Workspace` and select fsm.ecore, then `Next`
+  5. Their is only one package so clic `Finish`.
+  6. Open fsm.genmodel, do a right clic on the root and select `Generate Model Code`. It will make Java classes from your .ecore.
 
 ##### Weaving aspects
 
