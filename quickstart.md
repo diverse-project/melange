@@ -77,7 +77,7 @@ Define the model:
  6. To link elements to each other you can add EReference with the right click on EClass.<br>
     In the Properties view name and set EType to the targeted EClass. You can also change lower/upper bound and the containment properties if needed.
 
-Generate Java code:
+Generate the Java code:
 
   1. Right clic on the model folder, `New > Other...` and select `Eclipse Modeling Framework > EMF Generator Model`, then `Next`
   2. Name it "fsm.genmodel" and put it in model folder, then `Next`.
@@ -90,16 +90,21 @@ Generate Java code:
 
 #### Others FSM
 
+For other variantes of FSM language process in the same way as for the Simple FSM project.
+
 ##### Timed FSM
 
+We add an EAttribut **time : EInt** in Transition
 ![Simple FSM](images/fsmTimed.png)
 
 ##### Composite FSM
 
+We add a containment EReference **substates : State** in State
 ![Simple FSM](images/fsmComposite.png)
 
 ##### Timed composite
 
+We add same changes as Timed and Composite FSM
 ![Simple FSM](images/fsmTimedComposite.png)
 
 ## The Melange world
