@@ -43,7 +43,34 @@ The variations of FSM language we will design are:
 
 #### Simple FSM
 
+If we do a list of elements for our language we have:
+ - A State Machine
+ - Some States
+ - An Initial State (it's the entry point of the State Machine)
+ - A Final State (we need also an exit point)
+ - Some Transitions
+
+Each point of this list will be an element in the model representing our language.
+
 ##### Modeling
+
+Melange is based on the Eclipse Modeling Framework to defining languages.
+EMF provide editors creating models that we will use to define our Simple FSM language.
+
+ 1. Go in `File > New > Project...` and select `Eclipse Modeling Framework > Empty EMF Project`, then click `Next`<br>
+    Name your project "org.sample.metamodel.fsm", then `Finish`.
+ 2. Right click on the 'model' folder and go in `New > Others ...`<br>
+    Select `Eclipse Modeling Framework > Ecore model`, then `Next`<br>
+    Name it "fsm.ecore" and click `Finish`
+ 3. In the opened .ecore you have a root package with no name.<br>
+    Open the Properties view (Menu `Show View > Other... > General > Properties`)<br>
+    Set "finitestatemachine" for name, "finitestatemachine" for Ns prefix and "org.sample.fsm" for Ns URI.
+ 4. For each elements of our language add an EClass in the root package with a right click and `New Child > EClass`<br>
+    You can edit the EClass name in the Propeties view.
+ 5. Right click on the Transition then `New Child > EAttribute`<br>
+    In the Properties view name it 'event' and set EType to EString.<br>
+ 6. To link elements to each other you can add EReference with the right click on EClass.<br>
+    In the Properties view name and set EType to the targeted EClass. You can also change lower/upper bound and the containment properties if needed.
 
 ##### Weaving aspects
 
