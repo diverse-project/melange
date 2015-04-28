@@ -52,6 +52,8 @@ If we do a list of elements for our language we have:
 
 Each point of this list will be an element in the model representing our language.
 
+![Simple FSM](images/fsmSimple.png)
+
 ##### Modeling
 
 Melange is based on the Eclipse Modeling Framework to defining languages.
@@ -89,9 +91,15 @@ Generate Java code:
 
 ##### Timed FSM
 
+![Simple FSM](images/fsmTimed.png)
+
 ##### Composite FSM
 
+![Simple FSM](images/fsmComposite.png)
+
 ##### Timed composite
+
+![Simple FSM](images/fsmTimedComposite.png)
 
 ## The Melange world
 
