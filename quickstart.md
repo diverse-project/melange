@@ -131,7 +131,7 @@ class TransitionAspect {
 
 With the **@Aspect** we re-open the class "Transition" to add a method fire() implementing its behavior.
 
-The attribute 'currentState' does'nt exist in StateMachine but we can add it by aspect:
+The attribute 'currentState' doesn't exist in StateMachine but we can add it by aspect:
 
 ~~~xtend
 @Aspect(className=StateMachine)
@@ -156,8 +156,8 @@ The attribute 'currentState' does'nt exist in StateMachine but we can add it by 
 And of course State need getActiveTransition(String):
 
 ~~~xtend
-@Aspect(className=StateMachine)
-class StateMachineAspect {
+@Aspect(className=State)
+class StateAspect {
 	def public Transition getActiveTransitions(String event){
 		_self.outgoing?.forEach[ transition |
 			if(transition.event == event) return transition
