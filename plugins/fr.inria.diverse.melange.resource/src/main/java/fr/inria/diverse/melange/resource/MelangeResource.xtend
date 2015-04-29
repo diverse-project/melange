@@ -146,8 +146,16 @@ class MelangeResourceImpl implements Resource.Internal
 	}
 
 	override getAllContents() {
-		// FIXME: Should perform adaptation here
-		throw new UnsupportedOperationException("FIXME: Should perform adaptation here")
+		return
+			new AbstractTreeIterator<EObject>(this, false) {
+				override getChildren(Object object) {
+					return
+						if (object instanceof Resource)
+							object.contents.iterator
+						else if (object instanceof EObject)
+							object.eContents.iterator
+				}
+			}
 	}
 
 	override getEObject(String uriFragment) {
