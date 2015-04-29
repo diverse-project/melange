@@ -5,6 +5,7 @@ import com.google.common.collect.Iterators
 import java.lang.reflect.InvocationTargetException
 import java.util.Collection
 import java.util.List
+import org.eclipse.emf.common.util.AbstractTreeIterator
 import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.impl.EObjectImpl
@@ -193,7 +194,12 @@ abstract class EObjectAdapter<E extends EObject> extends EObjectImpl implements 
 	}
 
 	override eAllContents() {
-		throw new UnsupportedOperationException("FIXME: Should perform adaptation here")
+		return
+			new AbstractTreeIterator<EObject>(this, false) {
+				override getChildren(Object object) {
+					return (object as EObject).eContents.iterator
+				}
+			}
 	}
 
 	override toString() {
