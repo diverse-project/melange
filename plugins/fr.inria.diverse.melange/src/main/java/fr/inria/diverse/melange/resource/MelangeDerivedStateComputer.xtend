@@ -86,7 +86,12 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 		val root = resource.contents.head as ModelTypingSpace
 
 		if (root !== null)
-			processors.forEach[preProcess(root)]
+			processors.forEach[p |
+				val pTask = Stopwatches.forTask(p.class.simpleName)
+				pTask.start
+				p.preProcess(root)
+				pTask.stop
+			]
 
 		// Setting context for non-inferrer helper classes
 		builder.setContext(resource.resourceSet)
