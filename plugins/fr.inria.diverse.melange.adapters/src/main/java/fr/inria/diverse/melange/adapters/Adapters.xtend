@@ -8,7 +8,8 @@ import java.util.List
 import org.eclipse.emf.common.util.AbstractTreeIterator
 import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.ecore.EObject
-import org.eclipse.emf.ecore.impl.EObjectImpl
+import org.eclipse.emf.ecore.EOperation
+import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.util.BasicInternalEList
 import org.eclipse.xtend.lib.annotations.Delegate
@@ -167,7 +168,7 @@ class ListAdapter<E, F> implements GenericAdapter<List<F>>, List<E>
 	}
 }
 
-abstract class EObjectAdapter<E extends EObject> extends EObjectImpl implements EObject, GenericAdapter<E> {
+class EObjectAdapter<E extends EObject> implements EObject, GenericAdapter<E> {
 	/** Best. Annotation. Ever. */
 	@Delegate protected E adaptee
 	protected AdaptersFactory adaptersFactory
@@ -202,8 +203,46 @@ abstract class EObjectAdapter<E extends EObject> extends EObjectImpl implements 
 			}
 	}
 
+	override eGet(EStructuralFeature feature) {
+		val ret = adaptee.eGet(feature)
+
+		return
+			switch (ret) {
+				EList<EObject>:
+					new BasicInternalEList<EObject>(EObject) => [
+						addAll(ret.map[adaptersFactory.createAdapter(it)])
+					]
+				EObject:
+					adaptersFactory.createAdapter(ret)
+				default: ret
+			}
+	}
+
+	override eGet(EStructuralFeature feature, boolean resolve) {
+		val ret = adaptee.eGet(feature, resolve)
+
+		return
+			switch (ret) {
+				EList<EObject>:
+					new BasicInternalEList<EObject>(EObject) => [
+						addAll(ret.map[adaptersFactory.createAdapter(it)])
+					]
+				EObject:
+					adaptersFactory.createAdapter(ret)
+				default: ret
+			}
+	}
+
 	override toString() {
 		return '''Adap<«class.name»>(«adaptee»)'''
+	}
+
+	override eCrossReferences() {
+		throw new UnsupportedOperationException("TODO: Adaptation needed here")
+	}
+
+	override eInvoke(EOperation operation, EList<?> arguments) throws InvocationTargetException {
+		throw new UnsupportedOperationException("TODO: Adaptation needed here")
 	}
 }
 
