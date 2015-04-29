@@ -213,6 +213,70 @@ To create a Melange project using your family of language:
     org.sample.simplefsm should be already there thanks to the wizard.
  6. In the .melange file, copy-paste the `language SimpleFSM{...}` for other languages (and adapt them).
 
+You should have these declarations:
+
+~~~
+language SimpleFSM {
+	ecore "platform:/resource/org.sample.fsm/model/fsm.ecore"
+	exactType SimpleFSMMT
+}
+
+language TimedFSM {
+	ecore "platform:/resource/org.sample.timedfsm/model/fsm.ecore"
+	exactType TimedFSMMT
+}
+
+language CompositeFSM {
+	ecore "platform:/resource/org.sample.compositefsm/model/fsm.ecore"
+	exactType CompositeFSMMT
+}
+
+language TimedCompositeFSM {
+	ecore "platform:/resource/org.sample.timedcompositefsm/model/fsm.ecore"
+	exactType TimedCompositeFSMMT
+}
+~~~
+
+If you look at the outline at the right side, you can see the list of languages, each one typed by their own 'exactType' and by matching other language type.
+
+Each language is defined by an .ecore file but remember we added behaviors with aspects. So we have to put them also in the languages declaration.
+
+~~~
+language SimpleFSM {
+	ecore "platform:/resource/org.sample.fsm/model/fsm.ecore"
+	with finitestatemachines.StateMachineAspect
+	with finitestatemachines.StateAspect
+	with finitestatemachines.TransitionAspect
+	exactType SimpleFSMMT
+}
+
+language TimedFSM {
+	ecore "platform:/resource/org.sample.timedfsm/model/fsm.ecore"
+	with finitestatemachines.timed.StateMachineAspect
+	with finitestatemachines.timed.StateAspect
+	with finitestatemachines.timed.TransitionAspect
+	exactType TimedFSMMT
+}
+
+language CompositeFSM {
+	ecore "platform:/resource/org.sample.compositefsm/model/fsm.ecore"
+	with finitestatemachines.composite.StateMachineAspect
+	with finitestatemachines.composite.StateAspect
+	with finitestatemachines.composite.TransitionAspect
+	exactType CompositeFSMMT
+}
+
+language TimedCompositeFSM {
+	ecore "platform:/resource/org.sample.timedcompositefsm/model/fsm.ecore"
+	with finitestatemachines.timedcomposite.StateMachineAspect
+	with finitestatemachines.timedcomposite.StateAspect
+	with finitestatemachines.timedcomposite.TransitionAspect
+	exactType TimedCompositeFSMMT
+}
+~~~
+
+As you see the keyword **with** refer to the class with the **@Aspect**
+
 ### Interface of language : the Model Type
 
 ### Transformation?
