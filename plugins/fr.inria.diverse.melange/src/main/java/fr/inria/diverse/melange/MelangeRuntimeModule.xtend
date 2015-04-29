@@ -7,7 +7,7 @@ import org.eclipse.xtext.xbase.typesystem.computation.SynonymTypesProvider
 class MelangeRuntimeModule extends fr.inria.diverse.melange.AbstractMelangeRuntimeModule
 {
 	override Class<? extends IDerivedStateComputer> bindIDerivedStateComputer() {
-		return typeof(fr.inria.diverse.melange.processors.MelangeDerivedStateComputer)
+		return typeof(fr.inria.diverse.melange.resource.MelangeDerivedStateComputer)
 	}
 
 	def Class<? extends SynonymTypesProvider> bindSynonymTypesProvider() {

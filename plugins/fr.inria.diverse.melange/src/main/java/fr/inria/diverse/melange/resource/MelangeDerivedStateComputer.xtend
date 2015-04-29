@@ -1,9 +1,17 @@
-package fr.inria.diverse.melange.processors
+package fr.inria.diverse.melange.resource
 
 import com.google.inject.Inject
 import fr.inria.diverse.melange.jvmmodel.JvmModelInferrerHelper
 import fr.inria.diverse.melange.jvmmodel.MelangeTypesBuilder
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
+import fr.inria.diverse.melange.processors.AspectsCopier
+import fr.inria.diverse.melange.processors.AspectsWeaver
+import fr.inria.diverse.melange.processors.EcoreUriInferrer
+import fr.inria.diverse.melange.processors.ExactTypeInferrer
+import fr.inria.diverse.melange.processors.ExtensionPointProcessor
+import fr.inria.diverse.melange.processors.MelangeProcessor
+import fr.inria.diverse.melange.processors.ModelTypeSerializer
+import fr.inria.diverse.melange.processors.TypingInferrer
 import fr.inria.diverse.melange.utils.EPackageProvider
 import java.util.List
 import org.apache.log4j.Logger
