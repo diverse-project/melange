@@ -40,7 +40,7 @@ class MelangeResourceFactoryImpl implements Resource.Factory
 
 		// Loading through a viewpoint / language
 		return
-			if (splits !== null && splits.size == 2 && #["mt", "mm"].contains(splits.head))
+			if (splits !== null && splits.size == 2 && #["mt", "lang"].contains(splits.head))
 				new MelangeResourceImpl(uri)
 			// Nothing special: fallback to XMI resource creation
 			else
@@ -52,7 +52,7 @@ class MelangeResourceImpl implements Resource.Internal
 {
 	@Delegate Resource.Internal wrappedResource
 	String expectedMt
-	String expectedMm
+	String expectedLang
 	URI melangeUri
 	DozerLoader loader = new DozerLoader
 
@@ -66,8 +66,8 @@ class MelangeResourceImpl implements Resource.Internal
 
 		if (query.head == "mt")
 			expectedMt = query.get(1)
-		else if (query.head == "mm")
-			expectedMm = query.get(1)
+		else if (query.head == "lang")
+			expectedLang = query.get(1)
 	}
 
 	override getContents() throws RuntimeException {
@@ -98,11 +98,11 @@ class MelangeResourceImpl implements Resource.Internal
 
 			throw new MelangeResourceException('''No adapter class registered for <«actualLanguage.identifier», «expectedMt»>''')
 		}
-		else if (expectedMm !== null) {
-			val expectedLanguage = MelangeRegistry.INSTANCE.getLanguageByIdentifier(expectedMm)
+		else if (expectedLang !== null) {
+			val expectedLanguage = MelangeRegistry.INSTANCE.getLanguageByIdentifier(expectedLang)
 
 			if (expectedLanguage === null)
-				throw new MelangeResourceException("Cannot find a registered language with URI " + expectedMm)
+				throw new MelangeResourceException("Cannot find a registered language with URI " + expectedLang)
 
 			val actualMt = MelangeRegistry.INSTANCE.getModelTypeByIdentifier(actualLanguage.exactType)
 			val expectedMt = MelangeRegistry.INSTANCE.getModelTypeByIdentifier(expectedLanguage.exactType)
