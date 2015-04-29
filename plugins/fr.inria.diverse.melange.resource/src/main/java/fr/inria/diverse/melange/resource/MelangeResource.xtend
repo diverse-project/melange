@@ -1,15 +1,16 @@
 package fr.inria.diverse.melange.resource
 
+import fr.inria.diverse.melange.resource.loader.DozerLoader
 import java.io.IOException
 import java.util.Map
+import org.eclipse.emf.common.util.AbstractTreeIterator
 import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl
 import org.eclipse.xtend.lib.annotations.Delegate
-import fr.inria.diverse.melange.resource.loader.DozerLoader
-import fr.inria.diverse.melange.resource.loader.ExtensionsAwareLoader
 
 class MelangeResourceUtils
 {
@@ -52,6 +53,7 @@ class MelangeResourceImpl implements Resource.Internal
 	@Delegate Resource.Internal wrappedResource
 	String expectedMt
 	String expectedMm
+	URI melangeUri
 	DozerLoader loader = new DozerLoader
 
 	new(URI uri) {
@@ -59,6 +61,7 @@ class MelangeResourceImpl implements Resource.Internal
 		val rs = new ResourceSetImpl
 		val query = uri.query.split("=")
 
+		melangeUri = uri
 		wrappedResource = rs.getResource(MelangeResourceUtils.melangeToFallbackURI(uri), true) as Resource.Internal
 
 		if (query.head == "mt")
@@ -155,6 +158,10 @@ class MelangeResourceImpl implements Resource.Internal
 	override save(Map<?, ?> options) throws IOException {
 		// FIXME: Should perform adaptation here
 		throw new UnsupportedOperationException("FIXME: Should perform adaptation here")
+	}
+
+	override getURI() {
+		return melangeUri
 	}
 }
 
