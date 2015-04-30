@@ -154,10 +154,14 @@ class ExtendedToBaseBuilder extends BeanMappingBuilder
 	}
 
 	override protected configure() {
+		val classLoader = new OsgiDozerClassLoader
+		BeanContainer.getInstance.classLoader = classLoader
+
 		pkgBase.EClassifiers.filter(EClass).forEach[cls |
 			val extendedCls = pkgExtended.EClassifiers.filter(EClass).findFirst[name == cls.name]
 			val baseImpl = cls.implementationClass
 			val extendedImpl = extendedCls.implementationClass
+			classLoader.updateContext(baseImpl, extendedImpl)
 
 			val map = mapping(
 				extendedImpl,
@@ -192,7 +196,6 @@ class BaseToExtendedBuilder extends BeanMappingBuilder
 	}
 
 	override protected configure() {
-		
 		val classLoader = new OsgiDozerClassLoader
 		BeanContainer.getInstance.classLoader = classLoader
 		
