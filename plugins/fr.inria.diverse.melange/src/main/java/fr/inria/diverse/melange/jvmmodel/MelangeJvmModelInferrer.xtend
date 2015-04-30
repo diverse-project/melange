@@ -43,15 +43,19 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 	 * @param isPreIndexingPhase
 	 */
 	def dispatch void infer(ModelTypingSpace root, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
-		if (MelangePreferencesAccess.instance.generateAdaptersCode) {
 			try {
 	//			if (Diagnostician.INSTANCE.validate(typingSpace).severity != Diagnostic.ERROR) {
-					root.modelTypes.filter[isComplete].forEach[generateInterfaces(acceptor, _typeReferenceBuilder)]
+	
+				root.modelTypes.filter[isComplete].forEach[generateInterfaces(acceptor, _typeReferenceBuilder)]
+				
+				if (MelangePreferencesAccess.instance.generateAdaptersCode) {
 					root.metamodels.filter[isComplete].forEach[generateAdapters(root, acceptor, _typeReferenceBuilder)]
 	//				root.mappings.forEach[generateMappers(root, acceptor, _typeReferenceBuilder)]
 					root.transformations.forEach[generateTransformation(acceptor, _typeReferenceBuilder)]
 					root.createStandaloneSetup(acceptor)
 	//				root.slicers.forEach[generateSlicer]
+				} // else shhh...
+				
 	//			} else {
 	//				logger.error('''Inferrer cannot proceed: there are errors in the model.''')
 	//			}
@@ -60,7 +64,6 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 			} catch (Exception e) {
 				logger.error('''Exception: «e.message»''', e)
 			}
-		} // else shhh...
 	}
 
 	/**
