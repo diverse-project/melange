@@ -10,6 +10,7 @@ import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EStructuralFeature
+import org.eclipse.emf.ecore.impl.EObjectImpl
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.util.BasicInternalEList
 import org.eclipse.xtend.lib.annotations.Delegate
@@ -168,7 +169,7 @@ class ListAdapter<E, F> implements GenericAdapter<List<F>>, List<E>
 	}
 }
 
-class EObjectAdapter<E extends EObject> implements EObject, GenericAdapter<E> {
+class EObjectAdapter<E extends EObject> extends EObjectImpl implements EObject, GenericAdapter<E> {
 	/** Best. Annotation. Ever. */
 	@Delegate protected E adaptee
 	protected AdaptersFactory adaptersFactory
@@ -237,13 +238,13 @@ class EObjectAdapter<E extends EObject> implements EObject, GenericAdapter<E> {
 		return '''Adap<«class.name»>(«adaptee»)'''
 	}
 
-	override eCrossReferences() {
-		throw new UnsupportedOperationException("TODO: Adaptation needed here")
-	}
-
-	override eInvoke(EOperation operation, EList<?> arguments) throws InvocationTargetException {
-		throw new UnsupportedOperationException("TODO: Adaptation needed here")
-	}
+//	override eCrossReferences() {
+//		throw new UnsupportedOperationException("TODO: Adaptation needed here")
+//	}
+//
+//	override eInvoke(EOperation operation, EList<?> arguments) throws InvocationTargetException {
+//		throw new UnsupportedOperationException("TODO: Adaptation needed here")
+//	}
 }
 
 class EListAdapter<E, F> implements GenericAdapter<EList<F>>, EList<E>
