@@ -9,44 +9,7 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl
 import org.eclipse.xtend.lib.annotations.Delegate
-
-class MelangeResourceUtils
-{
-	static def URI melangeToFallbackURI(URI uri) {
-		val fallbackUri =
-			if (#["resource", "plugin"].contains(uri.segments.head))
-				uri.toString.replaceFirst("melange:/", "platform:/")
-			else
-				uri.toString.replaceFirst("melange:/file/", "file:")
-
-		val trimmedUri =
-			if (fallbackUri.contains("?"))
-				fallbackUri.substring(0, fallbackUri.lastIndexOf("?"))
-			else fallbackUri
-
-		return URI::createURI(trimmedUri)
-	}
-}
-
-class MelangeResourceFactoryImpl implements Resource.Factory
-{
-	override Resource createResource(URI uri) {
-		if (!#["resource", "plugin", "file"].contains(uri.segments.head))
-			throw new MelangeResourceException('''Melange resource only supports melange:/[resource,plugin,file]/ schemes''')
-
-		val splits = uri.query?.split("=")
-
-		// Loading through a viewpoint / language
-		return
-			if (splits !== null && splits.size == 2 && #["mt", "lang"].contains(splits.head))
-				new MelangeResourceImpl(uri)
-			// Nothing special: fallback to XMI resource creation
-			else
-				new XMIResourceImpl(MelangeResourceUtils.melangeToFallbackURI(uri))
-	}
-}
 
 class MelangeResourceImpl implements Resource.Internal
 {
@@ -170,15 +133,5 @@ class MelangeResourceImpl implements Resource.Internal
 
 	override getURI() {
 		return melangeUri
-	}
-}
-
-class MelangeResourceException extends RuntimeException {
-	new(String msg) {
-		super(msg)
-	}
-
-	new(String msg, Exception cause) {
-		super(msg, cause)
 	}
 }
