@@ -2,6 +2,7 @@
 layout: page
 title: Quick Start
 group: navigation
+navorder: 1
 ---
 
 {% include JB/setup %}

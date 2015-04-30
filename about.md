@@ -2,6 +2,7 @@
 layout: page
 title: About us
 group: navigation
+navorder: 4
 ---
 {% include JB/setup %}
 

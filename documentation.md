@@ -2,6 +2,7 @@
 layout: page
 title: Documentation
 group: navigation
+navorder: 2
 ---
 
 {% include JB/setup %}

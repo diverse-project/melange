@@ -2,6 +2,7 @@
 layout: page
 title: Download
 group: navigation
+navorder: 3
 ---
 
 {% include JB/setup %}
