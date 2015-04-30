@@ -327,9 +327,10 @@ transformation main() {
 ~~~
 
 Here we have:
- * &ltlanguageName&gt.load(&ltfile.xmi&gt)<br>
+
+ * \<tlanguageName>.load(<file.xmi&>)<br>
    To load a model
- * &lttransformationName&gt.call(&ltparameters...&gt)<br>
+ * <ttransformationName>t.call(<tparameters...>)<br>
    To call a transformation
 
 Congratulation, you wrote an algorithm working on different languages !
