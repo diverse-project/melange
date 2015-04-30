@@ -11,9 +11,12 @@ class MelangePreferencesAccess {
 	static private final String PREFS_ID = "fr.inria.diverse.melange.ui"
 	static MelangePreferencesAccess instance
 	IPreferencesService preferencesService
+	
+	boolean isUserLaunch
 
 	private new() {
 		preferencesService = Platform.preferencesService
+		isUserLaunch = false
 	}
 
 	synchronized static def MelangePreferencesAccess getInstance() {
@@ -25,5 +28,22 @@ class MelangePreferencesAccess {
 
 	def boolean isGenerateAdaptersCode() {
 		return preferencesService.getBoolean(PREFS_ID, MelangePreferencesConstants.GENERATE_ADAPTERS_CODE, true, null)
+	}
+	
+	
+	/**
+	 * Return true if the user request a full compilation.
+	 * Should return false if compilation process is automatically launched 
+	 */
+	def boolean isUserLaunch(){
+		return isUserLaunch
+	}
+
+	def boolean enableCodeGenerator(){
+		isUserLaunch = true
+	}
+	
+	def void disableCodeGenerator(){
+		isUserLaunch = false
 	}
 }

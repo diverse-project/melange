@@ -13,6 +13,7 @@ import org.eclipse.jface.wizard.ProgressMonitorPart
 import org.eclipse.core.runtime.jobs.Job
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.core.runtime.Status
+import fr.inria.diverse.melange.preferences.MelangePreferencesAccess
 
 class Compile extends AbstractHandler{
 	
@@ -21,6 +22,9 @@ class Compile extends AbstractHandler{
 		val Job job = new Job("Full Melange build"){
 			
 			override protected run(IProgressMonitor monitor) {
+				
+				MelangePreferencesAccess.instance.enableCodeGenerator()
+				
 				val Shell shell = HandlerUtil.getActiveShell(event)
 		    	val ISelection sel = HandlerUtil.getActiveMenuSelection(event)
 		    	val IStructuredSelection selection =  sel as IStructuredSelection
