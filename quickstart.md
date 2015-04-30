@@ -8,7 +8,7 @@ group: navigation
 
 # Melange tutorial
 
-In this tutorial you will learn how to make executable languages and how Melange can help you to write generic algorithms for a familly of language thanks to Model Type.
+In this tutorial you will learn how to make executable languages and how Melange can help you to write generic algorithms for a family of language thanks to Model Type.
 
 We will first design 4 differents languages close enough that we would write one tool for all of them, and then will do it !
 
@@ -330,7 +330,7 @@ Here we have:
 
  * \<languageName>.load(\<file.xmi\>)<br>
    To load a model
- * \<transformationName\>t.call(\<parameters...\>)<br>
+ * \<transformationName\>.call(\<parameters...\>)<br>
    To call a transformation
 
 Congratulation, you wrote an algorithm working on different languages !
