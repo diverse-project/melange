@@ -291,6 +291,7 @@ Our algorithm will work on StateMachine, Transition, State and FinalState. We de
 ![FSM Model Type](images/fsmModelType.png)
 
 We use the keyword **modeltype** to declare it in the .melange file.
+
 ~~~
 modeltype FsmInterface{
 	ecore "platform:/resource/org.sample.fsmmodeltype/model/modeltype.ecore"
