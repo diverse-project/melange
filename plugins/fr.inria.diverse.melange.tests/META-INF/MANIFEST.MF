@@ -37,5 +37,4 @@ Export-Package: fr.inria.diverse.melange.tests,
  fr.inria.diverse.melange.tests.aspects.fsm,
  fr.inria.diverse.melange.tests.common,
  fr.inria.diverse.melange
-Bundle-ClassPath: .,
- tests-inputs/plugins/SimpleFsmProject.jar
+Bundle-ClassPath: .
