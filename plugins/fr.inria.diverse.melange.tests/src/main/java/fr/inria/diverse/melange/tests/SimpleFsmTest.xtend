@@ -53,7 +53,7 @@ class SimpleFsmTest
 	def void testStructure() {
 		assertNotNull(root)
 		assertEquals(root.name, "simplefsmtest")
-		assertNotNull(root.imports)
+		assertNull(root.imports)
 
 		assertTrue(root.elements.get(0) instanceof Metamodel)
 		assertTrue(root.elements.get(1) instanceof Metamodel)
