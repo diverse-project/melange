@@ -27,7 +27,10 @@ class MelangePreferencesAccess {
 	}
 
 	def boolean isGenerateAdaptersCode() {
-		return preferencesService.getBoolean(PREFS_ID, MelangePreferencesConstants.GENERATE_ADAPTERS_CODE, true, null)
+		return
+			if (preferencesService !== null)
+				preferencesService.getBoolean(PREFS_ID, MelangePreferencesConstants.GENERATE_ADAPTERS_CODE, true, null)
+			else true
 	}
 	
 	
