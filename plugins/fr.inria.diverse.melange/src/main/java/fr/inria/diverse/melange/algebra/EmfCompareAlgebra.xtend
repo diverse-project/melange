@@ -88,4 +88,23 @@ class EmfCompareAlgebra implements ModelTypeAlgebra
 		registry.add(engineFactory)
 		return EMFCompare.builder().setMatchEngineFactoryRegistry(registry).build
 	}
+	
+	
+	/**
+	 * Get elements from {@link left} which are not in {@link right} and copy them in {@link right} 
+	 */
+	def void merge(EPackage left, EPackage right){
+		val scope = new DefaultComparisonScope(left, right, null)
+		val comparison = customEMFCompare.compare(scope)
+
+		val mergedDiffs = comparison.differences.filter[
+			   (kind == DifferenceKind.ADD
+			// FIXME: Closure of requires references
+			|| requires.exists[kind == DifferenceKind.ADD])
+		]
+
+		val mergerRegistry = IMerger.RegistryImpl.createStandaloneInstance
+		val merger = new BatchMerger(mergerRegistry)
+		merger.copyAllLeftToRight(mergedDiffs, null)
+	}
 }
