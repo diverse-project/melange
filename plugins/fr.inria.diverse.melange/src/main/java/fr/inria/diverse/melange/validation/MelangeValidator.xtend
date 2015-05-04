@@ -19,6 +19,7 @@ import java.util.Collections
 import org.eclipse.xtext.common.types.JvmDeclaredType
 
 import org.eclipse.xtext.validation.Check
+import fr.inria.diverse.melange.metamodel.melange.Ecore
 
 class MelangeValidator extends AbstractMelangeValidator
 {
@@ -74,7 +75,9 @@ class MelangeValidator extends AbstractMelangeValidator
 
 	@Check
 	def void checkEcoreIsSet(Metamodel mm) {
-		if (mm.ecoreUri === null && mm.inheritanceRelation?.superMetamodel?.ecoreUri === null)
+		if (mm.units.filter(Ecore).filter[ecoreUri !== null].empty
+			&& mm.inheritanceRelation?.superMetamodel?.ecoreUri === null
+		)
 			error(
 				"A valid Ecore file must be imported",
 				MelangePackage.Literals.MODELING_ELEMENT__ECORE_URI,
