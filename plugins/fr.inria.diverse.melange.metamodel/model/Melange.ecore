@@ -33,6 +33,8 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" upperBound="-1"
         eType="#//Mapping" resolveProxies="false" eOpposite="#//Mapping/from"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="units" upperBound="-1"
+        eType="#//LanguageUnit" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelType" eSuperTypes="#//ModelingElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subtypingRelations" upperBound="-1"
@@ -42,7 +44,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mtUri" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Transformation" abstract="true" eSuperTypes="#//Element"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Aspect">
+  <eClassifiers xsi:type="ecore:EClass" name="Aspect" eSuperTypes="#//LanguageUnit">
     <eStructuralFeatures xsi:type="ecore:EReference" name="aspectTypeRef" lowerBound="1"
         eType="ecore:EClass ../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference"
         containment="true"/>
@@ -51,7 +53,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ecoreFragment" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Inheritance">
+  <eClassifiers xsi:type="ecore:EClass" name="Inheritance" eSuperTypes="#//LanguageUnit">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subMetamodel" lowerBound="1"
         eType="#//Metamodel" eOpposite="#//Metamodel/inheritanceRelation"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="superMetamodel" lowerBound="1"
@@ -98,4 +100,15 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="from" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="to" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LanguageUnit"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Ecore" eSuperTypes="#//LanguageUnit">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ecoreUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="genmodelUris" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Merge" eSuperTypes="#//LanguageUnit">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="language" eType="#//Metamodel"
+        resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Slice" eSuperTypes="#//LanguageUnit"/>
 </ecore:EPackage>

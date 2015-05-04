@@ -4,17 +4,12 @@ package fr.inria.diverse.melange.metamodel.melange.impl;
 
 import fr.inria.diverse.melange.metamodel.melange.Aspect;
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.xtext.common.types.JvmTypeReference;
 
 /**
@@ -32,7 +27,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *
  * @generated
  */
-public class AspectImpl extends MinimalEObjectImpl.Container implements Aspect {
+public class AspectImpl extends LanguageUnitImpl implements Aspect {
 	/**
 	 * The cached value of the '{@link #getAspectTypeRef() <em>Aspect Type Ref</em>}' containment reference.
 	 * <!-- begin-user-doc -->

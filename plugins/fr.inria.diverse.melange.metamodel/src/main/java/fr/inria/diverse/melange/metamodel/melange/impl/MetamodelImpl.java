@@ -4,6 +4,7 @@ package fr.inria.diverse.melange.metamodel.melange.impl;
 
 import fr.inria.diverse.melange.metamodel.melange.Aspect;
 import fr.inria.diverse.melange.metamodel.melange.Inheritance;
+import fr.inria.diverse.melange.metamodel.melange.LanguageUnit;
 import fr.inria.diverse.melange.metamodel.melange.Mapping;
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
 import fr.inria.diverse.melange.metamodel.melange.Metamodel;
@@ -42,6 +43,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getXtextSetupRef <em>Xtext Setup Ref</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getGenmodelUris <em>Genmodel Uris</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getMappings <em>Mappings</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getUnits <em>Units</em>}</li>
  * </ul>
  * </p>
  *
@@ -207,6 +209,16 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 	 * @ordered
 	 */
 	protected EList<Mapping> mappings;
+
+	/**
+	 * The cached value of the '{@link #getUnits() <em>Units</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUnits()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<LanguageUnit> units;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -522,6 +534,18 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<LanguageUnit> getUnits() {
+		if (units == null) {
+			units = new EObjectContainmentEList<LanguageUnit>(LanguageUnit.class, this, MelangePackage.METAMODEL__UNITS);
+		}
+		return units;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -558,6 +582,8 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 				return basicSetXtextSetupRef(null, msgs);
 			case MelangePackage.METAMODEL__MAPPINGS:
 				return ((InternalEList<?>)getMappings()).basicRemove(otherEnd, msgs);
+			case MelangePackage.METAMODEL__UNITS:
+				return ((InternalEList<?>)getUnits()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -595,6 +621,8 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 				return getGenmodelUris();
 			case MelangePackage.METAMODEL__MAPPINGS:
 				return getMappings();
+			case MelangePackage.METAMODEL__UNITS:
+				return getUnits();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -649,6 +677,10 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 				getMappings().clear();
 				getMappings().addAll((Collection<? extends Mapping>)newValue);
 				return;
+			case MelangePackage.METAMODEL__UNITS:
+				getUnits().clear();
+				getUnits().addAll((Collection<? extends LanguageUnit>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -697,6 +729,9 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 			case MelangePackage.METAMODEL__MAPPINGS:
 				getMappings().clear();
 				return;
+			case MelangePackage.METAMODEL__UNITS:
+				getUnits().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -733,6 +768,8 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 				return genmodelUris != null && !genmodelUris.isEmpty();
 			case MelangePackage.METAMODEL__MAPPINGS:
 				return mappings != null && !mappings.isEmpty();
+			case MelangePackage.METAMODEL__UNITS:
+				return units != null && !units.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

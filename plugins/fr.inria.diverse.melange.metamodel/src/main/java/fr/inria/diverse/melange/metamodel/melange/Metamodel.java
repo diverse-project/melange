@@ -25,6 +25,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getXtextSetupRef <em>Xtext Setup Ref</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getGenmodelUris <em>Genmodel Uris</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getMappings <em>Mappings</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getUnits <em>Units</em>}</li>
  * </ul>
  * </p>
  *
@@ -304,5 +305,21 @@ public interface Metamodel extends ModelingElement {
 	 * @generated
 	 */
 	EList<Mapping> getMappings();
+
+	/**
+	 * Returns the value of the '<em><b>Units</b></em>' containment reference list.
+	 * The list contents are of type {@link fr.inria.diverse.melange.metamodel.melange.LanguageUnit}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Units</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Units</em>' containment reference list.
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getMetamodel_Units()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<LanguageUnit> getUnits();
 
 } // Metamodel

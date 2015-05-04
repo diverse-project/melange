@@ -120,6 +120,22 @@ public class MelangeAdapterFactory extends AdapterFactoryImpl {
 				return createPropertyBindingAdapter();
 			}
 			@Override
+			public Adapter caseLanguageUnit(LanguageUnit object) {
+				return createLanguageUnitAdapter();
+			}
+			@Override
+			public Adapter caseEcore(Ecore object) {
+				return createEcoreAdapter();
+			}
+			@Override
+			public Adapter caseMerge(Merge object) {
+				return createMergeAdapter();
+			}
+			@Override
+			public Adapter caseSlice(Slice object) {
+				return createSliceAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -318,6 +334,62 @@ public class MelangeAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPropertyBindingAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.melange.metamodel.melange.LanguageUnit <em>Language Unit</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.inria.diverse.melange.metamodel.melange.LanguageUnit
+	 * @generated
+	 */
+	public Adapter createLanguageUnitAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.melange.metamodel.melange.Ecore <em>Ecore</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Ecore
+	 * @generated
+	 */
+	public Adapter createEcoreAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.melange.metamodel.melange.Merge <em>Merge</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Merge
+	 * @generated
+	 */
+	public Adapter createMergeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.melange.metamodel.melange.Slice <em>Slice</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Slice
+	 * @generated
+	 */
+	public Adapter createSliceAdapter() {
 		return null;
 	}
 

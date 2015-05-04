@@ -5,16 +5,11 @@ package fr.inria.diverse.melange.metamodel.melange.impl;
 import fr.inria.diverse.melange.metamodel.melange.Inheritance;
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
 import fr.inria.diverse.melange.metamodel.melange.Metamodel;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
@@ -31,7 +26,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *
  * @generated
  */
-public class InheritanceImpl extends MinimalEObjectImpl.Container implements Inheritance {
+public class InheritanceImpl extends LanguageUnitImpl implements Inheritance {
 	/**
 	 * The cached value of the '{@link #getSuperMetamodel() <em>Super Metamodel</em>}' reference.
 	 * <!-- begin-user-doc -->

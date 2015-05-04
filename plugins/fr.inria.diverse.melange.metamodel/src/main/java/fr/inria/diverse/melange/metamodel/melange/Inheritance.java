@@ -2,7 +2,6 @@
  */
 package fr.inria.diverse.melange.metamodel.melange;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Inheritance extends EObject {
+public interface Inheritance extends LanguageUnit {
 	/**
 	 * Returns the value of the '<em><b>Sub Metamodel</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getInheritanceRelation <em>Inheritance Relation</em>}'.

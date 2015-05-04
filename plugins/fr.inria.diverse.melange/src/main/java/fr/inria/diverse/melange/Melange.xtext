@@ -24,9 +24,8 @@ Metamodel:
 	('requires' requires += [ModelType | QualifiedName] (',' requires += [ModelType | QualifiedName])*)?
 	'{'
 		('resource' resourceType = ResourceType ('uri' resourceUri = STRING | 'setup' xtextSetupRef = JvmTypeReference)?)? &
-		('ecore' ecoreUri = STRING ('withGenmodel' (genmodelUris += STRING (',' genmodelUris += STRING)*))?)? &
 		('exactType' exactTypeName = ValidID ('uri' exactTypeUri = STRING)?) &
-		(aspects += Aspect)*
+		(units += LanguageUnit)*
 	'}'
 ;
 
@@ -34,7 +33,7 @@ enum ResourceType:
 	MELANGE = 'Melange' | EMF = 'EMF' | XTEXT = 'Xtext'
 ;
 
-Inheritance:
+Inheritance returns Inheritance:
 	'inherits' superMetamodel = [Metamodel | QualifiedName]
 ;
 
@@ -56,7 +55,7 @@ XbaseTransformation:
 //	slicer = Slicer
 //;
 
-Aspect:
+Aspect returns Aspect:
 	'with' aspectTypeRef = JvmTypeReference
 ;
 
@@ -75,6 +74,20 @@ ClassMapping returns ClassBinding:
 PropertyMapping returns PropertyBinding:
 	from=STRING ":" to=STRING
 ;
+
+LanguageUnit returns LanguageUnit:
+	Ecore | Aspect | Merge
+;
+
+Ecore returns Ecore:
+	'ecore' ecoreUri = STRING ('withGenmodel' (genmodelUris += STRING (',' genmodelUris += STRING)*))?
+;
+
+Merge returns Merge:
+	'merge' language = [Metamodel | QualifiedName]
+;
+
+
 
 /* --- Kompren Rules --- */
 //Slicer returns kompren::Slicer: 'slicer' (active?='active')? (strict?='strict')? name=QualifiedName '{'

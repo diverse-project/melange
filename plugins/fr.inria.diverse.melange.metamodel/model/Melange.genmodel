@@ -77,5 +77,14 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//PropertyBinding/from"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//PropertyBinding/to"/>
     </genClasses>
+    <genClasses ecoreClass="Melange.ecore#//LanguageUnit"/>
+    <genClasses ecoreClass="Melange.ecore#//Ecore">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Ecore/ecoreUri"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Ecore/genmodelUris"/>
+    </genClasses>
+    <genClasses ecoreClass="Melange.ecore#//Merge">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Merge/language"/>
+    </genClasses>
+    <genClasses ecoreClass="Melange.ecore#//Slice"/>
   </genPackages>
 </genmodel:GenModel>
