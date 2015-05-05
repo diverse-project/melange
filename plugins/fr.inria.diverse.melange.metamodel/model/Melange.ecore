@@ -46,8 +46,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="aspectTypeRef" lowerBound="1"
         eType="ecore:EClass ../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="aspectedClass" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aspectedClass" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ecoreFragment" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"
         containment="true"/>
   </eClassifiers>
