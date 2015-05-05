@@ -50,7 +50,6 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 				
 				if (MelangePreferencesAccess.instance.generateAdaptersCode || (MelangePreferencesAccess.instance.isUserLaunch && !isPreIndexingPhase)) {
 					root.metamodels.filter[isComplete].forEach[generateAdapters(root, acceptor, _typeReferenceBuilder)]
-	//				root.mappings.forEach[generateMappers(root, acceptor, _typeReferenceBuilder)]
 					root.transformations.forEach[generateTransformation(acceptor, _typeReferenceBuilder)]
 					root.createStandaloneSetup(acceptor)
 	//				root.slicers.forEach[generateSlicer]
