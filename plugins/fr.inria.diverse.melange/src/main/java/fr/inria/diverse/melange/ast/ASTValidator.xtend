@@ -29,7 +29,7 @@ class ASTValidator
 			   mm !== null
 			&& !mm.name.empty
 			&& (mm.inheritanceRelation !== null || mm.ecoreUri !== null)
-			&& mm.aspects.forall[it !== null && aspectTypeRef?.type instanceof JvmDeclaredType && aspectedClass !== null]
+			&& mm.aspects.forall[it !== null && aspectTypeRef?.type instanceof JvmDeclaredType]
 			&& !mm.exactTypeName.empty
 			&& mm.exactType !== null
 			&& mm.^implements.forall[it !== null]

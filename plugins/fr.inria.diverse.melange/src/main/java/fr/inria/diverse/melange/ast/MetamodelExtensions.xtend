@@ -48,14 +48,14 @@ class MetamodelExtensions
 	}
 
 	def boolean getIsComplete(Metamodel mm) {
-		return !mm.pkgs.empty && !mm.genmodels.empty && mm.aspects.forall[aspectedClass !== null]
+		return !mm.pkgs.empty && !mm.genmodels.empty
 	}
 
 	def boolean getIsComplete(Aspect asp) {
 		return
 			asp.aspectTypeRef?.type !== null
 			&& asp.aspectTypeRef.type instanceof JvmDeclaredType
-			&& asp.aspectAnnotationValue !== null
+//			&& asp.aspectAnnotationValue !== null
 	}
 
 	def List<Aspect> allAspects(Metamodel mm) {
@@ -72,8 +72,11 @@ class MetamodelExtensions
 	def Iterable<Aspect> findAspectsOn(Metamodel mm, EClass cls) {
 		return
 			mm.allAspects.filter[asp |
+				asp.aspectedClass?.name !== null
+				&& (
 				   asp.aspectedClass.name == cls.name
 				|| cls.EAllSuperTypes.exists[asp.aspectedClass.name == name]
+				)
 			]
 	}
 
@@ -83,6 +86,10 @@ class MetamodelExtensions
 
 	def boolean hasSuperMetamodel(Metamodel mm) {
 		return mm.inheritanceRelation?.superMetamodel !== null
+	}
+
+	def boolean hasAspectAnnotation(Aspect asp) {
+		return (asp.aspectTypeRef.type as JvmDeclaredType)?.aspectAnnotationValue !== null 
 	}
 
 	def String getAspectAnnotationValue(Aspect asp) {
@@ -96,6 +103,7 @@ class MetamodelExtensions
 		val aspVal = switch aspClassName {
 			JvmTypeAnnotationValue: aspClassName.values?.head?.simpleName
 			JvmCustomAnnotationValue: aspClassName.values?.head?.toString
+			default: null
 		}
 
 		// Xtext 2.8+

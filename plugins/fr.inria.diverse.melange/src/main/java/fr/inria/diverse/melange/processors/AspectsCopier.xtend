@@ -16,7 +16,7 @@ class AspectsCopier extends DispatchMelangeProcessor
 		if (!mm.isGeneratedByMelange || mm.runtimeHasBeenGenerated) {
 			mm.aspects.forEach[asp |
 				if (asp.isComplete) {
-					if (!asp.isDefinedOver(mm) && asp.canBeCopiedFor(mm)) {
+					if (asp.hasAspectAnnotation && !asp.isDefinedOver(mm) && asp.canBeCopiedFor(mm)) {
 						val typeRefBuilder = builderFactory.create(mm.eResource.resourceSet)
 						val newAspectFqn = copier.copyAspectTo(asp, mm)
 						val newAspectRef = typeRefBuilder.typeRef(newAspectFqn)

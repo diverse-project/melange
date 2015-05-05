@@ -45,11 +45,16 @@ class EmfCompareAlgebra implements ModelTypeAlgebra
 	}
 
 	override weaveAspect(Metamodel mm, Aspect aspect) {
-		val base = mm.pkgs.findFirst[
-			EClassifiers.filter(EClass).exists[
-				name == aspect.aspectedClass.name
-			]
-		]
+		// FIXME: Need some heuristic to find the appropriate package
+		val base =
+			if (aspect.aspectedClass !== null)
+				mm.pkgs.findFirst[
+					EClassifiers.filter(EClass).exists[
+						name == aspect.aspectedClass.name
+					]
+				]
+			else
+				mm.pkgs.head
 
 		val scope = new DefaultComparisonScope(aspect.ecoreFragment, base, null)
 		val comparison = customEMFCompare.compare(scope)
