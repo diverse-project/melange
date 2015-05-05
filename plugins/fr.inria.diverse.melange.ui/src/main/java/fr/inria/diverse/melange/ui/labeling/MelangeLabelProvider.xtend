@@ -41,7 +41,11 @@ class MelangeLabelProvider extends org.eclipse.xtext.xbase.ui.labeling.XbaseLabe
 	}
 
 	def String image(Aspect asp) {
-		return "aspect.png"
+		return
+			if (asp.aspectedClass !== null)
+				"aspect.png"
+			else
+				"aspect2.png"
 	}
 
 	def String text(ModelType mt) {
