@@ -155,18 +155,18 @@ class MelangeValidator extends AbstractMelangeValidator
 			)
 	}
 
-	@Check
-	def void checkAspectHasAnnotation(Aspect a) {
-		if (
-			a.aspectTypeRef?.type instanceof JvmDeclaredType
-			&& (a.aspectAnnotationValue === null || a.aspectAnnotationValue.length == 0)
-		)
-			error(
-				"Cannot find @Aspect annotation",
-				MelangePackage.Literals.ASPECT__ASPECT_TYPE_REF,
-				MelangeValidationConstants.ASPECT_NO_ANNOTATION
-			)
-	}
+//	@Check
+//	def void checkAspectHasAnnotation(Aspect a) {
+//		if (
+//			a.aspectTypeRef?.type instanceof JvmDeclaredType
+//			&& (a.aspectAnnotationValue === null || a.aspectAnnotationValue.length == 0)
+//		)
+//			error(
+//				"Cannot find @Aspect annotation",
+//				MelangePackage.Literals.ASPECT__ASPECT_TYPE_REF,
+//				MelangeValidationConstants.ASPECT_NO_ANNOTATION
+//			)
+//	}
 
 	// FIXME: Only one package is checked there,
 	//        and mtPkg may be null
