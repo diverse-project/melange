@@ -35,9 +35,9 @@ class MelangeLabelProvider extends org.eclipse.xtext.xbase.ui.labeling.XbaseLabe
 
 	def String text(Aspect asp) {
 		return
-			if (asp.aspectTypeRef.type instanceof JvmDeclaredType) {
-				'''«asp.aspectTypeRef.type.simpleName» @ «asp.aspectedClass?.name ?: "Unbinded target"»'''.toString
-			} else "Unbinded aspect"
+			if (asp.aspectTypeRef.type instanceof JvmDeclaredType)
+				'''«asp.aspectTypeRef.type.simpleName»«IF asp.aspectedClass !== null» @ «asp.aspectedClass.name»«ENDIF»'''
+			else "Unbinded aspect"
 	}
 
 	def String image(Aspect asp) {
