@@ -104,4 +104,20 @@ class EPackageProvider
 		}
 		return genmodels.get(mm)
 	}
+	
+	/**
+	 * Register {@link root} and its sub EPackages as packages of {@link modElem} 
+	 */
+	def void registerPackages(ModelingElement modElem, EPackage root){
+		if (root !== null) {
+			val pkgs = newArrayList
+
+			pkgs += root
+			pkgs += root.referencedPkgs.filter[!pkgs.exists[p | nsURI == p.nsURI]]
+
+			packages.putAll(modElem, pkgs)
+			packages.putAll(modElem, pkgs.map[allSubPkgs].flatten.filter[!pkgs.exists[p | nsURI == p.nsURI]])
+//			pkgs.forEach[ESubpackages.clear]
+		}
+	}
 }

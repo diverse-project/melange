@@ -1,6 +1,5 @@
 package fr.inria.diverse.melange.processors
 
-import org.eclipse.emf.ecore.EObject
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.ast.ASTHelper
 import com.google.inject.Inject
@@ -15,7 +14,7 @@ import java.util.HashMap
 import fr.inria.diverse.melange.metamodel.melange.Ecore
 import fr.inria.diverse.melange.lib.ModelUtils
 import fr.inria.diverse.melange.algebra.EmfCompareAlgebra
-import fr.inria.diverse.melange.ast.ModelingElementExtensions
+import fr.inria.diverse.melange.utils.EPackageProvider
 
 /**
  * This class build languages by merging differents parts declared in each language definitions
@@ -25,8 +24,8 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 	@Inject extension ASTHelper
 	@Inject ModelUtils modelUtils
 	@Inject EmfCompareAlgebra algebra
-	@Inject extension ModelingElementExtensions
 	@Inject AspectsWeaver aspectWeaver
+	@Inject EPackageProvider packageProvider
 	
 	/**
 	 * Store root EPackage for each built languages 
@@ -40,61 +39,47 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		root.metamodels.forEach[language |
 			build(language, new ArrayList<Metamodel>())
 		]
-		
 	}
 	
 	/**
-	 * Build {@link language}.
-	 * {@link history} store languages waiting for this build 
+	 * Build {@link language} and register the root EPackage.
+	 * {@link history} store languages waiting for this build.
 	 */
-	private def void build(Metamodel language, List<Metamodel> history){
-		
-		if(isWithCycle(language, history)){
-			//TODO: raise error
-		}
-		
-		if(registry.get(language) != null){
-			//TODO: language is already built
-		}
+	private def build(Metamodel language, List<Metamodel> history){
 
 		history.add(language)
 
 		var EPackage base = null
 
-		//Step 1: merge ecore files
+		/****************************
+		 * STEP 1: merge ecore files
+		 ****************************/
 		val ecores = language.units.filter(Ecore)
 		val first = ecores?.get(0)
 		if(first != null){
-			val ecoreBase = modelUtils.loadPkg(first.ecoreUri) //TODO: use EPackageProvider
+			val ecoreBase = modelUtils.loadPkg(first.ecoreUri)
 			ecores.drop(1).forEach[ ecore |
-				val ecoreRoot = modelUtils.loadPkg(first.ecoreUri) //TODO: use EPackageProvider
+				val ecoreRoot = modelUtils.loadPkg(first.ecoreUri)
 				if(ecoreRoot != null){
 					algebra.merge(ecoreRoot,ecoreBase)
 				}
 			]
 			base = ecoreBase
 		}
-		//Step 2: merge inherited language
 		
-		//Step 3: merge languages
+		/****************************
+		 * STEP 2: merge inherited languages
+		 ****************************/
+		
+		/****************************
+		 * STEP 3: merge languages
+		 ****************************/
 		val merges = language.units.filter(Merge)
 		val firstMerge = merges?.get(0)
 		if(firstMerge != null){
-			val mergeBase = if(registry.get(firstMerge.language) != null){
-								registry.get(firstMerge.language)
-							}
-							else {
-								build(firstMerge.language,history)
-								firstMerge.language.pkgs.findFirst[ESuperPackage === null]
-							}
-			merges.drop(1).forEach[ merge |
-				val mergeRoot = if(registry.get(merge.language) != null){
-									registry.get(merge.language)
-								}
-								else {
-									build(merge.language,history)
-									merge.language.pkgs.findFirst[ESuperPackage === null]
-								}
+			val mergeBase = getRootPackage(firstMerge.language,history)
+			merges.drop(1).forEach[ nextMerge |
+				val mergeRoot = getRootPackage(nextMerge.language,history)
 				if(mergeRoot != null){
 					algebra.merge(mergeRoot,mergeBase)
 				}
@@ -102,13 +87,23 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 			if(base !== null && mergeBase !== null){
 				algebra.merge(mergeBase,base)
 			}
+			else{
+				base = mergeBase
+			}
 		}
 		
-		//Step 4: merge aspects
+		if(base === null){
+			//TODO: raise an error, language not well defined
+		}
+		
+		/****************************
+		 * STEP 4: merge aspects
+		 ****************************/
 		aspectWeaver.preProcess(language)
 		
-		if(base != null){
+		if(base !== null){
 			registry.put(language, base)
+			packageProvider.registerPackages(language,base)
 		}
 		
 		history.remove(language)
@@ -129,5 +124,25 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		]
 		
 		return dependencies.exists[dep | history.contains(dep)]
+	}
+	
+	/**
+	 * Get the root EPackage of {@link language}.
+	 */
+	private def EPackage getRootPackage(Metamodel language, List<Metamodel> history){
+		
+		var EPackage res = registry.get(language)
+		
+		if(res == null) {
+			if(isWithCycle(language, history)){
+				//TODO: raise error
+			}
+			else{
+				build(language,history)
+				registry.get(language)
+			}
+		}
+		
+		return res
 	}
 }
