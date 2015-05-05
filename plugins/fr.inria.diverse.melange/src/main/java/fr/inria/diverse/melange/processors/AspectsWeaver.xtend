@@ -16,17 +16,23 @@ class AspectsWeaver extends DispatchMelangeProcessor
 	@Inject extension AspectToEcore
 
 	def dispatch void preProcess(Metamodel mm) {
-		mm.aspects.forEach[asp |
-			if (asp.isComplete) {
-				val className = asp.aspectAnnotationValue
-				val cls = mm.findClass(className)
-				asp.aspectedClass = cls
+		mm.aspects
+		.filter[isComplete]
+		// First, create all the new meta-classes
+		// then, weave aspects
+		.sortWith[aspA, aspB |
+			if (aspA.hasAspectAnnotation)
+				1
+			else
+				-1
+		].forEach[asp |
+			val className = asp.aspectAnnotationValue
 
-				if (asp.aspectedClass !== null) {
-					asp.inferEcoreFragment
-					algebra.weaveAspect(mm, asp)
-				}
-			}
+			if (className !== null)
+				asp.aspectedClass = mm.findClass(className)
+
+			asp.ecoreFragment = asp.inferEcoreFragment(mm)
+			algebra.weaveAspect(mm, asp)
 		]
 	}
 }
