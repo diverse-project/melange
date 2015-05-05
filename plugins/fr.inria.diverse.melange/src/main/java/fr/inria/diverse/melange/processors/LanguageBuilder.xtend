@@ -15,6 +15,7 @@ import fr.inria.diverse.melange.metamodel.melange.Ecore
 import fr.inria.diverse.melange.lib.ModelUtils
 import fr.inria.diverse.melange.algebra.EmfCompareAlgebra
 import fr.inria.diverse.melange.utils.EPackageProvider
+import fr.inria.diverse.melange.lib.EcoreExtensions
 
 /**
  * This class build languages by merging differents parts declared in each language definitions
@@ -26,6 +27,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 	@Inject EmfCompareAlgebra algebra
 	@Inject AspectsWeaver aspectWeaver
 	@Inject EPackageProvider packageProvider
+	@Inject extension EcoreExtensions
 	
 	/**
 	 * Store root EPackage for each built languages 
@@ -46,6 +48,9 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 	 * {@link history} store languages waiting for this build.
 	 */
 	private def build(Metamodel language, List<Metamodel> history){
+		
+		var EPackage res = registry.get(language)
+		if(res !== null) return res
 
 		history.add(language)
 
@@ -55,10 +60,18 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		 * STEP 1: merge ecore files
 		 ****************************/
 		val ecores = language.units.filter(Ecore)
-		if(ecores.size > 0){
+		if(ecores.size == 1){
+			language.ecoreUri = ecores.get(0).ecoreUri
+			language.genmodelUris.addAll(ecores.get(0).genmodelUris)
+			base = modelUtils.loadPkg(ecores.get(0).ecoreUri)
+		}
+		else if(ecores.size > 1){
+			
 			val firstEcore = ecores.get(0)
+			language.genmodelUris.addAll(firstEcore.genmodelUris)
 			val ecoreBase = modelUtils.loadPkg(firstEcore.ecoreUri)
 			ecores.drop(1).forEach[ nextEcore |
+				language.genmodelUris.addAll(nextEcore.genmodelUris)
 				val ecoreRoot = modelUtils.loadPkg(nextEcore.ecoreUri)
 				if(ecoreRoot != null){
 					algebra.merge(ecoreRoot,ecoreBase)
