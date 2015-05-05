@@ -1,13 +1,12 @@
 package fr.inria.diverse.melange.utils
 
 import com.google.inject.Inject
-
+import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.lib.EcoreExtensions
-
 import fr.inria.diverse.melange.metamodel.melange.Aspect
-
+import fr.inria.diverse.melange.metamodel.melange.Metamodel
+import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EcoreFactory
-
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmEnumerationType
 import org.eclipse.xtext.common.types.JvmOperation
@@ -22,28 +21,27 @@ class AspectToEcore
 {
 	@Inject extension EcoreExtensions
 	@Inject extension TypeReferencesHelper
+	@Inject extension ModelingElementExtensions
 
 	/**
 	 * Try to infer the "modeling intention" of the aspect aspImport
 	 * and put its features into a newly created EPackage
 	 */
-	def void inferEcoreFragment(Aspect aspImport) {
+	def EPackage inferEcoreFragment(Aspect aspImport, Metamodel mm) {
 		val aspect = aspImport.aspectTypeRef.type as JvmDeclaredType
 		val baseCls = aspImport.aspectedClass
-		val basePkg = baseCls.EPackage
+		val basePkg = baseCls?.EPackage ?: mm.pkgs.head
 
 		val aspPkg = EcoreFactory.eINSTANCE.createEPackage => [
-			// These are anyway not really used
-			name = aspImport.aspectedClass.EPackage.name
-			nsPrefix = aspImport.aspectedClass.EPackage.nsPrefix
-			nsURI = aspImport.aspectedClass.EPackage.nsURI
+			name = basePkg.name
+			nsPrefix = basePkg.nsPrefix
+			nsURI = basePkg.nsURI
 		]
 
-		// FIXME: Copy other EClass properties?
 		val aspCls = EcoreFactory.eINSTANCE.createEClass => [cls |
-			cls.name = baseCls.name
-			cls.^abstract = baseCls.^abstract
-			cls.^interface = baseCls.^interface
+			cls.name = if (baseCls !== null) baseCls.name else aspect.simpleName
+			cls.^abstract = if (baseCls !== null) baseCls.^abstract else aspect.^abstract
+			cls.^interface = if (baseCls !== null) baseCls.^interface else false
 		]
 
 		aspPkg.EClassifiers += aspCls
@@ -150,7 +148,7 @@ class AspectToEcore
 			}
 		]
 
-		aspImport.ecoreFragment = aspPkg
+		return aspPkg
 	}
 	
 	/**
