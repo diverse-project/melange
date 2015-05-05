@@ -55,11 +55,11 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		 * STEP 1: merge ecore files
 		 ****************************/
 		val ecores = language.units.filter(Ecore)
-		val first = ecores?.get(0)
-		if(first != null){
-			val ecoreBase = modelUtils.loadPkg(first.ecoreUri)
-			ecores.drop(1).forEach[ ecore |
-				val ecoreRoot = modelUtils.loadPkg(first.ecoreUri)
+		if(ecores.size > 0){
+			val firstEcore = ecores.get(0)
+			val ecoreBase = modelUtils.loadPkg(firstEcore.ecoreUri)
+			ecores.drop(1).forEach[ nextEcore |
+				val ecoreRoot = modelUtils.loadPkg(nextEcore.ecoreUri)
 				if(ecoreRoot != null){
 					algebra.merge(ecoreRoot,ecoreBase)
 				}
@@ -75,8 +75,8 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		 * STEP 3: merge languages
 		 ****************************/
 		val merges = language.units.filter(Merge)
-		val firstMerge = merges?.get(0)
-		if(firstMerge != null){
+		if(merges.size > 0){
+			val firstMerge = merges.get(0)
 			val mergeBase = getRootPackage(firstMerge.language,history)
 			merges.drop(1).forEach[ nextMerge |
 				val mergeRoot = getRootPackage(nextMerge.language,history)
@@ -87,7 +87,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 			if(base !== null && mergeBase !== null){
 				algebra.merge(mergeBase,base)
 			}
-			else{
+			else if(base === null && mergeBase !== null){
 				base = mergeBase
 			}
 		}
