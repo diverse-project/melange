@@ -19,9 +19,16 @@ import fr.inria.diverse.melange.lib.EcoreExtensions
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.util.EcoreUtil
+import fr.inria.diverse.melange.ast.MetamodelExtensions
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.EClassifier
+import org.eclipse.emf.ecore.EReference
+import java.io.IOException
 
 /**
  * This class build languages by merging differents parts declared in each language definitions
+ * and generates new ecore & genmodel if needed
  */
 class LanguageBuilder extends DispatchMelangeProcessor{
 	
@@ -31,6 +38,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 	@Inject AspectsWeaver aspectWeaver
 	@Inject EPackageProvider packageProvider
 	@Inject extension EcoreExtensions
+	@Inject extension MetamodelExtensions
 	
 	/**
 	 * Store root EPackage for each built languages 
@@ -58,6 +66,8 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		history.add(language)
 
 		var EPackage base = null
+		var pkgs = new ArrayList<EPackage>()
+		var needNewEcore = false
 
 		/****************************
 		 * STEP 1: merge ecore files
@@ -69,12 +79,11 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 			base = modelUtils.loadPkg(ecores.get(0).ecoreUri)
 		}
 		else if(ecores.size > 1){
+			needNewEcore = true
 			val firstEcore = ecores.get(0)
-			language.genmodelUris.addAll(firstEcore.genmodelUris)
 			val ecoreBase = modelUtils.loadPkg(firstEcore.ecoreUri)
 
 			ecores.drop(1).forEach[ nextEcore |
-				language.genmodelUris.addAll(nextEcore.genmodelUris)
 				val ecoreUnit = modelUtils.loadPkg(nextEcore.ecoreUri)
 				EcoreUtil.ExternalCrossReferencer.find(ecoreUnit) //Need to solve crossref because EMF Compare don't
 				algebra.merge(ecoreUnit,ecoreBase)
@@ -91,6 +100,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		 ****************************/
 		val merges = language.units.filter(Merge)
 		if(merges.size > 0){
+			needNewEcore = true
 			val firstMerge = merges.get(0)
 			val mergeBase = getRootPackage(firstMerge.language,history)
 			merges.drop(1).forEach[ nextMerge |
@@ -116,9 +126,19 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		 ****************************/
 		aspectWeaver.preProcess(language)
 		
+		/****************************
+		 * STEP 5: 
+		 ****************************/
 		if(base !== null){
 			registry.put(language, base)
-			packageProvider.registerPackages(language,base)
+		}
+		
+		if(needNewEcore){
+			pkgs.add(base)
+			createEcore(pkgs, language.localEcoreUri, null) //should be refactored
+			language.ecoreUri = language.localEcoreUri
+			language.createLocalGenmodel
+			language.genmodelUris += language.getLocalGenmodelUri
 		}
 		
 		history.remove(language)
@@ -159,5 +179,58 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		}
 		
 		return res
+	}
+	
+	/**
+ 	 * Copy/Past from ModelingElementExtension
+ 	 */
+	def EPackage createEcore(List<EPackage> pkgs, String uri, String pkgUri) {
+		val resSet = new ResourceSetImpl
+		val res = resSet.createResource(URI::createURI(uri))
+		val rootPkg = pkgs.head
+
+		if (pkgUri !== null)
+			rootPkg.nsURI = pkgUri
+
+		val copy = EcoreUtil::copyAll(pkgs)
+
+		// FIXME:
+		copy.forEach[pkg |
+			EcoreUtil.ExternalCrossReferencer.find(pkg).forEach[o, s |
+				s.forEach[ss |
+					if (ss.EStructuralFeature !== null && !ss.EStructuralFeature.derived && !ss.EStructuralFeature.many) {
+						if (o instanceof EClassifier) {
+							val corresponding = copy.map[EClassifiers].flatten.findFirst[name == o.name]
+							if (corresponding !== null)
+								ss.EObject.eSet(ss.EStructuralFeature, corresponding)
+						} else if (o instanceof EReference) {
+							if (o.EOpposite !== null) {
+								val correspondingCls = copy.map[EClassifiers].flatten.findFirst[name == o.EContainingClass.name] as EClass
+								val correspondingRef = correspondingCls.EReferences.findFirst[name == o.name]
+
+								if (correspondingRef !== null)
+									ss.EObject.eSet(ss.EStructuralFeature, correspondingRef)
+							}
+						}
+					}
+				]
+			]
+		]
+
+		res.contents += copy
+
+//		new Job("Serializing Ecore") {
+//			override run(IProgressMonitor monitor) {
+				try {
+					res.save(null)
+				} catch (IOException e) {
+					e.printStackTrace
+				}
+
+//				return Status.OK_STATUS
+//			}
+//		}.schedule
+
+		return rootPkg
 	}
 }
