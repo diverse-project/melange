@@ -16,6 +16,9 @@ import fr.inria.diverse.melange.lib.ModelUtils
 import fr.inria.diverse.melange.algebra.EmfCompareAlgebra
 import fr.inria.diverse.melange.utils.EPackageProvider
 import fr.inria.diverse.melange.lib.EcoreExtensions
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EAttribute
+import org.eclipse.emf.ecore.util.EcoreUtil
 
 /**
  * This class build languages by merging differents parts declared in each language definitions
@@ -66,16 +69,15 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 			base = modelUtils.loadPkg(ecores.get(0).ecoreUri)
 		}
 		else if(ecores.size > 1){
-			
 			val firstEcore = ecores.get(0)
 			language.genmodelUris.addAll(firstEcore.genmodelUris)
 			val ecoreBase = modelUtils.loadPkg(firstEcore.ecoreUri)
+
 			ecores.drop(1).forEach[ nextEcore |
 				language.genmodelUris.addAll(nextEcore.genmodelUris)
-				val ecoreRoot = modelUtils.loadPkg(nextEcore.ecoreUri)
-				if(ecoreRoot != null){
-					algebra.merge(ecoreRoot,ecoreBase)
-				}
+				val ecoreUnit = modelUtils.loadPkg(nextEcore.ecoreUri)
+				EcoreUtil.ExternalCrossReferencer.find(ecoreUnit) //Need to solve crossref because EMF Compare don't
+				algebra.merge(ecoreUnit,ecoreBase)
 			]
 			base = ecoreBase
 		}
