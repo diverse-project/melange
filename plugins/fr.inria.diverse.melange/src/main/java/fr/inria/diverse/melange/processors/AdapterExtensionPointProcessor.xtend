@@ -49,7 +49,19 @@ class AdapterExtensionPointProcessor extends DispatchMelangeProcessor
 
 				fModel.editable = true
 				fModel.load
-
+				log.debug('''nb pre existing extensions in fModel '''+fModel.extensions.extensions.size)
+				log.debug('''nb pre existing extensions in pluginModel '''+pluginModel.extensions.extensions.size)
+				
+				if(fModel.extensions.extensions.size == 0 && pluginModel !== null && pluginModel.extensions.extensions.size != 0){
+					// copy existing extensions in the new fModel if they aren't related to melange resource
+					pluginModel.extensions.extensions.forEach[previousExtension | 
+						if (!previousExtension.isInTheModel && !previousExtension.point.equals(adapterExtensionPoint.id)) {
+							fModel.extensions.add(previousExtension)
+							log.debug('''replicated extension point «previousExtension.point»  in plugin.xml''')
+						}
+					]
+				}
+			
 				if (pluginModel !== null && melangeResourcePlugin !== null && adapterExtensionPoint !== null && pluginBase !== null) {
 					root.metamodels.filter[isComplete].forEach[mm |
 						mm.^implements.forEach[mt |
