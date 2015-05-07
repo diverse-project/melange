@@ -103,12 +103,14 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 			needNewEcore = true
 			val firstMerge = merges.get(0)
 			val mergeBase = getRootPackage(firstMerge.language,history)
+			EcoreUtil.ExternalCrossReferencer.find(mergeBase)
+			
 			merges.drop(1).forEach[ nextMerge |
-				val mergeRoot = getRootPackage(nextMerge.language,history)
-				if(mergeRoot != null){
-					algebra.merge(mergeRoot,mergeBase)
-				}
+				val mergeUnit = getRootPackage(nextMerge.language,history)
+				EcoreUtil.ExternalCrossReferencer.find(mergeUnit)
+				algebra.merge(mergeUnit,mergeBase)
 			]
+			
 			if(base !== null && mergeBase !== null){
 				algebra.merge(mergeBase,base)
 			}
@@ -168,7 +170,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		
 		var EPackage res = registry.get(language)
 		
-		if(res == null) {
+		if(res == null && language != null) {
 			if(isWithCycle(language, history)){
 				//TODO: raise error
 			}
