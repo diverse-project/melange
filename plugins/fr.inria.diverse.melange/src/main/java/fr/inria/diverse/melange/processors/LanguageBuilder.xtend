@@ -25,6 +25,9 @@ import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EReference
 import java.io.IOException
+import fr.inria.diverse.melange.metamodel.melange.Slice
+import fr.inria.diverse.melange.lib.slicing.ecore.StrictEcore
+import org.eclipse.emf.ecore.EModelElement
 
 /**
  * This class build languages by merging differents parts declared in each language definitions
@@ -119,17 +122,40 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 			}
 		}
 		
+		/****************************
+		 * STEP 4: merge sliced languages
+		 ****************************/
+		 val slices = language.units.filter(Slice)
+		 if(slices.size > 0){
+		 	needNewEcore = true
+		 	val firstSlice = slices.get(0)
+			val sliceBase = getRootPackage(firstSlice.language,history)
+			EcoreUtil.ExternalCrossReferencer.find(sliceBase)
+			
+			val roots = getClasses(sliceBase, firstSlice.roots)
+			val slicer = new StrictEcore(roots,sliceBase,false,"ecore",false)
+			slicer.slice
+			slicer.save(language.localEcoreUri)
+			
+			val slice = modelUtils.loadPkg(language.localEcoreUri)
+			
+			if(base !== null && slice !== null){
+				algebra.merge(slice,base)
+			}
+		 }
+		 
+		
 		if(base === null){
 			//TODO: raise an error, language not well defined
 		}
 		
 		/****************************
-		 * STEP 4: merge aspects
+		 * STEP 5: merge aspects
 		 ****************************/
 		aspectWeaver.preProcess(language)
 		
 		/****************************
-		 * STEP 5: 
+		 * STEP 6: 
 		 ****************************/
 		if(base !== null){
 			registry.put(language, base)
@@ -234,5 +260,19 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 //		}.schedule
 
 		return rootPkg
+	}
+	
+	/**
+	 * Search in {@link rootPackage} for EClass named as in {@link classes}
+	 */
+	private def List<EModelElement> getClasses(EPackage rootPackage, List<String> classes){
+		//TODO: manage sub packages
+		val res = new ArrayList<EModelElement>()
+		
+		rootPackage.EClassifiers.filter(EClass).forEach[cl|
+			if(classes.contains(cl.name)) res.add(cl)
+		]
+		
+		return res
 	}
 }
