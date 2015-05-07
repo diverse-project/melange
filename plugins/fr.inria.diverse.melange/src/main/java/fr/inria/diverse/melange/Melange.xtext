@@ -76,7 +76,7 @@ PropertyMapping returns PropertyBinding:
 ;
 
 LanguageUnit returns LanguageUnit:
-	Ecore | Aspect | Merge
+	Ecore | Aspect | Merge | Slice
 ;
 
 Ecore returns Ecore:
@@ -87,7 +87,9 @@ Merge returns Merge:
 	'merge' language = [Metamodel | QualifiedName]
 ;
 
-
+Slice returns Slice:
+	'slice' language = [Metamodel | QualifiedName] 'on' '[' roots += STRING (',' roots += STRING)* ']'
+;
 
 /* --- Kompren Rules --- */
 //Slicer returns kompren::Slicer: 'slicer' (active?='active')? (strict?='strict')? name=QualifiedName '{'

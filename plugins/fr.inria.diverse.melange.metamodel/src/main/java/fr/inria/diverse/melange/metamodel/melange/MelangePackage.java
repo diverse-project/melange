@@ -975,13 +975,31 @@ public interface MelangePackage extends EPackage {
 	int SLICE = 16;
 
 	/**
+	 * The feature id for the '<em><b>Language</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLICE__LANGUAGE = LANGUAGE_UNIT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Roots</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLICE__ROOTS = LANGUAGE_UNIT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Slice</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SLICE_FEATURE_COUNT = LANGUAGE_UNIT_FEATURE_COUNT + 0;
+	int SLICE_FEATURE_COUNT = LANGUAGE_UNIT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Slice</em>' class.
@@ -1647,6 +1665,28 @@ public interface MelangePackage extends EPackage {
 	EClass getSlice();
 
 	/**
+	 * Returns the meta object for the reference '{@link fr.inria.diverse.melange.metamodel.melange.Slice#getLanguage <em>Language</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Language</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Slice#getLanguage()
+	 * @see #getSlice()
+	 * @generated
+	 */
+	EReference getSlice_Language();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link fr.inria.diverse.melange.metamodel.melange.Slice#getRoots <em>Roots</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Roots</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Slice#getRoots()
+	 * @see #getSlice()
+	 * @generated
+	 */
+	EAttribute getSlice_Roots();
+
+	/**
 	 * Returns the meta object for enum '{@link fr.inria.diverse.melange.metamodel.melange.ResourceType <em>Resource Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2192,6 +2232,22 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EClass SLICE = eINSTANCE.getSlice();
+
+		/**
+		 * The meta object literal for the '<em><b>Language</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SLICE__LANGUAGE = eINSTANCE.getSlice_Language();
+
+		/**
+		 * The meta object literal for the '<em><b>Roots</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SLICE__ROOTS = eINSTANCE.getSlice_Roots();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.ResourceType <em>Resource Type</em>}' enum.
