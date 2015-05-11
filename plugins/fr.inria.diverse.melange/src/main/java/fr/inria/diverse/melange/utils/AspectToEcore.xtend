@@ -159,6 +159,7 @@ class AspectToEcore
 	 * @param op Method defined in {@link type}
 	 */
 	def String findFeatureNameFor(JvmDeclaredType type, JvmOperation op) {
+		// @Aspect case 1
 		if (
 			(  op.simpleName.startsWith("get")
 			&& Character.isUpperCase(op.simpleName.charAt(3))
@@ -179,6 +180,7 @@ class AspectToEcore
 			])
 		)
 			return op.simpleName.substring(3, op.simpleName.length).toFirstLower
+		// @Aspect case 2
 		else if (
 			type.declaredOperations.exists[opp |
 				   opp !== op
@@ -199,6 +201,29 @@ class AspectToEcore
 			]
 		)
 			return op.simpleName
+		// No @Aspect
+		else if (
+			(  op.simpleName.startsWith("get")
+			&& Character.isUpperCase(op.simpleName.charAt(3))
+			&& op.parameters.size == 0
+			&& op.returnType.simpleName != "void"
+			&& type.declaredOperations.exists[opp |
+				   opp.simpleName == op.simpleName.replaceFirst("get", "set")
+				&& opp.parameters.size == 1
+				&& opp.parameters.get(0).parameterType.qualifiedName == op.returnType.qualifiedName
+				&& opp.returnType.simpleName == "void"
+			])
+		||	(  op.simpleName.startsWith("set")
+			&& Character.isUpperCase(op.simpleName.charAt(3))
+			&& op.parameters.size == 1
+			&& op.returnType.simpleName == "void"
+			&& type.declaredOperations.exists[opp |
+				   opp.simpleName == op.simpleName.replaceFirst("set", "get")
+				&& opp.parameters.size == 0
+				&& opp.returnType.qualifiedName == op.parameters.get(0).parameterType.qualifiedName
+			])
+		)
+			return op.simpleName.substring(3, op.simpleName.length).toFirstLower
 		else return null
 	}
 }
