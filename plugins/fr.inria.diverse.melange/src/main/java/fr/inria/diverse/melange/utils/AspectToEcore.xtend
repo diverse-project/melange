@@ -65,7 +65,7 @@ class AspectToEcore
 						(op.returnType as JvmParameterizedTypeReference).arguments.head.type
 					else
 						op.returnType.type
-				val retCls = basePkg.findClass(realType.simpleName)
+				val retCls = if (realType.simpleName == aspCls.name) aspCls else basePkg.findClass(realType.simpleName)
 
 				if (!aspCls.EOperations.exists[name == op.simpleName]) {
 					aspCls.EOperations += EcoreFactory.eINSTANCE.createEOperation => [
@@ -80,7 +80,7 @@ class AspectToEcore
 										(p.parameterType as JvmParameterizedTypeReference).arguments.head.type
 									else
 										pType
-								val attrCls = basePkg.findClass(realTypeP.simpleName)
+								val attrCls = if (realTypeP.simpleName == aspCls.name) aspCls else basePkg.findClass(realTypeP.simpleName)
 
 								EParameters += EcoreFactory.eINSTANCE.createEParameter => [pp |
 									pp.name = p.simpleName
@@ -123,7 +123,7 @@ class AspectToEcore
 						(retType as JvmParameterizedTypeReference).arguments.head.type
 					else
 						retType.type
-				val find = basePkg.findClass(realType.simpleName)
+				val find = if (realType.simpleName == aspCls.name) aspCls else basePkg.findClass(realType.simpleName)
 				if (find !== null) {
 					// Create EReference
 					aspCls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEReference => [
