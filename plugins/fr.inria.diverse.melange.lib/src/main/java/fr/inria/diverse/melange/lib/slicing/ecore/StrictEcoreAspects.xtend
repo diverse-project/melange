@@ -7,6 +7,7 @@ import static extension fr.inria.diverse.melange.lib.slicing.ecore.orgeclipseemf
 import static extension fr.inria.diverse.melange.lib.slicing.ecore.orgeclipseemfecoreETypeParameterAspect.*
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
+import org.eclipse.emf.ecore.EDataType
 
 @Aspect(className=typeof(java.lang.Object))
 abstract class __SlicerAspect__ {
@@ -516,7 +517,14 @@ _self.^EGenericType?.reinit
 		if(_self.^EType!==null){
 		_self.^EType.visitToAddRelations(theSlicer)
 
-		if(_self.sliced && _self.^EType.sliced) (_self.clonedElt as org.eclipse.emf.ecore.ETypedElement).^EType = _self.^EType.clonedElt as org.eclipse.emf.ecore.EClassifier
+		if(_self.sliced && _self.^EType.sliced){
+			if(_self.^EType instanceof EDataType){
+				(_self.clonedElt as org.eclipse.emf.ecore.ETypedElement).^EType = _self.^EType
+			}
+			else{
+				(_self.clonedElt as org.eclipse.emf.ecore.ETypedElement).^EType = _self.^EType.clonedElt as org.eclipse.emf.ecore.EClassifier
+			}
+		}
 		}
 
 		if(_self.sliced) (_self.clonedElt as org.eclipse.emf.ecore.ETypedElement).^lowerBound = _self.^lowerBound
