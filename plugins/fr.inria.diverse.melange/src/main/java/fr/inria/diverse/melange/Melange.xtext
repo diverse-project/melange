@@ -57,7 +57,7 @@ XbaseTransformation:
 //;
 
 Aspect:
-	'with' aspectTypeRef = JvmTypeReference
+	'with' aspectTypeRef = JvmTypeReference | 'with' aspectWildcardImport = QualifiedNameWithWildcard
 ;
 
 Mapping returns Mapping:

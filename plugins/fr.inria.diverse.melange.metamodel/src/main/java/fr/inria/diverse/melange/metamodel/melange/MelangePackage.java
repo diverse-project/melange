@@ -497,13 +497,22 @@ public interface MelangePackage extends EPackage {
 	int ASPECT__ECORE_FRAGMENT = 2;
 
 	/**
+	 * The feature id for the '<em><b>Aspect Wildcard Import</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT__ASPECT_WILDCARD_IMPORT = 3;
+
+	/**
 	 * The number of structural features of the '<em>Aspect</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASPECT_FEATURE_COUNT = 3;
+	int ASPECT_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Aspect</em>' class.
@@ -1158,6 +1167,17 @@ public interface MelangePackage extends EPackage {
 	EReference getAspect_EcoreFragment();
 
 	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.Aspect#getAspectWildcardImport <em>Aspect Wildcard Import</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Aspect Wildcard Import</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Aspect#getAspectWildcardImport()
+	 * @see #getAspect()
+	 * @generated
+	 */
+	EAttribute getAspect_AspectWildcardImport();
+
+	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.Inheritance <em>Inheritance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1682,6 +1702,14 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EReference ASPECT__ECORE_FRAGMENT = eINSTANCE.getAspect_EcoreFragment();
+
+		/**
+		 * The meta object literal for the '<em><b>Aspect Wildcard Import</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ASPECT__ASPECT_WILDCARD_IMPORT = eINSTANCE.getAspect_AspectWildcardImport();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.InheritanceImpl <em>Inheritance</em>}' class.
