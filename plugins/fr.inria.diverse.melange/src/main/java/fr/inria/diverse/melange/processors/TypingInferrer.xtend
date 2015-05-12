@@ -20,7 +20,7 @@ class TypingInferrer extends DispatchMelangeProcessor
 	@Inject extension MetamodelExtensions
 	@Inject MelangeTypesRegistry typesRegistry
 
-	def dispatch void preProcess(ModelTypingSpace root) {
+	def dispatch void preProcess(ModelTypingSpace root, boolean preLinkingPhase) {
 		typesRegistry.clear
 
 		root.modelTypes

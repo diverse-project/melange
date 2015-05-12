@@ -15,7 +15,7 @@ class AspectsWeaver extends DispatchMelangeProcessor
 	@Inject extension MetamodelExtensions
 	@Inject extension AspectToEcore
 
-	def dispatch void preProcess(Metamodel mm) {
+	def dispatch void preProcess(Metamodel mm, boolean preLinkingPhase) {
 		mm.aspects
 		.filter[isComplete]
 		// First, create all the new meta-classes

@@ -21,7 +21,7 @@ class AspectsCopier extends DispatchMelangeProcessor
 	@Inject extension MetamodelExtensions
 	@Inject JvmTypeReferenceBuilder.Factory builderFactory
 
-	def dispatch void preProcess(Metamodel mm) {
+	def dispatch void preProcess(Metamodel mm, boolean preLinkingPhase) {
 		val typeRefBuilder = builderFactory.create(mm.eResource.resourceSet)
 
 		if (!mm.isGeneratedByMelange || mm.runtimeHasBeenGenerated) {
@@ -36,26 +36,28 @@ class AspectsCopier extends DispatchMelangeProcessor
 			]
 		}
 
-		val newAspects = newArrayList
-		val toRemove = newArrayList
-		mm.aspects.forEach[asp |
-			// If there's a wildcard import, remove it and replace it
-			// with the list of matching aspects
-			if (asp.aspectWildcardImport !== null) {
-				val matches = resolveWildcardImport(asp.aspectWildcardImport)
+		if (!preLinkingPhase) {
+			val newAspects = newArrayList
+			val toRemove = newArrayList
+			mm.aspects.forEach[asp |
+				// If there's a wildcard import, remove it and replace it
+				// with the list of matching aspects
+				if (asp.aspectWildcardImport !== null) {
+					val matches = resolveWildcardImport(asp.aspectWildcardImport)
 
-				newAspects += matches.map[fqn |
-					MelangeFactory.eINSTANCE.createAspect => [
-						aspectTypeRef = typeRefBuilder.typeRef(fqn)
+					newAspects += matches.map[fqn |
+						MelangeFactory.eINSTANCE.createAspect => [
+							aspectTypeRef = typeRefBuilder.typeRef(fqn)
+						]
 					]
-				]
 
-				toRemove += asp
-			}
-		]
+					toRemove += asp
+				}
+			]
 
-		toRemove.forEach[EcoreUtil::remove(it)]
-		mm.aspects += newAspects
+			toRemove.forEach[EcoreUtil::remove(it)]
+			mm.aspects += newAspects
+		}
 	}
 
 	private def List<String> resolveWildcardImport(String wildcardImport) {

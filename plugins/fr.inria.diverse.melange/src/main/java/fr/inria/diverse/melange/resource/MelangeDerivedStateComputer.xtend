@@ -89,7 +89,7 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 			processors.forEach[p |
 				val pTask = Stopwatches.forTask(p.class.simpleName)
 				pTask.start
-				p.preProcess(root)
+				p.preProcess(root, preLinkingPhase)
 				pTask.stop
 			]
 

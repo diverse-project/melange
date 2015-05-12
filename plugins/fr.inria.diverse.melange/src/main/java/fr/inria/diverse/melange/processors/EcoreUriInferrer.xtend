@@ -13,7 +13,7 @@ class EcoreUriInferrer extends DispatchMelangeProcessor
 	@Inject extension MetamodelExtensions
 	@Inject extension EclipseProjectHelper
 
-	def dispatch void preProcess(Metamodel mm) {
+	def dispatch void preProcess(Metamodel mm, boolean preLinkingPhase) {
 		val project = mm.eResource.project
 
 		if (mm.isGeneratedByMelange && project !== null)

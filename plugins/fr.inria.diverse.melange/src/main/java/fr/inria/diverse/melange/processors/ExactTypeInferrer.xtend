@@ -15,7 +15,7 @@ class ExactTypeInferrer extends DispatchMelangeProcessor
 {
 	@Inject extension ASTHelper
 
-	def dispatch void preProcess(ModelTypingSpace root) {
+	def dispatch void preProcess(ModelTypingSpace root, boolean preLinkingPhase) {
 		val newMTs = newArrayList
 
 		root.metamodels.forEach[mm |

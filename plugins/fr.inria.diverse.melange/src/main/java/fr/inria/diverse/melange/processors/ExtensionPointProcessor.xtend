@@ -40,7 +40,7 @@ class ExtensionPointProcessor extends DispatchMelangeProcessor
 	private static final String LANGUAGE_EXTENSION_POINT = "fr.inria.diverse.melange.language"
 	private static final String MODELTYPE_EXTENSION_POINT = "fr.inria.diverse.melange.modeltype"
 
-	def dispatch void preProcess(ModelTypingSpace root) {
+	def dispatch void preProcess(ModelTypingSpace root, boolean preLinkingPhase) {
 		val project = root.eResource.project
 
 		if (project !== null) {
