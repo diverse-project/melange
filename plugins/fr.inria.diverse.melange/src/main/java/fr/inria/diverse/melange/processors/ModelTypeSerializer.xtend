@@ -18,8 +18,8 @@ class ModelTypeSerializer extends DispatchMelangeProcessor
 	@Inject extension ModelingElementExtensions
 	@Inject extension EclipseProjectHelper
 
-	def dispatch void postProcess(ModelType mt) {
-		if (!mt.isComplete)
+	def dispatch void preProcess(ModelType mt, boolean preLinkingPhase) {
+		if (!mt.isComplete || preLinkingPhase)
 			return
 
 		// TODO: Need to maintain a cache here...

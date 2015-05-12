@@ -40,10 +40,10 @@ class ExtensionPointProcessor extends DispatchMelangeProcessor
 	private static final String LANGUAGE_EXTENSION_POINT = "fr.inria.diverse.melange.language"
 	private static final String MODELTYPE_EXTENSION_POINT = "fr.inria.diverse.melange.modeltype"
 
-	def dispatch void postProcess(ModelTypingSpace root) {
+	def dispatch void preProcess(ModelTypingSpace root, boolean preLinkingPhase) {
 		val project = root.eResource.project
 
-		if (project !== null) {
+		if (project !== null && !preLinkingPhase) {
 			val pluginXml = PDEProject::getPluginXml(project)
 			val pluginModel = PDECore::getDefault.modelManager.findModel(project)
 			val fModel = new WorkspacePluginModel(pluginXml, false)
