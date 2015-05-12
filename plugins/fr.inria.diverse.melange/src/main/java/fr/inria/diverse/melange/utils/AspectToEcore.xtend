@@ -42,6 +42,9 @@ class AspectToEcore
 			cls.name = if (baseCls !== null) baseCls.name else aspect.simpleName
 			cls.^abstract = if (baseCls !== null) baseCls.^abstract else aspect.^abstract
 			cls.^interface = if (baseCls !== null) baseCls.^interface else false
+
+			if (baseCls === null)
+				cls.EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
 		]
 
 		aspPkg.EClassifiers += aspCls
