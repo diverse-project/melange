@@ -20,6 +20,6 @@ class DispatchMelangeProcessor implements MelangeProcessor
 
 	def void _postProcess(EObject object) {
 		if (object !== null)
-			object.eContents.forEach[preProcess]
+			object.eContents.forEach[postProcess]
 	}
 }
