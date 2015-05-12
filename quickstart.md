@@ -8,13 +8,13 @@ navorder: 1
 {% include JB/setup %}
 
 ![def](images/melange-file.svg)
-[Defining a language](newlanguage.html)
+[Tutorial 1: Defining a language](newlanguage.html)
 
 ![def](images/extends.svg)
-[Extending a language](extendlanguage.html)
+[Tutorial 2: Extending a language](extendlanguage.html)
 
 ![def](images/family.svg)
-[Semantic/Syntactic variation](languagevariation.html)
+[Tutorial 3: Semantic/Syntactic variation](languagevariation.html)
 
 ![def](images/tooling.svg)
-[Tooling interoperability](languagetooling.html)
+[Tutorial 4: Tooling interoperability](languagetooling.html)
