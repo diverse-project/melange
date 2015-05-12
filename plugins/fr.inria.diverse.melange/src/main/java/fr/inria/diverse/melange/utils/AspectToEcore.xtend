@@ -137,6 +137,7 @@ class AspectToEcore
 						name = featureName
 						EType = aspPkg.getOrCreateClass(find.name)
 						upperBound = upperB
+						containment = op.annotations.exists[annotation.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Containment"]
 						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
 					]
 				} else {
