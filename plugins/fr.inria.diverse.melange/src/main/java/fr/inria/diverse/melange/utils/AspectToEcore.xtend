@@ -43,8 +43,12 @@ class AspectToEcore
 			cls.^abstract = if (baseCls !== null) baseCls.^abstract else aspect.^abstract
 			cls.^interface = if (baseCls !== null) baseCls.^interface else false
 
-			if (baseCls === null)
+			if (baseCls === null) {
 				cls.EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
+
+				if (aspect.extendedClass !== null && aspect.extendedClass.simpleName != "Object")
+					cls.ESuperTypes += aspPkg.getOrCreateClass(aspect.extendedClass.simpleName)
+			}
 		]
 
 		aspPkg.EClassifiers += aspCls

@@ -122,7 +122,7 @@ class EcoreExtensions
 			?.value ?: ""
 	}
 
-	def EClassifier getOrCreateClass(EPackage pkg, String name) {
+	def EClass getOrCreateClass(EPackage pkg, String name) {
 		val find = pkg.EClassifiers.filter(EClass).findFirst[it.name == name]
 
 		if (find !== null) {
