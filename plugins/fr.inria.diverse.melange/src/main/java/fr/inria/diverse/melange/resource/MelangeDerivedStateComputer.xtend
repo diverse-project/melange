@@ -70,6 +70,7 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 
 		// Print stop watches metrics
 		log.debug(Stopwatches.getPrintableStopwatchData)
+		Stopwatches.resetAll
 	}
 
 	override installDerivedState(DerivedStateAwareResource resource, boolean preLinkingPhase) {
