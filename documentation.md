@@ -66,6 +66,12 @@ It display the main Melange elements in your project:
 * Transformations: ![transformation image](images/outline-transformation.png) <br>
   Represented by an icon "arrows" before its name
 
+--------------------------
+
+*An example of Outline:*
+
+![outline](images/outline.png)
+
 ## Features
 
 #### Language
