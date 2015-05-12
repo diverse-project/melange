@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
 
@@ -67,7 +68,9 @@ class ModelingElementExtensions
 //		new Job("Serializing Ecore") {
 //			override run(IProgressMonitor monitor) {
 				try {
-					res.save(null)
+					val options = newHashMap
+					options.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER)
+					res.save(options)
 				} catch (IOException e) {
 					e.printStackTrace
 				}
