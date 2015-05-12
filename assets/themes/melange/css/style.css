@@ -63,3 +63,11 @@
   background: #57A957;
   border: 1px solid #4c964d;
   color: #FFF; }
+  
+img[src="images/melange-file.svg"],[src="images/extends.svg"],[src="images/family.svg"],[src="images/tooling.svg"] {
+    border-radius: 25px;
+    /*background: #99CCFF;*/
+    background: linear-gradient(to bottom right, #99CCFF , #6699FF);
+    padding: 10px;
+    box-shadow: 2px 2px 5px grey;
+}
