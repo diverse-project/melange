@@ -159,9 +159,17 @@ For more details, have a look at the Kermeta 3 documentation : [Defining aspects
 To create a Melange project using your family of language:
 
  1. Go in the menu `File > New > Project...` and select `Melange > Melange Project`, then clic `Next`.
+    
+    ![new project](images/newproject-1.png)
  2. Put "org.melange.fsm" in Project name and clic `Next`.
+    
+    ![name project](images/newproject-2.png)
  3. Check `Create a plug-in using one of the templates` and select `Simple Melange project`, then `Next`.
+    
+    ![add template](images/newproject-3.png)
  4. Set "org.sample.fsm" as package, and change language name to SimpleFSM. Browse the location to select fsm.ecore from the Simple FSM project, then `Finish`.
+    
+    ![configure project](images/newproject-4.png)
  5. Open the `META-INF/MANIFEST.MF` and in the `dependencies` tab add Plug-ins
     - org.sample.timedfsm
     - org.sample.compositefsm
