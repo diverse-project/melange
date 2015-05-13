@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EClass
 /**
  * This class adapt a Metaclass from a language to be viewed as a Metaclass from a Modeltype
  */
-class GenericAdapter implements InvocationHandler{
+class DynamicAdapter implements InvocationHandler{
 	
 	/**
 	 * 
@@ -42,7 +42,7 @@ class GenericAdapter implements InvocationHandler{
 		return Proxy.newProxyInstance(
 			adaptee.getClass().getClassLoader(),
 			getMatchingType(modeltype, adaptee).class.interfaces,
-			new GenericAdapter(adaptee,mm,modeltype)
+			new DynamicAdapter(adaptee,mm,modeltype)
 		)
 	}
 	
@@ -62,7 +62,7 @@ class GenericAdapter implements InvocationHandler{
 		}
 		
 		//Always return GenericAdapter or null to be used in Melange's Transformations
-		if(res instanceof GenericAdapter || res === null){
+		if(res instanceof DynamicAdapter || res === null){
 			return res
 		}		
 		else{
