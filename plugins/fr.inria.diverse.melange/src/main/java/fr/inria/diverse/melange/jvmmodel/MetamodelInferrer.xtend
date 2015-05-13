@@ -78,9 +78,7 @@ class MetamodelInferrer
 
 				members += mm.toMethod("to" + mt.name, mt.fullyQualifiedName.toString.typeRef)[
 					body = '''
-						«adapName» adaptee = new «adapName»() ;
-						adaptee.setAdaptee(resource) ;
-						return adaptee ;
+						return new «mt.fullyQualifiedName.toString»Impl(this);
 					'''
 				]
 			]
@@ -101,77 +99,77 @@ class MetamodelInferrer
 		]
 
 		// TODO: Test when the subtype has more classes than the supertype and vice-versa
-		mm.^implements.forEach[mt |
-			val mapping = mm.mappings.findFirst[to == mt]
-			mm.generateAdapter(mt, acceptor, builder)
-
-			mt.allClasses.filter[abstractable].forEach[cls |
-				mm.generateAdapter(mt, cls, acceptor, builder)
-			]
-
-			val adapFactName = mm.getAdaptersFactoryNameFor(mt)
-			acceptor.accept(mm.toClass(adapFactName))
-			[
-				superTypes += AdaptersFactory.typeRef
-
-				members += mm.toField("instance", adapFactName.typeRef)[static = true]
-				
-				members += mm.toField("register" , "java.util.WeakHashMap".typeRef(EObject.typeRef,EObjectAdapter.typeRef))
-				
-				members += mm.toConstructor[
-					body = '''
-						register = new WeakHashMap();
-					'''
-				]
-
-				members += mm.toMethod("getInstance", adapFactName.typeRef)[
-					static = true
-					body = '''
-						if (instance == null) {
-							instance = new «adapFactName»() ;
-						}
-						return instance ;
-					'''
-				]
-
-				members += mm.toMethod("createAdapter", EObjectAdapter.typeRef)[
-					parameters += mm.toParameter("o", EObject.typeRef)
-
-					body = '''
-						EObjectAdapter res = register.get(o);
-						if(res != null){
-							 return res;
-						}
-						else{
-							«FOR cls : mt.allClasses.filter[mm.hasAdapterFor(mt, it) && instantiable && abstractable].sortByClassInheritance»
-							if (o instanceof «mm.getFqnFor(cls)»){
-								res = create«cls.name»Adapter((«mm.getFqnFor(cls)») o) ;
-								register.put(o,res);
-								return res;
-							}
-							«ENDFOR»
-						}
-					
-						return null ;
-					'''
-				]
-
-				mt.allClasses.filter[abstractable].forEach[cls |
-					val adapName = mm.adapterNameFor(mt, cls)
-					val mmCls = mm.allClasses.findFirst[mapping.namesMatch(it, cls)]
-
-					members += mm.toMethod('''create«cls.name»Adapter''', adapName.typeRef)[
-						parameters += mm.toParameter("adaptee", mm.getFqnFor(mmCls).typeRef)
-
-						body = '''
-							«adapName» adap = new «adapName»() ;
-							adap.setAdaptee(adaptee) ;
-							return adap ;
-						'''
-					]
-				]
-			]
-		]
+//		mm.^implements.forEach[mt |
+//			val mapping = mm.mappings.findFirst[to == mt]
+//			mm.generateAdapter(mt, acceptor, builder)
+//
+//			mt.allClasses.filter[abstractable].forEach[cls |
+//				mm.generateAdapter(mt, cls, acceptor, builder)
+//			]
+//
+//			val adapFactName = mm.getAdaptersFactoryNameFor(mt)
+//			acceptor.accept(mm.toClass(adapFactName))
+//			[
+//				superTypes += AdaptersFactory.typeRef
+//
+//				members += mm.toField("instance", adapFactName.typeRef)[static = true]
+//				
+//				members += mm.toField("register" , "java.util.WeakHashMap".typeRef(EObject.typeRef,EObjectAdapter.typeRef))
+//				
+//				members += mm.toConstructor[
+//					body = '''
+//						register = new WeakHashMap();
+//					'''
+//				]
+//
+//				members += mm.toMethod("getInstance", adapFactName.typeRef)[
+//					static = true
+//					body = '''
+//						if (instance == null) {
+//							instance = new «adapFactName»() ;
+//						}
+//						return instance ;
+//					'''
+//				]
+//
+//				members += mm.toMethod("createAdapter", EObjectAdapter.typeRef)[
+//					parameters += mm.toParameter("o", EObject.typeRef)
+//
+//					body = '''
+//						EObjectAdapter res = register.get(o);
+//						if(res != null){
+//							 return res;
+//						}
+//						else{
+//							«FOR cls : mt.allClasses.filter[mm.hasAdapterFor(mt, it) && instantiable && abstractable].sortByClassInheritance»
+//							if (o instanceof «mm.getFqnFor(cls)»){
+//								res = create«cls.name»Adapter((«mm.getFqnFor(cls)») o) ;
+//								register.put(o,res);
+//								return res;
+//							}
+//							«ENDFOR»
+//						}
+//					
+//						return null ;
+//					'''
+//				]
+//
+//				mt.allClasses.filter[abstractable].forEach[cls |
+//					val adapName = mm.adapterNameFor(mt, cls)
+//					val mmCls = mm.allClasses.findFirst[mapping.namesMatch(it, cls)]
+//
+//					members += mm.toMethod('''create«cls.name»Adapter''', adapName.typeRef)[
+//						parameters += mm.toParameter("adaptee", mm.getFqnFor(mmCls).typeRef)
+//
+//						body = '''
+//							«adapName» adap = new «adapName»() ;
+//							adap.setAdaptee(adaptee) ;
+//							return adap ;
+//						'''
+//					]
+//				]
+//			]
+//		]
 
 		//if (mm.hasSuperMetamodel)
 		//	mm.generateAdapters(mm.inheritanceRelation.superMetamodel, acceptor, builder)

@@ -5,7 +5,9 @@ import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.IFactory
+import fr.inria.diverse.melange.lib.IMetamodel
 import fr.inria.diverse.melange.lib.IModelType
+import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import java.io.IOException
 import org.eclipse.emf.common.util.EList
@@ -87,6 +89,47 @@ class ModelTypeInferrer
 			mt.allEnums.forEach[enu |
 				mt.generateEnum(enu, acceptor, builder)
 			]
+			
+		/**
+		 * Implementation of the ModelType interface
+		 */
+		acceptor.accept(mt.toClass(mt.fullyQualifiedName.toString+"Impl")[
+			superTypes += mt.fullyQualifiedName.toString.typeRef
+
+			members += mt.toField("language", IMetamodel.typeRef)
+
+			members += mt.toConstructor[
+				parameters += mt.toParameter("language", IMetamodel.typeRef)
+				body = '''
+					this.language = language;
+				'''
+			]
+			
+			members += mt.toMethod("getContents", EList.typeRef(EObject.typeRef))[
+				body = '''
+					EList<EObject> res = new org.eclipse.emf.common.util.BasicEList<EObject>();
+					for(EObject obj : language.getResource().getContents()){
+						Object adapter = fr.inria.diverse.melange.jvmmodel.DynamicAdapter.newInstance(obj,language,this);
+						res.add( (EObject) adapter);
+					}
+					return res;
+				'''
+			]
+
+			members += mt.toMethod("getFactory", mt.factoryName.typeRef)[
+				body = '''
+					throw new UnsupportedOperationException("");
+				'''
+			]
+
+			members += mt.toMethod("save", Void::TYPE.typeRef)[
+				parameters += mt.toParameter("uri", String.typeRef)
+				exceptions += IOException.typeRef
+				body = '''
+					throw new UnsupportedOperationException("");
+				'''
+			]
+		])
 
 		task.stop
 	}
