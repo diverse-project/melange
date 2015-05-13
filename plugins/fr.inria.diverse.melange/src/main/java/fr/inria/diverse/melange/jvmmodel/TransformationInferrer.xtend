@@ -49,7 +49,7 @@ class TransformationInferrer
 
 					// TODO: Remove hardcoded types in the following body code
 					body = '''
-						StandaloneSetup.doSetup() ;
+						StandaloneSetup.doSetup(args[0]) ;
 						call() ;
 					'''
 				]

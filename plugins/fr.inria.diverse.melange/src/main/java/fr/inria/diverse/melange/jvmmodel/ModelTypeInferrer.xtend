@@ -96,20 +96,28 @@ class ModelTypeInferrer
 		acceptor.accept(mt.toClass(mt.fullyQualifiedName.toString+"Impl")[
 			superTypes += mt.fullyQualifiedName.toString.typeRef
 
-			members += mt.toField("language", IMetamodel.typeRef)
+			members += mt.toField("languageName", String.typeRef)
+			members += mt.toField("modeltypeName", String.typeRef)
+			members += mt.toField("metamodel", IMetamodel.typeRef)
 
 			members += mt.toConstructor[
-				parameters += mt.toParameter("language", IMetamodel.typeRef)
+				parameters += mt.toParameter("languageName", String.typeRef)
+				parameters += mt.toParameter("modeltypeName", String.typeRef)
+				parameters += mt.toParameter("metamodel", IMetamodel.typeRef)
 				body = '''
-					this.language = language;
+					this.languageName = languageName;
+					this.modeltypeName = modeltypeName;
+					this.metamodel = metamodel;
 				'''
 			]
 			
 			members += mt.toMethod("getContents", EList.typeRef(EObject.typeRef))[
 				body = '''
+					fr.inria.diverse.melange.metamodel.melange.Metamodel language = StandaloneSetup.getLanguage(languageName);
+					fr.inria.diverse.melange.metamodel.melange.ModelType mt = StandaloneSetup.getModelType(modeltypeName);
 					EList<EObject> res = new org.eclipse.emf.common.util.BasicEList<EObject>();
-					for(EObject obj : language.getResource().getContents()){
-						Object adapter = fr.inria.diverse.melange.jvmmodel.DynamicAdapter.newInstance(obj,language,this);
+					for(EObject obj : metamodel.getResource().getContents()){
+						Object adapter = fr.inria.diverse.melange.jvmmodel.DynamicAdapter.newInstance(obj,language,mt);
 						res.add( (EObject) adapter);
 					}
 					return res;

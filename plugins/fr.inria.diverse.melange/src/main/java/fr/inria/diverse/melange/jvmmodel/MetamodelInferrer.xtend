@@ -78,7 +78,7 @@ class MetamodelInferrer
 
 				members += mm.toMethod("to" + mt.name, mt.fullyQualifiedName.toString.typeRef)[
 					body = '''
-						return new «mt.fullyQualifiedName.toString»Impl(this);
+						return new «mt.fullyQualifiedName.toString»Impl("«mm.name»","«mt.name»",this);
 					'''
 				]
 			]

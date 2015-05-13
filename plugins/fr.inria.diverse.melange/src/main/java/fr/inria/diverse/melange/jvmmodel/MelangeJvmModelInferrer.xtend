@@ -14,6 +14,10 @@ import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import fr.inria.diverse.melange.metamodel.melange.Metamodel
+import fr.inria.diverse.melange.metamodel.melange.ModelType
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.resource.Resource
 
 /**
  * This class manages Java source code generation for a Melange model
@@ -78,12 +82,20 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 		acceptor.accept(root.toClass(root.standaloneSetupClassName))
 		[
 			members += root.toMethod("doSetup", Void::TYPE.typeRef)[
+				
+				parameters += root.toParameter("melangeFile", String.typeRef)
+				
 				^static = true
 				body = '''
 					StandaloneSetup setup = new StandaloneSetup() ;
 					setup.doEMFRegistration() ;
-					setup.doAdaptersRegistration() ;
+«««					setup.doAdaptersRegistration() ;
+					loadMelange(org.eclipse.emf.common.util.URI.createURI(melangeFile));
 				'''
+			]
+			
+			members += root.toField("root", ModelTypingSpace.typeRef)[
+				static = true
 			]
 
 			members += root.toMethod("doEMFRegistration", Void::TYPE.typeRef)[
@@ -113,33 +125,82 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 					) ;
 				'''
 			]
+			
+//			members += root.toMethod("doAdaptersRegistration", Void::TYPE.typeRef)[
+//				body = '''
+//					«FOR mm : root.metamodels»
+//						fr.inria.diverse.melange.resource.MelangeRegistryImpl.LanguageDescriptorImpl «mm.name.toFirstLower» = new fr.inria.diverse.melange.resource.MelangeRegistryImpl.LanguageDescriptorImpl(
+//							"«mm.fullyQualifiedName»", "«mm.documentation»", "«mm.packageUri»", "«mm.exactType.fullyQualifiedName»"
+//						) ;
+//						«FOR mt : mm.^implements»
+//							«mm.name.toFirstLower».addAdapter("«mt.fullyQualifiedName»", «mm.adapterNameFor(mt)».class) ;
+//						«ENDFOR»
+//						fr.inria.diverse.melange.resource.MelangeRegistry.INSTANCE.getLanguageMap().put(
+//							"«mm.fullyQualifiedName»",
+//							«mm.name.toFirstLower»
+//						) ;
+//					«ENDFOR»
+//					«FOR mt : root.modelTypes»
+//						fr.inria.diverse.melange.resource.MelangeRegistryImpl.ModelTypeDescriptorImpl «mt.name.toFirstLower» = new fr.inria.diverse.melange.resource.MelangeRegistryImpl.ModelTypeDescriptorImpl(
+//							"«mt.fullyQualifiedName»", "«mt.documentation»", "«mt.uri»"
+//						) ;
+//						«FOR superMt : mt.subtypingRelations»
+//							«mt.name.toFirstLower».addSuperType("«superMt.superType.fullyQualifiedName»") ;
+//						«ENDFOR»
+//						fr.inria.diverse.melange.resource.MelangeRegistry.INSTANCE.getModelTypeMap().put(
+//							"«mt.fullyQualifiedName»",
+//							«mt.name.toFirstLower»
+//						) ;
+//					«ENDFOR»
+//				'''
+//			]
 
-			members += root.toMethod("doAdaptersRegistration", Void::TYPE.typeRef)[
+			members += root.toMethod("getLanguage", Metamodel.typeRef)[
+				static = true
+				
+				parameters += root.toParameter("languageName", String.typeRef)
+				
 				body = '''
-					«FOR mm : root.metamodels»
-						fr.inria.diverse.melange.resource.MelangeRegistryImpl.LanguageDescriptorImpl «mm.name.toFirstLower» = new fr.inria.diverse.melange.resource.MelangeRegistryImpl.LanguageDescriptorImpl(
-							"«mm.fullyQualifiedName»", "«mm.documentation»", "«mm.packageUri»", "«mm.exactType.fullyQualifiedName»"
-						) ;
-						«FOR mt : mm.^implements»
-							«mm.name.toFirstLower».addAdapter("«mt.fullyQualifiedName»", «mm.adapterNameFor(mt)».class) ;
-						«ENDFOR»
-						fr.inria.diverse.melange.resource.MelangeRegistry.INSTANCE.getLanguageMap().put(
-							"«mm.fullyQualifiedName»",
-							«mm.name.toFirstLower»
-						) ;
-					«ENDFOR»
-					«FOR mt : root.modelTypes»
-						fr.inria.diverse.melange.resource.MelangeRegistryImpl.ModelTypeDescriptorImpl «mt.name.toFirstLower» = new fr.inria.diverse.melange.resource.MelangeRegistryImpl.ModelTypeDescriptorImpl(
-							"«mt.fullyQualifiedName»", "«mt.documentation»", "«mt.uri»"
-						) ;
-						«FOR superMt : mt.subtypingRelations»
-							«mt.name.toFirstLower».addSuperType("«superMt.superType.fullyQualifiedName»") ;
-						«ENDFOR»
-						fr.inria.diverse.melange.resource.MelangeRegistry.INSTANCE.getModelTypeMap().put(
-							"«mt.fullyQualifiedName»",
-							«mt.name.toFirstLower»
-						) ;
-					«ENDFOR»
+					for(fr.inria.diverse.melange.metamodel.melange.Element elem : root.getElements()){
+						if(elem instanceof fr.inria.diverse.melange.metamodel.melange.Metamodel){
+							fr.inria.diverse.melange.metamodel.melange.Metamodel language = (Metamodel) elem;
+							if(language.getName().equals(languageName)) return language;
+						}
+					}
+					return null;
+				'''
+			]
+			
+			members += root.toMethod("getModelType", ModelType.typeRef)[
+				static = true
+				
+				parameters += root.toParameter("modeltypeName", String.typeRef)
+				
+				body = '''
+					for(fr.inria.diverse.melange.metamodel.melange.Element elem : root.getElements()){
+						if(elem instanceof fr.inria.diverse.melange.metamodel.melange.ModelType){
+							fr.inria.diverse.melange.metamodel.melange.ModelType mt = (ModelType) elem;
+							if(mt.getName().equals(modeltypeName)) return mt;
+						}
+					}
+					return null;
+				'''
+			]
+			
+			members += root.toMethod("loadMelange", Void::TYPE.typeRef)[
+				static = true
+				
+				parameters += root.toParameter("inputURI", URI.typeRef)
+				
+				body = '''
+					fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl.init();
+					com.google.inject.Injector injector = new fr.inria.diverse.melange.MelangeStandaloneSetup().createInjectorAndDoEMFRegistration();
+					org.eclipse.xtext.resource.XtextResourceSet resourceSet = injector.getInstance(org.eclipse.xtext.resource.XtextResourceSet.class);
+					
+					org.eclipse.emf.ecore.resource.Resource xtextResource = resourceSet.getResource(inputURI, true);
+					org.eclipse.emf.ecore.util.EcoreUtil.resolveAll(xtextResource);
+					
+					root = (fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace) xtextResource.getContents().get(0);
 				'''
 			]
 		]
