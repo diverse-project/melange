@@ -177,7 +177,7 @@ To create a Melange project using your family of language:
     org.sample.simplefsm should be already there thanks to the wizard.
  6. In the .melange file, copy-paste the `language SimpleFSM{...}` for other languages (and adapt them).
 
-You should have these declarations:
+You should have these declarations in the .melange file:
 
 ~~~
 language SimpleFSM {
@@ -201,3 +201,35 @@ language SimpleFSM {
 ~~~
 
 As you see the keyword **with** refer to the class with the **@Aspect**
+
+#### Test it!
+
+Congratulation, you defined your first executable language in Melange! Now we will test if it works fine.
+To do so, we will declare a **transformation** that will load a SimpleFSM an execute it.
+
+~~~
+@Main
+transformation main() {
+	val events = newArrayList('x', 'y', 'o', 'p', 'q')
+	
+	val model = SimpleFSM.load("input/Simple.xmi")
+ 	val fsm = model.contents.head as finitestatemachines.simplefsmmt.StateMachine
+
+	fsm.init()
+	fsm.eval(events)
+}
+~~~
+
+Here we have:
+
+ * SimpleFSM.**load(**\<file.xmi\>**)**<br>
+   To load a model conform to SimpleFSM
+ * **@Main**<br>
+   In Melange we can declare several **transformations**. To set one of them the entry point we tag it with **@Main**.
+ * model.**contents.head** as finitestatemachines.simplefsmmt.StateMachine <br>
+   We get the first element of the model and cast it to the right type. <br>
+   *finitestatemachines.simplefsmmt* is the package containning all classes of the **exactType** of the SimpleFSM language.
+
+### Conclusion
+
+In this tutorial you learnt how to design a language with Ecore, add a behavior on top of this structural description and use Melange to merge all together.
