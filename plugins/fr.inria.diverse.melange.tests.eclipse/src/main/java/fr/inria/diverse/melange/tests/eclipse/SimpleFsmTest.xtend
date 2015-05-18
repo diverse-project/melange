@@ -158,7 +158,7 @@ public class SimpleFsmTest extends AbstractXtextTests
 		IResourcesSetupUtil::createFile(MELANGE_PROJECT + "/src/melangefsm/Fsm.melange", '''
 		package melangefsm
 
-		metamodel Fsm {
+		language Fsm {
 			ecore "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.fsm/model/FSM.ecore"
 			exactType FsmMT
 			with aspectsfsm.ExecutableFsmAspect
