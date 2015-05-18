@@ -230,6 +230,8 @@ Here we have:
    We get the first element of the model and cast it to the right type. <br>
    *finitestatemachines.simplefsmmt* is the package containning all classes of the **exactType** of the SimpleFSM language.
 
+To launch the **main()**, look inside the folder `src-gen` (where Melange generates Java files) and inside the package *finitestatemachines*, right clic on **Main.java** and select `Run As > Java Application`.
+
 ### Conclusion
 
 In this tutorial you learnt how to design a language with Ecore, add a behavior on top of this structural description and use Melange to merge all together.
