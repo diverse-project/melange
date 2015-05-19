@@ -24,6 +24,9 @@ import org.eclipse.xtext.ui.XtextProjectHelper
 import org.junit.Test
 import org.junit.runner.RunWith
 
+import static org.junit.Assume.*
+import org.eclipse.ui.PlatformUI
+
 @RunWith(XtextRunner)
 @InjectWith(MelangeUiInjectorProvider)
 public class SimpleFsmTest extends AbstractXtextTests
@@ -68,6 +71,13 @@ public class SimpleFsmTest extends AbstractXtextTests
 
 	@Test
 	def testRunningMelangeTransformationProducesExpectedOutput() {
+		// Only run if we got an UI
+		try {
+			PlatformUI::workbench
+		} catch (Throwable t) {
+			assumeNoException(t)
+		}
+
 		val manager = DebugPlugin::getDefault.launchManager
 		val type = manager.getLaunchConfigurationType(IJavaLaunchConfigurationConstants::ID_JAVA_APPLICATION)
 		val newLaunchConfig = type.newInstance(melangeFsm.project, LAUNCHCONFIG_NAME)
