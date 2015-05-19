@@ -3,6 +3,7 @@ package fr.inria.diverse.melange.tests.eclipse
 import com.google.common.base.Charsets
 import com.google.common.io.CharStreams
 import fr.inria.diverse.melange.MelangeUiInjectorProvider
+import fr.inria.diverse.melange.tools.xtext.testing.OnlyIfUI
 import org.eclipse.core.resources.IMarker
 import org.eclipse.core.resources.IResource
 import org.eclipse.core.resources.ResourcesPlugin
@@ -23,9 +24,6 @@ import org.eclipse.xtext.junit4.ui.util.JavaProjectSetupUtil
 import org.eclipse.xtext.ui.XtextProjectHelper
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import static org.junit.Assume.*
-import org.eclipse.ui.PlatformUI
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeUiInjectorProvider)
@@ -70,14 +68,8 @@ public class SimpleFsmTest extends AbstractXtextTests
 	}
 
 	@Test
+	@OnlyIfUI
 	def testRunningMelangeTransformationProducesExpectedOutput() {
-		// Only run if we got an UI
-		try {
-			PlatformUI::workbench
-		} catch (Throwable t) {
-			assumeNoException(t)
-		}
-
 		val manager = DebugPlugin::getDefault.launchManager
 		val type = manager.getLaunchConfigurationType(IJavaLaunchConfigurationConstants::ID_JAVA_APPLICATION)
 		val newLaunchConfig = type.newInstance(melangeFsm.project, LAUNCHCONFIG_NAME)
