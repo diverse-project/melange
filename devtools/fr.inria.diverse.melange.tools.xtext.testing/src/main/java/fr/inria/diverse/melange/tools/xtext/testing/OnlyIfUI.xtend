@@ -26,6 +26,7 @@ class OnlyIfUIProcessor extends AbstractMethodProcessor
 		method.declaringType.addMethod('''wrap«method.simpleName.toFirstUpper»''')[
 			addAnnotation(Test.newAnnotationReference)
 			visibility = Visibility.PUBLIC
+			primarySourceElement = method
 			body = '''
 				// Ignore if UI isn't started
 				try {
