@@ -23,7 +23,7 @@ public class SimpleFsmProject extends AbstractXtextTests
 {
 	override void setUp() throws Exception {
 		super.setUp
-		deployFsmProject
+		deployProject("SimpleFsmProject", "tests-inputs/SimpleFsmProject.zip")
 		IResourcesSetupUtil::waitForAutoBuild
 	}
 
@@ -40,9 +40,14 @@ public class SimpleFsmProject extends AbstractXtextTests
 		]
 	}
 
-	private def deployFsmProject() {
-		val workspace = ResourcesPlugin::workspace
-		val projectName = "SimpleFsmProject"
+	/**
+	 * Create a project {@link projectName} with the content of the archive located at {@link zipPath}
+	 * and deploy it in the workspace.
+	 * 
+	 * @param projectName Name of the project
+	 * @param zipPath Path to a .zip file containing a Melange project 
+	 */
+	private def deployProject(String projectName, String zipPath) {
 		val newProject = JavaProjectSetupUtil::createJavaProject(projectName)
 		JavaProjectSetupUtil::addSourceFolder(newProject, "src")
 		JavaProjectSetupUtil::addSourceFolder(newProject, "src-gen")
@@ -53,6 +58,6 @@ public class SimpleFsmProject extends AbstractXtextTests
 		IResourcesSetupUtil::addBuilder(newProject.project, PDE::SCHEMA_BUILDER_ID)
 		JavaProjectSetupUtil::addToClasspath(newProject, JavaCore::newContainerEntry(new Path("org.eclipse.xtend.XTEND_CONTAINER")))
 		JavaProjectSetupUtil::addToClasspath(newProject, JavaCore::newContainerEntry(new Path("org.eclipse.pde.core.requiredPlugins")))
-		WorkspaceDeployer::deployZipInProject(newProject.project, "tests-inputs/SimpleFsmProject.zip")
+		WorkspaceDeployer::deployZipInProject(newProject.project, zipPath)
 	}
 }
