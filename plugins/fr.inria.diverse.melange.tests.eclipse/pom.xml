@@ -13,6 +13,20 @@
 	<packaging>eclipse-test-plugin</packaging>
 
 	<name>Melange Language Eclipse Tests</name>
+	
+	<build>
+    	<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-surefire-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<useUIHarness>false</useUIHarness>
+					<useUIThread>false</useUIThread>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>
 
