@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated timedfsm -->
+      <package
+            uri="http://timedfsm"
+            class="timedfsm.TimedfsmPackage"
+            genModel="models/timedfsm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated timedfsm-Required -->
+      <package
+            uri="http://timedfsmrequired"
+            class="fsmrequired.FsmrequiredPackage"
+            genModel="models/timedfsm-Required.genmodel"/>
+   </extension>
+
+</plugin>

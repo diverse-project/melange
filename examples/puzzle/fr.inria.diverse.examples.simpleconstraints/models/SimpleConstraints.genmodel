@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.inria.diverse.examples.simpleconstraints/src"
+    modelPluginID="fr.inria.diverse.examples.simpleconstraints" modelName="SimpleConstraints"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>SimpleConstraints.ecore</foreignModel>
+  <genPackages prefix="Simpleconstraintslanguage" disposableProviderFactory="true"
+      ecorePackage="SimpleConstraints.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="SimpleConstraints.ecore#//CRelationalOperator">
+      <genEnumLiterals ecoreEnumLiteral="SimpleConstraints.ecore#//CRelationalOperator/equal"/>
+      <genEnumLiterals ecoreEnumLiteral="SimpleConstraints.ecore#//CRelationalOperator/notEqual"/>
+      <genEnumLiterals ecoreEnumLiteral="SimpleConstraints.ecore#//CRelationalOperator/greaterThan"/>
+      <genEnumLiterals ecoreEnumLiteral="SimpleConstraints.ecore#//CRelationalOperator/lessThan"/>
+    </genEnums>
+    <genClasses ecoreClass="SimpleConstraints.ecore#//Constraint"/>
+    <genClasses ecoreClass="SimpleConstraints.ecore#//RelationalConstraint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimpleConstraints.ecore#//RelationalConstraint/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimpleConstraints.ecore#//RelationalConstraint/right"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimpleConstraints.ecore#//RelationalConstraint/operator"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="SimpleConstraints.ecore#//CExpression"/>
+    <genClasses image="false" ecoreClass="SimpleConstraints.ecore#//CLiteral"/>
+    <genClasses ecoreClass="SimpleConstraints.ecore#//CInteger">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimpleConstraints.ecore#//CInteger/value"/>
+    </genClasses>
+    <genClasses ecoreClass="SimpleConstraints.ecore#//CVarRef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimpleConstraints.ecore#//CVarRef/name"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: CompatibilityChecker
+Bundle-SymbolicName: fr.inria.diverse.puzzle.compatibilityChecker
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: fr.inria.diverse.sle.puzzle.compatibilitychecker.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.mapping,
+ org.eclipse.emf.mapping.ecore,
+ org.junit;bundle-version="4.11.0",
+ fr.inria.diverse.k3.sle.common;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Export-Package: fr.inria.diverse.sle.puzzle.compatibilitychecker.impl

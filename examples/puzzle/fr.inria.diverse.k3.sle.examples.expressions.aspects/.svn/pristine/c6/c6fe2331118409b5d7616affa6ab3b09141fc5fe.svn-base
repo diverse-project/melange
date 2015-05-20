@@ -1,0 +1,12 @@
+package Expressions;
+
+import Expressions.ExpressionAspect;
+import Expressions.Literal;
+import Expressions.LiteralAspectLiteralAspectProperties;
+import fr.inria.diverse.k3.al.annotationprocessor.Aspect;
+
+@Aspect(className = Literal.class)
+@SuppressWarnings("all")
+public abstract class LiteralAspect extends ExpressionAspect {
+  public static LiteralAspectLiteralAspectProperties _self_;
+}

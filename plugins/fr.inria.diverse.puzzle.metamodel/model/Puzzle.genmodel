@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.inria.diverse.puzzle.metamodel/src" modelPluginID="fr.inria.diverse.puzzle.metamodel"
+    modelName="Puzzle" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../fr.inria.diverse.melange.metamodel/model/Melange.genmodel#//melange ../../org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types ../../org.eclipse.xtext.xbase/model/Xbase.genmodel#//xtype ../../org.eclipse.xtext.xbase/model/Xbase.genmodel#//xbase"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>Puzzle.ecore</foreignModel>
+  <genPackages prefix="Puzzle" disposableProviderFactory="true" ecorePackage="Puzzle.ecore#/">
+    <genClasses ecoreClass="Puzzle.ecore#//Composition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Puzzle.ecore#//Composition/statements"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Puzzle.ecore#//Composition/genModel"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Puzzle.ecore#//Statement"/>
+    <genClasses ecoreClass="Puzzle.ecore#//VarDecl">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Puzzle.ecore#//VarDecl/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Puzzle.ecore#//Expression"/>
+    <genClasses ecoreClass="Puzzle.ecore#//LanguageRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Puzzle.ecore#//LanguageRef/ref"/>
+    </genClasses>
+    <genClasses ecoreClass="Puzzle.ecore#//VarRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Puzzle.ecore#//VarRef/ref"/>
+    </genClasses>
+    <genClasses ecoreClass="Puzzle.ecore#//Aggregation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Puzzle.ecore#//Aggregation/requiring"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Puzzle.ecore#//Aggregation/providing"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Puzzle.ecore#//Aggregation/binding"/>
+    </genClasses>
+    <genClasses ecoreClass="Puzzle.ecore#//Extension">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Puzzle.ecore#//Extension/base"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Puzzle.ecore#//Extension/extension"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

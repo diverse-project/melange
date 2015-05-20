@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore2ecore:Ecore2EcoreMappingRoot xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore2ecore="http://www.eclipse.org/emf/2004/Ecore2Ecore" topToBottom="true">
+  <nested>
+    <inputs href="fsmcore-Required.ecore#//VarDecl"/>
+    <outputs href="Java-Provided.ecore#//LocalVariableStatement"/>
+  </nested>
+  <nested>
+    <inputs href="fsmcore-Required.ecore#//Loop"/>
+    <outputs href="Java-Provided.ecore#//ForLoop"/>
+  </nested>
+  <nested>
+    <inputs href="fsmcore-Required.ecore#//Conditional"/>
+    <outputs href="Java-Provided.ecore#//Conditional"/>
+  </nested>
+  <nested>
+    <nested>
+      <inputs href="fsmcore-Required.ecore#//Program/exec"/>
+      <outputs href="Java-Provided.ecore#//ClassMethod/exec"/>
+    </nested>
+    <inputs href="fsmcore-Required.ecore#//Program"/>
+    <outputs href="Java-Provided.ecore#//ClassMethod"/>
+  </nested>
+  <nested>
+    <inputs href="fsmcore-Required.ecore#//Program/statements"/>
+    <outputs href="Java-Provided.ecore#//StatementListContainer/statements"/>
+  </nested>
+  <nested>
+    <inputs href="fsmcore-Required.ecore#//Statement"/>
+    <outputs href="Java-Provided.ecore#//Statement"/>
+  </nested>
+  <inputs href="fsmcore-Required.ecore#/"/>
+  <outputs href="Java-Provided.ecore#/"/>
+</ecore2ecore:Ecore2EcoreMappingRoot>

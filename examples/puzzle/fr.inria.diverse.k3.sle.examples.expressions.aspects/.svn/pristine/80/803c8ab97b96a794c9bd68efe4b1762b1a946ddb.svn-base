@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Require-Bundle: fr.inria.diverse.k3.al.annotationprocessor.plugin;bund
+ le-version="3.0.0",
+ org.eclipse.xtend.lib;bundle-version="2.6.0";vis
+ ibility:="private",
+ org.eclipse.xtext.xbase.lib;bundle-version="2.6.
+ 0";visibility:="private",
+ com.google.guava;bundle-version="0.0.0";vi
+ sibility:="private",
+ org.eclipse.emf.ecore.xmi;bundle-version="2.8.0
+ ";visibility:="reexport",
+ org.eclipse.emf.ecore;bundle-version="2.8.
+ 0";visibility:="reexport",
+ org.eclipse.emf.common;bundle-version="2.
+ 8.0";visibility:="reexport",
+ fr.inria.diverse.k3.sle.examples.expres
+ sions;bundle-version=0.0.0;visibility:=reexport
+Bundle-ClassPath: .
+Bundle-Version: 1.0.0
+Bundle-Name: fr.inria.diverse.k3.sle.examples.expressions.aspects
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: fr.inria.diverse.k3.sle.examples.expressions.aspe
+ cts; singleton:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: Expressions
+

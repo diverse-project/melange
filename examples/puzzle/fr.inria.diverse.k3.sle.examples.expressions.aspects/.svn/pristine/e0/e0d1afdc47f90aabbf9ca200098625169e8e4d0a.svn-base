@@ -1,0 +1,22 @@
+package Expressions;
+
+import Expressions.VarDeclaration;
+import Expressions.VarDeclarationAspectVarDeclarationAspectProperties;
+import java.util.Map;
+
+@SuppressWarnings("all")
+public class VarDeclarationAspectVarDeclarationAspectContext {
+  public final static VarDeclarationAspectVarDeclarationAspectContext INSTANCE = new VarDeclarationAspectVarDeclarationAspectContext();
+  
+  public static VarDeclarationAspectVarDeclarationAspectProperties getSelf(final VarDeclaration _self) {
+    		if (!INSTANCE.map.containsKey(_self))
+    			INSTANCE.map.put(_self, new Expressions.VarDeclarationAspectVarDeclarationAspectProperties());
+    		return INSTANCE.map.get(_self);
+  }
+  
+  private Map<VarDeclaration, VarDeclarationAspectVarDeclarationAspectProperties> map = new java.util.HashMap<Expressions.VarDeclaration, Expressions.VarDeclarationAspectVarDeclarationAspectProperties>();
+  
+  public Map<VarDeclaration, VarDeclarationAspectVarDeclarationAspectProperties> getMap() {
+    return map;
+  }
+}

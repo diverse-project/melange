@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore2ecore:Ecore2EcoreMappingRoot xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore2ecore="http://www.eclipse.org/emf/2004/Ecore2Ecore" topToBottom="true">
+  <nested>
+    <nested>
+      <inputs href="../models/fsmcore-Required.ecore#//Program/exec"/>
+      <outputs href="../../org.emftext.language.java/models/Java-Provided.ecore#//Method/exec"/>
+    </nested>
+    <inputs href="../models/fsmcore-Required.ecore#//Program"/>
+    <outputs href="../../org.emftext.language.java/models/Java-Provided.ecore#//Method"/>
+  </nested>
+  <nested>
+    <inputs href="../models/fsmcore-Required.ecore#//Program/statements"/>
+    <outputs href="../../org.emftext.language.java/models/Java-Provided.ecore#//StatementListContainer/statements"/>
+  </nested>
+  <nested>
+    <inputs href="../models/fsmcore-Required.ecore#//Conditional"/>
+    <outputs href="../../org.emftext.language.java/models/Java-Provided.ecore#//Condition"/>
+  </nested>
+  <nested>
+    <inputs href="../models/fsmcore-Required.ecore#//Loop"/>
+    <outputs href="../../org.emftext.language.java/models/Java-Provided.ecore#//ForLoop"/>
+  </nested>
+  <nested>
+    <inputs href="../models/fsmcore-Required.ecore#//VarDecl"/>
+    <outputs href="../../org.emftext.language.java/models/Java-Provided.ecore#//LocalVariableStatement"/>
+  </nested>
+  <nested>
+    <nested>
+      <inputs href="../models/fsmcore-Required.ecore#//Statement/test"/>
+      <outputs href="../../org.emftext.language.java/models/Java-Provided.ecore#//Statement/test"/>
+    </nested>
+    <inputs href="../models/fsmcore-Required.ecore#//Statement"/>
+    <outputs href="../../org.emftext.language.java/models/Java-Provided.ecore#//Statement"/>
+  </nested>
+  <nested>
+    <nested>
+      <inputs href="../models/fsmcore-Required.ecore#//Program/exec"/>
+      <outputs href="../../org.emftext.language.java/models/Java-Provided.ecore#//ClassMethod/exec"/>
+    </nested>
+    <inputs href="../models/fsmcore-Required.ecore#//Program"/>
+    <outputs href="../../org.emftext.language.java/models/Java-Provided.ecore#//ClassMethod"/>
+  </nested>
+  <nested>
+    <inputs href="../models/fsmcore-Required.ecore#//Conditional"/>
+    <outputs href="../../org.emftext.language.java/models/Java-Provided.ecore#//Conditional"/>
+  </nested>
+  <inputs href="../models/fsmcore-Required.ecore#/"/>
+  <outputs href="../../org.emftext.language.java/models/Java-Provided.ecore#/"/>
+</ecore2ecore:Ecore2EcoreMappingRoot>

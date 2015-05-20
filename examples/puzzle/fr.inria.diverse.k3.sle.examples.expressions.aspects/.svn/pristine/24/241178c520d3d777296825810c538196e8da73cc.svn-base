@@ -1,0 +1,9 @@
+# List of the Java classes that have been aspectized and name of the aspect classes separated by comma
+Expressions.IntegerLit = Expressions.IntegerAspect
+Expressions.Statement = Expressions.StatementAspect
+Expressions.StringLit = Expressions.StringAspect
+Expressions.VarReference = Expressions.VarReferenceAspect
+Expressions.Literal = Expressions.LiteralAspect
+Expressions.Expression = Expressions.ExpressionAspect
+Expressions.VarDeclaration = Expressions.VarDeclarationAspect
+Expressions.ArithmeticExpression = Expressions.ArithmeticExpressionAspect

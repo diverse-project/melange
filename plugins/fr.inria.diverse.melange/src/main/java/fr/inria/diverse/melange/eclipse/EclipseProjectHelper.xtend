@@ -25,6 +25,8 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.jdt.core.JavaCore
 import org.eclipse.pde.internal.core.natures.PDE
 import org.eclipse.xtext.util.MergeableManifest
+import java.util.List
+import org.eclipse.core.resources.IFolder
 
 class EclipseProjectHelper
 {
@@ -322,5 +324,16 @@ class EclipseProjectHelper
 
 		monitor.worked(1)
 		return f
+	}
+	
+	def static cleanFolders(IProject project, List<String> folders) {
+		for(String folderName : folders){
+			var IFolder folder = project.getFolder(folderName);
+			if(folder.exists){
+				folder.members.forEach[ member | 
+					member.delete(true, new NullProgressMonitor)
+				]
+			}
+		}
 	}
 }

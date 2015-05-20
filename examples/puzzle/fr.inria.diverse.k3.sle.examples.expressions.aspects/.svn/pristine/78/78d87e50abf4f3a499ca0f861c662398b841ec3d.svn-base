@@ -1,0 +1,50 @@
+package Expressions;
+
+import Expressions.Expression;
+import Expressions.ExpressionAspectExpressionAspectProperties;
+import fr.inria.diverse.k3.al.annotationprocessor.Abstract;
+import fr.inria.diverse.k3.al.annotationprocessor.Aspect;
+import java.util.Hashtable;
+
+@Aspect(className = Expression.class)
+@SuppressWarnings("all")
+public abstract class ExpressionAspect {
+  @Abstract
+  public static void eval(final Expression _self, final Hashtable<String, Object> context) {
+    _self_ = Expressions.ExpressionAspectExpressionAspectContext.getSelf(_self);
+    	    
+    	      if (_self instanceof Expressions.VarDeclaration){
+    	      Expressions.VarDeclarationAspect._privk3_eval((Expressions.VarDeclaration)_self,context);
+    	     } else  if (_self instanceof Expressions.Statement){
+    	      Expressions.StatementAspect._privk3_eval((Expressions.Statement)_self,context);
+    	     } else  if (_self instanceof Expressions.Expression){
+    	      Expressions.ExpressionAspect._privk3_eval((Expressions.Expression)_self,context);
+    	     } else  { throw new IllegalArgumentException("Unhandled parameter types: " + java.util.Arrays.<Object>asList(_self).toString()); }
+  }
+  
+  public static Object value(final Expression _self, final Hashtable<String, Object> context) {
+    _self_ = Expressions.ExpressionAspectExpressionAspectContext.getSelf(_self);
+    	    
+    	      if (_self instanceof Expressions.ArithmeticExpression){
+    	     return Expressions.ArithmeticExpressionAspect._privk3_value((Expressions.ArithmeticExpression)_self,context);
+    	     } else  if (_self instanceof Expressions.IntegerLit){
+    	     return Expressions.IntegerAspect._privk3_value((Expressions.IntegerLit)_self,context);
+    	     } else  if (_self instanceof Expressions.StringLit){
+    	     return Expressions.StringAspect._privk3_value((Expressions.StringLit)_self,context);
+    	     } else  if (_self instanceof Expressions.VarReference){
+    	     return Expressions.VarReferenceAspect._privk3_value((Expressions.VarReference)_self,context);
+    	     } else  if (_self instanceof Expressions.Expression){
+    	     return Expressions.ExpressionAspect._privk3_value((Expressions.Expression)_self,context);
+    	     } else  { throw new IllegalArgumentException("Unhandled parameter types: " + java.util.Arrays.<Object>asList(_self).toString()); }
+  }
+  
+  public static ExpressionAspectExpressionAspectProperties _self_;
+  
+  protected static void _privk3_eval(final Expression _self, final Hashtable<String, Object> context) {
+    throw new java.lang.RuntimeException("Not implemented");
+  }
+  
+  protected static Object _privk3_value(final Expression _self, final Hashtable<String, Object> context) {
+    return null;
+  }
+}

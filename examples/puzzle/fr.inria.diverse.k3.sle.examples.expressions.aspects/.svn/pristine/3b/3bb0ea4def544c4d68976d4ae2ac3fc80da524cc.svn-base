@@ -1,0 +1,22 @@
+package Expressions;
+
+import Expressions.StringAspectStringLitAspectProperties;
+import Expressions.StringLit;
+import java.util.Map;
+
+@SuppressWarnings("all")
+public class StringAspectStringLitAspectContext {
+  public final static StringAspectStringLitAspectContext INSTANCE = new StringAspectStringLitAspectContext();
+  
+  public static StringAspectStringLitAspectProperties getSelf(final StringLit _self) {
+    		if (!INSTANCE.map.containsKey(_self))
+    			INSTANCE.map.put(_self, new Expressions.StringAspectStringLitAspectProperties());
+    		return INSTANCE.map.get(_self);
+  }
+  
+  private Map<StringLit, StringAspectStringLitAspectProperties> map = new java.util.HashMap<Expressions.StringLit, Expressions.StringAspectStringLitAspectProperties>();
+  
+  public Map<StringLit, StringAspectStringLitAspectProperties> getMap() {
+    return map;
+  }
+}

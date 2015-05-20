@@ -1,0 +1,6 @@
+package Expressions;
+
+@SuppressWarnings("all")
+public interface IExpressionsInterprete {
+  public abstract void eval(final String modelPath);
+}

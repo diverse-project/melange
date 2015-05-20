@@ -1,0 +1,34 @@
+package Expressions;
+
+import Expressions.IntegerAspectIntegerLitAspectProperties;
+import Expressions.IntegerLit;
+import Expressions.LiteralAspect;
+import fr.inria.diverse.k3.al.annotationprocessor.Aspect;
+import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod;
+import java.util.Hashtable;
+
+@Aspect(className = IntegerLit.class)
+@SuppressWarnings("all")
+public class IntegerAspect extends LiteralAspect {
+  @OverrideAspectMethod
+  public static Object value(final IntegerLit _self, final Hashtable<String, Object> context) {
+    _self_ = Expressions.IntegerAspectIntegerLitAspectContext.getSelf(_self);
+    	    
+    	      if (_self instanceof Expressions.IntegerLit){
+    	     return Expressions.IntegerAspect._privk3_value((Expressions.IntegerLit)_self,context);
+    	     } else  if (_self instanceof Expressions.Expression){
+    	     return Expressions.ExpressionAspect._privk3_value((Expressions.Expression)_self,context);
+    	     } else  { throw new IllegalArgumentException("Unhandled parameter types: " + java.util.Arrays.<Object>asList(_self).toString()); }
+  }
+  
+  public static IntegerAspectIntegerLitAspectProperties _self_;
+  
+  private static Object super_value(final IntegerLit _self, final Hashtable<String, Object> context) {
+    return  Expressions.ExpressionAspect._privk3_value(_self,context);
+  }
+  
+  protected static Object _privk3_value(final IntegerLit _self, final Hashtable<String, Object> context) {
+    int _value = _self.getValue();
+    return new Integer(_value);
+  }
+}

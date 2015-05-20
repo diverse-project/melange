@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Annotations
+Bundle-SymbolicName: fr.inria.diverse.puzzle.annotations
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: fr.inria.diverse.sle.puzzle.annotations.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.xtend.lib.macro,
+ org.eclipse.xtext.xbase;bundle-version="2.7.3"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Export-Package: puzzle.annotations.processor

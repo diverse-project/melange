@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="ASCII"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.inria.diverse.examples.puzzle.fsm.CompleteFSM/src-gen" editDirectory="/fr.inria.diverse.examples.puzzle.fsm.CompleteFSM.edit/src" editorDirectory="/fr.inria.diverse.examples.puzzle.fsm.CompleteFSM.editor/src" modelPluginID="fr.inria.diverse.examples.puzzle.fsm.CompleteFSM" modelName="CompleteFSM" testsDirectory="/fr.inria.diverse.examples.puzzle.fsm.CompleteFSM.tests/src" complianceLevel="8.0" copyrightFields="false" editPluginID="fr.inria.diverse.examples.puzzle.fsm.CompleteFSM.edit" editorPluginID="fr.inria.diverse.examples.puzzle.fsm.CompleteFSM.editor" testsPluginID="fr.inria.diverse.examples.puzzle.fsm.CompleteFSM.tests" operationReflection="true">
+  <foreignModel>CompleteFSM.ecore</foreignModel>
+  <genPackages prefix="CompleteFSM" disposableProviderFactory="true">
+    <ecorePackage href="CompleteFSM.ecore#/"/>
+    <genEnums typeSafeEnumCompatible="false">
+      <ecoreEnum href="CompleteFSM.ecore#//ArithmeticOperator"/>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="CompleteFSM.ecore#//ArithmeticOperator/plus"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="CompleteFSM.ecore#//ArithmeticOperator/minus"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="CompleteFSM.ecore#//ArithmeticOperator/mult"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="CompleteFSM.ecore#//ArithmeticOperator/div"/>
+      </genEnumLiterals>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false">
+      <ecoreEnum href="CompleteFSM.ecore#//RelationalOperator"/>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="CompleteFSM.ecore#//RelationalOperator/lessThan"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="CompleteFSM.ecore#//RelationalOperator/greaterThan"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="CompleteFSM.ecore#//RelationalOperator/equals"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="CompleteFSM.ecore#//RelationalOperator/notEqual"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="CompleteFSM.ecore#//RelationalOperator/lessThanOrEqualTo"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="CompleteFSM.ecore#//RelationalOperator/greaterThanOrEqualTo"/>
+      </genEnumLiterals>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false">
+      <ecoreEnum href="CompleteFSM.ecore#//CRelationalOperator"/>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="CompleteFSM.ecore#//CRelationalOperator/equal"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="CompleteFSM.ecore#//CRelationalOperator/notEqual"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="CompleteFSM.ecore#//CRelationalOperator/greaterThan"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="CompleteFSM.ecore#//CRelationalOperator/lessThan"/>
+      </genEnumLiterals>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false">
+      <ecoreEnum href="CompleteFSM.ecore#//PseudostateKind"/>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="CompleteFSM.ecore#//PseudostateKind/initial"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="CompleteFSM.ecore#//PseudostateKind/conditional"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="CompleteFSM.ecore#//PseudostateKind/fork"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="CompleteFSM.ecore#//PseudostateKind/join"/>
+      </genEnumLiterals>
+    </genEnums>
+    <genClasses image="false">
+      <ecoreClass href="CompleteFSM.ecore#//Statement"/>
+      <genOperations>
+        <ecoreOperation href="CompleteFSM.ecore#//Statement/eval"/>
+        <genParameters>
+          <ecoreParameter href="CompleteFSM.ecore#//Statement/eval/context"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//Program"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//Program/statements"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="CompleteFSM.ecore#//Program/eval"/>
+        <genParameters>
+          <ecoreParameter href="CompleteFSM.ecore#//Program/eval/context"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//Conditional"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//Conditional/condition"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//Conditional/body"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="CompleteFSM.ecore#//Conditional/eval"/>
+        <genParameters>
+          <ecoreParameter href="CompleteFSM.ecore#//Conditional/eval/context"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//Loop"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//Loop/guard"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//Loop/body"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="CompleteFSM.ecore#//Loop/eval"/>
+        <genParameters>
+          <ecoreParameter href="CompleteFSM.ecore#//Loop/eval/context"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//VarDecl"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="CompleteFSM.ecore#//VarDecl/name"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//VarDecl/expr"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="CompleteFSM.ecore#//VarDecl/eval"/>
+        <genParameters>
+          <ecoreParameter href="CompleteFSM.ecore#//VarDecl/eval/context"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false">
+      <ecoreClass href="CompleteFSM.ecore#//Expression"/>
+      <genOperations>
+        <ecoreOperation href="CompleteFSM.ecore#//Expression/obtainValue"/>
+        <genParameters>
+          <ecoreParameter href="CompleteFSM.ecore#//Expression/obtainValue/context"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false">
+      <ecoreClass href="CompleteFSM.ecore#//Literal"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//IntegerLit"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="CompleteFSM.ecore#//IntegerLit/value"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="CompleteFSM.ecore#//IntegerLit/obtainValue"/>
+        <genParameters>
+          <ecoreParameter href="CompleteFSM.ecore#//IntegerLit/obtainValue/context"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//StringLit"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="CompleteFSM.ecore#//StringLit/value"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="CompleteFSM.ecore#//StringLit/obtainValue"/>
+        <genParameters>
+          <ecoreParameter href="CompleteFSM.ecore#//StringLit/obtainValue/context"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//BoolLit"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="CompleteFSM.ecore#//BoolLit/value"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//ArithmeticExpression"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="CompleteFSM.ecore#//ArithmeticExpression/operator"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//ArithmeticExpression/left"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//ArithmeticExpression/right"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="CompleteFSM.ecore#//ArithmeticExpression/obtainValue"/>
+        <genParameters>
+          <ecoreParameter href="CompleteFSM.ecore#//ArithmeticExpression/obtainValue/context"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//RelationalExpression"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="CompleteFSM.ecore#//RelationalExpression/operator"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//RelationalExpression/left"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//RelationalExpression/right"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//VarReference"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//VarReference/ref"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//ConsoleOutput"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="CompleteFSM.ecore#//ConsoleOutput/input"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//Println"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//Print"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//Assignation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//Assignation/varRef"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//Assignation/expression"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//PutInMemory"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="CompleteFSM.ecore#//PutInMemory/key"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//PutInMemory/value"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//GetFromMemory"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="CompleteFSM.ecore#//GetFromMemory/key"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//Wait"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="CompleteFSM.ecore#//Wait/miliseconds"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//Constraint"/>
+      <genOperations>
+        <ecoreOperation href="CompleteFSM.ecore#//Constraint/evalConstraint"/>
+        <genParameters>
+          <ecoreParameter href="CompleteFSM.ecore#//Constraint/evalConstraint/context"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//RelationalConstraint"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="CompleteFSM.ecore#//RelationalConstraint/operator"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//RelationalConstraint/left"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//RelationalConstraint/right"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="CompleteFSM.ecore#//RelationalConstraint/evalConstraint"/>
+        <genParameters>
+          <ecoreParameter href="CompleteFSM.ecore#//RelationalConstraint/evalConstraint/context"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false">
+      <ecoreClass href="CompleteFSM.ecore#//CExpression"/>
+      <genOperations>
+        <ecoreOperation href="CompleteFSM.ecore#//CExpression/obtainValue"/>
+        <genParameters>
+          <ecoreParameter href="CompleteFSM.ecore#//CExpression/obtainValue/context"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false">
+      <ecoreClass href="CompleteFSM.ecore#//CLiteral"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//CInteger"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="CompleteFSM.ecore#//CInteger/value"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="CompleteFSM.ecore#//CInteger/obtainValue"/>
+        <genParameters>
+          <ecoreParameter href="CompleteFSM.ecore#//CInteger/obtainValue/context"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//CVarRef"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="CompleteFSM.ecore#//CVarRef/name"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="CompleteFSM.ecore#//CVarRef/obtainValue"/>
+        <genParameters>
+          <ecoreParameter href="CompleteFSM.ecore#//CVarRef/obtainValue/context"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//StateMachine"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//StateMachine/subvertex"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//StateMachine/transitions"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses image="false">
+      <ecoreClass href="CompleteFSM.ecore#//Vertex"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//Vertex/incoming"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//Vertex/outgoing"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//State"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//State/doActivity"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//State/entry"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//State/exit"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//Transition"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//Transition/trigger"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//Transition/target"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//Transition/source"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//Transition/guard"/>
+      </genFeatures>
+      <genFeatures property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//Transition/stateMachine"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//Transition/effect"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//NamedElement"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="CompleteFSM.ecore#//NamedElement/name"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//Trigger"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="CompleteFSM.ecore#//Trigger/expression"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//Pseudostate"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="CompleteFSM.ecore#//Pseudostate/kind"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//FinalState"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//OrTrigger"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//OrTrigger/right"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//OrTrigger/left"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//AndTrigger"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//AndTrigger/right"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//AndTrigger/left"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="CompleteFSM.ecore#//NotTrigger"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//NotTrigger/negated"/>
+      </genFeatures>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

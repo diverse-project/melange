@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Refactorings
+Bundle-SymbolicName: example.java.refactorings
+Bundle-Version: 1.0.0.qualifier
+Export-Package: example.java.refactorings
+Require-Bundle: fr.inria.diverse.sle.puzzle.annotations;bundle-version="1.0.0"

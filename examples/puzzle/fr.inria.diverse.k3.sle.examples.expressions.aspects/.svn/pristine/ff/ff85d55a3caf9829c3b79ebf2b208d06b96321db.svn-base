@@ -1,0 +1,34 @@
+package Expressions;
+
+import Expressions.ExpressionAspect;
+import Expressions.VarReference;
+import Expressions.VarReferenceAspectVarReferenceAspectProperties;
+import fr.inria.diverse.k3.al.annotationprocessor.Aspect;
+import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod;
+import java.util.Hashtable;
+
+@Aspect(className = VarReference.class)
+@SuppressWarnings("all")
+public class VarReferenceAspect extends ExpressionAspect {
+  @OverrideAspectMethod
+  public static Object value(final VarReference _self, final Hashtable<String, Object> context) {
+    _self_ = Expressions.VarReferenceAspectVarReferenceAspectContext.getSelf(_self);
+    	    
+    	      if (_self instanceof Expressions.VarReference){
+    	     return Expressions.VarReferenceAspect._privk3_value((Expressions.VarReference)_self,context);
+    	     } else  if (_self instanceof Expressions.Expression){
+    	     return Expressions.ExpressionAspect._privk3_value((Expressions.Expression)_self,context);
+    	     } else  { throw new IllegalArgumentException("Unhandled parameter types: " + java.util.Arrays.<Object>asList(_self).toString()); }
+  }
+  
+  public static VarReferenceAspectVarReferenceAspectProperties _self_;
+  
+  private static Object super_value(final VarReference _self, final Hashtable<String, Object> context) {
+    return  Expressions.ExpressionAspect._privk3_value(_self,context);
+  }
+  
+  protected static Object _privk3_value(final VarReference _self, final Hashtable<String, Object> context) {
+    String _name = _self.getName();
+    return context.get(_name);
+  }
+}

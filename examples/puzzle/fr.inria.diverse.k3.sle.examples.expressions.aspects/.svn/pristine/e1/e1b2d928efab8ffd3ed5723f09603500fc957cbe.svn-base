@@ -1,0 +1,108 @@
+package Expressions;
+
+import Expressions.ArithmeticExpression;
+import Expressions.ArithmeticExpressionAspectArithmeticExpressionAspectProperties;
+import Expressions.ArithmeticOperator;
+import Expressions.Expression;
+import Expressions.ExpressionAspect;
+import Expressions.Literal;
+import Expressions.VarReference;
+import fr.inria.diverse.k3.al.annotationprocessor.Aspect;
+import java.util.Hashtable;
+
+@Aspect(className = ArithmeticExpression.class)
+@SuppressWarnings("all")
+public class ArithmeticExpressionAspect extends ExpressionAspect {
+  public static Object value(final ArithmeticExpression _self, final Hashtable<String, Object> context) {
+    _self_ = Expressions.ArithmeticExpressionAspectArithmeticExpressionAspectContext.getSelf(_self);
+    	    
+    	      if (_self instanceof Expressions.ArithmeticExpression){
+    	     return Expressions.ArithmeticExpressionAspect._privk3_value((Expressions.ArithmeticExpression)_self,context);
+    	     } else  if (_self instanceof Expressions.Expression){
+    	     return Expressions.ExpressionAspect._privk3_value((Expressions.Expression)_self,context);
+    	     } else  { throw new IllegalArgumentException("Unhandled parameter types: " + java.util.Arrays.<Object>asList(_self).toString()); }
+  }
+  
+  public static ArithmeticExpressionAspectArithmeticExpressionAspectProperties _self_;
+  
+  protected static Object _privk3_value(final ArithmeticExpression _self, final Hashtable<String, Object> context) {
+    Object leftValue = null;
+    Expression _left = _self.getLeft();
+    if ((_left instanceof ArithmeticExpression)) {
+      Expression _left_1 = _self.getLeft();
+      Object _value = ArithmeticExpressionAspect.value(((ArithmeticExpression) _left_1), context);
+      leftValue = _value;
+    } else {
+      Expression _left_2 = _self.getLeft();
+      if ((_left_2 instanceof Literal)) {
+        Expression _left_3 = _self.getLeft();
+        Object _value_1 = ExpressionAspect.value(((Literal) _left_3), context);
+        leftValue = _value_1;
+      } else {
+        Expression _left_4 = _self.getLeft();
+        if ((_left_4 instanceof VarReference)) {
+          Expression _left_5 = _self.getLeft();
+          Object _value_2 = ExpressionAspect.value(((VarReference) _left_5), context);
+          leftValue = _value_2;
+        }
+      }
+    }
+    Object rightValue = null;
+    Expression _right = _self.getRight();
+    if ((_right instanceof ArithmeticExpression)) {
+      Expression _right_1 = _self.getRight();
+      Object _value_3 = ArithmeticExpressionAspect.value(((ArithmeticExpression) _right_1), context);
+      rightValue = _value_3;
+    } else {
+      Expression _right_2 = _self.getRight();
+      if ((_right_2 instanceof Literal)) {
+        Expression _right_3 = _self.getRight();
+        Object _value_4 = ExpressionAspect.value(((Literal) _right_3), context);
+        rightValue = _value_4;
+      } else {
+        Expression _right_4 = _self.getRight();
+        if ((_right_4 instanceof VarReference)) {
+          Expression _right_5 = _self.getRight();
+          Object _value_5 = ExpressionAspect.value(((VarReference) _right_5), context);
+          rightValue = _value_5;
+        }
+      }
+    }
+    int result = 0;
+    ArithmeticOperator _operator = _self.getOperator();
+    int _value_6 = _operator.getValue();
+    boolean _equals = (_value_6 == 0);
+    if (_equals) {
+      int _intValue = ((Integer) leftValue).intValue();
+      int _intValue_1 = ((Integer) rightValue).intValue();
+      int _plus = (_intValue + _intValue_1);
+      result = _plus;
+    } else {
+      ArithmeticOperator _operator_1 = _self.getOperator();
+      int _value_7 = _operator_1.getValue();
+      boolean _equals_1 = (_value_7 == 1);
+      if (_equals_1) {
+        int _intValue_2 = ((Integer) leftValue).intValue();
+        int _intValue_3 = ((Integer) rightValue).intValue();
+        int _minus = (_intValue_2 - _intValue_3);
+        result = _minus;
+      } else {
+        ArithmeticOperator _operator_2 = _self.getOperator();
+        int _value_8 = _operator_2.getValue();
+        boolean _equals_2 = (_value_8 == 2);
+        if (_equals_2) {
+          int _intValue_4 = ((Integer) leftValue).intValue();
+          int _intValue_5 = ((Integer) rightValue).intValue();
+          int _multiply = (_intValue_4 * _intValue_5);
+          result = _multiply;
+        } else {
+          int _intValue_6 = ((Integer) leftValue).intValue();
+          int _intValue_7 = ((Integer) rightValue).intValue();
+          int _divide = (_intValue_6 / _intValue_7);
+          result = _divide;
+        }
+      }
+    }
+    return new Integer(result);
+  }
+}

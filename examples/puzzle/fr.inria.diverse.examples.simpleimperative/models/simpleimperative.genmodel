@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.inria.diverse.examples.simpleimperative/src"
+    modelPluginID="fr.inria.diverse.examples.simpleimperative" modelName="Simpleimperative"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>simpleimperative.ecore</foreignModel>
+  <genPackages prefix="Simpleimperativelanguage" disposableProviderFactory="true"
+      ecorePackage="simpleimperative.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="simpleimperative.ecore#//ArithmeticOperator">
+      <genEnumLiterals ecoreEnumLiteral="simpleimperative.ecore#//ArithmeticOperator/plus"/>
+      <genEnumLiterals ecoreEnumLiteral="simpleimperative.ecore#//ArithmeticOperator/minus"/>
+      <genEnumLiterals ecoreEnumLiteral="simpleimperative.ecore#//ArithmeticOperator/mult"/>
+      <genEnumLiterals ecoreEnumLiteral="simpleimperative.ecore#//ArithmeticOperator/div"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="simpleimperative.ecore#//RelationalOperator">
+      <genEnumLiterals ecoreEnumLiteral="simpleimperative.ecore#//RelationalOperator/lessThan"/>
+      <genEnumLiterals ecoreEnumLiteral="simpleimperative.ecore#//RelationalOperator/greaterThan"/>
+      <genEnumLiterals ecoreEnumLiteral="simpleimperative.ecore#//RelationalOperator/equals"/>
+      <genEnumLiterals ecoreEnumLiteral="simpleimperative.ecore#//RelationalOperator/notEqual"/>
+      <genEnumLiterals ecoreEnumLiteral="simpleimperative.ecore#//RelationalOperator/lessThanOrEqualTo"/>
+      <genEnumLiterals ecoreEnumLiteral="simpleimperative.ecore#//RelationalOperator/greaterThanOrEqualTo"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="simpleimperative.ecore#//Statement"/>
+    <genClasses ecoreClass="simpleimperative.ecore#//Program">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simpleimperative.ecore#//Program/statements"/>
+    </genClasses>
+    <genClasses ecoreClass="simpleimperative.ecore#//Conditional">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simpleimperative.ecore#//Conditional/condition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simpleimperative.ecore#//Conditional/body"/>
+    </genClasses>
+    <genClasses ecoreClass="simpleimperative.ecore#//Loop">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simpleimperative.ecore#//Loop/guard"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simpleimperative.ecore#//Loop/body"/>
+    </genClasses>
+    <genClasses ecoreClass="simpleimperative.ecore#//VarDecl">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simpleimperative.ecore#//VarDecl/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simpleimperative.ecore#//VarDecl/expr"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="simpleimperative.ecore#//Expression"/>
+    <genClasses image="false" ecoreClass="simpleimperative.ecore#//Literal"/>
+    <genClasses ecoreClass="simpleimperative.ecore#//IntegerLit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simpleimperative.ecore#//IntegerLit/value"/>
+    </genClasses>
+    <genClasses ecoreClass="simpleimperative.ecore#//StringLit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simpleimperative.ecore#//StringLit/value"/>
+    </genClasses>
+    <genClasses ecoreClass="simpleimperative.ecore#//BoolLit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simpleimperative.ecore#//BoolLit/value"/>
+    </genClasses>
+    <genClasses ecoreClass="simpleimperative.ecore#//ArithmeticExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simpleimperative.ecore#//ArithmeticExpression/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simpleimperative.ecore#//ArithmeticExpression/right"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simpleimperative.ecore#//ArithmeticExpression/operator"/>
+    </genClasses>
+    <genClasses ecoreClass="simpleimperative.ecore#//RelationalExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simpleimperative.ecore#//RelationalExpression/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simpleimperative.ecore#//RelationalExpression/right"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simpleimperative.ecore#//RelationalExpression/operator"/>
+    </genClasses>
+    <genClasses ecoreClass="simpleimperative.ecore#//VarReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference simpleimperative.ecore#//VarReference/ref"/>
+    </genClasses>
+    <genClasses ecoreClass="simpleimperative.ecore#//ConsoleOutput">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simpleimperative.ecore#//ConsoleOutput/input"/>
+    </genClasses>
+    <genClasses ecoreClass="simpleimperative.ecore#//Println"/>
+    <genClasses ecoreClass="simpleimperative.ecore#//Print"/>
+    <genClasses ecoreClass="simpleimperative.ecore#//Assignation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference simpleimperative.ecore#//Assignation/varRef"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simpleimperative.ecore#//Assignation/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="simpleimperative.ecore#//PutInMemory">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simpleimperative.ecore#//PutInMemory/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simpleimperative.ecore#//PutInMemory/key"/>
+    </genClasses>
+    <genClasses ecoreClass="simpleimperative.ecore#//GetFromMemory">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simpleimperative.ecore#//GetFromMemory/key"/>
+    </genClasses>
+    <genClasses ecoreClass="simpleimperative.ecore#//Wait">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simpleimperative.ecore#//Wait/miliseconds"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

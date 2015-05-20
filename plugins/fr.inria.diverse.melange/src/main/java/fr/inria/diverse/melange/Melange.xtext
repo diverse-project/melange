@@ -1,6 +1,7 @@
 grammar fr.inria.diverse.melange.Melange with org.eclipse.xtext.xbase.Xbase
 
 import "http://www.inria.fr/diverse/melange"
+import "http://www.inria.fr/diverse/puzzle" as puzzle
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 //import "http://kompren/fr.inria.diverse.kompren" as kompren
 
@@ -11,7 +12,7 @@ ModelTypingSpace:
 ;
 
 Element:
-	Metamodel | EcoreModelType | TransformationDecl | Mapping
+	Metamodel | EcoreModelType | TransformationDecl | Mapping | Composition 
 ;
 
 TransformationDecl returns Transformation:
@@ -75,6 +76,42 @@ ClassMapping returns ClassBinding:
 PropertyMapping returns PropertyBinding:
 	from=STRING ":" to=STRING
 ;
+
+/* --- Puzzle Rules --- */
+Composition returns puzzle::Composition :
+	'composition' name = ValidID '{'
+		(statements+=Statement (statements+=Statement)* )?
+	'}'
+;
+
+Statement returns puzzle::Statement :
+	Aggregation | Extension
+; 
+
+//VarDecl returns puzzle::VarDecl:
+//	'var' name = ValidID ":=" expression = Expression;
+
+
+Expression returns puzzle::Expression :
+	LanguageRef
+;
+
+LanguageRef returns puzzle::LanguageRef :
+	ref = [Metamodel|ValidID]
+;
+
+//VarRef returns puzzle::VarRef :
+//	"&" ref = [puzzle::VarDecl|ValidID]
+//;
+
+Aggregation returns puzzle::Aggregation :
+	"aggregation" "(" requiring = Expression "," providing = Expression ("," binding=STRING)? ")" 
+;
+
+Extension returns puzzle::Extension :
+	"extension" "(" base = Expression "," extension = Expression ")"
+;
+
 
 /* --- Kompren Rules --- */
 //Slicer returns kompren::Slicer: 'slicer' (active?='active')? (strict?='strict')? name=QualifiedName '{'

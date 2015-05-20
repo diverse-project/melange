@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="ASCII"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.inria.diverse.examples.fsm.core/src" modelPluginID="fr.inria.diverse.examples.fsm.core" modelName="Fsmcore" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>fsmcore.ecore</foreignModel>
+  <genPackages prefix="Fsmcore" disposableProviderFactory="true">
+    <ecorePackage href="fsmcore.ecore#/"/>
+    <genEnums typeSafeEnumCompatible="false">
+      <ecoreEnum href="fsmcore.ecore#//PseudostateKind"/>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="fsmcore.ecore#//PseudostateKind/initial"/>
+      </genEnumLiterals>
+    </genEnums>
+    <genClasses>
+      <ecoreClass href="fsmcore.ecore#//StateMachine"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="fsmcore.ecore#//StateMachine/subvertex"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="fsmcore.ecore#//StateMachine/transitions"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses image="false">
+      <ecoreClass href="fsmcore.ecore#//Vertex"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="fsmcore.ecore#//Vertex/incoming"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="fsmcore.ecore#//Vertex/outgoing"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="fsmcore.ecore#//State"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="fsmcore.ecore#//State/doActivity"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="fsmcore.ecore#//State/entry"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="fsmcore.ecore#//State/exit"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="fsmcore.ecore#//Transition"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="fsmcore.ecore#//Transition/trigger"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="fsmcore.ecore#//Transition/target"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="fsmcore.ecore#//Transition/source"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="fsmcore.ecore#//Transition/guard"/>
+      </genFeatures>
+      <genFeatures property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="fsmcore.ecore#//Transition/stateMachine"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="fsmcore.ecore#//NamedElement"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="fsmcore.ecore#//NamedElement/name"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="fsmcore.ecore#//Trigger"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="fsmcore.ecore#//Trigger/expression"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="fsmcore.ecore#//Program"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="fsmcore.ecore#//Program/statements"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="fsmcore.ecore#//Program/eval"/>
+        <genParameters>
+          <ecoreParameter href="fsmcore.ecore#//Program/eval/context"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false">
+      <ecoreClass href="fsmcore.ecore#//Statement"/>
+      <genOperations>
+        <ecoreOperation href="fsmcore.ecore#//Statement/eval"/>
+        <genParameters>
+          <ecoreParameter href="fsmcore.ecore#//Statement/eval/context"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="fsmcore.ecore#//Conditional"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="fsmcore.ecore#//Loop"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="fsmcore.ecore#//VarDecl"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="fsmcore.ecore#//Constraint"/>
+      <genOperations>
+        <ecoreOperation href="fsmcore.ecore#//Constraint/evalConstraint"/>
+        <genParameters>
+          <ecoreParameter href="fsmcore.ecore#//Constraint/evalConstraint/context"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="fsmcore.ecore#//Pseudostate"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="fsmcore.ecore#//Pseudostate/kind"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="fsmcore.ecore#//FinalState"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

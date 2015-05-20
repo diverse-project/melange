@@ -42,6 +42,8 @@ Workflow {
 		registerGenModelFile = "platform:/resource/org.eclipse.xtext.xbase/model/Xbase.genmodel"
 		registerGeneratedEPackage = "fr.inria.diverse.melange.metamodel.melange.MelangePackage"
 		registerGenModelFile = "platform:/resource/fr.inria.diverse.melange.metamodel/model/Melange.genmodel"
+		registerGeneratedEPackage = "puzzle.PuzzlePackage"
+		registerGenModelFile = "platform:/resource/fr.inria.diverse.puzzle.metamodel/model/Puzzle.genmodel"
 //		registerGeneratedEPackage = "kompren.KomprenPackage"
 //		registerGenModelFile = "platform:/resource/fr.inria.diverse.kompren.model/model/kompren.genmodel"
 	}

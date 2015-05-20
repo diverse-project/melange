@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+
+   <extension
+         point="fr.inria.diverse.melange.modeltype">
+      <modeltype
+            uri="http://corefsmmt/"
+            id="fsm.CoreFSMMT">
+      </modeltype>
+      <modeltype
+            uri="http://imperativelanguagemt/"
+            id="fsm.ImperativeLanguageMT">
+      </modeltype>
+      <modeltype
+            uri="http://constraintslanguagemt/"
+            id="fsm.ConstraintsLanguageMT">
+      </modeltype>
+      <modeltype
+            uri="http://transitioneffectmt/"
+            id="fsm.TransitionEffectMT">
+      </modeltype>
+      <modeltype
+            uri="http://forkpseudostatemt/"
+            id="fsm.ForkPseudostateMT">
+      </modeltype>
+      <modeltype
+            uri="http://joinpseudostatemt/"
+            id="fsm.JoinPseudostateMT">
+         <subtyping
+               modeltypeId="fsm.ForkPseudostateMT">
+         </subtyping>
+      </modeltype>
+      <modeltype
+            uri="http://nottriggermt/"
+            id="fsm.NotTriggerMT">
+      </modeltype>
+      <modeltype
+            uri="http://andtriggermt/"
+            id="fsm.AndTriggerMT">
+      </modeltype>
+      <modeltype
+            uri="http://ortriggermt/"
+            id="fsm.OrTriggerMT">
+      </modeltype>
+      <modeltype
+            uri="http://conditionalmt/"
+            id="fsm.ConditionalMT">
+         <subtyping
+               modeltypeId="fsm.ForkPseudostateMT">
+         </subtyping>
+      </modeltype>
+   </extension>
+   <extension
+         point="fr.inria.diverse.melange.language">
+      <language
+            exactType="fsm.CoreFSMMT"
+            description="Core FSM. Contains the basic concepts of StateMachine, State, Transition, and Trigger."
+            uri="http://fr.inria.diverse.examples.fsm.core"
+            id="fsm.CoreFSM">
+         <adapter
+               class="fsm.corefsm.adapters.corefsmmt.CoreFSMAdapter"
+               modeltypeId="fsm.CoreFSMMT">
+         </adapter>
+      </language>
+      <language
+            exactType="fsm.ImperativeLanguageMT"
+            description="A simple imperative language for expressing states&apos; actions."
+            uri="http://simple.imperative.language"
+            id="fsm.ImperativeLanguage">
+         <adapter
+               class="fsm.imperativelanguage.adapters.imperativelanguagemt.ImperativeLanguageAdapter"
+               modeltypeId="fsm.ImperativeLanguageMT">
+         </adapter>
+      </language>
+      <language
+            exactType="fsm.ConstraintsLanguageMT"
+            description="A simple constraints language for expressing transitions&apos; guards."
+            uri="http://simpleconstraintslanguage"
+            id="fsm.ConstraintsLanguage">
+         <adapter
+               class="fsm.constraintslanguage.adapters.constraintslanguagemt.ConstraintsLanguageAdapter"
+               modeltypeId="fsm.ConstraintsLanguageMT">
+         </adapter>
+      </language>
+      <language
+            exactType="fsm.TransitionEffectMT"
+            description="Transition effect: Contains the concept &apos;Effect&apos; that enables effects in the transitions"
+            uri="http://transitioneffect"
+            id="fsm.TransitionEffect">
+         <adapter
+               class="fsm.transitioneffect.adapters.transitioneffectmt.TransitionEffectAdapter"
+               modeltypeId="fsm.TransitionEffectMT">
+         </adapter>
+      </language>
+      <language
+            exactType="fsm.ForkPseudostateMT"
+            description="Fork pseudostate: Contains the concept &apos;ForkPseudostate&apos; that enables more complex transitions"
+            uri="forkpseudostate"
+            id="fsm.ForkPseudostate">
+         <adapter
+               class="fsm.forkpseudostate.adapters.forkpseudostatemt.ForkPseudostateAdapter"
+               modeltypeId="fsm.ForkPseudostateMT">
+         </adapter>
+      </language>
+      <language
+            exactType="fsm.JoinPseudostateMT"
+            description="Join pseudostate: Contains the concept &apos;ForkPseudostate&apos; that enables more complex transitions"
+            uri="http://joinpseudostate"
+            id="fsm.JoinPseudostate">
+         <adapter
+               class="fsm.joinpseudostate.adapters.forkpseudostatemt.JoinPseudostateAdapter"
+               modeltypeId="fsm.ForkPseudostateMT">
+         </adapter>
+         <adapter
+               class="fsm.joinpseudostate.adapters.joinpseudostatemt.JoinPseudostateAdapter"
+               modeltypeId="fsm.JoinPseudostateMT">
+         </adapter>
+      </language>
+      <language
+            exactType="fsm.NotTriggerMT"
+            description="Not Trigger: Contains the capability for supporting negation on the triggers of the transitions."
+            uri="http://nottrigger"
+            id="fsm.NotTrigger">
+         <adapter
+               class="fsm.nottrigger.adapters.nottriggermt.NotTriggerAdapter"
+               modeltypeId="fsm.NotTriggerMT">
+         </adapter>
+      </language>
+      <language
+            exactType="fsm.AndTriggerMT"
+            description="And Trigger: Contains the capability for supporting disjunction on the triggers of the transitions."
+            uri="http://andtrigger"
+            id="fsm.AndTrigger">
+         <adapter
+               class="fsm.andtrigger.adapters.andtriggermt.AndTriggerAdapter"
+               modeltypeId="fsm.AndTriggerMT">
+         </adapter>
+      </language>
+      <language
+            exactType="fsm.OrTriggerMT"
+            description="Or Trigger: Contains the capability for supporting conjunction on the triggers of the transitions."
+            uri="http://ortrigger"
+            id="fsm.OrTrigger">
+         <adapter
+               class="fsm.ortrigger.adapters.ortriggermt.OrTriggerAdapter"
+               modeltypeId="fsm.OrTriggerMT">
+         </adapter>
+      </language>
+      <language
+            exactType="fsm.ConditionalMT"
+            description="Conditional: Contains the capability for supporting conditional pseudo-states."
+            uri="http://conditionalpseudostate"
+            id="fsm.Conditional">
+         <adapter
+               class="fsm.conditional.adapters.forkpseudostatemt.ConditionalAdapter"
+               modeltypeId="fsm.ForkPseudostateMT">
+         </adapter>
+         <adapter
+               class="fsm.conditional.adapters.conditionalmt.ConditionalAdapter"
+               modeltypeId="fsm.ConditionalMT">
+         </adapter>
+      </language>
+   </extension>
+
+</plugin>

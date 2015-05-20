@@ -1,0 +1,22 @@
+package Expressions;
+
+import Expressions.IntegerAspectIntegerLitAspectProperties;
+import Expressions.IntegerLit;
+import java.util.Map;
+
+@SuppressWarnings("all")
+public class IntegerAspectIntegerLitAspectContext {
+  public final static IntegerAspectIntegerLitAspectContext INSTANCE = new IntegerAspectIntegerLitAspectContext();
+  
+  public static IntegerAspectIntegerLitAspectProperties getSelf(final IntegerLit _self) {
+    		if (!INSTANCE.map.containsKey(_self))
+    			INSTANCE.map.put(_self, new Expressions.IntegerAspectIntegerLitAspectProperties());
+    		return INSTANCE.map.get(_self);
+  }
+  
+  private Map<IntegerLit, IntegerAspectIntegerLitAspectProperties> map = new java.util.HashMap<Expressions.IntegerLit, Expressions.IntegerAspectIntegerLitAspectProperties>();
+  
+  public Map<IntegerLit, IntegerAspectIntegerLitAspectProperties> getMap() {
+    return map;
+  }
+}

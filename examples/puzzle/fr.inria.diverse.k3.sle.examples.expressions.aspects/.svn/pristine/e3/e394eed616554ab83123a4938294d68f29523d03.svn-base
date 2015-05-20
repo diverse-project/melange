@@ -1,0 +1,45 @@
+package Expressions;
+
+import Expressions.Expression;
+import Expressions.ExpressionAspect;
+import Expressions.ExpressionsPackage;
+import Expressions.IExpressionsInterprete;
+import java.util.Hashtable;
+import java.util.Map;
+import java.util.Set;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.xtext.xbase.lib.InputOutput;
+
+@SuppressWarnings("all")
+public class ExpressionsInterpreter implements IExpressionsInterprete {
+  public void eval(final String modelPath) {
+    XMIResourceFactoryImpl fact = new XMIResourceFactoryImpl();
+    boolean _containsKey = EPackage.Registry.INSTANCE.containsKey(ExpressionsPackage.eNS_URI);
+    boolean _not = (!_containsKey);
+    if (_not) {
+      EPackage.Registry.INSTANCE.put(ExpressionsPackage.eNS_URI, ExpressionsPackage.eINSTANCE);
+    }
+    Map<String, Object> _extensionToFactoryMap = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
+    _extensionToFactoryMap.put("*", fact);
+    ResourceSetImpl rs = new ResourceSetImpl();
+    URI uri = URI.createFileURI(modelPath);
+    Resource res = rs.getResource(uri, true);
+    EList<EObject> _contents = res.getContents();
+    EObject _get = _contents.get(0);
+    Expression _expression = ((Expression) _get);
+    Hashtable<String, Object> context = new Hashtable<String, Object>();
+    ExpressionAspect.eval(_expression, context);
+    Set<String> _keySet = context.keySet();
+    for (final Object _key : _keySet) {
+      Object _get_1 = context.get(_key);
+      String _plus = ((("Key: " + _key) + " - Object: ") + _get_1);
+      InputOutput.<String>println(_plus);
+    }
+  }
+}

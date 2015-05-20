@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore2ecore:Ecore2EcoreMappingRoot xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore2ecore="http://www.eclipse.org/emf/2004/Ecore2Ecore" topToBottom="true">
+  <nested>
+    <nested>
+      <inputs href="../models/fsmcore-Required.ecore#//Program/statements"/>
+      <outputs href="../../org.eclipse.gmt.modisco.csharp/model/CSharp-Provided.ecore#//Block/statements"/>
+    </nested>
+    <inputs href="../models/fsmcore-Required.ecore#//Program"/>
+    <outputs href="../../org.eclipse.gmt.modisco.csharp/model/CSharp-Provided.ecore#//Block"/>
+  </nested>
+  <nested>
+    <inputs href="../models/fsmcore-Required.ecore#//Statement"/>
+    <outputs href="../../org.eclipse.gmt.modisco.csharp/model/CSharp-Provided.ecore#//Statement"/>
+  </nested>
+  <nested>
+    <inputs href="../models/fsmcore-Required.ecore#//Conditional"/>
+    <outputs href="../../org.eclipse.gmt.modisco.csharp/model/CSharp-Provided.ecore#//IfStatement"/>
+  </nested>
+  <nested>
+    <inputs href="../models/fsmcore-Required.ecore#//Loop"/>
+    <outputs href="../../org.eclipse.gmt.modisco.csharp/model/CSharp-Provided.ecore#//ForStatement"/>
+  </nested>
+  <nested>
+    <inputs href="../models/fsmcore-Required.ecore#//VarDecl"/>
+    <outputs href="../../org.eclipse.gmt.modisco.csharp/model/CSharp-Provided.ecore#//VariableDeclaration"/>
+  </nested>
+  <inputs href="../models/fsmcore-Required.ecore#/"/>
+  <outputs href="../../org.eclipse.gmt.modisco.csharp/model/CSharp-Provided.ecore#/"/>
+</ecore2ecore:Ecore2EcoreMappingRoot>

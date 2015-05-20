@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.inria.diverse.k3.sle.examples.expressions/src"
+    modelPluginID="fr.inria.diverse.k3.sle.examples.expressions" modelName="Expressions"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="7.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>Expressions.ecore</foreignModel>
+  <genPackages prefix="Expressions" disposableProviderFactory="true" ecorePackage="Expressions.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Expressions.ecore#//ArithmeticOperator">
+      <genEnumLiterals ecoreEnumLiteral="Expressions.ecore#//ArithmeticOperator/plus"/>
+      <genEnumLiterals ecoreEnumLiteral="Expressions.ecore#//ArithmeticOperator/minus"/>
+      <genEnumLiterals ecoreEnumLiteral="Expressions.ecore#//ArithmeticOperator/mult"/>
+      <genEnumLiterals ecoreEnumLiteral="Expressions.ecore#//ArithmeticOperator/div"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="Expressions.ecore#//Expression"/>
+    <genClasses ecoreClass="Expressions.ecore#//Statement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expressions.ecore#//Statement/expressions"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Expressions.ecore#//Literal"/>
+    <genClasses ecoreClass="Expressions.ecore#//IntegerLit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expressions.ecore#//IntegerLit/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Expressions.ecore#//StringLit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expressions.ecore#//StringLit/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Expressions.ecore#//ArithmeticExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expressions.ecore#//ArithmeticExpression/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expressions.ecore#//ArithmeticExpression/right"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expressions.ecore#//ArithmeticExpression/operator"/>
+    </genClasses>
+    <genClasses ecoreClass="Expressions.ecore#//VarDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expressions.ecore#//VarDeclaration/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expressions.ecore#//VarDeclaration/expr"/>
+    </genClasses>
+    <genClasses ecoreClass="Expressions.ecore#//VarReference">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expressions.ecore#//VarReference/name"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

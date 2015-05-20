@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore2ecore:Ecore2EcoreMappingRoot xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore2ecore="http://www.eclipse.org/emf/2004/Ecore2Ecore" topToBottom="true">
+  <nested>
+    <nested>
+      <inputs href="../../fr.inria.diverse.examples.fsm.timedTransitions/models/timedfsm-Required.ecore#//Transition/eval"/>
+      <outputs href="../models/fsmcore-Provided.ecore#//Transition/eval"/>
+    </nested>
+    <inputs href="../../fr.inria.diverse.examples.fsm.timedTransitions/models/timedfsm-Required.ecore#//Transition"/>
+    <outputs href="../models/fsmcore-Provided.ecore#//Transition"/>
+  </nested>
+  <inputs href="../../fr.inria.diverse.examples.fsm.timedTransitions/models/timedfsm-Required.ecore#/"/>
+  <outputs href="../models/fsmcore-Provided.ecore#/"/>
+</ecore2ecore:Ecore2EcoreMappingRoot>

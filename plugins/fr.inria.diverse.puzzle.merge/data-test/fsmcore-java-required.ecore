@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="CompleteFSMrequired" nsURI="http://CompleteFSMrequired" nsPrefix="CompleteFSMrequired">
+  <eClassifiers xsi:type="ecore:EClass" name="Program">
+    <eOperations name="exec"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1" eType="//Statement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Statement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="test">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Conditional" eSuperTypes="//Statement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Loop" eSuperTypes="//Statement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="VarDecl" eSuperTypes="//Statement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Constraint">
+    <eOperations name="eval">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
+  </eClassifiers>
+</ecore:EPackage>

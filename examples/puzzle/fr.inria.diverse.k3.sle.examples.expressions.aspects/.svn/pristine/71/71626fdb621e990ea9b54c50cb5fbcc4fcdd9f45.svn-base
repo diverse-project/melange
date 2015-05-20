@@ -1,0 +1,34 @@
+package Expressions;
+
+import Expressions.Expression;
+import Expressions.ExpressionAspect;
+import Expressions.Statement;
+import Expressions.StatementAspectStatementAspectProperties;
+import fr.inria.diverse.k3.al.annotationprocessor.Aspect;
+import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod;
+import java.util.Hashtable;
+import org.eclipse.emf.common.util.EList;
+
+@Aspect(className = Statement.class)
+@SuppressWarnings("all")
+public class StatementAspect extends ExpressionAspect {
+  @OverrideAspectMethod
+  public static void eval(final Statement _self, final Hashtable<String, Object> context) {
+    _self_ = Expressions.StatementAspectStatementAspectContext.getSelf(_self);
+    	    
+    	      if (_self instanceof Expressions.Statement){
+    	      Expressions.StatementAspect._privk3_eval((Expressions.Statement)_self,context);
+    	     } else  if (_self instanceof Expressions.Expression){
+    	      Expressions.ExpressionAspect._privk3_eval((Expressions.Expression)_self,context);
+    	     } else  { throw new IllegalArgumentException("Unhandled parameter types: " + java.util.Arrays.<Object>asList(_self).toString()); }
+  }
+  
+  public static StatementAspectStatementAspectProperties _self_;
+  
+  protected static void _privk3_eval(final Statement _self, final Hashtable<String, Object> context) {
+    EList<Expression> _expressions = _self.getExpressions();
+    for (final Expression _expression : _expressions) {
+      ExpressionAspect.eval(_expression, context);
+    }
+  }
+}
