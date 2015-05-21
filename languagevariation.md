@@ -90,3 +90,7 @@ language TimedCompositeFSM {
 #### The outline
 
 //typing relation
+
+### Conclusion
+
+In this tutorial you defined a familiy of language and you used Melange to see typing relations between these languages.
