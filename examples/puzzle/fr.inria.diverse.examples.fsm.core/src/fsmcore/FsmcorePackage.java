@@ -66,7 +66,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @see fsmcore.impl.FsmcorePackageImpl#getNamedElement()
 	 * @generated
 	 */
-	int NAMED_ELEMENT = 4;
+	int NAMED_ELEMENT = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -115,22 +115,13 @@ public interface FsmcorePackage extends EPackage {
 	int STATE_MACHINE__NAME = NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Subvertex</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Regions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_MACHINE__SUBVERTEX = NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Transitions</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_MACHINE__TRANSITIONS = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int STATE_MACHINE__REGIONS = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>State Machine</em>' class.
@@ -139,7 +130,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_MACHINE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int STATE_MACHINE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>State Machine</em>' class.
@@ -151,6 +142,61 @@ public interface FsmcorePackage extends EPackage {
 	int STATE_MACHINE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link fsmcore.impl.RegionImpl <em>Region</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fsmcore.impl.RegionImpl
+	 * @see fsmcore.impl.FsmcorePackageImpl#getRegion()
+	 * @generated
+	 */
+	int REGION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REGION__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Subvertex</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REGION__SUBVERTEX = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Transitions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REGION__TRANSITIONS = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Region</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REGION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Region</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REGION_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link fsmcore.impl.VertexImpl <em>Vertex</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -158,7 +204,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @see fsmcore.impl.FsmcorePackageImpl#getVertex()
 	 * @generated
 	 */
-	int VERTEX = 1;
+	int VERTEX = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -213,7 +259,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @see fsmcore.impl.FsmcorePackageImpl#getState()
 	 * @generated
 	 */
-	int STATE = 2;
+	int STATE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -295,7 +341,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @see fsmcore.impl.FsmcorePackageImpl#getTransition()
 	 * @generated
 	 */
-	int TRANSITION = 3;
+	int TRANSITION = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -343,22 +389,13 @@ public interface FsmcorePackage extends EPackage {
 	int TRANSITION__GUARD = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>State Machine</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION__STATE_MACHINE = NAMED_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
 	 * The number of structural features of the '<em>Transition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 5;
+	int TRANSITION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Transition</em>' class.
@@ -377,7 +414,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @see fsmcore.impl.FsmcorePackageImpl#getTrigger()
 	 * @generated
 	 */
-	int TRIGGER = 5;
+	int TRIGGER = 6;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
@@ -414,7 +451,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @see fsmcore.impl.FsmcorePackageImpl#getProgram()
 	 * @generated
 	 */
-	int PROGRAM = 6;
+	int PROGRAM = 7;
 
 	/**
 	 * The feature id for the '<em><b>Statements</b></em>' containment reference list.
@@ -460,7 +497,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @see fsmcore.impl.FsmcorePackageImpl#getStatement()
 	 * @generated
 	 */
-	int STATEMENT = 7;
+	int STATEMENT = 8;
 
 	/**
 	 * The number of structural features of the '<em>Statement</em>' class.
@@ -497,7 +534,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @see fsmcore.impl.FsmcorePackageImpl#getConditional()
 	 * @generated
 	 */
-	int CONDITIONAL = 8;
+	int CONDITIONAL = 9;
 
 	/**
 	 * The number of structural features of the '<em>Conditional</em>' class.
@@ -534,7 +571,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @see fsmcore.impl.FsmcorePackageImpl#getLoop()
 	 * @generated
 	 */
-	int LOOP = 9;
+	int LOOP = 10;
 
 	/**
 	 * The number of structural features of the '<em>Loop</em>' class.
@@ -571,7 +608,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @see fsmcore.impl.FsmcorePackageImpl#getVarDecl()
 	 * @generated
 	 */
-	int VAR_DECL = 10;
+	int VAR_DECL = 11;
 
 	/**
 	 * The number of structural features of the '<em>Var Decl</em>' class.
@@ -608,7 +645,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @see fsmcore.impl.FsmcorePackageImpl#getConstraint()
 	 * @generated
 	 */
-	int CONSTRAINT = 11;
+	int CONSTRAINT = 12;
 
 	/**
 	 * The number of structural features of the '<em>Constraint</em>' class.
@@ -645,7 +682,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @see fsmcore.impl.FsmcorePackageImpl#getPseudostate()
 	 * @generated
 	 */
-	int PSEUDOSTATE = 12;
+	int PSEUDOSTATE = 13;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -709,7 +746,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @see fsmcore.impl.FsmcorePackageImpl#getFinalState()
 	 * @generated
 	 */
-	int FINAL_STATE = 13;
+	int FINAL_STATE = 14;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -791,7 +828,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @see fsmcore.impl.FsmcorePackageImpl#getPseudostateKind()
 	 * @generated
 	 */
-	int PSEUDOSTATE_KIND = 14;
+	int PSEUDOSTATE_KIND = 15;
 
 
 	/**
@@ -805,26 +842,47 @@ public interface FsmcorePackage extends EPackage {
 	EClass getStateMachine();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link fsmcore.StateMachine#getSubvertex <em>Subvertex</em>}'.
+	 * Returns the meta object for the containment reference list '{@link fsmcore.StateMachine#getRegions <em>Regions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Regions</em>'.
+	 * @see fsmcore.StateMachine#getRegions()
+	 * @see #getStateMachine()
+	 * @generated
+	 */
+	EReference getStateMachine_Regions();
+
+	/**
+	 * Returns the meta object for class '{@link fsmcore.Region <em>Region</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Region</em>'.
+	 * @see fsmcore.Region
+	 * @generated
+	 */
+	EClass getRegion();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link fsmcore.Region#getSubvertex <em>Subvertex</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Subvertex</em>'.
-	 * @see fsmcore.StateMachine#getSubvertex()
-	 * @see #getStateMachine()
+	 * @see fsmcore.Region#getSubvertex()
+	 * @see #getRegion()
 	 * @generated
 	 */
-	EReference getStateMachine_Subvertex();
+	EReference getRegion_Subvertex();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link fsmcore.StateMachine#getTransitions <em>Transitions</em>}'.
+	 * Returns the meta object for the containment reference list '{@link fsmcore.Region#getTransitions <em>Transitions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Transitions</em>'.
-	 * @see fsmcore.StateMachine#getTransitions()
-	 * @see #getStateMachine()
+	 * @see fsmcore.Region#getTransitions()
+	 * @see #getRegion()
 	 * @generated
 	 */
-	EReference getStateMachine_Transitions();
+	EReference getRegion_Transitions();
 
 	/**
 	 * Returns the meta object for class '{@link fsmcore.Vertex <em>Vertex</em>}'.
@@ -954,17 +1012,6 @@ public interface FsmcorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTransition_Guard();
-
-	/**
-	 * Returns the meta object for the container reference '{@link fsmcore.Transition#getStateMachine <em>State Machine</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>State Machine</em>'.
-	 * @see fsmcore.Transition#getStateMachine()
-	 * @see #getTransition()
-	 * @generated
-	 */
-	EReference getTransition_StateMachine();
 
 	/**
 	 * Returns the meta object for class '{@link fsmcore.NamedElement <em>Named Element</em>}'.
@@ -1184,12 +1231,30 @@ public interface FsmcorePackage extends EPackage {
 		EClass STATE_MACHINE = eINSTANCE.getStateMachine();
 
 		/**
+		 * The meta object literal for the '<em><b>Regions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATE_MACHINE__REGIONS = eINSTANCE.getStateMachine_Regions();
+
+		/**
+		 * The meta object literal for the '{@link fsmcore.impl.RegionImpl <em>Region</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fsmcore.impl.RegionImpl
+		 * @see fsmcore.impl.FsmcorePackageImpl#getRegion()
+		 * @generated
+		 */
+		EClass REGION = eINSTANCE.getRegion();
+
+		/**
 		 * The meta object literal for the '<em><b>Subvertex</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference STATE_MACHINE__SUBVERTEX = eINSTANCE.getStateMachine_Subvertex();
+		EReference REGION__SUBVERTEX = eINSTANCE.getRegion_Subvertex();
 
 		/**
 		 * The meta object literal for the '<em><b>Transitions</b></em>' containment reference list feature.
@@ -1197,7 +1262,7 @@ public interface FsmcorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference STATE_MACHINE__TRANSITIONS = eINSTANCE.getStateMachine_Transitions();
+		EReference REGION__TRANSITIONS = eINSTANCE.getRegion_Transitions();
 
 		/**
 		 * The meta object literal for the '{@link fsmcore.impl.VertexImpl <em>Vertex</em>}' class.
@@ -1300,14 +1365,6 @@ public interface FsmcorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TRANSITION__GUARD = eINSTANCE.getTransition_Guard();
-
-		/**
-		 * The meta object literal for the '<em><b>State Machine</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TRANSITION__STATE_MACHINE = eINSTANCE.getTransition_StateMachine();
 
 		/**
 		 * The meta object literal for the '{@link fsmcore.impl.NamedElementImpl <em>Named Element</em>}' class.

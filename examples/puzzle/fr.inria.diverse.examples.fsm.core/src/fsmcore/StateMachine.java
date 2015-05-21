@@ -11,11 +11,10 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
- * <ul>
- *   <li>{@link fsmcore.StateMachine#getSubvertex <em>Subvertex</em>}</li>
- *   <li>{@link fsmcore.StateMachine#getTransitions <em>Transitions</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link fsmcore.StateMachine#getRegions <em>Regions</em>}</li>
+ * </ul>
  *
  * @see fsmcore.FsmcorePackage#getStateMachine()
  * @model
@@ -23,37 +22,19 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface StateMachine extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>Subvertex</b></em>' containment reference list.
-	 * The list contents are of type {@link fsmcore.Vertex}.
+	 * Returns the value of the '<em><b>Regions</b></em>' containment reference list.
+	 * The list contents are of type {@link fsmcore.Region}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Subvertex</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Regions</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Subvertex</em>' containment reference list.
-	 * @see fsmcore.FsmcorePackage#getStateMachine_Subvertex()
-	 * @model containment="true"
+	 * @return the value of the '<em>Regions</em>' containment reference list.
+	 * @see fsmcore.FsmcorePackage#getStateMachine_Regions()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<Vertex> getSubvertex();
-
-	/**
-	 * Returns the value of the '<em><b>Transitions</b></em>' containment reference list.
-	 * The list contents are of type {@link fsmcore.Transition}.
-	 * It is bidirectional and its opposite is '{@link fsmcore.Transition#getStateMachine <em>State Machine</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Transitions</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Transitions</em>' containment reference list.
-	 * @see fsmcore.FsmcorePackage#getStateMachine_Transitions()
-	 * @see fsmcore.Transition#getStateMachine
-	 * @model opposite="stateMachine" containment="true"
-	 * @generated
-	 */
-	EList<Transition> getTransitions();
+	EList<Region> getRegions();
 
 } // StateMachine

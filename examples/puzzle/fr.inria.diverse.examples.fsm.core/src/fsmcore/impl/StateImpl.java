@@ -20,12 +20,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link fsmcore.impl.StateImpl#getDoActivity <em>Do Activity</em>}</li>
  *   <li>{@link fsmcore.impl.StateImpl#getEntry <em>Entry</em>}</li>
  *   <li>{@link fsmcore.impl.StateImpl#getExit <em>Exit</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

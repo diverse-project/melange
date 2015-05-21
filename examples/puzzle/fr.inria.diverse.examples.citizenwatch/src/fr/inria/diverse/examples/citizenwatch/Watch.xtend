@@ -26,11 +26,11 @@ class Watch {
 		var res = rs.getResource(uri, true);
 		var StateMachine watch = res.contents.get(0) as StateMachine
 		 
-		watch.evalStateMachine("") 
-	}
+		watch.evalStateMachine() 
+	} 
 
 	def static void main(String[] args) {
 		println('Citizen watch simulator in K3!')
-		new Watch().run("ToolDemo-StateMachine-RhapsodyClassical.xmi")
+		new Watch().run("TooDemo-StateMachines-2.xmi")
 	}
 }

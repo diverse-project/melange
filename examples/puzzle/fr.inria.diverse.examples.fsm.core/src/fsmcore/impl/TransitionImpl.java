@@ -4,20 +4,14 @@ package fsmcore.impl;
 
 import fsmcore.Constraint;
 import fsmcore.FsmcorePackage;
-import fsmcore.StateMachine;
 import fsmcore.Transition;
 import fsmcore.Trigger;
 import fsmcore.Vertex;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,14 +19,13 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link fsmcore.impl.TransitionImpl#getTrigger <em>Trigger</em>}</li>
  *   <li>{@link fsmcore.impl.TransitionImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link fsmcore.impl.TransitionImpl#getSource <em>Source</em>}</li>
  *   <li>{@link fsmcore.impl.TransitionImpl#getGuard <em>Guard</em>}</li>
- *   <li>{@link fsmcore.impl.TransitionImpl#getStateMachine <em>State Machine</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -307,47 +300,6 @@ public class TransitionImpl extends NamedElementImpl implements Transition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StateMachine getStateMachine() {
-		if (eContainerFeatureID() != FsmcorePackage.TRANSITION__STATE_MACHINE) return null;
-		return (StateMachine)eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetStateMachine(StateMachine newStateMachine, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newStateMachine, FsmcorePackage.TRANSITION__STATE_MACHINE, msgs);
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setStateMachine(StateMachine newStateMachine) {
-		if (newStateMachine != eInternalContainer() || (eContainerFeatureID() != FsmcorePackage.TRANSITION__STATE_MACHINE && newStateMachine != null)) {
-			if (EcoreUtil.isAncestor(this, newStateMachine))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newStateMachine != null)
-				msgs = ((InternalEObject)newStateMachine).eInverseAdd(this, FsmcorePackage.STATE_MACHINE__TRANSITIONS, StateMachine.class, msgs);
-			msgs = basicSetStateMachine(newStateMachine, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FsmcorePackage.TRANSITION__STATE_MACHINE, newStateMachine, newStateMachine));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -359,10 +311,6 @@ public class TransitionImpl extends NamedElementImpl implements Transition {
 				if (source != null)
 					msgs = ((InternalEObject)source).eInverseRemove(this, FsmcorePackage.VERTEX__OUTGOING, Vertex.class, msgs);
 				return basicSetSource((Vertex)otherEnd, msgs);
-			case FsmcorePackage.TRANSITION__STATE_MACHINE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetStateMachine((StateMachine)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -383,24 +331,8 @@ public class TransitionImpl extends NamedElementImpl implements Transition {
 				return basicSetSource(null, msgs);
 			case FsmcorePackage.TRANSITION__GUARD:
 				return basicSetGuard(null, msgs);
-			case FsmcorePackage.TRANSITION__STATE_MACHINE:
-				return basicSetStateMachine(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case FsmcorePackage.TRANSITION__STATE_MACHINE:
-				return eInternalContainer().eInverseRemove(this, FsmcorePackage.STATE_MACHINE__TRANSITIONS, StateMachine.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -421,8 +353,6 @@ public class TransitionImpl extends NamedElementImpl implements Transition {
 				return basicGetSource();
 			case FsmcorePackage.TRANSITION__GUARD:
 				return getGuard();
-			case FsmcorePackage.TRANSITION__STATE_MACHINE:
-				return getStateMachine();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -446,9 +376,6 @@ public class TransitionImpl extends NamedElementImpl implements Transition {
 				return;
 			case FsmcorePackage.TRANSITION__GUARD:
 				setGuard((Constraint)newValue);
-				return;
-			case FsmcorePackage.TRANSITION__STATE_MACHINE:
-				setStateMachine((StateMachine)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -474,9 +401,6 @@ public class TransitionImpl extends NamedElementImpl implements Transition {
 			case FsmcorePackage.TRANSITION__GUARD:
 				setGuard((Constraint)null);
 				return;
-			case FsmcorePackage.TRANSITION__STATE_MACHINE:
-				setStateMachine((StateMachine)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -497,8 +421,6 @@ public class TransitionImpl extends NamedElementImpl implements Transition {
 				return source != null;
 			case FsmcorePackage.TRANSITION__GUARD:
 				return guard != null;
-			case FsmcorePackage.TRANSITION__STATE_MACHINE:
-				return getStateMachine() != null;
 		}
 		return super.eIsSet(featureID);
 	}

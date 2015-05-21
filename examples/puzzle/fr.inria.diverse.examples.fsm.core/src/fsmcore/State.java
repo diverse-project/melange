@@ -10,12 +10,12 @@ package fsmcore;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link fsmcore.State#getDoActivity <em>Do Activity</em>}</li>
  *   <li>{@link fsmcore.State#getEntry <em>Entry</em>}</li>
  *   <li>{@link fsmcore.State#getExit <em>Exit</em>}</li>
  * </ul>
- * </p>
  *
  * @see fsmcore.FsmcorePackage#getState()
  * @model

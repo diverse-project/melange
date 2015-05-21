@@ -20,8 +20,10 @@ import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.common.util.BasicEList
 
 import static extension FSM.simultaneous.StateAspect.*
+import static extension FSM.simultaneous.RegionAspect.*
 import static extension FSM.simultaneous.TransitionAspect.*
 import static extension FSM.simultaneous.TriggerAspect.*
+import fsmcore.Region
 
 // *.*
 // ASPECT
@@ -38,11 +40,70 @@ class StateMachineAspect {
 	/**
 	 * Evaluates the input and sequentially executes the steps in the state machine. 
 	 */
-	def public void evalStateMachine(String filePath) {
+	def public void evalStateMachine() {
 		println("\nExecuting the state machine. Please enter the events to process...\n")
 		
 		val Hashtable<String, Object> context = new Hashtable<String, Object>
 		context.put("currentState", new ArrayList<Vertex>())
+		
+		_self.regions.forEach[ _region | _region.initRegion(context)]
+		
+		print(" ---> current active state (s): ")
+		(context.get("currentState") as ArrayList<Vertex>).forEach[ _vertex |
+			print( _vertex.name + " ")
+		]
+		
+		var _it = context.keySet.iterator
+		var String variablesString = ""
+		while(_it.hasNext){
+			var String _key = _it.next
+			var Object _value = context.get(_key)
+			if(!_key.equals("currentState"))
+				variablesString += " - " + _key + ": " + _value
+		}
+		if(!variablesString.equals("")){
+			println("\n ---> current variables' values: ")
+			println(variablesString)
+		}
+		
+		while(true){
+			var Scanner in = new Scanner(System.in);
+			print(" \n\n INPUT ---> Next event: ")
+			var String[] eventsChain = in.nextLine.split(",")
+			val EList<String> events = new BasicEList<String>()
+			for(String _event : eventsChain){
+				events.add(_event)
+			}
+			
+			_self.regions.forEach[ _region | _region.step(context, events)]
+			print("    step: ---> current active state (s): ")
+			(context.get("currentState") as ArrayList<Vertex>).forEach[ _vertex |
+				print( _vertex.name + " ")
+			]
+			
+			_it = context.keySet.iterator
+			variablesString = ""
+			while(_it.hasNext){
+				var String _key = _it.next
+				var Object _value = context.get(_key)
+				if(!_key.equals("currentState"))
+					variablesString += println("              - " + _key + ": " + _value)
+			}
+			if(!variablesString.equals("")){
+				println("\n          ---> current variables' values: ")
+				println(variablesString)
+			}
+			println
+		}
+	}
+}
+
+// *.*
+// ASPECT
+@Aspect(className=Region)
+class RegionAspect {
+	
+	def public void initRegion(Hashtable<String, Object> context){
 		
 		// Looking for the initial pseudo-state
 		var Pseudostate initialPseudostate = _self.subvertex.
@@ -61,30 +122,6 @@ class StateMachineAspect {
 		initialCurrentTransitions.forEach[ transition |
 			transition.evalTransition(context)
 		]
-		
-		while(true){
-			var Scanner in = new Scanner(System.in);
-			print(" ---> current active state (s): ")
-			(context.get("currentState") as ArrayList<Vertex>).forEach[ _vertex |
-				print( _vertex.name + " ")
-			]
-			println("\n ---> current variables' values: ")
-			var _it = context.keySet.iterator
-			while(_it.hasNext){
-				var String _key = _it.next
-				var Object _value = context.get(_key)
-				if(!_key.equals("currentState"))
-					println(" - " + _key + ": " + _value)
-			}
-			
-			print(" \n\n INPUT ---> Next event: ")
-			var EList<String> events = new BasicEList<String>()
-			var String[] eventsChain = in.nextLine.split(",")
-			for(String _event : eventsChain){
-				events.add(_event)
-			}
-			_self.step(context, events)
-		}
 	}
 	
 	/**

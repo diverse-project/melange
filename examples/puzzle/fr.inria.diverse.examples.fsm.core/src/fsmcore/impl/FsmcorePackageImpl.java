@@ -12,6 +12,7 @@ import fsmcore.NamedElement;
 import fsmcore.Program;
 import fsmcore.Pseudostate;
 import fsmcore.PseudostateKind;
+import fsmcore.Region;
 import fsmcore.State;
 import fsmcore.StateMachine;
 import fsmcore.Statement;
@@ -43,6 +44,13 @@ public class FsmcorePackageImpl extends EPackageImpl implements FsmcorePackage {
 	 * @generated
 	 */
 	private EClass stateMachineEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass regionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -217,7 +225,7 @@ public class FsmcorePackageImpl extends EPackageImpl implements FsmcorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStateMachine_Subvertex() {
+	public EReference getStateMachine_Regions() {
 		return (EReference)stateMachineEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -226,8 +234,26 @@ public class FsmcorePackageImpl extends EPackageImpl implements FsmcorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStateMachine_Transitions() {
-		return (EReference)stateMachineEClass.getEStructuralFeatures().get(1);
+	public EClass getRegion() {
+		return regionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRegion_Subvertex() {
+		return (EReference)regionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRegion_Transitions() {
+		return (EReference)regionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -336,15 +362,6 @@ public class FsmcorePackageImpl extends EPackageImpl implements FsmcorePackage {
 	 */
 	public EReference getTransition_Guard() {
 		return (EReference)transitionEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTransition_StateMachine() {
-		return (EReference)transitionEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -538,8 +555,11 @@ public class FsmcorePackageImpl extends EPackageImpl implements FsmcorePackage {
 
 		// Create classes and their features
 		stateMachineEClass = createEClass(STATE_MACHINE);
-		createEReference(stateMachineEClass, STATE_MACHINE__SUBVERTEX);
-		createEReference(stateMachineEClass, STATE_MACHINE__TRANSITIONS);
+		createEReference(stateMachineEClass, STATE_MACHINE__REGIONS);
+
+		regionEClass = createEClass(REGION);
+		createEReference(regionEClass, REGION__SUBVERTEX);
+		createEReference(regionEClass, REGION__TRANSITIONS);
 
 		vertexEClass = createEClass(VERTEX);
 		createEReference(vertexEClass, VERTEX__INCOMING);
@@ -555,7 +575,6 @@ public class FsmcorePackageImpl extends EPackageImpl implements FsmcorePackage {
 		createEReference(transitionEClass, TRANSITION__TARGET);
 		createEReference(transitionEClass, TRANSITION__SOURCE);
 		createEReference(transitionEClass, TRANSITION__GUARD);
-		createEReference(transitionEClass, TRANSITION__STATE_MACHINE);
 
 		namedElementEClass = createEClass(NAMED_ELEMENT);
 		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
@@ -617,6 +636,7 @@ public class FsmcorePackageImpl extends EPackageImpl implements FsmcorePackage {
 
 		// Add supertypes to classes
 		stateMachineEClass.getESuperTypes().add(this.getNamedElement());
+		regionEClass.getESuperTypes().add(this.getNamedElement());
 		vertexEClass.getESuperTypes().add(this.getNamedElement());
 		stateEClass.getESuperTypes().add(this.getVertex());
 		transitionEClass.getESuperTypes().add(this.getNamedElement());
@@ -628,8 +648,11 @@ public class FsmcorePackageImpl extends EPackageImpl implements FsmcorePackage {
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(stateMachineEClass, StateMachine.class, "StateMachine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStateMachine_Subvertex(), this.getVertex(), null, "subvertex", null, 0, -1, StateMachine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getStateMachine_Transitions(), this.getTransition(), this.getTransition_StateMachine(), "transitions", null, 0, -1, StateMachine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStateMachine_Regions(), this.getRegion(), null, "regions", null, 1, -1, StateMachine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(regionEClass, Region.class, "Region", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRegion_Subvertex(), this.getVertex(), null, "subvertex", null, 0, -1, Region.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRegion_Transitions(), this.getTransition(), null, "transitions", null, 0, -1, Region.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(vertexEClass, Vertex.class, "Vertex", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVertex_Incoming(), this.getTransition(), this.getTransition_Target(), "incoming", null, 0, -1, Vertex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -645,7 +668,6 @@ public class FsmcorePackageImpl extends EPackageImpl implements FsmcorePackage {
 		initEReference(getTransition_Target(), this.getVertex(), this.getVertex_Incoming(), "target", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransition_Source(), this.getVertex(), this.getVertex_Outgoing(), "source", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransition_Guard(), this.getConstraint(), null, "guard", null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTransition_StateMachine(), this.getStateMachine(), this.getStateMachine_Transitions(), "stateMachine", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

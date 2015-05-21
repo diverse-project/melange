@@ -72,6 +72,10 @@ public class FsmcoreAdapterFactory extends AdapterFactoryImpl {
 				return createStateMachineAdapter();
 			}
 			@Override
+			public Adapter caseRegion(Region object) {
+				return createRegionAdapter();
+			}
+			@Override
 			public Adapter caseVertex(Vertex object) {
 				return createVertexAdapter();
 			}
@@ -154,6 +158,20 @@ public class FsmcoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createStateMachineAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fsmcore.Region <em>Region</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fsmcore.Region
+	 * @generated
+	 */
+	public Adapter createRegionAdapter() {
 		return null;
 	}
 

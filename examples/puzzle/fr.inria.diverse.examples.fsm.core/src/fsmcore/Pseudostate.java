@@ -10,10 +10,10 @@ package fsmcore;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link fsmcore.Pseudostate#getKind <em>Kind</em>}</li>
  * </ul>
- * </p>
  *
  * @see fsmcore.FsmcorePackage#getPseudostate()
  * @model

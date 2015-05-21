@@ -11,11 +11,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link fsmcore.Vertex#getIncoming <em>Incoming</em>}</li>
  *   <li>{@link fsmcore.Vertex#getOutgoing <em>Outgoing</em>}</li>
  * </ul>
- * </p>
  *
  * @see fsmcore.FsmcorePackage#getVertex()
  * @model abstract="true"

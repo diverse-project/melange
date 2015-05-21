@@ -31,6 +31,15 @@ public interface FsmcoreFactory extends EFactory {
 	StateMachine createStateMachine();
 
 	/**
+	 * Returns a new object of class '<em>Region</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Region</em>'.
+	 * @generated
+	 */
+	Region createRegion();
+
+	/**
 	 * Returns a new object of class '<em>State</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

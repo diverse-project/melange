@@ -10,14 +10,13 @@ package fsmcore;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link fsmcore.Transition#getTrigger <em>Trigger</em>}</li>
  *   <li>{@link fsmcore.Transition#getTarget <em>Target</em>}</li>
  *   <li>{@link fsmcore.Transition#getSource <em>Source</em>}</li>
  *   <li>{@link fsmcore.Transition#getGuard <em>Guard</em>}</li>
- *   <li>{@link fsmcore.Transition#getStateMachine <em>State Machine</em>}</li>
  * </ul>
- * </p>
  *
  * @see fsmcore.FsmcorePackage#getTransition()
  * @model
@@ -131,33 +130,5 @@ public interface Transition extends NamedElement {
 	 * @generated
 	 */
 	void setGuard(Constraint value);
-
-	/**
-	 * Returns the value of the '<em><b>State Machine</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link fsmcore.StateMachine#getTransitions <em>Transitions</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>State Machine</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>State Machine</em>' container reference.
-	 * @see #setStateMachine(StateMachine)
-	 * @see fsmcore.FsmcorePackage#getTransition_StateMachine()
-	 * @see fsmcore.StateMachine#getTransitions
-	 * @model opposite="transitions" required="true" transient="false"
-	 * @generated
-	 */
-	StateMachine getStateMachine();
-
-	/**
-	 * Sets the value of the '{@link fsmcore.Transition#getStateMachine <em>State Machine</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>State Machine</em>' container reference.
-	 * @see #getStateMachine()
-	 * @generated
-	 */
-	void setStateMachine(StateMachine value);
 
 } // Transition

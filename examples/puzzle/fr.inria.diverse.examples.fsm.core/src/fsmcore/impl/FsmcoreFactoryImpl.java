@@ -58,6 +58,7 @@ public class FsmcoreFactoryImpl extends EFactoryImpl implements FsmcoreFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case FsmcorePackage.STATE_MACHINE: return createStateMachine();
+			case FsmcorePackage.REGION: return createRegion();
 			case FsmcorePackage.STATE: return createState();
 			case FsmcorePackage.TRANSITION: return createTransition();
 			case FsmcorePackage.NAMED_ELEMENT: return createNamedElement();
@@ -112,6 +113,16 @@ public class FsmcoreFactoryImpl extends EFactoryImpl implements FsmcoreFactory {
 	public StateMachine createStateMachine() {
 		StateMachineImpl stateMachine = new StateMachineImpl();
 		return stateMachine;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Region createRegion() {
+		RegionImpl region = new RegionImpl();
+		return region;
 	}
 
 	/**

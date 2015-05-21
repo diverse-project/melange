@@ -7,12 +7,12 @@ composition CompleteFSM {
 	aggregation(CoreFSM, ImperativeLanguage)  
 	aggregation(CoreFSM, ConstraintsLanguage)
 	extension(CoreFSM, TransitionEffect)
-	extension(CoreFSM, JoinPseudostate)
+	extension(CoreFSM, JoinPseudostate) 
 	extension(CoreFSM, ForkPseudostate) 
 	extension(CoreFSM, NotTrigger)     
 	extension(CoreFSM, AndTrigger)   
 	extension(CoreFSM, OrTrigger)
-	extension(CoreFSM, Conditional)   
+	extension(CoreFSM, Conditional)  
 } 
 
 /** 

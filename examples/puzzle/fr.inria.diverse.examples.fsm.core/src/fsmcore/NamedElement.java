@@ -11,10 +11,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link fsmcore.NamedElement#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see fsmcore.FsmcorePackage#getNamedElement()
  * @model
