@@ -57,7 +57,7 @@ public class JoinpseudostateFactoryImpl extends EFactoryImpl implements Joinpseu
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case JoinpseudostatePackage.STATE_MACHINE: return createStateMachine();
+			case JoinpseudostatePackage.REGION: return createRegion();
 			case JoinpseudostatePackage.PSEUDOSTATE: return createPseudostate();
 			case JoinpseudostatePackage.TRANSITION: return createTransition();
 			default:
@@ -100,9 +100,9 @@ public class JoinpseudostateFactoryImpl extends EFactoryImpl implements Joinpseu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StateMachine createStateMachine() {
-		StateMachineImpl stateMachine = new StateMachineImpl();
-		return stateMachine;
+	public Region createRegion() {
+		RegionImpl region = new RegionImpl();
+		return region;
 	}
 
 	/**

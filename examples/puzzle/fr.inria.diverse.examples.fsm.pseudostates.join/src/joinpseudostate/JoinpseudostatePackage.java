@@ -58,32 +58,32 @@ public interface JoinpseudostatePackage extends EPackage {
 	JoinpseudostatePackage eINSTANCE = joinpseudostate.impl.JoinpseudostatePackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link joinpseudostate.impl.StateMachineImpl <em>State Machine</em>}' class.
+	 * The meta object id for the '{@link joinpseudostate.impl.RegionImpl <em>Region</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see joinpseudostate.impl.StateMachineImpl
-	 * @see joinpseudostate.impl.JoinpseudostatePackageImpl#getStateMachine()
+	 * @see joinpseudostate.impl.RegionImpl
+	 * @see joinpseudostate.impl.JoinpseudostatePackageImpl#getRegion()
 	 * @generated
 	 */
-	int STATE_MACHINE = 0;
+	int REGION = 0;
 
 	/**
-	 * The number of structural features of the '<em>State Machine</em>' class.
+	 * The number of structural features of the '<em>Region</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_MACHINE_FEATURE_COUNT = 0;
+	int REGION_FEATURE_COUNT = 0;
 
 	/**
-	 * The number of operations of the '<em>State Machine</em>' class.
+	 * The number of operations of the '<em>Region</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_MACHINE_OPERATION_COUNT = 0;
+	int REGION_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link joinpseudostate.impl.VertexImpl <em>Vertex</em>}' class.
@@ -226,14 +226,14 @@ public interface JoinpseudostatePackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link joinpseudostate.StateMachine <em>State Machine</em>}'.
+	 * Returns the meta object for class '{@link joinpseudostate.Region <em>Region</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>State Machine</em>'.
-	 * @see joinpseudostate.StateMachine
+	 * @return the meta object for class '<em>Region</em>'.
+	 * @see joinpseudostate.Region
 	 * @generated
 	 */
-	EClass getStateMachine();
+	EClass getRegion();
 
 	/**
 	 * Returns the meta object for class '{@link joinpseudostate.Vertex <em>Vertex</em>}'.
@@ -354,14 +354,14 @@ public interface JoinpseudostatePackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link joinpseudostate.impl.StateMachineImpl <em>State Machine</em>}' class.
+		 * The meta object literal for the '{@link joinpseudostate.impl.RegionImpl <em>Region</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see joinpseudostate.impl.StateMachineImpl
-		 * @see joinpseudostate.impl.JoinpseudostatePackageImpl#getStateMachine()
+		 * @see joinpseudostate.impl.RegionImpl
+		 * @see joinpseudostate.impl.JoinpseudostatePackageImpl#getRegion()
 		 * @generated
 		 */
-		EClass STATE_MACHINE = eINSTANCE.getStateMachine();
+		EClass REGION = eINSTANCE.getRegion();
 
 		/**
 		 * The meta object literal for the '{@link joinpseudostate.impl.VertexImpl <em>Vertex</em>}' class.

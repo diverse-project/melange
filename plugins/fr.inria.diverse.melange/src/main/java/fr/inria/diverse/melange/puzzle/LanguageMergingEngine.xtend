@@ -61,6 +61,7 @@ import puzzle.Statement
 import org.autorefactor.ui.OverlappingAspectsVO
 import org.autorefactor.ui.RefactoringPatternVO
 import org.autorefactor.ui.OverridingAspectsVO
+import fr.inria.diverse.melange.utils.ErrorHelper
 
 /**
  * Composition engine. Responsible for the composition of languages given a composition expression.
@@ -76,6 +77,7 @@ class LanguageMergingEngine {
 	@Inject extension PuzzleXbaseInterpreter puzzleXbaseInterpreter
 	@Inject extension ModelingElementExtensions
 	@Inject extension EcoreQueries
+	@Inject extension ErrorHelper
 	@Inject private Provider<IEvaluationContext> contextProvider;
 	
 	/**
@@ -213,7 +215,8 @@ class LanguageMergingEngine {
 				
 				if(diagnosis != null && diagnosis.items.size != 0){
 					diagnosis.items.forEach[ error |
-//						_statement.addError( error.kind.toString, null )
+						println("error.kind: " + error.kind + " " + error.input + " " + error.output)
+//						tree addError( error.kind.toString, null )
 					]	
 				}
 				else{
@@ -550,8 +553,8 @@ class LanguageMergingEngine {
 							overlappingAspect.rightFile = _aspectRight.aspectTypeRef.identifier.replace(".", "/") + ".java"
 							overlappingAspect.leftFile = _aspectLeft.aspectTypeRef.identifier.replace(".", "/") + ".java"
 							
-							println("Creating overlapping aspects overlappingAspect.rightFile: " + overlappingAspect.rightFile)
-							println("Creating overlapping aspects overlappingAspect.leftFile: " + overlappingAspect.leftFile)
+//							println("Creating overlapping aspects overlappingAspect.rightFile: " + overlappingAspect.rightFile)
+//							println("Creating overlapping aspects overlappingAspect.leftFile: " + overlappingAspect.leftFile)
 							overlappingAspects.add(overlappingAspect)
 						}
 					}
@@ -625,10 +628,6 @@ class LanguageMergingEngine {
 			
 				if(_aspect.aspectTypeRef.type.eResource.contents.get(0) instanceof XtendFile){
 					var XtendFile xtendFile = _aspect.aspectTypeRef.type.eResource.contents.get(0) as XtendFile;
-					
-					if(_aspect.aspectTypeRef.identifier.equals("transitioneffects.parallel.TransitionAspect")){
-						println("coucou")
-					}
 					
 					try{
 						EcoreUtil.resolveAll(xtendFile)
@@ -760,7 +759,7 @@ class LanguageMergingEngine {
 	
 	def private buildPatternsByType(XtendTypeDeclaration _typeDeclaration, ArrayList<RefactoringPatternVO> refactoringPattern, 
 		LanguageVO leftLanguage, LanguageVO result, EObject _input, EObject _output, String aspectIdentifier) {
-			println("*** aspectIdentifier: " + aspectIdentifier)
+//			println("*** aspectIdentifier: " + aspectIdentifier)
 		for(XtendMember _member : _typeDeclaration.members){
 			if((_member instanceof XtendField) && (_input instanceof EClass && _output instanceof EClass)){
 				var String requiredTypeQualifiedName = (_input as EClassifier).qualifiedName//leftLanguage.requiredInterface.name + "." + (_input as EClassifier).name
@@ -794,15 +793,9 @@ class LanguageMergingEngine {
 						evaluationContext.newValue(QualifiedName.create("refactoringPatterns"), refactoringPattern)
 						evaluationContext.newValue(QualifiedName.create("function"),(_member as XtendFunction))
 						puzzleXbaseInterpreter.classLoader = URLClassLoader.getSystemClassLoader()
-						println("puzzleXbaseInterpreter.evaluate ... ")
-						try{
-							puzzleXbaseInterpreter.evaluate(_currentExpressionStatement, evaluationContext, CancelIndicator.NullImpl)
-						}catch(Exception e){
-							//coucou!
-						}
+						puzzleXbaseInterpreter.evaluate(_currentExpressionStatement, evaluationContext, CancelIndicator.NullImpl)
 					}
 				}
-				
 			}
 		}
 	}

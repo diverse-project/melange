@@ -6,13 +6,13 @@ import puzzle.annotations.processor.OverrideRequiredAspectMethod
 import java.util.ArrayList
 import joinpseudostate.Vertex
 import joinpseudostate.Transition
-import joinpseudostate.StateMachine
 import joinpseudostate.Pseudostate
 import joinpseudostate.PseudostateKind
 import java.util.Hashtable
+import joinpseudostate.Region
 
-@Aspect(className=StateMachine)
-class StateMachineAspect {
+@Aspect(className=Region)
+class RegionAspect {
 	
 	@OverrideRequiredAspectMethod
 	def public void findNewActiveTransitions(ArrayList<Transition> newActiveTransitions, 

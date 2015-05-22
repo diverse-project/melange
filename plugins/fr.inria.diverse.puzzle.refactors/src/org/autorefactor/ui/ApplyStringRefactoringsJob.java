@@ -72,7 +72,6 @@ public class ApplyStringRefactoringsJob {
     		RefactoringUnit baseRefactoringUnit, RefactoringUnit extensionRefactoringUnit, 
     		List<RefactoringRule> refactoringRulesToApply, ArrayList<RefactoringPatternVO> patterns, ArrayList<RefactoringPatternVO> morePatterns,
     		File targetFolderAspects, IProject targetProject) {
-        System.out.println("RUNNING");
         this.baseRefactoringUnit = baseRefactoringUnit;
         this.extensionRefactoringUnit = extensionRefactoringUnit;
         this.refactoringRulesToApply = refactoringRulesToApply;
@@ -135,15 +134,20 @@ public class ApplyStringRefactoringsJob {
 				String line = br.readLine();
 
 		        while (line != null) {
+		        	for(RefactoringPatternVO pattern : _patterns){
+		        		if(pattern.getSourcePattern().contains("(\\s\\w+)")){
+		        			if(!line.matches(pattern.getPivotPattern()) && !line.contains("Aspect"))
+		        				line = line.replaceAll(pattern.getSourcePattern(), pattern.getTargetPattern());
+		        		}
+		        		else
+		        			line = line.replace(pattern.getSourcePattern(), pattern.getTargetPattern()); 
+		        	}
+		        	
 		        	newContent = newContent + line + "\n";
 					line = br.readLine();
 		        }
 		        br.close();
 		        
-	        	for(RefactoringPatternVO pattern : _patterns){
-					 newContent = newContent.replace(pattern.getSourcePattern(), pattern.getTargetPattern()); 
-				}
-				
 				PrintWriter writer = new PrintWriter(file);
 				writer.print(newContent);
 				writer.close();

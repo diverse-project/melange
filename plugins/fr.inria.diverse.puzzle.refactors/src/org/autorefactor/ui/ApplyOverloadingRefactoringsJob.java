@@ -121,18 +121,18 @@ public class ApplyOverloadingRefactoringsJob {
         		ICompilationUnit baseCompilationUnit = baseRefactoringUnit.getCompilationUnit();
             	IType primaryType = extensionCompilationUnit.findPrimaryType();
             	
-            	System.out.println("ApplyOverloadingRefactoringsJob.run0 " + "extension: " + extensionCompilationUnit.getElementName()
-            			+ " base: " + baseCompilationUnit.getElementName());
-            	System.out.println("ApplyOverloadingRefactoringsJob.run0 " + "extension: " + extensionCompilationUnit.getJavaProject().getElementName()
-            			+ " base: " + baseCompilationUnit.getJavaProject().getElementName());
-            	System.out.println("ApplyOverloadingRefactoringsJob.run0 " + "base SRC: " + baseCompilationUnit.getSource());
+//            	System.out.println("ApplyOverloadingRefactoringsJob.run0 " + "extension: " + extensionCompilationUnit.getElementName()
+//            			+ " base: " + baseCompilationUnit.getElementName());
+//            	System.out.println("ApplyOverloadingRefactoringsJob.run0 " + "extension: " + extensionCompilationUnit.getJavaProject().getElementName()
+//            			+ " base: " + baseCompilationUnit.getJavaProject().getElementName());
+//            	System.out.println("ApplyOverloadingRefactoringsJob.run0 " + "base SRC: " + baseCompilationUnit.getSource());
             	
-            	for(IMethod _method : baseRefactoringUnit.getCompilationUnit().findPrimaryType().getMethods()){
-            		System.out.println("_baseMethod: " + _method.getElementName());
-            	}
+//            	for(IMethod _method : baseRefactoringUnit.getCompilationUnit().findPrimaryType().getMethods()){
+//            		System.out.println("_baseMethod: " + _method.getElementName());
+//            	}
             	
             	for(IMethod _overridingMethod : primaryType.getMethods()){
-            		System.out.println("_overridingMethod " + _overridingMethod.getElementName());
+//            		System.out.println("_overridingMethod " + _overridingMethod.getElementName());
             		
             		IAnnotation overrideAnnotation = null;
             		for(IAnnotation _annotation : _overridingMethod.getAnnotations()){
@@ -169,15 +169,15 @@ public class ApplyOverloadingRefactoringsJob {
                     	}
                     	
                     	if(toRemove != null && oldOriginal == null){
-                    		System.out.println("overriding original");
-                    		System.out.println("oldOriginal: " + realOverridingMethod.getSource());
-                    		System.out.println("toRemove: " + toRemove.getSource());
+//                    		System.out.println("overriding original");
+//                    		System.out.println("oldOriginal: " + realOverridingMethod.getSource());
+//                    		System.out.println("toRemove: " + toRemove.getSource());
                     		overrideRequiredMethod(baseRefactoringUnit, toRemove, realOverridingMethod, monitor);
                     	}
                     	else if(toRemove != null && oldOriginal != null){
-                    		System.out.println("pushing original");
-                    		System.out.println("oldOriginal: " + oldOriginal.getSource());
-                    		System.out.println("toRemove: " + toRemove.getSource());
+//                    		System.out.println("pushing original");
+//                    		System.out.println("oldOriginal: " + oldOriginal.getSource());
+//                    		System.out.println("toRemove: " + toRemove.getSource());
                     		ArrayList<IMethod> originalMethods = getAllOriginalMethods(baseRefactoringUnit, _overridingMethod.getElementName());
                         	overrideRequiredMethodOriginal(baseRefactoringUnit, toRemove, realOverridingMethod, originalMethods.size(), monitor);
                     	}
@@ -263,8 +263,8 @@ public class ApplyOverloadingRefactoringsJob {
     private void pushMethod(int level, String baseName, ICompilationUnit baseCompilationUnit, JavaProjectOptions options, IProgressMonitor monitor) throws Exception{
     	String prefix = getPrefix(level);
 		IMethod toPush = getMethodByName(baseRefactoringUnit, prefix + baseName);
-		System.out.println("baseRefactoringUnit, prefix + baseName: " + prefix + baseName);
-		System.out.println("toPush: " + toPush);
+//		System.out.println("baseRefactoringUnit, prefix + baseName: " + prefix + baseName);
+//		System.out.println("toPush: " + toPush);
 		String toPushName = toPush.getElementName();
 		
 		String toNewPushSource = toPush.getSource().replace("_original_" + baseName + "(_self,", "_original_" + baseName + "(_self_, _self,");

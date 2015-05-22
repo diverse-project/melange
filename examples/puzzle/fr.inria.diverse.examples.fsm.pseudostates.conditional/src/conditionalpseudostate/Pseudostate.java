@@ -10,10 +10,10 @@ package conditionalpseudostate;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link conditionalpseudostate.Pseudostate#getKind <em>Kind</em>}</li>
  * </ul>
- * </p>
  *
  * @see conditionalpseudostate.ConditionalpseudostatePackage#getPseudostate()
  * @model

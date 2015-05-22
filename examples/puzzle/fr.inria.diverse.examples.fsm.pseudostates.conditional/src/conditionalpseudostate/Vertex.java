@@ -13,11 +13,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link conditionalpseudostate.Vertex#getOutgoing <em>Outgoing</em>}</li>
  *   <li>{@link conditionalpseudostate.Vertex#getIncoming <em>Incoming</em>}</li>
  * </ul>
- * </p>
  *
  * @see conditionalpseudostate.ConditionalpseudostatePackage#getVertex()
  * @model abstract="true"

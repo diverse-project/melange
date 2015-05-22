@@ -13,11 +13,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link joinpseudostate.Vertex#getOutgoing <em>Outgoing</em>}</li>
  *   <li>{@link joinpseudostate.Vertex#getIncoming <em>Incoming</em>}</li>
  * </ul>
- * </p>
  *
  * @see joinpseudostate.JoinpseudostatePackage#getVertex()
  * @model abstract="true"

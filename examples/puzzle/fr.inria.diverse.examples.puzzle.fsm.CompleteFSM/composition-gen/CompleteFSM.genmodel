@@ -71,24 +71,12 @@
     </genEnums>
     <genClasses image="false">
       <ecoreClass href="CompleteFSM.ecore#//Statement"/>
-      <genOperations>
-        <ecoreOperation href="CompleteFSM.ecore#//Statement/eval"/>
-        <genParameters>
-          <ecoreParameter href="CompleteFSM.ecore#//Statement/eval/context"/>
-        </genParameters>
-      </genOperations>
     </genClasses>
     <genClasses>
       <ecoreClass href="CompleteFSM.ecore#//Program"/>
       <genFeatures property="None" children="true" createChild="true">
         <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//Program/statements"/>
       </genFeatures>
-      <genOperations>
-        <ecoreOperation href="CompleteFSM.ecore#//Program/eval"/>
-        <genParameters>
-          <ecoreParameter href="CompleteFSM.ecore#//Program/eval/context"/>
-        </genParameters>
-      </genOperations>
     </genClasses>
     <genClasses>
       <ecoreClass href="CompleteFSM.ecore#//Conditional"/>
@@ -98,12 +86,6 @@
       <genFeatures property="None" children="true" createChild="true">
         <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//Conditional/body"/>
       </genFeatures>
-      <genOperations>
-        <ecoreOperation href="CompleteFSM.ecore#//Conditional/eval"/>
-        <genParameters>
-          <ecoreParameter href="CompleteFSM.ecore#//Conditional/eval/context"/>
-        </genParameters>
-      </genOperations>
     </genClasses>
     <genClasses>
       <ecoreClass href="CompleteFSM.ecore#//Loop"/>
@@ -113,12 +95,6 @@
       <genFeatures property="None" children="true" createChild="true">
         <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//Loop/body"/>
       </genFeatures>
-      <genOperations>
-        <ecoreOperation href="CompleteFSM.ecore#//Loop/eval"/>
-        <genParameters>
-          <ecoreParameter href="CompleteFSM.ecore#//Loop/eval/context"/>
-        </genParameters>
-      </genOperations>
     </genClasses>
     <genClasses>
       <ecoreClass href="CompleteFSM.ecore#//VarDecl"/>
@@ -128,21 +104,9 @@
       <genFeatures property="None" children="true" createChild="true">
         <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//VarDecl/expr"/>
       </genFeatures>
-      <genOperations>
-        <ecoreOperation href="CompleteFSM.ecore#//VarDecl/eval"/>
-        <genParameters>
-          <ecoreParameter href="CompleteFSM.ecore#//VarDecl/eval/context"/>
-        </genParameters>
-      </genOperations>
     </genClasses>
     <genClasses image="false">
       <ecoreClass href="CompleteFSM.ecore#//Expression"/>
-      <genOperations>
-        <ecoreOperation href="CompleteFSM.ecore#//Expression/obtainValue"/>
-        <genParameters>
-          <ecoreParameter href="CompleteFSM.ecore#//Expression/obtainValue/context"/>
-        </genParameters>
-      </genOperations>
     </genClasses>
     <genClasses image="false">
       <ecoreClass href="CompleteFSM.ecore#//Literal"/>
@@ -152,24 +116,12 @@
       <genFeatures createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="CompleteFSM.ecore#//IntegerLit/value"/>
       </genFeatures>
-      <genOperations>
-        <ecoreOperation href="CompleteFSM.ecore#//IntegerLit/obtainValue"/>
-        <genParameters>
-          <ecoreParameter href="CompleteFSM.ecore#//IntegerLit/obtainValue/context"/>
-        </genParameters>
-      </genOperations>
     </genClasses>
     <genClasses>
       <ecoreClass href="CompleteFSM.ecore#//StringLit"/>
       <genFeatures createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="CompleteFSM.ecore#//StringLit/value"/>
       </genFeatures>
-      <genOperations>
-        <ecoreOperation href="CompleteFSM.ecore#//StringLit/obtainValue"/>
-        <genParameters>
-          <ecoreParameter href="CompleteFSM.ecore#//StringLit/obtainValue/context"/>
-        </genParameters>
-      </genOperations>
     </genClasses>
     <genClasses>
       <ecoreClass href="CompleteFSM.ecore#//BoolLit"/>
@@ -188,12 +140,6 @@
       <genFeatures property="None" children="true" createChild="true">
         <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//ArithmeticExpression/right"/>
       </genFeatures>
-      <genOperations>
-        <ecoreOperation href="CompleteFSM.ecore#//ArithmeticExpression/obtainValue"/>
-        <genParameters>
-          <ecoreParameter href="CompleteFSM.ecore#//ArithmeticExpression/obtainValue/context"/>
-        </genParameters>
-      </genOperations>
     </genClasses>
     <genClasses>
       <ecoreClass href="CompleteFSM.ecore#//RelationalExpression"/>
@@ -257,12 +203,6 @@
     </genClasses>
     <genClasses>
       <ecoreClass href="CompleteFSM.ecore#//Constraint"/>
-      <genOperations>
-        <ecoreOperation href="CompleteFSM.ecore#//Constraint/evalConstraint"/>
-        <genParameters>
-          <ecoreParameter href="CompleteFSM.ecore#//Constraint/evalConstraint/context"/>
-        </genParameters>
-      </genOperations>
     </genClasses>
     <genClasses>
       <ecoreClass href="CompleteFSM.ecore#//RelationalConstraint"/>
@@ -275,21 +215,9 @@
       <genFeatures property="None" children="true" createChild="true">
         <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//RelationalConstraint/right"/>
       </genFeatures>
-      <genOperations>
-        <ecoreOperation href="CompleteFSM.ecore#//RelationalConstraint/evalConstraint"/>
-        <genParameters>
-          <ecoreParameter href="CompleteFSM.ecore#//RelationalConstraint/evalConstraint/context"/>
-        </genParameters>
-      </genOperations>
     </genClasses>
     <genClasses image="false">
       <ecoreClass href="CompleteFSM.ecore#//CExpression"/>
-      <genOperations>
-        <ecoreOperation href="CompleteFSM.ecore#//CExpression/obtainValue"/>
-        <genParameters>
-          <ecoreParameter href="CompleteFSM.ecore#//CExpression/obtainValue/context"/>
-        </genParameters>
-      </genOperations>
     </genClasses>
     <genClasses image="false">
       <ecoreClass href="CompleteFSM.ecore#//CLiteral"/>
@@ -299,24 +227,12 @@
       <genFeatures createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="CompleteFSM.ecore#//CInteger/value"/>
       </genFeatures>
-      <genOperations>
-        <ecoreOperation href="CompleteFSM.ecore#//CInteger/obtainValue"/>
-        <genParameters>
-          <ecoreParameter href="CompleteFSM.ecore#//CInteger/obtainValue/context"/>
-        </genParameters>
-      </genOperations>
     </genClasses>
     <genClasses>
       <ecoreClass href="CompleteFSM.ecore#//CVarRef"/>
       <genFeatures createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="CompleteFSM.ecore#//CVarRef/name"/>
       </genFeatures>
-      <genOperations>
-        <ecoreOperation href="CompleteFSM.ecore#//CVarRef/obtainValue"/>
-        <genParameters>
-          <ecoreParameter href="CompleteFSM.ecore#//CVarRef/obtainValue/context"/>
-        </genParameters>
-      </genOperations>
     </genClasses>
     <genClasses>
       <ecoreClass href="CompleteFSM.ecore#//StateMachine"/>
@@ -332,6 +248,9 @@
       <genFeatures property="None" children="true" createChild="true">
         <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//Region/transitions"/>
       </genFeatures>
+      <genFeatures property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//Region/ownerState"/>
+      </genFeatures>
     </genClasses>
     <genClasses image="false">
       <ecoreClass href="CompleteFSM.ecore#//Vertex"/>
@@ -340,6 +259,9 @@
       </genFeatures>
       <genFeatures notify="false" createChild="false" propertySortChoices="true">
         <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//Vertex/outgoing"/>
+      </genFeatures>
+      <genFeatures property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//Vertex/ownerRegion"/>
       </genFeatures>
     </genClasses>
     <genClasses>
@@ -352,6 +274,9 @@
       </genFeatures>
       <genFeatures property="None" children="true" createChild="true">
         <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//State/exit"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="CompleteFSM.ecore#//State/ownedRegions"/>
       </genFeatures>
     </genClasses>
     <genClasses>

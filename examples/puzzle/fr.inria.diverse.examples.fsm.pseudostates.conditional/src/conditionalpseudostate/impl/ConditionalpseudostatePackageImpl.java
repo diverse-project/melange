@@ -6,7 +6,7 @@ import conditionalpseudostate.ConditionalpseudostateFactory;
 import conditionalpseudostate.ConditionalpseudostatePackage;
 import conditionalpseudostate.Pseudostate;
 import conditionalpseudostate.PseudostateKind;
-import conditionalpseudostate.StateMachine;
+import conditionalpseudostate.Region;
 import conditionalpseudostate.Transition;
 import conditionalpseudostate.Vertex;
 
@@ -32,7 +32,7 @@ public class ConditionalpseudostatePackageImpl extends EPackageImpl implements C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass stateMachineEClass = null;
+	private EClass regionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -128,8 +128,8 @@ public class ConditionalpseudostatePackageImpl extends EPackageImpl implements C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getStateMachine() {
-		return stateMachineEClass;
+	public EClass getRegion() {
+		return regionEClass;
 	}
 
 	/**
@@ -250,7 +250,7 @@ public class ConditionalpseudostatePackageImpl extends EPackageImpl implements C
 		isCreated = true;
 
 		// Create classes and their features
-		stateMachineEClass = createEClass(STATE_MACHINE);
+		regionEClass = createEClass(REGION);
 
 		vertexEClass = createEClass(VERTEX);
 		createEReference(vertexEClass, VERTEX__OUTGOING);
@@ -299,7 +299,7 @@ public class ConditionalpseudostatePackageImpl extends EPackageImpl implements C
 		pseudostateEClass.getESuperTypes().add(this.getVertex());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(stateMachineEClass, StateMachine.class, "StateMachine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(regionEClass, Region.class, "Region", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(vertexEClass, Vertex.class, "Vertex", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVertex_Outgoing(), this.getTransition(), this.getTransition_Source(), "outgoing", null, 0, -1, Vertex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -343,7 +343,7 @@ public class ConditionalpseudostatePackageImpl extends EPackageImpl implements C
 	protected void createExtensionAnnotations() {
 		String source = "extension";	
 		addAnnotation
-		  (stateMachineEClass, 
+		  (regionEClass, 
 		   source, 
 		   new String[] {
 		   });	

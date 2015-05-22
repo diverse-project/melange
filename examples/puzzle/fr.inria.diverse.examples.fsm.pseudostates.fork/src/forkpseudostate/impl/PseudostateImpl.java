@@ -5,8 +5,11 @@ package forkpseudostate.impl;
 import forkpseudostate.ForkpseudostatePackage;
 import forkpseudostate.Pseudostate;
 import forkpseudostate.PseudostateKind;
+
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -15,10 +18,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link forkpseudostate.impl.PseudostateImpl#getKind <em>Kind</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

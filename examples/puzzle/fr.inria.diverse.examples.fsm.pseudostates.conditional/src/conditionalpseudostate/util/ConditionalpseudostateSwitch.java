@@ -47,7 +47,7 @@ public class ConditionalpseudostateSwitch<T> extends Switch<T> {
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @parameter ePackage the package in question.
+	 * @param ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
@@ -66,9 +66,9 @@ public class ConditionalpseudostateSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case ConditionalpseudostatePackage.STATE_MACHINE: {
-				StateMachine stateMachine = (StateMachine)theEObject;
-				T result = caseStateMachine(stateMachine);
+			case ConditionalpseudostatePackage.REGION: {
+				Region region = (Region)theEObject;
+				T result = caseRegion(region);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -96,17 +96,17 @@ public class ConditionalpseudostateSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>State Machine</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Region</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>State Machine</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Region</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseStateMachine(StateMachine object) {
+	public T caseRegion(Region object) {
 		return null;
 	}
 

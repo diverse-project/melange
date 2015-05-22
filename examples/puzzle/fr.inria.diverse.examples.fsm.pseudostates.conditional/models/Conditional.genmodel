@@ -10,7 +10,7 @@
       </genEnumLiterals>
     </genEnums>
     <genClasses>
-      <ecoreClass href="Conditional.ecore#//StateMachine"/>
+      <ecoreClass href="Conditional.ecore#//Region"/>
     </genClasses>
     <genClasses image="false">
       <ecoreClass href="Conditional.ecore#//Vertex"/>

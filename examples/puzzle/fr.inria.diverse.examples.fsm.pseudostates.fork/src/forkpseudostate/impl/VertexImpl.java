@@ -26,11 +26,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link forkpseudostate.impl.VertexImpl#getOutgoing <em>Outgoing</em>}</li>
  *   <li>{@link forkpseudostate.impl.VertexImpl#getIncoming <em>Incoming</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

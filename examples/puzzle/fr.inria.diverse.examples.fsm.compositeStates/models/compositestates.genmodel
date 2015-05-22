@@ -1,91 +1,32 @@
-<?xml version="1.0" encoding="ASCII"?>
-<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.inria.diverse.examples.fsm.compositeStates/src" modelPluginID="fr.inria.diverse.examples.fsm.compositeStates" modelName="Compositestates" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.inria.diverse.examples.fsm.compositeStates/src"
+    modelPluginID="fr.inria.diverse.examples.fsm.compositeStates" modelName="Compositestates"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
   <foreignModel>compositestates.ecore</foreignModel>
-  <genPackages prefix="Compositestates" disposableProviderFactory="true">
-    <ecorePackage href="compositestates.ecore#/"/>
-    <genEnums typeSafeEnumCompatible="false">
-      <ecoreEnum href="compositestates.ecore#//PseudostateKind"/>
-      <genEnumLiterals>
-        <ecoreEnumLiteral href="compositestates.ecore#//PseudostateKind/initial"/>
-      </genEnumLiterals>
-    </genEnums>
-    <genClasses>
-      <ecoreClass href="compositestates.ecore#//StateMachine"/>
-      <genOperations>
-        <ecoreOperation href="compositestates.ecore#//StateMachine/getActiveTransitions"/>
-        <genParameters>
-          <ecoreParameter href="compositestates.ecore#//StateMachine/getActiveTransitions/vertex"/>
-        </genParameters>
-        <genParameters>
-          <ecoreParameter href="compositestates.ecore#//StateMachine/getActiveTransitions/events"/>
-        </genParameters>
+  <genPackages prefix="Compositestates" disposableProviderFactory="true" ecorePackage="compositestates.ecore#/">
+    <genClasses ecoreClass="compositestates.ecore#//Region">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference compositestates.ecore#//Region/subvertex"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference compositestates.ecore#//Region/ownerState"/>
+      <genOperations ecoreOperation="compositestates.ecore#//Region/initRegion">
+        <genParameters ecoreParameter="compositestates.ecore#//Region/initRegion/context"/>
       </genOperations>
     </genClasses>
-    <genClasses image="false">
-      <ecoreClass href="compositestates.ecore#//Vertex"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="compositestates.ecore#//Vertex/incoming"/>
-      </genFeatures>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="compositestates.ecore#//Vertex/outgoing"/>
-      </genFeatures>
-      <genFeatures property="None" notify="false" createChild="false">
-        <ecoreFeature xsi:type="ecore:EReference" href="compositestates.ecore#//Vertex/ownerState"/>
-      </genFeatures>
-    </genClasses>
-    <genClasses>
-      <ecoreClass href="compositestates.ecore#//State"/>
-      <genOperations>
-        <ecoreOperation href="compositestates.ecore#//State/evalState"/>
-        <genParameters>
-          <ecoreParameter href="compositestates.ecore#//State/evalState/context"/>
-        </genParameters>
-      </genOperations>
-      <genOperations>
-        <ecoreOperation href="compositestates.ecore#//State/exitState"/>
-        <genParameters>
-          <ecoreParameter href="compositestates.ecore#//State/exitState/context"/>
-        </genParameters>
+    <genClasses ecoreClass="compositestates.ecore#//State">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference compositestates.ecore#//State/ownedRegions"/>
+      <genOperations ecoreOperation="compositestates.ecore#//State/evalState">
+        <genParameters ecoreParameter="compositestates.ecore#//State/evalState/context"/>
       </genOperations>
     </genClasses>
-    <genClasses>
-      <ecoreClass href="compositestates.ecore#//CompositeState"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="compositestates.ecore#//CompositeState/initialState"/>
-      </genFeatures>
-      <genFeatures property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="compositestates.ecore#//CompositeState/states"/>
-      </genFeatures>
+    <genClasses ecoreClass="compositestates.ecore#//Vertex">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference compositestates.ecore#//Vertex/incoming"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference compositestates.ecore#//Vertex/outgoing"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference compositestates.ecore#//Vertex/ownerRegion"/>
     </genClasses>
-    <genClasses>
-      <ecoreClass href="compositestates.ecore#//Transition"/>
-      <genFeatures property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="compositestates.ecore#//Transition/trigger"/>
-      </genFeatures>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="compositestates.ecore#//Transition/source"/>
-      </genFeatures>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="compositestates.ecore#//Transition/target"/>
-      </genFeatures>
-      <genOperations>
-        <ecoreOperation href="compositestates.ecore#//Transition/evalTransition"/>
-        <genParameters>
-          <ecoreParameter href="compositestates.ecore#//Transition/evalTransition/context"/>
-        </genParameters>
-      </genOperations>
-    </genClasses>
-    <genClasses>
-      <ecoreClass href="compositestates.ecore#//Trigger"/>
-      <genFeatures createChild="false">
-        <ecoreFeature xsi:type="ecore:EAttribute" href="compositestates.ecore#//Trigger/expression"/>
-      </genFeatures>
-    </genClasses>
-    <genClasses>
-      <ecoreClass href="compositestates.ecore#//Pseudostate"/>
-      <genFeatures createChild="false">
-        <ecoreFeature xsi:type="ecore:EAttribute" href="compositestates.ecore#//Pseudostate/kind"/>
-      </genFeatures>
+    <genClasses ecoreClass="compositestates.ecore#//Transition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference compositestates.ecore#//Transition/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference compositestates.ecore#//Transition/target"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

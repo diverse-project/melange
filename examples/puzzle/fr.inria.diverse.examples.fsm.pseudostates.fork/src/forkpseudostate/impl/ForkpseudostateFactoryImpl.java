@@ -57,7 +57,7 @@ public class ForkpseudostateFactoryImpl extends EFactoryImpl implements Forkpseu
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case ForkpseudostatePackage.STATE_MACHINE: return createStateMachine();
+			case ForkpseudostatePackage.REGION: return createRegion();
 			case ForkpseudostatePackage.PSEUDOSTATE: return createPseudostate();
 			case ForkpseudostatePackage.TRANSITION: return createTransition();
 			default:
@@ -100,9 +100,9 @@ public class ForkpseudostateFactoryImpl extends EFactoryImpl implements Forkpseu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StateMachine createStateMachine() {
-		StateMachineImpl stateMachine = new StateMachineImpl();
-		return stateMachine;
+	public Region createRegion() {
+		RegionImpl region = new RegionImpl();
+		return region;
 	}
 
 	/**

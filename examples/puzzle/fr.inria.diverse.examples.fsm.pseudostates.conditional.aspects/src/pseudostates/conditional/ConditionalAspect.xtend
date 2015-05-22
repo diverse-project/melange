@@ -2,7 +2,6 @@ package pseudostates.conditional
 
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 	
-import conditionalpseudostate.StateMachine
 import conditionalpseudostate.Transition
 import java.util.ArrayList
 import puzzle.annotations.processor.OverrideRequiredAspectMethod
@@ -11,9 +10,10 @@ import conditionalpseudostate.PseudostateKind
 import java.util.Hashtable
 import org.eclipse.emf.common.util.EList
 import conditionalpseudostate.Vertex
+import conditionalpseudostate.Region
 
-@Aspect(className=StateMachine)
-class StateMachineAspect { 
+@Aspect(className=Region)
+class RegionAspect { 
 	
 	@OverrideRequiredAspectMethod
 	def public void step(Hashtable<String, Object> context, EList<String> events){

@@ -3,7 +3,7 @@
 package conditionalpseudostate.impl;
 
 import conditionalpseudostate.ConditionalpseudostatePackage;
-import conditionalpseudostate.StateMachine;
+import conditionalpseudostate.Region;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -11,20 +11,18 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>State Machine</b></em>'.
+ * An implementation of the model object '<em><b>Region</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
-public class StateMachineImpl extends MinimalEObjectImpl.Container implements StateMachine {
+public class RegionImpl extends MinimalEObjectImpl.Container implements Region {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StateMachineImpl() {
+	protected RegionImpl() {
 		super();
 	}
 
@@ -35,7 +33,7 @@ public class StateMachineImpl extends MinimalEObjectImpl.Container implements St
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ConditionalpseudostatePackage.Literals.STATE_MACHINE;
+		return ConditionalpseudostatePackage.Literals.REGION;
 	}
 
-} //StateMachineImpl
+} //RegionImpl

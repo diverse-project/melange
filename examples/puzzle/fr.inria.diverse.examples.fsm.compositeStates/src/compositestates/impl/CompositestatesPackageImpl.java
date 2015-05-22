@@ -2,20 +2,14 @@
  */
 package compositestates.impl;
 
-import compositestates.CompositeState;
 import compositestates.CompositestatesFactory;
 import compositestates.CompositestatesPackage;
-import compositestates.Pseudostate;
-import compositestates.PseudostateKind;
+import compositestates.Region;
 import compositestates.State;
-
-import compositestates.StateMachine;
 import compositestates.Transition;
-import compositestates.Trigger;
 import compositestates.Vertex;
-import org.eclipse.emf.ecore.EAttribute;
+
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -35,14 +29,7 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass stateMachineEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass vertexEClass = null;
+	private EClass regionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -56,7 +43,7 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass compositeStateEClass = null;
+	private EClass vertexEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -64,27 +51,6 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 	 * @generated
 	 */
 	private EClass transitionEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass triggerEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass pseudostateEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum pseudostateKindEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -152,8 +118,8 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getStateMachine() {
-		return stateMachineEClass;
+	public EClass getRegion() {
+		return regionEClass;
 	}
 
 	/**
@@ -161,8 +127,53 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getStateMachine__GetActiveTransitions__Vertex_EList() {
-		return stateMachineEClass.getEOperations().get(0);
+	public EReference getRegion_Subvertex() {
+		return (EReference)regionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRegion_OwnerState() {
+		return (EReference)regionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getRegion__InitRegion__Map() {
+		return regionEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getState() {
+		return stateEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getState_OwnedRegions() {
+		return (EReference)stateEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getState__EvalState__Map() {
+		return stateEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -197,62 +208,8 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVertex_OwnerState() {
+	public EReference getVertex_OwnerRegion() {
 		return (EReference)vertexEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getState() {
-		return stateEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getState__EvalState__Map() {
-		return stateEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getState__ExitState__Map() {
-		return stateEClass.getEOperations().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getCompositeState() {
-		return compositeStateEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompositeState_States() {
-		return (EReference)compositeStateEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompositeState_InitialState() {
-		return (EReference)compositeStateEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -269,7 +226,7 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransition_Trigger() {
+	public EReference getTransition_Source() {
 		return (EReference)transitionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -278,71 +235,8 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransition_Source() {
-		return (EReference)transitionEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getTransition_Target() {
-		return (EReference)transitionEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getTransition__EvalTransition__Map() {
-		return transitionEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getTrigger() {
-		return triggerEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getTrigger_Expression() {
-		return (EAttribute)triggerEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getPseudostate() {
-		return pseudostateEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getPseudostate_Kind() {
-		return (EAttribute)pseudostateEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EEnum getPseudostateKind() {
-		return pseudostateKindEEnum;
+		return (EReference)transitionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -373,36 +267,23 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 		isCreated = true;
 
 		// Create classes and their features
-		stateMachineEClass = createEClass(STATE_MACHINE);
-		createEOperation(stateMachineEClass, STATE_MACHINE___GET_ACTIVE_TRANSITIONS__VERTEX_ELIST);
+		regionEClass = createEClass(REGION);
+		createEReference(regionEClass, REGION__SUBVERTEX);
+		createEReference(regionEClass, REGION__OWNER_STATE);
+		createEOperation(regionEClass, REGION___INIT_REGION__MAP);
+
+		stateEClass = createEClass(STATE);
+		createEReference(stateEClass, STATE__OWNED_REGIONS);
+		createEOperation(stateEClass, STATE___EVAL_STATE__MAP);
 
 		vertexEClass = createEClass(VERTEX);
 		createEReference(vertexEClass, VERTEX__INCOMING);
 		createEReference(vertexEClass, VERTEX__OUTGOING);
-		createEReference(vertexEClass, VERTEX__OWNER_STATE);
-
-		stateEClass = createEClass(STATE);
-		createEOperation(stateEClass, STATE___EVAL_STATE__MAP);
-		createEOperation(stateEClass, STATE___EXIT_STATE__MAP);
-
-		compositeStateEClass = createEClass(COMPOSITE_STATE);
-		createEReference(compositeStateEClass, COMPOSITE_STATE__INITIAL_STATE);
-		createEReference(compositeStateEClass, COMPOSITE_STATE__STATES);
+		createEReference(vertexEClass, VERTEX__OWNER_REGION);
 
 		transitionEClass = createEClass(TRANSITION);
-		createEReference(transitionEClass, TRANSITION__TRIGGER);
 		createEReference(transitionEClass, TRANSITION__SOURCE);
 		createEReference(transitionEClass, TRANSITION__TARGET);
-		createEOperation(transitionEClass, TRANSITION___EVAL_TRANSITION__MAP);
-
-		triggerEClass = createEClass(TRIGGER);
-		createEAttribute(triggerEClass, TRIGGER__EXPRESSION);
-
-		pseudostateEClass = createEClass(PSEUDOSTATE);
-		createEAttribute(pseudostateEClass, PSEUDOSTATE__KIND);
-
-		// Create enums
-		pseudostateKindEEnum = createEEnum(PSEUDOSTATE_KIND);
 	}
 
 	/**
@@ -434,29 +315,22 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 
 		// Add supertypes to classes
 		stateEClass.getESuperTypes().add(this.getVertex());
-		compositeStateEClass.getESuperTypes().add(this.getState());
-		pseudostateEClass.getESuperTypes().add(this.getVertex());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(stateMachineEClass, StateMachine.class, "StateMachine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(regionEClass, Region.class, "Region", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRegion_Subvertex(), this.getVertex(), this.getVertex_OwnerRegion(), "subvertex", null, 0, -1, Region.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRegion_OwnerState(), this.getState(), this.getState_OwnedRegions(), "ownerState", null, 0, 1, Region.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = initEOperation(getStateMachine__GetActiveTransitions__Vertex_EList(), null, "getActiveTransitions", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getVertex(), "vertex", 0, 1, IS_UNIQUE, IS_ORDERED);
-		EGenericType g1 = createEGenericType(ecorePackage.getEEList());
+		EOperation op = initEOperation(getRegion__InitRegion__Map(), null, "initRegion", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
 		EGenericType g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "events", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEEList());
 		g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
-		initEOperation(op, g1);
-
-		initEClass(vertexEClass, Vertex.class, "Vertex", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVertex_Incoming(), this.getTransition(), this.getTransition_Target(), "incoming", null, 0, -1, Vertex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getVertex_Outgoing(), this.getTransition(), this.getTransition_Source(), "outgoing", null, 0, -1, Vertex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getVertex_OwnerState(), this.getCompositeState(), this.getCompositeState_States(), "ownerState", null, 0, 1, Vertex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getState_OwnedRegions(), this.getRegion(), this.getRegion_OwnerState(), "ownedRegions", null, 0, -1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getState__EvalState__Map(), null, "evalState", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
@@ -466,40 +340,14 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getState__ExitState__Map(), null, "exitState", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(compositeStateEClass, CompositeState.class, "CompositeState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCompositeState_InitialState(), this.getVertex(), null, "initialState", null, 1, 1, CompositeState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCompositeState_States(), this.getVertex(), this.getVertex_OwnerState(), "states", null, 1, -1, CompositeState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(vertexEClass, Vertex.class, "Vertex", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getVertex_Incoming(), this.getTransition(), this.getTransition_Target(), "incoming", null, 0, -1, Vertex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVertex_Outgoing(), this.getTransition(), this.getTransition_Source(), "outgoing", null, 0, -1, Vertex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVertex_OwnerRegion(), this.getRegion(), this.getRegion_Subvertex(), "ownerRegion", null, 1, 1, Vertex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(transitionEClass, Transition.class, "Transition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTransition_Trigger(), this.getTrigger(), null, "trigger", null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransition_Source(), this.getVertex(), this.getVertex_Outgoing(), "source", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransition_Target(), this.getVertex(), this.getVertex_Incoming(), "target", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		op = initEOperation(getTransition__EvalTransition__Map(), null, "evalTransition", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(triggerEClass, Trigger.class, "Trigger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTrigger_Expression(), ecorePackage.getEString(), "expression", null, 0, 1, Trigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(pseudostateEClass, Pseudostate.class, "Pseudostate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPseudostate_Kind(), this.getPseudostateKind(), "kind", null, 0, 1, Pseudostate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		// Initialize enums and add enum literals
-		initEEnum(pseudostateKindEEnum, PseudostateKind.class, "PseudostateKind");
-		addEEnumLiteral(pseudostateKindEEnum, PseudostateKind.INITIAL);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -520,12 +368,7 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 	protected void createExtensionAnnotations() {
 		String source = "extension";	
 		addAnnotation
-		  (stateMachineEClass, 
-		   source, 
-		   new String[] {
-		   });	
-		addAnnotation
-		  (vertexEClass, 
+		  (regionEClass, 
 		   source, 
 		   new String[] {
 		   });	
@@ -535,22 +378,12 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 		   new String[] {
 		   });	
 		addAnnotation
+		  (vertexEClass, 
+		   source, 
+		   new String[] {
+		   });	
+		addAnnotation
 		  (transitionEClass, 
-		   source, 
-		   new String[] {
-		   });	
-		addAnnotation
-		  (triggerEClass, 
-		   source, 
-		   new String[] {
-		   });	
-		addAnnotation
-		  (pseudostateEClass, 
-		   source, 
-		   new String[] {
-		   });	
-		addAnnotation
-		  (pseudostateKindEEnum, 
 		   source, 
 		   new String[] {
 		   });
@@ -565,7 +398,12 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 	protected void createAdditionAnnotations() {
 		String source = "addition";	
 		addAnnotation
-		  (getVertex_OwnerState(), 
+		  (getRegion_OwnerState(), 
+		   source, 
+		   new String[] {
+		   });	
+		addAnnotation
+		  (getState_OwnedRegions(), 
 		   source, 
 		   new String[] {
 		   });

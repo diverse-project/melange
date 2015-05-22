@@ -13,11 +13,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link conditionalpseudostate.Transition#getSource <em>Source</em>}</li>
  *   <li>{@link conditionalpseudostate.Transition#getTarget <em>Target</em>}</li>
  * </ul>
- * </p>
  *
  * @see conditionalpseudostate.ConditionalpseudostatePackage#getTransition()
  * @model

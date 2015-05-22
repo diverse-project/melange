@@ -47,7 +47,7 @@ public class CompositestatesSwitch<T> extends Switch<T> {
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @parameter ePackage the package in question.
+	 * @param ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
@@ -66,15 +66,9 @@ public class CompositestatesSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case CompositestatesPackage.STATE_MACHINE: {
-				StateMachine stateMachine = (StateMachine)theEObject;
-				T result = caseStateMachine(stateMachine);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case CompositestatesPackage.VERTEX: {
-				Vertex vertex = (Vertex)theEObject;
-				T result = caseVertex(vertex);
+			case CompositestatesPackage.REGION: {
+				Region region = (Region)theEObject;
+				T result = caseRegion(region);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -85,11 +79,9 @@ public class CompositestatesSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case CompositestatesPackage.COMPOSITE_STATE: {
-				CompositeState compositeState = (CompositeState)theEObject;
-				T result = caseCompositeState(compositeState);
-				if (result == null) result = caseState(compositeState);
-				if (result == null) result = caseVertex(compositeState);
+			case CompositestatesPackage.VERTEX: {
+				Vertex vertex = (Vertex)theEObject;
+				T result = caseVertex(vertex);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -99,50 +91,22 @@ public class CompositestatesSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case CompositestatesPackage.TRIGGER: {
-				Trigger trigger = (Trigger)theEObject;
-				T result = caseTrigger(trigger);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case CompositestatesPackage.PSEUDOSTATE: {
-				Pseudostate pseudostate = (Pseudostate)theEObject;
-				T result = casePseudostate(pseudostate);
-				if (result == null) result = caseVertex(pseudostate);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			default: return defaultCase(theEObject);
 		}
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>State Machine</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Region</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>State Machine</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Region</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseStateMachine(StateMachine object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Vertex</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Vertex</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseVertex(Vertex object) {
+	public T caseRegion(Region object) {
 		return null;
 	}
 
@@ -162,17 +126,17 @@ public class CompositestatesSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Composite State</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Vertex</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Composite State</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Vertex</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseCompositeState(CompositeState object) {
+	public T caseVertex(Vertex object) {
 		return null;
 	}
 
@@ -188,36 +152,6 @@ public class CompositestatesSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTransition(Transition object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Trigger</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Trigger</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTrigger(Trigger object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Pseudostate</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Pseudostate</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePseudostate(Pseudostate object) {
 		return null;
 	}
 

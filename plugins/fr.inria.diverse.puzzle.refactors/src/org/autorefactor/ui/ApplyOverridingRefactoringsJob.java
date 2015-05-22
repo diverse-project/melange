@@ -110,10 +110,10 @@ public class ApplyOverridingRefactoringsJob {
             	IType basePrimaryType = baseCompilationUnit.findPrimaryType();
             	IType mergedPrimaryType = mergedCompilationUnit.findPrimaryType();
             	
-            	System.out.println("ApplyOverridingRefactoringsJob.run0 " + "extension: " + extensionCompilationUnit.getElementName()
-            			+ " base: " + baseCompilationUnit.getElementName());
-            	System.out.println("ApplyOverridingRefactoringsJob.run0 " + "extension: " + extensionCompilationUnit.getJavaProject().getElementName()
-            			+ " base: " + baseCompilationUnit.getJavaProject().getElementName());
+//            	System.out.println("ApplyOverridingRefactoringsJob.run0 " + "extension: " + extensionCompilationUnit.getElementName()
+//            			+ " base: " + baseCompilationUnit.getElementName());
+//            	System.out.println("ApplyOverridingRefactoringsJob.run0 " + "extension: " + extensionCompilationUnit.getJavaProject().getElementName()
+//            			+ " base: " + baseCompilationUnit.getJavaProject().getElementName());
             	
             	IMethod extensionMethod = null;
             	IMethod privExtensionMethod = null;
@@ -135,9 +135,9 @@ public class ApplyOverridingRefactoringsJob {
             		if(overrideAnnotation != null){
             			extensionMethod = _overridingMethod;
             			
-            			System.out.println("ApplyOverridingRefactoringsJob.extensionMethod: " + extensionMethod);
-                    	if(extensionMethod!=null)
-                    		System.out.println("ApplyOverridingRefactoringsJob.extensionMethod: " + extensionMethod.getSource());
+//            			System.out.println("ApplyOverridingRefactoringsJob.extensionMethod: " + extensionMethod);
+//                    	if(extensionMethod!=null)
+//                    		System.out.println("ApplyOverridingRefactoringsJob.extensionMethod: " + extensionMethod.getSource());
                     	
                     	for(IMethod _overridingMethod2 : extensionPrimaryType.getMethods()){
             				if(_overridingMethod2.getElementName().equals("_privk3_" + extensionMethod.getElementName()))
@@ -220,13 +220,13 @@ public class ApplyOverridingRefactoringsJob {
                     				extensionAnnotation = _annotation;
                     		}
                     		if(extensionAnnotation != null){
-                    			System.out.println("Creating the AddExtensionMethod in the merged: " + _method.getElementName());
+//                    			System.out.println("Creating the AddExtensionMethod in the merged: " + _method.getElementName());
                     			IMethod _baseMethod = getMethodByName(mergedRefactoringUnit, _method.getElementName());
                         		if(_baseMethod == null){
                     				mergedRefactoringUnit.getCompilationUnit().findPrimaryType().createMethod(_method.getSource(), null, true, monitor);
                     				
                     				IMethod privk3baseMethod = getMethodByName(extensionRefactoringUnits.get(0), "_privk3_" + _method.getElementName());
-                    				System.out.println("privk3baseMethod: " + privk3baseMethod);
+//                    				System.out.println("privk3baseMethod: " + privk3baseMethod);
                             		if(privk3baseMethod != null){
                             			mergedRefactoringUnit.getCompilationUnit().findPrimaryType().createMethod(privk3baseMethod.getSource(), null, true, monitor);
                             		}

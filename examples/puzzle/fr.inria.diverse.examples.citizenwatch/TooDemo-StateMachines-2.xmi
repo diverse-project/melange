@@ -22,9 +22,95 @@
         incoming="//@regions.0/@transitions.1"
         outgoing="//@regions.0/@transitions.2"/>
     <subvertex
+        xsi:type="CompleteFSM:State"
+        name="T"
+        incoming="//@regions.0/@transitions.2"
+        outgoing="//@regions.0/@transitions.3">
+      <ownedRegions
+          name="RegionT">
+        <subvertex
+            xsi:type="CompleteFSM:Pseudostate"
+            name="InitialT"
+            outgoing="//@regions.0/@subvertex.3/@ownedRegions.0/@transitions.0"/>
+        <subvertex
+            xsi:type="CompleteFSM:Pseudostate"
+            name="Conditional"
+            incoming="//@regions.0/@subvertex.3/@ownedRegions.0/@transitions.0"
+            outgoing="//@regions.0/@subvertex.3/@ownedRegions.0/@transitions.1 //@regions.0/@subvertex.3/@ownedRegions.0/@transitions.2"
+            kind="conditional"/>
+        <subvertex
+            xsi:type="CompleteFSM:State"
+            name="O"
+            incoming="//@regions.0/@subvertex.3/@ownedRegions.0/@transitions.1"
+            outgoing="//@regions.0/@subvertex.3/@ownedRegions.0/@transitions.3"/>
+        <subvertex
+            xsi:type="CompleteFSM:State"
+            name="P"
+            incoming="//@regions.0/@subvertex.3/@ownedRegions.0/@transitions.2"
+            outgoing="//@regions.0/@subvertex.3/@ownedRegions.0/@transitions.4"/>
+        <subvertex
+            xsi:type="CompleteFSM:State"
+            name="R"
+            incoming="//@regions.0/@subvertex.3/@ownedRegions.0/@transitions.3 //@regions.0/@subvertex.3/@ownedRegions.0/@transitions.4"
+            outgoing="//@regions.0/@transitions.5"/>
+        <transitions
+            name="InitialToConditional"
+            target="//@regions.0/@subvertex.3/@ownedRegions.0/@subvertex.1"
+            source="//@regions.0/@subvertex.3/@ownedRegions.0/@subvertex.0"/>
+        <transitions
+            name="ConditionalToO"
+            target="//@regions.0/@subvertex.3/@ownedRegions.0/@subvertex.2"
+            source="//@regions.0/@subvertex.3/@ownedRegions.0/@subvertex.1">
+          <guard
+              xsi:type="CompleteFSM:RelationalConstraint">
+            <left
+                xsi:type="CompleteFSM:CVarRef"
+                name="y"/>
+            <right
+                xsi:type="CompleteFSM:CInteger"
+                value="1"/>
+          </guard>
+        </transitions>
+        <transitions
+            name="ConditionalToP"
+            target="//@regions.0/@subvertex.3/@ownedRegions.0/@subvertex.3"
+            source="//@regions.0/@subvertex.3/@ownedRegions.0/@subvertex.1">
+          <guard
+              xsi:type="CompleteFSM:RelationalConstraint"
+              operator="greaterThan">
+            <left
+                xsi:type="CompleteFSM:CVarRef"
+                name="y"/>
+            <right
+                xsi:type="CompleteFSM:CInteger"
+                value="1"/>
+          </guard>
+        </transitions>
+        <transitions
+            name="OToR"
+            target="//@regions.0/@subvertex.3/@ownedRegions.0/@subvertex.4"
+            source="//@regions.0/@subvertex.3/@ownedRegions.0/@subvertex.2">
+          <trigger
+              expression="e3"/>
+        </transitions>
+        <transitions
+            name="PToR"
+            target="//@regions.0/@subvertex.3/@ownedRegions.0/@subvertex.4"
+            source="//@regions.0/@subvertex.3/@ownedRegions.0/@subvertex.3">
+          <trigger
+              expression="e3"/>
+        </transitions>
+      </ownedRegions>
+    </subvertex>
+    <subvertex
+        xsi:type="CompleteFSM:State"
+        name="W"
+        incoming="//@regions.0/@transitions.3"
+        outgoing="//@regions.0/@transitions.4"/>
+    <subvertex
         xsi:type="CompleteFSM:FinalState"
         name="Z"
-        incoming="//@regions.0/@transitions.2"/>
+        incoming="//@regions.0/@transitions.4 //@regions.0/@transitions.5"/>
     <transitions
         name="InitialToX"
         target="//@regions.0/@subvertex.1"
@@ -37,47 +123,56 @@
           expression="e1"/>
     </transitions>
     <transitions
-        name="YToZ"
+        name="YToT"
         target="//@regions.0/@subvertex.3"
         source="//@regions.0/@subvertex.2">
       <trigger
           expression="e2"/>
+      <effect
+          xsi:type="CompleteFSM:Program">
+        <statements
+            xsi:type="CompleteFSM:PutInMemory"
+            key="x">
+          <value
+              xsi:type="CompleteFSM:IntegerLit"
+              value="1"/>
+        </statements>
+      </effect>
+      <effect
+          xsi:type="CompleteFSM:Program">
+        <statements
+            xsi:type="CompleteFSM:PutInMemory"
+            key="y">
+          <value
+              xsi:type="CompleteFSM:ArithmeticExpression">
+            <left
+                xsi:type="CompleteFSM:GetFromMemory"
+                key="x"/>
+            <right
+                xsi:type="CompleteFSM:IntegerLit"
+                value="1"/>
+          </value>
+        </statements>
+      </effect>
     </transitions>
-  </regions>
-  <regions name="ABC">
-    <subvertex
-        xsi:type="CompleteFSM:Pseudostate"
-        name="Initial"
-        outgoing="//@regions.1/@transitions.0"/>
-    <subvertex
-        xsi:type="CompleteFSM:State"
-        name="A"
-        incoming="//@regions.1/@transitions.0"
-        outgoing="//@regions.1/@transitions.1"/>
-    <subvertex
-        xsi:type="CompleteFSM:State"
-        name="B"
-        incoming="//@regions.1/@transitions.1"
-        outgoing="//@regions.1/@transitions.2"/>
-    <subvertex
-        xsi:type="CompleteFSM:FinalState"
-        name="C"
-        incoming="//@regions.1/@transitions.2"/>
     <transitions
-        name="InitialToA"
-        target="//@regions.1/@subvertex.1"
-        source="//@regions.1/@subvertex.0"/>
-    <transitions
-        name="AToB"
-        target="//@regions.1/@subvertex.2"
-        source="//@regions.1/@subvertex.1">
+        name="TToW"
+        target="//@regions.0/@subvertex.4"
+        source="//@regions.0/@subvertex.3">
       <trigger
           expression="e3"/>
     </transitions>
     <transitions
-        name="BToC"
-        target="//@regions.1/@subvertex.3"
-        source="//@regions.1/@subvertex.2">
+        name="WToZ"
+        target="//@regions.0/@subvertex.5"
+        source="//@regions.0/@subvertex.4">
+      <trigger
+          expression="e4"/>
+    </transitions>
+    <transitions
+        name="RToZ"
+        target="//@regions.0/@subvertex.5"
+        source="//@regions.0/@subvertex.3/@ownedRegions.0/@subvertex.4">
       <trigger
           expression="e4"/>
     </transitions>

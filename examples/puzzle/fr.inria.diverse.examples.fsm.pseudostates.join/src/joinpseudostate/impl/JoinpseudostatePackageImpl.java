@@ -6,7 +6,7 @@ import joinpseudostate.JoinpseudostateFactory;
 import joinpseudostate.JoinpseudostatePackage;
 import joinpseudostate.Pseudostate;
 import joinpseudostate.PseudostateKind;
-import joinpseudostate.StateMachine;
+import joinpseudostate.Region;
 import joinpseudostate.Transition;
 import joinpseudostate.Vertex;
 
@@ -30,7 +30,7 @@ public class JoinpseudostatePackageImpl extends EPackageImpl implements Joinpseu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass stateMachineEClass = null;
+	private EClass regionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -126,8 +126,8 @@ public class JoinpseudostatePackageImpl extends EPackageImpl implements Joinpseu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getStateMachine() {
-		return stateMachineEClass;
+	public EClass getRegion() {
+		return regionEClass;
 	}
 
 	/**
@@ -239,7 +239,7 @@ public class JoinpseudostatePackageImpl extends EPackageImpl implements Joinpseu
 		isCreated = true;
 
 		// Create classes and their features
-		stateMachineEClass = createEClass(STATE_MACHINE);
+		regionEClass = createEClass(REGION);
 
 		vertexEClass = createEClass(VERTEX);
 		createEReference(vertexEClass, VERTEX__OUTGOING);
@@ -286,7 +286,7 @@ public class JoinpseudostatePackageImpl extends EPackageImpl implements Joinpseu
 		// Add supertypes to classes
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(stateMachineEClass, StateMachine.class, "StateMachine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(regionEClass, Region.class, "Region", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(vertexEClass, Vertex.class, "Vertex", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVertex_Outgoing(), this.getTransition(), this.getTransition_Source(), "outgoing", null, 0, -1, Vertex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -322,7 +322,7 @@ public class JoinpseudostatePackageImpl extends EPackageImpl implements Joinpseu
 	protected void createExtensionAnnotations() {
 		String source = "extension";	
 		addAnnotation
-		  (stateMachineEClass, 
+		  (regionEClass, 
 		   source, 
 		   new String[] {
 		   });	

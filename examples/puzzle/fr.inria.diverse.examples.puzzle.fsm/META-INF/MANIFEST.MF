@@ -37,7 +37,8 @@ Require-Bundle: fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version
  fr.inria.diverse.examples.fsm.trigger.not;bundle-version="1.0.0",
  fr.inria.diverse.examples.fsm.trigger.not.aspects;bundle-version="1.0.0",
  fr.inria.diverse.examples.fsm.trigger.or;bundle-version="1.0.0",
- fr.inria.diverse.examples.fsm.trigger.or.aspects;bundle-version="1.0.0"
+ fr.inria.diverse.examples.fsm.trigger.or.aspects;bundle-version="1.0.0",
+ pseudostates.joinpseudostate.aspect
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin

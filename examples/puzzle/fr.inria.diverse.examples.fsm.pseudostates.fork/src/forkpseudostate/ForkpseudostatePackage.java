@@ -58,32 +58,32 @@ public interface ForkpseudostatePackage extends EPackage {
 	ForkpseudostatePackage eINSTANCE = forkpseudostate.impl.ForkpseudostatePackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link forkpseudostate.impl.StateMachineImpl <em>State Machine</em>}' class.
+	 * The meta object id for the '{@link forkpseudostate.impl.RegionImpl <em>Region</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see forkpseudostate.impl.StateMachineImpl
-	 * @see forkpseudostate.impl.ForkpseudostatePackageImpl#getStateMachine()
+	 * @see forkpseudostate.impl.RegionImpl
+	 * @see forkpseudostate.impl.ForkpseudostatePackageImpl#getRegion()
 	 * @generated
 	 */
-	int STATE_MACHINE = 0;
+	int REGION = 0;
 
 	/**
-	 * The number of structural features of the '<em>State Machine</em>' class.
+	 * The number of structural features of the '<em>Region</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_MACHINE_FEATURE_COUNT = 0;
+	int REGION_FEATURE_COUNT = 0;
 
 	/**
-	 * The number of operations of the '<em>State Machine</em>' class.
+	 * The number of operations of the '<em>Region</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_MACHINE_OPERATION_COUNT = 0;
+	int REGION_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link forkpseudostate.impl.VertexImpl <em>Vertex</em>}' class.
@@ -244,14 +244,14 @@ public interface ForkpseudostatePackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link forkpseudostate.StateMachine <em>State Machine</em>}'.
+	 * Returns the meta object for class '{@link forkpseudostate.Region <em>Region</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>State Machine</em>'.
-	 * @see forkpseudostate.StateMachine
+	 * @return the meta object for class '<em>Region</em>'.
+	 * @see forkpseudostate.Region
 	 * @generated
 	 */
-	EClass getStateMachine();
+	EClass getRegion();
 
 	/**
 	 * Returns the meta object for class '{@link forkpseudostate.Vertex <em>Vertex</em>}'.
@@ -372,14 +372,14 @@ public interface ForkpseudostatePackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link forkpseudostate.impl.StateMachineImpl <em>State Machine</em>}' class.
+		 * The meta object literal for the '{@link forkpseudostate.impl.RegionImpl <em>Region</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see forkpseudostate.impl.StateMachineImpl
-		 * @see forkpseudostate.impl.ForkpseudostatePackageImpl#getStateMachine()
+		 * @see forkpseudostate.impl.RegionImpl
+		 * @see forkpseudostate.impl.ForkpseudostatePackageImpl#getRegion()
 		 * @generated
 		 */
-		EClass STATE_MACHINE = eINSTANCE.getStateMachine();
+		EClass REGION = eINSTANCE.getRegion();
 
 		/**
 		 * The meta object literal for the '{@link forkpseudostate.impl.VertexImpl <em>Vertex</em>}' class.

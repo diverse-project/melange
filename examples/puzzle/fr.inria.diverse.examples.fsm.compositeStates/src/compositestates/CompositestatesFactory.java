@@ -22,13 +22,13 @@ public interface CompositestatesFactory extends EFactory {
 	CompositestatesFactory eINSTANCE = compositestates.impl.CompositestatesFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>State Machine</em>'.
+	 * Returns a new object of class '<em>Region</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>State Machine</em>'.
+	 * @return a new object of class '<em>Region</em>'.
 	 * @generated
 	 */
-	StateMachine createStateMachine();
+	Region createRegion();
 
 	/**
 	 * Returns a new object of class '<em>State</em>'.
@@ -40,15 +40,6 @@ public interface CompositestatesFactory extends EFactory {
 	State createState();
 
 	/**
-	 * Returns a new object of class '<em>Composite State</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Composite State</em>'.
-	 * @generated
-	 */
-	CompositeState createCompositeState();
-
-	/**
 	 * Returns a new object of class '<em>Transition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56,24 +47,6 @@ public interface CompositestatesFactory extends EFactory {
 	 * @generated
 	 */
 	Transition createTransition();
-
-	/**
-	 * Returns a new object of class '<em>Trigger</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Trigger</em>'.
-	 * @generated
-	 */
-	Trigger createTrigger();
-
-	/**
-	 * Returns a new object of class '<em>Pseudostate</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Pseudostate</em>'.
-	 * @generated
-	 */
-	Pseudostate createPseudostate();
 
 	/**
 	 * Returns the package supported by this factory.

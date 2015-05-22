@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="joinpseudostate" nsURI="http://joinpseudostatemt/" nsPrefix="joinpseudostate">
-  <eClassifiers xsi:type="ecore:EClass" name="StateMachine">
+  <eClassifiers xsi:type="ecore:EClass" name="Region">
     <eAnnotations source="extension"/>
     <eOperations name="findNewActiveTransitions">
       <eAnnotations source="aspect"/>

@@ -27,7 +27,7 @@ class Watch {
 		var StateMachine watch = res.contents.get(0) as StateMachine
 		 
 		watch.evalStateMachine() 
-	} 
+	}  
 
 	def static void main(String[] args) {
 		println('Citizen watch simulator in K3!')

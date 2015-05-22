@@ -68,8 +68,8 @@ public class JoinpseudostateAdapterFactory extends AdapterFactoryImpl {
 	protected JoinpseudostateSwitch<Adapter> modelSwitch =
 		new JoinpseudostateSwitch<Adapter>() {
 			@Override
-			public Adapter caseStateMachine(StateMachine object) {
-				return createStateMachineAdapter();
+			public Adapter caseRegion(Region object) {
+				return createRegionAdapter();
 			}
 			@Override
 			public Adapter caseVertex(Vertex object) {
@@ -104,16 +104,16 @@ public class JoinpseudostateAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link joinpseudostate.StateMachine <em>State Machine</em>}'.
+	 * Creates a new adapter for an object of class '{@link joinpseudostate.Region <em>Region</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see joinpseudostate.StateMachine
+	 * @see joinpseudostate.Region
 	 * @generated
 	 */
-	public Adapter createStateMachineAdapter() {
+	public Adapter createRegionAdapter() {
 		return null;
 	}
 

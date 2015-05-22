@@ -2,9 +2,7 @@
  */
 package compositestates;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -59,41 +57,59 @@ public interface CompositestatesPackage extends EPackage {
 	CompositestatesPackage eINSTANCE = compositestates.impl.CompositestatesPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link compositestates.impl.StateMachineImpl <em>State Machine</em>}' class.
+	 * The meta object id for the '{@link compositestates.impl.RegionImpl <em>Region</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see compositestates.impl.StateMachineImpl
-	 * @see compositestates.impl.CompositestatesPackageImpl#getStateMachine()
+	 * @see compositestates.impl.RegionImpl
+	 * @see compositestates.impl.CompositestatesPackageImpl#getRegion()
 	 * @generated
 	 */
-	int STATE_MACHINE = 0;
+	int REGION = 0;
 
 	/**
-	 * The number of structural features of the '<em>State Machine</em>' class.
+	 * The feature id for the '<em><b>Subvertex</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_MACHINE_FEATURE_COUNT = 0;
+	int REGION__SUBVERTEX = 0;
 
 	/**
-	 * The operation id for the '<em>Get Active Transitions</em>' operation.
+	 * The feature id for the '<em><b>Owner State</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_MACHINE___GET_ACTIVE_TRANSITIONS__VERTEX_ELIST = 0;
+	int REGION__OWNER_STATE = 1;
 
 	/**
-	 * The number of operations of the '<em>State Machine</em>' class.
+	 * The number of structural features of the '<em>Region</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_MACHINE_OPERATION_COUNT = 1;
+	int REGION_FEATURE_COUNT = 2;
+
+	/**
+	 * The operation id for the '<em>Init Region</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REGION___INIT_REGION__MAP = 0;
+
+	/**
+	 * The number of operations of the '<em>Region</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REGION_OPERATION_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link compositestates.impl.VertexImpl <em>Vertex</em>}' class.
@@ -103,7 +119,7 @@ public interface CompositestatesPackage extends EPackage {
 	 * @see compositestates.impl.CompositestatesPackageImpl#getVertex()
 	 * @generated
 	 */
-	int VERTEX = 1;
+	int VERTEX = 2;
 
 	/**
 	 * The feature id for the '<em><b>Incoming</b></em>' reference list.
@@ -124,13 +140,13 @@ public interface CompositestatesPackage extends EPackage {
 	int VERTEX__OUTGOING = 1;
 
 	/**
-	 * The feature id for the '<em><b>Owner State</b></em>' container reference.
+	 * The feature id for the '<em><b>Owner Region</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX__OWNER_STATE = 2;
+	int VERTEX__OWNER_REGION = 2;
 
 	/**
 	 * The number of structural features of the '<em>Vertex</em>' class.
@@ -158,7 +174,7 @@ public interface CompositestatesPackage extends EPackage {
 	 * @see compositestates.impl.CompositestatesPackageImpl#getState()
 	 * @generated
 	 */
-	int STATE = 2;
+	int STATE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Incoming</b></em>' reference list.
@@ -179,13 +195,22 @@ public interface CompositestatesPackage extends EPackage {
 	int STATE__OUTGOING = VERTEX__OUTGOING;
 
 	/**
-	 * The feature id for the '<em><b>Owner State</b></em>' container reference.
+	 * The feature id for the '<em><b>Owner Region</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__OWNER_STATE = VERTEX__OWNER_STATE;
+	int STATE__OWNER_REGION = VERTEX__OWNER_REGION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Regions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__OWNED_REGIONS = VERTEX_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>State</em>' class.
@@ -194,7 +219,7 @@ public interface CompositestatesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_FEATURE_COUNT = VERTEX_FEATURE_COUNT + 0;
+	int STATE_FEATURE_COUNT = VERTEX_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Eval State</em>' operation.
@@ -206,114 +231,13 @@ public interface CompositestatesPackage extends EPackage {
 	int STATE___EVAL_STATE__MAP = VERTEX_OPERATION_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Exit State</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE___EXIT_STATE__MAP = VERTEX_OPERATION_COUNT + 1;
-
-	/**
 	 * The number of operations of the '<em>State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_OPERATION_COUNT = VERTEX_OPERATION_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link compositestates.impl.CompositeStateImpl <em>Composite State</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see compositestates.impl.CompositeStateImpl
-	 * @see compositestates.impl.CompositestatesPackageImpl#getCompositeState()
-	 * @generated
-	 */
-	int COMPOSITE_STATE = 3;
-
-	/**
-	 * The feature id for the '<em><b>Incoming</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_STATE__INCOMING = STATE__INCOMING;
-
-	/**
-	 * The feature id for the '<em><b>Outgoing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_STATE__OUTGOING = STATE__OUTGOING;
-
-	/**
-	 * The feature id for the '<em><b>Owner State</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_STATE__OWNER_STATE = STATE__OWNER_STATE;
-
-	/**
-	 * The feature id for the '<em><b>Initial State</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_STATE__INITIAL_STATE = STATE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>States</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_STATE__STATES = STATE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Composite State</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_STATE_FEATURE_COUNT = STATE_FEATURE_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Eval State</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_STATE___EVAL_STATE__MAP = STATE___EVAL_STATE__MAP;
-
-	/**
-	 * The operation id for the '<em>Exit State</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_STATE___EXIT_STATE__MAP = STATE___EXIT_STATE__MAP;
-
-	/**
-	 * The number of operations of the '<em>Composite State</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_STATE_OPERATION_COUNT = STATE_OPERATION_COUNT + 0;
-
+	int STATE_OPERATION_COUNT = VERTEX_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link compositestates.impl.TransitionImpl <em>Transition</em>}' class.
@@ -323,16 +247,7 @@ public interface CompositestatesPackage extends EPackage {
 	 * @see compositestates.impl.CompositestatesPackageImpl#getTransition()
 	 * @generated
 	 */
-	int TRANSITION = 4;
-
-	/**
-	 * The feature id for the '<em><b>Trigger</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION__TRIGGER = 0;
+	int TRANSITION = 3;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -341,7 +256,7 @@ public interface CompositestatesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__SOURCE = 1;
+	int TRANSITION__SOURCE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -350,7 +265,7 @@ public interface CompositestatesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__TARGET = 2;
+	int TRANSITION__TARGET = 1;
 
 	/**
 	 * The number of structural features of the '<em>Transition</em>' class.
@@ -359,16 +274,7 @@ public interface CompositestatesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION_FEATURE_COUNT = 3;
-
-	/**
-	 * The operation id for the '<em>Eval Transition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION___EVAL_TRANSITION__MAP = 0;
+	int TRANSITION_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Transition</em>' class.
@@ -377,140 +283,81 @@ public interface CompositestatesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION_OPERATION_COUNT = 1;
-
-	/**
-	 * The meta object id for the '{@link compositestates.impl.TriggerImpl <em>Trigger</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see compositestates.impl.TriggerImpl
-	 * @see compositestates.impl.CompositestatesPackageImpl#getTrigger()
-	 * @generated
-	 */
-	int TRIGGER = 5;
-
-	/**
-	 * The feature id for the '<em><b>Expression</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRIGGER__EXPRESSION = 0;
-
-	/**
-	 * The number of structural features of the '<em>Trigger</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRIGGER_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Trigger</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRIGGER_OPERATION_COUNT = 0;
+	int TRANSITION_OPERATION_COUNT = 0;
 
 
 	/**
-	 * The meta object id for the '{@link compositestates.impl.PseudostateImpl <em>Pseudostate</em>}' class.
+	 * Returns the meta object for class '{@link compositestates.Region <em>Region</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see compositestates.impl.PseudostateImpl
-	 * @see compositestates.impl.CompositestatesPackageImpl#getPseudostate()
+	 * @return the meta object for class '<em>Region</em>'.
+	 * @see compositestates.Region
 	 * @generated
 	 */
-	int PSEUDOSTATE = 6;
+	EClass getRegion();
 
 	/**
-	 * The feature id for the '<em><b>Incoming</b></em>' reference list.
+	 * Returns the meta object for the containment reference list '{@link compositestates.Region#getSubvertex <em>Subvertex</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Subvertex</em>'.
+	 * @see compositestates.Region#getSubvertex()
+	 * @see #getRegion()
 	 * @generated
-	 * @ordered
 	 */
-	int PSEUDOSTATE__INCOMING = VERTEX__INCOMING;
+	EReference getRegion_Subvertex();
 
 	/**
-	 * The feature id for the '<em><b>Outgoing</b></em>' reference list.
+	 * Returns the meta object for the container reference '{@link compositestates.Region#getOwnerState <em>Owner State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owner State</em>'.
+	 * @see compositestates.Region#getOwnerState()
+	 * @see #getRegion()
 	 * @generated
-	 * @ordered
 	 */
-	int PSEUDOSTATE__OUTGOING = VERTEX__OUTGOING;
+	EReference getRegion_OwnerState();
 
 	/**
-	 * The feature id for the '<em><b>Owner State</b></em>' container reference.
+	 * Returns the meta object for the '{@link compositestates.Region#initRegion(java.util.Map) <em>Init Region</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Init Region</em>' operation.
+	 * @see compositestates.Region#initRegion(java.util.Map)
 	 * @generated
-	 * @ordered
 	 */
-	int PSEUDOSTATE__OWNER_STATE = VERTEX__OWNER_STATE;
+	EOperation getRegion__InitRegion__Map();
 
 	/**
-	 * The feature id for the '<em><b>Kind</b></em>' attribute.
+	 * Returns the meta object for class '{@link compositestates.State <em>State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>State</em>'.
+	 * @see compositestates.State
 	 * @generated
-	 * @ordered
 	 */
-	int PSEUDOSTATE__KIND = VERTEX_FEATURE_COUNT + 0;
+	EClass getState();
 
 	/**
-	 * The number of structural features of the '<em>Pseudostate</em>' class.
+	 * Returns the meta object for the containment reference list '{@link compositestates.State#getOwnedRegions <em>Owned Regions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Regions</em>'.
+	 * @see compositestates.State#getOwnedRegions()
+	 * @see #getState()
 	 * @generated
-	 * @ordered
 	 */
-	int PSEUDOSTATE_FEATURE_COUNT = VERTEX_FEATURE_COUNT + 1;
+	EReference getState_OwnedRegions();
 
 	/**
-	 * The number of operations of the '<em>Pseudostate</em>' class.
+	 * Returns the meta object for the '{@link compositestates.State#evalState(java.util.Map) <em>Eval State</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PSEUDOSTATE_OPERATION_COUNT = VERTEX_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link compositestates.PseudostateKind <em>Pseudostate Kind</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see compositestates.PseudostateKind
-	 * @see compositestates.impl.CompositestatesPackageImpl#getPseudostateKind()
+	 * @return the meta object for the '<em>Eval State</em>' operation.
+	 * @see compositestates.State#evalState(java.util.Map)
 	 * @generated
 	 */
-	int PSEUDOSTATE_KIND = 7;
-
-
-	/**
-	 * Returns the meta object for class '{@link compositestates.StateMachine <em>State Machine</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>State Machine</em>'.
-	 * @see compositestates.StateMachine
-	 * @generated
-	 */
-	EClass getStateMachine();
-
-	/**
-	 * Returns the meta object for the '{@link compositestates.StateMachine#getActiveTransitions(compositestates.Vertex, org.eclipse.emf.common.util.EList) <em>Get Active Transitions</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Active Transitions</em>' operation.
-	 * @see compositestates.StateMachine#getActiveTransitions(compositestates.Vertex, org.eclipse.emf.common.util.EList)
-	 * @generated
-	 */
-	EOperation getStateMachine__GetActiveTransitions__Vertex_EList();
+	EOperation getState__EvalState__Map();
 
 	/**
 	 * Returns the meta object for class '{@link compositestates.Vertex <em>Vertex</em>}'.
@@ -545,77 +392,15 @@ public interface CompositestatesPackage extends EPackage {
 	EReference getVertex_Outgoing();
 
 	/**
-	 * Returns the meta object for the container reference '{@link compositestates.Vertex#getOwnerState <em>Owner State</em>}'.
+	 * Returns the meta object for the container reference '{@link compositestates.Vertex#getOwnerRegion <em>Owner Region</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Owner State</em>'.
-	 * @see compositestates.Vertex#getOwnerState()
+	 * @return the meta object for the container reference '<em>Owner Region</em>'.
+	 * @see compositestates.Vertex#getOwnerRegion()
 	 * @see #getVertex()
 	 * @generated
 	 */
-	EReference getVertex_OwnerState();
-
-	/**
-	 * Returns the meta object for class '{@link compositestates.State <em>State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>State</em>'.
-	 * @see compositestates.State
-	 * @generated
-	 */
-	EClass getState();
-
-	/**
-	 * Returns the meta object for the '{@link compositestates.State#evalState(java.util.Map) <em>Eval State</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Eval State</em>' operation.
-	 * @see compositestates.State#evalState(java.util.Map)
-	 * @generated
-	 */
-	EOperation getState__EvalState__Map();
-
-	/**
-	 * Returns the meta object for the '{@link compositestates.State#exitState(java.util.Map) <em>Exit State</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Exit State</em>' operation.
-	 * @see compositestates.State#exitState(java.util.Map)
-	 * @generated
-	 */
-	EOperation getState__ExitState__Map();
-
-	/**
-	 * Returns the meta object for class '{@link compositestates.CompositeState <em>Composite State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Composite State</em>'.
-	 * @see compositestates.CompositeState
-	 * @generated
-	 */
-	EClass getCompositeState();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link compositestates.CompositeState#getStates <em>States</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>States</em>'.
-	 * @see compositestates.CompositeState#getStates()
-	 * @see #getCompositeState()
-	 * @generated
-	 */
-	EReference getCompositeState_States();
-
-	/**
-	 * Returns the meta object for the reference '{@link compositestates.CompositeState#getInitialState <em>Initial State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Initial State</em>'.
-	 * @see compositestates.CompositeState#getInitialState()
-	 * @see #getCompositeState()
-	 * @generated
-	 */
-	EReference getCompositeState_InitialState();
+	EReference getVertex_OwnerRegion();
 
 	/**
 	 * Returns the meta object for class '{@link compositestates.Transition <em>Transition</em>}'.
@@ -626,17 +411,6 @@ public interface CompositestatesPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getTransition();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link compositestates.Transition#getTrigger <em>Trigger</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Trigger</em>'.
-	 * @see compositestates.Transition#getTrigger()
-	 * @see #getTransition()
-	 * @generated
-	 */
-	EReference getTransition_Trigger();
 
 	/**
 	 * Returns the meta object for the reference '{@link compositestates.Transition#getSource <em>Source</em>}'.
@@ -659,68 +433,6 @@ public interface CompositestatesPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTransition_Target();
-
-	/**
-	 * Returns the meta object for the '{@link compositestates.Transition#evalTransition(java.util.Map) <em>Eval Transition</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Eval Transition</em>' operation.
-	 * @see compositestates.Transition#evalTransition(java.util.Map)
-	 * @generated
-	 */
-	EOperation getTransition__EvalTransition__Map();
-
-	/**
-	 * Returns the meta object for class '{@link compositestates.Trigger <em>Trigger</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Trigger</em>'.
-	 * @see compositestates.Trigger
-	 * @generated
-	 */
-	EClass getTrigger();
-
-	/**
-	 * Returns the meta object for the attribute '{@link compositestates.Trigger#getExpression <em>Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Expression</em>'.
-	 * @see compositestates.Trigger#getExpression()
-	 * @see #getTrigger()
-	 * @generated
-	 */
-	EAttribute getTrigger_Expression();
-
-	/**
-	 * Returns the meta object for class '{@link compositestates.Pseudostate <em>Pseudostate</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Pseudostate</em>'.
-	 * @see compositestates.Pseudostate
-	 * @generated
-	 */
-	EClass getPseudostate();
-
-	/**
-	 * Returns the meta object for the attribute '{@link compositestates.Pseudostate#getKind <em>Kind</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Kind</em>'.
-	 * @see compositestates.Pseudostate#getKind()
-	 * @see #getPseudostate()
-	 * @generated
-	 */
-	EAttribute getPseudostate_Kind();
-
-	/**
-	 * Returns the meta object for enum '{@link compositestates.PseudostateKind <em>Pseudostate Kind</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Pseudostate Kind</em>'.
-	 * @see compositestates.PseudostateKind
-	 * @generated
-	 */
-	EEnum getPseudostateKind();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -746,22 +458,64 @@ public interface CompositestatesPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link compositestates.impl.StateMachineImpl <em>State Machine</em>}' class.
+		 * The meta object literal for the '{@link compositestates.impl.RegionImpl <em>Region</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see compositestates.impl.StateMachineImpl
-		 * @see compositestates.impl.CompositestatesPackageImpl#getStateMachine()
+		 * @see compositestates.impl.RegionImpl
+		 * @see compositestates.impl.CompositestatesPackageImpl#getRegion()
 		 * @generated
 		 */
-		EClass STATE_MACHINE = eINSTANCE.getStateMachine();
+		EClass REGION = eINSTANCE.getRegion();
 
 		/**
-		 * The meta object literal for the '<em><b>Get Active Transitions</b></em>' operation.
+		 * The meta object literal for the '<em><b>Subvertex</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation STATE_MACHINE___GET_ACTIVE_TRANSITIONS__VERTEX_ELIST = eINSTANCE.getStateMachine__GetActiveTransitions__Vertex_EList();
+		EReference REGION__SUBVERTEX = eINSTANCE.getRegion_Subvertex();
+
+		/**
+		 * The meta object literal for the '<em><b>Owner State</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REGION__OWNER_STATE = eINSTANCE.getRegion_OwnerState();
+
+		/**
+		 * The meta object literal for the '<em><b>Init Region</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation REGION___INIT_REGION__MAP = eINSTANCE.getRegion__InitRegion__Map();
+
+		/**
+		 * The meta object literal for the '{@link compositestates.impl.StateImpl <em>State</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see compositestates.impl.StateImpl
+		 * @see compositestates.impl.CompositestatesPackageImpl#getState()
+		 * @generated
+		 */
+		EClass STATE = eINSTANCE.getState();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Regions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATE__OWNED_REGIONS = eINSTANCE.getState_OwnedRegions();
+
+		/**
+		 * The meta object literal for the '<em><b>Eval State</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation STATE___EVAL_STATE__MAP = eINSTANCE.getState__EvalState__Map();
 
 		/**
 		 * The meta object literal for the '{@link compositestates.impl.VertexImpl <em>Vertex</em>}' class.
@@ -790,64 +544,12 @@ public interface CompositestatesPackage extends EPackage {
 		EReference VERTEX__OUTGOING = eINSTANCE.getVertex_Outgoing();
 
 		/**
-		 * The meta object literal for the '<em><b>Owner State</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Owner Region</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VERTEX__OWNER_STATE = eINSTANCE.getVertex_OwnerState();
-
-		/**
-		 * The meta object literal for the '{@link compositestates.impl.StateImpl <em>State</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see compositestates.impl.StateImpl
-		 * @see compositestates.impl.CompositestatesPackageImpl#getState()
-		 * @generated
-		 */
-		EClass STATE = eINSTANCE.getState();
-
-		/**
-		 * The meta object literal for the '<em><b>Eval State</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation STATE___EVAL_STATE__MAP = eINSTANCE.getState__EvalState__Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Exit State</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation STATE___EXIT_STATE__MAP = eINSTANCE.getState__ExitState__Map();
-
-		/**
-		 * The meta object literal for the '{@link compositestates.impl.CompositeStateImpl <em>Composite State</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see compositestates.impl.CompositeStateImpl
-		 * @see compositestates.impl.CompositestatesPackageImpl#getCompositeState()
-		 * @generated
-		 */
-		EClass COMPOSITE_STATE = eINSTANCE.getCompositeState();
-
-		/**
-		 * The meta object literal for the '<em><b>States</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPOSITE_STATE__STATES = eINSTANCE.getCompositeState_States();
-
-		/**
-		 * The meta object literal for the '<em><b>Initial State</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPOSITE_STATE__INITIAL_STATE = eINSTANCE.getCompositeState_InitialState();
+		EReference VERTEX__OWNER_REGION = eINSTANCE.getVertex_OwnerRegion();
 
 		/**
 		 * The meta object literal for the '{@link compositestates.impl.TransitionImpl <em>Transition</em>}' class.
@@ -858,14 +560,6 @@ public interface CompositestatesPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TRANSITION = eINSTANCE.getTransition();
-
-		/**
-		 * The meta object literal for the '<em><b>Trigger</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TRANSITION__TRIGGER = eINSTANCE.getTransition_Trigger();
 
 		/**
 		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
@@ -882,60 +576,6 @@ public interface CompositestatesPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TRANSITION__TARGET = eINSTANCE.getTransition_Target();
-
-		/**
-		 * The meta object literal for the '<em><b>Eval Transition</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation TRANSITION___EVAL_TRANSITION__MAP = eINSTANCE.getTransition__EvalTransition__Map();
-
-		/**
-		 * The meta object literal for the '{@link compositestates.impl.TriggerImpl <em>Trigger</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see compositestates.impl.TriggerImpl
-		 * @see compositestates.impl.CompositestatesPackageImpl#getTrigger()
-		 * @generated
-		 */
-		EClass TRIGGER = eINSTANCE.getTrigger();
-
-		/**
-		 * The meta object literal for the '<em><b>Expression</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TRIGGER__EXPRESSION = eINSTANCE.getTrigger_Expression();
-
-		/**
-		 * The meta object literal for the '{@link compositestates.impl.PseudostateImpl <em>Pseudostate</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see compositestates.impl.PseudostateImpl
-		 * @see compositestates.impl.CompositestatesPackageImpl#getPseudostate()
-		 * @generated
-		 */
-		EClass PSEUDOSTATE = eINSTANCE.getPseudostate();
-
-		/**
-		 * The meta object literal for the '<em><b>Kind</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PSEUDOSTATE__KIND = eINSTANCE.getPseudostate_Kind();
-
-		/**
-		 * The meta object literal for the '{@link compositestates.PseudostateKind <em>Pseudostate Kind</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see compositestates.PseudostateKind
-		 * @see compositestates.impl.CompositestatesPackageImpl#getPseudostateKind()
-		 * @generated
-		 */
-		EEnum PSEUDOSTATE_KIND = eINSTANCE.getPseudostateKind();
 
 	}
 

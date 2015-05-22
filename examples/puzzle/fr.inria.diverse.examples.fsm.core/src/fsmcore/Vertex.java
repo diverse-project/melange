@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link fsmcore.Vertex#getIncoming <em>Incoming</em>}</li>
  *   <li>{@link fsmcore.Vertex#getOutgoing <em>Outgoing</em>}</li>
+ *   <li>{@link fsmcore.Vertex#getOwnerRegion <em>Owner Region</em>}</li>
  * </ul>
  *
  * @see fsmcore.FsmcorePackage#getVertex()
@@ -57,5 +58,31 @@ public interface Vertex extends NamedElement {
 	 * @generated
 	 */
 	EList<Transition> getOutgoing();
+
+	/**
+	 * Returns the value of the '<em><b>Owner Region</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owner Region</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owner Region</em>' reference.
+	 * @see #setOwnerRegion(Region)
+	 * @see fsmcore.FsmcorePackage#getVertex_OwnerRegion()
+	 * @model required="true"
+	 * @generated
+	 */
+	Region getOwnerRegion();
+
+	/**
+	 * Sets the value of the '{@link fsmcore.Vertex#getOwnerRegion <em>Owner Region</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owner Region</em>' reference.
+	 * @see #getOwnerRegion()
+	 * @generated
+	 */
+	void setOwnerRegion(Region value);
 
 } // Vertex

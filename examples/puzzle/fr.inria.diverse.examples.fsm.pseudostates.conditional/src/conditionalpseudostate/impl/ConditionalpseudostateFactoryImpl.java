@@ -57,7 +57,7 @@ public class ConditionalpseudostateFactoryImpl extends EFactoryImpl implements C
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case ConditionalpseudostatePackage.STATE_MACHINE: return createStateMachine();
+			case ConditionalpseudostatePackage.REGION: return createRegion();
 			case ConditionalpseudostatePackage.PSEUDOSTATE: return createPseudostate();
 			case ConditionalpseudostatePackage.TRANSITION: return createTransition();
 			default:
@@ -100,9 +100,9 @@ public class ConditionalpseudostateFactoryImpl extends EFactoryImpl implements C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StateMachine createStateMachine() {
-		StateMachineImpl stateMachine = new StateMachineImpl();
-		return stateMachine;
+	public Region createRegion() {
+		RegionImpl region = new RegionImpl();
+		return region;
 	}
 
 	/**

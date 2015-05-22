@@ -68,32 +68,20 @@ public class CompositestatesAdapterFactory extends AdapterFactoryImpl {
 	protected CompositestatesSwitch<Adapter> modelSwitch =
 		new CompositestatesSwitch<Adapter>() {
 			@Override
-			public Adapter caseStateMachine(StateMachine object) {
-				return createStateMachineAdapter();
-			}
-			@Override
-			public Adapter caseVertex(Vertex object) {
-				return createVertexAdapter();
+			public Adapter caseRegion(Region object) {
+				return createRegionAdapter();
 			}
 			@Override
 			public Adapter caseState(State object) {
 				return createStateAdapter();
 			}
 			@Override
-			public Adapter caseCompositeState(CompositeState object) {
-				return createCompositeStateAdapter();
+			public Adapter caseVertex(Vertex object) {
+				return createVertexAdapter();
 			}
 			@Override
 			public Adapter caseTransition(Transition object) {
 				return createTransitionAdapter();
-			}
-			@Override
-			public Adapter caseTrigger(Trigger object) {
-				return createTriggerAdapter();
-			}
-			@Override
-			public Adapter casePseudostate(Pseudostate object) {
-				return createPseudostateAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -116,30 +104,16 @@ public class CompositestatesAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link compositestates.StateMachine <em>State Machine</em>}'.
+	 * Creates a new adapter for an object of class '{@link compositestates.Region <em>Region</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see compositestates.StateMachine
+	 * @see compositestates.Region
 	 * @generated
 	 */
-	public Adapter createStateMachineAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link compositestates.Vertex <em>Vertex</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see compositestates.Vertex
-	 * @generated
-	 */
-	public Adapter createVertexAdapter() {
+	public Adapter createRegionAdapter() {
 		return null;
 	}
 
@@ -158,16 +132,16 @@ public class CompositestatesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link compositestates.CompositeState <em>Composite State</em>}'.
+	 * Creates a new adapter for an object of class '{@link compositestates.Vertex <em>Vertex</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see compositestates.CompositeState
+	 * @see compositestates.Vertex
 	 * @generated
 	 */
-	public Adapter createCompositeStateAdapter() {
+	public Adapter createVertexAdapter() {
 		return null;
 	}
 
@@ -182,34 +156,6 @@ public class CompositestatesAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTransitionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link compositestates.Trigger <em>Trigger</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see compositestates.Trigger
-	 * @generated
-	 */
-	public Adapter createTriggerAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link compositestates.Pseudostate <em>Pseudostate</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see compositestates.Pseudostate
-	 * @generated
-	 */
-	public Adapter createPseudostateAdapter() {
 		return null;
 	}
 

@@ -3,6 +3,7 @@
 package fsmcore;
 
 import java.util.Map;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -16,7 +17,6 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Statement extends EObject {
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -24,4 +24,5 @@ public interface Statement extends EObject {
 	 * @generated
 	 */
 	void eval(Map<?, ?> context);
+
 } // Statement

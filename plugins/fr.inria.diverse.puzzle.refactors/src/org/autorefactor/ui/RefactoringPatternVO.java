@@ -4,6 +4,7 @@ public class RefactoringPatternVO {
 
 	private String sourcePattern;
 	private String targetPattern;
+	private String pivotPattern;
 	
 	public String getSourcePattern() {
 		return sourcePattern;
@@ -25,4 +26,14 @@ public class RefactoringPatternVO {
 		RefactoringPatternVO _targetPattern = (RefactoringPatternVO) target;
 		return _targetPattern.sourcePattern.equals(this.sourcePattern) && _targetPattern.targetPattern.equals(this.targetPattern);
 	}
+
+	public String getPivotPattern() {
+		return pivotPattern;
+	}
+
+	public void setPivotPattern(String pivotPattern) {
+		this.pivotPattern = pivotPattern;
+	}
+	
+	
 }

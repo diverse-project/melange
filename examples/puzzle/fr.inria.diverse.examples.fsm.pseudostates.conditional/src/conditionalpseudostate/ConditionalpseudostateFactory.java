@@ -22,13 +22,13 @@ public interface ConditionalpseudostateFactory extends EFactory {
 	ConditionalpseudostateFactory eINSTANCE = conditionalpseudostate.impl.ConditionalpseudostateFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>State Machine</em>'.
+	 * Returns a new object of class '<em>Region</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>State Machine</em>'.
+	 * @return a new object of class '<em>Region</em>'.
 	 * @generated
 	 */
-	StateMachine createStateMachine();
+	Region createRegion();
 
 	/**
 	 * Returns a new object of class '<em>Pseudostate</em>'.

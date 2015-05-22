@@ -16,6 +16,10 @@
             id="fsm.ConstraintsLanguageMT">
       </modeltype>
       <modeltype
+            uri="http://compostestatesmt/"
+            id="fsm.ComposteStatesMT">
+      </modeltype>
+      <modeltype
             uri="http://transitioneffectmt/"
             id="fsm.TransitionEffectMT">
       </modeltype>
@@ -80,6 +84,16 @@
          <adapter
                class="fsm.constraintslanguage.adapters.constraintslanguagemt.ConstraintsLanguageAdapter"
                modeltypeId="fsm.ConstraintsLanguageMT">
+         </adapter>
+      </language>
+      <language
+            exactType="fsm.ComposteStatesMT"
+            description="Composite states: Contains the concept &apos;CompositeState&apos; that enables hierarchical state machines."
+            uri="http://compositestates"
+            id="fsm.CompositeStates">
+         <adapter
+               class="fsm.compositestates.adapters.compostestatesmt.CompositeStatesAdapter"
+               modeltypeId="fsm.ComposteStatesMT">
          </adapter>
       </language>
       <language

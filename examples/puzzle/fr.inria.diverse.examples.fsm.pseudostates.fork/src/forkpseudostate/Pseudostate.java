@@ -10,10 +10,10 @@ package forkpseudostate;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link forkpseudostate.Pseudostate#getKind <em>Kind</em>}</li>
  * </ul>
- * </p>
  *
  * @see forkpseudostate.ForkpseudostatePackage#getPseudostate()
  * @model

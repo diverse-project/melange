@@ -2,8 +2,8 @@
  */
 package compositestates.impl;
 
-import compositestates.CompositeState;
 import compositestates.CompositestatesPackage;
+import compositestates.Region;
 import compositestates.Transition;
 import compositestates.Vertex;
 
@@ -30,12 +30,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link compositestates.impl.VertexImpl#getIncoming <em>Incoming</em>}</li>
  *   <li>{@link compositestates.impl.VertexImpl#getOutgoing <em>Outgoing</em>}</li>
- *   <li>{@link compositestates.impl.VertexImpl#getOwnerState <em>Owner State</em>}</li>
+ *   <li>{@link compositestates.impl.VertexImpl#getOwnerRegion <em>Owner Region</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -108,9 +108,9 @@ public abstract class VertexImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeState getOwnerState() {
-		if (eContainerFeatureID() != CompositestatesPackage.VERTEX__OWNER_STATE) return null;
-		return (CompositeState)eInternalContainer();
+	public Region getOwnerRegion() {
+		if (eContainerFeatureID() != CompositestatesPackage.VERTEX__OWNER_REGION) return null;
+		return (Region)eInternalContainer();
 	}
 
 	/**
@@ -118,8 +118,8 @@ public abstract class VertexImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwnerState(CompositeState newOwnerState, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newOwnerState, CompositestatesPackage.VERTEX__OWNER_STATE, msgs);
+	public NotificationChain basicSetOwnerRegion(Region newOwnerRegion, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwnerRegion, CompositestatesPackage.VERTEX__OWNER_REGION, msgs);
 		return msgs;
 	}
 
@@ -128,20 +128,20 @@ public abstract class VertexImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwnerState(CompositeState newOwnerState) {
-		if (newOwnerState != eInternalContainer() || (eContainerFeatureID() != CompositestatesPackage.VERTEX__OWNER_STATE && newOwnerState != null)) {
-			if (EcoreUtil.isAncestor(this, newOwnerState))
+	public void setOwnerRegion(Region newOwnerRegion) {
+		if (newOwnerRegion != eInternalContainer() || (eContainerFeatureID() != CompositestatesPackage.VERTEX__OWNER_REGION && newOwnerRegion != null)) {
+			if (EcoreUtil.isAncestor(this, newOwnerRegion))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOwnerState != null)
-				msgs = ((InternalEObject)newOwnerState).eInverseAdd(this, CompositestatesPackage.COMPOSITE_STATE__STATES, CompositeState.class, msgs);
-			msgs = basicSetOwnerState(newOwnerState, msgs);
+			if (newOwnerRegion != null)
+				msgs = ((InternalEObject)newOwnerRegion).eInverseAdd(this, CompositestatesPackage.REGION__SUBVERTEX, Region.class, msgs);
+			msgs = basicSetOwnerRegion(newOwnerRegion, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CompositestatesPackage.VERTEX__OWNER_STATE, newOwnerState, newOwnerState));
+			eNotify(new ENotificationImpl(this, Notification.SET, CompositestatesPackage.VERTEX__OWNER_REGION, newOwnerRegion, newOwnerRegion));
 	}
 
 	/**
@@ -157,10 +157,10 @@ public abstract class VertexImpl extends MinimalEObjectImpl.Container implements
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getIncoming()).basicAdd(otherEnd, msgs);
 			case CompositestatesPackage.VERTEX__OUTGOING:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOutgoing()).basicAdd(otherEnd, msgs);
-			case CompositestatesPackage.VERTEX__OWNER_STATE:
+			case CompositestatesPackage.VERTEX__OWNER_REGION:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwnerState((CompositeState)otherEnd, msgs);
+				return basicSetOwnerRegion((Region)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -177,8 +177,8 @@ public abstract class VertexImpl extends MinimalEObjectImpl.Container implements
 				return ((InternalEList<?>)getIncoming()).basicRemove(otherEnd, msgs);
 			case CompositestatesPackage.VERTEX__OUTGOING:
 				return ((InternalEList<?>)getOutgoing()).basicRemove(otherEnd, msgs);
-			case CompositestatesPackage.VERTEX__OWNER_STATE:
-				return basicSetOwnerState(null, msgs);
+			case CompositestatesPackage.VERTEX__OWNER_REGION:
+				return basicSetOwnerRegion(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -191,8 +191,8 @@ public abstract class VertexImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case CompositestatesPackage.VERTEX__OWNER_STATE:
-				return eInternalContainer().eInverseRemove(this, CompositestatesPackage.COMPOSITE_STATE__STATES, CompositeState.class, msgs);
+			case CompositestatesPackage.VERTEX__OWNER_REGION:
+				return eInternalContainer().eInverseRemove(this, CompositestatesPackage.REGION__SUBVERTEX, Region.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -209,8 +209,8 @@ public abstract class VertexImpl extends MinimalEObjectImpl.Container implements
 				return getIncoming();
 			case CompositestatesPackage.VERTEX__OUTGOING:
 				return getOutgoing();
-			case CompositestatesPackage.VERTEX__OWNER_STATE:
-				return getOwnerState();
+			case CompositestatesPackage.VERTEX__OWNER_REGION:
+				return getOwnerRegion();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -232,8 +232,8 @@ public abstract class VertexImpl extends MinimalEObjectImpl.Container implements
 				getOutgoing().clear();
 				getOutgoing().addAll((Collection<? extends Transition>)newValue);
 				return;
-			case CompositestatesPackage.VERTEX__OWNER_STATE:
-				setOwnerState((CompositeState)newValue);
+			case CompositestatesPackage.VERTEX__OWNER_REGION:
+				setOwnerRegion((Region)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -253,8 +253,8 @@ public abstract class VertexImpl extends MinimalEObjectImpl.Container implements
 			case CompositestatesPackage.VERTEX__OUTGOING:
 				getOutgoing().clear();
 				return;
-			case CompositestatesPackage.VERTEX__OWNER_STATE:
-				setOwnerState((CompositeState)null);
+			case CompositestatesPackage.VERTEX__OWNER_REGION:
+				setOwnerRegion((Region)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -272,8 +272,8 @@ public abstract class VertexImpl extends MinimalEObjectImpl.Container implements
 				return incoming != null && !incoming.isEmpty();
 			case CompositestatesPackage.VERTEX__OUTGOING:
 				return outgoing != null && !outgoing.isEmpty();
-			case CompositestatesPackage.VERTEX__OWNER_STATE:
-				return getOwnerState() != null;
+			case CompositestatesPackage.VERTEX__OWNER_REGION:
+				return getOwnerRegion() != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -59,7 +59,7 @@ class StateMachineAspect {
 			var String _key = _it.next
 			var Object _value = context.get(_key)
 			if(!_key.equals("currentState"))
-				variablesString += " - " + _key + ": " + _value
+				variablesString += " - " + _key + ": " + _value + "\n"
 		}
 		if(!variablesString.equals("")){
 			println("\n ---> current variables' values: ")
@@ -86,7 +86,7 @@ class StateMachineAspect {
 					var String _key = _it.next
 					var Object _value = context.get(_key)
 					if(!_key.equals("currentState"))
-						variablesString += println("              - " + _key + ": " + _value)
+						variablesString += "              - " + _key + ": " + _value + "\n"
 				}
 				if(!variablesString.equals("")){
 					println("\n          ---> current variables' values: ")

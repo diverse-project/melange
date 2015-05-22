@@ -27,11 +27,11 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link conditionalpseudostate.impl.TransitionImpl#getSource <em>Source</em>}</li>
  *   <li>{@link conditionalpseudostate.impl.TransitionImpl#getTarget <em>Target</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

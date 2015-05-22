@@ -10,7 +10,7 @@
       </genEnumLiterals>
     </genEnums>
     <genClasses>
-      <ecoreClass href="Join.ecore#//StateMachine"/>
+      <ecoreClass href="Join.ecore#//Region"/>
     </genClasses>
     <genClasses image="false">
       <ecoreClass href="Join.ecore#//Vertex"/>

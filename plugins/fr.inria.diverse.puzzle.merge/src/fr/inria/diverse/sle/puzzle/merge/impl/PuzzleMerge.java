@@ -452,7 +452,6 @@ public class PuzzleMerge {
 		
 		for(EReference _eReference : eClass.getEReferences()){
 			if(_eReference.getEAnnotation("addition") == null){
-				System.out.println("_eReference " + _eReference.getName() + _eReference.getEType());
 				table.put(PuzzleConstants.EReference + ":" + eClass.getName() + ":" + _eReference.getName() + ":" +  _eReference.getEType().getName(), _eReference);
 			}
 		}
@@ -717,8 +716,6 @@ public class PuzzleMerge {
 						if(_legacyOperation != null){
 							for(EParameter _newEParameter : _newEOperation.getEParameters()){
 								EParameter _legacyParameter = searchEParameterByName(_legacyOperation, _newEParameter.getName());
-								System.out.println("_newEParameter: " + _newEParameter);
-								System.out.println("_legacyParameter: " + _legacyParameter);
 								if(_legacyParameter.getEType() != null){
 									String _resolvedTypeName = _legacyParameter.getEType().getName();
 									if(_resolvedTypeName != null){

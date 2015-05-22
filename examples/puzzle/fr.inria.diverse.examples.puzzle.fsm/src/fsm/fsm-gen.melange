@@ -5,14 +5,15 @@ package fsm
  */
 composition CompleteFSM {
 	aggregation(CoreFSM, ImperativeLanguage)  
-	aggregation(CoreFSM, ConstraintsLanguage)
+	aggregation(CoreFSM, ConstraintsLanguage)  
 	extension(CoreFSM, TransitionEffect)
 	extension(CoreFSM, JoinPseudostate) 
 	extension(CoreFSM, ForkPseudostate) 
-	extension(CoreFSM, NotTrigger)     
-	extension(CoreFSM, AndTrigger)   
-	extension(CoreFSM, OrTrigger)
-	extension(CoreFSM, Conditional)  
+	extension(CoreFSM, NotTrigger)   
+	extension(CoreFSM, AndTrigger)  
+	extension(CoreFSM, OrTrigger)    
+	extension(CoreFSM, Conditional)
+	extension(CoreFSM, CompositeStates) 
 } 
 
 /** 
@@ -23,7 +24,8 @@ language CoreFSM {
 	exactType CoreFSMMT
 	
 	// Variation # 2: Simultaneous Events
-	with FSM.simultaneous.StateMachineAspect 
+	with FSM.simultaneous.StateMachineAspect
+	with FSM.simultaneous.RegionAspect 
 	with FSM.simultaneous.StateAspect
 	with FSM.simultaneous.TransitionAspect
 	with FSM.simultaneous.TriggerAspect
@@ -67,13 +69,13 @@ language ConstraintsLanguage{
 /**
  * Composite states: Contains the concept 'CompositeState' that enables hierarchical state machines.
  */
-//language CompositeStates {
-//	ecore "platform:/resource/fr.inria.diverse.examples.fsm.compositeStates/models/compositestates.ecore"
-//	exactType ComposteStatesMT 
-//	
-//	with FSM.composite.higher.StateMachineAspect
-//	with FSM.composite.higher.CompositeStateAspect
-//}
+language CompositeStates {
+	ecore "platform:/resource/fr.inria.diverse.examples.fsm.compositeStates/models/compositestates.ecore"
+	exactType ComposteStatesMT 
+	
+	with FSM.composite.higher.RegionAspect
+	with FSM.composite.higher.StateAspect
+}
 
 /**
  * Transition effect: Contains the concept 'Effect' that enables effects in the transitions
@@ -83,7 +85,7 @@ language TransitionEffect {
 	exactType TransitionEffectMT
 	
 	// Variation # 2: Parallel
-	with transitioneffects.parallel.TransitionAspect
+	with transitioneffects.sequential.TransitionAspect
 }
 
 /**
@@ -93,7 +95,7 @@ language ForkPseudostate {
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.pseudostates.fork/models/Fork.ecore"
 	exactType ForkPseudostateMT
 	
-	with pseudostates.fork.StateMachineAspect
+	with pseudostates.fork.RegionAspect
 }
 
 /**
@@ -103,7 +105,7 @@ language JoinPseudostate {
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.pseudostates.join/models/Join.ecore"
 	exactType JoinPseudostateMT
 	
-	with pseudostates.join.StateMachineAspect
+	with pseudostates.join.RegionAspect
 }
 
 /**
@@ -143,5 +145,5 @@ language Conditional {
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.pseudostates.conditional/models/Conditional.ecore"
 	exactType ConditionalMT
 
-	with pseudostates.conditional.StateMachineAspect
+	with pseudostates.conditional.RegionAspect
 }

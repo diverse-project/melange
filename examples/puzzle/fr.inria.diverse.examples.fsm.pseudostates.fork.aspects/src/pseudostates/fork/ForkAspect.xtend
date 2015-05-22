@@ -2,7 +2,6 @@ package pseudostates.fork
 
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 	
-import forkpseudostate.StateMachine
 import forkpseudostate.Transition
 import java.util.ArrayList
 import puzzle.annotations.processor.OverrideRequiredAspectMethod
@@ -10,9 +9,10 @@ import forkpseudostate.Pseudostate
 import forkpseudostate.PseudostateKind
 import forkpseudostate.Vertex
 import java.util.Hashtable
+import forkpseudostate.Region
 
-@Aspect(className=StateMachine)
-class StateMachineAspect {
+@Aspect(className=Region)
+class RegionAspect {
 
 	@OverrideRequiredAspectMethod
 	def public void findNewActiveTransitions(ArrayList<Transition> newActiveTransitions, 

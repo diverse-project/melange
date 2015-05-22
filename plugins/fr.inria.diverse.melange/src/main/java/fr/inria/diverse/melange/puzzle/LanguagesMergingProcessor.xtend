@@ -125,7 +125,7 @@ class LanguagesMergingProcessor extends DispatchMelangeProcessor {
 			
 			for(OverlappingAspectsVO _overlappingAspect : overlappingAspects){
 				if(mergedFiles.get(_overlappingAspect.mergedFile) == null){
-					println("overrideMethod " + _overlappingAspect.rightFile + " .. " + _overlappingAspect.mergedFile)
+//					println("overrideMethod " + _overlappingAspect.rightFile + " .. " + _overlappingAspect.mergedFile)
 					overrideMethod(_overlappingAspect.rightFile, _overlappingAspect.mergedFile);
 					mergedFiles.put(_overlappingAspect.mergedFile,_overlappingAspect.mergedFile);
 				}
@@ -149,7 +149,7 @@ class LanguagesMergingProcessor extends DispatchMelangeProcessor {
 					propertiesSet.allPropertiesFiles.add(rightPropertiesFile)
 				
 				propertiesFiles.put(mergedPropertiesFile, propertiesSet)
-				println("propertiesSet: " + propertiesSet)
+//				println("propertiesSet: " + propertiesSet)
 				
 				targetProject.refreshLocal(IResource.DEPTH_INFINITE, null);
 				JavaCore.initializeAfterLoad(null)
@@ -190,7 +190,7 @@ class LanguagesMergingProcessor extends DispatchMelangeProcessor {
 			
 			// Loading the java elements in the overriding aspects needed for the java AST refactoring
 			for(OverridingAspectsVO _overridingAspect : overridingAspects){
-				println("_overridingAspect.mergedFile: " + _overridingAspect.mergedFile)
+//				println("_overridingAspect.mergedFile: " + _overridingAspect.mergedFile)
 				if(_overridingAspect.mergedFile!=null){
 					val String mergedPathString = _overridingAspect.mergedFile.replace(ws.location.toString, "")
 					var IJavaElement mergedElement = cacheJavaElements.get(mergedPathString)
@@ -226,7 +226,7 @@ class LanguagesMergingProcessor extends DispatchMelangeProcessor {
 			val targetFolderFile = new File(targetProject.locationURI.path + "/xtend-gen/")
 			
 			for(RefactoringPatternVO _refactoringPattern: refactoringPatterns){
-				println("_refactoringPattern: " + _refactoringPattern.sourcePattern + " - " + _refactoringPattern.targetPattern)
+				println("_refactoringPattern: " + _refactoringPattern.sourcePattern + " - " + _refactoringPattern.targetPattern + " - " + _refactoringPattern.pivotPattern)
 			}
 			
 			var PrepareApplyRefactoringsJob refactoringJob = new PrepareApplyRefactoringsJob(cleanListOverlappingAspects, overridingAspects,

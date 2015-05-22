@@ -13,12 +13,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link compositestates.Vertex#getIncoming <em>Incoming</em>}</li>
  *   <li>{@link compositestates.Vertex#getOutgoing <em>Outgoing</em>}</li>
- *   <li>{@link compositestates.Vertex#getOwnerState <em>Owner State</em>}</li>
+ *   <li>{@link compositestates.Vertex#getOwnerRegion <em>Owner Region</em>}</li>
  * </ul>
- * </p>
  *
  * @see compositestates.CompositestatesPackage#getVertex()
  * @model abstract="true"
@@ -62,31 +62,31 @@ public interface Vertex extends EObject {
 	EList<Transition> getOutgoing();
 
 	/**
-	 * Returns the value of the '<em><b>Owner State</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link compositestates.CompositeState#getStates <em>States</em>}'.
+	 * Returns the value of the '<em><b>Owner Region</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link compositestates.Region#getSubvertex <em>Subvertex</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owner State</em>' container reference isn't clear,
+	 * If the meaning of the '<em>Owner Region</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owner State</em>' container reference.
-	 * @see #setOwnerState(CompositeState)
-	 * @see compositestates.CompositestatesPackage#getVertex_OwnerState()
-	 * @see compositestates.CompositeState#getStates
-	 * @model opposite="states" transient="false"
+	 * @return the value of the '<em>Owner Region</em>' container reference.
+	 * @see #setOwnerRegion(Region)
+	 * @see compositestates.CompositestatesPackage#getVertex_OwnerRegion()
+	 * @see compositestates.Region#getSubvertex
+	 * @model opposite="subvertex" required="true" transient="false"
 	 * @generated
 	 */
-	CompositeState getOwnerState();
+	Region getOwnerRegion();
 
 	/**
-	 * Sets the value of the '{@link compositestates.Vertex#getOwnerState <em>Owner State</em>}' container reference.
+	 * Sets the value of the '{@link compositestates.Vertex#getOwnerRegion <em>Owner Region</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owner State</em>' container reference.
-	 * @see #getOwnerState()
+	 * @param value the new value of the '<em>Owner Region</em>' container reference.
+	 * @see #getOwnerRegion()
 	 * @generated
 	 */
-	void setOwnerState(CompositeState value);
+	void setOwnerRegion(Region value);
 
 } // Vertex

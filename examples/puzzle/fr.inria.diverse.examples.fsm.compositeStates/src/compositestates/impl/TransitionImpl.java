@@ -4,15 +4,14 @@ package compositestates.impl;
 
 import compositestates.CompositestatesPackage;
 import compositestates.Transition;
-import compositestates.Trigger;
 import compositestates.Vertex;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
@@ -22,26 +21,15 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
- *   <li>{@link compositestates.impl.TransitionImpl#getTrigger <em>Trigger</em>}</li>
  *   <li>{@link compositestates.impl.TransitionImpl#getSource <em>Source</em>}</li>
  *   <li>{@link compositestates.impl.TransitionImpl#getTarget <em>Target</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class TransitionImpl extends MinimalEObjectImpl.Container implements Transition {
-	/**
-	 * The cached value of the '{@link #getTrigger() <em>Trigger</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTrigger()
-	 * @generated
-	 * @ordered
-	 */
-	protected Trigger trigger;
-
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -79,49 +67,6 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
 	@Override
 	protected EClass eStaticClass() {
 		return CompositestatesPackage.Literals.TRANSITION;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Trigger getTrigger() {
-		return trigger;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetTrigger(Trigger newTrigger, NotificationChain msgs) {
-		Trigger oldTrigger = trigger;
-		trigger = newTrigger;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompositestatesPackage.TRANSITION__TRIGGER, oldTrigger, newTrigger);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTrigger(Trigger newTrigger) {
-		if (newTrigger != trigger) {
-			NotificationChain msgs = null;
-			if (trigger != null)
-				msgs = ((InternalEObject)trigger).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompositestatesPackage.TRANSITION__TRIGGER, null, msgs);
-			if (newTrigger != null)
-				msgs = ((InternalEObject)newTrigger).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CompositestatesPackage.TRANSITION__TRIGGER, null, msgs);
-			msgs = basicSetTrigger(newTrigger, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CompositestatesPackage.TRANSITION__TRIGGER, newTrigger, newTrigger));
 	}
 
 	/**
@@ -249,17 +194,6 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void evalTransition(Map<?, ?> context) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -283,8 +217,6 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CompositestatesPackage.TRANSITION__TRIGGER:
-				return basicSetTrigger(null, msgs);
 			case CompositestatesPackage.TRANSITION__SOURCE:
 				return basicSetSource(null, msgs);
 			case CompositestatesPackage.TRANSITION__TARGET:
@@ -301,8 +233,6 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CompositestatesPackage.TRANSITION__TRIGGER:
-				return getTrigger();
 			case CompositestatesPackage.TRANSITION__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
@@ -321,9 +251,6 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CompositestatesPackage.TRANSITION__TRIGGER:
-				setTrigger((Trigger)newValue);
-				return;
 			case CompositestatesPackage.TRANSITION__SOURCE:
 				setSource((Vertex)newValue);
 				return;
@@ -342,9 +269,6 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CompositestatesPackage.TRANSITION__TRIGGER:
-				setTrigger((Trigger)null);
-				return;
 			case CompositestatesPackage.TRANSITION__SOURCE:
 				setSource((Vertex)null);
 				return;
@@ -363,29 +287,12 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CompositestatesPackage.TRANSITION__TRIGGER:
-				return trigger != null;
 			case CompositestatesPackage.TRANSITION__SOURCE:
 				return source != null;
 			case CompositestatesPackage.TRANSITION__TARGET:
 				return target != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case CompositestatesPackage.TRANSITION___EVAL_TRANSITION__MAP:
-				evalTransition((Map<?, ?>)arguments.get(0));
-				return null;
-		}
-		return super.eInvoke(operationID, arguments);
 	}
 
 } //TransitionImpl

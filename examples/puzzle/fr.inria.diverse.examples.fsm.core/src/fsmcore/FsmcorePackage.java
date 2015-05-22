@@ -234,13 +234,22 @@ public interface FsmcorePackage extends EPackage {
 	int VERTEX__OUTGOING = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Owner Region</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERTEX__OWNER_REGION = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Vertex</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int VERTEX_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Vertex</em>' class.
@@ -287,6 +296,15 @@ public interface FsmcorePackage extends EPackage {
 	 * @ordered
 	 */
 	int STATE__OUTGOING = VERTEX__OUTGOING;
+
+	/**
+	 * The feature id for the '<em><b>Owner Region</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__OWNER_REGION = VERTEX__OWNER_REGION;
 
 	/**
 	 * The feature id for the '<em><b>Do Activity</b></em>' containment reference.
@@ -712,6 +730,15 @@ public interface FsmcorePackage extends EPackage {
 	int PSEUDOSTATE__OUTGOING = VERTEX__OUTGOING;
 
 	/**
+	 * The feature id for the '<em><b>Owner Region</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PSEUDOSTATE__OWNER_REGION = VERTEX__OWNER_REGION;
+
+	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -774,6 +801,15 @@ public interface FsmcorePackage extends EPackage {
 	 * @ordered
 	 */
 	int FINAL_STATE__OUTGOING = STATE__OUTGOING;
+
+	/**
+	 * The feature id for the '<em><b>Owner Region</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FINAL_STATE__OWNER_REGION = STATE__OWNER_REGION;
 
 	/**
 	 * The feature id for the '<em><b>Do Activity</b></em>' containment reference.
@@ -915,6 +951,17 @@ public interface FsmcorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getVertex_Outgoing();
+
+	/**
+	 * Returns the meta object for the reference '{@link fsmcore.Vertex#getOwnerRegion <em>Owner Region</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Owner Region</em>'.
+	 * @see fsmcore.Vertex#getOwnerRegion()
+	 * @see #getVertex()
+	 * @generated
+	 */
+	EReference getVertex_OwnerRegion();
 
 	/**
 	 * Returns the meta object for class '{@link fsmcore.State <em>State</em>}'.
@@ -1289,6 +1336,14 @@ public interface FsmcorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference VERTEX__OUTGOING = eINSTANCE.getVertex_Outgoing();
+
+		/**
+		 * The meta object literal for the '<em><b>Owner Region</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VERTEX__OWNER_REGION = eINSTANCE.getVertex_OwnerRegion();
 
 		/**
 		 * The meta object literal for the '{@link fsmcore.impl.StateImpl <em>State</em>}' class.
