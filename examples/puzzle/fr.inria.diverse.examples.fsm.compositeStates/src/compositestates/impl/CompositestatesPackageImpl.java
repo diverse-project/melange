@@ -2,12 +2,12 @@
  */
 package compositestates.impl;
 
+import compositestates.AbstractState;
 import compositestates.CompositestatesFactory;
 import compositestates.CompositestatesPackage;
 import compositestates.Region;
 import compositestates.State;
 import compositestates.Transition;
-import compositestates.Vertex;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
@@ -43,7 +43,7 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass vertexEClass = null;
+	private EClass abstractStateEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -181,8 +181,8 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getVertex() {
-		return vertexEClass;
+	public EClass getAbstractState() {
+		return abstractStateEClass;
 	}
 
 	/**
@@ -190,8 +190,8 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVertex_Incoming() {
-		return (EReference)vertexEClass.getEStructuralFeatures().get(0);
+	public EReference getAbstractState_Incoming() {
+		return (EReference)abstractStateEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -199,8 +199,8 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVertex_Outgoing() {
-		return (EReference)vertexEClass.getEStructuralFeatures().get(1);
+	public EReference getAbstractState_Outgoing() {
+		return (EReference)abstractStateEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -208,8 +208,8 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVertex_OwnerRegion() {
-		return (EReference)vertexEClass.getEStructuralFeatures().get(2);
+	public EReference getAbstractState_OwnerRegion() {
+		return (EReference)abstractStateEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -276,10 +276,10 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 		createEReference(stateEClass, STATE__OWNED_REGIONS);
 		createEOperation(stateEClass, STATE___EVAL_STATE__MAP);
 
-		vertexEClass = createEClass(VERTEX);
-		createEReference(vertexEClass, VERTEX__INCOMING);
-		createEReference(vertexEClass, VERTEX__OUTGOING);
-		createEReference(vertexEClass, VERTEX__OWNER_REGION);
+		abstractStateEClass = createEClass(ABSTRACT_STATE);
+		createEReference(abstractStateEClass, ABSTRACT_STATE__INCOMING);
+		createEReference(abstractStateEClass, ABSTRACT_STATE__OUTGOING);
+		createEReference(abstractStateEClass, ABSTRACT_STATE__OWNER_REGION);
 
 		transitionEClass = createEClass(TRANSITION);
 		createEReference(transitionEClass, TRANSITION__SOURCE);
@@ -314,11 +314,11 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		stateEClass.getESuperTypes().add(this.getVertex());
+		stateEClass.getESuperTypes().add(this.getAbstractState());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(regionEClass, Region.class, "Region", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRegion_Subvertex(), this.getVertex(), this.getVertex_OwnerRegion(), "subvertex", null, 0, -1, Region.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRegion_Subvertex(), this.getAbstractState(), this.getAbstractState_OwnerRegion(), "subvertex", null, 0, -1, Region.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRegion_OwnerState(), this.getState(), this.getState_OwnedRegions(), "ownerState", null, 0, 1, Region.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = initEOperation(getRegion__InitRegion__Map(), null, "initRegion", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -340,14 +340,14 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(vertexEClass, Vertex.class, "Vertex", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVertex_Incoming(), this.getTransition(), this.getTransition_Target(), "incoming", null, 0, -1, Vertex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getVertex_Outgoing(), this.getTransition(), this.getTransition_Source(), "outgoing", null, 0, -1, Vertex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getVertex_OwnerRegion(), this.getRegion(), this.getRegion_Subvertex(), "ownerRegion", null, 1, 1, Vertex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(abstractStateEClass, AbstractState.class, "AbstractState", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAbstractState_Incoming(), this.getTransition(), this.getTransition_Target(), "incoming", null, 0, -1, AbstractState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractState_Outgoing(), this.getTransition(), this.getTransition_Source(), "outgoing", null, 0, -1, AbstractState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractState_OwnerRegion(), this.getRegion(), this.getRegion_Subvertex(), "ownerRegion", null, 1, 1, AbstractState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(transitionEClass, Transition.class, "Transition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTransition_Source(), this.getVertex(), this.getVertex_Outgoing(), "source", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTransition_Target(), this.getVertex(), this.getVertex_Incoming(), "target", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransition_Source(), this.getAbstractState(), this.getAbstractState_Outgoing(), "source", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransition_Target(), this.getAbstractState(), this.getAbstractState_Incoming(), "target", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -378,7 +378,7 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 		   new String[] {
 		   });	
 		addAnnotation
-		  (vertexEClass, 
+		  (abstractStateEClass, 
 		   source, 
 		   new String[] {
 		   });	

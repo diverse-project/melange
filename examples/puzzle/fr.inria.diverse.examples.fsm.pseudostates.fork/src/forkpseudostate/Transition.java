@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface Transition extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link forkpseudostate.Vertex#getOutgoing <em>Outgoing</em>}'.
+	 * It is bidirectional and its opposite is '{@link forkpseudostate.AbstractState#getOutgoing <em>Outgoing</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source</em>' reference isn't clear,
@@ -32,13 +32,13 @@ public interface Transition extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' reference.
-	 * @see #setSource(Vertex)
+	 * @see #setSource(AbstractState)
 	 * @see forkpseudostate.ForkpseudostatePackage#getTransition_Source()
-	 * @see forkpseudostate.Vertex#getOutgoing
+	 * @see forkpseudostate.AbstractState#getOutgoing
 	 * @model opposite="outgoing" required="true"
 	 * @generated
 	 */
-	Vertex getSource();
+	AbstractState getSource();
 
 	/**
 	 * Sets the value of the '{@link forkpseudostate.Transition#getSource <em>Source</em>}' reference.
@@ -48,11 +48,11 @@ public interface Transition extends EObject {
 	 * @see #getSource()
 	 * @generated
 	 */
-	void setSource(Vertex value);
+	void setSource(AbstractState value);
 
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link forkpseudostate.Vertex#getIncoming <em>Incoming</em>}'.
+	 * It is bidirectional and its opposite is '{@link forkpseudostate.AbstractState#getIncoming <em>Incoming</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target</em>' reference isn't clear,
@@ -60,13 +60,13 @@ public interface Transition extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target</em>' reference.
-	 * @see #setTarget(Vertex)
+	 * @see #setTarget(AbstractState)
 	 * @see forkpseudostate.ForkpseudostatePackage#getTransition_Target()
-	 * @see forkpseudostate.Vertex#getIncoming
+	 * @see forkpseudostate.AbstractState#getIncoming
 	 * @model opposite="incoming" required="true"
 	 * @generated
 	 */
-	Vertex getTarget();
+	AbstractState getTarget();
 
 	/**
 	 * Sets the value of the '{@link forkpseudostate.Transition#getTarget <em>Target</em>}' reference.
@@ -76,6 +76,6 @@ public interface Transition extends EObject {
 	 * @see #getTarget()
 	 * @generated
 	 */
-	void setTarget(Vertex value);
+	void setTarget(AbstractState value);
 
 } // Transition

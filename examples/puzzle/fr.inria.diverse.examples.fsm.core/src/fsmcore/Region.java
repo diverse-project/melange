@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
 public interface Region extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Subvertex</b></em>' containment reference list.
-	 * The list contents are of type {@link fsmcore.Vertex}.
+	 * The list contents are of type {@link fsmcore.AbstractState}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Subvertex</em>' containment reference list isn't clear,
@@ -36,7 +36,7 @@ public interface Region extends NamedElement {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Vertex> getSubvertex();
+	EList<AbstractState> getSubvertex();
 
 	/**
 	 * Returns the value of the '<em><b>Transitions</b></em>' containment reference list.

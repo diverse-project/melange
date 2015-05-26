@@ -2,6 +2,7 @@
  */
 package fsmcore.impl;
 
+import fsmcore.AbstractState;
 import fsmcore.Conditional;
 import fsmcore.Constraint;
 import fsmcore.FinalState;
@@ -19,7 +20,6 @@ import fsmcore.Statement;
 import fsmcore.Transition;
 import fsmcore.Trigger;
 import fsmcore.VarDecl;
-import fsmcore.Vertex;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -57,7 +57,7 @@ public class FsmcorePackageImpl extends EPackageImpl implements FsmcorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass vertexEClass = null;
+	private EClass abstractStateEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -261,8 +261,8 @@ public class FsmcorePackageImpl extends EPackageImpl implements FsmcorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getVertex() {
-		return vertexEClass;
+	public EClass getAbstractState() {
+		return abstractStateEClass;
 	}
 
 	/**
@@ -270,8 +270,8 @@ public class FsmcorePackageImpl extends EPackageImpl implements FsmcorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVertex_Incoming() {
-		return (EReference)vertexEClass.getEStructuralFeatures().get(0);
+	public EReference getAbstractState_Incoming() {
+		return (EReference)abstractStateEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -279,8 +279,8 @@ public class FsmcorePackageImpl extends EPackageImpl implements FsmcorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVertex_Outgoing() {
-		return (EReference)vertexEClass.getEStructuralFeatures().get(1);
+	public EReference getAbstractState_Outgoing() {
+		return (EReference)abstractStateEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -288,8 +288,8 @@ public class FsmcorePackageImpl extends EPackageImpl implements FsmcorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVertex_OwnerRegion() {
-		return (EReference)vertexEClass.getEStructuralFeatures().get(2);
+	public EReference getAbstractState_OwnerRegion() {
+		return (EReference)abstractStateEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -570,10 +570,10 @@ public class FsmcorePackageImpl extends EPackageImpl implements FsmcorePackage {
 		createEReference(regionEClass, REGION__SUBVERTEX);
 		createEReference(regionEClass, REGION__TRANSITIONS);
 
-		vertexEClass = createEClass(VERTEX);
-		createEReference(vertexEClass, VERTEX__INCOMING);
-		createEReference(vertexEClass, VERTEX__OUTGOING);
-		createEReference(vertexEClass, VERTEX__OWNER_REGION);
+		abstractStateEClass = createEClass(ABSTRACT_STATE);
+		createEReference(abstractStateEClass, ABSTRACT_STATE__INCOMING);
+		createEReference(abstractStateEClass, ABSTRACT_STATE__OUTGOING);
+		createEReference(abstractStateEClass, ABSTRACT_STATE__OWNER_REGION);
 
 		stateEClass = createEClass(STATE);
 		createEReference(stateEClass, STATE__DO_ACTIVITY);
@@ -647,13 +647,13 @@ public class FsmcorePackageImpl extends EPackageImpl implements FsmcorePackage {
 		// Add supertypes to classes
 		stateMachineEClass.getESuperTypes().add(this.getNamedElement());
 		regionEClass.getESuperTypes().add(this.getNamedElement());
-		vertexEClass.getESuperTypes().add(this.getNamedElement());
-		stateEClass.getESuperTypes().add(this.getVertex());
+		abstractStateEClass.getESuperTypes().add(this.getNamedElement());
+		stateEClass.getESuperTypes().add(this.getAbstractState());
 		transitionEClass.getESuperTypes().add(this.getNamedElement());
 		conditionalEClass.getESuperTypes().add(this.getStatement());
 		loopEClass.getESuperTypes().add(this.getStatement());
 		varDeclEClass.getESuperTypes().add(this.getStatement());
-		pseudostateEClass.getESuperTypes().add(this.getVertex());
+		pseudostateEClass.getESuperTypes().add(this.getAbstractState());
 		finalStateEClass.getESuperTypes().add(this.getState());
 
 		// Initialize classes, features, and operations; add parameters
@@ -661,13 +661,13 @@ public class FsmcorePackageImpl extends EPackageImpl implements FsmcorePackage {
 		initEReference(getStateMachine_Regions(), this.getRegion(), null, "regions", null, 1, -1, StateMachine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(regionEClass, Region.class, "Region", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRegion_Subvertex(), this.getVertex(), null, "subvertex", null, 0, -1, Region.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRegion_Subvertex(), this.getAbstractState(), null, "subvertex", null, 0, -1, Region.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRegion_Transitions(), this.getTransition(), null, "transitions", null, 0, -1, Region.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(vertexEClass, Vertex.class, "Vertex", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVertex_Incoming(), this.getTransition(), this.getTransition_Target(), "incoming", null, 0, -1, Vertex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getVertex_Outgoing(), this.getTransition(), this.getTransition_Source(), "outgoing", null, 0, -1, Vertex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getVertex_OwnerRegion(), this.getRegion(), null, "ownerRegion", null, 1, 1, Vertex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(abstractStateEClass, AbstractState.class, "AbstractState", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAbstractState_Incoming(), this.getTransition(), this.getTransition_Target(), "incoming", null, 0, -1, AbstractState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractState_Outgoing(), this.getTransition(), this.getTransition_Source(), "outgoing", null, 0, -1, AbstractState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractState_OwnerRegion(), this.getRegion(), null, "ownerRegion", null, 1, 1, AbstractState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getState_DoActivity(), this.getProgram(), null, "doActivity", null, 0, 1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -676,8 +676,8 @@ public class FsmcorePackageImpl extends EPackageImpl implements FsmcorePackage {
 
 		initEClass(transitionEClass, Transition.class, "Transition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTransition_Trigger(), this.getTrigger(), null, "trigger", null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTransition_Target(), this.getVertex(), this.getVertex_Incoming(), "target", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTransition_Source(), this.getVertex(), this.getVertex_Outgoing(), "source", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransition_Target(), this.getAbstractState(), this.getAbstractState_Incoming(), "target", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransition_Source(), this.getAbstractState(), this.getAbstractState_Outgoing(), "source", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransition_Guard(), this.getConstraint(), null, "guard", null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

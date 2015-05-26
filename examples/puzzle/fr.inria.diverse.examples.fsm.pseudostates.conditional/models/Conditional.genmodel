@@ -13,12 +13,12 @@
       <ecoreClass href="Conditional.ecore#//Region"/>
     </genClasses>
     <genClasses image="false">
-      <ecoreClass href="Conditional.ecore#//Vertex"/>
+      <ecoreClass href="Conditional.ecore#//AbstractState"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Conditional.ecore#//Vertex/outgoing"/>
+        <ecoreFeature xsi:type="ecore:EReference" href="Conditional.ecore#//AbstractState/outgoing"/>
       </genFeatures>
       <genFeatures notify="false" createChild="false" propertySortChoices="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Conditional.ecore#//Vertex/incoming"/>
+        <ecoreFeature xsi:type="ecore:EReference" href="Conditional.ecore#//AbstractState/incoming"/>
       </genFeatures>
     </genClasses>
     <genClasses>

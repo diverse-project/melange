@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class StateImpl extends VertexImpl implements State {
+public class StateImpl extends AbstractStateImpl implements State {
 	/**
 	 * The cached value of the '{@link #getDoActivity() <em>Do Activity</em>}' containment reference.
 	 * <!-- begin-user-doc -->

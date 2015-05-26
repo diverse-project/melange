@@ -12,7 +12,7 @@ import fsmcore.StateMachine
 import fsmcore.State
 import fsmcore.Transition
 import fsmcore.Trigger
-import fsmcore.Vertex
+import fsmcore.AbstractState
 import fsmcore.Pseudostate
 import fsmcore.PseudostateKind
 
@@ -44,12 +44,12 @@ class StateMachineAspect {
 		println("\nExecuting the state machine. Please enter the events to process...\n")
 		
 		val Hashtable<String, Object> context = new Hashtable<String, Object>
-		context.put("currentState", new ArrayList<Vertex>())
+		context.put("currentState", new ArrayList<AbstractState>())
 		
 		_self.regions.forEach[ _region | _region.initRegion(context)]
 		
 		print(" ---> current active state (s): ")
-		(context.get("currentState") as ArrayList<Vertex>).forEach[ _vertex |
+		(context.get("currentState") as ArrayList<AbstractState>).forEach[ _vertex |
 			print( _vertex.name + " ")
 		]
 		
@@ -77,7 +77,7 @@ class StateMachineAspect {
 			
 			_self.regions.forEach[ _region | _region.step(context, events)]
 			print("    step: ---> current active state (s): ")
-			(context.get("currentState") as ArrayList<Vertex>).forEach[ _vertex |
+			(context.get("currentState") as ArrayList<AbstractState>).forEach[ _vertex |
 				print( _vertex.name + " ")
 			]
 			
@@ -111,13 +111,13 @@ class RegionAspect {
 							(_vertex as Pseudostate).kind == PseudostateKind.INITIAL] as Pseudostate
 		
 		// Dispatching the transitions of the initial pseudo-state
-		var ArrayList<Vertex> initialCurrentState = new ArrayList<Vertex>()
+		var ArrayList<AbstractState> initialCurrentState = new ArrayList<AbstractState>()
 		var ArrayList<Transition> initialCurrentTransitions = new ArrayList<Transition>()
 		for(Transition _transition : initialPseudostate.outgoing){
 			initialCurrentTransitions.add(_transition)
 			initialCurrentState.add(_transition.target)
 		}
-		(context.get("currentState") as ArrayList<Vertex>).addAll(initialCurrentState)
+		(context.get("currentState") as ArrayList<AbstractState>).addAll(initialCurrentState)
 		
 		initialCurrentTransitions.forEach[ transition |
 			transition.evalTransition(context)
@@ -129,14 +129,14 @@ class RegionAspect {
 	 * If there are several events in the same step they are executed sequentially.  
 	 */
 	def public void step(Hashtable<String, Object> context, EList<String> events){
-		var ArrayList<Vertex> currentState = _self.getCurrentState(context, events)
+		var ArrayList<AbstractState> currentState = _self.getCurrentState(context, events)
 		var ArrayList<Transition> currentTransitions = new ArrayList<Transition>()
 		
-		var ArrayList<Vertex> attendedStates = new ArrayList<Vertex>()
-		var ArrayList<Vertex> newStates = new ArrayList<Vertex>()
+		var ArrayList<AbstractState> attendedStates = new ArrayList<AbstractState>()
+		var ArrayList<AbstractState> newStates = new ArrayList<AbstractState>()
 		var EList<Transition> activeTransitions = new BasicEList<Transition>()
 		
-		for(Vertex _state : currentState){
+		for(AbstractState _state : currentState){
 			activeTransitions.addAll(_self.getActiveTransitions(_state, events))
 		}
 		
@@ -148,7 +148,7 @@ class RegionAspect {
 
 		currentState.removeAll(attendedStates)
 		
-		for(Vertex _newState : newStates){
+		for(AbstractState _newState : newStates){
 			if(!currentState.contains(_newState))
 				currentState.add(_newState)
 		}
@@ -161,14 +161,14 @@ class RegionAspect {
 	/**
 	 * Returns the current state of the machine. It corresponds to the current set of active states.
 	 */
-	def public ArrayList<Vertex> getCurrentState(Hashtable<String, Object> context, EList<String> events){
-		return context.get("currentState") as ArrayList<Vertex>
+	def public ArrayList<AbstractState> getCurrentState(Hashtable<String, Object> context, EList<String> events){
+		return context.get("currentState") as ArrayList<AbstractState>
 	}
 	
 	/**
 	 * Returns the active transitions of a vertex
 	 */
-	def public EList<Transition> getActiveTransitions(Vertex vertex, EList<String> events){
+	def public EList<Transition> getActiveTransitions(AbstractState vertex, EList<String> events){
 		val res = new BasicEList<Transition>();
 		for(Transition transition : vertex.outgoing){
 			if( (transition.trigger == null) || (transition.trigger != null && transition.trigger.evalTrigger(events))){
@@ -181,7 +181,7 @@ class RegionAspect {
 	/**
 	 * Finds the set of states that are active before the step and that will be left after the step. 
 	 */
-	def public void findOldActiveStates(ArrayList<Vertex> oldActiveStates, 
+	def public void findOldActiveStates(ArrayList<AbstractState> oldActiveStates, 
 		Transition selectedTransition){
 		if(!oldActiveStates.contains(selectedTransition.source))
 			oldActiveStates.add(selectedTransition.source)
@@ -190,7 +190,7 @@ class RegionAspect {
 	/**
 	 * Finds the set of states that will be active after the step.
 	 */
-	def public void findNewActiveStates(ArrayList<Vertex> newActiveStates,
+	def public void findNewActiveStates(ArrayList<AbstractState> newActiveStates,
 		Transition selectedTransition, ArrayList<Transition> currentActiveTransitions,
 		Hashtable<String, Object> context){
 			if(!newActiveStates.contains(selectedTransition.target))

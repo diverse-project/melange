@@ -28,8 +28,8 @@ import org.eclipse.emf.ecore.EObject;
 public interface Region extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Subvertex</b></em>' containment reference list.
-	 * The list contents are of type {@link compositestates.Vertex}.
-	 * It is bidirectional and its opposite is '{@link compositestates.Vertex#getOwnerRegion <em>Owner Region</em>}'.
+	 * The list contents are of type {@link compositestates.AbstractState}.
+	 * It is bidirectional and its opposite is '{@link compositestates.AbstractState#getOwnerRegion <em>Owner Region</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Subvertex</em>' containment reference list isn't clear,
@@ -38,11 +38,11 @@ public interface Region extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Subvertex</em>' containment reference list.
 	 * @see compositestates.CompositestatesPackage#getRegion_Subvertex()
-	 * @see compositestates.Vertex#getOwnerRegion
+	 * @see compositestates.AbstractState#getOwnerRegion
 	 * @model opposite="ownerRegion" containment="true"
 	 * @generated
 	 */
-	EList<Vertex> getSubvertex();
+	EList<AbstractState> getSubvertex();
 
 	/**
 	 * Returns the value of the '<em><b>Owner State</b></em>' container reference.

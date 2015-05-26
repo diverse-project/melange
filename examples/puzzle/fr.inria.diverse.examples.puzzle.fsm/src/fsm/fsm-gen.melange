@@ -1,31 +1,31 @@
 package fsm
 
 /**  
- * Composition script for a complete state machines language.
+ * Composition script for the languages described above.
  */
 composition CompleteFSM {
-	aggregation(CoreFSM, ImperativeLanguage)  
-	aggregation(CoreFSM, ConstraintsLanguage)  
-	extension(CoreFSM, TransitionEffect)
-	extension(CoreFSM, JoinPseudostate) 
-	extension(CoreFSM, ForkPseudostate) 
-	extension(CoreFSM, NotTrigger)   
-	extension(CoreFSM, AndTrigger)  
+	aggregation(CoreFSM, ImperativeLanguage)
+    aggregation(CoreFSM, ConstraintsLanguage)
+	extension(CoreFSM, JoinPseudostate)
+    extension(CoreFSM, TransitionEffect)
+	extension(CoreFSM, ForkPseudostate)
+    extension(CoreFSM, NotTrigger) 
+	extension(CoreFSM, AndTrigger)      
 	extension(CoreFSM, OrTrigger)    
-	extension(CoreFSM, Conditional)
-	extension(CoreFSM, CompositeStates) 
-} 
+	extension(CoreFSM, Conditional)  
+	extension(CoreFSM, CompositeStates)
+}
 
 /** 
  * Core FSM. Contains the basic concepts of StateMachine, State, Transition, and Trigger.
  */ 
 language CoreFSM { 
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.core/models/fsmcore.ecore"
-	exactType CoreFSMMT
+	exactType CoreFSMMT 
 	
 	// Variation # 2: Simultaneous Events
 	with FSM.simultaneous.StateMachineAspect
-	with FSM.simultaneous.RegionAspect 
+	with FSM.simultaneous.RegionAspect
 	with FSM.simultaneous.StateAspect
 	with FSM.simultaneous.TransitionAspect
 	with FSM.simultaneous.TriggerAspect
@@ -37,22 +37,22 @@ language CoreFSM {
  */
 language ImperativeLanguage {
 	ecore "platform:/resource/fr.inria.diverse.examples.simpleimperative/models/simpleimperative.ecore"
-	exactType ImperativeLanguageMT 
+	exactType ImperativeLanguageMT
 	
-	with simple.imperative.aspects.StatementAspect 
+	with simple.imperative.aspects.StatementAspect
 	with simple.imperative.aspects.ProgramAspect
-	with simple.imperative.aspects.ConditionalAspect 
+	with simple.imperative.aspects.ConditionalAspect
 	with simple.imperative.aspects.LoopAspect
-	with simple.imperative.aspects.VarDeclAspect  
-	with simple.imperative.aspects.ExpressionAspect 
-	with simple.imperative.aspects.LiteralAspect  
-	with simple.imperative.aspects.IntegerLitAspect 
-	with simple.imperative.aspects.StringLitAspect 
+	with simple.imperative.aspects.VarDeclAspect
+	with simple.imperative.aspects.ExpressionAspect
+	with simple.imperative.aspects.LiteralAspect
+	with simple.imperative.aspects.IntegerLitAspect
+	with simple.imperative.aspects.StringLitAspect
 	with simple.imperative.aspects.ArithmeticExpressionAspect
 }
 
 /**
- * A simple constraints language for expressing transitions' guards. 
+ * A simple constraints language for expressing transitions' guards and conditions. 
  */
 language ConstraintsLanguage{
 	ecore "platform:/resource/fr.inria.diverse.examples.simpleconstraints/models/SimpleConstraints.ecore"
@@ -71,10 +71,10 @@ language ConstraintsLanguage{
  */
 language CompositeStates {
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.compositeStates/models/compositestates.ecore"
-	exactType ComposteStatesMT 
+	exactType ComposteStatesMT
 	
-	with FSM.composite.higher.RegionAspect
-	with FSM.composite.higher.StateAspect
+	with FSM.composite.deepest.RegionAspect
+	with FSM.composite.deepest.StateAspect
 }
 
 /**
@@ -85,7 +85,7 @@ language TransitionEffect {
 	exactType TransitionEffectMT
 	
 	// Variation # 2: Parallel
-	with transitioneffects.sequential.TransitionAspect
+	with transitioneffects.parallel.TransitionAspect
 }
 
 /**
@@ -129,7 +129,7 @@ language AndTrigger {
 }
 
 /**
- * Or Trigger: Contains the capability for supporting conjunction on the triggers of the transitions. 
+ * Or Trigger: Contains the capability for supporting conjuntion on the triggers of the transitions. 
  */
 language OrTrigger {
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.trigger.or/models/OrTrigger.ecore"
@@ -139,7 +139,7 @@ language OrTrigger {
 }
 
 /**
- * Conditional: Contains the capability for supporting conditional pseudo-states. 
+ * Or Trigger: Contains the capability for supporting conjuntion on the triggers of the transitions. 
  */
 language Conditional {
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.pseudostates.conditional/models/Conditional.ecore"

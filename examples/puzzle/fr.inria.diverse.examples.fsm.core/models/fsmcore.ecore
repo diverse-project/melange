@@ -4,23 +4,23 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="regions" lowerBound="1" upperBound="-1" eType="//Region" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Region" eSuperTypes="//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="subvertex" upperBound="-1" eType="//Vertex" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subvertex" upperBound="-1" eType="//AbstractState" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transitions" upperBound="-1" eType="//Transition" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Vertex" abstract="true" eSuperTypes="//NamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractState" abstract="true" eSuperTypes="//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="incoming" upperBound="-1" eType="//Transition" eOpposite="//Transition/target"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outgoing" upperBound="-1" eType="//Transition" eOpposite="//Transition/source"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownerRegion" lowerBound="1" eType="//Region"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="State" eSuperTypes="//Vertex">
+  <eClassifiers xsi:type="ecore:EClass" name="State" eSuperTypes="//AbstractState">
     <eStructuralFeatures xsi:type="ecore:EReference" name="doActivity" eType="//Program" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="entry" eType="//Program" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="exit" eType="//Program" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Transition" eSuperTypes="//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="trigger" eType="//Trigger" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1" eType="//Vertex" eOpposite="//Vertex/incoming"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1" eType="//Vertex" eOpposite="//Vertex/outgoing"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1" eType="//AbstractState" eOpposite="//AbstractState/incoming"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1" eType="//AbstractState" eOpposite="//AbstractState/outgoing"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="guard" eType="//Constraint" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement">
@@ -80,7 +80,7 @@
       </eParameters>
     </eOperations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Pseudostate" eSuperTypes="//Vertex">
+  <eClassifiers xsi:type="ecore:EClass" name="Pseudostate" eSuperTypes="//AbstractState">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="//PseudostateKind"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="PseudostateKind">

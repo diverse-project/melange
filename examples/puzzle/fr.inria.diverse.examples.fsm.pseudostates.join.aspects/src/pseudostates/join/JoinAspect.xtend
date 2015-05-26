@@ -4,7 +4,7 @@ import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import puzzle.annotations.processor.OverrideRequiredAspectMethod
 
 import java.util.ArrayList
-import joinpseudostate.Vertex
+import joinpseudostate.AbstractState
 import joinpseudostate.Transition
 import joinpseudostate.Pseudostate
 import joinpseudostate.PseudostateKind
@@ -29,7 +29,7 @@ class RegionAspect {
 	}
 	  
 	@OverrideRequiredAspectMethod
-	def public void findNewActiveStates(ArrayList<Vertex> newActiveStates,
+	def public void findNewActiveStates(ArrayList<AbstractState> newActiveStates,
 		Transition selectedTransition, ArrayList<Transition> currentActiveTransitions,
 		Hashtable<String, Object> context){
 			
@@ -45,7 +45,7 @@ class RegionAspect {
 	}
 	
 	@OverrideRequiredAspectMethod
-	def public void findOldActiveStates(ArrayList<Vertex> oldActiveStates, 
+	def public void findOldActiveStates(ArrayList<AbstractState> oldActiveStates, 
 		Transition selectedTransition){
 			
 		_self._original_findOldActiveStates(oldActiveStates, selectedTransition)

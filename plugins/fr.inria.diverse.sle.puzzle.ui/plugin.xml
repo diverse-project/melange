@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IFile"
+            id="fr.inria.diverse.sle.puzzle.ui.contribution1">
+         <menu
+               label="Puzzle"
+               path="additions"
+               id="fr.inria.diverse.sle.puzzle.ui.menu1">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               label="Derivate Melange Script"
+               class="fr.inria.diverse.puzzle.commands.CompositionHandler"
+               menubarPath="fr.inria.diverse.sle.puzzle.ui.menu1/group1"
+               enablesFor="1"
+               id="fr.inria.diverse.sle.puzzle.ui.newAction">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>

@@ -1,0 +1,1062 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mtl="http://www.eclipse.org/acceleo/mtl/3.0" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore">
+  <mtl:Module name="Configurator" nsURI="fr::inria::diverse::k3::sle::compose::configurator::common::Configurator" startHeaderPosition="29" endHeaderPosition="172">
+    <input>
+      <takesTypesFrom href="http:///org.omg/CVLMetamodel/cvl#/"/>
+      <takesTypesFrom href="http:///org.omg/CVLMetamodel/cvl#//cvl"/>
+    </input>
+    <ownedModuleElement xsi:type="mtl:Template" name="generateCompositionScript" visibility="Public" main="true">
+      <body xsi:type="mtl:FileBlock" openMode="OverWrite">
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="Language StateMachinesDSL {&#xA;&#x9;delc {&#xA;"/>
+        <body xsi:type="mtl:ForBlock">
+          <body xsi:type="mtl:IfBlock">
+            <body xsi:type="mtl:IfBlock">
+              <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&#x9;LanguageUnit "/>
+              <body xsi:type="ocl.ecore:PropertyCallExp">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                <source xsi:type="ocl.ecore:OperationCallExp">
+                  <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectExistence"/>
+                  <source xsi:type="ocl.ecore:VariableExp" name="realizationChoises" referredVariable="/0/generateCompositionScript/%/%.1/realizationChoises">
+                    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+                  </source>
+                  <argument xsi:type="ocl.ecore:TypeExp" eType="/8/ObjectExistence">
+                    <referredType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectExistence"/>
+                  </argument>
+                  <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+                </source>
+                <referredProperty xsi:type="ecore:EAttribute" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable/name"/>
+              </body>
+              <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" : &quot;"/>
+              <body xsi:type="ocl.ecore:PropertyCallExp">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                <source xsi:type="ocl.ecore:OperationCallExp">
+                  <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectExistence"/>
+                  <source xsi:type="ocl.ecore:VariableExp" name="realizationChoises" referredVariable="/0/generateCompositionScript/%/%.1/realizationChoises">
+                    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+                  </source>
+                  <argument xsi:type="ocl.ecore:TypeExp" eType="/8/ObjectExistence">
+                    <referredType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectExistence"/>
+                  </argument>
+                  <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+                </source>
+                <referredProperty xsi:type="ecore:EAttribute" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ChoiceVariationPoint/mappingExpression"/>
+              </body>
+              <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&quot;&#xA;"/>
+              <ifExpr xsi:type="ocl.ecore:PropertyCallExp">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                <source xsi:type="ocl.ecore:OperationCallExp">
+                  <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ChoiceResolutuion"/>
+                  <source xsi:type="ocl.ecore:PropertyCallExp">
+                    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+                    <source xsi:type="ocl.ecore:OperationCallExp">
+                      <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectHandle"/>
+                      <source xsi:type="ocl.ecore:OperationCallExp" eType="/9/OrderedSet(ObjectHandle)">
+                        <source xsi:type="ocl.ecore:PropertyCallExp" eType="/9/Set(ObjectHandle)">
+                          <source xsi:type="ocl.ecore:OperationCallExp">
+                            <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectExistence"/>
+                            <source xsi:type="ocl.ecore:VariableExp" name="realizationChoises" referredVariable="/0/generateCompositionScript/%/%.1/realizationChoises">
+                              <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+                            </source>
+                            <argument xsi:type="ocl.ecore:TypeExp" eType="/8/ObjectExistence">
+                              <referredType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectExistence"/>
+                            </argument>
+                            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+                          </source>
+                          <referredProperty xsi:type="ecore:EReference" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectExistence/optionalObject"/>
+                        </source>
+                        <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Set(T)_Class/asOrderedSet"/>
+                      </source>
+                      <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/first"/>
+                    </source>
+                    <referredProperty xsi:type="ecore:EReference" href="http:///org.omg/CVLMetamodel/cvl#//cvl/BaseModelHandle/reference"/>
+                  </source>
+                  <argument xsi:type="ocl.ecore:TypeExp" eType="/8/ChoiceResolutuion">
+                    <referredType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ChoiceResolutuion"/>
+                  </argument>
+                  <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+                </source>
+                <referredProperty xsi:type="ecore:EAttribute" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ChoiceResolutuion/decision"/>
+              </ifExpr>
+            </body>
+            <ifExpr xsi:type="ocl.ecore:OperationCallExp">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="realizationChoises" referredVariable="/0/generateCompositionScript/%/%.1/realizationChoises">
+                <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+              </source>
+              <argument xsi:type="ocl.ecore:TypeExp" eType="/8/ObjectExistence">
+                <referredType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectExistence"/>
+              </argument>
+              <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsTypeOf"/>
+            </ifExpr>
+          </body>
+          <loopVariable name="realizationChoises">
+            <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+          </loopVariable>
+          <iterSet xsi:type="ocl.ecore:PropertyCallExp" eType="/9/Set(VPackageable)">
+            <source xsi:type="ocl.ecore:OperationCallExp">
+              <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="mainPackage" referredVariable="/0/generateCompositionScript/mainPackage">
+                <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage"/>
+              </source>
+              <argument xsi:type="ocl.ecore:TypeExp" eType="/8/VPackage">
+                <referredType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage"/>
+              </argument>
+              <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+            </source>
+            <referredProperty xsi:type="ecore:EReference" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage/packageElement"/>
+          </iterSet>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;}&#xA;&#x9;composition {&#xA;&#x9;&#x9;/** Composing the expressions in one unique language unit. */&#xA;&#x9;&#x9;CoreExtensions := extension("/>
+        <body xsi:type="mtl:ForBlock">
+          <body xsi:type="mtl:IfBlock">
+            <body xsi:type="mtl:IfBlock">
+              <body xsi:type="mtl:IfBlock">
+                <body xsi:type="ocl.ecore:PropertyCallExp">
+                  <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                  <source xsi:type="ocl.ecore:OperationCallExp">
+                    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectExistence"/>
+                    <source xsi:type="ocl.ecore:VariableExp" name="realizationChoises" referredVariable="/0/generateCompositionScript/%/%.3/realizationChoises">
+                      <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+                    </source>
+                    <argument xsi:type="ocl.ecore:TypeExp" eType="/8/ObjectExistence">
+                      <referredType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectExistence"/>
+                    </argument>
+                    <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+                  </source>
+                  <referredProperty xsi:type="ecore:EAttribute" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable/name"/>
+                </body>
+                <ifExpr xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/String_Class/equalsIgnoreCase">
+                  <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                  <source xsi:type="ocl.ecore:PropertyCallExp">
+                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                    <source xsi:type="ocl.ecore:OperationCallExp">
+                      <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectExistence"/>
+                      <source xsi:type="ocl.ecore:VariableExp" name="realizationChoises" referredVariable="/0/generateCompositionScript/%/%.3/realizationChoises">
+                        <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+                      </source>
+                      <argument xsi:type="ocl.ecore:TypeExp" eType="/8/ObjectExistence">
+                        <referredType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectExistence"/>
+                      </argument>
+                      <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+                    </source>
+                    <referredProperty xsi:type="ecore:EAttribute" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ChoiceVariationPoint/expression"/>
+                  </source>
+                  <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="core">
+                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                  </argument>
+                </ifExpr>
+              </body>
+              <ifExpr xsi:type="ocl.ecore:PropertyCallExp">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                <source xsi:type="ocl.ecore:OperationCallExp">
+                  <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ChoiceResolutuion"/>
+                  <source xsi:type="ocl.ecore:PropertyCallExp">
+                    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+                    <source xsi:type="ocl.ecore:OperationCallExp">
+                      <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectHandle"/>
+                      <source xsi:type="ocl.ecore:OperationCallExp" eType="/9/OrderedSet(ObjectHandle)">
+                        <source xsi:type="ocl.ecore:PropertyCallExp" eType="/9/Set(ObjectHandle)">
+                          <source xsi:type="ocl.ecore:OperationCallExp">
+                            <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectExistence"/>
+                            <source xsi:type="ocl.ecore:VariableExp" name="realizationChoises" referredVariable="/0/generateCompositionScript/%/%.3/realizationChoises">
+                              <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+                            </source>
+                            <argument xsi:type="ocl.ecore:TypeExp" eType="/8/ObjectExistence">
+                              <referredType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectExistence"/>
+                            </argument>
+                            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+                          </source>
+                          <referredProperty xsi:type="ecore:EReference" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectExistence/optionalObject"/>
+                        </source>
+                        <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Set(T)_Class/asOrderedSet"/>
+                      </source>
+                      <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/first"/>
+                    </source>
+                    <referredProperty xsi:type="ecore:EReference" href="http:///org.omg/CVLMetamodel/cvl#//cvl/BaseModelHandle/reference"/>
+                  </source>
+                  <argument xsi:type="ocl.ecore:TypeExp" eType="/8/ChoiceResolutuion">
+                    <referredType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ChoiceResolutuion"/>
+                  </argument>
+                  <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+                </source>
+                <referredProperty xsi:type="ecore:EAttribute" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ChoiceResolutuion/decision"/>
+              </ifExpr>
+            </body>
+            <ifExpr xsi:type="ocl.ecore:OperationCallExp">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="realizationChoises" referredVariable="/0/generateCompositionScript/%/%.3/realizationChoises">
+                <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+              </source>
+              <argument xsi:type="ocl.ecore:TypeExp" eType="/8/ObjectExistence">
+                <referredType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectExistence"/>
+              </argument>
+              <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsTypeOf"/>
+            </ifExpr>
+          </body>
+          <loopVariable name="realizationChoises">
+            <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+          </loopVariable>
+          <iterSet xsi:type="ocl.ecore:PropertyCallExp" eType="/9/Set(VPackageable)">
+            <source xsi:type="ocl.ecore:OperationCallExp">
+              <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="mainPackage" referredVariable="/0/generateCompositionScript/mainPackage">
+                <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage"/>
+              </source>
+              <argument xsi:type="ocl.ecore:TypeExp" eType="/8/VPackage">
+                <referredType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage"/>
+              </argument>
+              <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+            </source>
+            <referredProperty xsi:type="ecore:EReference" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage/packageElement"/>
+          </iterSet>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=", &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;{"/>
+        <body xsi:type="mtl:ForBlock">
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:OperationCallExp">
+              <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectExistence"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="realizationChoises" referredVariable="/0/generateCompositionScript/%/%.5/realizationChoises">
+                <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+              </source>
+              <argument xsi:type="ocl.ecore:TypeExp" eType="/8/ObjectExistence">
+                <referredType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectExistence"/>
+              </argument>
+              <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable/name"/>
+          </body>
+          <loopVariable name="realizationChoises">
+            <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+          </loopVariable>
+          <iterSet xsi:type="ocl.ecore:IteratorExp" name="select" eType="/9/Set(VPackageable)">
+            <source xsi:type="ocl.ecore:IteratorExp" name="select" eType="/9/Set(VPackageable)">
+              <source xsi:type="ocl.ecore:IteratorExp" name="select" eType="/9/Set(VPackageable)">
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/9/Set(VPackageable)">
+                  <source xsi:type="ocl.ecore:OperationCallExp">
+                    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage"/>
+                    <source xsi:type="ocl.ecore:VariableExp" name="mainPackage" referredVariable="/0/generateCompositionScript/mainPackage">
+                      <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage"/>
+                    </source>
+                    <argument xsi:type="ocl.ecore:TypeExp" eType="/8/VPackage">
+                      <referredType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage"/>
+                    </argument>
+                    <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+                  </source>
+                  <referredProperty xsi:type="ecore:EReference" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage/packageElement"/>
+                </source>
+                <body xsi:type="ocl.ecore:OperationCallExp">
+                  <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                  <source xsi:type="ocl.ecore:VariableExp" name="x" referredVariable="/0/generateCompositionScript/%/%.5/select/select/select/x">
+                    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+                  </source>
+                  <argument xsi:type="ocl.ecore:TypeExp" eType="/8/ObjectExistence">
+                    <referredType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectExistence"/>
+                  </argument>
+                  <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsTypeOf"/>
+                </body>
+                <iterator xsi:type="ocl.ecore:Variable" name="x">
+                  <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+                </iterator>
+              </source>
+              <body xsi:type="ocl.ecore:PropertyCallExp">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                <source xsi:type="ocl.ecore:OperationCallExp">
+                  <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ChoiceResolutuion"/>
+                  <source xsi:type="ocl.ecore:PropertyCallExp">
+                    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+                    <source xsi:type="ocl.ecore:OperationCallExp">
+                      <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectHandle"/>
+                      <source xsi:type="ocl.ecore:OperationCallExp" eType="/9/OrderedSet(ObjectHandle)">
+                        <source xsi:type="ocl.ecore:PropertyCallExp" eType="/9/Set(ObjectHandle)">
+                          <source xsi:type="ocl.ecore:OperationCallExp">
+                            <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectExistence"/>
+                            <source xsi:type="ocl.ecore:VariableExp" name="y" referredVariable="/0/generateCompositionScript/%/%.5/select/select/y">
+                              <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+                            </source>
+                            <argument xsi:type="ocl.ecore:TypeExp" eType="/8/ObjectExistence">
+                              <referredType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectExistence"/>
+                            </argument>
+                            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+                          </source>
+                          <referredProperty xsi:type="ecore:EReference" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectExistence/optionalObject"/>
+                        </source>
+                        <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Set(T)_Class/asOrderedSet"/>
+                      </source>
+                      <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/first"/>
+                    </source>
+                    <referredProperty xsi:type="ecore:EReference" href="http:///org.omg/CVLMetamodel/cvl#//cvl/BaseModelHandle/reference"/>
+                  </source>
+                  <argument xsi:type="ocl.ecore:TypeExp" eType="/8/ChoiceResolutuion">
+                    <referredType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ChoiceResolutuion"/>
+                  </argument>
+                  <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+                </source>
+                <referredProperty xsi:type="ecore:EAttribute" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ChoiceResolutuion/decision"/>
+              </body>
+              <iterator xsi:type="ocl.ecore:Variable" name="y">
+                <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+              </iterator>
+            </source>
+            <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/String_Class/equalsIgnoreCase">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+              <source xsi:type="ocl.ecore:PropertyCallExp">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                <source xsi:type="ocl.ecore:OperationCallExp">
+                  <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectExistence"/>
+                  <source xsi:type="ocl.ecore:VariableExp" name="z" referredVariable="/0/generateCompositionScript/%/%.5/select/z">
+                    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+                  </source>
+                  <argument xsi:type="ocl.ecore:TypeExp" eType="/8/ObjectExistence">
+                    <referredType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectExistence"/>
+                  </argument>
+                  <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+                </source>
+                <referredProperty xsi:type="ecore:EAttribute" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ChoiceVariationPoint/expression"/>
+              </source>
+              <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="extension">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+              </argument>
+            </body>
+            <iterator xsi:type="ocl.ecore:Variable" name="z">
+              <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+            </iterator>
+          </iterSet>
+          <each xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=",">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          </each>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="});&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;CompleteLanguage := replacement(&amp;CoreExtensions, Expressions);&#xA;&#x9;&#x9;root &amp;CompleteLanguage;&#xA;&#x9;}&#xA;}&#xA;"/>
+        <fileUrl xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="FamilyAssembly.puzzle">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </fileUrl>
+        <charset xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="US-ASCII">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </charset>
+      </body>
+      <parameter name="mainPackage">
+        <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage"/>
+      </parameter>
+    </ownedModuleElement>
+  </mtl:Module>
+  <ecore:EPackage name="additions">
+    <eClassifiers xsi:type="ecore:EClass" name="String_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </eAnnotations>
+      <eOperations name="equalsIgnoreCase">
+        <eAnnotations source="MTL non-standard"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <eParameters name="other">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Integer_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Real_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="EObject_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      </eAnnotations>
+      <eOperations name="generateCompositionScript">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/generateCompositionScript"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="mainPackage">
+          <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage"/>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OclAny_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Collection(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Collection(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Sequence(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OrderedSet(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="VPackage_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage"/>
+      </eAnnotations>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage"/>
+  </ocl.ecore:Variable>
+  <ecore:EPackage name="types">
+    <eClassifiers xsi:type="ocl.ecore:TypeType" name="VPackage">
+      <referredType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:TypeType" name="ObjectExistence">
+      <referredType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectExistence"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:TypeType" name="ChoiceResolutuion">
+      <referredType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ChoiceResolutuion"/>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ecore:EPackage name="collections">
+    <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(VPackageable)" instanceClassName="java.util.Set">
+      <elementType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(ObjectHandle)" instanceClassName="java.util.Set">
+      <elementType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectHandle"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(ObjectHandle)" instanceClassName="java.util.LinkedHashSet">
+      <elementType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/ObjectHandle"/>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackageable"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http:///org.omg/CVLMetamodel/cvl#//cvl/VPackage"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ecore:EAnnotation source="positions">
+    <eAnnotations source="positions.0" references="/0/generateCompositionScript">
+      <details key="start" value="89"/>
+      <details key="end" value="1863"/>
+      <details key="line" value="5"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1" references="/0/generateCompositionScript/%">
+      <details key="start" value="175"/>
+      <details key="end" value="1851"/>
+      <details key="line" value="7"/>
+    </eAnnotations>
+    <eAnnotations source="positions.2" references="/0/generateCompositionScript/%/%">
+      <details key="start" value="227"/>
+      <details key="end" value="263"/>
+      <details key="line" value="8"/>
+    </eAnnotations>
+    <eAnnotations source="positions.3" references="/0/generateCompositionScript/%/%.1">
+      <details key="start" value="263"/>
+      <details key="end" value="712"/>
+      <details key="line" value="10"/>
+    </eAnnotations>
+    <eAnnotations source="positions.4" references="/0/generateCompositionScript/%/%.1/%">
+      <details key="start" value="354"/>
+      <details key="end" value="705"/>
+      <details key="line" value="11"/>
+    </eAnnotations>
+    <eAnnotations source="positions.5" references="/0/generateCompositionScript/%/%.1/%/%">
+      <details key="start" value="409"/>
+      <details key="end" value="699"/>
+      <details key="line" value="12"/>
+    </eAnnotations>
+    <eAnnotations source="positions.6" references="/0/generateCompositionScript/%/%.1/%/%/%">
+      <details key="start" value="554"/>
+      <details key="end" value="569"/>
+      <details key="line" value="14"/>
+    </eAnnotations>
+    <eAnnotations source="positions.7" references="/0/generateCompositionScript/%/%.1/%/%/%.1">
+      <details key="start" value="570"/>
+      <details key="end" value="620"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.8" references="/0/generateCompositionScript/%/%.1/%/%/%.1/%">
+      <details key="start" value="570"/>
+      <details key="end" value="615"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.9" references="/0/generateCompositionScript/%/%.1/%/%/%.1/%/realizationChoises">
+      <details key="start" value="570"/>
+      <details key="end" value="588"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.10" references="/0/generateCompositionScript/%/%.1/%/%/%.1/%/%">
+      <details key="start" value="599"/>
+      <details key="end" value="614"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.11" references="/0/generateCompositionScript/%/%.1/%/%/%.2">
+      <details key="start" value="622"/>
+      <details key="end" value="626"/>
+      <details key="line" value="14"/>
+    </eAnnotations>
+    <eAnnotations source="positions.12" references="/0/generateCompositionScript/%/%.1/%/%/%.3">
+      <details key="start" value="627"/>
+      <details key="end" value="690"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.13" references="/0/generateCompositionScript/%/%.1/%/%/%.3/%">
+      <details key="start" value="627"/>
+      <details key="end" value="672"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.14" references="/0/generateCompositionScript/%/%.1/%/%/%.3/%/realizationChoises">
+      <details key="start" value="627"/>
+      <details key="end" value="645"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.15" references="/0/generateCompositionScript/%/%.1/%/%/%.3/%/%">
+      <details key="start" value="656"/>
+      <details key="end" value="671"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.16" references="/0/generateCompositionScript/%/%.1/%/%/%.4">
+      <details key="start" value="692"/>
+      <details key="end" value="694"/>
+      <details key="line" value="14"/>
+    </eAnnotations>
+    <eAnnotations source="positions.17" references="/0/generateCompositionScript/%/%.1/%/%/%.5">
+      <details key="start" value="413"/>
+      <details key="end" value="552"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.18" references="/0/generateCompositionScript/%/%.1/%/%/%.5/%">
+      <details key="start" value="414"/>
+      <details key="end" value="542"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.19" references="/0/generateCompositionScript/%/%.1/%/%/%.5/%/%">
+      <details key="start" value="414"/>
+      <details key="end" value="513"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.20" references="/0/generateCompositionScript/%/%.1/%/%/%.5/%/%/%">
+      <details key="start" value="414"/>
+      <details key="end" value="503"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.21" references="/0/generateCompositionScript/%/%.1/%/%/%.5/%/%/%/%">
+      <details key="start" value="414"/>
+      <details key="end" value="490"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.22" references="/0/generateCompositionScript/%/%.1/%/%/%.5/%/%/%/%/%">
+      <details key="start" value="414"/>
+      <details key="end" value="474"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.23" references="/0/generateCompositionScript/%/%.1/%/%/%.5/%/%/%/%/%/%">
+      <details key="start" value="414"/>
+      <details key="end" value="459"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.24" references="/0/generateCompositionScript/%/%.1/%/%/%.5/%/%/%/%/%/%/realizationChoises">
+      <details key="start" value="414"/>
+      <details key="end" value="432"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.25" references="/0/generateCompositionScript/%/%.1/%/%/%.5/%/%/%/%/%/%/%">
+      <details key="start" value="443"/>
+      <details key="end" value="458"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.26" references="/0/generateCompositionScript/%/%.1/%/%/%.5/%/%.1">
+      <details key="start" value="524"/>
+      <details key="end" value="541"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.27" references="/0/generateCompositionScript/%/%.1/%/%.1">
+      <details key="start" value="358"/>
+      <details key="end" value="407"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.28" references="/0/generateCompositionScript/%/%.1/%/%.1/realizationChoises">
+      <details key="start" value="359"/>
+      <details key="end" value="377"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.29" references="/0/generateCompositionScript/%/%.1/%/%.1/%">
+      <details key="start" value="390"/>
+      <details key="end" value="405"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.30" references="/0/generateCompositionScript/%/%.1/realizationChoises">
+      <details key="start" value="269"/>
+      <details key="end" value="302"/>
+      <details key="line" value="10"/>
+    </eAnnotations>
+    <eAnnotations source="positions.31" references="/0/generateCompositionScript/%/%.1/%.1">
+      <details key="start" value="305"/>
+      <details key="end" value="351"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.32" references="/0/generateCompositionScript/%/%.1/%.1/%">
+      <details key="start" value="305"/>
+      <details key="end" value="336"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.33" references="/0/generateCompositionScript/%/%.1/%.1/%/mainPackage">
+      <details key="start" value="305"/>
+      <details key="end" value="316"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.34" references="/0/generateCompositionScript/%/%.1/%.1/%/%">
+      <details key="start" value="327"/>
+      <details key="end" value="335"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.35" references="/0/generateCompositionScript/%/%.2">
+      <details key="start" value="713"/>
+      <details key="end" value="825"/>
+      <details key="line" value="18"/>
+    </eAnnotations>
+    <eAnnotations source="positions.36" references="/0/generateCompositionScript/%/%.3">
+      <details key="start" value="825"/>
+      <details key="end" value="1271"/>
+      <details key="line" value="21"/>
+    </eAnnotations>
+    <eAnnotations source="positions.37" references="/0/generateCompositionScript/%/%.3/%">
+      <details key="start" value="915"/>
+      <details key="end" value="1265"/>
+      <details key="line" value="21"/>
+    </eAnnotations>
+    <eAnnotations source="positions.38" references="/0/generateCompositionScript/%/%.3/%/%">
+      <details key="start" value="969"/>
+      <details key="end" value="1260"/>
+      <details key="line" value="21"/>
+    </eAnnotations>
+    <eAnnotations source="positions.39" references="/0/generateCompositionScript/%/%.3/%/%/%">
+      <details key="start" value="1109"/>
+      <details key="end" value="1255"/>
+      <details key="line" value="21"/>
+    </eAnnotations>
+    <eAnnotations source="positions.40" references="/0/generateCompositionScript/%/%.3/%/%/%/%">
+      <details key="start" value="1198"/>
+      <details key="end" value="1248"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.41" references="/0/generateCompositionScript/%/%.3/%/%/%/%/%">
+      <details key="start" value="1198"/>
+      <details key="end" value="1243"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.42" references="/0/generateCompositionScript/%/%.3/%/%/%/%/%/realizationChoises">
+      <details key="start" value="1198"/>
+      <details key="end" value="1216"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.43" references="/0/generateCompositionScript/%/%.3/%/%/%/%/%/%">
+      <details key="start" value="1227"/>
+      <details key="end" value="1242"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.44" references="/0/generateCompositionScript/%/%.3/%/%/%/%.1">
+      <details key="start" value="1113"/>
+      <details key="end" value="1196"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.45" references="/0/generateCompositionScript/%/%.3/%/%/%/%.1/%">
+      <details key="start" value="1114"/>
+      <details key="end" value="1170"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.46" references="/0/generateCompositionScript/%/%.3/%/%/%/%.1/%/%">
+      <details key="start" value="1114"/>
+      <details key="end" value="1159"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.47" references="/0/generateCompositionScript/%/%.3/%/%/%/%.1/%/%/realizationChoises">
+      <details key="start" value="1114"/>
+      <details key="end" value="1132"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.48" references="/0/generateCompositionScript/%/%.3/%/%/%/%.1/%/%/%">
+      <details key="start" value="1143"/>
+      <details key="end" value="1158"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.49" references="/0/generateCompositionScript/%/%.3/%/%/%/%.1/%.1">
+      <details key="start" value="1188"/>
+      <details key="end" value="1194"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.50" references="/0/generateCompositionScript/%/%.3/%/%/%.1">
+      <details key="start" value="973"/>
+      <details key="end" value="1108"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.51" references="/0/generateCompositionScript/%/%.3/%/%/%.1/%">
+      <details key="start" value="974"/>
+      <details key="end" value="1098"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.52" references="/0/generateCompositionScript/%/%.3/%/%/%.1/%/%">
+      <details key="start" value="974"/>
+      <details key="end" value="1069"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.53" references="/0/generateCompositionScript/%/%.3/%/%/%.1/%/%/%">
+      <details key="start" value="974"/>
+      <details key="end" value="1059"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.54" references="/0/generateCompositionScript/%/%.3/%/%/%.1/%/%/%/%">
+      <details key="start" value="974"/>
+      <details key="end" value="1050"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.55" references="/0/generateCompositionScript/%/%.3/%/%/%.1/%/%/%/%/%">
+      <details key="start" value="974"/>
+      <details key="end" value="1034"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.56" references="/0/generateCompositionScript/%/%.3/%/%/%.1/%/%/%/%/%/%">
+      <details key="start" value="974"/>
+      <details key="end" value="1019"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.57" references="/0/generateCompositionScript/%/%.3/%/%/%.1/%/%/%/%/%/%/realizationChoises">
+      <details key="start" value="974"/>
+      <details key="end" value="992"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.58" references="/0/generateCompositionScript/%/%.3/%/%/%.1/%/%/%/%/%/%/%">
+      <details key="start" value="1003"/>
+      <details key="end" value="1018"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.59" references="/0/generateCompositionScript/%/%.3/%/%/%.1/%/%.1">
+      <details key="start" value="1080"/>
+      <details key="end" value="1097"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.60" references="/0/generateCompositionScript/%/%.3/%/%.1">
+      <details key="start" value="919"/>
+      <details key="end" value="968"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.61" references="/0/generateCompositionScript/%/%.3/%/%.1/realizationChoises">
+      <details key="start" value="920"/>
+      <details key="end" value="938"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.62" references="/0/generateCompositionScript/%/%.3/%/%.1/%">
+      <details key="start" value="951"/>
+      <details key="end" value="966"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.63" references="/0/generateCompositionScript/%/%.3/realizationChoises">
+      <details key="start" value="831"/>
+      <details key="end" value="864"/>
+      <details key="line" value="21"/>
+    </eAnnotations>
+    <eAnnotations source="positions.64" references="/0/generateCompositionScript/%/%.3/%.1">
+      <details key="start" value="867"/>
+      <details key="end" value="913"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.65" references="/0/generateCompositionScript/%/%.3/%.1/%">
+      <details key="start" value="867"/>
+      <details key="end" value="898"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.66" references="/0/generateCompositionScript/%/%.3/%.1/%/mainPackage">
+      <details key="start" value="867"/>
+      <details key="end" value="878"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.67" references="/0/generateCompositionScript/%/%.3/%.1/%/%">
+      <details key="start" value="889"/>
+      <details key="end" value="897"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.68" references="/0/generateCompositionScript/%/%.4">
+      <details key="start" value="1271"/>
+      <details key="end" value="1282"/>
+      <details key="line" value="21"/>
+    </eAnnotations>
+    <eAnnotations source="positions.69" references="/0/generateCompositionScript/%/%.5">
+      <details key="start" value="1282"/>
+      <details key="end" value="1741"/>
+      <details key="line" value="22"/>
+    </eAnnotations>
+    <eAnnotations source="positions.70" references="/0/generateCompositionScript/%/%.5/%">
+      <details key="start" value="1682"/>
+      <details key="end" value="1732"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.71" references="/0/generateCompositionScript/%/%.5/%/%">
+      <details key="start" value="1682"/>
+      <details key="end" value="1727"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.72" references="/0/generateCompositionScript/%/%.5/%/%/realizationChoises">
+      <details key="start" value="1682"/>
+      <details key="end" value="1700"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.73" references="/0/generateCompositionScript/%/%.5/%/%/%">
+      <details key="start" value="1711"/>
+      <details key="end" value="1726"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.74" references="/0/generateCompositionScript/%/%.5/realizationChoises">
+      <details key="start" value="1288"/>
+      <details key="end" value="1321"/>
+      <details key="line" value="22"/>
+    </eAnnotations>
+    <eAnnotations source="positions.75" references="/0/generateCompositionScript/%/%.5/select">
+      <details key="start" value="1324"/>
+      <details key="end" value="1662"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.76" references="/0/generateCompositionScript/%/%.5/select/select">
+      <details key="start" value="1324"/>
+      <details key="end" value="1567"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.77" references="/0/generateCompositionScript/%/%.5/select/select/select">
+      <details key="start" value="1324"/>
+      <details key="end" value="1426"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.78" references="/0/generateCompositionScript/%/%.5/select/select/select/%">
+      <details key="start" value="1324"/>
+      <details key="end" value="1370"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.79" references="/0/generateCompositionScript/%/%.5/select/select/select/%/%">
+      <details key="start" value="1324"/>
+      <details key="end" value="1355"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.80" references="/0/generateCompositionScript/%/%.5/select/select/select/%/%/mainPackage">
+      <details key="start" value="1324"/>
+      <details key="end" value="1335"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.81" references="/0/generateCompositionScript/%/%.5/select/select/select/%/%/%">
+      <details key="start" value="1346"/>
+      <details key="end" value="1354"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.82" references="/0/generateCompositionScript/%/%.5/select/select/select/%.1">
+      <details key="start" value="1395"/>
+      <details key="end" value="1425"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.83" references="/0/generateCompositionScript/%/%.5/select/select/select/%.1/x">
+      <details key="start" value="1395"/>
+      <details key="end" value="1396"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.84" references="/0/generateCompositionScript/%/%.5/select/select/select/%.1/%">
+      <details key="start" value="1409"/>
+      <details key="end" value="1424"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.85" references="/0/generateCompositionScript/%/%.5/select/select/select/x">
+      <details key="start" value="1391"/>
+      <details key="end" value="1392"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.86" references="/0/generateCompositionScript/%/%.5/select/select/%">
+      <details key="start" value="1450"/>
+      <details key="end" value="1566"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.87" references="/0/generateCompositionScript/%/%.5/select/select/%/%">
+      <details key="start" value="1450"/>
+      <details key="end" value="1557"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.88" references="/0/generateCompositionScript/%/%.5/select/select/%/%/%">
+      <details key="start" value="1450"/>
+      <details key="end" value="1528"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.89" references="/0/generateCompositionScript/%/%.5/select/select/%/%/%/%">
+      <details key="start" value="1450"/>
+      <details key="end" value="1518"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.90" references="/0/generateCompositionScript/%/%.5/select/select/%/%/%/%/%">
+      <details key="start" value="1450"/>
+      <details key="end" value="1509"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.91" references="/0/generateCompositionScript/%/%.5/select/select/%/%/%/%/%/%">
+      <details key="start" value="1450"/>
+      <details key="end" value="1493"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.92" references="/0/generateCompositionScript/%/%.5/select/select/%/%/%/%/%/%/%">
+      <details key="start" value="1450"/>
+      <details key="end" value="1478"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.93" references="/0/generateCompositionScript/%/%.5/select/select/%/%/%/%/%/%/%/y">
+      <details key="start" value="1450"/>
+      <details key="end" value="1451"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.94" references="/0/generateCompositionScript/%/%.5/select/select/%/%/%/%/%/%/%/%">
+      <details key="start" value="1462"/>
+      <details key="end" value="1477"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.95" references="/0/generateCompositionScript/%/%.5/select/select/%/%/%.1">
+      <details key="start" value="1539"/>
+      <details key="end" value="1556"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.96" references="/0/generateCompositionScript/%/%.5/select/select/y">
+      <details key="start" value="1448"/>
+      <details key="end" value="1449"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.97" references="/0/generateCompositionScript/%/%.5/select/%">
+      <details key="start" value="1592"/>
+      <details key="end" value="1661"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.98" references="/0/generateCompositionScript/%/%.5/select/%/%">
+      <details key="start" value="1592"/>
+      <details key="end" value="1631"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.99" references="/0/generateCompositionScript/%/%.5/select/%/%/%">
+      <details key="start" value="1592"/>
+      <details key="end" value="1620"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.100" references="/0/generateCompositionScript/%/%.5/select/%/%/%/z">
+      <details key="start" value="1592"/>
+      <details key="end" value="1593"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.101" references="/0/generateCompositionScript/%/%.5/select/%/%/%/%">
+      <details key="start" value="1604"/>
+      <details key="end" value="1619"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.102" references="/0/generateCompositionScript/%/%.5/select/%/%.1">
+      <details key="start" value="1649"/>
+      <details key="end" value="1660"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.103" references="/0/generateCompositionScript/%/%.5/select/z">
+      <details key="start" value="1590"/>
+      <details key="end" value="1591"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.104" references="/0/generateCompositionScript/%/%.5/%.1">
+      <details key="start" value="1675"/>
+      <details key="end" value="1678"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.105" references="/0/generateCompositionScript/%/%.6">
+      <details key="start" value="1741"/>
+      <details key="end" value="1844"/>
+      <details key="line" value="25"/>
+    </eAnnotations>
+    <eAnnotations source="positions.106" references="/0/generateCompositionScript/%/%.7">
+      <details key="start" value="182"/>
+      <details key="end" value="205"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.107" references="/0/generateCompositionScript/%/%.8">
+      <details key="start" value="214"/>
+      <details key="end" value="224"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.108" references="/0/generateCompositionScript/mainPackage">
+      <details key="start" value="132"/>
+      <details key="end" value="154"/>
+      <details key="line" value="5"/>
+    </eAnnotations>
+  </ecore:EAnnotation>
+</xmi:XMI>

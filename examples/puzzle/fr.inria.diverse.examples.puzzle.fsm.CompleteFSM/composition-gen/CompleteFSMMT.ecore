@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<ecore:EPackage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="transitioneffectprovidedjoinpseudostateprovidedforkpseudostateprovidednottriggerprovidedandtriggerprovidedortriggerprovidedconditionalpseudostateprovidedcompositestatesprovidedfsmcoreprovidedsimpleconstraintslanguageprovidedsimpleimperativelanguageprovided" nsURI="http://transitioneffectprovided/joinpseudostateprovided/forkpseudostateprovided/nottriggerprovided/andtriggerprovided/ortriggerprovided/conditionalpseudostateprovided/compositestatesprovided/fsmcoreprovided/simpleconstraintslanguageprovided/simpleimperativelanguageprovided" nsPrefix="transitioneffectprovidedtransitioneffectprovidedtransitioneffectprovidedtransitioneffectprovidedtransitioneffectprovidedtransitioneffectprovidedtransitioneffectprovidedtransitioneffectprovided">
-  <eClassifiers xsi:type="ecore:EClass" name="Transition">
-    <eAnnotations source="extension"/>
-    <eOperations name="evalTransition">
-      <eParameters name="_self" eType="//Transition.5"/>
-      <eParameters name="context">
-        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
-      </eParameters>
-    </eOperations>
-    <eOperations name="_original_evalTransition">
-      <eParameters name="_self"/>
-      <eParameters name="context"/>
-    </eOperations>
-  </eClassifiers>
+<ecore:EPackage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="joinpseudostateprovidedtransitioneffectprovidedforkpseudostateprovidednottriggerprovidedandtriggerprovidedortriggerprovidedconditionalpseudostateprovidedcompositestatesprovidedfsmcoreprovidedsimpleconstraintslanguageprovidedsimpleimperativelanguageprovided" nsURI="http://joinpseudostateprovided/transitioneffectprovided/forkpseudostateprovided/nottriggerprovided/andtriggerprovided/ortriggerprovided/conditionalpseudostateprovided/compositestatesprovided/fsmcoreprovided/simpleconstraintslanguageprovided/simpleimperativelanguageprovided" nsPrefix="joinpseudostateprovidedjoinpseudostateprovidedjoinpseudostateprovidedjoinpseudostateprovidedjoinpseudostateprovidedjoinpseudostateprovidedjoinpseudostateprovidedjoinpseudostateprovided">
   <eClassifiers xsi:type="ecore:EClass" name="Region">
     <eAnnotations source="extension"/>
     <eOperations name="findNewActiveTransitions">
@@ -56,7 +43,7 @@
       <eParameters name="selectedTransition"/>
     </eOperations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Vertex" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractState" abstract="true">
     <eAnnotations source="extension"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outgoing" upperBound="-1" eType="//Transition.5"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incoming" upperBound="-1" eType="//Transition.5"/>
@@ -67,14 +54,27 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Transition">
     <eAnnotations source="extension"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1" eType="//Vertex.4"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1" eType="//Vertex.4"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1" eType="//AbstractState.4"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1" eType="//AbstractState.4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="PseudostateKind">
     <eAnnotations source="extension"/>
     <eLiterals name="join" value="2" literal="join">
       <eAnnotations source="addition"/>
     </eLiterals>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Transition">
+    <eAnnotations source="extension"/>
+    <eOperations name="evalTransition">
+      <eParameters name="_self" eType="//Transition.5"/>
+      <eParameters name="context">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+      </eParameters>
+    </eOperations>
+    <eOperations name="_original_evalTransition">
+      <eParameters name="_self"/>
+      <eParameters name="context"/>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Region">
     <eAnnotations source="extension"/>
@@ -109,7 +109,7 @@
       <eParameters name="context"/>
     </eOperations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Vertex" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractState" abstract="true">
     <eAnnotations source="extension"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outgoing" upperBound="-1" eType="//Transition.5"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incoming" upperBound="-1" eType="//Transition.5"/>
@@ -126,8 +126,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Transition">
     <eAnnotations source="extension"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1" eType="//Vertex.4"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1" eType="//Vertex.4"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1" eType="//AbstractState.4"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1" eType="//AbstractState.4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Trigger">
     <eAnnotations source="extension"/>
@@ -244,7 +244,7 @@
       <eParameters name="context"/>
     </eOperations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Vertex" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractState" abstract="true">
     <eAnnotations source="extension"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outgoing" upperBound="-1" eType="//Transition.5"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incoming" upperBound="-1" eType="//Transition.5"/>
@@ -267,8 +267,8 @@
         <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
       </eParameters>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1" eType="//Vertex.4"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1" eType="//Vertex.4"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1" eType="//AbstractState.4"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1" eType="//AbstractState.4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Region">
     <eAnnotations source="extension"/>
@@ -309,7 +309,7 @@
       <eParameters name="vertex"/>
       <eParameters name="children"/>
     </eOperations>
-    <eOperations name="highestConflictingTransition">
+    <eOperations name="deepestConflictingTransition">
       <eParameters name="_self"/>
       <eParameters name="newActiveTransitions"/>
       <eParameters name="selectedTransition"/>
@@ -332,7 +332,7 @@
       <eParameters name="selectedTransition"/>
       <eParameters name="context"/>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="subvertex" upperBound="-1" eType="//Vertex.4" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subvertex" upperBound="-1" eType="//AbstractState.4" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownerState">
       <eAnnotations source="addition"/>
     </eStructuralFeatures>
@@ -352,7 +352,7 @@
       <eAnnotations source="addition"/>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Vertex" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractState" abstract="true">
     <eAnnotations source="extension"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incoming" upperBound="-1" eType="//Transition.5"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outgoing" upperBound="-1" eType="//Transition.5"/>
@@ -360,8 +360,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Transition">
     <eAnnotations source="extension"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1" eType="//Vertex.4"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1" eType="//Vertex.4"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1" eType="//AbstractState.4"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1" eType="//AbstractState.4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StateMachine">
     <eOperations name="evalStateMachine">
@@ -404,7 +404,7 @@
     <eOperations name="getActiveTransitions">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EEList"/>
       <eParameters name="_self" eType="//Region.4"/>
-      <eParameters name="vertex" eType="//Vertex.4"/>
+      <eParameters name="vertex" eType="//AbstractState.4"/>
       <eParameters name="events">
         <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EEList"/>
       </eParameters>
@@ -431,10 +431,10 @@
         <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
       </eParameters>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="subvertex" upperBound="-1" eType="//Vertex.4" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subvertex" upperBound="-1" eType="//AbstractState.4" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transitions" upperBound="-1" eType="//Transition.5" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Vertex" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractState" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="incoming" upperBound="-1" eType="//Transition.5"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outgoing" upperBound="-1" eType="//Transition.5"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownerRegion" lowerBound="1" eType="//Region.4"/>
@@ -474,8 +474,8 @@
       </eParameters>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="trigger" eType="//Trigger.3" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1" eType="//Vertex.4"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1" eType="//Vertex.4"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1" eType="//AbstractState.4"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1" eType="//AbstractState.4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name">
@@ -511,7 +511,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="Constraint">
     <eOperations name="evalConstraint">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-      <eParameters name="_self" eType="//Constraint"/>
       <eParameters name="context">
         <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
       </eParameters>
@@ -520,7 +519,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="RelationalConstraint">
     <eOperations name="evalConstraint">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-      <eParameters name="_self" eType="//RelationalConstraint"/>
       <eParameters name="context">
         <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
       </eParameters>
@@ -531,7 +529,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CExpression" abstract="true">
     <eOperations name="obtainValue">
-      <eParameters name="_self" eType="//CExpression"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
       <eParameters name="context">
         <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
       </eParameters>
@@ -540,7 +538,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="CLiteral" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="CInteger">
     <eOperations name="obtainValue">
-      <eParameters name="_self" eType="//CInteger"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
       <eParameters name="context">
         <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
       </eParameters>
@@ -551,7 +549,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CVarRef">
     <eOperations name="obtainValue">
-      <eParameters name="_self" eType="//CVarRef"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
       <eParameters name="context">
         <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
       </eParameters>
@@ -568,7 +566,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Statement" abstract="true">
     <eOperations name="eval">
-      <eParameters name="_self" eType="//Statement"/>
       <eParameters name="context">
         <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
       </eParameters>
@@ -576,7 +573,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Program">
     <eOperations name="eval">
-      <eParameters name="_self" eType="//Program"/>
       <eParameters name="context">
         <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
       </eParameters>
@@ -585,7 +581,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Conditional">
     <eOperations name="eval">
-      <eParameters name="_self" eType="//Conditional"/>
       <eParameters name="context">
         <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
       </eParameters>
@@ -595,7 +590,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Loop">
     <eOperations name="eval">
-      <eParameters name="_self" eType="//Loop"/>
       <eParameters name="context">
         <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
       </eParameters>
@@ -605,7 +599,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VarDecl">
     <eOperations name="eval">
-      <eParameters name="_self" eType="//VarDecl"/>
       <eParameters name="context">
         <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
       </eParameters>
@@ -617,7 +610,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression" abstract="true">
     <eOperations name="obtainValue">
-      <eParameters name="_self" eType="//Expression"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
       <eParameters name="context">
         <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
       </eParameters>
@@ -626,7 +619,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Literal" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="IntegerLit">
     <eOperations name="obtainValue">
-      <eParameters name="_self" eType="//IntegerLit"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
       <eParameters name="context">
         <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
       </eParameters>
@@ -637,7 +630,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StringLit">
     <eOperations name="obtainValue">
-      <eParameters name="_self" eType="//StringLit"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
       <eParameters name="context">
         <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
       </eParameters>
@@ -653,7 +646,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArithmeticExpression">
     <eOperations name="obtainValue">
-      <eParameters name="_self" eType="//ArithmeticExpression"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
       <eParameters name="context">
         <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
       </eParameters>

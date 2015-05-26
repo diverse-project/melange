@@ -6,6 +6,12 @@
       <modeltype
             uri="http://corefsmmt/"
             id="fsm.CoreFSMMT">
+         <subtyping
+               modeltypeId="fsm.ForkPseudostateMT">
+         </subtyping>
+         <subtyping
+               modeltypeId="fsm.JoinPseudostateMT">
+         </subtyping>
       </modeltype>
       <modeltype
             uri="http://imperativelanguagemt/"
@@ -26,6 +32,9 @@
       <modeltype
             uri="http://forkpseudostatemt/"
             id="fsm.ForkPseudostateMT">
+         <subtyping
+               modeltypeId="fsm.JoinPseudostateMT">
+         </subtyping>
       </modeltype>
       <modeltype
             uri="http://joinpseudostatemt/"
@@ -52,6 +61,9 @@
          <subtyping
                modeltypeId="fsm.ForkPseudostateMT">
          </subtyping>
+         <subtyping
+               modeltypeId="fsm.JoinPseudostateMT">
+         </subtyping>
       </modeltype>
    </extension>
    <extension
@@ -64,6 +76,14 @@
          <adapter
                class="fsm.corefsm.adapters.corefsmmt.CoreFSMAdapter"
                modeltypeId="fsm.CoreFSMMT">
+         </adapter>
+         <adapter
+               class="fsm.corefsm.adapters.forkpseudostatemt.CoreFSMAdapter"
+               modeltypeId="fsm.ForkPseudostateMT">
+         </adapter>
+         <adapter
+               class="fsm.corefsm.adapters.joinpseudostatemt.CoreFSMAdapter"
+               modeltypeId="fsm.JoinPseudostateMT">
          </adapter>
       </language>
       <language
@@ -78,7 +98,7 @@
       </language>
       <language
             exactType="fsm.ConstraintsLanguageMT"
-            description="A simple constraints language for expressing transitions&apos; guards."
+            description="A simple constraints language for expressing transitions&apos; guards and conditions."
             uri="http://simpleconstraintslanguage"
             id="fsm.ConstraintsLanguage">
          <adapter
@@ -114,6 +134,10 @@
          <adapter
                class="fsm.forkpseudostate.adapters.forkpseudostatemt.ForkPseudostateAdapter"
                modeltypeId="fsm.ForkPseudostateMT">
+         </adapter>
+         <adapter
+               class="fsm.forkpseudostate.adapters.joinpseudostatemt.ForkPseudostateAdapter"
+               modeltypeId="fsm.JoinPseudostateMT">
          </adapter>
       </language>
       <language
@@ -152,7 +176,7 @@
       </language>
       <language
             exactType="fsm.OrTriggerMT"
-            description="Or Trigger: Contains the capability for supporting conjunction on the triggers of the transitions."
+            description="Or Trigger: Contains the capability for supporting conjuntion on the triggers of the transitions."
             uri="http://ortrigger"
             id="fsm.OrTrigger">
          <adapter
@@ -162,12 +186,16 @@
       </language>
       <language
             exactType="fsm.ConditionalMT"
-            description="Conditional: Contains the capability for supporting conditional pseudo-states."
+            description="Or Trigger: Contains the capability for supporting conjuntion on the triggers of the transitions."
             uri="http://conditionalpseudostate"
             id="fsm.Conditional">
          <adapter
                class="fsm.conditional.adapters.forkpseudostatemt.ConditionalAdapter"
                modeltypeId="fsm.ForkPseudostateMT">
+         </adapter>
+         <adapter
+               class="fsm.conditional.adapters.joinpseudostatemt.ConditionalAdapter"
+               modeltypeId="fsm.JoinPseudostateMT">
          </adapter>
          <adapter
                class="fsm.conditional.adapters.conditionalmt.ConditionalAdapter"

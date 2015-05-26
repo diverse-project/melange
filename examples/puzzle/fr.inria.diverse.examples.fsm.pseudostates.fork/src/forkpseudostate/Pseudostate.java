@@ -19,7 +19,7 @@ package forkpseudostate;
  * @model
  * @generated
  */
-public interface Pseudostate extends Vertex {
+public interface Pseudostate extends AbstractState {
 	/**
 	 * Returns the value of the '<em><b>Kind</b></em>' attribute.
 	 * The literals are from the enumeration {@link forkpseudostate.PseudostateKind}.

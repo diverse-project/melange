@@ -76,8 +76,8 @@ public class CompositestatesAdapterFactory extends AdapterFactoryImpl {
 				return createStateAdapter();
 			}
 			@Override
-			public Adapter caseVertex(Vertex object) {
-				return createVertexAdapter();
+			public Adapter caseAbstractState(AbstractState object) {
+				return createAbstractStateAdapter();
 			}
 			@Override
 			public Adapter caseTransition(Transition object) {
@@ -132,16 +132,16 @@ public class CompositestatesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link compositestates.Vertex <em>Vertex</em>}'.
+	 * Creates a new adapter for an object of class '{@link compositestates.AbstractState <em>Abstract State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see compositestates.Vertex
+	 * @see compositestates.AbstractState
 	 * @generated
 	 */
-	public Adapter createVertexAdapter() {
+	public Adapter createAbstractStateAdapter() {
 		return null;
 	}
 

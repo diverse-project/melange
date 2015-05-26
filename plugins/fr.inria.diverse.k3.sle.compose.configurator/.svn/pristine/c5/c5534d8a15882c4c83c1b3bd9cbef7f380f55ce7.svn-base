@@ -1,0 +1,32 @@
+[comment encoding = UTF-8 /]
+[module Configurator('http:///CVLMetamodelMaster.ecore')]
+
+
+[template public generateCompositionScript(mainPackage : VPackage)]
+[comment @main /]
+[file ('FamilyAssembly.puzzle', false, 'US-ASCII')]
+Language StateMachinesDSL {
+	delc {
+[for (realizationChoises : VPackageable | mainPackage.oclAsType(VPackage).packageElement)]
+[if (realizationChoises.oclIsTypeOf(ObjectExistence))]
+[if (realizationChoises.oclAsType(ObjectExistence).optionalObject->asOrderedSet()->
+			first().reference.oclAsType(ChoiceResolutuion).decision)]
+		LanguageUnit [realizationChoises.oclAsType(ObjectExistence).name/] : "[realizationChoises.oclAsType(ObjectExistence).mappingExpression/]"
+[/if]
+[/if]
+[/for]
+	}
+	composition {
+		/** Composing the expressions in one unique language unit. */
+		CoreExtensions := extension([for (realizationChoises : VPackageable | mainPackage.oclAsType(VPackage).packageElement)][if (realizationChoises.oclIsTypeOf(ObjectExistence))][if (realizationChoises.oclAsType(ObjectExistence).optionalObject->asOrderedSet()->first().reference.oclAsType(ChoiceResolutuion).decision)][if (realizationChoises.oclAsType(ObjectExistence).expression.equalsIgnoreCase('core'))][realizationChoises.oclAsType(ObjectExistence).name/][/if][/if][/if][/for], 
+							{[for (realizationChoises : VPackageable | mainPackage.oclAsType(VPackage).packageElement->
+											select(x | x.oclIsTypeOf(ObjectExistence))->
+												select(y|y.oclAsType(ObjectExistence).optionalObject->asOrderedSet()->first().reference.oclAsType(ChoiceResolutuion).decision)->
+													select(z|z.oclAsType(ObjectExistence).expression.equalsIgnoreCase('extension'))) separator (',')] [realizationChoises.oclAsType(ObjectExistence).name /][/for]});
+		
+		CompleteLanguage := replacement(&CoreExtensions, Expressions);
+		root &CompleteLanguage;
+	}
+}
+[/file]
+[/template]

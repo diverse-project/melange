@@ -1,0 +1,217 @@
+[comment encoding = UTF-8 /]
+[module Configurator('http://fr.inria.diverse.kcvl')]
+
+ 
+[template public generateCompositionScript(mainPackage : VPackage)]
+[comment @main /]
+[file ('fsm-gen.melange', false, 'US-ASCII')]
+[let RTCSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Semantics')->first().child->asOrderedSet()->select(name = 'SemStatesDef')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'SemEventsDispatching')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'SemRunToCompletion')->first().oclAsType(ChoiceResolutuion).decision]
+[let SumultaneousEventsSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Semantics')->first().child->asOrderedSet()->select(name = 'SemStatesDef')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'SemEventsDispatching')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'SemSimultaneousEvents')->first().oclAsType(ChoiceResolutuion).decision]
+[let ImperativeLanguageSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'AbstractSyntax')->first().child->asOrderedSet()->select(name = 'SimpleImperative')->first().oclAsType(ChoiceResolutuion).decision]
+[let ConstraintLanguageSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'AbstractSyntax')->first().child->asOrderedSet()->select(name = 'SimpleConstraints')->first().oclAsType(ChoiceResolutuion).decision]
+[let CompositeSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'AbstractSyntax')->first().child->asOrderedSet()->select(name = 'StatesDef')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'CompositeStates')->first().oclAsType(ChoiceResolutuion).decision]
+[let CompositeStatesDeepestSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Semantics')->first().child->asOrderedSet()->select(name = 'SemStatesDef')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'SemTransitionPriority')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'SemDeeperStatesPriority')->first().oclAsType(ChoiceResolutuion).decision]
+[let CompositeStatesHigherSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Semantics')->first().child->asOrderedSet()->select(name = 'SemStatesDef')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'SemTransitionPriority')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'SemHigherStatesPriority')->first().oclAsType(ChoiceResolutuion).decision]
+[let ForkPseudostateSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'AbstractSyntax')->first().child->asOrderedSet()->select(name = 'StatesDef')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Pseudostates')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Fork')->first().oclAsType(ChoiceResolutuion).decision]
+[let JoinPseudostateSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'AbstractSyntax')->first().child->asOrderedSet()->select(name = 'StatesDef')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Pseudostates')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Join')->first().oclAsType(ChoiceResolutuion).decision]
+[let ConditionalPseudostateSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'AbstractSyntax')->first().child->asOrderedSet()->select(name = 'StatesDef')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Pseudostates')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Conditional')->first().oclAsType(ChoiceResolutuion).decision]
+[let NotTriggerSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'AbstractSyntax')->first().child->asOrderedSet()->select(name = 'TransitionDef')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Trigger')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'NotTrigger')->first().oclAsType(ChoiceResolutuion).decision ]
+[let AndTriggerSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'AbstractSyntax')->first().child->asOrderedSet()->select(name = 'TransitionDef')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Trigger')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'AndTrigger')->first().oclAsType(ChoiceResolutuion).decision ]
+[let OrTriggerSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'AbstractSyntax')->first().child->asOrderedSet()->select(name = 'TransitionDef')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Trigger')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'OrTrigger')->first().oclAsType(ChoiceResolutuion).decision ]
+[let TransitionEffectSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'AbstractSyntax')->first().child->asOrderedSet()->select(name = 'TransitionDef')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'TransitionEffect')->first().oclAsType(ChoiceResolutuion).decision ] 
+[let TransitionEffectSequentialSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Semantics')->first().child->asOrderedSet()->select(name = 'SemStatesDef')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'SemEffectSchedule')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'SemSequential')->first().oclAsType(ChoiceResolutuion).decision ]
+[let TransitionEffectParallelSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Semantics')->first().child->asOrderedSet()->select(name = 'SemStatesDef')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'SemEffectSchedule')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'SemParallel')->first().oclAsType(ChoiceResolutuion).decision ]
+package fsm
+
+/**  
+ * Composition script for the languages described above.
+ */
+composition CompleteFSM {
+	[if (ImperativeLanguageSelected)]aggregation(CoreFSM, ImperativeLanguage)[/if]
+    [if (ConstraintLanguageSelected)]aggregation(CoreFSM, ConstraintsLanguage)[/if]
+	[if (JoinPseudostateSelected)]extension(CoreFSM, JoinPseudostate)[/if]
+    [if (TransitionEffectSelected)]extension(CoreFSM, TransitionEffect)[/if]
+	[if (ForkPseudostateSelected)]extension(CoreFSM, ForkPseudostate)[/if]
+    [if (NotTriggerSelected)]extension(CoreFSM, NotTrigger)[/if] 
+	[if (AndTriggerSelected)]extension(CoreFSM, AndTrigger)[/if]      
+	[if (OrTriggerSelected)]extension(CoreFSM, OrTrigger)[/if]    
+	[if (ConditionalPseudostateSelected)]extension(CoreFSM, Conditional)[/if]  
+	[if (CompositeSelected)]extension(CoreFSM, CompositeStates)[/if]
+}
+
+/** 
+ * Core FSM. Contains the basic concepts of StateMachine, State, Transition, and Trigger.
+ */ 
+language CoreFSM { 
+	ecore "platform:/resource/fr.inria.diverse.examples.fsm.core/models/fsmcore.ecore"
+	exactType CoreFSMMT 
+	
+[if (RTCSelected)]
+	// Variation # 1: Run-To-Completion
+	with FSM.rtc.StateMachineAspect 
+	with FSM.rtc.RegionAspect 
+	with FSM.rtc.StateAspect
+	with FSM.rtc.TransitionAspect
+	with FSM.rtc.TriggerAspect
+	with FSM.rtc.FinalStateAspect
+[/if]
+[if (SumultaneousEventsSelected)]
+	// Variation # 2: Simultaneous Events
+	with FSM.simultaneous.StateMachineAspect
+	with FSM.simultaneous.RegionAspect
+	with FSM.simultaneous.StateAspect
+	with FSM.simultaneous.TransitionAspect
+	with FSM.simultaneous.TriggerAspect
+	with FSM.simultaneous.FinalStateAspect
+[/if]
+}
+
+[if (ImperativeLanguageSelected)]
+/**
+ * A simple imperative language for expressing states' actions. 
+ */
+language ImperativeLanguage {
+	ecore "platform:/resource/fr.inria.diverse.examples.simpleimperative/models/simpleimperative.ecore"
+	exactType ImperativeLanguageMT
+	
+	with simple.imperative.aspects.StatementAspect
+	with simple.imperative.aspects.ProgramAspect
+	with simple.imperative.aspects.ConditionalAspect
+	with simple.imperative.aspects.LoopAspect
+	with simple.imperative.aspects.VarDeclAspect
+	with simple.imperative.aspects.ExpressionAspect
+	with simple.imperative.aspects.LiteralAspect
+	with simple.imperative.aspects.IntegerLitAspect
+	with simple.imperative.aspects.StringLitAspect
+	with simple.imperative.aspects.ArithmeticExpressionAspect
+}[/if]
+
+
+[if (ConstraintLanguageSelected)]
+/**
+ * A simple constraints language for expressing transitions' guards and conditions. 
+ */
+language ConstraintsLanguage{
+	ecore "platform:/resource/fr.inria.diverse.examples.simpleconstraints/models/SimpleConstraints.ecore"
+	exactType ConstraintsLanguageMT
+	
+	with simple.constraints.ConstraintAspect
+	with simple.constraints.RelationalConstraintAspect
+	with simple.constraints.CExpressionAspect
+	with simple.constraints.CLiteralAspect
+	with simple.constraints.CIntegerAspect
+	with simple.constraints.CVarRefAspect
+}[/if]
+
+
+[if (CompositeSelected)]
+/**
+ * Composite states: Contains the concept 'CompositeState' that enables hierarchical state machines.
+ */
+language CompositeStates {
+	ecore "platform:/resource/fr.inria.diverse.examples.fsm.compositeStates/models/compositestates.ecore"
+	exactType ComposteStatesMT
+	
+[if (CompositeStatesDeepestSelected)]
+	with FSM.composite.deepest.RegionAspect
+	with FSM.composite.deepest.StateAspect
+[/if]
+[if (CompositeStatesHigherSelected)]
+	with FSM.composite.higher.RegionAspect
+	with FSM.composite.higher.StateAspect
+[/if]
+}[/if]
+
+
+[if (TransitionEffectSelected)]
+/**
+ * Transition effect: Contains the concept 'Effect' that enables effects in the transitions
+ */
+language TransitionEffect {
+	ecore "platform:/resource/fr.inria.diverse.examples.fsm.transition.effect/models/TransitionEffect.ecore"
+	exactType TransitionEffectMT
+	
+[if (TransitionEffectSequentialSelected)]
+	// Variation # 1: Sequential	
+	with transitioneffects.sequential.TransitionAspect
+[/if]
+[if (TransitionEffectParallelSelected)]
+	// Variation # 2: Parallel
+	with transitioneffects.parallel.TransitionAspect
+[/if]
+}[/if]
+
+
+[if (ForkPseudostateSelected)]
+/**
+ * Fork pseudostate: Contains the concept 'ForkPseudostate' that enables more complex transitions
+ */
+language ForkPseudostate {
+	ecore "platform:/resource/fr.inria.diverse.examples.fsm.pseudostates.fork/models/Fork.ecore"
+	exactType ForkPseudostateMT
+	
+	with pseudostates.fork.RegionAspect
+}[/if]
+
+
+[if (JoinPseudostateSelected)]
+/**
+ * Join pseudostate: Contains the concept 'ForkPseudostate' that enables more complex transitions
+ */
+language JoinPseudostate {
+	ecore "platform:/resource/fr.inria.diverse.examples.fsm.pseudostates.join/models/Join.ecore"
+	exactType JoinPseudostateMT
+	
+	with pseudostates.join.RegionAspect
+}[/if]
+
+
+[if (NotTriggerSelected)]
+/**
+ * Not Trigger: Contains the capability for supporting negation on the triggers of the transitions. 
+ */
+language NotTrigger {
+	ecore "platform:/resource/fr.inria.diverse.examples.fsm.trigger.not/models/NotTrigger.ecore"
+	exactType NotTriggerMT
+	
+	with trigger.not.NotTriggerAspect
+}[/if]
+
+
+[if (AndTriggerSelected)]
+/**
+ * And Trigger: Contains the capability for supporting disjunction on the triggers of the transitions. 
+ */
+language AndTrigger {
+	ecore "platform:/resource/fr.inria.diverse.examples.fsm.trigger.and/models/AndTrigger.ecore"
+	exactType AndTriggerMT
+
+	with trigger.and.AndTriggerAspect
+}[/if]
+
+
+[if (OrTriggerSelected)]
+/**
+ * Or Trigger: Contains the capability for supporting conjuntion on the triggers of the transitions. 
+ */
+language OrTrigger {
+	ecore "platform:/resource/fr.inria.diverse.examples.fsm.trigger.or/models/OrTrigger.ecore"
+	exactType OrTriggerMT
+
+	with trigger.or.OrTriggerAspect
+}[/if]
+
+
+[if (ConditionalPseudostateSelected)]
+/**
+ * Or Trigger: Contains the capability for supporting conjuntion on the triggers of the transitions. 
+ */
+language Conditional {
+	ecore "platform:/resource/fr.inria.diverse.examples.fsm.pseudostates.conditional/models/Conditional.ecore"
+	exactType ConditionalMT
+
+	with pseudostates.conditional.RegionAspect
+}[/if]
+[/let][/let][/let][/let][/let][/let][/let][/let][/let][/let][/let][/let][/let][/let][/let][/let]
+[/file]
+[/template]

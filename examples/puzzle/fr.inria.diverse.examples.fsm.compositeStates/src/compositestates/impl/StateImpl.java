@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class StateImpl extends VertexImpl implements State {
+public class StateImpl extends AbstractStateImpl implements State {
 	/**
 	 * The cached value of the '{@link #getOwnedRegions() <em>Owned Regions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

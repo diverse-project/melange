@@ -2,13 +2,13 @@
  */
 package conditionalpseudostate.impl;
 
+import conditionalpseudostate.AbstractState;
 import conditionalpseudostate.ConditionalpseudostateFactory;
 import conditionalpseudostate.ConditionalpseudostatePackage;
 import conditionalpseudostate.Pseudostate;
 import conditionalpseudostate.PseudostateKind;
 import conditionalpseudostate.Region;
 import conditionalpseudostate.Transition;
-import conditionalpseudostate.Vertex;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -39,7 +39,7 @@ public class ConditionalpseudostatePackageImpl extends EPackageImpl implements C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass vertexEClass = null;
+	private EClass abstractStateEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -137,8 +137,8 @@ public class ConditionalpseudostatePackageImpl extends EPackageImpl implements C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getVertex() {
-		return vertexEClass;
+	public EClass getAbstractState() {
+		return abstractStateEClass;
 	}
 
 	/**
@@ -146,8 +146,8 @@ public class ConditionalpseudostatePackageImpl extends EPackageImpl implements C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVertex_Outgoing() {
-		return (EReference)vertexEClass.getEStructuralFeatures().get(0);
+	public EReference getAbstractState_Outgoing() {
+		return (EReference)abstractStateEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -155,8 +155,8 @@ public class ConditionalpseudostatePackageImpl extends EPackageImpl implements C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVertex_Incoming() {
-		return (EReference)vertexEClass.getEStructuralFeatures().get(1);
+	public EReference getAbstractState_Incoming() {
+		return (EReference)abstractStateEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -252,9 +252,9 @@ public class ConditionalpseudostatePackageImpl extends EPackageImpl implements C
 		// Create classes and their features
 		regionEClass = createEClass(REGION);
 
-		vertexEClass = createEClass(VERTEX);
-		createEReference(vertexEClass, VERTEX__OUTGOING);
-		createEReference(vertexEClass, VERTEX__INCOMING);
+		abstractStateEClass = createEClass(ABSTRACT_STATE);
+		createEReference(abstractStateEClass, ABSTRACT_STATE__OUTGOING);
+		createEReference(abstractStateEClass, ABSTRACT_STATE__INCOMING);
 
 		pseudostateEClass = createEClass(PSEUDOSTATE);
 		createEAttribute(pseudostateEClass, PSEUDOSTATE__KIND);
@@ -296,21 +296,21 @@ public class ConditionalpseudostatePackageImpl extends EPackageImpl implements C
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		pseudostateEClass.getESuperTypes().add(this.getVertex());
+		pseudostateEClass.getESuperTypes().add(this.getAbstractState());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(regionEClass, Region.class, "Region", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(vertexEClass, Vertex.class, "Vertex", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVertex_Outgoing(), this.getTransition(), this.getTransition_Source(), "outgoing", null, 0, -1, Vertex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getVertex_Incoming(), this.getTransition(), this.getTransition_Target(), "incoming", null, 0, -1, Vertex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(abstractStateEClass, AbstractState.class, "AbstractState", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAbstractState_Outgoing(), this.getTransition(), this.getTransition_Source(), "outgoing", null, 0, -1, AbstractState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractState_Incoming(), this.getTransition(), this.getTransition_Target(), "incoming", null, 0, -1, AbstractState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(pseudostateEClass, Pseudostate.class, "Pseudostate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPseudostate_Kind(), this.getPseudostateKind(), "kind", null, 0, 1, Pseudostate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(transitionEClass, Transition.class, "Transition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTransition_Source(), this.getVertex(), this.getVertex_Outgoing(), "source", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTransition_Target(), this.getVertex(), this.getVertex_Incoming(), "target", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransition_Source(), this.getAbstractState(), this.getAbstractState_Outgoing(), "source", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransition_Target(), this.getAbstractState(), this.getAbstractState_Incoming(), "target", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = initEOperation(getTransition__ValidGuard__Map(), ecorePackage.getEBoolean(), "validGuard", 0, 1, IS_UNIQUE, IS_ORDERED);
 		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
@@ -348,7 +348,7 @@ public class ConditionalpseudostatePackageImpl extends EPackageImpl implements C
 		   new String[] {
 		   });	
 		addAnnotation
-		  (vertexEClass, 
+		  (abstractStateEClass, 
 		   source, 
 		   new String[] {
 		   });	

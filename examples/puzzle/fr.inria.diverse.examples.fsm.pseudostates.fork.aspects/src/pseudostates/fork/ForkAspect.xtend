@@ -7,7 +7,7 @@ import java.util.ArrayList
 import puzzle.annotations.processor.OverrideRequiredAspectMethod
 import forkpseudostate.Pseudostate
 import forkpseudostate.PseudostateKind
-import forkpseudostate.Vertex
+import forkpseudostate.AbstractState
 import java.util.Hashtable
 import forkpseudostate.Region
 
@@ -28,7 +28,7 @@ class RegionAspect {
 	}
 	
 	@OverrideRequiredAspectMethod
-	def public void findNewActiveStates(ArrayList<Vertex> newActiveStates,
+	def public void findNewActiveStates(ArrayList<AbstractState> newActiveStates,
 		Transition selectedTransition, ArrayList<Transition> currentActiveTransitions, Hashtable<String, Object> context){
 		if((selectedTransition.target instanceof Pseudostate)
 			&& (selectedTransition.target as Pseudostate).kind == PseudostateKind.FORK){

@@ -197,14 +197,14 @@ public interface FsmcorePackage extends EPackage {
 	int REGION_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link fsmcore.impl.VertexImpl <em>Vertex</em>}' class.
+	 * The meta object id for the '{@link fsmcore.impl.AbstractStateImpl <em>Abstract State</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see fsmcore.impl.VertexImpl
-	 * @see fsmcore.impl.FsmcorePackageImpl#getVertex()
+	 * @see fsmcore.impl.AbstractStateImpl
+	 * @see fsmcore.impl.FsmcorePackageImpl#getAbstractState()
 	 * @generated
 	 */
-	int VERTEX = 2;
+	int ABSTRACT_STATE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -213,7 +213,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX__NAME = NAMED_ELEMENT__NAME;
+	int ABSTRACT_STATE__NAME = NAMED_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Incoming</b></em>' reference list.
@@ -222,7 +222,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX__INCOMING = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int ABSTRACT_STATE__INCOMING = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Outgoing</b></em>' reference list.
@@ -231,7 +231,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX__OUTGOING = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int ABSTRACT_STATE__OUTGOING = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owner Region</b></em>' reference.
@@ -240,25 +240,25 @@ public interface FsmcorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX__OWNER_REGION = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int ABSTRACT_STATE__OWNER_REGION = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the '<em>Vertex</em>' class.
+	 * The number of structural features of the '<em>Abstract State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int ABSTRACT_STATE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of operations of the '<em>Vertex</em>' class.
+	 * The number of operations of the '<em>Abstract State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int ABSTRACT_STATE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link fsmcore.impl.StateImpl <em>State</em>}' class.
@@ -277,7 +277,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__NAME = VERTEX__NAME;
+	int STATE__NAME = ABSTRACT_STATE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Incoming</b></em>' reference list.
@@ -286,7 +286,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__INCOMING = VERTEX__INCOMING;
+	int STATE__INCOMING = ABSTRACT_STATE__INCOMING;
 
 	/**
 	 * The feature id for the '<em><b>Outgoing</b></em>' reference list.
@@ -295,7 +295,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__OUTGOING = VERTEX__OUTGOING;
+	int STATE__OUTGOING = ABSTRACT_STATE__OUTGOING;
 
 	/**
 	 * The feature id for the '<em><b>Owner Region</b></em>' reference.
@@ -304,7 +304,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__OWNER_REGION = VERTEX__OWNER_REGION;
+	int STATE__OWNER_REGION = ABSTRACT_STATE__OWNER_REGION;
 
 	/**
 	 * The feature id for the '<em><b>Do Activity</b></em>' containment reference.
@@ -313,7 +313,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__DO_ACTIVITY = VERTEX_FEATURE_COUNT + 0;
+	int STATE__DO_ACTIVITY = ABSTRACT_STATE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Entry</b></em>' containment reference.
@@ -322,7 +322,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__ENTRY = VERTEX_FEATURE_COUNT + 1;
+	int STATE__ENTRY = ABSTRACT_STATE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Exit</b></em>' containment reference.
@@ -331,7 +331,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__EXIT = VERTEX_FEATURE_COUNT + 2;
+	int STATE__EXIT = ABSTRACT_STATE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>State</em>' class.
@@ -340,7 +340,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_FEATURE_COUNT = VERTEX_FEATURE_COUNT + 3;
+	int STATE_FEATURE_COUNT = ABSTRACT_STATE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>State</em>' class.
@@ -349,7 +349,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_OPERATION_COUNT = VERTEX_OPERATION_COUNT + 0;
+	int STATE_OPERATION_COUNT = ABSTRACT_STATE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link fsmcore.impl.TransitionImpl <em>Transition</em>}' class.
@@ -709,7 +709,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PSEUDOSTATE__NAME = VERTEX__NAME;
+	int PSEUDOSTATE__NAME = ABSTRACT_STATE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Incoming</b></em>' reference list.
@@ -718,7 +718,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PSEUDOSTATE__INCOMING = VERTEX__INCOMING;
+	int PSEUDOSTATE__INCOMING = ABSTRACT_STATE__INCOMING;
 
 	/**
 	 * The feature id for the '<em><b>Outgoing</b></em>' reference list.
@@ -727,7 +727,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PSEUDOSTATE__OUTGOING = VERTEX__OUTGOING;
+	int PSEUDOSTATE__OUTGOING = ABSTRACT_STATE__OUTGOING;
 
 	/**
 	 * The feature id for the '<em><b>Owner Region</b></em>' reference.
@@ -736,7 +736,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PSEUDOSTATE__OWNER_REGION = VERTEX__OWNER_REGION;
+	int PSEUDOSTATE__OWNER_REGION = ABSTRACT_STATE__OWNER_REGION;
 
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
@@ -745,7 +745,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PSEUDOSTATE__KIND = VERTEX_FEATURE_COUNT + 0;
+	int PSEUDOSTATE__KIND = ABSTRACT_STATE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Pseudostate</em>' class.
@@ -754,7 +754,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PSEUDOSTATE_FEATURE_COUNT = VERTEX_FEATURE_COUNT + 1;
+	int PSEUDOSTATE_FEATURE_COUNT = ABSTRACT_STATE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Pseudostate</em>' class.
@@ -763,7 +763,7 @@ public interface FsmcorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PSEUDOSTATE_OPERATION_COUNT = VERTEX_OPERATION_COUNT + 0;
+	int PSEUDOSTATE_OPERATION_COUNT = ABSTRACT_STATE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link fsmcore.impl.FinalStateImpl <em>Final State</em>}' class.
@@ -921,47 +921,47 @@ public interface FsmcorePackage extends EPackage {
 	EReference getRegion_Transitions();
 
 	/**
-	 * Returns the meta object for class '{@link fsmcore.Vertex <em>Vertex</em>}'.
+	 * Returns the meta object for class '{@link fsmcore.AbstractState <em>Abstract State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Vertex</em>'.
-	 * @see fsmcore.Vertex
+	 * @return the meta object for class '<em>Abstract State</em>'.
+	 * @see fsmcore.AbstractState
 	 * @generated
 	 */
-	EClass getVertex();
+	EClass getAbstractState();
 
 	/**
-	 * Returns the meta object for the reference list '{@link fsmcore.Vertex#getIncoming <em>Incoming</em>}'.
+	 * Returns the meta object for the reference list '{@link fsmcore.AbstractState#getIncoming <em>Incoming</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Incoming</em>'.
-	 * @see fsmcore.Vertex#getIncoming()
-	 * @see #getVertex()
+	 * @see fsmcore.AbstractState#getIncoming()
+	 * @see #getAbstractState()
 	 * @generated
 	 */
-	EReference getVertex_Incoming();
+	EReference getAbstractState_Incoming();
 
 	/**
-	 * Returns the meta object for the reference list '{@link fsmcore.Vertex#getOutgoing <em>Outgoing</em>}'.
+	 * Returns the meta object for the reference list '{@link fsmcore.AbstractState#getOutgoing <em>Outgoing</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Outgoing</em>'.
-	 * @see fsmcore.Vertex#getOutgoing()
-	 * @see #getVertex()
+	 * @see fsmcore.AbstractState#getOutgoing()
+	 * @see #getAbstractState()
 	 * @generated
 	 */
-	EReference getVertex_Outgoing();
+	EReference getAbstractState_Outgoing();
 
 	/**
-	 * Returns the meta object for the reference '{@link fsmcore.Vertex#getOwnerRegion <em>Owner Region</em>}'.
+	 * Returns the meta object for the reference '{@link fsmcore.AbstractState#getOwnerRegion <em>Owner Region</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Owner Region</em>'.
-	 * @see fsmcore.Vertex#getOwnerRegion()
-	 * @see #getVertex()
+	 * @see fsmcore.AbstractState#getOwnerRegion()
+	 * @see #getAbstractState()
 	 * @generated
 	 */
-	EReference getVertex_OwnerRegion();
+	EReference getAbstractState_OwnerRegion();
 
 	/**
 	 * Returns the meta object for class '{@link fsmcore.State <em>State</em>}'.
@@ -1312,14 +1312,14 @@ public interface FsmcorePackage extends EPackage {
 		EReference REGION__TRANSITIONS = eINSTANCE.getRegion_Transitions();
 
 		/**
-		 * The meta object literal for the '{@link fsmcore.impl.VertexImpl <em>Vertex</em>}' class.
+		 * The meta object literal for the '{@link fsmcore.impl.AbstractStateImpl <em>Abstract State</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see fsmcore.impl.VertexImpl
-		 * @see fsmcore.impl.FsmcorePackageImpl#getVertex()
+		 * @see fsmcore.impl.AbstractStateImpl
+		 * @see fsmcore.impl.FsmcorePackageImpl#getAbstractState()
 		 * @generated
 		 */
-		EClass VERTEX = eINSTANCE.getVertex();
+		EClass ABSTRACT_STATE = eINSTANCE.getAbstractState();
 
 		/**
 		 * The meta object literal for the '<em><b>Incoming</b></em>' reference list feature.
@@ -1327,7 +1327,7 @@ public interface FsmcorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VERTEX__INCOMING = eINSTANCE.getVertex_Incoming();
+		EReference ABSTRACT_STATE__INCOMING = eINSTANCE.getAbstractState_Incoming();
 
 		/**
 		 * The meta object literal for the '<em><b>Outgoing</b></em>' reference list feature.
@@ -1335,7 +1335,7 @@ public interface FsmcorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VERTEX__OUTGOING = eINSTANCE.getVertex_Outgoing();
+		EReference ABSTRACT_STATE__OUTGOING = eINSTANCE.getAbstractState_Outgoing();
 
 		/**
 		 * The meta object literal for the '<em><b>Owner Region</b></em>' reference feature.
@@ -1343,7 +1343,7 @@ public interface FsmcorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VERTEX__OWNER_REGION = eINSTANCE.getVertex_OwnerRegion();
+		EReference ABSTRACT_STATE__OWNER_REGION = eINSTANCE.getAbstractState_OwnerRegion();
 
 		/**
 		 * The meta object literal for the '{@link fsmcore.impl.StateImpl <em>State</em>}' class.

@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class PseudostateImpl extends VertexImpl implements Pseudostate {
+public class PseudostateImpl extends AbstractStateImpl implements Pseudostate {
 	/**
 	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->

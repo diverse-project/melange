@@ -112,14 +112,14 @@ public interface CompositestatesPackage extends EPackage {
 	int REGION_OPERATION_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link compositestates.impl.VertexImpl <em>Vertex</em>}' class.
+	 * The meta object id for the '{@link compositestates.impl.AbstractStateImpl <em>Abstract State</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see compositestates.impl.VertexImpl
-	 * @see compositestates.impl.CompositestatesPackageImpl#getVertex()
+	 * @see compositestates.impl.AbstractStateImpl
+	 * @see compositestates.impl.CompositestatesPackageImpl#getAbstractState()
 	 * @generated
 	 */
-	int VERTEX = 2;
+	int ABSTRACT_STATE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Incoming</b></em>' reference list.
@@ -128,7 +128,7 @@ public interface CompositestatesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX__INCOMING = 0;
+	int ABSTRACT_STATE__INCOMING = 0;
 
 	/**
 	 * The feature id for the '<em><b>Outgoing</b></em>' reference list.
@@ -137,7 +137,7 @@ public interface CompositestatesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX__OUTGOING = 1;
+	int ABSTRACT_STATE__OUTGOING = 1;
 
 	/**
 	 * The feature id for the '<em><b>Owner Region</b></em>' container reference.
@@ -146,25 +146,25 @@ public interface CompositestatesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX__OWNER_REGION = 2;
+	int ABSTRACT_STATE__OWNER_REGION = 2;
 
 	/**
-	 * The number of structural features of the '<em>Vertex</em>' class.
+	 * The number of structural features of the '<em>Abstract State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX_FEATURE_COUNT = 3;
+	int ABSTRACT_STATE_FEATURE_COUNT = 3;
 
 	/**
-	 * The number of operations of the '<em>Vertex</em>' class.
+	 * The number of operations of the '<em>Abstract State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX_OPERATION_COUNT = 0;
+	int ABSTRACT_STATE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link compositestates.impl.StateImpl <em>State</em>}' class.
@@ -183,7 +183,7 @@ public interface CompositestatesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__INCOMING = VERTEX__INCOMING;
+	int STATE__INCOMING = ABSTRACT_STATE__INCOMING;
 
 	/**
 	 * The feature id for the '<em><b>Outgoing</b></em>' reference list.
@@ -192,7 +192,7 @@ public interface CompositestatesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__OUTGOING = VERTEX__OUTGOING;
+	int STATE__OUTGOING = ABSTRACT_STATE__OUTGOING;
 
 	/**
 	 * The feature id for the '<em><b>Owner Region</b></em>' container reference.
@@ -201,7 +201,7 @@ public interface CompositestatesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__OWNER_REGION = VERTEX__OWNER_REGION;
+	int STATE__OWNER_REGION = ABSTRACT_STATE__OWNER_REGION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Regions</b></em>' containment reference list.
@@ -210,7 +210,7 @@ public interface CompositestatesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__OWNED_REGIONS = VERTEX_FEATURE_COUNT + 0;
+	int STATE__OWNED_REGIONS = ABSTRACT_STATE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>State</em>' class.
@@ -219,7 +219,7 @@ public interface CompositestatesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_FEATURE_COUNT = VERTEX_FEATURE_COUNT + 1;
+	int STATE_FEATURE_COUNT = ABSTRACT_STATE_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Eval State</em>' operation.
@@ -228,7 +228,7 @@ public interface CompositestatesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE___EVAL_STATE__MAP = VERTEX_OPERATION_COUNT + 0;
+	int STATE___EVAL_STATE__MAP = ABSTRACT_STATE_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>State</em>' class.
@@ -237,7 +237,7 @@ public interface CompositestatesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_OPERATION_COUNT = VERTEX_OPERATION_COUNT + 1;
+	int STATE_OPERATION_COUNT = ABSTRACT_STATE_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link compositestates.impl.TransitionImpl <em>Transition</em>}' class.
@@ -360,47 +360,47 @@ public interface CompositestatesPackage extends EPackage {
 	EOperation getState__EvalState__Map();
 
 	/**
-	 * Returns the meta object for class '{@link compositestates.Vertex <em>Vertex</em>}'.
+	 * Returns the meta object for class '{@link compositestates.AbstractState <em>Abstract State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Vertex</em>'.
-	 * @see compositestates.Vertex
+	 * @return the meta object for class '<em>Abstract State</em>'.
+	 * @see compositestates.AbstractState
 	 * @generated
 	 */
-	EClass getVertex();
+	EClass getAbstractState();
 
 	/**
-	 * Returns the meta object for the reference list '{@link compositestates.Vertex#getIncoming <em>Incoming</em>}'.
+	 * Returns the meta object for the reference list '{@link compositestates.AbstractState#getIncoming <em>Incoming</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Incoming</em>'.
-	 * @see compositestates.Vertex#getIncoming()
-	 * @see #getVertex()
+	 * @see compositestates.AbstractState#getIncoming()
+	 * @see #getAbstractState()
 	 * @generated
 	 */
-	EReference getVertex_Incoming();
+	EReference getAbstractState_Incoming();
 
 	/**
-	 * Returns the meta object for the reference list '{@link compositestates.Vertex#getOutgoing <em>Outgoing</em>}'.
+	 * Returns the meta object for the reference list '{@link compositestates.AbstractState#getOutgoing <em>Outgoing</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Outgoing</em>'.
-	 * @see compositestates.Vertex#getOutgoing()
-	 * @see #getVertex()
+	 * @see compositestates.AbstractState#getOutgoing()
+	 * @see #getAbstractState()
 	 * @generated
 	 */
-	EReference getVertex_Outgoing();
+	EReference getAbstractState_Outgoing();
 
 	/**
-	 * Returns the meta object for the container reference '{@link compositestates.Vertex#getOwnerRegion <em>Owner Region</em>}'.
+	 * Returns the meta object for the container reference '{@link compositestates.AbstractState#getOwnerRegion <em>Owner Region</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Owner Region</em>'.
-	 * @see compositestates.Vertex#getOwnerRegion()
-	 * @see #getVertex()
+	 * @see compositestates.AbstractState#getOwnerRegion()
+	 * @see #getAbstractState()
 	 * @generated
 	 */
-	EReference getVertex_OwnerRegion();
+	EReference getAbstractState_OwnerRegion();
 
 	/**
 	 * Returns the meta object for class '{@link compositestates.Transition <em>Transition</em>}'.
@@ -518,14 +518,14 @@ public interface CompositestatesPackage extends EPackage {
 		EOperation STATE___EVAL_STATE__MAP = eINSTANCE.getState__EvalState__Map();
 
 		/**
-		 * The meta object literal for the '{@link compositestates.impl.VertexImpl <em>Vertex</em>}' class.
+		 * The meta object literal for the '{@link compositestates.impl.AbstractStateImpl <em>Abstract State</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see compositestates.impl.VertexImpl
-		 * @see compositestates.impl.CompositestatesPackageImpl#getVertex()
+		 * @see compositestates.impl.AbstractStateImpl
+		 * @see compositestates.impl.CompositestatesPackageImpl#getAbstractState()
 		 * @generated
 		 */
-		EClass VERTEX = eINSTANCE.getVertex();
+		EClass ABSTRACT_STATE = eINSTANCE.getAbstractState();
 
 		/**
 		 * The meta object literal for the '<em><b>Incoming</b></em>' reference list feature.
@@ -533,7 +533,7 @@ public interface CompositestatesPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VERTEX__INCOMING = eINSTANCE.getVertex_Incoming();
+		EReference ABSTRACT_STATE__INCOMING = eINSTANCE.getAbstractState_Incoming();
 
 		/**
 		 * The meta object literal for the '<em><b>Outgoing</b></em>' reference list feature.
@@ -541,7 +541,7 @@ public interface CompositestatesPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VERTEX__OUTGOING = eINSTANCE.getVertex_Outgoing();
+		EReference ABSTRACT_STATE__OUTGOING = eINSTANCE.getAbstractState_Outgoing();
 
 		/**
 		 * The meta object literal for the '<em><b>Owner Region</b></em>' container reference feature.
@@ -549,7 +549,7 @@ public interface CompositestatesPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VERTEX__OWNER_REGION = eINSTANCE.getVertex_OwnerRegion();
+		EReference ABSTRACT_STATE__OWNER_REGION = eINSTANCE.getAbstractState_OwnerRegion();
 
 		/**
 		 * The meta object literal for the '{@link compositestates.impl.TransitionImpl <em>Transition</em>}' class.

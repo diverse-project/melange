@@ -21,7 +21,7 @@ package fsmcore;
  * @model
  * @generated
  */
-public interface State extends Vertex {
+public interface State extends AbstractState {
 	/**
 	 * Returns the value of the '<em><b>Do Activity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

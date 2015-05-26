@@ -87,14 +87,14 @@ public interface ConditionalpseudostatePackage extends EPackage {
 	int REGION_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link conditionalpseudostate.impl.VertexImpl <em>Vertex</em>}' class.
+	 * The meta object id for the '{@link conditionalpseudostate.impl.AbstractStateImpl <em>Abstract State</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see conditionalpseudostate.impl.VertexImpl
-	 * @see conditionalpseudostate.impl.ConditionalpseudostatePackageImpl#getVertex()
+	 * @see conditionalpseudostate.impl.AbstractStateImpl
+	 * @see conditionalpseudostate.impl.ConditionalpseudostatePackageImpl#getAbstractState()
 	 * @generated
 	 */
-	int VERTEX = 1;
+	int ABSTRACT_STATE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Outgoing</b></em>' reference list.
@@ -103,7 +103,7 @@ public interface ConditionalpseudostatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX__OUTGOING = 0;
+	int ABSTRACT_STATE__OUTGOING = 0;
 
 	/**
 	 * The feature id for the '<em><b>Incoming</b></em>' reference list.
@@ -112,25 +112,25 @@ public interface ConditionalpseudostatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX__INCOMING = 1;
+	int ABSTRACT_STATE__INCOMING = 1;
 
 	/**
-	 * The number of structural features of the '<em>Vertex</em>' class.
+	 * The number of structural features of the '<em>Abstract State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX_FEATURE_COUNT = 2;
+	int ABSTRACT_STATE_FEATURE_COUNT = 2;
 
 	/**
-	 * The number of operations of the '<em>Vertex</em>' class.
+	 * The number of operations of the '<em>Abstract State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX_OPERATION_COUNT = 0;
+	int ABSTRACT_STATE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link conditionalpseudostate.impl.PseudostateImpl <em>Pseudostate</em>}' class.
@@ -149,7 +149,7 @@ public interface ConditionalpseudostatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PSEUDOSTATE__OUTGOING = VERTEX__OUTGOING;
+	int PSEUDOSTATE__OUTGOING = ABSTRACT_STATE__OUTGOING;
 
 	/**
 	 * The feature id for the '<em><b>Incoming</b></em>' reference list.
@@ -158,7 +158,7 @@ public interface ConditionalpseudostatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PSEUDOSTATE__INCOMING = VERTEX__INCOMING;
+	int PSEUDOSTATE__INCOMING = ABSTRACT_STATE__INCOMING;
 
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
@@ -167,7 +167,7 @@ public interface ConditionalpseudostatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PSEUDOSTATE__KIND = VERTEX_FEATURE_COUNT + 0;
+	int PSEUDOSTATE__KIND = ABSTRACT_STATE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Pseudostate</em>' class.
@@ -176,7 +176,7 @@ public interface ConditionalpseudostatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PSEUDOSTATE_FEATURE_COUNT = VERTEX_FEATURE_COUNT + 1;
+	int PSEUDOSTATE_FEATURE_COUNT = ABSTRACT_STATE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Pseudostate</em>' class.
@@ -185,7 +185,7 @@ public interface ConditionalpseudostatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PSEUDOSTATE_OPERATION_COUNT = VERTEX_OPERATION_COUNT + 0;
+	int PSEUDOSTATE_OPERATION_COUNT = ABSTRACT_STATE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link conditionalpseudostate.impl.TransitionImpl <em>Transition</em>}' class.
@@ -264,36 +264,36 @@ public interface ConditionalpseudostatePackage extends EPackage {
 	EClass getRegion();
 
 	/**
-	 * Returns the meta object for class '{@link conditionalpseudostate.Vertex <em>Vertex</em>}'.
+	 * Returns the meta object for class '{@link conditionalpseudostate.AbstractState <em>Abstract State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Vertex</em>'.
-	 * @see conditionalpseudostate.Vertex
+	 * @return the meta object for class '<em>Abstract State</em>'.
+	 * @see conditionalpseudostate.AbstractState
 	 * @generated
 	 */
-	EClass getVertex();
+	EClass getAbstractState();
 
 	/**
-	 * Returns the meta object for the reference list '{@link conditionalpseudostate.Vertex#getOutgoing <em>Outgoing</em>}'.
+	 * Returns the meta object for the reference list '{@link conditionalpseudostate.AbstractState#getOutgoing <em>Outgoing</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Outgoing</em>'.
-	 * @see conditionalpseudostate.Vertex#getOutgoing()
-	 * @see #getVertex()
+	 * @see conditionalpseudostate.AbstractState#getOutgoing()
+	 * @see #getAbstractState()
 	 * @generated
 	 */
-	EReference getVertex_Outgoing();
+	EReference getAbstractState_Outgoing();
 
 	/**
-	 * Returns the meta object for the reference list '{@link conditionalpseudostate.Vertex#getIncoming <em>Incoming</em>}'.
+	 * Returns the meta object for the reference list '{@link conditionalpseudostate.AbstractState#getIncoming <em>Incoming</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Incoming</em>'.
-	 * @see conditionalpseudostate.Vertex#getIncoming()
-	 * @see #getVertex()
+	 * @see conditionalpseudostate.AbstractState#getIncoming()
+	 * @see #getAbstractState()
 	 * @generated
 	 */
-	EReference getVertex_Incoming();
+	EReference getAbstractState_Incoming();
 
 	/**
 	 * Returns the meta object for class '{@link conditionalpseudostate.Pseudostate <em>Pseudostate</em>}'.
@@ -402,14 +402,14 @@ public interface ConditionalpseudostatePackage extends EPackage {
 		EClass REGION = eINSTANCE.getRegion();
 
 		/**
-		 * The meta object literal for the '{@link conditionalpseudostate.impl.VertexImpl <em>Vertex</em>}' class.
+		 * The meta object literal for the '{@link conditionalpseudostate.impl.AbstractStateImpl <em>Abstract State</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see conditionalpseudostate.impl.VertexImpl
-		 * @see conditionalpseudostate.impl.ConditionalpseudostatePackageImpl#getVertex()
+		 * @see conditionalpseudostate.impl.AbstractStateImpl
+		 * @see conditionalpseudostate.impl.ConditionalpseudostatePackageImpl#getAbstractState()
 		 * @generated
 		 */
-		EClass VERTEX = eINSTANCE.getVertex();
+		EClass ABSTRACT_STATE = eINSTANCE.getAbstractState();
 
 		/**
 		 * The meta object literal for the '<em><b>Outgoing</b></em>' reference list feature.
@@ -417,7 +417,7 @@ public interface ConditionalpseudostatePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VERTEX__OUTGOING = eINSTANCE.getVertex_Outgoing();
+		EReference ABSTRACT_STATE__OUTGOING = eINSTANCE.getAbstractState_Outgoing();
 
 		/**
 		 * The meta object literal for the '<em><b>Incoming</b></em>' reference list feature.
@@ -425,7 +425,7 @@ public interface ConditionalpseudostatePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VERTEX__INCOMING = eINSTANCE.getVertex_Incoming();
+		EReference ABSTRACT_STATE__INCOMING = eINSTANCE.getAbstractState_Incoming();
 
 		/**
 		 * The meta object literal for the '{@link conditionalpseudostate.impl.PseudostateImpl <em>Pseudostate</em>}' class.

@@ -86,14 +86,14 @@ public interface JoinpseudostatePackage extends EPackage {
 	int REGION_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link joinpseudostate.impl.VertexImpl <em>Vertex</em>}' class.
+	 * The meta object id for the '{@link joinpseudostate.impl.AbstractStateImpl <em>Abstract State</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see joinpseudostate.impl.VertexImpl
-	 * @see joinpseudostate.impl.JoinpseudostatePackageImpl#getVertex()
+	 * @see joinpseudostate.impl.AbstractStateImpl
+	 * @see joinpseudostate.impl.JoinpseudostatePackageImpl#getAbstractState()
 	 * @generated
 	 */
-	int VERTEX = 1;
+	int ABSTRACT_STATE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Outgoing</b></em>' reference list.
@@ -102,7 +102,7 @@ public interface JoinpseudostatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX__OUTGOING = 0;
+	int ABSTRACT_STATE__OUTGOING = 0;
 
 	/**
 	 * The feature id for the '<em><b>Incoming</b></em>' reference list.
@@ -111,25 +111,25 @@ public interface JoinpseudostatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX__INCOMING = 1;
+	int ABSTRACT_STATE__INCOMING = 1;
 
 	/**
-	 * The number of structural features of the '<em>Vertex</em>' class.
+	 * The number of structural features of the '<em>Abstract State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX_FEATURE_COUNT = 2;
+	int ABSTRACT_STATE_FEATURE_COUNT = 2;
 
 	/**
-	 * The number of operations of the '<em>Vertex</em>' class.
+	 * The number of operations of the '<em>Abstract State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX_OPERATION_COUNT = 0;
+	int ABSTRACT_STATE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link joinpseudostate.impl.PseudostateImpl <em>Pseudostate</em>}' class.
@@ -236,36 +236,36 @@ public interface JoinpseudostatePackage extends EPackage {
 	EClass getRegion();
 
 	/**
-	 * Returns the meta object for class '{@link joinpseudostate.Vertex <em>Vertex</em>}'.
+	 * Returns the meta object for class '{@link joinpseudostate.AbstractState <em>Abstract State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Vertex</em>'.
-	 * @see joinpseudostate.Vertex
+	 * @return the meta object for class '<em>Abstract State</em>'.
+	 * @see joinpseudostate.AbstractState
 	 * @generated
 	 */
-	EClass getVertex();
+	EClass getAbstractState();
 
 	/**
-	 * Returns the meta object for the reference list '{@link joinpseudostate.Vertex#getOutgoing <em>Outgoing</em>}'.
+	 * Returns the meta object for the reference list '{@link joinpseudostate.AbstractState#getOutgoing <em>Outgoing</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Outgoing</em>'.
-	 * @see joinpseudostate.Vertex#getOutgoing()
-	 * @see #getVertex()
+	 * @see joinpseudostate.AbstractState#getOutgoing()
+	 * @see #getAbstractState()
 	 * @generated
 	 */
-	EReference getVertex_Outgoing();
+	EReference getAbstractState_Outgoing();
 
 	/**
-	 * Returns the meta object for the reference list '{@link joinpseudostate.Vertex#getIncoming <em>Incoming</em>}'.
+	 * Returns the meta object for the reference list '{@link joinpseudostate.AbstractState#getIncoming <em>Incoming</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Incoming</em>'.
-	 * @see joinpseudostate.Vertex#getIncoming()
-	 * @see #getVertex()
+	 * @see joinpseudostate.AbstractState#getIncoming()
+	 * @see #getAbstractState()
 	 * @generated
 	 */
-	EReference getVertex_Incoming();
+	EReference getAbstractState_Incoming();
 
 	/**
 	 * Returns the meta object for class '{@link joinpseudostate.Pseudostate <em>Pseudostate</em>}'.
@@ -364,14 +364,14 @@ public interface JoinpseudostatePackage extends EPackage {
 		EClass REGION = eINSTANCE.getRegion();
 
 		/**
-		 * The meta object literal for the '{@link joinpseudostate.impl.VertexImpl <em>Vertex</em>}' class.
+		 * The meta object literal for the '{@link joinpseudostate.impl.AbstractStateImpl <em>Abstract State</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see joinpseudostate.impl.VertexImpl
-		 * @see joinpseudostate.impl.JoinpseudostatePackageImpl#getVertex()
+		 * @see joinpseudostate.impl.AbstractStateImpl
+		 * @see joinpseudostate.impl.JoinpseudostatePackageImpl#getAbstractState()
 		 * @generated
 		 */
-		EClass VERTEX = eINSTANCE.getVertex();
+		EClass ABSTRACT_STATE = eINSTANCE.getAbstractState();
 
 		/**
 		 * The meta object literal for the '<em><b>Outgoing</b></em>' reference list feature.
@@ -379,7 +379,7 @@ public interface JoinpseudostatePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VERTEX__OUTGOING = eINSTANCE.getVertex_Outgoing();
+		EReference ABSTRACT_STATE__OUTGOING = eINSTANCE.getAbstractState_Outgoing();
 
 		/**
 		 * The meta object literal for the '<em><b>Incoming</b></em>' reference list feature.
@@ -387,7 +387,7 @@ public interface JoinpseudostatePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VERTEX__INCOMING = eINSTANCE.getVertex_Incoming();
+		EReference ABSTRACT_STATE__INCOMING = eINSTANCE.getAbstractState_Incoming();
 
 		/**
 		 * The meta object literal for the '{@link joinpseudostate.impl.PseudostateImpl <em>Pseudostate</em>}' class.

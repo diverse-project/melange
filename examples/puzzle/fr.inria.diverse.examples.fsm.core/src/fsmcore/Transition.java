@@ -51,7 +51,7 @@ public interface Transition extends NamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link fsmcore.Vertex#getIncoming <em>Incoming</em>}'.
+	 * It is bidirectional and its opposite is '{@link fsmcore.AbstractState#getIncoming <em>Incoming</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target</em>' reference isn't clear,
@@ -59,13 +59,13 @@ public interface Transition extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target</em>' reference.
-	 * @see #setTarget(Vertex)
+	 * @see #setTarget(AbstractState)
 	 * @see fsmcore.FsmcorePackage#getTransition_Target()
-	 * @see fsmcore.Vertex#getIncoming
+	 * @see fsmcore.AbstractState#getIncoming
 	 * @model opposite="incoming" required="true"
 	 * @generated
 	 */
-	Vertex getTarget();
+	AbstractState getTarget();
 
 	/**
 	 * Sets the value of the '{@link fsmcore.Transition#getTarget <em>Target</em>}' reference.
@@ -75,11 +75,11 @@ public interface Transition extends NamedElement {
 	 * @see #getTarget()
 	 * @generated
 	 */
-	void setTarget(Vertex value);
+	void setTarget(AbstractState value);
 
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link fsmcore.Vertex#getOutgoing <em>Outgoing</em>}'.
+	 * It is bidirectional and its opposite is '{@link fsmcore.AbstractState#getOutgoing <em>Outgoing</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source</em>' reference isn't clear,
@@ -87,13 +87,13 @@ public interface Transition extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' reference.
-	 * @see #setSource(Vertex)
+	 * @see #setSource(AbstractState)
 	 * @see fsmcore.FsmcorePackage#getTransition_Source()
-	 * @see fsmcore.Vertex#getOutgoing
+	 * @see fsmcore.AbstractState#getOutgoing
 	 * @model opposite="outgoing" required="true"
 	 * @generated
 	 */
-	Vertex getSource();
+	AbstractState getSource();
 
 	/**
 	 * Sets the value of the '{@link fsmcore.Transition#getSource <em>Source</em>}' reference.
@@ -103,7 +103,7 @@ public interface Transition extends NamedElement {
 	 * @see #getSource()
 	 * @generated
 	 */
-	void setSource(Vertex value);
+	void setSource(AbstractState value);
 
 	/**
 	 * Returns the value of the '<em><b>Guard</b></em>' containment reference.

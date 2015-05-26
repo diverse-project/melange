@@ -2,10 +2,10 @@
  */
 package fsmcore.impl;
 
+import fsmcore.AbstractState;
 import fsmcore.FsmcorePackage;
 import fsmcore.Region;
 import fsmcore.Transition;
-import fsmcore.Vertex;
 
 import java.util.Collection;
 
@@ -42,7 +42,7 @@ public class RegionImpl extends NamedElementImpl implements Region {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Vertex> subvertex;
+	protected EList<AbstractState> subvertex;
 
 	/**
 	 * The cached value of the '{@link #getTransitions() <em>Transitions</em>}' containment reference list.
@@ -78,9 +78,9 @@ public class RegionImpl extends NamedElementImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Vertex> getSubvertex() {
+	public EList<AbstractState> getSubvertex() {
 		if (subvertex == null) {
-			subvertex = new EObjectContainmentEList<Vertex>(Vertex.class, this, FsmcorePackage.REGION__SUBVERTEX);
+			subvertex = new EObjectContainmentEList<AbstractState>(AbstractState.class, this, FsmcorePackage.REGION__SUBVERTEX);
 		}
 		return subvertex;
 	}
@@ -140,7 +140,7 @@ public class RegionImpl extends NamedElementImpl implements Region {
 		switch (featureID) {
 			case FsmcorePackage.REGION__SUBVERTEX:
 				getSubvertex().clear();
-				getSubvertex().addAll((Collection<? extends Vertex>)newValue);
+				getSubvertex().addAll((Collection<? extends AbstractState>)newValue);
 				return;
 			case FsmcorePackage.REGION__TRANSITIONS:
 				getTransitions().clear();

@@ -72,16 +72,16 @@ public class ForkpseudostateSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ForkpseudostatePackage.VERTEX: {
-				Vertex vertex = (Vertex)theEObject;
-				T result = caseVertex(vertex);
+			case ForkpseudostatePackage.ABSTRACT_STATE: {
+				AbstractState abstractState = (AbstractState)theEObject;
+				T result = caseAbstractState(abstractState);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ForkpseudostatePackage.PSEUDOSTATE: {
 				Pseudostate pseudostate = (Pseudostate)theEObject;
 				T result = casePseudostate(pseudostate);
-				if (result == null) result = caseVertex(pseudostate);
+				if (result == null) result = caseAbstractState(pseudostate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -111,17 +111,17 @@ public class ForkpseudostateSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Vertex</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract State</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Vertex</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract State</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseVertex(Vertex object) {
+	public T caseAbstractState(AbstractState object) {
 		return null;
 	}
 

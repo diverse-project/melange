@@ -9,19 +9,19 @@ import java.util.Hashtable
 import compositestates.Region
 import java.util.ArrayList
 import compositestates.Transition
-import compositestates.Vertex
+import compositestates.AbstractState
 import puzzle.annotations.processor.AddExtensionMethod
 
 @Aspect(className=Region)
 class RegionAspect{
 	
 	@OverrideRequiredAspectMethod
-	def public void findNewActiveStates(ArrayList<Vertex> newActiveStates,
+	def public void findNewActiveStates(ArrayList<AbstractState> newActiveStates,
 		Transition selectedTransition, ArrayList<Transition> currentActiveTransitions, Hashtable<String, Object> context){
 	
 		println("CompositeStates.findNewActiveStates")
 		// Adding the super states to the current state.
-		val ArrayList<Vertex> targetParents = new ArrayList<Vertex>()
+		val ArrayList<AbstractState> targetParents = new ArrayList<AbstractState>()
 		_self.getAllParents(selectedTransition.target, targetParents)
 		targetParents.forEach[_parent | 
 			if(!newActiveStates.contains(_parent))
@@ -34,14 +34,14 @@ class RegionAspect{
 		}
 		
 		// Removing the states coming from conflicting transitions
-		var ArrayList<Vertex> toDelete = new ArrayList<Vertex>()
-		for(Vertex _newState : newActiveStates){
+		var ArrayList<AbstractState> toDelete = new ArrayList<AbstractState>()
+		for(AbstractState _newState : newActiveStates){
 			var boolean delete = true
 			
 			for(Transition _incoming : _newState.incoming){
 				
 				if(_newState instanceof State){
-					var ArrayList<Vertex> children = newArrayList
+					var ArrayList<AbstractState> children = newArrayList
 					_self.getAllChildren(_newState, children)
 					if(children.findFirst[child | newActiveStates.contains(child)] != null)
 						delete = false
@@ -58,14 +58,14 @@ class RegionAspect{
 	}
 	
 	@OverrideRequiredAspectMethod
-	def public void findOldActiveStates(ArrayList<Vertex> oldActiveStates, 
+	def public void findOldActiveStates(ArrayList<AbstractState> oldActiveStates, 
 		Transition selectedTransition){
 		
 		// Performing the legacy operation
 		_self._original_findOldActiveStates(oldActiveStates, selectedTransition)
 		
 		// Getting out of a composite state so leaving all the children states
-		val ArrayList<Vertex> sourceChildren = new ArrayList<Vertex>()
+		val ArrayList<AbstractState> sourceChildren = new ArrayList<AbstractState>()
 		_self.getAllChildren(selectedTransition.source, sourceChildren)
 		sourceChildren.forEach[_children | 
 			if(!oldActiveStates.contains(_children))
@@ -73,14 +73,14 @@ class RegionAspect{
 		]
 		
 		// Adding to the old state the parent states of the leaving parents
-		val ArrayList<Vertex> sourceParents = new ArrayList<Vertex>()
+		val ArrayList<AbstractState> sourceParents = new ArrayList<AbstractState>()
 		_self.getAllParents(selectedTransition.source, sourceParents)
 		
-		val ArrayList<Vertex> targetParents = new ArrayList<Vertex>()
+		val ArrayList<AbstractState> targetParents = new ArrayList<AbstractState>()
 		_self.getAllParents(selectedTransition.target, targetParents)
 		
 		
-		var Iterable<Vertex> leavingParents = sourceParents.filter[ _parent | !targetParents.contains(_parent)]
+		var Iterable<AbstractState> leavingParents = sourceParents.filter[ _parent | !targetParents.contains(_parent)]
 		oldActiveStates.addAll(leavingParents)
 	}
 	
@@ -97,7 +97,7 @@ class RegionAspect{
 	}
 	
 	@AddExtensionMethod
-	def public void getAllParents(Vertex vertex, ArrayList<Vertex> parents){
+	def public void getAllParents(AbstractState vertex, ArrayList<AbstractState> parents){
 		if(vertex instanceof State){
 			var State superState = (vertex as State).ownerRegion.ownerState
 			while(superState != null){
@@ -109,7 +109,7 @@ class RegionAspect{
 	}
 	
 	@AddExtensionMethod
-	def public void getAllChildren(Vertex vertex, ArrayList<Vertex> children){
+	def public void getAllChildren(AbstractState vertex, ArrayList<AbstractState> children){
 		if(vertex instanceof State){
 			if((vertex as State).ownedRegions != null){
 				(vertex as State).ownedRegions.forEach[_region|
@@ -129,7 +129,7 @@ class RegionAspect{
 		if(selectedTransition.source instanceof State){
 			for(Transition _activeTransition : newActiveTransitions){
 				if(_activeTransition.source instanceof State){
-					var ArrayList<Vertex> children = new ArrayList<Vertex>()
+					var ArrayList<AbstractState> children = new ArrayList<AbstractState>()
 					_self.getAllChildren((_activeTransition.source as State), children)
 					if(children.contains(selectedTransition.source)){
 						return _activeTransition

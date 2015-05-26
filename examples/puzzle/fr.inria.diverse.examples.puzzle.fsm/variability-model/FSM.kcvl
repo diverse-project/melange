@@ -47,6 +47,9 @@
             <child
                 xsi:type="kcvlmetamodel:Choice"
                 name="ASJoin"/>
+            <child
+                xsi:type="kcvlmetamodel:Choice"
+                name="ASConditional"/>
           </child>
         </child>
         <child
@@ -60,7 +63,23 @@
           <child
               xsi:type="kcvlmetamodel:Choice"
               name="TransitionEffect"/>
+          <child
+              xsi:type="kcvlmetamodel:CVSpec"
+              name="Trigger">
+            <child
+                xsi:type="kcvlmetamodel:Choice"
+                name="NotTrigger"/>
+            <child
+                xsi:type="kcvlmetamodel:Choice"
+                name="AndTrigger"/>
+            <child
+                xsi:type="kcvlmetamodel:Choice"
+                name="OrTrigger"/>
+          </child>
         </child>
+        <child
+            xsi:type="kcvlmetamodel:Choice"
+            name="CVSimpleConstraints"/>
       </child>
     </packageElement>
     <packageElement
@@ -162,6 +181,11 @@
                 name="Join"
                 resolvedChoice="//@packageElement.0/@packageElement.0/@child.0/@child.0/@child.2/@child.2"
                 decision="true"/>
+            <child
+                xsi:type="kcvlmetamodel:ChoiceResolutuion"
+                name="Conditional"
+                resolvedChoice="//@packageElement.0/@packageElement.0/@child.0/@child.0/@child.2/@child.3"
+                decision="true"/>
           </child>
         </child>
         <child
@@ -178,7 +202,32 @@
               name="TransitionEffect"
               resolvedChoice="//@packageElement.0/@packageElement.0/@child.0/@child.2/@child.0"
               decision="true"/>
+          <child
+              xsi:type="kcvlmetamodel:ChoiceResolutuion"
+              name="Trigger"
+              decision="true">
+            <child
+                xsi:type="kcvlmetamodel:ChoiceResolutuion"
+                name="NotTrigger"
+                resolvedChoice="//@packageElement.0/@packageElement.0/@child.0/@child.2/@child.1/@child.0"
+                decision="true"/>
+            <child
+                xsi:type="kcvlmetamodel:ChoiceResolutuion"
+                name="AndTrigger"
+                resolvedChoice="//@packageElement.0/@packageElement.0/@child.0/@child.2/@child.1/@child.1"
+                decision="true"/>
+            <child
+                xsi:type="kcvlmetamodel:ChoiceResolutuion"
+                name="OrTrigger"
+                resolvedChoice="//@packageElement.0/@packageElement.0/@child.0/@child.2/@child.1/@child.2"
+                decision="true"/>
+          </child>
         </child>
+        <child
+            xsi:type="kcvlmetamodel:ChoiceResolutuion"
+            name="SimpleConstraints"
+            resolvedChoice="//@packageElement.0/@packageElement.0/@child.0/@child.3"
+            decision="true"/>
       </child>
       <child
           xsi:type="kcvlmetamodel:ChoiceResolutuion"
@@ -198,18 +247,19 @@
                 xsi:type="kcvlmetamodel:ChoiceResolutuion"
                 name="SemDeeperStatesPriority"
                 resolvedVSpec="//@packageElement.0/@packageElement.1/@child.0/@child.0/@child.0"
-                resolvedChoice="//@packageElement.0/@packageElement.1/@child.0/@child.0/@child.0"/>
+                resolvedChoice="//@packageElement.0/@packageElement.1/@child.0/@child.0/@child.0"
+                decision="true"/>
             <child
                 xsi:type="kcvlmetamodel:ChoiceResolutuion"
                 name="SemHigherStatesPriority"
                 resolvedVSpec="//@packageElement.0/@packageElement.1/@child.0/@child.0/@child.1"
-                resolvedChoice="//@packageElement.0/@packageElement.1/@child.0/@child.0/@child.1"
-                decision="true"/>
+                resolvedChoice="//@packageElement.0/@packageElement.1/@child.0/@child.0/@child.1"/>
           </child>
           <child
               xsi:type="kcvlmetamodel:ChoiceResolutuion"
               name="SemEffectSchedule"
-              resolvedVSpec="//@packageElement.0/@packageElement.1/@child.0/@child.1">
+              resolvedVSpec="//@packageElement.0/@packageElement.1/@child.0/@child.1"
+              decision="true">
             <child
                 xsi:type="kcvlmetamodel:ChoiceResolutuion"
                 name="SemSequential"

@@ -9,7 +9,7 @@ import conditionalpseudostate.Pseudostate
 import conditionalpseudostate.PseudostateKind
 import java.util.Hashtable
 import org.eclipse.emf.common.util.EList
-import conditionalpseudostate.Vertex
+import conditionalpseudostate.AbstractState
 import conditionalpseudostate.Region
 
 @Aspect(className=Region)
@@ -21,7 +21,7 @@ class RegionAspect {
 		while(!allConditionalsAttended){
 			_self._original_step(context, events)
 			
-			var ArrayList<Vertex> currentState = context.get("currentState") as ArrayList<Vertex>
+			var ArrayList<AbstractState> currentState = context.get("currentState") as ArrayList<AbstractState>
 			var _conditionalPseudostate = currentState.findFirst[_vertex | (_vertex instanceof Pseudostate) &&
 				(_vertex as Pseudostate).kind == PseudostateKind.CONDITIONAL]
 			allConditionalsAttended = _conditionalPseudostate == null
@@ -46,7 +46,7 @@ class RegionAspect {
 	}
 	
 	@OverrideRequiredAspectMethod
-	def public void findNewActiveStates(ArrayList<Vertex> newActiveStates,
+	def public void findNewActiveStates(ArrayList<AbstractState> newActiveStates,
 		Transition selectedTransition, ArrayList<Transition> currentActiveTransitions, 
 		Hashtable<String, Object> context){
 		if((selectedTransition.source instanceof Pseudostate)

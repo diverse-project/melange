@@ -2,10 +2,10 @@
  */
 package compositestates.impl;
 
+import compositestates.AbstractState;
 import compositestates.CompositestatesPackage;
 import compositestates.Region;
 import compositestates.State;
-import compositestates.Vertex;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -50,7 +50,7 @@ public class RegionImpl extends MinimalEObjectImpl.Container implements Region {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Vertex> subvertex;
+	protected EList<AbstractState> subvertex;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -76,9 +76,9 @@ public class RegionImpl extends MinimalEObjectImpl.Container implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Vertex> getSubvertex() {
+	public EList<AbstractState> getSubvertex() {
 		if (subvertex == null) {
-			subvertex = new EObjectContainmentWithInverseEList<Vertex>(Vertex.class, this, CompositestatesPackage.REGION__SUBVERTEX, CompositestatesPackage.VERTEX__OWNER_REGION);
+			subvertex = new EObjectContainmentWithInverseEList<AbstractState>(AbstractState.class, this, CompositestatesPackage.REGION__SUBVERTEX, CompositestatesPackage.ABSTRACT_STATE__OWNER_REGION);
 		}
 		return subvertex;
 	}
@@ -211,7 +211,7 @@ public class RegionImpl extends MinimalEObjectImpl.Container implements Region {
 		switch (featureID) {
 			case CompositestatesPackage.REGION__SUBVERTEX:
 				getSubvertex().clear();
-				getSubvertex().addAll((Collection<? extends Vertex>)newValue);
+				getSubvertex().addAll((Collection<? extends AbstractState>)newValue);
 				return;
 			case CompositestatesPackage.REGION__OWNER_STATE:
 				setOwnerState((State)newValue);

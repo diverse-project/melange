@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface Transition extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link conditionalpseudostate.Vertex#getOutgoing <em>Outgoing</em>}'.
+	 * It is bidirectional and its opposite is '{@link conditionalpseudostate.AbstractState#getOutgoing <em>Outgoing</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source</em>' reference isn't clear,
@@ -34,13 +34,13 @@ public interface Transition extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' reference.
-	 * @see #setSource(Vertex)
+	 * @see #setSource(AbstractState)
 	 * @see conditionalpseudostate.ConditionalpseudostatePackage#getTransition_Source()
-	 * @see conditionalpseudostate.Vertex#getOutgoing
+	 * @see conditionalpseudostate.AbstractState#getOutgoing
 	 * @model opposite="outgoing" required="true"
 	 * @generated
 	 */
-	Vertex getSource();
+	AbstractState getSource();
 
 	/**
 	 * Sets the value of the '{@link conditionalpseudostate.Transition#getSource <em>Source</em>}' reference.
@@ -50,11 +50,11 @@ public interface Transition extends EObject {
 	 * @see #getSource()
 	 * @generated
 	 */
-	void setSource(Vertex value);
+	void setSource(AbstractState value);
 
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link conditionalpseudostate.Vertex#getIncoming <em>Incoming</em>}'.
+	 * It is bidirectional and its opposite is '{@link conditionalpseudostate.AbstractState#getIncoming <em>Incoming</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target</em>' reference isn't clear,
@@ -62,13 +62,13 @@ public interface Transition extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target</em>' reference.
-	 * @see #setTarget(Vertex)
+	 * @see #setTarget(AbstractState)
 	 * @see conditionalpseudostate.ConditionalpseudostatePackage#getTransition_Target()
-	 * @see conditionalpseudostate.Vertex#getIncoming
+	 * @see conditionalpseudostate.AbstractState#getIncoming
 	 * @model opposite="incoming" required="true"
 	 * @generated
 	 */
-	Vertex getTarget();
+	AbstractState getTarget();
 
 	/**
 	 * Sets the value of the '{@link conditionalpseudostate.Transition#getTarget <em>Target</em>}' reference.
@@ -78,7 +78,7 @@ public interface Transition extends EObject {
 	 * @see #getTarget()
 	 * @generated
 	 */
-	void setTarget(Vertex value);
+	void setTarget(AbstractState value);
 
 	/**
 	 * <!-- begin-user-doc -->
