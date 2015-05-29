@@ -19,12 +19,12 @@ TransformationDecl returns Transformation:
 ;
 
 Metamodel:
-	'language' name = ValidID (inheritanceRelation = Inheritance)?
+	'language' name = ValidID ('inherits' operators += Inherit ("," operators+=Inherit)*)?
 	('implements' implements += [ModelType | QualifiedName] (',' implements += [ModelType | QualifiedName])*)?
 	('requires' requires += [ModelType | QualifiedName] (',' requires += [ModelType | QualifiedName])*)?
 	'{'
 		('resource' resourceType = ResourceType ('uri' resourceUri = STRING | 'setup' xtextSetupRef = JvmTypeReference)?)?
-		(units += LanguageUnit)*
+		(operators += Operator)*
 		('exactType' exactTypeName = ValidID ('uri' exactTypeUri = STRING)?)
 	'}'
 ;
@@ -33,9 +33,9 @@ enum ResourceType:
 	MELANGE = 'Melange' | EMF = 'EMF' | XTEXT = 'Xtext'
 ;
 
-Inheritance returns Inheritance:
-	'inherits' superMetamodel = [Metamodel | QualifiedName]
-;
+//Inheritance returns Inheritance:
+//	'inherits' superMetamodel = [Metamodel | QualifiedName]
+//;
 
 EcoreModelType returns ModelType:
 	'modeltype' name = ValidID '{'
@@ -75,7 +75,7 @@ PropertyMapping returns PropertyBinding:
 	from=STRING ":" to=STRING
 ;
 
-LanguageUnit returns LanguageUnit:
+Operator returns Operator:
 	Ecore | Aspect | Merge | Slice
 ;
 
@@ -89,6 +89,10 @@ Merge returns Merge:
 
 Slice returns Slice:
 	'slice' language = [Metamodel | QualifiedName] 'on' '[' roots += STRING (',' roots += STRING)* ']'
+;
+
+Inherit returns Inherit:
+	language = [Metamodel | QualifiedName]
 ;
 
 /* --- Kompren Rules --- */
