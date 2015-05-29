@@ -388,6 +388,10 @@ class MetamodelExtensions
 		return mm.inheritanceRelation?.superMetamodel !== null
 	}
 
+	/**
+	 * Return true if ecore, genmodel & generated EMF packages can be found
+	 * for the metamodel {@link mm}.
+	 */
 	def boolean getRuntimeHasBeenGenerated(Metamodel mm) {
 		if (mm.isGeneratedByMelange) {
 			val segments = newArrayList

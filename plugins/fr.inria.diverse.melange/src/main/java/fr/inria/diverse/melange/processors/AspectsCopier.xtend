@@ -14,6 +14,8 @@ import org.eclipse.jdt.core.search.SearchMatch
 import org.eclipse.jdt.core.search.SearchPattern
 import org.eclipse.jdt.core.search.SearchRequestor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
+import fr.inria.diverse.melange.metamodel.melange.MelangePackage
+import fr.inria.diverse.melange.metamodel.melange.Aspect
 
 class AspectsCopier extends DispatchMelangeProcessor
 {
@@ -23,6 +25,7 @@ class AspectsCopier extends DispatchMelangeProcessor
 
 	def dispatch void preProcess(Metamodel mm, boolean preLinkingPhase) {
 		val typeRefBuilder = builderFactory.create(mm.eResource.resourceSet)
+
 
 		if (!mm.isGeneratedByMelange || mm.runtimeHasBeenGenerated) {
 			mm.aspects.forEach[asp |
@@ -35,8 +38,25 @@ class AspectsCopier extends DispatchMelangeProcessor
 				}
 			]
 		}
-
+		
 		if (!preLinkingPhase) {
+			
+			//Copy aspects of the super class
+			if(mm.isGeneratedByMelange && mm.runtimeHasBeenGenerated){
+				val superMM = mm.inheritanceRelation.superMetamodel
+				superMM.aspects.forEach[asp |
+					if (asp.isComplete) {
+						if (asp.hasAspectAnnotation && !asp.isDefinedOver(mm) && asp.canBeCopiedFor(mm)) {
+							val newAspectFqn = copier.copyAspectTo(asp, mm)
+							val newAspectRef = typeRefBuilder.typeRef(newAspectFqn)
+							mm.aspects += MelangeFactory.eINSTANCE.createAspect => [
+												aspectTypeRef = typeRefBuilder.typeRef(newAspectFqn)
+											]
+						}
+					}
+				]
+			}
+			
 			val newAspects = newArrayList
 			val toRemove = newArrayList
 			mm.aspects.forEach[asp |
@@ -53,6 +73,7 @@ class AspectsCopier extends DispatchMelangeProcessor
 
 					toRemove += asp
 				}
+				if(asp.aspectTypeRef?.type === null) toRemove += asp //types from copies of inherited aspects become null sometime
 			]
 
 			toRemove.forEach[EcoreUtil::remove(it)]
