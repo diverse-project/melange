@@ -12,6 +12,8 @@ import shallowhistory.AbstractState
 
 import static extension pseudostates.shallow.RegionAspect.*
 import puzzle.annotations.processor.AddExtensionMethod
+import shallowhistory.Pseudostate
+import shallowhistory.PseudostateKind
 
 @Aspect(className=Region)
 class RegionAspect {
@@ -33,8 +35,12 @@ class RegionAspect {
 	@AddExtensionMethod
 	def public void saveHistoryState(Hashtable<String, Object> context){
 		println('saving the history state')
-		_self.history = (context.get("currentState") as ArrayList<AbstractState>).findFirst[ _state |
-			_state instanceof State && (_state as State).ownerRegion == _self] as State
+		if(_self.subvertex.exists[ _vertex | _vertex instanceof Pseudostate &&
+			(_vertex as Pseudostate).kind == PseudostateKind.SHALLOW_HISTORY]){
+				_self.history = (context.get("currentState") as ArrayList<AbstractState>).findFirst[ _state |
+					_state instanceof State && (_state as State).ownerRegion == _self] as State
+		}
+		
 	}
 }
 
