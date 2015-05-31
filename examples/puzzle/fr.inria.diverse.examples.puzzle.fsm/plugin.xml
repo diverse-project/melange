@@ -39,6 +39,10 @@
             id="fsm.ShallowHistoryMT">
       </modeltype>
       <modeltype
+            uri="http://deephistorymt/"
+            id="fsm.DeepHistoryMT">
+      </modeltype>
+      <modeltype
             uri="http://nottriggermt/"
             id="fsm.NotTriggerMT">
       </modeltype>
@@ -142,6 +146,16 @@
          <adapter
                class="fsm.shallowhistory.adapters.shallowhistorymt.ShallowHistoryAdapter"
                modeltypeId="fsm.ShallowHistoryMT">
+         </adapter>
+      </language>
+      <language
+            exactType="fsm.DeepHistoryMT"
+            description="Deep History"
+            uri="http://deephistory"
+            id="fsm.DeepHistory">
+         <adapter
+               class="fsm.deephistory.adapters.deephistorymt.DeepHistoryAdapter"
+               modeltypeId="fsm.DeepHistoryMT">
          </adapter>
       </language>
       <language

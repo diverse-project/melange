@@ -13,7 +13,8 @@ composition CompleteFSM {
 	extension(CoreFSM, AndTrigger)
 	extension(CoreFSM, OrTrigger)     
 	extension(CoreFSM, Conditional)  
-	extension(CoreFSM, ShallowHistory)  
+	extension(CoreFSM, ShallowHistory)
+	extension(CoreFSM, DeepHistory)  
 	extension(CoreFSM, CompositeStates)  
 }   
 
@@ -118,6 +119,17 @@ language ShallowHistory {
 	
 	with pseudostates.shallow.RegionAspect
 	with pseudostates.shallow.StateAspect
+}
+
+/**
+ * Deep History
+ */
+language DeepHistory {
+	ecore "platform:/resource/fr.inria.diverse.examples.fsm.pseudostates.deepHistory/models/DeepHistory.ecore"
+	exactType DeepHistoryMT
+	
+	with pseudostates.deep.RegionAspect
+	with pseudostates.deep.StateAspect
 }
 
 

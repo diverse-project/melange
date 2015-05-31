@@ -60,6 +60,9 @@
         <ecoreEnumLiteral href="CompleteFSM.ecore#//PseudostateKind/initial"/>
       </genEnumLiterals>
       <genEnumLiterals>
+        <ecoreEnumLiteral href="CompleteFSM.ecore#//PseudostateKind/deepHistory"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
         <ecoreEnumLiteral href="CompleteFSM.ecore#//PseudostateKind/shallowHistory"/>
       </genEnumLiterals>
       <genEnumLiterals>

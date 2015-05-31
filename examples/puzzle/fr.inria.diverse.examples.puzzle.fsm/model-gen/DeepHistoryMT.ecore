@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="deephistory" nsURI="http://deephistorymt/" nsPrefix="deephistory">
+  <eClassifiers xsi:type="ecore:EClass" name="Pseudostate" eSuperTypes="//AbstractState">
+    <eAnnotations source="extension"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="//PseudostateKind"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PseudostateKind">
+    <eAnnotations source="extension"/>
+    <eLiterals name="deepHistory" value="4" literal="deepHistory">
+      <eAnnotations source="addition"/>
+    </eLiterals>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="State" eSuperTypes="//AbstractState">
+    <eAnnotations source="extension"/>
+    <eOperations name="entryState">
+      <eParameters name="context">
+        <eGenericType>
+          <eTypeArguments/>
+          <eTypeArguments/>
+          <eClassifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="exitState">
+      <eAnnotations source="aspect"/>
+      <eParameters name="context" eType="//Hashtable"/>
+    </eOperations>
+    <eOperations name="_original_exitState">
+      <eAnnotations source="aspect"/>
+      <eParameters name="context" eType="//Hashtable"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRegions" upperBound="-1" eType="//Region" containment="true" eOpposite="//Region/ownerState"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractState" abstract="true">
+    <eAnnotations source="extension"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownerRegion" lowerBound="1" eType="//Region" eOpposite="//Region/subvertex"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Region">
+    <eAnnotations source="extension"/>
+    <eOperations name="initRegion">
+      <eAnnotations source="aspect"/>
+      <eParameters name="context" eType="//Hashtable"/>
+    </eOperations>
+    <eOperations name="saveDeepHistoryState">
+      <eAnnotations source="aspect"/>
+      <eParameters name="context" eType="//Hashtable"/>
+    </eOperations>
+    <eOperations name="getAllSubstates">
+      <eAnnotations source="aspect"/>
+      <eParameters name="vertex" eType="//AbstractState"/>
+      <eParameters name="children" upperBound="-1" eType="//AbstractState"/>
+    </eOperations>
+    <eOperations name="_original_initRegion">
+      <eAnnotations source="aspect"/>
+      <eParameters name="context" eType="//Hashtable"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subvertex" upperBound="-1" eType="//AbstractState" containment="true" eOpposite="//AbstractState/ownerRegion"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownerState" lowerBound="1" eType="//State" eOpposite="//State/ownedRegions"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Hashtable" instanceClassName="java.util.Hashtable"/>
+</ecore:EPackage>

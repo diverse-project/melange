@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<ecore:EPackage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="CompleteFSM" nsURI="http://CompleteFSM" nsPrefix="CompleteFSM">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="CompleteFSM" nsURI="http://CompleteFSM" nsPrefix="CompleteFSM">
   <eClassifiers xsi:type="ecore:EClass" name="Statement" abstract="true">
     <eOperations name="eval">
       <eParameters name="context">
@@ -243,6 +243,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="PseudostateKind">
     <eLiterals name="initial" literal="initial"/>
+    <eLiterals name="deepHistory" value="4" literal="deepHistory"/>
     <eLiterals name="shallowHistory" value="3" literal="shallowHistory"/>
     <eLiterals name="conditional" value="5" literal="conditional"/>
     <eLiterals name="fork" value="1" literal="fork"/>
