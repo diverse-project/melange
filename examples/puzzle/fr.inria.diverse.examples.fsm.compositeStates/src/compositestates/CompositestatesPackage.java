@@ -2,7 +2,9 @@
  */
 package compositestates;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -287,6 +289,81 @@ public interface CompositestatesPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link compositestates.impl.PseudostateImpl <em>Pseudostate</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see compositestates.impl.PseudostateImpl
+	 * @see compositestates.impl.CompositestatesPackageImpl#getPseudostate()
+	 * @generated
+	 */
+	int PSEUDOSTATE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Incoming</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PSEUDOSTATE__INCOMING = ABSTRACT_STATE__INCOMING;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PSEUDOSTATE__OUTGOING = ABSTRACT_STATE__OUTGOING;
+
+	/**
+	 * The feature id for the '<em><b>Owner Region</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PSEUDOSTATE__OWNER_REGION = ABSTRACT_STATE__OWNER_REGION;
+
+	/**
+	 * The feature id for the '<em><b>Kind</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PSEUDOSTATE__KIND = ABSTRACT_STATE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Pseudostate</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PSEUDOSTATE_FEATURE_COUNT = ABSTRACT_STATE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Pseudostate</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PSEUDOSTATE_OPERATION_COUNT = ABSTRACT_STATE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link compositestates.PseudostateKind <em>Pseudostate Kind</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see compositestates.PseudostateKind
+	 * @see compositestates.impl.CompositestatesPackageImpl#getPseudostateKind()
+	 * @generated
+	 */
+	int PSEUDOSTATE_KIND = 5;
+
+
+	/**
 	 * Returns the meta object for class '{@link compositestates.Region <em>Region</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -435,6 +512,37 @@ public interface CompositestatesPackage extends EPackage {
 	EReference getTransition_Target();
 
 	/**
+	 * Returns the meta object for class '{@link compositestates.Pseudostate <em>Pseudostate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Pseudostate</em>'.
+	 * @see compositestates.Pseudostate
+	 * @generated
+	 */
+	EClass getPseudostate();
+
+	/**
+	 * Returns the meta object for the attribute '{@link compositestates.Pseudostate#getKind <em>Kind</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Kind</em>'.
+	 * @see compositestates.Pseudostate#getKind()
+	 * @see #getPseudostate()
+	 * @generated
+	 */
+	EAttribute getPseudostate_Kind();
+
+	/**
+	 * Returns the meta object for enum '{@link compositestates.PseudostateKind <em>Pseudostate Kind</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Pseudostate Kind</em>'.
+	 * @see compositestates.PseudostateKind
+	 * @generated
+	 */
+	EEnum getPseudostateKind();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -576,6 +684,34 @@ public interface CompositestatesPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TRANSITION__TARGET = eINSTANCE.getTransition_Target();
+
+		/**
+		 * The meta object literal for the '{@link compositestates.impl.PseudostateImpl <em>Pseudostate</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see compositestates.impl.PseudostateImpl
+		 * @see compositestates.impl.CompositestatesPackageImpl#getPseudostate()
+		 * @generated
+		 */
+		EClass PSEUDOSTATE = eINSTANCE.getPseudostate();
+
+		/**
+		 * The meta object literal for the '<em><b>Kind</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PSEUDOSTATE__KIND = eINSTANCE.getPseudostate_Kind();
+
+		/**
+		 * The meta object literal for the '{@link compositestates.PseudostateKind <em>Pseudostate Kind</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see compositestates.PseudostateKind
+		 * @see compositestates.impl.CompositestatesPackageImpl#getPseudostateKind()
+		 * @generated
+		 */
+		EEnum PSEUDOSTATE_KIND = eINSTANCE.getPseudostateKind();
 
 	}
 

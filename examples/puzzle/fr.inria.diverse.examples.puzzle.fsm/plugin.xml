@@ -18,6 +18,12 @@
       <modeltype
             uri="http://compostestatesmt/"
             id="fsm.ComposteStatesMT">
+         <subtyping
+               modeltypeId="fsm.ForkPseudostateMT">
+         </subtyping>
+         <subtyping
+               modeltypeId="fsm.JoinPseudostateMT">
+         </subtyping>
       </modeltype>
       <modeltype
             uri="http://transitioneffectmt/"
@@ -102,6 +108,14 @@
          <adapter
                class="fsm.compositestates.adapters.compostestatesmt.CompositeStatesAdapter"
                modeltypeId="fsm.ComposteStatesMT">
+         </adapter>
+         <adapter
+               class="fsm.compositestates.adapters.forkpseudostatemt.CompositeStatesAdapter"
+               modeltypeId="fsm.ForkPseudostateMT">
+         </adapter>
+         <adapter
+               class="fsm.compositestates.adapters.joinpseudostatemt.CompositeStatesAdapter"
+               modeltypeId="fsm.JoinPseudostateMT">
          </adapter>
       </language>
       <language

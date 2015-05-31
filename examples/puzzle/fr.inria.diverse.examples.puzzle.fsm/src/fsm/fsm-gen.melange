@@ -77,6 +77,8 @@ language CompositeStates {
 	
 	with FSM.composite.higher.RegionAspect
 	with FSM.composite.higher.StateAspect
+	
+//	with FSM.composite.emptyInitial.RegionAspect
 }
 
 /**

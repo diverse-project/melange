@@ -42,10 +42,7 @@ Require-Bundle: fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version
  fr.inria.diverse.examples.fsm.pseudostates.shallowHistory.aspects;bundle-version="1.0.0",
  fr.inria.diverse.examples.fsm.pseudostates.deepHistory;bundle-version="1.0.0",
  fr.inria.diverse.examples.fsm.pseudostates.deepHistory.aspects;bundle-version="1.0.0",
- pseudostates.nottrigger.aspect,
- trigger.andtrigger.aspect,
- trigger.ortrigger.aspect,
- trigger.conditional.aspect
+ fr.inria.diverse.examples.fsm.compositeStates.aspects.emptyInitial;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin

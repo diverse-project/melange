@@ -49,6 +49,15 @@ public interface CompositestatesFactory extends EFactory {
 	Transition createTransition();
 
 	/**
+	 * Returns a new object of class '<em>Pseudostate</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Pseudostate</em>'.
+	 * @generated
+	 */
+	Pseudostate createPseudostate();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

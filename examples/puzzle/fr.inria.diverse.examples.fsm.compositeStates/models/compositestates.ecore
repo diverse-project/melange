@@ -1,45 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="compositestates" nsURI="http://compositestates" nsPrefix="compositestates">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="compositestates" nsURI="http://compositestates" nsPrefix="compositestates">
   <eClassifiers xsi:type="ecore:EClass" name="Region">
     <eAnnotations source="extension"/>
     <eOperations name="initRegion">
       <eParameters name="context">
-        <eGenericType>
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
           <eTypeArguments/>
           <eTypeArguments/>
-          <eClassifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="subvertex" upperBound="-1" eType="//AbstractState" containment="true" eOpposite="//AbstractState/ownerRegion"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownerState" eType="//State" eOpposite="//State/ownedRegions">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subvertex" upperBound="-1"
+        eType="#//AbstractState" containment="true" eOpposite="#//AbstractState/ownerRegion"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownerState" eType="#//State"
+        eOpposite="#//State/ownedRegions">
       <eAnnotations source="addition"/>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="State" eSuperTypes="//AbstractState">
+  <eClassifiers xsi:type="ecore:EClass" name="State" eSuperTypes="#//AbstractState">
     <eAnnotations source="extension"/>
     <eOperations name="evalState">
       <eParameters name="context">
-        <eGenericType>
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
           <eTypeArguments/>
           <eTypeArguments/>
-          <eClassifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRegions" upperBound="-1" eType="//Region" containment="true" eOpposite="//Region/ownerState">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRegions" upperBound="-1"
+        eType="#//Region" containment="true" eOpposite="#//Region/ownerState">
       <eAnnotations source="addition"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractState" abstract="true">
     <eAnnotations source="extension"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="incoming" upperBound="-1" eType="//Transition" eOpposite="//Transition/target"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoing" upperBound="-1" eType="//Transition" eOpposite="//Transition/source"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownerRegion" lowerBound="1" eType="//Region" eOpposite="//Region/subvertex"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incoming" upperBound="-1"
+        eType="#//Transition" eOpposite="#//Transition/target"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoing" upperBound="-1"
+        eType="#//Transition" eOpposite="#//Transition/source"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownerRegion" lowerBound="1"
+        eType="#//Region" eOpposite="#//Region/subvertex"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Transition">
     <eAnnotations source="extension"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1" eType="//AbstractState" eOpposite="//AbstractState/outgoing"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1" eType="//AbstractState" eOpposite="//AbstractState/incoming"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//AbstractState" eOpposite="#//AbstractState/outgoing"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//AbstractState" eOpposite="#//AbstractState/incoming"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Pseudostate" eSuperTypes="#//AbstractState">
+    <eAnnotations source="extension"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//PseudostateKind"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PseudostateKind">
+    <eAnnotations source="extension"/>
+    <eLiterals name="initial"/>
   </eClassifiers>
 </ecore:EPackage>

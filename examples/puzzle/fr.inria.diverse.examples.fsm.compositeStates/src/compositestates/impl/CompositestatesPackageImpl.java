@@ -5,11 +5,15 @@ package compositestates.impl;
 import compositestates.AbstractState;
 import compositestates.CompositestatesFactory;
 import compositestates.CompositestatesPackage;
+import compositestates.Pseudostate;
+import compositestates.PseudostateKind;
 import compositestates.Region;
 import compositestates.State;
 import compositestates.Transition;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -51,6 +55,20 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 	 * @generated
 	 */
 	private EClass transitionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pseudostateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum pseudostateKindEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -244,6 +262,33 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getPseudostate() {
+		return pseudostateEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPseudostate_Kind() {
+		return (EAttribute)pseudostateEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getPseudostateKind() {
+		return pseudostateKindEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public CompositestatesFactory getCompositestatesFactory() {
 		return (CompositestatesFactory)getEFactoryInstance();
 	}
@@ -284,6 +329,12 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 		transitionEClass = createEClass(TRANSITION);
 		createEReference(transitionEClass, TRANSITION__SOURCE);
 		createEReference(transitionEClass, TRANSITION__TARGET);
+
+		pseudostateEClass = createEClass(PSEUDOSTATE);
+		createEAttribute(pseudostateEClass, PSEUDOSTATE__KIND);
+
+		// Create enums
+		pseudostateKindEEnum = createEEnum(PSEUDOSTATE_KIND);
 	}
 
 	/**
@@ -315,6 +366,7 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 
 		// Add supertypes to classes
 		stateEClass.getESuperTypes().add(this.getAbstractState());
+		pseudostateEClass.getESuperTypes().add(this.getAbstractState());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(regionEClass, Region.class, "Region", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -348,6 +400,13 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 		initEClass(transitionEClass, Transition.class, "Transition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTransition_Source(), this.getAbstractState(), this.getAbstractState_Outgoing(), "source", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransition_Target(), this.getAbstractState(), this.getAbstractState_Incoming(), "target", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(pseudostateEClass, Pseudostate.class, "Pseudostate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPseudostate_Kind(), this.getPseudostateKind(), "kind", null, 0, 1, Pseudostate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(pseudostateKindEEnum, PseudostateKind.class, "PseudostateKind");
+		addEEnumLiteral(pseudostateKindEEnum, PseudostateKind.INITIAL);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -384,6 +443,16 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 		   });	
 		addAnnotation
 		  (transitionEClass, 
+		   source, 
+		   new String[] {
+		   });	
+		addAnnotation
+		  (pseudostateEClass, 
+		   source, 
+		   new String[] {
+		   });	
+		addAnnotation
+		  (pseudostateKindEEnum, 
 		   source, 
 		   new String[] {
 		   });
