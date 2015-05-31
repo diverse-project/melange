@@ -39,7 +39,7 @@
       <eParameters name="vertex" eType="//AbstractState"/>
       <eParameters name="children" upperBound="-1" eType="//AbstractState"/>
     </eOperations>
-    <eOperations name="highestConflictingTransition" eType="//Transition">
+    <eOperations name="deepestConflictingTransition" eType="//Transition">
       <eAnnotations source="aspect"/>
       <eParameters name="newActiveTransitions" upperBound="-1" eType="//Transition"/>
       <eParameters name="selectedTransition" eType="//Transition"/>

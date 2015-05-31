@@ -41,14 +41,6 @@
          </subtyping>
       </modeltype>
       <modeltype
-            uri="http://shallowhistorymt/"
-            id="fsm.ShallowHistoryMT">
-      </modeltype>
-      <modeltype
-            uri="http://deephistorymt/"
-            id="fsm.DeepHistoryMT">
-      </modeltype>
-      <modeltype
             uri="http://nottriggermt/"
             id="fsm.NotTriggerMT">
       </modeltype>
@@ -59,6 +51,14 @@
       <modeltype
             uri="http://ortriggermt/"
             id="fsm.OrTriggerMT">
+      </modeltype>
+      <modeltype
+            uri="http://shallowhistorymt/"
+            id="fsm.ShallowHistoryMT">
+      </modeltype>
+      <modeltype
+            uri="http://deephistorymt/"
+            id="fsm.DeepHistoryMT">
       </modeltype>
       <modeltype
             uri="http://conditionalmt/"
@@ -153,26 +153,6 @@
          </adapter>
       </language>
       <language
-            exactType="fsm.ShallowHistoryMT"
-            description="Not Trigger: Contains the capability for supporting negation on the triggers of the transitions."
-            uri="http://shallowhistory"
-            id="fsm.ShallowHistory">
-         <adapter
-               class="fsm.shallowhistory.adapters.shallowhistorymt.ShallowHistoryAdapter"
-               modeltypeId="fsm.ShallowHistoryMT">
-         </adapter>
-      </language>
-      <language
-            exactType="fsm.DeepHistoryMT"
-            description="Deep History"
-            uri="http://deephistory"
-            id="fsm.DeepHistory">
-         <adapter
-               class="fsm.deephistory.adapters.deephistorymt.DeepHistoryAdapter"
-               modeltypeId="fsm.DeepHistoryMT">
-         </adapter>
-      </language>
-      <language
             exactType="fsm.NotTriggerMT"
             description="Not Trigger: Contains the capability for supporting negation on the triggers of the transitions."
             uri="http://nottrigger"
@@ -200,6 +180,26 @@
          <adapter
                class="fsm.ortrigger.adapters.ortriggermt.OrTriggerAdapter"
                modeltypeId="fsm.OrTriggerMT">
+         </adapter>
+      </language>
+      <language
+            exactType="fsm.ShallowHistoryMT"
+            description="Shallow history: Contains the capability for supporting shallow history in the regions."
+            uri="http://shallowhistory"
+            id="fsm.ShallowHistory">
+         <adapter
+               class="fsm.shallowhistory.adapters.shallowhistorymt.ShallowHistoryAdapter"
+               modeltypeId="fsm.ShallowHistoryMT">
+         </adapter>
+      </language>
+      <language
+            exactType="fsm.DeepHistoryMT"
+            description="Deep History: Contains the capability for supporting deep history in the regions."
+            uri="http://deephistory"
+            id="fsm.DeepHistory">
+         <adapter
+               class="fsm.deephistory.adapters.deephistorymt.DeepHistoryAdapter"
+               modeltypeId="fsm.DeepHistoryMT">
          </adapter>
       </language>
       <language

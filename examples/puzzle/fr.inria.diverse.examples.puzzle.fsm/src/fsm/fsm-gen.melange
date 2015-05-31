@@ -4,19 +4,19 @@ package fsm
  * Composition script for the languages described above.
  */
 composition CompleteFSM {
-	aggregation(CoreFSM, ImperativeLanguage) 
-    aggregation(CoreFSM, ConstraintsLanguage) 
-	extension(CoreFSM, JoinPseudostate)    
-	extension(CoreFSM, TransitionEffect)  
+	aggregation(CoreFSM, ImperativeLanguage)
+    aggregation(CoreFSM, ConstraintsLanguage)
+	extension(CoreFSM, JoinPseudostate)
+    extension(CoreFSM, TransitionEffect)
 	extension(CoreFSM, ForkPseudostate)
-	extension(CoreFSM, NotTrigger)  
-	extension(CoreFSM, AndTrigger)
-	extension(CoreFSM, OrTrigger)     
-	extension(CoreFSM, Conditional)  
+    extension(CoreFSM, NotTrigger) 
+	extension(CoreFSM, AndTrigger)      
+	extension(CoreFSM, OrTrigger)    
+	extension(CoreFSM, Conditional)
 	extension(CoreFSM, ShallowHistory)
-	extension(CoreFSM, DeepHistory)  
-	extension(CoreFSM, CompositeStates)  
-}   
+	extension(CoreFSM, DeepHistory)
+	extension(CoreFSM, CompositeStates)
+}
 
 /** 
  * Core FSM. Contains the basic concepts of StateMachine, State, Transition, and Trigger.
@@ -75,10 +75,9 @@ language CompositeStates {
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.compositeStates/models/compositestates.ecore"
 	exactType ComposteStatesMT
 	
-	with FSM.composite.higher.RegionAspect
-	with FSM.composite.higher.StateAspect
-	
-//	with FSM.composite.emptyInitial.RegionAspect
+	with FSM.composite.deepest.RegionAspect
+	with FSM.composite.deepest.StateAspect
+
 }
 
 /**
@@ -115,29 +114,6 @@ language JoinPseudostate {
 /**
  * Not Trigger: Contains the capability for supporting negation on the triggers of the transitions. 
  */
-language ShallowHistory {
-	ecore "platform:/resource/fr.inria.diverse.examples.fsm.pseudostates.shallowHistory/models/ShallowHistory.ecore"
-	exactType ShallowHistoryMT
-	
-	with pseudostates.shallow.RegionAspect
-	with pseudostates.shallow.StateAspect
-}
-
-/**
- * Deep History
- */
-language DeepHistory {
-	ecore "platform:/resource/fr.inria.diverse.examples.fsm.pseudostates.deepHistory/models/DeepHistory.ecore"
-	exactType DeepHistoryMT
-	
-	with pseudostates.deep.RegionAspect
-	with pseudostates.deep.StateAspect
-}
-
-
-/**
- * Not Trigger: Contains the capability for supporting negation on the triggers of the transitions. 
- */
 language NotTrigger {
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.trigger.not/models/NotTrigger.ecore"
 	exactType NotTriggerMT
@@ -163,6 +139,28 @@ language OrTrigger {
 	exactType OrTriggerMT
 
 	with trigger.or.OrTriggerAspect
+}
+
+/**
+ * Shallow history: Contains the capability for supporting shallow history in the regions. 
+ */
+language ShallowHistory {
+	ecore "platform:/resource/fr.inria.diverse.examples.fsm.pseudostates.shallowHistory/models/ShallowHistory.ecore"
+	exactType ShallowHistoryMT
+	
+	with pseudostates.shallow.RegionAspect
+	with pseudostates.shallow.StateAspect
+}
+
+/**
+ * Deep History: Contains the capability for supporting deep history in the regions. 
+ */
+language DeepHistory {
+	ecore "platform:/resource/fr.inria.diverse.examples.fsm.pseudostates.deepHistory/models/DeepHistory.ecore"
+	exactType DeepHistoryMT
+	
+	with pseudostates.deep.RegionAspect
+	with pseudostates.deep.StateAspect
 }
 
 /**

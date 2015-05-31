@@ -34,7 +34,7 @@
               xsi:type="kcvlmetamodel:CVSpec"
               name="ASPseudostates">
             <groupMultiplicity
-                upper="3"
+                upper="6"
                 lower="1"/>
             <child
                 xsi:type="kcvlmetamodel:Choice"
@@ -50,6 +50,19 @@
             <child
                 xsi:type="kcvlmetamodel:Choice"
                 name="ASConditional"/>
+            <child
+                xsi:type="kcvlmetamodel:CVSpec"
+                name="History">
+              <groupMultiplicity
+                  upper="2"/>
+              <child
+                  xsi:type="kcvlmetamodel:Choice"
+                  name="Shallow"
+                  defaultResolution="true"/>
+              <child
+                  xsi:type="kcvlmetamodel:Choice"
+                  name="Deep"/>
+            </child>
           </child>
         </child>
         <child
@@ -131,6 +144,19 @@
               xsi:type="kcvlmetamodel:Choice"
               name="SemSimultaneousEvents"/>
         </child>
+        <child
+            xsi:type="kcvlmetamodel:CVSpec"
+            name="EmptyInitial">
+          <groupMultiplicity
+              upper="1"
+              lower="1"/>
+          <child
+              xsi:type="kcvlmetamodel:Choice"
+              name="Allowed"/>
+          <child
+              xsi:type="kcvlmetamodel:Choice"
+              name="NotAllowed"/>
+        </child>
       </child>
     </packageElement>
   </packageElement>
@@ -186,6 +212,18 @@
                 name="Conditional"
                 resolvedChoice="//@packageElement.0/@packageElement.0/@child.0/@child.0/@child.2/@child.3"
                 decision="true"/>
+            <child
+                xsi:type="kcvlmetamodel:ChoiceResolutuion"
+                name="History">
+              <child
+                  xsi:type="kcvlmetamodel:ChoiceResolutuion"
+                  name="Shallow"
+                  decision="true"/>
+              <child
+                  xsi:type="kcvlmetamodel:ChoiceResolutuion"
+                  name="Deep"
+                  decision="true"/>
+            </child>
           </child>
         </child>
         <child
@@ -283,6 +321,21 @@
                 xsi:type="kcvlmetamodel:ChoiceResolutuion"
                 name="SemSimultaneousEvents"
                 resolvedChoice="//@packageElement.0/@packageElement.1/@child.0/@child.2/@child.1"/>
+          </child>
+          <child
+              xsi:type="kcvlmetamodel:ChoiceResolutuion"
+              name="SemEmtpyInitial"
+              resolvedVSpec="//@packageElement.0/@packageElement.1/@child.0/@child.3"
+              decision="true">
+            <child
+                xsi:type="kcvlmetamodel:ChoiceResolutuion"
+                name="Allowed"
+                resolvedChoice="//@packageElement.0/@packageElement.1/@child.0/@child.3/@child.0"/>
+            <child
+                xsi:type="kcvlmetamodel:ChoiceResolutuion"
+                name="NotAllowed"
+                resolvedChoice="//@packageElement.0/@packageElement.1/@child.0/@child.3/@child.1"
+                decision="true"/>
           </child>
         </child>
       </child>

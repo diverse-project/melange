@@ -5,6 +5,7 @@
 [template public generateCompositionScript(mainPackage : VPackage)]
 [comment @main /]
 [file ('fsm-gen.melange', false, 'US-ASCII')]
+[let EmptyAllowed : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Semantics')->first().child->asOrderedSet()->select(name = 'SemStatesDef')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'SemEmtpyInitial')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Allowed')->first().oclAsType(ChoiceResolutuion).decision]
 [let RTCSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Semantics')->first().child->asOrderedSet()->select(name = 'SemStatesDef')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'SemEventsDispatching')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'SemRunToCompletion')->first().oclAsType(ChoiceResolutuion).decision]
 [let SumultaneousEventsSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Semantics')->first().child->asOrderedSet()->select(name = 'SemStatesDef')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'SemEventsDispatching')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'SemSimultaneousEvents')->first().oclAsType(ChoiceResolutuion).decision]
 [let ImperativeLanguageSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'AbstractSyntax')->first().child->asOrderedSet()->select(name = 'SimpleImperative')->first().oclAsType(ChoiceResolutuion).decision]
@@ -14,6 +15,8 @@
 [let CompositeStatesHigherSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Semantics')->first().child->asOrderedSet()->select(name = 'SemStatesDef')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'SemTransitionPriority')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'SemHigherStatesPriority')->first().oclAsType(ChoiceResolutuion).decision]
 [let ForkPseudostateSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'AbstractSyntax')->first().child->asOrderedSet()->select(name = 'StatesDef')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Pseudostates')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Fork')->first().oclAsType(ChoiceResolutuion).decision]
 [let JoinPseudostateSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'AbstractSyntax')->first().child->asOrderedSet()->select(name = 'StatesDef')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Pseudostates')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Join')->first().oclAsType(ChoiceResolutuion).decision]
+[let ShallowHistoryPseudostateSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'AbstractSyntax')->first().child->asOrderedSet()->select(name = 'StatesDef')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Pseudostates')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'History')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Shallow')->first().oclAsType(ChoiceResolutuion).decision]
+[let DeepHistoryPseudostateSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'AbstractSyntax')->first().child->asOrderedSet()->select(name = 'StatesDef')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Pseudostates')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'History')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Deep')->first().oclAsType(ChoiceResolutuion).decision]
 [let ConditionalPseudostateSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'AbstractSyntax')->first().child->asOrderedSet()->select(name = 'StatesDef')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Pseudostates')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Conditional')->first().oclAsType(ChoiceResolutuion).decision]
 [let NotTriggerSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'AbstractSyntax')->first().child->asOrderedSet()->select(name = 'TransitionDef')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Trigger')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'NotTrigger')->first().oclAsType(ChoiceResolutuion).decision ]
 [let AndTriggerSelected : Boolean = mainPackage->asSequence()->at(1).oclAsType(VPackage).packageElement->asOrderedSet()->select(name = 'StateMachines')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'AbstractSyntax')->first().child->asOrderedSet()->select(name = 'TransitionDef')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'Trigger')->first().oclAsType(ChoiceResolutuion).child->asOrderedSet()->select(name = 'AndTrigger')->first().oclAsType(ChoiceResolutuion).decision ]
@@ -35,7 +38,9 @@ composition CompleteFSM {
     [if (NotTriggerSelected)]extension(CoreFSM, NotTrigger)[/if] 
 	[if (AndTriggerSelected)]extension(CoreFSM, AndTrigger)[/if]      
 	[if (OrTriggerSelected)]extension(CoreFSM, OrTrigger)[/if]    
-	[if (ConditionalPseudostateSelected)]extension(CoreFSM, Conditional)[/if]  
+	[if (ConditionalPseudostateSelected)]extension(CoreFSM, Conditional)[/if]
+	[if (ShallowHistoryPseudostateSelected)]extension(CoreFSM, ShallowHistory)[/if]
+	[if (DeepHistoryPseudostateSelected)]extension(CoreFSM, DeepHistory)[/if]
 	[if (CompositeSelected)]extension(CoreFSM, CompositeStates)[/if]
 }
 
@@ -120,6 +125,10 @@ language CompositeStates {
 	with FSM.composite.higher.RegionAspect
 	with FSM.composite.higher.StateAspect
 [/if]
+
+[if (EmptyAllowed)]
+	with FSM.composite.emptyInitial.RegionAspect
+[/if]
 }[/if]
 
 
@@ -202,6 +211,32 @@ language OrTrigger {
 }[/if]
 
 
+[if (ShallowHistoryPseudostateSelected)]
+/**
+ * Shallow history: Contains the capability for supporting shallow history in the regions. 
+ */
+language ShallowHistory {
+	ecore "platform:/resource/fr.inria.diverse.examples.fsm.pseudostates.shallowHistory/models/ShallowHistory.ecore"
+	exactType ShallowHistoryMT
+	
+	with pseudostates.shallow.RegionAspect
+	with pseudostates.shallow.StateAspect
+}[/if]
+
+
+[if (DeepHistoryPseudostateSelected)]
+/**
+ * Deep History: Contains the capability for supporting deep history in the regions. 
+ */
+language DeepHistory {
+	ecore "platform:/resource/fr.inria.diverse.examples.fsm.pseudostates.deepHistory/models/DeepHistory.ecore"
+	exactType DeepHistoryMT
+	
+	with pseudostates.deep.RegionAspect
+	with pseudostates.deep.StateAspect
+}[/if]
+
+
 [if (ConditionalPseudostateSelected)]
 /**
  * Or Trigger: Contains the capability for supporting conjuntion on the triggers of the transitions. 
@@ -212,6 +247,6 @@ language Conditional {
 
 	with pseudostates.conditional.RegionAspect
 }[/if]
-[/let][/let][/let][/let][/let][/let][/let][/let][/let][/let][/let][/let][/let][/let][/let][/let]
+[/let][/let][/let][/let][/let][/let][/let][/let][/let][/let][/let][/let][/let][/let][/let][/let][/let][/let][/let]
 [/file]
 [/template]
