@@ -59,32 +59,41 @@ public interface ShallowhistoryPackage extends EPackage {
 	ShallowhistoryPackage eINSTANCE = shallowhistory.impl.ShallowhistoryPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link shallowhistory.impl.VertexImpl <em>Vertex</em>}' class.
+	 * The meta object id for the '{@link shallowhistory.impl.AbstractStateImpl <em>Abstract State</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see shallowhistory.impl.VertexImpl
-	 * @see shallowhistory.impl.ShallowhistoryPackageImpl#getVertex()
+	 * @see shallowhistory.impl.AbstractStateImpl
+	 * @see shallowhistory.impl.ShallowhistoryPackageImpl#getAbstractState()
 	 * @generated
 	 */
-	int VERTEX = 3;
+	int ABSTRACT_STATE = 2;
 
 	/**
-	 * The number of structural features of the '<em>Vertex</em>' class.
+	 * The feature id for the '<em><b>Owner Region</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX_FEATURE_COUNT = 0;
+	int ABSTRACT_STATE__OWNER_REGION = 0;
 
 	/**
-	 * The number of operations of the '<em>Vertex</em>' class.
+	 * The number of structural features of the '<em>Abstract State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERTEX_OPERATION_COUNT = 0;
+	int ABSTRACT_STATE_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Abstract State</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_STATE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link shallowhistory.impl.PseudostateImpl <em>Pseudostate</em>}' class.
@@ -97,13 +106,22 @@ public interface ShallowhistoryPackage extends EPackage {
 	int PSEUDOSTATE = 0;
 
 	/**
+	 * The feature id for the '<em><b>Owner Region</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PSEUDOSTATE__OWNER_REGION = ABSTRACT_STATE__OWNER_REGION;
+
+	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PSEUDOSTATE__KIND = VERTEX_FEATURE_COUNT + 0;
+	int PSEUDOSTATE__KIND = ABSTRACT_STATE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Pseudostate</em>' class.
@@ -112,7 +130,7 @@ public interface ShallowhistoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PSEUDOSTATE_FEATURE_COUNT = VERTEX_FEATURE_COUNT + 1;
+	int PSEUDOSTATE_FEATURE_COUNT = ABSTRACT_STATE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Pseudostate</em>' class.
@@ -121,17 +139,7 @@ public interface ShallowhistoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PSEUDOSTATE_OPERATION_COUNT = VERTEX_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link shallowhistory.impl.CompositeStateImpl <em>Composite State</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see shallowhistory.impl.CompositeStateImpl
-	 * @see shallowhistory.impl.ShallowhistoryPackageImpl#getCompositeState()
-	 * @generated
-	 */
-	int COMPOSITE_STATE = 1;
+	int PSEUDOSTATE_OPERATION_COUNT = ABSTRACT_STATE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link shallowhistory.impl.StateImpl <em>State</em>}' class.
@@ -141,7 +149,25 @@ public interface ShallowhistoryPackage extends EPackage {
 	 * @see shallowhistory.impl.ShallowhistoryPackageImpl#getState()
 	 * @generated
 	 */
-	int STATE = 2;
+	int STATE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Owner Region</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__OWNER_REGION = ABSTRACT_STATE__OWNER_REGION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Regions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__OWNED_REGIONS = ABSTRACT_STATE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>State</em>' class.
@@ -150,7 +176,7 @@ public interface ShallowhistoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_FEATURE_COUNT = VERTEX_FEATURE_COUNT + 0;
+	int STATE_FEATURE_COUNT = ABSTRACT_STATE_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Entry State</em>' operation.
@@ -159,7 +185,7 @@ public interface ShallowhistoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE___ENTRY_STATE__MAP = VERTEX_OPERATION_COUNT + 0;
+	int STATE___ENTRY_STATE__MAP = ABSTRACT_STATE_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>State</em>' class.
@@ -168,52 +194,44 @@ public interface ShallowhistoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_OPERATION_COUNT = VERTEX_OPERATION_COUNT + 1;
+	int STATE_OPERATION_COUNT = ABSTRACT_STATE_OPERATION_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>States</b></em>' containment reference list.
+	 * The meta object id for the '{@link shallowhistory.impl.RegionImpl <em>Region</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see shallowhistory.impl.RegionImpl
+	 * @see shallowhistory.impl.ShallowhistoryPackageImpl#getRegion()
+	 * @generated
+	 */
+	int REGION = 3;
+
+	/**
+	 * The feature id for the '<em><b>Subvertex</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_STATE__STATES = STATE_FEATURE_COUNT + 0;
+	int REGION__SUBVERTEX = 0;
 
 	/**
-	 * The feature id for the '<em><b>Initial State</b></em>' reference.
+	 * The number of structural features of the '<em>Region</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_STATE__INITIAL_STATE = STATE_FEATURE_COUNT + 1;
+	int REGION_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of structural features of the '<em>Composite State</em>' class.
+	 * The number of operations of the '<em>Region</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_STATE_FEATURE_COUNT = STATE_FEATURE_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Entry State</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_STATE___ENTRY_STATE__MAP = STATE___ENTRY_STATE__MAP;
-
-	/**
-	 * The number of operations of the '<em>Composite State</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_STATE_OPERATION_COUNT = STATE_OPERATION_COUNT + 0;
+	int REGION_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link shallowhistory.PseudostateKind <em>Pseudostate Kind</em>}' enum.
@@ -248,38 +266,6 @@ public interface ShallowhistoryPackage extends EPackage {
 	EAttribute getPseudostate_Kind();
 
 	/**
-	 * Returns the meta object for class '{@link shallowhistory.CompositeState <em>Composite State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Composite State</em>'.
-	 * @see shallowhistory.CompositeState
-	 * @generated
-	 */
-	EClass getCompositeState();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link shallowhistory.CompositeState#getStates <em>States</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>States</em>'.
-	 * @see shallowhistory.CompositeState#getStates()
-	 * @see #getCompositeState()
-	 * @generated
-	 */
-	EReference getCompositeState_States();
-
-	/**
-	 * Returns the meta object for the reference '{@link shallowhistory.CompositeState#getInitialState <em>Initial State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Initial State</em>'.
-	 * @see shallowhistory.CompositeState#getInitialState()
-	 * @see #getCompositeState()
-	 * @generated
-	 */
-	EReference getCompositeState_InitialState();
-
-	/**
 	 * Returns the meta object for class '{@link shallowhistory.State <em>State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -288,6 +274,17 @@ public interface ShallowhistoryPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getState();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link shallowhistory.State#getOwnedRegions <em>Owned Regions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Regions</em>'.
+	 * @see shallowhistory.State#getOwnedRegions()
+	 * @see #getState()
+	 * @generated
+	 */
+	EReference getState_OwnedRegions();
 
 	/**
 	 * Returns the meta object for the '{@link shallowhistory.State#entryState(java.util.Map) <em>Entry State</em>}' operation.
@@ -300,14 +297,46 @@ public interface ShallowhistoryPackage extends EPackage {
 	EOperation getState__EntryState__Map();
 
 	/**
-	 * Returns the meta object for class '{@link shallowhistory.Vertex <em>Vertex</em>}'.
+	 * Returns the meta object for class '{@link shallowhistory.AbstractState <em>Abstract State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Vertex</em>'.
-	 * @see shallowhistory.Vertex
+	 * @return the meta object for class '<em>Abstract State</em>'.
+	 * @see shallowhistory.AbstractState
 	 * @generated
 	 */
-	EClass getVertex();
+	EClass getAbstractState();
+
+	/**
+	 * Returns the meta object for the container reference '{@link shallowhistory.AbstractState#getOwnerRegion <em>Owner Region</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owner Region</em>'.
+	 * @see shallowhistory.AbstractState#getOwnerRegion()
+	 * @see #getAbstractState()
+	 * @generated
+	 */
+	EReference getAbstractState_OwnerRegion();
+
+	/**
+	 * Returns the meta object for class '{@link shallowhistory.Region <em>Region</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Region</em>'.
+	 * @see shallowhistory.Region
+	 * @generated
+	 */
+	EClass getRegion();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link shallowhistory.Region#getSubvertex <em>Subvertex</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Subvertex</em>'.
+	 * @see shallowhistory.Region#getSubvertex()
+	 * @see #getRegion()
+	 * @generated
+	 */
+	EReference getRegion_Subvertex();
 
 	/**
 	 * Returns the meta object for enum '{@link shallowhistory.PseudostateKind <em>Pseudostate Kind</em>}'.
@@ -361,32 +390,6 @@ public interface ShallowhistoryPackage extends EPackage {
 		EAttribute PSEUDOSTATE__KIND = eINSTANCE.getPseudostate_Kind();
 
 		/**
-		 * The meta object literal for the '{@link shallowhistory.impl.CompositeStateImpl <em>Composite State</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see shallowhistory.impl.CompositeStateImpl
-		 * @see shallowhistory.impl.ShallowhistoryPackageImpl#getCompositeState()
-		 * @generated
-		 */
-		EClass COMPOSITE_STATE = eINSTANCE.getCompositeState();
-
-		/**
-		 * The meta object literal for the '<em><b>States</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPOSITE_STATE__STATES = eINSTANCE.getCompositeState_States();
-
-		/**
-		 * The meta object literal for the '<em><b>Initial State</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPOSITE_STATE__INITIAL_STATE = eINSTANCE.getCompositeState_InitialState();
-
-		/**
 		 * The meta object literal for the '{@link shallowhistory.impl.StateImpl <em>State</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -397,6 +400,14 @@ public interface ShallowhistoryPackage extends EPackage {
 		EClass STATE = eINSTANCE.getState();
 
 		/**
+		 * The meta object literal for the '<em><b>Owned Regions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATE__OWNED_REGIONS = eINSTANCE.getState_OwnedRegions();
+
+		/**
 		 * The meta object literal for the '<em><b>Entry State</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -405,14 +416,40 @@ public interface ShallowhistoryPackage extends EPackage {
 		EOperation STATE___ENTRY_STATE__MAP = eINSTANCE.getState__EntryState__Map();
 
 		/**
-		 * The meta object literal for the '{@link shallowhistory.impl.VertexImpl <em>Vertex</em>}' class.
+		 * The meta object literal for the '{@link shallowhistory.impl.AbstractStateImpl <em>Abstract State</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see shallowhistory.impl.VertexImpl
-		 * @see shallowhistory.impl.ShallowhistoryPackageImpl#getVertex()
+		 * @see shallowhistory.impl.AbstractStateImpl
+		 * @see shallowhistory.impl.ShallowhistoryPackageImpl#getAbstractState()
 		 * @generated
 		 */
-		EClass VERTEX = eINSTANCE.getVertex();
+		EClass ABSTRACT_STATE = eINSTANCE.getAbstractState();
+
+		/**
+		 * The meta object literal for the '<em><b>Owner Region</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ABSTRACT_STATE__OWNER_REGION = eINSTANCE.getAbstractState_OwnerRegion();
+
+		/**
+		 * The meta object literal for the '{@link shallowhistory.impl.RegionImpl <em>Region</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see shallowhistory.impl.RegionImpl
+		 * @see shallowhistory.impl.ShallowhistoryPackageImpl#getRegion()
+		 * @generated
+		 */
+		EClass REGION = eINSTANCE.getRegion();
+
+		/**
+		 * The meta object literal for the '<em><b>Subvertex</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REGION__SUBVERTEX = eINSTANCE.getRegion_Subvertex();
 
 		/**
 		 * The meta object literal for the '{@link shallowhistory.PseudostateKind <em>Pseudostate Kind</em>}' enum.

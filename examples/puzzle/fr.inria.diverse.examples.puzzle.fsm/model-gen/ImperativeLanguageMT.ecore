@@ -1,31 +1,67 @@
 <?xml version="1.0" encoding="ASCII"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="simpleimperativelanguage" nsURI="http://imperativelanguagemt/" nsPrefix="simpleimperativelanguage">
-  <eClassifiers xsi:type="ecore:EClass" name="Statement" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Statement" abstract="true">
+    <eOperations name="eval">
+      <eAnnotations source="aspect"/>
+      <eParameters name="context" eType="//Hashtable"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Hashtable" instanceClassName="java.util.Hashtable"/>
   <eClassifiers xsi:type="ecore:EClass" name="Program" eSuperTypes="//Statement">
+    <eOperations name="eval">
+      <eAnnotations source="aspect"/>
+      <eParameters name="context" eType="//Hashtable"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1" eType="//Statement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Conditional" eSuperTypes="//Statement">
+    <eOperations name="eval">
+      <eAnnotations source="aspect"/>
+      <eParameters name="context" eType="//Hashtable"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" lowerBound="1" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="//Program" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Loop" eSuperTypes="//Statement">
+    <eOperations name="eval">
+      <eAnnotations source="aspect"/>
+      <eParameters name="context" eType="//Hashtable"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="guard" lowerBound="1" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="//Program" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VarDecl" eSuperTypes="//Statement">
+    <eOperations name="eval">
+      <eAnnotations source="aspect"/>
+      <eParameters name="context" eType="//Hashtable"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" lowerBound="1" eType="//Expression" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Expression" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression" abstract="true">
+    <eOperations name="obtainValue" eType="//Object">
+      <eAnnotations source="aspect"/>
+      <eParameters name="context" eType="//Hashtable"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Object" instanceClassName="java.lang.Object"/>
   <eClassifiers xsi:type="ecore:EClass" name="Literal" abstract="true" eSuperTypes="//Expression"/>
   <eClassifiers xsi:type="ecore:EClass" name="IntegerLit" eSuperTypes="//Literal">
+    <eOperations name="obtainValue" eType="//Object">
+      <eAnnotations source="aspect"/>
+      <eParameters name="context" eType="//Hashtable"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StringLit" eSuperTypes="//Literal">
+    <eOperations name="obtainValue" eType="//Object">
+      <eAnnotations source="aspect"/>
+      <eParameters name="context" eType="//Hashtable"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
@@ -36,6 +72,10 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArithmeticExpression" eSuperTypes="//Expression">
+    <eOperations name="obtainValue" eType="//Object">
+      <eAnnotations source="aspect"/>
+      <eParameters name="context" eType="//Hashtable"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" lowerBound="1" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" lowerBound="1" eType="//ArithmeticOperator"/>

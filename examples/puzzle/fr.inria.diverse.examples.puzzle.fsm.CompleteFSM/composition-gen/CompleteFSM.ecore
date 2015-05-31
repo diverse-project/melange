@@ -243,6 +243,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="PseudostateKind">
     <eLiterals name="initial" literal="initial"/>
+    <eLiterals name="shallowHistory" value="3" literal="shallowHistory"/>
     <eLiterals name="conditional" value="5" literal="conditional"/>
     <eLiterals name="fork" value="1" literal="fork"/>
     <eLiterals name="join" value="2" literal="join"/>

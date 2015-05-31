@@ -4,17 +4,18 @@ package fsm
  * Composition script for the languages described above.
  */
 composition CompleteFSM {
-	aggregation(CoreFSM, ImperativeLanguage)
-    aggregation(CoreFSM, ConstraintsLanguage)
-	extension(CoreFSM, JoinPseudostate)
-    extension(CoreFSM, TransitionEffect)
+	aggregation(CoreFSM, ImperativeLanguage) 
+    aggregation(CoreFSM, ConstraintsLanguage) 
+	extension(CoreFSM, JoinPseudostate)    
+	extension(CoreFSM, TransitionEffect)  
 	extension(CoreFSM, ForkPseudostate)
-    extension(CoreFSM, NotTrigger) 
-	extension(CoreFSM, AndTrigger)      
-	extension(CoreFSM, OrTrigger)    
+	extension(CoreFSM, NotTrigger)  
+	extension(CoreFSM, AndTrigger)
+	extension(CoreFSM, OrTrigger)     
 	extension(CoreFSM, Conditional)  
-	extension(CoreFSM, CompositeStates)
-}
+	extension(CoreFSM, ShallowHistory)  
+	extension(CoreFSM, CompositeStates)  
+}   
 
 /** 
  * Core FSM. Contains the basic concepts of StateMachine, State, Transition, and Trigger.
@@ -23,13 +24,13 @@ language CoreFSM {
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.core/models/fsmcore.ecore"
 	exactType CoreFSMMT 
 	
-	// Variation # 2: Simultaneous Events
-	with FSM.simultaneous.StateMachineAspect
-	with FSM.simultaneous.RegionAspect
-	with FSM.simultaneous.StateAspect
-	with FSM.simultaneous.TransitionAspect
-	with FSM.simultaneous.TriggerAspect
-	with FSM.simultaneous.FinalStateAspect
+	// Variation # 1: Run-To-Completion
+	with FSM.rtc.StateMachineAspect 
+	with FSM.rtc.RegionAspect 
+	with FSM.rtc.StateAspect
+	with FSM.rtc.TransitionAspect
+	with FSM.rtc.TriggerAspect
+	with FSM.rtc.FinalStateAspect
 }
 
 /**
@@ -73,8 +74,8 @@ language CompositeStates {
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.compositeStates/models/compositestates.ecore"
 	exactType ComposteStatesMT
 	
-	with FSM.composite.deepest.RegionAspect
-	with FSM.composite.deepest.StateAspect
+	with FSM.composite.higher.RegionAspect
+	with FSM.composite.higher.StateAspect
 }
 
 /**
@@ -84,8 +85,8 @@ language TransitionEffect {
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.transition.effect/models/TransitionEffect.ecore"
 	exactType TransitionEffectMT
 	
-	// Variation # 2: Parallel
-	with transitioneffects.parallel.TransitionAspect
+	// Variation # 1: Sequential	
+	with transitioneffects.sequential.TransitionAspect
 }
 
 /**
@@ -107,6 +108,18 @@ language JoinPseudostate {
 	
 	with pseudostates.join.RegionAspect
 }
+
+/**
+ * Not Trigger: Contains the capability for supporting negation on the triggers of the transitions. 
+ */
+language ShallowHistory {
+	ecore "platform:/resource/fr.inria.diverse.examples.fsm.pseudostates.shallowHistory/models/ShallowHistory.ecore"
+	exactType ShallowHistoryMT
+	
+	with pseudostates.shallow.RegionAspect
+	with pseudostates.shallow.StateAspect
+}
+
 
 /**
  * Not Trigger: Contains the capability for supporting negation on the triggers of the transitions. 

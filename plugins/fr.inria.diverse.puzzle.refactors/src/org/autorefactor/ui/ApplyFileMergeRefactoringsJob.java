@@ -25,8 +25,8 @@
  */
 package org.autorefactor.ui;
 
-import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.autorefactor.AutoRefactorPlugin;
 import org.eclipse.core.resources.IProject;
@@ -39,7 +39,6 @@ import org.eclipse.jdt.core.IField;
 import org.eclipse.jdt.core.IImportDeclaration;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IMethod;
-import org.eclipse.jdt.core.JavaModelException;
 
 /**
  * Eclipse job that applies the provided refactoring rules in background.
@@ -52,6 +51,7 @@ public class ApplyFileMergeRefactoringsJob {
     private final IProject targetProject;
     private final IJavaElement mergedPropertiesJavaElement;
     private final ArrayList<IJavaElement> javaElementsToMerge;
+    private final List<String> additionalVariablesList;
     
     /**
      * Builds an instance of this class.
@@ -60,11 +60,12 @@ public class ApplyFileMergeRefactoringsJob {
      * @param refactoringRulesToApply the refactorings to apply
      */
     public ApplyFileMergeRefactoringsJob(IJavaElement mergedPropertiesJavaElement,
-    		ArrayList<IJavaElement> javaElementsToMerge, File targetFolderAspects, IProject targetProject) {
+    		ArrayList<IJavaElement> javaElementsToMerge, IProject targetProject, List<String> additionalVariablesList) {
     	
     	this.mergedPropertiesJavaElement = mergedPropertiesJavaElement;
     	this.javaElementsToMerge = javaElementsToMerge;
         this.targetProject = targetProject;
+        this.additionalVariablesList = additionalVariablesList;
     }
 
     /**
@@ -84,21 +85,12 @@ public class ApplyFileMergeRefactoringsJob {
         		
         		if(currentPropertiesToMergeCompilationUnit.findPrimaryType() != null){
         			for(IField _field : currentPropertiesToMergeCompilationUnit.findPrimaryType().getFields()){
-//        				IField _existingField = currentPropertiesToMergeCompilationUnit.findPrimaryType().getField(_field.getElementName());
-//        				if(!_existingField.exists())
-        				try{
-        					mergedPropertiesCompilationUnit.findPrimaryType().createField(_field.getSource(), null, false, monitor);
-        				}catch(JavaModelException e){
-        					// coucou
-        				}
-        					
-            		}
+        				System.out.println("additionalVariablesList.add(_field.getElementName());"); 
+        				additionalVariablesList.add(_field.getElementName());
+        				mergedPropertiesCompilationUnit.findPrimaryType().createField(_field.getSource(), null, false, monitor);
+        			}
             		for(IMethod _method : currentPropertiesToMergeCompilationUnit.findPrimaryType().getMethods()){
-            			try{
-            				mergedPropertiesCompilationUnit.findPrimaryType().createMethod(_method.getSource(), null, false, monitor);
-            			}catch(Exception e){
-            				// coucou
-            			}
+            			mergedPropertiesCompilationUnit.findPrimaryType().createMethod(_method.getSource(), null, false, monitor);
             		}
             		for(IImportDeclaration _import : currentPropertiesToMergeCompilationUnit.getImports()){
                 		if(!mergedPropertiesCompilationUnit.getImport(_import.getElementName()).exists()){
@@ -115,5 +107,5 @@ public class ApplyFileMergeRefactoringsJob {
             monitor.done();
         }
         return Status.OK_STATUS;
-    }    
+    }
 }

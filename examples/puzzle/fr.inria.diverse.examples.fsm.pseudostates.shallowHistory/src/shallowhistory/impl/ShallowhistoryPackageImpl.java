@@ -12,13 +12,13 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import shallowhistory.CompositeState;
+import shallowhistory.AbstractState;
 import shallowhistory.Pseudostate;
 import shallowhistory.PseudostateKind;
+import shallowhistory.Region;
 import shallowhistory.ShallowhistoryFactory;
 import shallowhistory.ShallowhistoryPackage;
 import shallowhistory.State;
-import shallowhistory.Vertex;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,13 +39,6 @@ public class ShallowhistoryPackageImpl extends EPackageImpl implements Shallowhi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass compositeStateEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass stateEClass = null;
 
 	/**
@@ -53,7 +46,14 @@ public class ShallowhistoryPackageImpl extends EPackageImpl implements Shallowhi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass vertexEClass = null;
+	private EClass abstractStateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass regionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -146,35 +146,17 @@ public class ShallowhistoryPackageImpl extends EPackageImpl implements Shallowhi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCompositeState() {
-		return compositeStateEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompositeState_States() {
-		return (EReference)compositeStateEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompositeState_InitialState() {
-		return (EReference)compositeStateEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getState() {
 		return stateEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getState_OwnedRegions() {
+		return (EReference)stateEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -191,8 +173,35 @@ public class ShallowhistoryPackageImpl extends EPackageImpl implements Shallowhi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getVertex() {
-		return vertexEClass;
+	public EClass getAbstractState() {
+		return abstractStateEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAbstractState_OwnerRegion() {
+		return (EReference)abstractStateEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRegion() {
+		return regionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRegion_Subvertex() {
+		return (EReference)regionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -235,14 +244,15 @@ public class ShallowhistoryPackageImpl extends EPackageImpl implements Shallowhi
 		pseudostateEClass = createEClass(PSEUDOSTATE);
 		createEAttribute(pseudostateEClass, PSEUDOSTATE__KIND);
 
-		compositeStateEClass = createEClass(COMPOSITE_STATE);
-		createEReference(compositeStateEClass, COMPOSITE_STATE__STATES);
-		createEReference(compositeStateEClass, COMPOSITE_STATE__INITIAL_STATE);
-
 		stateEClass = createEClass(STATE);
+		createEReference(stateEClass, STATE__OWNED_REGIONS);
 		createEOperation(stateEClass, STATE___ENTRY_STATE__MAP);
 
-		vertexEClass = createEClass(VERTEX);
+		abstractStateEClass = createEClass(ABSTRACT_STATE);
+		createEReference(abstractStateEClass, ABSTRACT_STATE__OWNER_REGION);
+
+		regionEClass = createEClass(REGION);
+		createEReference(regionEClass, REGION__SUBVERTEX);
 
 		// Create enums
 		pseudostateKindEEnum = createEEnum(PSEUDOSTATE_KIND);
@@ -276,19 +286,15 @@ public class ShallowhistoryPackageImpl extends EPackageImpl implements Shallowhi
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		pseudostateEClass.getESuperTypes().add(this.getVertex());
-		compositeStateEClass.getESuperTypes().add(this.getState());
-		stateEClass.getESuperTypes().add(this.getVertex());
+		pseudostateEClass.getESuperTypes().add(this.getAbstractState());
+		stateEClass.getESuperTypes().add(this.getAbstractState());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(pseudostateEClass, Pseudostate.class, "Pseudostate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPseudostate_Kind(), this.getPseudostateKind(), "kind", null, 0, 1, Pseudostate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(compositeStateEClass, CompositeState.class, "CompositeState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCompositeState_States(), this.getState(), null, "states", null, 1, -1, CompositeState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCompositeState_InitialState(), this.getState(), null, "initialState", null, 1, 1, CompositeState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getState_OwnedRegions(), this.getRegion(), null, "ownedRegions", null, 0, -1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = initEOperation(getState__EntryState__Map(), null, "entryState", 0, 1, IS_UNIQUE, IS_ORDERED);
 		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
@@ -298,7 +304,11 @@ public class ShallowhistoryPackageImpl extends EPackageImpl implements Shallowhi
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(vertexEClass, Vertex.class, "Vertex", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(abstractStateEClass, AbstractState.class, "AbstractState", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAbstractState_OwnerRegion(), this.getRegion(), this.getRegion_Subvertex(), "ownerRegion", null, 1, 1, AbstractState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(regionEClass, Region.class, "Region", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRegion_Subvertex(), this.getAbstractState(), this.getAbstractState_OwnerRegion(), "subvertex", null, 0, -1, Region.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(pseudostateKindEEnum, PseudostateKind.class, "PseudostateKind");
@@ -312,8 +322,6 @@ public class ShallowhistoryPackageImpl extends EPackageImpl implements Shallowhi
 		createExtensionAnnotations();
 		// addition
 		createAdditionAnnotations();
-		// required
-		createRequiredAnnotations();
 	}
 
 	/**
@@ -335,7 +343,17 @@ public class ShallowhistoryPackageImpl extends EPackageImpl implements Shallowhi
 		   new String[] {
 		   });	
 		addAnnotation
-		  (compositeStateEClass, 
+		  (stateEClass, 
+		   source, 
+		   new String[] {
+		   });	
+		addAnnotation
+		  (abstractStateEClass, 
+		   source, 
+		   new String[] {
+		   });	
+		addAnnotation
+		  (regionEClass, 
 		   source, 
 		   new String[] {
 		   });
@@ -351,21 +369,6 @@ public class ShallowhistoryPackageImpl extends EPackageImpl implements Shallowhi
 		String source = "addition";	
 		addAnnotation
 		  (pseudostateKindEEnum.getELiterals().get(0), 
-		   source, 
-		   new String[] {
-		   });
-	}
-
-	/**
-	 * Initializes the annotations for <b>required</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createRequiredAnnotations() {
-		String source = "required";	
-		addAnnotation
-		  (stateEClass, 
 		   source, 
 		   new String[] {
 		   });

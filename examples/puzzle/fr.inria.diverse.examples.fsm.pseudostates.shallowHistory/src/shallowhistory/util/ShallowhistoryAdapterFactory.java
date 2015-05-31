@@ -72,16 +72,16 @@ public class ShallowhistoryAdapterFactory extends AdapterFactoryImpl {
 				return createPseudostateAdapter();
 			}
 			@Override
-			public Adapter caseCompositeState(CompositeState object) {
-				return createCompositeStateAdapter();
-			}
-			@Override
 			public Adapter caseState(State object) {
 				return createStateAdapter();
 			}
 			@Override
-			public Adapter caseVertex(Vertex object) {
-				return createVertexAdapter();
+			public Adapter caseAbstractState(AbstractState object) {
+				return createAbstractStateAdapter();
+			}
+			@Override
+			public Adapter caseRegion(Region object) {
+				return createRegionAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -118,20 +118,6 @@ public class ShallowhistoryAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link shallowhistory.CompositeState <em>Composite State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see shallowhistory.CompositeState
-	 * @generated
-	 */
-	public Adapter createCompositeStateAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link shallowhistory.State <em>State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -146,16 +132,30 @@ public class ShallowhistoryAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link shallowhistory.Vertex <em>Vertex</em>}'.
+	 * Creates a new adapter for an object of class '{@link shallowhistory.AbstractState <em>Abstract State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see shallowhistory.Vertex
+	 * @see shallowhistory.AbstractState
 	 * @generated
 	 */
-	public Adapter createVertexAdapter() {
+	public Adapter createAbstractStateAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link shallowhistory.Region <em>Region</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see shallowhistory.Region
+	 * @generated
+	 */
+	public Adapter createRegionAdapter() {
 		return null;
 	}
 

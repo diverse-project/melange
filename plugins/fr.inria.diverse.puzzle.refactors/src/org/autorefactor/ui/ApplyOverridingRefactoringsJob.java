@@ -55,6 +55,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jdt.core.IAnnotation;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IImportDeclaration;
+import org.eclipse.jdt.core.ILocalVariable;
 import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaModelException;
@@ -219,14 +220,11 @@ public class ApplyOverridingRefactoringsJob {
                     			if(_annotation.getElementName().equals("AddExtensionMethod"))
                     				extensionAnnotation = _annotation;
                     		}
-                    		if(extensionAnnotation != null){
-//                    			System.out.println("Creating the AddExtensionMethod in the merged: " + _method.getElementName());
-                    			IMethod _baseMethod = getMethodByName(mergedRefactoringUnit, _method.getElementName());
+                    		if(extensionAnnotation != null || _method.getElementName().equals("history")){
+                    			IMethod _baseMethod = getMethod(mergedRefactoringUnit, _method);
                         		if(_baseMethod == null){
                     				mergedRefactoringUnit.getCompilationUnit().findPrimaryType().createMethod(_method.getSource(), null, true, monitor);
-                    				
                     				IMethod privk3baseMethod = getMethodByName(extensionRefactoringUnits.get(0), "_privk3_" + _method.getElementName());
-//                    				System.out.println("privk3baseMethod: " + privk3baseMethod);
                             		if(privk3baseMethod != null){
                             			mergedRefactoringUnit.getCompilationUnit().findPrimaryType().createMethod(privk3baseMethod.getSource(), null, true, monitor);
                             		}
@@ -242,8 +240,6 @@ public class ApplyOverridingRefactoringsJob {
                     	}
             		}
             	}
-            	
-            	
         	}
         }catch(Exception e){
         	e.printStackTrace();
@@ -253,13 +249,33 @@ public class ApplyOverridingRefactoringsJob {
         return patterns;
     }
 
-    private IMethod getMethodByName(RefactoringUnit baseRefactoringUnit,
+    private IMethod getMethodByName(RefactoringUnit refactoringUnit,
 			String name) throws JavaModelException {
-		for(IMethod _method : baseRefactoringUnit.getCompilationUnit().findPrimaryType().getMethods()){
+		for(IMethod _method : refactoringUnit.getCompilationUnit().findPrimaryType().getMethods()){
 			if(_method.getElementName().equals(name))
 				return _method;
 		}
 		return null;
+	}
+    
+    private IMethod getMethod(RefactoringUnit refactoringUnit,
+			IMethod _originalMethod) throws JavaModelException {
+		for(IMethod _method : refactoringUnit.getCompilationUnit().findPrimaryType().getMethods()){
+			if(_method.getElementName().equals(_originalMethod.getElementName()) && parametersMatch(_method, _originalMethod))
+				return _method;
+		}
+		return null;
+	}
+	
+	private boolean parametersMatch(IMethod method1, IMethod method2) throws JavaModelException {
+		int i = 0;
+		for(ILocalVariable _param : method1.getParameters()){
+			if(!_param.getTypeSignature().equals(method2.getParameters()[i].getTypeSignature()))
+				return false;
+			i++;
+		}
+		
+		return true;
 	}
     
 	private boolean methodExists(String methodSource, IType primaryType) throws JavaModelException {
@@ -386,82 +402,6 @@ public class ApplyOverridingRefactoringsJob {
     	return fixedParamName;
     }
 
-	private boolean areParametersEquivalent(String[] baseParameters,
-			String[] extensionParameters) {
-    	
-    	int i = 0;
-    	for(String _parameter : baseParameters){
-    		if(!_parameter.equals(extensionParameters[i])){
-    			return false;
-    		}
-    		i++;
-    	}
-    	return true;
-	}
-
-	private void overrideRequiredMethod(RefactoringUnit baseRefactoringUnit,
-    		IMethod baseMethod, IMethod extensionMethod, IProgressMonitor monitor){
-		
-    	
-    	 try {
-             // Deleting the base method from the base compilation unit.
-    		 String baseMethodSource = baseMethod.getSource();
-    		 
-             final JavaProjectOptions options = baseRefactoringUnit.getOptions();
-             final ICompilationUnit baseCompilationUnit = baseRefactoringUnit.getCompilationUnit();
-             RemoveMethod rule = ((RemoveMethod)this.refactoringRulesToApply.get(0));
-             rule.setMethodName(baseMethod.getElementName());
-             final AggregateASTVisitor refactoring = new AggregateASTVisitor(refactoringRulesToApply);
-             applyRefactoring(baseCompilationUnit, refactoring, options);
-             
-             // Creating the new method in the base compilation unit from the extension method.
-             String newSource = extensionMethod.getSource().replace("@OverrideRequiredAspectMethod", "");
-             String baseMethodName = baseMethod.getElementName().replace("_privk3_", "");
-             newSource = newSource.replace("_original_" + baseMethodName + "(_self,", 
-            		 "_original_" + baseMethodName + "(_self_, _self,");
-             baseCompilationUnit.findPrimaryType().createMethod(newSource, null, true, monitor);
-             
-             String originalMethodSource = baseMethodSource;
-             if(!originalMethodSource.equals(newSource)){
-            	 originalMethodSource = baseMethodSource.replace("_privk3_", "_original_");
-                 baseCompilationUnit.findPrimaryType().createMethod(originalMethodSource, null, true, monitor);
-             }
-    	 }catch (Exception e) {
-             // coucou! 
-    		 e.printStackTrace();
-         }
-    }
-    
-    private void applyRefactoring(ICompilationUnit compilationUnit, AggregateASTVisitor refactoringToApply,
-            JavaProjectOptions options) throws Exception {
-        final ITextFileBufferManager bufferManager = FileBuffers.getTextFileBufferManager();
-        final IPath path = compilationUnit.getPath();
-        final LocationKind locationKind = LocationKind.NORMALIZE;
-        try {
-            bufferManager.connect(path, locationKind, null);
-            final ITextFileBuffer textFileBuffer = bufferManager.getTextFileBuffer(path, locationKind);
-            if (!textFileBuffer.isSynchronized()) {
-                /*
-                 * Cannot read the source when a file is not synchronized,
-                 * Let's ignore this file to avoid problems when:
-                 * - doing string manipulation with the source text
-                 * - applying automated refactorings to such files
-                 */
-                AutoRefactorPlugin.logError(
-                    "File \"" + compilationUnit.getPath() + "\" is not synchronized with the file system."
-                        + " Automated refactorings will not be applied to it.");
-                return;
-            }
-            final IDocument document = textFileBuffer.getDocument();
-            applyRefactoring(document, compilationUnit, refactoringToApply, options);
-            
-            
-            
-        } finally {
-            bufferManager.disconnect(path, locationKind, null);
-        }
-    }
-
     /**
      * Applies the refactorings provided inside the {@link AggregateASTVisitor} to the provided
      * {@link ICompilationUnit}.
@@ -483,9 +423,11 @@ public class ApplyOverridingRefactoringsJob {
      * href="http://www.eclipse.org/articles/article.php?file=Article-JavaCodeManipulation_AST/index.html"
      * >Abstract Syntax Tree > Write it down</a>
      */
+    @SuppressWarnings("deprecation")
     public void applyRefactoring(IDocument document, ICompilationUnit compilationUnit, AggregateASTVisitor refactoring,
             JavaProjectOptions options) throws Exception {
-        final ASTParser parser = ASTParser.newParser(AST.JLS4);
+       
+		final ASTParser parser = ASTParser.newParser(AST.JLS4);
         resetParser(compilationUnit, parser, options);
 
         CompilationUnit astRoot = (CompilationUnit) parser.createAST(null);

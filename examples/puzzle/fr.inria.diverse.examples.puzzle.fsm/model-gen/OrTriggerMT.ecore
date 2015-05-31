@@ -16,6 +16,13 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OrTrigger" eSuperTypes="//Trigger">
+    <eOperations name="evalTrigger">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="events" upperBound="-1">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eParameters>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" lowerBound="1" eType="//Trigger"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="//Trigger"/>
   </eClassifiers>

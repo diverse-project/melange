@@ -11,6 +11,57 @@
         </eGenericType>
       </eParameters>
     </eOperations>
+    <eOperations name="findNewActiveStates">
+      <eAnnotations source="aspect"/>
+      <eParameters name="newActiveStates" upperBound="-1" eType="//AbstractState"/>
+      <eParameters name="selectedTransition" eType="//Transition"/>
+      <eParameters name="currentActiveTransitions" upperBound="-1" eType="//Transition"/>
+      <eParameters name="context" eType="//Hashtable"/>
+    </eOperations>
+    <eOperations name="findOldActiveStates">
+      <eAnnotations source="aspect"/>
+      <eParameters name="oldActiveStates" upperBound="-1" eType="//AbstractState"/>
+      <eParameters name="selectedTransition" eType="//Transition"/>
+    </eOperations>
+    <eOperations name="findNewActiveTransitions">
+      <eAnnotations source="aspect"/>
+      <eParameters name="newActiveTransitions" upperBound="-1" eType="//Transition"/>
+      <eParameters name="selectedTransition" eType="//Transition"/>
+      <eParameters name="context" eType="//Hashtable"/>
+    </eOperations>
+    <eOperations name="getAllParents">
+      <eAnnotations source="aspect"/>
+      <eParameters name="vertex" eType="//AbstractState"/>
+      <eParameters name="parents" upperBound="-1" eType="//AbstractState"/>
+    </eOperations>
+    <eOperations name="getAllChildren">
+      <eAnnotations source="aspect"/>
+      <eParameters name="vertex" eType="//AbstractState"/>
+      <eParameters name="children" upperBound="-1" eType="//AbstractState"/>
+    </eOperations>
+    <eOperations name="highestConflictingTransition" eType="//Transition">
+      <eAnnotations source="aspect"/>
+      <eParameters name="newActiveTransitions" upperBound="-1" eType="//Transition"/>
+      <eParameters name="selectedTransition" eType="//Transition"/>
+    </eOperations>
+    <eOperations name="_original_findNewActiveStates">
+      <eAnnotations source="aspect"/>
+      <eParameters name="newActiveStates" upperBound="-1" eType="//AbstractState"/>
+      <eParameters name="selectedTransition" eType="//Transition"/>
+      <eParameters name="currentActiveTransitions" upperBound="-1" eType="//Transition"/>
+      <eParameters name="context" eType="//Hashtable"/>
+    </eOperations>
+    <eOperations name="_original_findOldActiveStates">
+      <eAnnotations source="aspect"/>
+      <eParameters name="oldActiveStates" upperBound="-1" eType="//AbstractState"/>
+      <eParameters name="selectedTransition" eType="//Transition"/>
+    </eOperations>
+    <eOperations name="_original_findNewActiveTransitions">
+      <eAnnotations source="aspect"/>
+      <eParameters name="newActiveTransitions" upperBound="-1" eType="//Transition"/>
+      <eParameters name="selectedTransition" eType="//Transition"/>
+      <eParameters name="context" eType="//Hashtable"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subvertex" upperBound="-1" eType="//AbstractState" containment="true" eOpposite="//AbstractState/ownerRegion"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownerState" eType="//State" eOpposite="//State/ownedRegions">
       <eAnnotations source="addition"/>
@@ -19,6 +70,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="State" eSuperTypes="//AbstractState">
     <eAnnotations source="extension"/>
     <eOperations name="evalState">
+      <eAnnotations source="aspect"/>
       <eParameters name="context">
         <eGenericType>
           <eTypeArguments/>
@@ -26,6 +78,10 @@
           <eClassifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
         </eGenericType>
       </eParameters>
+    </eOperations>
+    <eOperations name="_original_evalState">
+      <eAnnotations source="aspect"/>
+      <eParameters name="context" eType="//Hashtable"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRegions" upperBound="-1" eType="//Region" containment="true" eOpposite="//Region/ownerState">
       <eAnnotations source="addition"/>
@@ -42,4 +98,5 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1" eType="//AbstractState" eOpposite="//AbstractState/outgoing"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1" eType="//AbstractState" eOpposite="//AbstractState/incoming"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Hashtable" instanceClassName="java.util.Hashtable"/>
 </ecore:EPackage>

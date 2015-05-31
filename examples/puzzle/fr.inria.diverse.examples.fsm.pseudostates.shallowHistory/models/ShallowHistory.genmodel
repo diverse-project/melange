@@ -16,16 +16,10 @@
       </genFeatures>
     </genClasses>
     <genClasses>
-      <ecoreClass href="ShallowHistory.ecore#//CompositeState"/>
-      <genFeatures property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="ShallowHistory.ecore#//CompositeState/states"/>
-      </genFeatures>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="ShallowHistory.ecore#//CompositeState/initialState"/>
-      </genFeatures>
-    </genClasses>
-    <genClasses>
       <ecoreClass href="ShallowHistory.ecore#//State"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ShallowHistory.ecore#//State/ownedRegions"/>
+      </genFeatures>
       <genOperations>
         <ecoreOperation href="ShallowHistory.ecore#//State/entryState"/>
         <genParameters>
@@ -34,7 +28,16 @@
       </genOperations>
     </genClasses>
     <genClasses image="false">
-      <ecoreClass href="ShallowHistory.ecore#//Vertex"/>
+      <ecoreClass href="ShallowHistory.ecore#//AbstractState"/>
+      <genFeatures property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="ShallowHistory.ecore#//AbstractState/ownerRegion"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ShallowHistory.ecore#//Region"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ShallowHistory.ecore#//Region/subvertex"/>
+      </genFeatures>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

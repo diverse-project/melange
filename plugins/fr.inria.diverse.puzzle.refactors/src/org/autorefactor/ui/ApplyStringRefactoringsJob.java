@@ -31,20 +31,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import org.autorefactor.AutoRefactorPlugin;
-import org.autorefactor.refactoring.JavaProjectOptions;
 import org.autorefactor.refactoring.RefactoringRule;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.jdt.core.ICompilationUnit;
-import org.eclipse.jdt.core.dom.ASTParser;
-import org.eclipse.jdt.core.dom.ASTVisitor;
 
 /**
  * Eclipse job that applies the provided refactoring rules in background.
@@ -54,9 +48,6 @@ import org.eclipse.jdt.core.dom.ASTVisitor;
  */
 public class ApplyStringRefactoringsJob {
 
-    private final List<RefactoringRule> refactoringRulesToApply;
-    private final RefactoringUnit baseRefactoringUnit;
-    private final RefactoringUnit extensionRefactoringUnit;
     private ArrayList<RefactoringPatternVO> patterns;
     private ArrayList<RefactoringPatternVO> morePatterns;
     private final File targetFolderAspects;
@@ -72,9 +63,6 @@ public class ApplyStringRefactoringsJob {
     		RefactoringUnit baseRefactoringUnit, RefactoringUnit extensionRefactoringUnit, 
     		List<RefactoringRule> refactoringRulesToApply, ArrayList<RefactoringPatternVO> patterns, ArrayList<RefactoringPatternVO> morePatterns,
     		File targetFolderAspects, IProject targetProject) {
-        this.baseRefactoringUnit = baseRefactoringUnit;
-        this.extensionRefactoringUnit = extensionRefactoringUnit;
-        this.refactoringRulesToApply = refactoringRulesToApply;
         this.patterns = patterns;
         this.morePatterns = morePatterns;
         this.targetFolderAspects = targetFolderAspects;
@@ -84,26 +72,8 @@ public class ApplyStringRefactoringsJob {
     /** {@inheritDoc} */
     protected IStatus run(IProgressMonitor monitor) {
         try {
-        	System.out.println("protected IStatus run(IProgressMonitor monitor)");
-            return run0(monitor);
-        } catch (Exception e) {
-            final String msg = "Error while applying refactorings.\n\n"
-                    + "Please look at the Eclipse workspace logs and "
-                    + "report the stacktrace to the AutoRefactor project.\n"
-                    + "Please provide sample java code that triggers the error.\n\n";
-            return new Status(IStatus.ERROR, AutoRefactorPlugin.PLUGIN_ID, msg, e);
-        }
-    }
-
-    private IStatus run0(IProgressMonitor monitor) throws Exception {
-
-        final int startSize = 2;
-        monitor.beginTask("", startSize);
-        try {
-        	
-        	if (monitor.isCanceled()) {
+        	if (monitor.isCanceled()) 
                 return Status.CANCEL_STATUS;
-            }
         	
         	ArrayList<RefactoringPatternVO> _patterns = new ArrayList<RefactoringPatternVO>();
         	for (RefactoringPatternVO refactoringPatternVO : patterns) {
@@ -112,21 +82,23 @@ public class ApplyStringRefactoringsJob {
         	patternBasedFileRefactoringBatch(targetFolderAspects, _patterns);
         	
         	ArrayList<RefactoringPatternVO> _MorePatterns = new ArrayList<RefactoringPatternVO>();
-        	for (RefactoringPatternVO refactoringPatternVO : morePatterns) {
-        		System.out.println("Patrones de la discordia: " + refactoringPatternVO.getSourcePattern() + ".." + refactoringPatternVO.getTargetPattern());
-        		_MorePatterns.add(refactoringPatternVO);
-			}
+        	if(morePatterns != null){
+        		for (RefactoringPatternVO refactoringPatternVO : morePatterns) {
+            		_MorePatterns.add(refactoringPatternVO);
+    			}
+        	}
         	patternBasedFileRefactoringBatch(targetFolderAspects, _MorePatterns);
-        	
         	targetProject.refreshLocal(IResource.DEPTH_INFINITE, null);
             
-        } finally {
+        } catch (Exception e) {
+			e.printStackTrace();
+		} finally {
             monitor.done();
         }
         return Status.OK_STATUS;
     }
     
-    public void patternBasedFileRefactoringBatch(File file, ArrayList<RefactoringPatternVO> _patterns) throws IOException{
+    private void patternBasedFileRefactoringBatch(File file, ArrayList<RefactoringPatternVO> _patterns) throws IOException{
 		if(!file.isDirectory()){
 			if(file.getName().endsWith(".java")){
 				String newContent = "";
@@ -160,24 +132,4 @@ public class ApplyStringRefactoringsJob {
 			}
 		}
 	}
-    
-
-    private static void resetParser(ICompilationUnit cu, ASTParser parser, JavaProjectOptions options) {
-        parser.setSource(cu);
-        parser.setResolveBindings(true);
-        parser.setCompilerOptions(options.getCompilerOptions());
-    }
-
-    private String getPossibleCulprits(int nbLoopsWithSameVisitors, List<ASTVisitor> lastLoopVisitors) {
-        if (nbLoopsWithSameVisitors < 100 || lastLoopVisitors.isEmpty()) {
-            return "";
-        }
-        final StringBuilder sb = new StringBuilder(" Possible culprit ASTVisitor classes are: ");
-        final Iterator<ASTVisitor> iter = lastLoopVisitors.iterator();
-        sb.append(iter.next().getClass().getName());
-        while (iter.hasNext()) {
-            sb.append(", ").append(iter.next().getClass().getName());
-        }
-        return sb.toString();
-    }
 }

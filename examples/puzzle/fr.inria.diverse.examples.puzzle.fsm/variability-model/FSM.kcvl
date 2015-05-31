@@ -263,12 +263,12 @@
             <child
                 xsi:type="kcvlmetamodel:ChoiceResolutuion"
                 name="SemSequential"
-                resolvedChoice="//@packageElement.0/@packageElement.1/@child.0/@child.1/@child.0"/>
+                resolvedChoice="//@packageElement.0/@packageElement.1/@child.0/@child.1/@child.0"
+                decision="true"/>
             <child
                 xsi:type="kcvlmetamodel:ChoiceResolutuion"
                 name="SemParallel"
-                resolvedChoice="//@packageElement.0/@packageElement.1/@child.0/@child.1/@child.1"
-                decision="true"/>
+                resolvedChoice="//@packageElement.0/@packageElement.1/@child.0/@child.1/@child.1"/>
           </child>
           <child
               xsi:type="kcvlmetamodel:ChoiceResolutuion"
@@ -277,12 +277,12 @@
             <child
                 xsi:type="kcvlmetamodel:ChoiceResolutuion"
                 name="SemRunToCompletion"
-                resolvedChoice="//@packageElement.0/@packageElement.1/@child.0/@child.2/@child.0"/>
+                resolvedChoice="//@packageElement.0/@packageElement.1/@child.0/@child.2/@child.0"
+                decision="true"/>
             <child
                 xsi:type="kcvlmetamodel:ChoiceResolutuion"
                 name="SemSimultaneousEvents"
-                resolvedChoice="//@packageElement.0/@packageElement.1/@child.0/@child.2/@child.1"
-                decision="true"/>
+                resolvedChoice="//@packageElement.0/@packageElement.1/@child.0/@child.2/@child.1"/>
           </child>
         </child>
       </child>

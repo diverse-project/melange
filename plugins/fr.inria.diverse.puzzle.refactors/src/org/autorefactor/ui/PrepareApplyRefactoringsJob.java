@@ -101,6 +101,44 @@ public class PrepareApplyRefactoringsJob extends Job {
 	protected IStatus run(IProgressMonitor monitor) {
 		AutoRefactorPlugin.register(this);
 		try {
+			List<String> additionalVariablesList = new ArrayList<String>();
+			// Collecting the information concerning the properties files and
+			// applying the corresponding merge.
+			Iterator<String> keys = this.propertiesFiles.keySet().iterator();
+			while (keys.hasNext()) {
+				String currentKey = keys.next();
+				PropertiesSetVO propertiesSet = this.propertiesFiles
+						.get(currentKey);
+
+				String mergedPropertiesPathString = propertiesSet
+						.getMergedPropertiesFile().replace(
+								this.targetProject.getWorkspace().getRoot()
+										.getLocation().toString(), "");
+				IPath mergedPropertiesPath = new Path(
+						mergedPropertiesPathString);
+				IJavaElement mergedPropertiesJavaElement = JavaCore
+						.create(this.targetProject.getWorkspace().getRoot()
+								.getFile(mergedPropertiesPath));
+
+				ArrayList<IJavaElement> javaElementsToMerge = new ArrayList<IJavaElement>();
+				for (String _propertiesFileToMerge : propertiesSet
+						.getAllPropertiesFiles()) {
+					String propertiesPathString = _propertiesFileToMerge
+							.replace(this.targetProject.getWorkspace()
+									.getRoot().getLocation().toString(), "");
+					IPath propertiesPath = new Path(propertiesPathString);
+					IJavaElement currentJavaElement = JavaCore
+							.create(this.targetProject.getWorkspace().getRoot()
+									.getFile(propertiesPath));
+					javaElementsToMerge.add(currentJavaElement);
+				}
+				targetProject.refreshLocal(IResource.DEPTH_INFINITE, null);
+				
+				new ApplyFileMergeRefactoringsJob(mergedPropertiesJavaElement,
+						javaElementsToMerge, targetProject, additionalVariablesList)
+						.run(monitor);
+			}
+			
 			for (OverlappingAspectsVO overlappingAspectVO : overlappingAspects) {
 				ArrayList<IJavaElement> javaElements = new ArrayList<IJavaElement>();
 				javaElements.add(overlappingAspectVO.extensionElement);
@@ -110,7 +148,7 @@ public class PrepareApplyRefactoringsJob extends Job {
 					final List<RefactoringUnit> toRefactor = collectRefactoringUnits(javaElements);
 					new ApplyOverloadingRefactoringsJob(toRefactor.get(1),
 							toRefactor.get(0), refactoringRulesToApply,
-							patterns, targetFolderAspects, targetProject)
+							patterns, targetFolderAspects, targetProject, additionalVariablesList)
 							.run(monitor);
 				}
 			}
@@ -149,42 +187,6 @@ public class PrepareApplyRefactoringsJob extends Job {
 			new ApplyStringRefactoringsJob(null, null, refactoringRulesToApply,
 					patterns, morePatterns, targetFolderAspects, targetProject)
 					.run(monitor);
-
-			// Collecting the information concerning the properties files and
-			// applying the corresponding merge.
-			Iterator<String> keys = this.propertiesFiles.keySet().iterator();
-			while (keys.hasNext()) {
-				String currentKey = keys.next();
-				PropertiesSetVO propertiesSet = this.propertiesFiles
-						.get(currentKey);
-
-				String mergedPropertiesPathString = propertiesSet
-						.getMergedPropertiesFile().replace(
-								this.targetProject.getWorkspace().getRoot()
-										.getLocation().toString(), "");
-				IPath mergedPropertiesPath = new Path(
-						mergedPropertiesPathString);
-				IJavaElement mergedPropertiesJavaElement = JavaCore
-						.create(this.targetProject.getWorkspace().getRoot()
-								.getFile(mergedPropertiesPath));
-
-				ArrayList<IJavaElement> javaElementsToMerge = new ArrayList<IJavaElement>();
-				for (String _propertiesFileToMerge : propertiesSet
-						.getAllPropertiesFiles()) {
-					String propertiesPathString = _propertiesFileToMerge
-							.replace(this.targetProject.getWorkspace()
-									.getRoot().getLocation().toString(), "");
-					IPath propertiesPath = new Path(propertiesPathString);
-					IJavaElement currentJavaElement = JavaCore
-							.create(this.targetProject.getWorkspace().getRoot()
-									.getFile(propertiesPath));
-					javaElementsToMerge.add(currentJavaElement);
-				}
-				targetProject.refreshLocal(IResource.DEPTH_INFINITE, null);
-				new ApplyFileMergeRefactoringsJob(mergedPropertiesJavaElement,
-						javaElementsToMerge, targetFolderAspects, targetProject)
-						.run(monitor);
-			}
 
 			return Status.OK_STATUS;
 		} catch (Exception e) {

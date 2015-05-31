@@ -3,40 +3,34 @@ package fr.inria.diverse.melange.puzzle
 import com.google.inject.Inject
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 import java.util.List
+import org.autorefactor.ui.RefactoringPatternVO
 import org.eclipse.emf.ecore.EOperation
 import org.eclipse.xtend.core.xtend.AnonymousClass
 import org.eclipse.xtend.core.xtend.XtendFile
-import org.eclipse.xtend.core.xtend.XtendFormalParameter
 import org.eclipse.xtend.core.xtend.XtendFunction
 import org.eclipse.xtend.core.xtend.XtendMember
 import org.eclipse.xtend.core.xtend.XtendTypeDeclaration
-import org.eclipse.xtext.common.types.JvmOperation
-import org.eclipse.xtext.common.types.JvmType
 import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.util.CancelIndicator
 import org.eclipse.xtext.xbase.XAbstractFeatureCall
 import org.eclipse.xtext.xbase.XAssignment
 import org.eclipse.xtext.xbase.XBinaryOperation
+import org.eclipse.xtext.xbase.XCastedExpression
 import org.eclipse.xtext.xbase.XClosure
 import org.eclipse.xtext.xbase.XConstructorCall
 import org.eclipse.xtext.xbase.XExpression
-import org.eclipse.xtext.xbase.XFeatureCall
 import org.eclipse.xtext.xbase.XForLoopExpression
 import org.eclipse.xtext.xbase.XIfExpression
 import org.eclipse.xtext.xbase.XMemberFeatureCall
+import org.eclipse.xtext.xbase.XNumberLiteral
 import org.eclipse.xtext.xbase.XReturnExpression
+import org.eclipse.xtext.xbase.XStringLiteral
 import org.eclipse.xtext.xbase.XUnaryOperation
 import org.eclipse.xtext.xbase.XWhileExpression
 import org.eclipse.xtext.xbase.interpreter.IEvaluationContext
-import org.eclipse.xtext.xbase.interpreter.impl.XbaseInterpreter
-import org.eclipse.xtext.xbase.impl.XCastedExpressionImpl
-import org.eclipse.xtext.xbase.XCastedExpression
-import org.autorefactor.ui.RefactoringPatternVO
-import org.eclipse.xtext.xbase.typesystem.references.LightweightTypeReference
 import org.eclipse.xtext.xbase.interpreter.impl.EvaluationException
 import org.eclipse.xtext.xbase.interpreter.impl.InterpreterCanceledException
-import org.eclipse.xtext.xbase.XStringLiteral
-import org.eclipse.xtext.xbase.XNumberLiteral
+import org.eclipse.xtext.xbase.interpreter.impl.XbaseInterpreter
 
 /**
  * Class that go through an xbase xexpression and creates the corresponding refactoring patterns

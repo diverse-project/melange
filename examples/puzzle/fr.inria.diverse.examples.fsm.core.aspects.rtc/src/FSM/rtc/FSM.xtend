@@ -146,6 +146,11 @@ class RegionAspect {
 			_self.findNewActiveStates(newStates, transition, currentTransitions, context)
 		}
 
+		for(AbstractState _attendedState : attendedStates){
+			if(_attendedState instanceof State)
+				(_attendedState as State).exitState(context)
+		}
+		
 		currentState.removeAll(attendedStates)
 		
 		for(AbstractState _newState : newStates){
@@ -244,9 +249,6 @@ class TransitionAspect {
 	def public void evalTransition(Hashtable<String, Object> context){
 		if(_self.validGuard(context)){
 			
-			if(_self.source instanceof State)
-				(_self.source as State).exitState(context)
-				
 			if(_self.target instanceof State){
 				(_self.target as State).entryState(context)
 				(_self.target as State).evalState(context)				

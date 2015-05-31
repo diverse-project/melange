@@ -2,53 +2,48 @@
  */
 package shallowhistory.impl;
 
-import java.lang.reflect.InvocationTargetException;
-
 import java.util.Collection;
-import java.util.Map;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import shallowhistory.AbstractState;
 import shallowhistory.Region;
 import shallowhistory.ShallowhistoryPackage;
-import shallowhistory.State;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>State</b></em>'.
+ * An implementation of the model object '<em><b>Region</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link shallowhistory.impl.StateImpl#getOwnedRegions <em>Owned Regions</em>}</li>
+ *   <li>{@link shallowhistory.impl.RegionImpl#getSubvertex <em>Subvertex</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class StateImpl extends AbstractStateImpl implements State {
+public class RegionImpl extends MinimalEObjectImpl.Container implements Region {
 	/**
-	 * The cached value of the '{@link #getOwnedRegions() <em>Owned Regions</em>}' containment reference list.
+	 * The cached value of the '{@link #getSubvertex() <em>Subvertex</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedRegions()
+	 * @see #getSubvertex()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Region> ownedRegions;
+	protected EList<AbstractState> subvertex;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StateImpl() {
+	protected RegionImpl() {
 		super();
 	}
 
@@ -59,7 +54,7 @@ public class StateImpl extends AbstractStateImpl implements State {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ShallowhistoryPackage.Literals.STATE;
+		return ShallowhistoryPackage.Literals.REGION;
 	}
 
 	/**
@@ -67,11 +62,11 @@ public class StateImpl extends AbstractStateImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Region> getOwnedRegions() {
-		if (ownedRegions == null) {
-			ownedRegions = new EObjectContainmentEList<Region>(Region.class, this, ShallowhistoryPackage.STATE__OWNED_REGIONS);
+	public EList<AbstractState> getSubvertex() {
+		if (subvertex == null) {
+			subvertex = new EObjectContainmentWithInverseEList<AbstractState>(AbstractState.class, this, ShallowhistoryPackage.REGION__SUBVERTEX, ShallowhistoryPackage.ABSTRACT_STATE__OWNER_REGION);
 		}
-		return ownedRegions;
+		return subvertex;
 	}
 
 	/**
@@ -79,10 +74,14 @@ public class StateImpl extends AbstractStateImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void entryState(Map<?, ?> context) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ShallowhistoryPackage.REGION__SUBVERTEX:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSubvertex()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -93,8 +92,8 @@ public class StateImpl extends AbstractStateImpl implements State {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ShallowhistoryPackage.STATE__OWNED_REGIONS:
-				return ((InternalEList<?>)getOwnedRegions()).basicRemove(otherEnd, msgs);
+			case ShallowhistoryPackage.REGION__SUBVERTEX:
+				return ((InternalEList<?>)getSubvertex()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -107,8 +106,8 @@ public class StateImpl extends AbstractStateImpl implements State {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ShallowhistoryPackage.STATE__OWNED_REGIONS:
-				return getOwnedRegions();
+			case ShallowhistoryPackage.REGION__SUBVERTEX:
+				return getSubvertex();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -122,9 +121,9 @@ public class StateImpl extends AbstractStateImpl implements State {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ShallowhistoryPackage.STATE__OWNED_REGIONS:
-				getOwnedRegions().clear();
-				getOwnedRegions().addAll((Collection<? extends Region>)newValue);
+			case ShallowhistoryPackage.REGION__SUBVERTEX:
+				getSubvertex().clear();
+				getSubvertex().addAll((Collection<? extends AbstractState>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -138,8 +137,8 @@ public class StateImpl extends AbstractStateImpl implements State {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ShallowhistoryPackage.STATE__OWNED_REGIONS:
-				getOwnedRegions().clear();
+			case ShallowhistoryPackage.REGION__SUBVERTEX:
+				getSubvertex().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -153,25 +152,10 @@ public class StateImpl extends AbstractStateImpl implements State {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ShallowhistoryPackage.STATE__OWNED_REGIONS:
-				return ownedRegions != null && !ownedRegions.isEmpty();
+			case ShallowhistoryPackage.REGION__SUBVERTEX:
+				return subvertex != null && !subvertex.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case ShallowhistoryPackage.STATE___ENTRY_STATE__MAP:
-				entryState((Map<?, ?>)arguments.get(0));
-				return null;
-		}
-		return super.eInvoke(operationID, arguments);
-	}
-
-} //StateImpl
+} //RegionImpl

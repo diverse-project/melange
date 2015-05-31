@@ -31,15 +31,6 @@ public interface ShallowhistoryFactory extends EFactory {
 	Pseudostate createPseudostate();
 
 	/**
-	 * Returns a new object of class '<em>Composite State</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Composite State</em>'.
-	 * @generated
-	 */
-	CompositeState createCompositeState();
-
-	/**
 	 * Returns a new object of class '<em>State</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -47,6 +38,15 @@ public interface ShallowhistoryFactory extends EFactory {
 	 * @generated
 	 */
 	State createState();
+
+	/**
+	 * Returns a new object of class '<em>Region</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Region</em>'.
+	 * @generated
+	 */
+	Region createRegion();
 
 	/**
 	 * Returns the package supported by this factory.

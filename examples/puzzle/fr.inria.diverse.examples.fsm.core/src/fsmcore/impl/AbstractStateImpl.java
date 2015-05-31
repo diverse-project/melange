@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -57,16 +58,6 @@ public abstract class AbstractStateImpl extends NamedElementImpl implements Abst
 	 * @ordered
 	 */
 	protected EList<Transition> outgoing;
-
-	/**
-	 * The cached value of the '{@link #getOwnerRegion() <em>Owner Region</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnerRegion()
-	 * @generated
-	 * @ordered
-	 */
-	protected Region ownerRegion;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -117,15 +108,8 @@ public abstract class AbstractStateImpl extends NamedElementImpl implements Abst
 	 * @generated
 	 */
 	public Region getOwnerRegion() {
-		if (ownerRegion != null && ownerRegion.eIsProxy()) {
-			InternalEObject oldOwnerRegion = (InternalEObject)ownerRegion;
-			ownerRegion = (Region)eResolveProxy(oldOwnerRegion);
-			if (ownerRegion != oldOwnerRegion) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FsmcorePackage.ABSTRACT_STATE__OWNER_REGION, oldOwnerRegion, ownerRegion));
-			}
-		}
-		return ownerRegion;
+		if (eContainerFeatureID() != FsmcorePackage.ABSTRACT_STATE__OWNER_REGION) return null;
+		return (Region)eInternalContainer();
 	}
 
 	/**
@@ -133,8 +117,9 @@ public abstract class AbstractStateImpl extends NamedElementImpl implements Abst
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Region basicGetOwnerRegion() {
-		return ownerRegion;
+	public NotificationChain basicSetOwnerRegion(Region newOwnerRegion, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwnerRegion, FsmcorePackage.ABSTRACT_STATE__OWNER_REGION, msgs);
+		return msgs;
 	}
 
 	/**
@@ -143,10 +128,19 @@ public abstract class AbstractStateImpl extends NamedElementImpl implements Abst
 	 * @generated
 	 */
 	public void setOwnerRegion(Region newOwnerRegion) {
-		Region oldOwnerRegion = ownerRegion;
-		ownerRegion = newOwnerRegion;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FsmcorePackage.ABSTRACT_STATE__OWNER_REGION, oldOwnerRegion, ownerRegion));
+		if (newOwnerRegion != eInternalContainer() || (eContainerFeatureID() != FsmcorePackage.ABSTRACT_STATE__OWNER_REGION && newOwnerRegion != null)) {
+			if (EcoreUtil.isAncestor(this, newOwnerRegion))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwnerRegion != null)
+				msgs = ((InternalEObject)newOwnerRegion).eInverseAdd(this, FsmcorePackage.REGION__SUBVERTEX, Region.class, msgs);
+			msgs = basicSetOwnerRegion(newOwnerRegion, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FsmcorePackage.ABSTRACT_STATE__OWNER_REGION, newOwnerRegion, newOwnerRegion));
 	}
 
 	/**
@@ -162,6 +156,10 @@ public abstract class AbstractStateImpl extends NamedElementImpl implements Abst
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getIncoming()).basicAdd(otherEnd, msgs);
 			case FsmcorePackage.ABSTRACT_STATE__OUTGOING:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOutgoing()).basicAdd(otherEnd, msgs);
+			case FsmcorePackage.ABSTRACT_STATE__OWNER_REGION:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwnerRegion((Region)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -178,8 +176,24 @@ public abstract class AbstractStateImpl extends NamedElementImpl implements Abst
 				return ((InternalEList<?>)getIncoming()).basicRemove(otherEnd, msgs);
 			case FsmcorePackage.ABSTRACT_STATE__OUTGOING:
 				return ((InternalEList<?>)getOutgoing()).basicRemove(otherEnd, msgs);
+			case FsmcorePackage.ABSTRACT_STATE__OWNER_REGION:
+				return basicSetOwnerRegion(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case FsmcorePackage.ABSTRACT_STATE__OWNER_REGION:
+				return eInternalContainer().eInverseRemove(this, FsmcorePackage.REGION__SUBVERTEX, Region.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -195,8 +209,7 @@ public abstract class AbstractStateImpl extends NamedElementImpl implements Abst
 			case FsmcorePackage.ABSTRACT_STATE__OUTGOING:
 				return getOutgoing();
 			case FsmcorePackage.ABSTRACT_STATE__OWNER_REGION:
-				if (resolve) return getOwnerRegion();
-				return basicGetOwnerRegion();
+				return getOwnerRegion();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -259,7 +272,7 @@ public abstract class AbstractStateImpl extends NamedElementImpl implements Abst
 			case FsmcorePackage.ABSTRACT_STATE__OUTGOING:
 				return outgoing != null && !outgoing.isEmpty();
 			case FsmcorePackage.ABSTRACT_STATE__OWNER_REGION:
-				return ownerRegion != null;
+				return getOwnerRegion() != null;
 		}
 		return super.eIsSet(featureID);
 	}

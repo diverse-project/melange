@@ -60,26 +60,28 @@ public interface AbstractState extends NamedElement {
 	EList<Transition> getOutgoing();
 
 	/**
-	 * Returns the value of the '<em><b>Owner Region</b></em>' reference.
+	 * Returns the value of the '<em><b>Owner Region</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link fsmcore.Region#getSubvertex <em>Subvertex</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owner Region</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owner Region</em>' reference.
+	 * @return the value of the '<em>Owner Region</em>' container reference.
 	 * @see #setOwnerRegion(Region)
 	 * @see fsmcore.FsmcorePackage#getAbstractState_OwnerRegion()
-	 * @model required="true"
+	 * @see fsmcore.Region#getSubvertex
+	 * @model opposite="subvertex" required="true" transient="false"
 	 * @generated
 	 */
 	Region getOwnerRegion();
 
 	/**
-	 * Sets the value of the '{@link fsmcore.AbstractState#getOwnerRegion <em>Owner Region</em>}' reference.
+	 * Sets the value of the '{@link fsmcore.AbstractState#getOwnerRegion <em>Owner Region</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owner Region</em>' reference.
+	 * @param value the new value of the '<em>Owner Region</em>' container reference.
 	 * @see #getOwnerRegion()
 	 * @generated
 	 */

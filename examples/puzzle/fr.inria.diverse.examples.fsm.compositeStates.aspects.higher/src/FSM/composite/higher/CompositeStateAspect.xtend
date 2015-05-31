@@ -13,6 +13,7 @@ import java.util.Hashtable
 import java.util.ArrayList
 
 import compositestates.Region
+import java.util.List
 
 @Aspect(className=Region)
 class RegionAspect{
@@ -36,10 +37,19 @@ class RegionAspect{
 		
 		// Removing the states coming from conflicting transitions
 		var ArrayList<AbstractState> toDelete = new ArrayList<AbstractState>()
+		val ArrayList<AbstractState> targetChildren = new ArrayList<AbstractState>()
+		_self.getAllChildren(selectedTransition.source, targetChildren)
+		
 		for(AbstractState _newState : newActiveStates){
 			var boolean delete = true
 			
-			for(Transition _incoming : _newState.incoming){
+			var List<Transition> transitions = new ArrayList<Transition>();
+			transitions.addAll(_newState.incoming)
+			for(AbstractState _children : targetChildren){
+				transitions.addAll(_children.incoming)
+			}
+			
+			for(Transition _incoming : transitions){
 				
 				if(_newState instanceof State){
 					var ArrayList<AbstractState> children = newArrayList

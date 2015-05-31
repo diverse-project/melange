@@ -58,8 +58,8 @@ public class ShallowhistoryFactoryImpl extends EFactoryImpl implements Shallowhi
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case ShallowhistoryPackage.PSEUDOSTATE: return createPseudostate();
-			case ShallowhistoryPackage.COMPOSITE_STATE: return createCompositeState();
 			case ShallowhistoryPackage.STATE: return createState();
+			case ShallowhistoryPackage.REGION: return createRegion();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -110,9 +110,9 @@ public class ShallowhistoryFactoryImpl extends EFactoryImpl implements Shallowhi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeState createCompositeState() {
-		CompositeStateImpl compositeState = new CompositeStateImpl();
-		return compositeState;
+	public State createState() {
+		StateImpl state = new StateImpl();
+		return state;
 	}
 
 	/**
@@ -120,9 +120,9 @@ public class ShallowhistoryFactoryImpl extends EFactoryImpl implements Shallowhi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public State createState() {
-		StateImpl state = new StateImpl();
-		return state;
+	public Region createRegion() {
+		RegionImpl region = new RegionImpl();
+		return region;
 	}
 
 	/**

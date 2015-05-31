@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -80,7 +81,7 @@ public class RegionImpl extends NamedElementImpl implements Region {
 	 */
 	public EList<AbstractState> getSubvertex() {
 		if (subvertex == null) {
-			subvertex = new EObjectContainmentEList<AbstractState>(AbstractState.class, this, FsmcorePackage.REGION__SUBVERTEX);
+			subvertex = new EObjectContainmentWithInverseEList<AbstractState>(AbstractState.class, this, FsmcorePackage.REGION__SUBVERTEX, FsmcorePackage.ABSTRACT_STATE__OWNER_REGION);
 		}
 		return subvertex;
 	}
@@ -95,6 +96,21 @@ public class RegionImpl extends NamedElementImpl implements Region {
 			transitions = new EObjectContainmentEList<Transition>(Transition.class, this, FsmcorePackage.REGION__TRANSITIONS);
 		}
 		return transitions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case FsmcorePackage.REGION__SUBVERTEX:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSubvertex()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**

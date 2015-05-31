@@ -58,6 +58,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.jdt.core.IAnnotation;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IImportDeclaration;
+import org.eclipse.jdt.core.ILocalVariable;
 import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaModelException;
@@ -79,6 +80,7 @@ public class ApplyOverloadingRefactoringsJob {
     private final RefactoringUnit baseRefactoringUnit;
     private final RefactoringUnit extensionRefactoringUnit;
     private final IProject targetProject;
+    private final List<String> additionalVariablesList;
     
     /**
      * Builds an instance of this class.
@@ -89,11 +91,12 @@ public class ApplyOverloadingRefactoringsJob {
     public ApplyOverloadingRefactoringsJob(
     		RefactoringUnit baseRefactoringUnit, RefactoringUnit extensionRefactoringUnit, 
     		List<RefactoringRule> refactoringRulesToApply, ArrayList<RefactoringPatternVO> patterns, 
-    		File targetFolderAspects, IProject targetProject) {
+    		File targetFolderAspects, IProject targetProject, List<String> additionalVariablesList) {
         this.baseRefactoringUnit = baseRefactoringUnit;
         this.extensionRefactoringUnit = extensionRefactoringUnit;
         this.refactoringRulesToApply = refactoringRulesToApply;
         this.targetProject = targetProject;
+        this.additionalVariablesList = additionalVariablesList;
     }
 
     /** {@inheritDoc} 
@@ -169,15 +172,9 @@ public class ApplyOverloadingRefactoringsJob {
                     	}
                     	
                     	if(toRemove != null && oldOriginal == null){
-//                    		System.out.println("overriding original");
-//                    		System.out.println("oldOriginal: " + realOverridingMethod.getSource());
-//                    		System.out.println("toRemove: " + toRemove.getSource());
                     		overrideRequiredMethod(baseRefactoringUnit, toRemove, realOverridingMethod, monitor);
                     	}
                     	else if(toRemove != null && oldOriginal != null){
-//                    		System.out.println("pushing original");
-//                    		System.out.println("oldOriginal: " + oldOriginal.getSource());
-//                    		System.out.println("toRemove: " + toRemove.getSource());
                     		ArrayList<IMethod> originalMethods = getAllOriginalMethods(baseRefactoringUnit, _overridingMethod.getElementName());
                         	overrideRequiredMethodOriginal(baseRefactoringUnit, toRemove, realOverridingMethod, originalMethods.size(), monitor);
                     	}
@@ -192,12 +189,11 @@ public class ApplyOverloadingRefactoringsJob {
             			if(_annotation.getElementName().equals("AddExtensionMethod"))
             				extensionAnnotation = _annotation;
             		}
-            		if(extensionAnnotation != null){
-            			IMethod baseMethod = getMethodByName(baseRefactoringUnit, _method.getElementName());
-                		if(baseMethod == null || (baseMethod != null &&!baseMethod.exists())){
+            		if(extensionAnnotation != null || additionalVariablesList.contains(_method.getElementName())){
+            			IMethod baseMethod = getMethod(baseRefactoringUnit, _method);
+                		if(baseMethod == null || (baseMethod != null && !baseMethod.exists())){
             				baseRefactoringUnit.getCompilationUnit().findPrimaryType().createMethod(_method.getSource(), null, true, monitor);
-            				
-            				IMethod privk3baseMethod = getMethodByName(extensionRefactoringUnit, "_privk3_" + _method.getElementName());
+            				IMethod privk3baseMethod = getPrivateMethod(extensionRefactoringUnit, _method);
                     		if(privk3baseMethod != null){
                 				baseRefactoringUnit.getCompilationUnit().findPrimaryType().createMethod(privk3baseMethod.getSource(), null, true, monitor);
                     		}
@@ -227,7 +223,7 @@ public class ApplyOverloadingRefactoringsJob {
         return Status.OK_STATUS;
     }
 
-    private void overrideRequiredMethodOriginal(
+	private void overrideRequiredMethodOriginal(
 			RefactoringUnit baseRefactoringUnit, IMethod baseMethod,
 			IMethod extensionMethod, int legacyLevel, IProgressMonitor monitor) throws Exception {
     	
@@ -285,6 +281,36 @@ public class ApplyOverloadingRefactoringsJob {
 		}
 		return null;
 	}
+	
+	private IMethod getMethod(RefactoringUnit refactoringUnit,
+			IMethod _originalMethod) throws JavaModelException {
+		for(IMethod _method : refactoringUnit.getCompilationUnit().findPrimaryType().getMethods()){
+			if(_method.getElementName().equals(_originalMethod.getElementName()) && parametersMatch(_method, _originalMethod))
+				return _method;
+		}
+		return null;
+	}
+	
+	private boolean parametersMatch(IMethod method1, IMethod method2) throws JavaModelException {
+		int i = 0;
+		for(ILocalVariable _param : method1.getParameters()){
+			if(!_param.getTypeSignature().equals(method2.getParameters()[i].getTypeSignature()))
+				return false;
+			i++;
+		}
+		return method1.getParameters().length == method2.getParameters().length;
+	}
+	
+	private IMethod getPrivateMethod(RefactoringUnit refactoringUnit,
+			IMethod _originalMethod) throws JavaModelException {
+		for(IMethod _method : refactoringUnit.getCompilationUnit().findPrimaryType().getMethods()){
+			if(_method.getElementName().equals("_privk3_" + _originalMethod.getElementName()) &&
+					_method.getParameters().length == _originalMethod.getParameters().length + 1)
+				return _method;
+		}
+		return null;
+	}
+	
 
 	private String getPrefix(int i) {
 		String answer = "";

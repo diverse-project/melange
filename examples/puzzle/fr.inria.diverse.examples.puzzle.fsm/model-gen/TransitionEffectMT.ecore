@@ -2,10 +2,19 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="transitioneffect" nsURI="http://transitioneffectmt/" nsPrefix="transitioneffect">
   <eClassifiers xsi:type="ecore:EClass" name="Transition">
     <eAnnotations source="extension"/>
+    <eOperations name="evalTransition">
+      <eAnnotations source="aspect"/>
+      <eParameters name="context" eType="//Hashtable"/>
+    </eOperations>
+    <eOperations name="_original_evalTransition">
+      <eAnnotations source="aspect"/>
+      <eParameters name="context" eType="//Hashtable"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="effect" upperBound="-1" eType="//Statement" containment="true">
       <eAnnotations source="addition"/>
     </eStructuralFeatures>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Hashtable" instanceClassName="java.util.Hashtable"/>
   <eClassifiers xsi:type="ecore:EClass" name="Statement">
     <eAnnotations source="required"/>
     <eOperations name="eval">

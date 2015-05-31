@@ -3,8 +3,11 @@
 package shallowhistory.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import shallowhistory.Pseudostate;
 import shallowhistory.PseudostateKind;
 import shallowhistory.ShallowhistoryPackage;
@@ -15,14 +18,14 @@ import shallowhistory.ShallowhistoryPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link shallowhistory.impl.PseudostateImpl#getKind <em>Kind</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class PseudostateImpl extends VertexImpl implements Pseudostate {
+public class PseudostateImpl extends AbstractStateImpl implements Pseudostate {
 	/**
 	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->

@@ -25,6 +25,7 @@ public interface Region extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Subvertex</b></em>' containment reference list.
 	 * The list contents are of type {@link fsmcore.AbstractState}.
+	 * It is bidirectional and its opposite is '{@link fsmcore.AbstractState#getOwnerRegion <em>Owner Region</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Subvertex</em>' containment reference list isn't clear,
@@ -33,7 +34,8 @@ public interface Region extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Subvertex</em>' containment reference list.
 	 * @see fsmcore.FsmcorePackage#getRegion_Subvertex()
-	 * @model containment="true"
+	 * @see fsmcore.AbstractState#getOwnerRegion
+	 * @model opposite="ownerRegion" containment="true"
 	 * @generated
 	 */
 	EList<AbstractState> getSubvertex();

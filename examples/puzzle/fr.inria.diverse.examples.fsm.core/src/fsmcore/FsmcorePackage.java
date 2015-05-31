@@ -234,7 +234,7 @@ public interface FsmcorePackage extends EPackage {
 	int ABSTRACT_STATE__OUTGOING = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Owner Region</b></em>' reference.
+	 * The feature id for the '<em><b>Owner Region</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -298,7 +298,7 @@ public interface FsmcorePackage extends EPackage {
 	int STATE__OUTGOING = ABSTRACT_STATE__OUTGOING;
 
 	/**
-	 * The feature id for the '<em><b>Owner Region</b></em>' reference.
+	 * The feature id for the '<em><b>Owner Region</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -730,7 +730,7 @@ public interface FsmcorePackage extends EPackage {
 	int PSEUDOSTATE__OUTGOING = ABSTRACT_STATE__OUTGOING;
 
 	/**
-	 * The feature id for the '<em><b>Owner Region</b></em>' reference.
+	 * The feature id for the '<em><b>Owner Region</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -803,7 +803,7 @@ public interface FsmcorePackage extends EPackage {
 	int FINAL_STATE__OUTGOING = STATE__OUTGOING;
 
 	/**
-	 * The feature id for the '<em><b>Owner Region</b></em>' reference.
+	 * The feature id for the '<em><b>Owner Region</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -953,10 +953,10 @@ public interface FsmcorePackage extends EPackage {
 	EReference getAbstractState_Outgoing();
 
 	/**
-	 * Returns the meta object for the reference '{@link fsmcore.AbstractState#getOwnerRegion <em>Owner Region</em>}'.
+	 * Returns the meta object for the container reference '{@link fsmcore.AbstractState#getOwnerRegion <em>Owner Region</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Owner Region</em>'.
+	 * @return the meta object for the container reference '<em>Owner Region</em>'.
 	 * @see fsmcore.AbstractState#getOwnerRegion()
 	 * @see #getAbstractState()
 	 * @generated
@@ -1338,7 +1338,7 @@ public interface FsmcorePackage extends EPackage {
 		EReference ABSTRACT_STATE__OUTGOING = eINSTANCE.getAbstractState_Outgoing();
 
 		/**
-		 * The meta object literal for the '<em><b>Owner Region</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Owner Region</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

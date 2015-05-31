@@ -169,6 +169,9 @@ class LanguageMergingEngine {
 			var LanguageVO baseLanguage = tree._base.evaluateCompositionTree(refactoringPatterns, overlappingAspects, overridingAspects, targetProject, compositionLanguageName)
 			var LanguageVO extensionLanguage = tree._extension.evaluateCompositionTree(refactoringPatterns, overlappingAspects, overridingAspects, targetProject, compositionLanguageName)
 			
+			println("baseLanguage.metamodel: " + baseLanguage.metamodel)
+			println("extensionLanguage.metamodel: " + extensionLanguage.metamodel)
+			
 			if(extensionLanguage.metamodel != null && baseLanguage.providedInterface != null){
 				var MappingRoot binding = null;
 				binding = PuzzleMerge.instance.calculateBinding(extensionLanguage.metamodel, 
@@ -552,9 +555,6 @@ class LanguageMergingEngine {
 							val overlappingAspect = new OverlappingAspectsVO(_aspectRight, rightAspectedClassName,_aspectLeft, leftAspectedClassName)
 							overlappingAspect.rightFile = _aspectRight.aspectTypeRef.identifier.replace(".", "/") + ".java"
 							overlappingAspect.leftFile = _aspectLeft.aspectTypeRef.identifier.replace(".", "/") + ".java"
-							
-//							println("Creating overlapping aspects overlappingAspect.rightFile: " + overlappingAspect.rightFile)
-//							println("Creating overlapping aspects overlappingAspect.leftFile: " + overlappingAspect.leftFile)
 							overlappingAspects.add(overlappingAspect)
 						}
 					}
@@ -778,9 +778,9 @@ class LanguageMergingEngine {
 				}
 			}
 			else if((_member instanceof XtendFunction) && (_input instanceof EOperation && _output instanceof EOperation)){
-				println("_member: " + _member)
 				var String requiringClassName = (_input as EOperation).EContainingClass.name
 				var String providingClassName = (_output as EOperation).EContainingClass.name
+				println("(_input as EOperation): " + (_input as EOperation))
 				if((_member as XtendFunction).expression != null){
 					for(XExpression _currentExpressionStatement : ((_member as XtendFunction).expression as XBlockExpression).expressions){
 						var IEvaluationContext evaluationContext = contextProvider.get();

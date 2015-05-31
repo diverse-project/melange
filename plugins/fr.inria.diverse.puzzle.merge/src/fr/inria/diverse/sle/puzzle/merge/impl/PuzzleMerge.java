@@ -320,16 +320,22 @@ public class PuzzleMerge {
 			Hashtable<String, EClassifier> _oldClassifiers = new Hashtable<String, EClassifier>();
 			Hashtable<String, EClassifier> _newClassifiers = new Hashtable<String, EClassifier>();
 			
-			cloneEPackage(extensionLanguageProvidedInterface, recalculatedProvidedInterface, _oldClassifiers, 
+			cloneEPackage(baseLanguageProvidedInterface, recalculatedProvidedInterface, _oldClassifiers, 
 					_newClassifiers, recalculatedProvidedInterface.getNsPrefix(), false);
-			cloneEPackage(baseLanguageProvidedInterface, recalculatedProvidedInterface, _oldClassifiers,
-					_newClassifiers, recalculatedProvidedInterface.getNsPrefix(), false);
-			
 			resolveLocalEAttributes(_oldClassifiers, _newClassifiers, recalculatedProvidedInterface);
 			resolveLocalEReferences(_oldClassifiers, _newClassifiers, recalculatedProvidedInterface, true);
 			resolveLocalSuperTypes(_oldClassifiers, _newClassifiers, recalculatedProvidedInterface);
 			resolveLocalEOperationTypes(_oldClassifiers, _newClassifiers, recalculatedProvidedInterface);
 			resolveEOppositeReferences(_oldClassifiers, _oldClassifiers, recalculatedProvidedInterface);
+			
+			sumEPackage(recalculatedProvidedInterface, extensionLanguageProvidedInterface, _oldClassifiers,
+					_newClassifiers, recalculatedProvidedInterface.getNsPrefix(), false);
+			resolveLocalEAttributes(_oldClassifiers, _newClassifiers, recalculatedProvidedInterface);
+			resolveLocalEReferences(_oldClassifiers, _newClassifiers, recalculatedProvidedInterface, true);
+			resolveLocalSuperTypes(_oldClassifiers, _newClassifiers, recalculatedProvidedInterface);
+			resolveLocalEOperationTypes(_oldClassifiers, _newClassifiers, recalculatedProvidedInterface);
+			resolveEOppositeReferences(_oldClassifiers, _oldClassifiers, recalculatedProvidedInterface);
+			
 			
 			return recalculatedProvidedInterface;
 		}
@@ -378,7 +384,93 @@ public class PuzzleMerge {
 		}
 	}
 	
-	
+	private void sumEPackage(EPackage baseEPackage,
+			EPackage sumEPackage,
+			Hashtable<String, EClassifier> _oldClassifiers,
+			Hashtable<String, EClassifier> _newClassifiers, String nsPrefix,
+			boolean b) {
+		
+		ArrayList<ClassPair> classesToAdd = new ArrayList<ClassPair>();
+		ArrayList<ClassPair> classesToMerge = new ArrayList<ClassPair>();
+		ArrayList<ClassPair> enumsToAdd = new ArrayList<ClassPair>();
+		for (EClassifier eClassifier : sumEPackage.getEClassifiers()) {
+			if(eClassifier instanceof EClass){
+				EClass legacyEClass = searchEClassByName(eClassifier.getName(), baseEPackage);
+				if(legacyEClass == null){
+					classesToAdd.add(new ClassPair(((EClass)eClassifier), null));
+				}
+				else{
+					classesToMerge.add(new ClassPair(legacyEClass, (EClass)eClassifier));
+				}
+			}
+			else if(eClassifier instanceof EEnum){
+				enumsToAdd.add(new ClassPair((EEnum)eClassifier, null));
+			}
+		}
+		
+		for(ClassPair pair : classesToAdd){
+			_oldClassifiers.put(pair.getLeftClass().getName(), pair.getLeftClass());
+			EClass newEClass = cloneEClass(EcoreFactory.eINSTANCE, (EClass)pair.getLeftClass());
+			sumEPackage.getEClassifiers().add(newEClass);
+			_newClassifiers.put(newEClass.getName(), newEClass);
+		}
+		
+		for(ClassPair pair : classesToMerge){
+			sumEClass((EClass)pair.getLeftClass(), (EClass)pair.getRightClass(), _oldClassifiers, _newClassifiers);
+			_oldClassifiers.put(pair.getLeftClass().getName(), (EClass)pair.getLeftClass());
+			EClass newEClass = cloneEClass(EcoreFactory.eINSTANCE, (EClass)pair.getLeftClass());
+			sumEPackage.getEClassifiers().add(newEClass);
+			_newClassifiers.put(newEClass.getName(), newEClass);
+		}
+		
+		for(ClassPair pair : enumsToAdd){
+			EEnum _oldEEnum = (EEnum)pair.getLeftClass();
+			_oldClassifiers.put(_oldEEnum.getName(), _oldEEnum);
+			EEnum newEEnum = cloneEEnum(EcoreFactory.eINSTANCE, _oldEEnum);
+			sumEPackage.getEClassifiers().add(newEEnum);
+			_newClassifiers.put(newEEnum.getName(), newEEnum);
+		}
+	}
+
+	private void sumEClass(EClass baseEClass, EClass sumEClass,
+			Hashtable<String, EClassifier> _oldClassifiers,
+			Hashtable<String, EClassifier> _newClassifiers) {
+		for(EStructuralFeature structuralFeature : sumEClass.getEStructuralFeatures()){
+			if(searchEReferenceByName(baseEClass, structuralFeature.getName()) == null){
+				if(structuralFeature instanceof EReference){
+					EReference eReference = (EReference) structuralFeature;
+					EReference newEReference = EcoreFactory.eINSTANCE.createEReference();
+					newEReference.setName(eReference.getName());
+					newEReference.setLowerBound(eReference.getLowerBound());
+					newEReference.setUpperBound(eReference.getUpperBound());
+					newEReference.setContainment(eReference.isContainment());
+					newEReference.setChangeable(eReference.isChangeable());
+					newEReference.setDerived(eReference.isDerived());
+					baseEClass.getEStructuralFeatures().add(newEReference);
+					
+					for(EAnnotation eAnnotation : eReference.getEAnnotations()){
+						EAnnotation newEAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+						newEAnnotation.setSource(eAnnotation.getSource());
+						newEReference.getEAnnotations().add(newEAnnotation);
+					}
+				}
+				else if(structuralFeature instanceof EAttribute){
+					EAttribute eAttribute = (EAttribute)structuralFeature;
+					EAttribute newAttribute = EcoreFactory.eINSTANCE.createEAttribute();
+					newAttribute.setName(eAttribute.getName());
+					if(!(eAttribute.getEType() instanceof EEnum)) newAttribute.setEType(eAttribute.getEType());
+					baseEClass.getEStructuralFeatures().add(newAttribute);
+					
+					for(EAnnotation annotation : eAttribute.getEAnnotations()){
+						EAnnotation newEAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+						newEAnnotation.setSource(annotation.getSource());
+						newAttribute.getEAnnotations().add(newEAnnotation);
+					}
+				}
+			}
+		}
+	}
+
 	/**
 	 * Calculates a binding by default (based in naming matching) for the interfaces in the parameters. 
 	 * @param extensionLanguageRequiredInterface
@@ -575,10 +667,13 @@ public class PuzzleMerge {
 			for (EClassifier eClassifier : toClone.getEClassifiers()) {
 				if(eClassifier.getEAnnotation("required") == null){
 					if(eClassifier instanceof EClass){
-						_oldClassifiers.put(((EClass)eClassifier).getName(), (EClass)eClassifier);
-						EClass newEClass = cloneEClass(EcoreFactory.eINSTANCE, (EClass)eClassifier);
-						clone.getEClassifiers().add(newEClass);
-						_newClassifiers.put(newEClass.getName(), newEClass);
+						EClass legacyEClass = searchEClassByName(eClassifier.getName(), clone);
+						if(legacyEClass == null){
+							_oldClassifiers.put(((EClass)eClassifier).getName(), (EClass)eClassifier);
+							EClass newEClass = cloneEClass(EcoreFactory.eINSTANCE, (EClass)eClassifier);
+							clone.getEClassifiers().add(newEClass);
+							_newClassifiers.put(newEClass.getName(), newEClass);
+						}
 					}
 					else if(eClassifier instanceof EEnum){
 						EEnum _oldEEnum = (EEnum)eClassifier;

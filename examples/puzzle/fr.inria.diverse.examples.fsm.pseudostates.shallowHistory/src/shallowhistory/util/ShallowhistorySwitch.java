@@ -47,7 +47,7 @@ public class ShallowhistorySwitch<T> extends Switch<T> {
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @parameter ePackage the package in question.
+	 * @param ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
@@ -69,28 +69,26 @@ public class ShallowhistorySwitch<T> extends Switch<T> {
 			case ShallowhistoryPackage.PSEUDOSTATE: {
 				Pseudostate pseudostate = (Pseudostate)theEObject;
 				T result = casePseudostate(pseudostate);
-				if (result == null) result = caseVertex(pseudostate);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ShallowhistoryPackage.COMPOSITE_STATE: {
-				CompositeState compositeState = (CompositeState)theEObject;
-				T result = caseCompositeState(compositeState);
-				if (result == null) result = caseState(compositeState);
-				if (result == null) result = caseVertex(compositeState);
+				if (result == null) result = caseAbstractState(pseudostate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ShallowhistoryPackage.STATE: {
 				State state = (State)theEObject;
 				T result = caseState(state);
-				if (result == null) result = caseVertex(state);
+				if (result == null) result = caseAbstractState(state);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ShallowhistoryPackage.VERTEX: {
-				Vertex vertex = (Vertex)theEObject;
-				T result = caseVertex(vertex);
+			case ShallowhistoryPackage.ABSTRACT_STATE: {
+				AbstractState abstractState = (AbstractState)theEObject;
+				T result = caseAbstractState(abstractState);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ShallowhistoryPackage.REGION: {
+				Region region = (Region)theEObject;
+				T result = caseRegion(region);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -114,21 +112,6 @@ public class ShallowhistorySwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Composite State</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Composite State</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCompositeState(CompositeState object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>State</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -144,17 +127,32 @@ public class ShallowhistorySwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Vertex</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract State</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Vertex</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract State</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseVertex(Vertex object) {
+	public T caseAbstractState(AbstractState object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Region</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Region</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRegion(Region object) {
 		return null;
 	}
 

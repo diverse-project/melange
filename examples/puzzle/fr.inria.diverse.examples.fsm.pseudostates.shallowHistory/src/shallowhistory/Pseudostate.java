@@ -10,16 +10,16 @@ package shallowhistory;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link shallowhistory.Pseudostate#getKind <em>Kind</em>}</li>
  * </ul>
- * </p>
  *
  * @see shallowhistory.ShallowhistoryPackage#getPseudostate()
  * @model
  * @generated
  */
-public interface Pseudostate extends Vertex {
+public interface Pseudostate extends AbstractState {
 	/**
 	 * Returns the value of the '<em><b>Kind</b></em>' attribute.
 	 * The literals are from the enumeration {@link shallowhistory.PseudostateKind}.
