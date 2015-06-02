@@ -46,9 +46,9 @@ class RegionAspect {
 	
 	@OverrideRequiredAspectMethod
 	def public void findOldActiveStates(ArrayList<AbstractState> oldActiveStates, 
-		Transition selectedTransition){
+		Transition selectedTransition, Hashtable<String, Object> context){
 			
-		_self._original_findOldActiveStates(oldActiveStates, selectedTransition)
+		_self._original_findOldActiveStates(oldActiveStates, selectedTransition, context)
 	
 		for(Transition _candidate : selectedTransition.target.outgoing){
 			if((_candidate.target instanceof Pseudostate)

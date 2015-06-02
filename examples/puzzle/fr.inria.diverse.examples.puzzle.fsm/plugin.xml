@@ -41,6 +41,10 @@
          </subtyping>
       </modeltype>
       <modeltype
+            uri="http://junctionpseudostatemt/"
+            id="fsm.JunctionPseudostateMT">
+      </modeltype>
+      <modeltype
             uri="http://nottriggermt/"
             id="fsm.NotTriggerMT">
       </modeltype>
@@ -150,6 +154,16 @@
          <adapter
                class="fsm.joinpseudostate.adapters.joinpseudostatemt.JoinPseudostateAdapter"
                modeltypeId="fsm.JoinPseudostateMT">
+         </adapter>
+      </language>
+      <language
+            exactType="fsm.JunctionPseudostateMT"
+            description="Junction pseudostate: Contains the concept &apos;JunctionPseudostate&apos; that enables more complex transitions"
+            uri="http://junctionpseudostate"
+            id="fsm.JunctionPseudostate">
+         <adapter
+               class="fsm.junctionpseudostate.adapters.junctionpseudostatemt.JunctionPseudostateAdapter"
+               modeltypeId="fsm.JunctionPseudostateMT">
          </adapter>
       </language>
       <language

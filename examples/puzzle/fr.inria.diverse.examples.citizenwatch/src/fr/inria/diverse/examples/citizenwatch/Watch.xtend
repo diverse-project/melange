@@ -31,6 +31,6 @@ class Watch {
 
 	def static void main(String[] args) {
 		println('Citizen watch simulator in K3!')
-		new Watch().run("ToolDemo-StateMachine-3.xmi")
+		new Watch().run("ToolDemo-StateMachine-5.xmi")
 	}
 }

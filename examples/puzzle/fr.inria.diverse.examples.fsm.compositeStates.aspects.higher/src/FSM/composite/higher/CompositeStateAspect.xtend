@@ -70,10 +70,10 @@ class RegionAspect{
 	
 	@OverrideRequiredAspectMethod
 	def public void findOldActiveStates(ArrayList<AbstractState> oldActiveStates, 
-		Transition selectedTransition){
+		Transition selectedTransition, Hashtable<String, Object> context){
 		
 		// Performing the legacy operation
-		_self._original_findOldActiveStates(oldActiveStates, selectedTransition)
+		_self._original_findOldActiveStates(oldActiveStates, selectedTransition, context)
 		
 		// Getting out of a composite state so leaving all the children states
 		val ArrayList<AbstractState> sourceChildren = new ArrayList<AbstractState>()

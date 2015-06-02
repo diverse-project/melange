@@ -44,6 +44,7 @@
       <eAnnotations source="aspect"/>
       <eParameters name="oldActiveStates" upperBound="-1" eType="//AbstractState"/>
       <eParameters name="selectedTransition" eType="//Transition"/>
+      <eParameters name="context" eType="//Hashtable"/>
     </eOperations>
     <eOperations name="findNewActiveStates">
       <eAnnotations source="aspect"/>
@@ -93,6 +94,14 @@
       <eAnnotations source="aspect"/>
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eParameters name="context" eType="//Hashtable"/>
+    </eOperations>
+    <eOperations name="alreadyFired">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="context" eType="//Hashtable"/>
+    </eOperations>
+    <eOperations name="resetFired">
+      <eAnnotations source="aspect"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="trigger" eType="//Trigger" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1" eType="//AbstractState" eOpposite="//AbstractState/incoming"/>

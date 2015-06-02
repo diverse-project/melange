@@ -22,6 +22,7 @@
       <eAnnotations source="aspect"/>
       <eParameters name="oldActiveStates" upperBound="-1" eType="//AbstractState"/>
       <eParameters name="selectedTransition" eType="//Transition"/>
+      <eParameters name="context" eType="//Hashtable"/>
     </eOperations>
     <eOperations name="findNewActiveTransitions">
       <eAnnotations source="aspect"/>
@@ -55,6 +56,7 @@
       <eAnnotations source="aspect"/>
       <eParameters name="oldActiveStates" upperBound="-1" eType="//AbstractState"/>
       <eParameters name="selectedTransition" eType="//Transition"/>
+      <eParameters name="context" eType="//Hashtable"/>
     </eOperations>
     <eOperations name="_original_findNewActiveTransitions">
       <eAnnotations source="aspect"/>

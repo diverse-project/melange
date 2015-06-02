@@ -141,11 +141,11 @@ class RegionAspect {
 		}
 		
 		for(Transition transition : activeTransitions){
-			_self.findOldActiveStates(attendedStates, transition)
+			_self.findOldActiveStates(attendedStates, transition, context)
 			_self.findNewActiveTransitions(currentTransitions, transition, context)
 			_self.findNewActiveStates(newStates, transition, currentTransitions, context)
 		}
-		
+
 		for(AbstractState _attendedState : attendedStates){
 			if(_attendedState instanceof State)
 				(_attendedState as State).exitState(context)
@@ -158,8 +158,17 @@ class RegionAspect {
 				currentState.add(_newState)
 		}
 		
-		currentTransitions.forEach[ transition |
+		activeTransitions.forEach[ transition |
 			transition.evalTransition(context)
+		]
+		
+		currentTransitions.forEach[ transition |
+			if(!transition.alreadyFired(context))
+				transition.evalTransition(context)
+		]
+		
+		newStates.forEach[ state |
+				state.outgoing.forEach[ transition | transition.resetFired() ]
 		]
 	}
 	
@@ -187,7 +196,7 @@ class RegionAspect {
 	 * Finds the set of states that are active before the step and that will be left after the step. 
 	 */
 	def public void findOldActiveStates(ArrayList<AbstractState> oldActiveStates, 
-		Transition selectedTransition){
+		Transition selectedTransition, Hashtable<String, Object> context){
 		if(!oldActiveStates.contains(selectedTransition.source))
 			oldActiveStates.add(selectedTransition.source)
 	}
@@ -246,18 +255,29 @@ class StateAspect {
 @Aspect(className=Transition)
 class TransitionAspect {
 	
+	private boolean fired = false
+	
 	def public void evalTransition(Hashtable<String, Object> context){
 		if(_self.validGuard(context)){
-			
+			_self.fired = true
 			if(_self.target instanceof State){
 				(_self.target as State).entryState(context)
 				(_self.target as State).evalState(context)				
 			}
-		}
+		} 
 	}
 	
 	def public boolean validGuard(Hashtable<String, Object> context){
 		return (_self.guard == null) || (_self.guard != null && _self.guard.evalConstraint(context) == true)
+	}
+	
+	def public boolean alreadyFired(Hashtable<String, Object> context){
+		return _self.fired
+		
+	}
+	
+	def public void resetFired(){
+		_self.fired = false
 	}
 }
 
