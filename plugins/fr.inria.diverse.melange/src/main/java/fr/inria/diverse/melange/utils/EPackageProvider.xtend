@@ -61,13 +61,13 @@ class EPackageProvider
 				}
 				Metamodel:
 					if (m.hasSuperMetamodel) {
-						val pkgsCopy = m.inheritanceRelation.superMetamodel.packages.map[
+						val pkgsCopy = m.inheritanceRelation.map[superMetamodel.packages.map[
 							val copy = EcoreUtil::copy(it)
 							copy.name = m.name.toLowerCase
 							copy.nsPrefix = copy.name
 							copy.nsURI = '''http://«copy.name»'''
 							return copy
-						]
+						]].flatten
 
 //						val newUri = m.createEcore(pkgsCopy.head)
 //						val newGmUri = newUri.trimFileExtension.appendFileExtension("genmodel").toString

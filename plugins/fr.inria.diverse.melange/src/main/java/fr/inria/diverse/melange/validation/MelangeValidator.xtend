@@ -75,8 +75,8 @@ class MelangeValidator extends AbstractMelangeValidator
 
 	@Check
 	def void checkEcoreIsSet(Metamodel mm) {
-		if (mm.units.filter(Ecore).filter[ecoreUri !== null].empty
-			&& mm.inheritanceRelation?.superMetamodel?.ecoreUri === null
+		if (mm.operators.filter(Ecore).filter[ecoreUri !== null].empty
+			&& mm.inheritanceRelation?.forall[superMetamodel?.ecoreUri === null]
 		)
 			error(
 				"A valid Ecore file must be imported",
@@ -206,7 +206,7 @@ class MelangeValidator extends AbstractMelangeValidator
 
 	@Check
 	def void checkNoSelfInheritance(Metamodel mm) {
-		if (mm.inheritanceRelation.superMetamodel == mm)
+		if (mm.inheritanceRelation.exists[superMetamodel == mm])
 			error(
 				"Cannot inherit from self",
 				MelangePackage.Literals.METAMODEL__INHERITANCE_RELATION,

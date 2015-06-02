@@ -19,7 +19,7 @@ TransformationDecl returns Transformation:
 ;
 
 Metamodel:
-	'language' name = ValidID ('inherits' operators += Inherit ("," operators+=Inherit)*)?
+	'language' name = ValidID ('inherits' inheritanceRelation += Inherit ("," inheritanceRelation+=Inherit)*)?
 	('implements' implements += [ModelType | QualifiedName] (',' implements += [ModelType | QualifiedName])*)?
 	('requires' requires += [ModelType | QualifiedName] (',' requires += [ModelType | QualifiedName])*)?
 	'{'
@@ -91,8 +91,8 @@ Slice returns Slice:
 	'slice' language = [Metamodel | QualifiedName] 'on' '[' roots += STRING (',' roots += STRING)* ']'
 ;
 
-Inherit returns Inherit:
-	language = [Metamodel | QualifiedName]
+Inherit returns Inheritance:
+	superMetamodel = [Metamodel | QualifiedName]
 ;
 
 /* --- Kompren Rules --- */

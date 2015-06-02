@@ -90,8 +90,5 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Slice/language"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EAttribute Melange.ecore#//Slice/roots"/>
     </genClasses>
-    <genClasses ecoreClass="Melange.ecore#//Inherit">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Inherit/language"/>
-    </genClasses>
   </genPackages>
 </genmodel:GenModel>

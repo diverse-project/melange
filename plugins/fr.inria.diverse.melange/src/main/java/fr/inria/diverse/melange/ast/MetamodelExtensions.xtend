@@ -64,7 +64,7 @@ class MetamodelExtensions
 		ret += mm.aspects
 
 		if (mm.hasSuperMetamodel)
-			ret += mm.inheritanceRelation.superMetamodel.allAspects
+			ret += mm.inheritanceRelation.map[superMetamodel.allAspects].flatten
 
 		return ret
 	}
@@ -82,7 +82,7 @@ class MetamodelExtensions
 	}
 
 	def boolean hasSuperMetamodel(Metamodel mm) {
-		return mm.inheritanceRelation?.superMetamodel !== null
+		return mm.inheritanceRelation.exists[superMetamodel !== null]
 	}
 
 	def String getAspectAnnotationValue(Aspect asp) {
@@ -350,21 +350,22 @@ class MetamodelExtensions
 			val originalProjectName = URI::createURI(mm.ecoreUri).segment(1)
 
 			return originalProjectName
-		} else if (mm.inheritanceRelation.superMetamodel.ecoreUri !== null) {
-			val originalProjectName = URI::createURI(mm.inheritanceRelation.superMetamodel.ecoreUri).segment(1)
-			
-			// compute a name as smartly as possible and try to follow the user naming convention
-			if (originalProjectName.toQualifiedName.segmentCount == 1){
-				return mm.name.toLowerCase
-			} else { 
-				if(originalProjectName.toQualifiedName.lastSegment.equals("model")){
-					return originalProjectName.toQualifiedName.skipLast(1).append(mm.name.toLowerCase).append("model").toString
-				} else {
-					return originalProjectName.toQualifiedName.append(mm.name.toLowerCase).toString
-				}
-				
-			}
 		}
+//		 else if (mm.inheritanceRelation.superMetamodel.ecoreUri !== null) {
+//			val originalProjectName = URI::createURI(mm.inheritanceRelation.superMetamodel.ecoreUri).segment(1)
+//			
+//			// compute a name as smartly as possible and try to follow the user naming convention
+//			if (originalProjectName.toQualifiedName.segmentCount == 1){
+//				return mm.name.toLowerCase
+//			} else { 
+//				if(originalProjectName.toQualifiedName.lastSegment.equals("model")){
+//					return originalProjectName.toQualifiedName.skipLast(1).append(mm.name.toLowerCase).append("model").toString
+//				} else {
+//					return originalProjectName.toQualifiedName.append(mm.name.toLowerCase).toString
+//				}
+//				
+//			}
+//		}
 	}
 
 	def String getExternalAspectsRuntimeName(Metamodel mm) {
@@ -377,7 +378,7 @@ class MetamodelExtensions
 	}
 
 	def boolean isGeneratedByMelange(Metamodel mm) {
-		return mm.inheritanceRelation?.superMetamodel !== null
+		return !mm.inheritanceRelation.empty
 	}
 
 	def boolean getRuntimeHasBeenGenerated(Metamodel mm) {

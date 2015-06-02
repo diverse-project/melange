@@ -1,33 +1,31 @@
 package fr.inria.diverse.melange.processors
 
-import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
-import fr.inria.diverse.melange.ast.ASTHelper
 import com.google.inject.Inject
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
-import java.util.List
-import java.util.ArrayList
-import fr.inria.diverse.melange.metamodel.melange.Inheritance
-import fr.inria.diverse.melange.metamodel.melange.Merge
-import org.eclipse.emf.ecore.EPackage
-import java.util.Map
-import java.util.HashMap
-import fr.inria.diverse.melange.metamodel.melange.Ecore
-import fr.inria.diverse.melange.lib.ModelUtils
 import fr.inria.diverse.melange.algebra.EmfCompareAlgebra
-import fr.inria.diverse.melange.utils.EPackageProvider
-import fr.inria.diverse.melange.lib.EcoreExtensions
-import org.eclipse.emf.ecore.EClass
-import org.eclipse.emf.ecore.EAttribute
-import org.eclipse.emf.ecore.util.EcoreUtil
+import fr.inria.diverse.melange.ast.ASTHelper
 import fr.inria.diverse.melange.ast.MetamodelExtensions
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.emf.common.util.URI
-import org.eclipse.emf.ecore.EClassifier
-import org.eclipse.emf.ecore.EReference
-import java.io.IOException
-import fr.inria.diverse.melange.metamodel.melange.Slice
+import fr.inria.diverse.melange.lib.EcoreExtensions
+import fr.inria.diverse.melange.lib.ModelUtils
 import fr.inria.diverse.melange.lib.slicing.ecore.StrictEcore
+import fr.inria.diverse.melange.metamodel.melange.Ecore
+import fr.inria.diverse.melange.metamodel.melange.Merge
+import fr.inria.diverse.melange.metamodel.melange.Metamodel
+import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
+import fr.inria.diverse.melange.metamodel.melange.Slice
+import fr.inria.diverse.melange.utils.EPackageProvider
+import java.io.IOException
+import java.util.ArrayList
+import java.util.HashMap
+import java.util.List
+import java.util.Map
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EModelElement
+import org.eclipse.emf.ecore.EPackage
+import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.eclipse.emf.ecore.util.EcoreUtil
 
 /**
  * This class build languages by merging differents parts declared in each language definitions
@@ -75,7 +73,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		/****************************
 		 * STEP 1: merge ecore files
 		 ****************************/
-		val ecores = language.units.filter(Ecore)
+		val ecores = language.operators.filter(Ecore)
 		if(ecores.size == 1){
 			language.ecoreUri = ecores.get(0).ecoreUri
 			language.genmodelUris.addAll(ecores.get(0).genmodelUris)
@@ -97,11 +95,31 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		/****************************
 		 * STEP 2: merge inherited languages
 		 ****************************/
+		 val inherits = language.inheritanceRelation
+		 if(inherits.size > 0){
+			needNewEcore = true
+			val firstInherit = inherits.get(0)
+			val inheritBase = getRootPackage(firstInherit.superMetamodel,history)
+			EcoreUtil.ExternalCrossReferencer.find(inheritBase)
+			
+			inherits.drop(1).forEach[ nextInherit |
+				val inheritUnit = getRootPackage(nextInherit.superMetamodel,history)
+				EcoreUtil.ExternalCrossReferencer.find(inheritUnit)
+				algebra.merge(inheritUnit,inheritBase)
+			]
+			
+			if(base !== null && inheritBase !== null){
+				algebra.merge(inheritBase,base)
+			}
+			else if(base === null && inheritBase !== null){
+				base = inheritBase
+			}
+		}
 		
 		/****************************
 		 * STEP 3: merge languages
 		 ****************************/
-		val merges = language.units.filter(Merge)
+		val merges = language.operators.filter(Merge)
 		if(merges.size > 0){
 			needNewEcore = true
 			val firstMerge = merges.get(0)
@@ -125,7 +143,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		/****************************
 		 * STEP 4: merge sliced languages
 		 ****************************/
-		 val slices = language.units.filter(Slice)
+		 val slices = language.operators.filter(Slice)
 		 if(slices.size > 0){
 		 	needNewEcore = true
 		 	val firstSlice = slices.get(0)
@@ -180,10 +198,10 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 	private def boolean isWithCycle(Metamodel language, List<Metamodel> history){
 		
 		val List<Metamodel> dependencies = new ArrayList<Metamodel>()
-		language.units.filter(Inheritance).forEach[inherit |
+		language.inheritanceRelation.forEach[inherit |
 			dependencies.add(inherit.superMetamodel)
 		]
-		language.units.filter(Merge).forEach[merge |
+		language.operators.filter(Merge).forEach[merge |
 			dependencies.add(merge.language)
 		]
 		
