@@ -37,6 +37,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 	@Inject extension ASTHelper
 	@Inject ModelUtils modelUtils
 	@Inject EmfCompareAlgebra algebra
+	@Inject AspectsCopier aspectCopier
 	@Inject AspectsWeaver aspectWeaver
 	@Inject EPackageProvider packageProvider
 	@Inject extension EcoreExtensions
@@ -168,6 +169,17 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		if(base === null){
 			//TODO: raise an error, language not well defined
 		}
+		
+		/****************************
+		 * STEP 5: 
+		 ****************************/
+		aspectCopier.preProcess(language)
+		 
+		/****************************
+		 * STEP 5: merge aspects
+		 ****************************/
+		aspectWeaver.preProcess(language)
+
 
 		/****************************
 		 * STEP 5: 
