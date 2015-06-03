@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
+import fr.inria.diverse.melange.metamodel.melange.Aspect
 
 /**
  * This class build languages by merging differents parts declared in each language definitions
@@ -167,14 +168,9 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		if(base === null){
 			//TODO: raise an error, language not well defined
 		}
-		
+
 		/****************************
-		 * STEP 5: merge aspects
-		 ****************************/
-		aspectWeaver.preProcess(language)
-		
-		/****************************
-		 * STEP 6: 
+		 * STEP 5: 
 		 ****************************/
 		if(base !== null){
 			registry.put(language, base)

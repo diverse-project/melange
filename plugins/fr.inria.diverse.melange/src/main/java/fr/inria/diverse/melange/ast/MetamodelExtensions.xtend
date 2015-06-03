@@ -30,6 +30,7 @@ import org.eclipse.xtext.common.types.JvmTypeAnnotationValue
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.xbase.XAbstractFeatureCall
+import fr.inria.diverse.melange.metamodel.melange.Ecore
 
 class MetamodelExtensions
 {
@@ -345,6 +346,9 @@ class MetamodelExtensions
 		return '''platform:/resource/«mm.externalRuntimeName»/model/«mm.name».genmodel'''
 	}
 
+	/**
+	 * Get the name of the project containing Java classes reifying the metamodel {@link mm}
+	 */
 	def String getExternalRuntimeName(Metamodel mm) {
 		if (mm.ecoreUri !== null) {
 			val originalProjectName = URI::createURI(mm.ecoreUri).segment(1)
@@ -377,8 +381,13 @@ class MetamodelExtensions
 		}
 	}
 
+	/**
+	 * Return true if {@link mm} is a merge or an inheritance of metamodels 
+	 */
 	def boolean isGeneratedByMelange(Metamodel mm) {
-		return !mm.inheritanceRelation.empty
+		return mm.inheritanceRelation.size > 0 || 
+		(mm.operators.size > 1) || 
+		((mm.operators.size == 1) && (mm.operators.filter(Ecore).empty)) 
 	}
 
 	def boolean getRuntimeHasBeenGenerated(Metamodel mm) {
@@ -408,7 +417,7 @@ class MetamodelExtensions
 				return true
 			else return false
 		} else
-			return true
+			return false
 	}
 
 	def void generateCode(GenModel genModel) {

@@ -25,6 +25,7 @@ Metamodel:
 	'{'
 		('resource' resourceType = ResourceType ('uri' resourceUri = STRING | 'setup' xtextSetupRef = JvmTypeReference)?)?
 		(operators += Operator)*
+		(aspects += Aspect)*
 		('exactType' exactTypeName = ValidID ('uri' exactTypeUri = STRING)?)
 	'}'
 ;
@@ -76,7 +77,7 @@ PropertyMapping returns PropertyBinding:
 ;
 
 Operator returns Operator:
-	Ecore | Aspect | Merge | Slice
+	Ecore | Merge | Slice
 ;
 
 Ecore returns Ecore:
