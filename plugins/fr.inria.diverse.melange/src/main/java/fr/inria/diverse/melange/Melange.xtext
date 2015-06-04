@@ -23,10 +23,10 @@ Metamodel:
 	('implements' implements += [ModelType | QualifiedName] (',' implements += [ModelType | QualifiedName])*)?
 	('requires' requires += [ModelType | QualifiedName] (',' requires += [ModelType | QualifiedName])*)?
 	'{'
-		('resource' resourceType = ResourceType ('uri' resourceUri = STRING | 'setup' xtextSetupRef = JvmTypeReference)?)?
-		(operators += Operator)*
+		('resource' resourceType = ResourceType (=> 'uri' resourceUri = STRING | 'setup' xtextSetupRef = JvmTypeReference)?)? &
+		(operators += Operator)* &
+		('exactType' exactTypeName = ValidID (=> 'uri' exactTypeUri = STRING)?) &
 		(aspects += Aspect)*
-		('exactType' exactTypeName = ValidID ('uri' exactTypeUri = STRING)?)
 	'}'
 ;
 
