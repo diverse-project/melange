@@ -90,8 +90,8 @@ class ExhaustiveEcoreTest
 
 	@Test
 	def void testInheritance() {
-		assertNull(exhaustive.inheritanceRelation)
-		assertNull(exhaustive2.inheritanceRelation)
+		assertEquals(exhaustive.inheritanceRelation.size, 0)
+		assertEquals(exhaustive2.inheritanceRelation.size, 0)
 	}
 
 	@Test

@@ -218,17 +218,17 @@ class AspectsTest
 
 	@Test
 	def void testInheritanceFsm() {
-		assertNull(fsm.inheritanceRelation)
+		assertEquals(fsm.inheritanceRelation.size, 0)
 	}
 
 	@Test
 	def void testInheritanceTfsm() {
-		assertNull(tfsm.inheritanceRelation)
+		assertEquals(tfsm.inheritanceRelation.size, 0)
 	}
 
 	@Test
 	def void testInheritanceIfsm() {
-		assertNull(ifsm.inheritanceRelation)
+		assertEquals(ifsm.inheritanceRelation.size, 0)
 	}
 
 	@Test
