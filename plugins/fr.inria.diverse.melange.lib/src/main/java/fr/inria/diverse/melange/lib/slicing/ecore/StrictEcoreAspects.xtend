@@ -22,7 +22,9 @@ abstract class __SlicerAspect__ {
 		}
 	}
 	 
-	protected def void _visitToAddClasses(StrictEcore theSlicer){println("visitToAddClasses("+_self+")")}
+	protected def void _visitToAddClasses(StrictEcore theSlicer){
+		//println("visitToAddClasses("+_self+")")
+	}
 
 	def void visitToAddRelations(StrictEcore theSlicer){
 		if(!_self.visitedForRelations) {
@@ -45,7 +47,7 @@ abstract class __SlicerAspect__ {
 @Aspect(className=typeof(org.eclipse.emf.ecore.EAttribute), with=#[typeof(orgeclipseemfecoreEStructuralFeatureAspect)])
 class orgeclipseemfecoreEAttributeAspect extends orgeclipseemfecoreEStructuralFeatureAspect{
 	@OverrideAspectMethod
-	def void _visitToAddClasses(StrictEcore theSlicer){println("visitToAddClasses("+_self+")")
+	def void _visitToAddClasses(StrictEcore theSlicer){//println("visitToAddClasses("+_self+")")
 		if((!theSlicer.card1 || _self.checkcard1)){
 		if(_self.clonedElt===null){
 			_self.clonedElt = org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createEAttribute
@@ -85,7 +87,7 @@ _self.^contents.forEach[reinit]
 	}
 
 	@OverrideAspectMethod
-	def void _visitToAddClasses(StrictEcore theSlicer){println("visitToAddClasses("+_self+")")
+	def void _visitToAddClasses(StrictEcore theSlicer){//println("visitToAddClasses("+_self+")")
 		if(_self.clonedElt===null){
 			_self.clonedElt = org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createEAnnotation
 			theSlicer.objectCloned(_self.clonedElt)
@@ -122,7 +124,7 @@ _self.^EGenericSuperTypes.forEach[reinit]
 	}
 
 	@OverrideAspectMethod
-	def void _visitToAddClasses(StrictEcore theSlicer){println("visitToAddClasses("+_self+")")
+	def void _visitToAddClasses(StrictEcore theSlicer){//println("visitToAddClasses("+_self+")")
 		if(_self.clonedElt===null){
 			_self.clonedElt = org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createEClass
 			theSlicer.objectCloned(_self.clonedElt)
@@ -176,7 +178,7 @@ _self.^ETypeParameters.forEach[reinit]
 	}
 
 	@OverrideAspectMethod
-	def void _visitToAddClasses(StrictEcore theSlicer){println("visitToAddClasses("+_self+")")
+	def void _visitToAddClasses(StrictEcore theSlicer){//println("visitToAddClasses("+_self+")")
 		_self.super__visitToAddClasses(theSlicer)
 		_self.^EPackage?.visitToAddClasses(theSlicer)
 
@@ -200,7 +202,7 @@ _self.^ETypeParameters.forEach[reinit]
 @Aspect(className=typeof(org.eclipse.emf.ecore.EDataType), with=#[typeof(orgeclipseemfecoreEClassifierAspect)])
 class orgeclipseemfecoreEDataTypeAspect extends orgeclipseemfecoreEClassifierAspect{
 	@OverrideAspectMethod
-	def void _visitToAddClasses(StrictEcore theSlicer){println("visitToAddClasses("+_self+")")
+	def void _visitToAddClasses(StrictEcore theSlicer){//println("visitToAddClasses("+_self+")")
 		if(_self.clonedElt===null){
 			_self.clonedElt = org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createEDataType
 			theSlicer.objectCloned(_self.clonedElt)
@@ -230,7 +232,7 @@ _self.^ELiterals.forEach[reinit]
 	}
 
 	@OverrideAspectMethod
-	def void _visitToAddClasses(StrictEcore theSlicer){println("visitToAddClasses("+_self+")")
+	def void _visitToAddClasses(StrictEcore theSlicer){//println("visitToAddClasses("+_self+")")
 		if(_self.clonedElt===null){
 			_self.clonedElt = org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createEEnum
 			theSlicer.objectCloned(_self.clonedElt)
@@ -252,7 +254,7 @@ _self.^ELiterals.forEach[reinit]
 @Aspect(className=typeof(org.eclipse.emf.ecore.EEnumLiteral), with=#[typeof(orgeclipseemfecoreENamedElementAspect)])
 class orgeclipseemfecoreEEnumLiteralAspect extends orgeclipseemfecoreENamedElementAspect{
 	@OverrideAspectMethod
-	def void _visitToAddClasses(StrictEcore theSlicer){println("visitToAddClasses("+_self+")")
+	def void _visitToAddClasses(StrictEcore theSlicer){//println("visitToAddClasses("+_self+")")
 		if(_self.clonedElt===null){
 			_self.clonedElt = org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createEEnumLiteral
 			theSlicer.objectCloned(_self.clonedElt)
@@ -290,7 +292,7 @@ _self.^EAnnotations.forEach[reinit]
 	}
 
 	@OverrideAspectMethod
-	def void _visitToAddClasses(StrictEcore theSlicer){println("visitToAddClasses("+_self+")")
+	def void _visitToAddClasses(StrictEcore theSlicer){//println("visitToAddClasses("+_self+")")
 		_self.super__visitToAddClasses(theSlicer)
 
 	}
@@ -304,7 +306,7 @@ _self.^EAnnotations.forEach[reinit]
 @Aspect(className=typeof(org.eclipse.emf.ecore.ENamedElement), with=#[typeof(orgeclipseemfecoreEModelElementAspect)])
 abstract class orgeclipseemfecoreENamedElementAspect extends orgeclipseemfecoreEModelElementAspect{
 	@OverrideAspectMethod
-	def void _visitToAddClasses(StrictEcore theSlicer){println("visitToAddClasses("+_self+")")
+	def void _visitToAddClasses(StrictEcore theSlicer){//println("visitToAddClasses("+_self+")")
 		_self.super__visitToAddClasses(theSlicer)
 
 	}
@@ -336,7 +338,7 @@ _self.^EGenericExceptions.forEach[reinit]
 	}
 
 	@OverrideAspectMethod
-	def void _visitToAddClasses(StrictEcore theSlicer){println("visitToAddClasses("+_self+")")
+	def void _visitToAddClasses(StrictEcore theSlicer){//println("visitToAddClasses("+_self+")")
 		if(_self.clonedElt===null){
 			_self.clonedElt = org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createEOperation
 			theSlicer.objectCloned(_self.clonedElt)
@@ -378,7 +380,7 @@ _self.^ESubpackages.forEach[reinit]
 	}
 
 	@OverrideAspectMethod
-	def void _visitToAddClasses(StrictEcore theSlicer){println("visitToAddClasses("+_self+")")
+	def void _visitToAddClasses(StrictEcore theSlicer){//println("visitToAddClasses("+_self+")")
 		if(_self.clonedElt===null){
 			_self.clonedElt = org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createEPackage
 			theSlicer.objectCloned(_self.clonedElt)
@@ -406,7 +408,7 @@ _self.^ESubpackages.forEach[reinit]
 @Aspect(className=typeof(org.eclipse.emf.ecore.EParameter), with=#[typeof(orgeclipseemfecoreETypedElementAspect)])
 class orgeclipseemfecoreEParameterAspect extends orgeclipseemfecoreETypedElementAspect{
 	@OverrideAspectMethod
-	def void _visitToAddClasses(StrictEcore theSlicer){println("visitToAddClasses("+_self+")")
+	def void _visitToAddClasses(StrictEcore theSlicer){//println("visitToAddClasses("+_self+")")
 		if(_self.clonedElt===null){
 			_self.clonedElt = org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createEParameter
 			theSlicer.objectCloned(_self.clonedElt)
@@ -424,7 +426,7 @@ class orgeclipseemfecoreEParameterAspect extends orgeclipseemfecoreETypedElement
 @Aspect(className=typeof(org.eclipse.emf.ecore.EReference), with=#[typeof(orgeclipseemfecoreEStructuralFeatureAspect)])
 class orgeclipseemfecoreEReferenceAspect extends orgeclipseemfecoreEStructuralFeatureAspect{
 	@OverrideAspectMethod
-	def void _visitToAddClasses(StrictEcore theSlicer){println("visitToAddClasses("+_self+")")
+	def void _visitToAddClasses(StrictEcore theSlicer){//println("visitToAddClasses("+_self+")")
 		if((!theSlicer.card1 || _self.checkcard1)){
 		if(_self.clonedElt===null){
 			_self.clonedElt = org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createEReference
@@ -454,7 +456,7 @@ class orgeclipseemfecoreEReferenceAspect extends orgeclipseemfecoreEStructuralFe
 @Aspect(className=typeof(org.eclipse.emf.ecore.EStructuralFeature), with=#[typeof(orgeclipseemfecoreETypedElementAspect)])
 abstract class orgeclipseemfecoreEStructuralFeatureAspect extends orgeclipseemfecoreETypedElementAspect{
 	@OverrideAspectMethod
-	def void _visitToAddClasses(StrictEcore theSlicer){println("visitToAddClasses("+_self+")")
+	def void _visitToAddClasses(StrictEcore theSlicer){//println("visitToAddClasses("+_self+")")
 		if((!theSlicer.card1 || _self.checkcard1)){
 		_self.super__visitToAddClasses(theSlicer)
 		_self.^EContainingClass?.visitToAddClasses(theSlicer)
@@ -506,7 +508,7 @@ _self.^EGenericType?.reinit
 	}
 
 	@OverrideAspectMethod
-	def void _visitToAddClasses(StrictEcore theSlicer){println("visitToAddClasses("+_self+")")
+	def void _visitToAddClasses(StrictEcore theSlicer){//println("visitToAddClasses("+_self+")")
 		_self.super__visitToAddClasses(theSlicer)
 		_self.^EType?.visitToAddClasses(theSlicer)
 
@@ -557,7 +559,7 @@ _self.^ELowerBound?.reinit
 	}
 
 	@OverrideAspectMethod
-	def void _visitToAddClasses(StrictEcore theSlicer){println("visitToAddClasses("+_self+")")
+	def void _visitToAddClasses(StrictEcore theSlicer){//println("visitToAddClasses("+_self+")")
 		_self.super__visitToAddClasses(theSlicer)
 
 	}
@@ -583,7 +585,7 @@ _self.^EBounds.forEach[reinit]
 	}
 
 	@OverrideAspectMethod
-	def void _visitToAddClasses(StrictEcore theSlicer){println("visitToAddClasses("+_self+")")
+	def void _visitToAddClasses(StrictEcore theSlicer){//println("visitToAddClasses("+_self+")")
 		if(_self.clonedElt===null){
 			_self.clonedElt = org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createETypeParameter
 			theSlicer.objectCloned(_self.clonedElt)
