@@ -163,6 +163,9 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 			if(base !== null && slice !== null){
 				algebra.merge(slice,base)
 			}
+			else if(base === null && slice !== null){
+				base = slice
+			}
 		 }
 		 
 		
