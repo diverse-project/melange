@@ -42,5 +42,11 @@
         <ecoreFeature xsi:type="ecore:EReference" href="DeepHistory.ecore#//Region/ownerState"/>
       </genFeatures>
     </genClasses>
+    <genClasses image="false">
+      <ecoreClass href="DeepHistory.ecore#//NamedElement"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="DeepHistory.ecore#//NamedElement/name"/>
+      </genFeatures>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

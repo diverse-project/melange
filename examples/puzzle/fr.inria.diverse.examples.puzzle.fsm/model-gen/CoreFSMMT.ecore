@@ -19,12 +19,26 @@
       <eAnnotations source="aspect"/>
       <eParameters name="context" eType="//Hashtable"/>
     </eOperations>
+    <eOperations name="getContextPathByRegion">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
     <eOperations name="step">
       <eAnnotations source="aspect"/>
       <eParameters name="context" eType="//Hashtable"/>
       <eParameters name="events" upperBound="-1">
         <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eParameters>
+    </eOperations>
+    <eOperations name="removeStatesFromContext">
+      <eAnnotations source="aspect"/>
+      <eParameters name="context" eType="//Hashtable"/>
+      <eParameters name="toRemove" upperBound="-1" eType="//AbstractState"/>
+    </eOperations>
+    <eOperations name="addStatesToContext">
+      <eAnnotations source="aspect"/>
+      <eParameters name="context" eType="//Hashtable"/>
+      <eParameters name="newStates" upperBound="-1" eType="//AbstractState"/>
     </eOperations>
     <eOperations name="getCurrentState" upperBound="-1" eType="//AbstractState">
       <eAnnotations source="aspect"/>

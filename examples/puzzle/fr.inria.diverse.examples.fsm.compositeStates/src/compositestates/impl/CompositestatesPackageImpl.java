@@ -5,6 +5,7 @@ package compositestates.impl;
 import compositestates.AbstractState;
 import compositestates.CompositestatesFactory;
 import compositestates.CompositestatesPackage;
+import compositestates.NamedElement;
 import compositestates.Pseudostate;
 import compositestates.PseudostateKind;
 import compositestates.Region;
@@ -62,6 +63,13 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 	 * @generated
 	 */
 	private EClass pseudostateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass namedElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -280,6 +288,24 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getNamedElement() {
+		return namedElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNamedElement_Name() {
+		return (EAttribute)namedElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getPseudostateKind() {
 		return pseudostateKindEEnum;
 	}
@@ -333,6 +359,9 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 		pseudostateEClass = createEClass(PSEUDOSTATE);
 		createEAttribute(pseudostateEClass, PSEUDOSTATE__KIND);
 
+		namedElementEClass = createEClass(NAMED_ELEMENT);
+		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
+
 		// Create enums
 		pseudostateKindEEnum = createEEnum(PSEUDOSTATE_KIND);
 	}
@@ -365,6 +394,7 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		regionEClass.getESuperTypes().add(this.getNamedElement());
 		stateEClass.getESuperTypes().add(this.getAbstractState());
 		pseudostateEClass.getESuperTypes().add(this.getAbstractState());
 
@@ -403,6 +433,9 @@ public class CompositestatesPackageImpl extends EPackageImpl implements Composit
 
 		initEClass(pseudostateEClass, Pseudostate.class, "Pseudostate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPseudostate_Kind(), this.getPseudostateKind(), "kind", null, 0, 1, Pseudostate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(pseudostateKindEEnum, PseudostateKind.class, "PseudostateKind");

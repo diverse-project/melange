@@ -2,7 +2,6 @@
  */
 package junctionpseudostate;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,5 +13,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Region extends EObject {
+public interface Region extends NamedElement {
 } // Region

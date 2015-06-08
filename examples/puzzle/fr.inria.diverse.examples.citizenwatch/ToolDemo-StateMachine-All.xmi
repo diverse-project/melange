@@ -5,59 +5,53 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:CompleteFSM="http://CompleteFSM"
     xsi:schemaLocation="http://CompleteFSM ../fr.inria.diverse.examples.puzzle.fsm.CompleteFSM/composition-gen/CompleteFSM.ecore">
-  <regions name="XYZ">
+  <regions name="Region1">
     <subvertex
         xsi:type="CompleteFSM:Pseudostate"
-        name="InitialXYZ"
+        name="InitialS1"
         outgoing="//@regions.0/@transitions.0"/>
     <subvertex
         xsi:type="CompleteFSM:State"
-        name="X"
+        name="S1"
         incoming="//@regions.0/@transitions.0"
         outgoing="//@regions.0/@transitions.1"/>
     <subvertex
         xsi:type="CompleteFSM:State"
-        name="Y"
+        name="S2"
         incoming="//@regions.0/@transitions.1"
         outgoing="//@regions.0/@transitions.2"/>
     <subvertex
         xsi:type="CompleteFSM:State"
-        name="T"
-        incoming="//@regions.0/@transitions.2"
-        outgoing="//@regions.0/@transitions.3">
+        name="S3"
+        incoming="//@regions.0/@transitions.2">
       <ownedRegions
-          name="RegionT">
+          name="RegionS3">
         <subvertex
             xsi:type="CompleteFSM:Pseudostate"
-            name="InitialRegionT"
+            name="InitialS3"
             outgoing="//@regions.0/@subvertex.3/@ownedRegions.0/@transitions.0"/>
         <subvertex
             xsi:type="CompleteFSM:Pseudostate"
-            name="ConditionalT"
+            name="C"
             incoming="//@regions.0/@subvertex.3/@ownedRegions.0/@transitions.0"
             outgoing="//@regions.0/@subvertex.3/@ownedRegions.0/@transitions.1 //@regions.0/@subvertex.3/@ownedRegions.0/@transitions.2"
             kind="conditional"/>
         <subvertex
             xsi:type="CompleteFSM:State"
-            name="O"
+            name="S4"
             incoming="//@regions.0/@subvertex.3/@ownedRegions.0/@transitions.1"
-            outgoing="//@regions.0/@subvertex.3/@ownedRegions.0/@transitions.3"/>
+            outgoing="//@regions.0/@transitions.3"/>
         <subvertex
             xsi:type="CompleteFSM:State"
-            name="P"
+            name="S5"
             incoming="//@regions.0/@subvertex.3/@ownedRegions.0/@transitions.2"
-            outgoing="//@regions.0/@subvertex.3/@ownedRegions.0/@transitions.4"/>
-        <subvertex
-            xsi:type="CompleteFSM:State"
-            name="R"
-            incoming="//@regions.0/@subvertex.3/@ownedRegions.0/@transitions.3 //@regions.0/@subvertex.3/@ownedRegions.0/@transitions.4"
             outgoing="//@regions.0/@transitions.4"/>
         <transitions
-            name="InitialTToConditional"
+            name="InitialS3ToC"
             target="//@regions.0/@subvertex.3/@ownedRegions.0/@subvertex.1"
             source="//@regions.0/@subvertex.3/@ownedRegions.0/@subvertex.0"/>
         <transitions
-            name="ConditionalToO"
+            name="CToS4"
             target="//@regions.0/@subvertex.3/@ownedRegions.0/@subvertex.2"
             source="//@regions.0/@subvertex.3/@ownedRegions.0/@subvertex.1">
           <guard
@@ -71,7 +65,7 @@
           </guard>
         </transitions>
         <transitions
-            name="ConditionalToP"
+            name="CToS5"
             target="//@regions.0/@subvertex.3/@ownedRegions.0/@subvertex.3"
             source="//@regions.0/@subvertex.3/@ownedRegions.0/@subvertex.1">
           <guard
@@ -84,43 +78,29 @@
                 value="2"/>
           </guard>
         </transitions>
-        <transitions
-            name="OToR"
-            target="//@regions.0/@subvertex.3/@ownedRegions.0/@subvertex.4"
-            source="//@regions.0/@subvertex.3/@ownedRegions.0/@subvertex.2">
-          <trigger
-              expression="e3"/>
-        </transitions>
-        <transitions
-            name="PToR"
-            target="//@regions.0/@subvertex.3/@ownedRegions.0/@subvertex.4"
-            source="//@regions.0/@subvertex.3/@ownedRegions.0/@subvertex.3">
-          <trigger
-              expression="e3"/>
-        </transitions>
       </ownedRegions>
     </subvertex>
     <subvertex
-        xsi:type="CompleteFSM:State"
-        name="W"
+        xsi:type="CompleteFSM:FinalState"
+        name="S6"
         incoming="//@regions.0/@transitions.3 //@regions.0/@transitions.4"/>
     <transitions
-        name="InitialXYZToX"
+        name="InitialS1ToS1"
         target="//@regions.0/@subvertex.1"
         source="//@regions.0/@subvertex.0"/>
     <transitions
-        name="XToY"
+        name="S1ToS2"
         target="//@regions.0/@subvertex.2"
         source="//@regions.0/@subvertex.1">
       <trigger
-          expression="e1"/>
+          expression="e0"/>
     </transitions>
     <transitions
-        name="YToT"
+        name="S2ToS3"
         target="//@regions.0/@subvertex.3"
         source="//@regions.0/@subvertex.2">
       <trigger
-          expression="e2"/>
+          expression="e1"/>
       <effect
           xsi:type="CompleteFSM:Program">
         <statements
@@ -149,42 +129,102 @@
       </effect>
     </transitions>
     <transitions
-        name="TToW"
+        name="S4ToS6"
         target="//@regions.0/@subvertex.4"
-        source="//@regions.0/@subvertex.3">
+        source="//@regions.0/@subvertex.3/@ownedRegions.0/@subvertex.2">
       <trigger
-          expression="e3"/>
+          expression="e2"/>
     </transitions>
     <transitions
-        name="RToW"
+        name="S5ToS6"
         target="//@regions.0/@subvertex.4"
-        source="//@regions.0/@subvertex.3/@ownedRegions.0/@subvertex.4">
+        source="//@regions.0/@subvertex.3/@ownedRegions.0/@subvertex.3">
       <trigger
-          expression="e4"/>
+          expression="e2"/>
     </transitions>
   </regions>
-  <regions name="RegionABC">
+  <regions name="Region2">
     <subvertex
         xsi:type="CompleteFSM:Pseudostate"
-        name="InitialABC"
+        name="InitialRegion2"
         outgoing="//@regions.1/@transitions.0"/>
     <subvertex
         xsi:type="CompleteFSM:State"
-        name="A"
+        name="S7"
         incoming="//@regions.1/@transitions.0"
         outgoing="//@regions.1/@transitions.1"/>
     <subvertex
         xsi:type="CompleteFSM:State"
-        name="B"
-        incoming="//@regions.1/@transitions.1"/>
+        name="S8"
+        incoming="//@regions.1/@transitions.1"
+        outgoing="//@regions.1/@transitions.2">
+      <ownedRegions
+          name="RegionS8">
+        <subvertex
+            xsi:type="CompleteFSM:Pseudostate"
+            name="InitialS8"
+            outgoing="//@regions.1/@subvertex.2/@ownedRegions.0/@transitions.0"/>
+        <subvertex
+            xsi:type="CompleteFSM:State"
+            name="S9"
+            incoming="//@regions.1/@subvertex.2/@ownedRegions.0/@transitions.0"
+            outgoing="//@regions.1/@subvertex.2/@ownedRegions.0/@transitions.1"/>
+        <subvertex
+            xsi:type="CompleteFSM:State"
+            name="S10"
+            incoming="//@regions.1/@subvertex.2/@ownedRegions.0/@transitions.1"
+            outgoing="//@regions.1/@transitions.3"/>
+        <transitions
+            name="InitialS8ToS9"
+            target="//@regions.1/@subvertex.2/@ownedRegions.0/@subvertex.1"
+            source="//@regions.1/@subvertex.2/@ownedRegions.0/@subvertex.0"/>
+        <transitions
+            name="S9ToS10"
+            target="//@regions.1/@subvertex.2/@ownedRegions.0/@subvertex.2"
+            source="//@regions.1/@subvertex.2/@ownedRegions.0/@subvertex.1">
+          <trigger
+              expression="e4"/>
+        </transitions>
+      </ownedRegions>
+    </subvertex>
+    <subvertex
+        xsi:type="CompleteFSM:State"
+        name="S11"
+        incoming="//@regions.1/@transitions.2"
+        outgoing="//@regions.1/@transitions.4"/>
+    <subvertex
+        xsi:type="CompleteFSM:State"
+        name="S12"
+        incoming="//@regions.1/@transitions.3 //@regions.1/@transitions.4"/>
     <transitions
-        name="InitialABCToA"
+        name="InitialRegion2ToS7"
         target="//@regions.1/@subvertex.1"
         source="//@regions.1/@subvertex.0"/>
     <transitions
-        name="AToB"
+        name="S7ToS8"
         target="//@regions.1/@subvertex.2"
         source="//@regions.1/@subvertex.1">
+      <trigger
+          expression="e3"/>
+    </transitions>
+    <transitions
+        name="S8ToS11"
+        target="//@regions.1/@subvertex.3"
+        source="//@regions.1/@subvertex.2">
+      <trigger
+          expression="e4"/>
+    </transitions>
+    <transitions
+        name="S10ToS12"
+        target="//@regions.1/@subvertex.4"
+        source="//@regions.1/@subvertex.2/@ownedRegions.0/@subvertex.2">
+      <trigger
+          expression="e5"/>
+    </transitions>
+    <transitions
+        name="S11ToS12"
+        target="//@regions.1/@subvertex.4"
+        source="//@regions.1/@subvertex.3">
       <trigger
           expression="e5"/>
     </transitions>

@@ -29,7 +29,7 @@ class TransitionAspect {
 			while(_it.hasNext){
 				var String _key = _it.next
 				var Object _value = _context.get(_key)
-				if(!_key.equals("currentState"))
+				if(!_key.startsWith("currentState"))
 					context.put(_key, _value)
 			}
 		}

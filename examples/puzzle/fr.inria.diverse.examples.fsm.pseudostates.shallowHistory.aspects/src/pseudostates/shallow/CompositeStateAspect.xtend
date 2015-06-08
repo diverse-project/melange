@@ -28,7 +28,7 @@ class RegionAspect {
 		}
 		// Otherwise, go to the history!
 		else{
-			(context.get("currentState") as ArrayList<AbstractState>).add(_self.history)
+			(context.get("currentState-" + _self.name) as ArrayList<AbstractState>).add(_self.history)
 		}
 	}
 	
@@ -37,7 +37,7 @@ class RegionAspect {
 		println('saving the history state')
 		if(_self.subvertex.exists[ _vertex | _vertex instanceof Pseudostate &&
 			(_vertex as Pseudostate).kind == PseudostateKind.SHALLOW_HISTORY]){
-				_self.history = (context.get("currentState") as ArrayList<AbstractState>).findFirst[ _state |
+				_self.history = (context.get("currentState-" + _self.name) as ArrayList<AbstractState>).findFirst[ _state |
 					_state instanceof State && (_state as State).ownerRegion == _self] as State
 		}
 		

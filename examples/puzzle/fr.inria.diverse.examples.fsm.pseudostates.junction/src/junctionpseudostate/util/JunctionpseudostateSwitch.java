@@ -69,6 +69,7 @@ public class JunctionpseudostateSwitch<T> extends Switch<T> {
 			case JunctionpseudostatePackage.REGION: {
 				Region region = (Region)theEObject;
 				T result = caseRegion(region);
+				if (result == null) result = caseNamedElement(region);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

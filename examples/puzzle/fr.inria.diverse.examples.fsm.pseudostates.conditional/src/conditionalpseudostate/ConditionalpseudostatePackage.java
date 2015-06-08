@@ -59,6 +59,43 @@ public interface ConditionalpseudostatePackage extends EPackage {
 	ConditionalpseudostatePackage eINSTANCE = conditionalpseudostate.impl.ConditionalpseudostatePackageImpl.init();
 
 	/**
+	 * The meta object id for the '{@link conditionalpseudostate.impl.NamedElementImpl <em>Named Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see conditionalpseudostate.impl.NamedElementImpl
+	 * @see conditionalpseudostate.impl.ConditionalpseudostatePackageImpl#getNamedElement()
+	 * @generated
+	 */
+	int NAMED_ELEMENT = 4;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT__NAME = 0;
+
+	/**
+	 * The number of structural features of the '<em>Named Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Named Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link conditionalpseudostate.impl.RegionImpl <em>Region</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,13 +106,22 @@ public interface ConditionalpseudostatePackage extends EPackage {
 	int REGION = 0;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REGION__NAME = NAMED_ELEMENT__NAME;
+
+	/**
 	 * The number of structural features of the '<em>Region</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REGION_FEATURE_COUNT = 0;
+	int REGION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Region</em>' class.
@@ -84,7 +130,7 @@ public interface ConditionalpseudostatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REGION_OPERATION_COUNT = 0;
+	int REGION_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link conditionalpseudostate.impl.AbstractStateImpl <em>Abstract State</em>}' class.
@@ -250,7 +296,7 @@ public interface ConditionalpseudostatePackage extends EPackage {
 	 * @see conditionalpseudostate.impl.ConditionalpseudostatePackageImpl#getPseudostateKind()
 	 * @generated
 	 */
-	int PSEUDOSTATE_KIND = 4;
+	int PSEUDOSTATE_KIND = 5;
 
 
 	/**
@@ -357,6 +403,27 @@ public interface ConditionalpseudostatePackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getTransition__ValidGuard__Map();
+
+	/**
+	 * Returns the meta object for class '{@link conditionalpseudostate.NamedElement <em>Named Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Named Element</em>'.
+	 * @see conditionalpseudostate.NamedElement
+	 * @generated
+	 */
+	EClass getNamedElement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link conditionalpseudostate.NamedElement#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see conditionalpseudostate.NamedElement#getName()
+	 * @see #getNamedElement()
+	 * @generated
+	 */
+	EAttribute getNamedElement_Name();
 
 	/**
 	 * Returns the meta object for enum '{@link conditionalpseudostate.PseudostateKind <em>Pseudostate Kind</em>}'.
@@ -478,6 +545,24 @@ public interface ConditionalpseudostatePackage extends EPackage {
 		 * @generated
 		 */
 		EOperation TRANSITION___VALID_GUARD__MAP = eINSTANCE.getTransition__ValidGuard__Map();
+
+		/**
+		 * The meta object literal for the '{@link conditionalpseudostate.impl.NamedElementImpl <em>Named Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see conditionalpseudostate.impl.NamedElementImpl
+		 * @see conditionalpseudostate.impl.ConditionalpseudostatePackageImpl#getNamedElement()
+		 * @generated
+		 */
+		EClass NAMED_ELEMENT = eINSTANCE.getNamedElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NAMED_ELEMENT__NAME = eINSTANCE.getNamedElement_Name();
 
 		/**
 		 * The meta object literal for the '{@link conditionalpseudostate.PseudostateKind <em>Pseudostate Kind</em>}' enum.

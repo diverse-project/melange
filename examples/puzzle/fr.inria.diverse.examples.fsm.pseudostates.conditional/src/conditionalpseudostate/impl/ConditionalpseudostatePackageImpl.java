@@ -5,6 +5,7 @@ package conditionalpseudostate.impl;
 import conditionalpseudostate.AbstractState;
 import conditionalpseudostate.ConditionalpseudostateFactory;
 import conditionalpseudostate.ConditionalpseudostatePackage;
+import conditionalpseudostate.NamedElement;
 import conditionalpseudostate.Pseudostate;
 import conditionalpseudostate.PseudostateKind;
 import conditionalpseudostate.Region;
@@ -54,6 +55,13 @@ public class ConditionalpseudostatePackageImpl extends EPackageImpl implements C
 	 * @generated
 	 */
 	private EClass transitionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass namedElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -218,6 +226,24 @@ public class ConditionalpseudostatePackageImpl extends EPackageImpl implements C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getNamedElement() {
+		return namedElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNamedElement_Name() {
+		return (EAttribute)namedElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getPseudostateKind() {
 		return pseudostateKindEEnum;
 	}
@@ -264,6 +290,9 @@ public class ConditionalpseudostatePackageImpl extends EPackageImpl implements C
 		createEReference(transitionEClass, TRANSITION__TARGET);
 		createEOperation(transitionEClass, TRANSITION___VALID_GUARD__MAP);
 
+		namedElementEClass = createEClass(NAMED_ELEMENT);
+		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
+
 		// Create enums
 		pseudostateKindEEnum = createEEnum(PSEUDOSTATE_KIND);
 	}
@@ -296,6 +325,7 @@ public class ConditionalpseudostatePackageImpl extends EPackageImpl implements C
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		regionEClass.getESuperTypes().add(this.getNamedElement());
 		pseudostateEClass.getESuperTypes().add(this.getAbstractState());
 
 		// Initialize classes, features, and operations; add parameters
@@ -319,6 +349,9 @@ public class ConditionalpseudostatePackageImpl extends EPackageImpl implements C
 		g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(pseudostateKindEEnum, PseudostateKind.class, "PseudostateKind");
@@ -364,6 +397,11 @@ public class ConditionalpseudostatePackageImpl extends EPackageImpl implements C
 		   });	
 		addAnnotation
 		  (transitionEClass, 
+		   source, 
+		   new String[] {
+		   });	
+		addAnnotation
+		  (namedElementEClass, 
 		   source, 
 		   new String[] {
 		   });

@@ -39,5 +39,11 @@
         <ecoreFeature xsi:type="ecore:EReference" href="ShallowHistory.ecore#//Region/subvertex"/>
       </genFeatures>
     </genClasses>
+    <genClasses>
+      <ecoreClass href="ShallowHistory.ecore#//NamedElement"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ShallowHistory.ecore#//NamedElement/name"/>
+      </genFeatures>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

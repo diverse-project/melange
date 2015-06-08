@@ -59,6 +59,43 @@ public interface CompositestatesPackage extends EPackage {
 	CompositestatesPackage eINSTANCE = compositestates.impl.CompositestatesPackageImpl.init();
 
 	/**
+	 * The meta object id for the '{@link compositestates.impl.NamedElementImpl <em>Named Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see compositestates.impl.NamedElementImpl
+	 * @see compositestates.impl.CompositestatesPackageImpl#getNamedElement()
+	 * @generated
+	 */
+	int NAMED_ELEMENT = 5;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT__NAME = 0;
+
+	/**
+	 * The number of structural features of the '<em>Named Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Named Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link compositestates.impl.RegionImpl <em>Region</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,13 +106,22 @@ public interface CompositestatesPackage extends EPackage {
 	int REGION = 0;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REGION__NAME = NAMED_ELEMENT__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Subvertex</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REGION__SUBVERTEX = 0;
+	int REGION__SUBVERTEX = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owner State</b></em>' container reference.
@@ -84,7 +130,7 @@ public interface CompositestatesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REGION__OWNER_STATE = 1;
+	int REGION__OWNER_STATE = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Region</em>' class.
@@ -93,7 +139,7 @@ public interface CompositestatesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REGION_FEATURE_COUNT = 2;
+	int REGION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Init Region</em>' operation.
@@ -102,7 +148,7 @@ public interface CompositestatesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REGION___INIT_REGION__MAP = 0;
+	int REGION___INIT_REGION__MAP = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Region</em>' class.
@@ -111,7 +157,7 @@ public interface CompositestatesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REGION_OPERATION_COUNT = 1;
+	int REGION_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link compositestates.impl.AbstractStateImpl <em>Abstract State</em>}' class.
@@ -360,7 +406,7 @@ public interface CompositestatesPackage extends EPackage {
 	 * @see compositestates.impl.CompositestatesPackageImpl#getPseudostateKind()
 	 * @generated
 	 */
-	int PSEUDOSTATE_KIND = 5;
+	int PSEUDOSTATE_KIND = 6;
 
 
 	/**
@@ -533,6 +579,27 @@ public interface CompositestatesPackage extends EPackage {
 	EAttribute getPseudostate_Kind();
 
 	/**
+	 * Returns the meta object for class '{@link compositestates.NamedElement <em>Named Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Named Element</em>'.
+	 * @see compositestates.NamedElement
+	 * @generated
+	 */
+	EClass getNamedElement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link compositestates.NamedElement#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see compositestates.NamedElement#getName()
+	 * @see #getNamedElement()
+	 * @generated
+	 */
+	EAttribute getNamedElement_Name();
+
+	/**
 	 * Returns the meta object for enum '{@link compositestates.PseudostateKind <em>Pseudostate Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -702,6 +769,24 @@ public interface CompositestatesPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PSEUDOSTATE__KIND = eINSTANCE.getPseudostate_Kind();
+
+		/**
+		 * The meta object literal for the '{@link compositestates.impl.NamedElementImpl <em>Named Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see compositestates.impl.NamedElementImpl
+		 * @see compositestates.impl.CompositestatesPackageImpl#getNamedElement()
+		 * @generated
+		 */
+		EClass NAMED_ELEMENT = eINSTANCE.getNamedElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NAMED_ELEMENT__NAME = eINSTANCE.getNamedElement_Name();
 
 		/**
 		 * The meta object literal for the '{@link compositestates.PseudostateKind <em>Pseudostate Kind</em>}' enum.

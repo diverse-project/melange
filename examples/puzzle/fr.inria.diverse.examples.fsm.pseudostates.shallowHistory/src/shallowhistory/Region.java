@@ -4,8 +4,6 @@ package shallowhistory;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Region</b></em>'.
@@ -22,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Region extends EObject {
+public interface Region extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Subvertex</b></em>' containment reference list.
 	 * The list contents are of type {@link shallowhistory.AbstractState}.

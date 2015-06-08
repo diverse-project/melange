@@ -197,6 +197,43 @@ public interface ShallowhistoryPackage extends EPackage {
 	int STATE_OPERATION_COUNT = ABSTRACT_STATE_OPERATION_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link shallowhistory.impl.NamedElementImpl <em>Named Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see shallowhistory.impl.NamedElementImpl
+	 * @see shallowhistory.impl.ShallowhistoryPackageImpl#getNamedElement()
+	 * @generated
+	 */
+	int NAMED_ELEMENT = 4;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT__NAME = 0;
+
+	/**
+	 * The number of structural features of the '<em>Named Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Named Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link shallowhistory.impl.RegionImpl <em>Region</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -207,13 +244,22 @@ public interface ShallowhistoryPackage extends EPackage {
 	int REGION = 3;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REGION__NAME = NAMED_ELEMENT__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Subvertex</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REGION__SUBVERTEX = 0;
+	int REGION__SUBVERTEX = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Region</em>' class.
@@ -222,7 +268,7 @@ public interface ShallowhistoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REGION_FEATURE_COUNT = 1;
+	int REGION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Region</em>' class.
@@ -231,7 +277,7 @@ public interface ShallowhistoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REGION_OPERATION_COUNT = 0;
+	int REGION_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link shallowhistory.PseudostateKind <em>Pseudostate Kind</em>}' enum.
@@ -241,7 +287,7 @@ public interface ShallowhistoryPackage extends EPackage {
 	 * @see shallowhistory.impl.ShallowhistoryPackageImpl#getPseudostateKind()
 	 * @generated
 	 */
-	int PSEUDOSTATE_KIND = 4;
+	int PSEUDOSTATE_KIND = 5;
 
 
 	/**
@@ -337,6 +383,27 @@ public interface ShallowhistoryPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getRegion_Subvertex();
+
+	/**
+	 * Returns the meta object for class '{@link shallowhistory.NamedElement <em>Named Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Named Element</em>'.
+	 * @see shallowhistory.NamedElement
+	 * @generated
+	 */
+	EClass getNamedElement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link shallowhistory.NamedElement#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see shallowhistory.NamedElement#getName()
+	 * @see #getNamedElement()
+	 * @generated
+	 */
+	EAttribute getNamedElement_Name();
 
 	/**
 	 * Returns the meta object for enum '{@link shallowhistory.PseudostateKind <em>Pseudostate Kind</em>}'.
@@ -450,6 +517,24 @@ public interface ShallowhistoryPackage extends EPackage {
 		 * @generated
 		 */
 		EReference REGION__SUBVERTEX = eINSTANCE.getRegion_Subvertex();
+
+		/**
+		 * The meta object literal for the '{@link shallowhistory.impl.NamedElementImpl <em>Named Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see shallowhistory.impl.NamedElementImpl
+		 * @see shallowhistory.impl.ShallowhistoryPackageImpl#getNamedElement()
+		 * @generated
+		 */
+		EClass NAMED_ELEMENT = eINSTANCE.getNamedElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NAMED_ELEMENT__NAME = eINSTANCE.getNamedElement_Name();
 
 		/**
 		 * The meta object literal for the '{@link shallowhistory.PseudostateKind <em>Pseudostate Kind</em>}' enum.

@@ -4,10 +4,7 @@ package conditionalpseudostate.impl;
 
 import conditionalpseudostate.ConditionalpseudostatePackage;
 import conditionalpseudostate.Region;
-
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,7 +13,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *
  * @generated
  */
-public class RegionImpl extends MinimalEObjectImpl.Container implements Region {
+public class RegionImpl extends NamedElementImpl implements Region {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

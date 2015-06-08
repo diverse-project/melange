@@ -24,8 +24,8 @@ class RegionAspect{
 		if(initialPseudostate != null){
 			_self._original_initRegion(context)
 		}else{
-			if(!(context.get("currentState") as ArrayList<AbstractState>).contains(_self.ownerState))
-				(context.get("currentState") as ArrayList<AbstractState>).add(_self.ownerState)
+			if(!(context.get("currentState-" + _self.name) as ArrayList<AbstractState>).contains(_self.ownerState))
+				(context.get("currentState-" + _self.name) as ArrayList<AbstractState>).add(_self.ownerState)
 		}
 	}
 	

@@ -214,7 +214,8 @@
                 decision="true"/>
             <child
                 xsi:type="kcvlmetamodel:ChoiceResolutuion"
-                name="History">
+                name="History"
+                decision="true">
               <child
                   xsi:type="kcvlmetamodel:ChoiceResolutuion"
                   name="Shallow"
@@ -285,13 +286,13 @@
                 xsi:type="kcvlmetamodel:ChoiceResolutuion"
                 name="SemDeeperStatesPriority"
                 resolvedVSpec="//@packageElement.0/@packageElement.1/@child.0/@child.0/@child.0"
-                resolvedChoice="//@packageElement.0/@packageElement.1/@child.0/@child.0/@child.0"
-                decision="true"/>
+                resolvedChoice="//@packageElement.0/@packageElement.1/@child.0/@child.0/@child.0"/>
             <child
                 xsi:type="kcvlmetamodel:ChoiceResolutuion"
                 name="SemHigherStatesPriority"
                 resolvedVSpec="//@packageElement.0/@packageElement.1/@child.0/@child.0/@child.1"
-                resolvedChoice="//@packageElement.0/@packageElement.1/@child.0/@child.0/@child.1"/>
+                resolvedChoice="//@packageElement.0/@packageElement.1/@child.0/@child.0/@child.1"
+                decision="true"/>
           </child>
           <child
               xsi:type="kcvlmetamodel:ChoiceResolutuion"
@@ -315,12 +316,12 @@
             <child
                 xsi:type="kcvlmetamodel:ChoiceResolutuion"
                 name="SemRunToCompletion"
-                resolvedChoice="//@packageElement.0/@packageElement.1/@child.0/@child.2/@child.0"
-                decision="true"/>
+                resolvedChoice="//@packageElement.0/@packageElement.1/@child.0/@child.2/@child.0"/>
             <child
                 xsi:type="kcvlmetamodel:ChoiceResolutuion"
                 name="SemSimultaneousEvents"
-                resolvedChoice="//@packageElement.0/@packageElement.1/@child.0/@child.2/@child.1"/>
+                resolvedChoice="//@packageElement.0/@packageElement.1/@child.0/@child.2/@child.1"
+                decision="true"/>
           </child>
           <child
               xsi:type="kcvlmetamodel:ChoiceResolutuion"

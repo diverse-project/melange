@@ -15,7 +15,6 @@ composition CompleteFSM {
 	extension(CoreFSM, Conditional)
 	extension(CoreFSM, ShallowHistory)
 	extension(CoreFSM, DeepHistory)
-	extension(CoreFSM, JunctionPseudostate)
 	extension(CoreFSM, CompositeStates)
 }
 
@@ -26,13 +25,13 @@ language CoreFSM {
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.core/models/fsmcore.ecore"
 	exactType CoreFSMMT 
 	
-	// Variation # 1: Run-To-Completion
-	with FSM.rtc.StateMachineAspect 
-	with FSM.rtc.RegionAspect 
-	with FSM.rtc.StateAspect
-	with FSM.rtc.TransitionAspect
-	with FSM.rtc.TriggerAspect
-	with FSM.rtc.FinalStateAspect
+	// Variation # 2: Simultaneous Events
+	with FSM.simultaneous.StateMachineAspect
+	with FSM.simultaneous.RegionAspect
+	with FSM.simultaneous.StateAspect
+	with FSM.simultaneous.TransitionAspect
+	with FSM.simultaneous.TriggerAspect
+	with FSM.simultaneous.FinalStateAspect
 }
 
 /**
@@ -76,8 +75,8 @@ language CompositeStates {
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.compositeStates/models/compositestates.ecore"
 	exactType ComposteStatesMT
 	
-	with FSM.composite.deepest.RegionAspect
-	with FSM.composite.deepest.StateAspect
+	with FSM.composite.higher.RegionAspect
+	with FSM.composite.higher.StateAspect
 
 }
 
@@ -110,16 +109,6 @@ language JoinPseudostate {
 	exactType JoinPseudostateMT
 	
 	with pseudostates.join.RegionAspect
-}
-
-/**
- * Junction pseudostate: Contains the concept 'JunctionPseudostate' that enables more complex transitions
- */
-language JunctionPseudostate {
-	ecore "platform:/resource/fr.inria.diverse.examples.fsm.pseudostates.junction/models/Junction.ecore"
-	exactType JunctionPseudostateMT
-	
-	with pseudostates.junction.outgoing.RegionAspect
 }
 
 /**

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="compositestates" nsURI="http://compostestatesmt/" nsPrefix="compositestates">
-  <eClassifiers xsi:type="ecore:EClass" name="Region">
+  <eClassifiers xsi:type="ecore:EClass" name="Region" eSuperTypes="//NamedElement">
     <eAnnotations source="extension"/>
     <eOperations name="initRegion">
       <eParameters name="context">
@@ -30,6 +30,25 @@
       <eParameters name="selectedTransition" eType="//Transition"/>
       <eParameters name="context" eType="//Hashtable"/>
     </eOperations>
+    <eOperations name="getContextPathByRegion">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="removeStatesFromContext">
+      <eAnnotations source="aspect"/>
+      <eParameters name="context" eType="//Hashtable"/>
+      <eParameters name="toRemove" upperBound="-1" eType="//AbstractState"/>
+    </eOperations>
+    <eOperations name="addStatesToContext">
+      <eAnnotations source="aspect"/>
+      <eParameters name="context" eType="//Hashtable"/>
+      <eParameters name="newStates" upperBound="-1" eType="//AbstractState"/>
+    </eOperations>
+    <eOperations name="getContextPath">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="_vertex" eType="//AbstractState"/>
+    </eOperations>
     <eOperations name="getAllParents">
       <eAnnotations source="aspect"/>
       <eParameters name="vertex" eType="//AbstractState"/>
@@ -40,10 +59,10 @@
       <eParameters name="vertex" eType="//AbstractState"/>
       <eParameters name="children" upperBound="-1" eType="//AbstractState"/>
     </eOperations>
-    <eOperations name="deepestConflictingTransition" eType="//Transition">
+    <eOperations name="highestConflictingTransition">
       <eAnnotations source="aspect"/>
-      <eParameters name="newActiveTransitions" upperBound="-1" eType="//Transition"/>
-      <eParameters name="selectedTransition" eType="//Transition"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="activeTransitions" upperBound="-1" eType="//Transition"/>
     </eOperations>
     <eOperations name="_original_findNewActiveStates">
       <eAnnotations source="aspect"/>
@@ -63,6 +82,19 @@
       <eParameters name="newActiveTransitions" upperBound="-1" eType="//Transition"/>
       <eParameters name="selectedTransition" eType="//Transition"/>
       <eParameters name="context" eType="//Hashtable"/>
+    </eOperations>
+    <eOperations name="_original_getContextPathByRegion">
+      <eAnnotations source="aspect"/>
+    </eOperations>
+    <eOperations name="_original_removeStatesFromContext">
+      <eAnnotations source="aspect"/>
+      <eParameters name="context" eType="//Hashtable"/>
+      <eParameters name="toRemove" upperBound="-1" eType="//AbstractState"/>
+    </eOperations>
+    <eOperations name="_original_addStatesToContext">
+      <eAnnotations source="aspect"/>
+      <eParameters name="context" eType="//Hashtable"/>
+      <eParameters name="newStates" upperBound="-1" eType="//AbstractState"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subvertex" upperBound="-1" eType="//AbstractState" containment="true" eOpposite="//AbstractState/ownerRegion"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownerState" eType="//State" eOpposite="//State/ownedRegions">
@@ -108,5 +140,10 @@
   <eClassifiers xsi:type="ecore:EEnum" name="PseudostateKind">
     <eAnnotations source="extension"/>
     <eLiterals name="initial"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
   </eClassifiers>
 </ecore:EPackage>

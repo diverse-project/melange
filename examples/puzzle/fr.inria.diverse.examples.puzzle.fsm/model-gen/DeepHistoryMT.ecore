@@ -35,7 +35,7 @@
     <eAnnotations source="extension"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownerRegion" lowerBound="1" eType="//Region" eOpposite="//Region/subvertex"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Region">
+  <eClassifiers xsi:type="ecore:EClass" name="Region" eSuperTypes="//NamedElement">
     <eAnnotations source="extension"/>
     <eOperations name="initRegion">
       <eAnnotations source="aspect"/>
@@ -58,4 +58,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownerState" lowerBound="1" eType="//State" eOpposite="//State/ownedRegions"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="Hashtable" instanceClassName="java.util.Hashtable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
+    <eAnnotations source="extension"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
 </ecore:EPackage>

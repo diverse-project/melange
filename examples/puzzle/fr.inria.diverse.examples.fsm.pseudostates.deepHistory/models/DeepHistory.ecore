@@ -27,9 +27,15 @@
     <eAnnotations source="extension"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownerRegion" lowerBound="1" eType="//Region" eOpposite="//Region/subvertex"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Region">
+  <eClassifiers xsi:type="ecore:EClass" name="Region" eSuperTypes="//NamedElement">
     <eAnnotations source="extension"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subvertex" upperBound="-1" eType="//AbstractState" containment="true" eOpposite="//AbstractState/ownerRegion"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownerState" lowerBound="1" eType="//State" eOpposite="//State/ownedRegions"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
+    <eAnnotations source="extension"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
   </eClassifiers>
 </ecore:EPackage>

@@ -52,6 +52,7 @@ class RegionAspect{
 				if(_newState instanceof State){
 					var ArrayList<AbstractState> children = newArrayList
 					_self.getAllChildren(_newState, children)
+					
 					if(children.findFirst[child | newActiveStates.contains(child)] != null)
 						delete = false
 				}
@@ -63,6 +64,17 @@ class RegionAspect{
 			if(delete)
 				toDelete.add(_newState)
 		}
+		
+		val ArrayList<AbstractState> moreToDelete = new ArrayList<AbstractState>()
+		newActiveStates.forEach[ _state |
+			val ArrayList<AbstractState> child = new ArrayList<AbstractState>()
+			_self.getAllChildren(_state, child)
+			if(!_state.incoming.exists[ t | currentActiveTransitions.contains(t)] &&
+				!child.exists[ s | s.incoming.exists[ t | currentActiveTransitions.contains(t)]])
+					moreToDelete.add(_state)
+		]
+		
+		toDelete.addAll(moreToDelete)
 		newActiveStates.removeAll(toDelete)
 	}
 	
@@ -96,13 +108,80 @@ class RegionAspect{
 	@OverrideRequiredAspectMethod
 	def public void findNewActiveTransitions(ArrayList<Transition> newActiveTransitions, 
 		Transition selectedTransition, Hashtable<String, Object> context){
-		var conflictingTransition = _self.deepestConflictingTransition(newActiveTransitions, selectedTransition)
-		if(conflictingTransition == null)
+
+		newActiveTransitions.add(selectedTransition)
+		var ArrayList<Transition> activeTransitions = new ArrayList<Transition>()
+		activeTransitions.addAll(newActiveTransitions)
+		activeTransitions.add(selectedTransition)
+		var boolean conflictingTransition = _self.deepestConflictingTransition(activeTransitions)
+
+		if(!conflictingTransition)
 			_self._original_findNewActiveTransitions(newActiveTransitions, selectedTransition, context)
 		else{
-			newActiveTransitions.remove(conflictingTransition)
-			newActiveTransitions.add(selectedTransition)
+			newActiveTransitions.clear()
+			newActiveTransitions.addAll(activeTransitions)	
 		}
+		
+	}
+	
+	@OverrideRequiredAspectMethod
+	def public String getContextPathByRegion(){
+		var root = "currentState"
+		var ArrayList<Region> parentRegions = new ArrayList<Region>()
+		var Region currentRegion = _self
+		while(currentRegion.ownerState != null && currentRegion.ownerState.ownerRegion != null){
+			parentRegions.add(_self.ownerState.ownerRegion)
+			currentRegion = currentRegion.ownerState.ownerRegion
+		}
+		
+		for(var int i = parentRegions.size() - 1; i >= 0; i--){
+			root += "-" + parentRegions.get(i).name
+		}
+		
+		return root + "-" + _self.name
+	}
+	
+	@OverrideRequiredAspectMethod
+	def public void removeStatesFromContext(Hashtable<String, Object> context, ArrayList<AbstractState> toRemove){
+		for(AbstractState _oldState : toRemove){
+			(context.get(_self.getContextPath(_oldState)) as ArrayList<AbstractState>).remove(_oldState)
+		}
+		
+	}
+	
+	@OverrideRequiredAspectMethod
+	def public void addStatesToContext(Hashtable<String, Object> context, ArrayList<AbstractState> newStates){
+		
+		for(AbstractState _newState : newStates){
+			var String path = _self.getContextPath(_newState)
+			
+			if(context.get(path) == null)
+				context.put(path, new ArrayList<AbstractState>())
+			
+			if(!(context.get(path) as ArrayList<AbstractState>).contains(_newState))
+				(context.get(path) as ArrayList<AbstractState>).add(_newState)
+		}
+	}
+	
+	@AddExtensionMethod
+	def public String getContextPath(AbstractState _vertex){
+		var root = "currentState"
+		var ArrayList<Region> parentRegions = new ArrayList<Region>()
+		var Region currentRegion = _vertex.ownerRegion
+		while(currentRegion != null ){
+			parentRegions.add(currentRegion)
+			
+			if(currentRegion.ownerState != null)
+				currentRegion = currentRegion.ownerState.ownerRegion
+			else
+				currentRegion = null
+		}
+		
+		for(var int i = parentRegions.size() - 1; i >= 0; i--){
+			root += "-" + parentRegions.get(i).name
+		}
+		
+		return root
 	}
 	
 	@AddExtensionMethod
@@ -132,22 +211,22 @@ class RegionAspect{
 	}
 	
 	@AddExtensionMethod
-	def public Transition deepestConflictingTransition(ArrayList<Transition> newActiveTransitions, 
-		Transition selectedTransition){
-			
-		if(selectedTransition.source instanceof State){
-			for(Transition _activeTransition : newActiveTransitions){
-				if(_activeTransition.source instanceof State){
+	def public boolean deepestConflictingTransition(ArrayList<Transition> activeTransitions){
+		val res = activeTransitions.size()
+		val ArrayList<Transition> toDelete = new ArrayList<Transition>()
+		activeTransitions.forEach[ x |
+			activeTransitions.forEach[ y |
+				if(x.source instanceof State){
 					var ArrayList<AbstractState> children = new ArrayList<AbstractState>()
-					_self.getAllChildren((_activeTransition.source as State), children)
-					if(children.contains(selectedTransition.source)){
-						return _activeTransition
+					_self.getAllChildren((x.source as State), children)
+					if(children.contains(y.source)){
+						toDelete.add(x)
 					}
 				}
-				
-			}
-		}
-		return null
+			]
+		]
+		activeTransitions.removeAll(toDelete)
+		return res != activeTransitions.size()
 	}
 }
 

@@ -22,7 +22,7 @@ class RegionAspect {
 		while(!allJunctionsAttended){
 			_self._original_step(context, events)
 			
-			var ArrayList<AbstractState> currentState = context.get("currentState") as ArrayList<AbstractState>
+			var ArrayList<AbstractState> currentState = context.get("currentState-" + _self.name) as ArrayList<AbstractState>
 			allJunctionsAttended = !currentState.exists[_vertex | _vertex.outgoing.exists[_outgoing|
 				(_outgoing.target instanceof Pseudostate) &&
 					(_outgoing.target as Pseudostate).kind == PseudostateKind.JUNCTION

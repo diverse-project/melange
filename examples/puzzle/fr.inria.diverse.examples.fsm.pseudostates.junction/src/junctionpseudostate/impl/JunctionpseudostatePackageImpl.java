@@ -384,6 +384,7 @@ public class JunctionpseudostatePackageImpl extends EPackageImpl implements Junc
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		regionEClass.getESuperTypes().add(this.getNamedElement());
 		pseudostateEClass.getESuperTypes().add(this.getAbstractState());
 		transitionEClass.getESuperTypes().add(this.getNamedElement());
 

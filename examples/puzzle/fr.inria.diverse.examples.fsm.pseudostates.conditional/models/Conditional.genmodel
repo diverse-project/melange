@@ -42,5 +42,11 @@
         </genParameters>
       </genOperations>
     </genClasses>
+    <genClasses image="false">
+      <ecoreClass href="Conditional.ecore#//NamedElement"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Conditional.ecore#//NamedElement/name"/>
+      </genFeatures>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

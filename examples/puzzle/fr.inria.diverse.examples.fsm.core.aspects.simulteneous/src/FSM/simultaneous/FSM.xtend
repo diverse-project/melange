@@ -44,21 +44,27 @@ class StateMachineAspect {
 		println("\nExecuting the state machine. Please enter the events to process...\n")
 		
 		val Hashtable<String, Object> context = new Hashtable<String, Object>
-		context.put("currentState", new ArrayList<AbstractState>())
 		
-		_self.regions.forEach[ _region | _region.initRegion(context)]
-		
-		print(" ---> current active state (s): ")
-		(context.get("currentState") as ArrayList<AbstractState>).forEach[ _vertex |
-			print( _vertex.name + " ")
+		_self.regions.forEach[ _region | 
+			_region.initRegion(context)
 		]
 		
+		print("    step: ---> current active state (s): ")
 		var _it = context.keySet.iterator
+		while(_it.hasNext){
+			var String _key = _it.next
+			var Object _value = context.get(_key)
+			if(_key.startsWith("currentState"))
+				(_value as ArrayList<AbstractState>).forEach[ _vertex |
+					print( _vertex.name + " ")]
+		}
+		
+		_it = context.keySet.iterator
 		var String variablesString = ""
 		while(_it.hasNext){
 			var String _key = _it.next
 			var Object _value = context.get(_key)
-			if(!_key.equals("currentState"))
+			if(!_key.startsWith("currentState"))
 				variablesString += " - " + _key + ": " + _value + "\n"
 		}
 		if(!variablesString.equals("")){
@@ -76,17 +82,23 @@ class StateMachineAspect {
 			}
 			
 			_self.regions.forEach[ _region | _region.step(context, events)]
+
 			print("    step: ---> current active state (s): ")
-			(context.get("currentState") as ArrayList<AbstractState>).forEach[ _vertex |
-				print( _vertex.name + " ")
-			]
-			
+			_it = context.keySet.iterator
+			while(_it.hasNext){
+				var String _key = _it.next
+				var Object _value = context.get(_key)
+				if(_key.startsWith("currentState"))
+					(_value as ArrayList<AbstractState>).forEach[ _vertex |
+						print( _vertex.name + " ")]
+			}
+					
 			_it = context.keySet.iterator
 			variablesString = ""
 			while(_it.hasNext){
 				var String _key = _it.next
 				var Object _value = context.get(_key)
-				if(!_key.equals("currentState"))
+				if(!_key.startsWith("currentState"))
 					variablesString += "              - " + _key + ": " + _value + "\n"
 			}
 			if(!variablesString.equals("")){
@@ -104,6 +116,8 @@ class StateMachineAspect {
 class RegionAspect {
 	
 	def public void initRegion(Hashtable<String, Object> context){
+		var ArrayList<AbstractState> regionCurrentState = new ArrayList<AbstractState>();
+		context.put(_self.getContextPathByRegion, regionCurrentState)
 		
 		// Looking for the initial pseudo-state
 		var Pseudostate initialPseudostate = _self.subvertex.
@@ -117,11 +131,15 @@ class RegionAspect {
 			initialCurrentTransitions.add(_transition)
 			initialCurrentState.add(_transition.target)
 		}
-		(context.get("currentState") as ArrayList<AbstractState>).addAll(initialCurrentState)
+		(regionCurrentState as ArrayList<AbstractState>).addAll(initialCurrentState)
 		
 		initialCurrentTransitions.forEach[ transition |
 			transition.evalTransition(context)
 		]
+	}
+	
+	def public String getContextPathByRegion(){
+		return "currentState-" + _self.name
 	}
 	
 	/**
@@ -145,18 +163,14 @@ class RegionAspect {
 			_self.findNewActiveTransitions(currentTransitions, transition, context)
 			_self.findNewActiveStates(newStates, transition, currentTransitions, context)
 		}
-
+		
 		for(AbstractState _attendedState : attendedStates){
 			if(_attendedState instanceof State)
 				(_attendedState as State).exitState(context)
 		}
 		
-		currentState.removeAll(attendedStates)
-		
-		for(AbstractState _newState : newStates){
-			if(!currentState.contains(_newState))
-				currentState.add(_newState)
-		}
+		_self.removeStatesFromContext(context, attendedStates)
+		_self.addStatesToContext(context, newStates)
 		
 		activeTransitions.forEach[ transition |
 			transition.evalTransition(context)
@@ -172,11 +186,32 @@ class RegionAspect {
 		]
 	}
 	
+	def public void removeStatesFromContext(Hashtable<String, Object> context, ArrayList<AbstractState> toRemove){
+		(context.get(_self.contextPathByRegion) as ArrayList<AbstractState>).removeAll(toRemove)
+	}
+	
+	def public void addStatesToContext(Hashtable<String, Object> context, ArrayList<AbstractState> newStates){
+		for(AbstractState _newState : newStates){
+			if(!(context.get(_self.contextPathByRegion) as ArrayList<AbstractState>).contains(_newState))
+				(context.get(_self.contextPathByRegion) as ArrayList<AbstractState>).add(_newState)
+		}
+	}
+	
 	/**
 	 * Returns the current state of the machine. It corresponds to the current set of active states.
 	 */
 	def public ArrayList<AbstractState> getCurrentState(Hashtable<String, Object> context, EList<String> events){
-		return context.get("currentState") as ArrayList<AbstractState>
+		val ArrayList<AbstractState> currentState = new ArrayList<AbstractState>
+			
+			var _it = context.keySet.iterator
+			while(_it.hasNext){
+				var String _key = _it.next
+				var Object _value = context.get(_key)
+				if(_key.startsWith("currentState-" + _self.name))
+					(_value as ArrayList<AbstractState>).forEach[ _vertex |
+						currentState.add(_vertex)]
+			}
+		return currentState
 	}
 	
 	/**
@@ -207,8 +242,9 @@ class RegionAspect {
 	def public void findNewActiveStates(ArrayList<AbstractState> newActiveStates,
 		Transition selectedTransition, ArrayList<Transition> currentActiveTransitions,
 		Hashtable<String, Object> context){
-			if(!newActiveStates.contains(selectedTransition.target))
-				newActiveStates.add(selectedTransition.target)
+			if(!newActiveStates.contains(selectedTransition.target) && 
+				!selectedTransition.alreadyFired(context))
+					newActiveStates.add(selectedTransition.target)
 	}
 	
 	/**
@@ -285,7 +321,7 @@ class TransitionAspect {
 // ASPECT
 @Aspect(className=Trigger)
 class TriggerAspect {
-
+	
 	def public boolean evalTrigger(EList<String> events){
 		return events.contains(_self.expression)
 	}

@@ -21,7 +21,17 @@ class RegionAspect {
 		while(!allConditionalsAttended){
 			_self._original_step(context, events)
 			
-			var ArrayList<AbstractState> currentState = context.get("currentState") as ArrayList<AbstractState>
+			val ArrayList<AbstractState> currentState = new ArrayList<AbstractState>
+			
+			var _it = context.keySet.iterator
+			while(_it.hasNext){
+				var String _key = _it.next
+				var Object _value = context.get(_key)
+				if(_key.startsWith("currentState"))
+					(_value as ArrayList<AbstractState>).forEach[ _vertex |
+						currentState.add(_vertex)]
+			}
+			
 			var _conditionalPseudostate = currentState.findFirst[_vertex | (_vertex instanceof Pseudostate) &&
 				(_vertex as Pseudostate).kind == PseudostateKind.CONDITIONAL]
 			allConditionalsAttended = _conditionalPseudostate == null

@@ -69,24 +69,6 @@ public interface JunctionpseudostatePackage extends EPackage {
 	int REGION = 0;
 
 	/**
-	 * The number of structural features of the '<em>Region</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REGION_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Region</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REGION_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link junctionpseudostate.impl.AbstractStateImpl <em>Abstract State</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -95,6 +77,80 @@ public interface JunctionpseudostatePackage extends EPackage {
 	 * @generated
 	 */
 	int ABSTRACT_STATE = 1;
+
+	/**
+	 * The meta object id for the '{@link junctionpseudostate.impl.PseudostateImpl <em>Pseudostate</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see junctionpseudostate.impl.PseudostateImpl
+	 * @see junctionpseudostate.impl.JunctionpseudostatePackageImpl#getPseudostate()
+	 * @generated
+	 */
+	int PSEUDOSTATE = 2;
+
+	/**
+	 * The meta object id for the '{@link junctionpseudostate.impl.NamedElementImpl <em>Named Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see junctionpseudostate.impl.NamedElementImpl
+	 * @see junctionpseudostate.impl.JunctionpseudostatePackageImpl#getNamedElement()
+	 * @generated
+	 */
+	int NAMED_ELEMENT = 5;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT__NAME = 0;
+
+	/**
+	 * The number of structural features of the '<em>Named Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Named Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REGION__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Region</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REGION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Region</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REGION_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Outgoing</b></em>' reference list.
@@ -131,16 +187,6 @@ public interface JunctionpseudostatePackage extends EPackage {
 	 * @ordered
 	 */
 	int ABSTRACT_STATE_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link junctionpseudostate.impl.PseudostateImpl <em>Pseudostate</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see junctionpseudostate.impl.PseudostateImpl
-	 * @see junctionpseudostate.impl.JunctionpseudostatePackageImpl#getPseudostate()
-	 * @generated
-	 */
-	int PSEUDOSTATE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Outgoing</b></em>' reference list.
@@ -186,43 +232,6 @@ public interface JunctionpseudostatePackage extends EPackage {
 	 * @ordered
 	 */
 	int PSEUDOSTATE_OPERATION_COUNT = ABSTRACT_STATE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link junctionpseudostate.impl.NamedElementImpl <em>Named Element</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see junctionpseudostate.impl.NamedElementImpl
-	 * @see junctionpseudostate.impl.JunctionpseudostatePackageImpl#getNamedElement()
-	 * @generated
-	 */
-	int NAMED_ELEMENT = 5;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT__NAME = 0;
-
-	/**
-	 * The number of structural features of the '<em>Named Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Named Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link junctionpseudostate.impl.TransitionImpl <em>Transition</em>}' class.

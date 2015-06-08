@@ -29,7 +29,7 @@ class RegionAspect {
 		}
 		// Otherwise, go to the history!
 		else{
-			(context.get("currentState") as ArrayList<AbstractState>).addAll(_self.deepHistory)
+			(context.get("currentState-" + _self.name) as ArrayList<AbstractState>).addAll(_self.deepHistory)
 		}
 	}
 	
@@ -42,7 +42,7 @@ class RegionAspect {
 				val ArrayList<AbstractState> substates = new ArrayList<AbstractState>()
 				_self.getAllSubstates(_self.ownerState, substates)
 				_self.deepHistory.addAll(substates.filter[ _substate | 
-					(context.get("currentState") as ArrayList<AbstractState>).contains(_substate)])
+					(context.get("currentState-" + _self.name) as ArrayList<AbstractState>).contains(_substate)])
 		}
 	}
 	
