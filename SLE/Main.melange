@@ -1,0 +1,46 @@
+package fr.diverse.activity
+
+import static extension fr.inria.diverse.melange.lib.MetamodelExtensions.*
+
+language ActivityLang {
+	ecore "platform:/resource/org.modelexecution.operationalsemantics.ad/ad/activitydiagram.ecore"
+	exactType ActivityLangMT
+}
+
+
+language ActionSlice{
+	slice ActivityLang on ['OpaqueAction']
+	exactType ActionSliceMT
+}
+
+//language ActivitySlice{
+//	slice ActivityLang on ['Activity','Expression']
+//	exactType ActivitySliceMT
+//}
+
+//language UmlLang{
+//	ecore "platform:/resource/UML/model/UML.ecore"
+//	exactType UmlMT
+//}
+
+language LuaLang {
+	ecore "platform:/resource/org.xtext.lua/model/generated/Lua.ecore"
+	exactType LuaLangMT
+}
+
+
+//language MergedLang{
+//	merge ActionSlice
+//	merge LuaLang
+//	exactType MergeLangMT
+//}
+
+//language UmlClassSlice{
+//	slice UmlLang on ['Class']
+//	exactType UmlClassSliceMT
+//}
+//
+//language UmlActivitySlice{
+//	slice UmlLang on ['Activity']
+//	exactType UmlActivitySliceMT
+//}
