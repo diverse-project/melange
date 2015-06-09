@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
 import fr.inria.diverse.melange.metamodel.melange.Aspect
+import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
 
 /**
  * This class build languages by merging differents parts declared in each language definitions
@@ -192,11 +193,15 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		}
 		
 		if(needNewEcore){
-			pkgs.add(base)
-			createEcore(pkgs, language.localEcoreUri, null) //should be refactored
-			language.ecoreUri = language.localEcoreUri
-			language.createLocalGenmodel
-			language.genmodelUris += language.getLocalGenmodelUri
+//			pkgs.add(base)
+//			createEcore(pkgs, language.localEcoreUri, null) //should be refactored
+//			language.ecoreUri = language.localEcoreUri
+//			language.createLocalGenmodel
+//			language.genmodelUris += language.getLocalGenmodelUri
+
+			packageProvider.registerPackages(language,base)
+			language.ecoreUri = language.externalEcoreUri
+			language.genmodelUris += language.externalGenmodelUri
 		}
 		
 		history.remove(language)

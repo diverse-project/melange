@@ -355,6 +355,9 @@ class MetamodelExtensions
 
 			return originalProjectName
 		}
+		else{
+			return mm.name+"_Gen"
+		}
 //		 else if (mm.inheritanceRelation.superMetamodel.ecoreUri !== null) {
 //			val originalProjectName = URI::createURI(mm.inheritanceRelation.superMetamodel.ecoreUri).segment(1)
 //			
