@@ -445,6 +445,11 @@ class orgeclipseemfecoreEReferenceAspect extends orgeclipseemfecoreEStructuralFe
 		if(_self.sliced) (_self.clonedElt as org.eclipse.emf.ecore.EReference).^containment = _self.^containment
 
 		if(_self.sliced) (_self.clonedElt as org.eclipse.emf.ecore.EReference).^resolveProxies = _self.^resolveProxies
+		
+		if(_self.sliced && _self.^EOpposite.clonedElt != null){
+			(_self.clonedElt as org.eclipse.emf.ecore.EReference).^EOpposite = _self.^EOpposite.clonedElt as org.eclipse.emf.ecore.EReference
+		} 
+		
 		if(_self.^EReferenceType!==null){
 		_self.^EReferenceType.visitToAddRelations(theSlicer)
 		}
