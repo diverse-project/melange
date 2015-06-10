@@ -520,7 +520,7 @@ _self.^EGenericType?.reinit
 		_self.^EType.visitToAddRelations(theSlicer)
 
 		if(_self.sliced && _self.^EType.sliced){
-			if(_self.^EType instanceof EDataType){
+			if(_self.^EType instanceof EDataType && _self.^EType.EPackage.name == "ecore"){
 				(_self.clonedElt as org.eclipse.emf.ecore.ETypedElement).^EType = _self.^EType
 			}
 			else{
