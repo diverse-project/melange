@@ -213,7 +213,6 @@ class orgeclipseemfecoreEDataTypeAspect extends orgeclipseemfecoreEClassifierAsp
 	@OverrideAspectMethod
 	def void _visitToAddRelations(StrictEcore theSlicer){
 		_self.super__visitToAddRelations(theSlicer)
-
 	}
 }
 
@@ -448,7 +447,7 @@ class orgeclipseemfecoreEReferenceAspect extends orgeclipseemfecoreEStructuralFe
 		
 		if(_self.sliced && _self.^EOpposite.clonedElt != null){
 			(_self.clonedElt as org.eclipse.emf.ecore.EReference).^EOpposite = _self.^EOpposite.clonedElt as org.eclipse.emf.ecore.EReference
-		} 
+		}
 		
 		if(_self.^EReferenceType!==null){
 		_self.^EReferenceType.visitToAddRelations(theSlicer)
@@ -525,7 +524,7 @@ _self.^EGenericType?.reinit
 		_self.^EType.visitToAddRelations(theSlicer)
 
 		if(_self.sliced && _self.^EType.sliced){
-			if(_self.^EType instanceof EDataType && _self.^EType.EPackage.name == "ecore"){
+			if(_self.^EType instanceof EDataType && _self.isEcoreDataTypeTyped(_self.^EType as EDataType)){
 				(_self.clonedElt as org.eclipse.emf.ecore.ETypedElement).^EType = _self.^EType
 			}
 			else{
@@ -542,6 +541,19 @@ _self.^EGenericType?.reinit
 
 		if(_self.sliced) (_self.clonedElt as org.eclipse.emf.ecore.ETypedElement).^upperBound = _self.^upperBound
 
+	}
+	
+	def boolean isEcoreDataTypeTyped(EDataType type){
+		return (type.name == "EBoolean" ||
+				type.name == "EString" ||
+				type.name == "EByte" ||
+				type.name == "EDouble" ||
+				type.name == "EFloat" ||
+				type.name == "EInteger" ||
+				type.name == "EInt" ||
+				type.name == "ELong" ||
+				type.name == "EShort") &&
+				type.EPackage.name == "ecore"
 	}
 }
 
