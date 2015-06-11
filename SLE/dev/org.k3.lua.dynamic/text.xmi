@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="ASCII"?>
+<lua:Block xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:lua="http://www.xtext.org/Lua">
+  <statements xsi:type="lua:Statement_CallFunction">
+    <object xsi:type="lua:Expression_VariableName" variable="print"/>
+    <arguments>
+      <arguments xsi:type="lua:Expression_String" value="&quot;Hello World&quot;"/>
+    </arguments>
+  </statements>
+  <statements xsi:type="lua:Expression_VariableName" variable="defines"/>
+  <statements xsi:type="lua:Expression_VariableName" variable="a"/>
+  <statements xsi:type="lua:Expression_VariableName" variable="factorial"/>
+  <statements xsi:type="lua:Statement_GlobalFunction_Declaration">
+    <prefix>fact</prefix>
+    <function>
+      <parameters>n</parameters>
+      <body>
+        <statements xsi:type="lua:Statement_If_Then_Else">
+          <ifExpression xsi:type="lua:Expression_Equal">
+            <left xsi:type="lua:Expression_VariableName" variable="n"/>
+            <right xsi:type="lua:Expression_Number"/>
+          </ifExpression>
+          <ifBlock>
+            <returnValue xsi:type="lua:LastStatement_ReturnWithValue">
+              <returnValues xsi:type="lua:Expression_Number" value="1.0"/>
+            </returnValue>
+          </ifBlock>
+          <elseBlock>
+            <returnValue xsi:type="lua:LastStatement_ReturnWithValue">
+              <returnValues xsi:type="lua:Expression_Multiplication">
+                <left xsi:type="lua:Expression_VariableName" variable="n"/>
+                <right xsi:type="lua:Expression_CallFunction">
+                  <object xsi:type="lua:Expression_VariableName" variable="fact"/>
+                  <arguments>
+                    <arguments xsi:type="lua:Expression_Minus">
+                      <left xsi:type="lua:Expression_VariableName" variable="n"/>
+                      <right xsi:type="lua:Expression_Number" value="1.0"/>
+                    </arguments>
+                  </arguments>
+                </right>
+              </returnValues>
+            </returnValue>
+          </elseBlock>
+        </statements>
+      </body>
+    </function>
+  </statements>
+  <statements xsi:type="lua:Statement_GlobalFunction_Declaration">
+    <prefix>toto</prefix>
+    <function>
+      <parameters>n</parameters>
+      <body>
+        <returnValue xsi:type="lua:LastStatement_ReturnWithValue">
+          <returnValues xsi:type="lua:Expression_Plus">
+            <left xsi:type="lua:Expression_Number" value="1.0"/>
+            <right xsi:type="lua:Expression_VariableName" variable="n"/>
+          </returnValues>
+        </returnValue>
+      </body>
+    </function>
+  </statements>
+  <statements xsi:type="lua:Statement_CallFunction">
+    <object xsi:type="lua:Expression_VariableName" variable="print"/>
+    <arguments>
+      <arguments xsi:type="lua:Expression_String" value="&quot;enter a number:&quot;"/>
+    </arguments>
+  </statements>
+  <statements xsi:type="lua:Statement_Assignment">
+    <variable xsi:type="lua:Expression_VariableName" variable="a"/>
+    <values xsi:type="lua:Expression_CallFunction">
+      <object xsi:type="lua:Expression_AccessMember" memberName="read">
+        <object xsi:type="lua:Expression_VariableName" variable="io"/>
+      </object>
+      <arguments>
+        <arguments xsi:type="lua:Expression_String" value="&quot;*number&quot;"/>
+      </arguments>
+    </values>
+  </statements>
+  <statements xsi:type="lua:Statement_Assignment">
+    <variable xsi:type="lua:Expression_VariableName" variable="b"/>
+    <values xsi:type="lua:Expression_Plus">
+      <left xsi:type="lua:Expression_VariableName" variable="a"/>
+      <right xsi:type="lua:Expression_Number" value="1.0"/>
+    </values>
+  </statements>
+  <statements xsi:type="lua:Statement_CallFunction">
+    <object xsi:type="lua:Expression_VariableName" variable="print"/>
+    <arguments>
+      <arguments xsi:type="lua:Expression_VariableName" variable="b"/>
+    </arguments>
+  </statements>
+  <statements xsi:type="lua:Statement_Assignment">
+    <variable xsi:type="lua:Expression_VariableName" variable="a"/>
+    <values xsi:type="lua:Expression_Smaller_Equal">
+      <left xsi:type="lua:Expression_Number" value="1.0"/>
+      <right xsi:type="lua:Expression_Number" value="2.0"/>
+    </values>
+  </statements>
+  <statements xsi:type="lua:Statement_CallFunction">
+    <object xsi:type="lua:Expression_VariableName" variable="print"/>
+    <arguments>
+      <arguments xsi:type="lua:Expression_VariableName" variable="a"/>
+    </arguments>
+  </statements>
+  <statements xsi:type="lua:Statement_CallFunction">
+    <object xsi:type="lua:Expression_VariableName" variable="print"/>
+    <arguments>
+      <arguments xsi:type="lua:Expression_CallFunction">
+        <object xsi:type="lua:Expression_VariableName" variable="toto"/>
+        <arguments>
+          <arguments xsi:type="lua:Expression_Number" value="2.0"/>
+        </arguments>
+      </arguments>
+    </arguments>
+  </statements>
+  <statements xsi:type="lua:Statement_CallFunction">
+    <object xsi:type="lua:Expression_VariableName" variable="print"/>
+    <arguments>
+      <arguments xsi:type="lua:Expression_CallFunction">
+        <object xsi:type="lua:Expression_VariableName" variable="fact"/>
+        <arguments>
+          <arguments xsi:type="lua:Expression_VariableName" variable="b"/>
+        </arguments>
+      </arguments>
+    </arguments>
+  </statements>
+</lua:Block>

@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Glue4luaActivity
+Bundle-SymbolicName: Glue4luaActivity
+Bundle-Version: 1.0.0.qualifier
+Export-Package: fr.inria.diverse.glue
+Require-Bundle: fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version="3.0.0";visibility:=reexport,
+ org.eclipse.xtend.lib;bundle-version="2.6.0";visibility:=private,
+ ActivityEcoreLang_Gen,
+ org.xtext.lua
