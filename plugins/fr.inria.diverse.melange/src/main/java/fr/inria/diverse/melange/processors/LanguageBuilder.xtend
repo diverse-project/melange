@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
+import com.google.common.collect.ArrayListMultimap
 
 /**
  * This class build languages by merging differents parts declared in each language definitions
@@ -126,9 +127,9 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		if(merges.size > 0){
 			needNewEcore = true
 			val firstMerge = merges.get(0)
-			val mergeBase = getRootPackage(firstMerge.language,history)
+			val mergeBase = EcoreUtil::copy(getRootPackage(firstMerge.language,history))
 			EcoreUtil.ExternalCrossReferencer.find(mergeBase)
-			
+
 			merges.drop(1).forEach[ nextMerge |
 				val mergeUnit = getRootPackage(nextMerge.language,history)
 				EcoreUtil.ExternalCrossReferencer.find(mergeUnit)
@@ -174,16 +175,6 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 			//TODO: raise an error, language not well defined
 		}
 		
-		/****************************
-		 * STEP 5: 
-		 ****************************/
-		aspectCopier.preProcess(language)
-		 
-		/****************************
-		 * STEP 5: merge aspects
-		 ****************************/
-		aspectWeaver.preProcess(language)
-
 
 		/****************************
 		 * STEP 5: 
@@ -199,10 +190,21 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 //			language.createLocalGenmodel
 //			language.genmodelUris += language.getLocalGenmodelUri
 
-			packageProvider.registerPackages(language,base)
 			language.ecoreUri = language.externalEcoreUri
 			language.genmodelUris += language.externalGenmodelUri
 		}
+		
+		packageProvider.registerPackages(language,base)
+
+		/****************************
+		 * STEP 5: 
+		 ****************************/
+		aspectCopier.preProcess(language)
+		 
+		/****************************
+		 * STEP 5: merge aspects
+		 ****************************/
+		aspectWeaver.preProcess(language)
 		
 		history.remove(language)
 	} 
@@ -247,7 +249,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 	/**
  	 * Copy/Past from ModelingElementExtension
  	 */
-	def EPackage createEcore(List<EPackage> pkgs, String uri, String pkgUri) {
+	static def EPackage createEcore(List<EPackage> pkgs, String uri, String pkgUri) {
 		val resSet = new ResourceSetImpl
 		val res = resSet.createResource(URI::createURI(uri))
 		val rootPkg = pkgs.head
