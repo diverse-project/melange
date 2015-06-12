@@ -107,8 +107,7 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Merge" eSuperTypes="#//Operator">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="language" eType="#//Metamodel"
-        resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="language" eType="#//Metamodel"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Slice" eSuperTypes="#//Operator">
     <eStructuralFeatures xsi:type="ecore:EReference" name="language" eType="#//Metamodel"/>

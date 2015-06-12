@@ -5,11 +5,9 @@ package fr.inria.diverse.melange.metamodel.melange.impl;
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
 import fr.inria.diverse.melange.metamodel.melange.Merge;
 import fr.inria.diverse.melange.metamodel.melange.Metamodel;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -61,6 +59,23 @@ public class MergeImpl extends OperatorImpl implements Merge {
 	 * @generated
 	 */
 	public Metamodel getLanguage() {
+		if (language != null && language.eIsProxy()) {
+			InternalEObject oldLanguage = (InternalEObject)language;
+			language = (Metamodel)eResolveProxy(oldLanguage);
+			if (language != oldLanguage) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MelangePackage.MERGE__LANGUAGE, oldLanguage, language));
+			}
+		}
+		return language;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Metamodel basicGetLanguage() {
 		return language;
 	}
 
@@ -85,7 +100,8 @@ public class MergeImpl extends OperatorImpl implements Merge {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MelangePackage.MERGE__LANGUAGE:
-				return getLanguage();
+				if (resolve) return getLanguage();
+				return basicGetLanguage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

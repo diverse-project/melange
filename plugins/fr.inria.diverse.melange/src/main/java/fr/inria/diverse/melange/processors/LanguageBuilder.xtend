@@ -195,11 +195,6 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		}
 		
 		packageProvider.registerPackages(language,base)
-
-		/****************************
-		 * STEP 5: 
-		 ****************************/
-		aspectCopier.preProcess(language)
 		 
 		/****************************
 		 * STEP 5: merge aspects

@@ -31,7 +31,7 @@ public interface Merge extends Operator {
 	 * @return the value of the '<em>Language</em>' reference.
 	 * @see #setLanguage(Metamodel)
 	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getMerge_Language()
-	 * @model resolveProxies="false"
+	 * @model
 	 * @generated
 	 */
 	Metamodel getLanguage();

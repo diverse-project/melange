@@ -31,6 +31,10 @@ import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.xbase.XAbstractFeatureCall
 import fr.inria.diverse.melange.metamodel.melange.Ecore
+import fr.inria.diverse.melange.metamodel.melange.Slice
+import fr.inria.diverse.melange.metamodel.melange.Merge
+import fr.inria.diverse.melange.utils.AspectCopier
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
 class MetamodelExtensions
 {
@@ -42,6 +46,8 @@ class MetamodelExtensions
 	@Inject extension EclipseProjectHelper
 	@Inject ModelTypeAlgebra algebra
 	@Inject EPackageProvider provider
+	@Inject AspectCopier copier
+	@Inject JvmTypeReferenceBuilder.Factory builderFactory
 	static Logger log = Logger.getLogger(MetamodelExtensions)
 
 	def List<GenModel> getGenmodels(Metamodel mm) {
@@ -59,15 +65,32 @@ class MetamodelExtensions
 			&& asp.aspectAnnotationValue !== null
 	}
 
+	/**
+	 * Get all aspects define on the metamodel.
+	 * The priority order is: <br>
+	 * 1) Aspects explicitly defined in the definition of {@link mm}, in top->bottom order <br>
+	 * 2) From Merge relations, in top->bottom order
+	 * 3) From Inheritance relations, in the left->right order <br>
+	 */
 	def List<Aspect> allAspects(Metamodel mm) {
-		val ret = newArrayList
-
-		ret += mm.aspects
-
-		if (mm.hasSuperMetamodel)
-			ret += mm.inheritanceRelation.map[superMetamodel.allAspects].flatten
-
-		return ret
+		val res = newArrayList
+		
+		res.addAll(mm.aspects)
+		val opAspects = mm.operators.map[op|
+							if(op instanceof Slice){
+								(op as Slice).language.allAspects
+							}
+							else if(op instanceof Merge){
+								(op as Merge).language.allAspects
+							}
+							else{
+								newArrayList
+							}
+						].flatten
+		res.addAll(mm.inheritanceRelation.map[superMetamodel.allAspects].flatten)
+		res.addAll(opAspects)
+		
+		return res
 	}
 
 	def Iterable<Aspect> findAspectsOn(Metamodel mm, EClass cls) {
@@ -455,5 +478,29 @@ class MetamodelExtensions
 		} catch (IOException e) {
 			e.printStackTrace
 		}
+	}
+	
+	/**
+	 * Copy aspects defined on {@link mm} into generated project
+	 */
+	def void createExternalAspects(Metamodel mm) {
+		val classesAlreadyWeaved = newArrayList
+		
+		mm.allAspects.forEach[asp |
+			if (asp.isComplete) {
+				if (asp.canBeCopiedFor(mm)) {
+					
+					val className = asp.aspectAnnotationValue
+					if(!classesAlreadyWeaved.contains(className) && (mm.findClass(className) !== null)){
+						classesAlreadyWeaved.add(className)
+						
+						val typeRefBuilder = builderFactory.create(mm.eResource.resourceSet)
+						val newAspectFqn = copier.copyAspectTo(asp, mm)
+						val newAspectRef = typeRefBuilder.typeRef(newAspectFqn)
+						asp.aspectTypeRef = newAspectRef
+					}
+				}
+			}
+		]
 	}
 }

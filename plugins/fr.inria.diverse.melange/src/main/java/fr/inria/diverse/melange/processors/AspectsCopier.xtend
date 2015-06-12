@@ -14,7 +14,7 @@ class AspectsCopier extends DispatchMelangeProcessor
 
 	def dispatch void preProcess(Metamodel mm) {
 		if (!mm.isGeneratedByMelange || mm.runtimeHasBeenGenerated) {
-			mm.aspects.forEach[asp |
+			mm.allAspects.forEach[asp |
 				if (asp.isComplete) {
 					if (!asp.isDefinedOver(mm) && asp.canBeCopiedFor(mm)) {
 						val typeRefBuilder = builderFactory.create(mm.eResource.resourceSet)
