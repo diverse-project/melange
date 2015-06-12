@@ -68,8 +68,12 @@ class EmfCompareAlgebra implements ModelTypeAlgebra
 	private def EMFCompare getCustomEMFCompare() {
 		val fallbackMatcher = DefaultMatchEngine::createDefaultEObjectMatcher(UseIdentifiers.WHEN_AVAILABLE)
 		val nameMatcher = new IdentifierEObjectMatcher(fallbackMatcher, [o |
-			if (o instanceof EPackage || o instanceof EClass || o instanceof EOperation || o instanceof EStructuralFeature)
+			if (o instanceof EPackage || o instanceof EClass || o instanceof EStructuralFeature){
 				(o as ENamedElement).uniqueId
+			}
+			else if(o instanceof EOperation){
+				(o as EOperation).uniqueId + (o as EOperation).EParameters.map[EType.uniqueId].join
+			}
 			else null
 		])
 		val comparisonFactory = new DefaultComparisonFactory(new DefaultEqualityHelperFactory)
