@@ -27,6 +27,7 @@ import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.util.internal.Stopwatches
 
 import static fr.inria.diverse.melange.utils.AspectCopier.*
+import fr.inria.diverse.commons.asm.shade.filter.Filter
 
 /**
  * Baaah, full of sh*t
@@ -93,7 +94,7 @@ class AspectCopier
 		//val targetAspectFolder = projectPathTmp.toString + "/../" + targetAspectNamespace + "/src-gen/"
 		val sourceFolderFile = new File(sourceAspectFolder)
 		val sourceProject = ws.getProject(projectNameTmp.toString)
-		val findTargetProject = ws.getProject(targetAspectNamespace.toString)
+		val findTargetProject = ws.getProject(mm.name+"_Gen")
 		// FIXME: Just to have a first call of the EPackageProvider
 		//        in order to set the ecoreUri when inherited
 		val x = mm.pkgs
@@ -105,7 +106,7 @@ class AspectCopier
 			else
 				EclipseProjectHelper::createAspectsRuntimeProject(
 					sourceProject,
-					targetAspectNamespace.toString,
+					mm.name+"_Gen",
 					targetAspectNamespace.toString,
 					emfRuntimeProject
 				)
@@ -115,14 +116,30 @@ class AspectCopier
 //		val filenameToBeFound = '''/src-gen/«targetAspectNamespace.toString.replace(".", "/")»/«asp.aspectTypeRef.simpleName».java'''
 //		val fileToBeFound = targetProject.getFile(filenameToBeFound)
 
-		EclipseProjectHelper::addDependencies(project, #[targetProject.name])
+		if(project.name != targetProject.name){
+			EclipseProjectHelper::addDependencies(project, #[targetProject.name])
+		}
 
 		relocators += new SimpleRelocator(sourceAspectNamespace.toString, targetAspectNamespace.toString, null, #[])
 		relocators += new SimpleRelocator(sourceEmfNamespace.toString, targetEmfNamespace.toString, null, #[])
 
+		val className = asp.aspectAnnotationValue
+		//Filter files not related to targeted aspect
+		val filter = new Filter(){
+			String targetClass = className
+			override canFilter(File jar) {
+				true
+			}
+			override finished() {}
+			override isFiltered(String classFile) {
+				return !(classFile.endsWith(targetClass+"Aspect.java") ||
+						classFile.endsWith(targetClass+"Aspect"+targetClass+"AspectContext.java") ||
+						classFile.endsWith(targetClass+"Aspect"+targetClass+"AspectProperties.java"))
+			}
+		}
 		request.inputFolders = #{sourceFolderFile}
 		request.outputFolder = targetFolderFile
-		request.filters = #[]
+		request.filters = #[filter]
 		request.resourceTransformers = #[]
 		request.relocators = relocators
 
