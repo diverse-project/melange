@@ -120,6 +120,14 @@ public interface ActivityNode extends NamedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model tokensDataType="activitydiagram.Token" tokensMany="true"
+	 * @generated
+	 */
+	void addTokens(EList<Token> tokens);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model cDataType="activitydiagram.Context"
 	 * @generated
 	 */
@@ -128,10 +136,10 @@ public interface ActivityNode extends NamedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model
+	 * @model dataType="activitydiagram.EBoolean"
 	 * @generated
 	 */
-	void terminate();
+	boolean hasOffers();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -140,6 +148,14 @@ public interface ActivityNode extends NamedElement {
 	 * @generated
 	 */
 	boolean isReady();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model tokenDataType="activitydiagram.Token"
+	 * @generated
+	 */
+	void removeToken(Token token);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -160,25 +176,9 @@ public interface ActivityNode extends NamedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model tokensDataType="activitydiagram.Token" tokensMany="true"
+	 * @model
 	 * @generated
 	 */
-	void addTokens(EList<Token> tokens);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model dataType="activitydiagram.EBoolean"
-	 * @generated
-	 */
-	boolean hasOffers();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model tokenDataType="activitydiagram.Token"
-	 * @generated
-	 */
-	void removeToken(Token token);
+	void terminate();
 
 } // ActivityNode

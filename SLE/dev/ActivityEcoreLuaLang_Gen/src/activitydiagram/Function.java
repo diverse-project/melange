@@ -6,7 +6,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.k3.lua.dynamic.environment;
+import org.k3.lua.dynamic.Environment;
 
 /**
  * <!-- begin-user-doc -->
@@ -98,9 +98,9 @@ public interface Function extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model cDataType="activitydiagram.environment"
+	 * @model cDataType="activitydiagram.Environment"
 	 * @generated
 	 */
-	void execute(environment c);
+	void execute(Environment c);
 
 } // Function

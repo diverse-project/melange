@@ -225,6 +225,17 @@ public abstract class ActivityEdgeImpl extends NamedElementImpl implements Activ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean hasOffer() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public void sendOffer(EList<Token> tokens) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
@@ -237,17 +248,6 @@ public abstract class ActivityEdgeImpl extends NamedElementImpl implements Activ
 	 * @generated
 	 */
 	public EList<Token> takeOfferedTokens() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean hasOffer() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();

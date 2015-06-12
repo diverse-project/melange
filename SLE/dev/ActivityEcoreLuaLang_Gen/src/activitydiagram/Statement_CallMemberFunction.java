@@ -2,7 +2,7 @@
  */
 package activitydiagram;
 
-import org.k3.lua.dynamic.environment;
+import org.k3.lua.dynamic.Environment;
 
 /**
  * <!-- begin-user-doc -->
@@ -104,9 +104,9 @@ public interface Statement_CallMemberFunction extends Statement_FunctioncallOrAs
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model cDataType="activitydiagram.environment"
+	 * @model cDataType="activitydiagram.Environment"
 	 * @generated
 	 */
-	void execute(environment c);
+	void execute(Environment c);
 
 } // Statement_CallMemberFunction

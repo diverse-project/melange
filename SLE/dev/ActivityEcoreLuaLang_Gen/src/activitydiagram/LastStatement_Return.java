@@ -2,7 +2,7 @@
  */
 package activitydiagram;
 
-import org.k3.lua.dynamic.environment;
+import org.k3.lua.dynamic.Environment;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,9 +18,9 @@ public interface LastStatement_Return extends LastStatement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model cDataType="activitydiagram.environment"
+	 * @model cDataType="activitydiagram.Environment"
 	 * @generated
 	 */
-	void execute(environment c);
+	void execute(Environment c);
 
 } // LastStatement_Return

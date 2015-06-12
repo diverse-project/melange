@@ -3820,7 +3820,7 @@ public class ActivitydiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EDataType getenvironment() {
+	public EDataType getEnvironment() {
 		if (environmentEDataType == null) {
 			environmentEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(ActivitydiagramPackage.eNS_URI).getEClassifiers().get(14);
 		}

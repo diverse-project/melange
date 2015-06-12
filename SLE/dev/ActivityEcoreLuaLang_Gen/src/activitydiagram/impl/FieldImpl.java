@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
-import org.k3.lua.dynamic.environment;
+import org.k3.lua.dynamic.Environment;
 
 /**
  * <!-- begin-user-doc -->
@@ -108,7 +108,7 @@ public class FieldImpl extends EObjectImpl implements Field {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void execute(environment c) {
+	public void execute(Environment c) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();

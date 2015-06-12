@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
-import org.k3.lua.dynamic.environment;
+import org.k3.lua.dynamic.Environment;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,7 +45,7 @@ public class ChunkImpl extends EObjectImpl implements Chunk {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void execute(environment c) {
+	public void execute(Environment c) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();

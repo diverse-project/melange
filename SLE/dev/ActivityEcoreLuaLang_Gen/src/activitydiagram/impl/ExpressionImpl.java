@@ -13,6 +13,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.modelexecution.operationalsemantics.gemoc.sequential.dynamic.Context;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Expression</b></em>'.
@@ -92,6 +94,17 @@ public abstract class ExpressionImpl extends Statement_FunctioncallOrAssignmentI
 		lua = newLua;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ActivitydiagramPackage.EXPRESSION__LUA, oldLua, lua));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void execute(Context c) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**

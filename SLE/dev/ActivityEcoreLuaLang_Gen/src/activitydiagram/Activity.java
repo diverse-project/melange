@@ -95,6 +95,46 @@ public interface Activity extends NamedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model cDataType="activitydiagram.Context"
+	 * @generated
+	 */
+	void execute(Context c);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model dataType="activitydiagram.EBoolean" variableNameDataType="activitydiagram.EString"
+	 * @generated
+	 */
+	boolean getBooleanVariableValue(String variableName);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model dataType="activitydiagram.EInt" variableNameDataType="activitydiagram.EString"
+	 * @generated
+	 */
+	int getIntegerVariableValue(String variableName);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model variableNameDataType="activitydiagram.EString"
+	 * @generated
+	 */
+	Variable getVariable(String variableName);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model variableNameDataType="activitydiagram.EString"
+	 * @generated
+	 */
+	Value getVariableValue(String variableName);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model valueMany="true"
 	 * @generated
 	 */
@@ -103,10 +143,10 @@ public interface Activity extends NamedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model cDataType="activitydiagram.Context"
+	 * @model dataType="activitydiagram.EString"
 	 * @generated
 	 */
-	void execute(Context c);
+	String printTrace();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -123,46 +163,6 @@ public interface Activity extends NamedElement {
 	 * @generated
 	 */
 	void writeToFile();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model dataType="activitydiagram.EString"
-	 * @generated
-	 */
-	String printTrace();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model dataType="activitydiagram.EInt" variableNameDataType="activitydiagram.EString"
-	 * @generated
-	 */
-	int getIntegerVariableValue(String variableName);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model dataType="activitydiagram.EBoolean" variableNameDataType="activitydiagram.EString"
-	 * @generated
-	 */
-	boolean getBooleanVariableValue(String variableName);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model variableNameDataType="activitydiagram.EString"
-	 * @generated
-	 */
-	Value getVariableValue(String variableName);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model variableNameDataType="activitydiagram.EString"
-	 * @generated
-	 */
-	Variable getVariable(String variableName);
 
 	/**
 	 * <!-- begin-user-doc -->

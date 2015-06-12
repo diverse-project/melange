@@ -2,7 +2,9 @@
  */
 package activitydiagram;
 
-import org.k3.lua.dynamic.environment;
+import org.k3.lua.dynamic.Environment;
+
+import org.modelexecution.operationalsemantics.gemoc.sequential.dynamic.Context;
 
 /**
  * <!-- begin-user-doc -->
@@ -50,9 +52,17 @@ public interface Expression extends Statement_FunctioncallOrAssignment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model cDataType="activitydiagram.environment"
+	 * @model cDataType="activitydiagram.Context"
 	 * @generated
 	 */
-	void execute(environment c);
+	void execute(Context c);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model cDataType="activitydiagram.Environment"
+	 * @generated
+	 */
+	void execute(Environment c);
 
 } // Expression

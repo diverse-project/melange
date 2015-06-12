@@ -4901,11 +4901,11 @@ public interface ActivitydiagramPackage extends EPackage {
 	int TOKEN = 91;
 
 	/**
-	 * The meta object id for the '<em>environment</em>' data type.
+	 * The meta object id for the '<em>Environment</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.k3.lua.dynamic.environment
-	 * @see activitydiagram.impl.ActivitydiagramPackageImpl#getenvironment()
+	 * @see org.k3.lua.dynamic.Environment
+	 * @see activitydiagram.impl.ActivitydiagramPackageImpl#getEnvironment()
 	 * @generated
 	 */
 	int ENVIRONMENT = 92;
@@ -8259,15 +8259,15 @@ public interface ActivitydiagramPackage extends EPackage {
 	EDataType getToken();
 
 	/**
-	 * Returns the meta object for data type '{@link org.k3.lua.dynamic.environment <em>environment</em>}'.
+	 * Returns the meta object for data type '{@link org.k3.lua.dynamic.Environment <em>Environment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>environment</em>'.
-	 * @see org.k3.lua.dynamic.environment
-	 * @model instanceClass="org.k3.lua.dynamic.environment"
+	 * @return the meta object for data type '<em>Environment</em>'.
+	 * @see org.k3.lua.dynamic.Environment
+	 * @model instanceClass="org.k3.lua.dynamic.Environment"
 	 * @generated
 	 */
-	EDataType getenvironment();
+	EDataType getEnvironment();
 
 	/**
 	 * Returns the meta object for data type '{@link java.math.BigDecimal <em>EBig Decimal</em>}'.

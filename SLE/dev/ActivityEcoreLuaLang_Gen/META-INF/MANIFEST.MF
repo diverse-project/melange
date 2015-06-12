@@ -9,8 +9,9 @@ Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
- org.modelexecution.operationalsemantics.gemoc.sequential.dynamic,
- org.k3.lua.dynamic
+ fr.inria.diverse.k3.al.annotationprocessor.plugin,
+ org.k3.lua.dynamic,
+ org.modelexecution.operationalsemantics.gemoc.sequential.dynamic
 Bundle-ActivationPolicy: lazy
 Export-Package: activitydiagram,
  activitydiagram.impl,

@@ -101,6 +101,14 @@ public interface ActivityEdge extends NamedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model dataType="activitydiagram.EBoolean"
+	 * @generated
+	 */
+	boolean hasOffer();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model tokensDataType="activitydiagram.Token" tokensMany="true"
 	 * @generated
 	 */
@@ -113,13 +121,5 @@ public interface ActivityEdge extends NamedElement {
 	 * @generated
 	 */
 	EList<Token> takeOfferedTokens();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model dataType="activitydiagram.EBoolean"
-	 * @generated
-	 */
-	boolean hasOffer();
 
 } // ActivityEdge

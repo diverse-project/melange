@@ -162,16 +162,28 @@
         <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//ActivityNode/running"/>
       </genFeatures>
       <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityNode/addTokens"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//ActivityNode/addTokens/tokens"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
         <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityNode/execute"/>
         <genParameters>
           <ecoreParameter href="ActivityEcoreLuaLang.ecore#//ActivityNode/execute/c"/>
         </genParameters>
       </genOperations>
       <genOperations>
-        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityNode/terminate"/>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityNode/hasOffers"/>
       </genOperations>
       <genOperations>
         <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityNode/isReady"/>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityNode/removeToken"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//ActivityNode/removeToken/token"/>
+        </genParameters>
       </genOperations>
       <genOperations>
         <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityNode/sendOffers"/>
@@ -183,19 +195,7 @@
         <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityNode/takeOfferdTokens"/>
       </genOperations>
       <genOperations>
-        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityNode/addTokens"/>
-        <genParameters>
-          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//ActivityNode/addTokens/tokens"/>
-        </genParameters>
-      </genOperations>
-      <genOperations>
-        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityNode/hasOffers"/>
-      </genOperations>
-      <genOperations>
-        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityNode/removeToken"/>
-        <genParameters>
-          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//ActivityNode/removeToken/token"/>
-        </genParameters>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityNode/terminate"/>
       </genOperations>
     </genClasses>
     <genClasses image="false">
@@ -222,6 +222,9 @@
         <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//ActivityEdge/offers"/>
       </genFeatures>
       <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityEdge/hasOffer"/>
+      </genOperations>
+      <genOperations>
         <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityEdge/sendOffer"/>
         <genParameters>
           <ecoreParameter href="ActivityEcoreLuaLang.ecore#//ActivityEdge/sendOffer/tokens"/>
@@ -229,9 +232,6 @@
       </genOperations>
       <genOperations>
         <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityEdge/takeOfferedTokens"/>
-      </genOperations>
-      <genOperations>
-        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityEdge/hasOffer"/>
       </genOperations>
     </genClasses>
     <genClasses>
@@ -249,30 +249,9 @@
         <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Activity/inputs"/>
       </genFeatures>
       <genOperations>
-        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Activity/main"/>
-        <genParameters>
-          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Activity/main/value"/>
-        </genParameters>
-      </genOperations>
-      <genOperations>
         <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Activity/execute"/>
         <genParameters>
           <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Activity/execute/c"/>
-        </genParameters>
-      </genOperations>
-      <genOperations>
-        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Activity/reset"/>
-      </genOperations>
-      <genOperations>
-        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Activity/writeToFile"/>
-      </genOperations>
-      <genOperations>
-        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Activity/printTrace"/>
-      </genOperations>
-      <genOperations>
-        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Activity/getIntegerVariableValue"/>
-        <genParameters>
-          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Activity/getIntegerVariableValue/variableName"/>
         </genParameters>
       </genOperations>
       <genOperations>
@@ -282,9 +261,9 @@
         </genParameters>
       </genOperations>
       <genOperations>
-        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Activity/getVariableValue"/>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Activity/getIntegerVariableValue"/>
         <genParameters>
-          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Activity/getVariableValue/variableName"/>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Activity/getIntegerVariableValue/variableName"/>
         </genParameters>
       </genOperations>
       <genOperations>
@@ -292,6 +271,27 @@
         <genParameters>
           <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Activity/getVariable/variableName"/>
         </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Activity/getVariableValue"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Activity/getVariableValue/variableName"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Activity/main"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Activity/main/value"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Activity/printTrace"/>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Activity/reset"/>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Activity/writeToFile"/>
       </genOperations>
       <genOperations>
         <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Activity/writeTrace"/>

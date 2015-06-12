@@ -4,7 +4,7 @@ package activitydiagram;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.k3.lua.dynamic.environment;
+import org.k3.lua.dynamic.Environment;
 
 /**
  * <!-- begin-user-doc -->
@@ -79,9 +79,9 @@ public interface Statement_If_Then_Else_ElseIfPart extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model cDataType="activitydiagram.environment"
+	 * @model cDataType="activitydiagram.Environment"
 	 * @generated
 	 */
-	void execute(environment c);
+	void execute(Environment c);
 
 } // Statement_If_Then_Else_ElseIfPart

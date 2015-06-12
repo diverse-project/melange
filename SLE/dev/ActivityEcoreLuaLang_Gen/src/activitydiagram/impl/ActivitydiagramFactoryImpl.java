@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.xml.type.XMLTypeFactory;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 
-import org.k3.lua.dynamic.environment;
+import org.k3.lua.dynamic.Environment;
 
 import org.modelexecution.operationalsemantics.gemoc.sequential.dynamic.Context;
 import org.modelexecution.operationalsemantics.gemoc.sequential.dynamic.Offer;
@@ -168,7 +168,7 @@ public class ActivitydiagramFactoryImpl extends EFactoryImpl implements Activity
 			case ActivitydiagramPackage.TOKEN:
 				return createTokenFromString(eDataType, initialValue);
 			case ActivitydiagramPackage.ENVIRONMENT:
-				return createenvironmentFromString(eDataType, initialValue);
+				return createEnvironmentFromString(eDataType, initialValue);
 			case ActivitydiagramPackage.EBIG_DECIMAL:
 				return createEBigDecimalFromString(eDataType, initialValue);
 			case ActivitydiagramPackage.EBIG_INTEGER:
@@ -235,7 +235,7 @@ public class ActivitydiagramFactoryImpl extends EFactoryImpl implements Activity
 			case ActivitydiagramPackage.TOKEN:
 				return convertTokenToString(eDataType, instanceValue);
 			case ActivitydiagramPackage.ENVIRONMENT:
-				return convertenvironmentToString(eDataType, instanceValue);
+				return convertEnvironmentToString(eDataType, instanceValue);
 			case ActivitydiagramPackage.EBIG_DECIMAL:
 				return convertEBigDecimalToString(eDataType, instanceValue);
 			case ActivitydiagramPackage.EBIG_INTEGER:
@@ -1106,8 +1106,8 @@ public class ActivitydiagramFactoryImpl extends EFactoryImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public environment createenvironmentFromString(EDataType eDataType, String initialValue) {
-		return (environment)super.createFromString(eDataType, initialValue);
+	public Environment createEnvironmentFromString(EDataType eDataType, String initialValue) {
+		return (Environment)super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -1115,7 +1115,7 @@ public class ActivitydiagramFactoryImpl extends EFactoryImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertenvironmentToString(EDataType eDataType, Object instanceValue) {
+	public String convertEnvironmentToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 

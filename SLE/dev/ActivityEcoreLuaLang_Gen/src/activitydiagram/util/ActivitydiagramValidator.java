@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
 
 import org.eclipse.emf.ecore.xml.type.util.XMLTypeValidator;
 
-import org.k3.lua.dynamic.environment;
+import org.k3.lua.dynamic.Environment;
 
 import org.modelexecution.operationalsemantics.gemoc.sequential.dynamic.Context;
 import org.modelexecution.operationalsemantics.gemoc.sequential.dynamic.Offer;
@@ -301,7 +301,7 @@ public class ActivitydiagramValidator extends EObjectValidator {
 			case ActivitydiagramPackage.TOKEN:
 				return validateToken((Token)value, diagnostics, context);
 			case ActivitydiagramPackage.ENVIRONMENT:
-				return validateenvironment((environment)value, diagnostics, context);
+				return validateEnvironment((Environment)value, diagnostics, context);
 			case ActivitydiagramPackage.EBIG_DECIMAL:
 				return validateEBigDecimal((BigDecimal)value, diagnostics, context);
 			case ActivitydiagramPackage.EBIG_INTEGER:
@@ -2435,7 +2435,7 @@ public class ActivitydiagramValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateenvironment(environment environment, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateEnvironment(Environment environment, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
