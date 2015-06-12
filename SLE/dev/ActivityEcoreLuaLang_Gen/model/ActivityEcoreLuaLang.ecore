@@ -97,14 +97,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="Chunk">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="environment" instanceClassName="org.k3.lua.dynamic.environment"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Environment" instanceClassName="org.k3.lua.dynamic.Environment"/>
   <eClassifiers xsi:type="ecore:EClass" name="Block" eSuperTypes="//Chunk">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1" eType="//Statement" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="returnValue" eType="//LastStatement" containment="true"/>
@@ -112,33 +112,33 @@
   <eClassifiers xsi:type="ecore:EClass" name="LastStatement">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LastStatement_Return" eSuperTypes="//LastStatement">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LastStatement_Break" eSuperTypes="//LastStatement"/>
   <eClassifiers xsi:type="ecore:EClass" name="Statement">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Statement_Block" eSuperTypes="//Statement">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="//Block" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Statement_While" eSuperTypes="//Statement">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="//Block" containment="true"/>
@@ -146,7 +146,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Statement_Repeat" eSuperTypes="//Statement">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="//Block" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="//Expression" containment="true"/>
@@ -154,7 +154,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Statement_If_Then_Else" eSuperTypes="//Statement">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ifExpression" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ifBlock" eType="//Block" containment="true"/>
@@ -164,7 +164,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Statement_If_Then_Else_ElseIfPart">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elseifExpression" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elseifBlock" eType="//Block" containment="true"/>
@@ -172,7 +172,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Statement_For_Numeric" eSuperTypes="//Statement">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="iteratorName" eType="//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="startExpr" eType="//Expression" containment="true"/>
@@ -183,7 +183,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Statement_For_Generic" eSuperTypes="//Statement">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="names" unique="false" upperBound="-1" eType="//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expressions" upperBound="-1" eType="//Expression" containment="true"/>
@@ -192,7 +192,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Statement_GlobalFunction_Declaration" eSuperTypes="//Statement">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="prefix" unique="false" upperBound="-1" eType="//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="functionName" eType="//EString"/>
@@ -201,7 +201,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Statement_LocalFunction_Declaration" eSuperTypes="//Statement">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="functionName" eType="//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="function" eType="//Function" containment="true"/>
@@ -209,7 +209,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Statement_Local_Variable_Declaration" eSuperTypes="//Statement">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="variableNames" unique="false" upperBound="-1" eType="//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="initialValue" upperBound="-1" eType="//Expression" containment="true"/>
@@ -217,13 +217,16 @@
   <eClassifiers xsi:type="ecore:EClass" name="Statement_FunctioncallOrAssignment" eSuperTypes="//Statement">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression" abstract="true" eSuperTypes="//Statement_FunctioncallOrAssignment">
     <eOperations name="execute">
+      <eParameters name="c" eType="//Context"/>
+    </eOperations>
+    <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="lua" eType="//Block">
       <eAnnotations source="aspect"/>
@@ -232,59 +235,59 @@
   <eClassifiers xsi:type="ecore:EClass" name="Expression_Nil" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression_True" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression_False" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression_Number" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="//EDouble"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression_VarArgs" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression_String" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression_Function" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="function" eType="//Function" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression_TableConstructor" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1" eType="//Field" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Function">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameters" unique="false" upperBound="-1" eType="//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="varArgs" eType="//EBoolean"/>
@@ -293,48 +296,48 @@
   <eClassifiers xsi:type="ecore:EClass" name="Functioncall_Arguments">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1" eType="//Expression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Field">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="//Expression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Field_AddEntryToTable_Brackets" eSuperTypes="//Field">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="indexExpression" eType="//Expression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Field_AddEntryToTable" eSuperTypes="//Field">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Field_AppendEntryToTable" eSuperTypes="//Field">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LastStatement_ReturnWithValue" eSuperTypes="//LastStatement_Return">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="returnValues" upperBound="-1" eType="//Expression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Statement_Assignment" eSuperTypes="//Statement_FunctioncallOrAssignment">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variable" upperBound="-1" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1" eType="//Expression" containment="true"/>
@@ -342,7 +345,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Statement_CallMemberFunction" eSuperTypes="//Statement_FunctioncallOrAssignment">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="object" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="memberFunctionName" eType="//EString"/>
@@ -351,7 +354,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Statement_CallFunction" eSuperTypes="//Statement_FunctioncallOrAssignment">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="object" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" eType="//Functioncall_Arguments" containment="true"/>
@@ -359,7 +362,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Expression_Or" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
@@ -367,7 +370,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Expression_And" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
@@ -375,7 +378,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Expression_Larger" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
@@ -383,7 +386,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Expression_Larger_Equal" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
@@ -391,7 +394,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Expression_Smaller" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
@@ -399,7 +402,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Expression_Smaller_Equal" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
@@ -407,7 +410,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Expression_Equal" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
@@ -415,7 +418,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Expression_Not_Equal" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
@@ -423,7 +426,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Expression_Concatenation" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
@@ -431,7 +434,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Expression_Plus" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
@@ -439,7 +442,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Expression_Minus" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
@@ -447,7 +450,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Expression_Multiplication" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
@@ -455,7 +458,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Expression_Division" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
@@ -463,7 +466,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Expression_Modulo" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
@@ -471,28 +474,28 @@
   <eClassifiers xsi:type="ecore:EClass" name="Expression_Negate" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="//Expression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression_Length" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="//Expression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression_Invert" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="//Expression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression_Exponentiation" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
@@ -500,7 +503,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Expression_CallMemberFunction" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="object" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="memberFunctionName" eType="//EString"/>
@@ -509,7 +512,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Expression_CallFunction" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="object" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" eType="//Functioncall_Arguments" containment="true"/>
@@ -517,7 +520,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Expression_AccessArray" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="array" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="index" eType="//Expression" containment="true"/>
@@ -525,7 +528,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Expression_AccessMember" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="object" eType="//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="memberName" eType="//EString"/>
@@ -533,7 +536,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Expression_VariableName" eSuperTypes="//Expression">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
-      <eParameters name="c" eType="//environment"/>
+      <eParameters name="c" eType="//Environment"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="variable" eType="//EString"/>
   </eClassifiers>

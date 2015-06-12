@@ -13,7 +13,7 @@
       <ecoreDataType href="ActivityEcoreLuaLang.ecore#//Token"/>
     </genDataTypes>
     <genDataTypes>
-      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//environment"/>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//Environment"/>
     </genDataTypes>
     <genDataTypes>
       <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EBigDecimal"/>
@@ -576,6 +576,12 @@
         <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression/execute"/>
         <genParameters>
           <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression/execute/c"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression/execute.1"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression/execute.1/c"/>
         </genParameters>
       </genOperations>
     </genClasses>
