@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.ENamedElement
 import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EStructuralFeature
+import org.eclipse.emf.ecore.EDataType
 
 /**
  * This class merges the EPackage built from an Aspect into the targeted Metaclass
@@ -68,7 +69,7 @@ class EmfCompareAlgebra implements ModelTypeAlgebra
 	private def EMFCompare getCustomEMFCompare() {
 		val fallbackMatcher = DefaultMatchEngine::createDefaultEObjectMatcher(UseIdentifiers.WHEN_AVAILABLE)
 		val nameMatcher = new IdentifierEObjectMatcher(fallbackMatcher, [o |
-			if (o instanceof EPackage || o instanceof EClass || o instanceof EStructuralFeature){
+			if (o instanceof EPackage || o instanceof EClass || o instanceof EStructuralFeature || o instanceof EDataType){
 				(o as ENamedElement).uniqueId
 			}
 			else if(o instanceof EOperation){
