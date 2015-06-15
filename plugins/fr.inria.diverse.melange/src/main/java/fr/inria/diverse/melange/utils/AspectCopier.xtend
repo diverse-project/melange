@@ -132,9 +132,9 @@ class AspectCopier
 			}
 			override finished() {}
 			override isFiltered(String classFile) {
-				return !(classFile.endsWith(targetClass+"Aspect.java") ||
-						classFile.endsWith(targetClass+"Aspect"+targetClass+"AspectContext.java") ||
-						classFile.endsWith(targetClass+"Aspect"+targetClass+"AspectProperties.java"))
+				return !(classFile.endsWith("/"+targetClass+"Aspect.java") ||
+						classFile.endsWith("/"+targetClass+"Aspect"+targetClass+"AspectContext.java") ||
+						classFile.endsWith("/"+targetClass+"Aspect"+targetClass+"AspectProperties.java"))
 			}
 		}
 		request.inputFolders = #{sourceFolderFile}
