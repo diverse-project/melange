@@ -35,6 +35,8 @@ import fr.inria.diverse.melange.metamodel.melange.Slice
 import fr.inria.diverse.melange.metamodel.melange.Merge
 import fr.inria.diverse.melange.utils.AspectCopier
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
+import org.eclipse.emf.ecore.util.EObjectResolvingEList
+import org.eclipse.xtext.xbase.XFeatureCall
 
 class MetamodelExtensions
 {
@@ -119,7 +121,15 @@ class MetamodelExtensions
 		val aspClassName = aspAnn?.values?.findFirst[valueName == "className"]
 		val aspVal = switch aspClassName {
 			JvmTypeAnnotationValue: aspClassName.values?.head?.simpleName
-			JvmCustomAnnotationValue: aspClassName.values?.head?.toString
+			JvmCustomAnnotationValue: {
+					val headValue = aspClassName.values?.head
+					if(headValue instanceof XFeatureCall){
+						(headValue as XFeatureCall).feature.simpleName
+					}
+					else{
+						aspClassName.values?.head?.toString
+					}
+				}
 		}
 
 		// Xtext 2.8+
