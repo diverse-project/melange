@@ -157,9 +157,8 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 			val roots = getClasses(sliceBase, firstSlice.roots)
 			val slicer = new StrictEcore(roots,sliceBase,false,"ecore",false)
 			slicer.slice
-			slicer.save(language.localEcoreUri.replace(".ecore","_slice.ecore"))
 			
-			val slice = modelUtils.loadPkg(language.localEcoreUri.replace(".ecore","_slice.ecore"))
+			val slice = slicer.getclonedElts.filter(EPackage).filter[eContainer===null].head
 			EcoreUtil.ExternalCrossReferencer.find(slice)
 			
 			if(base !== null && slice !== null){

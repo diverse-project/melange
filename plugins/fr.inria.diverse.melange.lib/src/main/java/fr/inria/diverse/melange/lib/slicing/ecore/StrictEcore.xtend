@@ -5,6 +5,7 @@ import java.io.IOException
 import org.eclipse.emf.ecore.EObject
 import java.util.List
 import java.util.ArrayList
+import org.eclipse.emf.ecore.EPackage
 
 class StrictEcore{
 	val java.util.List<org.eclipse.emf.ecore.EModelElement> inputEModelElement
@@ -42,6 +43,10 @@ class StrictEcore{
 		res.getContents.addAll(objs)
     	res.save(java.util.Collections.emptyMap)
 	    res.unload
+	}
+	
+	def getclonedElts(){
+		return clonedElts
 	}
 
 	def void reinit() {
