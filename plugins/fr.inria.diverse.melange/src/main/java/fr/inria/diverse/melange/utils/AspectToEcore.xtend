@@ -13,6 +13,8 @@ import org.eclipse.xtext.common.types.JvmEnumerationType
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
 import org.eclipse.xtext.common.types.JvmVisibility
+import fr.inria.diverse.melange.metamodel.melange.Metamodel
+import fr.inria.diverse.melange.ast.MetamodelExtensions
 
 /**
  * This class creates an EPackage corresponding to an aspect.
@@ -22,6 +24,7 @@ class AspectToEcore
 {
 	@Inject extension EcoreExtensions
 	@Inject extension TypeReferencesHelper
+	@Inject extension MetamodelExtensions
 
 	/**
 	 * Try to infer the "modeling intention" of the aspect aspImport
@@ -30,7 +33,7 @@ class AspectToEcore
 	def void inferEcoreFragment(Aspect aspImport) {
 		val aspect = aspImport.aspectTypeRef.type as JvmDeclaredType
 		val baseCls = aspImport.aspectedClass
-		val basePkg = baseCls.EPackage
+		val mm = aspImport.eContainer as Metamodel
 
 		val aspPkg = EcoreFactory.eINSTANCE.createEPackage => [
 			// These are anyway not really used
@@ -67,7 +70,7 @@ class AspectToEcore
 						(op.returnType as JvmParameterizedTypeReference).arguments.head.type
 					else
 						op.returnType.type
-				val retCls = basePkg.findClass(realType.simpleName)
+				val retCls = mm.findClass(realType.simpleName)
 
 				if (!aspCls.EOperations.exists[name == op.simpleName]) {
 					aspCls.EOperations += EcoreFactory.eINSTANCE.createEOperation => [
@@ -82,7 +85,7 @@ class AspectToEcore
 										(p.parameterType as JvmParameterizedTypeReference).arguments.head.type
 									else
 										pType
-								val attrCls = basePkg.findClass(realTypeP.simpleName)
+								val attrCls = mm.findClass(realTypeP.simpleName)
 
 								EParameters += EcoreFactory.eINSTANCE.createEParameter => [pp |
 									pp.name = p.simpleName
@@ -125,7 +128,7 @@ class AspectToEcore
 						(retType as JvmParameterizedTypeReference).arguments.head.type
 					else
 						retType.type
-				val find = basePkg.findClass(realType.simpleName)
+				val find = mm.findClass(realType.simpleName)
 				if (find !== null) {
 					// Create EReference
 					aspCls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEReference => [
