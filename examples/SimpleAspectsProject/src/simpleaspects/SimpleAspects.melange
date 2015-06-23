@@ -1,7 +1,5 @@
 package simpleaspects
 
-import static extension fr.inria.diverse.melange.lib.MetamodelExtensions.*
-
 language Fsm {
 	ecore "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.fsm/model/FSM.ecore"
 	exactType FsmMT
@@ -28,8 +26,8 @@ transformation execute(FsmMT m) {
 
 @Main
 transformation main() {
-	val m1 =      Fsm.load("input/Simple.fsm", FsmMT)
-	val m2 = TimedFsm.load("input/Simple.timedfsm", FsmMT)
+	val m1 =      Fsm.load("input/Simple.fsm")
+	val m2 = TimedFsm.load("input/Simple.timedfsm")
 
 	execute.call(m1)
 	execute.call(m2)
