@@ -127,7 +127,7 @@ class MetamodelExtensions
 		val aspClassName = aspAnn?.values?.findFirst[valueName == "className"]
 		val aspVal = switch aspClassName {
 			JvmTypeAnnotationValue: aspClassName.values?.head?.simpleName
-			JvmCustomAnnotationValue: (aspClassName.values?.head as XFeatureCall)?.feature?.simpleName
+			JvmCustomAnnotationValue: (aspClassName.values?.head as XAbstractFeatureCall)?.feature?.simpleName
 			default: null
 		}
 
