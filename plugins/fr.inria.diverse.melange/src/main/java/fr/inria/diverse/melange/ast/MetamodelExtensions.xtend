@@ -6,8 +6,12 @@ import fr.inria.diverse.melange.algebra.ModelTypeAlgebra
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.metamodel.melange.Aspect
+import fr.inria.diverse.melange.metamodel.melange.Ecore
+import fr.inria.diverse.melange.metamodel.melange.Merge
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
+import fr.inria.diverse.melange.metamodel.melange.Slice
+import fr.inria.diverse.melange.utils.AspectCopier
 import fr.inria.diverse.melange.utils.EPackageProvider
 import java.io.IOException
 import java.util.List
@@ -30,13 +34,8 @@ import org.eclipse.xtext.common.types.JvmTypeAnnotationValue
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.xbase.XAbstractFeatureCall
-import fr.inria.diverse.melange.metamodel.melange.Ecore
-import fr.inria.diverse.melange.metamodel.melange.Slice
-import fr.inria.diverse.melange.metamodel.melange.Merge
-import fr.inria.diverse.melange.utils.AspectCopier
-import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
-import org.eclipse.emf.ecore.util.EObjectResolvingEList
 import org.eclipse.xtext.xbase.XFeatureCall
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
 class MetamodelExtensions
 {
@@ -128,7 +127,7 @@ class MetamodelExtensions
 		val aspClassName = aspAnn?.values?.findFirst[valueName == "className"]
 		val aspVal = switch aspClassName {
 			JvmTypeAnnotationValue: aspClassName.values?.head?.simpleName
-			JvmCustomAnnotationValue: aspClassName.values?.head?.toString
+			JvmCustomAnnotationValue: (aspClassName.values?.head as XFeatureCall)?.feature?.simpleName
 			default: null
 		}
 
