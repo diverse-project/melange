@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.xtext.common.types.JvmTypeReference;
 
@@ -33,7 +32,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *
  * @generated
  */
-public class AspectImpl extends MinimalEObjectImpl.Container implements Aspect {
+public class AspectImpl extends OperatorImpl implements Aspect {
 	/**
 	 * The cached value of the '{@link #getAspectTypeRef() <em>Aspect Type Ref</em>}' containment reference.
 	 * <!-- begin-user-doc -->

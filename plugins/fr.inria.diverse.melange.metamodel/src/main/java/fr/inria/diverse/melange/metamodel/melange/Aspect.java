@@ -3,7 +3,6 @@
 package fr.inria.diverse.melange.metamodel.melange;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.xtext.common.types.JvmTypeReference;
@@ -27,7 +26,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  * @model
  * @generated
  */
-public interface Aspect extends EObject {
+public interface Aspect extends Operator {
 	/**
 	 * Returns the value of the '<em><b>Aspect Type Ref</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

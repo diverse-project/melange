@@ -94,8 +94,8 @@ class SimpleFsmTest
 
 	@Test
 	def void testInheritance() {
-		assertNull(fsm.inheritanceRelation)
-		assertNull(tfsm.inheritanceRelation)
+		assertEquals(fsm.inheritanceRelation.size, 0)
+		assertEquals(tfsm.inheritanceRelation.size, 0)
 	}
 
 	@Test

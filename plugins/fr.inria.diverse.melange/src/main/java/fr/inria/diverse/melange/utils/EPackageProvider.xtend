@@ -61,13 +61,13 @@ class EPackageProvider
 				}
 				Metamodel:
 					if (m.hasSuperMetamodel) {
-						val pkgsCopy = m.inheritanceRelation.superMetamodel.packages.map[
+						val pkgsCopy = m.inheritanceRelation.map[superMetamodel.packages.map[
 							val copy = EcoreUtil::copy(it)
 							copy.name = m.name.toLowerCase
 							copy.nsPrefix = copy.name
 							copy.nsURI = '''http://«copy.name»'''
 							return copy
-						]
+						]].flatten
 
 //						val newUri = m.createEcore(pkgsCopy.head)
 //						val newGmUri = newUri.trimFileExtension.appendFileExtension("genmodel").toString
@@ -103,5 +103,21 @@ class EPackageProvider
 			mm.genmodelUris.forEach[genmodels.put(mm, modelUtils.loadGenmodel(it))]
 		}
 		return genmodels.get(mm)
+	}
+	
+	/**
+	 * Register {@link root} and its sub EPackages as packages of {@link modElem} 
+	 */
+	def void registerPackages(ModelingElement modElem, EPackage root){
+		if (!packages.containsKey(modElem) && root !== null) {
+			val pkgs = newArrayList
+
+			pkgs += root
+			pkgs += root.referencedPkgs.filter[!pkgs.exists[p | nsURI == p.nsURI]]
+
+			packages.putAll(modElem, pkgs)
+			packages.putAll(modElem, pkgs.map[allSubPkgs].flatten.filter[!pkgs.exists[p | nsURI == p.nsURI]])
+//			pkgs.forEach[ESubpackages.clear]
+		}
 	}
 }

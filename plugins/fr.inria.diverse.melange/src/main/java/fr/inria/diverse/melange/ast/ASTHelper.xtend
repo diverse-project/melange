@@ -51,7 +51,9 @@ class ASTHelper
 			logger.debug('''\tgenmodels = «mm.genmodels.map[it.class].join(", ")»''')
 			logger.debug('''\texactType = «mm.exactType.name»''')
 			logger.debug('''\timplements = «mm.^implements.map[name].join(", ")»''')
-			logger.debug('''\tsuperMM = «mm.inheritanceRelation?.superMetamodel?.name»''')
+			mm.inheritanceRelation.forEach[inherit|
+			logger.debug('''\tsuperMM = «inherit.superMetamodel?.name»''')
+			]
 			logger.debug('''\taspects = «mm.aspects.map[aspectTypeRef.simpleName].join(", ")»''')
 		]
 

@@ -30,6 +30,13 @@ import org.eclipse.xtext.common.types.JvmTypeAnnotationValue
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.xbase.XAbstractFeatureCall
+import fr.inria.diverse.melange.metamodel.melange.Ecore
+import fr.inria.diverse.melange.metamodel.melange.Slice
+import fr.inria.diverse.melange.metamodel.melange.Merge
+import fr.inria.diverse.melange.utils.AspectCopier
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
+import org.eclipse.emf.ecore.util.EObjectResolvingEList
+import org.eclipse.xtext.xbase.XFeatureCall
 
 class MetamodelExtensions
 {
@@ -41,6 +48,8 @@ class MetamodelExtensions
 	@Inject extension EclipseProjectHelper
 	@Inject ModelTypeAlgebra algebra
 	@Inject EPackageProvider provider
+	@Inject AspectCopier copier
+	@Inject JvmTypeReferenceBuilder.Factory builderFactory
 	static Logger log = Logger.getLogger(MetamodelExtensions)
 
 	def List<GenModel> getGenmodels(Metamodel mm) {
@@ -58,15 +67,32 @@ class MetamodelExtensions
 //			&& asp.aspectAnnotationValue !== null
 	}
 
+	/**
+	 * Get all aspects define on the metamodel.
+	 * The priority order is: <br>
+	 * 1) Aspects explicitly defined in the definition of {@link mm}, in top->bottom order <br>
+	 * 2) From Merge relations, in top->bottom order
+	 * 3) From Inheritance relations, in the left->right order <br>
+	 */
 	def List<Aspect> allAspects(Metamodel mm) {
-		val ret = newArrayList
-
-		ret += mm.aspects
-
-		if (mm.hasSuperMetamodel)
-			ret += mm.inheritanceRelation.superMetamodel.allAspects
-
-		return ret
+		val res = newArrayList
+		
+		res.addAll(mm.aspects)
+		val opAspects = mm.operators.map[op|
+							if(op instanceof Slice){
+								(op as Slice).language.allAspects
+							}
+							else if(op instanceof Merge){
+								(op as Merge).language.allAspects
+							}
+							else{
+								newArrayList
+							}
+						].flatten
+		res.addAll(mm.inheritanceRelation.map[superMetamodel.allAspects].flatten)
+		res.addAll(opAspects)
+		
+		return res
 	}
 
 	def Iterable<Aspect> findAspectsOn(Metamodel mm, EClass cls) {
@@ -85,7 +111,7 @@ class MetamodelExtensions
 	}
 
 	def boolean hasSuperMetamodel(Metamodel mm) {
-		return mm.inheritanceRelation?.superMetamodel !== null
+		return mm.inheritanceRelation.exists[superMetamodel !== null]
 	}
 
 	def boolean hasAspectAnnotation(Aspect asp) {
@@ -353,26 +379,33 @@ class MetamodelExtensions
 		return '''platform:/resource/«mm.externalRuntimeName»/model/«mm.name».genmodel'''
 	}
 
+	/**
+	 * Get the name of the project containing Java classes reifying the metamodel {@link mm}
+	 */
 	def String getExternalRuntimeName(Metamodel mm) {
 		if (mm.ecoreUri !== null) {
 			val originalProjectName = URI::createURI(mm.ecoreUri).segment(1)
 
 			return originalProjectName
-		} else if (mm.inheritanceRelation.superMetamodel.ecoreUri !== null) {
-			val originalProjectName = URI::createURI(mm.inheritanceRelation.superMetamodel.ecoreUri).segment(1)
-			
-			// compute a name as smartly as possible and try to follow the user naming convention
-			if (originalProjectName.toQualifiedName.segmentCount == 1){
-				return mm.name.toLowerCase
-			} else { 
-				if(originalProjectName.toQualifiedName.lastSegment.equals("model")){
-					return originalProjectName.toQualifiedName.skipLast(1).append(mm.name.toLowerCase).append("model").toString
-				} else {
-					return originalProjectName.toQualifiedName.append(mm.name.toLowerCase).toString
-				}
-				
-			}
 		}
+		else{
+			return mm.name+"_Gen"
+		}
+//		 else if (mm.inheritanceRelation.superMetamodel.ecoreUri !== null) {
+//			val originalProjectName = URI::createURI(mm.inheritanceRelation.superMetamodel.ecoreUri).segment(1)
+//			
+//			// compute a name as smartly as possible and try to follow the user naming convention
+//			if (originalProjectName.toQualifiedName.segmentCount == 1){
+//				return mm.name.toLowerCase
+//			} else { 
+//				if(originalProjectName.toQualifiedName.lastSegment.equals("model")){
+//					return originalProjectName.toQualifiedName.skipLast(1).append(mm.name.toLowerCase).append("model").toString
+//				} else {
+//					return originalProjectName.toQualifiedName.append(mm.name.toLowerCase).toString
+//				}
+//				
+//			}
+//		}
 	}
 
 	def String getExternalAspectsRuntimeName(Metamodel mm) {
@@ -384,8 +417,13 @@ class MetamodelExtensions
 		}
 	}
 
+	/**
+	 * Return true if {@link mm} is a merge or an inheritance of metamodels 
+	 */
 	def boolean isGeneratedByMelange(Metamodel mm) {
-		return mm.inheritanceRelation?.superMetamodel !== null
+		return mm.inheritanceRelation.size > 0 || 
+		(mm.operators.size > 1) || 
+		((mm.operators.size == 1) && (mm.operators.filter(Ecore).empty)) 
 	}
 
 	/**
@@ -419,7 +457,7 @@ class MetamodelExtensions
 				return true
 			else return false
 		} else
-			return true
+			return false
 	}
 
 	def void generateCode(GenModel genModel) {
@@ -454,5 +492,29 @@ class MetamodelExtensions
 		} catch (IOException e) {
 			e.printStackTrace
 		}
+	}
+	
+	/**
+	 * Copy aspects defined on {@link mm} into generated project
+	 */
+	def void createExternalAspects(Metamodel mm) {
+		val classesAlreadyWeaved = newArrayList
+		
+		mm.allAspects.forEach[asp |
+			if (asp.isComplete) {
+				if (asp.canBeCopiedFor(mm)) {
+					
+					val className = asp.aspectAnnotationValue
+					if(!classesAlreadyWeaved.contains(className) && (mm.findClass(className) !== null)){
+						classesAlreadyWeaved.add(className)
+						
+						val typeRefBuilder = builderFactory.create(mm.eResource.resourceSet)
+						val newAspectFqn = copier.copyAspectTo(asp, mm)
+						val newAspectRef = typeRefBuilder.typeRef(newAspectFqn)
+						asp.aspectTypeRef = newAspectRef
+					}
+				}
+			}
+		]
 	}
 }

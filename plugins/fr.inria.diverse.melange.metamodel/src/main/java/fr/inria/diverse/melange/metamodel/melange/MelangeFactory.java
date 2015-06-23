@@ -112,6 +112,42 @@ public interface MelangeFactory extends EFactory {
 	PropertyBinding createPropertyBinding();
 
 	/**
+	 * Returns a new object of class '<em>Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Operator</em>'.
+	 * @generated
+	 */
+	Operator createOperator();
+
+	/**
+	 * Returns a new object of class '<em>Ecore</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ecore</em>'.
+	 * @generated
+	 */
+	Ecore createEcore();
+
+	/**
+	 * Returns a new object of class '<em>Merge</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Merge</em>'.
+	 * @generated
+	 */
+	Merge createMerge();
+
+	/**
+	 * Returns a new object of class '<em>Slice</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Slice</em>'.
+	 * @generated
+	 */
+	Slice createSlice();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

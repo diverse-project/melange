@@ -12,6 +12,8 @@ import org.eclipse.xtext.common.types.JvmEnumerationType
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
 import org.eclipse.xtext.common.types.JvmVisibility
+import fr.inria.diverse.melange.metamodel.melange.Metamodel
+import fr.inria.diverse.melange.ast.MetamodelExtensions
 
 /**
  * This class creates an EPackage corresponding to an aspect.
@@ -22,6 +24,7 @@ class AspectToEcore
 	@Inject extension EcoreExtensions
 	@Inject extension TypeReferencesHelper
 	@Inject extension ModelingElementExtensions
+	@Inject extension MetamodelExtensions
 
 	/**
 	 * Try to infer the "modeling intention" of the aspect aspImport
@@ -72,8 +75,8 @@ class AspectToEcore
 						(op.returnType as JvmParameterizedTypeReference).arguments.head.type
 					else
 						op.returnType.type
-				val retCls = if (realType.simpleName == aspCls.name) aspCls else basePkg.findClass(realType.simpleName)
 
+				val retCls = if (realType.simpleName == aspCls.name) aspCls else basePkg.findClass(realType.simpleName)
 				if (!aspCls.EOperations.exists[name == op.simpleName]) {
 					aspCls.EOperations += EcoreFactory.eINSTANCE.createEOperation => [
 						name = op.simpleName
@@ -87,8 +90,8 @@ class AspectToEcore
 										(p.parameterType as JvmParameterizedTypeReference).arguments.head.type
 									else
 										pType
-								val attrCls = if (realTypeP.simpleName == aspCls.name) aspCls else basePkg.findClass(realTypeP.simpleName)
 
+								val attrCls = if (realTypeP.simpleName == aspCls.name) aspCls else basePkg.findClass(realTypeP.simpleName)
 								EParameters += EcoreFactory.eINSTANCE.createEParameter => [pp |
 									pp.name = p.simpleName
 									pp.upperBound = upperBP
@@ -130,6 +133,7 @@ class AspectToEcore
 						(retType as JvmParameterizedTypeReference).arguments.head.type
 					else
 						retType.type
+
 				val find = if (realType.simpleName == aspCls.name) aspCls else basePkg.findClass(realType.simpleName)
 				if (find !== null) {
 					// Create EReference

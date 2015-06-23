@@ -8,19 +8,28 @@ import fr.inria.diverse.melange.metamodel.melange.Mapping;
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
 import fr.inria.diverse.melange.metamodel.melange.Metamodel;
 import fr.inria.diverse.melange.metamodel.melange.ModelType;
+import fr.inria.diverse.melange.metamodel.melange.Operator;
 import fr.inria.diverse.melange.metamodel.melange.ResourceType;
+
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.eclipse.xtext.common.types.JvmTypeReference;
 
 /**
@@ -42,6 +51,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getXtextSetupRef <em>Xtext Setup Ref</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getGenmodelUris <em>Genmodel Uris</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getMappings <em>Mappings</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getOperators <em>Operators</em>}</li>
  * </ul>
  * </p>
  *
@@ -89,14 +99,14 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 	protected EList<ModelType> requires;
 
 	/**
-	 * The cached value of the '{@link #getInheritanceRelation() <em>Inheritance Relation</em>}' containment reference.
+	 * The cached value of the '{@link #getInheritanceRelation() <em>Inheritance Relation</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInheritanceRelation()
 	 * @generated
 	 * @ordered
 	 */
-	protected Inheritance inheritanceRelation;
+	protected EList<Inheritance> inheritanceRelation;
 
 	/**
 	 * The default value of the '{@link #getExactTypeName() <em>Exact Type Name</em>}' attribute.
@@ -207,6 +217,16 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 	 * @ordered
 	 */
 	protected EList<Mapping> mappings;
+
+	/**
+	 * The cached value of the '{@link #getOperators() <em>Operators</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOperators()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Operator> operators;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -328,42 +348,11 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Inheritance getInheritanceRelation() {
+	public EList<Inheritance> getInheritanceRelation() {
+		if (inheritanceRelation == null) {
+			inheritanceRelation = new EObjectContainmentWithInverseEList<Inheritance>(Inheritance.class, this, MelangePackage.METAMODEL__INHERITANCE_RELATION, MelangePackage.INHERITANCE__SUB_METAMODEL);
+		}
 		return inheritanceRelation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetInheritanceRelation(Inheritance newInheritanceRelation, NotificationChain msgs) {
-		Inheritance oldInheritanceRelation = inheritanceRelation;
-		inheritanceRelation = newInheritanceRelation;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MelangePackage.METAMODEL__INHERITANCE_RELATION, oldInheritanceRelation, newInheritanceRelation);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setInheritanceRelation(Inheritance newInheritanceRelation) {
-		if (newInheritanceRelation != inheritanceRelation) {
-			NotificationChain msgs = null;
-			if (inheritanceRelation != null)
-				msgs = ((InternalEObject)inheritanceRelation).eInverseRemove(this, MelangePackage.INHERITANCE__SUB_METAMODEL, Inheritance.class, msgs);
-			if (newInheritanceRelation != null)
-				msgs = ((InternalEObject)newInheritanceRelation).eInverseAdd(this, MelangePackage.INHERITANCE__SUB_METAMODEL, Inheritance.class, msgs);
-			msgs = basicSetInheritanceRelation(newInheritanceRelation, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.METAMODEL__INHERITANCE_RELATION, newInheritanceRelation, newInheritanceRelation));
 	}
 
 	/**
@@ -522,6 +511,18 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Operator> getOperators() {
+		if (operators == null) {
+			operators = new EObjectContainmentEList<Operator>(Operator.class, this, MelangePackage.METAMODEL__OPERATORS);
+		}
+		return operators;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -531,9 +532,7 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 					msgs = ((InternalEObject)exactType).eInverseRemove(this, MelangePackage.MODEL_TYPE__EXTRACTED, ModelType.class, msgs);
 				return basicSetExactType((ModelType)otherEnd, msgs);
 			case MelangePackage.METAMODEL__INHERITANCE_RELATION:
-				if (inheritanceRelation != null)
-					msgs = ((InternalEObject)inheritanceRelation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MelangePackage.METAMODEL__INHERITANCE_RELATION, null, msgs);
-				return basicSetInheritanceRelation((Inheritance)otherEnd, msgs);
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getInheritanceRelation()).basicAdd(otherEnd, msgs);
 			case MelangePackage.METAMODEL__MAPPINGS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getMappings()).basicAdd(otherEnd, msgs);
 		}
@@ -553,11 +552,13 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 			case MelangePackage.METAMODEL__EXACT_TYPE:
 				return basicSetExactType(null, msgs);
 			case MelangePackage.METAMODEL__INHERITANCE_RELATION:
-				return basicSetInheritanceRelation(null, msgs);
+				return ((InternalEList<?>)getInheritanceRelation()).basicRemove(otherEnd, msgs);
 			case MelangePackage.METAMODEL__XTEXT_SETUP_REF:
 				return basicSetXtextSetupRef(null, msgs);
 			case MelangePackage.METAMODEL__MAPPINGS:
 				return ((InternalEList<?>)getMappings()).basicRemove(otherEnd, msgs);
+			case MelangePackage.METAMODEL__OPERATORS:
+				return ((InternalEList<?>)getOperators()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -595,6 +596,8 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 				return getGenmodelUris();
 			case MelangePackage.METAMODEL__MAPPINGS:
 				return getMappings();
+			case MelangePackage.METAMODEL__OPERATORS:
+				return getOperators();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -624,7 +627,8 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 				getRequires().addAll((Collection<? extends ModelType>)newValue);
 				return;
 			case MelangePackage.METAMODEL__INHERITANCE_RELATION:
-				setInheritanceRelation((Inheritance)newValue);
+				getInheritanceRelation().clear();
+				getInheritanceRelation().addAll((Collection<? extends Inheritance>)newValue);
 				return;
 			case MelangePackage.METAMODEL__EXACT_TYPE_NAME:
 				setExactTypeName((String)newValue);
@@ -648,6 +652,10 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 			case MelangePackage.METAMODEL__MAPPINGS:
 				getMappings().clear();
 				getMappings().addAll((Collection<? extends Mapping>)newValue);
+				return;
+			case MelangePackage.METAMODEL__OPERATORS:
+				getOperators().clear();
+				getOperators().addAll((Collection<? extends Operator>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -674,7 +682,7 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 				getRequires().clear();
 				return;
 			case MelangePackage.METAMODEL__INHERITANCE_RELATION:
-				setInheritanceRelation((Inheritance)null);
+				getInheritanceRelation().clear();
 				return;
 			case MelangePackage.METAMODEL__EXACT_TYPE_NAME:
 				setExactTypeName(EXACT_TYPE_NAME_EDEFAULT);
@@ -697,6 +705,9 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 			case MelangePackage.METAMODEL__MAPPINGS:
 				getMappings().clear();
 				return;
+			case MelangePackage.METAMODEL__OPERATORS:
+				getOperators().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -718,7 +729,7 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 			case MelangePackage.METAMODEL__REQUIRES:
 				return requires != null && !requires.isEmpty();
 			case MelangePackage.METAMODEL__INHERITANCE_RELATION:
-				return inheritanceRelation != null;
+				return inheritanceRelation != null && !inheritanceRelation.isEmpty();
 			case MelangePackage.METAMODEL__EXACT_TYPE_NAME:
 				return EXACT_TYPE_NAME_EDEFAULT == null ? exactTypeName != null : !EXACT_TYPE_NAME_EDEFAULT.equals(exactTypeName);
 			case MelangePackage.METAMODEL__EXACT_TYPE_URI:
@@ -733,6 +744,8 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 				return genmodelUris != null && !genmodelUris.isEmpty();
 			case MelangePackage.METAMODEL__MAPPINGS:
 				return mappings != null && !mappings.isEmpty();
+			case MelangePackage.METAMODEL__OPERATORS:
+				return operators != null && !operators.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

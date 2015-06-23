@@ -1,0 +1,1660 @@
+<?xml version="1.0" encoding="ASCII"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/ActivityEcoreLuaLang_Gen/src/" modelPluginID="ActivityEcoreLuaLang_Gen" modelName="ActivityEcoreLuaLang" importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false">
+  <foreignModel>ActivityEcoreLuaLang.ecore</foreignModel>
+  <genPackages prefix="Activitydiagram" disposableProviderFactory="true" loadInitialization="true" literalsInterface="false">
+    <ecorePackage href="ActivityEcoreLuaLang.ecore#/"/>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//Context"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//Offer"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//Token"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//Environment"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EBigDecimal"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EBigInteger"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EBoolean"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EBooleanObject"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EByte"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EByteArray"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EByteObject"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EChar"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//ECharacterObject"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EDate"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EDiagnosticChain"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EDouble"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EDoubleObject"/>
+    </genDataTypes>
+    <genDataTypes>
+      <genTypeParameters>
+        <ecoreTypeParameter href="ActivityEcoreLuaLang.ecore#//EEList/E"/>
+      </genTypeParameters>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EEList"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EEnumerator"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EFeatureMap"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EFeatureMapEntry"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EFloat"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EFloatObject"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EInt"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EIntegerObject"/>
+    </genDataTypes>
+    <genDataTypes>
+      <genTypeParameters>
+        <ecoreTypeParameter href="ActivityEcoreLuaLang.ecore#//EJavaClass/T"/>
+      </genTypeParameters>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EJavaClass"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EJavaObject"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//ELong"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//ELongObject"/>
+    </genDataTypes>
+    <genDataTypes>
+      <genTypeParameters>
+        <ecoreTypeParameter href="ActivityEcoreLuaLang.ecore#//EMap/K"/>
+      </genTypeParameters>
+      <genTypeParameters>
+        <ecoreTypeParameter href="ActivityEcoreLuaLang.ecore#//EMap/V"/>
+      </genTypeParameters>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EMap"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EResource"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EResourceSet"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EShort"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EShortObject"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EString"/>
+    </genDataTypes>
+    <genDataTypes>
+      <genTypeParameters>
+        <ecoreTypeParameter href="ActivityEcoreLuaLang.ecore#//ETreeIterator/E"/>
+      </genTypeParameters>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//ETreeIterator"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="ActivityEcoreLuaLang.ecore#//EInvocationTargetException"/>
+    </genDataTypes>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//OpaqueAction"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//OpaqueAction/expressions"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//OpaqueAction/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//OpaqueAction/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false">
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Action"/>
+    </genClasses>
+    <genClasses image="false">
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//ExecutableNode"/>
+    </genClasses>
+    <genClasses image="false">
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//ActivityNode"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//ActivityNode/outgoing"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//ActivityNode/incoming"/>
+      </genFeatures>
+      <genFeatures property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//ActivityNode/activity"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//ActivityNode/running"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityNode/addTokens"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//ActivityNode/addTokens/tokens"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityNode/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//ActivityNode/execute/c"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityNode/hasOffers"/>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityNode/isReady"/>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityNode/removeToken"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//ActivityNode/removeToken/token"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityNode/sendOffers"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//ActivityNode/sendOffers/tokens"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityNode/takeOfferdTokens"/>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityNode/terminate"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false">
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//NamedElement"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//NamedElement/name"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//NamedElement/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//NamedElement/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false">
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//ActivityEdge"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//ActivityEdge/source"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//ActivityEdge/target"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//ActivityEdge/offers"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityEdge/hasOffer"/>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityEdge/sendOffer"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//ActivityEdge/sendOffer/tokens"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//ActivityEdge/takeOfferedTokens"/>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Activity"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Activity/nodes"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Activity/edges"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Activity/locals"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Activity/inputs"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Activity/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Activity/execute/c"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Activity/getBooleanVariableValue"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Activity/getBooleanVariableValue/variableName"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Activity/getIntegerVariableValue"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Activity/getIntegerVariableValue/variableName"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Activity/getVariable"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Activity/getVariable/variableName"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Activity/getVariableValue"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Activity/getVariableValue/variableName"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Activity/main"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Activity/main/value"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Activity/printTrace"/>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Activity/reset"/>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Activity/writeToFile"/>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Activity/writeTrace"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false">
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Variable"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Variable/initialValue"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//Variable/name"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Variable/currentValue"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Variable/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Variable/execute/c"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Variable/init"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Variable/init/c"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Variable/print"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false">
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Value"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//InputValue"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//InputValue/value"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//InputValue/variable"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Chunk"/>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Chunk/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Chunk/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Block"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Block/statements"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Block/returnValue"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Block/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Block/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//LastStatement"/>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//LastStatement/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//LastStatement/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//LastStatement_Return"/>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//LastStatement_Return/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//LastStatement_Return/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//LastStatement_Break"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Statement"/>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Statement/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Statement/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Statement_Block"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Statement_Block/block"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Statement_Block/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Statement_Block/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Statement_While"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Statement_While/expression"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Statement_While/block"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Statement_While/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Statement_While/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Statement_Repeat"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Statement_Repeat/block"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Statement_Repeat/expression"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Statement_Repeat/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Statement_Repeat/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Statement_If_Then_Else"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Statement_If_Then_Else/ifExpression"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Statement_If_Then_Else/ifBlock"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Statement_If_Then_Else/elseIf"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Statement_If_Then_Else/elseBlock"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Statement_If_Then_Else/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Statement_If_Then_Else/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Statement_If_Then_Else_ElseIfPart"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Statement_If_Then_Else_ElseIfPart/elseifExpression"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Statement_If_Then_Else_ElseIfPart/elseifBlock"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Statement_If_Then_Else_ElseIfPart/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Statement_If_Then_Else_ElseIfPart/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Statement_For_Numeric"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//Statement_For_Numeric/iteratorName"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Statement_For_Numeric/startExpr"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Statement_For_Numeric/untilExpr"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Statement_For_Numeric/stepExpr"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Statement_For_Numeric/block"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Statement_For_Numeric/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Statement_For_Numeric/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Statement_For_Generic"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//Statement_For_Generic/names"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Statement_For_Generic/expressions"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Statement_For_Generic/block"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Statement_For_Generic/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Statement_For_Generic/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Statement_GlobalFunction_Declaration"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//Statement_GlobalFunction_Declaration/prefix"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//Statement_GlobalFunction_Declaration/functionName"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Statement_GlobalFunction_Declaration/function"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Statement_GlobalFunction_Declaration/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Statement_GlobalFunction_Declaration/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Statement_LocalFunction_Declaration"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//Statement_LocalFunction_Declaration/functionName"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Statement_LocalFunction_Declaration/function"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Statement_LocalFunction_Declaration/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Statement_LocalFunction_Declaration/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Statement_Local_Variable_Declaration"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//Statement_Local_Variable_Declaration/variableNames"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Statement_Local_Variable_Declaration/initialValue"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Statement_Local_Variable_Declaration/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Statement_Local_Variable_Declaration/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Statement_FunctioncallOrAssignment"/>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Statement_FunctioncallOrAssignment/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Statement_FunctioncallOrAssignment/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false">
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression/lua"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression/execute/c"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression/execute.1"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression/execute.1/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_Nil"/>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_Nil/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_Nil/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_True"/>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_True/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_True/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_False"/>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_False/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_False/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_Number"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//Expression_Number/value"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_Number/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_Number/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_VarArgs"/>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_VarArgs/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_VarArgs/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_String"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//Expression_String/value"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_String/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_String/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_Function"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Function/function"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_Function/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_Function/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_TableConstructor"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_TableConstructor/fields"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_TableConstructor/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_TableConstructor/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Function"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//Function/parameters"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//Function/varArgs"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Function/body"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Function/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Function/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Functioncall_Arguments"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Functioncall_Arguments/arguments"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Functioncall_Arguments/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Functioncall_Arguments/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Field"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Field/value"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Field/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Field/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Field_AddEntryToTable_Brackets"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Field_AddEntryToTable_Brackets/indexExpression"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Field_AddEntryToTable_Brackets/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Field_AddEntryToTable_Brackets/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Field_AddEntryToTable"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//Field_AddEntryToTable/key"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Field_AddEntryToTable/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Field_AddEntryToTable/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Field_AppendEntryToTable"/>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Field_AppendEntryToTable/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Field_AppendEntryToTable/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//LastStatement_ReturnWithValue"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//LastStatement_ReturnWithValue/returnValues"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//LastStatement_ReturnWithValue/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//LastStatement_ReturnWithValue/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Statement_Assignment"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Statement_Assignment/variable"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Statement_Assignment/values"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Statement_Assignment/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Statement_Assignment/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Statement_CallMemberFunction"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Statement_CallMemberFunction/object"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//Statement_CallMemberFunction/memberFunctionName"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Statement_CallMemberFunction/arguments"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Statement_CallMemberFunction/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Statement_CallMemberFunction/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Statement_CallFunction"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Statement_CallFunction/object"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Statement_CallFunction/arguments"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Statement_CallFunction/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Statement_CallFunction/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_Or"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Or/left"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Or/right"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_Or/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_Or/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_And"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_And/left"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_And/right"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_And/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_And/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_Larger"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Larger/left"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Larger/right"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_Larger/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_Larger/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_Larger_Equal"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Larger_Equal/left"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Larger_Equal/right"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_Larger_Equal/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_Larger_Equal/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_Smaller"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Smaller/left"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Smaller/right"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_Smaller/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_Smaller/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_Smaller_Equal"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Smaller_Equal/left"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Smaller_Equal/right"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_Smaller_Equal/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_Smaller_Equal/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_Equal"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Equal/left"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Equal/right"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_Equal/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_Equal/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_Not_Equal"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Not_Equal/left"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Not_Equal/right"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_Not_Equal/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_Not_Equal/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_Concatenation"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Concatenation/left"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Concatenation/right"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_Concatenation/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_Concatenation/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_Plus"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Plus/left"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Plus/right"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_Plus/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_Plus/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_Minus"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Minus/left"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Minus/right"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_Minus/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_Minus/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_Multiplication"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Multiplication/left"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Multiplication/right"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_Multiplication/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_Multiplication/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_Division"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Division/left"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Division/right"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_Division/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_Division/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_Modulo"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Modulo/left"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Modulo/right"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_Modulo/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_Modulo/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_Negate"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Negate/exp"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_Negate/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_Negate/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_Length"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Length/exp"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_Length/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_Length/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_Invert"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Invert/exp"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_Invert/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_Invert/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_Exponentiation"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Exponentiation/left"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_Exponentiation/right"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_Exponentiation/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_Exponentiation/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_CallMemberFunction"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_CallMemberFunction/object"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//Expression_CallMemberFunction/memberFunctionName"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_CallMemberFunction/arguments"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_CallMemberFunction/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_CallMemberFunction/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_CallFunction"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_CallFunction/object"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_CallFunction/arguments"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_CallFunction/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_CallFunction/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_AccessArray"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_AccessArray/array"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_AccessArray/index"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_AccessArray/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_AccessArray/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_AccessMember"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//Expression_AccessMember/object"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//Expression_AccessMember/memberName"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_AccessMember/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_AccessMember/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//Expression_VariableName"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//Expression_VariableName/variable"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//Expression_VariableName/execute"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//Expression_VariableName/execute/c"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//EAttribute"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//EAttribute/iD"/>
+      </genFeatures>
+      <genFeatures property="Readonly" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EAttribute/eAttributeType"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//EAnnotation"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//EAnnotation/source"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EAnnotation/details"/>
+      </genFeatures>
+      <genFeatures property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EAnnotation/eModelElement"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EAnnotation/contents"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EAnnotation/references"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//EClass"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//EClass/abstract"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//EClass/interface"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EClass/eSuperTypes"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EClass/eOperations"/>
+      </genFeatures>
+      <genFeatures property="Readonly" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EClass/eAllAttributes"/>
+      </genFeatures>
+      <genFeatures property="Readonly" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EClass/eAllReferences"/>
+      </genFeatures>
+      <genFeatures property="Readonly" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EClass/eReferences"/>
+      </genFeatures>
+      <genFeatures property="Readonly" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EClass/eAttributes"/>
+      </genFeatures>
+      <genFeatures property="Readonly" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EClass/eAllContainments"/>
+      </genFeatures>
+      <genFeatures property="Readonly" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EClass/eAllOperations"/>
+      </genFeatures>
+      <genFeatures property="Readonly" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EClass/eAllStructuralFeatures"/>
+      </genFeatures>
+      <genFeatures property="Readonly" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EClass/eAllSuperTypes"/>
+      </genFeatures>
+      <genFeatures property="Readonly" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EClass/eIDAttribute"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EClass/eStructuralFeatures"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EClass/eGenericSuperTypes"/>
+      </genFeatures>
+      <genFeatures property="Readonly" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EClass/eAllGenericSuperTypes"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EClass/isSuperTypeOf"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EClass/isSuperTypeOf/someClass"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EClass/getFeatureCount"/>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EClass/getEStructuralFeature"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EClass/getEStructuralFeature/featureID"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EClass/getFeatureID"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EClass/getFeatureID/feature"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EClass/getEStructuralFeature.1"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EClass/getEStructuralFeature.1/featureName"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EClass/getOperationCount"/>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EClass/getEOperation"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EClass/getEOperation/operationID"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EClass/getOperationID"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EClass/getOperationID/operation"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EClass/getOverride"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EClass/getOverride/operation"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EClass/getFeatureType"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EClass/getFeatureType/feature"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false">
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//EClassifier"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//EClassifier/instanceClassName"/>
+      </genFeatures>
+      <genFeatures property="Readonly" createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//EClassifier/instanceClass"/>
+      </genFeatures>
+      <genFeatures property="Readonly" createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//EClassifier/defaultValue"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//EClassifier/instanceTypeName"/>
+      </genFeatures>
+      <genFeatures property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EClassifier/ePackage"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EClassifier/eTypeParameters"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EClassifier/isInstance"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EClassifier/isInstance/object"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EClassifier/getClassifierID"/>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//EDataType"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//EDataType/serializable"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//EEnum"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EEnum/eLiterals"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EEnum/getEEnumLiteral"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EEnum/getEEnumLiteral/name"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EEnum/getEEnumLiteral.1"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EEnum/getEEnumLiteral.1/value"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EEnum/getEEnumLiteralByLiteral"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EEnum/getEEnumLiteralByLiteral/literal"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//EEnumLiteral"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//EEnumLiteral/value"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//EEnumLiteral/instance"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//EEnumLiteral/literal"/>
+      </genFeatures>
+      <genFeatures property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EEnumLiteral/eEnum"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//EFactory"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EFactory/ePackage"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EFactory/create"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EFactory/create/eClass"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EFactory/createFromString"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EFactory/createFromString/eDataType"/>
+        </genParameters>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EFactory/createFromString/literalValue"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EFactory/convertToString"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EFactory/convertToString/eDataType"/>
+        </genParameters>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EFactory/convertToString/instanceValue"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false">
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//EModelElement"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EModelElement/eAnnotations"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EModelElement/getEAnnotation"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EModelElement/getEAnnotation/source"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false">
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//ENamedElement"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//ENamedElement/name"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//EObject"/>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EObject/eClass"/>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EObject/eIsProxy"/>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EObject/eResource"/>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EObject/eContainer"/>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EObject/eContainingFeature"/>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EObject/eContainmentFeature"/>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EObject/eContents"/>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EObject/eAllContents"/>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EObject/eCrossReferences"/>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EObject/eGet"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EObject/eGet/feature"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EObject/eGet.1"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EObject/eGet.1/feature"/>
+        </genParameters>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EObject/eGet.1/resolve"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EObject/eSet"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EObject/eSet/feature"/>
+        </genParameters>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EObject/eSet/newValue"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EObject/eIsSet"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EObject/eIsSet/feature"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EObject/eUnset"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EObject/eUnset/feature"/>
+        </genParameters>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EObject/eInvoke"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EObject/eInvoke/operation"/>
+        </genParameters>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EObject/eInvoke/arguments"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//EOperation"/>
+      <genFeatures property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EOperation/eContainingClass"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EOperation/eTypeParameters"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EOperation/eParameters"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EOperation/eExceptions"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EOperation/eGenericExceptions"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EOperation/behavior"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EOperation/getOperationID"/>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EOperation/isOverrideOf"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EOperation/isOverrideOf/someOperation"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//EPackage"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//EPackage/nsURI"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//EPackage/nsPrefix"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EPackage/eFactoryInstance"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EPackage/eClassifiers"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EPackage/eSubpackages"/>
+      </genFeatures>
+      <genFeatures property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EPackage/eSuperPackage"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EPackage/getEClassifier"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EPackage/getEClassifier/name"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//EParameter"/>
+      <genFeatures property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EParameter/eOperation"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//EReference"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//EReference/containment"/>
+      </genFeatures>
+      <genFeatures property="Readonly" createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//EReference/container"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//EReference/resolveProxies"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EReference/eOpposite"/>
+      </genFeatures>
+      <genFeatures property="Readonly" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EReference/eReferenceType"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EReference/eKeys"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses image="false">
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//EStructuralFeature"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//EStructuralFeature/changeable"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//EStructuralFeature/volatile"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//EStructuralFeature/transient"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//EStructuralFeature/defaultValueLiteral"/>
+      </genFeatures>
+      <genFeatures property="Readonly" createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//EStructuralFeature/defaultValue"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//EStructuralFeature/unsettable"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//EStructuralFeature/derived"/>
+      </genFeatures>
+      <genFeatures property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EStructuralFeature/eContainingClass"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EStructuralFeature/getFeatureID"/>
+      </genOperations>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EStructuralFeature/getContainerClass"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false">
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//ETypedElement"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//ETypedElement/ordered"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//ETypedElement/unique"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//ETypedElement/lowerBound"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//ETypedElement/upperBound"/>
+      </genFeatures>
+      <genFeatures property="Readonly" createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//ETypedElement/many"/>
+      </genFeatures>
+      <genFeatures property="Readonly" createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//ETypedElement/required"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//ETypedElement/eType"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//ETypedElement/eGenericType"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//EStringToStringMapEntry"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//EStringToStringMapEntry/key"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ActivityEcoreLuaLang.ecore#//EStringToStringMapEntry/value"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//EGenericType"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EGenericType/eUpperBound"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EGenericType/eTypeArguments"/>
+      </genFeatures>
+      <genFeatures property="Readonly" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EGenericType/eRawType"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EGenericType/eLowerBound"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EGenericType/eTypeParameter"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//EGenericType/eClassifier"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="ActivityEcoreLuaLang.ecore#//EGenericType/isInstance"/>
+        <genParameters>
+          <ecoreParameter href="ActivityEcoreLuaLang.ecore#//EGenericType/isInstance/object"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ActivityEcoreLuaLang.ecore#//ETypeParameter"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ActivityEcoreLuaLang.ecore#//ETypeParameter/eBounds"/>
+      </genFeatures>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

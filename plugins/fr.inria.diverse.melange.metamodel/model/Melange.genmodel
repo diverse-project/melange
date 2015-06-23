@@ -34,6 +34,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Metamodel/xtextSetupRef"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Metamodel/genmodelUris"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Metamodel/mappings"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Metamodel/operators"/>
     </genClasses>
     <genClasses ecoreClass="Melange.ecore#//ModelType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//ModelType/subtypingRelations"/>
@@ -77,6 +78,18 @@
     <genClasses ecoreClass="Melange.ecore#//PropertyBinding">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//PropertyBinding/from"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//PropertyBinding/to"/>
+    </genClasses>
+    <genClasses ecoreClass="Melange.ecore#//Operator"/>
+    <genClasses ecoreClass="Melange.ecore#//Ecore">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Ecore/ecoreUri"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Ecore/genmodelUris"/>
+    </genClasses>
+    <genClasses ecoreClass="Melange.ecore#//Merge">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Merge/language"/>
+    </genClasses>
+    <genClasses ecoreClass="Melange.ecore#//Slice">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Slice/language"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EAttribute Melange.ecore#//Slice/roots"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

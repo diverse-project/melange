@@ -46,6 +46,7 @@ class MelangeQuickfixProvider extends XbaseQuickfixProvider
 				EclipseProjectHelper::createEMFRuntimeProject(mm.externalRuntimeName, mm)
 				mm.createExternalEcore
 				mm.createExternalGenmodel
+				mm.createExternalAspects
 				mm.genmodels.head.generateCode
 
 				val rs = mm.eResource.resourceSet

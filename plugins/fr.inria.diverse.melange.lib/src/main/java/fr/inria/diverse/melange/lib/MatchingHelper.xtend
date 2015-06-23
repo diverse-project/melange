@@ -107,9 +107,11 @@ class MatchingHelper
 				mapping.namesMatch(opA.EType, opB.EType)
 			else
 				(
-					   pkgsA.allClassifiers.contains(opA.EType)
-					&& pkgsB.allClassifiers.contains(opB.EType)
-					&& (opA.EType as EClass).internalMatch(opB.EType as EClass)
+//					   pkgsA.allClassifiers.contains(opA.EType)
+//					&& pkgsB.allClassifiers.contains(opB.EType)
+//					&& 
+					(opA.EType !==null && opB.EType !== null) &&
+					(opA.EType as EClass).internalMatch(opB.EType as EClass)
 				) || (
 					opA.EType === null && opB.EType === null
 				) || (
@@ -149,7 +151,7 @@ class MatchingHelper
 			val paramA = paramsA.get(rank)
 
 			if (paramA.EType instanceof EDataType || paramB.EType instanceof EDataType)
-				if (mapping.namesMatch(paramA.EType, paramB.EType))
+				if (!mapping.namesMatch(paramA.EType, paramB.EType))
 					return false
 			else if (pkgsA.allClassifiers.contains(paramA.EType)
 					&& pkgsB.allClassifiers.contains(paramB.EType))

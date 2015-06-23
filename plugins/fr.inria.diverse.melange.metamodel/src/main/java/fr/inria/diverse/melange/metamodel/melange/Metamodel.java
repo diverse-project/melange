@@ -3,6 +3,7 @@
 package fr.inria.diverse.melange.metamodel.melange;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.xtext.common.types.JvmTypeReference;
 
 /**
@@ -25,6 +26,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getXtextSetupRef <em>Xtext Setup Ref</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getGenmodelUris <em>Genmodel Uris</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getMappings <em>Mappings</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getOperators <em>Operators</em>}</li>
  * </ul>
  * </p>
  *
@@ -110,32 +112,22 @@ public interface Metamodel extends ModelingElement {
 	EList<ModelType> getRequires();
 
 	/**
-	 * Returns the value of the '<em><b>Inheritance Relation</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Inheritance Relation</b></em>' containment reference list.
+	 * The list contents are of type {@link fr.inria.diverse.melange.metamodel.melange.Inheritance}.
 	 * It is bidirectional and its opposite is '{@link fr.inria.diverse.melange.metamodel.melange.Inheritance#getSubMetamodel <em>Sub Metamodel</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Inheritance Relation</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Inheritance Relation</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Inheritance Relation</em>' containment reference.
-	 * @see #setInheritanceRelation(Inheritance)
+	 * @return the value of the '<em>Inheritance Relation</em>' containment reference list.
 	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getMetamodel_InheritanceRelation()
 	 * @see fr.inria.diverse.melange.metamodel.melange.Inheritance#getSubMetamodel
 	 * @model opposite="subMetamodel" containment="true"
 	 * @generated
 	 */
-	Inheritance getInheritanceRelation();
-
-	/**
-	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getInheritanceRelation <em>Inheritance Relation</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Inheritance Relation</em>' containment reference.
-	 * @see #getInheritanceRelation()
-	 * @generated
-	 */
-	void setInheritanceRelation(Inheritance value);
+	EList<Inheritance> getInheritanceRelation();
 
 	/**
 	 * Returns the value of the '<em><b>Exact Type Name</b></em>' attribute.
@@ -304,5 +296,21 @@ public interface Metamodel extends ModelingElement {
 	 * @generated
 	 */
 	EList<Mapping> getMappings();
+
+	/**
+	 * Returns the value of the '<em><b>Operators</b></em>' containment reference list.
+	 * The list contents are of type {@link fr.inria.diverse.melange.metamodel.melange.Operator}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Operators</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Operators</em>' containment reference list.
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getMetamodel_Operators()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Operator> getOperators();
 
 } // Metamodel

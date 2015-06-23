@@ -27,36 +27,24 @@ class AspectsCopier extends DispatchMelangeProcessor
 		val typeRefBuilder = builderFactory.create(mm.eResource.resourceSet)
 
 
-		if (!mm.isGeneratedByMelange || mm.runtimeHasBeenGenerated) {
-			mm.aspects.forEach[asp |
-				if (asp.isComplete) {
-					if (asp.hasAspectAnnotation && !asp.isDefinedOver(mm) && asp.canBeCopiedFor(mm)) {
-						val newAspectFqn = copier.copyAspectTo(asp, mm)
-						val newAspectRef = typeRefBuilder.typeRef(newAspectFqn)
-						asp.aspectTypeRef = newAspectRef
-					}
-				}
-			]
-		}
-		
 		if (!preLinkingPhase) {
-			
-			//Copy aspects of the super class
+			// Copy aspects of the super classes
 			if(mm.isGeneratedByMelange && mm.runtimeHasBeenGenerated){
-				val superMM = mm.inheritanceRelation.superMetamodel
-				superMM.aspects.forEach[asp |
-					if (asp.isComplete) {
-						if (asp.hasAspectAnnotation && !asp.isDefinedOver(mm) && asp.canBeCopiedFor(mm)) {
-							val newAspectFqn = copier.copyAspectTo(asp, mm)
-							val newAspectRef = typeRefBuilder.typeRef(newAspectFqn)
-							mm.aspects += MelangeFactory.eINSTANCE.createAspect => [
-												aspectTypeRef = typeRefBuilder.typeRef(newAspectFqn)
-											]
+				mm.inheritanceRelation.map[superMetamodel].forEach[superMM |
+					superMM.aspects.forEach[asp |
+						if (asp.isComplete) {
+							if (asp.hasAspectAnnotation && !asp.isDefinedOver(mm) && asp.canBeCopiedFor(mm)) {
+								val newAspectFqn = copier.copyAspectTo(asp, mm)
+								val newAspectRef = typeRefBuilder.typeRef(newAspectFqn)
+								mm.aspects += MelangeFactory.eINSTANCE.createAspect => [
+									aspectTypeRef = typeRefBuilder.typeRef(newAspectFqn)
+								]
+							}
 						}
-					}
+					]
 				]
 			}
-			
+
 			val newAspects = newArrayList
 			val toRemove = newArrayList
 			mm.aspects.forEach[asp |

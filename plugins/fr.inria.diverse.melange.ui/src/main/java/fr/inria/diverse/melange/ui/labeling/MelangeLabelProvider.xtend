@@ -53,6 +53,6 @@ class MelangeLabelProvider extends org.eclipse.xtext.xbase.ui.labeling.XbaseLabe
 	}
 
 	def String text(Metamodel mm) {
-		return '''«mm.name»«IF mm.inheritanceRelation !== null» «Character.valueOf('\u25C0')» «mm.inheritanceRelation.superMetamodel.name»«ENDIF»«FOR t : mm.implements BEFORE ' \u25C1 ' SEPARATOR ', '»«t.name»«ENDFOR»'''.toString
+		return '''«mm.name»«FOR t : mm.inheritanceRelation BEFORE '\u25C0' SEPARATOR ', '»«t.superMetamodel.name»«ENDFOR»«FOR t : mm.implements BEFORE ' \u25C1 ' SEPARATOR ', '»«t.name»«ENDFOR»'''.toString
 	}
 }

@@ -24,6 +24,22 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Mapping extends Element {
 	/**
+	 * Returns the value of the '<em><b>Rules</b></em>' containment reference list.
+	 * The list contents are of type {@link fr.inria.diverse.melange.metamodel.melange.ClassBinding}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Rules</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Rules</em>' containment reference list.
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getMapping_Rules()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ClassBinding> getRules();
+
+	/**
 	 * Returns the value of the '<em><b>From</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getMappings <em>Mappings</em>}'.
 	 * <!-- begin-user-doc -->
@@ -76,21 +92,5 @@ public interface Mapping extends Element {
 	 * @generated
 	 */
 	void setTo(ModelType value);
-
-	/**
-	 * Returns the value of the '<em><b>Rules</b></em>' containment reference list.
-	 * The list contents are of type {@link fr.inria.diverse.melange.metamodel.melange.ClassBinding}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Rules</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Rules</em>' containment reference list.
-	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getMapping_Rules()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<ClassBinding> getRules();
 
 } // Mapping

@@ -7,13 +7,19 @@ import fr.inria.diverse.melange.metamodel.melange.Mapping;
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
 import fr.inria.diverse.melange.metamodel.melange.Metamodel;
 import fr.inria.diverse.melange.metamodel.melange.ModelType;
+
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -80,6 +86,18 @@ public class MappingImpl extends ElementImpl implements Mapping {
 	@Override
 	protected EClass eStaticClass() {
 		return MelangePackage.Literals.MAPPING;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ClassBinding> getRules() {
+		if (rules == null) {
+			rules = new EObjectContainmentEList<ClassBinding>(ClassBinding.class, this, MelangePackage.MAPPING__RULES);
+		}
+		return rules;
 	}
 
 	/**
@@ -177,18 +195,6 @@ public class MappingImpl extends ElementImpl implements Mapping {
 				return basicSetFrom((Metamodel)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<ClassBinding> getRules() {
-		if (rules == null) {
-			rules = new EObjectContainmentEList<ClassBinding>(ClassBinding.class, this, MelangePackage.MAPPING__RULES);
-		}
-		return rules;
 	}
 
 	/**

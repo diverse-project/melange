@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -31,7 +30,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *
  * @generated
  */
-public class InheritanceImpl extends MinimalEObjectImpl.Container implements Inheritance {
+public class InheritanceImpl extends OperatorImpl implements Inheritance {
 	/**
 	 * The cached value of the '{@link #getSuperMetamodel() <em>Super Metamodel</em>}' reference.
 	 * <!-- begin-user-doc -->
