@@ -77,6 +77,7 @@ class MelangeValidator extends AbstractMelangeValidator
 	def void checkEcoreIsSet(Metamodel mm) {
 		if (mm.operators.filter(Ecore).filter[ecoreUri !== null].empty
 			&& mm.inheritanceRelation?.forall[superMetamodel?.ecoreUri === null]
+			&& mm.operators.empty
 		)
 			error(
 				"A valid Ecore file must be imported",
