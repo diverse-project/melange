@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="testmerge" nsURI="http://org.melange.test/" nsPrefix="testmerge">
+  <eClassifiers xsi:type="ecore:EClass" name="A">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toB" eType="#//B" eOpposite="#//B/toA"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="B">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toA" eType="#//A" eOpposite="#//A/toB"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="C"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AA" eSuperTypes="#//A"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AAA" eSuperTypes="#//AA">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toC" eType="#//C" containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>
