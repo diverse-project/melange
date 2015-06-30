@@ -1,0 +1,19 @@
+package mergetest
+
+language MM1 {
+	ecore "tests-inputs/metamodels/merge/MM1.ecore"
+	exactType mm1MT
+}
+
+language MM2 {
+	ecore "tests-inputs/metamodels/merge/MM2.ecore"
+	exactType mm2MT
+}
+
+language SliceMM1{
+	slice MM1 on ['A']
+}
+
+language SliceMM2{
+	slice MM1 on ['C']
+}

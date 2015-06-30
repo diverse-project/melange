@@ -3,13 +3,15 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="testmerge" nsURI="http://org.melange.test/" nsPrefix="testmerge">
   <eClassifiers xsi:type="ecore:EClass" name="D">
     <eStructuralFeatures xsi:type="ecore:EReference" name="toC" eType="#//C" eOpposite="#//C/toD"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="emfDataType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="emfDataType" lowerBound="1"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="C">
     <eStructuralFeatures xsi:type="ecore:EReference" name="toD" eType="#//D" eOpposite="#//D/toC"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataType" eType="#//CustomDataType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="toE" eType="#//E" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="toF" eType="#//F"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toE" lowerBound="1" upperBound="42"
+        eType="#//E" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toF" upperBound="-1" eType="#//F"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="CustomDataType" instanceClassName="java.lang.Object"/>
   <eClassifiers xsi:type="ecore:EClass" name="E"/>
