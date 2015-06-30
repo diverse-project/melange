@@ -37,9 +37,9 @@ class SliceTest
 	
 	@Test
 	def void testStrucureSliceMM1(){
-		assertEquals(1, MM1.pkgs.size)
-		assertEquals("testmerge", MM1.pkgs.get(0).name)
-		assertEquals(3, MM1.pkgs.get(0).EClassifiers.size)
+		assertEquals(1, getSliceMM1.pkgs.size)
+		assertEquals("testmerge", getSliceMM1.pkgs.get(0).name)
+		assertEquals(3, getSliceMM1.pkgs.get(0).EClassifiers.size)
 		
 		assertNotNull(getA)
 		assertNotNull(getSuperA)
@@ -64,9 +64,9 @@ class SliceTest
 	
 	@Test
 	def void testStrucureSliceMM2(){
-		assertEquals(1, MM2.pkgs.size)
-		assertEquals("testmerge", MM2.pkgs.get(0).name)
-		assertEquals(5, MM2.pkgs.get(0).EClassifiers.size)
+		assertEquals(1, getSliceMM2.pkgs.size)
+		assertEquals("testmerge", getSliceMM2.pkgs.get(0).name)
+		assertEquals(5, getSliceMM2.pkgs.get(0).EClassifiers.size)
 		
 		assertNotNull(getC)
 		assertNotNull(getD)
@@ -129,15 +129,15 @@ class SliceTest
 	def Metamodel getMM1()         { return root.elements.get(0) as Metamodel }
 	def Metamodel getMM2()         { return root.elements.get(1) as Metamodel }
 	def Metamodel getSliceMM1()    { return root.elements.get(2) as Metamodel }
-	def Metamodel getSliceMM2()    { return root.elements.get(2) as Metamodel }
+	def Metamodel getSliceMM2()    { return root.elements.get(3) as Metamodel }
 	
-	def EClass getA()  { return MM1.pkgs.get(0).EClassifiers.findFirst[name == "A"] as EClass}
-	def EClass getSuperA()  { return MM1.pkgs.get(0).EClassifiers.findFirst[name == "SuperA"] as EClass}
-	def EClass getB()  { return MM1.pkgs.get(0).EClassifiers.findFirst[name == "B"] as EClass}
+	def EClass getA()  { return getSliceMM1.pkgs.get(0).EClassifiers.findFirst[name == "A"] as EClass}
+	def EClass getSuperA()  { return getSliceMM1.pkgs.get(0).EClassifiers.findFirst[name == "SuperA"] as EClass}
+	def EClass getB()  { return getSliceMM1.pkgs.get(0).EClassifiers.findFirst[name == "B"] as EClass}
 	
-	def EClass getC()  { return MM2.pkgs.get(0).EClassifiers.findFirst[name == "C"] as EClass}
-	def EClass getD()  { return MM2.pkgs.get(0).EClassifiers.findFirst[name == "D"] as EClass}
-	def EClass getE()  { return MM2.pkgs.get(0).EClassifiers.findFirst[name == "E"] as EClass}
-	def EClass getF()  { return MM2.pkgs.get(0).EClassifiers.findFirst[name == "F"] as EClass}
-	def EDataType getCustomDataType()  { return MM2.pkgs.get(0).EClassifiers.findFirst[name == "CustomDataType"] as EDataType}
+	def EClass getC()  { return getSliceMM2.pkgs.get(0).EClassifiers.findFirst[name == "C"] as EClass}
+	def EClass getD()  { return getSliceMM2.pkgs.get(0).EClassifiers.findFirst[name == "D"] as EClass}
+	def EClass getE()  { return getSliceMM2.pkgs.get(0).EClassifiers.findFirst[name == "E"] as EClass}
+	def EClass getF()  { return getSliceMM2.pkgs.get(0).EClassifiers.findFirst[name == "F"] as EClass}
+	def EDataType getCustomDataType()  { return getSliceMM2.pkgs.get(0).EClassifiers.findFirst[name == "CustomDataType"] as EDataType}
 }

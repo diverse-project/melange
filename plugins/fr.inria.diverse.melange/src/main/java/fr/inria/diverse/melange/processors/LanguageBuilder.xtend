@@ -233,7 +233,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 			}
 			else{
 				build(language,history)
-				registry.get(language)
+				res = registry.get(language)
 			}
 		}
 		

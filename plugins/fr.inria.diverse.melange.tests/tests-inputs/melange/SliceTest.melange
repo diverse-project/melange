@@ -12,8 +12,10 @@ language MM2 {
 
 language SliceMM1{
 	slice MM1 on ['A']
+	exactType SliceMM1MT
 }
 
 language SliceMM2{
-	slice MM1 on ['C']
+	slice MM2 on ['C']
+	exactType SliceMM2MT
 }
