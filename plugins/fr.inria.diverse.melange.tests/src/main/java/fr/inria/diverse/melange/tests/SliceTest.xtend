@@ -112,7 +112,13 @@ class SliceTest
 		
 		assertEquals(1, getD.EAttributes.get(0).lowerBound)
 		assertEquals(-1, getD.EAttributes.get(0).upperBound)
-		
+	}
+	
+	@Test
+	def void testSliceMerge(){
+		assertTrue(MM2.implements.contains(sliceMerge.exactType))
+		assertTrue(sliceMerge.implements.contains(sliceMM2.exactType))
+		assertTrue(sliceMM2.implements.contains(sliceMerge.exactType))
 	}
 	
 	private def EPackage loadEcore(String uri) {
@@ -130,6 +136,8 @@ class SliceTest
 	def Metamodel getMM2()         { return root.elements.get(1) as Metamodel }
 	def Metamodel getSliceMM1()    { return root.elements.get(2) as Metamodel }
 	def Metamodel getSliceMM2()    { return root.elements.get(3) as Metamodel }
+	def Metamodel getMergeLang()  { return root.elements.get(4) as Metamodel }
+	def Metamodel getSliceMerge()  { return root.elements.get(5) as Metamodel }
 	
 	def EClass getA()  { return getSliceMM1.pkgs.get(0).EClassifiers.findFirst[name == "A"] as EClass}
 	def EClass getSuperA()  { return getSliceMM1.pkgs.get(0).EClassifiers.findFirst[name == "SuperA"] as EClass}
@@ -140,4 +148,6 @@ class SliceTest
 	def EClass getE()  { return getSliceMM2.pkgs.get(0).EClassifiers.findFirst[name == "E"] as EClass}
 	def EClass getF()  { return getSliceMM2.pkgs.get(0).EClassifiers.findFirst[name == "F"] as EClass}
 	def EDataType getCustomDataType()  { return getSliceMM2.pkgs.get(0).EClassifiers.findFirst[name == "CustomDataType"] as EDataType}
+	
+	
 }

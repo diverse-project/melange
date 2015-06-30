@@ -19,3 +19,14 @@ language SliceMM2{
 	slice MM2 on ['C']
 	exactType SliceMM2MT
 }
+
+language MergeLang{
+	merge MM1
+	merge MM2
+	exactType MergeLangMT
+}
+
+language SliceMerge{
+	slice MergeLang on ['C']
+	exactType SliceMergeMT
+}
