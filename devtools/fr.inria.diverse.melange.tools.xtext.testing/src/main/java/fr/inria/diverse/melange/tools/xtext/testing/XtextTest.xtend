@@ -42,6 +42,7 @@ class XtextTestProcessor extends AbstractClassProcessor
 		cls.generateFields(ctx)
 		cls.generateSetupMethod(ctx)
 		cls.generateEmfValidationTest(ctx)
+		cls.generateSelfImplement(ctx)
 
 		if (withValidation)
 			cls.generateParsingTest(ctx)
@@ -85,6 +86,21 @@ class XtextTestProcessor extends AbstractClassProcessor
 			addAnnotation(findTypeGlobally("org.junit.Test").newAnnotationReference)
 			body = '''
 				org.junit.Assert.assertEquals(org.eclipse.emf.ecore.util.Diagnostician.INSTANCE.validate(root).getCode(), org.eclipse.emf.common.util.Diagnostic.OK);
+			'''
+		]
+	}
+	
+	def void generateSelfImplement(MutableClassDeclaration cls, extension TransformationContext ctx){
+		cls.addMethod("testSelfImplement")[
+			primarySourceElement = cls
+			addAnnotation(findTypeGlobally("org.junit.Test").newAnnotationReference)
+			body = '''
+				for(fr.inria.diverse.melange.metamodel.melange.Element m : root.getElements()){
+					if(m instanceof fr.inria.diverse.melange.metamodel.melange.Metamodel){
+						fr.inria.diverse.melange.metamodel.melange.Metamodel mm = (fr.inria.diverse.melange.metamodel.melange.Metamodel) m;
+						org.junit.Assert.assertTrue(mm.getImplements().contains(mm.getExactType()));
+					}
+				}
 			'''
 		]
 	}
