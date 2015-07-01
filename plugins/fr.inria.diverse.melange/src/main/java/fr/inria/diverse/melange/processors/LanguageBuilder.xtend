@@ -151,7 +151,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		 if(slices.size > 0){
 		 	needNewEcore = true
 		 	val firstSlice = slices.get(0)
-			val sliceBase = getRootPackage(firstSlice.language,history)
+			val sliceBase = EcoreUtil::copy(getRootPackage(firstSlice.language,history))
 			EcoreUtil.ExternalCrossReferencer.find(sliceBase)
 			
 			val roots = getClasses(sliceBase, firstSlice.roots)
