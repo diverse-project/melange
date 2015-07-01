@@ -121,6 +121,12 @@ class SliceTest
 		assertTrue(sliceMM2.implements.contains(sliceMerge.exactType))
 	}
 	
+	@Test
+	def void testExactSlice(){
+		assertTrue(MM1.implements.contains(exactSlice.exactType))
+		assertTrue(exactSlice.implements.contains(MM1.exactType))
+	}
+	
 	private def EPackage loadEcore(String uri) {
 		val rs = new ResourceSetImpl
 		val res = rs.getResource(URI.createURI(uri), true)
@@ -136,8 +142,9 @@ class SliceTest
 	def Metamodel getMM2()         { return root.elements.get(1) as Metamodel }
 	def Metamodel getSliceMM1()    { return root.elements.get(2) as Metamodel }
 	def Metamodel getSliceMM2()    { return root.elements.get(3) as Metamodel }
-	def Metamodel getMergeLang()  { return root.elements.get(4) as Metamodel }
+	def Metamodel getMergeLang()   { return root.elements.get(4) as Metamodel }
 	def Metamodel getSliceMerge()  { return root.elements.get(5) as Metamodel }
+	def Metamodel getExactSlice()  { return root.elements.get(6) as Metamodel }
 	
 	def EClass getA()  { return getSliceMM1.pkgs.get(0).EClassifiers.findFirst[name == "A"] as EClass}
 	def EClass getSuperA()  { return getSliceMM1.pkgs.get(0).EClassifiers.findFirst[name == "SuperA"] as EClass}
