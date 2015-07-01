@@ -104,6 +104,43 @@ We have :
   This keyword is used to apply ascpects on your Ecore model. You just need to set the fully qualified name of your class. Make sure your META-INF/MANIFEST.MF requires the project of your model.
  If you want to define you own aspects you can get learn how to do in the [Kermeta3 documentation](https://github.com/diverse-project/k3/wiki)
 
+#### Language composition
+
+To defining a new Language, Melange provides two operators to assemble and customize existing Languages.
+
+##### Merge operator
+
+This operator allows you to import languages and merge them in your new language. The resulting language will contains all elements from merged languages. If elements from differents languages have the same qualified name, they are merged into one element with all properties.
+
+Note that names of the packages must be the same in all merged languages since this operator works on qualified name.
+
+
+~~~
+language FSMextended{
+	merge FiniteStateMachineClassic
+	merge CompositeState
+	exactType FSMextendedMT
+}
+~~~
+
+In this example we define a composite FSM by merging the classical FSM with a language defining a class 'State' with a composite reference to itself.
+
+##### Slice operator
+
+This operator behave as the Merge operator but allows you to select a part of the imported language.
+
+The Slice operator get a Language and a list of Classes as arguments. From each Classe in paramters, the Slicer we explore the Language and keep only super Classes, and referenced classes recursively.
+
+~~~
+language JavaLoop{
+	slice JavaLanguage on ['ForLoop', 'WhileLoop', 'DoWhileLoop', 'ForEachLoop']
+	exactType JavaLoopMT
+}
+~~~
+
+In this example we slice a metamodel defining the Java language to keep only the loop feature. The resulting language will contains the four loop Classes and the related Expression and Statement Classes.
+The slicer will not keep the sub Classes of Expression and Statement. This usage of the slice can be combined with the merge operator to get Expression and Statement from others metamodels to improve the new 'LoopLanguage'.
+
 #### Model type
 
 In Melange Languages are typed. Their exactType are their default type but you can create news one, independantly of languages by the keyword `modeltype`.
