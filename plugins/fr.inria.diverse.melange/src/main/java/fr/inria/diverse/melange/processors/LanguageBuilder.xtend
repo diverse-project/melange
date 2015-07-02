@@ -103,7 +103,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		 if(inherits.size > 0){
 			needNewEcore = true
 			val firstInherit = inherits.get(0)
-			val inheritBase = getRootPackage(firstInherit.superMetamodel,history)
+			val inheritBase = EcoreUtil::copy(getRootPackage(firstInherit.superMetamodel,history))
 			EcoreUtil.resolveAll(inheritBase)
 			
 			inherits.drop(1).forEach[ nextInherit |
