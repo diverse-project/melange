@@ -26,12 +26,18 @@ language MergeLang{
 	exactType MergeLangMT
 }
 
-language SliceMerge{
+language MergeSlice{
 	slice MergeLang on ['C']
-	exactType SliceMergeMT
+	exactType MergeSliceMT
 }
 
 language ExactSlice{
 	slice MM1 on ['A', 'B', 'C', 'AA', 'AAA', 'SuperA', 'SubB']
 	exactType ExactSliceMT
+}
+
+language SliceMerge{
+	slice MM1 on ['C']
+	slice MM2 on ['C']
+	exactType SliceMergeMT
 }

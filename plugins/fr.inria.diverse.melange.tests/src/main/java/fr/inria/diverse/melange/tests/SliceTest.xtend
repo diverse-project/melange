@@ -115,16 +115,22 @@ class SliceTest
 	}
 	
 	@Test
-	def void testSliceMerge(){
-		assertTrue(MM2.implements.contains(sliceMerge.exactType))
-		assertTrue(sliceMerge.implements.contains(sliceMM2.exactType))
-		assertTrue(sliceMM2.implements.contains(sliceMerge.exactType))
+	def void testMergeSlice(){
+		assertTrue(MM2.implements.contains(mergeSlice.exactType))
+		assertTrue(mergeSlice.implements.contains(sliceMM2.exactType))
+		assertTrue(sliceMM2.implements.contains(mergeSlice.exactType))
 	}
 	
 	@Test
 	def void testExactSlice(){
 		assertTrue(MM1.implements.contains(exactSlice.exactType))
 		assertTrue(exactSlice.implements.contains(MM1.exactType))
+	}
+	
+	@Test
+	def void testSliceMerge(){
+		assertTrue(sliceMerge.implements.contains(mergeSlice.exactType))
+		assertTrue(mergeSlice.implements.contains(sliceMerge.exactType))
 	}
 	
 	private def EPackage loadEcore(String uri) {
@@ -143,8 +149,9 @@ class SliceTest
 	def Metamodel getSliceMM1()    { return root.elements.get(2) as Metamodel }
 	def Metamodel getSliceMM2()    { return root.elements.get(3) as Metamodel }
 	def Metamodel getMergeLang()   { return root.elements.get(4) as Metamodel }
-	def Metamodel getSliceMerge()  { return root.elements.get(5) as Metamodel }
+	def Metamodel getMergeSlice()  { return root.elements.get(5) as Metamodel }
 	def Metamodel getExactSlice()  { return root.elements.get(6) as Metamodel }
+	def Metamodel getSliceMerge()  { return root.elements.get(7) as Metamodel }
 	
 	def EClass getA()  { return getSliceMM1.pkgs.get(0).EClassifiers.findFirst[name == "A"] as EClass}
 	def EClass getSuperA()  { return getSliceMM1.pkgs.get(0).EClassifiers.findFirst[name == "SuperA"] as EClass}
