@@ -98,7 +98,7 @@ class XtextTestProcessor extends AbstractClassProcessor
 				for(fr.inria.diverse.melange.metamodel.melange.Element m : root.getElements()){
 					if(m instanceof fr.inria.diverse.melange.metamodel.melange.Metamodel){
 						fr.inria.diverse.melange.metamodel.melange.Metamodel mm = (fr.inria.diverse.melange.metamodel.melange.Metamodel) m;
-						org.junit.Assert.assertTrue(mm.getImplements().contains(mm.getExactType()));
+						org.junit.Assert.assertTrue(mm.getName()+"doesn't implement itself",mm.getImplements().contains(mm.getExactType()));
 					}
 				}
 			'''
