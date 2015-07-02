@@ -30,6 +30,15 @@ class SliceTest
 	@Inject extension ModelingElementExtensions
 	
 	@Test
+	def void testPackagesSelfMatching() {
+		val packagesPkg1 = "tests-inputs/metamodels/merge/MM1.ecore".loadEcore
+		assertTrue(packagesPkg1.simpleMatch(MM1.exactType.pkgs.head))
+
+		val packagesPkg2 = "tests-inputs/metamodels/merge/MM2.ecore".loadEcore
+		assertTrue(packagesPkg2.simpleMatch(MM2.exactType.pkgs.head))
+	}
+	
+	@Test
 	def void testSubTyping() {
 		assertTrue(MM1.implements.contains(sliceMM1.exactType))
 		assertTrue(MM2.implements.contains(sliceMM2.exactType))
