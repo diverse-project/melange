@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EcorePackage
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
-@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/SliceTest.melange")
+@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/InheritTest.melange")
 class InheritTest
 {
 	@Inject MatchingHelper helper
