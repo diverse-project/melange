@@ -58,6 +58,17 @@ class InheritTest
 		assertTrue(subMM1MM2.inheritanceRelation.map[superMetamodel].contains(MM2))
 	}
 	
+	@Test
+	def void testInheritSlices(){
+		assertTrue(sliceInherit.implements.contains(sliceMM1.exactType))
+		assertTrue(sliceInherit.implements.contains(sliceMM2.exactType))
+		assertTrue(sliceInherit.inheritanceRelation.map[superMetamodel].contains(sliceMM1))
+		assertTrue(sliceInherit.inheritanceRelation.map[superMetamodel].contains(sliceMM2))
+		
+		assertTrue(sliceInherit.implements.contains(sliceMerge.exactType))
+		assertTrue(sliceMerge.implements.contains(sliceInherit.exactType))
+	}
+	
 	private def EPackage loadEcore(String uri) {
 		val rs = new ResourceSetImpl
 		val res = rs.getResource(URI.createURI(uri), true)
@@ -75,5 +86,9 @@ class InheritTest
 	def Metamodel getSubMM2()    { return root.elements.get(3) as Metamodel }
 	def Metamodel getSubMM1MM2() { return root.elements.get(4) as Metamodel }
 	def Metamodel getMergeLang() { return root.elements.get(5) as Metamodel }
+	def Metamodel getSliceMM1()  { return root.elements.get(6) as Metamodel }
+	def Metamodel getSliceMM2()  { return root.elements.get(7) as Metamodel }
+	def Metamodel getSliceInherit(){ return root.elements.get(8) as Metamodel }
+	def Metamodel getSliceMerge(){ return root.elements.get(9) as Metamodel }
 	
 }

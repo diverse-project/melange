@@ -27,3 +27,23 @@ language MergeLang{
 	merge MM2
 	exactType MergeMT
 }
+
+language SliceMM1{
+	slice MM1 on ['C']
+	exactType SliceMM1MT
+}
+
+language SliceMM2{
+	slice MM2 on ['C']
+	exactType SliceMM2MT
+}
+
+language SliceInherit inherits SliceMM1, SliceMM2{
+	exactType SliceSubMT
+}
+
+language SliceMerge{
+	slice MM1 on ['C']
+	slice MM2 on ['C']
+	exactType SliceMergeMT
+}
