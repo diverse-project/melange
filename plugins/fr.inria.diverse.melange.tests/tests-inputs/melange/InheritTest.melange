@@ -1,0 +1,29 @@
+package mergetest
+
+language MM1 {
+	ecore "tests-inputs/metamodels/merge/MM1.ecore"
+	exactType MM1MT
+}
+
+language MM2 {
+	ecore "tests-inputs/metamodels/merge/MM2.ecore"
+	exactType MM2MT
+}
+
+language SubMM1 inherits MM1{
+	exactType SubMM1mt
+}
+
+language SubMM2 inherits MM2{
+	exactType SubMM2mt
+}
+
+language SubMM1MM2 inherits MM1,MM2{
+	exactType SubMM1MM2mt
+}
+
+language MergeLang{
+	merge MM1
+	merge MM2
+	exactType MergeMT
+}
