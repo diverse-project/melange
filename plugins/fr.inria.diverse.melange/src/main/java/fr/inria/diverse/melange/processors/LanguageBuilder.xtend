@@ -90,7 +90,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 
 			ecores.drop(1).forEach[ nextEcore |
 				val ecoreUnit = modelUtils.loadPkg(nextEcore.ecoreUri)
-				EcoreUtil.ExternalCrossReferencer.find(ecoreUnit) //Need to solve crossref because EMF Compare don't
+				EcoreUtil.resolveAll(ecoreUnit) //Need to solve crossref because EMF Compare don't
 				algebra.merge(ecoreUnit,ecoreBase)
 			]
 			base = ecoreBase
@@ -104,11 +104,11 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 			needNewEcore = true
 			val firstInherit = inherits.get(0)
 			val inheritBase = getRootPackage(firstInherit.superMetamodel,history)
-			EcoreUtil.ExternalCrossReferencer.find(inheritBase)
+			EcoreUtil.resolveAll(inheritBase)
 			
 			inherits.drop(1).forEach[ nextInherit |
 				val inheritUnit = getRootPackage(nextInherit.superMetamodel,history)
-				EcoreUtil.ExternalCrossReferencer.find(inheritUnit)
+				EcoreUtil.resolveAll(inheritUnit)
 				algebra.merge(inheritUnit,inheritBase)
 			]
 			
@@ -128,11 +128,11 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 			needNewEcore = true
 			val firstMerge = merges.get(0)
 			val mergeBase = EcoreUtil::copy(getRootPackage(firstMerge.language,history))
-			EcoreUtil.ExternalCrossReferencer.find(mergeBase)
+			EcoreUtil.resolveAll(mergeBase)
 
 			merges.drop(1).forEach[ nextMerge |
 				val mergeUnit = getRootPackage(nextMerge.language,history)
-				EcoreUtil.ExternalCrossReferencer.find(mergeUnit)
+				EcoreUtil.resolveAll(mergeUnit)
 				algebra.merge(mergeUnit,mergeBase)
 			]
 			
@@ -151,21 +151,18 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		 if(slices.size > 0){
 		 	needNewEcore = true
 		 	val firstSlice = slices.get(0)
-			val sliceBase = EcoreUtil::copy(getRootPackage(firstSlice.language,history))
-			EcoreUtil.ExternalCrossReferencer.find(sliceBase)
+			val sliceBase = applySlice(firstSlice, history)
 			
-			val roots = getClasses(sliceBase, firstSlice.roots)
-			val slicer = new StrictEcore(roots,sliceBase,false,"ecore",false)
-			slicer.slice
+			slices.drop(1).forEach[ nextSlice |
+				val sliceUnit = applySlice(nextSlice, history)
+				algebra.merge(sliceUnit, sliceBase)
+			]
 			
-			val slice = slicer.getclonedElts.filter(EPackage).filter[eContainer===null].head
-			EcoreUtil.ExternalCrossReferencer.find(slice)
-			
-			if(base !== null && slice !== null){
-				algebra.merge(slice,base)
+			if(base !== null && sliceBase !== null){
+				algebra.merge(sliceBase,base)
 			}
-			else if(base === null && slice !== null){
-				base = slice
+			else if(base === null && sliceBase !== null){
+				base = sliceBase
 			}
 		 }
 		 
@@ -303,6 +300,23 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		rootPackage.EClassifiers.filter(EClass).forEach[cl|
 			if(classes.contains(cl.name)) res.add(cl)
 		]
+		
+		return res
+	}
+	
+	/**
+	 * Return a copy of the part of language defined in {@link slice}
+	 */
+	private def EPackage applySlice(Slice slice, List<Metamodel> history){
+		val sliceBase = EcoreUtil::copy(getRootPackage(slice.language,history))
+		EcoreUtil.resolveAll(sliceBase)
+		
+		val roots = getClasses(sliceBase, slice.roots)
+		val slicer = new StrictEcore(roots,sliceBase,false,"ecore",false)
+		slicer.slice
+		
+		val res = slicer.getclonedElts.filter(EPackage).filter[eContainer===null].head
+		EcoreUtil.resolveAll(slice)
 		
 		return res
 	}
