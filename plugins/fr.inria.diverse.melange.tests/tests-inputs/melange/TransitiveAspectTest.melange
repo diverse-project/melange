@@ -1,0 +1,44 @@
+package mergetest
+
+import fr.inria.diverse.melange.tests.aspects.exhaustive.SuperLangAspect
+import fr.inria.diverse.melange.tests.aspects.exhaustive.LangAspect
+import fr.inria.diverse.melange.tests.aspects.exhaustive.SubLangAspect
+import fr.inria.diverse.melange.tests.aspects.exhaustive.OtherAspect
+import fr.inria.diverse.melange.tests.aspects.exhaustive.SubOtherAspect
+
+language Exhaustive {
+	ecore "tests-inputs/metamodels/Exhaustive.ecore" withGenmodel "tests-inputs/metamodels/Exhaustive.genmodel"
+	exactType ExhaustiveMT
+}
+
+language SuperLang inherits Exhaustive{
+	exactType SuperLangMT
+	with SuperLangAspect
+}
+
+language Lang inherits SuperLang{
+	exactType LangMT
+	with LangAspect
+}
+
+language SubLang inherits Lang{
+	exactType SubLangMT
+	with SubLangAspect
+}
+
+language OtherLang inherits Exhaustive{
+	exactType OtherLangMT
+	with OtherAspect
+}
+
+language SubOtherLang inherits OtherLang{
+	exactType SubOtherLangMT
+	with SubOtherAspect
+}
+
+language MergeLang {
+	merge Lang
+	merge SubOtherLang
+	exactType MergeLangMT
+}
+
