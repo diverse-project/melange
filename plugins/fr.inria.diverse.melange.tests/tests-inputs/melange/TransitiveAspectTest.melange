@@ -44,34 +44,39 @@ language MergeLang {
 
 language MergeOverrideLang inherits  SuperLang{
 	merge Lang
-	exactType MergeLangMT
+	exactType MergeLangMT2
 }
 
 language SliceOverrideLang inherits  SuperLang{
 	slice Lang on ['OperationsTest']
-	exactType MergeLangMT
+	exactType MergeLangMT3
 }
 
 language DoubleMergeLang {
 	merge Lang
 	merge SubLang
-	exactType MergeLangMT
+	exactType MergeLangMT4
 }
 
 language DoubleSliceLang {
 	slice Lang on ['OperationsTest']
 	slice SubLang on ['OperationsTest']
-	exactType MergeLangMT
+	exactType MergeLangMT5
 }
 
 language MergeSliceLang {
 	merge Lang
 	slice SubLang on ['OperationsTest']
-	exactType MergeLangMT
+	exactType MergeLangMT6
 }
 
 language SliceMergeLang {
 	slice Lang on ['OperationsTest']
 	merge SubLang
-	exactType MergeLangMT
+	exactType MergeLangMT7
+}
+
+language AspectOverride inherits SliceMergeLang{
+	exactType MergeLangMT8
+	with LangAspect
 }
