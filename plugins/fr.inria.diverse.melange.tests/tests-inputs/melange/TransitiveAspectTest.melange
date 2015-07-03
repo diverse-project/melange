@@ -46,3 +46,8 @@ language MergeOverrideLang inherits  SuperLang{
 	merge Lang
 	exactType MergeLangMT
 }
+
+language SliceOverrideLang inherits  SuperLang{
+	slice Lang on ['OperationsTest']
+	exactType MergeLangMT
+}
