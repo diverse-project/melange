@@ -89,7 +89,10 @@ class TransitiveAspectTest
 	
 	@Test
 	def void testMergeInheritOverriding(){
-		//TODO
+		assertNotNull(operationTest_MergeOverrideLang)
+		assertNotNull(referencesTest_MergeOverrideLang)
+		assertNotNull(operationTest_MergeOverrideLang.EReferences.exists[name == "addedReference"])
+		assertEquals(referencesTest_MergeOverrideLang, operationTest_MergeOverrideLang.EReferences.findFirst[name == "addedReference"].EType)
 	}
 	
 	@Test
@@ -110,16 +113,19 @@ class TransitiveAspectTest
 	def Metamodel getOtherLang()     { return root.elements.get(4) as Metamodel }
 	def Metamodel getSubOtherLang()  { return root.elements.get(5) as Metamodel }
 	def Metamodel getMergeLang()     { return root.elements.get(6) as Metamodel }
+	def Metamodel getMergeOverrideLang(){ return root.elements.get(7) as Metamodel }
 	
 	def EClass getOperationTest_SuperLang() {return superLang.pkgs.get(0).EClassifiers.findFirst[name == "OperationsTest"] as EClass}
 	def EClass getOperationTest_Lang()      {return lang.pkgs.get(0).EClassifiers.findFirst[name == "OperationsTest"] as EClass}
 	def EClass getOperationTest_SubLang()   {return subLang.pkgs.get(0).EClassifiers.findFirst[name == "OperationsTest"] as EClass}
 	def EClass getOperationTest_MergeLang()   {return mergeLang.pkgs.get(0).EClassifiers.findFirst[name == "OperationsTest"] as EClass}
+	def EClass getOperationTest_MergeOverrideLang()   {return mergeOverrideLang.pkgs.get(0).EClassifiers.findFirst[name == "OperationsTest"] as EClass}
 	
 	def EClass getAttributesTest_SuperLang() {return superLang.pkgs.get(0).EClassifiers.findFirst[name == "AttributesTest"] as EClass}
 	def EClass getReferencesTest_Lang()      {return lang.pkgs.get(0).EClassifiers.findFirst[name == "ReferencesTest"] as EClass}
 	def EClass getMultipleSuperTest_SubLang(){return subLang.pkgs.get(0).EClassifiers.findFirst[name == "MultipleSuperTest"] as EClass}
 	def EClass getReferencesTest_MergeLang()      {return mergeLang.pkgs.get(0).EClassifiers.findFirst[name == "ReferencesTest"] as EClass}
+	def EClass getReferencesTest_MergeOverrideLang(){return mergeOverrideLang.pkgs.get(0).EClassifiers.findFirst[name == "ReferencesTest"] as EClass}
 	
 	def EClass getInterfaceTest_OtherLang()    {return otherLang.pkgs.get(0).EClassifiers.findFirst[name == "InterfaceTest"] as EClass}
 	def EClass getInterfaceTest_SubOtherLang() {return subOtherLang.pkgs.get(0).EClassifiers.findFirst[name == "InterfaceTest"] as EClass}

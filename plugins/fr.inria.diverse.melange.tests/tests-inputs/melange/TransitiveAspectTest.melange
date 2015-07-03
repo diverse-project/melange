@@ -42,3 +42,7 @@ language MergeLang {
 	exactType MergeLangMT
 }
 
+language MergeOverrideLang inherits  SuperLang{
+	merge Lang
+	exactType MergeLangMT
+}
