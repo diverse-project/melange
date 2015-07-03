@@ -28,26 +28,12 @@ class AspectsCopier extends DispatchMelangeProcessor
 
 
 		if (!preLinkingPhase) {
-			// Copy aspects of the super classes
-			if(mm.isGeneratedByMelange && mm.runtimeHasBeenGenerated){
-				mm.inheritanceRelation.map[superMetamodel].forEach[superMM |
-					superMM.aspects.forEach[asp |
-						if (asp.isComplete) {
-							if (asp.hasAspectAnnotation && !asp.isDefinedOver(mm) && asp.canBeCopiedFor(mm)) {
-								val newAspectFqn = copier.copyAspectTo(asp, mm)
-								val newAspectRef = typeRefBuilder.typeRef(newAspectFqn)
-								mm.aspects += MelangeFactory.eINSTANCE.createAspect => [
-									aspectTypeRef = typeRefBuilder.typeRef(newAspectFqn)
-								]
-							}
-						}
-					]
-				]
-			}
-
+			/**************************
+			 * Resolve wildcard imports
+			 **************************/
 			val newAspects = newArrayList
 			val toRemove = newArrayList
-			mm.aspects.forEach[asp |
+			mm.allAspects.forEach[asp |
 				// If there's a wildcard import, remove it and replace it
 				// with the list of matching aspects
 				if (asp.aspectWildcardImport !== null) {
@@ -66,6 +52,11 @@ class AspectsCopier extends DispatchMelangeProcessor
 
 			toRemove.forEach[EcoreUtil::remove(it)]
 			mm.aspects += newAspects
+			
+			/**************************
+			 * Copy aspects from linked languages
+			 **************************/
+			mm.aspects += mm.createExternalAspects
 		}
 	}
 

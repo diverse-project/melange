@@ -36,6 +36,7 @@ import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.xbase.XAbstractFeatureCall
 import org.eclipse.xtext.xbase.XFeatureCall
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
+import fr.inria.diverse.melange.metamodel.melange.MelangeFactory
 
 class MetamodelExtensions
 {
@@ -494,9 +495,11 @@ class MetamodelExtensions
 	}
 	
 	/**
-	 * Copy aspects defined on {@link mm} into generated project
+	 * Copy aspects defined on {@link mm} into generated project <br>
+	 * Return a list of created Aspects with type references to the copied classes
 	 */
-	def void createExternalAspects(Metamodel mm) {
+	def List<Aspect> createExternalAspects(Metamodel mm) {
+		val res = newArrayList
 		val classesAlreadyWeaved = newArrayList
 		
 		mm.allAspects.forEach[asp |
@@ -509,11 +512,14 @@ class MetamodelExtensions
 						
 						val typeRefBuilder = builderFactory.create(mm.eResource.resourceSet)
 						val newAspectFqn = copier.copyAspectTo(asp, mm)
-						val newAspectRef = typeRefBuilder.typeRef(newAspectFqn)
-						asp.aspectTypeRef = newAspectRef
+						res += MelangeFactory.eINSTANCE.createAspect => [
+									aspectTypeRef = typeRefBuilder.typeRef(newAspectFqn)
+								]
 					}
 				}
 			}
 		]
+		
+		return res
 	}
 }
