@@ -55,6 +55,21 @@ class TransitiveAspectTest
 	
 	@Test
 	def void testSimpleAspectOther(){
+		assertNotNull(interfaceTest_OtherLang)
+		assertNotNull(abstractTest_OtherLang)
+		assertNotNull(interfaceTest_OtherLang.EReferences.exists[name == "addedReference"])
+		assertEquals(abstractTest_OtherLang, interfaceTest_OtherLang.EReferences.findFirst[name == "addedReference"].EType)
+	}
+	
+	@Test
+	def void testInheritOverrideOther(){
+		assertNotNull(interfaceTest_SubOtherLang)
+		assertNotNull(genericTest_SubOtherLang)
+		assertNotNull(interfaceTest_SubOtherLang.EReferences.exists[name == "addedReference"])
+		assertEquals(genericTest_SubOtherLang, interfaceTest_SubOtherLang.EReferences.findFirst[name == "addedReference"].EType)
+	}
+	
+	def void testMerge(){
 		assertNotNull(operationTest_MergeLang)
 		assertNotNull(referencesTest_MergeLang)
 		assertNotNull(operationTest_MergeLang.EReferences.exists[name == "addedReference"])
@@ -64,15 +79,6 @@ class TransitiveAspectTest
 		assertNotNull(genericTest_MergeLang)
 		assertNotNull(interfaceTest_MergeLang.EReferences.exists[name == "addedReference"])
 		assertEquals(genericTest_MergeLang, interfaceTest_MergeLang.EReferences.findFirst[name == "addedReference"].EType)
-	}
-	
-	@Test
-	def void testInheritOverrideOther(){
-		
-	}
-	
-	def void testMerge(){
-		
 	}
 	
 	
@@ -97,12 +103,13 @@ class TransitiveAspectTest
 	}
 	
 	
-	def Metamodel getSuperLang()     { return root.elements.get(0) as Metamodel }
-	def Metamodel getLang()          { return root.elements.get(1) as Metamodel }
-	def Metamodel getSubLang()       { return root.elements.get(2) as Metamodel }
-	def Metamodel getOtherLang()     { return root.elements.get(3) as Metamodel }
-	def Metamodel getSubOtherLang()  { return root.elements.get(4) as Metamodel }
-	def Metamodel getMergeLang()     { return root.elements.get(5) as Metamodel }
+	def Metamodel getExhausitve()    { return root.elements.get(0) as Metamodel }
+	def Metamodel getSuperLang()     { return root.elements.get(1) as Metamodel }
+	def Metamodel getLang()          { return root.elements.get(2) as Metamodel }
+	def Metamodel getSubLang()       { return root.elements.get(3) as Metamodel }
+	def Metamodel getOtherLang()     { return root.elements.get(4) as Metamodel }
+	def Metamodel getSubOtherLang()  { return root.elements.get(5) as Metamodel }
+	def Metamodel getMergeLang()     { return root.elements.get(6) as Metamodel }
 	
 	def EClass getOperationTest_SuperLang() {return superLang.pkgs.get(0).EClassifiers.findFirst[name == "OperationsTest"] as EClass}
 	def EClass getOperationTest_Lang()      {return lang.pkgs.get(0).EClassifiers.findFirst[name == "OperationsTest"] as EClass}
@@ -118,6 +125,8 @@ class TransitiveAspectTest
 	def EClass getInterfaceTest_SubOtherLang() {return subOtherLang.pkgs.get(0).EClassifiers.findFirst[name == "InterfaceTest"] as EClass}
 	def EClass getInterfaceTest_MergeLang() {return mergeLang.pkgs.get(0).EClassifiers.findFirst[name == "InterfaceTest"] as EClass}
 	
+	def EClass getAbstractTest_OtherLang() {return otherLang.pkgs.get(0).EClassifiers.findFirst[name == "AbstractTest"] as EClass}
+	def EClass getGenericTest_SubOtherLang() {return subOtherLang.pkgs.get(0).EClassifiers.findFirst[name == "GenericTest"] as EClass}
 	def EClass getGenericTest_MergeLang() {return mergeLang.pkgs.get(0).EClassifiers.findFirst[name == "GenericTest"] as EClass}
 	
 }
