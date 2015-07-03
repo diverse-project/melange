@@ -57,3 +57,21 @@ language DoubleMergeLang {
 	merge SubLang
 	exactType MergeLangMT
 }
+
+language DoubleSliceLang {
+	slice Lang on ['OperationsTest']
+	slice SubLang on ['OperationsTest']
+	exactType MergeLangMT
+}
+
+language MergeSliceLang {
+	merge Lang
+	slice SubLang on ['OperationsTest']
+	exactType MergeLangMT
+}
+
+language SliceMergeLang {
+	slice Lang on ['OperationsTest']
+	merge SubLang
+	exactType MergeLangMT
+}
