@@ -23,4 +23,5 @@ class MelangeValidationConstants
 	public static final String MERGE_ATTRIBUTE_OVERRIDING = "MERGE_ATTRIBUTE_OVERRIDING"
 	public static final String MERGE_REFERENCE_OVERRIDING = "MERGE_REFERENCE_OVERRIDING"
 	public static final String MERGE_OPERATION_OVERRIDING = "MERGE_OPERATION_OVERRIDING"
+	public static final String METAMODEL_IN_ERROR = "METAMODEL_IN_ERROR"
 }

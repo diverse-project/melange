@@ -20,6 +20,10 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.impl.EcorePackageImpl
 import org.eclipse.emf.ecore.EcorePackage
+import fr.inria.diverse.melange.metamodel.melange.MelangePackage
+import fr.inria.diverse.melange.validation.MelangeValidationConstants
+import fr.inria.diverse.melange.metamodel.melange.Merge
+import fr.inria.diverse.melange.metamodel.melange.Slice
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
@@ -41,16 +45,24 @@ class TransitiveAspectTest
 	def void testInheritOverride(){
 		assertNotNull(operationTest_Lang)
 		assertNotNull(referencesTest_Lang)
-		assertNotNull(operationTest_Lang.EReferences.exists[name == "addedReference"])
-		assertEquals(referencesTest_Lang, operationTest_Lang.EReferences.findFirst[name == "addedReference"].EType)
+
+		assertError(superLang.aspects.get(0),
+					MelangePackage.eINSTANCE.aspect,
+					MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING,
+					"Aspect \'LangAspect\' has a reference \'addedReference\' typed ReferencesTest but in \'SuperLang\' it is typed AttributesTest"
+		)
 	}
 	
 	@Test
 	def void testInheritOverrideAgain(){
 		assertNotNull(operationTest_SubLang)
 		assertNotNull(multipleSuperTest_SubLang)
-		assertNotNull(operationTest_SubLang.EReferences.exists[name == "addedReference"])
-		assertEquals(multipleSuperTest_SubLang, operationTest_SubLang.EReferences.findFirst[name == "addedReference"].EType)
+		
+		assertError(subLang.inheritanceRelation.get(0).superMetamodel,
+					MelangePackage.eINSTANCE.metamodel,
+					MelangeValidationConstants.METAMODEL_IN_ERROR,
+					"Language \'Lang\' has errors in its definition"
+		)
 	}
 	
 	@Test
@@ -65,8 +77,12 @@ class TransitiveAspectTest
 	def void testInheritOverrideOther(){
 		assertNotNull(interfaceTest_SubOtherLang)
 		assertNotNull(genericTest_SubOtherLang)
-		assertNotNull(interfaceTest_SubOtherLang.EReferences.exists[name == "addedReference"])
-		assertEquals(genericTest_SubOtherLang, interfaceTest_SubOtherLang.EReferences.findFirst[name == "addedReference"].EType)
+		
+		assertError(subLang.aspects.get(0),
+					MelangePackage.eINSTANCE.aspect,
+					MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING,
+					"Aspect \'SubOtherAspect\' has a reference \'addedReference\' typed GenericTest but in \'OtherLang\' it is typed AbstractTest"
+		)
 	}
 	
 	def void testMerge(){
@@ -75,10 +91,16 @@ class TransitiveAspectTest
 		assertNotNull(operationTest_MergeLang.EReferences.exists[name == "addedReference"])
 		assertEquals(referencesTest_MergeLang, operationTest_MergeLang.EReferences.findFirst[name == "addedReference"].EType)
 		
-		assertNotNull(interfaceTest_MergeLang)
-		assertNotNull(genericTest_MergeLang)
-		assertNotNull(interfaceTest_MergeLang.EReferences.exists[name == "addedReference"])
-		assertEquals(genericTest_MergeLang, interfaceTest_MergeLang.EReferences.findFirst[name == "addedReference"].EType)
+		assertError((mergeLang.operators.get(0) as Merge).language,
+					MelangePackage.eINSTANCE.metamodel,
+					MelangeValidationConstants.METAMODEL_IN_ERROR,
+					"Language \'Lang\' has errors in its definition"
+		)
+		assertError((mergeLang.operators.get(1) as Merge).language,
+					MelangePackage.eINSTANCE.metamodel,
+					MelangeValidationConstants.METAMODEL_IN_ERROR,
+					"Language \'SubOtherLang\' has errors in its definition"
+		)
 	}
 	
 	
@@ -86,22 +108,51 @@ class TransitiveAspectTest
 	def void testMergeOverride(){
 		assertNotNull(operationTest_DoubleMergeLang)
 		assertNotNull(multipleSuperTest_DoubleMergeLang)
-		assertNotNull(operationTest_DoubleMergeLang.EReferences.exists[name == "addedReference"])
-		assertEquals(multipleSuperTest_DoubleMergeLang, operationTest_DoubleMergeLang.EReferences.findFirst[name == "addedReference"].EType)
+		
+		assertError((doubleMergeLang.operators.get(0) as Merge).language,
+					MelangePackage.eINSTANCE.metamodel,
+					MelangeValidationConstants.METAMODEL_IN_ERROR,
+					"Language \'Lang\' has errors in its definition"
+		)
+		assertError((doubleMergeLang.operators.get(1) as Merge).language,
+					MelangePackage.eINSTANCE.metamodel,
+					MelangeValidationConstants.METAMODEL_IN_ERROR,
+					"Language \'SubLang\' has errors in its definition"
+		)
 	}
 	
 	@Test
 	def void testSliceOverride(){
 		assertNotNull(operationTest_DoubleSliceLang)
 		assertNotNull(multipleSuperTest_DoubleSliceLang)
-		assertNotNull(operationTest_DoubleSliceLang.EReferences.exists[name == "addedReference"])
-		assertEquals(multipleSuperTest_DoubleSliceLang, operationTest_DoubleSliceLang.EReferences.findFirst[name == "addedReference"].EType)
+		
+		assertError((doubleSliceLang.operators.get(0) as Slice).language,
+					MelangePackage.eINSTANCE.metamodel,
+					MelangeValidationConstants.METAMODEL_IN_ERROR,
+					"Language \'Lang\' has errors in its definition"
+		)
+		assertError((doubleSliceLang.operators.get(1) as Slice).language,
+					MelangePackage.eINSTANCE.metamodel,
+					MelangeValidationConstants.METAMODEL_IN_ERROR,
+					"Language \'SubLang\' has errors in its definition"
+		)
 	}
 	
 	@Test
 	def void testMergeSliceOverride(){
 		assertNotNull(operationTest_MergeSliceLang)
 		assertNotNull(multipleSuperTest_MergeSliceLang)
+		
+		assertError((mergeSliceLang.operators.get(0) as Merge).language,
+					MelangePackage.eINSTANCE.metamodel,
+					MelangeValidationConstants.METAMODEL_IN_ERROR,
+					"Language \'Lang\' has errors in its definition"
+		)
+		assertError((mergeSliceLang.operators.get(1) as Slice).language,
+					MelangePackage.eINSTANCE.metamodel,
+					MelangeValidationConstants.METAMODEL_IN_ERROR,
+					"Language \'SubLang\' has errors in its definition"
+		)
 		assertNotNull(operationTest_MergeSliceLang.EReferences.exists[name == "addedReference"])
 		assertEquals(multipleSuperTest_MergeSliceLang, operationTest_MergeSliceLang.EReferences.findFirst[name == "addedReference"].EType)
 	}
@@ -110,32 +161,63 @@ class TransitiveAspectTest
 	def void testSliceMergeOverride(){
 		assertNotNull(operationTest_SliceMergeLang)
 		assertNotNull(multipleSuperTest_SliceMergeLang)
-		assertNotNull(operationTest_SliceMergeLang.EReferences.exists[name == "addedReference"])
-		assertEquals(multipleSuperTest_SliceMergeLang, operationTest_SliceMergeLang.EReferences.findFirst[name == "addedReference"].EType)
+		
+		assertError((sliceMergeLang.operators.get(0) as Slice).language,
+					MelangePackage.eINSTANCE.metamodel,
+					MelangeValidationConstants.METAMODEL_IN_ERROR,
+					"Language \'Lang\' has errors in its definition"
+		)
+		assertError((sliceMergeLang.operators.get(1) as Merge).language,
+					MelangePackage.eINSTANCE.metamodel,
+					MelangeValidationConstants.METAMODEL_IN_ERROR,
+					"Language \'SubLang\' has errors in its definition"
+		)
 	}
 	
 	@Test
 	def void testMergeInheritOverriding(){
 		assertNotNull(operationTest_MergeOverrideLang)
 		assertNotNull(referencesTest_MergeOverrideLang)
-		assertNotNull(operationTest_MergeOverrideLang.EReferences.exists[name == "addedReference"])
-		assertEquals(referencesTest_MergeOverrideLang, operationTest_MergeOverrideLang.EReferences.findFirst[name == "addedReference"].EType)
+		
+		assertError((mergeOverrideLang.operators.get(0) as Merge).language,
+					MelangePackage.eINSTANCE.metamodel,
+					MelangeValidationConstants.METAMODEL_IN_ERROR,
+					"Language \'Lang\' has errors in its definition"
+		)
+		assertError(mergeOverrideLang.inheritanceRelation.get(0).superMetamodel,
+					MelangePackage.eINSTANCE.metamodel,
+					MelangeValidationConstants.METAMODEL_IN_ERROR,
+					"Language \'SuperLang\' has errors in its definition"
+		)		
 	}
 	
 	@Test
 	def void testSliceInheritOverriding(){
 		assertNotNull(operationTest_SliceOverrideLang)
 		assertNotNull(referencesTest_SliceOverrideLang)
-		assertNotNull(operationTest_SliceOverrideLang.EReferences.exists[name == "addedReference"])
-		assertEquals(referencesTest_SliceOverrideLang, operationTest_SliceOverrideLang.EReferences.findFirst[name == "addedReference"].EType)
+		
+		assertError((sliceOverrideLang.operators.get(0) as Slice).language,
+					MelangePackage.eINSTANCE.metamodel,
+					MelangeValidationConstants.METAMODEL_IN_ERROR,
+					"Language \'Lang\' has errors in its definition"
+		)
+		assertError(sliceOverrideLang.inheritanceRelation.get(0).superMetamodel,
+					MelangePackage.eINSTANCE.metamodel,
+					MelangeValidationConstants.METAMODEL_IN_ERROR,
+					"Language \'SuperLang\' has errors in its definition"
+		)
 	}
 	
 	@Test
 	def void testAspectOverride(){
 		assertNotNull(operationTest_AspectOverrideLang)
 		assertNotNull(referencesTest_AspectOverrideLang)
-		assertNotNull(operationTest_AspectOverrideLang.EReferences.exists[name == "addedReference"])
-		assertEquals(referencesTest_AspectOverrideLang, operationTest_AspectOverrideLang.EReferences.findFirst[name == "addedReference"].EType)
+		
+		assertError(aspectOverrideLang.inheritanceRelation.get(0).superMetamodel,
+					MelangePackage.eINSTANCE.metamodel,
+					MelangeValidationConstants.METAMODEL_IN_ERROR,
+					"Language \'SliceMergeLang\' has errors in its definition"
+		)
 	}
 	
 	
