@@ -41,3 +41,19 @@ language SliceMerge{
 	slice MM2 on ['C']
 	exactType SliceMergeMT
 }
+
+language Merge1 {
+	ecore "tests-inputs/metamodels/merge/Merge1.ecore"
+	exactType Merge1mt
+}
+
+language Merge2 {
+	ecore "tests-inputs/metamodels/merge/Merge2.ecore"
+	exactType Merge2mt
+}
+
+language IncompatibleSliceLang{
+	slice Merge1 on ['Clazz']
+	slice Merge2 on ['Clazz']
+	exactType IncompatibleSliceeMT
+}

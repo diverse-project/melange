@@ -20,6 +20,9 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.impl.EcorePackageImpl
 import org.eclipse.emf.ecore.EcorePackage
+import fr.inria.diverse.melange.metamodel.melange.MelangePackage
+import fr.inria.diverse.melange.validation.MelangeValidationConstants
+import fr.inria.diverse.melange.metamodel.melange.Slice
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
@@ -142,6 +145,33 @@ class SliceTest
 		assertTrue(mergeSlice.implements.contains(sliceMerge.exactType))
 	}
 	
+	@Test
+	def void testIncompatibleReference(){
+		assertError((incompatibleSlice.operators.get(1) as Slice).language,
+					MelangePackage.eINSTANCE.metamodel,
+					MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING,
+					"Language \'Merge2\' has a reference \'reference\' typed EObject but in \'Merge1\' it is Clazz"
+		)
+	}
+	
+	@Test
+	def void testIncompatibleOperation(){
+		assertError((incompatibleSlice.operators.get(1) as Slice).language,
+					MelangePackage.eINSTANCE.metamodel,
+					MelangeValidationConstants.MERGE_OPERATION_OVERRIDING,
+					"Language \'Merge2\' has an operation \'operation\' typed EBoolean but in \'Merge1\' it is Void"
+		)
+	}
+	
+	@Test
+	def void testIncompatibleOperation2(){
+		assertError((incompatibleSlice.operators.get(1) as Slice).language,
+					MelangePackage.eINSTANCE.metamodel,
+					MelangeValidationConstants.MERGE_OPERATION_OVERRIDING,
+					"Language \'Merge2\' has an operation \'operation2\' typed EBoolean but in \'Merge1\' it is EString"
+		)
+	}
+	
 	private def EPackage loadEcore(String uri) {
 		val rs = new ResourceSetImpl
 		val res = rs.getResource(URI.createURI(uri), true)
@@ -161,6 +191,9 @@ class SliceTest
 	def Metamodel getMergeSlice()  { return root.elements.get(5) as Metamodel }
 	def Metamodel getExactSlice()  { return root.elements.get(6) as Metamodel }
 	def Metamodel getSliceMerge()  { return root.elements.get(7) as Metamodel }
+	def Metamodel getMerge1()      { return root.elements.get(8) as Metamodel }
+	def Metamodel getMerge2()      { return root.elements.get(9) as Metamodel }
+	def Metamodel getIncompatibleSlice(){ return root.elements.get(10) as Metamodel }
 	
 	def EClass getA()  { return getSliceMM1.pkgs.get(0).EClassifiers.findFirst[name == "A"] as EClass}
 	def EClass getSuperA()  { return getSliceMM1.pkgs.get(0).EClassifiers.findFirst[name == "SuperA"] as EClass}
