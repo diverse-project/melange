@@ -220,6 +220,18 @@ class TransitiveAspectTest
 		)
 	}
 	
+	@Test
+	def void testMergeAspectOverride(){
+		assertNotNull(operationTest_Lang)
+		assertNotNull(referencesTest_Lang)
+
+		assertError(aspectedLang.aspects.get(0),
+					MelangePackage.eINSTANCE.aspect,
+					MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING,
+					"Aspect \'LangAspect\' has a reference \'addedReference\' typed ReferencesTest but in \'SuperLang\' it is typed AttributesTest"
+		)
+	}
+	
 	
 	def Metamodel getExhausitve()        { return root.elements.get(0) as Metamodel }
 	def Metamodel getSuperLang()         { return root.elements.get(1) as Metamodel }
@@ -235,6 +247,7 @@ class TransitiveAspectTest
 	def Metamodel getMergeSliceLang()    { return root.elements.get(11) as Metamodel }
 	def Metamodel getSliceMergeLang()    { return root.elements.get(12) as Metamodel }
 	def Metamodel getAspectOverrideLang(){ return root.elements.get(13) as Metamodel }
+	def Metamodel getAspectedLang()      { return root.elements.get(14) as Metamodel }
 	
 	def EClass getOperationTest_SuperLang()         {return superLang.pkgs.get(0).EClassifiers.findFirst[name == "OperationsTest"] as EClass}
 	def EClass getOperationTest_Lang()              {return lang.pkgs.get(0).EClassifiers.findFirst[name == "OperationsTest"] as EClass}

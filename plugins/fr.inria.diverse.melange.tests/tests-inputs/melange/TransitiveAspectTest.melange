@@ -80,3 +80,9 @@ language AspectOverride inherits SliceMergeLang{
 	exactType MergeLangMT8
 	with LangAspect
 }
+
+language AspectedLang{
+	merge SuperLang
+	exactType AspectedLangMT
+	with LangAspect
+}
