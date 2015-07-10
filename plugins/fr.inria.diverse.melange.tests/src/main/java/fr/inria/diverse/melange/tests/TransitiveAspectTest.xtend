@@ -46,7 +46,7 @@ class TransitiveAspectTest
 		assertNotNull(operationTest_Lang)
 		assertNotNull(referencesTest_Lang)
 
-		assertError(superLang.aspects.get(0),
+		assertError(lang.aspects.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING,
 					"Aspect \'LangAspect\' has a reference \'addedReference\' typed ReferencesTest but in \'SuperLang\' it is typed AttributesTest"
