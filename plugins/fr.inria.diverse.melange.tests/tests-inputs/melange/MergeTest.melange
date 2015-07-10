@@ -61,3 +61,19 @@ language BothLangB{
 	merge MM1
 	exactType bothLangB
 }
+
+language Merge1 {
+	ecore "tests-inputs/metamodels/merge/Merge1.ecore"
+	exactType Merge1mt
+}
+
+language Merge2 {
+	ecore "tests-inputs/metamodels/merge/Merge2.ecore"
+	exactType Merge2mt
+}
+
+language IncompatibleMergeLang{
+	merge Merge1
+	merge Merge2
+	exactType IncompatibleMergeMT
+}

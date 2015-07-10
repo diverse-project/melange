@@ -16,6 +16,9 @@ import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import java.util.Collections
 import static org.junit.Assert.*
+import fr.inria.diverse.melange.metamodel.melange.Merge
+import fr.inria.diverse.melange.metamodel.melange.MelangePackage
+import fr.inria.diverse.melange.validation.MelangeValidationConstants
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
@@ -78,6 +81,42 @@ class MergeTest
 		assertTrue(bothLangB.implements.contains(mergeLangB.exactType))
 	}
 	
+	@Test
+	def void testIncompatibleAttribute(){
+		assertError((incompatibleMerge.operators.get(1) as Merge).language,
+					MelangePackage.eINSTANCE.metamodel,
+					MelangeValidationConstants.MERGE_ATTRIBUTE_OVERRIDING,
+					"Language \'Merge2\' has an attribute \'attribute\' typed EFloat but in \'Merge1\' it is EChar"
+		)
+	}
+	
+	@Test
+	def void testIncompatibleReference(){
+		assertError((incompatibleMerge.operators.get(1) as Merge).language,
+					MelangePackage.eINSTANCE.metamodel,
+					MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING,
+					"Language \'Merge2\' has a reference \'reference\' typed EObject but in \'Merge1\' it is Clazz"
+		)
+	}
+	
+	@Test
+	def void testIncompatibleOperation(){
+		assertError((incompatibleMerge.operators.get(1) as Merge).language,
+					MelangePackage.eINSTANCE.metamodel,
+					MelangeValidationConstants.MERGE_OPERATION_OVERRIDING,
+					"Language \'Merge2\' has an operation \'operation\' typed EBoolean but in \'Merge1\' it is Void"
+		)
+	}
+	
+	@Test
+	def void testIncompatibleOperation2(){
+		assertError((incompatibleMerge.operators.get(1) as Merge).language,
+					MelangePackage.eINSTANCE.metamodel,
+					MelangeValidationConstants.MERGE_OPERATION_OVERRIDING,
+					"Language \'Merge2\' has an operation \'operation2\' typed EBoolean but in \'Merge1\' it is EString"
+		)
+	}
+	
 	
 	private def EPackage loadEcore(String uri) {
 		val rs = new ResourceSetImpl
@@ -101,5 +140,8 @@ class MergeTest
 	def Metamodel getMergeEcore()  { return root.elements.get(8) as Metamodel }
 	def Metamodel getBothLangA()   { return root.elements.get(9) as Metamodel }
 	def Metamodel getBothLangB()   { return root.elements.get(10) as Metamodel }
+	def Metamodel getMerge1()      { return root.elements.get(11) as Metamodel }
+	def Metamodel getMerge2()      { return root.elements.get(12) as Metamodel }
+	def Metamodel getIncompatibleMerge(){ return root.elements.get(13) as Metamodel }
 	
 }
