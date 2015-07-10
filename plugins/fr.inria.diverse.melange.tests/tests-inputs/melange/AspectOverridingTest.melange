@@ -1,0 +1,29 @@
+package aspect.overriding.test
+
+language Exhaustive {
+	ecore "tests-inputs/metamodels/Exhaustive.ecore" withGenmodel "tests-inputs/metamodels/Exhaustive.genmodel"
+	exactType ExhaustiveMT
+}
+
+language InheritsOverriding inherits Exhaustive{
+	exactType InheritMT
+	with fr.inria.diverse.melange.tests.aspect.mergetest.AttributesTestAspect
+	with fr.inria.diverse.melange.tests.aspect.mergetest.ReferencesTestAspect
+	with fr.inria.diverse.melange.tests.aspect.mergetest.OperationsTestAspect
+}
+
+language MergeOverriding{
+	merge Exhaustive
+	exactType MergeMT
+	with fr.inria.diverse.melange.tests.aspect.mergetest.AttributesTestAspect
+	with fr.inria.diverse.melange.tests.aspect.mergetest.ReferencesTestAspect
+	with fr.inria.diverse.melange.tests.aspect.mergetest.OperationsTestAspect
+}
+
+language SliceOverriding{
+	slice Exhaustive on ['AttributesTest', 'ReferencesTest', 'OperationsTest']
+	exactType SliceMT
+	with fr.inria.diverse.melange.tests.aspect.mergetest.AttributesTestAspect
+	with fr.inria.diverse.melange.tests.aspect.mergetest.ReferencesTestAspect
+	with fr.inria.diverse.melange.tests.aspect.mergetest.OperationsTestAspect
+}
