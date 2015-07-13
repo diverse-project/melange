@@ -24,6 +24,7 @@
 		<module>../fr.inria.diverse.melange.tests.eclipse</module>
 		<module>../fr.inria.diverse.melange.sdk</module>
 		<module>../fr.inria.diverse.melange.p2updatesite</module>
+		<module>../fr.inria.diverse.melange.target-platform</module>
 	</modules>
 
 	<properties>
@@ -36,34 +37,6 @@
 		<sonar.language>java</sonar.language>
 		<sonar.exclusions>file:**/src-gen/**</sonar.exclusions>
 	</properties>
-
-	<repositories>
-		<!-- Luna repository -->
-		<repository>
-			<id>luna</id>
-			<layout>p2</layout>
-			<url>http://download.eclipse.org/releases/luna/</url>
-		</repository>
-		<!-- Xtext composite repository -->
-		<repository>
-			<id>xtext</id>
-			<layout>p2</layout>
-			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/</url>
-		</repository>
-		<!-- K3AL repository -->
-		<repository>
-			<id>k3</id>
-			<layout>p2</layout>
-			<url>http://ci.inria.fr/k3al/view/Tous/job/k3-al.eclipse/lastSuccessfulBuild/artifact/k3-al.eclipse/fr.inria.diverse.k3.al.p2updatesite/target/site/</url>
-		</repository>
-		
-		<!-- Diverse commons repository -->
-		<repository>
-			<id>diverse-commons</id>
-			<layout>p2</layout>
-			<url>https://ci.inria.fr/diverse-commons/job/diverse-commons.eclipse.root/lastSuccessfulBuild/artifact/commons-eclipse/fr.inria.diverse.commons.eclipse.root/p2updatesite/target/repository/</url>
-		</repository>
-	</repositories>
 
 	<build>
         <sourceDirectory>src/main/java/src-gen/</sourceDirectory>
@@ -144,6 +117,20 @@
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<target>
+						<artifact>
+							<groupId>fr.inria.diverse.melange</groupId>
+							<artifactId>fr.inria.diverse.melange.target-platform</artifactId>
+							<version>${project.version}</version>
+						</artifact>
+					</target>
 				</configuration>
 			</plugin>
 			<!--<plugin>
