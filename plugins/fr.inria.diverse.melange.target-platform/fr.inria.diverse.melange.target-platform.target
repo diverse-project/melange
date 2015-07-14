@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="org.xtext.myxtextlanguage.target" sequenceNumber="17">
+<?pde version="3.8"?><target name="fr.inria.diverse.melange.target-platform" sequenceNumber="20">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
 <unit id="org.eclipse.jdt.feature.group" version="0.0.0"/>
@@ -20,18 +20,18 @@
 <repository location="http://download.eclipse.org/modeling/emf/emf/updates/2.10.x/core/S201501230452/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
-<unit id="fr.inria.diverse.commons.eclipse.feature.feature.group" version="1.0.0.201504291000"/>
-<unit id="org.eclipse.emf.ecoretools.registration.feature.feature.group" version="0.1.2.201504291000"/>
-<unit id="fr.inria.diverse.commons.provisionner4eclipse.feature.feature.group" version="1.0.0.201504291000"/>
-<repository location="https://ci.inria.fr/diverse-commons/job/diverse-commons.eclipse.root/lastSuccessfulBuild/artifact/commons-eclipse/fr.inria.diverse.commons.eclipse.root/p2updatesite/target/repository/"/>
-</location>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
-<unit id="org.eclipse.emf.compare.rcp.ui.source.feature.group" version="3.0.0.201406111328"/>
-<unit id="org.eclipse.emf.compare.source.feature.group" version="3.0.0.201406111328"/>
+<unit id="org.eclipse.emf.compare.rcp.ui.source.feature.group" version="3.1.0.201506080833"/>
+<unit id="org.eclipse.emf.compare.source.feature.group" version="3.1.0.201506080833"/>
 <repository location="http://download.eclipse.org/modeling/emf/compare/updates/releases/latest"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
-<unit id="fr.inria.diverse.k3.al.feature.feature.group" version="3.1.0.v20150522-1338"/>
+<unit id="org.eclipse.emf.ecoretools.registration.feature.feature.group" version="0.1.2.201506091325"/>
+<unit id="fr.inria.diverse.commons.provisionner4eclipse.feature.feature.group" version="1.0.0.201506091325"/>
+<unit id="fr.inria.diverse.commons.eclipse.feature.feature.group" version="1.0.0.201506091325"/>
+<repository location="https://ci.inria.fr/diverse-commons/job/diverse-commons.eclipse.root/lastSuccessfulBuild/artifact/commons-eclipse/fr.inria.diverse.commons.eclipse.root/p2updatesite/target/repository/"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
+<unit id="fr.inria.diverse.k3.al.feature.feature.group" version="3.2.0.v20150707-0658"/>
 <repository location="https://ci.inria.fr/k3al/job/k3-al.eclipse/lastSuccessfulBuild/artifact/k3-al.eclipse/fr.inria.diverse.k3.al.p2updatesite/target/site/"/>
 </location>
 </locations>
