@@ -648,23 +648,31 @@
   <extension point="org.eclipse.ui.menus">
          <menuContribution
             locationURI="popup:org.eclipse.jdt.ui.PackageExplorer">
-         <command
-               commandId="fr.inria.diverse.melange.Compile"
-               icon="icons/melange.png"
-               label="Melange : Compile"
-               style="push">
-            <visibleWhen
-			       checkEnabled="false">
-			   <with variable="activeMenuSelection">
-			      <iterate
-			           ifEmpty="false">
-			         <adapt type="org.eclipse.core.resources.IResource">
-			              <test property="org.eclipse.core.resources.extension" value="melange" />
-			         </adapt>
-			      </iterate>
-			   </with>
-			</visibleWhen>
-         </command>
+            <menu
+                  icon="icons/melange.png"
+                  label="Melange">
+               <command
+                     commandId="fr.inria.diverse.melange.Compile"
+                     label="Compile"
+                     style="push">
+                  <visibleWhen
+                        checkEnabled="false">
+                     <with
+                           variable="activeMenuSelection">
+                        <iterate
+                              ifEmpty="false">
+                           <adapt
+                                 type="org.eclipse.core.resources.IResource">
+                              <test
+                                    property="org.eclipse.core.resources.extension"
+                                    value="melange">
+                              </test>
+                           </adapt>
+                        </iterate>
+                     </with>
+                  </visibleWhen>
+               </command>
+            </menu>
       </menuContribution>
    </extension>  
    <extension
