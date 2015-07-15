@@ -1,0 +1,27 @@
+package mergetest
+
+language MM1 {
+	ecore "tests-inputs/metamodels/merge/MM1.ecore"
+	exactType mm1MT
+}
+
+language MM3 {
+	ecore "tests-inputs/metamodels/merge/MM3.ecore"
+	exactType mm3MT
+}
+
+map "MyMapping" MM3 to MM1MT {
+	
+	"SuperA3" to "SuperA"{
+		
+	}
+	
+	"A3" to "A"{
+		"toB3" : "toB"
+	}
+	
+	"B3" to "B" {
+		"toA3" : "toA"
+	}
+	
+}
