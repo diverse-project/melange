@@ -648,7 +648,9 @@
   <extension point="org.eclipse.ui.menus">
          <menuContribution
             locationURI="popup:org.eclipse.jdt.ui.PackageExplorer">
-         <command commandId="fr.inria.diverse.melange.Compile"
+         <command
+               commandId="fr.inria.diverse.melange.Compile"
+               icon="icons/melange.png"
                label="Melange : Compile"
                style="push">
             <visibleWhen
