@@ -11,11 +11,16 @@
     </genClasses>
     <genClasses ecoreClass="MM1.ecore#//B">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MM1.ecore#//B/toA"/>
+      <genOperations ecoreOperation="MM1.ecore#//B/getA">
+        <genParameters ecoreParameter="MM1.ecore#//B/getA/paramB"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="MM1.ecore#//C"/>
     <genClasses ecoreClass="MM1.ecore#//AA"/>
     <genClasses ecoreClass="MM1.ecore#//AAA">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MM1.ecore#//AAA/toC"/>
     </genClasses>
+    <genClasses ecoreClass="MM1.ecore#//SuperA"/>
+    <genClasses ecoreClass="MM1.ecore#//SubB"/>
   </genPackages>
 </genmodel:GenModel>

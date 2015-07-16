@@ -20,6 +20,7 @@ import fr.inria.diverse.melange.metamodel.melange.Mapping
 import fr.inria.diverse.melange.metamodel.melange.ClassBinding
 import fr.inria.diverse.melange.metamodel.melange.PropertyBinding
 import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
@@ -45,6 +46,15 @@ class MappingTest
 	
 	@Test
 	def void testStructureMapping(){
+		val res = root.eResource
+		val isProxy = mapping.to.eIsProxy
+		val container = mapping.to.eContainer
+		val uri = EcoreUtil.getURI(mapping.to)
+		val obj = res.getEObject(uri.toString)
+		
+		val node = NodeModelUtils.getNode(mapping).text
+		val text = NodeModelUtils.getNode(mapping).children.get(1).text
+		
 		assertEquals("MyMapping", mapping.name)
 		
 		assertEquals(MM3, mapping.from)
@@ -66,6 +76,12 @@ class MappingTest
 		assertEquals("toB", toBBinding.to)
 	}
 	
+	@Test
+	def void testMergeMapping(){
+		assertTrue(MM1.implements.contains(mergeLang.exactType))
+		assertTrue(mergeLang.implements.contains(MM1.exactType))
+	}
+	
 	private def EPackage loadEcore(String uri) {
 		val rs = new ResourceSetImpl
 		val res = rs.getResource(URI.createURI(uri), true)
@@ -80,6 +96,8 @@ class MappingTest
 	def Metamodel getMM1()              { return root.elements.get(0) as Metamodel }
 	def Metamodel getMM3()              { return root.elements.get(1) as Metamodel }
 	def Mapping   getMapping()          { return root.elements.get(2) as Mapping }
+	def Metamodel getMergeLang()       { return root.elements.get(3) as Metamodel }
+	
 	def ClassBinding getSuperABinding() { return mapping.rules.get(0) as ClassBinding}
 	def ClassBinding getABinding()      { return mapping.rules.get(1) as ClassBinding}
 	def ClassBinding getBBinding()      { return mapping.rules.get(2) as ClassBinding}

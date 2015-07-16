@@ -25,3 +25,9 @@ map "MyMapping" MM3 to MM1MT {
 	}
 	
 }
+
+language MergeLang{
+	merge MM1
+	merge MM3
+	exactType MergeMT
+}

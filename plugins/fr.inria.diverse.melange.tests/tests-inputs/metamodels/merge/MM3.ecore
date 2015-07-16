@@ -5,6 +5,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="toB3" eType="#//B3" eOpposite="#//B3/toA3"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="B3">
+    <eOperations name="getA" eType="#//A3">
+      <eParameters name="paramB" eType="#//B3"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="toA3" eType="#//A3" eOpposite="#//A3/toB3"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SuperA3"/>

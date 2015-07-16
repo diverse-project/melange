@@ -11,6 +11,9 @@
     </genClasses>
     <genClasses ecoreClass="MM3.ecore#//B3">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MM3.ecore#//B3/toA3"/>
+      <genOperations ecoreOperation="MM3.ecore#//B3/getA">
+        <genParameters ecoreParameter="MM3.ecore#//B3/getA/paramB"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="MM3.ecore#//SuperA3"/>
   </genPackages>
