@@ -21,6 +21,8 @@ import fr.inria.diverse.melange.metamodel.melange.ClassBinding
 import fr.inria.diverse.melange.metamodel.melange.PropertyBinding
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils
+import fr.inria.diverse.melange.metamodel.melange.MelangePackage
+import fr.inria.diverse.melange.validation.MelangeValidationConstants
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
@@ -73,6 +75,53 @@ class MappingTest
 		assertTrue(mergeLang.implements.contains(MM1.exactType))
 	}
 	
+	@Test
+	def void testUnknownModelType(){
+		assertError(wrongMapping1.to,
+					MelangePackage.eINSTANCE.modelType,
+					MelangeValidationConstants.MAPPING_UNKNOWN_MODELTYPE,
+					"ModelType \'SomeMT\' is undefined"
+		)
+	}
+	
+	@Test
+	def void testUnknownLanguage(){
+		assertError(wrongMapping2.from,
+					MelangePackage.eINSTANCE.metamodel,
+					MelangeValidationConstants.MAPPING_UNKNOWN_LANG,
+					"Language \'SomeLang\' is undefined"
+		)
+	}
+	
+	@Test
+	def void testUnknownClass(){
+		assertError(wrongMapping3.rules.get(0),
+					MelangePackage.eINSTANCE.classBinding,
+					MelangeValidationConstants.MAPPING_UNKNOWN_CLASS,
+					"Class \'SomeClass\' is undefined in the ModelType \'MM1MT\'"
+		)
+		
+		assertError(wrongMapping3.rules.get(1),
+					MelangePackage.eINSTANCE.classBinding,
+					MelangeValidationConstants.MAPPING_UNKNOWN_CLASS,
+					"Class \'SomeClass\' is undefined in the Language \'MM3\'"
+		)
+	}
+	
+	@Test
+	def void testUnknownProperty(){
+		assertError(wrongMapping3.rules.get(2).properties.get(0),
+					MelangePackage.eINSTANCE.propertyBinding,
+					MelangeValidationConstants.MAPPING_UNKNOWN_PROPERTY,
+					"Property \'someProperty\' is undefined in the Class \'A\' from the ModelType \'MM1MT\'"
+		)
+		assertError(wrongMapping3.rules.get(2).properties.get(1),
+					MelangePackage.eINSTANCE.propertyBinding,
+					MelangeValidationConstants.MAPPING_UNKNOWN_PROPERTY,
+					"Property \'someProperty\' is undefined in the Class \'A3\' from the Language \'MM3\'"
+		)
+	}
+	
 	private def EPackage loadEcore(String uri) {
 		val rs = new ResourceSetImpl
 		val res = rs.getResource(URI.createURI(uri), true)
@@ -87,7 +136,10 @@ class MappingTest
 	def Metamodel getMM1()              { return root.elements.get(0) as Metamodel }
 	def Metamodel getMM3()              { return root.elements.get(1) as Metamodel }
 	def Mapping   getMapping()          { return root.elements.get(2) as Mapping }
-	def Metamodel getMergeLang()       { return root.elements.get(3) as Metamodel }
+	def Metamodel getMergeLang()        { return root.elements.get(3) as Metamodel }
+	def Mapping   getWrongMapping1()    { return root.elements.get(4) as Mapping }
+	def Mapping   getWrongMapping2()    { return root.elements.get(5) as Mapping }
+	def Mapping   getWrongMapping3()    { return root.elements.get(6) as Mapping }
 	
 	def ClassBinding getSuperABinding() { return mapping.rules.get(0) as ClassBinding}
 	def ClassBinding getABinding()      { return mapping.rules.get(1) as ClassBinding}

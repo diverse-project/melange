@@ -24,4 +24,8 @@ class MelangeValidationConstants
 	public static final String MERGE_REFERENCE_OVERRIDING = "MERGE_REFERENCE_OVERRIDING"
 	public static final String MERGE_OPERATION_OVERRIDING = "MERGE_OPERATION_OVERRIDING"
 	public static final String METAMODEL_IN_ERROR = "METAMODEL_IN_ERROR"
+	public static final String MAPPING_UNKNOWN_MODELTYPE = "MAPPING_UNKNOWN_MODELTYPE"
+	public static final String MAPPING_UNKNOWN_LANG = "MAPPING_UNKNOWN_LANG"
+	public static final String MAPPING_UNKNOWN_CLASS = "MAPPING_UNKNOWN_CLASS"
+	public static final String MAPPING_UNKNOWN_PROPERTY = "MAPPING_UNKNOWN_PROPERTY"
 }
