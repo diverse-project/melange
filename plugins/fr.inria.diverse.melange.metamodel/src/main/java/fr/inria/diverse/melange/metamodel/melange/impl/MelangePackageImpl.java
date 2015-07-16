@@ -19,6 +19,7 @@ import fr.inria.diverse.melange.metamodel.melange.ModelingElement;
 import fr.inria.diverse.melange.metamodel.melange.Operator;
 import fr.inria.diverse.melange.metamodel.melange.PropertyBinding;
 import fr.inria.diverse.melange.metamodel.melange.ResourceType;
+import fr.inria.diverse.melange.metamodel.melange.Semantics;
 import fr.inria.diverse.melange.metamodel.melange.Slice;
 import fr.inria.diverse.melange.metamodel.melange.Subtyping;
 import fr.inria.diverse.melange.metamodel.melange.Transformation;
@@ -179,6 +180,13 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * @generated
 	 */
 	private EClass weaveEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass semanticsEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -834,6 +842,24 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getSemantics() {
+		return semanticsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSemantics_Aspects() {
+		return (EReference)semanticsEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getResourceType() {
 		return resourceTypeEEnum;
 	}
@@ -948,6 +974,9 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 
 		weaveEClass = createEClass(WEAVE);
 		createEReference(weaveEClass, WEAVE__ASPECT);
+
+		semanticsEClass = createEClass(SEMANTICS);
+		createEReference(semanticsEClass, SEMANTICS__ASPECTS);
 
 		// Create enums
 		resourceTypeEEnum = createEEnum(RESOURCE_TYPE);
@@ -1074,7 +1103,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		initEReference(getLanguage_Implements(), this.getModelType(), null, "implements", null, 0, -1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLanguage_Requires(), this.getModelType(), null, "requires", null, 0, -1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLanguage_Syntax(), this.getMetamodel(), null, "syntax", null, 1, 1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLanguage_Semantics(), this.getAspect(), null, "semantics", null, 1, 1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLanguage_Semantics(), this.getSemantics(), null, "semantics", null, 1, 1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLanguage_ExactTypeName(), theEcorePackage.getEString(), "exactTypeName", null, 0, 1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLanguage_ExactTypeUri(), theEcorePackage.getEString(), "exactTypeUri", null, 0, 1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLanguage_ResourceType(), this.getResourceType(), "resourceType", "MELANGE", 0, 1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1082,6 +1111,9 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 
 		initEClass(weaveEClass, Weave.class, "Weave", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWeave_Aspect(), this.getAspect(), null, "aspect", null, 1, 1, Weave.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(semanticsEClass, Semantics.class, "Semantics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSemantics_Aspects(), this.getAspect(), null, "aspects", null, 0, -1, Semantics.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(resourceTypeEEnum, ResourceType.class, "ResourceType");

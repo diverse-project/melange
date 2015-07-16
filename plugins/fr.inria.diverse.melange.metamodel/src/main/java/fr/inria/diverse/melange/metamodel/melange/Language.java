@@ -133,30 +133,30 @@ public interface Language extends ModelingElement {
 	void setSyntax(Metamodel value);
 
 	/**
-	 * Returns the value of the '<em><b>Semantics</b></em>' reference.
+	 * Returns the value of the '<em><b>Semantics</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Semantics</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Semantics</em>' reference.
-	 * @see #setSemantics(Aspect)
+	 * @return the value of the '<em>Semantics</em>' containment reference.
+	 * @see #setSemantics(Semantics)
 	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getLanguage_Semantics()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	Aspect getSemantics();
+	Semantics getSemantics();
 
 	/**
-	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.Language#getSemantics <em>Semantics</em>}' reference.
+	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.Language#getSemantics <em>Semantics</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Semantics</em>' reference.
+	 * @param value the new value of the '<em>Semantics</em>' containment reference.
 	 * @see #getSemantics()
 	 * @generated
 	 */
-	void setSemantics(Aspect value);
+	void setSemantics(Semantics value);
 
 	/**
 	 * Returns the value of the '<em><b>Exact Type Name</b></em>' attribute.

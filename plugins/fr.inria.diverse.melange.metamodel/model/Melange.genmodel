@@ -94,5 +94,8 @@
     <genClasses ecoreClass="Melange.ecore#//Weave">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Weave/aspect"/>
     </genClasses>
+    <genClasses ecoreClass="Melange.ecore#//Semantics">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Semantics/aspects"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -967,7 +967,7 @@ public interface MelangePackage extends EPackage {
 	int LANGUAGE__SYNTAX = MODELING_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Semantics</b></em>' reference.
+	 * The feature id for the '<em><b>Semantics</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1067,6 +1067,43 @@ public interface MelangePackage extends EPackage {
 	int WEAVE_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.SemanticsImpl <em>Semantics</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.SemanticsImpl
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getSemantics()
+	 * @generated
+	 */
+	int SEMANTICS = 19;
+
+	/**
+	 * The feature id for the '<em><b>Aspects</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEMANTICS__ASPECTS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Semantics</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEMANTICS_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Semantics</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEMANTICS_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.ResourceType <em>Resource Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1074,7 +1111,7 @@ public interface MelangePackage extends EPackage {
 	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getResourceType()
 	 * @generated
 	 */
-	int RESOURCE_TYPE = 19;
+	int RESOURCE_TYPE = 20;
 
 
 	/**
@@ -1687,10 +1724,10 @@ public interface MelangePackage extends EPackage {
 	EReference getLanguage_Syntax();
 
 	/**
-	 * Returns the meta object for the reference '{@link fr.inria.diverse.melange.metamodel.melange.Language#getSemantics <em>Semantics</em>}'.
+	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.melange.metamodel.melange.Language#getSemantics <em>Semantics</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Semantics</em>'.
+	 * @return the meta object for the containment reference '<em>Semantics</em>'.
 	 * @see fr.inria.diverse.melange.metamodel.melange.Language#getSemantics()
 	 * @see #getLanguage()
 	 * @generated
@@ -1761,6 +1798,27 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getWeave_Aspect();
+
+	/**
+	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.Semantics <em>Semantics</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Semantics</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Semantics
+	 * @generated
+	 */
+	EClass getSemantics();
+
+	/**
+	 * Returns the meta object for the reference list '{@link fr.inria.diverse.melange.metamodel.melange.Semantics#getAspects <em>Aspects</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Aspects</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Semantics#getAspects()
+	 * @see #getSemantics()
+	 * @generated
+	 */
+	EReference getSemantics_Aspects();
 
 	/**
 	 * Returns the meta object for enum '{@link fr.inria.diverse.melange.metamodel.melange.ResourceType <em>Resource Type</em>}'.
@@ -2288,7 +2346,7 @@ public interface MelangePackage extends EPackage {
 		EReference LANGUAGE__SYNTAX = eINSTANCE.getLanguage_Syntax();
 
 		/**
-		 * The meta object literal for the '<em><b>Semantics</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Semantics</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -2344,6 +2402,24 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EReference WEAVE__ASPECT = eINSTANCE.getWeave_Aspect();
+
+		/**
+		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.SemanticsImpl <em>Semantics</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.inria.diverse.melange.metamodel.melange.impl.SemanticsImpl
+		 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getSemantics()
+		 * @generated
+		 */
+		EClass SEMANTICS = eINSTANCE.getSemantics();
+
+		/**
+		 * The meta object literal for the '<em><b>Aspects</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SEMANTICS__ASPECTS = eINSTANCE.getSemantics_Aspects();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.ResourceType <em>Resource Type</em>}' enum.

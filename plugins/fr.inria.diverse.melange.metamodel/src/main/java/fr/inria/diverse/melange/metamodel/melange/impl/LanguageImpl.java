@@ -2,7 +2,6 @@
  */
 package fr.inria.diverse.melange.metamodel.melange.impl;
 
-import fr.inria.diverse.melange.metamodel.melange.Aspect;
 import fr.inria.diverse.melange.metamodel.melange.Language;
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
 import fr.inria.diverse.melange.metamodel.melange.Metamodel;
@@ -10,6 +9,7 @@ import fr.inria.diverse.melange.metamodel.melange.ModelType;
 import fr.inria.diverse.melange.metamodel.melange.Operator;
 import fr.inria.diverse.melange.metamodel.melange.ResourceType;
 
+import fr.inria.diverse.melange.metamodel.melange.Semantics;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -100,14 +100,14 @@ public class LanguageImpl extends ModelingElementImpl implements Language {
 	protected Metamodel syntax;
 
 	/**
-	 * The cached value of the '{@link #getSemantics() <em>Semantics</em>}' reference.
+	 * The cached value of the '{@link #getSemantics() <em>Semantics</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSemantics()
 	 * @generated
 	 * @ordered
 	 */
-	protected Aspect semantics;
+	protected Semantics semantics;
 
 	/**
 	 * The default value of the '{@link #getExactTypeName() <em>Exact Type Name</em>}' attribute.
@@ -352,15 +352,7 @@ public class LanguageImpl extends ModelingElementImpl implements Language {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Aspect getSemantics() {
-		if (semantics != null && semantics.eIsProxy()) {
-			InternalEObject oldSemantics = (InternalEObject)semantics;
-			semantics = (Aspect)eResolveProxy(oldSemantics);
-			if (semantics != oldSemantics) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MelangePackage.LANGUAGE__SEMANTICS, oldSemantics, semantics));
-			}
-		}
+	public Semantics getSemantics() {
 		return semantics;
 	}
 
@@ -369,20 +361,33 @@ public class LanguageImpl extends ModelingElementImpl implements Language {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Aspect basicGetSemantics() {
-		return semantics;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSemantics(Aspect newSemantics) {
-		Aspect oldSemantics = semantics;
+	public NotificationChain basicSetSemantics(Semantics newSemantics, NotificationChain msgs) {
+		Semantics oldSemantics = semantics;
 		semantics = newSemantics;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.LANGUAGE__SEMANTICS, oldSemantics, semantics));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MelangePackage.LANGUAGE__SEMANTICS, oldSemantics, newSemantics);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSemantics(Semantics newSemantics) {
+		if (newSemantics != semantics) {
+			NotificationChain msgs = null;
+			if (semantics != null)
+				msgs = ((InternalEObject)semantics).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MelangePackage.LANGUAGE__SEMANTICS, null, msgs);
+			if (newSemantics != null)
+				msgs = ((InternalEObject)newSemantics).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MelangePackage.LANGUAGE__SEMANTICS, null, msgs);
+			msgs = basicSetSemantics(newSemantics, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.LANGUAGE__SEMANTICS, newSemantics, newSemantics));
 	}
 
 	/**
@@ -499,6 +504,8 @@ public class LanguageImpl extends ModelingElementImpl implements Language {
 				return basicSetExactType(null, msgs);
 			case MelangePackage.LANGUAGE__SYNTAX:
 				return basicSetSyntax(null, msgs);
+			case MelangePackage.LANGUAGE__SEMANTICS:
+				return basicSetSemantics(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -523,8 +530,7 @@ public class LanguageImpl extends ModelingElementImpl implements Language {
 			case MelangePackage.LANGUAGE__SYNTAX:
 				return getSyntax();
 			case MelangePackage.LANGUAGE__SEMANTICS:
-				if (resolve) return getSemantics();
-				return basicGetSemantics();
+				return getSemantics();
 			case MelangePackage.LANGUAGE__EXACT_TYPE_NAME:
 				return getExactTypeName();
 			case MelangePackage.LANGUAGE__EXACT_TYPE_URI:
@@ -565,7 +571,7 @@ public class LanguageImpl extends ModelingElementImpl implements Language {
 				setSyntax((Metamodel)newValue);
 				return;
 			case MelangePackage.LANGUAGE__SEMANTICS:
-				setSemantics((Aspect)newValue);
+				setSemantics((Semantics)newValue);
 				return;
 			case MelangePackage.LANGUAGE__EXACT_TYPE_NAME:
 				setExactTypeName((String)newValue);
@@ -607,7 +613,7 @@ public class LanguageImpl extends ModelingElementImpl implements Language {
 				setSyntax((Metamodel)null);
 				return;
 			case MelangePackage.LANGUAGE__SEMANTICS:
-				setSemantics((Aspect)null);
+				setSemantics((Semantics)null);
 				return;
 			case MelangePackage.LANGUAGE__EXACT_TYPE_NAME:
 				setExactTypeName(EXACT_TYPE_NAME_EDEFAULT);
