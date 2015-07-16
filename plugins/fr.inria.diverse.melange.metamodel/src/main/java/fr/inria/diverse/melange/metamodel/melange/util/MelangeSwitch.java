@@ -90,6 +90,7 @@ public class MelangeSwitch<T> extends Switch<T> {
 				ModelType modelType = (ModelType)theEObject;
 				T result = caseModelType(modelType);
 				if (result == null) result = caseModelingElement(modelType);
+				if (result == null) result = caseNamedElement(modelType);
 				if (result == null) result = caseElement(modelType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -184,6 +185,7 @@ public class MelangeSwitch<T> extends Switch<T> {
 			case MelangePackage.LANGUAGE: {
 				Language language = (Language)theEObject;
 				T result = caseLanguage(language);
+				if (result == null) result = caseNamedElement(language);
 				if (result == null) result = caseElement(language);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -198,6 +200,13 @@ public class MelangeSwitch<T> extends Switch<T> {
 			case MelangePackage.SEMANTICS: {
 				Semantics semantics = (Semantics)theEObject;
 				T result = caseSemantics(semantics);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MelangePackage.NAMED_ELEMENT: {
+				NamedElement namedElement = (NamedElement)theEObject;
+				T result = caseNamedElement(namedElement);
+				if (result == null) result = caseElement(namedElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -502,6 +511,21 @@ public class MelangeSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSemantics(Semantics object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNamedElement(NamedElement object) {
 		return null;
 	}
 

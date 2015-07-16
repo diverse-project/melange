@@ -16,6 +16,7 @@ import fr.inria.diverse.melange.metamodel.melange.Metamodel;
 import fr.inria.diverse.melange.metamodel.melange.ModelType;
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace;
 import fr.inria.diverse.melange.metamodel.melange.ModelingElement;
+import fr.inria.diverse.melange.metamodel.melange.NamedElement;
 import fr.inria.diverse.melange.metamodel.melange.Operator;
 import fr.inria.diverse.melange.metamodel.melange.PropertyBinding;
 import fr.inria.diverse.melange.metamodel.melange.ResourceType;
@@ -193,6 +194,13 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass namedElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum resourceTypeEEnum = null;
 
 	/**
@@ -304,15 +312,6 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 */
 	public EClass getElement() {
 		return elementEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getElement_Name() {
-		return (EAttribute)elementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -878,6 +877,24 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getNamedElement() {
+		return namedElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNamedElement_Name() {
+		return (EAttribute)namedElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getResourceType() {
 		return resourceTypeEEnum;
 	}
@@ -916,7 +933,6 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		createEAttribute(modelTypingSpaceEClass, MODEL_TYPING_SPACE__NAME);
 
 		elementEClass = createEClass(ELEMENT);
-		createEAttribute(elementEClass, ELEMENT__NAME);
 
 		metamodelEClass = createEClass(METAMODEL);
 		createEReference(metamodelEClass, METAMODEL__OWNING_LANGUAGE);
@@ -998,6 +1014,9 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		semanticsEClass = createEClass(SEMANTICS);
 		createEReference(semanticsEClass, SEMANTICS__ASPECTS);
 
+		namedElementEClass = createEClass(NAMED_ELEMENT);
+		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
+
 		// Create enums
 		resourceTypeEEnum = createEEnum(RESOURCE_TYPE);
 	}
@@ -1038,6 +1057,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		// Add supertypes to classes
 		metamodelEClass.getESuperTypes().add(this.getModelingElement());
 		modelTypeEClass.getESuperTypes().add(this.getModelingElement());
+		modelTypeEClass.getESuperTypes().add(this.getNamedElement());
 		transformationEClass.getESuperTypes().add(this.getElement());
 		inheritanceEClass.getESuperTypes().add(this.getOperator());
 		xbaseTransformationEClass.getESuperTypes().add(this.getTransformation());
@@ -1046,8 +1066,9 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		importEClass.getESuperTypes().add(this.getOperator());
 		mergeEClass.getESuperTypes().add(this.getOperator());
 		sliceEClass.getESuperTypes().add(this.getOperator());
-		languageEClass.getESuperTypes().add(this.getElement());
+		languageEClass.getESuperTypes().add(this.getNamedElement());
 		weaveEClass.getESuperTypes().add(this.getOperator());
+		namedElementEClass.getESuperTypes().add(this.getElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(modelTypingSpaceEClass, ModelTypingSpace.class, "ModelTypingSpace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1056,7 +1077,6 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		initEAttribute(getModelTypingSpace_Name(), theEcorePackage.getEString(), "name", null, 1, 1, ModelTypingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(elementEClass, Element.class, "Element", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(metamodelEClass, Metamodel.class, "Metamodel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMetamodel_OwningLanguage(), this.getLanguage(), this.getLanguage_Syntax(), "owningLanguage", null, 1, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1137,6 +1157,9 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 
 		initEClass(semanticsEClass, Semantics.class, "Semantics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSemantics_Aspects(), this.getAspect(), null, "aspects", null, 0, -1, Semantics.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(resourceTypeEEnum, ResourceType.class, "ResourceType");

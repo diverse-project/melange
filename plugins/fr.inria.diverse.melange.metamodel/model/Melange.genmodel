@@ -18,9 +18,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//ModelTypingSpace/imports"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//ModelTypingSpace/name"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="Melange.ecore#//Element">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Element/name"/>
-    </genClasses>
+    <genClasses image="false" ecoreClass="Melange.ecore#//Element"/>
     <genClasses ecoreClass="Melange.ecore#//Metamodel">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Melange.ecore#//Metamodel/owningLanguage"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Metamodel/genmodelUris"/>
@@ -98,6 +96,9 @@
     </genClasses>
     <genClasses ecoreClass="Melange.ecore#//Semantics">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Semantics/aspects"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Melange.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//NamedElement/name"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

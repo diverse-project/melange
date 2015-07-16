@@ -8,16 +8,14 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Metamodel" eSuperTypes="#//ModelingElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningLanguage" lowerBound="1"
         eType="#//Language" eOpposite="#//Language/syntax"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="genmodelUris" upperBound="-1"
         eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ModelType" eSuperTypes="#//ModelingElement">
+  <eClassifiers xsi:type="ecore:EClass" name="ModelType" eSuperTypes="#//ModelingElement #//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subtypingRelations" upperBound="-1"
         eType="#//Subtyping" containment="true" eOpposite="#//Subtyping/subType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extracted" eType="#//Language"
@@ -96,7 +94,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="roots" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Language" eSuperTypes="#//Element">
+  <eClassifiers xsi:type="ecore:EClass" name="Language" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operators" upperBound="-1"
         eType="#//Operator" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="exactType" eType="#//ModelType"
@@ -126,5 +124,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="Semantics">
     <eStructuralFeatures xsi:type="ecore:EReference" name="aspects" upperBound="-1"
         eType="#//Aspect"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

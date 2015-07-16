@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ModelType extends ModelingElement {
+public interface ModelType extends ModelingElement, NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Subtyping Relations</b></em>' containment reference list.
 	 * The list contents are of type {@link fr.inria.diverse.melange.metamodel.melange.Subtyping}.

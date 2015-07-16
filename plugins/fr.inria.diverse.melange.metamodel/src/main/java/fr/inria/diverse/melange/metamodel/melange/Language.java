@@ -32,7 +32,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  * @model
  * @generated
  */
-public interface Language extends Element {
+public interface Language extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Operators</b></em>' containment reference list.
 	 * The list contents are of type {@link fr.inria.diverse.melange.metamodel.melange.Operator}.

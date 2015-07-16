@@ -53,7 +53,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *
  * @generated
  */
-public class LanguageImpl extends ElementImpl implements Language {
+public class LanguageImpl extends NamedElementImpl implements Language {
 	/**
 	 * The cached value of the '{@link #getOperators() <em>Operators</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

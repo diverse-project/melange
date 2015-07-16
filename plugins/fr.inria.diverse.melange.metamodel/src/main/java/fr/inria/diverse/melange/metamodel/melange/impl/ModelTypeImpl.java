@@ -5,6 +5,7 @@ package fr.inria.diverse.melange.metamodel.melange.impl;
 import fr.inria.diverse.melange.metamodel.melange.Language;
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
 import fr.inria.diverse.melange.metamodel.melange.ModelType;
+import fr.inria.diverse.melange.metamodel.melange.NamedElement;
 import fr.inria.diverse.melange.metamodel.melange.Subtyping;
 
 import java.util.Collection;
@@ -30,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypeImpl#getName <em>Name</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypeImpl#getSubtypingRelations <em>Subtyping Relations</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypeImpl#getExtracted <em>Extracted</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypeImpl#getMtUri <em>Mt Uri</em>}</li>
@@ -38,6 +40,26 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class ModelTypeImpl extends ModelingElementImpl implements ModelType {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getSubtypingRelations() <em>Subtyping Relations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -95,6 +117,27 @@ public class ModelTypeImpl extends ModelingElementImpl implements ModelType {
 	@Override
 	protected EClass eStaticClass() {
 		return MelangePackage.Literals.MODEL_TYPE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.MODEL_TYPE__NAME, oldName, name));
 	}
 
 	/**
@@ -233,6 +276,8 @@ public class ModelTypeImpl extends ModelingElementImpl implements ModelType {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case MelangePackage.MODEL_TYPE__NAME:
+				return getName();
 			case MelangePackage.MODEL_TYPE__SUBTYPING_RELATIONS:
 				return getSubtypingRelations();
 			case MelangePackage.MODEL_TYPE__EXTRACTED:
@@ -253,6 +298,9 @@ public class ModelTypeImpl extends ModelingElementImpl implements ModelType {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case MelangePackage.MODEL_TYPE__NAME:
+				setName((String)newValue);
+				return;
 			case MelangePackage.MODEL_TYPE__SUBTYPING_RELATIONS:
 				getSubtypingRelations().clear();
 				getSubtypingRelations().addAll((Collection<? extends Subtyping>)newValue);
@@ -275,6 +323,9 @@ public class ModelTypeImpl extends ModelingElementImpl implements ModelType {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case MelangePackage.MODEL_TYPE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case MelangePackage.MODEL_TYPE__SUBTYPING_RELATIONS:
 				getSubtypingRelations().clear();
 				return;
@@ -296,6 +347,8 @@ public class ModelTypeImpl extends ModelingElementImpl implements ModelType {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case MelangePackage.MODEL_TYPE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case MelangePackage.MODEL_TYPE__SUBTYPING_RELATIONS:
 				return subtypingRelations != null && !subtypingRelations.isEmpty();
 			case MelangePackage.MODEL_TYPE__EXTRACTED:
@@ -312,11 +365,45 @@ public class ModelTypeImpl extends ModelingElementImpl implements ModelType {
 	 * @generated
 	 */
 	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == NamedElement.class) {
+			switch (derivedFeatureID) {
+				case MelangePackage.MODEL_TYPE__NAME: return MelangePackage.NAMED_ELEMENT__NAME;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == NamedElement.class) {
+			switch (baseFeatureID) {
+				case MelangePackage.NAMED_ELEMENT__NAME: return MelangePackage.MODEL_TYPE__NAME;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (mtUri: ");
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", mtUri: ");
 		result.append(mtUri);
 		result.append(')');
 		return result.toString();

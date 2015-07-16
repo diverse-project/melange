@@ -123,22 +123,13 @@ public interface MelangePackage extends EPackage {
 	int ELEMENT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT__NAME = 0;
-
-	/**
 	 * The number of structural features of the '<em>Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_FEATURE_COUNT = 1;
+	int ELEMENT_FEATURE_COUNT = 0;
 
 	/**
 	 * The number of operations of the '<em>Element</em>' class.
@@ -170,15 +161,6 @@ public interface MelangePackage extends EPackage {
 	int MODELING_ELEMENT = 9;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODELING_ELEMENT__NAME = ELEMENT__NAME;
-
-	/**
 	 * The feature id for the '<em><b>Ecore Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -204,15 +186,6 @@ public interface MelangePackage extends EPackage {
 	 * @ordered
 	 */
 	int MODELING_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METAMODEL__NAME = MODELING_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Ecore Uri</b></em>' attribute.
@@ -270,15 +243,6 @@ public interface MelangePackage extends EPackage {
 	int MODEL_TYPE = 3;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_TYPE__NAME = MODELING_ELEMENT__NAME;
-
-	/**
 	 * The feature id for the '<em><b>Ecore Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -288,13 +252,22 @@ public interface MelangePackage extends EPackage {
 	int MODEL_TYPE__ECORE_URI = MODELING_ELEMENT__ECORE_URI;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_TYPE__NAME = MODELING_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Subtyping Relations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_TYPE__SUBTYPING_RELATIONS = MODELING_ELEMENT_FEATURE_COUNT + 0;
+	int MODEL_TYPE__SUBTYPING_RELATIONS = MODELING_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Extracted</b></em>' reference.
@@ -303,7 +276,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_TYPE__EXTRACTED = MODELING_ELEMENT_FEATURE_COUNT + 1;
+	int MODEL_TYPE__EXTRACTED = MODELING_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Mt Uri</b></em>' attribute.
@@ -312,7 +285,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_TYPE__MT_URI = MODELING_ELEMENT_FEATURE_COUNT + 2;
+	int MODEL_TYPE__MT_URI = MODELING_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Model Type</em>' class.
@@ -321,7 +294,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_TYPE_FEATURE_COUNT = MODELING_ELEMENT_FEATURE_COUNT + 3;
+	int MODEL_TYPE_FEATURE_COUNT = MODELING_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Model Type</em>' class.
@@ -341,15 +314,6 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 */
 	int TRANSFORMATION = 4;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSFORMATION__NAME = ELEMENT__NAME;
 
 	/**
 	 * The number of structural features of the '<em>Transformation</em>' class.
@@ -555,15 +519,6 @@ public interface MelangePackage extends EPackage {
 	int XBASE_TRANSFORMATION = 8;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int XBASE_TRANSFORMATION__NAME = TRANSFORMATION__NAME;
-
-	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -626,15 +581,6 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 */
 	int MAPPING = 10;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAPPING__NAME = ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Rules</b></em>' containment reference list.
@@ -912,6 +858,43 @@ public interface MelangePackage extends EPackage {
 	int SLICE_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.NamedElementImpl <em>Named Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.NamedElementImpl
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getNamedElement()
+	 * @generated
+	 */
+	int NAMED_ELEMENT = 20;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT__NAME = ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Named Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Named Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl <em>Language</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -928,7 +911,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__NAME = ELEMENT__NAME;
+	int LANGUAGE__NAME = NAMED_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Operators</b></em>' containment reference list.
@@ -937,7 +920,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__OPERATORS = ELEMENT_FEATURE_COUNT + 0;
+	int LANGUAGE__OPERATORS = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Exact Type</b></em>' reference.
@@ -946,7 +929,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__EXACT_TYPE = ELEMENT_FEATURE_COUNT + 1;
+	int LANGUAGE__EXACT_TYPE = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Implements</b></em>' reference list.
@@ -955,7 +938,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__IMPLEMENTS = ELEMENT_FEATURE_COUNT + 2;
+	int LANGUAGE__IMPLEMENTS = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Requires</b></em>' reference list.
@@ -964,7 +947,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__REQUIRES = ELEMENT_FEATURE_COUNT + 3;
+	int LANGUAGE__REQUIRES = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Syntax</b></em>' containment reference.
@@ -973,7 +956,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__SYNTAX = ELEMENT_FEATURE_COUNT + 4;
+	int LANGUAGE__SYNTAX = NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Semantics</b></em>' containment reference.
@@ -982,7 +965,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__SEMANTICS = ELEMENT_FEATURE_COUNT + 5;
+	int LANGUAGE__SEMANTICS = NAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Exact Type Name</b></em>' attribute.
@@ -991,7 +974,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__EXACT_TYPE_NAME = ELEMENT_FEATURE_COUNT + 6;
+	int LANGUAGE__EXACT_TYPE_NAME = NAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Exact Type Uri</b></em>' attribute.
@@ -1000,7 +983,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__EXACT_TYPE_URI = ELEMENT_FEATURE_COUNT + 7;
+	int LANGUAGE__EXACT_TYPE_URI = NAMED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Resource Type</b></em>' attribute.
@@ -1009,7 +992,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__RESOURCE_TYPE = ELEMENT_FEATURE_COUNT + 8;
+	int LANGUAGE__RESOURCE_TYPE = NAMED_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Resource Uri</b></em>' attribute.
@@ -1018,7 +1001,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__RESOURCE_URI = ELEMENT_FEATURE_COUNT + 9;
+	int LANGUAGE__RESOURCE_URI = NAMED_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Xtext Setup Ref</b></em>' containment reference.
@@ -1027,7 +1010,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__XTEXT_SETUP_REF = ELEMENT_FEATURE_COUNT + 10;
+	int LANGUAGE__XTEXT_SETUP_REF = NAMED_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Mappings</b></em>' reference list.
@@ -1036,7 +1019,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__MAPPINGS = ELEMENT_FEATURE_COUNT + 11;
+	int LANGUAGE__MAPPINGS = NAMED_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The number of structural features of the '<em>Language</em>' class.
@@ -1045,7 +1028,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 12;
+	int LANGUAGE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
 	 * The number of operations of the '<em>Language</em>' class.
@@ -1054,7 +1037,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
+	int LANGUAGE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.WeaveImpl <em>Weave</em>}' class.
@@ -1138,7 +1121,7 @@ public interface MelangePackage extends EPackage {
 	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getResourceType()
 	 * @generated
 	 */
-	int RESOURCE_TYPE = 20;
+	int RESOURCE_TYPE = 21;
 
 
 	/**
@@ -1193,17 +1176,6 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getElement();
-
-	/**
-	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.Element#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see fr.inria.diverse.melange.metamodel.melange.Element#getName()
-	 * @see #getElement()
-	 * @generated
-	 */
-	EAttribute getElement_Name();
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.Metamodel <em>Metamodel</em>}'.
@@ -1870,6 +1842,27 @@ public interface MelangePackage extends EPackage {
 	EReference getSemantics_Aspects();
 
 	/**
+	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.NamedElement <em>Named Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Named Element</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.NamedElement
+	 * @generated
+	 */
+	EClass getNamedElement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.NamedElement#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.NamedElement#getName()
+	 * @see #getNamedElement()
+	 * @generated
+	 */
+	EAttribute getNamedElement_Name();
+
+	/**
 	 * Returns the meta object for enum '{@link fr.inria.diverse.melange.metamodel.melange.ResourceType <em>Resource Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1945,14 +1938,6 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EClass ELEMENT = eINSTANCE.getElement();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ELEMENT__NAME = eINSTANCE.getElement_Name();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl <em>Metamodel</em>}' class.
@@ -2485,6 +2470,24 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EReference SEMANTICS__ASPECTS = eINSTANCE.getSemantics_Aspects();
+
+		/**
+		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.NamedElementImpl <em>Named Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.inria.diverse.melange.metamodel.melange.impl.NamedElementImpl
+		 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getNamedElement()
+		 * @generated
+		 */
+		EClass NAMED_ELEMENT = eINSTANCE.getNamedElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NAMED_ELEMENT__NAME = eINSTANCE.getNamedElement_Name();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.ResourceType <em>Resource Type</em>}' enum.
