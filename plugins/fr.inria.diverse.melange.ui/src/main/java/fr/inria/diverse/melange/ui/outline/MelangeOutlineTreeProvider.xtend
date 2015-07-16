@@ -1,19 +1,13 @@
 package fr.inria.diverse.melange.ui.outline
 
 import com.google.inject.Inject
-
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
-
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
+import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.ModelingElement
 import fr.inria.diverse.melange.metamodel.melange.Transformation
-
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
-
 import org.eclipse.xtext.common.types.JvmTypeReference
-
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
-
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
 
 class MelangeOutlineTreeProvider extends DefaultOutlineTreeProvider
@@ -35,8 +29,8 @@ class MelangeOutlineTreeProvider extends DefaultOutlineTreeProvider
 	def void _createNode(IOutlineNode parentNode, ModelingElement m) {
 		val mNode = createEObjectNode(parentNode, m)
 
-		if (m instanceof Metamodel) {
-			m.aspects.forEach[asp |
+		if (m instanceof Language) {
+			m.semantics.aspects.forEach[asp |
 				createEObjectNode(mNode, asp, imageDispatcher.invoke(asp), textDispatcher.invoke(asp),
 					isLeafDispatcher.invoke(asp))
 			]
