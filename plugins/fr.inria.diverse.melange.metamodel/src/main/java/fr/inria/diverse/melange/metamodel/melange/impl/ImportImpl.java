@@ -2,7 +2,7 @@
  */
 package fr.inria.diverse.melange.metamodel.melange.impl;
 
-import fr.inria.diverse.melange.metamodel.melange.Ecore;
+import fr.inria.diverse.melange.metamodel.melange.Import;
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
 
 import java.util.Collection;
@@ -19,19 +19,19 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Ecore</b></em>'.
+ * An implementation of the model object '<em><b>Import</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.EcoreImpl#getEcoreUri <em>Ecore Uri</em>}</li>
- *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.EcoreImpl#getGenmodelUris <em>Genmodel Uris</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ImportImpl#getEcoreUri <em>Ecore Uri</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ImportImpl#getGenmodelUris <em>Genmodel Uris</em>}</li>
+ * </ul>
  *
  * @generated
  */
-public class EcoreImpl extends OperatorImpl implements Ecore {
+public class ImportImpl extends OperatorImpl implements Import {
 	/**
 	 * The default value of the '{@link #getEcoreUri() <em>Ecore Uri</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -67,7 +67,7 @@ public class EcoreImpl extends OperatorImpl implements Ecore {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EcoreImpl() {
+	protected ImportImpl() {
 		super();
 	}
 
@@ -78,7 +78,7 @@ public class EcoreImpl extends OperatorImpl implements Ecore {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MelangePackage.Literals.ECORE;
+		return MelangePackage.Literals.IMPORT;
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class EcoreImpl extends OperatorImpl implements Ecore {
 		String oldEcoreUri = ecoreUri;
 		ecoreUri = newEcoreUri;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.ECORE__ECORE_URI, oldEcoreUri, ecoreUri));
+			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.IMPORT__ECORE_URI, oldEcoreUri, ecoreUri));
 	}
 
 	/**
@@ -109,7 +109,7 @@ public class EcoreImpl extends OperatorImpl implements Ecore {
 	 */
 	public EList<String> getGenmodelUris() {
 		if (genmodelUris == null) {
-			genmodelUris = new EDataTypeUniqueEList<String>(String.class, this, MelangePackage.ECORE__GENMODEL_URIS);
+			genmodelUris = new EDataTypeUniqueEList<String>(String.class, this, MelangePackage.IMPORT__GENMODEL_URIS);
 		}
 		return genmodelUris;
 	}
@@ -122,9 +122,9 @@ public class EcoreImpl extends OperatorImpl implements Ecore {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MelangePackage.ECORE__ECORE_URI:
+			case MelangePackage.IMPORT__ECORE_URI:
 				return getEcoreUri();
-			case MelangePackage.ECORE__GENMODEL_URIS:
+			case MelangePackage.IMPORT__GENMODEL_URIS:
 				return getGenmodelUris();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -139,10 +139,10 @@ public class EcoreImpl extends OperatorImpl implements Ecore {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MelangePackage.ECORE__ECORE_URI:
+			case MelangePackage.IMPORT__ECORE_URI:
 				setEcoreUri((String)newValue);
 				return;
-			case MelangePackage.ECORE__GENMODEL_URIS:
+			case MelangePackage.IMPORT__GENMODEL_URIS:
 				getGenmodelUris().clear();
 				getGenmodelUris().addAll((Collection<? extends String>)newValue);
 				return;
@@ -158,10 +158,10 @@ public class EcoreImpl extends OperatorImpl implements Ecore {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MelangePackage.ECORE__ECORE_URI:
+			case MelangePackage.IMPORT__ECORE_URI:
 				setEcoreUri(ECORE_URI_EDEFAULT);
 				return;
-			case MelangePackage.ECORE__GENMODEL_URIS:
+			case MelangePackage.IMPORT__GENMODEL_URIS:
 				getGenmodelUris().clear();
 				return;
 		}
@@ -176,9 +176,9 @@ public class EcoreImpl extends OperatorImpl implements Ecore {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MelangePackage.ECORE__ECORE_URI:
+			case MelangePackage.IMPORT__ECORE_URI:
 				return ECORE_URI_EDEFAULT == null ? ecoreUri != null : !ECORE_URI_EDEFAULT.equals(ecoreUri);
-			case MelangePackage.ECORE__GENMODEL_URIS:
+			case MelangePackage.IMPORT__GENMODEL_URIS:
 				return genmodelUris != null && !genmodelUris.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -202,4 +202,4 @@ public class EcoreImpl extends OperatorImpl implements Ecore {
 		return result.toString();
 	}
 
-} //EcoreImpl
+} //ImportImpl

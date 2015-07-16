@@ -11,53 +11,33 @@
   <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Metamodel" eSuperTypes="#//ModelingElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="aspects" upperBound="-1"
-        eType="#//Aspect" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exactType" lowerBound="1"
-        eType="#//ModelType" eOpposite="#//ModelType/extracted"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="implements" upperBound="-1"
-        eType="#//ModelType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="requires" upperBound="-1"
-        eType="#//ModelType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="inheritanceRelation" upperBound="-1"
-        eType="#//Inheritance" containment="true" eOpposite="#//Inheritance/subMetamodel"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="exactTypeName" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="exactTypeUri" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="resourceType" eType="#//ResourceType"
-        defaultValueLiteral="MELANGE"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="resourceUri" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Metamodel">
     <eStructuralFeatures xsi:type="ecore:EReference" name="xtextSetupRef" eType="ecore:EClass ../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="genmodelUris" upperBound="-1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" upperBound="-1"
         eType="#//Mapping" resolveProxies="false" eOpposite="#//Mapping/from"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operators" upperBound="-1"
-        eType="#//Operator" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelType" eSuperTypes="#//ModelingElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subtypingRelations" upperBound="-1"
         eType="#//Subtyping" containment="true" eOpposite="#//Subtyping/subType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="extracted" eType="#//Metamodel"
-        eOpposite="#//Metamodel/exactType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extracted" eType="#//Language"
+        eOpposite="#//Language/exactType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mtUri" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Transformation" abstract="true" eSuperTypes="#//Element"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Aspect" eSuperTypes="#//Operator">
+  <eClassifiers xsi:type="ecore:EClass" name="Aspect">
     <eStructuralFeatures xsi:type="ecore:EReference" name="aspectTypeRef" lowerBound="1"
         eType="ecore:EClass ../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="aspectedClass" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ecoreFragment" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="aspectWildcardImport" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ecoreFragment" lowerBound="1"
+        eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Inheritance" eSuperTypes="#//Operator">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="subMetamodel" lowerBound="1"
-        eType="#//Metamodel" eOpposite="#//Metamodel/inheritanceRelation"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="superMetamodel" lowerBound="1"
-        eType="#//Metamodel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="superLanguage" lowerBound="1"
+        eType="#//Language"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Subtyping">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subType" lowerBound="1"
@@ -100,18 +80,43 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="from" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="to" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Operator"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Ecore" eSuperTypes="#//Operator">
+  <eClassifiers xsi:type="ecore:EClass" name="Operator" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Import" eSuperTypes="#//Operator">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ecoreUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="genmodelUris" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Merge" eSuperTypes="#//Operator">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="language" eType="#//Metamodel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mergedLanguage" lowerBound="1"
+        eType="#//Language"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Slice" eSuperTypes="#//Operator">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="language" eType="#//Metamodel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="slicedLanguage" lowerBound="1"
+        eType="#//Language"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="roots" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Language" eSuperTypes="#//ModelingElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operators" upperBound="-1"
+        eType="#//Operator" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exactType" eType="#//ModelType"
+        eOpposite="#//ModelType/extracted"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="implements" upperBound="-1"
+        eType="#//ModelType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="requires" upperBound="-1"
+        eType="#//ModelType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="syntax" lowerBound="1"
+        eType="#//Metamodel" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="semantics" lowerBound="1"
+        eType="#//Aspect"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="exactTypeName" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="exactTypeUri" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="resourceType" eType="#//ResourceType"
+        defaultValueLiteral="MELANGE"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="resourceUri" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Weave" eSuperTypes="#//Operator">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aspect" lowerBound="1"
+        eType="#//Aspect" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

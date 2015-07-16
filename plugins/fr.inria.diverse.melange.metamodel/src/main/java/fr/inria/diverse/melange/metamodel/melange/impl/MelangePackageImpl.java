@@ -4,9 +4,10 @@ package fr.inria.diverse.melange.metamodel.melange.impl;
 
 import fr.inria.diverse.melange.metamodel.melange.Aspect;
 import fr.inria.diverse.melange.metamodel.melange.ClassBinding;
-import fr.inria.diverse.melange.metamodel.melange.Ecore;
 import fr.inria.diverse.melange.metamodel.melange.Element;
+import fr.inria.diverse.melange.metamodel.melange.Import;
 import fr.inria.diverse.melange.metamodel.melange.Inheritance;
+import fr.inria.diverse.melange.metamodel.melange.Language;
 import fr.inria.diverse.melange.metamodel.melange.Mapping;
 import fr.inria.diverse.melange.metamodel.melange.MelangeFactory;
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
@@ -21,6 +22,7 @@ import fr.inria.diverse.melange.metamodel.melange.ResourceType;
 import fr.inria.diverse.melange.metamodel.melange.Slice;
 import fr.inria.diverse.melange.metamodel.melange.Subtyping;
 import fr.inria.diverse.melange.metamodel.melange.Transformation;
+import fr.inria.diverse.melange.metamodel.melange.Weave;
 import fr.inria.diverse.melange.metamodel.melange.XbaseTransformation;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -148,7 +150,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass ecoreEClass = null;
+	private EClass importEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -163,6 +165,20 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * @generated
 	 */
 	private EClass sliceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass languageEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass weaveEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -305,7 +321,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMetamodel_Aspects() {
+	public EReference getMetamodel_XtextSetupRef() {
 		return (EReference)metamodelEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -314,107 +330,8 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMetamodel_ExactType() {
-		return (EReference)metamodelEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMetamodel_Implements() {
-		return (EReference)metamodelEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMetamodel_Requires() {
-		return (EReference)metamodelEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMetamodel_InheritanceRelation() {
-		return (EReference)metamodelEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMetamodel_ExactTypeName() {
-		return (EAttribute)metamodelEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMetamodel_ExactTypeUri() {
-		return (EAttribute)metamodelEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMetamodel_ResourceType() {
-		return (EAttribute)metamodelEClass.getEStructuralFeatures().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMetamodel_ResourceUri() {
-		return (EAttribute)metamodelEClass.getEStructuralFeatures().get(8);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMetamodel_XtextSetupRef() {
-		return (EReference)metamodelEClass.getEStructuralFeatures().get(9);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMetamodel_GenmodelUris() {
-		return (EAttribute)metamodelEClass.getEStructuralFeatures().get(10);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getMetamodel_Mappings() {
-		return (EReference)metamodelEClass.getEStructuralFeatures().get(11);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMetamodel_Operators() {
-		return (EReference)metamodelEClass.getEStructuralFeatures().get(12);
+		return (EReference)metamodelEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -494,8 +411,8 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAspect_EcoreFragment() {
-		return (EReference)aspectEClass.getEStructuralFeatures().get(2);
+	public EAttribute getAspect_AspectWildcardImport() {
+		return (EAttribute)aspectEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -503,8 +420,8 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getAspect_AspectWildcardImport() {
-		return (EAttribute)aspectEClass.getEStructuralFeatures().get(3);
+	public EReference getAspect_EcoreFragment() {
+		return (EReference)aspectEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -521,17 +438,8 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInheritance_SubMetamodel() {
+	public EReference getInheritance_SuperLanguage() {
 		return (EReference)inheritanceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getInheritance_SuperMetamodel() {
-		return (EReference)inheritanceEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -737,8 +645,8 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEcore() {
-		return ecoreEClass;
+	public EClass getImport() {
+		return importEClass;
 	}
 
 	/**
@@ -746,8 +654,8 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEcore_EcoreUri() {
-		return (EAttribute)ecoreEClass.getEStructuralFeatures().get(0);
+	public EAttribute getImport_EcoreUri() {
+		return (EAttribute)importEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -755,8 +663,8 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEcore_GenmodelUris() {
-		return (EAttribute)ecoreEClass.getEStructuralFeatures().get(1);
+	public EAttribute getImport_GenmodelUris() {
+		return (EAttribute)importEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -773,7 +681,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMerge_Language() {
+	public EReference getMerge_MergedLanguage() {
 		return (EReference)mergeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -791,7 +699,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSlice_Language() {
+	public EReference getSlice_SlicedLanguage() {
 		return (EReference)sliceEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -802,6 +710,123 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 */
 	public EAttribute getSlice_Roots() {
 		return (EAttribute)sliceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLanguage() {
+		return languageEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLanguage_Operators() {
+		return (EReference)languageEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLanguage_ExactType() {
+		return (EReference)languageEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLanguage_Implements() {
+		return (EReference)languageEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLanguage_Requires() {
+		return (EReference)languageEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLanguage_Syntax() {
+		return (EReference)languageEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLanguage_Semantics() {
+		return (EReference)languageEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLanguage_ExactTypeName() {
+		return (EAttribute)languageEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLanguage_ExactTypeUri() {
+		return (EAttribute)languageEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLanguage_ResourceType() {
+		return (EAttribute)languageEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLanguage_ResourceUri() {
+		return (EAttribute)languageEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getWeave() {
+		return weaveEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getWeave_Aspect() {
+		return (EReference)weaveEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -850,19 +875,8 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		createEAttribute(elementEClass, ELEMENT__NAME);
 
 		metamodelEClass = createEClass(METAMODEL);
-		createEReference(metamodelEClass, METAMODEL__ASPECTS);
-		createEReference(metamodelEClass, METAMODEL__EXACT_TYPE);
-		createEReference(metamodelEClass, METAMODEL__IMPLEMENTS);
-		createEReference(metamodelEClass, METAMODEL__REQUIRES);
-		createEReference(metamodelEClass, METAMODEL__INHERITANCE_RELATION);
-		createEAttribute(metamodelEClass, METAMODEL__EXACT_TYPE_NAME);
-		createEAttribute(metamodelEClass, METAMODEL__EXACT_TYPE_URI);
-		createEAttribute(metamodelEClass, METAMODEL__RESOURCE_TYPE);
-		createEAttribute(metamodelEClass, METAMODEL__RESOURCE_URI);
 		createEReference(metamodelEClass, METAMODEL__XTEXT_SETUP_REF);
-		createEAttribute(metamodelEClass, METAMODEL__GENMODEL_URIS);
 		createEReference(metamodelEClass, METAMODEL__MAPPINGS);
-		createEReference(metamodelEClass, METAMODEL__OPERATORS);
 
 		modelTypeEClass = createEClass(MODEL_TYPE);
 		createEReference(modelTypeEClass, MODEL_TYPE__SUBTYPING_RELATIONS);
@@ -874,12 +888,11 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		aspectEClass = createEClass(ASPECT);
 		createEReference(aspectEClass, ASPECT__ASPECT_TYPE_REF);
 		createEReference(aspectEClass, ASPECT__ASPECTED_CLASS);
-		createEReference(aspectEClass, ASPECT__ECORE_FRAGMENT);
 		createEAttribute(aspectEClass, ASPECT__ASPECT_WILDCARD_IMPORT);
+		createEReference(aspectEClass, ASPECT__ECORE_FRAGMENT);
 
 		inheritanceEClass = createEClass(INHERITANCE);
-		createEReference(inheritanceEClass, INHERITANCE__SUB_METAMODEL);
-		createEReference(inheritanceEClass, INHERITANCE__SUPER_METAMODEL);
+		createEReference(inheritanceEClass, INHERITANCE__SUPER_LANGUAGE);
 
 		subtypingEClass = createEClass(SUBTYPING);
 		createEReference(subtypingEClass, SUBTYPING__SUB_TYPE);
@@ -910,16 +923,31 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 
 		operatorEClass = createEClass(OPERATOR);
 
-		ecoreEClass = createEClass(ECORE);
-		createEAttribute(ecoreEClass, ECORE__ECORE_URI);
-		createEAttribute(ecoreEClass, ECORE__GENMODEL_URIS);
+		importEClass = createEClass(IMPORT);
+		createEAttribute(importEClass, IMPORT__ECORE_URI);
+		createEAttribute(importEClass, IMPORT__GENMODEL_URIS);
 
 		mergeEClass = createEClass(MERGE);
-		createEReference(mergeEClass, MERGE__LANGUAGE);
+		createEReference(mergeEClass, MERGE__MERGED_LANGUAGE);
 
 		sliceEClass = createEClass(SLICE);
-		createEReference(sliceEClass, SLICE__LANGUAGE);
+		createEReference(sliceEClass, SLICE__SLICED_LANGUAGE);
 		createEAttribute(sliceEClass, SLICE__ROOTS);
+
+		languageEClass = createEClass(LANGUAGE);
+		createEReference(languageEClass, LANGUAGE__OPERATORS);
+		createEReference(languageEClass, LANGUAGE__EXACT_TYPE);
+		createEReference(languageEClass, LANGUAGE__IMPLEMENTS);
+		createEReference(languageEClass, LANGUAGE__REQUIRES);
+		createEReference(languageEClass, LANGUAGE__SYNTAX);
+		createEReference(languageEClass, LANGUAGE__SEMANTICS);
+		createEAttribute(languageEClass, LANGUAGE__EXACT_TYPE_NAME);
+		createEAttribute(languageEClass, LANGUAGE__EXACT_TYPE_URI);
+		createEAttribute(languageEClass, LANGUAGE__RESOURCE_TYPE);
+		createEAttribute(languageEClass, LANGUAGE__RESOURCE_URI);
+
+		weaveEClass = createEClass(WEAVE);
+		createEReference(weaveEClass, WEAVE__ASPECT);
 
 		// Create enums
 		resourceTypeEEnum = createEEnum(RESOURCE_TYPE);
@@ -959,17 +987,17 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		metamodelEClass.getESuperTypes().add(this.getModelingElement());
 		modelTypeEClass.getESuperTypes().add(this.getModelingElement());
 		transformationEClass.getESuperTypes().add(this.getElement());
-		aspectEClass.getESuperTypes().add(this.getOperator());
 		inheritanceEClass.getESuperTypes().add(this.getOperator());
 		xbaseTransformationEClass.getESuperTypes().add(this.getTransformation());
 		modelingElementEClass.getESuperTypes().add(this.getElement());
 		mappingEClass.getESuperTypes().add(this.getElement());
-		ecoreEClass.getESuperTypes().add(this.getOperator());
+		importEClass.getESuperTypes().add(this.getOperator());
 		mergeEClass.getESuperTypes().add(this.getOperator());
 		sliceEClass.getESuperTypes().add(this.getOperator());
+		languageEClass.getESuperTypes().add(this.getModelingElement());
+		weaveEClass.getESuperTypes().add(this.getOperator());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(modelTypingSpaceEClass, ModelTypingSpace.class, "ModelTypingSpace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -981,23 +1009,12 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		initEAttribute(getElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(metamodelEClass, Metamodel.class, "Metamodel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMetamodel_Aspects(), this.getAspect(), null, "aspects", null, 0, -1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMetamodel_ExactType(), this.getModelType(), this.getModelType_Extracted(), "exactType", null, 1, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMetamodel_Implements(), this.getModelType(), null, "implements", null, 0, -1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMetamodel_Requires(), this.getModelType(), null, "requires", null, 0, -1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMetamodel_InheritanceRelation(), this.getInheritance(), this.getInheritance_SubMetamodel(), "inheritanceRelation", null, 0, -1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMetamodel_ExactTypeName(), theEcorePackage.getEString(), "exactTypeName", null, 0, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMetamodel_ExactTypeUri(), theEcorePackage.getEString(), "exactTypeUri", null, 0, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMetamodel_ResourceType(), this.getResourceType(), "resourceType", "MELANGE", 0, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMetamodel_ResourceUri(), theEcorePackage.getEString(), "resourceUri", null, 0, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMetamodel_XtextSetupRef(), theTypesPackage.getJvmTypeReference(), null, "xtextSetupRef", null, 0, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMetamodel_GenmodelUris(), ecorePackage.getEString(), "genmodelUris", null, 0, -1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMetamodel_Mappings(), this.getMapping(), this.getMapping_From(), "mappings", null, 0, -1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMetamodel_Operators(), this.getOperator(), null, "operators", null, 0, -1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modelTypeEClass, ModelType.class, "ModelType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelType_SubtypingRelations(), this.getSubtyping(), this.getSubtyping_SubType(), "subtypingRelations", null, 0, -1, ModelType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModelType_Extracted(), this.getMetamodel(), this.getMetamodel_ExactType(), "extracted", null, 0, 1, ModelType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModelType_Extracted(), this.getLanguage(), this.getLanguage_ExactType(), "extracted", null, 0, 1, ModelType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getModelType_MtUri(), theEcorePackage.getEString(), "mtUri", null, 0, 1, ModelType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(transformationEClass, Transformation.class, "Transformation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1005,12 +1022,11 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		initEClass(aspectEClass, Aspect.class, "Aspect", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAspect_AspectTypeRef(), theTypesPackage.getJvmTypeReference(), null, "aspectTypeRef", null, 1, 1, Aspect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAspect_AspectedClass(), theEcorePackage.getEClass(), null, "aspectedClass", null, 0, 1, Aspect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAspect_EcoreFragment(), theEcorePackage.getEPackage(), null, "ecoreFragment", null, 0, 1, Aspect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAspect_AspectWildcardImport(), theEcorePackage.getEString(), "aspectWildcardImport", null, 0, 1, Aspect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAspect_EcoreFragment(), theEcorePackage.getEPackage(), null, "ecoreFragment", null, 1, 1, Aspect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(inheritanceEClass, Inheritance.class, "Inheritance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getInheritance_SubMetamodel(), this.getMetamodel(), this.getMetamodel_InheritanceRelation(), "subMetamodel", null, 1, 1, Inheritance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getInheritance_SuperMetamodel(), this.getMetamodel(), null, "superMetamodel", null, 1, 1, Inheritance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInheritance_SuperLanguage(), this.getLanguage(), null, "superLanguage", null, 1, 1, Inheritance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(subtypingEClass, Subtyping.class, "Subtyping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSubtyping_SubType(), this.getModelType(), this.getModelType_SubtypingRelations(), "subType", null, 1, 1, Subtyping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1039,18 +1055,33 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		initEAttribute(getPropertyBinding_From(), ecorePackage.getEString(), "from", null, 0, 1, PropertyBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPropertyBinding_To(), ecorePackage.getEString(), "to", null, 0, 1, PropertyBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(operatorEClass, Operator.class, "Operator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(operatorEClass, Operator.class, "Operator", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(ecoreEClass, Ecore.class, "Ecore", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getEcore_EcoreUri(), ecorePackage.getEString(), "ecoreUri", null, 0, 1, Ecore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEcore_GenmodelUris(), ecorePackage.getEString(), "genmodelUris", null, 0, -1, Ecore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(importEClass, Import.class, "Import", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getImport_EcoreUri(), ecorePackage.getEString(), "ecoreUri", null, 0, 1, Import.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImport_GenmodelUris(), ecorePackage.getEString(), "genmodelUris", null, 0, -1, Import.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mergeEClass, Merge.class, "Merge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMerge_Language(), this.getMetamodel(), null, "language", null, 0, 1, Merge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMerge_MergedLanguage(), this.getLanguage(), null, "mergedLanguage", null, 1, 1, Merge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sliceEClass, Slice.class, "Slice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSlice_Language(), this.getMetamodel(), null, "language", null, 0, 1, Slice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSlice_SlicedLanguage(), this.getLanguage(), null, "slicedLanguage", null, 1, 1, Slice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSlice_Roots(), ecorePackage.getEString(), "roots", null, 0, -1, Slice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(languageEClass, Language.class, "Language", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLanguage_Operators(), this.getOperator(), null, "operators", null, 0, -1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLanguage_ExactType(), this.getModelType(), this.getModelType_Extracted(), "exactType", null, 0, 1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLanguage_Implements(), this.getModelType(), null, "implements", null, 0, -1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLanguage_Requires(), this.getModelType(), null, "requires", null, 0, -1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLanguage_Syntax(), this.getMetamodel(), null, "syntax", null, 1, 1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLanguage_Semantics(), this.getAspect(), null, "semantics", null, 1, 1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLanguage_ExactTypeName(), theEcorePackage.getEString(), "exactTypeName", null, 0, 1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLanguage_ExactTypeUri(), theEcorePackage.getEString(), "exactTypeUri", null, 0, 1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLanguage_ResourceType(), this.getResourceType(), "resourceType", "MELANGE", 0, 1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLanguage_ResourceUri(), theEcorePackage.getEString(), "resourceUri", null, 0, 1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(weaveEClass, Weave.class, "Weave", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getWeave_Aspect(), this.getAspect(), null, "aspect", null, 1, 1, Weave.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(resourceTypeEEnum, ResourceType.class, "ResourceType");

@@ -13,12 +13,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.ClassBinding#getFrom <em>From</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.ClassBinding#getTo <em>To</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.ClassBinding#getProperties <em>Properties</em>}</li>
  * </ul>
- * </p>
  *
  * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getClassBinding()
  * @model

@@ -47,7 +47,7 @@ public class MelangeSwitch<T> extends Switch<T> {
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @parameter ePackage the package in question.
+	 * @param ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
@@ -81,8 +81,6 @@ public class MelangeSwitch<T> extends Switch<T> {
 			case MelangePackage.METAMODEL: {
 				Metamodel metamodel = (Metamodel)theEObject;
 				T result = caseMetamodel(metamodel);
-				if (result == null) result = caseModelingElement(metamodel);
-				if (result == null) result = caseElement(metamodel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -104,7 +102,6 @@ public class MelangeSwitch<T> extends Switch<T> {
 			case MelangePackage.ASPECT: {
 				Aspect aspect = (Aspect)theEObject;
 				T result = caseAspect(aspect);
-				if (result == null) result = caseOperator(aspect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -161,10 +158,10 @@ public class MelangeSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MelangePackage.ECORE: {
-				Ecore ecore = (Ecore)theEObject;
-				T result = caseEcore(ecore);
-				if (result == null) result = caseOperator(ecore);
+			case MelangePackage.IMPORT: {
+				Import import_ = (Import)theEObject;
+				T result = caseImport(import_);
+				if (result == null) result = caseOperator(import_);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -179,6 +176,21 @@ public class MelangeSwitch<T> extends Switch<T> {
 				Slice slice = (Slice)theEObject;
 				T result = caseSlice(slice);
 				if (result == null) result = caseOperator(slice);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MelangePackage.LANGUAGE: {
+				Language language = (Language)theEObject;
+				T result = caseLanguage(language);
+				if (result == null) result = caseModelingElement(language);
+				if (result == null) result = caseElement(language);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MelangePackage.WEAVE: {
+				Weave weave = (Weave)theEObject;
+				T result = caseWeave(weave);
+				if (result == null) result = caseOperator(weave);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -397,17 +409,17 @@ public class MelangeSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ecore</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Import</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ecore</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Import</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseEcore(Ecore object) {
+	public T caseImport(Import object) {
 		return null;
 	}
 
@@ -438,6 +450,36 @@ public class MelangeSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSlice(Slice object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Language</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Language</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLanguage(Language object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Weave</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Weave</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWeave(Weave object) {
 		return null;
 	}
 

@@ -2,8 +2,8 @@
  */
 package fr.inria.diverse.melange.metamodel.melange.impl;
 
+import fr.inria.diverse.melange.metamodel.melange.Language;
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
-import fr.inria.diverse.melange.metamodel.melange.Metamodel;
 import fr.inria.diverse.melange.metamodel.melange.ModelType;
 import fr.inria.diverse.melange.metamodel.melange.Subtyping;
 
@@ -28,12 +28,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypeImpl#getSubtypingRelations <em>Subtyping Relations</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypeImpl#getExtracted <em>Extracted</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypeImpl#getMtUri <em>Mt Uri</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -56,7 +56,7 @@ public class ModelTypeImpl extends ModelingElementImpl implements ModelType {
 	 * @generated
 	 * @ordered
 	 */
-	protected Metamodel extracted;
+	protected Language extracted;
 
 	/**
 	 * The default value of the '{@link #getMtUri() <em>Mt Uri</em>}' attribute.
@@ -114,10 +114,10 @@ public class ModelTypeImpl extends ModelingElementImpl implements ModelType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Metamodel getExtracted() {
+	public Language getExtracted() {
 		if (extracted != null && extracted.eIsProxy()) {
 			InternalEObject oldExtracted = (InternalEObject)extracted;
-			extracted = (Metamodel)eResolveProxy(oldExtracted);
+			extracted = (Language)eResolveProxy(oldExtracted);
 			if (extracted != oldExtracted) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MelangePackage.MODEL_TYPE__EXTRACTED, oldExtracted, extracted));
@@ -131,7 +131,7 @@ public class ModelTypeImpl extends ModelingElementImpl implements ModelType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Metamodel basicGetExtracted() {
+	public Language basicGetExtracted() {
 		return extracted;
 	}
 
@@ -140,8 +140,8 @@ public class ModelTypeImpl extends ModelingElementImpl implements ModelType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetExtracted(Metamodel newExtracted, NotificationChain msgs) {
-		Metamodel oldExtracted = extracted;
+	public NotificationChain basicSetExtracted(Language newExtracted, NotificationChain msgs) {
+		Language oldExtracted = extracted;
 		extracted = newExtracted;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MelangePackage.MODEL_TYPE__EXTRACTED, oldExtracted, newExtracted);
@@ -155,13 +155,13 @@ public class ModelTypeImpl extends ModelingElementImpl implements ModelType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExtracted(Metamodel newExtracted) {
+	public void setExtracted(Language newExtracted) {
 		if (newExtracted != extracted) {
 			NotificationChain msgs = null;
 			if (extracted != null)
-				msgs = ((InternalEObject)extracted).eInverseRemove(this, MelangePackage.METAMODEL__EXACT_TYPE, Metamodel.class, msgs);
+				msgs = ((InternalEObject)extracted).eInverseRemove(this, MelangePackage.LANGUAGE__EXACT_TYPE, Language.class, msgs);
 			if (newExtracted != null)
-				msgs = ((InternalEObject)newExtracted).eInverseAdd(this, MelangePackage.METAMODEL__EXACT_TYPE, Metamodel.class, msgs);
+				msgs = ((InternalEObject)newExtracted).eInverseAdd(this, MelangePackage.LANGUAGE__EXACT_TYPE, Language.class, msgs);
 			msgs = basicSetExtracted(newExtracted, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -203,8 +203,8 @@ public class ModelTypeImpl extends ModelingElementImpl implements ModelType {
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSubtypingRelations()).basicAdd(otherEnd, msgs);
 			case MelangePackage.MODEL_TYPE__EXTRACTED:
 				if (extracted != null)
-					msgs = ((InternalEObject)extracted).eInverseRemove(this, MelangePackage.METAMODEL__EXACT_TYPE, Metamodel.class, msgs);
-				return basicSetExtracted((Metamodel)otherEnd, msgs);
+					msgs = ((InternalEObject)extracted).eInverseRemove(this, MelangePackage.LANGUAGE__EXACT_TYPE, Language.class, msgs);
+				return basicSetExtracted((Language)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -258,7 +258,7 @@ public class ModelTypeImpl extends ModelingElementImpl implements ModelType {
 				getSubtypingRelations().addAll((Collection<? extends Subtyping>)newValue);
 				return;
 			case MelangePackage.MODEL_TYPE__EXTRACTED:
-				setExtracted((Metamodel)newValue);
+				setExtracted((Language)newValue);
 				return;
 			case MelangePackage.MODEL_TYPE__MT_URI:
 				setMtUri((String)newValue);
@@ -279,7 +279,7 @@ public class ModelTypeImpl extends ModelingElementImpl implements ModelType {
 				getSubtypingRelations().clear();
 				return;
 			case MelangePackage.MODEL_TYPE__EXTRACTED:
-				setExtracted((Metamodel)null);
+				setExtracted((Language)null);
 				return;
 			case MelangePackage.MODEL_TYPE__MT_URI:
 				setMtUri(MT_URI_EDEFAULT);

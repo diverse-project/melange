@@ -13,12 +13,10 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Operator</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
-public class OperatorImpl extends MinimalEObjectImpl.Container implements Operator {
+public abstract class OperatorImpl extends MinimalEObjectImpl.Container implements Operator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

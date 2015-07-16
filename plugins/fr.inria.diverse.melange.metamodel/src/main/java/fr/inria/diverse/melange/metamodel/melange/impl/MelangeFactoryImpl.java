@@ -67,10 +67,11 @@ public class MelangeFactoryImpl extends EFactoryImpl implements MelangeFactory {
 			case MelangePackage.MAPPING: return createMapping();
 			case MelangePackage.CLASS_BINDING: return createClassBinding();
 			case MelangePackage.PROPERTY_BINDING: return createPropertyBinding();
-			case MelangePackage.OPERATOR: return createOperator();
-			case MelangePackage.ECORE: return createEcore();
+			case MelangePackage.IMPORT: return createImport();
 			case MelangePackage.MERGE: return createMerge();
 			case MelangePackage.SLICE: return createSlice();
+			case MelangePackage.LANGUAGE: return createLanguage();
+			case MelangePackage.WEAVE: return createWeave();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -211,19 +212,9 @@ public class MelangeFactoryImpl extends EFactoryImpl implements MelangeFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operator createOperator() {
-		OperatorImpl operator = new OperatorImpl();
-		return operator;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Ecore createEcore() {
-		EcoreImpl ecore = new EcoreImpl();
-		return ecore;
+	public Import createImport() {
+		ImportImpl import_ = new ImportImpl();
+		return import_;
 	}
 
 	/**
@@ -244,6 +235,26 @@ public class MelangeFactoryImpl extends EFactoryImpl implements MelangeFactory {
 	public Slice createSlice() {
 		SliceImpl slice = new SliceImpl();
 		return slice;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Language createLanguage() {
+		LanguageImpl language = new LanguageImpl();
+		return language;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Weave createWeave() {
+		WeaveImpl weave = new WeaveImpl();
+		return weave;
 	}
 
 	/**

@@ -3,6 +3,7 @@
 package fr.inria.diverse.melange.metamodel.melange;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.xtext.common.types.JvmTypeReference;
@@ -14,19 +15,19 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Aspect#getAspectTypeRef <em>Aspect Type Ref</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Aspect#getAspectedClass <em>Aspected Class</em>}</li>
- *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Aspect#getEcoreFragment <em>Ecore Fragment</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Aspect#getAspectWildcardImport <em>Aspect Wildcard Import</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Aspect#getEcoreFragment <em>Ecore Fragment</em>}</li>
  * </ul>
- * </p>
  *
  * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getAspect()
  * @model
  * @generated
  */
-public interface Aspect extends Operator {
+public interface Aspect extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Aspect Type Ref</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -80,32 +81,6 @@ public interface Aspect extends Operator {
 	void setAspectedClass(EClass value);
 
 	/**
-	 * Returns the value of the '<em><b>Ecore Fragment</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Ecore Fragment</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Ecore Fragment</em>' containment reference.
-	 * @see #setEcoreFragment(EPackage)
-	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getAspect_EcoreFragment()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EPackage getEcoreFragment();
-
-	/**
-	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.Aspect#getEcoreFragment <em>Ecore Fragment</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Ecore Fragment</em>' containment reference.
-	 * @see #getEcoreFragment()
-	 * @generated
-	 */
-	void setEcoreFragment(EPackage value);
-
-	/**
 	 * Returns the value of the '<em><b>Aspect Wildcard Import</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -130,5 +105,31 @@ public interface Aspect extends Operator {
 	 * @generated
 	 */
 	void setAspectWildcardImport(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Ecore Fragment</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Ecore Fragment</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Ecore Fragment</em>' containment reference.
+	 * @see #setEcoreFragment(EPackage)
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getAspect_EcoreFragment()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	EPackage getEcoreFragment();
+
+	/**
+	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.Aspect#getEcoreFragment <em>Ecore Fragment</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Ecore Fragment</em>' containment reference.
+	 * @see #getEcoreFragment()
+	 * @generated
+	 */
+	void setEcoreFragment(EPackage value);
 
 } // Aspect

@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.xtext.common.types.JvmTypeReference;
 
@@ -22,17 +23,17 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.AspectImpl#getAspectTypeRef <em>Aspect Type Ref</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.AspectImpl#getAspectedClass <em>Aspected Class</em>}</li>
- *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.AspectImpl#getEcoreFragment <em>Ecore Fragment</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.AspectImpl#getAspectWildcardImport <em>Aspect Wildcard Import</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.AspectImpl#getEcoreFragment <em>Ecore Fragment</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class AspectImpl extends OperatorImpl implements Aspect {
+public class AspectImpl extends MinimalEObjectImpl.Container implements Aspect {
 	/**
 	 * The cached value of the '{@link #getAspectTypeRef() <em>Aspect Type Ref</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -54,16 +55,6 @@ public class AspectImpl extends OperatorImpl implements Aspect {
 	protected EClass aspectedClass;
 
 	/**
-	 * The cached value of the '{@link #getEcoreFragment() <em>Ecore Fragment</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEcoreFragment()
-	 * @generated
-	 * @ordered
-	 */
-	protected EPackage ecoreFragment;
-
-	/**
 	 * The default value of the '{@link #getAspectWildcardImport() <em>Aspect Wildcard Import</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -82,6 +73,16 @@ public class AspectImpl extends OperatorImpl implements Aspect {
 	 * @ordered
 	 */
 	protected String aspectWildcardImport = ASPECT_WILDCARD_IMPORT_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getEcoreFragment() <em>Ecore Fragment</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEcoreFragment()
+	 * @generated
+	 * @ordered
+	 */
+	protected EPackage ecoreFragment;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -188,6 +189,27 @@ public class AspectImpl extends OperatorImpl implements Aspect {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getAspectWildcardImport() {
+		return aspectWildcardImport;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAspectWildcardImport(String newAspectWildcardImport) {
+		String oldAspectWildcardImport = aspectWildcardImport;
+		aspectWildcardImport = newAspectWildcardImport;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.ASPECT__ASPECT_WILDCARD_IMPORT, oldAspectWildcardImport, aspectWildcardImport));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EPackage getEcoreFragment() {
 		return ecoreFragment;
 	}
@@ -231,27 +253,6 @@ public class AspectImpl extends OperatorImpl implements Aspect {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getAspectWildcardImport() {
-		return aspectWildcardImport;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAspectWildcardImport(String newAspectWildcardImport) {
-		String oldAspectWildcardImport = aspectWildcardImport;
-		aspectWildcardImport = newAspectWildcardImport;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.ASPECT__ASPECT_WILDCARD_IMPORT, oldAspectWildcardImport, aspectWildcardImport));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -276,10 +277,10 @@ public class AspectImpl extends OperatorImpl implements Aspect {
 			case MelangePackage.ASPECT__ASPECTED_CLASS:
 				if (resolve) return getAspectedClass();
 				return basicGetAspectedClass();
-			case MelangePackage.ASPECT__ECORE_FRAGMENT:
-				return getEcoreFragment();
 			case MelangePackage.ASPECT__ASPECT_WILDCARD_IMPORT:
 				return getAspectWildcardImport();
+			case MelangePackage.ASPECT__ECORE_FRAGMENT:
+				return getEcoreFragment();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -298,11 +299,11 @@ public class AspectImpl extends OperatorImpl implements Aspect {
 			case MelangePackage.ASPECT__ASPECTED_CLASS:
 				setAspectedClass((EClass)newValue);
 				return;
-			case MelangePackage.ASPECT__ECORE_FRAGMENT:
-				setEcoreFragment((EPackage)newValue);
-				return;
 			case MelangePackage.ASPECT__ASPECT_WILDCARD_IMPORT:
 				setAspectWildcardImport((String)newValue);
+				return;
+			case MelangePackage.ASPECT__ECORE_FRAGMENT:
+				setEcoreFragment((EPackage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -322,11 +323,11 @@ public class AspectImpl extends OperatorImpl implements Aspect {
 			case MelangePackage.ASPECT__ASPECTED_CLASS:
 				setAspectedClass((EClass)null);
 				return;
-			case MelangePackage.ASPECT__ECORE_FRAGMENT:
-				setEcoreFragment((EPackage)null);
-				return;
 			case MelangePackage.ASPECT__ASPECT_WILDCARD_IMPORT:
 				setAspectWildcardImport(ASPECT_WILDCARD_IMPORT_EDEFAULT);
+				return;
+			case MelangePackage.ASPECT__ECORE_FRAGMENT:
+				setEcoreFragment((EPackage)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -344,10 +345,10 @@ public class AspectImpl extends OperatorImpl implements Aspect {
 				return aspectTypeRef != null;
 			case MelangePackage.ASPECT__ASPECTED_CLASS:
 				return aspectedClass != null;
-			case MelangePackage.ASPECT__ECORE_FRAGMENT:
-				return ecoreFragment != null;
 			case MelangePackage.ASPECT__ASPECT_WILDCARD_IMPORT:
 				return ASPECT_WILDCARD_IMPORT_EDEFAULT == null ? aspectWildcardImport != null : !ASPECT_WILDCARD_IMPORT_EDEFAULT.equals(aspectWildcardImport);
+			case MelangePackage.ASPECT__ECORE_FRAGMENT:
+				return ecoreFragment != null;
 		}
 		return super.eIsSet(featureID);
 	}

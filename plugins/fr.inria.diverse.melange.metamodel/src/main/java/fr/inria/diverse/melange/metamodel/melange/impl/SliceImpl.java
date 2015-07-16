@@ -2,8 +2,8 @@
  */
 package fr.inria.diverse.melange.metamodel.melange.impl;
 
+import fr.inria.diverse.melange.metamodel.melange.Language;
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
-import fr.inria.diverse.melange.metamodel.melange.Metamodel;
 import fr.inria.diverse.melange.metamodel.melange.Slice;
 
 import java.util.Collection;
@@ -25,24 +25,24 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
- *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.SliceImpl#getLanguage <em>Language</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.SliceImpl#getSlicedLanguage <em>Sliced Language</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.SliceImpl#getRoots <em>Roots</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class SliceImpl extends OperatorImpl implements Slice {
 	/**
-	 * The cached value of the '{@link #getLanguage() <em>Language</em>}' reference.
+	 * The cached value of the '{@link #getSlicedLanguage() <em>Sliced Language</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLanguage()
+	 * @see #getSlicedLanguage()
 	 * @generated
 	 * @ordered
 	 */
-	protected Metamodel language;
+	protected Language slicedLanguage;
 
 	/**
 	 * The cached value of the '{@link #getRoots() <em>Roots</em>}' attribute list.
@@ -78,16 +78,16 @@ public class SliceImpl extends OperatorImpl implements Slice {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Metamodel getLanguage() {
-		if (language != null && language.eIsProxy()) {
-			InternalEObject oldLanguage = (InternalEObject)language;
-			language = (Metamodel)eResolveProxy(oldLanguage);
-			if (language != oldLanguage) {
+	public Language getSlicedLanguage() {
+		if (slicedLanguage != null && slicedLanguage.eIsProxy()) {
+			InternalEObject oldSlicedLanguage = (InternalEObject)slicedLanguage;
+			slicedLanguage = (Language)eResolveProxy(oldSlicedLanguage);
+			if (slicedLanguage != oldSlicedLanguage) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MelangePackage.SLICE__LANGUAGE, oldLanguage, language));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MelangePackage.SLICE__SLICED_LANGUAGE, oldSlicedLanguage, slicedLanguage));
 			}
 		}
-		return language;
+		return slicedLanguage;
 	}
 
 	/**
@@ -95,8 +95,8 @@ public class SliceImpl extends OperatorImpl implements Slice {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Metamodel basicGetLanguage() {
-		return language;
+	public Language basicGetSlicedLanguage() {
+		return slicedLanguage;
 	}
 
 	/**
@@ -104,11 +104,11 @@ public class SliceImpl extends OperatorImpl implements Slice {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLanguage(Metamodel newLanguage) {
-		Metamodel oldLanguage = language;
-		language = newLanguage;
+	public void setSlicedLanguage(Language newSlicedLanguage) {
+		Language oldSlicedLanguage = slicedLanguage;
+		slicedLanguage = newSlicedLanguage;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.SLICE__LANGUAGE, oldLanguage, language));
+			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.SLICE__SLICED_LANGUAGE, oldSlicedLanguage, slicedLanguage));
 	}
 
 	/**
@@ -131,9 +131,9 @@ public class SliceImpl extends OperatorImpl implements Slice {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MelangePackage.SLICE__LANGUAGE:
-				if (resolve) return getLanguage();
-				return basicGetLanguage();
+			case MelangePackage.SLICE__SLICED_LANGUAGE:
+				if (resolve) return getSlicedLanguage();
+				return basicGetSlicedLanguage();
 			case MelangePackage.SLICE__ROOTS:
 				return getRoots();
 		}
@@ -149,8 +149,8 @@ public class SliceImpl extends OperatorImpl implements Slice {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MelangePackage.SLICE__LANGUAGE:
-				setLanguage((Metamodel)newValue);
+			case MelangePackage.SLICE__SLICED_LANGUAGE:
+				setSlicedLanguage((Language)newValue);
 				return;
 			case MelangePackage.SLICE__ROOTS:
 				getRoots().clear();
@@ -168,8 +168,8 @@ public class SliceImpl extends OperatorImpl implements Slice {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MelangePackage.SLICE__LANGUAGE:
-				setLanguage((Metamodel)null);
+			case MelangePackage.SLICE__SLICED_LANGUAGE:
+				setSlicedLanguage((Language)null);
 				return;
 			case MelangePackage.SLICE__ROOTS:
 				getRoots().clear();
@@ -186,8 +186,8 @@ public class SliceImpl extends OperatorImpl implements Slice {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MelangePackage.SLICE__LANGUAGE:
-				return language != null;
+			case MelangePackage.SLICE__SLICED_LANGUAGE:
+				return slicedLanguage != null;
 			case MelangePackage.SLICE__ROOTS:
 				return roots != null && !roots.isEmpty();
 		}

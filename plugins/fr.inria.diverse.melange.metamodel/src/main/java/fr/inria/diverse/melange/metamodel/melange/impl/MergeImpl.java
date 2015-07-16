@@ -2,9 +2,9 @@
  */
 package fr.inria.diverse.melange.metamodel.melange.impl;
 
+import fr.inria.diverse.melange.metamodel.melange.Language;
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
 import fr.inria.diverse.melange.metamodel.melange.Merge;
-import fr.inria.diverse.melange.metamodel.melange.Metamodel;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -19,23 +19,23 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MergeImpl#getLanguage <em>Language</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MergeImpl#getMergedLanguage <em>Merged Language</em>}</li>
+ * </ul>
  *
  * @generated
  */
 public class MergeImpl extends OperatorImpl implements Merge {
 	/**
-	 * The cached value of the '{@link #getLanguage() <em>Language</em>}' reference.
+	 * The cached value of the '{@link #getMergedLanguage() <em>Merged Language</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLanguage()
+	 * @see #getMergedLanguage()
 	 * @generated
 	 * @ordered
 	 */
-	protected Metamodel language;
+	protected Language mergedLanguage;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -61,16 +61,16 @@ public class MergeImpl extends OperatorImpl implements Merge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Metamodel getLanguage() {
-		if (language != null && language.eIsProxy()) {
-			InternalEObject oldLanguage = (InternalEObject)language;
-			language = (Metamodel)eResolveProxy(oldLanguage);
-			if (language != oldLanguage) {
+	public Language getMergedLanguage() {
+		if (mergedLanguage != null && mergedLanguage.eIsProxy()) {
+			InternalEObject oldMergedLanguage = (InternalEObject)mergedLanguage;
+			mergedLanguage = (Language)eResolveProxy(oldMergedLanguage);
+			if (mergedLanguage != oldMergedLanguage) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MelangePackage.MERGE__LANGUAGE, oldLanguage, language));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MelangePackage.MERGE__MERGED_LANGUAGE, oldMergedLanguage, mergedLanguage));
 			}
 		}
-		return language;
+		return mergedLanguage;
 	}
 
 	/**
@@ -78,8 +78,8 @@ public class MergeImpl extends OperatorImpl implements Merge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Metamodel basicGetLanguage() {
-		return language;
+	public Language basicGetMergedLanguage() {
+		return mergedLanguage;
 	}
 
 	/**
@@ -87,11 +87,11 @@ public class MergeImpl extends OperatorImpl implements Merge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLanguage(Metamodel newLanguage) {
-		Metamodel oldLanguage = language;
-		language = newLanguage;
+	public void setMergedLanguage(Language newMergedLanguage) {
+		Language oldMergedLanguage = mergedLanguage;
+		mergedLanguage = newMergedLanguage;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.MERGE__LANGUAGE, oldLanguage, language));
+			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.MERGE__MERGED_LANGUAGE, oldMergedLanguage, mergedLanguage));
 	}
 
 	/**
@@ -102,9 +102,9 @@ public class MergeImpl extends OperatorImpl implements Merge {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MelangePackage.MERGE__LANGUAGE:
-				if (resolve) return getLanguage();
-				return basicGetLanguage();
+			case MelangePackage.MERGE__MERGED_LANGUAGE:
+				if (resolve) return getMergedLanguage();
+				return basicGetMergedLanguage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -117,8 +117,8 @@ public class MergeImpl extends OperatorImpl implements Merge {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MelangePackage.MERGE__LANGUAGE:
-				setLanguage((Metamodel)newValue);
+			case MelangePackage.MERGE__MERGED_LANGUAGE:
+				setMergedLanguage((Language)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -132,8 +132,8 @@ public class MergeImpl extends OperatorImpl implements Merge {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MelangePackage.MERGE__LANGUAGE:
-				setLanguage((Metamodel)null);
+			case MelangePackage.MERGE__MERGED_LANGUAGE:
+				setMergedLanguage((Language)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -147,8 +147,8 @@ public class MergeImpl extends OperatorImpl implements Merge {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MelangePackage.MERGE__LANGUAGE:
-				return language != null;
+			case MelangePackage.MERGE__MERGED_LANGUAGE:
+				return mergedLanguage != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -11,12 +11,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.ModelType#getSubtypingRelations <em>Subtyping Relations</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.ModelType#getExtracted <em>Extracted</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.ModelType#getMtUri <em>Mt Uri</em>}</li>
  * </ul>
- * </p>
  *
  * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getModelType()
  * @model
@@ -43,7 +43,7 @@ public interface ModelType extends ModelingElement {
 
 	/**
 	 * Returns the value of the '<em><b>Extracted</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getExactType <em>Exact Type</em>}'.
+	 * It is bidirectional and its opposite is '{@link fr.inria.diverse.melange.metamodel.melange.Language#getExactType <em>Exact Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Extracted</em>' reference isn't clear,
@@ -51,13 +51,13 @@ public interface ModelType extends ModelingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Extracted</em>' reference.
-	 * @see #setExtracted(Metamodel)
+	 * @see #setExtracted(Language)
 	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getModelType_Extracted()
-	 * @see fr.inria.diverse.melange.metamodel.melange.Metamodel#getExactType
+	 * @see fr.inria.diverse.melange.metamodel.melange.Language#getExactType
 	 * @model opposite="exactType"
 	 * @generated
 	 */
-	Metamodel getExtracted();
+	Language getExtracted();
 
 	/**
 	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.ModelType#getExtracted <em>Extracted</em>}' reference.
@@ -67,7 +67,7 @@ public interface ModelType extends ModelingElement {
 	 * @see #getExtracted()
 	 * @generated
 	 */
-	void setExtracted(Metamodel value);
+	void setExtracted(Language value);
 
 	/**
 	 * Returns the value of the '<em><b>Mt Uri</b></em>' attribute.

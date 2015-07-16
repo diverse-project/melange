@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  *
  * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getOperator()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface Operator extends EObject {
