@@ -224,13 +224,22 @@ public interface MelangePackage extends EPackage {
 	int METAMODEL__ECORE_URI = MODELING_ELEMENT__ECORE_URI;
 
 	/**
+	 * The feature id for the '<em><b>Owning Language</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL__OWNING_LANGUAGE = MODELING_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Metamodel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL_FEATURE_COUNT = MODELING_ELEMENT_FEATURE_COUNT + 0;
+	int METAMODEL_FEATURE_COUNT = MODELING_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Metamodel</em>' class.
@@ -1198,6 +1207,17 @@ public interface MelangePackage extends EPackage {
 	EClass getMetamodel();
 
 	/**
+	 * Returns the meta object for the container reference '{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getOwningLanguage <em>Owning Language</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owning Language</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Metamodel#getOwningLanguage()
+	 * @see #getMetamodel()
+	 * @generated
+	 */
+	EReference getMetamodel_OwningLanguage();
+
+	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.ModelType <em>Model Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1923,6 +1943,14 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EClass METAMODEL = eINSTANCE.getMetamodel();
+
+		/**
+		 * The meta object literal for the '<em><b>Owning Language</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference METAMODEL__OWNING_LANGUAGE = eINSTANCE.getMetamodel_OwningLanguage();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypeImpl <em>Model Type</em>}' class.

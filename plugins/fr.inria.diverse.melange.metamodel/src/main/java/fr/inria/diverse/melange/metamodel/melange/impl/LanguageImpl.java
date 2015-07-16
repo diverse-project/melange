@@ -362,9 +362,9 @@ public class LanguageImpl extends ElementImpl implements Language {
 		if (newSyntax != syntax) {
 			NotificationChain msgs = null;
 			if (syntax != null)
-				msgs = ((InternalEObject)syntax).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MelangePackage.LANGUAGE__SYNTAX, null, msgs);
+				msgs = ((InternalEObject)syntax).eInverseRemove(this, MelangePackage.METAMODEL__OWNING_LANGUAGE, Metamodel.class, msgs);
 			if (newSyntax != null)
-				msgs = ((InternalEObject)newSyntax).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MelangePackage.LANGUAGE__SYNTAX, null, msgs);
+				msgs = ((InternalEObject)newSyntax).eInverseAdd(this, MelangePackage.METAMODEL__OWNING_LANGUAGE, Metamodel.class, msgs);
 			msgs = basicSetSyntax(newSyntax, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -567,6 +567,10 @@ public class LanguageImpl extends ElementImpl implements Language {
 				if (exactType != null)
 					msgs = ((InternalEObject)exactType).eInverseRemove(this, MelangePackage.MODEL_TYPE__EXTRACTED, ModelType.class, msgs);
 				return basicSetExactType((ModelType)otherEnd, msgs);
+			case MelangePackage.LANGUAGE__SYNTAX:
+				if (syntax != null)
+					msgs = ((InternalEObject)syntax).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MelangePackage.LANGUAGE__SYNTAX, null, msgs);
+				return basicSetSyntax((Metamodel)otherEnd, msgs);
 			case MelangePackage.LANGUAGE__MAPPINGS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getMappings()).basicAdd(otherEnd, msgs);
 		}

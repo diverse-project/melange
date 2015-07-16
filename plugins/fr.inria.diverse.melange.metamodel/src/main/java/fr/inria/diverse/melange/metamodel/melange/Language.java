@@ -111,6 +111,7 @@ public interface Language extends Element {
 
 	/**
 	 * Returns the value of the '<em><b>Syntax</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getOwningLanguage <em>Owning Language</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Syntax</em>' containment reference isn't clear,
@@ -120,7 +121,8 @@ public interface Language extends Element {
 	 * @return the value of the '<em>Syntax</em>' containment reference.
 	 * @see #setSyntax(Metamodel)
 	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getLanguage_Syntax()
-	 * @model containment="true" required="true"
+	 * @see fr.inria.diverse.melange.metamodel.melange.Metamodel#getOwningLanguage
+	 * @model opposite="owningLanguage" containment="true" required="true"
 	 * @generated
 	 */
 	Metamodel getSyntax();

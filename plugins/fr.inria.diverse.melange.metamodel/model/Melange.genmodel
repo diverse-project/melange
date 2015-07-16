@@ -21,7 +21,9 @@
     <genClasses image="false" ecoreClass="Melange.ecore#//Element">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Element/name"/>
     </genClasses>
-    <genClasses ecoreClass="Melange.ecore#//Metamodel"/>
+    <genClasses ecoreClass="Melange.ecore#//Metamodel">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Melange.ecore#//Metamodel/owningLanguage"/>
+    </genClasses>
     <genClasses ecoreClass="Melange.ecore#//ModelType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//ModelType/subtypingRelations"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//ModelType/extracted"/>
