@@ -1,9 +1,8 @@
 package fr.inria.diverse.melange.algebra
 
 import com.google.inject.ImplementedBy
-
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.Aspect
+import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 
 /**
@@ -16,6 +15,6 @@ import fr.inria.diverse.melange.metamodel.melange.ModelType
 interface ModelTypeAlgebra
 {
 	def boolean isSubtypeOf(ModelType mt1, ModelType mt2)
-	def boolean isTypedBy(Metamodel mm, ModelType mt)
-	def void weaveAspect(Metamodel mm, Aspect aspect)
+	def boolean isTypedBy(Language l, ModelType mt)
+	def void weaveAspect(Language l, Aspect aspect)
 }

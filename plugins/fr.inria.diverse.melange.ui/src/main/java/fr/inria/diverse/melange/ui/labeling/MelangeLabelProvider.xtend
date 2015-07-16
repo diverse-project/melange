@@ -1,19 +1,20 @@
 package fr.inria.diverse.melange.ui.labeling
 
 import com.google.inject.Inject
-
 import fr.inria.diverse.melange.metamodel.melange.Aspect
+import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
-import fr.inria.diverse.melange.metamodel.melange.Transformation
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
-
+import fr.inria.diverse.melange.metamodel.melange.Transformation
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 import org.eclipse.xtext.common.types.JvmDeclaredType
+import org.eclipse.xtext.xbase.ui.labeling.XbaseLabelProvider
 
-class MelangeLabelProvider extends org.eclipse.xtext.xbase.ui.labeling.XbaseLabelProvider
+class MelangeLabelProvider extends XbaseLabelProvider
 {
 	@Inject
-	new(org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider delegate) {
+	new(AdapterFactoryLabelProvider delegate) {
 		super(delegate)
 	}
 
@@ -21,7 +22,7 @@ class MelangeLabelProvider extends org.eclipse.xtext.xbase.ui.labeling.XbaseLabe
 		return"melange.png"
 	}
 
-	def String image(Metamodel mm) {
+	def String image(Language l) {
 		return "metamodel.png"
 	}
 
@@ -52,7 +53,7 @@ class MelangeLabelProvider extends org.eclipse.xtext.xbase.ui.labeling.XbaseLabe
 		return '''«mt.name»«FOR t : mt.subtypingRelations BEFORE ' \u25C1 ' SEPARATOR ', '»«t.superType.name»«ENDFOR»'''.toString
 	}
 
-	def String text(Metamodel mm) {
-		return '''«mm.name»«FOR t : mm.inheritanceRelation BEFORE '\u25C0' SEPARATOR ', '»«t.superMetamodel.name»«ENDFOR»«FOR t : mm.implements BEFORE ' \u25C1 ' SEPARATOR ', '»«t.name»«ENDFOR»'''.toString
+	def String text(Language l) {
+		return '''«l.name»«FOR t : mm.inheritanceRelation BEFORE '\u25C0' SEPARATOR ', '»«t.superMetamodel.name»«ENDFOR»«FOR t : mm.implements BEFORE ' \u25C1 ' SEPARATOR ', '»«t.name»«ENDFOR»'''.toString
 	}
 }

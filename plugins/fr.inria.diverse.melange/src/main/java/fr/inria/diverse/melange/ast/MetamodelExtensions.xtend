@@ -2,55 +2,27 @@ package fr.inria.diverse.melange.ast
 
 import com.google.common.collect.Lists
 import com.google.inject.Inject
-import fr.inria.diverse.melange.algebra.ModelTypeAlgebra
-import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
-import fr.inria.diverse.melange.metamodel.melange.Aspect
-import fr.inria.diverse.melange.metamodel.melange.Ecore
-import fr.inria.diverse.melange.metamodel.melange.Merge
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
-import fr.inria.diverse.melange.metamodel.melange.ModelType
-import fr.inria.diverse.melange.metamodel.melange.Slice
-import fr.inria.diverse.melange.utils.AspectCopier
 import fr.inria.diverse.melange.utils.EPackageProvider
 import java.io.IOException
 import java.util.List
-import org.apache.log4j.Logger
 import org.eclipse.emf.codegen.ecore.genmodel.GenJDKLevel
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
 import org.eclipse.emf.codegen.ecore.genmodel.GenModelFactory
-import org.eclipse.emf.codegen.ecore.genmodel.generator.GenBaseGeneratorAdapter
-import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil
-import org.eclipse.emf.common.util.BasicMonitor
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EcorePackage
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.xtext.common.types.JvmCustomAnnotationValue
-import org.eclipse.xtext.common.types.JvmDeclaredType
-import org.eclipse.xtext.common.types.JvmTypeAnnotationValue
-import org.eclipse.xtext.naming.IQualifiedNameConverter
-import org.eclipse.xtext.naming.QualifiedName
-import org.eclipse.xtext.xbase.XAbstractFeatureCall
-import org.eclipse.xtext.xbase.XFeatureCall
-import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
-import fr.inria.diverse.melange.metamodel.melange.MelangeFactory
 
 class MetamodelExtensions
 {
 	@Inject extension ModelingElementExtensions
+	@Inject extension LanguageExtensions
 	@Inject extension EcoreExtensions
-	@Inject extension ModelTypeExtensions
-	@Inject extension IQualifiedNameConverter
-	@Inject extension NamingHelper
-	@Inject extension EclipseProjectHelper
-	@Inject ModelTypeAlgebra algebra
 	@Inject EPackageProvider provider
-	@Inject AspectCopier copier
-	@Inject JvmTypeReferenceBuilder.Factory builderFactory
-	static Logger log = Logger.getLogger(MetamodelExtensions)
 
 	def List<GenModel> getGenmodels(Metamodel mm) {
 		return provider.getGenModels(mm)
@@ -59,141 +31,6 @@ class MetamodelExtensions
 	def boolean getIsComplete(Metamodel mm) {
 		return !mm.pkgs.empty && !mm.genmodels.empty
 	}
-
-	def boolean getIsComplete(Aspect asp) {
-		return
-			asp.aspectTypeRef?.type !== null
-			&& asp.aspectTypeRef.type instanceof JvmDeclaredType
-//			&& asp.aspectAnnotationValue !== null
-	}
-
-	/**
-	 * Get all aspects define on the metamodel.
-	 * The priority order is: <br>
-	 * 1) Aspects explicitly defined in the definition of {@link mm}, in top->bottom order <br>
-	 * 2) From Merge relations, in top->bottom order
-	 * 3) From Inheritance relations, in the left->right order <br>
-	 */
-	def List<Aspect> allAspects(Metamodel mm) {
-		val res = newArrayList
-		
-		res.addAll(mm.aspects)
-		val opAspects = mm.operators.map[op|
-							if(op instanceof Slice){
-								(op as Slice).language.allAspects
-							}
-							else if(op instanceof Merge){
-								(op as Merge).language.allAspects
-							}
-							else{
-								newArrayList
-							}
-						].flatten
-		res.addAll(mm.inheritanceRelation.map[superMetamodel.allAspects].flatten)
-		res.addAll(opAspects)
-		
-		return res
-	}
-
-	def Iterable<Aspect> findAspectsOn(Metamodel mm, EClass cls) {
-		return
-			mm.allAspects.filter[asp |
-				asp.aspectedClass?.name !== null
-				&& (
-				   asp.aspectedClass.name == cls.name
-				|| cls.EAllSuperTypes.exists[asp.aspectedClass.name == name]
-				)
-			]
-	}
-
-	def boolean isTypedBy(Metamodel mm, ModelType mt) {
-		return algebra.isTypedBy(mm, mt)
-	}
-
-	def boolean hasSuperMetamodel(Metamodel mm) {
-		return mm.inheritanceRelation.exists[superMetamodel !== null]
-	}
-
-	def boolean hasAspectAnnotation(Aspect asp) {
-		return (asp.aspectTypeRef.type as JvmDeclaredType)?.aspectAnnotationValue !== null 
-	}
-
-	def String getAspectAnnotationValue(Aspect asp) {
-		return (asp.aspectTypeRef.type as JvmDeclaredType)?.aspectAnnotationValue
-	}
-
-	def String getAspectAnnotationValue(JvmDeclaredType t) {
-		// TODO: Remove hard-stringed dependency
-		val aspAnn = t.annotations.findFirst[annotation?.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Aspect"]
-		val aspClassName = aspAnn?.values?.findFirst[valueName == "className"]
-		val aspVal = switch aspClassName {
-			JvmTypeAnnotationValue: aspClassName.values?.head?.simpleName
-			JvmCustomAnnotationValue: (aspClassName.values?.head as XAbstractFeatureCall)?.feature?.simpleName
-			default: null
-		}
-
-		// Xtext 2.8+
-		if (aspVal !== null && aspVal.matches("<implicit:.*?>")) {
-			return aspVal.substring(aspVal.lastIndexOf(".") + 1, aspVal.length - 1)
-		}
-
-		if (aspVal !== null && aspVal.contains("."))
-			return aspVal.substring(aspVal.lastIndexOf(".") + 1, aspVal.length)
-
-		return aspVal
-	}
-
-	def String getAspectAnnotationValueType(JvmDeclaredType t) {
-		val aspAnn = t.annotations.findFirst[annotation?.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Aspect"]
-		val aspClassName = aspAnn?.values?.findFirst[valueName == "className"]
-		val aspVal = switch aspClassName {
-			JvmTypeAnnotationValue: aspClassName.values?.head?.qualifiedName
-			JvmCustomAnnotationValue: {
-				val feature = aspClassName.values?.head as XAbstractFeatureCall
-				feature.feature.qualifiedName
-			}
-		}
-
-		return aspVal
-	}
-
-	def QualifiedName getTargetedNamespace(Aspect asp) {
-		val aavt = (asp.aspectTypeRef.type as JvmDeclaredType).aspectAnnotationValueType
-		return
-			if (aavt !== null)
-				aavt.toQualifiedName.skipLast(1)
-			else
-				QualifiedName::create
-	}
-
-	def boolean isDefinedOver(Aspect asp, Metamodel mm) {
-		try {
-			return mm.genmodels.filterNull.map[genPackages].flatten.filterNull.exists[
-				packageFqn.toQualifiedName.skipLast(1).toString == asp.targetedNamespace.toString
-			]
-		} catch (IllegalArgumentException e){
-			val unresolvedProxyAspect = (asp.aspectTypeRef.type as JvmDeclaredType).annotations.exists[annotation.eIsProxy]
-			if(unresolvedProxyAspect){
-				log.debug("annotationProcessor dependency missing, please add k3al.annotationprocessor to the classpath ", e)
-				return false	
-			}
-			else 
-				throw e
-		}
-	}
-
-	// FIXME: We should check that the original mm is a super-type of mm
-	// Hard to find the metamodel declaration or the corresponding Ecore file
-	// in the workspace...
-	def boolean canBeCopiedFor(Aspect asp, Metamodel mm) {
-		val unresolvedProxyAspect = (asp.aspectTypeRef.type as JvmDeclaredType).annotations.exists[annotation.eIsProxy]
-		if(unresolvedProxyAspect){
-			// cannot copy the aspect because we don't have a correct dependency to the annotation processor 
-			return false
-		}
-		return true
-	}
-
 
 	def EClass findClass(Metamodel mm, String clsName) {
 		return mm.allClasses.filter(EClass).findFirst[name == clsName]
@@ -217,17 +54,6 @@ class MetamodelExtensions
 		return mm.pkgs.head.allSubPkgs
 	}
 
-	def boolean hasAdapterFor(Metamodel mm, ModelType mt, EClassifier cls) {
-		return mm.hasAdapterFor(mt, cls.name)
-	}
-
-	def boolean hasAdapterFor(Metamodel mm, ModelType mt, String find) {
-		return
-		   mm.^implements.exists[name == mt.name]
-		&& mm.allClasses.exists[name == find]
-		&& mt.allClasses.exists[name == find]
-	}
-
 	def Iterable<EClassifier> getAllClassifiers(Metamodel mm) {
 		return mm.pkgs.map[EClassifiers].flatten
 	}
@@ -236,250 +62,13 @@ class MetamodelExtensions
 		return mm.allClassifiers.filter(EClass)
 	}
 
-	def boolean isUml(Metamodel mm, EClassifier cls) {
-		return mm.pkgs.findFirst[EClassifiers.exists[name == cls.name]] == "uml"
-	}
-
-	// FIXME: Create referenced EClass if they don't exist yet
-	// FIXME: Consider finding EClassifier, not EClass
-	/*def void weaveAspect(Metamodel mm, EClass cls, JvmDeclaredType asp) {
-		asp.declaredOperations
-		.filter[
-			   !simpleName.startsWith("_privk3")
-			&& !simpleName.startsWith("super_")
-			//&& parameters.head?.name == "_self"
-			&& !annotations.exists[annotation.simpleName == "OverrideAspectMethod"]
-			&& visibility == JvmVisibility.PUBLIC
-		]
-		.forEach[op |
-			val featureName = findFeatureNameFor(asp, op)
-			if (featureName === null) {
-				val retCls = mm.findClassifierFor(op.returnType.simpleName)
-
-				// FIXME
-				if (!cls.EOperations.exists[name == op.simpleName]) {
-					cls.EOperations += EcoreFactory.eINSTANCE.createEOperation => [
-						name = op.simpleName
-						op.parameters.forEach[p, i |
-							if (i > 0) {
-								val attrCls = mm.findClassifierFor(p.parameterType.simpleName)
-
-								EParameters += EcoreFactory.eINSTANCE.createEParameter => [pp |
-									pp.name = p.simpleName
-									pp.EType = if (attrCls !== null) attrCls else cls.EPackage.getOrCreateDataType(p.parameterType.simpleName, p.parameterType.qualifiedName)
-								]
-							}
-						]
-						if (op.returnType.simpleName != "void")
-							EType = if (retCls !== null) retCls else cls.EPackage.getOrCreateDataType(op.returnType.simpleName, op.returnType.qualifiedName)
-						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
-					]
-				}
-			} else if (!cls.EStructuralFeatures.exists[name == featureName]) {
-				val retType =
-					if (op.simpleName.startsWith("get") || op.parameters.size == 1)
-						op.returnType.type
-					else
-						op.parameters.get(1).parameterType.type
-				val upperB = if (Collection.isAssignableFrom(retType.class)) -1 else 1
-				val realType =
-					if (
-						   Collection.isAssignableFrom(retType.class)
-						&& retType instanceof JvmTypeParameterDeclarator
-					)
-						(retType as JvmTypeParameterDeclarator).typeParameters.head
-					else
-						retType
-
-				val find = mm.findClass(realType.simpleName)
-				val dt = EcorePackage.eINSTANCE.findClassifier("E" + realType.simpleName.toFirstUpper)
-				if (find !== null) {
-					// Create EReference
-					cls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEReference => [
-						name = featureName
-						EType = find
-						upperBound = upperB
-						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
-					]
-				} else if (dt !== null) {
-					// Create EAttribute
-					cls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEAttribute => [
-						name = featureName
-						EType = dt
-						upperBound = upperB
-						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
-					]
-				} else {
-					// Create new EClass or fix the referenced type
-					// For now, create appropriate datatype with instanceTypeName
-					cls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEAttribute => [
-						name = featureName
-						EType = cls.EPackage.getOrCreateDataType(realType.simpleName, realType.qualifiedName)
-						upperBound = upperB
-						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
-					]
-				}
-			}
-		]
-	}*/
-
-	def void createLocalEcore(Metamodel mm) {
-		mm.createEcore(mm.localEcoreUri)
-	}
-
-	def void createLocalGenmodel(Metamodel mm) {
-		mm.createGenmodel(mm.localEcoreUri, mm.localGenmodelUri, mm.localGenerationPath)
-	}
-
-	def void createExternalEcore(Metamodel mm) {
-		mm.createEcore(mm.externalEcoreUri)
-	}
-
-	def void createExternalGenmodel(Metamodel mm) {
-		mm.createGenmodel(mm.externalEcoreUri, mm.externalGenmodelUri, mm.externalGenerationPath)
-	}
-
-	def String getLocalEcorePath(Metamodel mm) {
-		return '''../«mm.eResource.project.name»/model-gen/«mm.name».ecore'''
-	}
-
-	def String getLocalGenmodelPath(Metamodel mm) {
-		return '''../«mm.eResource.project.name»/model-gen/«mm.name».genmodel'''
-	}
-
-	def String getLocalGenerationPath(Metamodel mm) {
-		return '''../«mm.eResource.project.name»/emf-gen/'''
-	}
-
-	def String getExternalEcorePath(Metamodel mm) {
-		return '''../«mm.externalRuntimeName»/model/«mm.name».ecore'''
-	}
-
-	def String getExternalGenmodelPath(Metamodel mm) {
-		return '''../«mm.externalRuntimeName»/model/«mm.name».genmodel'''
-	}
-
-	def String getExternalGenerationPath(Metamodel mm) {
-		return '''../«mm.externalRuntimeName»/src/'''
-	}
-
-	def String getLocalEcoreUri(Metamodel mm) {
-		return '''platform:/resource/«mm.eResource.project.name»/model-gen/«mm.name».ecore'''
-	}
-
-	def String getLocalGenmodelUri(Metamodel mm) {
-		return '''platform:/resource/«mm.eResource.project.name»/model-gen/«mm.name».genmodel'''
-	}
-
-	def String getExternalEcoreUri(Metamodel mm) {
-		return '''platform:/resource/«mm.externalRuntimeName»/model/«mm.name».ecore'''
-	}
-
-	def String getExternalGenmodelUri(Metamodel mm) {
-		return '''platform:/resource/«mm.externalRuntimeName»/model/«mm.name».genmodel'''
-	}
-
-	/**
-	 * Get the name of the project containing Java classes reifying the metamodel {@link mm}
-	 */
-	def String getExternalRuntimeName(Metamodel mm) {
-		if (mm.ecoreUri !== null) {
-			val originalProjectName = URI::createURI(mm.ecoreUri).segment(1)
-
-			return originalProjectName
-		}
-		else{
-			return mm.name+"_Gen"
-		}
-//		 else if (mm.inheritanceRelation.superMetamodel.ecoreUri !== null) {
-//			val originalProjectName = URI::createURI(mm.inheritanceRelation.superMetamodel.ecoreUri).segment(1)
-//			
-//			// compute a name as smartly as possible and try to follow the user naming convention
-//			if (originalProjectName.toQualifiedName.segmentCount == 1){
-//				return mm.name.toLowerCase
-//			} else { 
-//				if(originalProjectName.toQualifiedName.lastSegment.equals("model")){
-//					return originalProjectName.toQualifiedName.skipLast(1).append(mm.name.toLowerCase).append("model").toString
-//				} else {
-//					return originalProjectName.toQualifiedName.append(mm.name.toLowerCase).toString
-//				}
-//				
-//			}
-//		}
-	}
-
-	def String getExternalAspectsRuntimeName(Metamodel mm) {
-		val externalRuntimeName = getExternalRuntimeName(mm).toQualifiedName
-		if(externalRuntimeName.lastSegment.equals("model")){
-			return externalRuntimeName.skipLast(1).append("aspects").toString
-		}else{
-			return externalRuntimeName.append("aspects").toString
-		}
-	}
-
-	/**
-	 * Return true if {@link mm} is a merge or an inheritance of metamodels 
-	 */
-	def boolean isGeneratedByMelange(Metamodel mm) {
-		return mm.inheritanceRelation.size > 0 || 
-		(mm.operators.size > 1) || 
-		((mm.operators.size == 1) && (mm.operators.filter(Ecore).empty)) 
-	}
-
-	/**
-	 * Return true if ecore, genmodel & generated EMF packages can be found
-	 * for the metamodel {@link mm}.
-	 */
-	def boolean getRuntimeHasBeenGenerated(Metamodel mm) {
-		if (mm.isGeneratedByMelange) {
-			val segments = newArrayList
-			val gp = mm.genmodels.head?.genPackages?.head
-			val project = mm.eResource.project
-
-			if (gp === null || project === null)
-				return false
-
-			if (gp.basePackage !== null && gp.basePackage.length > 0)
-				segments += gp.basePackage
-			if (gp.prefix !== null && gp.prefix.length > 0)
-				segments += gp.prefix
-
-			val fqn = QualifiedName::create(segments).toString.toLowerCase
-			if ((
-				   project.getFile(mm.localEcorePath).exists
-				&& project.getFile(mm.localGenmodelPath).exists
-				&& project.getFolder(mm.localGenerationPath + fqn).exists
-			) || (
-				   project.getFile(mm.externalEcorePath).exists
-				&& project.getFile(mm.externalGenmodelPath).exists
-				&& project.getFolder(mm.externalGenerationPath + fqn).exists
-			))
-				return true
-			else return false
-		} else
-			return false
-	}
-
-	def void generateCode(GenModel genModel) {
-		genModel.reconcile
-		genModel.canGenerate = true
-		genModel.validateModel = true
-
-		val generator = GenModelUtil::createGenerator(genModel)
-		generator.generate(
-			genModel,
-			GenBaseGeneratorAdapter::MODEL_PROJECT_TYPE,
-			new BasicMonitor.Printing(System::out)
-		)
-	}
-
-	def private void createGenmodel(Metamodel mm, String ecoreUri, String gmUri, String modelDirectory) {
+	def void createGenmodel(Metamodel mm, String ecoreUri, String gmUri, String modelDirectory) {
 		val genmodel = GenModelFactory.eINSTANCE.createGenModel => [
 			it.complianceLevel = GenJDKLevel.JDK70_LITERAL
 			it.modelDirectory = modelDirectory.replaceFirst("platform:/resource", "").replaceFirst("..", "")
 			it.foreignModel += ecoreUri
 			it.modelName = mm.name
-			it.modelPluginID = mm.externalRuntimeName
+			it.modelPluginID = mm.owningLanguage.externalRuntimeName
 			it.initialize(Lists::newArrayList(mm.pkgs))
 		]
 
@@ -492,34 +81,5 @@ class MetamodelExtensions
 		} catch (IOException e) {
 			e.printStackTrace
 		}
-	}
-	
-	/**
-	 * Copy aspects defined on {@link mm} into generated project <br>
-	 * Return a list of created Aspects with type references to the copied classes
-	 */
-	def List<Aspect> createExternalAspects(Metamodel mm) {
-		val res = newArrayList
-		val classesAlreadyWeaved = newArrayList
-		
-		mm.allAspects.forEach[asp |
-			if (asp.isComplete) {
-				if (asp.canBeCopiedFor(mm)) {
-					
-					val className = asp.aspectAnnotationValue
-					if(!classesAlreadyWeaved.contains(className) && (mm.findClass(className) !== null)){
-						classesAlreadyWeaved.add(className)
-						
-						val typeRefBuilder = builderFactory.create(mm.eResource.resourceSet)
-						val newAspectFqn = copier.copyAspectTo(asp, mm)
-						res += MelangeFactory.eINSTANCE.createAspect => [
-									aspectTypeRef = typeRefBuilder.typeRef(newAspectFqn)
-								]
-					}
-				}
-			}
-		]
-		
-		return res
 	}
 }

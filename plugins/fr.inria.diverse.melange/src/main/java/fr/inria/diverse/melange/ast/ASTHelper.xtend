@@ -1,32 +1,24 @@
 package fr.inria.diverse.melange.ast
 
 import com.google.inject.Inject
-
-//import fr.inria.diverse.melange.metamodel.melange.KomprenSlicer
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
+import fr.inria.diverse.melange.metamodel.melange.Language
+import fr.inria.diverse.melange.metamodel.melange.Mapping
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.XbaseTransformation
-
 import java.io.IOException
-
 import java.util.Collections
-
 import org.apache.log4j.Logger
-
 import org.eclipse.emf.common.util.URI
-
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-
 import org.eclipse.emf.ecore.util.EcoreUtil
-
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
-import fr.inria.diverse.melange.metamodel.melange.Mapping
 
 class ASTHelper
 {
 	@Inject extension ModelingElementExtensions
+	@Inject extension LanguageExtensions
 	@Inject extension MetamodelExtensions
 	Logger logger = Logger.getLogger(ASTHelper)
 
@@ -45,16 +37,16 @@ class ASTHelper
 	}
 
 	def void printDebug(ModelTypingSpace root) {
-		root.metamodels.forEach[mm |
-			logger.debug('''MM «mm.name»''')
-			logger.debug('''\tpkgs = «mm.pkgs.map[name].join(", ")»''')
-			logger.debug('''\tgenmodels = «mm.genmodels.map[it.class].join(", ")»''')
-			logger.debug('''\texactType = «mm.exactType.name»''')
-			logger.debug('''\timplements = «mm.^implements.map[name].join(", ")»''')
-			mm.inheritanceRelation.forEach[inherit|
-			logger.debug('''\tsuperMM = «inherit.superMetamodel?.name»''')
+		root.languages.forEach[l |
+			logger.debug('''Lang «l.name»''')
+			logger.debug('''\tpkgs = «l.syntax.pkgs.map[name].join(", ")»''')
+			logger.debug('''\tgenmodels = «l.syntax.genmodels.map[it.class].join(", ")»''')
+			logger.debug('''\texactType = «l.exactType.name»''')
+			logger.debug('''\timplements = «l.^implements.map[name].join(", ")»''')
+			l.superLanguages.forEach[superLang |
+				logger.debug('''\tsuperMM = «superLang.name»''')
 			]
-			logger.debug('''\taspects = «mm.aspects.map[aspectTypeRef.simpleName].join(", ")»''')
+			logger.debug('''\taspects = «l.allAspects.map[aspectTypeRef.simpleName].join(", ")»''')
 		]
 
 		root.modelTypes.forEach[mt |
@@ -65,8 +57,8 @@ class ASTHelper
 		]
 	}
 
-	def Iterable<Metamodel> getMetamodels(ModelTypingSpace root) {
-		return root.elements.filter(Metamodel)
+	def Iterable<Language> getLanguages(ModelTypingSpace root) {
+		return root.elements.filter(Language)
 	}
 
 	def Iterable<ModelType> getModelTypes(ModelTypingSpace root) {

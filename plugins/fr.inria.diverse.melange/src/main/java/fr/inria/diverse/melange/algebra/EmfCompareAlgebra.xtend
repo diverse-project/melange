@@ -5,7 +5,7 @@ import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.MatchingHelper
 import fr.inria.diverse.melange.metamodel.melange.Aspect
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
+import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import org.eclipse.core.runtime.Platform
 import org.eclipse.emf.compare.DifferenceKind
@@ -22,11 +22,11 @@ import org.eclipse.emf.compare.rcp.EMFCompareRCPPlugin
 import org.eclipse.emf.compare.scope.DefaultComparisonScope
 import org.eclipse.emf.compare.utils.UseIdentifiers
 import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.ENamedElement
 import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EStructuralFeature
-import org.eclipse.emf.ecore.EDataType
 
 /**
  * This class merges the EPackage built from an Aspect into the targeted Metaclass
@@ -41,21 +41,21 @@ class EmfCompareAlgebra implements ModelTypeAlgebra
 		return matchingHelper.match(mt1.pkgs, mt2.pkgs, null)
 	}
 
-	override isTypedBy(Metamodel mm, ModelType mt) {
-		return matchingHelper.match(mm.pkgs, mt.pkgs, mm.mappings.findFirst[to == mt])
+	override isTypedBy(Language l, ModelType mt) {
+		return matchingHelper.match(l.syntax.pkgs, mt.pkgs, l.mappings.findFirst[to == mt])
 	}
 
-	override weaveAspect(Metamodel mm, Aspect aspect) {
+	override weaveAspect(Language l, Aspect aspect) {
 		// FIXME: Need some heuristic to find the appropriate package
 		val base =
 			if (aspect.aspectedClass !== null)
-				mm.pkgs.findFirst[
+				l.syntax.pkgs.findFirst[
 					EClassifiers.filter(EClass).exists[
 						name == aspect.aspectedClass.name
 					]
 				]
 			else
-				mm.pkgs.head
+				l.syntax.pkgs.head
 
 		val scope = new DefaultComparisonScope(aspect.ecoreFragment, base, null)
 		val comparison = customEMFCompare.compare(scope)

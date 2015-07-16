@@ -5,6 +5,9 @@ import java.util.ArrayList
 import java.util.List
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
+import org.eclipse.emf.codegen.ecore.genmodel.generator.GenBaseGeneratorAdapter
+import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil
+import org.eclipse.emf.common.util.BasicMonitor
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EDataType
@@ -120,6 +123,19 @@ class EcoreExtensions
 			e.getEAnnotation("http://www.eclipse.org/emf/2002/GenModel")
 			?.details?.findFirst[d | d.key == key]
 			?.value ?: ""
+	}
+
+	def void generateCode(GenModel genModel) {
+		genModel.reconcile
+		genModel.canGenerate = true
+		genModel.validateModel = true
+
+		val generator = GenModelUtil::createGenerator(genModel)
+		generator.generate(
+			genModel,
+			GenBaseGeneratorAdapter::MODEL_PROJECT_TYPE,
+			new BasicMonitor.Printing(System::out)
+		)
 	}
 
 	def EClass getOrCreateClass(EPackage pkg, String name) {
