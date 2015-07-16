@@ -95,10 +95,10 @@ class XtextTestProcessor extends AbstractClassProcessor
 			primarySourceElement = cls
 			addAnnotation(findTypeGlobally("org.junit.Test").newAnnotationReference)
 			body = '''
-				for(fr.inria.diverse.melange.metamodel.melange.Element m : root.getElements()){
-					if(m instanceof fr.inria.diverse.melange.metamodel.melange.Metamodel){
-						fr.inria.diverse.melange.metamodel.melange.Metamodel mm = (fr.inria.diverse.melange.metamodel.melange.Metamodel) m;
-						org.junit.Assert.assertTrue(mm.getName()+"doesn't implement itself",mm.getImplements().contains(mm.getExactType()));
+				for(fr.inria.diverse.melange.metamodel.melange.Element e : root.getElements()){
+					if(e instanceof fr.inria.diverse.melange.metamodel.melange.Language){
+						fr.inria.diverse.melange.metamodel.melange.Language l = (fr.inria.diverse.melange.metamodel.melange.Language) e;
+						org.junit.Assert.assertTrue(l.getName()+"doesn't implement itself",l.getImplements().contains(l.getExactType()));
 					}
 				}
 			'''
