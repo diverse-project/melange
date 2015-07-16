@@ -160,42 +160,6 @@ public interface MelangePackage extends EPackage {
 	int METAMODEL = 2;
 
 	/**
-	 * The feature id for the '<em><b>Xtext Setup Ref</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METAMODEL__XTEXT_SETUP_REF = 0;
-
-	/**
-	 * The feature id for the '<em><b>Mappings</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METAMODEL__MAPPINGS = 1;
-
-	/**
-	 * The number of structural features of the '<em>Metamodel</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METAMODEL_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Metamodel</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METAMODEL_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelingElementImpl <em>Modeling Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -240,6 +204,42 @@ public interface MelangePackage extends EPackage {
 	 * @ordered
 	 */
 	int MODELING_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL__NAME = MODELING_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Ecore Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL__ECORE_URI = MODELING_ELEMENT__ECORE_URI;
+
+	/**
+	 * The number of structural features of the '<em>Metamodel</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL_FEATURE_COUNT = MODELING_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Metamodel</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL_OPERATION_COUNT = MODELING_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypeImpl <em>Model Type</em>}' class.
@@ -910,16 +910,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__NAME = MODELING_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Ecore Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LANGUAGE__ECORE_URI = MODELING_ELEMENT__ECORE_URI;
+	int LANGUAGE__NAME = ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Operators</b></em>' containment reference list.
@@ -928,7 +919,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__OPERATORS = MODELING_ELEMENT_FEATURE_COUNT + 0;
+	int LANGUAGE__OPERATORS = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Exact Type</b></em>' reference.
@@ -937,7 +928,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__EXACT_TYPE = MODELING_ELEMENT_FEATURE_COUNT + 1;
+	int LANGUAGE__EXACT_TYPE = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Implements</b></em>' reference list.
@@ -946,7 +937,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__IMPLEMENTS = MODELING_ELEMENT_FEATURE_COUNT + 2;
+	int LANGUAGE__IMPLEMENTS = ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Requires</b></em>' reference list.
@@ -955,7 +946,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__REQUIRES = MODELING_ELEMENT_FEATURE_COUNT + 3;
+	int LANGUAGE__REQUIRES = ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Syntax</b></em>' containment reference.
@@ -964,7 +955,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__SYNTAX = MODELING_ELEMENT_FEATURE_COUNT + 4;
+	int LANGUAGE__SYNTAX = ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Semantics</b></em>' containment reference.
@@ -973,7 +964,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__SEMANTICS = MODELING_ELEMENT_FEATURE_COUNT + 5;
+	int LANGUAGE__SEMANTICS = ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Exact Type Name</b></em>' attribute.
@@ -982,7 +973,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__EXACT_TYPE_NAME = MODELING_ELEMENT_FEATURE_COUNT + 6;
+	int LANGUAGE__EXACT_TYPE_NAME = ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Exact Type Uri</b></em>' attribute.
@@ -991,7 +982,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__EXACT_TYPE_URI = MODELING_ELEMENT_FEATURE_COUNT + 7;
+	int LANGUAGE__EXACT_TYPE_URI = ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Resource Type</b></em>' attribute.
@@ -1000,7 +991,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__RESOURCE_TYPE = MODELING_ELEMENT_FEATURE_COUNT + 8;
+	int LANGUAGE__RESOURCE_TYPE = ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Resource Uri</b></em>' attribute.
@@ -1009,7 +1000,25 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__RESOURCE_URI = MODELING_ELEMENT_FEATURE_COUNT + 9;
+	int LANGUAGE__RESOURCE_URI = ELEMENT_FEATURE_COUNT + 9;
+
+	/**
+	 * The feature id for the '<em><b>Xtext Setup Ref</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANGUAGE__XTEXT_SETUP_REF = ELEMENT_FEATURE_COUNT + 10;
+
+	/**
+	 * The feature id for the '<em><b>Mappings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANGUAGE__MAPPINGS = ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The number of structural features of the '<em>Language</em>' class.
@@ -1018,7 +1027,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE_FEATURE_COUNT = MODELING_ELEMENT_FEATURE_COUNT + 10;
+	int LANGUAGE_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 12;
 
 	/**
 	 * The number of operations of the '<em>Language</em>' class.
@@ -1027,7 +1036,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE_OPERATION_COUNT = MODELING_ELEMENT_OPERATION_COUNT + 0;
+	int LANGUAGE_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.WeaveImpl <em>Weave</em>}' class.
@@ -1187,28 +1196,6 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getMetamodel();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getXtextSetupRef <em>Xtext Setup Ref</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Xtext Setup Ref</em>'.
-	 * @see fr.inria.diverse.melange.metamodel.melange.Metamodel#getXtextSetupRef()
-	 * @see #getMetamodel()
-	 * @generated
-	 */
-	EReference getMetamodel_XtextSetupRef();
-
-	/**
-	 * Returns the meta object for the reference list '{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getMappings <em>Mappings</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Mappings</em>'.
-	 * @see fr.inria.diverse.melange.metamodel.melange.Metamodel#getMappings()
-	 * @see #getMetamodel()
-	 * @generated
-	 */
-	EReference getMetamodel_Mappings();
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.ModelType <em>Model Type</em>}'.
@@ -1779,6 +1766,28 @@ public interface MelangePackage extends EPackage {
 	EAttribute getLanguage_ResourceUri();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.melange.metamodel.melange.Language#getXtextSetupRef <em>Xtext Setup Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Xtext Setup Ref</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Language#getXtextSetupRef()
+	 * @see #getLanguage()
+	 * @generated
+	 */
+	EReference getLanguage_XtextSetupRef();
+
+	/**
+	 * Returns the meta object for the reference list '{@link fr.inria.diverse.melange.metamodel.melange.Language#getMappings <em>Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Mappings</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Language#getMappings()
+	 * @see #getLanguage()
+	 * @generated
+	 */
+	EReference getLanguage_Mappings();
+
+	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.Weave <em>Weave</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1914,22 +1923,6 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EClass METAMODEL = eINSTANCE.getMetamodel();
-
-		/**
-		 * The meta object literal for the '<em><b>Xtext Setup Ref</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference METAMODEL__XTEXT_SETUP_REF = eINSTANCE.getMetamodel_XtextSetupRef();
-
-		/**
-		 * The meta object literal for the '<em><b>Mappings</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference METAMODEL__MAPPINGS = eINSTANCE.getMetamodel_Mappings();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypeImpl <em>Model Type</em>}' class.
@@ -2384,6 +2377,22 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LANGUAGE__RESOURCE_URI = eINSTANCE.getLanguage_ResourceUri();
+
+		/**
+		 * The meta object literal for the '<em><b>Xtext Setup Ref</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LANGUAGE__XTEXT_SETUP_REF = eINSTANCE.getLanguage_XtextSetupRef();
+
+		/**
+		 * The meta object literal for the '<em><b>Mappings</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LANGUAGE__MAPPINGS = eINSTANCE.getLanguage_Mappings();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.WeaveImpl <em>Weave</em>}' class.

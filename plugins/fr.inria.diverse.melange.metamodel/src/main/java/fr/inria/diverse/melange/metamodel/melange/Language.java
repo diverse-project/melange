@@ -3,6 +3,7 @@
 package fr.inria.diverse.melange.metamodel.melange;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.xtext.common.types.JvmTypeReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,13 +24,15 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getExactTypeUri <em>Exact Type Uri</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getResourceType <em>Resource Type</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getResourceUri <em>Resource Uri</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getXtextSetupRef <em>Xtext Setup Ref</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getMappings <em>Mappings</em>}</li>
  * </ul>
  *
  * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getLanguage()
  * @model
  * @generated
  */
-public interface Language extends ModelingElement {
+public interface Language extends Element {
 	/**
 	 * Returns the value of the '<em><b>Operators</b></em>' containment reference list.
 	 * The list contents are of type {@link fr.inria.diverse.melange.metamodel.melange.Operator}.
@@ -265,5 +268,49 @@ public interface Language extends ModelingElement {
 	 * @generated
 	 */
 	void setResourceUri(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Xtext Setup Ref</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Xtext Setup Ref</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Xtext Setup Ref</em>' containment reference.
+	 * @see #setXtextSetupRef(JvmTypeReference)
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getLanguage_XtextSetupRef()
+	 * @model containment="true"
+	 * @generated
+	 */
+	JvmTypeReference getXtextSetupRef();
+
+	/**
+	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.Language#getXtextSetupRef <em>Xtext Setup Ref</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Xtext Setup Ref</em>' containment reference.
+	 * @see #getXtextSetupRef()
+	 * @generated
+	 */
+	void setXtextSetupRef(JvmTypeReference value);
+
+	/**
+	 * Returns the value of the '<em><b>Mappings</b></em>' reference list.
+	 * The list contents are of type {@link fr.inria.diverse.melange.metamodel.melange.Mapping}.
+	 * It is bidirectional and its opposite is '{@link fr.inria.diverse.melange.metamodel.melange.Mapping#getFrom <em>From</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Mappings</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Mappings</em>' reference list.
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getLanguage_Mappings()
+	 * @see fr.inria.diverse.melange.metamodel.melange.Mapping#getFrom
+	 * @model opposite="from" resolveProxies="false"
+	 * @generated
+	 */
+	EList<Mapping> getMappings();
 
 } // Language

@@ -41,7 +41,7 @@ public interface Mapping extends Element {
 
 	/**
 	 * Returns the value of the '<em><b>From</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getMappings <em>Mappings</em>}'.
+	 * It is bidirectional and its opposite is '{@link fr.inria.diverse.melange.metamodel.melange.Language#getMappings <em>Mappings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>From</em>' reference isn't clear,
@@ -49,13 +49,13 @@ public interface Mapping extends Element {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>From</em>' reference.
-	 * @see #setFrom(Metamodel)
+	 * @see #setFrom(Language)
 	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getMapping_From()
-	 * @see fr.inria.diverse.melange.metamodel.melange.Metamodel#getMappings
+	 * @see fr.inria.diverse.melange.metamodel.melange.Language#getMappings
 	 * @model opposite="mappings" resolveProxies="false"
 	 * @generated
 	 */
-	Metamodel getFrom();
+	Language getFrom();
 
 	/**
 	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.Mapping#getFrom <em>From</em>}' reference.
@@ -65,7 +65,7 @@ public interface Mapping extends Element {
 	 * @see #getFrom()
 	 * @generated
 	 */
-	void setFrom(Metamodel value);
+	void setFrom(Language value);
 
 	/**
 	 * Returns the value of the '<em><b>To</b></em>' reference.

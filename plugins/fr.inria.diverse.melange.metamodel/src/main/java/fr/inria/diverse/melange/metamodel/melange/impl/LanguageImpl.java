@@ -3,6 +3,7 @@
 package fr.inria.diverse.melange.metamodel.melange.impl;
 
 import fr.inria.diverse.melange.metamodel.melange.Language;
+import fr.inria.diverse.melange.metamodel.melange.Mapping;
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
 import fr.inria.diverse.melange.metamodel.melange.Metamodel;
 import fr.inria.diverse.melange.metamodel.melange.ModelType;
@@ -24,7 +25,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.xtext.common.types.JvmTypeReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -44,11 +47,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getExactTypeUri <em>Exact Type Uri</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getResourceType <em>Resource Type</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getResourceUri <em>Resource Uri</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getXtextSetupRef <em>Xtext Setup Ref</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getMappings <em>Mappings</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class LanguageImpl extends ModelingElementImpl implements Language {
+public class LanguageImpl extends ElementImpl implements Language {
 	/**
 	 * The cached value of the '{@link #getOperators() <em>Operators</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -188,6 +193,26 @@ public class LanguageImpl extends ModelingElementImpl implements Language {
 	 * @ordered
 	 */
 	protected String resourceUri = RESOURCE_URI_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getXtextSetupRef() <em>Xtext Setup Ref</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getXtextSetupRef()
+	 * @generated
+	 * @ordered
+	 */
+	protected JvmTypeReference xtextSetupRef;
+
+	/**
+	 * The cached value of the '{@link #getMappings() <em>Mappings</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMappings()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Mapping> mappings;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -479,6 +504,62 @@ public class LanguageImpl extends ModelingElementImpl implements Language {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public JvmTypeReference getXtextSetupRef() {
+		return xtextSetupRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetXtextSetupRef(JvmTypeReference newXtextSetupRef, NotificationChain msgs) {
+		JvmTypeReference oldXtextSetupRef = xtextSetupRef;
+		xtextSetupRef = newXtextSetupRef;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MelangePackage.LANGUAGE__XTEXT_SETUP_REF, oldXtextSetupRef, newXtextSetupRef);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setXtextSetupRef(JvmTypeReference newXtextSetupRef) {
+		if (newXtextSetupRef != xtextSetupRef) {
+			NotificationChain msgs = null;
+			if (xtextSetupRef != null)
+				msgs = ((InternalEObject)xtextSetupRef).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MelangePackage.LANGUAGE__XTEXT_SETUP_REF, null, msgs);
+			if (newXtextSetupRef != null)
+				msgs = ((InternalEObject)newXtextSetupRef).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MelangePackage.LANGUAGE__XTEXT_SETUP_REF, null, msgs);
+			msgs = basicSetXtextSetupRef(newXtextSetupRef, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.LANGUAGE__XTEXT_SETUP_REF, newXtextSetupRef, newXtextSetupRef));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Mapping> getMappings() {
+		if (mappings == null) {
+			mappings = new EObjectWithInverseEList<Mapping>(Mapping.class, this, MelangePackage.LANGUAGE__MAPPINGS, MelangePackage.MAPPING__FROM);
+		}
+		return mappings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -486,6 +567,8 @@ public class LanguageImpl extends ModelingElementImpl implements Language {
 				if (exactType != null)
 					msgs = ((InternalEObject)exactType).eInverseRemove(this, MelangePackage.MODEL_TYPE__EXTRACTED, ModelType.class, msgs);
 				return basicSetExactType((ModelType)otherEnd, msgs);
+			case MelangePackage.LANGUAGE__MAPPINGS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getMappings()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -506,6 +589,10 @@ public class LanguageImpl extends ModelingElementImpl implements Language {
 				return basicSetSyntax(null, msgs);
 			case MelangePackage.LANGUAGE__SEMANTICS:
 				return basicSetSemantics(null, msgs);
+			case MelangePackage.LANGUAGE__XTEXT_SETUP_REF:
+				return basicSetXtextSetupRef(null, msgs);
+			case MelangePackage.LANGUAGE__MAPPINGS:
+				return ((InternalEList<?>)getMappings()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -539,6 +626,10 @@ public class LanguageImpl extends ModelingElementImpl implements Language {
 				return getResourceType();
 			case MelangePackage.LANGUAGE__RESOURCE_URI:
 				return getResourceUri();
+			case MelangePackage.LANGUAGE__XTEXT_SETUP_REF:
+				return getXtextSetupRef();
+			case MelangePackage.LANGUAGE__MAPPINGS:
+				return getMappings();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -585,6 +676,13 @@ public class LanguageImpl extends ModelingElementImpl implements Language {
 			case MelangePackage.LANGUAGE__RESOURCE_URI:
 				setResourceUri((String)newValue);
 				return;
+			case MelangePackage.LANGUAGE__XTEXT_SETUP_REF:
+				setXtextSetupRef((JvmTypeReference)newValue);
+				return;
+			case MelangePackage.LANGUAGE__MAPPINGS:
+				getMappings().clear();
+				getMappings().addAll((Collection<? extends Mapping>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -627,6 +725,12 @@ public class LanguageImpl extends ModelingElementImpl implements Language {
 			case MelangePackage.LANGUAGE__RESOURCE_URI:
 				setResourceUri(RESOURCE_URI_EDEFAULT);
 				return;
+			case MelangePackage.LANGUAGE__XTEXT_SETUP_REF:
+				setXtextSetupRef((JvmTypeReference)null);
+				return;
+			case MelangePackage.LANGUAGE__MAPPINGS:
+				getMappings().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -659,6 +763,10 @@ public class LanguageImpl extends ModelingElementImpl implements Language {
 				return resourceType != RESOURCE_TYPE_EDEFAULT;
 			case MelangePackage.LANGUAGE__RESOURCE_URI:
 				return RESOURCE_URI_EDEFAULT == null ? resourceUri != null : !RESOURCE_URI_EDEFAULT.equals(resourceUri);
+			case MelangePackage.LANGUAGE__XTEXT_SETUP_REF:
+				return xtextSetupRef != null;
+			case MelangePackage.LANGUAGE__MAPPINGS:
+				return mappings != null && !mappings.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

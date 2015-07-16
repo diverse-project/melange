@@ -3,9 +3,9 @@
 package fr.inria.diverse.melange.metamodel.melange.impl;
 
 import fr.inria.diverse.melange.metamodel.melange.ClassBinding;
+import fr.inria.diverse.melange.metamodel.melange.Language;
 import fr.inria.diverse.melange.metamodel.melange.Mapping;
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
-import fr.inria.diverse.melange.metamodel.melange.Metamodel;
 import fr.inria.diverse.melange.metamodel.melange.ModelType;
 
 import java.util.Collection;
@@ -57,7 +57,7 @@ public class MappingImpl extends ElementImpl implements Mapping {
 	 * @generated
 	 * @ordered
 	 */
-	protected Metamodel from;
+	protected Language from;
 
 	/**
 	 * The cached value of the '{@link #getTo() <em>To</em>}' reference.
@@ -105,7 +105,7 @@ public class MappingImpl extends ElementImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Metamodel getFrom() {
+	public Language getFrom() {
 		return from;
 	}
 
@@ -114,8 +114,8 @@ public class MappingImpl extends ElementImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetFrom(Metamodel newFrom, NotificationChain msgs) {
-		Metamodel oldFrom = from;
+	public NotificationChain basicSetFrom(Language newFrom, NotificationChain msgs) {
+		Language oldFrom = from;
 		from = newFrom;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MelangePackage.MAPPING__FROM, oldFrom, newFrom);
@@ -129,13 +129,13 @@ public class MappingImpl extends ElementImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFrom(Metamodel newFrom) {
+	public void setFrom(Language newFrom) {
 		if (newFrom != from) {
 			NotificationChain msgs = null;
 			if (from != null)
-				msgs = ((InternalEObject)from).eInverseRemove(this, MelangePackage.METAMODEL__MAPPINGS, Metamodel.class, msgs);
+				msgs = ((InternalEObject)from).eInverseRemove(this, MelangePackage.LANGUAGE__MAPPINGS, Language.class, msgs);
 			if (newFrom != null)
-				msgs = ((InternalEObject)newFrom).eInverseAdd(this, MelangePackage.METAMODEL__MAPPINGS, Metamodel.class, msgs);
+				msgs = ((InternalEObject)newFrom).eInverseAdd(this, MelangePackage.LANGUAGE__MAPPINGS, Language.class, msgs);
 			msgs = basicSetFrom(newFrom, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -191,8 +191,8 @@ public class MappingImpl extends ElementImpl implements Mapping {
 		switch (featureID) {
 			case MelangePackage.MAPPING__FROM:
 				if (from != null)
-					msgs = ((InternalEObject)from).eInverseRemove(this, MelangePackage.METAMODEL__MAPPINGS, Metamodel.class, msgs);
-				return basicSetFrom((Metamodel)otherEnd, msgs);
+					msgs = ((InternalEObject)from).eInverseRemove(this, MelangePackage.LANGUAGE__MAPPINGS, Language.class, msgs);
+				return basicSetFrom((Language)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -246,7 +246,7 @@ public class MappingImpl extends ElementImpl implements Mapping {
 				getRules().addAll((Collection<? extends ClassBinding>)newValue);
 				return;
 			case MelangePackage.MAPPING__FROM:
-				setFrom((Metamodel)newValue);
+				setFrom((Language)newValue);
 				return;
 			case MelangePackage.MAPPING__TO:
 				setTo((ModelType)newValue);
@@ -267,7 +267,7 @@ public class MappingImpl extends ElementImpl implements Mapping {
 				getRules().clear();
 				return;
 			case MelangePackage.MAPPING__FROM:
-				setFrom((Metamodel)null);
+				setFrom((Language)null);
 				return;
 			case MelangePackage.MAPPING__TO:
 				setTo((ModelType)null);

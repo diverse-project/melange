@@ -81,6 +81,8 @@ public class MelangeSwitch<T> extends Switch<T> {
 			case MelangePackage.METAMODEL: {
 				Metamodel metamodel = (Metamodel)theEObject;
 				T result = caseMetamodel(metamodel);
+				if (result == null) result = caseModelingElement(metamodel);
+				if (result == null) result = caseElement(metamodel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -182,7 +184,6 @@ public class MelangeSwitch<T> extends Switch<T> {
 			case MelangePackage.LANGUAGE: {
 				Language language = (Language)theEObject;
 				T result = caseLanguage(language);
-				if (result == null) result = caseModelingElement(language);
 				if (result == null) result = caseElement(language);
 				if (result == null) result = defaultCase(theEObject);
 				return result;

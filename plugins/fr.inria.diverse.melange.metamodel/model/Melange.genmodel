@@ -21,10 +21,7 @@
     <genClasses image="false" ecoreClass="Melange.ecore#//Element">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Element/name"/>
     </genClasses>
-    <genClasses ecoreClass="Melange.ecore#//Metamodel">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Metamodel/xtextSetupRef"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Metamodel/mappings"/>
-    </genClasses>
+    <genClasses ecoreClass="Melange.ecore#//Metamodel"/>
     <genClasses ecoreClass="Melange.ecore#//ModelType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//ModelType/subtypingRelations"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//ModelType/extracted"/>
@@ -90,6 +87,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/exactTypeUri"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/resourceType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/resourceUri"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Language/xtextSetupRef"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Language/mappings"/>
     </genClasses>
     <genClasses ecoreClass="Melange.ecore#//Weave">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Weave/aspect"/>

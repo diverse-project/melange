@@ -329,24 +329,6 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMetamodel_XtextSetupRef() {
-		return (EReference)metamodelEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMetamodel_Mappings() {
-		return (EReference)metamodelEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getModelType() {
 		return modelTypeEClass;
 	}
@@ -824,6 +806,24 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getLanguage_XtextSetupRef() {
+		return (EReference)languageEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLanguage_Mappings() {
+		return (EReference)languageEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getWeave() {
 		return weaveEClass;
 	}
@@ -901,8 +901,6 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		createEAttribute(elementEClass, ELEMENT__NAME);
 
 		metamodelEClass = createEClass(METAMODEL);
-		createEReference(metamodelEClass, METAMODEL__XTEXT_SETUP_REF);
-		createEReference(metamodelEClass, METAMODEL__MAPPINGS);
 
 		modelTypeEClass = createEClass(MODEL_TYPE);
 		createEReference(modelTypeEClass, MODEL_TYPE__SUBTYPING_RELATIONS);
@@ -971,6 +969,8 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		createEAttribute(languageEClass, LANGUAGE__EXACT_TYPE_URI);
 		createEAttribute(languageEClass, LANGUAGE__RESOURCE_TYPE);
 		createEAttribute(languageEClass, LANGUAGE__RESOURCE_URI);
+		createEReference(languageEClass, LANGUAGE__XTEXT_SETUP_REF);
+		createEReference(languageEClass, LANGUAGE__MAPPINGS);
 
 		weaveEClass = createEClass(WEAVE);
 		createEReference(weaveEClass, WEAVE__ASPECT);
@@ -1016,6 +1016,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		metamodelEClass.getESuperTypes().add(this.getModelingElement());
 		modelTypeEClass.getESuperTypes().add(this.getModelingElement());
 		transformationEClass.getESuperTypes().add(this.getElement());
 		inheritanceEClass.getESuperTypes().add(this.getOperator());
@@ -1025,7 +1026,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		importEClass.getESuperTypes().add(this.getOperator());
 		mergeEClass.getESuperTypes().add(this.getOperator());
 		sliceEClass.getESuperTypes().add(this.getOperator());
-		languageEClass.getESuperTypes().add(this.getModelingElement());
+		languageEClass.getESuperTypes().add(this.getElement());
 		weaveEClass.getESuperTypes().add(this.getOperator());
 
 		// Initialize classes, features, and operations; add parameters
@@ -1038,8 +1039,6 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		initEAttribute(getElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(metamodelEClass, Metamodel.class, "Metamodel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMetamodel_XtextSetupRef(), theTypesPackage.getJvmTypeReference(), null, "xtextSetupRef", null, 0, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMetamodel_Mappings(), this.getMapping(), this.getMapping_From(), "mappings", null, 0, -1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modelTypeEClass, ModelType.class, "ModelType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelType_SubtypingRelations(), this.getSubtyping(), this.getSubtyping_SubType(), "subtypingRelations", null, 0, -1, ModelType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1072,7 +1071,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 
 		initEClass(mappingEClass, Mapping.class, "Mapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMapping_Rules(), this.getClassBinding(), null, "rules", null, 0, -1, Mapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMapping_From(), this.getMetamodel(), this.getMetamodel_Mappings(), "from", null, 0, 1, Mapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMapping_From(), this.getLanguage(), this.getLanguage_Mappings(), "from", null, 0, 1, Mapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMapping_To(), this.getModelType(), null, "to", null, 0, 1, Mapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(classBindingEClass, ClassBinding.class, "ClassBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1108,6 +1107,8 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		initEAttribute(getLanguage_ExactTypeUri(), theEcorePackage.getEString(), "exactTypeUri", null, 0, 1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLanguage_ResourceType(), this.getResourceType(), "resourceType", "MELANGE", 0, 1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLanguage_ResourceUri(), theEcorePackage.getEString(), "resourceUri", null, 0, 1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLanguage_XtextSetupRef(), theTypesPackage.getJvmTypeReference(), null, "xtextSetupRef", null, 0, 1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLanguage_Mappings(), this.getMapping(), this.getMapping_From(), "mappings", null, 0, -1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(weaveEClass, Weave.class, "Weave", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWeave_Aspect(), this.getAspect(), null, "aspect", null, 1, 1, Weave.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
