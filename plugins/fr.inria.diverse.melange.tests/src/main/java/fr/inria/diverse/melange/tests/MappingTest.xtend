@@ -133,7 +133,7 @@ class MappingTest
 	def Language getMM1()              { return root.elements.get(0) as Language }
 	def Language getMM3()              { return root.elements.get(1) as Language }
 	def Mapping   getMapping()          { return root.elements.get(2) as Mapping }
-	def Language getMergeLang()        { return root.elements.get(3) as Language }
+	def Language getMergeLang()       { return root.elements.get(3) as Language }
 	def Mapping   getWrongMapping1()    { return root.elements.get(4) as Mapping }
 	def Mapping   getWrongMapping2()    { return root.elements.get(5) as Mapping }
 	def Mapping   getWrongMapping3()    { return root.elements.get(6) as Mapping }
