@@ -3,19 +3,18 @@ package fr.inria.diverse.melange.processors
 import com.google.inject.Inject
 import fr.inria.diverse.melange.algebra.EmfCompareAlgebra
 import fr.inria.diverse.melange.ast.ASTHelper
-import fr.inria.diverse.melange.ast.MetamodelExtensions
-import fr.inria.diverse.melange.lib.EcoreExtensions
+import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.lib.ModelUtils
 import fr.inria.diverse.melange.lib.slicing.ecore.StrictEcore
-import fr.inria.diverse.melange.metamodel.melange.Ecore
+import fr.inria.diverse.melange.metamodel.melange.Import
+import fr.inria.diverse.melange.metamodel.melange.Inheritance
+import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.Merge
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.Slice
 import fr.inria.diverse.melange.utils.EPackageProvider
 import java.io.IOException
 import java.util.ArrayList
-import java.util.HashMap
 import java.util.List
 import java.util.Map
 import org.eclipse.emf.common.util.URI
@@ -26,9 +25,6 @@ import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
-import fr.inria.diverse.melange.metamodel.melange.Aspect
-import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
-import com.google.common.collect.ArrayListMultimap
 
 /**
  * This class build languages by merging differents parts declared in each language definitions
@@ -39,23 +35,20 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 	@Inject extension ASTHelper
 	@Inject ModelUtils modelUtils
 	@Inject EmfCompareAlgebra algebra
-	@Inject AspectsCopier aspectCopier
 	@Inject AspectsWeaver aspectWeaver
 	@Inject EPackageProvider packageProvider
-	@Inject extension EcoreExtensions
-	@Inject extension MetamodelExtensions
+	@Inject extension LanguageExtensions
 	
 	/**
 	 * Store root EPackage for each built languages 
 	 */
-	Map<Metamodel,EPackage> registry
+	Map<Language, EPackage> registry
 	
 	def dispatch void preProcess(ModelTypingSpace root, boolean isPreLinkingPhase) {
+		registry = newHashMap
 		
-		registry = new HashMap<Metamodel,EPackage>()
-		
-		root.metamodels.forEach[language |
-			build(language, new ArrayList<Metamodel>())
+		root.languages.forEach[language |
+			build(language, newArrayList)
 		]
 	}
 	
@@ -63,7 +56,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 	 * Build {@link language} and register the root EPackage.
 	 * {@link history} store languages waiting for this build.
 	 */
-	private def build(Metamodel language, List<Metamodel> history){
+	private def build(Language language, List<Language> history){
 		
 		var EPackage res = registry.get(language)
 		if(res !== null) return res
@@ -71,16 +64,15 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		history.add(language)
 
 		var EPackage base = null
-		var pkgs = new ArrayList<EPackage>()
 		var needNewEcore = false
 
 		/****************************
 		 * STEP 1: merge ecore files
 		 ****************************/
-		val ecores = language.operators.filter(Ecore)
+		val ecores = language.operators.filter(Import)
 		if(ecores.size == 1){
-			language.ecoreUri = ecores.get(0).ecoreUri
-			language.genmodelUris.addAll(ecores.get(0).genmodelUris)
+			language.syntax.ecoreUri = ecores.get(0).ecoreUri
+			language.syntax.genmodelUris.addAll(ecores.get(0).genmodelUris)
 			base = modelUtils.loadPkg(ecores.get(0).ecoreUri)
 		}
 		else if(ecores.size > 1){
@@ -99,15 +91,15 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		/****************************
 		 * STEP 2: merge inherited languages
 		 ****************************/
-		 val inherits = language.inheritanceRelation
+		 val inherits = language.operators.filter(Inheritance)
 		 if(inherits.size > 0){
 			needNewEcore = true
 			val firstInherit = inherits.get(0)
-			val inheritBase = EcoreUtil::copy(getRootPackage(firstInherit.superMetamodel,history))
+			val inheritBase = EcoreUtil::copy(getRootPackage(firstInherit.superLanguage,history))
 			EcoreUtil.resolveAll(inheritBase)
 			
 			inherits.drop(1).forEach[ nextInherit |
-				val inheritUnit = getRootPackage(nextInherit.superMetamodel,history)
+				val inheritUnit = getRootPackage(nextInherit.superLanguage,history)
 				EcoreUtil.resolveAll(inheritUnit)
 				algebra.merge(inheritUnit,inheritBase)
 			]
@@ -127,11 +119,11 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		if(merges.size > 0){
 			needNewEcore = true
 			val firstMerge = merges.get(0)
-			val mergeBase = EcoreUtil::copy(getRootPackage(firstMerge.language,history))
+			val mergeBase = EcoreUtil::copy(getRootPackage(firstMerge.mergedLanguage,history))
 			EcoreUtil.resolveAll(mergeBase)
 
 			merges.drop(1).forEach[ nextMerge |
-				val mergeUnit = getRootPackage(nextMerge.language,history)
+				val mergeUnit = getRootPackage(nextMerge.mergedLanguage,history)
 				EcoreUtil.resolveAll(mergeUnit)
 				algebra.merge(mergeUnit,mergeBase)
 			]
@@ -186,32 +178,32 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 //			language.createLocalGenmodel
 //			language.genmodelUris += language.getLocalGenmodelUri
 
-			language.ecoreUri = language.externalEcoreUri
-			language.genmodelUris += language.externalGenmodelUri
+			language.syntax.ecoreUri = language.externalEcoreUri
+			language.syntax.genmodelUris += language.externalGenmodelUri
 		}
 		
-		packageProvider.registerPackages(language,base)
+		packageProvider.registerPackages(language.syntax, base)
 		 
 		/****************************
 		 * STEP 5: merge aspects
 		 ****************************/
 		aspectWeaver.preProcess(language, false)
 		
-		history.remove(language)
+		return history.remove(language)
 	} 
 	
 	/**
 	 * Check if {@link language} is a dependency of an other language
 	 * and has this language as dependency at the same time
 	 */
-	private def boolean isWithCycle(Metamodel language, List<Metamodel> history){
+	private def boolean isWithCycle(Language language, List<Language> history){
 		
-		val List<Metamodel> dependencies = new ArrayList<Metamodel>()
-		language.inheritanceRelation.forEach[inherit |
-			dependencies.add(inherit.superMetamodel)
+		val dependencies = newArrayList
+		language.operators.filter(Inheritance).forEach[inherit |
+			dependencies.add(inherit.superLanguage)
 		]
 		language.operators.filter(Merge).forEach[merge |
-			dependencies.add(merge.language)
+			dependencies.add(merge.mergedLanguage)
 		]
 		
 		return dependencies.exists[dep | history.contains(dep)]
@@ -220,11 +212,10 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 	/**
 	 * Get the root EPackage of {@link language}.
 	 */
-	private def EPackage getRootPackage(Metamodel language, List<Metamodel> history){
-		
+	private def EPackage getRootPackage(Language language, List<Language> history){
 		var EPackage res = registry.get(language)
 		
-		if(res == null && language != null) {
+		if (res === null && language !== null) {
 			if(isWithCycle(language, history)){
 				//TODO: raise error
 			}
@@ -307,8 +298,8 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 	/**
 	 * Return a copy of the part of language defined in {@link slice}
 	 */
-	private def EPackage applySlice(Slice slice, List<Metamodel> history){
-		val sliceBase = EcoreUtil::copy(getRootPackage(slice.language,history))
+	private def EPackage applySlice(Slice slice, List<Language> history){
+		val sliceBase = EcoreUtil::copy(getRootPackage(slice.slicedLanguage,history))
 		EcoreUtil.resolveAll(sliceBase)
 		
 		val roots = getClasses(sliceBase, slice.roots)

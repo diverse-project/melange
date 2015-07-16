@@ -2,14 +2,15 @@ package fr.inria.diverse.melange.processors
 
 import com.google.inject.Inject
 import fr.inria.diverse.melange.algebra.ModelTypeAlgebra
+import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.ast.MetamodelExtensions
+import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
+import fr.inria.diverse.melange.metamodel.melange.Aspect
+import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.utils.AspectToEcore
-import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
-import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
-import org.eclipse.core.resources.IProject
-import fr.inria.diverse.melange.metamodel.melange.Aspect
 import java.util.Properties
+import org.eclipse.core.resources.IProject
 
 /**
  * This class merges all aspects into the Metamodel
@@ -17,12 +18,13 @@ import java.util.Properties
 class AspectsWeaver extends DispatchMelangeProcessor
 {
 	@Inject ModelTypeAlgebra algebra
+	@Inject extension AspectExtensions
 	@Inject extension MetamodelExtensions
 	@Inject extension AspectToEcore
 	@Inject extension EclipseProjectHelper
 
-	def dispatch void preProcess(Metamodel mm, boolean preLinkingPhase) {
-		mm.aspects
+	def dispatch void preProcess(Language l, boolean preLinkingPhase) {
+		l.semantics.aspects
 		.filter[isComplete]
 		// First, create all the new meta-classes
 		// then, weave aspects
@@ -35,10 +37,10 @@ class AspectsWeaver extends DispatchMelangeProcessor
 			val className = asp.aspectAnnotationValue
 
 			if (className !== null)
-				asp.aspectedClass = mm.findClass(className)
+				asp.aspectedClass = l.syntax.findClass(className)
 
-			asp.ecoreFragment = asp.inferEcoreFragment(mm)
-			algebra.weaveAspect(mm, asp)
+			asp.ecoreFragment = asp.inferEcoreFragment(l)
+			algebra.weaveAspect(l, asp)
 		]
 	}
 	

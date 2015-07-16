@@ -1,7 +1,7 @@
 package fr.inria.diverse.melange.processors
 
 import fr.inria.diverse.melange.ast.ASTHelper
-import fr.inria.diverse.melange.ast.MetamodelExtensions
+import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
@@ -27,7 +27,7 @@ class ExtensionPointProcessor extends DispatchMelangeProcessor
 {
 	@Inject extension NamingHelper
 	@Inject extension ModelingElementExtensions
-	@Inject extension MetamodelExtensions
+	@Inject extension LanguageExtensions
 	@Inject extension ModelTypeExtensions
 	@Inject extension ASTHelper
 	@Inject extension EclipseProjectHelper
@@ -63,7 +63,7 @@ class ExtensionPointProcessor extends DispatchMelangeProcessor
 
 			if (pluginModel !== null && pluginBase !== null) {
 				val modelTypes = root.modelTypes.filter[isComplete]
-				val metamodels = root.metamodels.filter[isComplete]
+				val languages = root.languages.filter[isComplete]
 
 				if (modelTypes.size > 0 && modeltypeExtensionPoint !== null) {
 					val newExtension = fModel.factory.createExtension => [
@@ -102,31 +102,31 @@ class ExtensionPointProcessor extends DispatchMelangeProcessor
 					]
 				}
 
-				if (metamodels.size > 0 && languageExtensionPoint !== null) {
+				if (languages.size > 0 && languageExtensionPoint !== null) {
 					val newExtension = fModel.factory.createExtension => [
 						point = languageExtensionPoint.id
 					]
 
-					metamodels.forEach[mm |
+					languages.forEach[l |
 						try {
-							val fqn = mm.fullyQualifiedName.toString
-							val doc = documentationProvider.getDocumentation(mm)
+							val fqn = l.fullyQualifiedName.toString
+							val doc = documentationProvider.getDocumentation(l)
 							val languageElement = fModel.factory.createElement(newExtension) => [
 								name = "language"
 								setAttribute("id", fqn)
-								setAttribute("exactType", mm.exactType.fullyQualifiedName.toString)
-								setAttribute("uri", mm.pkgs.head.nsURI)
+								setAttribute("exactType", l.exactType.fullyQualifiedName.toString)
+								setAttribute("uri", l.syntax.pkgs.head.nsURI)
 
 								if (doc !== null && !doc.empty)
 									setAttribute("description", doc)	
 							]
 
 							// Register adapters
-							mm.implements.forEach[mt |
+							l.implements.forEach[mt |
 								languageElement.add(fModel.factory.createElement(languageElement) => [
 									name = "adapter"
 									setAttribute("modeltypeId", mt.fullyQualifiedName.toString)
-									setAttribute("class", mm.adapterNameFor(mt))
+									setAttribute("class", l.syntax.adapterNameFor(mt))
 								])
 							]
 

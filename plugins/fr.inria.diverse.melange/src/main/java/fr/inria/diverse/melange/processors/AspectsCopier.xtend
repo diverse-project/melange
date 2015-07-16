@@ -1,9 +1,9 @@
 package fr.inria.diverse.melange.processors
 
 import com.google.inject.Inject
-import fr.inria.diverse.melange.ast.MetamodelExtensions
+import fr.inria.diverse.melange.ast.LanguageExtensions
+import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.MelangeFactory
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.utils.AspectCopier
 import java.util.List
 import org.eclipse.emf.ecore.util.EcoreUtil
@@ -14,17 +14,15 @@ import org.eclipse.jdt.core.search.SearchMatch
 import org.eclipse.jdt.core.search.SearchPattern
 import org.eclipse.jdt.core.search.SearchRequestor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
-import fr.inria.diverse.melange.metamodel.melange.MelangePackage
-import fr.inria.diverse.melange.metamodel.melange.Aspect
 
 class AspectsCopier extends DispatchMelangeProcessor
 {
 	@Inject AspectCopier copier
-	@Inject extension MetamodelExtensions
+	@Inject extension LanguageExtensions
 	@Inject JvmTypeReferenceBuilder.Factory builderFactory
 
-	def dispatch void preProcess(Metamodel mm, boolean preLinkingPhase) {
-		val typeRefBuilder = builderFactory.create(mm.eResource.resourceSet)
+	def dispatch void preProcess(Language l, boolean preLinkingPhase) {
+		val typeRefBuilder = builderFactory.create(l.eResource.resourceSet)
 
 
 		if (!preLinkingPhase) {
@@ -33,7 +31,7 @@ class AspectsCopier extends DispatchMelangeProcessor
 			 **************************/
 			val newAspects = newArrayList
 			val toRemove = newArrayList
-			mm.allAspects.forEach[asp |
+			l.allAspects.forEach[asp |
 				// If there's a wildcard import, remove it and replace it
 				// with the list of matching aspects
 				if (asp.aspectWildcardImport !== null) {
@@ -51,12 +49,12 @@ class AspectsCopier extends DispatchMelangeProcessor
 			]
 
 			toRemove.forEach[EcoreUtil::remove(it)]
-			mm.aspects += newAspects
+			l.semantics.aspects += newAspects
 			
 			/**************************
 			 * Copy aspects from linked languages
 			 **************************/
-			mm.aspects += mm.createExternalAspects
+			l.semantics.aspects += l.createExternalAspects
 		}
 	}
 

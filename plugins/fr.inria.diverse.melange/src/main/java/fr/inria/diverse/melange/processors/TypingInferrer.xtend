@@ -2,7 +2,7 @@ package fr.inria.diverse.melange.processors
 
 import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.ASTHelper
-import fr.inria.diverse.melange.ast.MetamodelExtensions
+import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.metamodel.melange.MelangeFactory
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
@@ -17,7 +17,7 @@ class TypingInferrer extends DispatchMelangeProcessor
 	@Inject extension ASTHelper
 	@Inject extension ModelTypeExtensions
 	@Inject extension IQualifiedNameProvider
-	@Inject extension MetamodelExtensions
+	@Inject extension LanguageExtensions
 	@Inject MelangeTypesRegistry typesRegistry
 
 	def dispatch void preProcess(ModelTypingSpace root, boolean preLinkingPhase) {
@@ -37,18 +37,18 @@ class TypingInferrer extends DispatchMelangeProcessor
 				typesRegistry.registerSubtyping(mt1.fullyQualifiedName.toString, mt2)
 			]
 
-			root.metamodels
-			.filter[mm | mm.name !== null && !mm.^implements.exists[name == mt1.name] && mm.isTypedBy(mt1)]
-			.forEach[mm |
-				mm.^implements += mt1
+			root.languages
+			.filter[l | l.name !== null && !l.^implements.exists[name == mt1.name] && l.isTypedBy(mt1)]
+			.forEach[l |
+				l.^implements += mt1
 
-				typesRegistry.registerImplementation(mm.fullyQualifiedName.toString, mt1)
+				typesRegistry.registerImplementation(l.fullyQualifiedName.toString, mt1)
 			]
 		]
 	}
 
 	def dispatch void postProcess(ModelTypingSpace root) {
-		root.metamodels.forEach[^implements.clear]
+		root.languages.forEach[^implements.clear]
 		root.modelTypes.forEach[subtypingRelations.clear]
 	}
 }

@@ -18,9 +18,9 @@ class ExactTypeInferrer extends DispatchMelangeProcessor
 	def dispatch void preProcess(ModelTypingSpace root, boolean preLinkingPhase) {
 		val newMTs = newArrayList
 
-		root.metamodels.forEach[mm |
+		root.languages.forEach[l |
 			val newMT = MelangeFactory.eINSTANCE.createModelType => [
-				name = mm.exactTypeName
+				name = l.exactTypeName
 			]
 
 			if (!root.modelTypes.exists[name == newMT.name])
@@ -28,8 +28,8 @@ class ExactTypeInferrer extends DispatchMelangeProcessor
 		]
 
 		root.elements += newMTs
-		root.metamodels.forEach[mm |
-			mm.exactType = root.modelTypes.findFirst[name == mm.exactTypeName]
+		root.languages.forEach[l |
+			l.exactType = root.modelTypes.findFirst[name == l.exactTypeName]
 		]
 	}
 }

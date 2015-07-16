@@ -1,8 +1,8 @@
 package fr.inria.diverse.melange.processors
 
-import fr.inria.diverse.melange.ast.MetamodelExtensions
+import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
+import fr.inria.diverse.melange.metamodel.melange.Language
 import javax.inject.Inject
 
 /**
@@ -10,16 +10,16 @@ import javax.inject.Inject
  */
 class EcoreUriInferrer extends DispatchMelangeProcessor
 {
-	@Inject extension MetamodelExtensions
+	@Inject extension LanguageExtensions
 	@Inject extension EclipseProjectHelper
 
-	def dispatch void preProcess(Metamodel mm, boolean preLinkingPhase) {
-		val project = mm.eResource.project
+	def dispatch void preProcess(Language l, boolean preLinkingPhase) {
+		val project = l.eResource.project
 
-		if (mm.isGeneratedByMelange && project !== null)
-			if (project.getFile(mm.localEcorePath).exists)
-				mm.ecoreUri = mm.localEcoreUri
-			else if (project.getFile(mm.externalEcorePath).exists)
-				mm.ecoreUri = mm.externalEcoreUri
+		if (l.isGeneratedByMelange && project !== null)
+			if (project.getFile(l.localEcorePath).exists)
+				l.syntax.ecoreUri = l.localEcoreUri
+			else if (project.getFile(l.externalEcorePath).exists)
+				l.syntax.ecoreUri = l.externalEcoreUri
 	}
 }
