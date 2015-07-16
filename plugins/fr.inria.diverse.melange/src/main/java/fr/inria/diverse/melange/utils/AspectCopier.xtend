@@ -2,11 +2,12 @@ package fr.inria.diverse.melange.utils
 
 import fr.inria.diverse.commons.asm.shade.DirectoryShader
 import fr.inria.diverse.commons.asm.shade.ShadeRequest
+import fr.inria.diverse.commons.asm.shade.filter.Filter
 import fr.inria.diverse.commons.asm.shade.relocation.Relocator
 import fr.inria.diverse.commons.asm.shade.relocation.SimpleRelocator
 import fr.inria.diverse.commons.asm.shade.resource.K3AspectPropertiesTransformer
 import fr.inria.diverse.commons.asm.shade.resource.ResourceTransformer
-import fr.inria.diverse.melange.ast.MetamodelExtensions
+import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
@@ -27,15 +28,14 @@ import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.util.internal.Stopwatches
 
 import static fr.inria.diverse.melange.utils.AspectCopier.*
-import fr.inria.diverse.commons.asm.shade.filter.Filter
 
 /**
  * Baaah, full of sh*t
  */
 class AspectCopier
 {
+	@Inject extension AspectExtensions
 	@Inject extension ModelingElementExtensions
-	@Inject extension MetamodelExtensions
 	@Inject extension IQualifiedNameConverter
 	@Inject extension NamingHelper
 	@Inject extension EclipseProjectHelper

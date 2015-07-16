@@ -1,9 +1,9 @@
 package fr.inria.diverse.melange.ui.labeling
 
 import com.google.inject.Inject
+import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.Language
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.Transformation
@@ -13,6 +13,8 @@ import org.eclipse.xtext.xbase.ui.labeling.XbaseLabelProvider
 
 class MelangeLabelProvider extends XbaseLabelProvider
 {
+	@Inject extension LanguageExtensions
+
 	@Inject
 	new(AdapterFactoryLabelProvider delegate) {
 		super(delegate)
@@ -54,6 +56,6 @@ class MelangeLabelProvider extends XbaseLabelProvider
 	}
 
 	def String text(Language l) {
-		return '''«l.name»«FOR t : mm.inheritanceRelation BEFORE '\u25C0' SEPARATOR ', '»«t.superMetamodel.name»«ENDFOR»«FOR t : mm.implements BEFORE ' \u25C1 ' SEPARATOR ', '»«t.name»«ENDFOR»'''.toString
+		return '''«l.name»«FOR t : l.superLanguages BEFORE '\u25C0' SEPARATOR ', '»«t.name»«ENDFOR»«FOR t : l.implements BEFORE ' \u25C1 ' SEPARATOR ', '»«t.name»«ENDFOR»'''.toString
 	}
 }

@@ -2,7 +2,7 @@ package fr.inria.diverse.melange.eclipse
 
 import com.google.common.base.Splitter
 import com.google.common.collect.Sets
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
+import fr.inria.diverse.melange.metamodel.melange.Language
 import java.io.BufferedInputStream
 import java.io.BufferedOutputStream
 import java.io.ByteArrayInputStream
@@ -120,16 +120,16 @@ class EclipseProjectHelper
 		}
 	}
 
-	def static IProject createEMFRuntimeProject(String projectName, Metamodel mm) {
+	def static IProject createEMFRuntimeProject(String projectName, Language l) {
 		try {
 			// FIXME: Everything's hardcoded...
-			val basePkg = mm.name.toLowerCase
+			val basePkg = l.name.toLowerCase
 			val generatedEPackageExtension = '''
 				<extension point="org.eclipse.emf.ecore.generated_package">
 					<package
 						uri="http://«basePkg»/"
-						class="«basePkg».«mm.name»Package"
-						genModel="model/«mm.name».genmodel"/>
+						class="«basePkg».«l.name»Package"
+						genModel="model/«l.name».genmodel"/>
 				</extension>
 			'''
 			val project = createEclipseProject(

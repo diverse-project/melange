@@ -4,7 +4,7 @@ import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.metamodel.melange.Aspect
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
+import fr.inria.diverse.melange.metamodel.melange.Language
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EcoreFactory
 import org.eclipse.xtext.common.types.JvmDeclaredType
@@ -12,8 +12,6 @@ import org.eclipse.xtext.common.types.JvmEnumerationType
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
 import org.eclipse.xtext.common.types.JvmVisibility
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
-import fr.inria.diverse.melange.ast.MetamodelExtensions
 
 /**
  * This class creates an EPackage corresponding to an aspect.
@@ -24,16 +22,15 @@ class AspectToEcore
 	@Inject extension EcoreExtensions
 	@Inject extension TypeReferencesHelper
 	@Inject extension ModelingElementExtensions
-	@Inject extension MetamodelExtensions
 
 	/**
 	 * Try to infer the "modeling intention" of the aspect aspImport
 	 * and put its features into a newly created EPackage
 	 */
-	def EPackage inferEcoreFragment(Aspect aspImport, Metamodel mm) {
+	def EPackage inferEcoreFragment(Aspect aspImport, Language l) {
 		val aspect = aspImport.aspectTypeRef.type as JvmDeclaredType
 		val baseCls = aspImport.aspectedClass
-		val basePkg = baseCls?.EPackage ?: mm.pkgs.head
+		val basePkg = baseCls?.EPackage ?: l.syntax.pkgs.head
 
 		val aspPkg = EcoreFactory.eINSTANCE.createEPackage => [
 			name = basePkg.name

@@ -1,29 +1,26 @@
 package fr.inria.diverse.melange.validation
 
 import com.google.inject.Inject
-
-import fr.inria.diverse.melange.ast.MetamodelExtensions
-
+import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.lib.MatchingHelper
 import fr.inria.diverse.melange.lib.ModelUtils
-
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.Element
+import fr.inria.diverse.melange.metamodel.melange.Import
+import fr.inria.diverse.melange.metamodel.melange.Inheritance
+import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
-
+import fr.inria.diverse.melange.metamodel.melange.ResourceType
 import java.util.Collections
-
 import org.eclipse.xtext.common.types.JvmDeclaredType
-
 import org.eclipse.xtext.validation.Check
-import fr.inria.diverse.melange.metamodel.melange.Ecore
 
 class MelangeValidator extends AbstractMelangeValidator
 {
-	@Inject extension MetamodelExtensions
+	@Inject extension LanguageExtensions
 	@Inject ModelUtils modelUtils
 	@Inject MatchingHelper matchingHelper
 
@@ -74,11 +71,10 @@ class MelangeValidator extends AbstractMelangeValidator
 	}
 
 	@Check
-	def void checkEcoreIsSet(Metamodel mm) {
-		if (mm.operators.filter(Ecore).filter[ecoreUri !== null].empty
-			&& mm.inheritanceRelation?.forall[superMetamodel?.ecoreUri === null]
-			&& mm.operators.empty
-			&& mm.ecoreUri === null
+	def void checkEcoreIsSet(Language l) {
+		if (l.operators.filter(Import).filter[ecoreUri !== null].empty
+			&& l.operators.filter(Inheritance).forall[superLanguage?.syntax.ecoreUri === null]
+			&& l.operators.empty
 		)
 			error(
 				"A valid Ecore file must be imported",
@@ -178,10 +174,10 @@ class MelangeValidator extends AbstractMelangeValidator
 	// TODO: This should be replaced by an algebra call.
 	//       -> ecore files must be loaded prior to this
 	@Check
-	def void checkImplements(Metamodel mm) {
-		val mmPkg = modelUtils.loadPkg(mm.ecoreUri)
+	def void checkImplements(Language l) {
+		val mmPkg = modelUtils.loadPkg(l.syntax.ecoreUri)
 
-		mm.^implements
+		l.^implements
 		.forEach[mt |
 			val mtPkg = modelUtils.loadPkg(mt.ecoreUri)
 
@@ -189,7 +185,7 @@ class MelangeValidator extends AbstractMelangeValidator
 				Collections.singletonList(mmPkg), Collections.singletonList(mtPkg), null
 			))
 				error(
-					'''«mm.name» doesn't match the interface «mt.name»''',
+					'''«l.name» doesn't match the interface «mt.name»''',
 					MelangePackage.Literals.ELEMENT__NAME,
 					MelangeValidationConstants.METAMODEL_IMPLEMENTS_ERROR
 				)
@@ -197,43 +193,43 @@ class MelangeValidator extends AbstractMelangeValidator
 	}
 
 	@Check
-	def void checkMetamodelTypeIsSet(Metamodel mm) {
-		if (mm.exactTypeName === null || mm.exactType === null)
+	def void checkExactTypeIsSet(Language l) {
+		if (l.exactTypeName === null || l.exactType === null)
 			error(
 				"exactType feature must be set",
-				MelangePackage.Literals.METAMODEL__EXACT_TYPE_NAME,
+				MelangePackage.Literals.LANGUAGE__EXACT_TYPE_NAME,
 				MelangeValidationConstants.METAMODEL_EXACTTYPE_ERROR
 			)
 	}
 
 	@Check
-	def void checkNoSelfInheritance(Metamodel mm) {
-		if (mm.inheritanceRelation.exists[superMetamodel == mm])
+	def void checkNoSelfInheritance(Language l) {
+		if (l.superLanguages.exists[ll | ll.superLanguages.contains(l)])
 			error(
 				"Cannot inherit from self",
-				MelangePackage.Literals.METAMODEL__INHERITANCE_RELATION,
+				MelangePackage.Literals.INHERITANCE__SUPER_LANGUAGE,
 				MelangeValidationConstants.METAMODEL_SELF_INHERITANCE
 			)
 	}
 
 	@Check
-	def void checkXtextResourceProperlyConfigured(Metamodel mm) {
+	def void checkXtextResourceProperlyConfigured(Language l) {
 		if (
-			   mm.resourceType == fr.inria.diverse.melange.metamodel.melange.ResourceType.XTEXT
-			&& mm.xtextSetupRef === null
+			   l.resourceType == ResourceType.XTEXT
+			&& l.xtextSetupRef === null
 		)
 			error(
 				"Xtext resources needs a 'setup' class",
-				MelangePackage.Literals.METAMODEL__RESOURCE_TYPE,
+				MelangePackage.Literals.LANGUAGE__RESOURCE_TYPE,
 				MelangeValidationConstants.METAMODEL_XTEXT_SETUP
 			)
 	}
 
 	@Check
-	def void checkRuntimeHasBeenGenerated(Metamodel mm) {
-		if (mm.isGeneratedByMelange && !mm.runtimeHasBeenGenerated) {
+	def void checkRuntimeHasBeenGenerated(Language l) {
+		if (l.isGeneratedByMelange && !l.runtimeHasBeenGenerated) {
 			error(
-				"Cannot find EMF runtime for" + mm.name,
+				"Cannot find EMF runtime for" + l.name,
 				MelangePackage.Literals.MODELING_ELEMENT__ECORE_URI,
 				MelangeValidationConstants.METAMODEL_NO_EMF_RUNTIME
 			)

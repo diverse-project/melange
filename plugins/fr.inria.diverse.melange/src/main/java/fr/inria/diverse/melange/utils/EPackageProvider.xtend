@@ -4,11 +4,12 @@ import com.google.common.collect.ArrayListMultimap
 import com.google.common.collect.ListMultimap
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import fr.inria.diverse.melange.ast.MetamodelExtensions
+import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.ModelUtils
+import fr.inria.diverse.melange.metamodel.melange.Inheritance
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelingElement
@@ -23,7 +24,7 @@ class EPackageProvider
 	@Inject ModelUtils modelUtils
 	@Inject extension EcoreExtensions
 	@Inject extension ModelTypeExtensions
-	@Inject extension MetamodelExtensions
+	@Inject extension LanguageExtensions
 	@Inject extension EclipseProjectHelper
 	private ListMultimap<ModelingElement, EPackage> packages = ArrayListMultimap.create
 	private ListMultimap<Metamodel, GenModel> genmodels = ArrayListMultimap.create
@@ -37,11 +38,11 @@ class EPackageProvider
 		if (!packages.containsKey(m)) {
 			if (m instanceof Metamodel) {
 				val project = m.eResource.project
-				if (m.isGeneratedByMelange && project !== null)
-					if (project.getFile(m.localEcorePath).exists)
-						m.ecoreUri = m.localEcoreUri
-					else if (project.getFile(m.externalEcorePath).exists)
-						m.ecoreUri = m.externalEcoreUri
+				if (m.owningLanguage.isGeneratedByMelange && project !== null)
+					if (project.getFile(m.owningLanguage.localEcorePath).exists)
+						m.ecoreUri = m.owningLanguage.localEcoreUri
+					else if (project.getFile(m.owningLanguage.externalEcorePath).exists)
+						m.ecoreUri = m.owningLanguage.externalEcoreUri
 			}
 
 			switch (m) {
@@ -60,8 +61,8 @@ class EPackageProvider
 					}
 				}
 				Metamodel:
-					if (m.hasSuperMetamodel) {
-						val pkgsCopy = m.inheritanceRelation.map[superMetamodel.packages.map[
+					if (m.owningLanguage.hasSuperLanguage) {
+						val pkgsCopy = m.owningLanguage.operators.filter(Inheritance).map[superLanguage.syntax.packages.map[
 							val copy = EcoreUtil::copy(it)
 							copy.name = m.name.toLowerCase
 							copy.nsPrefix = copy.name
@@ -80,7 +81,7 @@ class EPackageProvider
 					}
 				ModelType:
 					if (m.isExtracted) {
-						packages.putAll(m, m.extracted.packages.map[EcoreUtil::copy(it)])
+						packages.putAll(m, m.extracted.syntax.packages.map[EcoreUtil::copy(it)])
 					}
 			}
 		}
@@ -94,11 +95,11 @@ class EPackageProvider
 				mm.genmodelUris += mm.ecoreUri.substring(0, mm.ecoreUri.lastIndexOf(".")) + ".genmodel"
 			else {
 				val project = mm.eResource.project
-				if (mm.isGeneratedByMelange && project !== null)
-					if (project.getFile(mm.localGenmodelPath).exists)
-						mm.genmodelUris += mm.localGenmodelUri
-					else if (project.getFile(mm.externalGenmodelPath).exists)
-						mm.genmodelUris += mm.externalGenmodelUri
+				if (mm.owningLanguage.isGeneratedByMelange && project !== null)
+					if (project.getFile(mm.owningLanguage.localGenmodelPath).exists)
+						mm.genmodelUris += mm.owningLanguage.localGenmodelUri
+					else if (project.getFile(mm.owningLanguage.externalGenmodelPath).exists)
+						mm.genmodelUris += mm.owningLanguage.externalGenmodelUri
 			}
 			mm.genmodelUris.forEach[genmodels.put(mm, modelUtils.loadGenmodel(it))]
 		}
