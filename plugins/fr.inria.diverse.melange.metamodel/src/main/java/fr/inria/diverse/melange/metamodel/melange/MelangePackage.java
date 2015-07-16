@@ -233,13 +233,22 @@ public interface MelangePackage extends EPackage {
 	int METAMODEL__OWNING_LANGUAGE = MODELING_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Genmodel Uris</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL__GENMODEL_URIS = MODELING_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Metamodel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL_FEATURE_COUNT = MODELING_ELEMENT_FEATURE_COUNT + 1;
+	int METAMODEL_FEATURE_COUNT = MODELING_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Metamodel</em>' class.
@@ -1218,6 +1227,17 @@ public interface MelangePackage extends EPackage {
 	EReference getMetamodel_OwningLanguage();
 
 	/**
+	 * Returns the meta object for the attribute list '{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getGenmodelUris <em>Genmodel Uris</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Genmodel Uris</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Metamodel#getGenmodelUris()
+	 * @see #getMetamodel()
+	 * @generated
+	 */
+	EAttribute getMetamodel_GenmodelUris();
+
+	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.ModelType <em>Model Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1951,6 +1971,14 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EReference METAMODEL__OWNING_LANGUAGE = eINSTANCE.getMetamodel_OwningLanguage();
+
+		/**
+		 * The meta object literal for the '<em><b>Genmodel Uris</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METAMODEL__GENMODEL_URIS = eINSTANCE.getMetamodel_GenmodelUris();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypeImpl <em>Model Type</em>}' class.

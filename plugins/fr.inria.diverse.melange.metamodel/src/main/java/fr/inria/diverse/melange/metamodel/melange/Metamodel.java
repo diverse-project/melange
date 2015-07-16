@@ -2,6 +2,8 @@
  */
 package fr.inria.diverse.melange.metamodel.melange;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Metamodel</b></em>'.
@@ -12,6 +14,7 @@ package fr.inria.diverse.melange.metamodel.melange;
  * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getOwningLanguage <em>Owning Language</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getGenmodelUris <em>Genmodel Uris</em>}</li>
  * </ul>
  *
  * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getMetamodel()
@@ -47,5 +50,21 @@ public interface Metamodel extends ModelingElement {
 	 * @generated
 	 */
 	void setOwningLanguage(Language value);
+
+	/**
+	 * Returns the value of the '<em><b>Genmodel Uris</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Genmodel Uris</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Genmodel Uris</em>' attribute list.
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getMetamodel_GenmodelUris()
+	 * @model
+	 * @generated
+	 */
+	EList<String> getGenmodelUris();
 
 } // Metamodel
