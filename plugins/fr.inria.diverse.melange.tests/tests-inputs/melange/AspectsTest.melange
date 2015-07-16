@@ -6,20 +6,20 @@ import fr.inria.diverse.melange.tests.aspects.fsm.StateAspect3
 
 language Fsm {
 	ecore "tests-inputs/metamodels/FSM.ecore" withGenmodel "tests-inputs/metamodels/FSM.genmodel"
-	exactType FsmMT
 	with StateAspect1
+	exactType FsmMT
 }
 
 language TimedFsm {
 	ecore "tests-inputs/metamodels/TimedFSM.ecore" withGenmodel "tests-inputs/metamodels/TimedFSM.genmodel"
-	exactType TimedFsmMT
 	with StateAspect2
+	exactType TimedFsmMT
 }
 
 language IncompatibleFsm {
 	ecore "tests-inputs/metamodels/FSM.ecore" withGenmodel "tests-inputs/metamodels/FSM.genmodel"
-	exactType IncompatibleFsmMT
 	with StateAspect3
+	exactType IncompatibleFsmMT
 }
 
 transformation String callFoo(FsmMT m) {

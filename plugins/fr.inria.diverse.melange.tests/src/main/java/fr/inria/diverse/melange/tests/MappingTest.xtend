@@ -1,26 +1,26 @@
 package fr.inria.diverse.melange.tests
 
-import org.junit.runner.RunWith
-import org.eclipse.xtext.junit4.XtextRunner
-import org.eclipse.xtext.junit4.InjectWith
-import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
-import fr.inria.diverse.melange.tools.xtext.testing.XtextTest
-import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
-import org.junit.Test
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
-import org.eclipse.emf.ecore.EPackage
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.emf.common.util.URI
-import fr.inria.diverse.melange.lib.MatchingHelper
 import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
-import java.util.Collections
-import static org.junit.Assert.*
-import fr.inria.diverse.melange.metamodel.melange.Mapping
+import fr.inria.diverse.melange.lib.MatchingHelper
 import fr.inria.diverse.melange.metamodel.melange.ClassBinding
+import fr.inria.diverse.melange.metamodel.melange.Language
+import fr.inria.diverse.melange.metamodel.melange.Mapping
+import fr.inria.diverse.melange.metamodel.melange.Metamodel
+import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.PropertyBinding
-import org.eclipse.emf.ecore.util.EcoreUtil
-import org.eclipse.xtext.nodemodel.util.NodeModelUtils
+import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
+import fr.inria.diverse.melange.tools.xtext.testing.XtextTest
+import java.util.Collections
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.EPackage
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.eclipse.xtext.junit4.InjectWith
+import org.eclipse.xtext.junit4.XtextRunner
+import org.junit.Test
+import org.junit.runner.RunWith
+
+import static org.junit.Assert.*
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
@@ -46,8 +46,6 @@ class MappingTest
 	
 	@Test
 	def void testStructureMapping(){
-		assertEquals("MyMapping", mapping.name)
-		
 		assertEquals(MM3, mapping.from)
 		assertEquals(MM1.exactType, mapping.to)
 		
@@ -84,10 +82,10 @@ class MappingTest
 		return helper.match(Collections.singletonList(pkgA), Collections.singletonList(pkgB), null)
 	}
 	
-	def Metamodel getMM1()              { return root.elements.get(0) as Metamodel }
-	def Metamodel getMM3()              { return root.elements.get(1) as Metamodel }
+	def Language getMM1()              { return root.elements.get(0) as Language }
+	def Language getMM3()              { return root.elements.get(1) as Language }
 	def Mapping   getMapping()          { return root.elements.get(2) as Mapping }
-	def Metamodel getMergeLang()       { return root.elements.get(3) as Metamodel }
+	def Language getMergeLang()       { return root.elements.get(3) as Language }
 	
 	def ClassBinding getSuperABinding() { return mapping.rules.get(0) as ClassBinding}
 	def ClassBinding getABinding()      { return mapping.rules.get(1) as ClassBinding}

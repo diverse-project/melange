@@ -10,7 +10,6 @@ import fr.inria.diverse.melange.tests.aspects.fsm.Operations
 
 language Fsm {
 	ecore "tests-inputs/metamodels/FSM.ecore" withGenmodel "tests-inputs/metamodels/FSM.genmodel"
-	exactType FsmMT
 	with SimpleAttributes
 	with AttributesCollections
 	with SimpleReferences
@@ -18,4 +17,5 @@ language Fsm {
 	with ExternalReferences
 	with Visibility
 	with Operations
+	exactType FsmMT
 }

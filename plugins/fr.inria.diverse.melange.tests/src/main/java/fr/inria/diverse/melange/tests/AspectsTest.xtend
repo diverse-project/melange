@@ -1,50 +1,34 @@
 package fr.inria.diverse.melange.tests
 
 import com.google.inject.Inject
-
-import fr.inria.diverse.melange.ast.ModelingElementExtensions
-
 import fr.inria.diverse.melange.adapters.GenericAdapter
 import fr.inria.diverse.melange.adapters.ListAdapter
-
+import fr.inria.diverse.melange.ast.LanguageExtensions
+import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.lib.IModelType
-
+import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.XbaseTransformation
-
 import fr.inria.diverse.melange.resource.MelangeRegistry
-
 import fr.inria.diverse.melange.tests.aspects.fsm.StateAspect1
-
 import fr.inria.diverse.melange.tests.common.MelangeTestHelper
 import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
-
 import fr.inria.diverse.melange.tools.xtext.testing.XtextTest
-
 import fsm.FSM
 import fsm.FsmPackage
-
 import org.eclipse.emf.common.util.EList
-
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EObject
-
 import org.eclipse.emf.ecore.resource.Resource
-
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
-
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.InMemoryFileSystemAccess
-
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
-
 import org.junit.Test
-
 import org.junit.runner.RunWith
-
 import timedfsm.TimedfsmPackage
 
 import static org.junit.Assert.*
@@ -55,6 +39,7 @@ import static org.junit.Assert.*
 class AspectsTest
 {
 	@Inject extension ModelingElementExtensions
+	@Inject extension LanguageExtensions
 	@Inject extension MelangeTestHelper
 	@Inject IGenerator generator
 
@@ -64,9 +49,9 @@ class AspectsTest
 		assertEquals(root.name, "aspectstest")
 		assertNotNull(root.imports)
 
-		assertTrue(root.elements.get(0) instanceof Metamodel)
-		assertTrue(root.elements.get(1) instanceof Metamodel)
-		assertTrue(root.elements.get(2) instanceof Metamodel)
+		assertTrue(root.elements.get(0) instanceof Language)
+		assertTrue(root.elements.get(1) instanceof Language)
+		assertTrue(root.elements.get(2) instanceof Language)
 		assertTrue(root.elements.get(3) instanceof XbaseTransformation)
 		assertTrue(root.elements.get(4) instanceof XbaseTransformation)
 		assertTrue(root.elements.get(5) instanceof XbaseTransformation)
@@ -91,10 +76,10 @@ class AspectsTest
 
 	@Test
 	def void testAspectsImportFsm() {
-		val fsmAspect = fsm.aspects.head
+		val fsmAspect = fsm.semantics.aspects.head
 
 		assertNotNull(fsmAspect)
-		assertEquals(fsm.aspects.size, 1)
+		assertEquals(fsm.semantics.aspects.size, 1)
 		assertEquals(fsmAspect.aspectedClass.name, FsmPackage.eINSTANCE.getState.name)
 		assertNotNull(fsmAspect.aspectTypeRef)
 		assertEquals(fsmAspect.aspectTypeRef.type.simpleName, "StateAspect1")
@@ -102,10 +87,10 @@ class AspectsTest
 
 	@Test
 	def void testAspectsImportTfsm() {
-		val tfsmAspect = tfsm.aspects.head
+		val tfsmAspect = tfsm.semantics.aspects.head
 
 		assertNotNull(tfsmAspect)
-		assertEquals(tfsm.aspects.size, 1)
+		assertEquals(tfsm.semantics.aspects.size, 1)
 		assertEquals(tfsmAspect.aspectedClass.name, TimedfsmPackage.eINSTANCE.getState.name)
 		assertNotNull(tfsmAspect.aspectTypeRef)
 		assertEquals(tfsmAspect.aspectTypeRef.type.simpleName, "StateAspect2")
@@ -113,10 +98,10 @@ class AspectsTest
 
 	@Test
 	def void testAspectsImportIfsm() {
-		val ifsmAspect = ifsm.aspects.head
+		val ifsmAspect = ifsm.semantics.aspects.head
 
 		assertNotNull(ifsmAspect)
-		assertEquals(ifsm.aspects.size, 1)
+		assertEquals(ifsm.semantics.aspects.size, 1)
 		assertEquals(ifsmAspect.aspectedClass.name, FsmPackage.eINSTANCE.getState.name)
 		assertNotNull(ifsmAspect.aspectTypeRef)
 		assertEquals(ifsmAspect.aspectTypeRef.type.simpleName, "StateAspect3")
@@ -124,7 +109,7 @@ class AspectsTest
 
 	@Test
 	def void testEmfWeavingFsm() {
-		val fsmPkg = root.mm("Fsm").pkgs.head
+		val fsmPkg = fsm.syntax.pkgs.head
 		val stateCls = fsmPkg.EClassifiers.findFirst[name == "State"] as EClass
 
 		assertNotNull(stateCls)
@@ -141,7 +126,7 @@ class AspectsTest
 
 	@Test
 	def void testEmfWeavingTfsm() {
-		val tfsmPkg = root.mm("TimedFsm").pkgs.head
+		val tfsmPkg = tfsm.syntax.pkgs.head
 		val stateCls = tfsmPkg.EClassifiers.findFirst[name == "State"] as EClass
 
 		assertNotNull(stateCls)
@@ -158,7 +143,7 @@ class AspectsTest
 
 	@Test
 	def void testEmfWeavingIfsm() {
-		val ifsmPkg = root.mm("IncompatibleFsm").pkgs.head
+		val ifsmPkg = ifsm.syntax.pkgs.head
 		val stateCls = ifsmPkg.EClassifiers.findFirst[name == "State"] as EClass
 
 		assertNotNull(stateCls)
@@ -218,17 +203,17 @@ class AspectsTest
 
 	@Test
 	def void testInheritanceFsm() {
-		assertEquals(fsm.inheritanceRelation.size, 0)
+		assertEquals(fsm.superLanguages.size, 0)
 	}
 
 	@Test
 	def void testInheritanceTfsm() {
-		assertEquals(tfsm.inheritanceRelation.size, 0)
+		assertEquals(tfsm.superLanguages.size, 0)
 	}
 
 	@Test
 	def void testInheritanceIfsm() {
-		assertEquals(ifsm.inheritanceRelation.size, 0)
+		assertEquals(ifsm.superLanguages.size, 0)
 	}
 
 	@Test
@@ -292,9 +277,9 @@ class AspectsTest
 		}
 	}
 
-	def Metamodel getFsm()                { return root.elements.get(0) as Metamodel }
-	def Metamodel getTfsm()               { return root.elements.get(1) as Metamodel }
-	def Metamodel getIfsm()               { return root.elements.get(2) as Metamodel }
+	def Language getFsm()                { return root.elements.get(0) as Language }
+	def Language getTfsm()               { return root.elements.get(1) as Language }
+	def Language getIfsm()               { return root.elements.get(2) as Language }
 	def XbaseTransformation getCallFoo()  { return root.elements.get(3) as XbaseTransformation }
 	def XbaseTransformation getCallBar()  { return root.elements.get(4) as XbaseTransformation }
 	def XbaseTransformation getLoadFsm()  { return root.elements.get(5) as XbaseTransformation }

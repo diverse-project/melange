@@ -1,41 +1,28 @@
 package fr.inria.diverse.melange.tests
 
 import com.google.inject.Inject
-
 import fr.inria.diverse.melange.adapters.GenericAdapter
 import fr.inria.diverse.melange.adapters.ListAdapter
-
+import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.lib.IModelType
-
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
+import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.Transformation
-
 import fr.inria.diverse.melange.resource.MelangeRegistry
-
 import fr.inria.diverse.melange.tests.common.MelangeTestHelper
 import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
-
 import fr.inria.diverse.melange.tools.xtext.testing.XtextTest
-
 import org.eclipse.emf.common.util.EList
-
 import org.eclipse.emf.ecore.EObject
-
 import org.eclipse.emf.ecore.resource.Resource
-
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
-
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.InMemoryFileSystemAccess
-
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
-
 import org.junit.Ignore
 import org.junit.Test
-
 import org.junit.runner.RunWith
 
 import static org.junit.Assert.*
@@ -46,6 +33,7 @@ import static org.junit.Assert.*
 @XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/EcoreTest.melange")
 class EcoreTest
 {
+	@Inject extension LanguageExtensions
 	@Inject extension MelangeTestHelper
 	@Inject IGenerator generator
 
@@ -55,7 +43,7 @@ class EcoreTest
 		assertEquals(root.name, "ecoretest")
 		assertNotNull(root.imports)
 
-		assertTrue(root.elements.get(0) instanceof Metamodel)
+		assertTrue(root.elements.get(0) instanceof Language)
 		assertTrue(root.elements.get(1) instanceof Transformation)
 		assertTrue(root.elements.get(2) instanceof Transformation)
 		assertTrue(root.elements.get(3) instanceof Transformation)
@@ -82,7 +70,7 @@ class EcoreTest
 
 	@Test
 	def void testInheritance() {
-		assertNull(ecore.inheritanceRelation)
+		assertEquals(ecore.superLanguages.size, 0)
 	}
 
 	@Test
@@ -130,7 +118,7 @@ class EcoreTest
 		}
 	}
 
-	def Metamodel getEcore()                { return root.elements.get(0) as Metamodel }
+	def Language getEcore()                { return root.elements.get(0) as Language }
 	def Transformation getTestClassifiers() { return root.elements.get(1) as Transformation }
 	def Transformation getLoadEcore()       { return root.elements.get(2) as Transformation }
 	def Transformation getTest()            { return root.elements.get(3) as Transformation }

@@ -1,24 +1,23 @@
 package fr.inria.diverse.melange.tests
 
-import org.junit.runner.RunWith
-import org.eclipse.xtext.junit4.XtextRunner
-import org.eclipse.xtext.junit4.InjectWith
-import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
-import fr.inria.diverse.melange.tools.xtext.testing.XtextTest
-import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
-import org.junit.Test
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
-import org.eclipse.emf.ecore.EPackage
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.emf.common.util.URI
-import fr.inria.diverse.melange.lib.MatchingHelper
 import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
-import java.util.Collections
-import static org.junit.Assert.*
-import fr.inria.diverse.melange.metamodel.melange.Merge
+import fr.inria.diverse.melange.lib.MatchingHelper
+import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage
+import fr.inria.diverse.melange.metamodel.melange.Metamodel
+import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
+import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
+import fr.inria.diverse.melange.tools.xtext.testing.XtextTest
 import fr.inria.diverse.melange.validation.MelangeValidationConstants
+import java.util.Collections
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.EPackage
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.eclipse.xtext.junit4.InjectWith
+import org.eclipse.xtext.junit4.XtextRunner
+import org.junit.Test
+import org.junit.runner.RunWith
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
@@ -30,7 +29,7 @@ class AspectOverridingTest
 	
 	@Test
 	def void testInheritAttributeOverride(){
-		assertError(inheritsOverriding.aspects.get(0),
+		assertError(inheritsOverriding.semantics.aspects.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_ATTRIBUTE_OVERRIDING,
 					"Aspect \'fr.inria.diverse.melange.tests.aspect.merge.AttributesTestAspect\' has an attribute \'changeableYes\' typed String but in \'Exhaustive\' it is typed EDouble"
@@ -38,7 +37,7 @@ class AspectOverridingTest
 	}
 	@Test
 	def void testInheritReferenceOverride(){
-		assertError(inheritsOverriding.aspects.get(0),
+		assertError(inheritsOverriding.semantics.aspects.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING,
 					"Aspect \'fr.inria.diverse.melange.tests.aspect.merge.ReferencesTestAspect\' has a reference \'upperBoundN\' typed OperationsTest but in \'Exhaustive\' it is typed AttributesTest"
@@ -46,7 +45,7 @@ class AspectOverridingTest
 	}
 	@Test
 	def void testInheritOperationOverride(){
-		assertError(inheritsOverriding.aspects.get(0),
+		assertError(inheritsOverriding.semantics.aspects.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_OPERATION_OVERRIDING,
 					"Aspect \'fr.inria.diverse.melange.tests.aspect.merge.OperationsTestAspect\' has an operation \'lowerBound1\' typed boolean but in \'Exhaustive\' it is typed Void"
@@ -54,7 +53,7 @@ class AspectOverridingTest
 	}
 	@Test
 	def void testInheritOperationManyOverride(){
-		assertError(inheritsOverriding.aspects.get(0),
+		assertError(inheritsOverriding.semantics.aspects.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_OPERATION_OVERRIDING,
 					"Aspect \'fr.inria.diverse.melange.tests.aspect.merge.OperationsTestAspect\' has an operation \'manyParameters\' typed String but in \'Exhaustive\' it is typed Void"
@@ -63,7 +62,7 @@ class AspectOverridingTest
 	
 	@Test
 	def void testMergeAttributeOverride(){
-		assertError(mergeOverriding.aspects.get(0),
+		assertError(mergeOverriding.semantics.aspects.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_ATTRIBUTE_OVERRIDING,
 					"Aspect \'fr.inria.diverse.melange.tests.aspect.merge.AttributesTestAspect\' has an attribute \'changeableYes\' typed String but in \'Exhaustive\' it is typed EDouble"
@@ -71,7 +70,7 @@ class AspectOverridingTest
 	}
 	@Test
 	def void testMergeReferenceOverride(){
-		assertError(mergeOverriding.aspects.get(0),
+		assertError(mergeOverriding.semantics.aspects.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING,
 					"Aspect \'fr.inria.diverse.melange.tests.aspect.merge.ReferencesTestAspect\' has a reference \'upperBoundN\' typed OperationsTest but in \'Exhaustive\' it is typed AttributesTest"
@@ -79,7 +78,7 @@ class AspectOverridingTest
 	}
 	@Test
 	def void testMergeOperationOverride(){
-		assertError(mergeOverriding.aspects.get(0),
+		assertError(mergeOverriding.semantics.aspects.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_OPERATION_OVERRIDING,
 					"Aspect \'fr.inria.diverse.melange.tests.aspect.merge.OperationsTestAspect\' has an operation \'lowerBound1\' typed boolean but in \'Exhaustive\' it is typed Void"
@@ -87,7 +86,7 @@ class AspectOverridingTest
 	}
 	@Test
 	def void testMergeOperationManyOverride(){
-		assertError(mergeOverriding.aspects.get(0),
+		assertError(mergeOverriding.semantics.aspects.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_OPERATION_OVERRIDING,
 					"Aspect \'fr.inria.diverse.melange.tests.aspect.merge.OperationsTestAspect\' has an operation \'manyParameters\' typed String but in \'Exhaustive\' it is typed Void"
@@ -96,7 +95,7 @@ class AspectOverridingTest
 	
 	@Test
 	def void testSliceAttributeOverride(){
-		assertError(sliceOverriding.aspects.get(0),
+		assertError(sliceOverriding.semantics.aspects.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_ATTRIBUTE_OVERRIDING,
 					"Aspect \'fr.inria.diverse.melange.tests.aspect.merge.AttributesTestAspect\' has an attribute \'changeableYes\' typed String but in \'Exhaustive\' it is typed EDouble"
@@ -104,7 +103,7 @@ class AspectOverridingTest
 	}
 	@Test
 	def void testSliceReferenceOverride(){
-		assertError(sliceOverriding.aspects.get(0),
+		assertError(sliceOverriding.semantics.aspects.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING,
 					"Aspect \'fr.inria.diverse.melange.tests.aspect.merge.ReferencesTestAspect\' has a reference \'upperBoundN\' typed OperationsTest but in \'Exhaustive\' it is typed AttributesTest"
@@ -112,7 +111,7 @@ class AspectOverridingTest
 	}
 	@Test
 	def void testSliceOperationOverride(){
-		assertError(sliceOverriding.aspects.get(0),
+		assertError(sliceOverriding.semantics.aspects.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_OPERATION_OVERRIDING,
 					"Aspect \'fr.inria.diverse.melange.tests.aspect.merge.OperationsTestAspect\' has an operation \'lowerBound1\' typed boolean but in \'Exhaustive\' it is typed Void"
@@ -120,7 +119,7 @@ class AspectOverridingTest
 	}
 	@Test
 	def void testSliceOperationManyOverride(){
-		assertError(sliceOverriding.aspects.get(0),
+		assertError(sliceOverriding.semantics.aspects.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_OPERATION_OVERRIDING,
 					"Aspect \'fr.inria.diverse.melange.tests.aspect.merge.OperationsTestAspect\' has an operation \'manyParameters\' typed String but in \'Exhaustive\' it is typed Void"
@@ -139,9 +138,9 @@ class AspectOverridingTest
 		return helper.match(Collections.singletonList(pkgA), Collections.singletonList(pkgB), null)
 	}
 	
-	def Metamodel getExhaustive()         { return root.elements.get(0) as Metamodel }
-	def Metamodel getInheritsOverriding() { return root.elements.get(1) as Metamodel }
-	def Metamodel getMergeOverriding()    { return root.elements.get(2) as Metamodel }
-	def Metamodel getSliceOverriding()    { return root.elements.get(3) as Metamodel }
+	def Language getExhaustive()         { return root.elements.get(0) as Language }
+	def Language getInheritsOverriding() { return root.elements.get(1) as Language }
+	def Language getMergeOverriding()    { return root.elements.get(2) as Language }
+	def Language getSliceOverriding()    { return root.elements.get(3) as Language }
 	
 }

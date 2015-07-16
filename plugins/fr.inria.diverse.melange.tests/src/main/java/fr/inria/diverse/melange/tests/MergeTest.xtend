@@ -1,24 +1,25 @@
 package fr.inria.diverse.melange.tests
 
-import org.junit.runner.RunWith
-import org.eclipse.xtext.junit4.XtextRunner
-import org.eclipse.xtext.junit4.InjectWith
-import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
-import fr.inria.diverse.melange.tools.xtext.testing.XtextTest
-import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
-import org.junit.Test
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
-import org.eclipse.emf.ecore.EPackage
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.emf.common.util.URI
-import fr.inria.diverse.melange.lib.MatchingHelper
 import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
-import java.util.Collections
-import static org.junit.Assert.*
-import fr.inria.diverse.melange.metamodel.melange.Merge
+import fr.inria.diverse.melange.lib.MatchingHelper
+import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage
+import fr.inria.diverse.melange.metamodel.melange.Merge
+import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
+import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
+import fr.inria.diverse.melange.tools.xtext.testing.XtextTest
 import fr.inria.diverse.melange.validation.MelangeValidationConstants
+import java.util.Collections
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.EPackage
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.eclipse.xtext.junit4.InjectWith
+import org.eclipse.xtext.junit4.XtextRunner
+import org.junit.Test
+import org.junit.runner.RunWith
+
+import static org.junit.Assert.*
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
@@ -83,7 +84,7 @@ class MergeTest
 	
 	@Test
 	def void testIncompatibleAttribute(){
-		assertError((incompatibleMerge.operators.get(1) as Merge).language,
+		assertError((incompatibleMerge.operators.get(1) as Merge).mergedLanguage,
 					MelangePackage.eINSTANCE.metamodel,
 					MelangeValidationConstants.MERGE_ATTRIBUTE_OVERRIDING,
 					"Language \'Merge2\' has an attribute \'attribute\' typed EFloat but in \'Merge1\' it is EChar"
@@ -92,7 +93,7 @@ class MergeTest
 	
 	@Test
 	def void testIncompatibleReference(){
-		assertError((incompatibleMerge.operators.get(1) as Merge).language,
+		assertError((incompatibleMerge.operators.get(1) as Merge).mergedLanguage,
 					MelangePackage.eINSTANCE.metamodel,
 					MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING,
 					"Language \'Merge2\' has a reference \'reference\' typed EObject but in \'Merge1\' it is Clazz"
@@ -101,7 +102,7 @@ class MergeTest
 	
 	@Test
 	def void testIncompatibleOperation(){
-		assertError((incompatibleMerge.operators.get(1) as Merge).language,
+		assertError((incompatibleMerge.operators.get(1) as Merge).mergedLanguage,
 					MelangePackage.eINSTANCE.metamodel,
 					MelangeValidationConstants.MERGE_OPERATION_OVERRIDING,
 					"Language \'Merge2\' has an operation \'operation\' typed EBoolean but in \'Merge1\' it is Void"
@@ -110,7 +111,7 @@ class MergeTest
 	
 	@Test
 	def void testIncompatibleOperation2(){
-		assertError((incompatibleMerge.operators.get(1) as Merge).language,
+		assertError((incompatibleMerge.operators.get(1) as Merge).mergedLanguage,
 					MelangePackage.eINSTANCE.metamodel,
 					MelangeValidationConstants.MERGE_OPERATION_OVERRIDING,
 					"Language \'Merge2\' has an operation \'operation2\' typed EBoolean but in \'Merge1\' it is EString"
@@ -129,19 +130,19 @@ class MergeTest
 		return helper.match(Collections.singletonList(pkgA), Collections.singletonList(pkgB), null)
 	}
 	
-	def Metamodel getMM1()         { return root.elements.get(0) as Metamodel }
-	def Metamodel getMM2()         { return root.elements.get(1) as Metamodel }
-	def Metamodel getAutoMerge1a() { return root.elements.get(2) as Metamodel }
-	def Metamodel getAutoMerge1b() { return root.elements.get(3) as Metamodel }
-	def Metamodel getAutoMerge2a() { return root.elements.get(4) as Metamodel }
-	def Metamodel getAutoMerge2b() { return root.elements.get(5) as Metamodel }
-	def Metamodel getMergeLangA()  { return root.elements.get(6) as Metamodel }
-	def Metamodel getMergeLangB()  { return root.elements.get(7) as Metamodel }
-	def Metamodel getMergeEcore()  { return root.elements.get(8) as Metamodel }
-	def Metamodel getBothLangA()   { return root.elements.get(9) as Metamodel }
-	def Metamodel getBothLangB()   { return root.elements.get(10) as Metamodel }
-	def Metamodel getMerge1()      { return root.elements.get(11) as Metamodel }
-	def Metamodel getMerge2()      { return root.elements.get(12) as Metamodel }
-	def Metamodel getIncompatibleMerge(){ return root.elements.get(13) as Metamodel }
+	def Language getMM1()         { return root.elements.get(0) as Language }
+	def Language getMM2()         { return root.elements.get(1) as Language }
+	def Language getAutoMerge1a() { return root.elements.get(2) as Language }
+	def Language getAutoMerge1b() { return root.elements.get(3) as Language }
+	def Language getAutoMerge2a() { return root.elements.get(4) as Language }
+	def Language getAutoMerge2b() { return root.elements.get(5) as Language }
+	def Language getMergeLangA()  { return root.elements.get(6) as Language }
+	def Language getMergeLangB()  { return root.elements.get(7) as Language }
+	def Language getMergeEcore()  { return root.elements.get(8) as Language }
+	def Language getBothLangA()   { return root.elements.get(9) as Language }
+	def Language getBothLangB()   { return root.elements.get(10) as Language }
+	def Language getMerge1()      { return root.elements.get(11) as Language }
+	def Language getMerge2()      { return root.elements.get(12) as Language }
+	def Language getIncompatibleMerge(){ return root.elements.get(13) as Language }
 	
 }

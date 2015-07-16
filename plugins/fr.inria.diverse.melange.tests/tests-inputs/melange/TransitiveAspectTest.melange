@@ -12,28 +12,28 @@ language Exhaustive {
 }
 
 language SuperLang inherits Exhaustive{
-	exactType SuperLangMT
 	with SuperLangAspect
+	exactType SuperLangMT
 }
 
 language Lang inherits SuperLang{
-	exactType LangMT
 	with LangAspect
+	exactType LangMT
 }
 
 language SubLang inherits Lang{
-	exactType SubLangMT
 	with SubLangAspect
+	exactType SubLangMT
 }
 
 language OtherLang inherits Exhaustive{
-	exactType OtherLangMT
 	with OtherAspect
+	exactType OtherLangMT
 }
 
 language SubOtherLang inherits OtherLang{
+.	with SubOtherAspect
 	exactType SubOtherLangMT
-	with SubOtherAspect
 }
 
 language MergeLang {
@@ -77,12 +77,12 @@ language SliceMergeLang {
 }
 
 language AspectOverride inherits SliceMergeLang{
-	exactType MergeLangMT8
 	with LangAspect
+	exactType MergeLangMT8
 }
 
 language AspectedLang{
 	merge SuperLang
-	exactType AspectedLangMT
 	with LangAspect
+	exactType AspectedLangMT
 }

@@ -1,42 +1,28 @@
 package fr.inria.diverse.melange.tests
 
 import com.google.inject.Inject
-
 import fr.inria.diverse.melange.adapters.GenericAdapter
 import fr.inria.diverse.melange.adapters.ListAdapter
-
+import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.lib.IModelType
-
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
+import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.Transformation
-
 import fr.inria.diverse.melange.resource.MelangeRegistry
-
 import fr.inria.diverse.melange.tests.common.MelangeTestHelper
 import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
-
 import fr.inria.diverse.melange.tools.xtext.testing.XtextTest
-
 import fsm.FSM
-
 import org.eclipse.emf.common.util.EList
-
 import org.eclipse.emf.ecore.EObject
-
 import org.eclipse.emf.ecore.resource.Resource
-
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
-
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.InMemoryFileSystemAccess
-
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
-
 import org.junit.Test
-
 import org.junit.runner.RunWith
 
 import static org.junit.Assert.*
@@ -47,6 +33,7 @@ import static org.junit.Assert.*
 class SimpleFsmTest
 {
 	@Inject extension MelangeTestHelper
+	@Inject extension LanguageExtensions
 	@Inject IGenerator generator
 
 	@Test
@@ -55,8 +42,8 @@ class SimpleFsmTest
 		assertEquals(root.name, "simplefsmtest")
 		assertNull(root.imports)
 
-		assertTrue(root.elements.get(0) instanceof Metamodel)
-		assertTrue(root.elements.get(1) instanceof Metamodel)
+		assertTrue(root.elements.get(0) instanceof Language)
+		assertTrue(root.elements.get(1) instanceof Language)
 		assertTrue(root.elements.get(2) instanceof Transformation)
 		assertTrue(root.elements.get(3) instanceof Transformation)
 		assertTrue(root.elements.get(4) instanceof Transformation)
@@ -94,8 +81,8 @@ class SimpleFsmTest
 
 	@Test
 	def void testInheritance() {
-		assertEquals(fsm.inheritanceRelation.size, 0)
-		assertEquals(tfsm.inheritanceRelation.size, 0)
+		assertEquals(fsm.superLanguages.size, 0)
+		assertEquals(tfsm.superLanguages.size, 0)
 	}
 
 	@Test
@@ -144,8 +131,8 @@ class SimpleFsmTest
 		}
 	}
 
-	def Metamodel getFsm()           { return root.elements.get(0) as Metamodel }
-	def Metamodel getTfsm()          { return root.elements.get(1) as Metamodel }
+	def Language getFsm()           { return root.elements.get(0) as Language }
+	def Language getTfsm()          { return root.elements.get(1) as Language }
 	def Transformation getGetRoot()  { return root.elements.get(2) as Transformation }
 	def Transformation getLoadFsm()  { return root.elements.get(3) as Transformation }
 	def Transformation getLoadTfsm() { return root.elements.get(4) as Transformation }

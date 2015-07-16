@@ -1,28 +1,28 @@
 package fr.inria.diverse.melange.tests
 
-import org.junit.runner.RunWith
-import org.eclipse.xtext.junit4.XtextRunner
-import org.eclipse.xtext.junit4.InjectWith
-import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
-import fr.inria.diverse.melange.tools.xtext.testing.XtextTest
-import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
-import org.junit.Test
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
-import org.eclipse.emf.ecore.EPackage
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.emf.common.util.URI
-import fr.inria.diverse.melange.lib.MatchingHelper
 import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
+import fr.inria.diverse.melange.lib.MatchingHelper
+import fr.inria.diverse.melange.metamodel.melange.Language
+import fr.inria.diverse.melange.metamodel.melange.MelangePackage
+import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
+import fr.inria.diverse.melange.metamodel.melange.Slice
+import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
+import fr.inria.diverse.melange.tools.xtext.testing.XtextTest
+import fr.inria.diverse.melange.validation.MelangeValidationConstants
 import java.util.Collections
-import static org.junit.Assert.*
+import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EDataType
-import org.eclipse.emf.ecore.impl.EcorePackageImpl
+import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EcorePackage
-import fr.inria.diverse.melange.metamodel.melange.MelangePackage
-import fr.inria.diverse.melange.validation.MelangeValidationConstants
-import fr.inria.diverse.melange.metamodel.melange.Slice
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.eclipse.xtext.junit4.InjectWith
+import org.eclipse.xtext.junit4.XtextRunner
+import org.junit.Test
+import org.junit.runner.RunWith
+
+import static org.junit.Assert.*
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
@@ -49,9 +49,9 @@ class SliceTest
 	
 	@Test
 	def void testStrucureSliceMM1(){
-		assertEquals(1, getSliceMM1.pkgs.size)
-		assertEquals("testmerge", getSliceMM1.pkgs.get(0).name)
-		assertEquals(3, getSliceMM1.pkgs.get(0).EClassifiers.size)
+		assertEquals(1, getSliceMM1.syntax.pkgs.size)
+		assertEquals("testmerge", getSliceMM1.syntax.pkgs.get(0).name)
+		assertEquals(3, getSliceMM1.syntax.pkgs.get(0).EClassifiers.size)
 		
 		assertNotNull(getA)
 		assertNotNull(getSuperA)
@@ -76,9 +76,9 @@ class SliceTest
 	
 	@Test
 	def void testStrucureSliceMM2(){
-		assertEquals(1, getSliceMM2.pkgs.size)
-		assertEquals("testmerge", getSliceMM2.pkgs.get(0).name)
-		assertEquals(5, getSliceMM2.pkgs.get(0).EClassifiers.size)
+		assertEquals(1, getSliceMM2.syntax.pkgs.size)
+		assertEquals("testmerge", getSliceMM2.syntax.pkgs.get(0).name)
+		assertEquals(5, getSliceMM2.syntax.pkgs.get(0).EClassifiers.size)
 		
 		assertNotNull(getC)
 		assertNotNull(getD)
@@ -147,7 +147,7 @@ class SliceTest
 	
 	@Test
 	def void testIncompatibleReference(){
-		assertError((incompatibleSlice.operators.get(1) as Slice).language,
+		assertError((incompatibleSlice.operators.get(1) as Slice).slicedLanguage,
 					MelangePackage.eINSTANCE.metamodel,
 					MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING,
 					"Language \'Merge2\' has a reference \'reference\' typed EObject but in \'Merge1\' it is Clazz"
@@ -156,7 +156,7 @@ class SliceTest
 	
 	@Test
 	def void testIncompatibleOperation(){
-		assertError((incompatibleSlice.operators.get(1) as Slice).language,
+		assertError((incompatibleSlice.operators.get(1) as Slice).slicedLanguage,
 					MelangePackage.eINSTANCE.metamodel,
 					MelangeValidationConstants.MERGE_OPERATION_OVERRIDING,
 					"Language \'Merge2\' has an operation \'operation\' typed EBoolean but in \'Merge1\' it is Void"
@@ -165,7 +165,7 @@ class SliceTest
 	
 	@Test
 	def void testIncompatibleOperation2(){
-		assertError((incompatibleSlice.operators.get(1) as Slice).language,
+		assertError((incompatibleSlice.operators.get(1) as Slice).slicedLanguage,
 					MelangePackage.eINSTANCE.metamodel,
 					MelangeValidationConstants.MERGE_OPERATION_OVERRIDING,
 					"Language \'Merge2\' has an operation \'operation2\' typed EBoolean but in \'Merge1\' it is EString"
@@ -183,27 +183,27 @@ class SliceTest
 		return helper.match(Collections.singletonList(pkgA), Collections.singletonList(pkgB), null)
 	}
 	
-	def Metamodel getMM1()         { return root.elements.get(0) as Metamodel }
-	def Metamodel getMM2()         { return root.elements.get(1) as Metamodel }
-	def Metamodel getSliceMM1()    { return root.elements.get(2) as Metamodel }
-	def Metamodel getSliceMM2()    { return root.elements.get(3) as Metamodel }
-	def Metamodel getMergeLang()   { return root.elements.get(4) as Metamodel }
-	def Metamodel getMergeSlice()  { return root.elements.get(5) as Metamodel }
-	def Metamodel getExactSlice()  { return root.elements.get(6) as Metamodel }
-	def Metamodel getSliceMerge()  { return root.elements.get(7) as Metamodel }
-	def Metamodel getMerge1()      { return root.elements.get(8) as Metamodel }
-	def Metamodel getMerge2()      { return root.elements.get(9) as Metamodel }
-	def Metamodel getIncompatibleSlice(){ return root.elements.get(10) as Metamodel }
+	def Language getMM1()         { return root.elements.get(0) as Language }
+	def Language getMM2()         { return root.elements.get(1) as Language }
+	def Language getSliceMM1()    { return root.elements.get(2) as Language }
+	def Language getSliceMM2()    { return root.elements.get(3) as Language }
+	def Language getMergeLang()   { return root.elements.get(4) as Language }
+	def Language getMergeSlice()  { return root.elements.get(5) as Language }
+	def Language getExactSlice()  { return root.elements.get(6) as Language }
+	def Language getSliceMerge()  { return root.elements.get(7) as Language }
+	def Language getMerge1()      { return root.elements.get(8) as Language }
+	def Language getMerge2()      { return root.elements.get(9) as Language }
+	def Language getIncompatibleSlice(){ return root.elements.get(10) as Language }
 	
-	def EClass getA()  { return getSliceMM1.pkgs.get(0).EClassifiers.findFirst[name == "A"] as EClass}
-	def EClass getSuperA()  { return getSliceMM1.pkgs.get(0).EClassifiers.findFirst[name == "SuperA"] as EClass}
-	def EClass getB()  { return getSliceMM1.pkgs.get(0).EClassifiers.findFirst[name == "B"] as EClass}
+	def EClass getA()  { return getSliceMM1.syntax.pkgs.get(0).EClassifiers.findFirst[name == "A"] as EClass}
+	def EClass getSuperA()  { return getSliceMM1.syntax.pkgs.get(0).EClassifiers.findFirst[name == "SuperA"] as EClass}
+	def EClass getB()  { return getSliceMM1.syntax.pkgs.get(0).EClassifiers.findFirst[name == "B"] as EClass}
 	
-	def EClass getC()  { return getSliceMM2.pkgs.get(0).EClassifiers.findFirst[name == "C"] as EClass}
-	def EClass getD()  { return getSliceMM2.pkgs.get(0).EClassifiers.findFirst[name == "D"] as EClass}
-	def EClass getE()  { return getSliceMM2.pkgs.get(0).EClassifiers.findFirst[name == "E"] as EClass}
-	def EClass getF()  { return getSliceMM2.pkgs.get(0).EClassifiers.findFirst[name == "F"] as EClass}
-	def EDataType getCustomDataType()  { return getSliceMM2.pkgs.get(0).EClassifiers.findFirst[name == "CustomDataType"] as EDataType}
+	def EClass getC()  { return getSliceMM2.syntax.pkgs.get(0).EClassifiers.findFirst[name == "C"] as EClass}
+	def EClass getD()  { return getSliceMM2.syntax.pkgs.get(0).EClassifiers.findFirst[name == "D"] as EClass}
+	def EClass getE()  { return getSliceMM2.syntax.pkgs.get(0).EClassifiers.findFirst[name == "E"] as EClass}
+	def EClass getF()  { return getSliceMM2.syntax.pkgs.get(0).EClassifiers.findFirst[name == "F"] as EClass}
+	def EDataType getCustomDataType()  { return getSliceMM2.syntax.pkgs.get(0).EClassifiers.findFirst[name == "CustomDataType"] as EDataType}
 	
 	
 }

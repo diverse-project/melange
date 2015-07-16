@@ -5,25 +5,25 @@ language Exhaustive {
 	exactType ExhaustiveMT
 }
 
-language InheritsOverriding inherits Exhaustive{
-	exactType InheritMT
+language InheritsOverriding inherits Exhaustive {
 	with fr.inria.diverse.melange.tests.aspect.mergetest.AttributesTestAspect
 	with fr.inria.diverse.melange.tests.aspect.mergetest.ReferencesTestAspect
 	with fr.inria.diverse.melange.tests.aspect.mergetest.OperationsTestAspect
+	exactType InheritMT
 }
 
-language MergeOverriding{
+language MergeOverriding {
 	merge Exhaustive
-	exactType MergeMT
 	with fr.inria.diverse.melange.tests.aspect.mergetest.AttributesTestAspect
 	with fr.inria.diverse.melange.tests.aspect.mergetest.ReferencesTestAspect
 	with fr.inria.diverse.melange.tests.aspect.mergetest.OperationsTestAspect
+	exactType MergeMT
 }
 
 language SliceOverriding{
 	slice Exhaustive on ['AttributesTest', 'ReferencesTest', 'OperationsTest']
-	exactType SliceMT
 	with fr.inria.diverse.melange.tests.aspect.mergetest.AttributesTestAspect
 	with fr.inria.diverse.melange.tests.aspect.mergetest.ReferencesTestAspect
 	with fr.inria.diverse.melange.tests.aspect.mergetest.OperationsTestAspect
+	exactType SliceMT
 }

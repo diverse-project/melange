@@ -1,29 +1,23 @@
 package fr.inria.diverse.melange.tests.common
 
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
+import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.Transformation
-
 import java.io.IOException
-
 import java.util.List
-
 import javax.inject.Inject
-
 import org.eclipse.xtext.util.IAcceptor
-
 import org.eclipse.xtext.xbase.compiler.CompilationTestHelper
 import org.eclipse.xtext.xbase.compiler.CompilationTestHelper.Result
-
 import org.junit.Assert
 
 class MelangeTestHelper
 {
 	@Inject extension CompilationTestHelper
 
-	def Metamodel mm(ModelTypingSpace root, String mmName) {
-		return root.elements.filter(Metamodel).findFirst[name == mmName]
+	def Language l(ModelTypingSpace root, String languageName) {
+		return root.elements.filter(Language).findFirst[name == languageName]
 	}
 
 	def ModelType mt(ModelTypingSpace root, String mtName) {
