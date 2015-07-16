@@ -92,11 +92,11 @@ Inherit returns Inheritance:
 ;
 
 Weave returns Weave:
-	aspect = Aspect
+	'with' aspect = Aspect
 ;
 
 Aspect:
-	'with' aspectTypeRef = JvmTypeReference | 'with' aspectWildcardImport = QualifiedNameWithWildcard
+	aspectTypeRef = JvmTypeReference | aspectWildcardImport = QualifiedNameWithWildcard
 ;
 /* --- Kompren Rules --- */
 //Slicer returns kompren::Slicer: 'slicer' (active?='active')? (strict?='strict')? name=QualifiedName '{'
