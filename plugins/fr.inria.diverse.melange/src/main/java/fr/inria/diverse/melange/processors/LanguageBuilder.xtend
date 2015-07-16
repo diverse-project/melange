@@ -52,8 +52,9 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		root.languages.forEach[language |
 			// Initialize syntax & semantics
 			language.syntax = MelangeFactory.eINSTANCE.createMetamodel
-			language.semantics = MelangeFactory.eINSTANCE.createSemantics
-			language.semantics.aspects += language.operators.filter(Weave).map[aspect]
+			language.semantics = MelangeFactory.eINSTANCE.createSemantics => [
+				aspects += language.operators.filter(Weave).map[aspect]
+			]
 			build(language, newArrayList)
 		]
 	}

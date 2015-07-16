@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public abstract class TransformationImpl extends ElementImpl implements Transformation {
+public abstract class TransformationImpl extends NamedElementImpl implements Transformation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

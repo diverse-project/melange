@@ -5,14 +5,13 @@ import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.lib.MatchingHelper
 import fr.inria.diverse.melange.lib.ModelUtils
 import fr.inria.diverse.melange.metamodel.melange.Aspect
-import fr.inria.diverse.melange.metamodel.melange.Element
 import fr.inria.diverse.melange.metamodel.melange.Import
 import fr.inria.diverse.melange.metamodel.melange.Inheritance
 import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
+import fr.inria.diverse.melange.metamodel.melange.NamedElement
 import fr.inria.diverse.melange.metamodel.melange.ResourceType
 import java.util.Collections
 import org.eclipse.xtext.common.types.JvmDeclaredType
@@ -25,25 +24,29 @@ class MelangeValidator extends AbstractMelangeValidator
 	@Inject MatchingHelper matchingHelper
 
 	@Check
-	def void checkElementsAreNamed(Element e) {
+	def void checkElementsAreNamed(NamedElement e) {
 		if (e.name === null || e.name.length == 0)
 			error(
 				"All elements must be named",
-				MelangePackage.Literals.ELEMENT__NAME,
+				MelangePackage.Literals.NAMED_ELEMENT__NAME,
 				MelangeValidationConstants.ELEMENT_NAME_EMPTY
 			)
 	}
 
 	@Check
-	def void checkNamesAreUnique(Element e) {
-		if ((e.eContainer as ModelTypingSpace).elements.exists[e_ |
+	def void checkNamesAreUnique(NamedElement e) {
+		val root =
+			if (e.eContainer instanceof ModelTypingSpace) e.eContainer
+			else if (e.eContainer.eContainer instanceof ModelTypingSpace) e.eContainer.eContainer
+
+		if ((root as ModelTypingSpace).elements.filter(NamedElement).exists[e_ |
 			   e_ != e
 			//&& e_.eClass == e.eClass
 			&& e_.name == e.name
 		])
 			error(
 				"Names must be unique",
-				MelangePackage.Literals.ELEMENT__NAME,
+				MelangePackage.Literals.NAMED_ELEMENT__NAME,
 				MelangeValidationConstants.ELEMENT_NAME_DUPLICATED
 			)
 	}
@@ -78,16 +81,17 @@ class MelangeValidator extends AbstractMelangeValidator
 		)
 			error(
 				"A valid Ecore file must be imported",
+				l.syntax,
 				MelangePackage.Literals.MODELING_ELEMENT__ECORE_URI,
 				MelangeValidationConstants.METAMODEL_ECORE_EMPTY
 			)
 	}
 
 	@Check
-	def void checkGenModelIsSet(Metamodel mm) {
-		if (mm.ecoreUri !== null && mm.ecoreUri.endsWith(".ecore") && mm.genmodelUris.head === null) {
+	def void checkGenModelIsSet(Language l) {
+		if (l.syntax.ecoreUri !== null && l.syntax.ecoreUri.endsWith(".ecore") && l.syntax.genmodelUris.head === null) {
 			// !!!
-			val speculativeGenmodelPath = mm.ecoreUri.substring(0, mm.ecoreUri.lastIndexOf(".")) + ".genmodel"
+			val speculativeGenmodelPath = l.syntax.ecoreUri.substring(0, l.syntax.ecoreUri.lastIndexOf(".")) + ".genmodel"
 			try {
 				if (modelUtils.loadGenmodel(speculativeGenmodelPath) !== null)
 					warning(
@@ -103,6 +107,7 @@ class MelangeValidator extends AbstractMelangeValidator
 			} catch (Exception e) {
 				error(
 					"A valid Genmodel file must be imported",
+					l.syntax,
 					MelangePackage.Literals.METAMODEL__GENMODEL_URIS,
 					MelangeValidationConstants.METAMODEL_GENMODEL_UNLOADABLE
 				)
@@ -111,11 +116,12 @@ class MelangeValidator extends AbstractMelangeValidator
 	}
 
 	@Check
-	def void checkEcoreIsLoadable(Metamodel mm) {
+	def void checkEcoreIsLoadable(Language l) {
 		try {
-			if (mm.ecoreUri !== null && modelUtils.loadPkg(mm.ecoreUri) === null)
+			if (l.syntax.ecoreUri !== null && modelUtils.loadPkg(l.syntax.ecoreUri) === null)
 				error(
 					"Couldn't load specified Ecore",
+					l.syntax,
 					MelangePackage.Literals.MODELING_ELEMENT__ECORE_URI,
 					MelangeValidationConstants.METAMODEL_ECORE_UNLOADABLE
 				)
@@ -123,11 +129,12 @@ class MelangeValidator extends AbstractMelangeValidator
 	}
 
 	@Check
-	def void checkGenModelIsLoadable(Metamodel mm) {
+	def void checkGenModelIsLoadable(Language l) {
 		try {
-			if (mm.genmodelUris.head !== null && modelUtils.loadGenmodel(mm.genmodelUris.head) === null)
+			if (l.syntax.genmodelUris.head !== null && modelUtils.loadGenmodel(l.syntax.genmodelUris.head) === null)
 				error(
 					"Couldn't load specified GenModel",
+					l.syntax,
 					MelangePackage.Literals.METAMODEL__GENMODEL_URIS,
 					MelangeValidationConstants.METAMODEL_GENMODEL_UNLOADABLE
 				)
@@ -186,7 +193,7 @@ class MelangeValidator extends AbstractMelangeValidator
 			))
 				error(
 					'''«l.name» doesn't match the interface «mt.name»''',
-					MelangePackage.Literals.ELEMENT__NAME,
+					MelangePackage.Literals.LANGUAGE__IMPLEMENTS,
 					MelangeValidationConstants.METAMODEL_IMPLEMENTS_ERROR
 				)
 		]

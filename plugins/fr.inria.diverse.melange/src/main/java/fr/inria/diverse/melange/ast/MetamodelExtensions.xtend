@@ -67,7 +67,7 @@ class MetamodelExtensions
 			it.complianceLevel = GenJDKLevel.JDK70_LITERAL
 			it.modelDirectory = modelDirectory.replaceFirst("platform:/resource", "").replaceFirst("..", "")
 			it.foreignModel += ecoreUri
-			it.modelName = mm.name
+			it.modelName = mm.owningLanguage.name
 			it.modelPluginID = mm.owningLanguage.externalRuntimeName
 			it.initialize(Lists::newArrayList(mm.pkgs))
 		]

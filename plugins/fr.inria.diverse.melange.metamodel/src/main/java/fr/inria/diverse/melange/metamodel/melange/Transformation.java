@@ -13,5 +13,5 @@ package fr.inria.diverse.melange.metamodel.melange;
  * @model abstract="true"
  * @generated
  */
-public interface Transformation extends Element {
+public interface Transformation extends NamedElement {
 } // Transformation

@@ -253,7 +253,7 @@ class LanguageExtensions
 						classesAlreadyWeaved.add(className)
 						
 						val typeRefBuilder = builderFactory.create(l.eResource.resourceSet)
-						val newAspectFqn = copier.copyAspectTo(asp, l.syntax)
+						val newAspectFqn = copier.copyAspectTo(asp, l)
 						res += MelangeFactory.eINSTANCE.createAspect => [
 									aspectTypeRef = typeRefBuilder.typeRef(newAspectFqn)
 								]

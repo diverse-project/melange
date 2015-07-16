@@ -64,7 +64,7 @@ class EPackageProvider
 					if (m.owningLanguage.hasSuperLanguage) {
 						val pkgsCopy = m.owningLanguage.operators.filter(Inheritance).map[superLanguage.syntax.packages.map[
 							val copy = EcoreUtil::copy(it)
-							copy.name = m.name.toLowerCase
+							copy.name = m.owningLanguage.name.toLowerCase
 							copy.nsPrefix = copy.name
 							copy.nsURI = '''http://«copy.name»'''
 							return copy

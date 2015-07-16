@@ -60,7 +60,7 @@ Aspect:
 ;
 
 Mapping returns Mapping:
-	"map" name=STRING from=[Language | QualifiedName] "to" to=[ModelType | QualifiedName] "{"
+	"map" from=[Language | QualifiedName] "to" to=[ModelType | QualifiedName] "{"
 		(rules+=ClassMapping)*
 	"}" 
 ;

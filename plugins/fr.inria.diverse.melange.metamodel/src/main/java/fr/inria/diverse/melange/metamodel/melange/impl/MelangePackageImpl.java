@@ -1058,7 +1058,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		metamodelEClass.getESuperTypes().add(this.getModelingElement());
 		modelTypeEClass.getESuperTypes().add(this.getModelingElement());
 		modelTypeEClass.getESuperTypes().add(this.getNamedElement());
-		transformationEClass.getESuperTypes().add(this.getElement());
+		transformationEClass.getESuperTypes().add(this.getNamedElement());
 		inheritanceEClass.getESuperTypes().add(this.getOperator());
 		xbaseTransformationEClass.getESuperTypes().add(this.getTransformation());
 		modelingElementEClass.getESuperTypes().add(this.getElement());

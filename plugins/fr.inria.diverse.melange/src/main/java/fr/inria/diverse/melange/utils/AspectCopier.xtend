@@ -12,7 +12,7 @@ import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
 import fr.inria.diverse.melange.metamodel.melange.Aspect
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
+import fr.inria.diverse.melange.metamodel.melange.Language
 import java.io.File
 import java.io.IOException
 import java.util.ArrayList
@@ -44,11 +44,11 @@ class AspectCopier
 
 	// FIXME: We should first check that aspects are importable (i.e. defined
 	//         on a type group this metamodel is a subtype of)
-	def String copyAspectTo(Aspect asp, Metamodel mm) {
+	def String copyAspectTo(Aspect asp, Language l) {
 		val task = Stopwatches.forTask("copying aspects in new type group")
 		task.start
 
-		val project = mm.eResource.project
+		val project = l.eResource.project
 
 		if (project === null)
 			return null
@@ -58,7 +58,7 @@ class AspectCopier
 		val request = new ShadeRequest
 		val relocators = new ArrayList<Relocator>
 		val sourceEmfNamespace = asp.targetedNamespace
-		val targetEmfNamespace = mm.packageFqn.toQualifiedName.skipLast(1)
+		val targetEmfNamespace = l.syntax.packageFqn.toQualifiedName.skipLast(1)
 				
 		val sourceAspectNamespace = asp.aspectTypeRef.identifier.toQualifiedName.skipLast(1)
 		
@@ -66,7 +66,7 @@ class AspectCopier
 		if(sourceEmfNamespace.equals(sourceAspectNamespace)){
 			errorHelper.addError(asp, "Melange cannot correctly handle aspect classes if they use the same package name as the aspectized emf classes, please move the aspect classes in a dedicated package", null)
 		}
-		val targetAspectNamespace = getAspectTargetNamespace(sourceAspectNamespace,mm)
+		val targetAspectNamespace = getAspectTargetNamespace(sourceAspectNamespace, l)
 		
 
 		val projectPathTmp = new StringBuilder
@@ -94,11 +94,11 @@ class AspectCopier
 		//val targetAspectFolder = projectPathTmp.toString + "/../" + targetAspectNamespace + "/src-gen/"
 		val sourceFolderFile = new File(sourceAspectFolder)
 		val sourceProject = ws.getProject(projectNameTmp.toString)
-		val findTargetProject = ws.getProject(mm.name+"_Gen")
+		val findTargetProject = ws.getProject(l.name+"_Gen")
 		// FIXME: Just to have a first call of the EPackageProvider
 		//        in order to set the ecoreUri when inherited
-		val x = mm.pkgs
-		val ecoreUri = URI::createURI(mm.ecoreUri)
+		val x = l.syntax.pkgs
+		val ecoreUri = URI::createURI(l.syntax.ecoreUri)
 		val emfRuntimeProject = ecoreUri.segment(1)
 		val targetProject =
 			if (findTargetProject.exists)
@@ -106,7 +106,7 @@ class AspectCopier
 			else
 				EclipseProjectHelper::createAspectsRuntimeProject(
 					sourceProject,
-					mm.name+"_Gen",
+					l.name+"_Gen",
 					targetAspectNamespace.toString,
 					emfRuntimeProject
 				)
@@ -128,7 +128,7 @@ class AspectCopier
 		val filter = new Filter(){
 			String targetClass = className
 			override canFilter(File jar) {
-				true
+				return true
 			}
 			override finished() {}
 			override isFiltered(String classFile) {
@@ -144,7 +144,7 @@ class AspectCopier
 		request.relocators = relocators
 
 		try {
-			log.debug('''Copying aspect «asp.aspectTypeRef.identifier» to «mm.name»:''')
+			log.debug('''Copying aspect «asp.aspectTypeRef.identifier» to «l.name»:''')
 			log.debug('''	sourceEmfNamespace    = «sourceEmfNamespace»''')
 			log.debug('''	targetEmfNamespace    = «targetEmfNamespace»''')
 			log.debug('''	sourceAspectNamespace = «sourceAspectNamespace»''')
@@ -155,7 +155,7 @@ class AspectCopier
 //			if (!fileToBeFound.exists) {
 			shader.shade(request)
 			
-			log.debug('''Copying META-INF aspect_properties «asp.aspectTypeRef.identifier» to «mm.name»:''')	
+			log.debug('''Copying META-INF aspect_properties «asp.aspectTypeRef.identifier» to «l.name»:''')	
 			val sourceMetaInfFolder = projectPathTmp.toString + "/META-INF/"
 			val sourceMetaInfFile = new File(sourceMetaInfFolder)	
 			val targetMetaInfFile = new File(findTargetProject.locationURI.path + "/META-INF/")
@@ -183,7 +183,7 @@ class AspectCopier
 		}
 	}
 	
-	def protected QualifiedName getAspectTargetNamespace(QualifiedName sourceAspectNamespace , Metamodel mm){
+	def protected QualifiedName getAspectTargetNamespace(QualifiedName sourceAspectNamespace , Language l){
 		val postfix = if(sourceAspectNamespace.segmentCount > 1 &&(sourceAspectNamespace.lastSegment.equals("aspect") 
 				|| sourceAspectNamespace.lastSegment.equals("aspects")
 				|| sourceAspectNamespace.lastSegment.equals("k3dsa")
@@ -191,9 +191,9 @@ class AspectCopier
 				
 		
 		if(sourceAspectNamespace.segmentCount > 2){
-			return sourceAspectNamespace.skipLast(2).append(mm.name.toLowerCase).append(postfix)
+			return sourceAspectNamespace.skipLast(2).append(l.name.toLowerCase).append(postfix)
 		} else {
-				return sourceAspectNamespace.skipLast(1).append(mm.name.toLowerCase).append(postfix)
+				return sourceAspectNamespace.skipLast(1).append(l.name.toLowerCase).append(postfix)
 		}
 
 	}

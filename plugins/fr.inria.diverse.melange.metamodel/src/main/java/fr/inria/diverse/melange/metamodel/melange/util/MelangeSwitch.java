@@ -98,6 +98,7 @@ public class MelangeSwitch<T> extends Switch<T> {
 			case MelangePackage.TRANSFORMATION: {
 				Transformation transformation = (Transformation)theEObject;
 				T result = caseTransformation(transformation);
+				if (result == null) result = caseNamedElement(transformation);
 				if (result == null) result = caseElement(transformation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -125,6 +126,7 @@ public class MelangeSwitch<T> extends Switch<T> {
 				XbaseTransformation xbaseTransformation = (XbaseTransformation)theEObject;
 				T result = caseXbaseTransformation(xbaseTransformation);
 				if (result == null) result = caseTransformation(xbaseTransformation);
+				if (result == null) result = caseNamedElement(xbaseTransformation);
 				if (result == null) result = caseElement(xbaseTransformation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
