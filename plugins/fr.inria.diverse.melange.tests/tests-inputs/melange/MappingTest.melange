@@ -31,3 +31,27 @@ language MergeLang{
 	merge MM3
 	exactType MergeMT
 }
+
+map "WrongMapping" MM3 to SomeMT {
+
+}
+
+map "WrongMapping2" SomeLang to MM1MT {
+
+}
+
+map "WrongMapping3" MM3 to MM1MT {
+	
+	"SuperA3" to "SomeClass" {
+	
+	}
+	
+	"SomeClass" to "A" {
+	
+	}
+	
+	"A3" to "A"{
+		"toB3" : "someProperty"
+		"someProperty" : "toB"
+	}
+}
