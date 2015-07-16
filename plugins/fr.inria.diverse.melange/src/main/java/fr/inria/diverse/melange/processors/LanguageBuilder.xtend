@@ -9,9 +9,11 @@ import fr.inria.diverse.melange.lib.slicing.ecore.StrictEcore
 import fr.inria.diverse.melange.metamodel.melange.Import
 import fr.inria.diverse.melange.metamodel.melange.Inheritance
 import fr.inria.diverse.melange.metamodel.melange.Language
+import fr.inria.diverse.melange.metamodel.melange.MelangeFactory
 import fr.inria.diverse.melange.metamodel.melange.Merge
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.Slice
+import fr.inria.diverse.melange.metamodel.melange.Weave
 import fr.inria.diverse.melange.utils.EPackageProvider
 import java.io.IOException
 import java.util.ArrayList
@@ -48,6 +50,10 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		registry = newHashMap
 		
 		root.languages.forEach[language |
+			// Initialize syntax & semantics
+			language.syntax = MelangeFactory.eINSTANCE.createMetamodel
+			language.semantics = MelangeFactory.eINSTANCE.createSemantics
+			language.semantics.aspects += language.operators.filter(Weave).map[aspect]
 			build(language, newArrayList)
 		]
 	}
