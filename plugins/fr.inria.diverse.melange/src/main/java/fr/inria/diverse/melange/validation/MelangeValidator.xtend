@@ -237,6 +237,7 @@ class MelangeValidator extends AbstractMelangeValidator
 		if (l.isGeneratedByMelange && !l.runtimeHasBeenGenerated) {
 			error(
 				"Cannot find EMF runtime for" + l.name,
+				l.syntax,
 				MelangePackage.Literals.MODELING_ELEMENT__ECORE_URI,
 				MelangeValidationConstants.METAMODEL_NO_EMF_RUNTIME
 			)
