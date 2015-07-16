@@ -70,7 +70,7 @@ class LanguageInferrer
 					org.eclipse.emf.ecore.resource.ResourceSet rs = new org.eclipse.emf.ecore.resource.impl.ResourceSetImpl() ;
 					Resource res = rs.getResource(org.eclipse.emf.common.util.URI.createURI(uri), true) ;
 					«l.name» mm = new «l.name»() ;
-					l.setResource(res) ;
+					mm.setResource(res) ;
 					return mm ;
 				'''
 			]
