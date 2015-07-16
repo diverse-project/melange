@@ -25,7 +25,7 @@ Language:
 	'{'
 		('resource' resourceType = ResourceType (=> 'uri' resourceUri = STRING | 'setup' xtextSetupRef = JvmTypeReference)?)? &
 		(operators += Operator)* &
-		('exactType' exactTypeName = ValidID (=> 'uri' exactTypeUri = STRING)?) &
+		('exactType' exactTypeName = ValidID (=> 'uri' exactTypeUri = STRING)?)
 	'}'
 ;
 
@@ -55,10 +55,6 @@ XbaseTransformation:
 //	slicer = Slicer
 //;
 
-Aspect:
-	'with' aspectTypeRef = JvmTypeReference | 'with' aspectWildcardImport = QualifiedNameWithWildcard
-;
-
 Mapping returns Mapping:
 	"map" from=[Language | QualifiedName] "to" to=[ModelType | QualifiedName] "{"
 		(rules+=ClassMapping)*
@@ -76,7 +72,7 @@ PropertyMapping returns PropertyBinding:
 ;
 
 Operator returns Operator:
-	Import | Merge | Slice
+	Import | Merge | Slice | Weave
 ;
 
 Import returns Import:
@@ -95,6 +91,13 @@ Inherit returns Inheritance:
 	superLanguage = [Language | QualifiedName]
 ;
 
+Weave returns Weave:
+	aspect = Aspect
+;
+
+Aspect:
+	'with' aspectTypeRef = JvmTypeReference | 'with' aspectWildcardImport = QualifiedNameWithWildcard
+;
 /* --- Kompren Rules --- */
 //Slicer returns kompren::Slicer: 'slicer' (active?='active')? (strict?='strict')? name=QualifiedName '{'
 //		(('domain' ':' uriMetamodel+=STRING)+ &
