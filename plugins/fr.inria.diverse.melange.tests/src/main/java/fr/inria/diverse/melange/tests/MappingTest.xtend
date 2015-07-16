@@ -46,15 +46,6 @@ class MappingTest
 	
 	@Test
 	def void testStructureMapping(){
-		val res = root.eResource
-		val isProxy = mapping.to.eIsProxy
-		val container = mapping.to.eContainer
-		val uri = EcoreUtil.getURI(mapping.to)
-		val obj = res.getEObject(uri.toString)
-		
-		val node = NodeModelUtils.getNode(mapping).text
-		val text = NodeModelUtils.getNode(mapping).children.get(1).text
-		
 		assertEquals("MyMapping", mapping.name)
 		
 		assertEquals(MM3, mapping.from)
