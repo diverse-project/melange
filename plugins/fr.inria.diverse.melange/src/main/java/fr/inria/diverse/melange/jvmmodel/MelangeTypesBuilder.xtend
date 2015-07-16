@@ -67,7 +67,7 @@ class MelangeTypesBuilder
 							//
 							//typeRef(ta.EClassifier, decl)
 							if (ctx.isExtracted)
-								ctx.extracted.getFqnFor(ta.EClassifier).typeRef
+								ctx.extracted.syntax.getFqnFor(ta.EClassifier).typeRef
 							else
 								ctx.typeRef(ta.EClassifier, decl)
 						else if (ta.ETypeParameter !== null)

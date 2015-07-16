@@ -7,7 +7,7 @@ import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.MappingExtensions
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
+import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import java.io.IOException
 import org.eclipse.xtext.common.types.TypesFactory
@@ -22,7 +22,7 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
  * This class manages the generation of the Java code  that bind a Metamodel 
  * to its Model type
  */
-class MetamodelAdapterInferrer
+class LanguageAdapterInferrer
 {
 	@Inject extension JvmTypesBuilder
 	@Inject extension IQualifiedNameProvider
@@ -44,31 +44,31 @@ class MetamodelAdapterInferrer
 	 * @param acceptor
 	 * @param builder
 	 */
-	def void generateAdapter(Metamodel mm, ModelType superType, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
-		jvmAnnotationReferenceBuilder = jvmAnnotationReferenceBuilderFactory.create(mm.eResource.resourceSet)
+	def void generateAdapter(Language l, ModelType superType, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
+		jvmAnnotationReferenceBuilder = jvmAnnotationReferenceBuilderFactory.create(l.eResource.resourceSet)
 		val task = Stopwatches.forTask("generate metamodel adapters")
 		task.start
-		val mapping = mm.mappings.findFirst[to == superType]
+		val mapping = l.mappings.findFirst[to == superType]
 
-		acceptor.accept(mm.toClass(mm.factoryAdapterNameFor(superType)))
+		acceptor.accept(l.toClass(l.syntax.factoryAdapterNameFor(superType)))
 		[
 			superTypes += superType.factoryName.typeRef
 
-			members += mm.toField("adaptersFactory", mm.getAdaptersFactoryNameFor(superType).typeRef)[
-				initializer = '''«mm.getAdaptersFactoryNameFor(superType)».getInstance()'''
+			members += l.toField("adaptersFactory", l.syntax.getAdaptersFactoryNameFor(superType).typeRef)[
+				initializer = '''«l.syntax.getAdaptersFactoryNameFor(superType)».getInstance()'''
 			]
 
-			mm.pkgs.forEach[pkg |
-				members += mm.toField(pkg.name + "Adaptee", mm.getFactoryFqnFor(pkg).typeRef)[
-					initializer = '''«mm.getFactoryFqnFor(pkg)».eINSTANCE'''
+			l.syntax.pkgs.forEach[pkg |
+				members += l.toField(pkg.name + "Adaptee", l.syntax.getFactoryFqnFor(pkg).typeRef)[
+					initializer = '''«l.syntax.getFactoryFqnFor(pkg)».eINSTANCE'''
 				]
 			]
 
 			superType.allClasses.filter[instantiable].forEach[cls |
-				val newCreate = mm.toMethod("create" + cls.name, null)[m |
+				val newCreate = l.toMethod("create" + cls.name, null)[m |
 					m.annotations += Override.annotationRef
 
-					val associatedPkg = mm.pkgs.findFirst[EClassifiers.exists[mapping.namesMatch(it, cls)]]
+					val associatedPkg = l.syntax.pkgs.findFirst[EClassifiers.exists[mapping.namesMatch(it, cls)]]
 					val associatedCls = mapping?.rules?.findFirst[to == cls.name]?.from ?: cls.name
 
 					cls.ETypeParameters.forEach[t |
@@ -76,7 +76,7 @@ class MetamodelAdapterInferrer
 					]
 
 					m.body = '''
-							return adaptersFactory.create«mm.simpleAdapterNameFor(superType, cls)»(«associatedPkg.name»Adaptee.create«associatedCls»()) ;
+							return adaptersFactory.create«l.syntax.simpleAdapterNameFor(superType, cls)»(«associatedPkg.name»Adaptee.create«associatedCls»()) ;
 						'''
 				]
 
@@ -85,28 +85,28 @@ class MetamodelAdapterInferrer
 			]
 		]
 
-		acceptor.accept(mm.toClass(mm.adapterNameFor(superType)))
+		acceptor.accept(l.toClass(l.syntax.adapterNameFor(superType)))
 		[
 			superTypes += ResourceAdapter.typeRef
 			superTypes += superType.fullyQualifiedName.toString.typeRef
 
-			members += mm.toConstructor[
+			members += l.toConstructor[
 				body = '''
-					super(«mm.getAdaptersFactoryNameFor(superType)».getInstance()) ;
+					super(«l.syntax.getAdaptersFactoryNameFor(superType)».getInstance()) ;
 				'''
 			]
 
-			members += mm.toMethod("getFactory", superType.factoryName.typeRef)[
+			members += l.toMethod("getFactory", superType.factoryName.typeRef)[
 				annotations += Override.annotationRef
 
 				body = '''
-						return new «mm.factoryAdapterNameFor(superType)»() ;
+						return new «l.syntax.factoryAdapterNameFor(superType)»() ;
 					'''
 			]
 
-			members += mm.toMethod("save", Void::TYPE.typeRef)[
+			members += l.toMethod("save", Void::TYPE.typeRef)[
 				annotations += Override.annotationRef
-				parameters += mm.toParameter("uri", String.typeRef)
+				parameters += l.toParameter("uri", String.typeRef)
 
 				body = '''
 					this.adaptee.setURI(org.eclipse.emf.common.util.URI.createURI(uri));

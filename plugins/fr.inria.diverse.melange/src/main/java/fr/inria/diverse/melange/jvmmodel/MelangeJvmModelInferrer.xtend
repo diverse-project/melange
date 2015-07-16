@@ -3,6 +3,7 @@ package fr.inria.diverse.melange.jvmmodel
 import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.ASTHelper
 import fr.inria.diverse.melange.ast.ASTProcessingException
+import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
@@ -22,11 +23,11 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 {
 	@Inject extension ASTHelper
 	@Inject extension ModelTypeInferrer
-	@Inject extension MetamodelInferrer
+	@Inject extension LanguageInferrer
 	@Inject extension TransformationInferrer
-	@Inject extension MappersInferrer
-	@Inject extension ModelTypeExtensions
 	@Inject extension MetamodelExtensions
+	@Inject extension ModelTypeExtensions
+	@Inject extension LanguageExtensions
 	@Inject extension JvmTypesBuilder
 	@Inject extension IQualifiedNameProvider
 	@Inject extension NamingHelper
@@ -49,7 +50,7 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 				root.modelTypes.filter[isComplete].forEach[generateInterfaces(acceptor, _typeReferenceBuilder)]
 				
 				if (MelangePreferencesAccess.instance.generateAdaptersCode || (MelangePreferencesAccess.instance.isUserLaunch && !isPreIndexingPhase)) {
-					root.metamodels.filter[isComplete].forEach[generateAdapters(root, acceptor, _typeReferenceBuilder)]
+					root.languages.filter[isComplete].forEach[generateAdapters(root, acceptor, _typeReferenceBuilder)]
 					root.transformations.forEach[generateTransformation(acceptor, _typeReferenceBuilder)]
 					root.createStandaloneSetup(acceptor)
 	//				root.slicers.forEach[generateSlicer]
@@ -87,11 +88,11 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 
 			members += root.toMethod("doEMFRegistration", Void::TYPE.typeRef)[
 				body = '''
-					«FOR mm : root.metamodels»
-						«IF mm.resourceType == ResourceType.XTEXT && mm.xtextSetupRef !== null»
-							«mm.xtextSetupRef.qualifiedName».doSetup() ;
+					«FOR l : root.languages»
+						«IF l.resourceType == ResourceType.XTEXT && l.xtextSetupRef !== null»
+							«l.xtextSetupRef.qualifiedName».doSetup() ;
 						«ELSE»
-							«FOR gm : mm.genmodels.filterNull»
+							«FOR gm : l.syntax.genmodels.filterNull»
 								«FOR gp : gm.genPackages.filterNull»
 									org.eclipse.emf.ecore.EPackage.Registry.INSTANCE.put(
 										«gp.packageFqn».eNS_URI,
@@ -115,16 +116,16 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 
 			members += root.toMethod("doAdaptersRegistration", Void::TYPE.typeRef)[
 				body = '''
-					«FOR mm : root.metamodels»
-						fr.inria.diverse.melange.resource.MelangeRegistryImpl.LanguageDescriptorImpl «mm.name.toFirstLower» = new fr.inria.diverse.melange.resource.MelangeRegistryImpl.LanguageDescriptorImpl(
-							"«mm.fullyQualifiedName»", "«mm.documentation»", "«mm.packageUri»", "«mm.exactType.fullyQualifiedName»"
+					«FOR l : root.languages»
+						fr.inria.diverse.melange.resource.MelangeRegistryImpl.LanguageDescriptorImpl «l.name.toFirstLower» = new fr.inria.diverse.melange.resource.MelangeRegistryImpl.LanguageDescriptorImpl(
+							"«l.fullyQualifiedName»", "«l.documentation»", "«l.syntax.packageUri»", "«l.exactType.fullyQualifiedName»"
 						) ;
-						«FOR mt : mm.^implements»
-							«mm.name.toFirstLower».addAdapter("«mt.fullyQualifiedName»", «mm.adapterNameFor(mt)».class) ;
+						«FOR mt : l.^implements»
+							«l.name.toFirstLower».addAdapter("«mt.fullyQualifiedName»", «l.syntax.adapterNameFor(mt)».class) ;
 						«ENDFOR»
 						fr.inria.diverse.melange.resource.MelangeRegistry.INSTANCE.getLanguageMap().put(
-							"«mm.fullyQualifiedName»",
-							«mm.name.toFirstLower»
+							"«l.fullyQualifiedName»",
+							«l.name.toFirstLower»
 						) ;
 					«ENDFOR»
 					«FOR mt : root.modelTypes»

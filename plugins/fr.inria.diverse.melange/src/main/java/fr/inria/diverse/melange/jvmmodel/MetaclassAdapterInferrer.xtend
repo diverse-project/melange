@@ -2,6 +2,7 @@ package fr.inria.diverse.melange.jvmmodel
 
 import com.google.inject.Inject
 import fr.inria.diverse.melange.adapters.EObjectAdapter
+import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
@@ -42,6 +43,7 @@ class MetaclassAdapterInferrer
 	@Inject extension NamingHelper
 	@Inject extension ModelTypeExtensions
 	@Inject extension MetamodelExtensions
+	@Inject extension LanguageExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension AspectToEcore
 	@Inject extension MelangeTypesBuilder
@@ -67,7 +69,7 @@ class MetaclassAdapterInferrer
 		val task = Stopwatches.forTask("generate metaclass adapters")
 		task.start
 
-		val mapping = mm.mappings.findFirst[to == superType]
+		val mapping = mm.owningLanguage.mappings.findFirst[to == superType]
 		val mmCls = mm.allClasses.findFirst[mapping.namesMatch(it, cls)]
 
 		acceptor.accept(mm.toClass(mm.adapterNameFor(superType, cls)))
@@ -98,7 +100,7 @@ class MetaclassAdapterInferrer
 			cls.EAllAttributes.filter[!isAspectSpecific].forEach[processAttribute(mmCls, mm, superType, mapping, jvmCls)]
 			cls.EAllReferences.filter[!isAspectSpecific].forEach[processReference(mmCls, mm, superType, mapping, jvmCls)]
 			cls.EAllOperations.sortByOverridingPriority.filter[!hasSuppressedVisibility && !isAspectSpecific].forEach[processOperation(mm, superType, jvmCls)]
-			mm.findAspectsOn(cls).sortByOverridingPriority.forEach[processAspect(mm, superType, jvmCls)]
+			mm.owningLanguage.findAspectsOn(cls).sortByOverridingPriority.forEach[processAspect(mm, superType, jvmCls)]
 		]
 
 		task.stop
@@ -230,7 +232,7 @@ class MetaclassAdapterInferrer
 			]
 
 			paramsList.append('''«FOR p : op.EParameters SEPARATOR ","»
-				«IF p.EType instanceof EClass && mm.hasAdapterFor(superType, p.EType)»
+				«IF p.EType instanceof EClass && mm.owningLanguage.hasAdapterFor(superType, p.EType)»
 					«IF p.many»
 						((fr.inria.diverse.melange.adapters.EListAdapter) «p.name»).getAdaptee()
 					«ELSE»
@@ -254,7 +256,7 @@ class MetaclassAdapterInferrer
 			op.EGenericExceptions.forEach[e |]
 
 			m.body = '''
-				«IF op.EType instanceof EClass && mm.hasAdapterFor(superType, op.EType)»
+				«IF op.EType instanceof EClass && mm.owningLanguage.hasAdapterFor(superType, op.EType)»
 					«IF op.many»
 						return fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.«opName»(«paramsList»), «mm.adapterNameFor(superType, op.EType as EClass)».class) ;
 					«ELSE»
@@ -323,9 +325,9 @@ class MetaclassAdapterInferrer
 					p.parameterType.simpleName
 
 			paramsList.append('''
-				«IF mm.hasAdapterFor(superType, p.parameterType.simpleName)»
+				«IF mm.owningLanguage.hasAdapterFor(superType, p.parameterType.simpleName)»
 					, ((«mm.adapterNameFor(superType, p.parameterType.simpleName)») «p.name»).getAdaptee()
-				«ELSEIF p.parameterType.isCollection && mm.hasAdapterFor(superType, realTypeP)»
+				«ELSEIF p.parameterType.isCollection && mm.owningLanguage.hasAdapterFor(superType, realTypeP)»
 					, ((fr.inria.diverse.melange.adapters.EListAdapter) «p.name»).getAdaptee()
 				«ELSE»
 					, «p.name»
@@ -377,7 +379,7 @@ class MetaclassAdapterInferrer
 
 				body = '''
 					«IF retType.isValidReturnType»
-						«IF mm.hasAdapterFor(superType, realType)»
+						«IF mm.owningLanguage.hasAdapterFor(superType, realType)»
 							«IF op.returnType.isCollection»
 								return fr.inria.diverse.melange.adapters.EListAdapter.newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), «mm.adapterNameFor(superType, realType)».class) ;
 							«ELSE»

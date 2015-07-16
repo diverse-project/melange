@@ -4,13 +4,14 @@ import com.google.inject.Inject
 import fr.inria.diverse.melange.adapters.AdaptersFactory
 import fr.inria.diverse.melange.adapters.EObjectAdapter
 import fr.inria.diverse.melange.ast.ASTHelper
+import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.IMetamodel
 import fr.inria.diverse.melange.lib.MappingExtensions
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
+import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.resource.Resource
@@ -23,17 +24,18 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 /**
  * This class manages generation of Java classes that implements a Metamodel.
  */
-class MetamodelInferrer
+class LanguageInferrer
 {
 	@Inject extension ASTHelper
 	@Inject extension JvmTypesBuilder
 	@Inject extension IQualifiedNameProvider
 	@Inject extension NamingHelper
-	@Inject extension ModelTypeExtensions
 	@Inject extension MetamodelExtensions
+	@Inject extension ModelTypeExtensions
+	@Inject extension LanguageExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension MappingExtensions
-	@Inject extension MetamodelAdapterInferrer
+	@Inject extension LanguageAdapterInferrer
 	@Inject extension MetaclassAdapterInferrer
 
 	/**
@@ -48,35 +50,35 @@ class MetamodelInferrer
 	 * @param acceptor
 	 * @param builder
 	 */
-	def void generateAdapters(Metamodel mm, ModelTypingSpace root, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
+	def void generateAdapters(Language l, ModelTypingSpace root, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
 		val task = Stopwatches.forTask("generate metamodels")
 		task.start
 
-		acceptor.accept(mm.toClass(mm.fullyQualifiedName.normalize.toString))
+		acceptor.accept(l.toClass(l.fullyQualifiedName.normalize.toString))
 		[
 			superTypes += IMetamodel.typeRef
 
-			members += mm.toField("resource",  Resource.typeRef)
-			members += mm.toGetter("resource", Resource.typeRef)
-			members += mm.toSetter("resource", Resource.typeRef)
+			members += l.toField("resource",  Resource.typeRef)
+			members += l.toGetter("resource", Resource.typeRef)
+			members += l.toSetter("resource", Resource.typeRef)
 
-			members += mm.toMethod("load", mm.fullyQualifiedName.normalize.toString.typeRef)[
+			members += l.toMethod("load", l.fullyQualifiedName.normalize.toString.typeRef)[
 				^static = true
-				parameters += mm.toParameter("uri", String.typeRef)
+				parameters += l.toParameter("uri", String.typeRef)
 
 				body = '''
 					org.eclipse.emf.ecore.resource.ResourceSet rs = new org.eclipse.emf.ecore.resource.impl.ResourceSetImpl() ;
 					Resource res = rs.getResource(org.eclipse.emf.common.util.URI.createURI(uri), true) ;
-					«mm.name» mm = new «mm.name»() ;
-					mm.setResource(res) ;
+					«l.name» mm = new «l.name»() ;
+					l.setResource(res) ;
 					return mm ;
 				'''
 			]
 
-			mm.^implements.forEach[mt |
-				val adapName = mm.adapterNameFor(mt)
+			l.^implements.forEach[mt |
+				val adapName = l.syntax.adapterNameFor(mt)
 
-				members += mm.toMethod("to" + mt.name, mt.fullyQualifiedName.toString.typeRef)[
+				members += l.toMethod("to" + mt.name, mt.fullyQualifiedName.toString.typeRef)[
 					body = '''
 						«adapName» adaptee = new «adapName»() ;
 						adaptee.setAdaptee(resource) ;
@@ -85,12 +87,11 @@ class MetamodelInferrer
 				]
 			]
 			
-			root.mappings.filter[from == mm.name].forEach[ bind |
-				val mt = root.metamodels.findFirst[bind.to == name].exactType
-				
-				val adapName = mm.mapperNameFor(mt)
+			root.mappings.filter[from == l.name].forEach[ bind |
+				val mt = root.languages.findFirst[bind.to == name].exactType
+				val adapName = l.syntax.mapperNameFor(mt)
 
-				members += mm.toMethod("to" + mt.name, mt.fullyQualifiedName.toString.typeRef)[
+				members += l.toMethod("to" + mt.name, mt.fullyQualifiedName.toString.typeRef)[
 					body = '''
 						«adapName» adapter = new «adapName»() ;
 						adapter.setAdaptee(resource) ;
@@ -101,30 +102,30 @@ class MetamodelInferrer
 		]
 
 		// TODO: Test when the subtype has more classes than the supertype and vice-versa
-		mm.^implements.forEach[mt |
-			val mapping = mm.mappings.findFirst[to == mt]
-			mm.generateAdapter(mt, acceptor, builder)
+		l.^implements.forEach[mt |
+			val mapping = l.mappings.findFirst[to == mt]
+			l.generateAdapter(mt, acceptor, builder)
 
 			mt.allClasses.filter[abstractable].forEach[cls |
-				mm.generateAdapter(mt, cls, acceptor, builder)
+				l.syntax.generateAdapter(mt, cls, acceptor, builder)
 			]
 
-			val adapFactName = mm.getAdaptersFactoryNameFor(mt)
-			acceptor.accept(mm.toClass(adapFactName))
+			val adapFactName = l.syntax.getAdaptersFactoryNameFor(mt)
+			acceptor.accept(l.toClass(adapFactName))
 			[
 				superTypes += AdaptersFactory.typeRef
 
-				members += mm.toField("instance", adapFactName.typeRef)[static = true]
+				members += l.toField("instance", adapFactName.typeRef)[static = true]
 				
-				members += mm.toField("register" , "java.util.WeakHashMap".typeRef(EObject.typeRef,EObjectAdapter.typeRef))
+				members += l.toField("register" , "java.util.WeakHashMap".typeRef(EObject.typeRef,EObjectAdapter.typeRef))
 				
-				members += mm.toConstructor[
+				members += l.toConstructor[
 					body = '''
 						register = new WeakHashMap();
 					'''
 				]
 
-				members += mm.toMethod("getInstance", adapFactName.typeRef)[
+				members += l.toMethod("getInstance", adapFactName.typeRef)[
 					static = true
 					body = '''
 						if (instance == null) {
@@ -134,8 +135,8 @@ class MetamodelInferrer
 					'''
 				]
 
-				members += mm.toMethod("createAdapter", EObjectAdapter.typeRef)[
-					parameters += mm.toParameter("o", EObject.typeRef)
+				members += l.toMethod("createAdapter", EObjectAdapter.typeRef)[
+					parameters += l.toParameter("o", EObject.typeRef)
 
 					body = '''
 						EObjectAdapter res = register.get(o);
@@ -143,25 +144,25 @@ class MetamodelInferrer
 							 return res;
 						}
 						else{
-							«FOR cls : mt.allClasses.filter[mm.hasAdapterFor(mt, it) && instantiable && abstractable].sortByClassInheritance»
-							if (o instanceof «mm.getFqnFor(cls)»){
-								res = create«cls.name»Adapter((«mm.getFqnFor(cls)») o) ;
+							«FOR cls : mt.allClasses.filter[l.hasAdapterFor(mt, it) && instantiable && abstractable].sortByClassInheritance»
+							if (o instanceof «l.syntax.getFqnFor(cls)»){
+								res = create«cls.name»Adapter((«l.syntax.getFqnFor(cls)») o) ;
 								register.put(o,res);
 								return res;
 							}
 							«ENDFOR»
 						}
-					
+
 						return null ;
 					'''
 				]
 
 				mt.allClasses.filter[abstractable].forEach[cls |
-					val adapName = mm.adapterNameFor(mt, cls)
-					val mmCls = mm.allClasses.findFirst[mapping.namesMatch(it, cls)]
+					val adapName = l.syntax.adapterNameFor(mt, cls)
+					val mmCls = l.syntax.allClasses.findFirst[mapping.namesMatch(it, cls)]
 
-					members += mm.toMethod('''create«cls.name»Adapter''', adapName.typeRef)[
-						parameters += mm.toParameter("adaptee", mm.getFqnFor(mmCls).typeRef)
+					members += l.toMethod('''create«cls.name»Adapter''', adapName.typeRef)[
+						parameters += l.toParameter("adaptee", l.syntax.getFqnFor(mmCls).typeRef)
 
 						body = '''
 							«adapName» adap = new «adapName»() ;
@@ -173,8 +174,8 @@ class MetamodelInferrer
 			]
 		]
 
-		//if (mm.hasSuperMetamodel)
-		//	mm.generateAdapters(mm.inheritanceRelation.superMetamodel, acceptor, builder)
+		//if (l.hasSuperMetamodel)
+		//	l.generateAdapters(l.inheritanceRelation.superMetamodel, acceptor, builder)
 
 		task.stop
 	}
