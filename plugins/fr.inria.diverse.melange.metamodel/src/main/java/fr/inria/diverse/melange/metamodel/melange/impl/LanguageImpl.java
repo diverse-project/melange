@@ -2,6 +2,7 @@
  */
 package fr.inria.diverse.melange.metamodel.melange.impl;
 
+import fr.inria.diverse.melange.metamodel.melange.Aspect;
 import fr.inria.diverse.melange.metamodel.melange.Language;
 import fr.inria.diverse.melange.metamodel.melange.Mapping;
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
@@ -10,7 +11,6 @@ import fr.inria.diverse.melange.metamodel.melange.ModelType;
 import fr.inria.diverse.melange.metamodel.melange.Operator;
 import fr.inria.diverse.melange.metamodel.melange.ResourceType;
 
-import fr.inria.diverse.melange.metamodel.melange.Semantics;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -23,10 +23,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.eclipse.xtext.common.types.JvmTypeReference;
 
 /**
@@ -42,13 +43,13 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getImplements <em>Implements</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getRequires <em>Requires</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getSyntax <em>Syntax</em>}</li>
- *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getSemantics <em>Semantics</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getExactTypeName <em>Exact Type Name</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getExactTypeUri <em>Exact Type Uri</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getResourceType <em>Resource Type</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getResourceUri <em>Resource Uri</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getXtextSetupRef <em>Xtext Setup Ref</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getMappings <em>Mappings</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getSemantics <em>Semantics</em>}</li>
  * </ul>
  *
  * @generated
@@ -103,16 +104,6 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 	 * @ordered
 	 */
 	protected Metamodel syntax;
-
-	/**
-	 * The cached value of the '{@link #getSemantics() <em>Semantics</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSemantics()
-	 * @generated
-	 * @ordered
-	 */
-	protected Semantics semantics;
 
 	/**
 	 * The default value of the '{@link #getExactTypeName() <em>Exact Type Name</em>}' attribute.
@@ -215,6 +206,16 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 	protected EList<Mapping> mappings;
 
 	/**
+	 * The cached value of the '{@link #getSemantics() <em>Semantics</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSemantics()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Aspect> semantics;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -240,7 +241,7 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 	 */
 	public EList<Operator> getOperators() {
 		if (operators == null) {
-			operators = new EObjectContainmentEList<Operator>(Operator.class, this, MelangePackage.LANGUAGE__OPERATORS);
+			operators = new EObjectContainmentWithInverseEList<Operator>(Operator.class, this, MelangePackage.LANGUAGE__OPERATORS, MelangePackage.OPERATOR__OWNING_LANGUAGE);
 		}
 		return operators;
 	}
@@ -370,49 +371,6 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.LANGUAGE__SYNTAX, newSyntax, newSyntax));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Semantics getSemantics() {
-		return semantics;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetSemantics(Semantics newSemantics, NotificationChain msgs) {
-		Semantics oldSemantics = semantics;
-		semantics = newSemantics;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MelangePackage.LANGUAGE__SEMANTICS, oldSemantics, newSemantics);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSemantics(Semantics newSemantics) {
-		if (newSemantics != semantics) {
-			NotificationChain msgs = null;
-			if (semantics != null)
-				msgs = ((InternalEObject)semantics).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MelangePackage.LANGUAGE__SEMANTICS, null, msgs);
-			if (newSemantics != null)
-				msgs = ((InternalEObject)newSemantics).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MelangePackage.LANGUAGE__SEMANTICS, null, msgs);
-			msgs = basicSetSemantics(newSemantics, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.LANGUAGE__SEMANTICS, newSemantics, newSemantics));
 	}
 
 	/**
@@ -559,10 +517,24 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Aspect> getSemantics() {
+		if (semantics == null) {
+			semantics = new EObjectResolvingEList<Aspect>(Aspect.class, this, MelangePackage.LANGUAGE__SEMANTICS);
+		}
+		return semantics;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case MelangePackage.LANGUAGE__OPERATORS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOperators()).basicAdd(otherEnd, msgs);
 			case MelangePackage.LANGUAGE__EXACT_TYPE:
 				if (exactType != null)
 					msgs = ((InternalEObject)exactType).eInverseRemove(this, MelangePackage.MODEL_TYPE__EXTRACTED, ModelType.class, msgs);
@@ -591,8 +563,6 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 				return basicSetExactType(null, msgs);
 			case MelangePackage.LANGUAGE__SYNTAX:
 				return basicSetSyntax(null, msgs);
-			case MelangePackage.LANGUAGE__SEMANTICS:
-				return basicSetSemantics(null, msgs);
 			case MelangePackage.LANGUAGE__XTEXT_SETUP_REF:
 				return basicSetXtextSetupRef(null, msgs);
 			case MelangePackage.LANGUAGE__MAPPINGS:
@@ -620,8 +590,6 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 				return getRequires();
 			case MelangePackage.LANGUAGE__SYNTAX:
 				return getSyntax();
-			case MelangePackage.LANGUAGE__SEMANTICS:
-				return getSemantics();
 			case MelangePackage.LANGUAGE__EXACT_TYPE_NAME:
 				return getExactTypeName();
 			case MelangePackage.LANGUAGE__EXACT_TYPE_URI:
@@ -634,6 +602,8 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 				return getXtextSetupRef();
 			case MelangePackage.LANGUAGE__MAPPINGS:
 				return getMappings();
+			case MelangePackage.LANGUAGE__SEMANTICS:
+				return getSemantics();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -665,9 +635,6 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 			case MelangePackage.LANGUAGE__SYNTAX:
 				setSyntax((Metamodel)newValue);
 				return;
-			case MelangePackage.LANGUAGE__SEMANTICS:
-				setSemantics((Semantics)newValue);
-				return;
 			case MelangePackage.LANGUAGE__EXACT_TYPE_NAME:
 				setExactTypeName((String)newValue);
 				return;
@@ -686,6 +653,10 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 			case MelangePackage.LANGUAGE__MAPPINGS:
 				getMappings().clear();
 				getMappings().addAll((Collection<? extends Mapping>)newValue);
+				return;
+			case MelangePackage.LANGUAGE__SEMANTICS:
+				getSemantics().clear();
+				getSemantics().addAll((Collection<? extends Aspect>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -714,9 +685,6 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 			case MelangePackage.LANGUAGE__SYNTAX:
 				setSyntax((Metamodel)null);
 				return;
-			case MelangePackage.LANGUAGE__SEMANTICS:
-				setSemantics((Semantics)null);
-				return;
 			case MelangePackage.LANGUAGE__EXACT_TYPE_NAME:
 				setExactTypeName(EXACT_TYPE_NAME_EDEFAULT);
 				return;
@@ -734,6 +702,9 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 				return;
 			case MelangePackage.LANGUAGE__MAPPINGS:
 				getMappings().clear();
+				return;
+			case MelangePackage.LANGUAGE__SEMANTICS:
+				getSemantics().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -757,8 +728,6 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 				return requires != null && !requires.isEmpty();
 			case MelangePackage.LANGUAGE__SYNTAX:
 				return syntax != null;
-			case MelangePackage.LANGUAGE__SEMANTICS:
-				return semantics != null;
 			case MelangePackage.LANGUAGE__EXACT_TYPE_NAME:
 				return EXACT_TYPE_NAME_EDEFAULT == null ? exactTypeName != null : !EXACT_TYPE_NAME_EDEFAULT.equals(exactTypeName);
 			case MelangePackage.LANGUAGE__EXACT_TYPE_URI:
@@ -771,6 +740,8 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 				return xtextSetupRef != null;
 			case MelangePackage.LANGUAGE__MAPPINGS:
 				return mappings != null && !mappings.isEmpty();
+			case MelangePackage.LANGUAGE__SEMANTICS:
+				return semantics != null && !semantics.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

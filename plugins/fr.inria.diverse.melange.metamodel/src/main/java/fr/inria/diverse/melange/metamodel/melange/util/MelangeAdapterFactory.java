@@ -144,10 +144,6 @@ public class MelangeAdapterFactory extends AdapterFactoryImpl {
 				return createWeaveAdapter();
 			}
 			@Override
-			public Adapter caseSemantics(Semantics object) {
-				return createSemanticsAdapter();
-			}
-			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -434,20 +430,6 @@ public class MelangeAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createWeaveAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.melange.metamodel.melange.Semantics <em>Semantics</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see fr.inria.diverse.melange.metamodel.melange.Semantics
-	 * @generated
-	 */
-	public Adapter createSemanticsAdapter() {
 		return null;
 	}
 

@@ -141,16 +141,6 @@ public interface MelangePackage extends EPackage {
 	int ELEMENT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl <em>Metamodel</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getMetamodel()
-	 * @generated
-	 */
-	int METAMODEL = 2;
-
-	/**
 	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelingElementImpl <em>Modeling Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -186,6 +176,16 @@ public interface MelangePackage extends EPackage {
 	 * @ordered
 	 */
 	int MODELING_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl <em>Metamodel</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getMetamodel()
+	 * @generated
+	 */
+	int METAMODEL = 2;
 
 	/**
 	 * The feature id for the '<em><b>Ecore Uri</b></em>' attribute.
@@ -306,126 +306,6 @@ public interface MelangePackage extends EPackage {
 	int MODEL_TYPE_OPERATION_COUNT = MODELING_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.TransformationImpl <em>Transformation</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.TransformationImpl
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getTransformation()
-	 * @generated
-	 */
-	int TRANSFORMATION = 4;
-
-	/**
-	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.AspectImpl <em>Aspect</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.AspectImpl
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getAspect()
-	 * @generated
-	 */
-	int ASPECT = 5;
-
-	/**
-	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.OperatorImpl <em>Operator</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.OperatorImpl
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getOperator()
-	 * @generated
-	 */
-	int OPERATOR = 13;
-
-	/**
-	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.InheritanceImpl <em>Inheritance</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.InheritanceImpl
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getInheritance()
-	 * @generated
-	 */
-	int INHERITANCE = 6;
-
-	/**
-	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.SubtypingImpl <em>Subtyping</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.SubtypingImpl
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getSubtyping()
-	 * @generated
-	 */
-	int SUBTYPING = 7;
-
-	/**
-	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.XbaseTransformationImpl <em>Xbase Transformation</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.XbaseTransformationImpl
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getXbaseTransformation()
-	 * @generated
-	 */
-	int XBASE_TRANSFORMATION = 8;
-
-	/**
-	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.MappingImpl <em>Mapping</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MappingImpl
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getMapping()
-	 * @generated
-	 */
-	int MAPPING = 10;
-
-	/**
-	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.ClassBindingImpl <em>Class Binding</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.ClassBindingImpl
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getClassBinding()
-	 * @generated
-	 */
-	int CLASS_BINDING = 11;
-
-	/**
-	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.PropertyBindingImpl <em>Property Binding</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.PropertyBindingImpl
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getPropertyBinding()
-	 * @generated
-	 */
-	int PROPERTY_BINDING = 12;
-
-	/**
-	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.ImportImpl <em>Import</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.ImportImpl
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getImport()
-	 * @generated
-	 */
-	int IMPORT = 14;
-
-	/**
-	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.MergeImpl <em>Merge</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MergeImpl
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getMerge()
-	 * @generated
-	 */
-	int MERGE = 15;
-
-	/**
-	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.SliceImpl <em>Slice</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.SliceImpl
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getSlice()
-	 * @generated
-	 */
-	int SLICE = 16;
-
-	/**
 	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.NamedElementImpl <em>Named Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -433,7 +313,7 @@ public interface MelangePackage extends EPackage {
 	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getNamedElement()
 	 * @generated
 	 */
-	int NAMED_ELEMENT = 20;
+	int NAMED_ELEMENT = 19;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -463,6 +343,16 @@ public interface MelangePackage extends EPackage {
 	int NAMED_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.TransformationImpl <em>Transformation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.TransformationImpl
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getTransformation()
+	 * @generated
+	 */
+	int TRANSFORMATION = 4;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -488,6 +378,16 @@ public interface MelangePackage extends EPackage {
 	 * @ordered
 	 */
 	int TRANSFORMATION_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.AspectImpl <em>Aspect</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.AspectImpl
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getAspect()
+	 * @generated
+	 */
+	int ASPECT = 5;
 
 	/**
 	 * The feature id for the '<em><b>Aspect Type Ref</b></em>' containment reference.
@@ -544,13 +444,32 @@ public interface MelangePackage extends EPackage {
 	int ASPECT_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.OperatorImpl <em>Operator</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.OperatorImpl
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getOperator()
+	 * @generated
+	 */
+	int OPERATOR = 13;
+
+	/**
+	 * The feature id for the '<em><b>Owning Language</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR__OWNING_LANGUAGE = 0;
+
+	/**
 	 * The number of structural features of the '<em>Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_FEATURE_COUNT = 0;
+	int OPERATOR_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of operations of the '<em>Operator</em>' class.
@@ -560,6 +479,25 @@ public interface MelangePackage extends EPackage {
 	 * @ordered
 	 */
 	int OPERATOR_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.InheritanceImpl <em>Inheritance</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.InheritanceImpl
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getInheritance()
+	 * @generated
+	 */
+	int INHERITANCE = 6;
+
+	/**
+	 * The feature id for the '<em><b>Owning Language</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INHERITANCE__OWNING_LANGUAGE = OPERATOR__OWNING_LANGUAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Language</b></em>' reference.
@@ -587,6 +525,16 @@ public interface MelangePackage extends EPackage {
 	 * @ordered
 	 */
 	int INHERITANCE_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.SubtypingImpl <em>Subtyping</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.SubtypingImpl
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getSubtyping()
+	 * @generated
+	 */
+	int SUBTYPING = 7;
 
 	/**
 	 * The feature id for the '<em><b>Sub Type</b></em>' container reference.
@@ -623,6 +571,16 @@ public interface MelangePackage extends EPackage {
 	 * @ordered
 	 */
 	int SUBTYPING_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.XbaseTransformationImpl <em>Xbase Transformation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.XbaseTransformationImpl
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getXbaseTransformation()
+	 * @generated
+	 */
+	int XBASE_TRANSFORMATION = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -688,6 +646,16 @@ public interface MelangePackage extends EPackage {
 	int XBASE_TRANSFORMATION_OPERATION_COUNT = TRANSFORMATION_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.MappingImpl <em>Mapping</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MappingImpl
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getMapping()
+	 * @generated
+	 */
+	int MAPPING = 10;
+
+	/**
 	 * The feature id for the '<em><b>Rules</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -731,6 +699,16 @@ public interface MelangePackage extends EPackage {
 	 * @ordered
 	 */
 	int MAPPING_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.ClassBindingImpl <em>Class Binding</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.ClassBindingImpl
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getClassBinding()
+	 * @generated
+	 */
+	int CLASS_BINDING = 11;
 
 	/**
 	 * The feature id for the '<em><b>From</b></em>' attribute.
@@ -778,6 +756,16 @@ public interface MelangePackage extends EPackage {
 	int CLASS_BINDING_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.PropertyBindingImpl <em>Property Binding</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.PropertyBindingImpl
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getPropertyBinding()
+	 * @generated
+	 */
+	int PROPERTY_BINDING = 12;
+
+	/**
 	 * The feature id for the '<em><b>From</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -812,6 +800,25 @@ public interface MelangePackage extends EPackage {
 	 * @ordered
 	 */
 	int PROPERTY_BINDING_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.ImportImpl <em>Import</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.ImportImpl
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getImport()
+	 * @generated
+	 */
+	int IMPORT = 14;
+
+	/**
+	 * The feature id for the '<em><b>Owning Language</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT__OWNING_LANGUAGE = OPERATOR__OWNING_LANGUAGE;
 
 	/**
 	 * The feature id for the '<em><b>Ecore Uri</b></em>' attribute.
@@ -850,6 +857,25 @@ public interface MelangePackage extends EPackage {
 	int IMPORT_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.MergeImpl <em>Merge</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MergeImpl
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getMerge()
+	 * @generated
+	 */
+	int MERGE = 15;
+
+	/**
+	 * The feature id for the '<em><b>Owning Language</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGE__OWNING_LANGUAGE = OPERATOR__OWNING_LANGUAGE;
+
+	/**
 	 * The feature id for the '<em><b>Merged Language</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -875,6 +901,25 @@ public interface MelangePackage extends EPackage {
 	 * @ordered
 	 */
 	int MERGE_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.SliceImpl <em>Slice</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.SliceImpl
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getSlice()
+	 * @generated
+	 */
+	int SLICE = 16;
+
+	/**
+	 * The feature id for the '<em><b>Owning Language</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLICE__OWNING_LANGUAGE = OPERATOR__OWNING_LANGUAGE;
 
 	/**
 	 * The feature id for the '<em><b>Sliced Language</b></em>' reference.
@@ -977,22 +1022,13 @@ public interface MelangePackage extends EPackage {
 	int LANGUAGE__SYNTAX = NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Semantics</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LANGUAGE__SEMANTICS = NAMED_ELEMENT_FEATURE_COUNT + 5;
-
-	/**
 	 * The feature id for the '<em><b>Exact Type Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__EXACT_TYPE_NAME = NAMED_ELEMENT_FEATURE_COUNT + 6;
+	int LANGUAGE__EXACT_TYPE_NAME = NAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Exact Type Uri</b></em>' attribute.
@@ -1001,7 +1037,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__EXACT_TYPE_URI = NAMED_ELEMENT_FEATURE_COUNT + 7;
+	int LANGUAGE__EXACT_TYPE_URI = NAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Resource Type</b></em>' attribute.
@@ -1010,7 +1046,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__RESOURCE_TYPE = NAMED_ELEMENT_FEATURE_COUNT + 8;
+	int LANGUAGE__RESOURCE_TYPE = NAMED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Resource Uri</b></em>' attribute.
@@ -1019,7 +1055,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__RESOURCE_URI = NAMED_ELEMENT_FEATURE_COUNT + 9;
+	int LANGUAGE__RESOURCE_URI = NAMED_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Xtext Setup Ref</b></em>' containment reference.
@@ -1028,7 +1064,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__XTEXT_SETUP_REF = NAMED_ELEMENT_FEATURE_COUNT + 10;
+	int LANGUAGE__XTEXT_SETUP_REF = NAMED_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Mappings</b></em>' reference list.
@@ -1037,7 +1073,16 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__MAPPINGS = NAMED_ELEMENT_FEATURE_COUNT + 11;
+	int LANGUAGE__MAPPINGS = NAMED_ELEMENT_FEATURE_COUNT + 10;
+
+	/**
+	 * The feature id for the '<em><b>Semantics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANGUAGE__SEMANTICS = NAMED_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The number of structural features of the '<em>Language</em>' class.
@@ -1068,6 +1113,15 @@ public interface MelangePackage extends EPackage {
 	int WEAVE = 18;
 
 	/**
+	 * The feature id for the '<em><b>Owning Language</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WEAVE__OWNING_LANGUAGE = OPERATOR__OWNING_LANGUAGE;
+
+	/**
 	 * The feature id for the '<em><b>Aspect</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1095,43 +1149,6 @@ public interface MelangePackage extends EPackage {
 	int WEAVE_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.SemanticsImpl <em>Semantics</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.SemanticsImpl
-	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getSemantics()
-	 * @generated
-	 */
-	int SEMANTICS = 19;
-
-	/**
-	 * The feature id for the '<em><b>Aspects</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEMANTICS__ASPECTS = 0;
-
-	/**
-	 * The number of structural features of the '<em>Semantics</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEMANTICS_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Semantics</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEMANTICS_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.ResourceType <em>Resource Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1139,7 +1156,7 @@ public interface MelangePackage extends EPackage {
 	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getResourceType()
 	 * @generated
 	 */
-	int RESOURCE_TYPE = 21;
+	int RESOURCE_TYPE = 20;
 
 
 	/**
@@ -1591,6 +1608,17 @@ public interface MelangePackage extends EPackage {
 	EClass getOperator();
 
 	/**
+	 * Returns the meta object for the container reference '{@link fr.inria.diverse.melange.metamodel.melange.Operator#getOwningLanguage <em>Owning Language</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owning Language</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Operator#getOwningLanguage()
+	 * @see #getOperator()
+	 * @generated
+	 */
+	EReference getOperator_OwningLanguage();
+
+	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.Import <em>Import</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1741,17 +1769,6 @@ public interface MelangePackage extends EPackage {
 	EReference getLanguage_Syntax();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.melange.metamodel.melange.Language#getSemantics <em>Semantics</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Semantics</em>'.
-	 * @see fr.inria.diverse.melange.metamodel.melange.Language#getSemantics()
-	 * @see #getLanguage()
-	 * @generated
-	 */
-	EReference getLanguage_Semantics();
-
-	/**
 	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.Language#getExactTypeName <em>Exact Type Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1818,6 +1835,17 @@ public interface MelangePackage extends EPackage {
 	EReference getLanguage_Mappings();
 
 	/**
+	 * Returns the meta object for the reference list '{@link fr.inria.diverse.melange.metamodel.melange.Language#getSemantics <em>Semantics</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Semantics</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Language#getSemantics()
+	 * @see #getLanguage()
+	 * @generated
+	 */
+	EReference getLanguage_Semantics();
+
+	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.Weave <em>Weave</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1837,27 +1865,6 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getWeave_Aspect();
-
-	/**
-	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.Semantics <em>Semantics</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Semantics</em>'.
-	 * @see fr.inria.diverse.melange.metamodel.melange.Semantics
-	 * @generated
-	 */
-	EClass getSemantics();
-
-	/**
-	 * Returns the meta object for the reference list '{@link fr.inria.diverse.melange.metamodel.melange.Semantics#getAspects <em>Aspects</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Aspects</em>'.
-	 * @see fr.inria.diverse.melange.metamodel.melange.Semantics#getAspects()
-	 * @see #getSemantics()
-	 * @generated
-	 */
-	EReference getSemantics_Aspects();
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.NamedElement <em>Named Element</em>}'.
@@ -2278,6 +2285,14 @@ public interface MelangePackage extends EPackage {
 		EClass OPERATOR = eINSTANCE.getOperator();
 
 		/**
+		 * The meta object literal for the '<em><b>Owning Language</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATOR__OWNING_LANGUAGE = eINSTANCE.getOperator_OwningLanguage();
+
+		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.ImportImpl <em>Import</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2398,14 +2413,6 @@ public interface MelangePackage extends EPackage {
 		EReference LANGUAGE__SYNTAX = eINSTANCE.getLanguage_Syntax();
 
 		/**
-		 * The meta object literal for the '<em><b>Semantics</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LANGUAGE__SEMANTICS = eINSTANCE.getLanguage_Semantics();
-
-		/**
 		 * The meta object literal for the '<em><b>Exact Type Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2454,6 +2461,14 @@ public interface MelangePackage extends EPackage {
 		EReference LANGUAGE__MAPPINGS = eINSTANCE.getLanguage_Mappings();
 
 		/**
+		 * The meta object literal for the '<em><b>Semantics</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LANGUAGE__SEMANTICS = eINSTANCE.getLanguage_Semantics();
+
+		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.WeaveImpl <em>Weave</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2470,24 +2485,6 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EReference WEAVE__ASPECT = eINSTANCE.getWeave_Aspect();
-
-		/**
-		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.SemanticsImpl <em>Semantics</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see fr.inria.diverse.melange.metamodel.melange.impl.SemanticsImpl
-		 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getSemantics()
-		 * @generated
-		 */
-		EClass SEMANTICS = eINSTANCE.getSemantics();
-
-		/**
-		 * The meta object literal for the '<em><b>Aspects</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SEMANTICS__ASPECTS = eINSTANCE.getSemantics_Aspects();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.NamedElementImpl <em>Named Element</em>}' class.

@@ -132,6 +132,6 @@ class AspectToEcoreTest
 	}
 
 	private def EPackage getAspectPkg(String name) {
-		return root.languages.head.semantics.aspects.findFirst[aspectTypeRef.simpleName == name]?.ecoreFragment
+		return root.languages.head.semantics.findFirst[aspectTypeRef.simpleName == name]?.ecoreFragment
 	}
 }

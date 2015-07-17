@@ -24,7 +24,7 @@ class AspectsWeaver extends DispatchMelangeProcessor
 	@Inject extension EclipseProjectHelper
 
 	def dispatch void preProcess(Language l, boolean preLinkingPhase) {
-		l.semantics.aspects
+		l.semantics
 		.filter[isComplete]
 		// First, create all the new meta-classes
 		// then, weave aspects

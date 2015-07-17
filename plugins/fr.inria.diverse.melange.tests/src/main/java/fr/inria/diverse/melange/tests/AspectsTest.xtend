@@ -76,10 +76,10 @@ class AspectsTest
 
 	@Test
 	def void testAspectsImportFsm() {
-		val fsmAspect = fsm.semantics.aspects.head
+		val fsmAspect = fsm.semantics.head
 
 		assertNotNull(fsmAspect)
-		assertEquals(fsm.semantics.aspects.size, 1)
+		assertEquals(fsm.semantics.size, 1)
 		assertEquals(fsmAspect.aspectedClass.name, FsmPackage.eINSTANCE.getState.name)
 		assertNotNull(fsmAspect.aspectTypeRef)
 		assertEquals(fsmAspect.aspectTypeRef.type.simpleName, "StateAspect1")
@@ -87,10 +87,10 @@ class AspectsTest
 
 	@Test
 	def void testAspectsImportTfsm() {
-		val tfsmAspect = tfsm.semantics.aspects.head
+		val tfsmAspect = tfsm.semantics.head
 
 		assertNotNull(tfsmAspect)
-		assertEquals(tfsm.semantics.aspects.size, 1)
+		assertEquals(tfsm.semantics.size, 1)
 		assertEquals(tfsmAspect.aspectedClass.name, TimedfsmPackage.eINSTANCE.getState.name)
 		assertNotNull(tfsmAspect.aspectTypeRef)
 		assertEquals(tfsmAspect.aspectTypeRef.type.simpleName, "StateAspect2")
@@ -98,10 +98,10 @@ class AspectsTest
 
 	@Test
 	def void testAspectsImportIfsm() {
-		val ifsmAspect = ifsm.semantics.aspects.head
+		val ifsmAspect = ifsm.semantics.head
 
 		assertNotNull(ifsmAspect)
-		assertEquals(ifsm.semantics.aspects.size, 1)
+		assertEquals(ifsm.semantics.size, 1)
 		assertEquals(ifsmAspect.aspectedClass.name, FsmPackage.eINSTANCE.getState.name)
 		assertNotNull(ifsmAspect.aspectTypeRef)
 		assertEquals(ifsmAspect.aspectTypeRef.type.simpleName, "StateAspect3")

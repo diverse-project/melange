@@ -3,6 +3,7 @@
 package fr.inria.diverse.melange.metamodel.melange;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.xtext.common.types.JvmTypeReference;
 
 /**
@@ -19,13 +20,13 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getImplements <em>Implements</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getRequires <em>Requires</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getSyntax <em>Syntax</em>}</li>
- *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getSemantics <em>Semantics</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getExactTypeName <em>Exact Type Name</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getExactTypeUri <em>Exact Type Uri</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getResourceType <em>Resource Type</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getResourceUri <em>Resource Uri</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getXtextSetupRef <em>Xtext Setup Ref</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getMappings <em>Mappings</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getSemantics <em>Semantics</em>}</li>
  * </ul>
  *
  * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getLanguage()
@@ -36,6 +37,7 @@ public interface Language extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Operators</b></em>' containment reference list.
 	 * The list contents are of type {@link fr.inria.diverse.melange.metamodel.melange.Operator}.
+	 * It is bidirectional and its opposite is '{@link fr.inria.diverse.melange.metamodel.melange.Operator#getOwningLanguage <em>Owning Language</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Operators</em>' containment reference list isn't clear,
@@ -44,7 +46,8 @@ public interface Language extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Operators</em>' containment reference list.
 	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getLanguage_Operators()
-	 * @model containment="true"
+	 * @see fr.inria.diverse.melange.metamodel.melange.Operator#getOwningLanguage
+	 * @model opposite="owningLanguage" containment="true"
 	 * @generated
 	 */
 	EList<Operator> getOperators();
@@ -136,32 +139,6 @@ public interface Language extends NamedElement {
 	 * @generated
 	 */
 	void setSyntax(Metamodel value);
-
-	/**
-	 * Returns the value of the '<em><b>Semantics</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Semantics</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Semantics</em>' containment reference.
-	 * @see #setSemantics(Semantics)
-	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getLanguage_Semantics()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
-	Semantics getSemantics();
-
-	/**
-	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.Language#getSemantics <em>Semantics</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Semantics</em>' containment reference.
-	 * @see #getSemantics()
-	 * @generated
-	 */
-	void setSemantics(Semantics value);
 
 	/**
 	 * Returns the value of the '<em><b>Exact Type Name</b></em>' attribute.
@@ -314,5 +291,21 @@ public interface Language extends NamedElement {
 	 * @generated
 	 */
 	EList<Mapping> getMappings();
+
+	/**
+	 * Returns the value of the '<em><b>Semantics</b></em>' reference list.
+	 * The list contents are of type {@link fr.inria.diverse.melange.metamodel.melange.Aspect}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Semantics</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Semantics</em>' reference list.
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getLanguage_Semantics()
+	 * @model
+	 * @generated
+	 */
+	EList<Aspect> getSemantics();
 
 } // Language

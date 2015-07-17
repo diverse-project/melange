@@ -51,7 +51,7 @@ class LanguageExtensions
 	def List<Aspect> allAspects(Language l) {
 		val res = newArrayList
 		
-		res.addAll(l.semantics.aspects)
+		res.addAll(l.semantics)
 		res.addAll(
 			l.operators.map[op |
 				if (op instanceof Slice)

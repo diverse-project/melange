@@ -49,12 +49,12 @@ class AspectsCopier extends DispatchMelangeProcessor
 			]
 
 			toRemove.forEach[EcoreUtil::remove(it)]
-			l.semantics.aspects += newAspects
+			l.semantics += newAspects
 			
 			/**************************
 			 * Copy aspects from linked languages
 			 **************************/
-			l.semantics.aspects += l.createExternalAspects
+			l.semantics += l.createExternalAspects
 		}
 	}
 

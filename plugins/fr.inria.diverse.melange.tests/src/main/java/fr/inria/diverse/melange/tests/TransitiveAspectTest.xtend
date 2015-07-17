@@ -42,7 +42,7 @@ class TransitiveAspectTest
 		assertNotNull(operationTest_Lang)
 		assertNotNull(referencesTest_Lang)
 
-		assertError(lang.semantics.aspects.get(0),
+		assertError(lang.semantics.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING,
 					"Aspect \'LangAspect\' has a reference \'addedReference\' typed ReferencesTest but in \'SuperLang\' it is typed AttributesTest"
@@ -74,7 +74,7 @@ class TransitiveAspectTest
 		assertNotNull(interfaceTest_SubOtherLang)
 		assertNotNull(genericTest_SubOtherLang)
 		
-		assertError(subLang.semantics.aspects.get(0),
+		assertError(subLang.semantics.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING,
 					"Aspect \'SubOtherAspect\' has a reference \'addedReference\' typed GenericTest but in \'OtherLang\' it is typed AbstractTest"
@@ -221,7 +221,7 @@ class TransitiveAspectTest
 		assertNotNull(operationTest_Lang)
 		assertNotNull(referencesTest_Lang)
 
-		assertError(aspectedLang.semantics.aspects.get(0),
+		assertError(aspectedLang.semantics.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING,
 					"Aspect \'LangAspect\' has a reference \'addedReference\' typed ReferencesTest but in \'SuperLang\' it is typed AttributesTest"

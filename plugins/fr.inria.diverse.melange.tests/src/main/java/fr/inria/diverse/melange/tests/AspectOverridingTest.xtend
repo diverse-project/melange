@@ -29,7 +29,7 @@ class AspectOverridingTest
 	
 	@Test
 	def void testInheritAttributeOverride(){
-		assertError(inheritsOverriding.semantics.aspects.get(0),
+		assertError(inheritsOverriding.semantics.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_ATTRIBUTE_OVERRIDING,
 					"Aspect \'fr.inria.diverse.melange.tests.aspect.merge.AttributesTestAspect\' has an attribute \'changeableYes\' typed String but in \'Exhaustive\' it is typed EDouble"
@@ -37,7 +37,7 @@ class AspectOverridingTest
 	}
 	@Test
 	def void testInheritReferenceOverride(){
-		assertError(inheritsOverriding.semantics.aspects.get(0),
+		assertError(inheritsOverriding.semantics.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING,
 					"Aspect \'fr.inria.diverse.melange.tests.aspect.merge.ReferencesTestAspect\' has a reference \'upperBoundN\' typed OperationsTest but in \'Exhaustive\' it is typed AttributesTest"
@@ -45,7 +45,7 @@ class AspectOverridingTest
 	}
 	@Test
 	def void testInheritOperationOverride(){
-		assertError(inheritsOverriding.semantics.aspects.get(0),
+		assertError(inheritsOverriding.semantics.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_OPERATION_OVERRIDING,
 					"Aspect \'fr.inria.diverse.melange.tests.aspect.merge.OperationsTestAspect\' has an operation \'lowerBound1\' typed boolean but in \'Exhaustive\' it is typed Void"
@@ -53,7 +53,7 @@ class AspectOverridingTest
 	}
 	@Test
 	def void testInheritOperationManyOverride(){
-		assertError(inheritsOverriding.semantics.aspects.get(0),
+		assertError(inheritsOverriding.semantics.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_OPERATION_OVERRIDING,
 					"Aspect \'fr.inria.diverse.melange.tests.aspect.merge.OperationsTestAspect\' has an operation \'manyParameters\' typed String but in \'Exhaustive\' it is typed Void"
@@ -62,7 +62,7 @@ class AspectOverridingTest
 	
 	@Test
 	def void testMergeAttributeOverride(){
-		assertError(mergeOverriding.semantics.aspects.get(0),
+		assertError(mergeOverriding.semantics.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_ATTRIBUTE_OVERRIDING,
 					"Aspect \'fr.inria.diverse.melange.tests.aspect.merge.AttributesTestAspect\' has an attribute \'changeableYes\' typed String but in \'Exhaustive\' it is typed EDouble"
@@ -70,7 +70,7 @@ class AspectOverridingTest
 	}
 	@Test
 	def void testMergeReferenceOverride(){
-		assertError(mergeOverriding.semantics.aspects.get(0),
+		assertError(mergeOverriding.semantics.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING,
 					"Aspect \'fr.inria.diverse.melange.tests.aspect.merge.ReferencesTestAspect\' has a reference \'upperBoundN\' typed OperationsTest but in \'Exhaustive\' it is typed AttributesTest"
@@ -78,7 +78,7 @@ class AspectOverridingTest
 	}
 	@Test
 	def void testMergeOperationOverride(){
-		assertError(mergeOverriding.semantics.aspects.get(0),
+		assertError(mergeOverriding.semantics.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_OPERATION_OVERRIDING,
 					"Aspect \'fr.inria.diverse.melange.tests.aspect.merge.OperationsTestAspect\' has an operation \'lowerBound1\' typed boolean but in \'Exhaustive\' it is typed Void"
@@ -86,7 +86,7 @@ class AspectOverridingTest
 	}
 	@Test
 	def void testMergeOperationManyOverride(){
-		assertError(mergeOverriding.semantics.aspects.get(0),
+		assertError(mergeOverriding.semantics.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_OPERATION_OVERRIDING,
 					"Aspect \'fr.inria.diverse.melange.tests.aspect.merge.OperationsTestAspect\' has an operation \'manyParameters\' typed String but in \'Exhaustive\' it is typed Void"
@@ -95,7 +95,7 @@ class AspectOverridingTest
 	
 	@Test
 	def void testSliceAttributeOverride(){
-		assertError(sliceOverriding.semantics.aspects.get(0),
+		assertError(sliceOverriding.semantics.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_ATTRIBUTE_OVERRIDING,
 					"Aspect \'fr.inria.diverse.melange.tests.aspect.merge.AttributesTestAspect\' has an attribute \'changeableYes\' typed String but in \'Exhaustive\' it is typed EDouble"
@@ -103,7 +103,7 @@ class AspectOverridingTest
 	}
 	@Test
 	def void testSliceReferenceOverride(){
-		assertError(sliceOverriding.semantics.aspects.get(0),
+		assertError(sliceOverriding.semantics.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING,
 					"Aspect \'fr.inria.diverse.melange.tests.aspect.merge.ReferencesTestAspect\' has a reference \'upperBoundN\' typed OperationsTest but in \'Exhaustive\' it is typed AttributesTest"
@@ -111,7 +111,7 @@ class AspectOverridingTest
 	}
 	@Test
 	def void testSliceOperationOverride(){
-		assertError(sliceOverriding.semantics.aspects.get(0),
+		assertError(sliceOverriding.semantics.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_OPERATION_OVERRIDING,
 					"Aspect \'fr.inria.diverse.melange.tests.aspect.merge.OperationsTestAspect\' has an operation \'lowerBound1\' typed boolean but in \'Exhaustive\' it is typed Void"
@@ -119,7 +119,7 @@ class AspectOverridingTest
 	}
 	@Test
 	def void testSliceOperationManyOverride(){
-		assertError(sliceOverriding.semantics.aspects.get(0),
+		assertError(sliceOverriding.semantics.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_OPERATION_OVERRIDING,
 					"Aspect \'fr.inria.diverse.melange.tests.aspect.merge.OperationsTestAspect\' has an operation \'manyParameters\' typed String but in \'Exhaustive\' it is typed Void"

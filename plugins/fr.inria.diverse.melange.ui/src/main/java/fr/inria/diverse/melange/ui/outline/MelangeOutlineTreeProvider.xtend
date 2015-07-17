@@ -58,7 +58,7 @@ class MelangeOutlineTreeProvider extends DefaultOutlineTreeProvider
 			]
 		]
 
-		l.semantics.aspects.forEach[asp |
+		l.semantics.forEach[asp |
 			createEObjectNode(mNode, asp, imageDispatcher.invoke(asp), textDispatcher.invoke(asp),
 				isLeafDispatcher.invoke(asp))
 		]

@@ -22,7 +22,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Metamodel extends ModelingElement {
-
 	/**
 	 * Returns the value of the '<em><b>Owning Language</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link fr.inria.diverse.melange.metamodel.melange.Language#getSyntax <em>Syntax</em>}'.
