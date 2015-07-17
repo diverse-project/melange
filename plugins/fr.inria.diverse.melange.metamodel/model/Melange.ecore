@@ -105,8 +105,6 @@
         eType="#//ModelType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="syntax" lowerBound="1"
         eType="#//Metamodel" containment="true" eOpposite="#//Metamodel/owningLanguage"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="semantics" lowerBound="1"
-        eType="#//Semantics" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="exactTypeName" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="exactTypeUri" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="resourceType" eType="#//ResourceType"
@@ -120,10 +118,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="Weave" eSuperTypes="#//Operator">
     <eStructuralFeatures xsi:type="ecore:EReference" name="aspect" lowerBound="1"
         eType="#//Aspect" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Semantics">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="aspects" upperBound="-1"
-        eType="#//Aspect"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="#//Element">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
