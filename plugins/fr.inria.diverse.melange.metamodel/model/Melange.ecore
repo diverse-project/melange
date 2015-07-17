@@ -78,7 +78,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="from" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="to" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Operator" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Operator" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningLanguage" eType="#//Language"
+        eOpposite="#//Language/operators"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Import" eSuperTypes="#//Operator">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ecoreUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="genmodelUris" upperBound="-1"
@@ -96,7 +99,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Language" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operators" upperBound="-1"
-        eType="#//Operator" containment="true"/>
+        eType="#//Operator" containment="true" eOpposite="#//Operator/owningLanguage"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="exactType" eType="#//ModelType"
         eOpposite="#//ModelType/extracted"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="implements" upperBound="-1"
