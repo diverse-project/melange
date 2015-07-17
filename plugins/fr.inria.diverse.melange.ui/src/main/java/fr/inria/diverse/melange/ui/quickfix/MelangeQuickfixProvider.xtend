@@ -28,7 +28,8 @@ class MelangeQuickfixProvider extends XbaseQuickfixProvider
 			"Generate EMF Runtime in emf-gen/",
 			"Generate EMF Runtime in emf-gen/",
 			null)[element, context |
-				val l = element as Language
+				val mm = element as Metamodel
+				val l = mm.owningLanguage
 
 				l.createLocalEcore
 				l.createLocalGenmodel
@@ -46,7 +47,8 @@ class MelangeQuickfixProvider extends XbaseQuickfixProvider
 			"Generate EMF Runtime in a new project",
 			"Generate EMF Runtime in a new project",
 			null)[element, context |
-				val l = element as Language
+				val mm = element as Metamodel
+				val l = mm.owningLanguage
 
 				EclipseProjectHelper::createEMFRuntimeProject(l.externalRuntimeName, l)
 				l.createExternalEcore
