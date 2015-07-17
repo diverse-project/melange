@@ -29,7 +29,7 @@ class MetamodelExtensions
 	}
 
 	def boolean getIsComplete(Metamodel mm) {
-		return !mm.pkgs.empty && !mm.genmodels.empty
+		return !mm.pkgs.filterNull.empty && !mm.genmodels.filterNull.empty
 	}
 
 	def EClass findClass(Metamodel mm, String clsName) {

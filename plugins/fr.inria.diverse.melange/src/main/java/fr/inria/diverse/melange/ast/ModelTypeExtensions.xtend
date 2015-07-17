@@ -24,7 +24,7 @@ class ModelTypeExtensions
 	}
 
 	def boolean getIsComplete(ModelType mt) {
-		return !mt.pkgs.empty
+		return !mt.pkgs.filterNull.empty
 	}
 
 	def boolean isExtracted(ModelType mt) {
