@@ -4,7 +4,6 @@ import static extension fr.inria.diverse.melange.lib.MetamodelExtensions.*
 
 language ActivityLang {
 	ecore "platform:/resource/org.modelexecution.operationalsemantics.ad/ad/activitydiagram.ecore"
-	exactType ActivityLangMT
 	with org.modelexecution.operationalsemantics.gemoc.sequential.dynamic.ActivityAspect
 	with org.modelexecution.operationalsemantics.gemoc.sequential.dynamic.NamedElementAspect
 	with org.modelexecution.operationalsemantics.gemoc.sequential.dynamic.ActivityNodeAspect
@@ -25,11 +24,11 @@ language ActivityLang {
 	with org.modelexecution.operationalsemantics.gemoc.sequential.dynamic.IntegerComparisonExpressionAspect
 	with org.modelexecution.operationalsemantics.gemoc.sequential.dynamic.BooleanUnaryExpressionAspect
 	with org.modelexecution.operationalsemantics.gemoc.sequential.dynamic.BooleanBinaryExpressionAspect
+	exactType ActivityLangMT
 }
 
 language LuaLang {
 	ecore "platform:/resource/org.xtext.lua/model/generated/Lua.ecore"
-	exactType LuaLangMT
 	with org.k3.lua.dynamic.ChunkAspect
 	with org.k3.lua.dynamic.BlockAspect
 	with org.k3.lua.dynamic.Statement_GlobalFunction_DeclarationAspect
@@ -89,6 +88,7 @@ language LuaLang {
 	with org.k3.lua.dynamic.Expression_ExponentiationAspect
 	with org.k3.lua.dynamic.Expression_CallMemberFunctionAspect
 	with org.k3.lua.dynamic.Expression_AccessArrayAspect
+	exactType LuaLangMT
 }
 
 language EcoreLang {
@@ -113,8 +113,8 @@ language ActivityEcoreLang{
 	merge EcoreLang
 //	ecore "platform:/resource/ActivitySlice_Gen/model/ActivitySlice.ecore"
 //	ecore "platform:/resource/ecore/model/Ecore.ecore"
-	exactType ActivityEcoreLangMT
 	with fr.inria.diverse.glue.EOperationAspect
+	exactType ActivityEcoreLangMT
 }
 
 /*
@@ -123,8 +123,8 @@ language ActivityEcoreLang{
 language ActivityEcoreLuaLang{
 	merge ActivityEcoreLang
 	merge LuaLang
-	exactType ActivityEcoreLuaLangMT
 	with fr.inria.diverse.glue.ExpressionAspect
+	exactType ActivityEcoreLuaLangMT
 }
 
 ///*
