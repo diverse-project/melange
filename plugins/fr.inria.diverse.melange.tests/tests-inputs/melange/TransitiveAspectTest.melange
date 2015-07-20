@@ -32,7 +32,7 @@ language OtherLang inherits Exhaustive{
 }
 
 language SubOtherLang inherits OtherLang{
-.	with SubOtherAspect
+	with SubOtherAspect
 	exactType SubOtherLangMT
 }
 
