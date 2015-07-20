@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
 import com.google.common.collect.ArrayListMultimap
+import fr.inria.diverse.melange.metamodel.melange.ClassBinding
 
 /**
  * This class build languages by merging differents parts declared in each language definitions
@@ -129,10 +130,12 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 			val firstMerge = merges.get(0)
 			val mergeBase = EcoreUtil::copy(getRootPackage(firstMerge.language,history))
 			EcoreUtil.resolveAll(mergeBase)
+			applyRenaming(mergeBase, firstMerge.mappingRules)
 
 			merges.drop(1).forEach[ nextMerge |
 				val mergeUnit = getRootPackage(nextMerge.language,history)
 				EcoreUtil.resolveAll(mergeUnit)
+				applyRenaming(mergeUnit, nextMerge.mappingRules)
 				algebra.merge(mergeUnit,mergeBase)
 			]
 			
@@ -152,9 +155,11 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		 	needNewEcore = true
 		 	val firstSlice = slices.get(0)
 			val sliceBase = applySlice(firstSlice, history)
+			applyRenaming(sliceBase, firstSlice.mappingRules)
 			
 			slices.drop(1).forEach[ nextSlice |
 				val sliceUnit = applySlice(nextSlice, history)
+				applyRenaming(sliceUnit, nextSlice.mappingRules)
 				algebra.merge(sliceUnit, sliceBase)
 			]
 			
@@ -319,5 +324,29 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		EcoreUtil.resolveAll(slice)
 		
 		return res
+	}
+	
+	/**
+	 * Renames classes from {@link model} according to the rules from {@link mappingRules}
+	 */
+	private def void applyRenaming(EPackage model, List<ClassBinding> mappingRules){
+		val allClasses = model.EClassifiers.filter(EClass).toList
+			allClasses.addAll((model.allSubPkgs.map[EClassifiers].flatten.filter(EClass)))
+		
+		mappingRules.forEach[ rule |
+			allClasses.filter[name == rule.from].forEach[ clazz |
+				
+				//Change name for properties
+				rule.properties.forEach[propertyRule |
+					val target = clazz.EReferences.findFirst[name == propertyRule.from]
+					if(target == null) clazz.EAttributes.findFirst[name == propertyRule.from]
+					
+					if(target != null) target.name = propertyRule.to
+				]
+				
+				//Change name for classes
+				clazz.name = rule.to
+			]
+		]
 	}
 }
