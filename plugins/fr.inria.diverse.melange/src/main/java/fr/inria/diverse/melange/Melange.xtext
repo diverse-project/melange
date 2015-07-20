@@ -82,6 +82,9 @@ Operator returns Operator:
 
 Ecore returns Ecore:
 	'ecore' ecoreUri = STRING ('withGenmodel' (genmodelUris += STRING (',' genmodelUris += STRING)*))?
+	'and-rename' '{'
+		(mappingRules+=ClassMapping)*
+	'}'
 ;
 
 Merge returns Merge:

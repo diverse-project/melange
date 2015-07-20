@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Ecore#getEcoreUri <em>Ecore Uri</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Ecore#getGenmodelUris <em>Genmodel Uris</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Ecore#getMappingRules <em>Mapping Rules</em>}</li>
  * </ul>
  *
  * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getEcore()
@@ -63,5 +64,21 @@ public interface Ecore extends Operator {
 	 * @generated
 	 */
 	EList<String> getGenmodelUris();
+
+	/**
+	 * Returns the value of the '<em><b>Mapping Rules</b></em>' containment reference list.
+	 * The list contents are of type {@link fr.inria.diverse.melange.metamodel.melange.ClassBinding}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Mapping Rules</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Mapping Rules</em>' containment reference list.
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getEcore_MappingRules()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ClassBinding> getMappingRules();
 
 } // Ecore

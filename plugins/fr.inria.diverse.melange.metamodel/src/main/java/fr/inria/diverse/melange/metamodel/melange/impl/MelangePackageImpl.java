@@ -764,6 +764,15 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getEcore_MappingRules() {
+		return (EReference)ecoreEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getMerge() {
 		return mergeEClass;
 	}
@@ -931,6 +940,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		ecoreEClass = createEClass(ECORE);
 		createEAttribute(ecoreEClass, ECORE__ECORE_URI);
 		createEAttribute(ecoreEClass, ECORE__GENMODEL_URIS);
+		createEReference(ecoreEClass, ECORE__MAPPING_RULES);
 
 		mergeEClass = createEClass(MERGE);
 		createEReference(mergeEClass, MERGE__LANGUAGE);
@@ -1064,6 +1074,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		initEClass(ecoreEClass, Ecore.class, "Ecore", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEcore_EcoreUri(), ecorePackage.getEString(), "ecoreUri", null, 0, 1, Ecore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEcore_GenmodelUris(), ecorePackage.getEString(), "genmodelUris", null, 0, -1, Ecore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEcore_MappingRules(), this.getClassBinding(), null, "mappingRules", null, 0, -1, Ecore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mergeEClass, Merge.class, "Merge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMerge_Language(), this.getMetamodel(), null, "language", null, 0, 1, Merge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

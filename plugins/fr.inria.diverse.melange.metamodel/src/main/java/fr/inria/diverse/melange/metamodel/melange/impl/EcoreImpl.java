@@ -2,6 +2,7 @@
  */
 package fr.inria.diverse.melange.metamodel.melange.impl;
 
+import fr.inria.diverse.melange.metamodel.melange.ClassBinding;
 import fr.inria.diverse.melange.metamodel.melange.Ecore;
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
 
@@ -9,13 +10,17 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,6 +32,7 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.EcoreImpl#getEcoreUri <em>Ecore Uri</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.EcoreImpl#getGenmodelUris <em>Genmodel Uris</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.EcoreImpl#getMappingRules <em>Mapping Rules</em>}</li>
  * </ul>
  *
  * @generated
@@ -61,6 +67,16 @@ public class EcoreImpl extends OperatorImpl implements Ecore {
 	 * @ordered
 	 */
 	protected EList<String> genmodelUris;
+
+	/**
+	 * The cached value of the '{@link #getMappingRules() <em>Mapping Rules</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMappingRules()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ClassBinding> mappingRules;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -119,6 +135,32 @@ public class EcoreImpl extends OperatorImpl implements Ecore {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ClassBinding> getMappingRules() {
+		if (mappingRules == null) {
+			mappingRules = new EObjectContainmentEList<ClassBinding>(ClassBinding.class, this, MelangePackage.ECORE__MAPPING_RULES);
+		}
+		return mappingRules;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MelangePackage.ECORE__MAPPING_RULES:
+				return ((InternalEList<?>)getMappingRules()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -126,6 +168,8 @@ public class EcoreImpl extends OperatorImpl implements Ecore {
 				return getEcoreUri();
 			case MelangePackage.ECORE__GENMODEL_URIS:
 				return getGenmodelUris();
+			case MelangePackage.ECORE__MAPPING_RULES:
+				return getMappingRules();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -146,6 +190,10 @@ public class EcoreImpl extends OperatorImpl implements Ecore {
 				getGenmodelUris().clear();
 				getGenmodelUris().addAll((Collection<? extends String>)newValue);
 				return;
+			case MelangePackage.ECORE__MAPPING_RULES:
+				getMappingRules().clear();
+				getMappingRules().addAll((Collection<? extends ClassBinding>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -164,6 +212,9 @@ public class EcoreImpl extends OperatorImpl implements Ecore {
 			case MelangePackage.ECORE__GENMODEL_URIS:
 				getGenmodelUris().clear();
 				return;
+			case MelangePackage.ECORE__MAPPING_RULES:
+				getMappingRules().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -180,6 +231,8 @@ public class EcoreImpl extends OperatorImpl implements Ecore {
 				return ECORE_URI_EDEFAULT == null ? ecoreUri != null : !ECORE_URI_EDEFAULT.equals(ecoreUri);
 			case MelangePackage.ECORE__GENMODEL_URIS:
 				return genmodelUris != null && !genmodelUris.isEmpty();
+			case MelangePackage.ECORE__MAPPING_RULES:
+				return mappingRules != null && !mappingRules.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

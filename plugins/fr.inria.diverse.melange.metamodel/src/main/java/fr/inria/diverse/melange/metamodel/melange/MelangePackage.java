@@ -919,13 +919,22 @@ public interface MelangePackage extends EPackage {
 	int ECORE__GENMODEL_URIS = OPERATOR_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Mapping Rules</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ECORE__MAPPING_RULES = OPERATOR_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Ecore</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ECORE_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 2;
+	int ECORE_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Ecore</em>' class.
@@ -1672,6 +1681,17 @@ public interface MelangePackage extends EPackage {
 	EAttribute getEcore_GenmodelUris();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link fr.inria.diverse.melange.metamodel.melange.Ecore#getMappingRules <em>Mapping Rules</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Mapping Rules</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Ecore#getMappingRules()
+	 * @see #getEcore()
+	 * @generated
+	 */
+	EReference getEcore_MappingRules();
+
+	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.Merge <em>Merge</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2272,6 +2292,14 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ECORE__GENMODEL_URIS = eINSTANCE.getEcore_GenmodelUris();
+
+		/**
+		 * The meta object literal for the '<em><b>Mapping Rules</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ECORE__MAPPING_RULES = eINSTANCE.getEcore_MappingRules();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.MergeImpl <em>Merge</em>}' class.

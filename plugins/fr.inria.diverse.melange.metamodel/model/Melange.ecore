@@ -105,6 +105,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ecoreUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="genmodelUris" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mappingRules" upperBound="-1"
+        eType="#//ClassBinding" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Merge" eSuperTypes="#//Operator">
     <eStructuralFeatures xsi:type="ecore:EReference" name="language" eType="#//Metamodel"/>

@@ -83,15 +83,18 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 			language.ecoreUri = ecores.get(0).ecoreUri
 			language.genmodelUris.addAll(ecores.get(0).genmodelUris)
 			base = modelUtils.loadPkg(ecores.get(0).ecoreUri)
+			applyRenaming(base, ecores.get(0).mappingRules)
 		}
 		else if(ecores.size > 1){
 			needNewEcore = true
 			val firstEcore = ecores.get(0)
 			val ecoreBase = modelUtils.loadPkg(firstEcore.ecoreUri)
+			applyRenaming(ecoreBase, firstEcore.mappingRules)
 
 			ecores.drop(1).forEach[ nextEcore |
 				val ecoreUnit = modelUtils.loadPkg(nextEcore.ecoreUri)
 				EcoreUtil.resolveAll(ecoreUnit) //Need to solve crossref because EMF Compare don't
+				applyRenaming(ecoreUnit, nextEcore.mappingRules)
 				algebra.merge(ecoreUnit,ecoreBase)
 			]
 			base = ecoreBase
