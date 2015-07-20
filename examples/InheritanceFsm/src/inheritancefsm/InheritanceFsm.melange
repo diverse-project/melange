@@ -1,7 +1,7 @@
 package inheritancefsm
 
 language Fsm {
-	ecore "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.fsm/model/FSM.ecore"
+	syntax "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.fsm/model/FSM.ecore"
 	exactType FsmMT
 }
 

@@ -1,7 +1,7 @@
 package simpleaspects
 
 language Fsm {
-	ecore "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.fsm/model/FSM.ecore"
+	syntax "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.fsm/model/FSM.ecore"
 	with simpleaspects.ExecutableFsmAspect
 	with simpleaspects.ExecutableStateAspect
 	with simpleaspects.ExecutableTransitionAspect
@@ -9,7 +9,7 @@ language Fsm {
 }
 
 language TimedFsm {
-	ecore "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.timedfsm/model/TimedFSM.ecore"
+	syntax "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.timedfsm/model/TimedFSM.ecore"
 	with simpleaspects.TimedFsmAspect
 	with simpleaspects.TimedStateAspect
 	with simpleaspects.TimedTransitionAspect
