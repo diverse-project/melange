@@ -1,28 +1,24 @@
 package fr.inria.diverse.melange.tests
 
-import org.junit.runner.RunWith
-import org.eclipse.xtext.junit4.XtextRunner
-import org.eclipse.xtext.junit4.InjectWith
-import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
-import fr.inria.diverse.melange.tools.xtext.testing.XtextTest
-import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
-import org.junit.Test
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
-import org.eclipse.emf.ecore.EPackage
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.emf.common.util.URI
-import fr.inria.diverse.melange.lib.MatchingHelper
 import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
+import fr.inria.diverse.melange.lib.MatchingHelper
+import fr.inria.diverse.melange.metamodel.melange.Language
+import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
+import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
+import fr.inria.diverse.melange.tools.xtext.testing.XtextTest
 import java.util.Collections
-import static org.junit.Assert.*
-import fr.inria.diverse.melange.metamodel.melange.Mapping
-import fr.inria.diverse.melange.metamodel.melange.ClassBinding
-import fr.inria.diverse.melange.metamodel.melange.PropertyBinding
-import fr.inria.diverse.melange.metamodel.melange.MelangePackage
-import fr.inria.diverse.melange.validation.MelangeValidationConstants
-import org.eclipse.emf.ecore.EClass
 import java.util.List
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EPackage
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.eclipse.xtext.junit4.InjectWith
+import org.eclipse.xtext.junit4.XtextRunner
+import org.junit.Test
+import org.junit.runner.RunWith
+
+import static org.junit.Assert.*
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
@@ -35,10 +31,10 @@ class OperatorMappingTest
 	
 	@Test
 	def void testStructure4ecore(){
-		assertEquals(1, renameEcoreMM1.pkgs.size)
-		assertEquals("newpackage", renameEcoreMM1.pkgs.get(0).name)
+		assertEquals(1, renameEcoreMM1.syntax.pkgs.size)
+		assertEquals("newpackage", renameEcoreMM1.syntax.pkgs.get(0).name)
 		
-		assertEquals(7, renameEcoreMM1.pkgs.get(0).EClassifiers.size
+		assertEquals(7, renameEcoreMM1.syntax.pkgs.get(0).EClassifiers.size
 		)
 		assertEquals("AAAAA", renamedEcoreClasses.get(0).name)
 		assertEquals("Z", renamedEcoreClasses.get(1).name)
@@ -69,10 +65,10 @@ class OperatorMappingTest
 	
 	@Test
 	def void testStructure4merge(){
-		assertEquals(1, renameMergeMM1.pkgs.size)
-		assertEquals("newpackage", renameMergeMM1.pkgs.get(0).name)
+		assertEquals(1, renameMergeMM1.syntax.pkgs.size)
+		assertEquals("newpackage", renameMergeMM1.syntax.pkgs.get(0).name)
 		
-		assertEquals(7, renameMergeMM1.pkgs.get(0).EClassifiers.size
+		assertEquals(7, renameMergeMM1.syntax.pkgs.get(0).EClassifiers.size
 		)
 		assertEquals("AAAAA", renamedMergeClasses.get(0).name)
 		assertEquals("Z", renamedMergeClasses.get(1).name)
@@ -103,10 +99,10 @@ class OperatorMappingTest
 	
 	@Test
 	def void testStructure4slice(){
-		assertEquals(1, renameSliceMM1.pkgs.size)
-		assertEquals("newpackage", renameSliceMM1.pkgs.get(0).name)
+		assertEquals(1, renameSliceMM1.syntax.pkgs.size)
+		assertEquals("newpackage", renameSliceMM1.syntax.pkgs.get(0).name)
 		
-		assertEquals(4, renameSliceMM1.pkgs.get(0).EClassifiers.size
+		assertEquals(4, renameSliceMM1.syntax.pkgs.get(0).EClassifiers.size
 		)
 		assertEquals("AAAAA", renamedSliceClasses.get(0).name)
 		assertEquals("SuperA", renamedSliceClasses.get(1).name)
@@ -137,13 +133,13 @@ class OperatorMappingTest
 		return helper.match(Collections.singletonList(pkgA), Collections.singletonList(pkgB), null)
 	}
 	
-	def Metamodel getMM1()              { return root.elements.get(0) as Metamodel }
-	def Metamodel getRenameEcoreMM1()   { return root.elements.get(1) as Metamodel }
-	def Metamodel getRenameMergeMM1()   { return root.elements.get(2) as Metamodel }
-	def Metamodel getRenameSliceMM1()   { return root.elements.get(3) as Metamodel }
+	def Language getMM1()              { return root.elements.get(0) as Language }
+	def Language getRenameEcoreMM1()   { return root.elements.get(1) as Language }
+	def Language getRenameMergeMM1()   { return root.elements.get(2) as Language }
+	def Language getRenameSliceMM1()   { return root.elements.get(3) as Language }
 	
-	def List<EClass> getRenamedEcoreClasses() {return getRenameEcoreMM1.pkgs.get(0).EClassifiers.filter(EClass).toList}
-	def List<EClass> getRenamedMergeClasses() {return getRenameMergeMM1.pkgs.get(0).EClassifiers.filter(EClass).toList}
-	def List<EClass> getRenamedSliceClasses() {return getRenameSliceMM1.pkgs.get(0).EClassifiers.filter(EClass).toList}	
+	def List<EClass> getRenamedEcoreClasses() {return getRenameEcoreMM1.syntax.pkgs.get(0).EClassifiers.filter(EClass).toList}
+	def List<EClass> getRenamedMergeClasses() {return getRenameMergeMM1.syntax.pkgs.get(0).EClassifiers.filter(EClass).toList}
+	def List<EClass> getRenamedSliceClasses() {return getRenameSliceMM1.syntax.pkgs.get(0).EClassifiers.filter(EClass).toList}	
 	
 }
