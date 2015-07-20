@@ -1,12 +1,12 @@
 package exhaustiveecoretest
 
 language Exhaustive {
-	ecore "tests-inputs/metamodels/Exhaustive.ecore" withGenmodel "tests-inputs/metamodels/Exhaustive.genmodel"
+	syntax "tests-inputs/metamodels/Exhaustive.ecore" withGenmodel "tests-inputs/metamodels/Exhaustive.genmodel"
 	exactType ExhaustiveMT
 }
 
 language Exhaustive2 {
-	ecore "tests-inputs/metamodels/Exhaustive.ecore" withGenmodel "tests-inputs/metamodels/Exhaustive.genmodel"
+	syntax "tests-inputs/metamodels/Exhaustive.ecore" withGenmodel "tests-inputs/metamodels/Exhaustive.genmodel"
 	exactType Exhaustive2MT
 }
 

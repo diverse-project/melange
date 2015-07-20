@@ -5,19 +5,19 @@ import fr.inria.diverse.melange.tests.aspects.fsm.StateAspect2
 import fr.inria.diverse.melange.tests.aspects.fsm.StateAspect3
 
 language Fsm {
-	ecore "tests-inputs/metamodels/FSM.ecore" withGenmodel "tests-inputs/metamodels/FSM.genmodel"
+	syntax "tests-inputs/metamodels/FSM.ecore" withGenmodel "tests-inputs/metamodels/FSM.genmodel"
 	with StateAspect1
 	exactType FsmMT
 }
 
 language TimedFsm {
-	ecore "tests-inputs/metamodels/TimedFSM.ecore" withGenmodel "tests-inputs/metamodels/TimedFSM.genmodel"
+	syntax "tests-inputs/metamodels/TimedFSM.ecore" withGenmodel "tests-inputs/metamodels/TimedFSM.genmodel"
 	with StateAspect2
 	exactType TimedFsmMT
 }
 
 language IncompatibleFsm {
-	ecore "tests-inputs/metamodels/FSM.ecore" withGenmodel "tests-inputs/metamodels/FSM.genmodel"
+	syntax "tests-inputs/metamodels/FSM.ecore" withGenmodel "tests-inputs/metamodels/FSM.genmodel"
 	with StateAspect3
 	exactType IncompatibleFsmMT
 }

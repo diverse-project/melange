@@ -1,24 +1,24 @@
 package implementstest
 
 modeltype FsmMT {
-	ecore "tests-inputs/metamodels/FSM.ecore"
+	syntax "tests-inputs/metamodels/FSM.ecore"
 }
 
 modeltype TfsmMT {
-	ecore "tests-inputs/metamodels/TimedFSM.ecore"
+	syntax "tests-inputs/metamodels/TimedFSM.ecore"
 }
 
 language Fsm implements FsmMT {
-	ecore "tests-inputs/metamodels/FSM.ecore" withGenmodel "tests-inputs/metamodels/FSM.genmodel"
+	syntax "tests-inputs/metamodels/FSM.ecore" withGenmodel "tests-inputs/metamodels/FSM.genmodel"
 	exactType FsmMTT	
 }
 
 language Tfsm implements FsmMT, TfsmMT {
-	ecore "tests-inputs/metamodels/TimedFSM.ecore" withGenmodel "tests-inputs/metamodels/TimedFSM.genmodel"
+	syntax "tests-inputs/metamodels/TimedFSM.ecore" withGenmodel "tests-inputs/metamodels/TimedFSM.genmodel"
 	exactType TfsmMTT
 }
 
 language FsmM implements TfsmMT {
-	ecore "tests-inputs/metamodels/FSM.ecore"
+	syntax "tests-inputs/metamodels/FSM.ecore"
 	exactType FsmMTTT
 }

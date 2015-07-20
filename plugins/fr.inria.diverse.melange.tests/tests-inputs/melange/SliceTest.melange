@@ -1,12 +1,12 @@
 package mergetest
 
 language MM1 {
-	ecore "tests-inputs/metamodels/merge/MM1.ecore"
+	syntax "tests-inputs/metamodels/merge/MM1.ecore"
 	exactType mm1MT
 }
 
 language MM2 {
-	ecore "tests-inputs/metamodels/merge/MM2.ecore"
+	syntax "tests-inputs/metamodels/merge/MM2.ecore"
 	exactType mm2MT
 }
 
@@ -43,12 +43,12 @@ language SliceMerge{
 }
 
 language Merge1 {
-	ecore "tests-inputs/metamodels/merge/Merge1.ecore"
+	syntax "tests-inputs/metamodels/merge/Merge1.ecore"
 	exactType Merge1mt
 }
 
 language Merge2 {
-	ecore "tests-inputs/metamodels/merge/Merge2.ecore"
+	syntax "tests-inputs/metamodels/merge/Merge2.ecore"
 	exactType Merge2mt
 }
 

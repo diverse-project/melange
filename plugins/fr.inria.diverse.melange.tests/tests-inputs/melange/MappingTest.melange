@@ -1,12 +1,12 @@
 package mergetest
 
 language MM1 {
-	ecore "tests-inputs/metamodels/merge/MM1.ecore"
+	syntax "tests-inputs/metamodels/merge/MM1.ecore"
 	exactType mm1MT
 }
 
 language MM3 {
-	ecore "tests-inputs/metamodels/merge/MM3.ecore"
+	syntax "tests-inputs/metamodels/merge/MM3.ecore"
 	exactType mm3MT
 }
 

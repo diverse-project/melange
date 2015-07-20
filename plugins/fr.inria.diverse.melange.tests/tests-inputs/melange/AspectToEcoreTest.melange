@@ -9,7 +9,7 @@ import fr.inria.diverse.melange.tests.aspects.fsm.Visibility
 import fr.inria.diverse.melange.tests.aspects.fsm.Operations
 
 language Fsm {
-	ecore "tests-inputs/metamodels/FSM.ecore" withGenmodel "tests-inputs/metamodels/FSM.genmodel"
+	syntax "tests-inputs/metamodels/FSM.ecore" withGenmodel "tests-inputs/metamodels/FSM.genmodel"
 	with SimpleAttributes
 	with AttributesCollections
 	with SimpleReferences

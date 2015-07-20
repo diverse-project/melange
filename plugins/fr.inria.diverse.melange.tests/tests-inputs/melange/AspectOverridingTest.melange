@@ -1,7 +1,7 @@
 package aspect.overriding.test
 
 language Exhaustive {
-	ecore "tests-inputs/metamodels/Exhaustive.ecore" withGenmodel "tests-inputs/metamodels/Exhaustive.genmodel"
+	syntax "tests-inputs/metamodels/Exhaustive.ecore" withGenmodel "tests-inputs/metamodels/Exhaustive.genmodel"
 	exactType ExhaustiveMT
 }
 

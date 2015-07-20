@@ -7,7 +7,7 @@ import fr.inria.diverse.melange.tests.aspects.exhaustive.OtherAspect
 import fr.inria.diverse.melange.tests.aspects.exhaustive.SubOtherAspect
 
 language Exhaustive {
-	ecore "tests-inputs/metamodels/Exhaustive.ecore" withGenmodel "tests-inputs/metamodels/Exhaustive.genmodel"
+	syntax "tests-inputs/metamodels/Exhaustive.ecore" withGenmodel "tests-inputs/metamodels/Exhaustive.genmodel"
 	exactType ExhaustiveMT
 }
 
