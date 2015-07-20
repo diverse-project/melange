@@ -161,11 +161,11 @@ public class SimpleFsmTest extends AbstractXtextTests
 		package melangefsm
 
 		language Fsm {
-			ecore "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.fsm/model/FSM.ecore"
-			exactType FsmMT
+			syntax "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.fsm/model/FSM.ecore"
 			with aspectsfsm.ExecutableFsmAspect
 			with aspectsfsm.ExecutableStateAspect
 			with aspectsfsm.ExecutableTransitionAspect
+			exactType FsmMT
 		}
 
 		transformation foo(FsmMT m) {
