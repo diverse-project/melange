@@ -44,5 +44,5 @@ language RenameSliceMM1{
 			}
 		}
 	}
-	exactType RenameMergeMT
+	exactType RenameSliceMT
 }
