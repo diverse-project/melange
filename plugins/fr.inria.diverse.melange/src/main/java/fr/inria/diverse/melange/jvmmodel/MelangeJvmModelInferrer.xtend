@@ -25,9 +25,9 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 	@Inject extension ModelTypeInferrer
 	@Inject extension LanguageInferrer
 	@Inject extension TransformationInferrer
+	@Inject extension LanguageExtensions
 	@Inject extension MetamodelExtensions
 	@Inject extension ModelTypeExtensions
-	@Inject extension LanguageExtensions
 	@Inject extension JvmTypesBuilder
 	@Inject extension IQualifiedNameProvider
 	@Inject extension NamingHelper
@@ -44,13 +44,17 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 	 * @param isPreIndexingPhase
 	 */
 	def dispatch void infer(ModelTypingSpace root, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
+			// Only run codegen if everything's ready
+			if (root.languages.exists[!isComplete] || root.modelTypes.exists[!isComplete])
+				return;
+
 			try {
 	//			if (Diagnostician.INSTANCE.validate(typingSpace).severity != Diagnostic.ERROR) {
 	
-				root.modelTypes.filter[isComplete].forEach[generateInterfaces(acceptor, _typeReferenceBuilder)]
+				root.modelTypes.forEach[generateInterfaces(acceptor, _typeReferenceBuilder)]
 				
 				if (MelangePreferencesAccess.instance.generateAdaptersCode || (MelangePreferencesAccess.instance.isUserLaunch && !isPreIndexingPhase)) {
-					root.languages.filter[isComplete].forEach[generateAdapters(root, acceptor, _typeReferenceBuilder)]
+					root.languages.forEach[generateAdapters(root, acceptor, _typeReferenceBuilder)]
 					root.transformations.forEach[generateTransformation(acceptor, _typeReferenceBuilder)]
 					root.createStandaloneSetup(acceptor)
 	//				root.slicers.forEach[generateSlicer]

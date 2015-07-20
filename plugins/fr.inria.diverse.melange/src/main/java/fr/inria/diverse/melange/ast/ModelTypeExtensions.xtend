@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EPackage
 
 class ModelTypeExtensions
 {
+	@Inject extension LanguageExtensions
 	@Inject extension ModelingElementExtensions
 	@Inject extension EcoreExtensions
 	@Inject ModelTypeAlgebra algebra
@@ -24,7 +25,11 @@ class ModelTypeExtensions
 	}
 
 	def boolean getIsComplete(ModelType mt) {
-		return !mt.pkgs.filterNull.empty
+		return
+			if (mt.isExtracted)
+				mt.extracted.isComplete
+			else
+				!mt.pkgs.filterNull.empty
 	}
 
 	def boolean isExtracted(ModelType mt) {
