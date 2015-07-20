@@ -10,11 +10,11 @@ package fr.inria.diverse.melange.metamodel.melange;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Inheritance#getSubMetamodel <em>Sub Metamodel</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Inheritance#getSuperMetamodel <em>Super Metamodel</em>}</li>
  * </ul>
- * </p>
  *
  * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getInheritance()
  * @model

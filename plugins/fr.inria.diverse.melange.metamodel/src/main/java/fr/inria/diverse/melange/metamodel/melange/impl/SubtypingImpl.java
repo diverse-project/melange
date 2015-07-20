@@ -23,11 +23,11 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.SubtypingImpl#getSubType <em>Sub Type</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.SubtypingImpl#getSuperType <em>Super Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

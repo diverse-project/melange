@@ -956,13 +956,22 @@ public interface MelangePackage extends EPackage {
 	int MERGE__LANGUAGE = OPERATOR_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Mapping Rules</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGE__MAPPING_RULES = OPERATOR_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Merge</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 1;
+	int MERGE_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Merge</em>' class.
@@ -1002,13 +1011,22 @@ public interface MelangePackage extends EPackage {
 	int SLICE__ROOTS = OPERATOR_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Mapping Rules</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLICE__MAPPING_RULES = OPERATOR_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Slice</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SLICE_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 2;
+	int SLICE_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Slice</em>' class.
@@ -1675,6 +1693,17 @@ public interface MelangePackage extends EPackage {
 	EReference getMerge_Language();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link fr.inria.diverse.melange.metamodel.melange.Merge#getMappingRules <em>Mapping Rules</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Mapping Rules</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Merge#getMappingRules()
+	 * @see #getMerge()
+	 * @generated
+	 */
+	EReference getMerge_MappingRules();
+
+	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.Slice <em>Slice</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1705,6 +1734,17 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getSlice_Roots();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link fr.inria.diverse.melange.metamodel.melange.Slice#getMappingRules <em>Mapping Rules</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Mapping Rules</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Slice#getMappingRules()
+	 * @see #getSlice()
+	 * @generated
+	 */
+	EReference getSlice_MappingRules();
 
 	/**
 	 * Returns the meta object for enum '{@link fr.inria.diverse.melange.metamodel.melange.ResourceType <em>Resource Type</em>}'.
@@ -2252,6 +2292,14 @@ public interface MelangePackage extends EPackage {
 		EReference MERGE__LANGUAGE = eINSTANCE.getMerge_Language();
 
 		/**
+		 * The meta object literal for the '<em><b>Mapping Rules</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MERGE__MAPPING_RULES = eINSTANCE.getMerge_MappingRules();
+
+		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.SliceImpl <em>Slice</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2276,6 +2324,14 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SLICE__ROOTS = eINSTANCE.getSlice_Roots();
+
+		/**
+		 * The meta object literal for the '<em><b>Mapping Rules</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SLICE__MAPPING_RULES = eINSTANCE.getSlice_MappingRules();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.ResourceType <em>Resource Type</em>}' enum.

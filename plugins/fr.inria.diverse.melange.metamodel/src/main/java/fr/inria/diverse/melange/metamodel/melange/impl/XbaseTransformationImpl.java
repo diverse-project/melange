@@ -31,13 +31,13 @@ import org.eclipse.xtext.xbase.XExpression;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.XbaseTransformationImpl#getBody <em>Body</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.XbaseTransformationImpl#isMain <em>Main</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.XbaseTransformationImpl#getParameters <em>Parameters</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.XbaseTransformationImpl#getReturnTypeRef <em>Return Type Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

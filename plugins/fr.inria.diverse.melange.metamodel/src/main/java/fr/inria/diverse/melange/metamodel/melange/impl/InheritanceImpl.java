@@ -22,11 +22,11 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.InheritanceImpl#getSubMetamodel <em>Sub Metamodel</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.InheritanceImpl#getSuperMetamodel <em>Super Metamodel</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

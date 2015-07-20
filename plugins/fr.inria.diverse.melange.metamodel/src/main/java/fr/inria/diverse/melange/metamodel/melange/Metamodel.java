@@ -13,6 +13,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getAspects <em>Aspects</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getExactType <em>Exact Type</em>}</li>
@@ -28,7 +29,6 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getMappings <em>Mappings</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getOperators <em>Operators</em>}</li>
  * </ul>
- * </p>
  *
  * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getMetamodel()
  * @model

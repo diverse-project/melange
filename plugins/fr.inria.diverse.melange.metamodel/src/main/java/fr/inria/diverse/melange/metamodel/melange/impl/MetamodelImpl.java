@@ -38,6 +38,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getAspects <em>Aspects</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getExactType <em>Exact Type</em>}</li>
@@ -53,7 +54,6 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getMappings <em>Mappings</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getOperators <em>Operators</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
