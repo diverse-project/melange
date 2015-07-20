@@ -1,35 +1,30 @@
 package finitestatemachines
 
-import static extension fr.inria.diverse.melange.lib.MetamodelExtensions.*
-
 language FiniteStateMachineUML{
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.composite/model/fsm.ecore"
-	exactType FiniteStateMachineUMLMT
-	
 	with finitestatemachines.composite.uml.StateMachineAspect
 	with finitestatemachines.composite.uml.StateAspect
 	with finitestatemachines.composite.uml.CompositeStateAspect
 	with finitestatemachines.composite.uml.TransitionAspect
+	exactType FiniteStateMachineUMLMT
 }
 
 language FiniteStateMachineRhapsody{
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.composite/model/fsm.ecore"
-	exactType FiniteStateMachineRhapsodyMT
-	
 	with finitestatemachines.composite.rhapsody.StateMachineAspect
 	with finitestatemachines.composite.rhapsody.StateAspect
 	with finitestatemachines.composite.rhapsody.CompositeStateAspect
 	with finitestatemachines.composite.rhapsody.TransitionAspect
+	exactType FiniteStateMachineRhapsodyMT
 }
 
 language FiniteStateMachineClassic{
 	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.composite/model/fsm.ecore"
-	exactType FiniteStateMachineClassicMT
-	
 	with finitestatemachines.composite.classic.StateMachineAspect
 	with finitestatemachines.composite.classic.StateAspect
 	with finitestatemachines.composite.classic.CompositeStateAspect
 	with finitestatemachines.composite.classic.TransitionAspect
+	exactType FiniteStateMachineClassicMT
 }
 
 transformation execute(FiniteStateMachineUMLMT stateMachine, String input, String outputFile){
