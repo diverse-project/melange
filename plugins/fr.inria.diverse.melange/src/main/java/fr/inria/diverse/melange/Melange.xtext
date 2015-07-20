@@ -87,14 +87,14 @@ Ecore returns Ecore:
 Merge returns Merge:
 	'merge' language = [Metamodel | QualifiedName] 
 	'and-rename' '{'
-		mappingRules+=ClassMapping
+		(mappingRules+=ClassMapping)*
 	'}'
 ;
 
 Slice returns Slice:
 	'slice' language = [Metamodel | QualifiedName] 'on' '[' roots += STRING (',' roots += STRING)* ']'
 	'and-rename' '{'
-		mappingRules+=ClassMapping
+		(mappingRules+=ClassMapping)*
 	'}'
 ;
 
