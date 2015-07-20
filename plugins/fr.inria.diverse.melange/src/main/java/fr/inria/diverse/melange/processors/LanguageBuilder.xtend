@@ -331,7 +331,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 	}
 	
 	/**
-	 * Renames classes from {@link model} according to the rules from {@link mappingRules}
+	 * Renames packages, classes & features from {@link model} according to the rules from {@link mappingRules}
 	 */
 	private def void applyRenaming(EPackage model, List<PackageBinding> mappingRules){
 		
