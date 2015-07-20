@@ -175,7 +175,7 @@ class TransitiveAspectTest
 		assertNotNull(operationTest_MergeOverrideLang)
 		assertNotNull(referencesTest_MergeOverrideLang)
 		
-		assertError((mergeOverrideLang.operators.get(0) as Merge).mergedLanguage,
+		assertError((mergeOverrideLang.operators.get(1) as Merge).mergedLanguage,
 					MelangePackage.eINSTANCE.metamodel,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'Lang\' has errors in its definition"
@@ -192,7 +192,7 @@ class TransitiveAspectTest
 		assertNotNull(operationTest_SliceOverrideLang)
 		assertNotNull(referencesTest_SliceOverrideLang)
 		
-		assertError((sliceOverrideLang.operators.get(0) as Slice).slicedLanguage,
+		assertError((sliceOverrideLang.operators.get(1) as Slice).slicedLanguage,
 					MelangePackage.eINSTANCE.metamodel,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'Lang\' has errors in its definition"
