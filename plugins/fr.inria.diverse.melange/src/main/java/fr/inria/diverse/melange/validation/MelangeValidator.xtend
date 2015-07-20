@@ -78,6 +78,7 @@ class MelangeValidator extends AbstractMelangeValidator
 		if (l.operators.filter(Import).filter[ecoreUri !== null].empty
 			&& l.operators.filter(Inheritance).forall[superLanguage?.syntax.ecoreUri === null]
 			&& l.operators.empty
+			&& l.syntax?.ecoreUri === null
 		)
 			error(
 				"A valid Ecore file must be imported",

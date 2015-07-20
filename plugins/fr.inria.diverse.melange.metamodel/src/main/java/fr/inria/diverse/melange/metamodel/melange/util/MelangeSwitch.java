@@ -184,6 +184,12 @@ public class MelangeSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MelangePackage.PACKAGE_BINDING: {
+				PackageBinding packageBinding = (PackageBinding)theEObject;
+				T result = casePackageBinding(packageBinding);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MelangePackage.LANGUAGE: {
 				Language language = (Language)theEObject;
 				T result = caseLanguage(language);
@@ -462,6 +468,21 @@ public class MelangeSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSlice(Slice object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Package Binding</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Package Binding</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePackageBinding(PackageBinding object) {
 		return null;
 	}
 

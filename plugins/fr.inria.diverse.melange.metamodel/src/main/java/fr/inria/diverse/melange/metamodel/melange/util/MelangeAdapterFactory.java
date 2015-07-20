@@ -136,6 +136,10 @@ public class MelangeAdapterFactory extends AdapterFactoryImpl {
 				return createSliceAdapter();
 			}
 			@Override
+			public Adapter casePackageBinding(PackageBinding object) {
+				return createPackageBindingAdapter();
+			}
+			@Override
 			public Adapter caseLanguage(Language object) {
 				return createLanguageAdapter();
 			}
@@ -402,6 +406,20 @@ public class MelangeAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSliceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.melange.metamodel.melange.PackageBinding <em>Package Binding</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.inria.diverse.melange.metamodel.melange.PackageBinding
+	 * @generated
+	 */
+	public Adapter createPackageBindingAdapter() {
 		return null;
 	}
 

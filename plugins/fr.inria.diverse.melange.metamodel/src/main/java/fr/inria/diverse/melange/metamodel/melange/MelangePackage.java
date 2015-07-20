@@ -313,7 +313,7 @@ public interface MelangePackage extends EPackage {
 	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getNamedElement()
 	 * @generated
 	 */
-	int NAMED_ELEMENT = 19;
+	int NAMED_ELEMENT = 20;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -839,13 +839,22 @@ public interface MelangePackage extends EPackage {
 	int IMPORT__GENMODEL_URIS = OPERATOR_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Mapping Rules</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT__MAPPING_RULES = OPERATOR_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Import</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMPORT_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 2;
+	int IMPORT_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Import</em>' class.
@@ -885,13 +894,22 @@ public interface MelangePackage extends EPackage {
 	int MERGE__MERGED_LANGUAGE = OPERATOR_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Mapping Rules</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGE__MAPPING_RULES = OPERATOR_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Merge</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 1;
+	int MERGE_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Merge</em>' class.
@@ -940,13 +958,22 @@ public interface MelangePackage extends EPackage {
 	int SLICE__ROOTS = OPERATOR_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Mapping Rules</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLICE__MAPPING_RULES = OPERATOR_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Slice</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SLICE_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 2;
+	int SLICE_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Slice</em>' class.
@@ -958,6 +985,61 @@ public interface MelangePackage extends EPackage {
 	int SLICE_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.PackageBindingImpl <em>Package Binding</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.PackageBindingImpl
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getPackageBinding()
+	 * @generated
+	 */
+	int PACKAGE_BINDING = 17;
+
+	/**
+	 * The feature id for the '<em><b>From</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_BINDING__FROM = 0;
+
+	/**
+	 * The feature id for the '<em><b>To</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_BINDING__TO = 1;
+
+	/**
+	 * The feature id for the '<em><b>Classes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_BINDING__CLASSES = 2;
+
+	/**
+	 * The number of structural features of the '<em>Package Binding</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_BINDING_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Package Binding</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_BINDING_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl <em>Language</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -965,7 +1047,7 @@ public interface MelangePackage extends EPackage {
 	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getLanguage()
 	 * @generated
 	 */
-	int LANGUAGE = 17;
+	int LANGUAGE = 18;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1110,7 +1192,7 @@ public interface MelangePackage extends EPackage {
 	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getWeave()
 	 * @generated
 	 */
-	int WEAVE = 18;
+	int WEAVE = 19;
 
 	/**
 	 * The feature id for the '<em><b>Owning Language</b></em>' container reference.
@@ -1156,7 +1238,7 @@ public interface MelangePackage extends EPackage {
 	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getResourceType()
 	 * @generated
 	 */
-	int RESOURCE_TYPE = 20;
+	int RESOURCE_TYPE = 21;
 
 
 	/**
@@ -1651,6 +1733,17 @@ public interface MelangePackage extends EPackage {
 	EAttribute getImport_GenmodelUris();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link fr.inria.diverse.melange.metamodel.melange.Import#getMappingRules <em>Mapping Rules</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Mapping Rules</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Import#getMappingRules()
+	 * @see #getImport()
+	 * @generated
+	 */
+	EReference getImport_MappingRules();
+
+	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.Merge <em>Merge</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1670,6 +1763,17 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMerge_MergedLanguage();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link fr.inria.diverse.melange.metamodel.melange.Merge#getMappingRules <em>Mapping Rules</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Mapping Rules</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Merge#getMappingRules()
+	 * @see #getMerge()
+	 * @generated
+	 */
+	EReference getMerge_MappingRules();
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.Slice <em>Slice</em>}'.
@@ -1702,6 +1806,60 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getSlice_Roots();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link fr.inria.diverse.melange.metamodel.melange.Slice#getMappingRules <em>Mapping Rules</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Mapping Rules</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Slice#getMappingRules()
+	 * @see #getSlice()
+	 * @generated
+	 */
+	EReference getSlice_MappingRules();
+
+	/**
+	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.PackageBinding <em>Package Binding</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Package Binding</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.PackageBinding
+	 * @generated
+	 */
+	EClass getPackageBinding();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.PackageBinding#getFrom <em>From</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>From</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.PackageBinding#getFrom()
+	 * @see #getPackageBinding()
+	 * @generated
+	 */
+	EAttribute getPackageBinding_From();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.PackageBinding#getTo <em>To</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>To</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.PackageBinding#getTo()
+	 * @see #getPackageBinding()
+	 * @generated
+	 */
+	EAttribute getPackageBinding_To();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link fr.inria.diverse.melange.metamodel.melange.PackageBinding#getClasses <em>Classes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Classes</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.PackageBinding#getClasses()
+	 * @see #getPackageBinding()
+	 * @generated
+	 */
+	EReference getPackageBinding_Classes();
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.Language <em>Language</em>}'.
@@ -2319,6 +2477,14 @@ public interface MelangePackage extends EPackage {
 		EAttribute IMPORT__GENMODEL_URIS = eINSTANCE.getImport_GenmodelUris();
 
 		/**
+		 * The meta object literal for the '<em><b>Mapping Rules</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IMPORT__MAPPING_RULES = eINSTANCE.getImport_MappingRules();
+
+		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.MergeImpl <em>Merge</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2335,6 +2501,14 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EReference MERGE__MERGED_LANGUAGE = eINSTANCE.getMerge_MergedLanguage();
+
+		/**
+		 * The meta object literal for the '<em><b>Mapping Rules</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MERGE__MAPPING_RULES = eINSTANCE.getMerge_MappingRules();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.SliceImpl <em>Slice</em>}' class.
@@ -2361,6 +2535,48 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SLICE__ROOTS = eINSTANCE.getSlice_Roots();
+
+		/**
+		 * The meta object literal for the '<em><b>Mapping Rules</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SLICE__MAPPING_RULES = eINSTANCE.getSlice_MappingRules();
+
+		/**
+		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.PackageBindingImpl <em>Package Binding</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.inria.diverse.melange.metamodel.melange.impl.PackageBindingImpl
+		 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getPackageBinding()
+		 * @generated
+		 */
+		EClass PACKAGE_BINDING = eINSTANCE.getPackageBinding();
+
+		/**
+		 * The meta object literal for the '<em><b>From</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PACKAGE_BINDING__FROM = eINSTANCE.getPackageBinding_From();
+
+		/**
+		 * The meta object literal for the '<em><b>To</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PACKAGE_BINDING__TO = eINSTANCE.getPackageBinding_To();
+
+		/**
+		 * The meta object literal for the '<em><b>Classes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PACKAGE_BINDING__CLASSES = eINSTANCE.getPackageBinding_Classes();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl <em>Language</em>}' class.

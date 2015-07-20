@@ -1,0 +1,48 @@
+package mergetest
+
+language MM1 {
+	ecore "tests-inputs/metamodels/merge/MM1.ecore"
+	exactType mm1MT
+}
+
+language RenameEcoreMM1{
+	ecore "tests-inputs/metamodels/merge/MM1.ecore" and-rename{
+		"testmerge" to "newpackage"{
+			"A" to "AAAAA"{
+				"toB" : "toZ"
+			}
+			"B" to "Z" {
+				
+			}
+		}
+	}
+	exactType RenameEcoreMT
+}
+
+language RenameMergeMM1{
+	merge MM1 and-rename{
+		"testmerge" to "newpackage"{
+			"A" to "AAAAA"{
+				"toB" : "toZ"
+			}
+			"B" to "Z" {
+				
+			}
+		}
+	}
+	exactType RenameMergeMT
+}
+
+language RenameSliceMM1{
+	slice MM1 on ['A', 'SubB'] and-rename{
+		"testmerge" to "newpackage"{
+			"A" to "AAAAA"{
+				"toB" : "toZ"
+			}
+			"B" to "Z" {
+				
+			}
+		}
+	}
+	exactType RenameSliceMT
+}

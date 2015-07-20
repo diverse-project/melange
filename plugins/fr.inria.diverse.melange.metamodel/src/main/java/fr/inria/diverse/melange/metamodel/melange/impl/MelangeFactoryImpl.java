@@ -70,6 +70,7 @@ public class MelangeFactoryImpl extends EFactoryImpl implements MelangeFactory {
 			case MelangePackage.IMPORT: return createImport();
 			case MelangePackage.MERGE: return createMerge();
 			case MelangePackage.SLICE: return createSlice();
+			case MelangePackage.PACKAGE_BINDING: return createPackageBinding();
 			case MelangePackage.LANGUAGE: return createLanguage();
 			case MelangePackage.WEAVE: return createWeave();
 			default:
@@ -235,6 +236,16 @@ public class MelangeFactoryImpl extends EFactoryImpl implements MelangeFactory {
 	public Slice createSlice() {
 		SliceImpl slice = new SliceImpl();
 		return slice;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PackageBinding createPackageBinding() {
+		PackageBindingImpl packageBinding = new PackageBindingImpl();
+		return packageBinding;
 	}
 
 	/**

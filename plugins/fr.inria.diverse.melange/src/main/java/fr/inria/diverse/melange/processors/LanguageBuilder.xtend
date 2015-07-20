@@ -4,6 +4,7 @@ import com.google.inject.Inject
 import fr.inria.diverse.melange.algebra.EmfCompareAlgebra
 import fr.inria.diverse.melange.ast.ASTHelper
 import fr.inria.diverse.melange.ast.LanguageExtensions
+import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.ModelUtils
 import fr.inria.diverse.melange.lib.slicing.ecore.StrictEcore
 import fr.inria.diverse.melange.metamodel.melange.Import
@@ -12,6 +13,7 @@ import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.MelangeFactory
 import fr.inria.diverse.melange.metamodel.melange.Merge
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
+import fr.inria.diverse.melange.metamodel.melange.PackageBinding
 import fr.inria.diverse.melange.metamodel.melange.Slice
 import fr.inria.diverse.melange.metamodel.melange.Weave
 import fr.inria.diverse.melange.utils.EPackageProvider
@@ -35,6 +37,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 class LanguageBuilder extends DispatchMelangeProcessor{
 	
 	@Inject extension ASTHelper
+	@Inject extension EcoreExtensions
 	@Inject ModelUtils modelUtils
 	@Inject EmfCompareAlgebra algebra
 	@Inject AspectsWeaver aspectWeaver
@@ -79,15 +82,18 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 			language.syntax.ecoreUri = ecores.get(0).ecoreUri
 			language.syntax.genmodelUris.addAll(ecores.get(0).genmodelUris)
 			base = modelUtils.loadPkg(ecores.get(0).ecoreUri)
+			applyRenaming(base, ecores.get(0).mappingRules)
 		}
 		else if(ecores.size > 1){
 			needNewEcore = true
 			val firstEcore = ecores.get(0)
 			val ecoreBase = modelUtils.loadPkg(firstEcore.ecoreUri)
+			applyRenaming(ecoreBase, firstEcore.mappingRules)
 
 			ecores.drop(1).forEach[ nextEcore |
 				val ecoreUnit = modelUtils.loadPkg(nextEcore.ecoreUri)
 				EcoreUtil.resolveAll(ecoreUnit) //Need to solve crossref because EMF Compare don't
+				applyRenaming(ecoreUnit, nextEcore.mappingRules)
 				algebra.merge(ecoreUnit,ecoreBase)
 			]
 			base = ecoreBase
@@ -126,10 +132,12 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 			val firstMerge = merges.get(0)
 			val mergeBase = EcoreUtil::copy(getRootPackage(firstMerge.mergedLanguage,history))
 			EcoreUtil.resolveAll(mergeBase)
+			applyRenaming(mergeBase, firstMerge.mappingRules)
 
 			merges.drop(1).forEach[ nextMerge |
 				val mergeUnit = getRootPackage(nextMerge.mergedLanguage,history)
 				EcoreUtil.resolveAll(mergeUnit)
+				applyRenaming(mergeUnit, nextMerge.mappingRules)
 				algebra.merge(mergeUnit,mergeBase)
 			]
 			
@@ -149,9 +157,11 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		 	needNewEcore = true
 		 	val firstSlice = slices.get(0)
 			val sliceBase = applySlice(firstSlice, history)
+			applyRenaming(sliceBase, firstSlice.mappingRules)
 			
 			slices.drop(1).forEach[ nextSlice |
 				val sliceUnit = applySlice(nextSlice, history)
+				applyRenaming(sliceUnit, nextSlice.mappingRules)
 				algebra.merge(sliceUnit, sliceBase)
 			]
 			
@@ -315,5 +325,32 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		EcoreUtil.resolveAll(slice)
 		
 		return res
+	}
+	
+	/**
+	 * Renames packages, classes & features from {@link model} according to the rules from {@link mappingRules}
+	 */
+	private def void applyRenaming(EPackage model, List<PackageBinding> mappingRules){
+		
+		mappingRules.forEach[ packageRule |
+			val targetPack = if(model.name == packageRule.from) model else model.findSubPackage(packageRule.from)
+			packageRule.classes.forEach[classRule |
+				targetPack.EClassifiers.filter(EClass).filter[name == classRule.from].forEach[ clazz |
+					
+					//Change name for properties
+					classRule.properties.forEach[propertyRule |
+						val target = clazz.EReferences.findFirst[name == propertyRule.from]
+						if(target == null) clazz.EAttributes.findFirst[name == propertyRule.from]
+						
+						if(target != null) target.name = propertyRule.to
+					]
+					
+					//Change name for classes
+					clazz.name = classRule.to
+				]
+			]
+			//Change name for packages
+			targetPack.name = packageRule.to
+		]
 	}
 }
