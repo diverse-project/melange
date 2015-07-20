@@ -602,6 +602,12 @@
             extensions="melange">
     </provider>
   </extension>
+  <extension point="org.eclipse.team.core.fileTypes">
+    <fileTypes
+            extension="melange"
+            type="text">
+    </fileTypes>
+  </extension>
   <extension
         point="org.eclipse.ui.newWizards">
      <category
