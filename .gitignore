@@ -1,10 +1,8 @@
 .metadata
 *.class
 *~
-src-gen/
 xtend-gen/
 bin/
 .antlr-generator*.jar
 target/
-plugin.xml_gen
 
