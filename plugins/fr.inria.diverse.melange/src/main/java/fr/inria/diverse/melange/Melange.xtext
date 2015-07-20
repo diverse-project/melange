@@ -39,7 +39,7 @@ enum ResourceType:
 
 EcoreModelType returns ModelType:
 	'modeltype' name = ValidID '{'
-		'ecore' ecoreUri = STRING &
+		'syntax' ecoreUri = STRING &
 		('uri' mtUri = STRING)?
 	'}'
 ;
@@ -82,7 +82,7 @@ Operator returns Operator:
 ;
 
 Import returns Import:
-	'ecore' ecoreUri = STRING ('withGenmodel' (genmodelUris += STRING (',' genmodelUris += STRING)*))?
+	'syntax' ecoreUri = STRING ('withGenmodel' (genmodelUris += STRING (',' genmodelUris += STRING)*))?
 	'and-rename' '{'
 		(mappingRules+=PackageMapping)*
 	'}'
