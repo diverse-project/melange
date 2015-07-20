@@ -6,9 +6,8 @@ language Fsm {
 }
 
 language TimedFsm inherits Fsm {
-	exactType TimedFsmMT
 	with inheritancefsm.FSMAspect
 	with inheritancefsm.StateAspect
 	with inheritancefsm.TransitionAspect
+	exactType TimedFsmMT
 }
- 
