@@ -148,6 +148,15 @@ public interface MelangeFactory extends EFactory {
 	Slice createSlice();
 
 	/**
+	 * Returns a new object of class '<em>Package Binding</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Package Binding</em>'.
+	 * @generated
+	 */
+	PackageBinding createPackageBinding();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

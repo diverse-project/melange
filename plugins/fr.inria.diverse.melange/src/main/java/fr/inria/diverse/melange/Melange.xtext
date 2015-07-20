@@ -66,6 +66,12 @@ Mapping returns Mapping:
 	"}" 
 ;
 
+PackageMapping returns PackageBinding:
+	from=STRING "to" to=STRING "{"
+		(classes+=ClassMapping)*
+	"}"
+;
+
 ClassMapping returns ClassBinding:
 	from=STRING "to" to=STRING "{"
 		(properties+=PropertyMapping)*
@@ -83,21 +89,21 @@ Operator returns Operator:
 Ecore returns Ecore:
 	'ecore' ecoreUri = STRING ('withGenmodel' (genmodelUris += STRING (',' genmodelUris += STRING)*))?
 	'and-rename' '{'
-		(mappingRules+=ClassMapping)*
+		(mappingRules+=PackageMapping)*
 	'}'
 ;
 
 Merge returns Merge:
 	'merge' language = [Metamodel | QualifiedName] 
 	'and-rename' '{'
-		(mappingRules+=ClassMapping)*
+		(mappingRules+=PackageMapping)*
 	'}'
 ;
 
 Slice returns Slice:
 	'slice' language = [Metamodel | QualifiedName] 'on' '[' roots += STRING (',' roots += STRING)* ']'
 	'and-rename' '{'
-		(mappingRules+=ClassMapping)*
+		(mappingRules+=PackageMapping)*
 	'}'
 ;
 

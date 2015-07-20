@@ -2,11 +2,11 @@
  */
 package fr.inria.diverse.melange.metamodel.melange.impl;
 
-import fr.inria.diverse.melange.metamodel.melange.ClassBinding;
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
 import fr.inria.diverse.melange.metamodel.melange.Merge;
 import fr.inria.diverse.melange.metamodel.melange.Metamodel;
 
+import fr.inria.diverse.melange.metamodel.melange.PackageBinding;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
@@ -52,7 +52,7 @@ public class MergeImpl extends OperatorImpl implements Merge {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ClassBinding> mappingRules;
+	protected EList<PackageBinding> mappingRules;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -116,9 +116,9 @@ public class MergeImpl extends OperatorImpl implements Merge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ClassBinding> getMappingRules() {
+	public EList<PackageBinding> getMappingRules() {
 		if (mappingRules == null) {
-			mappingRules = new EObjectContainmentEList<ClassBinding>(ClassBinding.class, this, MelangePackage.MERGE__MAPPING_RULES);
+			mappingRules = new EObjectContainmentEList<PackageBinding>(PackageBinding.class, this, MelangePackage.MERGE__MAPPING_RULES);
 		}
 		return mappingRules;
 	}
@@ -168,7 +168,7 @@ public class MergeImpl extends OperatorImpl implements Merge {
 				return;
 			case MelangePackage.MERGE__MAPPING_RULES:
 				getMappingRules().clear();
-				getMappingRules().addAll((Collection<? extends ClassBinding>)newValue);
+				getMappingRules().addAll((Collection<? extends PackageBinding>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

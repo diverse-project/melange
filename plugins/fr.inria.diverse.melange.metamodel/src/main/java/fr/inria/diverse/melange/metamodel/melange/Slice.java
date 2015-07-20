@@ -67,7 +67,7 @@ public interface Slice extends Operator {
 
 	/**
 	 * Returns the value of the '<em><b>Mapping Rules</b></em>' containment reference list.
-	 * The list contents are of type {@link fr.inria.diverse.melange.metamodel.melange.ClassBinding}.
+	 * The list contents are of type {@link fr.inria.diverse.melange.metamodel.melange.PackageBinding}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Mapping Rules</em>' containment reference list isn't clear,
@@ -79,6 +79,6 @@ public interface Slice extends Operator {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ClassBinding> getMappingRules();
+	EList<PackageBinding> getMappingRules();
 
 } // Slice

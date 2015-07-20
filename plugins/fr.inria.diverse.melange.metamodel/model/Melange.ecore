@@ -106,18 +106,24 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="genmodelUris" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappingRules" upperBound="-1"
-        eType="#//ClassBinding" containment="true"/>
+        eType="#//PackageBinding" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Merge" eSuperTypes="#//Operator">
     <eStructuralFeatures xsi:type="ecore:EReference" name="language" eType="#//Metamodel"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappingRules" upperBound="-1"
-        eType="#//ClassBinding" containment="true"/>
+        eType="#//PackageBinding" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Slice" eSuperTypes="#//Operator">
     <eStructuralFeatures xsi:type="ecore:EReference" name="language" eType="#//Metamodel"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="roots" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappingRules" upperBound="-1"
+        eType="#//PackageBinding" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PackageBinding">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="from" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="to" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classes" upperBound="-1"
         eType="#//ClassBinding" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

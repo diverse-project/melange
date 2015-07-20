@@ -30,6 +30,7 @@ import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
 import com.google.common.collect.ArrayListMultimap
 import fr.inria.diverse.melange.metamodel.melange.ClassBinding
+import fr.inria.diverse.melange.metamodel.melange.PackageBinding
 
 /**
  * This class build languages by merging differents parts declared in each language definitions
@@ -332,24 +333,27 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 	/**
 	 * Renames classes from {@link model} according to the rules from {@link mappingRules}
 	 */
-	private def void applyRenaming(EPackage model, List<ClassBinding> mappingRules){
-		val allClasses = model.EClassifiers.filter(EClass).toList
-			allClasses.addAll((model.allSubPkgs.map[EClassifiers].flatten.filter(EClass)))
+	private def void applyRenaming(EPackage model, List<PackageBinding> mappingRules){
 		
-		mappingRules.forEach[ rule |
-			allClasses.filter[name == rule.from].forEach[ clazz |
-				
-				//Change name for properties
-				rule.properties.forEach[propertyRule |
-					val target = clazz.EReferences.findFirst[name == propertyRule.from]
-					if(target == null) clazz.EAttributes.findFirst[name == propertyRule.from]
+		mappingRules.forEach[ packageRule |
+			val targetPack = if(model.name == packageRule.from) model else model.findSubPackage(packageRule.from)
+			packageRule.classes.forEach[classRule |
+				targetPack.EClassifiers.filter(EClass).filter[name == classRule.from].forEach[ clazz |
 					
-					if(target != null) target.name = propertyRule.to
+					//Change name for properties
+					classRule.properties.forEach[propertyRule |
+						val target = clazz.EReferences.findFirst[name == propertyRule.from]
+						if(target == null) clazz.EAttributes.findFirst[name == propertyRule.from]
+						
+						if(target != null) target.name = propertyRule.to
+					]
+					
+					//Change name for classes
+					clazz.name = classRule.to
 				]
-				
-				//Change name for classes
-				clazz.name = rule.to
 			]
+			//Change name for packages
+			targetPack.name = packageRule.to
 		]
 	}
 }

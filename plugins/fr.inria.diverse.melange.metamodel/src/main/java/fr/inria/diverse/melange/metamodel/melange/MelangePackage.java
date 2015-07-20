@@ -1047,6 +1047,61 @@ public interface MelangePackage extends EPackage {
 	int SLICE_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.PackageBindingImpl <em>Package Binding</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.PackageBindingImpl
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getPackageBinding()
+	 * @generated
+	 */
+	int PACKAGE_BINDING = 17;
+
+	/**
+	 * The feature id for the '<em><b>From</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_BINDING__FROM = 0;
+
+	/**
+	 * The feature id for the '<em><b>To</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_BINDING__TO = 1;
+
+	/**
+	 * The feature id for the '<em><b>Classes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_BINDING__CLASSES = 2;
+
+	/**
+	 * The number of structural features of the '<em>Package Binding</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_BINDING_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Package Binding</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_BINDING_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.ResourceType <em>Resource Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1054,7 +1109,7 @@ public interface MelangePackage extends EPackage {
 	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getResourceType()
 	 * @generated
 	 */
-	int RESOURCE_TYPE = 17;
+	int RESOURCE_TYPE = 18;
 
 
 	/**
@@ -1767,6 +1822,49 @@ public interface MelangePackage extends EPackage {
 	EReference getSlice_MappingRules();
 
 	/**
+	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.PackageBinding <em>Package Binding</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Package Binding</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.PackageBinding
+	 * @generated
+	 */
+	EClass getPackageBinding();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.PackageBinding#getFrom <em>From</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>From</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.PackageBinding#getFrom()
+	 * @see #getPackageBinding()
+	 * @generated
+	 */
+	EAttribute getPackageBinding_From();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.PackageBinding#getTo <em>To</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>To</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.PackageBinding#getTo()
+	 * @see #getPackageBinding()
+	 * @generated
+	 */
+	EAttribute getPackageBinding_To();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link fr.inria.diverse.melange.metamodel.melange.PackageBinding#getClasses <em>Classes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Classes</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.PackageBinding#getClasses()
+	 * @see #getPackageBinding()
+	 * @generated
+	 */
+	EReference getPackageBinding_Classes();
+
+	/**
 	 * Returns the meta object for enum '{@link fr.inria.diverse.melange.metamodel.melange.ResourceType <em>Resource Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2360,6 +2458,40 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EReference SLICE__MAPPING_RULES = eINSTANCE.getSlice_MappingRules();
+
+		/**
+		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.PackageBindingImpl <em>Package Binding</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.inria.diverse.melange.metamodel.melange.impl.PackageBindingImpl
+		 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getPackageBinding()
+		 * @generated
+		 */
+		EClass PACKAGE_BINDING = eINSTANCE.getPackageBinding();
+
+		/**
+		 * The meta object literal for the '<em><b>From</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PACKAGE_BINDING__FROM = eINSTANCE.getPackageBinding_From();
+
+		/**
+		 * The meta object literal for the '<em><b>To</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PACKAGE_BINDING__TO = eINSTANCE.getPackageBinding_To();
+
+		/**
+		 * The meta object literal for the '<em><b>Classes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PACKAGE_BINDING__CLASSES = eINSTANCE.getPackageBinding_Classes();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.ResourceType <em>Resource Type</em>}' enum.

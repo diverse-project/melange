@@ -2,9 +2,9 @@
  */
 package fr.inria.diverse.melange.metamodel.melange.impl;
 
-import fr.inria.diverse.melange.metamodel.melange.ClassBinding;
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
 import fr.inria.diverse.melange.metamodel.melange.Metamodel;
+import fr.inria.diverse.melange.metamodel.melange.PackageBinding;
 import fr.inria.diverse.melange.metamodel.melange.Slice;
 
 import java.util.Collection;
@@ -67,7 +67,7 @@ public class SliceImpl extends OperatorImpl implements Slice {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ClassBinding> mappingRules;
+	protected EList<PackageBinding> mappingRules;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -143,9 +143,9 @@ public class SliceImpl extends OperatorImpl implements Slice {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ClassBinding> getMappingRules() {
+	public EList<PackageBinding> getMappingRules() {
 		if (mappingRules == null) {
-			mappingRules = new EObjectContainmentEList<ClassBinding>(ClassBinding.class, this, MelangePackage.SLICE__MAPPING_RULES);
+			mappingRules = new EObjectContainmentEList<PackageBinding>(PackageBinding.class, this, MelangePackage.SLICE__MAPPING_RULES);
 		}
 		return mappingRules;
 	}
@@ -201,7 +201,7 @@ public class SliceImpl extends OperatorImpl implements Slice {
 				return;
 			case MelangePackage.SLICE__MAPPING_RULES:
 				getMappingRules().clear();
-				getMappingRules().addAll((Collection<? extends ClassBinding>)newValue);
+				getMappingRules().addAll((Collection<? extends PackageBinding>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

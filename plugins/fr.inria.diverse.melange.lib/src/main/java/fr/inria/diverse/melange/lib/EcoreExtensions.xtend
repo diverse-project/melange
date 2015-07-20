@@ -58,6 +58,24 @@ class EcoreExtensions
 			return 0
 		]
 	}
+	
+	/**
+	 * Search a subPackage in @{link root} named {@link fqn}.
+	 * @param fqn In the form of 'subpackage(.subpackage)*'
+	 */
+	def EPackage findSubPackage(EPackage root, String fqn){
+		
+		val splitName = fqn.split("\\.")
+		
+		if(splitName.length == 1){
+			return root.ESubpackages.findFirst[name == fqn]
+		}
+		else{
+			val subRoot = root.ESubpackages.findFirst[name == splitName.get(0)]
+			val subFqn = fqn.substring(splitName.get(0).length+1)
+			return findSubPackage(subRoot, subFqn)
+		}
+	}
 
 	def EClass findClass(EPackage pkg, String clsName) {
 		return pkg.EClassifiers.filter(EClass).findFirst[name == clsName]
