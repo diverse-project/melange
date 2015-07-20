@@ -83,23 +83,23 @@ Operator returns Operator:
 
 Import returns Import:
 	'syntax' ecoreUri = STRING ('withGenmodel' (genmodelUris += STRING (',' genmodelUris += STRING)*))?
-	'and-rename' '{'
+	('and-rename' '{'
 		(mappingRules+=PackageMapping)*
-	'}'
+	'}')?
 ;
 
 Merge returns Merge:
 	'merge' mergedLanguage = [Language | QualifiedName] 
-	'and-rename' '{'
+	('and-rename' '{'
 		(mappingRules+=PackageMapping)*
-	'}'
+	'}')?
 ;
 
 Slice returns Slice:
 	'slice' slicedLanguage = [Language | QualifiedName] 'on' '[' roots += STRING (',' roots += STRING)* ']'
-	'and-rename' '{'
+	('and-rename' '{'
 		(mappingRules+=PackageMapping)*
-	'}'
+	'}')?
 ;
 
 Inherit returns Inheritance:
