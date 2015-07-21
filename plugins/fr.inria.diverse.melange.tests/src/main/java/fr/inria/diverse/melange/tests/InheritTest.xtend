@@ -22,7 +22,7 @@ import static org.junit.Assert.*
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
 @XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/InheritTest.melange")
-class InheritTest
+class InheritanceTest
 {
 	@Inject MatchingHelper helper
 	@Inject extension ModelingElementExtensions
