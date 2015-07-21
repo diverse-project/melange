@@ -94,13 +94,7 @@ class MelangeValidator extends AbstractMelangeValidator
 			// !!!
 			val speculativeGenmodelPath = l.syntax.ecoreUri.substring(0, l.syntax.ecoreUri.lastIndexOf(".")) + ".genmodel"
 			try {
-				if (modelUtils.loadGenmodel(speculativeGenmodelPath) !== null)
-					warning(
-						"Using Genmodel file found at " + speculativeGenmodelPath,
-						l.syntax,
-						MelangePackage.Literals.METAMODEL__GENMODEL_URIS,
-						MelangeValidationConstants.METAMODEL_GENMODEL_INFERRED)
-				else
+				if (modelUtils.loadGenmodel(speculativeGenmodelPath) === null)
 					error(
 						"A valid Genmodel file must be imported",
 						l.syntax,
