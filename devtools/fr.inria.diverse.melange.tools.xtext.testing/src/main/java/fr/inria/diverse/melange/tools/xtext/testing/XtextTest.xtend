@@ -43,6 +43,7 @@ class XtextTestProcessor extends AbstractClassProcessor
 		cls.generateSetupMethod(ctx)
 		cls.generateEmfValidationTest(ctx)
 		cls.generateSelfImplement(ctx)
+		cls.generateImplementSuperType(ctx)
 
 		if (withValidation)
 			cls.generateParsingTest(ctx)
@@ -99,6 +100,27 @@ class XtextTestProcessor extends AbstractClassProcessor
 					if(e instanceof fr.inria.diverse.melange.metamodel.melange.Language){
 						fr.inria.diverse.melange.metamodel.melange.Language l = (fr.inria.diverse.melange.metamodel.melange.Language) e;
 						org.junit.Assert.assertTrue(l.getName()+"doesn't implement itself",l.getImplements().contains(l.getExactType()));
+					}
+				}
+			'''
+		]
+	}
+	
+	def void generateImplementSuperType(MutableClassDeclaration cls, extension TransformationContext ctx){
+		cls.addMethod("testImplementSuperType")[
+			primarySourceElement = cls
+			addAnnotation(findTypeGlobally("org.junit.Test").newAnnotationReference)
+			body = '''
+				for(fr.inria.diverse.melange.metamodel.melange.Element e : root.getElements()){
+					if(e instanceof fr.inria.diverse.melange.metamodel.melange.Language){
+						fr.inria.diverse.melange.metamodel.melange.Language l = (fr.inria.diverse.melange.metamodel.melange.Language) e;
+						for(fr.inria.diverse.melange.metamodel.melange.Operator operator : l.getOperators()){
+							if(operator instanceof fr.inria.diverse.melange.metamodel.melange.Inheritance){
+								fr.inria.diverse.melange.metamodel.melange.Inheritance inherit = (fr.inria.diverse.melange.metamodel.melange.Inheritance) operator;
+								org.junit.Assert.assertTrue(l.getName()+"doesn't implement inherited Language "+inherit.getSuperLanguage().getName(),
+									l.getImplements().contains(inherit.getSuperLanguage().getExactType()));
+							}
+						}
 					}
 				}
 			'''
