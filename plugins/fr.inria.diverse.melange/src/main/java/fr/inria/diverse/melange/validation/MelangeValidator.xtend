@@ -97,11 +97,13 @@ class MelangeValidator extends AbstractMelangeValidator
 				if (modelUtils.loadGenmodel(speculativeGenmodelPath) !== null)
 					warning(
 						"Using Genmodel file found at " + speculativeGenmodelPath,
+						l.syntax,
 						MelangePackage.Literals.METAMODEL__GENMODEL_URIS,
 						MelangeValidationConstants.METAMODEL_GENMODEL_INFERRED)
 				else
 					error(
 						"A valid Genmodel file must be imported",
+						l.syntax,
 						MelangePackage.Literals.METAMODEL__GENMODEL_URIS,
 						MelangeValidationConstants.METAMODEL_GENMODEL_UNLOADABLE
 					)
