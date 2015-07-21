@@ -122,6 +122,558 @@ class OperatorMappingTest
 		assertEquals(renamedSliceClasses.get(2), renamedSliceClasses.get(3).ESuperTypes.get(0))
 	}
 	
+	@Test
+	def void testStructurePackage(){
+		
+		//Get packages
+		val toppkg = packagesLang.syntax.pkgs.head
+		val subpkg1 = toppkg.ESubpackages.get(0)
+		val subpkg2 = toppkg.ESubpackages.get(1)
+		val subpkg3 = subpkg2.ESubpackages.get(0)
+		
+		//Check numbers of elements
+		assertEquals(2, toppkg.ESubpackages.size)
+		assertEquals(2, toppkg.EClassifiers.size)
+		assertEquals(0, subpkg1.ESubpackages.size)
+		assertEquals(2, subpkg1.EClassifiers.size)
+		assertEquals(1, subpkg2.ESubpackages.size)
+		assertEquals(2, subpkg2.EClassifiers.size)
+		assertEquals(0, subpkg3.ESubpackages.size)
+		assertEquals(2, subpkg3.EClassifiers.size)
+		
+		//Get classes
+		val TopClass1 = toppkg.EClassifiers.get(0)
+		val TopClass2 = toppkg.EClassifiers.get(1)
+		val Subpkg1Class1 = subpkg1.EClassifiers.get(0)
+		val Subpkg1Class2 = subpkg1.EClassifiers.get(1)
+		val Subpkg2Class1 = subpkg2.EClassifiers.get(0)
+		val Subpkg2Class2 = subpkg2.EClassifiers.get(1)
+		val Subpkg3Class1 = subpkg3.EClassifiers.get(0)
+		val Subpkg3Class2 = subpkg3.EClassifiers.get(1)
+		
+		//Check package name
+		assertEquals("toppkg", toppkg.name)
+		assertEquals("subpkg1", subpkg1.name)
+		assertEquals("subpkg2", subpkg2.name)
+		assertEquals("subpkg3", subpkg3.name)
+		
+		//Check classes names
+		assertEquals("TopClass1", TopClass1.name)
+		assertEquals("TopClass2", TopClass2.name)
+		assertEquals("Subpkg1Class1", Subpkg1Class1.name)
+		assertEquals("Subpkg1Class2", Subpkg1Class2.name)
+		assertEquals("Subpkg2Class1", Subpkg2Class1.name)
+		assertEquals("Subpkg2Class2", Subpkg2Class2.name)
+		assertEquals("Subpkg3Class1", Subpkg3Class1.name)
+		assertEquals("Subpkg3Class2", Subpkg3Class2.name)
+	}
+	@Test
+	def void testMergePackage1(){
+		
+		//Get packages
+		val toppkg = subPackTest0.syntax.pkgs.head
+		val subpkg1 = toppkg.ESubpackages.get(0)
+		val subpkg2 = toppkg.ESubpackages.get(1)
+		val subpkg3 = subpkg2.ESubpackages.get(0)
+		
+		//Check numbers of elements
+		assertEquals(2, toppkg.ESubpackages.size)
+		assertEquals(0, toppkg.EClassifiers.size)
+		assertEquals(0, subpkg1.ESubpackages.size)
+		assertEquals(4, subpkg1.EClassifiers.size)
+		assertEquals(1, subpkg2.ESubpackages.size)
+		assertEquals(2, subpkg2.EClassifiers.size)
+		assertEquals(0, subpkg3.ESubpackages.size)
+		assertEquals(2, subpkg3.EClassifiers.size)
+		
+		//Get classes
+		val TopClass1 = subpkg1.EClassifiers.get(2)
+		val TopClass2 = subpkg1.EClassifiers.get(3)
+		val Subpkg1Class1 = subpkg1.EClassifiers.get(0)
+		val Subpkg1Class2 = subpkg1.EClassifiers.get(1)
+		val Subpkg2Class1 = subpkg2.EClassifiers.get(0)
+		val Subpkg2Class2 = subpkg2.EClassifiers.get(1)
+		val Subpkg3Class1 = subpkg3.EClassifiers.get(0)
+		val Subpkg3Class2 = subpkg3.EClassifiers.get(1)
+		
+		//Check package name
+		assertEquals("toppkg", toppkg.name)
+		assertEquals("subpkg1", subpkg1.name)
+		assertEquals("subpkg2", subpkg2.name)
+		assertEquals("subpkg3", subpkg3.name)
+		
+		//Check classes names
+		assertEquals("TopClass1", TopClass1.name)
+		assertEquals("TopClass2", TopClass2.name)
+		assertEquals("Subpkg1Class1", Subpkg1Class1.name)
+		assertEquals("Subpkg1Class2", Subpkg1Class2.name)
+		assertEquals("Subpkg2Class1", Subpkg2Class1.name)
+		assertEquals("Subpkg2Class2", Subpkg2Class2.name)
+		assertEquals("Subpkg3Class1", Subpkg3Class1.name)
+		assertEquals("Subpkg3Class2", Subpkg3Class2.name)
+	}
+	@Test
+	def void testMergePackage2(){
+		
+		//Get packages
+		val toppkg = subPackTest1.syntax.pkgs.head
+		val subpkg2 = toppkg.ESubpackages.get(1)
+		val subpkg3 = subpkg2.ESubpackages.get(0)
+		
+		//Check numbers of elements
+		assertEquals(1, toppkg.ESubpackages.size)
+		assertEquals(4, toppkg.EClassifiers.size)
+		assertEquals(1, subpkg2.ESubpackages.size)
+		assertEquals(2, subpkg2.EClassifiers.size)
+		assertEquals(0, subpkg3.ESubpackages.size)
+		assertEquals(2, subpkg3.EClassifiers.size)
+		
+		//Get classes
+		val TopClass1 = toppkg.EClassifiers.get(0)
+		val TopClass2 = toppkg.EClassifiers.get(1)
+		val Subpkg1Class1 = toppkg.EClassifiers.get(2)
+		val Subpkg1Class2 = toppkg.EClassifiers.get(3)
+		val Subpkg2Class1 = subpkg2.EClassifiers.get(0)
+		val Subpkg2Class2 = subpkg2.EClassifiers.get(1)
+		val Subpkg3Class1 = subpkg3.EClassifiers.get(0)
+		val Subpkg3Class2 = subpkg3.EClassifiers.get(1)
+		
+		//Check package name
+		assertEquals("toppkg", toppkg.name)
+		assertEquals("subpkg2", subpkg2.name)
+		assertEquals("subpkg3", subpkg3.name)
+		
+		//Check classes names
+		assertEquals("TopClass1", TopClass1.name)
+		assertEquals("TopClass2", TopClass2.name)
+		assertEquals("Subpkg1Class1", Subpkg1Class1.name)
+		assertEquals("Subpkg1Class2", Subpkg1Class2.name)
+		assertEquals("Subpkg2Class1", Subpkg2Class1.name)
+		assertEquals("Subpkg2Class2", Subpkg2Class2.name)
+		assertEquals("Subpkg3Class1", Subpkg3Class1.name)
+		assertEquals("Subpkg3Class2", Subpkg3Class2.name)
+	}
+	@Test
+	def void testMergePackage3(){
+		
+		//Get packages
+		val toppkg = subPackTest2.syntax.pkgs.head
+		val subpkg1 = toppkg.ESubpackages.get(0)
+		
+		//Check numbers of elements
+		assertEquals(1, toppkg.ESubpackages.size)
+		assertEquals(2, toppkg.EClassifiers.size)
+		assertEquals(0, subpkg1.ESubpackages.size)
+		assertEquals(6, subpkg1.EClassifiers.size)
+		
+		//Get classes
+		val TopClass1 = toppkg.EClassifiers.get(0)
+		val TopClass2 = toppkg.EClassifiers.get(1)
+		val Subpkg1Class1 = subpkg1.EClassifiers.get(0)
+		val Subpkg1Class2 = subpkg1.EClassifiers.get(1)
+		val Subpkg2Class1 = subpkg1.EClassifiers.get(2)
+		val Subpkg2Class2 = subpkg1.EClassifiers.get(3)
+		val Subpkg3Class1 = subpkg1.EClassifiers.get(4)
+		val Subpkg3Class2 = subpkg1.EClassifiers.get(5)
+		
+		//Check package name
+		assertEquals("toppkg", toppkg.name)
+		assertEquals("subpkg1", subpkg1.name)
+		
+		//Check classes names
+		assertEquals("TopClass1", TopClass1.name)
+		assertEquals("TopClass2", TopClass2.name)
+		assertEquals("Subpkg1Class1", Subpkg1Class1.name)
+		assertEquals("Subpkg1Class2", Subpkg1Class2.name)
+		assertEquals("Subpkg2Class1", Subpkg2Class1.name)
+		assertEquals("Subpkg2Class2", Subpkg2Class2.name)
+		assertEquals("Subpkg3Class1", Subpkg3Class1.name)
+		assertEquals("Subpkg3Class2", Subpkg3Class2.name)
+	}
+	
+	@Test
+	def void testOwnPackage1(){
+		
+		//Get packages
+		val toppkg    = subPackTest3.syntax.pkgs.head
+		val newsubpkg = toppkg.ESubpackages.get(0)
+		val subpkg1   = newsubpkg.ESubpackages.get(0)
+		val subpkg2   = newsubpkg.ESubpackages.get(1)
+		val subpkg3   = subpkg2.ESubpackages.get(0)
+		
+		//Check numbers of elements
+		assertEquals(1, toppkg.ESubpackages.size)
+		assertEquals(0, toppkg.EClassifiers.size)
+		assertEquals(2, newsubpkg.ESubpackages.size)
+		assertEquals(2, newsubpkg.EClassifiers.size)
+		assertEquals(0, subpkg1.ESubpackages.size)
+		assertEquals(2, subpkg1.EClassifiers.size)
+		assertEquals(1, subpkg2.ESubpackages.size)
+		assertEquals(2, subpkg2.EClassifiers.size)
+		assertEquals(0, subpkg3.ESubpackages.size)
+		assertEquals(2, subpkg3.EClassifiers.size)
+		
+		//Get classes
+		val TopClass1 = newsubpkg.EClassifiers.get(0)
+		val TopClass2 = newsubpkg.EClassifiers.get(1)
+		val Subpkg1Class1 = subpkg1.EClassifiers.get(0)
+		val Subpkg1Class2 = subpkg1.EClassifiers.get(1)
+		val Subpkg2Class1 = subpkg2.EClassifiers.get(0)
+		val Subpkg2Class2 = subpkg2.EClassifiers.get(1)
+		val Subpkg3Class1 = subpkg3.EClassifiers.get(0)
+		val Subpkg3Class2 = subpkg3.EClassifiers.get(1)
+		
+		//Check package name
+		assertEquals("toppkg", toppkg.name)
+		assertEquals("subpkg1", subpkg1.name)
+		assertEquals("subpkg2", subpkg2.name)
+		assertEquals("subpkg3", subpkg3.name)
+		assertEquals("newsubpkg", newsubpkg.name)
+		
+		//Check classes names
+		assertEquals("TopClass1", TopClass1.name)
+		assertEquals("TopClass2", TopClass2.name)
+		assertEquals("Subpkg1Class1", Subpkg1Class1.name)
+		assertEquals("Subpkg1Class2", Subpkg1Class2.name)
+		assertEquals("Subpkg2Class1", Subpkg2Class1.name)
+		assertEquals("Subpkg2Class2", Subpkg2Class2.name)
+		assertEquals("Subpkg3Class1", Subpkg3Class1.name)
+		assertEquals("Subpkg3Class2", Subpkg3Class2.name)
+	}
+	@Test
+	def void testOwnPackage2(){
+		
+		//Get packages
+		val toppkg    = subPackTest4.syntax.pkgs.head
+		val subpkg1   = toppkg.ESubpackages.get(0)
+		val subpkg2   = toppkg.ESubpackages.get(1)
+		val subpkg3   = subpkg2.ESubpackages.get(0)
+		val newsubpkg = subpkg1.ESubpackages.get(0)
+		
+		//Check numbers of elements
+		assertEquals(2, toppkg.ESubpackages.size)
+		assertEquals(2, toppkg.EClassifiers.size)
+		assertEquals(1, subpkg1.ESubpackages.size)
+		assertEquals(0, subpkg1.EClassifiers.size)
+		assertEquals(1, subpkg2.ESubpackages.size)
+		assertEquals(2, subpkg2.EClassifiers.size)
+		assertEquals(0, subpkg3.ESubpackages.size)
+		assertEquals(2, subpkg3.EClassifiers.size)
+		assertEquals(0, newsubpkg.ESubpackages.size)
+		assertEquals(2, newsubpkg.EClassifiers.size)
+		
+		//Get classes
+		val TopClass1 = toppkg.EClassifiers.get(0)
+		val TopClass2 = toppkg.EClassifiers.get(1)
+		val Subpkg1Class1 = newsubpkg.EClassifiers.get(0)
+		val Subpkg1Class2 = newsubpkg.EClassifiers.get(1)
+		val Subpkg2Class1 = subpkg2.EClassifiers.get(0)
+		val Subpkg2Class2 = subpkg2.EClassifiers.get(1)
+		val Subpkg3Class1 = subpkg3.EClassifiers.get(0)
+		val Subpkg3Class2 = subpkg3.EClassifiers.get(1)
+		
+		//Check package name
+		assertEquals("toppkg", toppkg.name)
+		assertEquals("subpkg1", subpkg1.name)
+		assertEquals("subpkg2", subpkg2.name)
+		assertEquals("subpkg3", subpkg3.name)
+		assertEquals("newsubpkg", newsubpkg.name)
+		
+		//Check classes names
+		assertEquals("TopClass1", TopClass1.name)
+		assertEquals("TopClass2", TopClass2.name)
+		assertEquals("Subpkg1Class1", Subpkg1Class1.name)
+		assertEquals("Subpkg1Class2", Subpkg1Class2.name)
+		assertEquals("Subpkg2Class1", Subpkg2Class1.name)
+		assertEquals("Subpkg2Class2", Subpkg2Class2.name)
+		assertEquals("Subpkg3Class1", Subpkg3Class1.name)
+		assertEquals("Subpkg3Class2", Subpkg3Class2.name)
+	}
+	@Test
+	def void testOwnPackage3(){
+		
+		//Get packages
+		val toppkg    = subPackTest4b.syntax.pkgs.head
+		val subpkg1   = toppkg.ESubpackages.get(0)
+		val subpkg2   = toppkg.ESubpackages.get(1)
+		val newsubpkg = subpkg2.ESubpackages.get(0)
+		val subpkg3   = newsubpkg.ESubpackages.get(0)
+		
+		//Check numbers of elements
+		assertEquals(2, toppkg.ESubpackages.size)
+		assertEquals(2, toppkg.EClassifiers.size)
+		assertEquals(0, subpkg1.ESubpackages.size)
+		assertEquals(2, subpkg1.EClassifiers.size)
+		assertEquals(1, subpkg2.ESubpackages.size)
+		assertEquals(0, subpkg2.EClassifiers.size)
+		assertEquals(0, subpkg3.ESubpackages.size)
+		assertEquals(2, subpkg3.EClassifiers.size)
+		assertEquals(1, newsubpkg.ESubpackages.size)
+		assertEquals(2, newsubpkg.EClassifiers.size)
+		
+		//Get classes
+		val TopClass1 = toppkg.EClassifiers.get(0)
+		val TopClass2 = toppkg.EClassifiers.get(1)
+		val Subpkg1Class1 = subpkg1.EClassifiers.get(0)
+		val Subpkg1Class2 = subpkg1.EClassifiers.get(1)
+		val Subpkg2Class1 = newsubpkg.EClassifiers.get(0)
+		val Subpkg2Class2 = newsubpkg.EClassifiers.get(1)
+		val Subpkg3Class1 = subpkg3.EClassifiers.get(0)
+		val Subpkg3Class2 = subpkg3.EClassifiers.get(1)
+		
+		//Check package name
+		assertEquals("toppkg", toppkg.name)
+		assertEquals("subpkg1", subpkg1.name)
+		assertEquals("subpkg2", subpkg2.name)
+		assertEquals("subpkg3", subpkg3.name)
+		assertEquals("newsubpkg", newsubpkg.name)
+		
+		//Check classes names
+		assertEquals("TopClass1", TopClass1.name)
+		assertEquals("TopClass2", TopClass2.name)
+		assertEquals("Subpkg1Class1", Subpkg1Class1.name)
+		assertEquals("Subpkg1Class2", Subpkg1Class2.name)
+		assertEquals("Subpkg2Class1", Subpkg2Class1.name)
+		assertEquals("Subpkg2Class2", Subpkg2Class2.name)
+		assertEquals("Subpkg3Class1", Subpkg3Class1.name)
+		assertEquals("Subpkg3Class2", Subpkg3Class2.name)
+	}
+	
+	@Test
+	def void testSwitchPackage1(){
+		
+		//Get packages
+		val toppkg = subPackTest5.syntax.pkgs.head
+		val subpkg1 = toppkg.ESubpackages.get(0)
+		val subpkg2 = subpkg1.ESubpackages.get(1)
+		val subpkg3 = subpkg2.ESubpackages.get(0)
+		
+		//Check numbers of elements
+		assertEquals(1, toppkg.ESubpackages.size)
+		assertEquals(2, toppkg.EClassifiers.size)
+		assertEquals(1, subpkg1.ESubpackages.size)
+		assertEquals(2, subpkg1.EClassifiers.size)
+		assertEquals(1, subpkg2.ESubpackages.size)
+		assertEquals(2, subpkg2.EClassifiers.size)
+		assertEquals(0, subpkg3.ESubpackages.size)
+		assertEquals(2, subpkg3.EClassifiers.size)
+		
+		//Get classes
+		val TopClass1 = subpkg1.EClassifiers.get(0)
+		val TopClass2 = subpkg1.EClassifiers.get(1)
+		val Subpkg1Class1 = toppkg.EClassifiers.get(0)
+		val Subpkg1Class2 = toppkg.EClassifiers.get(1)
+		val Subpkg2Class1 = subpkg2.EClassifiers.get(0)
+		val Subpkg2Class2 = subpkg2.EClassifiers.get(1)
+		val Subpkg3Class1 = subpkg3.EClassifiers.get(0)
+		val Subpkg3Class2 = subpkg3.EClassifiers.get(1)
+		
+		//Check package name
+		assertEquals("toppkg", toppkg.name)
+		assertEquals("subpkg1", subpkg1.name)
+		assertEquals("subpkg2", subpkg2.name)
+		assertEquals("subpkg3", subpkg3.name)
+		
+		//Check classes names
+		assertEquals("TopClass1", TopClass1.name)
+		assertEquals("TopClass2", TopClass2.name)
+		assertEquals("Subpkg1Class1", Subpkg1Class1.name)
+		assertEquals("Subpkg1Class2", Subpkg1Class2.name)
+		assertEquals("Subpkg2Class1", Subpkg2Class1.name)
+		assertEquals("Subpkg2Class2", Subpkg2Class2.name)
+		assertEquals("Subpkg3Class1", Subpkg3Class1.name)
+		assertEquals("Subpkg3Class2", Subpkg3Class2.name)
+	}
+	@Test
+	def void testSwitchPackage2(){
+		
+		//Get packages
+		val toppkg = subPackTest6.syntax.pkgs.head
+		val subpkg1 = toppkg.ESubpackages.get(0)
+		val subpkg2 = toppkg.ESubpackages.get(1)
+		val subpkg3 = subpkg2.ESubpackages.get(0)
+		
+		//Check numbers of elements
+		assertEquals(2, toppkg.ESubpackages.size)
+		assertEquals(2, toppkg.EClassifiers.size)
+		assertEquals(0, subpkg1.ESubpackages.size)
+		assertEquals(2, subpkg1.EClassifiers.size)
+		assertEquals(1, subpkg2.ESubpackages.size)
+		assertEquals(2, subpkg2.EClassifiers.size)
+		assertEquals(0, subpkg3.ESubpackages.size)
+		assertEquals(2, subpkg3.EClassifiers.size)
+		
+		//Get classes
+		val TopClass1 = toppkg.EClassifiers.get(0)
+		val TopClass2 = toppkg.EClassifiers.get(1)
+		val Subpkg1Class1 = subpkg1.EClassifiers.get(0)
+		val Subpkg1Class2 = subpkg1.EClassifiers.get(1)
+		val Subpkg2Class1 = subpkg3.EClassifiers.get(0)
+		val Subpkg2Class2 = subpkg3.EClassifiers.get(1)
+		val Subpkg3Class1 = subpkg2.EClassifiers.get(0)
+		val Subpkg3Class2 = subpkg2.EClassifiers.get(1)
+		
+		//Check package name
+		assertEquals("toppkg", toppkg.name)
+		assertEquals("subpkg1", subpkg1.name)
+		assertEquals("subpkg2", subpkg2.name)
+		assertEquals("subpkg3", subpkg3.name)
+		
+		//Check classes names
+		assertEquals("TopClass1", TopClass1.name)
+		assertEquals("TopClass2", TopClass2.name)
+		assertEquals("Subpkg1Class1", Subpkg1Class1.name)
+		assertEquals("Subpkg1Class2", Subpkg1Class2.name)
+		assertEquals("Subpkg2Class1", Subpkg2Class1.name)
+		assertEquals("Subpkg2Class2", Subpkg2Class2.name)
+		assertEquals("Subpkg3Class1", Subpkg3Class1.name)
+		assertEquals("Subpkg3Class2", Subpkg3Class2.name)
+	}
+	
+	@Test
+	def void testNewPackage1(){
+		
+		//Get packages
+		val toppkg     = subPackTest7.syntax.pkgs.head
+		val newsubpack = toppkg.ESubpackages.get(0)
+		val subpkg1    = newsubpack.ESubpackages.get(0)
+		val subpkg2    = toppkg.ESubpackages.get(1)
+		val subpkg3    = subpkg2.ESubpackages.get(0)
+		
+		//Check numbers of elements
+		assertEquals(2, toppkg.ESubpackages.size)
+		assertEquals(2, toppkg.EClassifiers.size)
+		assertEquals(0, subpkg1.ESubpackages.size)
+		assertEquals(2, subpkg1.EClassifiers.size)
+		assertEquals(1, subpkg2.ESubpackages.size)
+		assertEquals(2, subpkg2.EClassifiers.size)
+		assertEquals(0, subpkg3.ESubpackages.size)
+		assertEquals(2, subpkg3.EClassifiers.size)
+		assertEquals(1, newsubpack.ESubpackages.size)
+		assertEquals(0, newsubpack.EClassifiers.size)
+		
+		//Get classes
+		val TopClass1 = toppkg.EClassifiers.get(0)
+		val TopClass2 = toppkg.EClassifiers.get(1)
+		val Subpkg1Class1 = subpkg1.EClassifiers.get(0)
+		val Subpkg1Class2 = subpkg1.EClassifiers.get(1)
+		val Subpkg2Class1 = subpkg2.EClassifiers.get(0)
+		val Subpkg2Class2 = subpkg2.EClassifiers.get(1)
+		val Subpkg3Class1 = subpkg3.EClassifiers.get(0)
+		val Subpkg3Class2 = subpkg3.EClassifiers.get(1)
+		
+		//Check package name
+		assertEquals("toppkg", toppkg.name)
+		assertEquals("subpkg1", subpkg1.name)
+		assertEquals("subpkg2", subpkg2.name)
+		assertEquals("subpkg3", subpkg3.name)
+		assertEquals("newsubpack", newsubpack.name)
+		
+		//Check classes names
+		assertEquals("TopClass1", TopClass1.name)
+		assertEquals("TopClass2", TopClass2.name)
+		assertEquals("Subpkg1Class1", Subpkg1Class1.name)
+		assertEquals("Subpkg1Class2", Subpkg1Class2.name)
+		assertEquals("Subpkg2Class1", Subpkg2Class1.name)
+		assertEquals("Subpkg2Class2", Subpkg2Class2.name)
+		assertEquals("Subpkg3Class1", Subpkg3Class1.name)
+		assertEquals("Subpkg3Class2", Subpkg3Class2.name)
+	}
+	@Test
+	def void testNewPackage2(){
+		
+		//Get packages
+		val newroot = subPackTest8.syntax.pkgs.head
+		val subpkg1 = newroot.ESubpackages.get(0)
+		val subpkg2 = subpkg1.ESubpackages.get(1)
+		val subpkg3 = subpkg2.ESubpackages.get(0)
+		
+		//Check numbers of elements
+		assertEquals(1, newroot.ESubpackages.size)
+		assertEquals(0, newroot.EClassifiers.size)
+		assertEquals(1, subpkg1.ESubpackages.size)
+		assertEquals(4, subpkg1.EClassifiers.size)
+		assertEquals(1, subpkg2.ESubpackages.size)
+		assertEquals(2, subpkg2.EClassifiers.size)
+		assertEquals(0, subpkg3.ESubpackages.size)
+		assertEquals(2, subpkg3.EClassifiers.size)
+		
+		//Get classes
+		val TopClass1 = subpkg1.EClassifiers.get(0)
+		val TopClass2 = subpkg1.EClassifiers.get(1)
+		val Subpkg1Class1 = subpkg1.EClassifiers.get(0)
+		val Subpkg1Class2 = subpkg1.EClassifiers.get(1)
+		val Subpkg2Class1 = subpkg2.EClassifiers.get(0)
+		val Subpkg2Class2 = subpkg2.EClassifiers.get(1)
+		val Subpkg3Class1 = subpkg3.EClassifiers.get(0)
+		val Subpkg3Class2 = subpkg3.EClassifiers.get(1)
+		
+		//Check package name
+		assertEquals("newroot", newroot.name)
+		assertEquals("subpkg1", subpkg1.name)
+		assertEquals("subpkg2", subpkg2.name)
+		assertEquals("subpkg3", subpkg3.name)
+		
+		//Check classes names
+		assertEquals("TopClass1", TopClass1.name)
+		assertEquals("TopClass2", TopClass2.name)
+		assertEquals("Subpkg1Class1", Subpkg1Class1.name)
+		assertEquals("Subpkg1Class2", Subpkg1Class2.name)
+		assertEquals("Subpkg2Class1", Subpkg2Class1.name)
+		assertEquals("Subpkg2Class2", Subpkg2Class2.name)
+		assertEquals("Subpkg3Class1", Subpkg3Class1.name)
+		assertEquals("Subpkg3Class2", Subpkg3Class2.name)
+	}
+	@Test
+	def void testNewPackage3(){
+		
+		//Get packages
+		val newroot     = subPackTest9.syntax.pkgs.head
+		val newsubpack  = newroot.ESubpackages.get(0)
+		val newsubpack2 = newsubpack.ESubpackages.get(0)
+		val subpkg2     = newsubpack.ESubpackages.get(1)
+		val subpkg3     = subpkg2.ESubpackages.get(0)
+		
+		//Check numbers of elements
+		assertEquals(1, newroot.ESubpackages.size)
+		assertEquals(0, newroot.EClassifiers.size)
+		assertEquals(1, subpkg2.ESubpackages.size)
+		assertEquals(2, subpkg2.EClassifiers.size)
+		assertEquals(0, subpkg3.ESubpackages.size)
+		assertEquals(2, subpkg3.EClassifiers.size)
+		assertEquals(1, newsubpack.ESubpackages.size)
+		assertEquals(2, newsubpack.EClassifiers.size)
+		assertEquals(0, newsubpack2.ESubpackages.size)
+		assertEquals(2, newsubpack2.EClassifiers.size)
+		
+		//Get classes
+		val TopClass1 = newsubpack.EClassifiers.get(0)
+		val TopClass2 = newsubpack.EClassifiers.get(1)
+		val Subpkg1Class1 = newsubpack2.EClassifiers.get(0)
+		val Subpkg1Class2 = newsubpack2.EClassifiers.get(1)
+		val Subpkg2Class1 = subpkg2.EClassifiers.get(0)
+		val Subpkg2Class2 = subpkg2.EClassifiers.get(1)
+		val Subpkg3Class1 = subpkg3.EClassifiers.get(0)
+		val Subpkg3Class2 = subpkg3.EClassifiers.get(1)
+		
+		//Check package name
+		assertEquals("newroot", newroot.name)
+		assertEquals("subpkg2", subpkg2.name)
+		assertEquals("subpkg3", subpkg3.name)
+		assertEquals("newsubpack", newsubpack.name)
+		assertEquals("newsubpack2", newsubpack2.name)
+		
+		//Check classes names
+		assertEquals("TopClass1", TopClass1.name)
+		assertEquals("TopClass2", TopClass2.name)
+		assertEquals("Subpkg1Class1", Subpkg1Class1.name)
+		assertEquals("Subpkg1Class2", Subpkg1Class2.name)
+		assertEquals("Subpkg2Class1", Subpkg2Class1.name)
+		assertEquals("Subpkg2Class2", Subpkg2Class2.name)
+		assertEquals("Subpkg3Class1", Subpkg3Class1.name)
+		assertEquals("Subpkg3Class2", Subpkg3Class2.name)
+	}
+	
 	private def EPackage loadEcore(String uri) {
 		val rs = new ResourceSetImpl
 		val res = rs.getResource(URI.createURI(uri), true)
@@ -134,9 +686,21 @@ class OperatorMappingTest
 	}
 	
 	def Language getMM1()              { return root.elements.get(0) as Language }
-	def Language getRenameEcoreMM1()   { return root.elements.get(1) as Language }
-	def Language getRenameMergeMM1()   { return root.elements.get(2) as Language }
-	def Language getRenameSliceMM1()   { return root.elements.get(3) as Language }
+	def Language getPackagesLang()     { return root.elements.get(1) as Language }
+	def Language getRenameEcoreMM1()   { return root.elements.get(2) as Language }
+	def Language getRenameMergeMM1()   { return root.elements.get(3) as Language }
+	def Language getRenameSliceMM1()   { return root.elements.get(4) as Language }
+	def Language getSubPackTest0()     { return root.elements.get(5) as Language }
+	def Language getSubPackTest1()     { return root.elements.get(6) as Language }
+	def Language getSubPackTest2()     { return root.elements.get(7) as Language }
+	def Language getSubPackTest3()     { return root.elements.get(8) as Language }
+	def Language getSubPackTest4()     { return root.elements.get(9) as Language }
+	def Language getSubPackTest4b()    { return root.elements.get(10) as Language }
+	def Language getSubPackTest5()     { return root.elements.get(11) as Language }
+	def Language getSubPackTest6()     { return root.elements.get(12) as Language }
+	def Language getSubPackTest7()     { return root.elements.get(13) as Language }
+	def Language getSubPackTest8()     { return root.elements.get(14) as Language }
+	def Language getSubPackTest9()     { return root.elements.get(15) as Language }
 	
 	def List<EClass> getRenamedEcoreClasses() {return getRenameEcoreMM1.syntax.pkgs.get(0).EClassifiers.filter(EClass).toList}
 	def List<EClass> getRenamedMergeClasses() {return getRenameMergeMM1.syntax.pkgs.get(0).EClassifiers.filter(EClass).toList}
