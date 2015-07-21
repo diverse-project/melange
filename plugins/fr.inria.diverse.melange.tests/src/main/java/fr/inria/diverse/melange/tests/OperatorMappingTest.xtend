@@ -173,13 +173,13 @@ class OperatorMappingTest
 		//Get packages
 		val toppkg = subPackTest0.syntax.pkgs.head
 		val subpkg1 = toppkg.ESubpackages.get(0)
-		val subpkg2 = toppkg.ESubpackages.get(1)
+		val subpkg2 = subpkg1.ESubpackages.get(0)
 		val subpkg3 = subpkg2.ESubpackages.get(0)
 		
 		//Check numbers of elements
-		assertEquals(2, toppkg.ESubpackages.size)
+		assertEquals(1, toppkg.ESubpackages.size)
 		assertEquals(0, toppkg.EClassifiers.size)
-		assertEquals(0, subpkg1.ESubpackages.size)
+		assertEquals(1, subpkg1.ESubpackages.size)
 		assertEquals(4, subpkg1.EClassifiers.size)
 		assertEquals(1, subpkg2.ESubpackages.size)
 		assertEquals(2, subpkg2.EClassifiers.size)
@@ -217,7 +217,7 @@ class OperatorMappingTest
 		
 		//Get packages
 		val toppkg = subPackTest1.syntax.pkgs.head
-		val subpkg2 = toppkg.ESubpackages.get(1)
+		val subpkg2 = toppkg.ESubpackages.get(0)
 		val subpkg3 = subpkg2.ESubpackages.get(0)
 		
 		//Check numbers of elements
@@ -445,7 +445,7 @@ class OperatorMappingTest
 		//Get packages
 		val toppkg = subPackTest5.syntax.pkgs.head
 		val subpkg1 = toppkg.ESubpackages.get(0)
-		val subpkg2 = subpkg1.ESubpackages.get(1)
+		val subpkg2 = subpkg1.ESubpackages.get(0)
 		val subpkg3 = subpkg2.ESubpackages.get(0)
 		
 		//Check numbers of elements
@@ -535,9 +535,9 @@ class OperatorMappingTest
 		
 		//Get packages
 		val toppkg     = subPackTest7.syntax.pkgs.head
-		val newsubpack = toppkg.ESubpackages.get(0)
+		val newsubpack = toppkg.ESubpackages.get(1)
 		val subpkg1    = newsubpack.ESubpackages.get(0)
-		val subpkg2    = toppkg.ESubpackages.get(1)
+		val subpkg2    = toppkg.ESubpackages.get(0)
 		val subpkg3    = subpkg2.ESubpackages.get(0)
 		
 		//Check numbers of elements
@@ -585,7 +585,7 @@ class OperatorMappingTest
 		//Get packages
 		val newroot = subPackTest8.syntax.pkgs.head
 		val subpkg1 = newroot.ESubpackages.get(0)
-		val subpkg2 = subpkg1.ESubpackages.get(1)
+		val subpkg2 = subpkg1.ESubpackages.get(0)
 		val subpkg3 = subpkg2.ESubpackages.get(0)
 		
 		//Check numbers of elements
@@ -599,8 +599,8 @@ class OperatorMappingTest
 		assertEquals(2, subpkg3.EClassifiers.size)
 		
 		//Get classes
-		val TopClass1 = subpkg1.EClassifiers.get(0)
-		val TopClass2 = subpkg1.EClassifiers.get(1)
+		val TopClass1 = subpkg1.EClassifiers.get(2)
+		val TopClass2 = subpkg1.EClassifiers.get(3)
 		val Subpkg1Class1 = subpkg1.EClassifiers.get(0)
 		val Subpkg1Class2 = subpkg1.EClassifiers.get(1)
 		val Subpkg2Class1 = subpkg2.EClassifiers.get(0)
@@ -641,7 +641,7 @@ class OperatorMappingTest
 		assertEquals(2, subpkg2.EClassifiers.size)
 		assertEquals(0, subpkg3.ESubpackages.size)
 		assertEquals(2, subpkg3.EClassifiers.size)
-		assertEquals(1, newsubpack.ESubpackages.size)
+		assertEquals(2, newsubpack.ESubpackages.size)
 		assertEquals(2, newsubpack.EClassifiers.size)
 		assertEquals(0, newsubpack2.ESubpackages.size)
 		assertEquals(2, newsubpack2.EClassifiers.size)
