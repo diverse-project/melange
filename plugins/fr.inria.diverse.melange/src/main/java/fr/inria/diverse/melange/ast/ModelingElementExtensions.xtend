@@ -63,7 +63,7 @@ class ModelingElementExtensions
 			]
 		]
 
-		res.contents += copy
+		res.contents += copy.head
 
 //		new Job("Serializing Ecore") {
 //			override run(IProgressMonitor monitor) {
