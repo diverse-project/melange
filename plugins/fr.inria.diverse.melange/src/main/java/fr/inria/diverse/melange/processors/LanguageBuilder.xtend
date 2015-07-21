@@ -356,12 +356,23 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		]
 		
 		//Build new package hierachy
-		val oldRootName = modelRoot.name 
+		val oldRootName = modelRoot.name
+		val renamedPackages = new HashSet<EPackage>() 
 		val targetedPackages = new HashSet<EPackage>()
 		mappingRules.forEach[ packageRule |
+			val oldPackages = packageRule.from.split("\\.")
 			val newPackages = packageRule.to.split("\\.")
 
+			//Register source packages
 			var current = modelRoot
+			for(var int i = 1; i < oldPackages.size; i++){
+				val packName = oldPackages.get(i)
+				current = current.ESubpackages.findFirst[name == packName]
+			}
+			renamedPackages.add(current)
+			
+			//Register targeted packages & Creates new packages
+			current = modelRoot
 			targetedPackages.add(current)
 			for(var int i = 1; i < newPackages.size; i++){
 				val packName = newPackages.get(i)
@@ -393,6 +404,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 				
 				val subPackages = new ArrayList(sourcePack.ESubpackages)
 				subPackages.removeAll(targetedPackages)
+				subPackages.removeAll(renamedPackages)
 				movedPackages.put(sourcePack,targetPack,subPackages)
 			}
 		]
