@@ -248,7 +248,7 @@
 	    <super type="org.eclipse.xtext.ui.check.expensive"/>
 	    <persistent value="true"/>
 	</extension>
-
+	<!--
    <extension
          point="org.eclipse.xtext.builder.participant">
       <participant
@@ -257,6 +257,7 @@
             >
       </participant>
    </extension>
+   -->
    <extension
             point="org.eclipse.ui.preferencePages">
         <page
