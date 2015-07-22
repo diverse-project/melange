@@ -685,6 +685,11 @@
                      label="Generate All"
                      style="push">
                </command>
+               <command
+                     commandId="fr.inria.diverse.melange.CleanAll"
+                     label="Clean All"
+                     style="push">
+               </command>
                <separator
                      name="fr.inria.diverse.melange.ui.menu.separator"
                      visible="true">
@@ -702,11 +707,6 @@
                <command
                      commandId="fr.inria.diverse.melange.GenerateInterfaces"
                      label="Generate Interfaces"
-                     style="push">
-               </command>
-               <command
-                     commandId="fr.inria.diverse.melange.CleanAll"
-                     label="Clean All"
                      style="push">
                </command>
             </menu>
