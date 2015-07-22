@@ -658,26 +658,26 @@
             <menu
                   icon="icons/melange.png"
                   label="Melange">
+               <visibleWhen
+                     checkEnabled="false">
+                  <with
+                        variable="activeMenuSelection">
+                     <iterate
+                           ifEmpty="false">
+                        <adapt
+                              type="org.eclipse.core.resources.IResource">
+                           <test
+                                 property="org.eclipse.core.resources.extension"
+                                 value="melange">
+                           </test>
+                        </adapt>
+                     </iterate>
+                  </with>
+               </visibleWhen>
                <command
                      commandId="fr.inria.diverse.melange.Compile"
                      label="Compile"
                      style="push">
-                  <visibleWhen
-                        checkEnabled="false">
-                     <with
-                           variable="activeMenuSelection">
-                        <iterate
-                              ifEmpty="false">
-                           <adapt
-                                 type="org.eclipse.core.resources.IResource">
-                              <test
-                                    property="org.eclipse.core.resources.extension"
-                                    value="melange">
-                              </test>
-                           </adapt>
-                        </iterate>
-                     </with>
-                  </visibleWhen>
                </command>
             </menu>
       </menuContribution>
