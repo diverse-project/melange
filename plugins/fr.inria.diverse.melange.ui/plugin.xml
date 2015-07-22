@@ -684,7 +684,6 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="fr.inria.diverse.melange.ui.menu.Compile"
             id="fr.inria.diverse.melange.Compile"
             name="Compile">
       </command>
@@ -701,6 +700,13 @@
             class="fr.inria.diverse.melange.ui.builder.MelangeBuilderParticipant"
             fileExtensions="melange">
       </participant>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="fr.inria.diverse.melange.ui.MelangeExecutableExtensionFactory:fr.inria.diverse.melange.ui.menu.Compile"
+            commandId="fr.inria.diverse.melange.Compile">
+      </handler>
    </extension>
 
 </plugin>
