@@ -657,13 +657,6 @@
            class="fr.inria.diverse.melange.ui.preferences.MelangePreferencesInitializer">
      </initializer>
   </extension>
-  <extension
-        point="org.eclipse.xtext.builder.participant">
-     <participant
-           class="fr.inria.diverse.melange.ui.builder.MelangeBuilderParticipant"
-           fileExtensions="melange">
-     </participant>
-  </extension>
   
   <extension point="org.eclipse.ui.menus">
          <menuContribution
