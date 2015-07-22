@@ -2,6 +2,11 @@ package fr.inria.diverse.melange.ui.builder
 
 import com.google.inject.Inject
 import com.google.inject.Provider
+import fr.inria.diverse.melange.ast.LanguageExtensions
+import fr.inria.diverse.melange.ast.MetamodelExtensions
+import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
+import fr.inria.diverse.melange.lib.EcoreExtensions
+import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.processors.ModelTypeSerializer
@@ -19,6 +24,9 @@ class MelangeBuilder
 	@Inject Provider<EclipseResourceFileSystemAccess2> fileSystemAccessProvider
 	@Inject OutputConfigurationProvider outputProvider
 	@Inject ModelTypeSerializer serializer
+	@Inject extension LanguageExtensions
+	@Inject extension MetamodelExtensions
+	@Inject extension EcoreExtensions
 
 	def void generateInterfaces(Resource res, IProject project, IProgressMonitor monitor) {
 		val root = res.contents.head as ModelTypingSpace
@@ -36,6 +44,24 @@ class MelangeBuilder
 	}
 
 	def void generateLanguages(Resource res, IProject project, IProgressMonitor monitor) {
+		val root = res.contents.head as ModelTypingSpace
+		val toGenerate = root.elements.filter(Language).filter[generatedByMelange]
+
+		monitor.beginTask("Generating EMF runtime for languages", toGenerate.size)
+
+		toGenerate.forEach[l |
+			if (monitor.canceled)
+				throw new OperationCanceledException
+
+			EclipseProjectHelper::createEMFRuntimeProject(l.externalRuntimeName, l)
+			l.createExternalEcore
+			l.createExternalGenmodel
+			l.createExternalAspects
+			l.syntax.genmodels.head.generateCode
+			EclipseProjectHelper::addDependencies(project, #[l.externalRuntimeName])
+
+			monitor.worked(1)
+		]
 	}
 
 	def void generateAdapters(Resource res, IProject project, IProgressMonitor monitor) {
