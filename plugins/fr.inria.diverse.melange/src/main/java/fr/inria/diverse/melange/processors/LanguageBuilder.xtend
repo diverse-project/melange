@@ -380,6 +380,8 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 				if(nextCurrent == null){
 					nextCurrent = EcoreFactory.eINSTANCE.createEPackage
 					nextCurrent.name = packName
+					nextCurrent.nsPrefix = packName
+					nextCurrent.nsURI = current.nsURI+packName+"/"
 					current.ESubpackages.add(nextCurrent)
 				}
 				current = nextCurrent
