@@ -1,10 +1,13 @@
 package fr.inria.diverse.melange.ui
 
+import fr.inria.diverse.melange.ui.hyperlink.MelangeHyperlinkHelper
+import fr.inria.diverse.melange.ui.internal.MelangeActivator
+import fr.inria.diverse.melange.ui.preferences.MelangePreferencePage
 import org.eclipse.core.runtime.IStatus
 import org.eclipse.core.runtime.Status
 import org.eclipse.ui.plugin.AbstractUIPlugin
-
-import fr.inria.diverse.melange.ui.internal.MelangeActivator
+import org.eclipse.xtext.ui.editor.hyperlinking.IHyperlinkHelper
+import org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage
 
 class MelangeUiModule extends AbstractMelangeUiModule
 {
@@ -12,8 +15,12 @@ class MelangeUiModule extends AbstractMelangeUiModule
 		super(plugin)
 	}
 
-	def Class<? extends org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage> bindLanguageRootPreferencePage() {
-	    return typeof(fr.inria.diverse.melange.ui.preferences.MelangePreferencePage)
+	def Class<? extends LanguageRootPreferencePage> bindLanguageRootPreferencePage() {
+	    return typeof(MelangePreferencePage)
+	}
+	
+	override Class<? extends IHyperlinkHelper> bindIHyperlinkHelper() {
+	    return typeof(MelangeHyperlinkHelper)
 	}
 
 	def static void logErrorMessage(String message, Throwable e) {
