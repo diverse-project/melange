@@ -651,6 +651,19 @@
            restorable="true">
      </e4view>
   </extension>
+  <extension
+        point="org.eclipse.core.runtime.preferences">
+     <initializer
+           class="fr.inria.diverse.melange.ui.preferences.MelangePreferencesInitializer">
+     </initializer>
+  </extension>
+  <extension
+        point="org.eclipse.xtext.builder.participant">
+     <participant
+           class="fr.inria.diverse.melange.ui.builder.MelangeBuilderParticipant"
+           fileExtensions="melange">
+     </participant>
+  </extension>
   
   <extension point="org.eclipse.ui.menus">
          <menuContribution
@@ -675,8 +688,8 @@
                   </with>
                </visibleWhen>
                <command
-                     commandId="fr.inria.diverse.melange.Compile"
-                     label="Compile"
+                     commandId="fr.inria.diverse.melange.GenerateAll"
+                     label="Generate All"
                      style="push">
                </command>
             </menu>
@@ -685,28 +698,15 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            id="fr.inria.diverse.melange.Compile"
-            name="Compile">
+            id="fr.inria.diverse.melange.GenerateAll"
+            name="Generate All">
       </command>
-   </extension>
-   <extension
-         point="org.eclipse.core.runtime.preferences">
-      <initializer
-            class="fr.inria.diverse.melange.ui.preferences.MelangePreferencesInitializer">
-      </initializer>
-   </extension>
-   <extension
-         point="org.eclipse.xtext.builder.participant">
-      <participant
-            class="fr.inria.diverse.melange.ui.builder.MelangeBuilderParticipant"
-            fileExtensions="melange">
-      </participant>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="fr.inria.diverse.melange.ui.MelangeExecutableExtensionFactory:fr.inria.diverse.melange.ui.menu.Compile"
-            commandId="fr.inria.diverse.melange.Compile">
+            class="fr.inria.diverse.melange.ui.MelangeExecutableExtensionFactory:fr.inria.diverse.melange.ui.menu.GenerateAll"
+            commandId="fr.inria.diverse.melange.GenerateAll">
       </handler>
    </extension>
 

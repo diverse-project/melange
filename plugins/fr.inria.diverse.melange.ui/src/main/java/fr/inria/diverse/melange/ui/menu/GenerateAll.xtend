@@ -20,7 +20,7 @@ import org.eclipse.xtext.generator.OutputConfigurationProvider
 import org.eclipse.xtext.resource.DerivedStateAwareResource
 import org.eclipse.xtext.ui.resource.XtextResourceSetProvider
 
-class Compile extends AbstractHandler{
+class GenerateAll extends AbstractHandler{
 	@Inject XtextResourceSetProvider rsProvider
 	@Inject IGenerator generator
 	@Inject Provider<EclipseResourceFileSystemAccess2> fileSystemAccessProvider
