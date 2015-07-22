@@ -63,7 +63,7 @@ class ModelingElementExtensions
 			]
 		]
 
-		res.contents += copy.head
+		res.contents += copy.filter[ESuperPackage == null]
 
 //		new Job("Serializing Ecore") {
 //			override run(IProgressMonitor monitor) {
