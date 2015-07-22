@@ -704,6 +704,11 @@
                      label="Generate Interfaces"
                      style="push">
                </command>
+               <command
+                     commandId="fr.inria.diverse.melange.CleanAll"
+                     label="Clean All"
+                     style="push">
+               </command>
             </menu>
       </menuContribution>
    </extension>  
@@ -762,6 +767,20 @@
             class="fr.inria.diverse.melange.ui.MelangeExecutableExtensionFactory:fr.inria.diverse.melange.ui.menu.GenerateAdapters"
             commandId="fr.inria.diverse.melange.GenerateAdapters">
       </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="fr.inria.diverse.melange.ui.MelangeExecutableExtensionFactory:fr.inria.diverse.melange.ui.menu.CleanAll"
+            commandId="fr.inria.diverse.melange.CleanAll">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="fr.inria.diverse.melange.CleanAll"
+            name="Clean All">
+      </command>
    </extension>
 
 </plugin>
