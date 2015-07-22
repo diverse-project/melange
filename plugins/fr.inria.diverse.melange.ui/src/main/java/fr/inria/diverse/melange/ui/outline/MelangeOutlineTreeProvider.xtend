@@ -7,6 +7,9 @@ import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.Transformation
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
+import org.eclipse.emf.ecore.EAnnotation
+import org.eclipse.emf.ecore.EPackage
+import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
@@ -17,6 +20,10 @@ class MelangeOutlineTreeProvider extends DefaultOutlineTreeProvider
 
 	def boolean _isLeaf(Transformation t) {
 		return true
+	}
+
+	def boolean _isLeaf(EStructuralFeature a){
+	    return true
 	}
 
     def void _createNode(IOutlineNode parentNode, JvmTypeReference ref) {
@@ -31,36 +38,37 @@ class MelangeOutlineTreeProvider extends DefaultOutlineTreeProvider
 		// Nope
 	}
 
+	def void _createNode(IOutlineNode parentNode, EAnnotation a){
+	    // Nope
+	}
+
+
 	def void _createNode(IOutlineNode parentNode, ModelType mt) {
 		val mNode = createEObjectNode(parentNode, mt)
 
 		mt.pkgs.forEach[pkg |
-			val pkgNode = createEObjectNode(mNode, pkg, imageDispatcher.invoke(pkg), textDispatcher.invoke(pkg),
-				isLeafDispatcher.invoke(pkg))
-
-			pkg.EClassifiers.forEach[cls |
-				createEObjectNode(pkgNode, cls, imageDispatcher.invoke(cls), textDispatcher.invoke(cls),
-					isLeafDispatcher.invoke(cls))
-			]
+		    createNode(mNode, pkg)
 		]
 	}
 
 	def void _createNode(IOutlineNode parentNode, Language l) {
 		val mNode = createEObjectNode(parentNode, l)
 
-		l.syntax.pkgs.forEach[pkg |
-			val pkgNode = createEObjectNode(mNode, pkg, imageDispatcher.invoke(pkg), textDispatcher.invoke(pkg),
-				isLeafDispatcher.invoke(pkg))
-
-			pkg.EClassifiers.forEach[cls |
-				createEObjectNode(pkgNode, cls, imageDispatcher.invoke(cls), textDispatcher.invoke(cls),
-					isLeafDispatcher.invoke(cls))
-			]
+		l.syntax.pkgs.filter[ESuperPackage === null].forEach[pkg |
+		    createNode(mNode, pkg)
 		]
 
 		l.semantics.forEach[asp |
-			createEObjectNode(mNode, asp, imageDispatcher.invoke(asp), textDispatcher.invoke(asp),
-				isLeafDispatcher.invoke(asp))
+		    createNode(mNode, asp)
 		]
 	}
+
+    def void _createNode(IOutlineNode parentNode, EPackage p){
+        val mNode = createEObjectNode(parentNode, p)
+
+        p.ESubpackages.forEach[pkg |
+            createNode(mNode, pkg)
+        ]
+    }
+
 }
