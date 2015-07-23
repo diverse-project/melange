@@ -2,6 +2,8 @@ package fr.inria.diverse.melange.eclipse
 
 import com.google.common.base.Splitter
 import com.google.common.collect.Sets
+import com.google.inject.Inject
+import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.metamodel.melange.Language
 import java.io.BufferedInputStream
 import java.io.BufferedOutputStream
@@ -29,7 +31,8 @@ import org.eclipse.xtext.util.MergeableManifest
 
 class EclipseProjectHelper
 {
-	static Logger log = Logger.getLogger(EclipseProjectHelper)
+	@Inject extension LanguageExtensions
+	Logger log = Logger.getLogger(EclipseProjectHelper)
 
 	def IProject getProject(Resource res) {
 		try {
@@ -42,7 +45,7 @@ class EclipseProjectHelper
 		}
 	}
 
-	def static IProject createAspectsRuntimeProject(
+	def IProject createAspectsRuntimeProject(
 		IProject original,
 		String projectName,
 		String generatedPackage,
@@ -70,7 +73,7 @@ class EclipseProjectHelper
 		return project
 	}
 
-	def static Iterable<String> getDependencies(IProject project) {
+	def Iterable<String> getDependencies(IProject project) {
 		val manifestFile = project.getFile("META-INF/MANIFEST.MF")
 
 		if (manifestFile !== null
@@ -91,7 +94,7 @@ class EclipseProjectHelper
 		}
 	}
 
-	def static void addDependencies(IProject project, Iterable<String> bundles) {
+	def void addDependencies(IProject project, Iterable<String> bundles) {
 		val manifestFile = project.getFile("META-INF/MANIFEST.MF")
 
 		if (manifestFile !== null
@@ -123,7 +126,7 @@ class EclipseProjectHelper
 		}
 	}
 
-	def static IProject createEMFRuntimeProject(String projectName, Language l) {
+	def IProject createEMFRuntimeProject(String projectName, Language l) {
 		try {
 			// FIXME: Everything's hardcoded...
 			val basePkg = l.name.toLowerCase
@@ -143,7 +146,7 @@ class EclipseProjectHelper
 				#[],
 				#["org.eclipse.emf.ecore", "fr.inria.diverse.k3.al.annotationprocessor.plugin"],
 //				#[basePkg, basePkg + ".impl", basePkg + ".util"],
-				#[],
+				#[l.aspectTargetNamespace],
 				#[generatedEPackageExtension],
 				new NullProgressMonitor
 			)
@@ -161,7 +164,7 @@ class EclipseProjectHelper
 		return null
 	}
 
-	def static IProject createEclipseProject(
+	def IProject createEclipseProject(
 		String name,
 		Iterable<String> natures,
 		Iterable<String> builders,
@@ -237,7 +240,7 @@ class EclipseProjectHelper
 		return null
 	}
 
-	def static private void createManifest(
+	def private void createManifest(
 		String name,
 		Iterable<String> requiredBundles,
 		Iterable<String> exportedPackages,
@@ -265,7 +268,7 @@ class EclipseProjectHelper
 		createFile("MANIFEST.MF", metaInf, content, monitor)
 	}
 
-	def static private void createPluginXml(
+	def private void createPluginXml(
 		IProject project,
 		Iterable<String> extensions,
 		IProgressMonitor monitor
@@ -284,7 +287,7 @@ class EclipseProjectHelper
 		createFile("plugin.xml", project, content, monitor)
 	}
 
-	def static private void createBuildProperties(
+	def private void createBuildProperties(
 		IProject project,
 		Iterable<String> srcFolders,
 		IProgressMonitor monitor
@@ -298,7 +301,7 @@ class EclipseProjectHelper
 		createFile("build.properties", project, content, monitor)
 	}
 
-	def private static IFile createFile(
+	def private IFile createFile(
 		String name,
 		IContainer container,
 		String content,

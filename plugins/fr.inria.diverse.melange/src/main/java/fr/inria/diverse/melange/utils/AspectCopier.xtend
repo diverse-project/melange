@@ -8,6 +8,7 @@ import fr.inria.diverse.commons.asm.shade.relocation.SimpleRelocator
 import fr.inria.diverse.commons.asm.shade.resource.K3AspectPropertiesTransformer
 import fr.inria.diverse.commons.asm.shade.resource.ResourceTransformer
 import fr.inria.diverse.melange.ast.AspectExtensions
+import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
@@ -24,7 +25,6 @@ import org.eclipse.core.resources.IResourceVisitor
 import org.eclipse.core.runtime.CoreException
 import org.eclipse.emf.common.util.URI
 import org.eclipse.xtext.naming.IQualifiedNameConverter
-import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.util.internal.Stopwatches
 
 import static fr.inria.diverse.melange.utils.AspectCopier.*
@@ -36,9 +36,10 @@ class AspectCopier
 {
 	@Inject extension AspectExtensions
 	@Inject extension ModelingElementExtensions
+	@Inject extension LanguageExtensions
 	@Inject extension IQualifiedNameConverter
 	@Inject extension NamingHelper
-	@Inject extension EclipseProjectHelper
+	@Inject EclipseProjectHelper eclipseHelper
 	@Inject ErrorHelper errorHelper
 	static Logger log = Logger.getLogger(AspectCopier)
 
@@ -48,7 +49,7 @@ class AspectCopier
 		val task = Stopwatches.forTask("copying aspects in new type group")
 		task.start
 
-		val project = l.eResource.project
+		val project = eclipseHelper.getProject(l.eResource)
 
 		if (project === null)
 			return null
@@ -66,7 +67,7 @@ class AspectCopier
 		if(sourceEmfNamespace.equals(sourceAspectNamespace)){
 			errorHelper.addError(asp, "Melange cannot correctly handle aspect classes if they use the same package name as the aspectized emf classes, please move the aspect classes in a dedicated package", null)
 		}
-		val targetAspectNamespace = getAspectTargetNamespace(sourceAspectNamespace, l)
+		val targetAspectNamespace = l.aspectTargetNamespace
 		
 
 		val projectPathTmp = new StringBuilder
@@ -104,7 +105,7 @@ class AspectCopier
 			if (findTargetProject.exists)
 				findTargetProject
 			else
-				EclipseProjectHelper::createAspectsRuntimeProject(
+				eclipseHelper.createAspectsRuntimeProject(
 					sourceProject,
 					l.name+"_Gen",
 					targetAspectNamespace.toString,
@@ -117,7 +118,7 @@ class AspectCopier
 //		val fileToBeFound = targetProject.getFile(filenameToBeFound)
 
 		if(project.name != targetProject.name){
-			EclipseProjectHelper::addDependencies(project, #[targetProject.name])
+			eclipseHelper.addDependencies(project, #[targetProject.name])
 		}
 
 		relocators += new SimpleRelocator(sourceAspectNamespace.toString, targetAspectNamespace.toString, null, #[])
@@ -182,20 +183,4 @@ class AspectCopier
 			task.stop
 		}
 	}
-	
-	def protected QualifiedName getAspectTargetNamespace(QualifiedName sourceAspectNamespace , Language l){
-		val postfix = if(sourceAspectNamespace.segmentCount > 1 &&(sourceAspectNamespace.lastSegment.equals("aspect") 
-				|| sourceAspectNamespace.lastSegment.equals("aspects")
-				|| sourceAspectNamespace.lastSegment.equals("k3dsa")
-				)){ sourceAspectNamespace.lastSegment } else{"aspect"}
-				
-		
-		if(sourceAspectNamespace.segmentCount > 2){
-			return sourceAspectNamespace.skipLast(2).append(l.name.toLowerCase).append(postfix)
-		} else {
-				return sourceAspectNamespace.skipLast(1).append(l.name.toLowerCase).append(postfix)
-		}
-
-	}
 }
-

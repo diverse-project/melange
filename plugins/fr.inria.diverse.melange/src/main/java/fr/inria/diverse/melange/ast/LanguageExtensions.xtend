@@ -11,13 +11,13 @@ import fr.inria.diverse.melange.metamodel.melange.MelangeFactory
 import fr.inria.diverse.melange.metamodel.melange.Merge
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.Slice
-import fr.inria.diverse.melange.metamodel.melange.Weave
 import fr.inria.diverse.melange.utils.AspectCopier
 import java.util.List
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.xtext.naming.IQualifiedNameConverter
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
@@ -29,6 +29,7 @@ class LanguageExtensions
 	@Inject extension ModelTypeExtensions
 	@Inject extension IQualifiedNameConverter
 	@Inject extension EclipseProjectHelper
+	@Inject extension IQualifiedNameProvider
 	@Inject ModelTypeAlgebra algebra
 	@Inject AspectCopier copier
 	@Inject JvmTypeReferenceBuilder.Factory builderFactory
@@ -155,6 +156,21 @@ class LanguageExtensions
 
 	def String getExternalGenmodelUri(Language l) {
 		return '''platform:/resource/«l.externalRuntimeName»/model/«l.name».genmodel'''
+	}
+
+	def String getAspectTargetNamespace(Language l) {
+		return l.fullyQualifiedName.append("aspects").toLowerCase.toString
+//		val postfix =
+//			if (sourceAspectNamespace.segmentCount > 1
+//				&& #["aspect", "aspects", "k3dsa"].contains(sourceAspectNamespace.lastSegment))
+//				sourceAspectNamespace.lastSegment
+//			else
+//				"aspects"
+//
+//		if (sourceAspectNamespace.segmentCount > 2)
+//			return sourceAspectNamespace.skipLast(2).append(l.name.toLowerCase).append(postfix)
+//		else
+//			return sourceAspectNamespace.skipLast(1).append(l.name.toLowerCase).append(postfix)
 	}
 
 	/**

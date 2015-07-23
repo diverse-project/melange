@@ -24,6 +24,7 @@ class MelangeBuilder
 	@Inject Provider<EclipseResourceFileSystemAccess2> fileSystemAccessProvider
 	@Inject OutputConfigurationProvider outputProvider
 	@Inject ModelTypeSerializer serializer
+	@Inject EclipseProjectHelper eclipseHelper
 	@Inject extension LanguageExtensions
 	@Inject extension MetamodelExtensions
 	@Inject extension EcoreExtensions
@@ -53,12 +54,12 @@ class MelangeBuilder
 			if (monitor.canceled)
 				throw new OperationCanceledException
 
-			EclipseProjectHelper::createEMFRuntimeProject(l.externalRuntimeName, l)
+			eclipseHelper.createEMFRuntimeProject(l.externalRuntimeName, l)
 			l.createExternalEcore
 			l.createExternalGenmodel
 			l.createExternalAspects
 			l.syntax.genmodels.head.generateCode
-			EclipseProjectHelper::addDependencies(project, #[l.externalRuntimeName])
+			eclipseHelper.addDependencies(project, #[l.externalRuntimeName])
 
 			monitor.worked(1)
 		]
