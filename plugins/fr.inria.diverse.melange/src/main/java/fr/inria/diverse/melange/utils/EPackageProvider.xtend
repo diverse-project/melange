@@ -102,7 +102,12 @@ class EPackageProvider
 					else if (project.getFile(mm.owningLanguage.externalGenmodelPath).exists)
 						mm.genmodelUris += mm.owningLanguage.externalGenmodelUri
 			}
-			mm.genmodelUris.forEach[genmodels.put(mm, modelUtils.loadGenmodel(it))]
+			mm.genmodelUris.forEach[
+				val gm = modelUtils.loadGenmodel(it)
+
+				if (gm !== null)
+					genmodels.put(mm, gm)
+			]
 		}
 		return genmodels.get(mm)
 	}
