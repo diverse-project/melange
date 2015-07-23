@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 import java.util.HashSet
 import com.google.common.collect.Table
 import com.google.common.collect.HashBasedTable
+import org.eclipse.emf.ecore.EStructuralFeature
 
 /**
  * This class build languages by merging differents parts declared in each language definitions
@@ -343,8 +344,8 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 					
 					//Change name for properties
 					classRule.properties.forEach[propertyRule |
-						val target = clazz.EReferences.findFirst[name == propertyRule.from]
-						if(target == null) clazz.EAttributes.findFirst[name == propertyRule.from]
+						var EStructuralFeature target = clazz.EReferences.findFirst[name == propertyRule.from]
+						if(target == null) target = clazz.EAttributes.findFirst[name == propertyRule.from]
 						
 						if(target != null) target.name = propertyRule.to
 					]
