@@ -14,6 +14,7 @@ import org.apache.log4j.Logger
 import org.eclipse.core.resources.IContainer
 import org.eclipse.core.resources.IFile
 import org.eclipse.core.resources.IProject
+import org.eclipse.core.resources.IResource
 import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.core.runtime.CoreException
 import org.eclipse.core.runtime.IPath
@@ -98,6 +99,8 @@ class EclipseProjectHelper
 			&& manifestFile.accessible
 			&& !manifestFile.resourceAttributes.readOnly
 		) {
+			if (!manifestFile.isSynchronized(IResource.DEPTH_ZERO))
+				manifestFile.refreshLocal(IResource.DEPTH_ZERO, null)
 			var OutputStream output = null
 			var InputStream input = null
 			try {
