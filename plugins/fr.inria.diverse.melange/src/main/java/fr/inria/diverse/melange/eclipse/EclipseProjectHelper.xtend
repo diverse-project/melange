@@ -139,7 +139,8 @@ class EclipseProjectHelper
 				#["src"],
 				#[],
 				#["org.eclipse.emf.ecore"],
-				#[basePkg, basePkg + ".impl", basePkg + ".util"],
+//				#[basePkg, basePkg + ".impl", basePkg + ".util"],
+				#[],
 				#[generatedEPackageExtension],
 				new NullProgressMonitor
 			)
