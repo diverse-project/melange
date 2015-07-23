@@ -38,7 +38,7 @@ class ModelingElementExtensions
 		if (pkgUri !== null)
 			rootPkg.nsURI = pkgUri
 
-		val copy = EcoreUtil::copyAll(m.pkgs)
+		val copy = EcoreUtil::copyAll(m.pkgs.filter[ESuperPackage == null].toList)
 
 		// FIXME:
 		copy.forEach[pkg |
@@ -63,7 +63,7 @@ class ModelingElementExtensions
 			]
 		]
 
-		res.contents += copy.filter[ESuperPackage == null]
+		res.contents += copy
 
 //		new Job("Serializing Ecore") {
 //			override run(IProgressMonitor monitor) {

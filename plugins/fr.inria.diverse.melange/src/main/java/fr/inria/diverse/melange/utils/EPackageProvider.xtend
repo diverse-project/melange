@@ -81,7 +81,8 @@ class EPackageProvider
 					}
 				ModelType:
 					if (m.isExtracted) {
-						packages.putAll(m, m.extracted.syntax.packages.map[EcoreUtil::copy(it)])
+						val copy = EcoreUtil::copyAll( m.extracted.syntax.packages.filter[ESuperPackage == null].toList)
+						packages.putAll(m, copy)
 					}
 			}
 		}
