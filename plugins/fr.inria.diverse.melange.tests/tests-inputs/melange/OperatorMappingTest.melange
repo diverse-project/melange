@@ -31,7 +31,7 @@ language RenameMergeMM1{
 				"toB" : "toZ"
 			}
 			"B" to "Z" {
-				
+				"anAttribute" : "aZebra"
 			}
 		}
 	}

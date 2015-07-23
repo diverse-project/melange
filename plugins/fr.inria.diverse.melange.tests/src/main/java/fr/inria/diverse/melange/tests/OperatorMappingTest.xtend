@@ -87,6 +87,8 @@ class OperatorMappingTest
 		assertEquals(renamedMergeClasses.get(1), renamedMergeClasses.get(1).EOperations.get(0).EParameters.get(0).EType)
 		assertEquals("toA", renamedMergeClasses.get(1).EReferences.get(0).name)
 		assertEquals(renamedMergeClasses.get(0), renamedMergeClasses.get(1).EReferences.get(0).EType)
+		assertEquals("aZebra", renamedMergeClasses.get(1).EAttributes.get(0).name)
+		assertEquals("ELong", renamedMergeClasses.get(1).EAttributes.get(0).EType.name)
 		
 		assertEquals(renamedMergeClasses.get(0), renamedMergeClasses.get(3).ESuperTypes.get(0))
 		
