@@ -5,7 +5,6 @@ import fr.inria.diverse.melange.jvmmodel.JvmModelInferrerHelper
 import fr.inria.diverse.melange.jvmmodel.MelangeTypesBuilder
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.processors.ExactTypeInferrer
-import fr.inria.diverse.melange.processors.ExtensionPointProcessor
 import fr.inria.diverse.melange.processors.LanguageBuilder
 import fr.inria.diverse.melange.processors.MelangeProcessor
 import fr.inria.diverse.melange.processors.TypingInferrer
@@ -41,13 +40,11 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 	new(
 		LanguageBuilder l,
 		ExactTypeInferrer e,
-		TypingInferrer t,
-		ExtensionPointProcessor p
+		TypingInferrer t
 	) {
 		processors += l
 		processors += e
 		processors += t
-		processors += p
 	}
 
 	override discardDerivedState(DerivedStateAwareResource resource) {

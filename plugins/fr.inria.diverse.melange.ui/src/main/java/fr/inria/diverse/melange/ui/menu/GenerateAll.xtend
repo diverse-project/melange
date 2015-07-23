@@ -25,7 +25,7 @@ class GenerateAll extends AbstractHandler {
 		new Job("Melange: Generate All") {
 			override run(IProgressMonitor monitor) {
 				try {
-					monitor.beginTask("Generating all artifacts", 3)
+					monitor.beginTask("Generating all artifacts", 4)
 
 					val sel = HandlerUtil.getActiveMenuSelection(event)
 					val selection = sel as IStructuredSelection
@@ -37,6 +37,7 @@ class GenerateAll extends AbstractHandler {
 					builder.generateInterfaces(res, project, new SubProgressMonitor(monitor, 1))
 					builder.generateLanguages(res, project, new SubProgressMonitor(monitor, 1))
 					builder.generateAdapters(res, project, new SubProgressMonitor(monitor, 1))
+					builder.generatePluginXml(res, project, new SubProgressMonitor(monitor, 1))
 				} catch (OperationCanceledException e) {
 					return Status.CANCEL_STATUS
 				} finally {

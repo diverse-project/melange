@@ -9,6 +9,7 @@ import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
+import fr.inria.diverse.melange.processors.ExtensionPointProcessor
 import fr.inria.diverse.melange.processors.ModelTypeSerializer
 import org.eclipse.core.resources.IProject
 import org.eclipse.core.runtime.IProgressMonitor
@@ -25,6 +26,7 @@ class MelangeBuilder
 	@Inject OutputConfigurationProvider outputProvider
 	@Inject ModelTypeSerializer serializer
 	@Inject EclipseProjectHelper eclipseHelper
+	@Inject ExtensionPointProcessor extensionProcessor
 	@Inject extension LanguageExtensions
 	@Inject extension MetamodelExtensions
 	@Inject extension EcoreExtensions
@@ -76,5 +78,10 @@ class MelangeBuilder
 		]
 
 		generator.doGenerate(res, fsa)
+	}
+
+	def void generatePluginXml(Resource res, IProject project, IProgressMonitor monitor) {
+		val root = res.contents.head as ModelTypingSpace
+		extensionProcessor.preProcess(root, false)
 	}
 }
