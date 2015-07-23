@@ -31,6 +31,10 @@ class AspectExtensions {
 	def String getAspectAnnotationValue(Aspect asp) {
 		return (asp.aspectTypeRef.type as JvmDeclaredType)?.aspectAnnotationValue
 	}
+	
+	def String getAspectedClassFqName(Aspect asp) {
+		return (asp.aspectTypeRef.type as JvmDeclaredType)?.getAspectedClassFqName
+	}
 
 	def String getAspectAnnotationValue(JvmDeclaredType t) {
 		// TODO: Remove hard-stringed dependency
@@ -50,6 +54,17 @@ class AspectExtensions {
 		if (aspVal !== null && aspVal.contains("."))
 			return aspVal.substring(aspVal.lastIndexOf(".") + 1, aspVal.length)
 
+		return aspVal
+	}
+	
+	def String getAspectedClassFqName(JvmDeclaredType t){
+		val aspAnn = t.annotations.findFirst[annotation?.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Aspect"]
+		val aspClassName = aspAnn?.values?.findFirst[valueName == "className"]
+		val aspVal = switch aspClassName {
+			JvmTypeAnnotationValue: aspClassName.values?.head?.qualifiedName
+			JvmCustomAnnotationValue: (aspClassName.values?.head as XAbstractFeatureCall)?.feature?.qualifiedName
+			default: null
+		}
 		return aspVal
 	}
 

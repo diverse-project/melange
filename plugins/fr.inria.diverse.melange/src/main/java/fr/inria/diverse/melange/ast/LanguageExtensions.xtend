@@ -20,6 +20,8 @@ import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
+import fr.inria.diverse.melange.metamodel.melange.PackageBinding
+import fr.inria.diverse.melange.metamodel.melange.Operator
 
 class LanguageExtensions
 {
@@ -240,23 +242,69 @@ class LanguageExtensions
 	}
 
 	/**
-	 * Copy aspects defined on {@link mm} into generated project <br>
+	 * Copy aspects defined on {@link l} into generated project <br>
 	 * Return a list of created Aspects with type references to the copied classes
 	 */
 	def List<Aspect> createExternalAspects(Language l) {
 		val res = newArrayList
 		val classesAlreadyWeaved = newArrayList
 		
-		l.allAspects.forEach[asp |
+		//Copy sem
+		res += simpleCopyAsp(l,l.semantics,classesAlreadyWeaved,null,null)
+		//Copy+rename op
+		l.operators.forEach[op |
+				var List<Aspect> aspects = null
+				var List<PackageBinding> renamingRules = null
+				if (op instanceof Slice){
+					aspects = (op as Slice).slicedLanguage.allAspects
+					renamingRules= (op as Slice).mappingRules
+				} 
+				else if (op instanceof Merge){
+					aspects = (op as Merge).mergedLanguage.allAspects
+					renamingRules= (op as Merge).mappingRules
+				}
+				
+				if(aspects != null){
+					//Copy with Renaming
+					if(renamingRules != null){
+						//TODO: classes, packages & features
+						val List<Pair<String,String>> classRules = newArrayList
+						val List<Pair<String,String>> packageRules = newArrayList
+						renamingRules.forEach[packRule |
+							packageRules += packRule.from -> packRule.to
+							packRule.classes.forEach[classRule |
+								classRules += packRule.from+"."+classRule.from -> packRule.to+"."+classRule.to
+							]
+						]
+						res += simpleCopyAsp(l,aspects,classesAlreadyWeaved,classRules,packageRules)
+					}
+				}
+			]
+		//Copy super lang
+		res += simpleCopyAsp(l,l.superLanguages.map[allAspects].flatten,classesAlreadyWeaved,null,null)
+		
+		return res
+	}
+	
+	/**
+	 * Copy aspects defined on {@link l} into generated project <br>
+	 * Return a list of created Aspects with type references to the copied classes
+	 */
+	private def List<Aspect> simpleCopyAsp(Language l, Iterable<Aspect> aspects, List<String> classesAlreadyWeaved, List<Pair<String,String>> classRenaming, List<Pair<String,String>> packageRenaming){
+		val res = newArrayList
+		aspects.forEach[asp |
 			if (asp.isComplete) {
 				if (asp.canBeCopiedFor(l.syntax)) {
 					
-					val className = asp.aspectAnnotationValue
+					var className = asp.aspectAnnotationValue
+					val renaming = classRenaming.findFirst[it.key == asp.aspectedClassFqName]
+					if(renaming != null) className = renaming.value.substring(renaming.value.lastIndexOf(".")+1)
+					
 					if(!classesAlreadyWeaved.contains(className) && (l.syntax.findClass(className) !== null)){
 						classesAlreadyWeaved.add(className)
 						
 						val typeRefBuilder = builderFactory.create(l.eResource.resourceSet)
-						val newAspectFqn = copier.copyAspectTo(asp, l)
+						val newAspectFqn = copier.copyAspectTo(asp, l, classRenaming, packageRenaming)
 						res += MelangeFactory.eINSTANCE.createAspect => [
 									aspectTypeRef = typeRefBuilder.typeRef(newAspectFqn)
 								]
@@ -264,7 +312,6 @@ class LanguageExtensions
 				}
 			}
 		]
-		
 		return res
 	}
 }
