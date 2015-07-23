@@ -1,6 +1,5 @@
 package fr.inria.diverse.melange.ast
 
-import com.google.common.collect.Lists
 import com.google.inject.Inject
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
@@ -16,12 +15,14 @@ import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EcorePackage
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 class MetamodelExtensions
 {
 	@Inject extension ModelingElementExtensions
 	@Inject extension LanguageExtensions
 	@Inject extension EcoreExtensions
+	@Inject extension IQualifiedNameProvider
 	@Inject EPackageProvider provider
 
 	def List<GenModel> getGenmodels(Metamodel mm) {
@@ -63,16 +64,22 @@ class MetamodelExtensions
 	}
 
 	def void createGenmodel(Metamodel mm, String ecoreUri, String gmUri, String modelDirectory) {
+		val resSet = new ResourceSetImpl
+		val pkgRes = resSet.getResource(URI::createURI(ecoreUri), true)
+		val pkgs = pkgRes.contents
+
 		val genmodel = GenModelFactory.eINSTANCE.createGenModel => [
 			it.complianceLevel = GenJDKLevel.JDK70_LITERAL
 			it.modelDirectory = modelDirectory.replaceFirst("platform:/resource", "").replaceFirst("..", "")
 			it.foreignModel += ecoreUri
 			it.modelName = mm.owningLanguage.name
 			it.modelPluginID = mm.owningLanguage.externalRuntimeName
-			it.initialize(Lists::newArrayList(mm.pkgs))
+			it.initialize(pkgs.map[it as EPackage])
+			genPackages.forEach[gp |
+				gp.basePackage = mm.owningLanguage.fullyQualifiedName.toLowerCase.toString
+			]
 		]
 
-		val resSet = new ResourceSetImpl
 		val res = resSet.createResource(URI::createURI(gmUri))
 		res.contents += genmodel
 
