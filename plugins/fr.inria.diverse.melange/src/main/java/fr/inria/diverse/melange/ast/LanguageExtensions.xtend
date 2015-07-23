@@ -223,7 +223,7 @@ class LanguageExtensions
 			if (gp.prefix !== null && gp.prefix.length > 0)
 				segments += gp.prefix
 
-			val fqn = QualifiedName::create(segments).toString.toLowerCase
+			val fqn = QualifiedName::create(segments).toLowerCase.toString.replace(".", "/")
 			if ((
 				   project.getFile(l.localEcorePath).exists
 				&& project.getFile(l.localGenmodelPath).exists
