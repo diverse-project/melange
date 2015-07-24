@@ -29,6 +29,9 @@ import org.eclipse.xtext.util.internal.Stopwatches
 
 import static fr.inria.diverse.melange.utils.AspectCopier.*
 import java.util.List
+import org.eclipse.jdt.core.JavaCore
+import org.eclipse.jdt.core.IClasspathEntry
+import org.eclipse.core.runtime.Path
 
 /**
  * Baaah, full of sh*t
@@ -168,6 +171,21 @@ class AspectCopier
 				
 			targetProject.refreshLocal(IResource.DEPTH_INFINITE, null)
 //			}
+
+			//Add src-gen/ in the classpath
+			val srcGenPath = "/"+l.name+"_Gen/src-gen"
+			val javaProject = JavaCore.create(findTargetProject)
+			val IClasspathEntry[] entries = javaProject.getRawClasspath()
+			if(!entries.exists[path.toString == srcGenPath]){
+				val IClasspathEntry[] newEntries = newArrayOfSize(entries.length + 1)
+				System.arraycopy(entries, 0, newEntries, 0, entries.length);
+				
+				val Path aspectsPath = new Path(srcGenPath);
+				val IClasspathEntry newEntry = JavaCore.newSourceEntry(aspectsPath);
+				newEntries.set(entries.length, JavaCore.newSourceEntry(newEntry.getPath()))
+				javaProject.setRawClasspath(newEntries, null);
+			}
+			
 			return '''«targetAspectNamespace».«asp.aspectTypeRef.simpleName»'''
 		} catch (IOException e) {
 			log.debug("Copy failed", e)
