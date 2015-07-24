@@ -43,13 +43,9 @@ class AspectCopier
 	@Inject ErrorHelper errorHelper
 	static Logger log = Logger.getLogger(AspectCopier)
 	
-	def String copyAspectTo(Aspect asp, Language l) {
-		copyAspectTo(asp,l,null,null)
-	}
-
 	// FIXME: We should first check that aspects are importable (i.e. defined
 	//         on a type group this metamodel is a subtype of)
-	def String copyAspectTo(Aspect asp, Language l, List<Pair<String,String>> classRenaming, List<Pair<String,String>> packageRenaming) {
+	def String copyAspectTo(Aspect asp, Language l) {
 		val task = Stopwatches.forTask("copying aspects in new type group")
 		task.start
 
@@ -127,14 +123,6 @@ class AspectCopier
 
 		relocators += new SimpleRelocator(sourceAspectNamespace.toString, targetAspectNamespace.toString, null, #[])
 		relocators += new SimpleRelocator(sourceEmfNamespace.toString, targetEmfNamespace.toString, null, #[])
-		if(classRenaming != null && packageRenaming != null){
-			classRenaming.forEach[pair |
-				relocators += new SimpleRelocator(pair.key, pair.value, null, #[])
-			]
-			packageRenaming.forEach[pair |
-				relocators += new SimpleRelocator(pair.key, pair.value, null, #[])
-			]
-		}
 
 		val className = asp.aspectAnnotationValue
 		//Filter files not related to targeted aspect
@@ -196,7 +184,7 @@ class AspectCopier
 		}
 	}
 	
-	def protected QualifiedName getAspectTargetNamespace(QualifiedName sourceAspectNamespace , Language l){
+	static def QualifiedName getAspectTargetNamespace(QualifiedName sourceAspectNamespace , Language l){
 		val postfix = if(sourceAspectNamespace.segmentCount > 1 &&(sourceAspectNamespace.lastSegment.equals("aspect") 
 				|| sourceAspectNamespace.lastSegment.equals("aspects")
 				|| sourceAspectNamespace.lastSegment.equals("k3dsa")
