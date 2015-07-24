@@ -22,6 +22,22 @@ import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import fr.inria.diverse.melange.metamodel.melange.PackageBinding
 import fr.inria.diverse.melange.metamodel.melange.Operator
+import org.eclipse.core.resources.IWorkspace
+import org.eclipse.core.resources.ResourcesPlugin
+import org.eclipse.core.resources.IProject
+import org.eclipse.core.resources.IWorkspaceRoot
+import org.eclipse.jdt.core.JavaCore
+import org.eclipse.jdt.core.IClasspathEntry
+import org.eclipse.core.runtime.Path
+import org.eclipse.jdt.core.dom.ASTParser
+import org.eclipse.jdt.core.dom.AST
+import org.eclipse.jdt.core.dom.CompilationUnit
+import org.eclipse.jdt.core.dom.ASTVisitor
+import org.eclipse.jdt.core.dom.ImportDeclaration
+import org.eclipse.text.edits.TextEdit
+import org.eclipse.jface.text.Document
+import org.eclipse.jdt.core.dom.Name
+import fr.inria.diverse.melange.utils.AspectRenamer
 
 class LanguageExtensions
 {
@@ -33,6 +49,7 @@ class LanguageExtensions
 	@Inject extension EclipseProjectHelper
 	@Inject ModelTypeAlgebra algebra
 	@Inject AspectCopier copier
+	@Inject AspectRenamer renamer
 	@Inject JvmTypeReferenceBuilder.Factory builderFactory
 
 	def List<Language> getSuperLanguages(Language l) {
@@ -265,8 +282,8 @@ class LanguageExtensions
 				}
 				
 				if(aspects != null){
-					//Copy with Renaming
-					if(renamingRules != null){
+					if(renamingRules != null){ 
+						//Copy with Renaming
 						//TODO: classes, packages & features
 						val List<Pair<String,String>> classRules = newArrayList
 						val List<Pair<String,String>> packageRules = newArrayList
@@ -277,6 +294,14 @@ class LanguageExtensions
 							]
 						]
 						res += simpleCopyAsp(l,aspects,classesAlreadyWeaved,classRules,packageRules)
+						
+						aspects.forEach[asp |
+							renamer.processRenaming(asp,l,classRules,packageRules)
+						]
+					}
+					else{
+						//Copy without renaming
+						res += simpleCopyAsp(l,aspects,classesAlreadyWeaved,null,null)
 					}
 				}
 			]
@@ -304,7 +329,7 @@ class LanguageExtensions
 						classesAlreadyWeaved.add(className)
 						
 						val typeRefBuilder = builderFactory.create(l.eResource.resourceSet)
-						val newAspectFqn = copier.copyAspectTo(asp, l, classRenaming, packageRenaming)
+						val newAspectFqn = copier.copyAspectTo(asp, l)
 						res += MelangeFactory.eINSTANCE.createAspect => [
 									aspectTypeRef = typeRefBuilder.typeRef(newAspectFqn)
 								]
