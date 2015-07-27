@@ -33,6 +33,8 @@ import org.eclipse.jdt.core.dom.VariableDeclarationStatement
 import org.eclipse.jdt.core.dom.ASTNode
 import org.eclipse.jdt.core.dom.Name
 import java.util.Map
+import org.eclipse.jdt.core.dom.SimpleName
+import org.eclipse.jdt.core.dom.QualifiedName
 
 class AspectRenamer {
 	
@@ -126,24 +128,19 @@ class RenamerVisitor extends ASTVisitor{
 			newImportsNames.put(node,newName)
 		}
 		else{
-			val pack = node.name.toString.substring(0,node.name.toString.lastIndexOf("."))
+			val pack = node.name.toString.qualifierPart
 			val rule2 = packageRules.findFirst[key == pack]
 			if(rule2 != null){
+				val packageName = node.AST.toName(rule2.value)
 				
-				val simpleNames = rule2.value.split("\\.").map[node.AST.newSimpleName(it)]
-				var Name currentName =  simpleNames.get(0)
-				for(var int i = 1; i<simpleNames.size; i++){
-					currentName = node.AST.newQualifiedName(currentName,simpleNames.get(i))
-				}
-				
-				val clazz = node.name.toString.substring(node.name.toString.lastIndexOf(".")+1)
+				val clazz = node.name.toString.lastPart
 				val classRule = classRules.findFirst[clRule |
-						clRule.key.endsWith(clazz) &&
-						clRule.key.substring(0,clRule.key.lastIndexOf(".")) == pack
+						clRule.key.lastPart == clazz &&
+						clRule.key.qualifierPart == pack
 					]
-				val clazzName = node.AST.newSimpleName(classRule.value.substring(classRule.value.lastIndexOf(".")+1))
+				val clazzName = node.AST.newSimpleName(classRule.value.lastPart)
 				
-				val newName = node.AST.newQualifiedName(currentName,clazzName)
+				val newName = node.AST.newQualifiedName(packageName,clazzName)
 				newImportsNames.put(node,newName)
 			}
 		}
@@ -158,16 +155,22 @@ class RenamerVisitor extends ASTVisitor{
 		//TODO: typeName can be a QualifiedName
 		val rule = typeName.getClassRule()
 		if(rule != null){
-			val toName = rule.value.lastPart
-			val newName = node.AST.newSimpleName(toName)
-			newSimpleTypesNames.put(node,newName)
+			
+			if(typeName instanceof SimpleName){
+				val toName = rule.value.lastPart
+				val newName = node.AST.newSimpleName(toName)
+				newSimpleTypesNames.put(node,newName)	
+			}
+			else if(typeName instanceof QualifiedName){
+				//TODO
+			}
 		}
 		
 		super.visit(node)
 	}
 	
 	override visit(MethodInvocation node) {
-
+		
 		super.visit(node)
 	}
 	
@@ -245,5 +248,20 @@ class RenamerVisitor extends ASTVisitor{
 				]
 		}
 		return res
+	}
+	
+	/**
+	 * Parse {@link qualifiedName} and produce a SimpleName
+	 * or a QualifiedName
+	 */
+	def Name toName(AST ast, String qualifiedName){
+		val simpleNames = qualifiedName.split("\\.").map[ast.newSimpleName(it)]
+		
+		var Name currentName =  simpleNames.get(0)
+		for(var int i = 1; i<simpleNames.size; i++){
+			currentName = ast.newQualifiedName(currentName,simpleNames.get(i))
+		}
+		
+		return currentName
 	}
 }
