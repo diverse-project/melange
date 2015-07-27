@@ -20,6 +20,19 @@ import org.eclipse.jdt.core.dom.ASTParser
 import org.eclipse.jdt.core.dom.AST
 import org.eclipse.jdt.core.ICompilationUnit
 import org.eclipse.jdt.core.dom.ImportDeclaration
+import org.eclipse.jdt.core.dom.PackageDeclaration
+import org.eclipse.jdt.core.dom.TypeDeclaration
+import org.eclipse.jdt.core.dom.FieldDeclaration
+import org.eclipse.jdt.core.dom.TypeLiteral
+import org.eclipse.jdt.core.dom.CastExpression
+import org.eclipse.jdt.core.dom.FieldAccess
+import org.eclipse.jdt.core.dom.InstanceofExpression
+import org.eclipse.jdt.core.dom.MethodInvocation
+import org.eclipse.jdt.core.dom.SimpleType
+import org.eclipse.jdt.core.dom.VariableDeclarationStatement
+import org.eclipse.jdt.core.dom.ASTNode
+import org.eclipse.jdt.core.dom.Name
+import java.util.Map
 
 class AspectRenamer {
 	
@@ -46,14 +59,14 @@ class AspectRenamer {
 		val aspectNamespace = roots.findFirst[elementName == "src-gen"].getPackageFragment(targetAspectNamespace.toString)
 		
 		val cu = aspectNamespace.getCompilationUnit(fileName1)
-		applyRenaming(cu, new RenamerVisitor)
+		applyRenaming(cu, new RenamerVisitor(classRenaming,packageRenaming))
 	}
 	
 	/**
 	 * Visit {@link sourceUnit} with {@link renamer} and apply changes in
 	 * the corresponding textual file
 	 */
-	private def void applyRenaming(ICompilationUnit sourceUnit, ASTVisitor renamer){
+	private def void applyRenaming(ICompilationUnit sourceUnit, RenamerVisitor renamer){
 		
 		// textual document
 		val String source = sourceUnit.getSource();
@@ -85,14 +98,104 @@ class AspectRenamer {
 }
 
 class RenamerVisitor extends ASTVisitor{
-	//TODO
+	
+	List<Pair<String,String>> classRules
+	List<Pair<String,String>> packageRules
+	
+	Map<ImportDeclaration,Name> newImportsNames
+	Map<SimpleType,Name> newSimpleTypesNames
+	
+	new(List<Pair<String,String>> classRenaming, List<Pair<String,String>> packageRenaming) {
+		classRules = classRenaming
+		packageRules = packageRenaming
+		
+		newImportsNames = newHashMap
+		newSimpleTypesNames = newHashMap
+	}
 	
 	override visit(ImportDeclaration node) {
 		
-		val newName = node.AST.newSimpleName("XXXXXXXXXX")
-		node.name = newName
+		val rule = packageRules.findFirst[key == node.name]
+		if(rule != null){
+			val newName = node.AST.newSimpleName(rule.value)
+			newImportsNames.put(node,newName)
+		}
+		else{
+			val pack = node.name.toString.substring(0,node.name.toString.lastIndexOf("."))
+			val rule2 = packageRules.findFirst[key == pack]
+			if(rule2 != null){
+				
+				val simpleNames = rule2.value.split("\\.").map[node.AST.newSimpleName(it)]
+				var Name currentName =  simpleNames.get(0)
+				for(var int i = 1; i<simpleNames.size; i++){
+					currentName = node.AST.newQualifiedName(currentName,simpleNames.get(i))
+				}
+				
+				val clazz = node.name.toString.substring(node.name.toString.lastIndexOf(".")+1)
+				val classRule = classRules.findFirst[clRule |
+						clRule.key.endsWith(clazz) &&
+						clRule.key.substring(0,clRule.key.lastIndexOf(".")) == pack
+					]
+				val clazzName = node.AST.newSimpleName(classRule.value.substring(classRule.value.lastIndexOf(".")+1))
+				
+				val newName = node.AST.newQualifiedName(currentName,clazzName)
+				newImportsNames.put(node,newName)
+			}
+		}
 		
 		super.visit(node)
 	}
 	
+	override visit(SimpleType node) {
+		
+		val typeName = node.name
+		
+		val rule = classRules.findFirst[key == typeName]
+		if(rule != null){
+			//typeName is qualified
+			val newName = node.AST.newSimpleName(rule.value)
+			newSimpleTypesNames.put(node,newName)
+		}
+		else{
+			//typeName is not qualified
+			val importDecl = (node.root as CompilationUnit).imports.map[(it as ImportDeclaration).name]
+			val candidatesRule = classRules.filter[key.endsWith(typeName.toString)]
+			
+			candidatesRule.forEach[candidateRule |
+				if(candidateRule != null){
+					//Check type is imported
+					if(importDecl.exists[it.fullyQualifiedName == candidateRule.key]){
+						val toName = candidateRule.value.substring(candidateRule.value.lastIndexOf(".")+1)
+						val newName = node.AST.newSimpleName(toName)
+						newSimpleTypesNames.put(node,newName)
+					}
+					//Check type's package is imported
+					else{
+						val candidatePackage = candidateRule.key.substring(0, candidateRule.key.lastIndexOf("."))
+						if(importDecl.exists[it.fullyQualifiedName == candidatePackage+".*"]){
+							val toName = candidateRule.value.substring(candidateRule.value.lastIndexOf(".")+1)
+							val newName = node.AST.newSimpleName(toName)
+							newSimpleTypesNames.put(node,newName)
+						}
+					}
+				}
+			]
+		}
+		
+		super.visit(node)
+	}
+	
+	override postVisit(ASTNode node) {
+		if(node instanceof CompilationUnit){
+			println("apply")
+			newImportsNames.entrySet.forEach[entry|
+				entry.key.name = entry.value
+			]
+			newSimpleTypesNames.entrySet.forEach[entry|
+				entry.key.name = entry.value
+			]
+		}
+		
+		super.postVisit(node)
+	}
 }
