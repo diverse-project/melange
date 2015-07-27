@@ -162,7 +162,8 @@ class RenamerVisitor extends ASTVisitor{
 				newSimpleTypesNames.put(node,newName)	
 			}
 			else if(typeName instanceof QualifiedName){
-				//TODO
+				val newName = node.AST.toName(rule.value)
+				newSimpleTypesNames.put(node,newName)	
 			}
 		}
 		
