@@ -58,8 +58,13 @@ class AspectRenamer {
 		val roots = javaProject.allPackageFragmentRoots
 		val aspectNamespace = roots.findFirst[elementName == "src-gen"].getPackageFragment(targetAspectNamespace.toString)
 		
-		val cu = aspectNamespace.getCompilationUnit(fileName1)
-		applyRenaming(cu, new RenamerVisitor(classRenaming,packageRenaming))
+		val cu1 = aspectNamespace.getCompilationUnit(fileName1)
+		val cu2 = aspectNamespace.getCompilationUnit(fileName2)
+		val cu3 = aspectNamespace.getCompilationUnit(fileName3)
+		
+		applyRenaming(cu1, new RenamerVisitor(classRenaming,packageRenaming))
+		applyRenaming(cu2, new RenamerVisitor(classRenaming,packageRenaming))
+		applyRenaming(cu3, new RenamerVisitor(classRenaming,packageRenaming))
 	}
 	
 	/**
