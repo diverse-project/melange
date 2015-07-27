@@ -35,6 +35,18 @@ import org.eclipse.jdt.core.dom.Name
 import java.util.Map
 import org.eclipse.jdt.core.dom.SimpleName
 import org.eclipse.jdt.core.dom.QualifiedName
+import org.eclipse.jdt.core.dom.Expression
+import org.eclipse.jdt.core.dom.Statement
+import org.eclipse.jdt.core.dom.MethodDeclaration
+import org.eclipse.jdt.core.dom.VariableDeclarationFragment
+import org.eclipse.jdt.core.dom.NameQualifiedType
+import org.eclipse.jdt.core.dom.QualifiedType
+import org.eclipse.jdt.core.dom.SingleVariableDeclaration
+import org.eclipse.jdt.core.dom.Block
+import org.eclipse.jdt.core.dom.EnhancedForStatement
+import org.eclipse.jdt.core.dom.ForStatement
+import org.eclipse.jdt.core.dom.SwitchStatement
+import org.eclipse.jdt.core.dom.VariableDeclarationExpression
 
 class AspectRenamer {
 	
@@ -42,7 +54,7 @@ class AspectRenamer {
 	@Inject extension AspectExtensions
 	@Inject extension LanguageExtensions
 	
-	def void processRenaming(Aspect asp, Language l, List<Pair<String,String>> classRenaming, List<Pair<String,String>> packageRenaming){
+	def void processRenaming(Aspect asp, Language l, List<Pair<String,String>> classRenaming, List<Pair<String,String>> packageRenaming, List<Pair<String,String>> propertiesRenaming){
 		val targetClass = asp.aspectAnnotationValue
 		val fileName1 = targetClass+"Aspect.java"
 		val fileName2 = targetClass+"Aspect"+targetClass+"AspectContext.java"
@@ -64,9 +76,9 @@ class AspectRenamer {
 		val cu2 = aspectNamespace.getCompilationUnit(fileName2)
 		val cu3 = aspectNamespace.getCompilationUnit(fileName3)
 		
-		applyRenaming(cu1, new RenamerVisitor(classRenaming,packageRenaming))
-		applyRenaming(cu2, new RenamerVisitor(classRenaming,packageRenaming))
-		applyRenaming(cu3, new RenamerVisitor(classRenaming,packageRenaming))
+		applyRenaming(cu1, new RenamerVisitor(classRenaming,packageRenaming,propertiesRenaming))
+		applyRenaming(cu2, new RenamerVisitor(classRenaming,packageRenaming,propertiesRenaming))
+		applyRenaming(cu3, new RenamerVisitor(classRenaming,packageRenaming,propertiesRenaming))
 	}
 	
 	/**
@@ -108,13 +120,15 @@ class RenamerVisitor extends ASTVisitor{
 	
 	List<Pair<String,String>> classRules
 	List<Pair<String,String>> packageRules
+	List<Pair<String,String>> propertiesRules
 	
 	Map<ImportDeclaration,Name> newImportsNames
 	Map<SimpleType,Name> newSimpleTypesNames
 	
-	new(List<Pair<String,String>> classRenaming, List<Pair<String,String>> packageRenaming) {
+	new(List<Pair<String,String>> classRenaming, List<Pair<String,String>> packageRenaming, List<Pair<String,String>> propertiesRenaming) {
 		classRules = classRenaming
 		packageRules = packageRenaming
+		propertiesRules = propertiesRenaming
 		
 		newImportsNames = newHashMap
 		newSimpleTypesNames = newHashMap
@@ -172,6 +186,30 @@ class RenamerVisitor extends ASTVisitor{
 	
 	override visit(MethodInvocation node) {
 		
+		//Match name
+		val name = node.name
+		val candidateRules = propertiesRules.filter[key.lastPart == name]
+		
+		//Match parameters
+		
+		//Match return type
+		
+		//Match invocator
+		val exp = node.expression
+		if(exp instanceof Name){
+			val invokerName = exp as Name
+			val type = getType(invokerName)
+			//TODO: check import & renaming
+			
+		}
+		else if(exp instanceof CastExpression){
+			val type = (exp as CastExpression).type
+			val typeName = type.qualifiedType
+		}
+		else{
+			//FIXME: should check other kind of expression
+		}
+
 		super.visit(node)
 	}
 	
@@ -194,10 +232,150 @@ class RenamerVisitor extends ASTVisitor{
 	 * Return null if can't find any declaration
 	 */
 	def String getType(Name variable){
-		//TODO
-		//1- variables decl
-		//2- method's paramters
-		//3- class field
+		return getType(variable,variable.parent)		
+	}
+	
+	/**
+	 * Search if {@link container} (or its parents) defines {@link variable} and return
+	 * the corresponding type.
+	 * 
+	 * Return null if not found
+	 */
+	def String getType(Name variable, ASTNode container){
+		
+		if(container == null){
+			
+			return null
+		}
+		else if(container instanceof Expression){
+			
+			return getType(variable, container.parent)
+		}
+		else if(container instanceof Statement){
+			
+			if(container instanceof Block){
+				val block = container as Block 
+				val varDef = block.statements.filter(VariableDeclarationStatement).findFirst[varDecl |
+						varDecl.fragments.exists[va | (va as VariableDeclarationFragment).name == variable]
+					]
+				if(varDef.startPosition < variable.startPosition){//check the varDef is before 
+					if(varDef != null){
+						val type = varDef.type
+						if(type instanceof NameQualifiedType){
+							return (type as NameQualifiedType).name.toString
+						}
+						else if(type instanceof QualifiedType){
+							return (type as QualifiedType).name.toString
+						}
+						else if(type instanceof SimpleType){
+							return (type as SimpleType).name.toString
+						}
+					}
+				}
+			}
+			else if(container instanceof EnhancedForStatement){
+				val forLoop = container as EnhancedForStatement
+				if(forLoop.parameter.name == variable){
+					val type = forLoop.parameter.type
+					if(type instanceof NameQualifiedType){
+						return (type as NameQualifiedType).name.toString
+					}
+					else if(type instanceof QualifiedType){
+						return (type as QualifiedType).name.toString
+					}
+					else if(type instanceof SimpleType){
+						return (type as SimpleType).name.toString
+					}
+				}
+				
+			}
+			else if(container instanceof ForStatement){
+				val forLoop = container as ForStatement
+				val initDecl = forLoop.initializers.filter(VariableDeclarationExpression).findFirst[varDecl |
+						varDecl.fragments.exists[va | (va as VariableDeclarationFragment).name == variable]
+					]
+				if(initDecl != null){
+					val type = initDecl.type
+					if(type instanceof NameQualifiedType){
+						return (type as NameQualifiedType).name.toString
+					}
+					else if(type instanceof QualifiedType){
+						return (type as QualifiedType).name.toString
+					}
+					else if(type instanceof SimpleType){
+						return (type as SimpleType).name.toString
+					}
+				}
+				
+			}
+			
+			//		AssertStatement,
+			//	    BreakStatement,
+			//	    ConstructorInvocation,
+			//	    ContinueStatement,
+			//	    EmptyStatement,
+			//	    ExpressionStatement,
+			//	    IfStatement,
+			//	    LabeledStatement,
+			//	    ReturnStatement,
+			//	    SuperConstructorInvocation,
+			//	    SwitchCase,
+			//	    SynchronizedStatement,
+			//	    ThrowStatement,
+			//	    TryStatement,
+			//	    TypeDeclarationStatement,
+			//	    VariableDeclarationStatement,
+			//	    WhileStatement
+			//	    SwitchStatement, -> param
+			return getType(variable, container.parent)
+		}
+		else if(container instanceof MethodDeclaration){
+			
+			val method = container as MethodDeclaration
+			
+			val param = method.parameters.findFirst[paramDecl |	(paramDecl as SingleVariableDeclaration).name == variable]
+			
+			if(param != null){
+				val type = (param as SingleVariableDeclaration).type
+				if(type instanceof NameQualifiedType){
+					return (type as NameQualifiedType).name.toString
+				}
+				else if(type instanceof QualifiedType){
+					return (type as QualifiedType).name.toString
+				}
+				else if(type instanceof SimpleType){
+					return (type as SimpleType).name.toString
+				}
+			}
+			
+			return getType(variable, container.parent)
+		}
+		else if(container instanceof TypeDeclaration){
+			
+			val typeDef = container as TypeDeclaration
+			
+			val fieldDef = typeDef.fields.findFirst[fieldDecl | 
+					val fragments = fieldDecl.fragments
+					fragments.exists[field | (field as VariableDeclarationFragment).name == variable]
+				]
+				
+			if(fieldDef != null){
+				val type = fieldDef.type
+				if(type instanceof NameQualifiedType){
+					return (type as NameQualifiedType).name.toString
+				}
+				else if(type instanceof QualifiedType){
+					return (type as QualifiedType).name.toString
+				}
+				else if(type instanceof SimpleType){
+					return (type as SimpleType).name.toString
+				}
+			}
+			
+			return getType(variable, container.parent)
+		}
+		
+		return getType(variable, container.parent)
 	}
 	
 	/**
