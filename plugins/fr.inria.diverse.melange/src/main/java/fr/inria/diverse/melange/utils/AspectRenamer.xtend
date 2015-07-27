@@ -71,7 +71,7 @@ class AspectRenamer {
 	 * Visit {@link sourceUnit} with {@link renamer} and apply changes in
 	 * the corresponding textual file
 	 */
-	private def void applyRenaming(ICompilationUnit sourceUnit, RenamerVisitor renamer){
+	private def void applyRenaming(ICompilationUnit sourceUnit, ASTVisitor renamer){
 		
 		// textual document
 		val String source = sourceUnit.getSource();
@@ -80,7 +80,7 @@ class AspectRenamer {
 		// get the AST
 		val ASTParser parser = ASTParser.newParser(AST.JLS8)
 		parser.setSource(sourceUnit)
-		parser.setResolveBindings(true)
+//		parser.setResolveBindings(true) --not working
 		val astRoot = parser.createAST(null) as CompilationUnit
 		
 		// start record of the modifications
@@ -155,44 +155,24 @@ class RenamerVisitor extends ASTVisitor{
 		
 		val typeName = node.name
 		
-		val rule = classRules.findFirst[key == typeName]
+		//TODO: typeName can be a QualifiedName
+		val rule = typeName.getClassRule()
 		if(rule != null){
-			//typeName is qualified
-			val newName = node.AST.newSimpleName(rule.value)
+			val toName = rule.value.lastPart
+			val newName = node.AST.newSimpleName(toName)
 			newSimpleTypesNames.put(node,newName)
-		}
-		else{
-			//typeName is not qualified
-			val importDecl = (node.root as CompilationUnit).imports.map[(it as ImportDeclaration).name]
-			val candidatesRule = classRules.filter[key.endsWith(typeName.toString)]
-			
-			candidatesRule.forEach[candidateRule |
-				if(candidateRule != null){
-					//Check type is imported
-					if(importDecl.exists[it.fullyQualifiedName == candidateRule.key]){
-						val toName = candidateRule.value.substring(candidateRule.value.lastIndexOf(".")+1)
-						val newName = node.AST.newSimpleName(toName)
-						newSimpleTypesNames.put(node,newName)
-					}
-					//Check type's package is imported
-					else{
-						val candidatePackage = candidateRule.key.substring(0, candidateRule.key.lastIndexOf("."))
-						if(importDecl.exists[it.fullyQualifiedName == candidatePackage+".*"]){
-							val toName = candidateRule.value.substring(candidateRule.value.lastIndexOf(".")+1)
-							val newName = node.AST.newSimpleName(toName)
-							newSimpleTypesNames.put(node,newName)
-						}
-					}
-				}
-			]
 		}
 		
 		super.visit(node)
 	}
 	
+	override visit(MethodInvocation node) {
+
+		super.visit(node)
+	}
+	
 	override postVisit(ASTNode node) {
 		if(node instanceof CompilationUnit){
-			println("apply")
 			newImportsNames.entrySet.forEach[entry|
 				entry.key.name = entry.value
 			]
@@ -202,5 +182,68 @@ class RenamerVisitor extends ASTVisitor{
 		}
 		
 		super.postVisit(node)
+	}
+	
+	
+	/**
+	 * Return the type in the declaration of {@link variable}.
+	 * Return null if can't find any declaration
+	 */
+	def String getType(Name variable){
+		//TODO
+		//1- variables decl
+		//2- method's paramters
+		//3- class field
+	}
+	
+	/**
+	 * Return the substring after the last '.' 
+	 */
+	def String getLastPart(String qualifiedName){
+		return qualifiedName.substring(qualifiedName.lastIndexOf(".")+1)
+	}
+	
+	/**
+	 * Return the substring before the last '.'
+	 */
+	def String getQualifierPart(String qualifiedName){
+		return qualifiedName.substring(0,qualifiedName.lastIndexOf("."))
+	}
+	
+	/**
+	 * Return a ClassRule for {@link type}.
+	 * Return null if {@link type} is not renamed.
+	 */
+	def Pair<String,String> getClassRule(Name type){
+		
+		var Pair<String,String> res = null 
+		
+		val typeName = type.toString
+		
+		val rule = classRules.findFirst[key == typeName]
+		if(rule != null){
+			//typeName is qualified
+			return rule
+		}
+		else{
+			//typeName is not qualified
+			val importDecl = (type.root as CompilationUnit).imports.map[(it as ImportDeclaration).name]
+			val candidatesRule = classRules.filter[key.lastPart == typeName]
+
+			res = candidatesRule?.findFirst[candidateRule |
+					//Check type is imported
+					if(importDecl.exists[it.fullyQualifiedName == candidateRule.key]){
+						true
+					}
+					//Check type's package is imported
+					else{
+						val candidatePackage = candidateRule.key.qualifierPart
+						if(importDecl.exists[it.fullyQualifiedName == candidatePackage+".*"]){
+							true
+						}
+					}
+				]
+		}
+		return res
 	}
 }
