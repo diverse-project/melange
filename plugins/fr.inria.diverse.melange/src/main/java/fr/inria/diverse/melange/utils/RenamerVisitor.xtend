@@ -72,7 +72,13 @@ class RenamerVisitor extends ASTVisitor{
 						clRule.key.lastPart == clazz &&
 						clRule.key.qualifierPart == pack
 					]
-				val clazzName = node.AST.newSimpleName(classRule.value.lastPart)
+				val clazzName = 
+					if(classRule != null){
+						node.AST.newSimpleName(classRule.value.lastPart)
+					}
+					else{
+						node.AST.newSimpleName(clazz)
+					}
 				
 				val newName = node.AST.newQualifiedName(packageName,clazzName)
 				newImportsNames.put(node,newName)
