@@ -47,6 +47,8 @@ import org.eclipse.jdt.core.dom.EnhancedForStatement
 import org.eclipse.jdt.core.dom.ForStatement
 import org.eclipse.jdt.core.dom.SwitchStatement
 import org.eclipse.jdt.core.dom.VariableDeclarationExpression
+import org.eclipse.jdt.core.dom.NormalAnnotation
+import org.eclipse.jdt.core.dom.MemberValuePair
 
 class AspectRenamer {
 	
@@ -125,6 +127,7 @@ class RenamerVisitor extends ASTVisitor{
 	Map<ImportDeclaration,Name> newImportsNames
 	Map<SimpleType,Name> newSimpleTypesNames
 	Map<MethodInvocation,SimpleName> newMethodNames
+	Map<MethodDeclaration,SimpleName> newMethodDeclNames
 	
 	new(List<Pair<String,String>> classRenaming, List<Pair<String,String>> packageRenaming, List<Pair<String,String>> propertiesRenaming) {
 		classRules = classRenaming
@@ -134,6 +137,7 @@ class RenamerVisitor extends ASTVisitor{
 		newImportsNames = newHashMap
 		newSimpleTypesNames = newHashMap
 		newMethodNames = newHashMap
+		newMethodDeclNames = newHashMap 
 	}
 	
 	override visit(ImportDeclaration node) {
@@ -230,6 +234,36 @@ class RenamerVisitor extends ASTVisitor{
 		super.visit(node)
 	}
 	
+	override visit(MethodDeclaration node) {
+		
+		val methodName = node.name.toString
+		val candidateRules = propertiesRules.filter[rule | rule.key.lastPart == methodName]
+		
+		val container = node.parent
+		if(container instanceof TypeDeclaration){
+			val clazz = container as TypeDeclaration
+			val aspectAnnot = clazz.modifiers().filter(NormalAnnotation).findFirst[typeName.toString == "Aspect"]
+			if(aspectAnnot != null){
+				val aspectedClazz = (aspectAnnot.values.get(0) as MemberValuePair).value.toString.qualifierPart
+				val rule = candidateRules.findFirst[rule | 
+					val candidateClazz = rule.key.qualifierPart
+					candidateClazz.lastPart == aspectedClazz &&
+					isImported(node.root as CompilationUnit,candidateClazz)
+				]
+				if(rule != null){
+					val newName = rule.value.lastPart
+					newMethodDeclNames.put(node, node.AST.newSimpleName(newName))
+				}
+			}
+		}
+//		boolean needRenaming = isProperty(MethodDeclaration method, )
+		
+		super.visit(node)
+	}
+	
+	/**
+	 * Update the AST after all visits
+	 */
 	override postVisit(ASTNode node) {
 		if(node instanceof CompilationUnit){
 			newImportsNames.entrySet.forEach[entry|
@@ -239,6 +273,9 @@ class RenamerVisitor extends ASTVisitor{
 				entry.key.name = entry.value
 			]
 			newMethodNames.entrySet.forEach[entry|
+				entry.key.name = entry.value
+			]
+			newMethodDeclNames.entrySet.forEach[entry|
 				entry.key.name = entry.value
 			]
 		}
