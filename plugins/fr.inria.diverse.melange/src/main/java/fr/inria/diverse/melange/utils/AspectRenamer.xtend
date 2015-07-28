@@ -124,6 +124,7 @@ class RenamerVisitor extends ASTVisitor{
 	
 	Map<ImportDeclaration,Name> newImportsNames
 	Map<SimpleType,Name> newSimpleTypesNames
+	Map<MethodInvocation,SimpleName> newMethodNames
 	
 	new(List<Pair<String,String>> classRenaming, List<Pair<String,String>> packageRenaming, List<Pair<String,String>> propertiesRenaming) {
 		classRules = classRenaming
@@ -132,6 +133,7 @@ class RenamerVisitor extends ASTVisitor{
 		
 		newImportsNames = newHashMap
 		newSimpleTypesNames = newHashMap
+		newMethodNames = newHashMap
 	}
 	
 	override visit(ImportDeclaration node) {
@@ -187,8 +189,10 @@ class RenamerVisitor extends ASTVisitor{
 	override visit(MethodInvocation node) {
 		
 		//Match name
-		val name = node.name
-		val candidateRules = propertiesRules.filter[key.lastPart == name]
+		val methodName = node.name
+		val candidateRules = propertiesRules.filter["get"+key.lastPart.toLowerCase == methodName ||
+				"set"+key.lastPart.toLowerCase == methodName
+			]
 		
 		//Match parameters
 		
@@ -198,13 +202,26 @@ class RenamerVisitor extends ASTVisitor{
 		val exp = node.expression
 		if(exp instanceof Name){
 			val invokerName = exp as Name
-			val type = getType(invokerName)
-			//TODO: check import & renaming
-			
+			val typeName = getType(invokerName)
+			val targetedRules = candidateRules.filter[rule |
+					rule.key.qualifierPart == typeName ||
+					rule.key.qualifierPart.lastPart == typeName
+				]
+			val importedRule = targetedRules.findFirst[rule | 
+												val clazz = rule.key.qualifierPart
+												return isImported(methodName.root as CompilationUnit,clazz)
+											]
+			if(importedRule != null){
+				//Rename
+				val prefix = methodName.toString.substring(0,3) //'get' or 'set'
+				val newName = prefix + importedRule.value.lastPart.toFirstUpper
+				newMethodNames.put(node,node.AST.newSimpleName(newName))
+			}
 		}
 		else if(exp instanceof CastExpression){
 			val type = (exp as CastExpression).type
 			val typeName = type.qualifiedType
+			//TODO
 		}
 		else{
 			//FIXME: should check other kind of expression
@@ -219,6 +236,9 @@ class RenamerVisitor extends ASTVisitor{
 				entry.key.name = entry.value
 			]
 			newSimpleTypesNames.entrySet.forEach[entry|
+				entry.key.name = entry.value
+			]
+			newMethodNames.entrySet.forEach[entry|
 				entry.key.name = entry.value
 			]
 		}
@@ -442,5 +462,24 @@ class RenamerVisitor extends ASTVisitor{
 		}
 		
 		return currentName
+	}
+	
+	/**
+	 * Return true if the qualified class {@link candidateImport} is imported
+	 */
+	def boolean isImported(CompilationUnit root, String candidateImport){
+		val importDecl = root.imports.map[(it as ImportDeclaration).name]
+		//Check type is imported
+		if(importDecl.exists[it.fullyQualifiedName == candidateImport]){
+			return true
+		}
+		//Check type's package is imported
+		else{
+			val candidatePackage = candidateImport.qualifierPart
+			if(importDecl.exists[it.fullyQualifiedName == candidatePackage+".*"]){
+				return true
+			}
+		}
+		return false
 	}
 }
