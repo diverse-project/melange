@@ -190,8 +190,8 @@ class RenamerVisitor extends ASTVisitor{
 		
 		//Match name
 		val methodName = node.name
-		val candidateRules = propertiesRules.filter["get"+key.lastPart.toLowerCase == methodName ||
-				"set"+key.lastPart.toLowerCase == methodName
+		val candidateRules = propertiesRules.filter["get"+key.lastPart.toFirstUpper == methodName.toString ||
+				"set"+key.lastPart.toFirstUpper == methodName.toString
 			]
 		
 		//Match parameters
@@ -276,9 +276,9 @@ class RenamerVisitor extends ASTVisitor{
 			if(container instanceof Block){
 				val block = container as Block 
 				val varDef = block.statements.filter(VariableDeclarationStatement).findFirst[varDecl |
-						varDecl.fragments.exists[va | (va as VariableDeclarationFragment).name == variable]
+						varDecl.fragments.exists[va | (va as VariableDeclarationFragment).name.toString == variable.toString]
 					]
-				if(varDef.startPosition < variable.startPosition){//check the varDef is before 
+				if(varDef != null && varDef.startPosition < variable.startPosition){//check the varDef is before 
 					if(varDef != null){
 						val type = varDef.type
 						if(type instanceof NameQualifiedType){
@@ -312,7 +312,7 @@ class RenamerVisitor extends ASTVisitor{
 			else if(container instanceof ForStatement){
 				val forLoop = container as ForStatement
 				val initDecl = forLoop.initializers.filter(VariableDeclarationExpression).findFirst[varDecl |
-						varDecl.fragments.exists[va | (va as VariableDeclarationFragment).name == variable]
+						varDecl.fragments.exists[va | (va as VariableDeclarationFragment).name.toString == variable.toString]
 					]
 				if(initDecl != null){
 					val type = initDecl.type
@@ -353,7 +353,7 @@ class RenamerVisitor extends ASTVisitor{
 			
 			val method = container as MethodDeclaration
 			
-			val param = method.parameters.findFirst[paramDecl |	(paramDecl as SingleVariableDeclaration).name == variable]
+			val param = method.parameters.findFirst[paramDecl |	(paramDecl as SingleVariableDeclaration).name.toString == variable.toString]
 			
 			if(param != null){
 				val type = (param as SingleVariableDeclaration).type
@@ -376,7 +376,7 @@ class RenamerVisitor extends ASTVisitor{
 			
 			val fieldDef = typeDef.fields.findFirst[fieldDecl | 
 					val fragments = fieldDecl.fragments
-					fragments.exists[field | (field as VariableDeclarationFragment).name == variable]
+					fragments.exists[field | (field as VariableDeclarationFragment).name.toString == variable.toString]
 				]
 				
 			if(fieldDef != null){
