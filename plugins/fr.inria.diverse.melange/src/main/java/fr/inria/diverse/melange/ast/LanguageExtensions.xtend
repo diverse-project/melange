@@ -10,9 +10,10 @@ import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.MelangeFactory
 import fr.inria.diverse.melange.metamodel.melange.Merge
 import fr.inria.diverse.melange.metamodel.melange.ModelType
+import fr.inria.diverse.melange.metamodel.melange.PackageBinding
 import fr.inria.diverse.melange.metamodel.melange.Slice
-import fr.inria.diverse.melange.metamodel.melange.Weave
 import fr.inria.diverse.melange.utils.AspectCopier
+import fr.inria.diverse.melange.utils.AspectRenamer
 import java.util.List
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EClass
@@ -20,24 +21,6 @@ import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
-import fr.inria.diverse.melange.metamodel.melange.PackageBinding
-import fr.inria.diverse.melange.metamodel.melange.Operator
-import org.eclipse.core.resources.IWorkspace
-import org.eclipse.core.resources.ResourcesPlugin
-import org.eclipse.core.resources.IProject
-import org.eclipse.core.resources.IWorkspaceRoot
-import org.eclipse.jdt.core.JavaCore
-import org.eclipse.jdt.core.IClasspathEntry
-import org.eclipse.core.runtime.Path
-import org.eclipse.jdt.core.dom.ASTParser
-import org.eclipse.jdt.core.dom.AST
-import org.eclipse.jdt.core.dom.CompilationUnit
-import org.eclipse.jdt.core.dom.ASTVisitor
-import org.eclipse.jdt.core.dom.ImportDeclaration
-import org.eclipse.text.edits.TextEdit
-import org.eclipse.jface.text.Document
-import org.eclipse.jdt.core.dom.Name
-import fr.inria.diverse.melange.utils.AspectRenamer
 
 class LanguageExtensions
 {
@@ -299,8 +282,9 @@ class LanguageExtensions
 						]
 						res += simpleCopyAsp(l,aspects,classesAlreadyWeaved,classRules)
 						
+						val propertiesAspectRules = renamer.getRenamedAspectMethod(aspects,propertiesRules)
 						aspects.forEach[asp |
-							renamer.processRenaming(asp,l,classRules,packageRules,propertiesRules)
+							renamer.processRenaming(asp,l,classRules,packageRules,propertiesRules,propertiesAspectRules)
 						]
 					}
 					else{

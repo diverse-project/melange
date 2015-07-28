@@ -28,22 +28,25 @@ import org.eclipse.jdt.core.dom.SingleVariableDeclaration
 import org.eclipse.jdt.core.dom.ForStatement
 import org.eclipse.jdt.core.dom.VariableDeclarationExpression
 import org.eclipse.jdt.core.dom.AST
+import com.google.common.collect.SetMultimap
 
 class RenamerVisitor extends ASTVisitor{
 	
 	List<Pair<String,String>> classRules
 	List<Pair<String,String>> packageRules
 	List<Pair<String,String>> propertiesRules
+	SetMultimap<String,Pair<String,String>> propertiesAspectRules
 	
 	Map<ImportDeclaration,Name> newImportsNames
 	Map<SimpleType,Name> newSimpleTypesNames
 	Map<MethodInvocation,SimpleName> newMethodNames
 	Map<MethodDeclaration,SimpleName> newMethodDeclNames
 	
-	new(List<Pair<String,String>> classRenaming, List<Pair<String,String>> packageRenaming, List<Pair<String,String>> propertiesRenaming) {
+	new(List<Pair<String,String>> classRenaming, List<Pair<String,String>> packageRenaming, List<Pair<String,String>> propertiesRenaming, SetMultimap<String,Pair<String,String>> propertiesAspectRenaming) {
 		classRules = classRenaming
 		packageRules = packageRenaming
 		propertiesRules = propertiesRenaming
+		propertiesAspectRules = propertiesAspectRenaming
 		
 		newImportsNames = newHashMap
 		newSimpleTypesNames = newHashMap
@@ -117,20 +120,31 @@ class RenamerVisitor extends ASTVisitor{
 		val exp = node.expression
 		if(exp instanceof Name){
 			val invokerName = exp as Name
-			val typeName = getType(invokerName)
-			val targetedRules = candidateRules.filter[rule |
-					rule.key.qualifierPart == typeName ||
-					rule.key.qualifierPart.lastPart == typeName
-				]
-			val importedRule = targetedRules.findFirst[rule | 
-												val clazz = rule.key.qualifierPart
-												return isImported(methodName.root as CompilationUnit,clazz)
-											]
-			if(importedRule != null){
-				//Rename
-				val prefix = methodName.toString.substring(0,3) //'get' or 'set'
-				val newName = prefix + importedRule.value.lastPart.toFirstUpper
-				newMethodNames.put(node,node.AST.newSimpleName(newName))
+			
+			val aspectEntry = propertiesAspectRules.get(invokerName.toString)
+			if(!aspectEntry.isNullOrEmpty){ //Aspect's method calls
+				val rule = aspectEntry.findFirst[rule | rule.key.lastPart == methodName.toString]
+				if(rule != null){
+					val newName = rule.value.lastPart
+					newMethodNames.put(node,node.AST.newSimpleName(newName))
+				}
+			}
+			else{ //other calls
+				val typeName = getType(invokerName)
+				val targetedRules = candidateRules.filter[rule |
+						rule.key.qualifierPart == typeName ||
+						rule.key.qualifierPart.lastPart == typeName
+					]
+				val importedRule = targetedRules.findFirst[rule | 
+													val clazz = rule.key.qualifierPart
+													return isImported(methodName.root as CompilationUnit,clazz)
+												]
+				if(importedRule != null){
+					//Rename
+					val prefix = methodName.toString.substring(0,3) //'get' or 'set'
+					val newName = prefix + importedRule.value.lastPart.toFirstUpper
+					newMethodNames.put(node,node.AST.newSimpleName(newName))
+				}
 			}
 		}
 		else if(exp instanceof CastExpression){

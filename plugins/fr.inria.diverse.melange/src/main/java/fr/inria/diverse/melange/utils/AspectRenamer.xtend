@@ -19,6 +19,13 @@ import org.eclipse.jdt.core.dom.CompilationUnit
 import org.eclipse.jface.text.Document
 import org.eclipse.text.edits.TextEdit
 import org.eclipse.xtext.naming.IQualifiedNameConverter
+import com.google.common.collect.Multimap
+import com.google.common.collect.ArrayListMultimap
+import com.google.common.collect.ListMultimap
+import org.eclipse.xtext.common.types.JvmGenericType
+import org.eclipse.xtext.common.types.JvmOperation
+import com.google.common.collect.SetMultimap
+import com.google.common.collect.HashMultimap
 
 class AspectRenamer {
 	
@@ -26,7 +33,7 @@ class AspectRenamer {
 	@Inject extension AspectExtensions
 	@Inject extension LanguageExtensions
 	
-	def void processRenaming(Aspect asp, Language l, List<Pair<String,String>> classRenaming, List<Pair<String,String>> packageRenaming, List<Pair<String,String>> propertiesRenaming){
+	def void processRenaming(Aspect asp, Language l, List<Pair<String,String>> classRenaming, List<Pair<String,String>> packageRenaming, List<Pair<String,String>> propertiesRenaming, SetMultimap<String,Pair<String,String>> propertiesAspectRenaming){
 		val targetClass = asp.aspectAnnotationValue
 		val fileName1 = targetClass+"Aspect.java"
 		val fileName2 = targetClass+"Aspect"+targetClass+"AspectContext.java"
@@ -48,9 +55,9 @@ class AspectRenamer {
 		val cu2 = aspectNamespace.getCompilationUnit(fileName2)
 		val cu3 = aspectNamespace.getCompilationUnit(fileName3)
 		
-		applyRenaming(cu1, new RenamerVisitor(classRenaming,packageRenaming,propertiesRenaming))
-		applyRenaming(cu2, new RenamerVisitor(classRenaming,packageRenaming,propertiesRenaming))
-		applyRenaming(cu3, new RenamerVisitor(classRenaming,packageRenaming,propertiesRenaming))
+		applyRenaming(cu1, new RenamerVisitor(classRenaming,packageRenaming,propertiesRenaming,propertiesAspectRenaming))
+		applyRenaming(cu2, new RenamerVisitor(classRenaming,packageRenaming,propertiesRenaming,propertiesAspectRenaming))
+		applyRenaming(cu3, new RenamerVisitor(classRenaming,packageRenaming,propertiesRenaming,propertiesAspectRenaming))
 	}
 	
 	/**
@@ -85,5 +92,27 @@ class AspectRenamer {
 	   	sourceUnit.getBuffer().setContents(newSource);
 	   	sourceUnit.getBuffer().save(null,true)
 		
+	}
+	
+	/**
+	 * Gather property renaming rules for each Aspect with matching methods 
+	 */
+	def SetMultimap<String,Pair<String,String>> getRenamedAspectMethod(List<Aspect> aspects, List<Pair<String,String>> propertiesRenaming){
+		val SetMultimap<String,Pair<String,String>> res = HashMultimap.create
+		
+		aspects.forEach[asp |
+			val targetClass = asp.aspectedClassFqName
+			
+			val type = asp.aspectTypeRef.type as JvmGenericType
+			type.members.filter(JvmOperation).forEach[op |
+				val name = op.simpleName
+				
+				val rule = propertiesRenaming.findFirst[rule | rule.key == targetClass+"."+name]
+				if(rule != null){
+					res.put(type.simpleName, rule)
+				}
+			]
+		]
+		return res
 	}
 }
