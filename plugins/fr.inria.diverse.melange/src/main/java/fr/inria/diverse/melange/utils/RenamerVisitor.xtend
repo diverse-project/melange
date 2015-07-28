@@ -56,15 +56,15 @@ class RenamerVisitor extends ASTVisitor{
 	
 	override visit(ImportDeclaration node) {
 		
-		val rule = packageRules.findFirst[key == node.name]
-		if(rule != null){
+		val rule = packageRules.findFirst[key+".*" == node.name]
+		if(rule != null){ //package import
 			val newName = node.AST.newSimpleName(rule.value)
 			newImportsNames.put(node,newName)
 		}
 		else{
 			val pack = node.name.toString.qualifierPart
 			val rule2 = packageRules.findFirst[key == pack]
-			if(rule2 != null){
+			if(rule2 != null){ //class import
 				val packageName = node.AST.toName(rule2.value)
 				
 				val clazz = node.name.toString.lastPart
@@ -82,6 +82,17 @@ class RenamerVisitor extends ASTVisitor{
 				
 				val newName = node.AST.newQualifiedName(packageName,clazzName)
 				newImportsNames.put(node,newName)
+			}
+			else{ //find rule for super package
+				val longestRule = packageRules.filter[isSubpackage(key,pack)].sortBy[key.length].last
+				if(longestRule != null){
+					val prefix = longestRule.value
+					val sufix = pack.substring(longestRule.key.length)
+					val packageName = node.AST.toName(prefix+sufix)
+					val clazzName = node.AST.newSimpleName(node.name.toString.lastPart)
+					val newName = node.AST.newQualifiedName(packageName,clazzName)
+					newImportsNames.put(node,newName)
+				}
 			}
 		}
 		
@@ -449,5 +460,15 @@ class RenamerVisitor extends ASTVisitor{
 			}
 		}
 		return false
+	}
+	
+	/**
+	 * Return true if {@link subpack} is a subpackage of {@link pack}
+	 */
+	def boolean isSubpackage(String pack, String subpack){
+		return
+			subpack.length > pack.length &&
+			subpack.startsWith(pack) &&
+			subpack.charAt(pack.length).toString == '.'
 	}
 }
