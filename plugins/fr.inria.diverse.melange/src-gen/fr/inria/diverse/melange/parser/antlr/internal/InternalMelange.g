@@ -1612,75 +1612,17 @@ ruleWeave returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getWeaveAccess().getAspectAspectParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getWeaveAccess().getAspectTypeRefJvmTypeReferenceParserRuleCall_1_0()); 
 	    }
-		lv_aspect_1_0=ruleAspect		{
+		lv_aspectTypeRef_1_0=ruleJvmTypeReference		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getWeaveRule());
 	        }
        		set(
        			$current, 
-       			"aspect",
-        		lv_aspect_1_0, 
-        		"Aspect");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))
-;
-
-
-
-
-
-// Entry rule entryRuleAspect
-entryRuleAspect returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getAspectRule()); }
-	 iv_ruleAspect=ruleAspect 
-	 { $current=$iv_ruleAspect.current; } 
-	 EOF 
-;
-
-// Rule Aspect
-ruleAspect returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-((
-(
-		{ 
-	        newCompositeNode(grammarAccess.getAspectAccess().getAspectTypeRefJvmTypeReferenceParserRuleCall_0_0()); 
-	    }
-		lv_aspectTypeRef_0_0=ruleJvmTypeReference		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getAspectRule());
-	        }
-       		set(
-       			$current, 
        			"aspectTypeRef",
-        		lv_aspectTypeRef_0_0, 
+        		lv_aspectTypeRef_1_0, 
         		"JvmTypeReference");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)
-    |(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getAspectAccess().getAspectWildcardImportQualifiedNameWithWildcardParserRuleCall_1_0()); 
-	    }
-		lv_aspectWildcardImport_1_0=ruleQualifiedNameWithWildcard		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getAspectRule());
-	        }
-       		set(
-       			$current, 
-       			"aspectWildcardImport",
-        		lv_aspectWildcardImport_1_0, 
-        		"QualifiedNameWithWildcard");
 	        afterParserOrEnumRuleCall();
 	    }
 

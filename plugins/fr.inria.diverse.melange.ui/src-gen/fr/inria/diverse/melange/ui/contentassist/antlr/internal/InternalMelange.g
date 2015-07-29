@@ -505,34 +505,6 @@ finally {
 
 
 
-// Entry rule entryRuleAspect
-entryRuleAspect 
-:
-{ before(grammarAccess.getAspectRule()); }
-	 ruleAspect
-{ after(grammarAccess.getAspectRule()); } 
-	 EOF 
-;
-
-// Rule Aspect
-ruleAspect
-    @init {
-		int stackSize = keepStackSize();
-    }
-	:
-(
-{ before(grammarAccess.getAspectAccess().getAlternatives()); }
-(rule__Aspect__Alternatives)
-{ after(grammarAccess.getAspectAccess().getAlternatives()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-
 // Entry rule entryRuleXExpression
 entryRuleXExpression 
 :
@@ -2796,28 +2768,6 @@ rule__Operator__Alternatives
 { before(grammarAccess.getOperatorAccess().getWeaveParserRuleCall_3()); }
 	ruleWeave
 { after(grammarAccess.getOperatorAccess().getWeaveParserRuleCall_3()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Aspect__Alternatives
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getAspectAccess().getAspectTypeRefAssignment_0()); }
-(rule__Aspect__AspectTypeRefAssignment_0)
-{ after(grammarAccess.getAspectAccess().getAspectTypeRefAssignment_0()); }
-)
-
-    |(
-{ before(grammarAccess.getAspectAccess().getAspectWildcardImportAssignment_1()); }
-(rule__Aspect__AspectWildcardImportAssignment_1)
-{ after(grammarAccess.getAspectAccess().getAspectWildcardImportAssignment_1()); }
 )
 
 ;
@@ -7864,9 +7814,9 @@ rule__Weave__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getWeaveAccess().getAspectAssignment_1()); }
-(rule__Weave__AspectAssignment_1)
-{ after(grammarAccess.getWeaveAccess().getAspectAssignment_1()); }
+{ before(grammarAccess.getWeaveAccess().getAspectTypeRefAssignment_1()); }
+(rule__Weave__AspectTypeRefAssignment_1)
+{ after(grammarAccess.getWeaveAccess().getAspectTypeRefAssignment_1()); }
 )
 
 ;
@@ -22393,44 +22343,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Weave__AspectAssignment_1
+rule__Weave__AspectTypeRefAssignment_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getWeaveAccess().getAspectAspectParserRuleCall_1_0()); }
-	ruleAspect{ after(grammarAccess.getWeaveAccess().getAspectAspectParserRuleCall_1_0()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Aspect__AspectTypeRefAssignment_0
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getAspectAccess().getAspectTypeRefJvmTypeReferenceParserRuleCall_0_0()); }
-	ruleJvmTypeReference{ after(grammarAccess.getAspectAccess().getAspectTypeRefJvmTypeReferenceParserRuleCall_0_0()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Aspect__AspectWildcardImportAssignment_1
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getAspectAccess().getAspectWildcardImportQualifiedNameWithWildcardParserRuleCall_1_0()); }
-	ruleQualifiedNameWithWildcard{ after(grammarAccess.getAspectAccess().getAspectWildcardImportQualifiedNameWithWildcardParserRuleCall_1_0()); }
+{ before(grammarAccess.getWeaveAccess().getAspectTypeRefJvmTypeReferenceParserRuleCall_1_0()); }
+	ruleJvmTypeReference{ after(grammarAccess.getWeaveAccess().getAspectTypeRefJvmTypeReferenceParserRuleCall_1_0()); }
 )
 
 ;

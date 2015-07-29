@@ -5,7 +5,6 @@ package fr.inria.diverse.melange.serializer;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-import fr.inria.diverse.melange.metamodel.melange.Aspect;
 import fr.inria.diverse.melange.metamodel.melange.ClassBinding;
 import fr.inria.diverse.melange.metamodel.melange.Import;
 import fr.inria.diverse.melange.metamodel.melange.Inheritance;
@@ -87,9 +86,6 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	@Override
 	public void createSequence(EObject context, EObject semanticObject) {
 		if(semanticObject.eClass().getEPackage() == MelangePackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
-			case MelangePackage.ASPECT:
-				sequence_Aspect(context, (Aspect) semanticObject); 
-				return; 
 			case MelangePackage.CLASS_BINDING:
 				sequence_ClassMapping(context, (ClassBinding) semanticObject); 
 				return; 
@@ -361,15 +357,6 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (aspectTypeRef=JvmTypeReference | aspectWildcardImport=QualifiedNameWithWildcard)
-	 */
-	protected void sequence_Aspect(EObject context, Aspect semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     (from=STRING to=STRING properties+=PropertyMapping*)
 	 */
 	protected void sequence_ClassMapping(EObject context, ClassBinding semanticObject) {
@@ -488,7 +475,7 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     aspect=Aspect
+	 *     aspectTypeRef=JvmTypeReference
 	 */
 	protected void sequence_Weave(EObject context, Weave semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -988,33 +988,8 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Weave");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cWithKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cAspectAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cAspectAspectParserRuleCall_1_0 = (RuleCall)cAspectAssignment_1.eContents().get(0);
-		
-		//Weave:
-		//	"with" aspect=Aspect;
-		@Override public ParserRule getRule() { return rule; }
-
-		//"with" aspect=Aspect
-		public Group getGroup() { return cGroup; }
-
-		//"with"
-		public Keyword getWithKeyword_0() { return cWithKeyword_0; }
-
-		//aspect=Aspect
-		public Assignment getAspectAssignment_1() { return cAspectAssignment_1; }
-
-		//Aspect
-		public RuleCall getAspectAspectParserRuleCall_1_0() { return cAspectAspectParserRuleCall_1_0; }
-	}
-
-	public class AspectElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Aspect");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Assignment cAspectTypeRefAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final RuleCall cAspectTypeRefJvmTypeReferenceParserRuleCall_0_0 = (RuleCall)cAspectTypeRefAssignment_0.eContents().get(0);
-		private final Assignment cAspectWildcardImportAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cAspectWildcardImportQualifiedNameWithWildcardParserRuleCall_1_0 = (RuleCall)cAspectWildcardImportAssignment_1.eContents().get(0);
+		private final Assignment cAspectTypeRefAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cAspectTypeRefJvmTypeReferenceParserRuleCall_1_0 = (RuleCall)cAspectTypeRefAssignment_1.eContents().get(0);
 		
 		/// * --- Kompren Rules --- * / //Slicer returns kompren::Slicer: 'slicer' (active?='active')? (strict?='strict')? name=QualifiedName '{'
 		////		(('domain' ':' uriMetamodel+=STRING)+ &
@@ -1044,24 +1019,21 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		////OppositeCreation returns kompren::OppositeCreation: {kompren::OppositeCreation} 'opposite' '(' name=ValidID ')';
 		////
 		////terminal CODE_BLOCK : '[[' -> ']]';
-		//Aspect:
-		//	aspectTypeRef=JvmTypeReference | aspectWildcardImport=QualifiedNameWithWildcard;
+		//Weave:
+		//	"with" aspectTypeRef=JvmTypeReference;
 		@Override public ParserRule getRule() { return rule; }
 
-		//aspectTypeRef=JvmTypeReference | aspectWildcardImport=QualifiedNameWithWildcard
-		public Alternatives getAlternatives() { return cAlternatives; }
+		//"with" aspectTypeRef=JvmTypeReference
+		public Group getGroup() { return cGroup; }
+
+		//"with"
+		public Keyword getWithKeyword_0() { return cWithKeyword_0; }
 
 		//aspectTypeRef=JvmTypeReference
-		public Assignment getAspectTypeRefAssignment_0() { return cAspectTypeRefAssignment_0; }
+		public Assignment getAspectTypeRefAssignment_1() { return cAspectTypeRefAssignment_1; }
 
 		//JvmTypeReference
-		public RuleCall getAspectTypeRefJvmTypeReferenceParserRuleCall_0_0() { return cAspectTypeRefJvmTypeReferenceParserRuleCall_0_0; }
-
-		//aspectWildcardImport=QualifiedNameWithWildcard
-		public Assignment getAspectWildcardImportAssignment_1() { return cAspectWildcardImportAssignment_1; }
-
-		//QualifiedNameWithWildcard
-		public RuleCall getAspectWildcardImportQualifiedNameWithWildcardParserRuleCall_1_0() { return cAspectWildcardImportQualifiedNameWithWildcardParserRuleCall_1_0; }
+		public RuleCall getAspectTypeRefJvmTypeReferenceParserRuleCall_1_0() { return cAspectTypeRefJvmTypeReferenceParserRuleCall_1_0; }
 	}
 	
 	
@@ -1118,7 +1090,6 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	private final SliceElements pSlice;
 	private final InheritElements pInherit;
 	private final WeaveElements pWeave;
-	private final AspectElements pAspect;
 	
 	private final Grammar grammar;
 
@@ -1146,7 +1117,6 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		this.pSlice = new SliceElements();
 		this.pInherit = new InheritElements();
 		this.pWeave = new WeaveElements();
-		this.pAspect = new AspectElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -1350,16 +1320,6 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		return getInheritAccess().getRule();
 	}
 
-	//Weave:
-	//	"with" aspect=Aspect;
-	public WeaveElements getWeaveAccess() {
-		return pWeave;
-	}
-	
-	public ParserRule getWeaveRule() {
-		return getWeaveAccess().getRule();
-	}
-
 	/// * --- Kompren Rules --- * / //Slicer returns kompren::Slicer: 'slicer' (active?='active')? (strict?='strict')? name=QualifiedName '{'
 	////		(('domain' ':' uriMetamodel+=STRING)+ &
 	////		('outputDomain' ':' outputMetamodel=STRING)? &
@@ -1388,14 +1348,14 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	////OppositeCreation returns kompren::OppositeCreation: {kompren::OppositeCreation} 'opposite' '(' name=ValidID ')';
 	////
 	////terminal CODE_BLOCK : '[[' -> ']]';
-	//Aspect:
-	//	aspectTypeRef=JvmTypeReference | aspectWildcardImport=QualifiedNameWithWildcard;
-	public AspectElements getAspectAccess() {
-		return pAspect;
+	//Weave:
+	//	"with" aspectTypeRef=JvmTypeReference;
+	public WeaveElements getWeaveAccess() {
+		return pWeave;
 	}
 	
-	public ParserRule getAspectRule() {
-		return getAspectAccess().getRule();
+	public ParserRule getWeaveRule() {
+		return getWeaveAccess().getRule();
 	}
 
 	//XExpression:
