@@ -61,10 +61,9 @@ class MelangeBuilder
 			eclipseHelper.createEMFRuntimeProject(l.externalRuntimeName, l)
 			l.createExternalEcore
 			l.createExternalGenmodel
-			l.createExternalAspects
 			l.syntax.genmodels.head.generateCode
+			l.createExternalAspects
 			eclipseHelper.addDependencies(project, #[l.externalRuntimeName])
-
 			monitor.worked(1)
 		]
 	}
