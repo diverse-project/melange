@@ -46,7 +46,7 @@ class ASTHelper
 			l.superLanguages.forEach[superLang |
 				logger.debug('''\tsuperMM = «superLang.name»''')
 			]
-			logger.debug('''\taspects = «l.allAspects.map[aspectTypeRef.simpleName].join(", ")»''')
+//			logger.debug('''\taspects = «l.allAspects.map[aspectTypeRef.simpleName].join(", ")»''')
 		]
 
 		root.modelTypes.forEach[mt |

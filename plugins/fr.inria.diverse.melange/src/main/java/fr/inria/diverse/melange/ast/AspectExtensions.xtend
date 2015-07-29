@@ -7,6 +7,7 @@ import org.apache.log4j.Logger
 import org.eclipse.xtext.common.types.JvmCustomAnnotationValue
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmTypeAnnotationValue
+import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.xbase.XAbstractFeatureCall
@@ -28,8 +29,8 @@ class AspectExtensions {
 		return (asp.aspectTypeRef.type as JvmDeclaredType)?.aspectAnnotationValue !== null 
 	}
 
-	def String getAspectAnnotationValue(Aspect asp) {
-		return (asp.aspectTypeRef.type as JvmDeclaredType)?.aspectAnnotationValue
+	def String getAspectAnnotationValue(JvmTypeReference asp) {
+		return (asp.type as JvmDeclaredType)?.aspectAnnotationValue
 	}
 
 	def String getAspectAnnotationValue(JvmDeclaredType t) {
@@ -67,8 +68,8 @@ class AspectExtensions {
 		return aspVal
 	}
 
-	def QualifiedName getTargetedNamespace(Aspect asp) {
-		val aavt = (asp.aspectTypeRef.type as JvmDeclaredType).aspectAnnotationValueType
+	def QualifiedName getTargetedNamespace(JvmTypeReference aspectTypeRef) {
+		val aavt = (aspectTypeRef.type as JvmDeclaredType).aspectAnnotationValueType
 		return
 			if (aavt !== null)
 				aavt.toQualifiedName.skipLast(1)
@@ -76,13 +77,13 @@ class AspectExtensions {
 				QualifiedName::create
 	}
 
-	def boolean isDefinedOver(Aspect asp, Metamodel mm) {
+	def boolean isDefinedOver(JvmTypeReference aspectTypeRef, Metamodel mm) {
 		try {
 			return mm.genmodels.filterNull.map[genPackages].flatten.filterNull.exists[
-				packageFqn.toQualifiedName.skipLast(1).toString == asp.targetedNamespace.toString
+				packageFqn.toQualifiedName.skipLast(1).toString == aspectTypeRef.targetedNamespace.toString
 			]
 		} catch (IllegalArgumentException e){
-			val unresolvedProxyAspect = (asp.aspectTypeRef.type as JvmDeclaredType).annotations.exists[annotation.eIsProxy]
+			val unresolvedProxyAspect = (aspectTypeRef.type as JvmDeclaredType).annotations.exists[annotation.eIsProxy]
 			if(unresolvedProxyAspect){
 				log.debug("annotationProcessor dependency missing, please add k3al.annotationprocessor to the classpath ", e)
 				return false	
@@ -95,12 +96,13 @@ class AspectExtensions {
 	// FIXME: We should check that the original mm is a super-type of mm
 	// Hard to find the metamodel declaration or the corresponding Ecore file
 	// in the workspace...
-	def boolean canBeCopiedFor(Aspect asp, Metamodel mm) {
-		val unresolvedProxyAspect = (asp.aspectTypeRef.type as JvmDeclaredType).annotations.exists[annotation.eIsProxy]
-		if(unresolvedProxyAspect){
-			// cannot copy the aspect because we don't have a correct dependency to the annotation processor 
-			return false
-		}
+	def boolean canBeCopiedFor(JvmTypeReference aspectTypeRef, Metamodel mm) {
+//		val unresolvedProxyAspect = (aspectTypeRef.type as JvmDeclaredType).annotations.exists[annotation.eIsProxy]
+//		if(unresolvedProxyAspect){
+//			// cannot copy the aspect because we don't have a correct dependency to the annotation processor 
+//			return false
+//		}
+		// FIXME:
 		return true
 	}
 }

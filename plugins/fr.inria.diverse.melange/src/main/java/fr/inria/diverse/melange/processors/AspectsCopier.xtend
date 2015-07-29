@@ -22,40 +22,40 @@ class AspectsCopier extends DispatchMelangeProcessor
 	@Inject JvmTypeReferenceBuilder.Factory builderFactory
 
 	def dispatch void preProcess(Language l, boolean preLinkingPhase) {
-		val typeRefBuilder = builderFactory.create(l.eResource.resourceSet)
-
-
-		if (!preLinkingPhase) {
-			/**************************
-			 * Resolve wildcard imports
-			 **************************/
-			val newAspects = newArrayList
-			val toRemove = newArrayList
-			l.allAspects.forEach[asp |
-				// If there's a wildcard import, remove it and replace it
-				// with the list of matching aspects
-				if (asp.aspectWildcardImport !== null) {
-					val matches = resolveWildcardImport(asp.aspectWildcardImport)
-
-					newAspects += matches.map[fqn |
-						MelangeFactory.eINSTANCE.createAspect => [
-							aspectTypeRef = typeRefBuilder.typeRef(fqn)
-						]
-					]
-
-					toRemove += asp
-				}
-				if(asp.aspectTypeRef?.type === null) toRemove += asp //types from copies of inherited aspects become null sometime
-			]
-
-			toRemove.forEach[EcoreUtil::remove(it)]
-			l.semantics += newAspects
-			
-			/**************************
-			 * Copy aspects from linked languages
-			 **************************/
-			l.semantics += l.createExternalAspects
-		}
+//		val typeRefBuilder = builderFactory.create(l.eResource.resourceSet)
+//
+//
+//		if (!preLinkingPhase) {
+//			/**************************
+//			 * Resolve wildcard imports
+//			 **************************/
+//			val newAspects = newArrayList
+//			val toRemove = newArrayList
+//			l.allAspects.forEach[asp |
+//				// If there's a wildcard import, remove it and replace it
+//				// with the list of matching aspects
+//				if (asp.aspectWildcardImport !== null) {
+//					val matches = resolveWildcardImport(asp.aspectWildcardImport)
+//
+//					newAspects += matches.map[fqn |
+//						MelangeFactory.eINSTANCE.createAspect => [
+//							aspectTypeRef = typeRefBuilder.typeRef(fqn)
+//						]
+//					]
+//
+//					toRemove += asp
+//				}
+//				if(asp.aspectTypeRef?.type === null) toRemove += asp //types from copies of inherited aspects become null sometime
+//			]
+//
+//			toRemove.forEach[EcoreUtil::remove(it)]
+//			l.semantics += newAspects
+//
+//			/**************************
+//			 * Copy aspects from linked languages
+//			 **************************/
+//			l.semantics += l.createExternalAspects
+//		}
 	}
 
 	private def List<String> resolveWildcardImport(String wildcardImport) {

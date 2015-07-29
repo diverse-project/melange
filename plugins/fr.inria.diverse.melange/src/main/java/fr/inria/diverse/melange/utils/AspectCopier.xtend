@@ -12,7 +12,6 @@ import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
-import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.Language
 import java.io.File
 import java.io.IOException
@@ -24,6 +23,7 @@ import org.eclipse.core.resources.IResource
 import org.eclipse.core.resources.IResourceVisitor
 import org.eclipse.core.runtime.CoreException
 import org.eclipse.emf.common.util.URI
+import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.util.internal.Stopwatches
 
@@ -45,7 +45,7 @@ class AspectCopier
 
 	// FIXME: We should first check that aspects are importable (i.e. defined
 	//         on a type group this metamodel is a subtype of)
-	def String copyAspectTo(Aspect asp, Language l) {
+	def String copyAspectTo(JvmTypeReference asp, Language l) {
 		val task = Stopwatches.forTask("copying aspects in new type group")
 		task.start
 
@@ -61,7 +61,7 @@ class AspectCopier
 		val sourceEmfNamespace = asp.targetedNamespace
 		val targetEmfNamespace = l.syntax.packageFqn.toQualifiedName.skipLast(1)
 				
-		val sourceAspectNamespace = asp.aspectTypeRef.identifier.toQualifiedName.skipLast(1)
+		val sourceAspectNamespace = asp.identifier.toQualifiedName.skipLast(1)
 		
 		
 		if(sourceEmfNamespace.equals(sourceAspectNamespace)){
@@ -76,7 +76,7 @@ class AspectCopier
 			override visit(IResource resource) throws CoreException {
 				if (resource instanceof IFile) {
 					val resourcePath = resource.locationURI.path
-					val toBeMatched = asp.aspectTypeRef.identifier.replace(".", "/") + ".java"
+					val toBeMatched = asp.identifier.replace(".", "/") + ".java"
 					if (resourcePath.endsWith(toBeMatched)) {
 						val projectPath = resource.project.locationURI.path
 						if (projectPathTmp.length == 0)
@@ -145,7 +145,7 @@ class AspectCopier
 		request.relocators = relocators
 
 		try {
-			log.debug('''Copying aspect «asp.aspectTypeRef.identifier» to «l.name»:''')
+			log.debug('''Copying aspect «asp.identifier» to «l.name»:''')
 			log.debug('''	sourceEmfNamespace    = «sourceEmfNamespace»''')
 			log.debug('''	targetEmfNamespace    = «targetEmfNamespace»''')
 			log.debug('''	sourceAspectNamespace = «sourceAspectNamespace»''')
@@ -156,7 +156,7 @@ class AspectCopier
 //			if (!fileToBeFound.exists) {
 			shader.shade(request)
 			
-			log.debug('''Copying META-INF aspect_properties «asp.aspectTypeRef.identifier» to «l.name»:''')	
+			log.debug('''Copying META-INF aspect_properties «asp.identifier» to «l.name»:''')	
 			val sourceMetaInfFolder = projectPathTmp.toString + "/META-INF/"
 			val sourceMetaInfFile = new File(sourceMetaInfFolder)	
 			val targetMetaInfFile = new File(findTargetProject.locationURI.path + "/META-INF/")
@@ -168,7 +168,7 @@ class AspectCopier
 				
 			targetProject.refreshLocal(IResource.DEPTH_INFINITE, null)
 //			}
-			return '''«targetAspectNamespace».«asp.aspectTypeRef.simpleName»'''
+			return '''«targetAspectNamespace».«asp.simpleName»'''
 		} catch (IOException e) {
 			log.debug("Copy failed", e)
 			return null

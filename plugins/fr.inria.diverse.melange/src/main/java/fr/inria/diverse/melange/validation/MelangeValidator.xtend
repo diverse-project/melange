@@ -115,7 +115,7 @@ class MelangeValidator extends AbstractMelangeValidator
 	@Check
 	def void checkEcoreIsLoadable(Language l) {
 		try {
-			if (l.syntax.ecoreUri !== null && modelUtils.loadPkg(l.syntax.ecoreUri) === null)
+			if (!l.generatedByMelange && l.syntax.ecoreUri !== null && modelUtils.loadPkg(l.syntax.ecoreUri) === null)
 				error(
 					"Couldn't load specified Ecore",
 					l.syntax,
@@ -128,7 +128,7 @@ class MelangeValidator extends AbstractMelangeValidator
 	@Check
 	def void checkGenModelIsLoadable(Language l) {
 		try {
-			if (l.syntax.genmodelUris.head !== null && modelUtils.loadGenmodel(l.syntax.genmodelUris.head) === null)
+			if (!l.generatedByMelange && l.syntax.genmodelUris.head !== null && modelUtils.loadGenmodel(l.syntax.genmodelUris.head) === null)
 				error(
 					"Couldn't load specified GenModel",
 					l.syntax,
@@ -137,16 +137,16 @@ class MelangeValidator extends AbstractMelangeValidator
 				)
 		} catch (Exception e) {}
 	}
-
-	@Check
-	def void checkAspectExists(Aspect a) {
-		if (a.aspectTypeRef?.type === null || !(a.aspectTypeRef.type instanceof JvmDeclaredType))
-			error(
-				"Cannot find imported aspect class",
-				MelangePackage.Literals.ASPECT__ASPECT_TYPE_REF,
-				MelangeValidationConstants.ASPECT_NOT_FOUND
-			)
-	}
+//
+//	@Check
+//	def void checkAspectExists(Aspect a) {
+//		if (a.aspectTypeRef?.type === null || !(a.aspectTypeRef.type instanceof JvmDeclaredType))
+//			error(
+//				"Cannot find imported aspect class",
+//				MelangePackage.Literals.ASPECT__ASPECT_TYPE_REF,
+//				MelangeValidationConstants.ASPECT_NOT_FOUND
+//			)
+//	}
 	
 	@Check
 	def void checkHasAnnotationProcessorDependency(Aspect asp) {
@@ -232,7 +232,7 @@ class MelangeValidator extends AbstractMelangeValidator
 	@Check
 	def void checkRuntimeHasBeenGenerated(Language l) {
 		if (l.isGeneratedByMelange && !l.runtimeHasBeenGenerated) {
-			error(
+			warning(
 				"Cannot find EMF runtime for" + l.name,
 				l.syntax,
 				MelangePackage.Literals.MODELING_ELEMENT__ECORE_URI,

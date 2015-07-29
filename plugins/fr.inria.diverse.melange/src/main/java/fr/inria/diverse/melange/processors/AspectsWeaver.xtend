@@ -34,13 +34,22 @@ class AspectsWeaver extends DispatchMelangeProcessor
 			else
 				-1
 		].forEach[asp |
-			val className = asp.aspectAnnotationValue
+			val className = asp.aspectTypeRef.aspectAnnotationValue
 
 			if (className !== null)
 				asp.aspectedClass = l.syntax.findClass(className)
 
 			asp.ecoreFragment = asp.inferEcoreFragment(l)
 			algebra.weaveAspect(l, asp)
+		]
+	}
+
+	def dispatch void postProcess(Language l) {
+		l.semantics
+		.filter[isComplete]
+		.forEach[asp |
+			asp.aspectedClass = null
+			asp.ecoreFragment = null
 		]
 	}
 	

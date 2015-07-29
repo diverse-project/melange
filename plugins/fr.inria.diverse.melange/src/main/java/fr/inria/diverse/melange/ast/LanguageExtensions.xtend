@@ -11,11 +11,13 @@ import fr.inria.diverse.melange.metamodel.melange.MelangeFactory
 import fr.inria.diverse.melange.metamodel.melange.Merge
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.Slice
+import fr.inria.diverse.melange.metamodel.melange.Weave
 import fr.inria.diverse.melange.utils.AspectCopier
 import java.util.List
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
+import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.naming.QualifiedName
@@ -49,10 +51,10 @@ class LanguageExtensions
 	 * 2) From Merge relations, in top->bottom order
 	 * 3) From Inheritance relations, in the left->right order <br>
 	 */
-	def List<Aspect> allAspects(Language l) {
+	def List<JvmTypeReference> allAspects(Language l) {
 		val res = newArrayList
 		
-		res.addAll(l.semantics)
+		res.addAll(l.operators.filter(Weave).map[aspectTypeRef])
 		res.addAll(
 			l.operators.map[op |
 				if (op instanceof Slice)
@@ -70,7 +72,7 @@ class LanguageExtensions
 
 	def Iterable<Aspect> findAspectsOn(Language l, EClass cls) {
 		return
-			l.allAspects.filter[asp |
+			l.semantics.filter[asp |
 				asp.aspectedClass?.name !== null
 				&& (
 				   asp.aspectedClass.name == cls.name
@@ -264,9 +266,8 @@ class LanguageExtensions
 		val classesAlreadyWeaved = newArrayList
 		
 		l.allAspects.forEach[asp |
-			if (asp.isComplete) {
+//			if (asp.isComplete) {
 				if (asp.canBeCopiedFor(l.syntax)) {
-					
 					val className = asp.aspectAnnotationValue
 					if(!classesAlreadyWeaved.contains(className) && (l.syntax.findClass(className) !== null)){
 						classesAlreadyWeaved.add(className)
@@ -274,11 +275,11 @@ class LanguageExtensions
 						val typeRefBuilder = builderFactory.create(l.eResource.resourceSet)
 						val newAspectFqn = copier.copyAspectTo(asp, l)
 						res += MelangeFactory.eINSTANCE.createAspect => [
-									aspectTypeRef = typeRefBuilder.typeRef(newAspectFqn)
-								]
+							aspectTypeRef = typeRefBuilder.typeRef(newAspectFqn)
+						]
 					}
 				}
-			}
+//			}
 		]
 		
 		return res

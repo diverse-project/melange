@@ -1,8 +1,10 @@
 package fr.inria.diverse.melange.processors
 
+import com.google.common.collect.HashBasedTable
 import com.google.inject.Inject
 import fr.inria.diverse.melange.algebra.EmfCompareAlgebra
 import fr.inria.diverse.melange.ast.ASTHelper
+import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.ModelUtils
@@ -19,6 +21,7 @@ import fr.inria.diverse.melange.metamodel.melange.Weave
 import fr.inria.diverse.melange.utils.EPackageProvider
 import java.io.IOException
 import java.util.ArrayList
+import java.util.HashSet
 import java.util.List
 import java.util.Map
 import org.eclipse.emf.common.util.URI
@@ -34,6 +37,9 @@ import java.util.HashSet
 import com.google.common.collect.Table
 import com.google.common.collect.HashBasedTable
 import org.eclipse.emf.ecore.EStructuralFeature
+import org.eclipse.xtext.common.types.JvmDeclaredType
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
 /**
  * This class build languages by merging differents parts declared in each language definitions
@@ -47,8 +53,12 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 	@Inject EmfCompareAlgebra algebra
 	@Inject AspectsWeaver aspectWeaver
 	@Inject EPackageProvider packageProvider
+	@Inject extension AspectExtensions
 	@Inject extension LanguageExtensions
-	
+	@Inject JvmTypesBuilder typesBuilder
+	@Inject JvmTypeReferenceBuilder.Factory typeRefBuilderFactory
+	JvmTypeReferenceBuilder typeRefBuilder
+
 	/**
 	 * Store root EPackage for each built languages 
 	 */
@@ -56,11 +66,10 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 	
 	def dispatch void preProcess(ModelTypingSpace root, boolean isPreLinkingPhase) {
 		registry = newHashMap
+		typeRefBuilder = typeRefBuilderFactory.create(root.eResource.resourceSet)
 		
 		root.languages.forEach[language |
 			// Initialize syntax & semantics
-			language.syntax = MelangeFactory.eINSTANCE.createMetamodel
-			language.semantics += language.operators.filter(Weave).map[aspect]
 			build(language, newArrayList)
 		]
 	}
@@ -78,6 +87,18 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 
 		var EPackage base = null
 		var needNewEcore = false
+
+		language.syntax = MelangeFactory.eINSTANCE.createMetamodel
+		if (!language.isGeneratedByMelange) {
+			val importClause = language.operators.filter(Import).head
+			language.syntax.ecoreUri = importClause.ecoreUri
+			language.syntax.genmodelUris += importClause.genmodelUris
+		} else if (language.runtimeHasBeenGenerated) {
+			language.syntax.ecoreUri = language.externalEcoreUri
+			language.syntax.genmodelUris += language.externalGenmodelUri 
+		}
+
+		language.initialize
 
 		/****************************
 		 * STEP 1: merge ecore files
@@ -435,5 +456,27 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 			}
 		]
 		
+	}
+
+	def void initialize(Language language) {
+		language.semantics.clear
+		language.semantics += language.operators.filter(Weave)
+		.filter[aspectTypeRef?.type instanceof JvmDeclaredType]
+		.map[w |
+			MelangeFactory.eINSTANCE.createAspect => [
+				if (w.aspectTypeRef.isDefinedOver(language.syntax))
+					aspectTypeRef = typesBuilder.cloneWithProxies(w.aspectTypeRef)
+				else {
+					if (w.aspectTypeRef.canBeCopiedFor(language.syntax)) {
+						aspectTypeRef = typeRefBuilder.typeRef(
+							'''«language.aspectTargetNamespace».«w.aspectTypeRef.simpleName»
+						''')
+					} else {
+						// FIXME:
+						throw new RuntimeException("initialize(" + language.name + ")")
+					}
+				}
+			]
+		]
 	}
 }
