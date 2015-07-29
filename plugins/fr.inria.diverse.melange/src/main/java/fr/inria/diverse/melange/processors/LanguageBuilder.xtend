@@ -85,17 +85,17 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		if(ecores.size == 1){
 			language.syntax.ecoreUri = ecores.get(0).ecoreUri
 			language.syntax.genmodelUris.addAll(ecores.get(0).genmodelUris)
-			base = modelUtils.loadPkg(ecores.get(0).ecoreUri)
+			base = EcoreUtil::copy(modelUtils.loadPkg(ecores.get(0).ecoreUri))
 			applyRenaming(base, ecores.get(0).mappingRules)
 		}
 		else if(ecores.size > 1){
 			needNewEcore = true
 			val firstEcore = ecores.get(0)
-			val ecoreBase = modelUtils.loadPkg(firstEcore.ecoreUri)
+			val ecoreBase = EcoreUtil::copy(modelUtils.loadPkg(firstEcore.ecoreUri))
 			applyRenaming(ecoreBase, firstEcore.mappingRules)
 
 			ecores.drop(1).forEach[ nextEcore |
-				val ecoreUnit = modelUtils.loadPkg(nextEcore.ecoreUri)
+				val ecoreUnit = EcoreUtil::copy(modelUtils.loadPkg(nextEcore.ecoreUri))
 				EcoreUtil.resolveAll(ecoreUnit) //Need to solve crossref because EMF Compare don't
 				applyRenaming(ecoreUnit, nextEcore.mappingRules)
 				algebra.merge(ecoreUnit,ecoreBase)
@@ -114,7 +114,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 			EcoreUtil.resolveAll(inheritBase)
 			
 			inherits.drop(1).forEach[ nextInherit |
-				val inheritUnit = getRootPackage(nextInherit.superLanguage,history)
+				val inheritUnit = EcoreUtil::copy(getRootPackage(nextInherit.superLanguage,history))
 				EcoreUtil.resolveAll(inheritUnit)
 				algebra.merge(inheritUnit,inheritBase)
 			]
@@ -139,7 +139,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 			applyRenaming(mergeBase, firstMerge.mappingRules)
 
 			merges.drop(1).forEach[ nextMerge |
-				val mergeUnit = getRootPackage(nextMerge.mergedLanguage,history)
+				val mergeUnit = EcoreUtil::copy(getRootPackage(nextMerge.mergedLanguage,history))
 				EcoreUtil.resolveAll(mergeUnit)
 				applyRenaming(mergeUnit, nextMerge.mappingRules)
 				algebra.merge(mergeUnit,mergeBase)
