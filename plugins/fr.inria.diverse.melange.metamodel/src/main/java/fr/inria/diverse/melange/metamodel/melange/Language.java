@@ -293,7 +293,7 @@ public interface Language extends NamedElement {
 	EList<Mapping> getMappings();
 
 	/**
-	 * Returns the value of the '<em><b>Semantics</b></em>' reference list.
+	 * Returns the value of the '<em><b>Semantics</b></em>' containment reference list.
 	 * The list contents are of type {@link fr.inria.diverse.melange.metamodel.melange.Aspect}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -301,9 +301,9 @@ public interface Language extends NamedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Semantics</em>' reference list.
+	 * @return the value of the '<em>Semantics</em>' containment reference list.
 	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getLanguage_Semantics()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Aspect> getSemantics();

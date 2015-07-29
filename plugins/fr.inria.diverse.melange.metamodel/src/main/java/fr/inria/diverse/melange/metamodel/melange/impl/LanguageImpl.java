@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseEList;
@@ -206,7 +207,7 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 	protected EList<Mapping> mappings;
 
 	/**
-	 * The cached value of the '{@link #getSemantics() <em>Semantics</em>}' reference list.
+	 * The cached value of the '{@link #getSemantics() <em>Semantics</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSemantics()
@@ -519,7 +520,7 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 	 */
 	public EList<Aspect> getSemantics() {
 		if (semantics == null) {
-			semantics = new EObjectResolvingEList<Aspect>(Aspect.class, this, MelangePackage.LANGUAGE__SEMANTICS);
+			semantics = new EObjectContainmentEList<Aspect>(Aspect.class, this, MelangePackage.LANGUAGE__SEMANTICS);
 		}
 		return semantics;
 	}
@@ -567,6 +568,8 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 				return basicSetXtextSetupRef(null, msgs);
 			case MelangePackage.LANGUAGE__MAPPINGS:
 				return ((InternalEList<?>)getMappings()).basicRemove(otherEnd, msgs);
+			case MelangePackage.LANGUAGE__SEMANTICS:
+				return ((InternalEList<?>)getSemantics()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}

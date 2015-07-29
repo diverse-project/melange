@@ -117,7 +117,7 @@ public interface Aspect extends EObject {
 	 * @return the value of the '<em>Ecore Fragment</em>' containment reference.
 	 * @see #setEcoreFragment(EPackage)
 	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getAspect_EcoreFragment()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EPackage getEcoreFragment();

@@ -102,7 +102,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Language/semantics"/>
     </genClasses>
     <genClasses ecoreClass="Melange.ecore#//Weave">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Weave/aspect"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Weave/aspectTypeRef"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Melange.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//NamedElement/name"/>

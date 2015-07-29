@@ -2,6 +2,8 @@
  */
 package fr.inria.diverse.melange.metamodel.melange;
 
+import org.eclipse.xtext.common.types.JvmTypeReference;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -11,7 +13,7 @@ package fr.inria.diverse.melange.metamodel.melange;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Weave#getAspect <em>Aspect</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Weave#getAspectTypeRef <em>Aspect Type Ref</em>}</li>
  * </ul>
  * </p>
  *
@@ -21,29 +23,29 @@ package fr.inria.diverse.melange.metamodel.melange;
  */
 public interface Weave extends Operator {
 	/**
-	 * Returns the value of the '<em><b>Aspect</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Aspect Type Ref</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Aspect</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Aspect Type Ref</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Aspect</em>' containment reference.
-	 * @see #setAspect(Aspect)
-	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getWeave_Aspect()
+	 * @return the value of the '<em>Aspect Type Ref</em>' containment reference.
+	 * @see #setAspectTypeRef(JvmTypeReference)
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getWeave_AspectTypeRef()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	Aspect getAspect();
+	JvmTypeReference getAspectTypeRef();
 
 	/**
-	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.Weave#getAspect <em>Aspect</em>}' containment reference.
+	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.Weave#getAspectTypeRef <em>Aspect Type Ref</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Aspect</em>' containment reference.
-	 * @see #getAspect()
+	 * @param value the new value of the '<em>Aspect Type Ref</em>' containment reference.
+	 * @see #getAspectTypeRef()
 	 * @generated
 	 */
-	void setAspect(Aspect value);
+	void setAspectTypeRef(JvmTypeReference value);
 
 } // Weave

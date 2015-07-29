@@ -1158,7 +1158,7 @@ public interface MelangePackage extends EPackage {
 	int LANGUAGE__MAPPINGS = NAMED_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
-	 * The feature id for the '<em><b>Semantics</b></em>' reference list.
+	 * The feature id for the '<em><b>Semantics</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1204,13 +1204,13 @@ public interface MelangePackage extends EPackage {
 	int WEAVE__OWNING_LANGUAGE = OPERATOR__OWNING_LANGUAGE;
 
 	/**
-	 * The feature id for the '<em><b>Aspect</b></em>' containment reference.
+	 * The feature id for the '<em><b>Aspect Type Ref</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WEAVE__ASPECT = OPERATOR_FEATURE_COUNT + 0;
+	int WEAVE__ASPECT_TYPE_REF = OPERATOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Weave</em>' class.
@@ -1993,10 +1993,10 @@ public interface MelangePackage extends EPackage {
 	EReference getLanguage_Mappings();
 
 	/**
-	 * Returns the meta object for the reference list '{@link fr.inria.diverse.melange.metamodel.melange.Language#getSemantics <em>Semantics</em>}'.
+	 * Returns the meta object for the containment reference list '{@link fr.inria.diverse.melange.metamodel.melange.Language#getSemantics <em>Semantics</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Semantics</em>'.
+	 * @return the meta object for the containment reference list '<em>Semantics</em>'.
 	 * @see fr.inria.diverse.melange.metamodel.melange.Language#getSemantics()
 	 * @see #getLanguage()
 	 * @generated
@@ -2014,15 +2014,15 @@ public interface MelangePackage extends EPackage {
 	EClass getWeave();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.melange.metamodel.melange.Weave#getAspect <em>Aspect</em>}'.
+	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.melange.metamodel.melange.Weave#getAspectTypeRef <em>Aspect Type Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Aspect</em>'.
-	 * @see fr.inria.diverse.melange.metamodel.melange.Weave#getAspect()
+	 * @return the meta object for the containment reference '<em>Aspect Type Ref</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Weave#getAspectTypeRef()
 	 * @see #getWeave()
 	 * @generated
 	 */
-	EReference getWeave_Aspect();
+	EReference getWeave_AspectTypeRef();
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.NamedElement <em>Named Element</em>}'.
@@ -2677,7 +2677,7 @@ public interface MelangePackage extends EPackage {
 		EReference LANGUAGE__MAPPINGS = eINSTANCE.getLanguage_Mappings();
 
 		/**
-		 * The meta object literal for the '<em><b>Semantics</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Semantics</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -2695,12 +2695,12 @@ public interface MelangePackage extends EPackage {
 		EClass WEAVE = eINSTANCE.getWeave();
 
 		/**
-		 * The meta object literal for the '<em><b>Aspect</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Aspect Type Ref</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference WEAVE__ASPECT = eINSTANCE.getWeave_Aspect();
+		EReference WEAVE__ASPECT_TYPE_REF = eINSTANCE.getWeave_AspectTypeRef();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.NamedElementImpl <em>Named Element</em>}' class.
