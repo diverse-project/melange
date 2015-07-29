@@ -12,8 +12,10 @@ import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.processors.ExtensionPointProcessor
 import fr.inria.diverse.melange.processors.ModelTypeSerializer
 import org.eclipse.core.resources.IProject
+import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.core.runtime.OperationCanceledException
+import org.eclipse.core.runtime.jobs.Job
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.builder.EclipseResourceFileSystemAccess2
 import org.eclipse.xtext.generator.IGenerator
@@ -83,5 +85,19 @@ class MelangeBuilder
 	def void generatePluginXml(Resource res, IProject project, IProgressMonitor monitor) {
 		val root = res.contents.head as ModelTypingSpace
 		extensionProcessor.preProcess(root, false)
+	}
+
+	private def void waitForAutoBuild() {
+		var wasInterrupted = false
+		do {
+			try {
+				Job.jobManager.join(ResourcesPlugin::FAMILY_AUTO_BUILD,	null)
+				wasInterrupted = false
+			} catch (OperationCanceledException e) {
+				e.printStackTrace
+			} catch (InterruptedException e) {
+				wasInterrupted = true
+			}
+		} while (wasInterrupted)
 	}
 }
