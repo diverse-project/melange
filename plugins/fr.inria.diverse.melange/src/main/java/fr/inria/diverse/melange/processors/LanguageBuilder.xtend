@@ -463,19 +463,9 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		language.semantics += language.operators.filter(Weave)
 		.filter[aspectTypeRef?.type instanceof JvmDeclaredType]
 		.map[w |
+			// FIXME: Some checks needed here
 			MelangeFactory.eINSTANCE.createAspect => [
-				if (w.aspectTypeRef.isDefinedOver(language.syntax))
-					aspectTypeRef = typesBuilder.cloneWithProxies(w.aspectTypeRef)
-				else {
-					if (w.aspectTypeRef.canBeCopiedFor(language.syntax)) {
-						aspectTypeRef = typeRefBuilder.typeRef(
-							'''«language.aspectTargetNamespace».«w.aspectTypeRef.simpleName»
-						''')
-					} else {
-						// FIXME:
-						throw new RuntimeException("initialize(" + language.name + ")")
-					}
-				}
+				aspectTypeRef = typesBuilder.cloneWithProxies(w.aspectTypeRef)
 			]
 		]
 	}
