@@ -7,7 +7,7 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenModel
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenBaseGeneratorAdapter
 import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil
-import org.eclipse.emf.common.util.BasicMonitor
+import org.eclipse.emf.common.util.Monitor
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EDataType
@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.EcoreFactory
 import org.eclipse.emf.ecore.EcorePackage
 import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.emf.common.util.Diagnostic
 
 class EcoreExtensions
 {
@@ -152,7 +153,19 @@ class EcoreExtensions
 		generator.generate(
 			genModel,
 			GenBaseGeneratorAdapter::MODEL_PROJECT_TYPE,
-			new BasicMonitor.Printing(System::out)
+			// NullMonitor
+			new Monitor() {
+				override beginTask(String name, int totalWork) {}
+				override clearBlocked() {}
+				override done() {}
+				override internalWorked(double work) {}
+				override isCanceled() { return false }
+				override setBlocked(Diagnostic reason) {}
+				override setCanceled(boolean value) {}
+				override setTaskName(String name) {}
+				override subTask(String name) {}
+				override worked(int work) {}
+			}
 		)
 	}
 
