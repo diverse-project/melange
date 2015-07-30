@@ -267,7 +267,6 @@ class LanguageExtensions
 				if(aspects != null){
 					if(renamingRules != null){ 
 						//Copy with Renaming
-						//TODO: classes, packages & features
 						val List<Pair<String,String>> classRules = newArrayList
 						val List<Pair<String,String>> packageRules = newArrayList
 						val List<Pair<String,String>> propertiesRules = newArrayList
@@ -283,9 +282,7 @@ class LanguageExtensions
 						res += simpleCopyAsp(l,aspects,classesAlreadyWeaved,classRules)
 						
 						val propertiesAspectRules = renamer.getRenamedAspectMethod(aspects,propertiesRules)
-						aspects.forEach[asp |
-							renamer.processRenaming(asp,l,classRules,packageRules,propertiesRules,propertiesAspectRules)
-						]
+						renamer.processRenaming(aspects,l,classRules,packageRules,propertiesRules,propertiesAspectRules)
 					}
 					else{
 						//Copy without renaming
