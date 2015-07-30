@@ -2,7 +2,6 @@ package fr.inria.diverse.melange.utils
 
 import com.google.common.collect.HashMultimap
 import com.google.common.collect.SetMultimap
-import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.PackageBinding

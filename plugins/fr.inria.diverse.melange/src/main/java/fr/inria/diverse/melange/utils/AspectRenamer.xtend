@@ -1,7 +1,5 @@
 package fr.inria.diverse.melange.utils
 
-import com.google.common.collect.HashMultimap
-import com.google.common.collect.SetMultimap
 import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.ast.LanguageExtensions
@@ -21,8 +19,6 @@ import org.eclipse.jdt.core.dom.ASTVisitor
 import org.eclipse.jdt.core.dom.CompilationUnit
 import org.eclipse.jface.text.Document
 import org.eclipse.text.edits.TextEdit
-import org.eclipse.xtext.common.types.JvmGenericType
-import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 
 class AspectRenamer {
