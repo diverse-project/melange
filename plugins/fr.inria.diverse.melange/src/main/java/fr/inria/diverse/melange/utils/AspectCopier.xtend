@@ -87,8 +87,6 @@ class AspectCopier
 		val sourceFolderFile = new File(sourceAspectFolder)
 		val sourceProject = ws.getProject(projectNameTmp.toString)
 		val findTargetProject = ws.getProject(l.name+"_Gen")
-		// FIXME: Just to have a first call of the EPackageProvider
-		//        in order to set the ecoreUri when inherited
 		val ecoreUri = URI::createURI(l.syntax.ecoreUri)
 		val emfRuntimeProject = ecoreUri.segment(1)
 		val targetProject =
