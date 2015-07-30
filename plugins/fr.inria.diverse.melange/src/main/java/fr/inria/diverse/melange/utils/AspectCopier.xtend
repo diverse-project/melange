@@ -60,15 +60,13 @@ class AspectCopier
 		val relocators = new ArrayList<Relocator>
 		val sourceEmfNamespace = asp.targetedNamespace
 		val targetEmfNamespace = l.syntax.packageFqn.toQualifiedName.skipLast(1)
-				
 		val sourceAspectNamespace = asp.identifier.toQualifiedName.skipLast(1)
-		
+		val targetAspectNamespace = l.aspectTargetNamespace
+		val newFqn = '''«targetAspectNamespace».«asp.simpleName»'''
 		
 		if(sourceEmfNamespace.equals(sourceAspectNamespace)){
 			errorHelper.addError(asp, "Melange cannot correctly handle aspect classes if they use the same package name as the aspectized emf classes, please move the aspect classes in a dedicated package", null)
 		}
-		val targetAspectNamespace = l.aspectTargetNamespace
-		
 
 		val projectPathTmp = new StringBuilder
 		val projectNameTmp = new StringBuilder
@@ -145,18 +143,18 @@ class AspectCopier
 		request.relocators = relocators
 
 		try {
-			log.debug('''Copying aspect «asp.identifier» to «l.name»:''')
-			log.debug('''	sourceEmfNamespace    = «sourceEmfNamespace»''')
-			log.debug('''	targetEmfNamespace    = «targetEmfNamespace»''')
-			log.debug('''	sourceAspectNamespace = «sourceAspectNamespace»''')
-			log.debug('''	targetAspectNamespace = «targetAspectNamespace»''')
-			log.debug('''	sourceAspectFolder    = «sourceAspectFolder»''')
-			log.debug('''	targetAspectFolder    = «targetAspectFolder»''')
+			log.debug('''Copying aspect «asp.identifier» to «l.name» as «newFqn»''')
+//			log.debug('''	sourceEmfNamespace    = «sourceEmfNamespace»''')
+//			log.debug('''	targetEmfNamespace    = «targetEmfNamespace»''')
+//			log.debug('''	sourceAspectNamespace = «sourceAspectNamespace»''')
+//			log.debug('''	targetAspectNamespace = «targetAspectNamespace»''')
+//			log.debug('''	sourceAspectFolder    = «sourceAspectFolder»''')
+//			log.debug('''	targetAspectFolder    = «targetAspectFolder»''')
 
 //			if (!fileToBeFound.exists) {
 			shader.shade(request)
 			
-			log.debug('''Copying META-INF aspect_properties «asp.identifier» to «l.name»:''')	
+			log.debug('''Copying META-INF aspect_properties «asp.identifier» to «l.name» as «»''')	
 			val sourceMetaInfFolder = projectPathTmp.toString + "/META-INF/"
 			val sourceMetaInfFile = new File(sourceMetaInfFolder)	
 			val targetMetaInfFile = new File(findTargetProject.locationURI.path + "/META-INF/")
@@ -168,7 +166,7 @@ class AspectCopier
 				
 			targetProject.refreshLocal(IResource.DEPTH_INFINITE, null)
 //			}
-			return '''«targetAspectNamespace».«asp.simpleName»'''
+			return newFqn
 		} catch (IOException e) {
 			log.debug("Copy failed", e)
 			return null
