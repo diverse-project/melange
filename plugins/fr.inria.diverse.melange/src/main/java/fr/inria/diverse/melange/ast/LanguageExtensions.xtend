@@ -27,7 +27,7 @@ class LanguageExtensions
 {
 	@Inject extension ModelingElementExtensions
 	@Inject extension MetamodelExtensions
-	@Inject extension AspectExtensions
+	@Inject extension AspectExtensions aspectExtension
 	@Inject extension ModelTypeExtensions
 	@Inject extension IQualifiedNameConverter
 	@Inject extension EclipseProjectHelper
@@ -268,7 +268,7 @@ class LanguageExtensions
 				if(aspects != null){
 					if(renamingRules != null){ 
 						//Copy with Renaming
-						val rulesManager = new RenamingRuleManager(renamingRules, aspects)
+						val rulesManager = new RenamingRuleManager(renamingRules, aspects, aspectExtension)
 						res += simpleCopyAsp(l,aspects,classesAlreadyWeaved,rulesManager)
 						renamer.processRenaming(aspects,l,rulesManager)
 					}

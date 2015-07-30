@@ -4,25 +4,24 @@ import com.google.common.collect.HashMultimap
 import com.google.common.collect.SetMultimap
 import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.AspectExtensions
-import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.PackageBinding
 import java.util.List
+import java.util.Set
 import org.eclipse.xtext.common.types.JvmGenericType
 import org.eclipse.xtext.common.types.JvmOperation
-import java.util.Set
 
 class RenamingRuleManager{
 	
-	@Inject extension AspectExtensions
-	@Inject extension LanguageExtensions
+	extension AspectExtensions aspectExtension
 	
 	val List<Pair<String,String>> classRules = newArrayList
 	val List<Pair<String,String>> packageRules = newArrayList
 	val List<Pair<String,String>> propertiesRules = newArrayList
 	val SetMultimap<String,Pair<String,String>> propertiesAspectRules = HashMultimap.create
 	
-	new(List<PackageBinding> renamingRules, List<Aspect> aspects){
+	new(List<PackageBinding> renamingRules, List<Aspect> aspects, AspectExtensions aspectExtension){
+		this.aspectExtension = aspectExtension
 		storeRenamingRules(renamingRules)
 		storeRenamedAspectProperties(aspects)
 	}
