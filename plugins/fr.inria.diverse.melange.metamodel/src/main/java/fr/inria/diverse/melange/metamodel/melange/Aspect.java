@@ -65,7 +65,7 @@ public interface Aspect extends EObject {
 	 * @return the value of the '<em>Aspected Class</em>' reference.
 	 * @see #setAspectedClass(EClass)
 	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getAspect_AspectedClass()
-	 * @model
+	 * @model transient="true" derived="true"
 	 * @generated
 	 */
 	EClass getAspectedClass();
