@@ -76,10 +76,12 @@ class AspectCopier
 		val projectPathTmp = new StringBuilder
 		val projectNameTmp = new StringBuilder
 		ws.accept(new IResourceVisitor {
+			
+			val toBeMatched = asp.aspectTypeRef.identifier.replace(".", "/") + ".java"
+			
 			override visit(IResource resource) throws CoreException {
 				if (resource instanceof IFile) {
 					val resourcePath = resource.locationURI.path
-					val toBeMatched = asp.aspectTypeRef.identifier.replace(".", "/") + ".java"
 					if (resourcePath.endsWith(toBeMatched)) {
 						val projectPath = resource.project.locationURI.path
 						if (projectPathTmp.length == 0)
