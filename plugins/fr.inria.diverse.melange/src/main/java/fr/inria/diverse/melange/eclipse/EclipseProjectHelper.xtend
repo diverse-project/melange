@@ -126,6 +126,42 @@ class EclipseProjectHelper
 		}
 	}
 
+	def void removeDependencies(IProject project, Iterable<String> bundles) {
+		val manifestFile = project.getFile("META-INF/MANIFEST.MF")
+
+		if (manifestFile !== null
+			&& manifestFile.exists
+			&& manifestFile.accessible
+			&& !manifestFile.resourceAttributes.readOnly
+		) {
+			if (!manifestFile.isSynchronized(IResource.DEPTH_ZERO))
+				manifestFile.refreshLocal(IResource.DEPTH_ZERO, null)
+			var OutputStream output = null
+			var InputStream input = null
+			try {
+				input = manifestFile.contents
+				val manifest = new MergeableManifest(input)
+				// FIXME: Quick & Dirty ;)
+				var requiredBundles = manifest.getMainAttributes().get(MergeableManifest::REQUIRE_BUNDLE) as String
+				val regex = '''(?m)^ ?(«bundles.join("|")»).*$(?:\r?\n)?'''
+				val result = requiredBundles.replaceAll(regex, "") 
+				manifest.getMainAttributes().put(MergeableManifest::REQUIRE_BUNDLE, result.replaceFirst(",$", ""));
+				val out = new ByteArrayOutputStream
+				output = new BufferedOutputStream(out)
+				manifest.write(output)
+				val in = new ByteArrayInputStream(out.toByteArray)
+				input = new BufferedInputStream(in)
+				manifestFile.setContents(input, true, true, null)
+				bundles.forEach[log.debug('''Dependendency «it» removed from «project»''')]
+			} finally {
+				if (output !== null)
+					output.close
+				if (input !== null)
+					input.close
+			}
+		}
+	}
+
 	def IProject createEMFRuntimeProject(String projectName, Language l) {
 		try {
 			// FIXME: Everything's hardcoded...
