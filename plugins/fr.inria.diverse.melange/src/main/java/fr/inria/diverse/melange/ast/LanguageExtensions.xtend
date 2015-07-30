@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
+import fr.inria.diverse.melange.utils.RenamingRuleManager
 
 class LanguageExtensions
 {
@@ -267,22 +268,9 @@ class LanguageExtensions
 				if(aspects != null){
 					if(renamingRules != null){ 
 						//Copy with Renaming
-						val List<Pair<String,String>> classRules = newArrayList
-						val List<Pair<String,String>> packageRules = newArrayList
-						val List<Pair<String,String>> propertiesRules = newArrayList
-						renamingRules.forEach[packRule |
-							packageRules += packRule.from -> packRule.to
-							packRule.classes.forEach[classRule |
-								classRules += packRule.from+"."+classRule.from -> packRule.to+"."+classRule.to
-								classRule.properties.forEach[propRule|
-									propertiesRules += packRule.from+"."+classRule.from+"."+propRule.from -> packRule.to+"."+classRule.to+"."+propRule.to
-								]
-							]
-						]
-						res += simpleCopyAsp(l,aspects,classesAlreadyWeaved,classRules)
-						
-						val propertiesAspectRules = renamer.getRenamedAspectMethod(aspects,propertiesRules)
-						renamer.processRenaming(aspects,l,classRules,packageRules,propertiesRules,propertiesAspectRules)
+						val rulesManager = new RenamingRuleManager(renamingRules, aspects)
+						res += simpleCopyAsp(l,aspects,classesAlreadyWeaved,rulesManager)
+						renamer.processRenaming(aspects,l,rulesManager)
 					}
 					else{
 						//Copy without renaming
@@ -300,14 +288,14 @@ class LanguageExtensions
 	 * Copy aspects defined on {@link l} into generated project <br>
 	 * Return a list of created Aspects with type references to the copied classes
 	 */
-	private def List<Aspect> simpleCopyAsp(Language l, Iterable<Aspect> aspects, List<String> classesAlreadyWeaved, List<Pair<String,String>> classRenaming){
+	private def List<Aspect> simpleCopyAsp(Language l, Iterable<Aspect> aspects, List<String> classesAlreadyWeaved,RenamingRuleManager rulesManager){
 		val res = newArrayList
 		aspects.forEach[asp |
 			if (asp.isComplete) {
 				if (asp.canBeCopiedFor(l.syntax)) {
 					
 					var className = asp.aspectAnnotationValue
-					val renaming = classRenaming?.findFirst[it.key == asp.aspectedClassFqName]
+					val renaming = rulesManager?.getClassRule(asp.aspectedClassFqName)
 					if(renaming != null) className = renaming.value.substring(renaming.value.lastIndexOf(".")+1)
 					
 					if(!classesAlreadyWeaved.contains(className) && (l.syntax.findClass(className) !== null)){

@@ -31,22 +31,16 @@ import org.eclipse.jdt.core.dom.AST
 import com.google.common.collect.SetMultimap
 
 class RenamerVisitor extends ASTVisitor{
-	
-	List<Pair<String,String>> classRules
-	List<Pair<String,String>> packageRules
-	List<Pair<String,String>> propertiesRules
-	SetMultimap<String,Pair<String,String>> propertiesAspectRules
+
+	RenamingRuleManager rulesManager
 	
 	Map<ImportDeclaration,Name> newImportsNames
 	Map<SimpleType,Name> newSimpleTypesNames
 	Map<MethodInvocation,SimpleName> newMethodNames
 	Map<MethodDeclaration,SimpleName> newMethodDeclNames
 	
-	new(List<Pair<String,String>> classRenaming, List<Pair<String,String>> packageRenaming, List<Pair<String,String>> propertiesRenaming, SetMultimap<String,Pair<String,String>> propertiesAspectRenaming) {
-		classRules = classRenaming
-		packageRules = packageRenaming
-		propertiesRules = propertiesRenaming
-		propertiesAspectRules = propertiesAspectRenaming
+	new(RenamingRuleManager rulesManager) {
+		this.rulesManager = rulesManager
 		
 		newImportsNames = newHashMap
 		newSimpleTypesNames = newHashMap
@@ -56,22 +50,19 @@ class RenamerVisitor extends ASTVisitor{
 	
 	override visit(ImportDeclaration node) {
 		
-		val rule = packageRules.findFirst[key+".*" == node.name]
+		val rule = rulesManager.allPackageRules.findFirst[key+".*" == node.name]
 		if(rule != null){ //package import
 			val newName = node.AST.newSimpleName(rule.value)
 			newImportsNames.put(node,newName)
 		}
 		else{
 			val pack = node.name.toString.qualifierPart
-			val rule2 = packageRules.findFirst[key == pack]
+			val rule2 = rulesManager.getPackageRule(pack)
 			if(rule2 != null){ //class import
 				val packageName = node.AST.toName(rule2.value)
 				
 				val clazz = node.name.toString.lastPart
-				val classRule = classRules.findFirst[clRule |
-						clRule.key.lastPart == clazz &&
-						clRule.key.qualifierPart == pack
-					]
+				val classRule = rulesManager.getClassRule(pack+"."+clazz)
 				val clazzName = 
 					if(classRule != null){
 						node.AST.newSimpleName(classRule.value.lastPart)
@@ -84,7 +75,7 @@ class RenamerVisitor extends ASTVisitor{
 				newImportsNames.put(node,newName)
 			}
 			else{ //find rule for super package
-				val longestRule = packageRules.filter[isSubpackage(key,pack)].sortBy[key.length].last
+				val longestRule = rulesManager.allPackageRules.filter[isSubpackage(key,pack)].sortBy[key.length].last
 				if(longestRule != null){
 					val prefix = longestRule.value
 					val sufix = pack.substring(longestRule.key.length)
@@ -125,7 +116,7 @@ class RenamerVisitor extends ASTVisitor{
 		
 		//Match name
 		val methodName = node.name
-		val candidateRules = propertiesRules.filter["get"+key.lastPart.toFirstUpper == methodName.toString ||
+		val candidateRules = rulesManager.allPropertyRules.filter["get"+key.lastPart.toFirstUpper == methodName.toString ||
 				"set"+key.lastPart.toFirstUpper == methodName.toString
 			]
 		
@@ -138,7 +129,7 @@ class RenamerVisitor extends ASTVisitor{
 		if(exp instanceof Name){
 			val invokerName = exp as Name
 			
-			val aspectEntry = propertiesAspectRules.get(invokerName.toString)
+			val aspectEntry = rulesManager.getRulesForAspect(invokerName.toString)
 			if(!aspectEntry.isNullOrEmpty){ //Aspect's method calls
 				val rule = aspectEntry.findFirst[rule | rule.key.lastPart == methodName.toString]
 				if(rule != null){
@@ -179,7 +170,7 @@ class RenamerVisitor extends ASTVisitor{
 	override visit(MethodDeclaration node) {
 		
 		val methodName = node.name.toString
-		val candidateRules = propertiesRules.filter[rule | rule.key.lastPart == methodName]
+		val candidateRules = rulesManager.allPropertyRules.filter[rule | rule.key.lastPart == methodName]
 		
 		val container = node.parent
 		if(container instanceof TypeDeclaration){
@@ -401,7 +392,7 @@ class RenamerVisitor extends ASTVisitor{
 		
 		val typeName = type.toString
 		
-		val rule = classRules.findFirst[key == typeName]
+		val rule = rulesManager.getClassRule(typeName)
 		if(rule != null){
 			//typeName is qualified
 			return rule
@@ -409,7 +400,7 @@ class RenamerVisitor extends ASTVisitor{
 		else{
 			//typeName is not qualified
 			val importDecl = (type.root as CompilationUnit).imports.map[(it as ImportDeclaration).name]
-			val candidatesRule = classRules.filter[key.lastPart == typeName]
+			val candidatesRule = rulesManager.allClassRules.filter[key.lastPart == typeName]
 
 			res = candidatesRule?.findFirst[candidateRule |
 					//Check type is imported
