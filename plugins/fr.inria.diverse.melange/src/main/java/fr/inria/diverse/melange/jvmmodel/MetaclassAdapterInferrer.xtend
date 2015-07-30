@@ -2,6 +2,7 @@ package fr.inria.diverse.melange.jvmmodel
 
 import com.google.inject.Inject
 import fr.inria.diverse.melange.adapters.EObjectAdapter
+import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
@@ -42,6 +43,7 @@ class MetaclassAdapterInferrer
 	@Inject extension JvmTypesBuilder
 	@Inject extension NamingHelper
 	@Inject extension ModelTypeExtensions
+	@Inject extension AspectExtensions
 	@Inject extension MetamodelExtensions
 	@Inject extension LanguageExtensions
 	@Inject extension EcoreExtensions
@@ -278,6 +280,14 @@ class MetaclassAdapterInferrer
 	 * Creates methods for operations defined in aspects and add them to {@link jvmCls}.
 	 */
 	private def void processAspect(Aspect aspect, Metamodel mm, ModelType superType, JvmGenericType jvmCls) {
+		// At this stage, we have to link to the *actual* aspect to be used
+		// i.e. the one that may have been "type-group-transformed"
+		// (which means we assume it exists/has been generated/is a JvmDeclaredType)
+		if (!aspect.aspectTypeRef.isDefinedOver(mm))
+			aspect.aspectTypeRef = typeRef(
+				'''«mm.owningLanguage.aspectTargetNamespace».«aspect.aspectTypeRef.simpleName»'''
+			)
+
 		val asp = aspect.aspectTypeRef.type as JvmDeclaredType
 
 		asp.declaredOperations
