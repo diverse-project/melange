@@ -21,25 +21,25 @@ import org.apache.log4j.Logger
 import org.eclipse.core.resources.IFile
 import org.eclipse.core.resources.IResource
 import org.eclipse.core.resources.IResourceVisitor
+import org.eclipse.core.resources.IWorkspaceRoot
 import org.eclipse.core.runtime.CoreException
+import org.eclipse.core.runtime.Path
 import org.eclipse.emf.common.util.URI
+import org.eclipse.jdt.core.IClasspathEntry
+import org.eclipse.jdt.core.JavaCore
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.util.internal.Stopwatches
 
 import static fr.inria.diverse.melange.utils.AspectCopier.*
-import java.util.List
-import org.eclipse.jdt.core.JavaCore
-import org.eclipse.jdt.core.IClasspathEntry
-import org.eclipse.core.runtime.Path
 
 /**
- * Baaah, full of sh*t
+ * This class create a new project for a Language and copies Aspects files
+ * from Language dependencies
  */
 class AspectCopier
 {
 	@Inject extension AspectExtensions
-	@Inject extension ModelingElementExtensions
 	@Inject extension IQualifiedNameConverter
 	@Inject extension NamingHelper
 	@Inject extension EclipseProjectHelper
@@ -48,62 +48,47 @@ class AspectCopier
 	
 	// FIXME: We should first check that aspects are importable (i.e. defined
 	//         on a type group this metamodel is a subtype of)
+	/**
+	 * Copy the K3 generated files related to {@link asp} into the folder 'src-gen'
+	 * of a new created project named '{@link l.name}_Gen'
+	 */
 	def String copyAspectTo(Aspect asp, Language l) {
 		val task = Stopwatches.forTask("copying aspects in new type group")
 		task.start
 
 		val project = l.eResource.project
-
-		if (project === null)
-			return null
+		if (project === null) return null
 
 		val ws = project.workspace.root
 		val shader = new DirectoryShader
 		val request = new ShadeRequest
 		val relocators = new ArrayList<Relocator>
+		
+		/*
+		 * Get namespaces 
+		 */
 		val sourceEmfNamespace = asp.targetedNamespace
 		val targetEmfNamespace = l.syntax.packageFqn.toQualifiedName.skipLast(1)
-				
 		val sourceAspectNamespace = asp.aspectTypeRef.identifier.toQualifiedName.skipLast(1)
-		
+		val targetAspectNamespace = getAspectTargetNamespace(sourceAspectNamespace, l)
 		
 		if(sourceEmfNamespace.equals(sourceAspectNamespace)){
 			errorHelper.addError(asp, "Melange cannot correctly handle aspect classes if they use the same package name as the aspectized emf classes, please move the aspect classes in a dedicated package", null)
 		}
-		val targetAspectNamespace = getAspectTargetNamespace(sourceAspectNamespace, l)
 		
-
+		/*
+		 * Get aspect's project
+		 */
 		val projectPathTmp = new StringBuilder
 		val projectNameTmp = new StringBuilder
-		ws.accept(new IResourceVisitor {
-			
-			val toBeMatched = asp.aspectTypeRef.identifier.replace(".", "/") + ".java"
-			
-			override visit(IResource resource) throws CoreException {
-				if (resource instanceof IFile) {
-					val resourcePath = resource.locationURI.path
-					if (resourcePath.endsWith(toBeMatched)) {
-						val projectPath = resource.project.locationURI.path
-						if (projectPathTmp.length == 0)
-							projectPathTmp.append(projectPath)
-						if (projectNameTmp.length == 0)
-							projectNameTmp.append(resource.project.name)
-					}
-					return false
-				}
-				
-				return true
-			}
-		})
+		findProject(ws, asp, projectPathTmp,projectNameTmp)
 
 		val sourceAspectFolder = projectPathTmp.toString + "/xtend-gen/"
-		//val targetAspectFolder = projectPathTmp.toString + "/../" + targetAspectNamespace + "/src-gen/"
 		val sourceFolderFile = new File(sourceAspectFolder)
 		val sourceProject = ws.getProject(projectNameTmp.toString)
 		val findTargetProject = ws.getProject(l.name+"_Gen")
 		// FIXME: Just to have a first call of the EPackageProvider
 		//        in order to set the ecoreUri when inherited
-		val x = l.syntax.pkgs
 		val ecoreUri = URI::createURI(l.syntax.ecoreUri)
 		val emfRuntimeProject = ecoreUri.segment(1)
 		val targetProject =
@@ -116,21 +101,30 @@ class AspectCopier
 					targetAspectNamespace.toString,
 					emfRuntimeProject
 				)
-		//ws.getProject(targetAspectNamespace.toString).rawLocation
-		val targetAspectFolder = findTargetProject.locationURI.path + "/src-gen/"
-		val targetFolderFile = new File(targetAspectFolder)
-//		val filenameToBeFound = '''/src-gen/«targetAspectNamespace.toString.replace(".", "/")»/«asp.aspectTypeRef.simpleName».java'''
-//		val fileToBeFound = targetProject.getFile(filenameToBeFound)
-
+		/*
+		 * Add the project of the copied Aspects in the dependencies
+		 * of the Language project
+		 */
 		if(project.name != targetProject.name){
 			EclipseProjectHelper::addDependencies(project, #[targetProject.name])
 		}
+				
+		/*
+		 * Get folder of the generated files
+		 */
+		val targetAspectFolder = findTargetProject.locationURI.path + "/src-gen/"
+		val targetFolderFile = new File(targetAspectFolder)
 
+		/*
+		 * Namespace relocators
+		 */
 		relocators += new SimpleRelocator(sourceAspectNamespace.toString, targetAspectNamespace.toString, null, #[])
 		relocators += new SimpleRelocator(sourceEmfNamespace.toString, targetEmfNamespace.toString, null, #[])
 
+		/*
+		 * Filter files not related to targeted aspect
+		 */
 		val className = asp.aspectAnnotationValue
-		//Filter files not related to targeted aspect
 		val filter = new Filter(){
 			String targetClass = className
 			override canFilter(File jar) {
@@ -158,9 +152,11 @@ class AspectCopier
 			log.debug('''	sourceAspectFolder    = «sourceAspectFolder»''')
 			log.debug('''	targetAspectFolder    = «targetAspectFolder»''')
 
-//			if (!fileToBeFound.exists) {
 			shader.shade(request)
 			
+			/*
+			 * Relocate MANIFEST.MF
+			 */
 			log.debug('''Copying META-INF aspect_properties «asp.aspectTypeRef.identifier» to «l.name»:''')	
 			val sourceMetaInfFolder = projectPathTmp.toString + "/META-INF/"
 			val sourceMetaInfFile = new File(sourceMetaInfFolder)	
@@ -171,10 +167,12 @@ class AspectCopier
 			
 			shader.shade(request)
 				
+			
 			targetProject.refreshLocal(IResource.DEPTH_INFINITE, null)
-//			}
 
-			//Add src-gen/ in the classpath
+			/*
+			 * Add src-gen/ in the classpath
+			 */
 			val srcGenPath = "/"+l.name+"_Gen/src-gen"
 			val javaProject = JavaCore.create(findTargetProject)
 			val IClasspathEntry[] entries = javaProject.getRawClasspath()
@@ -217,6 +215,33 @@ class AspectCopier
 				return sourceAspectNamespace.skipLast(1).append(l.name.toLowerCase).append(postfix)
 		}
 
+	}
+	
+	/**
+	 * Locate the project containing {@link asp} in the workspace {@link ws} and
+	 * fill {@link projectPathTmp} & {@link projectNameTmp}
+	 */
+	private def void findProject(IWorkspaceRoot ws, Aspect asp, StringBuilder projectPathTmp, StringBuilder projectNameTmp){
+		ws.accept(new IResourceVisitor {
+			
+			val toBeMatched = asp.aspectTypeRef.identifier.replace(".", "/") + ".java"
+			
+			override visit(IResource resource) throws CoreException {
+				if (resource instanceof IFile) {
+					val resourcePath = resource.locationURI.path
+					if (resourcePath.endsWith(toBeMatched)) {
+						val projectPath = resource.project.locationURI.path
+						if (projectPathTmp.length == 0)
+							projectPathTmp.append(projectPath)
+						if (projectNameTmp.length == 0)
+							projectNameTmp.append(resource.project.name)
+					}
+					return false
+				}
+				
+				return true
+			}
+		})
 	}
 }
 
