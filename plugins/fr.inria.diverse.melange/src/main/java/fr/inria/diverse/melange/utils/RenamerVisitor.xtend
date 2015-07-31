@@ -48,41 +48,31 @@ class RenamerVisitor extends ASTVisitor{
 	
 	override visit(ImportDeclaration node) {
 		
-		val rule = rulesManager.allPackageRules.findFirst[key+".*" == node.name]
-		if(rule != null){ //package import
-			val newName = node.AST.newSimpleName(rule.value)
-			newImportsNames.put(node,newName)
+		val String nodeName = node.name.toString
+		var String newNodeName = null
+		
+		if(nodeName.endsWith(".*")){ //Package import
+			val importedPackage = nodeName.substring(0, nodeName.length - 2);
+			newNodeName = importedPackage.getRenaming + ".*"
 		}
-		else{
-			val pack = node.name.toString.qualifierPart
-			val rule2 = rulesManager.getPackageRule(pack)
-			if(rule2 != null){ //class import
-				val packageName = node.AST.toName(rule2.value)
-				
-				val clazz = node.name.toString.lastPart
-				val classRule = rulesManager.getClassRule(pack+"."+clazz)
-				val clazzName = 
-					if(classRule != null){
-						node.AST.newSimpleName(classRule.value.lastPart)
-					}
-					else{
-						node.AST.newSimpleName(clazz)
-					}
-				
-				val newName = node.AST.newQualifiedName(packageName,clazzName)
-				newImportsNames.put(node,newName)
+		else{ //Class import
+			val rule = rulesManager.allClassRules.findFirst[key == nodeName]
+			if(rule != null){
+				newNodeName = rule.value
 			}
-			else{ //find rule for super package
-				val longestRule = rulesManager.allPackageRules.filter[isSubpackage(key,pack)].sortBy[key.length].last
-				if(longestRule != null){
-					val prefix = longestRule.value
-					val sufix = pack.substring(longestRule.key.length)
-					val packageName = node.AST.toName(prefix+sufix)
-					val clazzName = node.AST.newSimpleName(node.name.toString.lastPart)
-					val newName = node.AST.newQualifiedName(packageName,clazzName)
-					newImportsNames.put(node,newName)
+			else{
+				val packageName = nodeName.qualifierPart
+				val newPackageName = packageName.getRenaming
+				if(newPackageName != null){
+					val className = nodeName.lastPart
+					newNodeName = newPackageName + "." + className
 				}
 			}
+		}
+		
+		if(newNodeName != null){
+			val newName = node.AST.toName(newNodeName)
+			newImportsNames.put(node,newName)	
 		}
 		
 		super.visit(node)
@@ -459,5 +449,27 @@ class RenamerVisitor extends ASTVisitor{
 			subpack.length > pack.length &&
 			subpack.startsWith(pack) &&
 			subpack.charAt(pack.length).toString == '.'
+	}
+	
+	/**
+	 * Return the renamed package name if their exist a rule for {@link pacakgeName}
+	 * or for a super pacakge.
+	 * 
+	 * Return null if not renamed.
+	 */
+	def String getRenaming(String packageName){
+		val rule = rulesManager.allPackageRules.findFirst[key == packageName]
+		if(rule != null){
+			return rule.value
+		}
+		else{
+			val longestRule = rulesManager.allPackageRules.filter[isSubpackage(key,packageName)].sortBy[key.length].last
+			if(longestRule != null){
+				val prefix = longestRule.value
+				val sufix = packageName.substring(longestRule.key.length)
+				return prefix+sufix
+			}
+		}
+		return null
 	}
 }
