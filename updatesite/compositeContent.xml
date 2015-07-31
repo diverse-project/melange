@@ -7,6 +7,6 @@
   </properties>
   <children size='2'>
     <child location='http://kermeta.org/k3/update/'/>
-    <child location='https://ci.inria.fr/k3al/job/melange-master/lastSuccessfulBuild/artifact/plugins/fr.inria.diverse.melange.p2updatesite/target/site/'/>
+    <child location='https://ci.inria.fr/k3al/job/melange-master/lastSuccessfulBuild/artifact/releng/fr.inria.diverse.melange.p2updatesite/target/site/'/>
   </children>
 </repository>

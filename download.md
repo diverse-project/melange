@@ -15,7 +15,7 @@ Nightly (unstable) plugins for Eclipse are available in these update sites:
 
 Or
 
-- [Melange alone](https://ci.inria.fr/k3al/job/melange-master/lastSuccessfulBuild/artifact/plugins/fr.inria.diverse.melange.p2updatesite/target/site/)
+- [Melange alone](https://ci.inria.fr/k3al/job/melange-master/lastSuccessfulBuild/artifact/releng/fr.inria.diverse.melange.p2updatesite/target/site/)
 
 -------------------------------
 
