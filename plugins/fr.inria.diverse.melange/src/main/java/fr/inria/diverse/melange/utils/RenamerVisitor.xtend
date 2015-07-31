@@ -27,6 +27,8 @@ import org.eclipse.jdt.core.dom.TypeDeclaration
 import org.eclipse.jdt.core.dom.VariableDeclarationExpression
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment
 import org.eclipse.jdt.core.dom.VariableDeclarationStatement
+import org.eclipse.emf.ecore.EClass
+import java.util.List
 
 class RenamerVisitor extends ASTVisitor{
 
@@ -37,13 +39,17 @@ class RenamerVisitor extends ASTVisitor{
 	Map<MethodInvocation,SimpleName> newMethodNames
 	Map<MethodDeclaration,SimpleName> newMethodDeclNames
 	
-	new(RenamingRuleManager rulesManager) {
+	List<EClass> allClasses
+		
+	new(RenamingRuleManager rulesManager, List<EClass> allClasses) {
 		this.rulesManager = rulesManager
 		
 		newImportsNames = newHashMap
 		newSimpleTypesNames = newHashMap
 		newMethodNames = newHashMap
 		newMethodDeclNames = newHashMap 
+		
+		this.allClasses = allClasses
 	}
 	
 	override visit(ImportDeclaration node) {
@@ -82,7 +88,6 @@ class RenamerVisitor extends ASTVisitor{
 		
 		val typeName = node.name
 		
-		//TODO: typeName can be a QualifiedName
 		val rule = typeName.getClassRule()
 		if(rule != null){
 			
@@ -94,6 +99,17 @@ class RenamerVisitor extends ASTVisitor{
 			else if(typeName instanceof QualifiedName){
 				val newName = node.AST.toName(rule.value)
 				newSimpleTypesNames.put(node,newName)	
+			}
+		}
+		else{
+			if(typeName instanceof QualifiedName){
+				val root = node.root as CompilationUnit
+				val candidate = allClasses.findFirst[it.fqn == typeName.toString.renaming]
+				
+				if(candidate != null){
+					val newName = node.AST.toName(candidate.fqn)
+					newSimpleTypesNames.put(node,newName)	
+				}
 			}
 		}
 		
@@ -391,18 +407,18 @@ class RenamerVisitor extends ASTVisitor{
 			val candidatesRule = rulesManager.allClassRules.filter[key.lastPart == typeName]
 
 			res = candidatesRule?.findFirst[candidateRule |
-					//Check type is imported
-					if(importDecl.exists[it.fullyQualifiedName == candidateRule.key]){
+				//Check type is imported
+				if(importDecl.exists[it.fullyQualifiedName == candidateRule.key]){
+					true
+				}
+				//Check type's package is imported
+				else{
+					val candidatePackage = candidateRule.key.qualifierPart + ".*"
+					if(importDecl.exists[it.fullyQualifiedName == candidatePackage]){
 						true
 					}
-					//Check type's package is imported
-					else{
-						val candidatePackage = candidateRule.key.qualifierPart
-						if(importDecl.exists[it.fullyQualifiedName == candidatePackage+".*"]){
-							true
-						}
-					}
-				]
+				}
+			]
 		}
 		return res
 	}
@@ -471,5 +487,21 @@ class RenamerVisitor extends ASTVisitor{
 			}
 		}
 		return null
+	}
+	
+	/**
+	 * Return the fully qualified name of clazz
+	 */
+	def String getFqn(EClass clazz){
+		 val List<String> parts = newArrayList
+		
+		parts.add(clazz.name)
+		var current = clazz.EPackage
+		while(current != null){
+			parts.add(current.name)
+			current = current.ESuperPackage
+		}
+		
+		return parts.reverse.join(".")
 	}
 }
