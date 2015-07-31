@@ -122,18 +122,24 @@ class AspectCopier
 		relocators += new SimpleRelocator(sourceAspectNamespace.toString, targetAspectNamespace.toString, null, #[])
 		relocators += new SimpleRelocator(sourceEmfNamespace.toString, targetEmfNamespace.toString, null, #[])
 
-		val className = asp.aspectAnnotationValue
-		//Filter files not related to targeted aspect
-		val filter = new Filter(){
-			String targetClass = className
+		val aspectFqn = asp.identifier
+		val aspectTargetClass = asp.aspectAnnotationValue
+		// Filter files not related to targeted aspect
+		val filter = new Filter {
+			String prefix = aspectFqn.replaceAll("\\.", "/")
+			String targetClass = aspectTargetClass
+
 			override canFilter(File jar) {
 				return true
 			}
+
 			override finished() {}
+
 			override isFiltered(String classFile) {
-				return !(classFile.endsWith("/"+targetClass+"Aspect.java") ||
-						classFile.endsWith("/"+targetClass+"Aspect"+targetClass+"AspectContext.java") ||
-						classFile.endsWith("/"+targetClass+"Aspect"+targetClass+"AspectProperties.java"))
+				return
+					   !(classFile.endsWith('''«prefix».java''')
+					|| classFile.endsWith('''«prefix»«targetClass»AspectContext.java''')
+					|| classFile.endsWith('''«prefix»«targetClass»AspectProperties.java'''))
 			}
 		}
 		request.inputFolders = #{sourceFolderFile}
