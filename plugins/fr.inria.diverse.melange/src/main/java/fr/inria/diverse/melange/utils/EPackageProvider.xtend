@@ -17,6 +17,7 @@ import java.util.List
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 @Singleton
 class EPackageProvider
@@ -26,8 +27,9 @@ class EPackageProvider
 	@Inject extension ModelTypeExtensions
 	@Inject extension LanguageExtensions
 	@Inject extension EclipseProjectHelper
-	private ListMultimap<ModelingElement, EPackage> packages = ArrayListMultimap.create
-	private ListMultimap<Metamodel, GenModel> genmodels = ArrayListMultimap.create
+	@Inject extension IQualifiedNameProvider
+	private ListMultimap<String, EPackage> packages = ArrayListMultimap.create
+	private ListMultimap<String, GenModel> genmodels = ArrayListMultimap.create
 
 	def void reset() {
 		packages = ArrayListMultimap.create
@@ -35,7 +37,7 @@ class EPackageProvider
 	}
 
 	def List<EPackage> getPackages(ModelingElement m) {
-		if (!packages.containsKey(m)) {
+		if (!packages.containsKey(m.fqn)) {
 			if (m instanceof Metamodel) {
 				val project = m.eResource.project
 				if (m.owningLanguage.isGeneratedByMelange && project !== null)
@@ -55,8 +57,8 @@ class EPackageProvider
 						pkgs += root
 						pkgs += root.referencedPkgs.filter[!pkgs.exists[p | nsURI == p.nsURI]]
 
-						packages.putAll(m, pkgs)
-						packages.putAll(m, pkgs.map[allSubPkgs].flatten.filter[!pkgs.exists[p | nsURI == p.nsURI]])
+						packages.putAll(m.fqn, pkgs)
+						packages.putAll(m.fqn, pkgs.map[allSubPkgs].flatten.filter[!pkgs.exists[p | nsURI == p.nsURI]])
 						pkgs.forEach[ESubpackages.clear]
 					}
 				}
@@ -77,21 +79,21 @@ class EPackageProvider
 //						m.ecoreUri = newUri.toString
 //						m.genmodelUris += newGmUri
 
-						packages.putAll(m, pkgsCopy)
+						packages.putAll(m.fqn, pkgsCopy)
 					}
 				ModelType:
 					if (m.isExtracted) {
 						val copy = EcoreUtil::copyAll( m.extracted.syntax.packages.filter[ESuperPackage == null].toList)
-						packages.putAll(m, copy)
+						packages.putAll(m.fqn, copy)
 					}
 			}
 		}
 
-		return packages.get(m)
+		return packages.get(m.fqn)
 	}
 
 	def List<GenModel> getGenModels(Metamodel mm) {
-		if (!genmodels.containsKey(mm)) {
+		if (!genmodels.containsKey(mm.fqn)) {
 			if (mm.genmodelUris.size == 0 && mm.ecoreUri !== null)
 				mm.genmodelUris += mm.ecoreUri.substring(0, mm.ecoreUri.lastIndexOf(".")) + ".genmodel"
 			else {
@@ -106,25 +108,34 @@ class EPackageProvider
 				val gm = modelUtils.loadGenmodel(it)
 
 				if (gm !== null)
-					genmodels.put(mm, gm)
+					genmodels.put(mm.fqn, gm)
 			]
 		}
-		return genmodels.get(mm)
+
+		return genmodels.get(mm.fqn)
 	}
 	
 	/**
 	 * Register {@link root} and its sub EPackages as packages of {@link modElem} 
 	 */
 	def void registerPackages(ModelingElement modElem, EPackage root){
-		if (!packages.containsKey(modElem) && root !== null) {
+		if (root !== null) {
 			val pkgs = newArrayList
 
 			pkgs += root
 			pkgs += root.referencedPkgs.filter[!pkgs.exists[p | nsURI == p.nsURI]]
 
-			packages.putAll(modElem, pkgs)
-			packages.putAll(modElem, pkgs.map[allSubPkgs].flatten.filter[!pkgs.exists[p | nsURI == p.nsURI]])
+			packages.putAll(modElem.fqn, pkgs)
+			packages.putAll(modElem.fqn, pkgs.map[allSubPkgs].flatten.filter[!pkgs.exists[p | nsURI == p.nsURI]])
 //			pkgs.forEach[ESubpackages.clear]
 		}
+	}
+
+	def dispatch String getFqn(Metamodel mm) {
+		return mm.owningLanguage.fullyQualifiedName.toString
+	}
+
+	def dispatch String getFqn(ModelType mt) {
+		return mt.fullyQualifiedName.toString
 	}
 }
