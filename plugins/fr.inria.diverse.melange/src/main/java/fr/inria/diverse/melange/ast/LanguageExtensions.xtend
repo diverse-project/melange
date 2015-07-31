@@ -263,23 +263,15 @@ class LanguageExtensions
 	 */
 	def List<Aspect> createExternalAspects(Language l) {
 		val res = newArrayList
-		val classesAlreadyWeaved = newArrayList
-		
-		l.allAspects.forEach[asp |
-//			if (asp.isComplete) {
-				if (asp.canBeCopiedFor(l.syntax)) {
-					val className = asp.aspectAnnotationValue
-					if(!classesAlreadyWeaved.contains(className) && (l.syntax.findClass(className) !== null)){
-						classesAlreadyWeaved.add(className)
-						
-						val typeRefBuilder = builderFactory.create(l.eResource.resourceSet)
-						val newAspectFqn = copier.copyAspectTo(asp, l)
-						res += MelangeFactory.eINSTANCE.createAspect => [
-							aspectTypeRef = typeRefBuilder.typeRef(newAspectFqn)
-						]
-					}
-				}
-//			}
+
+		l.allAspects
+		.filter[canBeCopiedFor(l.syntax)]
+		.forEach[asp |
+			val typeRefBuilder = builderFactory.create(l.eResource.resourceSet)
+			val newAspectFqn = copier.copyAspectTo(asp, l)
+			res += MelangeFactory.eINSTANCE.createAspect => [
+				aspectTypeRef = typeRefBuilder.typeRef(newAspectFqn)
+			]
 		]
 		
 		return res
