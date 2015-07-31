@@ -3,9 +3,9 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<relativePath>../fr.inria.diverse.melange.root/pom.xml</relativePath>
+		<relativePath>../fr.inria.diverse.melange.plugins.root/pom.xml</relativePath>
 		<groupId>fr.inria.diverse.melange</groupId>
-		<artifactId>fr.inria.diverse.melange.root</artifactId>
+		<artifactId>fr.inria.diverse.melange.plugins.root</artifactId>
 		<version>0.1.0-SNAPSHOT</version>
 	</parent>
 
