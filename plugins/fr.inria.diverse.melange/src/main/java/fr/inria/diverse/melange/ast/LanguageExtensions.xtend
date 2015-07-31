@@ -41,7 +41,7 @@ class LanguageExtensions
 	}
 
 	def boolean getIsComplete(Language l) {
-		return l.syntax !== null && l.syntax.isComplete
+		return l.syntax !== null && l.syntax.isComplete && l.semantics.forall[isComplete]
 	}
 
 	/**
@@ -254,7 +254,7 @@ class LanguageExtensions
 				return true
 			else return false
 		} else
-			return false
+			return true
 	}
 
 	/**

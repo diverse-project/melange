@@ -18,13 +18,7 @@ class DispatchMelangeProcessor implements MelangeProcessor
 
 	def void _preProcess(EObject object, boolean preLinkingPhase) {
 		if (object !== null)
-			object.eContents.forEach[o |
-				switch (o) {
-					Language: if (o.isComplete) o.preProcess(preLinkingPhase)
-					ModelType: if (o.isComplete) o.preProcess(preLinkingPhase)
-					default: o.preProcess(preLinkingPhase)
-				}
-			]
+			object.eContents.forEach[preProcess(preLinkingPhase)]
 	}
 
 	override postProcess(EObject object) {
@@ -33,13 +27,6 @@ class DispatchMelangeProcessor implements MelangeProcessor
 
 	def void _postProcess(EObject object) {
 		if (object !== null)
-			object.eContents.forEach[o |
-				switch (o) {
-					Language: if (o.isComplete) o.postProcess
-					ModelType: if (o.isComplete) o.postProcess
-					default: o.postProcess
-				}
-			]
+			object.eContents.forEach[postProcess]
 	}
 }
-
