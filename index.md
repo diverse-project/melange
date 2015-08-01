@@ -1,7 +1,7 @@
 ---
 layout: page
-title: The Melange Metalanguage: Assemble and integrate your DSLs!
-tagline: Assemble and Integrate your DSLs!
+title: Melange
+tagline: Integrate your DSLs!
 ---
 {% include JB/setup %}
 

@@ -8,9 +8,9 @@ highlighter: pygments
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : "The Melange Metalanguage"
-tagline: Assemble and Integrate your DSLs!
-description: "Website and documentation of Melange, an open-source framework for software language engineering and domain-specific languages integration."
+title : "Melange"
+tagline: Integrate your DSLs!
+description: "Website and documentation of Melange, an open-source language for software language engineering and domain-specific languages integration."
 author :
   name : Thomas Degueule
   email : thomas.degueule@inria.fr
