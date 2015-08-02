@@ -65,14 +65,43 @@ class LanguageExtensions
 					newArrayList
 			].flatten
 		)
-		res.addAll(l.superLanguages.map[allAspects].flatten)
+		tmp.addAll(l.superLanguages.map[allAspects].flatten)
+
+		val res = newArrayList
+		tmp.forEach[r1 |
+			if (!res.exists[JvmTypeReference r2 | r2.identifier == r1.identifier])
+				res += r1
+		]
+		return res
+	}
+
+	def List<Aspect> allSemantics(Language l) {
+		val tmp = newArrayList
 		
+		tmp.addAll(l.semantics)
+		tmp.addAll(
+			l.operators.map[op |
+				if (op instanceof Slice)
+					op.slicedLanguage.semantics
+				else if (op instanceof Merge)
+					op.mergedLanguage.semantics
+				else
+					newArrayList
+			].flatten
+		)
+		tmp.addAll(l.superLanguages.map[semantics].flatten)
+
+		val res = newArrayList
+		tmp.forEach[a1 |
+			if (!res.exists[Aspect a2 | a2.aspectTypeRef.identifier == a1.aspectTypeRef.identifier])
+				res += a1
+		]
 		return res
 	}
 
 	def Iterable<Aspect> findAspectsOn(Language l, EClass cls) {
 		return
-			l.semantics.filter[asp |
+			l.allSemantics.filter[asp |
 				asp.aspectedClass?.name !== null
 				&& (
 				   asp.aspectedClass.name == cls.name
