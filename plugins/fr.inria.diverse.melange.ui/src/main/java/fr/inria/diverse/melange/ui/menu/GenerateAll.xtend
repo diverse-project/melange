@@ -34,6 +34,7 @@ class GenerateAll extends AbstractHandler {
 					val rs = rsProvider.get(project)
 					val res = rs.getResource(URI::createPlatformResourceURI(resource.fullPath.toString, true), true) as DerivedStateAwareResource
 
+					builder.cleanAll(res, project, new SubProgressMonitor(monitor, 1))
 					builder.generateInterfaces(res, project, new SubProgressMonitor(monitor, 1))
 					builder.generateLanguages(res, project, new SubProgressMonitor(monitor, 1))
 					builder.generateAdapters(res, project, new SubProgressMonitor(monitor, 1))
