@@ -3,6 +3,7 @@ package fr.inria.diverse.melange.ui.labeling
 import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.metamodel.melange.Aspect
+import fr.inria.diverse.melange.metamodel.melange.Inheritance
 import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
@@ -60,7 +61,7 @@ class MelangeLabelProvider extends XbaseLabelProvider
 	}
 
 	def String text(Language l) {
-		return '''«l.name»«FOR t : l.superLanguages BEFORE '\u25C0' SEPARATOR ', '»«t.name»«ENDFOR»«FOR t : l.implements BEFORE ' \u25C1 ' SEPARATOR ', '»«t.name»«ENDFOR»'''.toString
+		return '''«l.name»«FOR t : l.operators.filter(Inheritance).map[superLanguage] BEFORE '\u25C0' SEPARATOR ', '»«t.name»«ENDFOR»«FOR t : l.implements BEFORE ' \u25C1 ' SEPARATOR ', '»«t.name»«ENDFOR»'''.toString
 	}
 
 	def String text(EAttribute a){
