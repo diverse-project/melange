@@ -65,13 +65,7 @@ class LanguageExtensions
 					newArrayList
 			].flatten
 		)
-		tmp.addAll(l.superLanguages.map[allAspects].flatten)
 
-		val res = newArrayList
-		tmp.forEach[r1 |
-			if (!res.exists[JvmTypeReference r2 | r2.identifier == r1.identifier])
-				res += r1
-		]
 		return res
 	}
 
