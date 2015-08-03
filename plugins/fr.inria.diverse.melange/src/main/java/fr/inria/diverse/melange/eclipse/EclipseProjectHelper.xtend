@@ -166,14 +166,6 @@ class EclipseProjectHelper
 		try {
 			// FIXME: Everything's hardcoded...
 			val basePkg = l.name.toLowerCase
-			val generatedEPackageExtension = '''
-				<extension point="org.eclipse.emf.ecore.generated_package">
-					<package
-						uri="http://«basePkg»/"
-						class="«basePkg».«l.name»Package"
-						genModel="model/«l.name».genmodel"/>
-				</extension>
-			'''
 			val project = createEclipseProject(
 				projectName,
 				#[JavaCore::NATURE_ID, PDE::PLUGIN_NATURE],
@@ -183,7 +175,7 @@ class EclipseProjectHelper
 				#["org.eclipse.emf.ecore", "fr.inria.diverse.k3.al.annotationprocessor.plugin"],
 //				#[basePkg, basePkg + ".impl", basePkg + ".util"],
 				#[l.aspectTargetNamespace],
-				#[generatedEPackageExtension],
+				#[],
 				new NullProgressMonitor
 			)
 
