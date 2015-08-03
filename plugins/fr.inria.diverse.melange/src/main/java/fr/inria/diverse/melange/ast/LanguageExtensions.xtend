@@ -301,6 +301,6 @@ class LanguageExtensions
 	}
 
 	def boolean hasExternalAspects(Language l) {
-		return !l.allAspects.filter[canBeCopiedFor(l.syntax)].empty
+		return !l.allAspects.filter[!isDefinedOver(l.syntax) && canBeCopiedFor(l.syntax)].empty
 	}
 }
