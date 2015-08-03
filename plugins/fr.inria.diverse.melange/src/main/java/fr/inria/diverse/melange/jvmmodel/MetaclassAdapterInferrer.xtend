@@ -287,16 +287,17 @@ class MetaclassAdapterInferrer
 		if (!(aspect.aspectTypeRef?.type instanceof JvmDeclaredType))
 			return;
 
-		if (!aspect.aspectTypeRef.isDefinedOver(mm))
-			aspect.aspectTypeRef = typeRef(
-				'''«mm.owningLanguage.aspectTargetNamespace».«aspect.aspectTypeRef.simpleName»'''
-			)
+		val aspType =
+			if (!aspect.aspectTypeRef.isDefinedOver(mm))
+				typeRef(
+					'''«mm.owningLanguage.aspectTargetNamespace».«aspect.aspectTypeRef.simpleName»'''
+				).type
+			else
+				aspect.aspectTypeRef.type
 
-		val asp = aspect.aspectTypeRef?.type
-
-		if (asp !== null)
-			if (asp instanceof JvmDeclaredType)
-				asp.declaredOperations
+		if (aspType !== null)
+			if (aspType instanceof JvmDeclaredType)
+				aspType.declaredOperations
 				.filter[op |
 					   !op.simpleName.startsWith("_privk3")
 					&& !op.simpleName.startsWith("super_")
