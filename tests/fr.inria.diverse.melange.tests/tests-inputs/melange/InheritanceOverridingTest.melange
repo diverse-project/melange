@@ -1,0 +1,44 @@
+package inheritanceoverriding
+
+//import inheritanceoverriding.*
+
+language A {
+	syntax "tests-inputs/metamodels/FSM.ecore" withGenmodel "tests-inputs/metamodels/FSM.genmodel"
+	with inheritanceoverriding.A1
+	exactType AMT
+}
+
+language B inherits A {
+	with inheritanceoverriding.C1
+	with inheritanceoverriding.B2
+	exactType BMT
+}
+//
+//language C inherits B {
+//	with inheritanceoverriding.B1
+//	with inheritanceoverriding.B2
+//	exactType CMT
+//}
+//
+//language D inherits C {
+//	with inheritanceoverriding.C2
+//	exactType DMT
+//}
+//
+//language X inherits A {
+//	with inheritanceoverriding.C1
+//	with inheritanceoverriding.B1
+//	with inheritanceoverriding.OverrideA1
+//	with inheritanceoverriding.B1
+//	exactType XMT
+//}
+//
+//language Y inherits A, X {
+//	with inheritanceoverriding.B2
+//	with inheritanceoverriding.B2
+//	exactType YMT
+//}
+
+language Z inherits A {
+	exactType ZMT
+}
