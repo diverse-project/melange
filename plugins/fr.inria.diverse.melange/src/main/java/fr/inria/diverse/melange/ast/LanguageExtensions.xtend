@@ -76,14 +76,14 @@ class LanguageExtensions
 		tmp.addAll(
 			l.operators.map[op |
 				if (op instanceof Slice)
-					op.slicedLanguage.semantics
+					op.slicedLanguage.allSemantics
 				else if (op instanceof Merge)
-					op.mergedLanguage.semantics
+					op.mergedLanguage.allSemantics
 				else
 					newArrayList
 			].flatten
 		)
-		tmp.addAll(l.superLanguages.map[semantics].flatten)
+		tmp.addAll(l.superLanguages.map[allSemantics].flatten)
 
 		val res = newArrayList
 		tmp.forEach[a1 |
