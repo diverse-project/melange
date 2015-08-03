@@ -287,11 +287,11 @@ class LanguageExtensions
 	def List<Aspect> createExternalAspects(Language l) {
 		val res = newArrayList
 
-		l.allAspects
-		.filter[canBeCopiedFor(l.syntax)]
+		l.allSemantics
+		.filter[aspectTypeRef.canBeCopiedFor(l.syntax)]
 		.forEach[asp |
 			val typeRefBuilder = builderFactory.create(l.eResource.resourceSet)
-			val newAspectFqn = copier.copyAspectTo(asp, l)
+			val newAspectFqn = copier.copyAspectTo(asp.aspectTypeRef, l)
 			res += MelangeFactory.eINSTANCE.createAspect => [
 				aspectTypeRef = typeRefBuilder.typeRef(newAspectFqn)
 			]
