@@ -174,7 +174,7 @@ class EclipseProjectHelper
 				#[],
 				#["org.eclipse.emf.ecore", "fr.inria.diverse.k3.al.annotationprocessor.plugin"],
 //				#[basePkg, basePkg + ".impl", basePkg + ".util"],
-				#[l.aspectTargetNamespace],
+				if (l.hasExternalAspects) #[l.aspectTargetNamespace] else #[],
 				#[],
 				new NullProgressMonitor
 			)
