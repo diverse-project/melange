@@ -66,6 +66,7 @@ class MelangeBuilder
 
 		monitor.beginTask("Generating EMF runtime for languages", toGenerate.size)
 
+		cleanLanguages(res, project, monitor)
 		toGenerate.forEach[l |
 			if (monitor.canceled)
 				throw new OperationCanceledException
@@ -104,14 +105,12 @@ class MelangeBuilder
 	 * - Remove the dangling dependencies from the current project
 	 */
 	def void cleanAll(Resource res, IProject project, IProgressMonitor monitor) {
-		val srcGenFolder = project.getFolder("src-gen/")
-		val modelGenFolder = project.getFolder("model-gen/")
+		cleanAdapters(res, project, monitor)
+		cleanInterfaces(res, project, monitor)
+		cleanLanguages(res, project, monitor)
+	}
 
-		if (srcGenFolder.exists)
-			srcGenFolder.members.forEach[delete(true, monitor)]
-		if (modelGenFolder.exists)
-			modelGenFolder.members.forEach[delete(true, monitor)]
-
+	def void cleanLanguages(Resource res, IProject project, IProgressMonitor monitor) {
 		val root = res.contents.head as ModelTypingSpace
 		val danglingBundles = newArrayList
 
@@ -126,6 +125,20 @@ class MelangeBuilder
 		]
 
 		eclipseHelper.removeDependencies(project, danglingBundles)
+	}
+
+	def void cleanInterfaces(Resource res, IProject project, IProgressMonitor monitor) {
+		val modelGenFolder = project.getFolder("model-gen/")
+
+		if (modelGenFolder.exists)
+			modelGenFolder.members.forEach[delete(true, monitor)]
+	}
+
+	def void cleanAdapters(Resource res, IProject project, IProgressMonitor monitor) {
+		val srcGenFolder = project.getFolder("src-gen/")
+
+		if (srcGenFolder.exists)
+			srcGenFolder.members.forEach[delete(true, monitor)]
 	}
 
 	private def void waitForAutoBuild() {

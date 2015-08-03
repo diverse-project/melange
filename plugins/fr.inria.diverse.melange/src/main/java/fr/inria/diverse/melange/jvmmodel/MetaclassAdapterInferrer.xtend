@@ -283,22 +283,28 @@ class MetaclassAdapterInferrer
 		// At this stage, we have to link to the *actual* aspect to be used
 		// i.e. the one that may have been "type-group-transformed"
 		// (which means we assume it exists/has been generated/is a JvmDeclaredType)
+
+		if (!(aspect.aspectTypeRef?.type instanceof JvmDeclaredType))
+			return;
+
 		if (!aspect.aspectTypeRef.isDefinedOver(mm))
 			aspect.aspectTypeRef = typeRef(
 				'''«mm.owningLanguage.aspectTargetNamespace».«aspect.aspectTypeRef.simpleName»'''
 			)
 
-		val asp = aspect.aspectTypeRef.type as JvmDeclaredType
+		val asp = aspect.aspectTypeRef?.type
 
-		asp.declaredOperations
-		.filter[op |
-			   !op.simpleName.startsWith("_privk3")
-			&& !op.simpleName.startsWith("super_")
-			//&& op.parameters.head?.name == "_self"
-			&& !jvmCls.members.exists[opp | opp.simpleName == op.simpleName] // FIXME
-			&& op.visibility == JvmVisibility.PUBLIC
-		]
-		.forEach[processAspectOperation(aspect, mm, superType, jvmCls)]
+		if (asp !== null)
+			if (asp instanceof JvmDeclaredType)
+				asp.declaredOperations
+				.filter[op |
+					   !op.simpleName.startsWith("_privk3")
+					&& !op.simpleName.startsWith("super_")
+					//&& op.parameters.head?.name == "_self"
+					&& !jvmCls.members.exists[opp | opp.simpleName == op.simpleName] // FIXME
+					&& op.visibility == JvmVisibility.PUBLIC
+				]
+				.forEach[processAspectOperation(aspect, mm, superType, jvmCls)]
 	}
 
 	private def void processAspectOperation(JvmOperation op, Aspect aspect, Metamodel mm, ModelType superType, JvmGenericType jvmCls) {
