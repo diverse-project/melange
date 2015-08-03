@@ -26,6 +26,7 @@ class ModelTypeExtensions
 
 	def boolean getIsComplete(ModelType mt) {
 		return
+			mt.name !== null &&
 			if (mt.isExtracted)
 				mt.extracted.isComplete
 			else

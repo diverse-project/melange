@@ -132,10 +132,10 @@ class EPackageProvider
 	}
 
 	def dispatch String getFqn(Metamodel mm) {
-		return mm.owningLanguage.fullyQualifiedName.toString
+		return mm.owningLanguage.fullyQualifiedName?.toString
 	}
 
 	def dispatch String getFqn(ModelType mt) {
-		return mt.fullyQualifiedName.toString
+		return mt.fullyQualifiedName?.toString
 	}
 }
