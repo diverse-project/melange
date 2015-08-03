@@ -17,6 +17,7 @@ import org.eclipse.core.resources.IProject
 import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.core.runtime.OperationCanceledException
+import org.eclipse.core.runtime.SubProgressMonitor
 import org.eclipse.core.runtime.jobs.Job
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.Resource
@@ -37,6 +38,14 @@ class MelangeBuilder
 	@Inject extension ModelTypeExtensions
 	@Inject extension EcoreExtensions
 	static final Logger log = Logger.getLogger(MelangeBuilder)
+
+	def void generateAll(Resource res, IProject project, IProgressMonitor monitor) {
+		cleanAll(res, project, new SubProgressMonitor(monitor, 1))
+		generateInterfaces(res, project, new SubProgressMonitor(monitor, 1))
+		generateLanguages(res, project, new SubProgressMonitor(monitor, 1))
+		generateAdapters(res, project, new SubProgressMonitor(monitor, 1))
+		generatePluginXml(res, project, new SubProgressMonitor(monitor, 1))
+	}
 
 	def void generateInterfaces(Resource res, IProject project, IProgressMonitor monitor) {
 		val root = res.contents.head as ModelTypingSpace
