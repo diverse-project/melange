@@ -44,6 +44,7 @@ class MelangeBuilder
 
 		monitor.beginTask("Generating interfaces", mts.size)
 
+		cleanInterfaces(res, project, monitor)
 		mts.forEach[mt |
 			if (monitor.canceled)
 				throw new OperationCanceledException
@@ -91,6 +92,7 @@ class MelangeBuilder
 			fsa.outputConfigurations.put(name, it)
 		]
 
+		cleanAdapters(res, project, monitor)
 		generator.doGenerate(res, fsa)
 	}
 
