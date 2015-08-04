@@ -63,6 +63,14 @@ class NamingHelper
 		return gp.getEcorePackage.nsURI
 	}
 
+	def GenPackage getGenPackageFor(Metamodel mm, EPackage pkg) {
+		return
+			mm.genmodels
+			.map[allGenPkgs]
+			.flatten
+			.findFirst[getEcorePackage.name == pkg.name]
+	}
+
 	def String getFqnFor(Metamodel mm, ModelType mt, EClassifier cls) {
 		val mapping = mm.owningLanguage.mappings.findFirst[to == mt]
 		val mappingName = mapping?.rules?.findFirst[to == cls.name]?.from
@@ -70,10 +78,8 @@ class NamingHelper
 
 		return
 			if (cls instanceof EClass || cls instanceof EEnum)
-				mm.genmodels
-					.map[allGenPkgs].flatten
-					.findFirst[getEcorePackage.nsURI == mm.pkgs.findFirst[EClassifiers.exists[name == realName]].nsURI]
-					.getFqnFor(realName)
+				mm.getGenPackageFor(mm.pkgs.findFirst[EClassifiers.exists[name == realName]])
+				  .getFqnFor(realName)
 			else
 				cls.instanceClass?.name ?: cls.instanceClassName
 	}
@@ -95,10 +101,7 @@ class NamingHelper
 	}
 
 	def String getFactoryFqnFor(Metamodel mm, EPackage pkg) {
-		return
-			mm.genmodels.map[allGenPkgs].flatten
-			.findFirst[gp | gp.getEcorePackage.nsURI == pkg.nsURI]
-			.factoryFqn
+		return	mm.getGenPackageFor(pkg).factoryFqn
 	}
 
 	def String getAdaptersFactoryNameFor(Metamodel mm, ModelType mt) {
