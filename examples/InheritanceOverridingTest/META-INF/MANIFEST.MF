@@ -13,13 +13,7 @@ Require-Bundle: org.eclipse.xtend.lib;bundle-version="2.7.0";visibility:=private
  fr.inria.diverse.melange.resource;bundle-version="0.1.0";visibility:=reexport,
  fr.inria.diverse.melange.adapters;bundle-version="0.1.0";visibility:=reexport,
  fr.inria.diverse.melange.examples.metamodels.fsm;bundle-version="0.1.0",
- fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version="3.2.0",
- B_Gen,
- C_Gen,
- D_Gen,
- X_Gen,
- Y_Gen,
- Z_Gen
+ fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version="3.2.0"
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 

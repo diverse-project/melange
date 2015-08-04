@@ -7,12 +7,18 @@
       <modeltype
             uri="http://amt/"
             id="inheritanceoverriding.AMT">
+         <subtyping
+               modeltypeId="inheritanceoverriding.ZMT">
+         </subtyping>
       </modeltype>
       <modeltype
             uri="http://bmt/"
             id="inheritanceoverriding.BMT">
          <subtyping
                modeltypeId="inheritanceoverriding.AMT">
+         </subtyping>
+         <subtyping
+               modeltypeId="inheritanceoverriding.ZMT">
          </subtyping>
       </modeltype>
       <modeltype
@@ -42,6 +48,18 @@
          </subtyping>
          <subtyping
                modeltypeId="inheritanceoverriding.BMT">
+         </subtyping>
+         <subtyping
+               modeltypeId="inheritanceoverriding.CMT">
+         </subtyping>
+         <subtyping
+               modeltypeId="inheritanceoverriding.XMT">
+         </subtyping>
+         <subtyping
+               modeltypeId="inheritanceoverriding.YMT">
+         </subtyping>
+         <subtyping
+               modeltypeId="inheritanceoverriding.ZMT">
          </subtyping>
       </modeltype>
       <modeltype
@@ -108,6 +126,10 @@
                class="inheritanceoverriding.b.adapters.bmt.BAdapter"
                modeltypeId="inheritanceoverriding.BMT">
          </adapter>
+         <adapter
+               class="inheritanceoverriding.b.adapters.zmt.BAdapter"
+               modeltypeId="inheritanceoverriding.ZMT">
+         </adapter>
       </language>
       <language
             exactType="inheritanceoverriding.CMT"
@@ -151,8 +173,24 @@
                modeltypeId="inheritanceoverriding.BMT">
          </adapter>
          <adapter
+               class="inheritanceoverriding.d.adapters.cmt.DAdapter"
+               modeltypeId="inheritanceoverriding.CMT">
+         </adapter>
+         <adapter
                class="inheritanceoverriding.d.adapters.dmt.DAdapter"
                modeltypeId="inheritanceoverriding.DMT">
+         </adapter>
+         <adapter
+               class="inheritanceoverriding.d.adapters.xmt.DAdapter"
+               modeltypeId="inheritanceoverriding.XMT">
+         </adapter>
+         <adapter
+               class="inheritanceoverriding.d.adapters.ymt.DAdapter"
+               modeltypeId="inheritanceoverriding.YMT">
+         </adapter>
+         <adapter
+               class="inheritanceoverriding.d.adapters.zmt.DAdapter"
+               modeltypeId="inheritanceoverriding.ZMT">
          </adapter>
       </language>
       <language
