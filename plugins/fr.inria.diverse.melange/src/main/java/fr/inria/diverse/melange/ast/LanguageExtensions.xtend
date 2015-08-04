@@ -65,6 +65,7 @@ class LanguageExtensions
 					newArrayList
 			].flatten
 		)
+		res.addAll(l.operators.filter(Inheritance).map[superLanguage.allAspects].flatten)
 
 		return res
 	}
