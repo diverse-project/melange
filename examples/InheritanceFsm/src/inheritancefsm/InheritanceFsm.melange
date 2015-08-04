@@ -5,9 +5,21 @@ language Fsm {
 	exactType FsmMT
 }
 
+language Fsm2 {
+	syntax "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.fsm/model/FSM.ecore"
+	with inheritancefsm.FSMAspect
+	with inheritancefsm.StateAspect
+	with inheritancefsm.TransitionAspect
+	exactType Fsm2MT
+}
+
 language TimedFsm inherits Fsm {
 	with inheritancefsm.FSMAspect
 	with inheritancefsm.StateAspect
 	with inheritancefsm.TransitionAspect
 	exactType TimedFsmMT
+}
+
+language TimedFsm2 inherits Fsm2 {
+	exactType TimedFsm2MT
 }

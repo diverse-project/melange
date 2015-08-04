@@ -2,27 +2,27 @@ package inheritancefsm
 
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 
-@Aspect(className = timedfsm.FSM)
+@Aspect(className = fsm.FSM)
 class FSMAspect {
-	timedfsm.State current
+	fsm.State current
 
 	def void execute() {
 		
 	}
 }
 
-@Aspect(className = timedfsm.State)
+@Aspect(className = fsm.State)
 class StateAspect {
 	def void step() {
 		
 	}
 }
 
-@Aspect(className = timedfsm.Transition)
+@Aspect(className = fsm.Transition)
 class TransitionAspect {
 	int time = 0
 
-	def void step() {
+	def void fire() {
 		
 	}
 }
