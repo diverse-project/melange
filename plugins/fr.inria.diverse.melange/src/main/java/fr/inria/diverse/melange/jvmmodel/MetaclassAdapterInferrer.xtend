@@ -283,18 +283,19 @@ class MetaclassAdapterInferrer
 		// At this stage, we have to link to the *actual* aspect to be used
 		// i.e. the one that may have been "type-group-transformed"
 		// (which means we assume it exists/has been generated/is a JvmDeclaredType)
-
 		if (!(aspect.aspectTypeRef?.type instanceof JvmDeclaredType))
 			return;
 
-		val aspType =
+		val oldRef = aspect.aspectTypeRef
+		aspect.aspectTypeRef =
 			if (!aspect.aspectTypeRef.isDefinedOver(mm))
 				typeRef(
 					'''«mm.owningLanguage.aspectTargetNamespace».«aspect.aspectTypeRef.simpleName»'''
-				).type
+				)
 			else
-				aspect.aspectTypeRef.type
+				oldRef
 
+		val aspType = aspect.aspectTypeRef.type
 		if (aspType !== null)
 			if (aspType instanceof JvmDeclaredType)
 				aspType.declaredOperations
@@ -306,6 +307,8 @@ class MetaclassAdapterInferrer
 					&& op.visibility == JvmVisibility.PUBLIC
 				]
 				.forEach[processAspectOperation(aspect, mm, superType, jvmCls)]
+
+		aspect.aspectTypeRef = oldRef
 	}
 
 	private def void processAspectOperation(JvmOperation op, Aspect aspect, Metamodel mm, ModelType superType, JvmGenericType jvmCls) {
