@@ -22,10 +22,6 @@ class ModelingElementExtensions
 		return registry.getPackages(m)
 	}
 
-	def EPackage createEcore(ModelingElement m, String uri) {
-		return m.createEcore(uri, null)
-	}
-
 	/**
  	 * create the ecore for this ModelingElement
  	 * return the root package  
