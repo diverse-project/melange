@@ -127,6 +127,9 @@ class EclipseProjectHelper
 	}
 
 	def void removeDependencies(IProject project, Iterable<String> bundles) {
+		if (bundles.empty)
+			return;
+
 		val manifestFile = project.getFile("META-INF/MANIFEST.MF")
 
 		if (manifestFile !== null
