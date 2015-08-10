@@ -6,21 +6,15 @@ import fr.inria.diverse.melange.metamodel.melange.Language;
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
 import fr.inria.diverse.melange.metamodel.melange.PackageBinding;
 import fr.inria.diverse.melange.metamodel.melange.Slice;
-
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -31,8 +25,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.SliceImpl#getSlicedLanguage <em>Sliced Language</em>}</li>
- *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.SliceImpl#getRoots <em>Roots</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.SliceImpl#getMappingRules <em>Mapping Rules</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.SliceImpl#getRoots <em>Roots</em>}</li>
  * </ul>
  * </p>
  *
@@ -50,16 +44,6 @@ public class SliceImpl extends OperatorImpl implements Slice {
 	protected Language slicedLanguage;
 
 	/**
-	 * The cached value of the '{@link #getRoots() <em>Roots</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRoots()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<String> roots;
-
-	/**
 	 * The cached value of the '{@link #getMappingRules() <em>Mapping Rules</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,6 +52,16 @@ public class SliceImpl extends OperatorImpl implements Slice {
 	 * @ordered
 	 */
 	protected EList<PackageBinding> mappingRules;
+
+	/**
+	 * The cached value of the '{@link #getRoots() <em>Roots</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRoots()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<EClass> roots;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -131,9 +125,9 @@ public class SliceImpl extends OperatorImpl implements Slice {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<String> getRoots() {
+	public EList<EClass> getRoots() {
 		if (roots == null) {
-			roots = new EDataTypeUniqueEList<String>(String.class, this, MelangePackage.SLICE__ROOTS);
+			roots = new EObjectResolvingEList<EClass>(EClass.class, this, MelangePackage.SLICE__ROOTS);
 		}
 		return roots;
 	}
@@ -175,10 +169,10 @@ public class SliceImpl extends OperatorImpl implements Slice {
 			case MelangePackage.SLICE__SLICED_LANGUAGE:
 				if (resolve) return getSlicedLanguage();
 				return basicGetSlicedLanguage();
-			case MelangePackage.SLICE__ROOTS:
-				return getRoots();
 			case MelangePackage.SLICE__MAPPING_RULES:
 				return getMappingRules();
+			case MelangePackage.SLICE__ROOTS:
+				return getRoots();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -195,13 +189,13 @@ public class SliceImpl extends OperatorImpl implements Slice {
 			case MelangePackage.SLICE__SLICED_LANGUAGE:
 				setSlicedLanguage((Language)newValue);
 				return;
-			case MelangePackage.SLICE__ROOTS:
-				getRoots().clear();
-				getRoots().addAll((Collection<? extends String>)newValue);
-				return;
 			case MelangePackage.SLICE__MAPPING_RULES:
 				getMappingRules().clear();
 				getMappingRules().addAll((Collection<? extends PackageBinding>)newValue);
+				return;
+			case MelangePackage.SLICE__ROOTS:
+				getRoots().clear();
+				getRoots().addAll((Collection<? extends EClass>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -218,11 +212,11 @@ public class SliceImpl extends OperatorImpl implements Slice {
 			case MelangePackage.SLICE__SLICED_LANGUAGE:
 				setSlicedLanguage((Language)null);
 				return;
-			case MelangePackage.SLICE__ROOTS:
-				getRoots().clear();
-				return;
 			case MelangePackage.SLICE__MAPPING_RULES:
 				getMappingRules().clear();
+				return;
+			case MelangePackage.SLICE__ROOTS:
+				getRoots().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -238,28 +232,12 @@ public class SliceImpl extends OperatorImpl implements Slice {
 		switch (featureID) {
 			case MelangePackage.SLICE__SLICED_LANGUAGE:
 				return slicedLanguage != null;
-			case MelangePackage.SLICE__ROOTS:
-				return roots != null && !roots.isEmpty();
 			case MelangePackage.SLICE__MAPPING_RULES:
 				return mappingRules != null && !mappingRules.isEmpty();
+			case MelangePackage.SLICE__ROOTS:
+				return roots != null && !roots.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (roots: ");
-		result.append(roots);
-		result.append(')');
-		return result.toString();
 	}
 
 } //SliceImpl

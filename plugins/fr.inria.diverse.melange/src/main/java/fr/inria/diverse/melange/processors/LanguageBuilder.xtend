@@ -322,12 +322,12 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 	/**
 	 * Search in {@link rootPackage} for EClass named as in {@link classes}
 	 */
-	private def List<EModelElement> getClasses(EPackage rootPackage, List<String> classes){
+	private def List<EModelElement> getClasses(EPackage rootPackage, List<EClass> classes){
 		//TODO: manage sub packages
 		val res = new ArrayList<EModelElement>()
 		
 		rootPackage.EClassifiers.filter(EClass).forEach[cl|
-			if(classes.contains(cl.name)) res.add(cl)
+			if(classes.contains(cl)) res.add(cl)
 		]
 		
 		return res

@@ -505,7 +505,7 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (slicedLanguage=[Language|QualifiedName] roots+=STRING roots+=STRING* mappingRules+=PackageMapping*)
+	 *     (slicedLanguage=[Language|QualifiedName] roots+=[EClass|QualifiedName] roots+=[EClass|QualifiedName]* mappingRules+=PackageMapping*)
 	 */
 	protected void sequence_Slice(EObject context, Slice semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

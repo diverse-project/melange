@@ -1476,19 +1476,16 @@ ruleSlice returns [EObject current=null]
     }
 (
 (
-		lv_roots_4_0=RULE_STRING
 		{
-			newLeafNode(lv_roots_4_0, grammarAccess.getSliceAccess().getRootsSTRINGTerminalRuleCall_4_0()); 
-		}
-		{
-	        if ($current==null) {
+			if ($current==null) {
 	            $current = createModelElement(grammarAccess.getSliceRule());
 	        }
-       		addWithLastConsumed(
-       			$current, 
-       			"roots",
-        		lv_roots_4_0, 
-        		"STRING");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getSliceAccess().getRootsEClassCrossReference_4_0()); 
+	    }
+		ruleQualifiedName		{ 
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
@@ -1498,19 +1495,16 @@ ruleSlice returns [EObject current=null]
     }
 (
 (
-		lv_roots_6_0=RULE_STRING
 		{
-			newLeafNode(lv_roots_6_0, grammarAccess.getSliceAccess().getRootsSTRINGTerminalRuleCall_5_1_0()); 
-		}
-		{
-	        if ($current==null) {
+			if ($current==null) {
 	            $current = createModelElement(grammarAccess.getSliceRule());
 	        }
-       		addWithLastConsumed(
-       			$current, 
-       			"roots",
-        		lv_roots_6_0, 
-        		"STRING");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getSliceAccess().getRootsEClassCrossReference_5_1_0()); 
+	    }
+		ruleQualifiedName		{ 
+	        afterParserOrEnumRuleCall();
 	    }
 
 )

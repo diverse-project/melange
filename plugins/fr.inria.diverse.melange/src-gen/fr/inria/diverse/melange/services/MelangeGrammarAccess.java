@@ -884,11 +884,13 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cOnKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Keyword cLeftSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cRootsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cRootsSTRINGTerminalRuleCall_4_0 = (RuleCall)cRootsAssignment_4.eContents().get(0);
+		private final CrossReference cRootsEClassCrossReference_4_0 = (CrossReference)cRootsAssignment_4.eContents().get(0);
+		private final RuleCall cRootsEClassQualifiedNameParserRuleCall_4_0_1 = (RuleCall)cRootsEClassCrossReference_4_0.eContents().get(1);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
 		private final Keyword cCommaKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
 		private final Assignment cRootsAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cRootsSTRINGTerminalRuleCall_5_1_0 = (RuleCall)cRootsAssignment_5_1.eContents().get(0);
+		private final CrossReference cRootsEClassCrossReference_5_1_0 = (CrossReference)cRootsAssignment_5_1.eContents().get(0);
+		private final RuleCall cRootsEClassQualifiedNameParserRuleCall_5_1_0_1 = (RuleCall)cRootsEClassCrossReference_5_1_0.eContents().get(1);
 		private final Keyword cRightSquareBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
 		private final Keyword cAndRenameKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
@@ -898,12 +900,12 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_7_3 = (Keyword)cGroup_7.eContents().get(3);
 		
 		//Slice:
-		//	"slice" slicedLanguage=[Language|QualifiedName] "on" "[" roots+=STRING ("," roots+=STRING)* "]" ("and-rename" "{"
-		//	mappingRules+=PackageMapping* "}")?;
+		//	"slice" slicedLanguage=[Language|QualifiedName] "on" "[" roots+=[ecore::EClass|QualifiedName] (","
+		//	roots+=[ecore::EClass|QualifiedName])* "]" ("and-rename" "{" mappingRules+=PackageMapping* "}")?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//"slice" slicedLanguage=[Language|QualifiedName] "on" "[" roots+=STRING ("," roots+=STRING)* "]" ("and-rename" "{"
-		//mappingRules+=PackageMapping* "}")?
+		//"slice" slicedLanguage=[Language|QualifiedName] "on" "[" roots+=[ecore::EClass|QualifiedName] (","
+		//roots+=[ecore::EClass|QualifiedName])* "]" ("and-rename" "{" mappingRules+=PackageMapping* "}")?
 		public Group getGroup() { return cGroup; }
 
 		//"slice"
@@ -924,23 +926,29 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		//"["
 		public Keyword getLeftSquareBracketKeyword_3() { return cLeftSquareBracketKeyword_3; }
 
-		//roots+=STRING
+		//roots+=[ecore::EClass|QualifiedName]
 		public Assignment getRootsAssignment_4() { return cRootsAssignment_4; }
 
-		//STRING
-		public RuleCall getRootsSTRINGTerminalRuleCall_4_0() { return cRootsSTRINGTerminalRuleCall_4_0; }
+		//[ecore::EClass|QualifiedName]
+		public CrossReference getRootsEClassCrossReference_4_0() { return cRootsEClassCrossReference_4_0; }
 
-		//("," roots+=STRING)*
+		//QualifiedName
+		public RuleCall getRootsEClassQualifiedNameParserRuleCall_4_0_1() { return cRootsEClassQualifiedNameParserRuleCall_4_0_1; }
+
+		//("," roots+=[ecore::EClass|QualifiedName])*
 		public Group getGroup_5() { return cGroup_5; }
 
 		//","
 		public Keyword getCommaKeyword_5_0() { return cCommaKeyword_5_0; }
 
-		//roots+=STRING
+		//roots+=[ecore::EClass|QualifiedName]
 		public Assignment getRootsAssignment_5_1() { return cRootsAssignment_5_1; }
 
-		//STRING
-		public RuleCall getRootsSTRINGTerminalRuleCall_5_1_0() { return cRootsSTRINGTerminalRuleCall_5_1_0; }
+		//[ecore::EClass|QualifiedName]
+		public CrossReference getRootsEClassCrossReference_5_1_0() { return cRootsEClassCrossReference_5_1_0; }
+
+		//QualifiedName
+		public RuleCall getRootsEClassQualifiedNameParserRuleCall_5_1_0_1() { return cRootsEClassQualifiedNameParserRuleCall_5_1_0_1; }
 
 		//"]"
 		public Keyword getRightSquareBracketKeyword_6() { return cRightSquareBracketKeyword_6; }
@@ -1348,8 +1356,8 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Slice:
-	//	"slice" slicedLanguage=[Language|QualifiedName] "on" "[" roots+=STRING ("," roots+=STRING)* "]" ("and-rename" "{"
-	//	mappingRules+=PackageMapping* "}")?;
+	//	"slice" slicedLanguage=[Language|QualifiedName] "on" "[" roots+=[ecore::EClass|QualifiedName] (","
+	//	roots+=[ecore::EClass|QualifiedName])* "]" ("and-rename" "{" mappingRules+=PackageMapping* "}")?;
 	public SliceElements getSliceAccess() {
 		return pSlice;
 	}

@@ -940,22 +940,22 @@ public interface MelangePackage extends EPackage {
 	int SLICE__SLICED_LANGUAGE = OPERATOR_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Roots</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SLICE__ROOTS = OPERATOR_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Mapping Rules</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SLICE__MAPPING_RULES = OPERATOR_FEATURE_COUNT + 2;
+	int SLICE__MAPPING_RULES = OPERATOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Roots</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLICE__ROOTS = OPERATOR_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Slice</em>' class.
@@ -1786,15 +1786,15 @@ public interface MelangePackage extends EPackage {
 	EReference getSlice_SlicedLanguage();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link fr.inria.diverse.melange.metamodel.melange.Slice#getRoots <em>Roots</em>}'.
+	 * Returns the meta object for the reference list '{@link fr.inria.diverse.melange.metamodel.melange.Slice#getRoots <em>Roots</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Roots</em>'.
+	 * @return the meta object for the reference list '<em>Roots</em>'.
 	 * @see fr.inria.diverse.melange.metamodel.melange.Slice#getRoots()
 	 * @see #getSlice()
 	 * @generated
 	 */
-	EAttribute getSlice_Roots();
+	EReference getSlice_Roots();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link fr.inria.diverse.melange.metamodel.melange.Slice#getMappingRules <em>Mapping Rules</em>}'.
@@ -2521,12 +2521,12 @@ public interface MelangePackage extends EPackage {
 		EReference SLICE__SLICED_LANGUAGE = eINSTANCE.getSlice_SlicedLanguage();
 
 		/**
-		 * The meta object literal for the '<em><b>Roots</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Roots</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SLICE__ROOTS = eINSTANCE.getSlice_Roots();
+		EReference SLICE__ROOTS = eINSTANCE.getSlice_Roots();
 
 		/**
 		 * The meta object literal for the '<em><b>Mapping Rules</b></em>' containment reference list feature.

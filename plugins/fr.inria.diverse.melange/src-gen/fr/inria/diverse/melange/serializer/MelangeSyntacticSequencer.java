@@ -169,7 +169,7 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ('and-rename' '{' '}')?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     roots+=STRING ']' (ambiguity) (rule end)
+	 *     roots+=[EClass|QualifiedName] ']' (ambiguity) (rule end)
 	 */
 	protected void emit_Slice___AndRenameKeyword_7_0_LeftCurlyBracketKeyword_7_1_RightCurlyBracketKeyword_7_3__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

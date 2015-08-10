@@ -96,7 +96,7 @@ Merge returns Merge:
 ;
 
 Slice returns Slice:
-	'slice' slicedLanguage = [Language | QualifiedName] 'on' '[' roots += STRING (',' roots += STRING)* ']'
+	'slice' slicedLanguage = [Language | QualifiedName] 'on' '[' roots += [ecore::EClass | QualifiedName] (',' roots += [ecore::EClass | QualifiedName])* ']'
 	('and-rename' '{'
 		(mappingRules+=PackageMapping)*
 	'}')?
