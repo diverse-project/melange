@@ -83,6 +83,13 @@
                </appinfo>
             </annotation>
          </attribute>
+         <attribute name="fileExtension" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

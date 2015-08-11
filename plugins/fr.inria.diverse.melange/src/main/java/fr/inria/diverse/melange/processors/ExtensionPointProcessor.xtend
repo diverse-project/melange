@@ -15,6 +15,7 @@ import org.eclipse.pde.internal.core.plugin.WorkspacePluginModel
 import org.eclipse.pde.internal.core.project.PDEProject
 import org.eclipse.xtext.documentation.IEObjectDocumentationProvider
 import org.eclipse.xtext.naming.IQualifiedNameProvider
+import fr.inria.diverse.melange.ast.MetamodelExtensions
 
 /**
  * For each model type, create a new fr.inria.diverse.melange.modeltype
@@ -29,6 +30,7 @@ class ExtensionPointProcessor extends DispatchMelangeProcessor
 	@Inject extension ModelingElementExtensions
 	@Inject extension LanguageExtensions
 	@Inject extension ModelTypeExtensions
+	@Inject extension MetamodelExtensions
 	@Inject extension ASTHelper
 	@Inject extension EclipseProjectHelper
 	@Inject extension IQualifiedNameProvider
@@ -116,6 +118,7 @@ class ExtensionPointProcessor extends DispatchMelangeProcessor
 								setAttribute("id", fqn)
 								setAttribute("exactType", l.exactType.fullyQualifiedName.toString)
 								setAttribute("uri", l.syntax.pkgs.head.nsURI)
+								setAttribute("fileExtension", l.syntax.genmodels.head.genPackages.head.fileExtension)
 
 								if (doc !== null && !doc.empty)
 									setAttribute("description", doc)	
