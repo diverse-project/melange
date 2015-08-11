@@ -799,11 +799,11 @@
             </visibleWhen>
          </command>
       </menuContribution>
-   </extension>
+      </extension>
    <extension
          point="org.eclipse.ui.commands">
       <command
-            id="fr.inria.diverse.melange.GenerateAllFromEditor"
+       id="fr.inria.diverse.melange.GenerateAllFromEditor"
             name="Generate All">
       </command>
    </extension>
@@ -814,5 +814,41 @@
             commandId="fr.inria.diverse.melange.GenerateAllFromEditor">
       </handler>
    </extension>
-
+    <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="fr.inria.diverse.melange.ui.menu.OpenAsHandler"
+            commandId="fr.inria.diverse.melange.ui.command.open">
+      </handler>
+      </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+       id="fr.inria.diverse.melange.ui.command.open"
+            name="Open As">
+         <commandParameter
+               id="exactType"
+               name="name"
+               optional="true">
+         </commandParameter>
+         <commandParameter
+               id="subType"
+               name="subType"
+               optional="true">
+         </commandParameter>
+         <commandParameter
+               id="editorID"
+               name="editorID"
+               optional="true">
+         </commandParameter>
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            class="fr.inria.diverse.melange.ui.menu.OpenAs"
+            locationURI="popup:org.eclipse.ui.popup.any?before=group.edit">
+      </menuContribution>
+   </extension>
 </plugin>
