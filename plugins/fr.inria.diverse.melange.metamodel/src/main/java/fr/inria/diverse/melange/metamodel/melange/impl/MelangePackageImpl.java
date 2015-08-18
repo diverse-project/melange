@@ -580,8 +580,8 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getClassBinding_From() {
-		return (EAttribute)classBindingEClass.getEStructuralFeatures().get(0);
+	public EReference getClassBinding_From() {
+		return (EReference)classBindingEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -590,7 +590,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * @generated
 	 */
 	public EAttribute getClassBinding_To() {
-		return (EAttribute)classBindingEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)classBindingEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -599,7 +599,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * @generated
 	 */
 	public EReference getClassBinding_Properties() {
-		return (EReference)classBindingEClass.getEStructuralFeatures().get(2);
+		return (EReference)classBindingEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -616,8 +616,8 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPropertyBinding_From() {
-		return (EAttribute)propertyBindingEClass.getEStructuralFeatures().get(0);
+	public EReference getPropertyBinding_From() {
+		return (EReference)propertyBindingEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -626,7 +626,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * @generated
 	 */
 	public EAttribute getPropertyBinding_To() {
-		return (EAttribute)propertyBindingEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)propertyBindingEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -760,8 +760,8 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPackageBinding_From() {
-		return (EAttribute)packageBindingEClass.getEStructuralFeatures().get(0);
+	public EReference getPackageBinding_From() {
+		return (EReference)packageBindingEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -770,7 +770,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * @generated
 	 */
 	public EAttribute getPackageBinding_To() {
-		return (EAttribute)packageBindingEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)packageBindingEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -779,7 +779,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * @generated
 	 */
 	public EReference getPackageBinding_Classes() {
-		return (EReference)packageBindingEClass.getEStructuralFeatures().get(2);
+		return (EReference)packageBindingEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1026,13 +1026,13 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		createEReference(mappingEClass, MAPPING__TO);
 
 		classBindingEClass = createEClass(CLASS_BINDING);
-		createEAttribute(classBindingEClass, CLASS_BINDING__FROM);
 		createEAttribute(classBindingEClass, CLASS_BINDING__TO);
 		createEReference(classBindingEClass, CLASS_BINDING__PROPERTIES);
+		createEReference(classBindingEClass, CLASS_BINDING__FROM);
 
 		propertyBindingEClass = createEClass(PROPERTY_BINDING);
-		createEAttribute(propertyBindingEClass, PROPERTY_BINDING__FROM);
 		createEAttribute(propertyBindingEClass, PROPERTY_BINDING__TO);
+		createEReference(propertyBindingEClass, PROPERTY_BINDING__FROM);
 
 		operatorEClass = createEClass(OPERATOR);
 		createEReference(operatorEClass, OPERATOR__OWNING_LANGUAGE);
@@ -1052,9 +1052,9 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		createEReference(sliceEClass, SLICE__ROOTS);
 
 		packageBindingEClass = createEClass(PACKAGE_BINDING);
-		createEAttribute(packageBindingEClass, PACKAGE_BINDING__FROM);
 		createEAttribute(packageBindingEClass, PACKAGE_BINDING__TO);
 		createEReference(packageBindingEClass, PACKAGE_BINDING__CLASSES);
+		createEReference(packageBindingEClass, PACKAGE_BINDING__FROM);
 
 		languageEClass = createEClass(LANGUAGE);
 		createEReference(languageEClass, LANGUAGE__OPERATORS);
@@ -1176,13 +1176,13 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		initEReference(getMapping_To(), this.getModelType(), null, "to", null, 0, 1, Mapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(classBindingEClass, ClassBinding.class, "ClassBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getClassBinding_From(), ecorePackage.getEString(), "from", null, 0, 1, ClassBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getClassBinding_To(), ecorePackage.getEString(), "to", null, 0, 1, ClassBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getClassBinding_Properties(), this.getPropertyBinding(), null, "properties", null, 0, -1, ClassBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClassBinding_From(), theEcorePackage.getEClass(), null, "from", null, 1, 1, ClassBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(propertyBindingEClass, PropertyBinding.class, "PropertyBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPropertyBinding_From(), ecorePackage.getEString(), "from", null, 0, 1, PropertyBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPropertyBinding_To(), ecorePackage.getEString(), "to", null, 0, 1, PropertyBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPropertyBinding_From(), theEcorePackage.getETypedElement(), null, "from", null, 1, 1, PropertyBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(operatorEClass, Operator.class, "Operator", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOperator_OwningLanguage(), this.getLanguage(), this.getLanguage_Operators(), "owningLanguage", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1202,9 +1202,9 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		initEReference(getSlice_Roots(), theEcorePackage.getEClass(), null, "roots", null, 0, -1, Slice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(packageBindingEClass, PackageBinding.class, "PackageBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPackageBinding_From(), ecorePackage.getEString(), "from", null, 0, 1, PackageBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPackageBinding_To(), ecorePackage.getEString(), "to", null, 0, 1, PackageBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPackageBinding_Classes(), this.getClassBinding(), null, "classes", null, 0, -1, PackageBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPackageBinding_From(), theEcorePackage.getEPackage(), null, "from", null, 1, 1, PackageBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(languageEClass, Language.class, "Language", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLanguage_Operators(), this.getOperator(), this.getOperator_OwningLanguage(), "operators", null, 0, -1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

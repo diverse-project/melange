@@ -3,6 +3,7 @@
 package fr.inria.diverse.melange.metamodel.melange;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.ETypedElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -12,8 +13,8 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link fr.inria.diverse.melange.metamodel.melange.PropertyBinding#getFrom <em>From</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.PropertyBinding#getTo <em>To</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.PropertyBinding#getFrom <em>From</em>}</li>
  * </ul>
  * </p>
  *
@@ -23,30 +24,30 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface PropertyBinding extends EObject {
 	/**
-	 * Returns the value of the '<em><b>From</b></em>' attribute.
+	 * Returns the value of the '<em><b>From</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>From</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>From</em>' attribute.
-	 * @see #setFrom(String)
+	 * @return the value of the '<em>From</em>' reference.
+	 * @see #setFrom(ETypedElement)
 	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getPropertyBinding_From()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
-	String getFrom();
+	ETypedElement getFrom();
 
 	/**
-	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.PropertyBinding#getFrom <em>From</em>}' attribute.
+	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.PropertyBinding#getFrom <em>From</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>From</em>' attribute.
+	 * @param value the new value of the '<em>From</em>' reference.
 	 * @see #getFrom()
 	 * @generated
 	 */
-	void setFrom(String value);
+	void setFrom(ETypedElement value);
 
 	/**
 	 * Returns the value of the '<em><b>To</b></em>' attribute.

@@ -62,19 +62,19 @@ Mapping returns Mapping:
 ;
 
 PackageMapping returns PackageBinding:
-	from=STRING "to" to=STRING "{"
+	from=[ecore::EPackage | QualifiedName] "to" to=STRING "{"
 		(classes+=ClassMapping)*
 	"}"
 ;
 
 ClassMapping returns ClassBinding:
-	from=STRING "to" to=STRING "{"
+	from=[ecore::EClass | QualifiedName] "to" to=STRING "{"
 		(properties+=PropertyMapping)*
 	"}"
 ;
 
 PropertyMapping returns PropertyBinding:
-	from=STRING ":" to=STRING
+	from=[ecore::ETypedElement | QualifiedName] ":" to=STRING
 ;
 
 Operator returns Operator:

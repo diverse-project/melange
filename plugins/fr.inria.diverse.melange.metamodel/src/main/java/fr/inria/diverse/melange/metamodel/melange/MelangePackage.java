@@ -702,22 +702,13 @@ public interface MelangePackage extends EPackage {
 	int CLASS_BINDING = 11;
 
 	/**
-	 * The feature id for the '<em><b>From</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_BINDING__FROM = 0;
-
-	/**
 	 * The feature id for the '<em><b>To</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_BINDING__TO = 1;
+	int CLASS_BINDING__TO = 0;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -726,7 +717,16 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_BINDING__PROPERTIES = 2;
+	int CLASS_BINDING__PROPERTIES = 1;
+
+	/**
+	 * The feature id for the '<em><b>From</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_BINDING__FROM = 2;
 
 	/**
 	 * The number of structural features of the '<em>Class Binding</em>' class.
@@ -757,22 +757,22 @@ public interface MelangePackage extends EPackage {
 	int PROPERTY_BINDING = 12;
 
 	/**
-	 * The feature id for the '<em><b>From</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_BINDING__FROM = 0;
-
-	/**
 	 * The feature id for the '<em><b>To</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_BINDING__TO = 1;
+	int PROPERTY_BINDING__TO = 0;
+
+	/**
+	 * The feature id for the '<em><b>From</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_BINDING__FROM = 1;
 
 	/**
 	 * The number of structural features of the '<em>Property Binding</em>' class.
@@ -986,22 +986,13 @@ public interface MelangePackage extends EPackage {
 	int PACKAGE_BINDING = 17;
 
 	/**
-	 * The feature id for the '<em><b>From</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE_BINDING__FROM = 0;
-
-	/**
 	 * The feature id for the '<em><b>To</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_BINDING__TO = 1;
+	int PACKAGE_BINDING__TO = 0;
 
 	/**
 	 * The feature id for the '<em><b>Classes</b></em>' containment reference list.
@@ -1010,7 +1001,16 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_BINDING__CLASSES = 2;
+	int PACKAGE_BINDING__CLASSES = 1;
+
+	/**
+	 * The feature id for the '<em><b>From</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_BINDING__FROM = 2;
 
 	/**
 	 * The number of structural features of the '<em>Package Binding</em>' class.
@@ -1604,15 +1604,15 @@ public interface MelangePackage extends EPackage {
 	EClass getClassBinding();
 
 	/**
-	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.ClassBinding#getFrom <em>From</em>}'.
+	 * Returns the meta object for the reference '{@link fr.inria.diverse.melange.metamodel.melange.ClassBinding#getFrom <em>From</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>From</em>'.
+	 * @return the meta object for the reference '<em>From</em>'.
 	 * @see fr.inria.diverse.melange.metamodel.melange.ClassBinding#getFrom()
 	 * @see #getClassBinding()
 	 * @generated
 	 */
-	EAttribute getClassBinding_From();
+	EReference getClassBinding_From();
 
 	/**
 	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.ClassBinding#getTo <em>To</em>}'.
@@ -1647,15 +1647,15 @@ public interface MelangePackage extends EPackage {
 	EClass getPropertyBinding();
 
 	/**
-	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.PropertyBinding#getFrom <em>From</em>}'.
+	 * Returns the meta object for the reference '{@link fr.inria.diverse.melange.metamodel.melange.PropertyBinding#getFrom <em>From</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>From</em>'.
+	 * @return the meta object for the reference '<em>From</em>'.
 	 * @see fr.inria.diverse.melange.metamodel.melange.PropertyBinding#getFrom()
 	 * @see #getPropertyBinding()
 	 * @generated
 	 */
-	EAttribute getPropertyBinding_From();
+	EReference getPropertyBinding_From();
 
 	/**
 	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.PropertyBinding#getTo <em>To</em>}'.
@@ -1818,15 +1818,15 @@ public interface MelangePackage extends EPackage {
 	EClass getPackageBinding();
 
 	/**
-	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.PackageBinding#getFrom <em>From</em>}'.
+	 * Returns the meta object for the reference '{@link fr.inria.diverse.melange.metamodel.melange.PackageBinding#getFrom <em>From</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>From</em>'.
+	 * @return the meta object for the reference '<em>From</em>'.
 	 * @see fr.inria.diverse.melange.metamodel.melange.PackageBinding#getFrom()
 	 * @see #getPackageBinding()
 	 * @generated
 	 */
-	EAttribute getPackageBinding_From();
+	EReference getPackageBinding_From();
 
 	/**
 	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.PackageBinding#getTo <em>To</em>}'.
@@ -2375,12 +2375,12 @@ public interface MelangePackage extends EPackage {
 		EClass CLASS_BINDING = eINSTANCE.getClassBinding();
 
 		/**
-		 * The meta object literal for the '<em><b>From</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>From</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CLASS_BINDING__FROM = eINSTANCE.getClassBinding_From();
+		EReference CLASS_BINDING__FROM = eINSTANCE.getClassBinding_From();
 
 		/**
 		 * The meta object literal for the '<em><b>To</b></em>' attribute feature.
@@ -2409,12 +2409,12 @@ public interface MelangePackage extends EPackage {
 		EClass PROPERTY_BINDING = eINSTANCE.getPropertyBinding();
 
 		/**
-		 * The meta object literal for the '<em><b>From</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>From</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PROPERTY_BINDING__FROM = eINSTANCE.getPropertyBinding_From();
+		EReference PROPERTY_BINDING__FROM = eINSTANCE.getPropertyBinding_From();
 
 		/**
 		 * The meta object literal for the '<em><b>To</b></em>' attribute feature.
@@ -2547,12 +2547,12 @@ public interface MelangePackage extends EPackage {
 		EClass PACKAGE_BINDING = eINSTANCE.getPackageBinding();
 
 		/**
-		 * The meta object literal for the '<em><b>From</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>From</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PACKAGE_BINDING__FROM = eINSTANCE.getPackageBinding_From();
+		EReference PACKAGE_BINDING__FROM = eINSTANCE.getPackageBinding_From();
 
 		/**
 		 * The meta object literal for the '<em><b>To</b></em>' attribute feature.

@@ -8760,11 +8760,11 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
                 {
                 int LA7_1 = input.LA(2);
 
-                if ( (LA7_1==EOF||(LA7_1>=RULE_ID && LA7_1<=RULE_STRING)||(LA7_1>=14 && LA7_1<=50)||LA7_1==56||LA7_1==58||LA7_1==64||(LA7_1>=69 && LA7_1<=70)||LA7_1==73||(LA7_1>=79 && LA7_1<=80)||(LA7_1>=82 && LA7_1<=102)||(LA7_1>=106 && LA7_1<=107)||(LA7_1>=109 && LA7_1<=110)) ) {
-                    alt7=2;
-                }
-                else if ( (LA7_1==13) ) {
+                if ( (LA7_1==13) ) {
                     alt7=1;
+                }
+                else if ( (LA7_1==EOF||(LA7_1>=RULE_ID && LA7_1<=RULE_STRING)||(LA7_1>=14 && LA7_1<=50)||LA7_1==56||LA7_1==58||LA7_1==64||(LA7_1>=69 && LA7_1<=70)||LA7_1==73||(LA7_1>=79 && LA7_1<=80)||(LA7_1>=82 && LA7_1<=102)||(LA7_1>=106 && LA7_1<=107)||(LA7_1>=109 && LA7_1<=110)) ) {
+                    alt7=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -8779,11 +8779,11 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
                 {
                 int LA7_2 = input.LA(2);
 
-                if ( (LA7_2==13) ) {
-                    alt7=1;
-                }
-                else if ( (LA7_2==EOF||(LA7_2>=RULE_ID && LA7_2<=RULE_STRING)||(LA7_2>=14 && LA7_2<=50)||LA7_2==56||LA7_2==58||LA7_2==64||(LA7_2>=69 && LA7_2<=70)||LA7_2==73||(LA7_2>=79 && LA7_2<=80)||(LA7_2>=82 && LA7_2<=102)||(LA7_2>=106 && LA7_2<=107)||(LA7_2>=109 && LA7_2<=110)) ) {
+                if ( (LA7_2==EOF||(LA7_2>=RULE_ID && LA7_2<=RULE_STRING)||(LA7_2>=14 && LA7_2<=50)||LA7_2==56||LA7_2==58||LA7_2==64||(LA7_2>=69 && LA7_2<=70)||LA7_2==73||(LA7_2>=79 && LA7_2<=80)||(LA7_2>=82 && LA7_2<=102)||(LA7_2>=106 && LA7_2<=107)||(LA7_2>=109 && LA7_2<=110)) ) {
                     alt7=2;
+                }
+                else if ( (LA7_2==13) ) {
+                    alt7=1;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -8798,11 +8798,11 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
                 {
                 int LA7_3 = input.LA(2);
 
-                if ( (LA7_3==13) ) {
-                    alt7=1;
-                }
-                else if ( (LA7_3==EOF||(LA7_3>=RULE_ID && LA7_3<=RULE_STRING)||(LA7_3>=14 && LA7_3<=50)||LA7_3==56||LA7_3==58||LA7_3==64||(LA7_3>=69 && LA7_3<=70)||LA7_3==73||(LA7_3>=79 && LA7_3<=80)||(LA7_3>=82 && LA7_3<=102)||(LA7_3>=106 && LA7_3<=107)||(LA7_3>=109 && LA7_3<=110)) ) {
+                if ( (LA7_3==EOF||(LA7_3>=RULE_ID && LA7_3<=RULE_STRING)||(LA7_3>=14 && LA7_3<=50)||LA7_3==56||LA7_3==58||LA7_3==64||(LA7_3>=69 && LA7_3<=70)||LA7_3==73||(LA7_3>=79 && LA7_3<=80)||(LA7_3>=82 && LA7_3<=102)||(LA7_3>=106 && LA7_3<=107)||(LA7_3>=109 && LA7_3<=110)) ) {
                     alt7=2;
+                }
+                else if ( (LA7_3==13) ) {
+                    alt7=1;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -8836,11 +8836,11 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
                 {
                 int LA7_5 = input.LA(2);
 
-                if ( (LA7_5==13) ) {
-                    alt7=1;
-                }
-                else if ( (LA7_5==EOF||(LA7_5>=RULE_ID && LA7_5<=RULE_STRING)||(LA7_5>=14 && LA7_5<=50)||LA7_5==56||LA7_5==58||LA7_5==64||(LA7_5>=69 && LA7_5<=70)||LA7_5==73||(LA7_5>=79 && LA7_5<=80)||(LA7_5>=82 && LA7_5<=102)||(LA7_5>=106 && LA7_5<=107)||(LA7_5>=109 && LA7_5<=110)) ) {
+                if ( (LA7_5==EOF||(LA7_5>=RULE_ID && LA7_5<=RULE_STRING)||(LA7_5>=14 && LA7_5<=50)||LA7_5==56||LA7_5==58||LA7_5==64||(LA7_5>=69 && LA7_5<=70)||LA7_5==73||(LA7_5>=79 && LA7_5<=80)||(LA7_5>=82 && LA7_5<=102)||(LA7_5>=106 && LA7_5<=107)||(LA7_5>=109 && LA7_5<=110)) ) {
                     alt7=2;
+                }
+                else if ( (LA7_5==13) ) {
+                    alt7=1;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -19492,7 +19492,7 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
                 int alt64=2;
                 int LA64_0 = input.LA(1);
 
-                if ( (LA64_0==RULE_STRING) ) {
+                if ( (LA64_0==RULE_ID) ) {
                     alt64=1;
                 }
 
@@ -20009,7 +20009,7 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
                 int alt65=2;
                 int LA65_0 = input.LA(1);
 
-                if ( (LA65_0==RULE_STRING) ) {
+                if ( (LA65_0==RULE_ID) ) {
                     alt65=1;
                 }
 
@@ -20526,7 +20526,7 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
                 int alt66=2;
                 int LA66_0 = input.LA(1);
 
-                if ( (LA66_0==RULE_STRING) ) {
+                if ( (LA66_0==RULE_ID) ) {
                     alt66=1;
                 }
 
@@ -21997,7 +21997,7 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
                 int alt70=2;
                 int LA70_0 = input.LA(1);
 
-                if ( (LA70_0==RULE_STRING) ) {
+                if ( (LA70_0==RULE_ID) ) {
                     alt70=1;
                 }
 
@@ -22599,7 +22599,7 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
                 int alt72=2;
                 int LA72_0 = input.LA(1);
 
-                if ( (LA72_0==RULE_STRING) ) {
+                if ( (LA72_0==RULE_ID) ) {
                     alt72=1;
                 }
 
@@ -23797,7 +23797,7 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
                 int alt75=2;
                 int LA75_0 = input.LA(1);
 
-                if ( (LA75_0==RULE_STRING) ) {
+                if ( (LA75_0==RULE_ID) ) {
                     alt75=1;
                 }
 
@@ -63296,24 +63296,40 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PackageMapping__FromAssignment_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22190:1: rule__PackageMapping__FromAssignment_0 : ( RULE_STRING ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22190:1: rule__PackageMapping__FromAssignment_0 : ( ( ruleQualifiedName ) ) ;
     public final void rule__PackageMapping__FromAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22194:1: ( ( RULE_STRING ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22195:1: ( RULE_STRING )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22194:1: ( ( ( ruleQualifiedName ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22195:1: ( ( ruleQualifiedName ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22195:1: ( RULE_STRING )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22196:1: RULE_STRING
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22195:1: ( ( ruleQualifiedName ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22196:1: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPackageMappingAccess().getFromSTRINGTerminalRuleCall_0_0()); 
+               before(grammarAccess.getPackageMappingAccess().getFromEPackageCrossReference_0_0()); 
             }
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__PackageMapping__FromAssignment_044899); if (state.failed) return ;
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22197:1: ( ruleQualifiedName )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22198:1: ruleQualifiedName
+            {
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPackageMappingAccess().getFromSTRINGTerminalRuleCall_0_0()); 
+               before(grammarAccess.getPackageMappingAccess().getFromEPackageQualifiedNameParserRuleCall_0_0_1()); 
+            }
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__PackageMapping__FromAssignment_044903);
+            ruleQualifiedName();
+
+            state._fsp--;
+            if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getPackageMappingAccess().getFromEPackageQualifiedNameParserRuleCall_0_0_1()); 
+            }
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getPackageMappingAccess().getFromEPackageCrossReference_0_0()); 
             }
 
             }
@@ -63337,22 +63353,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PackageMapping__ToAssignment_2"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22205:1: rule__PackageMapping__ToAssignment_2 : ( RULE_STRING ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22209:1: rule__PackageMapping__ToAssignment_2 : ( RULE_STRING ) ;
     public final void rule__PackageMapping__ToAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22209:1: ( ( RULE_STRING ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22210:1: ( RULE_STRING )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22213:1: ( ( RULE_STRING ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22214:1: ( RULE_STRING )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22210:1: ( RULE_STRING )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22211:1: RULE_STRING
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22214:1: ( RULE_STRING )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22215:1: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPackageMappingAccess().getToSTRINGTerminalRuleCall_2_0()); 
             }
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__PackageMapping__ToAssignment_244930); if (state.failed) return ;
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__PackageMapping__ToAssignment_244938); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getPackageMappingAccess().getToSTRINGTerminalRuleCall_2_0()); 
             }
@@ -63378,22 +63394,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PackageMapping__ClassesAssignment_4"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22220:1: rule__PackageMapping__ClassesAssignment_4 : ( ruleClassMapping ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22224:1: rule__PackageMapping__ClassesAssignment_4 : ( ruleClassMapping ) ;
     public final void rule__PackageMapping__ClassesAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22224:1: ( ( ruleClassMapping ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22225:1: ( ruleClassMapping )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22228:1: ( ( ruleClassMapping ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22229:1: ( ruleClassMapping )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22225:1: ( ruleClassMapping )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22226:1: ruleClassMapping
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22229:1: ( ruleClassMapping )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22230:1: ruleClassMapping
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPackageMappingAccess().getClassesClassMappingParserRuleCall_4_0()); 
             }
-            pushFollow(FOLLOW_ruleClassMapping_in_rule__PackageMapping__ClassesAssignment_444961);
+            pushFollow(FOLLOW_ruleClassMapping_in_rule__PackageMapping__ClassesAssignment_444969);
             ruleClassMapping();
 
             state._fsp--;
@@ -63423,24 +63439,40 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassMapping__FromAssignment_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22235:1: rule__ClassMapping__FromAssignment_0 : ( RULE_STRING ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22239:1: rule__ClassMapping__FromAssignment_0 : ( ( ruleQualifiedName ) ) ;
     public final void rule__ClassMapping__FromAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22239:1: ( ( RULE_STRING ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22240:1: ( RULE_STRING )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22243:1: ( ( ( ruleQualifiedName ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22244:1: ( ( ruleQualifiedName ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22240:1: ( RULE_STRING )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22241:1: RULE_STRING
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22244:1: ( ( ruleQualifiedName ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22245:1: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getClassMappingAccess().getFromSTRINGTerminalRuleCall_0_0()); 
+               before(grammarAccess.getClassMappingAccess().getFromEClassCrossReference_0_0()); 
             }
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__ClassMapping__FromAssignment_044992); if (state.failed) return ;
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22246:1: ( ruleQualifiedName )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22247:1: ruleQualifiedName
+            {
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getClassMappingAccess().getFromSTRINGTerminalRuleCall_0_0()); 
+               before(grammarAccess.getClassMappingAccess().getFromEClassQualifiedNameParserRuleCall_0_0_1()); 
+            }
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__ClassMapping__FromAssignment_045004);
+            ruleQualifiedName();
+
+            state._fsp--;
+            if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getClassMappingAccess().getFromEClassQualifiedNameParserRuleCall_0_0_1()); 
+            }
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getClassMappingAccess().getFromEClassCrossReference_0_0()); 
             }
 
             }
@@ -63464,22 +63496,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassMapping__ToAssignment_2"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22250:1: rule__ClassMapping__ToAssignment_2 : ( RULE_STRING ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22258:1: rule__ClassMapping__ToAssignment_2 : ( RULE_STRING ) ;
     public final void rule__ClassMapping__ToAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22254:1: ( ( RULE_STRING ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22255:1: ( RULE_STRING )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22262:1: ( ( RULE_STRING ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22263:1: ( RULE_STRING )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22255:1: ( RULE_STRING )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22256:1: RULE_STRING
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22263:1: ( RULE_STRING )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22264:1: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getClassMappingAccess().getToSTRINGTerminalRuleCall_2_0()); 
             }
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__ClassMapping__ToAssignment_245023); if (state.failed) return ;
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__ClassMapping__ToAssignment_245039); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getClassMappingAccess().getToSTRINGTerminalRuleCall_2_0()); 
             }
@@ -63505,22 +63537,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassMapping__PropertiesAssignment_4"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22265:1: rule__ClassMapping__PropertiesAssignment_4 : ( rulePropertyMapping ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22273:1: rule__ClassMapping__PropertiesAssignment_4 : ( rulePropertyMapping ) ;
     public final void rule__ClassMapping__PropertiesAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22269:1: ( ( rulePropertyMapping ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22270:1: ( rulePropertyMapping )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22277:1: ( ( rulePropertyMapping ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22278:1: ( rulePropertyMapping )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22270:1: ( rulePropertyMapping )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22271:1: rulePropertyMapping
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22278:1: ( rulePropertyMapping )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22279:1: rulePropertyMapping
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getClassMappingAccess().getPropertiesPropertyMappingParserRuleCall_4_0()); 
             }
-            pushFollow(FOLLOW_rulePropertyMapping_in_rule__ClassMapping__PropertiesAssignment_445054);
+            pushFollow(FOLLOW_rulePropertyMapping_in_rule__ClassMapping__PropertiesAssignment_445070);
             rulePropertyMapping();
 
             state._fsp--;
@@ -63550,24 +63582,40 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyMapping__FromAssignment_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22280:1: rule__PropertyMapping__FromAssignment_0 : ( RULE_STRING ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22288:1: rule__PropertyMapping__FromAssignment_0 : ( ( ruleQualifiedName ) ) ;
     public final void rule__PropertyMapping__FromAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22284:1: ( ( RULE_STRING ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22285:1: ( RULE_STRING )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22292:1: ( ( ( ruleQualifiedName ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22293:1: ( ( ruleQualifiedName ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22285:1: ( RULE_STRING )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22286:1: RULE_STRING
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22293:1: ( ( ruleQualifiedName ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22294:1: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPropertyMappingAccess().getFromSTRINGTerminalRuleCall_0_0()); 
+               before(grammarAccess.getPropertyMappingAccess().getFromETypedElementCrossReference_0_0()); 
             }
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__PropertyMapping__FromAssignment_045085); if (state.failed) return ;
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22295:1: ( ruleQualifiedName )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22296:1: ruleQualifiedName
+            {
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPropertyMappingAccess().getFromSTRINGTerminalRuleCall_0_0()); 
+               before(grammarAccess.getPropertyMappingAccess().getFromETypedElementQualifiedNameParserRuleCall_0_0_1()); 
+            }
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__PropertyMapping__FromAssignment_045105);
+            ruleQualifiedName();
+
+            state._fsp--;
+            if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getPropertyMappingAccess().getFromETypedElementQualifiedNameParserRuleCall_0_0_1()); 
+            }
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getPropertyMappingAccess().getFromETypedElementCrossReference_0_0()); 
             }
 
             }
@@ -63591,22 +63639,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyMapping__ToAssignment_2"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22295:1: rule__PropertyMapping__ToAssignment_2 : ( RULE_STRING ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22307:1: rule__PropertyMapping__ToAssignment_2 : ( RULE_STRING ) ;
     public final void rule__PropertyMapping__ToAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22299:1: ( ( RULE_STRING ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22300:1: ( RULE_STRING )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22311:1: ( ( RULE_STRING ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22312:1: ( RULE_STRING )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22300:1: ( RULE_STRING )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22301:1: RULE_STRING
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22312:1: ( RULE_STRING )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22313:1: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPropertyMappingAccess().getToSTRINGTerminalRuleCall_2_0()); 
             }
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__PropertyMapping__ToAssignment_245116); if (state.failed) return ;
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__PropertyMapping__ToAssignment_245140); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getPropertyMappingAccess().getToSTRINGTerminalRuleCall_2_0()); 
             }
@@ -63632,22 +63680,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Import__EcoreUriAssignment_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22310:1: rule__Import__EcoreUriAssignment_1 : ( RULE_STRING ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22322:1: rule__Import__EcoreUriAssignment_1 : ( RULE_STRING ) ;
     public final void rule__Import__EcoreUriAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22314:1: ( ( RULE_STRING ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22315:1: ( RULE_STRING )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22326:1: ( ( RULE_STRING ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22327:1: ( RULE_STRING )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22315:1: ( RULE_STRING )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22316:1: RULE_STRING
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22327:1: ( RULE_STRING )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22328:1: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getImportAccess().getEcoreUriSTRINGTerminalRuleCall_1_0()); 
             }
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Import__EcoreUriAssignment_145147); if (state.failed) return ;
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Import__EcoreUriAssignment_145171); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getImportAccess().getEcoreUriSTRINGTerminalRuleCall_1_0()); 
             }
@@ -63673,22 +63721,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Import__GenmodelUrisAssignment_2_1_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22325:1: rule__Import__GenmodelUrisAssignment_2_1_0 : ( RULE_STRING ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22337:1: rule__Import__GenmodelUrisAssignment_2_1_0 : ( RULE_STRING ) ;
     public final void rule__Import__GenmodelUrisAssignment_2_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22329:1: ( ( RULE_STRING ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22330:1: ( RULE_STRING )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22341:1: ( ( RULE_STRING ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22342:1: ( RULE_STRING )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22330:1: ( RULE_STRING )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22331:1: RULE_STRING
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22342:1: ( RULE_STRING )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22343:1: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getImportAccess().getGenmodelUrisSTRINGTerminalRuleCall_2_1_0_0()); 
             }
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Import__GenmodelUrisAssignment_2_1_045178); if (state.failed) return ;
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Import__GenmodelUrisAssignment_2_1_045202); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getImportAccess().getGenmodelUrisSTRINGTerminalRuleCall_2_1_0_0()); 
             }
@@ -63714,22 +63762,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Import__GenmodelUrisAssignment_2_1_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22340:1: rule__Import__GenmodelUrisAssignment_2_1_1_1 : ( RULE_STRING ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22352:1: rule__Import__GenmodelUrisAssignment_2_1_1_1 : ( RULE_STRING ) ;
     public final void rule__Import__GenmodelUrisAssignment_2_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22344:1: ( ( RULE_STRING ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22345:1: ( RULE_STRING )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22356:1: ( ( RULE_STRING ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22357:1: ( RULE_STRING )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22345:1: ( RULE_STRING )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22346:1: RULE_STRING
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22357:1: ( RULE_STRING )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22358:1: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getImportAccess().getGenmodelUrisSTRINGTerminalRuleCall_2_1_1_1_0()); 
             }
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Import__GenmodelUrisAssignment_2_1_1_145209); if (state.failed) return ;
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Import__GenmodelUrisAssignment_2_1_1_145233); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getImportAccess().getGenmodelUrisSTRINGTerminalRuleCall_2_1_1_1_0()); 
             }
@@ -63755,22 +63803,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Import__MappingRulesAssignment_3_2"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22355:1: rule__Import__MappingRulesAssignment_3_2 : ( rulePackageMapping ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22367:1: rule__Import__MappingRulesAssignment_3_2 : ( rulePackageMapping ) ;
     public final void rule__Import__MappingRulesAssignment_3_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22359:1: ( ( rulePackageMapping ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22360:1: ( rulePackageMapping )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22371:1: ( ( rulePackageMapping ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22372:1: ( rulePackageMapping )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22360:1: ( rulePackageMapping )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22361:1: rulePackageMapping
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22372:1: ( rulePackageMapping )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22373:1: rulePackageMapping
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getImportAccess().getMappingRulesPackageMappingParserRuleCall_3_2_0()); 
             }
-            pushFollow(FOLLOW_rulePackageMapping_in_rule__Import__MappingRulesAssignment_3_245240);
+            pushFollow(FOLLOW_rulePackageMapping_in_rule__Import__MappingRulesAssignment_3_245264);
             rulePackageMapping();
 
             state._fsp--;
@@ -63800,28 +63848,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Merge__MergedLanguageAssignment_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22370:1: rule__Merge__MergedLanguageAssignment_1 : ( ( ruleQualifiedName ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22382:1: rule__Merge__MergedLanguageAssignment_1 : ( ( ruleQualifiedName ) ) ;
     public final void rule__Merge__MergedLanguageAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22374:1: ( ( ( ruleQualifiedName ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22375:1: ( ( ruleQualifiedName ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22386:1: ( ( ( ruleQualifiedName ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22387:1: ( ( ruleQualifiedName ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22375:1: ( ( ruleQualifiedName ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22376:1: ( ruleQualifiedName )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22387:1: ( ( ruleQualifiedName ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22388:1: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMergeAccess().getMergedLanguageLanguageCrossReference_1_0()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22377:1: ( ruleQualifiedName )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22378:1: ruleQualifiedName
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22389:1: ( ruleQualifiedName )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22390:1: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMergeAccess().getMergedLanguageLanguageQualifiedNameParserRuleCall_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__Merge__MergedLanguageAssignment_145275);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__Merge__MergedLanguageAssignment_145299);
             ruleQualifiedName();
 
             state._fsp--;
@@ -63857,22 +63905,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Merge__MappingRulesAssignment_2_2"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22389:1: rule__Merge__MappingRulesAssignment_2_2 : ( rulePackageMapping ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22401:1: rule__Merge__MappingRulesAssignment_2_2 : ( rulePackageMapping ) ;
     public final void rule__Merge__MappingRulesAssignment_2_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22393:1: ( ( rulePackageMapping ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22394:1: ( rulePackageMapping )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22405:1: ( ( rulePackageMapping ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22406:1: ( rulePackageMapping )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22394:1: ( rulePackageMapping )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22395:1: rulePackageMapping
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22406:1: ( rulePackageMapping )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22407:1: rulePackageMapping
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMergeAccess().getMappingRulesPackageMappingParserRuleCall_2_2_0()); 
             }
-            pushFollow(FOLLOW_rulePackageMapping_in_rule__Merge__MappingRulesAssignment_2_245310);
+            pushFollow(FOLLOW_rulePackageMapping_in_rule__Merge__MappingRulesAssignment_2_245334);
             rulePackageMapping();
 
             state._fsp--;
@@ -63902,28 +63950,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Slice__SlicedLanguageAssignment_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22404:1: rule__Slice__SlicedLanguageAssignment_1 : ( ( ruleQualifiedName ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22416:1: rule__Slice__SlicedLanguageAssignment_1 : ( ( ruleQualifiedName ) ) ;
     public final void rule__Slice__SlicedLanguageAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22408:1: ( ( ( ruleQualifiedName ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22409:1: ( ( ruleQualifiedName ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22420:1: ( ( ( ruleQualifiedName ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22421:1: ( ( ruleQualifiedName ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22409:1: ( ( ruleQualifiedName ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22410:1: ( ruleQualifiedName )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22421:1: ( ( ruleQualifiedName ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22422:1: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSliceAccess().getSlicedLanguageLanguageCrossReference_1_0()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22411:1: ( ruleQualifiedName )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22412:1: ruleQualifiedName
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22423:1: ( ruleQualifiedName )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22424:1: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSliceAccess().getSlicedLanguageLanguageQualifiedNameParserRuleCall_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__Slice__SlicedLanguageAssignment_145345);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__Slice__SlicedLanguageAssignment_145369);
             ruleQualifiedName();
 
             state._fsp--;
@@ -63959,28 +64007,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Slice__RootsAssignment_4"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22423:1: rule__Slice__RootsAssignment_4 : ( ( ruleQualifiedName ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22435:1: rule__Slice__RootsAssignment_4 : ( ( ruleQualifiedName ) ) ;
     public final void rule__Slice__RootsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22427:1: ( ( ( ruleQualifiedName ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22428:1: ( ( ruleQualifiedName ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22439:1: ( ( ( ruleQualifiedName ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22440:1: ( ( ruleQualifiedName ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22428:1: ( ( ruleQualifiedName ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22429:1: ( ruleQualifiedName )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22440:1: ( ( ruleQualifiedName ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22441:1: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSliceAccess().getRootsEClassCrossReference_4_0()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22430:1: ( ruleQualifiedName )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22431:1: ruleQualifiedName
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22442:1: ( ruleQualifiedName )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22443:1: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSliceAccess().getRootsEClassQualifiedNameParserRuleCall_4_0_1()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__Slice__RootsAssignment_445384);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__Slice__RootsAssignment_445408);
             ruleQualifiedName();
 
             state._fsp--;
@@ -64016,28 +64064,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Slice__RootsAssignment_5_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22442:1: rule__Slice__RootsAssignment_5_1 : ( ( ruleQualifiedName ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22454:1: rule__Slice__RootsAssignment_5_1 : ( ( ruleQualifiedName ) ) ;
     public final void rule__Slice__RootsAssignment_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22446:1: ( ( ( ruleQualifiedName ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22447:1: ( ( ruleQualifiedName ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22458:1: ( ( ( ruleQualifiedName ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22459:1: ( ( ruleQualifiedName ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22447:1: ( ( ruleQualifiedName ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22448:1: ( ruleQualifiedName )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22459:1: ( ( ruleQualifiedName ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22460:1: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSliceAccess().getRootsEClassCrossReference_5_1_0()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22449:1: ( ruleQualifiedName )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22450:1: ruleQualifiedName
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22461:1: ( ruleQualifiedName )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22462:1: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSliceAccess().getRootsEClassQualifiedNameParserRuleCall_5_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__Slice__RootsAssignment_5_145423);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__Slice__RootsAssignment_5_145447);
             ruleQualifiedName();
 
             state._fsp--;
@@ -64073,22 +64121,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Slice__MappingRulesAssignment_7_2"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22461:1: rule__Slice__MappingRulesAssignment_7_2 : ( rulePackageMapping ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22473:1: rule__Slice__MappingRulesAssignment_7_2 : ( rulePackageMapping ) ;
     public final void rule__Slice__MappingRulesAssignment_7_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22465:1: ( ( rulePackageMapping ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22466:1: ( rulePackageMapping )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22477:1: ( ( rulePackageMapping ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22478:1: ( rulePackageMapping )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22466:1: ( rulePackageMapping )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22467:1: rulePackageMapping
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22478:1: ( rulePackageMapping )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22479:1: rulePackageMapping
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSliceAccess().getMappingRulesPackageMappingParserRuleCall_7_2_0()); 
             }
-            pushFollow(FOLLOW_rulePackageMapping_in_rule__Slice__MappingRulesAssignment_7_245458);
+            pushFollow(FOLLOW_rulePackageMapping_in_rule__Slice__MappingRulesAssignment_7_245482);
             rulePackageMapping();
 
             state._fsp--;
@@ -64118,28 +64166,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Inherit__SuperLanguageAssignment"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22476:1: rule__Inherit__SuperLanguageAssignment : ( ( ruleQualifiedName ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22488:1: rule__Inherit__SuperLanguageAssignment : ( ( ruleQualifiedName ) ) ;
     public final void rule__Inherit__SuperLanguageAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22480:1: ( ( ( ruleQualifiedName ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22481:1: ( ( ruleQualifiedName ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22492:1: ( ( ( ruleQualifiedName ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22493:1: ( ( ruleQualifiedName ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22481:1: ( ( ruleQualifiedName ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22482:1: ( ruleQualifiedName )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22493:1: ( ( ruleQualifiedName ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22494:1: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getInheritAccess().getSuperLanguageLanguageCrossReference_0()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22483:1: ( ruleQualifiedName )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22484:1: ruleQualifiedName
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22495:1: ( ruleQualifiedName )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22496:1: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getInheritAccess().getSuperLanguageLanguageQualifiedNameParserRuleCall_0_1()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__Inherit__SuperLanguageAssignment45493);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__Inherit__SuperLanguageAssignment45517);
             ruleQualifiedName();
 
             state._fsp--;
@@ -64175,22 +64223,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AspectTypeRef__AspectTypeRefAssignment_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22495:1: rule__AspectTypeRef__AspectTypeRefAssignment_1 : ( ruleJvmTypeReference ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22507:1: rule__AspectTypeRef__AspectTypeRefAssignment_1 : ( ruleJvmTypeReference ) ;
     public final void rule__AspectTypeRef__AspectTypeRefAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22499:1: ( ( ruleJvmTypeReference ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22500:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22511:1: ( ( ruleJvmTypeReference ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22512:1: ( ruleJvmTypeReference )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22500:1: ( ruleJvmTypeReference )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22501:1: ruleJvmTypeReference
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22512:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22513:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAspectTypeRefAccess().getAspectTypeRefJvmTypeReferenceParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__AspectTypeRef__AspectTypeRefAssignment_145528);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__AspectTypeRef__AspectTypeRefAssignment_145552);
             ruleJvmTypeReference();
 
             state._fsp--;
@@ -64220,22 +64268,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AspectWildcard__AspectWildcardImportAssignment_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22510:1: rule__AspectWildcard__AspectWildcardImportAssignment_1 : ( ruleQualifiedNameWithWildcard ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22522:1: rule__AspectWildcard__AspectWildcardImportAssignment_1 : ( ruleQualifiedNameWithWildcard ) ;
     public final void rule__AspectWildcard__AspectWildcardImportAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22514:1: ( ( ruleQualifiedNameWithWildcard ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22515:1: ( ruleQualifiedNameWithWildcard )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22526:1: ( ( ruleQualifiedNameWithWildcard ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22527:1: ( ruleQualifiedNameWithWildcard )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22515:1: ( ruleQualifiedNameWithWildcard )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22516:1: ruleQualifiedNameWithWildcard
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22527:1: ( ruleQualifiedNameWithWildcard )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22528:1: ruleQualifiedNameWithWildcard
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAspectWildcardAccess().getAspectWildcardImportQualifiedNameWithWildcardParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedNameWithWildcard_in_rule__AspectWildcard__AspectWildcardImportAssignment_145559);
+            pushFollow(FOLLOW_ruleQualifiedNameWithWildcard_in_rule__AspectWildcard__AspectWildcardImportAssignment_145583);
             ruleQualifiedNameWithWildcard();
 
             state._fsp--;
@@ -64265,28 +64313,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XAssignment__FeatureAssignment_0_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22525:1: rule__XAssignment__FeatureAssignment_0_1 : ( ( ruleFeatureCallID ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22537:1: rule__XAssignment__FeatureAssignment_0_1 : ( ( ruleFeatureCallID ) ) ;
     public final void rule__XAssignment__FeatureAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22529:1: ( ( ( ruleFeatureCallID ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22530:1: ( ( ruleFeatureCallID ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22541:1: ( ( ( ruleFeatureCallID ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22542:1: ( ( ruleFeatureCallID ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22530:1: ( ( ruleFeatureCallID ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22531:1: ( ruleFeatureCallID )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22542:1: ( ( ruleFeatureCallID ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22543:1: ( ruleFeatureCallID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAssignmentAccess().getFeatureJvmIdentifiableElementCrossReference_0_1_0()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22532:1: ( ruleFeatureCallID )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22533:1: ruleFeatureCallID
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22544:1: ( ruleFeatureCallID )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22545:1: ruleFeatureCallID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAssignmentAccess().getFeatureJvmIdentifiableElementFeatureCallIDParserRuleCall_0_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleFeatureCallID_in_rule__XAssignment__FeatureAssignment_0_145594);
+            pushFollow(FOLLOW_ruleFeatureCallID_in_rule__XAssignment__FeatureAssignment_0_145618);
             ruleFeatureCallID();
 
             state._fsp--;
@@ -64322,22 +64370,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XAssignment__ValueAssignment_0_3"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22544:1: rule__XAssignment__ValueAssignment_0_3 : ( ruleXAssignment ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22556:1: rule__XAssignment__ValueAssignment_0_3 : ( ruleXAssignment ) ;
     public final void rule__XAssignment__ValueAssignment_0_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22548:1: ( ( ruleXAssignment ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22549:1: ( ruleXAssignment )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22560:1: ( ( ruleXAssignment ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22561:1: ( ruleXAssignment )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22549:1: ( ruleXAssignment )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22550:1: ruleXAssignment
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22561:1: ( ruleXAssignment )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22562:1: ruleXAssignment
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAssignmentAccess().getValueXAssignmentParserRuleCall_0_3_0()); 
             }
-            pushFollow(FOLLOW_ruleXAssignment_in_rule__XAssignment__ValueAssignment_0_345629);
+            pushFollow(FOLLOW_ruleXAssignment_in_rule__XAssignment__ValueAssignment_0_345653);
             ruleXAssignment();
 
             state._fsp--;
@@ -64367,28 +64415,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XAssignment__FeatureAssignment_1_1_0_0_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22559:1: rule__XAssignment__FeatureAssignment_1_1_0_0_1 : ( ( ruleOpMultiAssign ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22571:1: rule__XAssignment__FeatureAssignment_1_1_0_0_1 : ( ( ruleOpMultiAssign ) ) ;
     public final void rule__XAssignment__FeatureAssignment_1_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22563:1: ( ( ( ruleOpMultiAssign ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22564:1: ( ( ruleOpMultiAssign ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22575:1: ( ( ( ruleOpMultiAssign ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22576:1: ( ( ruleOpMultiAssign ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22564:1: ( ( ruleOpMultiAssign ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22565:1: ( ruleOpMultiAssign )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22576:1: ( ( ruleOpMultiAssign ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22577:1: ( ruleOpMultiAssign )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAssignmentAccess().getFeatureJvmIdentifiableElementCrossReference_1_1_0_0_1_0()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22566:1: ( ruleOpMultiAssign )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22567:1: ruleOpMultiAssign
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22578:1: ( ruleOpMultiAssign )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22579:1: ruleOpMultiAssign
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAssignmentAccess().getFeatureJvmIdentifiableElementOpMultiAssignParserRuleCall_1_1_0_0_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleOpMultiAssign_in_rule__XAssignment__FeatureAssignment_1_1_0_0_145664);
+            pushFollow(FOLLOW_ruleOpMultiAssign_in_rule__XAssignment__FeatureAssignment_1_1_0_0_145688);
             ruleOpMultiAssign();
 
             state._fsp--;
@@ -64424,22 +64472,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XAssignment__RightOperandAssignment_1_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22578:1: rule__XAssignment__RightOperandAssignment_1_1_1 : ( ruleXAssignment ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22590:1: rule__XAssignment__RightOperandAssignment_1_1_1 : ( ruleXAssignment ) ;
     public final void rule__XAssignment__RightOperandAssignment_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22582:1: ( ( ruleXAssignment ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22583:1: ( ruleXAssignment )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22594:1: ( ( ruleXAssignment ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22595:1: ( ruleXAssignment )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22583:1: ( ruleXAssignment )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22584:1: ruleXAssignment
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22595:1: ( ruleXAssignment )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22596:1: ruleXAssignment
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAssignmentAccess().getRightOperandXAssignmentParserRuleCall_1_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXAssignment_in_rule__XAssignment__RightOperandAssignment_1_1_145699);
+            pushFollow(FOLLOW_ruleXAssignment_in_rule__XAssignment__RightOperandAssignment_1_1_145723);
             ruleXAssignment();
 
             state._fsp--;
@@ -64469,28 +64517,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XOrExpression__FeatureAssignment_1_0_0_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22593:1: rule__XOrExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpOr ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22605:1: rule__XOrExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpOr ) ) ;
     public final void rule__XOrExpression__FeatureAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22597:1: ( ( ( ruleOpOr ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22598:1: ( ( ruleOpOr ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22609:1: ( ( ( ruleOpOr ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22610:1: ( ( ruleOpOr ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22598:1: ( ( ruleOpOr ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22599:1: ( ruleOpOr )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22610:1: ( ( ruleOpOr ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22611:1: ( ruleOpOr )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXOrExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_1_0()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22600:1: ( ruleOpOr )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22601:1: ruleOpOr
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22612:1: ( ruleOpOr )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22613:1: ruleOpOr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXOrExpressionAccess().getFeatureJvmIdentifiableElementOpOrParserRuleCall_1_0_0_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleOpOr_in_rule__XOrExpression__FeatureAssignment_1_0_0_145734);
+            pushFollow(FOLLOW_ruleOpOr_in_rule__XOrExpression__FeatureAssignment_1_0_0_145758);
             ruleOpOr();
 
             state._fsp--;
@@ -64526,22 +64574,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XOrExpression__RightOperandAssignment_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22612:1: rule__XOrExpression__RightOperandAssignment_1_1 : ( ruleXAndExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22624:1: rule__XOrExpression__RightOperandAssignment_1_1 : ( ruleXAndExpression ) ;
     public final void rule__XOrExpression__RightOperandAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22616:1: ( ( ruleXAndExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22617:1: ( ruleXAndExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22628:1: ( ( ruleXAndExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22629:1: ( ruleXAndExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22617:1: ( ruleXAndExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22618:1: ruleXAndExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22629:1: ( ruleXAndExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22630:1: ruleXAndExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXOrExpressionAccess().getRightOperandXAndExpressionParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXAndExpression_in_rule__XOrExpression__RightOperandAssignment_1_145769);
+            pushFollow(FOLLOW_ruleXAndExpression_in_rule__XOrExpression__RightOperandAssignment_1_145793);
             ruleXAndExpression();
 
             state._fsp--;
@@ -64571,28 +64619,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XAndExpression__FeatureAssignment_1_0_0_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22627:1: rule__XAndExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpAnd ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22639:1: rule__XAndExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpAnd ) ) ;
     public final void rule__XAndExpression__FeatureAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22631:1: ( ( ( ruleOpAnd ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22632:1: ( ( ruleOpAnd ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22643:1: ( ( ( ruleOpAnd ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22644:1: ( ( ruleOpAnd ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22632:1: ( ( ruleOpAnd ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22633:1: ( ruleOpAnd )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22644:1: ( ( ruleOpAnd ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22645:1: ( ruleOpAnd )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAndExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_1_0()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22634:1: ( ruleOpAnd )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22635:1: ruleOpAnd
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22646:1: ( ruleOpAnd )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22647:1: ruleOpAnd
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAndExpressionAccess().getFeatureJvmIdentifiableElementOpAndParserRuleCall_1_0_0_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleOpAnd_in_rule__XAndExpression__FeatureAssignment_1_0_0_145804);
+            pushFollow(FOLLOW_ruleOpAnd_in_rule__XAndExpression__FeatureAssignment_1_0_0_145828);
             ruleOpAnd();
 
             state._fsp--;
@@ -64628,22 +64676,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XAndExpression__RightOperandAssignment_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22646:1: rule__XAndExpression__RightOperandAssignment_1_1 : ( ruleXEqualityExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22658:1: rule__XAndExpression__RightOperandAssignment_1_1 : ( ruleXEqualityExpression ) ;
     public final void rule__XAndExpression__RightOperandAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22650:1: ( ( ruleXEqualityExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22651:1: ( ruleXEqualityExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22662:1: ( ( ruleXEqualityExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22663:1: ( ruleXEqualityExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22651:1: ( ruleXEqualityExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22652:1: ruleXEqualityExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22663:1: ( ruleXEqualityExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22664:1: ruleXEqualityExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAndExpressionAccess().getRightOperandXEqualityExpressionParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXEqualityExpression_in_rule__XAndExpression__RightOperandAssignment_1_145839);
+            pushFollow(FOLLOW_ruleXEqualityExpression_in_rule__XAndExpression__RightOperandAssignment_1_145863);
             ruleXEqualityExpression();
 
             state._fsp--;
@@ -64673,28 +64721,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XEqualityExpression__FeatureAssignment_1_0_0_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22661:1: rule__XEqualityExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpEquality ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22673:1: rule__XEqualityExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpEquality ) ) ;
     public final void rule__XEqualityExpression__FeatureAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22665:1: ( ( ( ruleOpEquality ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22666:1: ( ( ruleOpEquality ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22677:1: ( ( ( ruleOpEquality ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22678:1: ( ( ruleOpEquality ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22666:1: ( ( ruleOpEquality ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22667:1: ( ruleOpEquality )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22678:1: ( ( ruleOpEquality ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22679:1: ( ruleOpEquality )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXEqualityExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_1_0()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22668:1: ( ruleOpEquality )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22669:1: ruleOpEquality
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22680:1: ( ruleOpEquality )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22681:1: ruleOpEquality
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXEqualityExpressionAccess().getFeatureJvmIdentifiableElementOpEqualityParserRuleCall_1_0_0_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleOpEquality_in_rule__XEqualityExpression__FeatureAssignment_1_0_0_145874);
+            pushFollow(FOLLOW_ruleOpEquality_in_rule__XEqualityExpression__FeatureAssignment_1_0_0_145898);
             ruleOpEquality();
 
             state._fsp--;
@@ -64730,22 +64778,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XEqualityExpression__RightOperandAssignment_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22680:1: rule__XEqualityExpression__RightOperandAssignment_1_1 : ( ruleXRelationalExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22692:1: rule__XEqualityExpression__RightOperandAssignment_1_1 : ( ruleXRelationalExpression ) ;
     public final void rule__XEqualityExpression__RightOperandAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22684:1: ( ( ruleXRelationalExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22685:1: ( ruleXRelationalExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22696:1: ( ( ruleXRelationalExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22697:1: ( ruleXRelationalExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22685:1: ( ruleXRelationalExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22686:1: ruleXRelationalExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22697:1: ( ruleXRelationalExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22698:1: ruleXRelationalExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXEqualityExpressionAccess().getRightOperandXRelationalExpressionParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXRelationalExpression_in_rule__XEqualityExpression__RightOperandAssignment_1_145909);
+            pushFollow(FOLLOW_ruleXRelationalExpression_in_rule__XEqualityExpression__RightOperandAssignment_1_145933);
             ruleXRelationalExpression();
 
             state._fsp--;
@@ -64775,22 +64823,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XRelationalExpression__TypeAssignment_1_0_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22695:1: rule__XRelationalExpression__TypeAssignment_1_0_1 : ( ruleJvmTypeReference ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22707:1: rule__XRelationalExpression__TypeAssignment_1_0_1 : ( ruleJvmTypeReference ) ;
     public final void rule__XRelationalExpression__TypeAssignment_1_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22699:1: ( ( ruleJvmTypeReference ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22700:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22711:1: ( ( ruleJvmTypeReference ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22712:1: ( ruleJvmTypeReference )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22700:1: ( ruleJvmTypeReference )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22701:1: ruleJvmTypeReference
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22712:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22713:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXRelationalExpressionAccess().getTypeJvmTypeReferenceParserRuleCall_1_0_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XRelationalExpression__TypeAssignment_1_0_145940);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XRelationalExpression__TypeAssignment_1_0_145964);
             ruleJvmTypeReference();
 
             state._fsp--;
@@ -64820,28 +64868,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XRelationalExpression__FeatureAssignment_1_1_0_0_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22710:1: rule__XRelationalExpression__FeatureAssignment_1_1_0_0_1 : ( ( ruleOpCompare ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22722:1: rule__XRelationalExpression__FeatureAssignment_1_1_0_0_1 : ( ( ruleOpCompare ) ) ;
     public final void rule__XRelationalExpression__FeatureAssignment_1_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22714:1: ( ( ( ruleOpCompare ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22715:1: ( ( ruleOpCompare ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22726:1: ( ( ( ruleOpCompare ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22727:1: ( ( ruleOpCompare ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22715:1: ( ( ruleOpCompare ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22716:1: ( ruleOpCompare )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22727:1: ( ( ruleOpCompare ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22728:1: ( ruleOpCompare )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXRelationalExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_1_0_0_1_0()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22717:1: ( ruleOpCompare )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22718:1: ruleOpCompare
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22729:1: ( ruleOpCompare )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22730:1: ruleOpCompare
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXRelationalExpressionAccess().getFeatureJvmIdentifiableElementOpCompareParserRuleCall_1_1_0_0_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleOpCompare_in_rule__XRelationalExpression__FeatureAssignment_1_1_0_0_145975);
+            pushFollow(FOLLOW_ruleOpCompare_in_rule__XRelationalExpression__FeatureAssignment_1_1_0_0_145999);
             ruleOpCompare();
 
             state._fsp--;
@@ -64877,22 +64925,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XRelationalExpression__RightOperandAssignment_1_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22729:1: rule__XRelationalExpression__RightOperandAssignment_1_1_1 : ( ruleXOtherOperatorExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22741:1: rule__XRelationalExpression__RightOperandAssignment_1_1_1 : ( ruleXOtherOperatorExpression ) ;
     public final void rule__XRelationalExpression__RightOperandAssignment_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22733:1: ( ( ruleXOtherOperatorExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22734:1: ( ruleXOtherOperatorExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22745:1: ( ( ruleXOtherOperatorExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22746:1: ( ruleXOtherOperatorExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22734:1: ( ruleXOtherOperatorExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22735:1: ruleXOtherOperatorExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22746:1: ( ruleXOtherOperatorExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22747:1: ruleXOtherOperatorExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXRelationalExpressionAccess().getRightOperandXOtherOperatorExpressionParserRuleCall_1_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXOtherOperatorExpression_in_rule__XRelationalExpression__RightOperandAssignment_1_1_146010);
+            pushFollow(FOLLOW_ruleXOtherOperatorExpression_in_rule__XRelationalExpression__RightOperandAssignment_1_1_146034);
             ruleXOtherOperatorExpression();
 
             state._fsp--;
@@ -64922,28 +64970,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XOtherOperatorExpression__FeatureAssignment_1_0_0_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22744:1: rule__XOtherOperatorExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpOther ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22756:1: rule__XOtherOperatorExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpOther ) ) ;
     public final void rule__XOtherOperatorExpression__FeatureAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22748:1: ( ( ( ruleOpOther ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22749:1: ( ( ruleOpOther ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22760:1: ( ( ( ruleOpOther ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22761:1: ( ( ruleOpOther ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22749:1: ( ( ruleOpOther ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22750:1: ( ruleOpOther )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22761:1: ( ( ruleOpOther ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22762:1: ( ruleOpOther )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXOtherOperatorExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_1_0()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22751:1: ( ruleOpOther )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22752:1: ruleOpOther
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22763:1: ( ruleOpOther )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22764:1: ruleOpOther
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXOtherOperatorExpressionAccess().getFeatureJvmIdentifiableElementOpOtherParserRuleCall_1_0_0_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleOpOther_in_rule__XOtherOperatorExpression__FeatureAssignment_1_0_0_146045);
+            pushFollow(FOLLOW_ruleOpOther_in_rule__XOtherOperatorExpression__FeatureAssignment_1_0_0_146069);
             ruleOpOther();
 
             state._fsp--;
@@ -64979,22 +65027,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XOtherOperatorExpression__RightOperandAssignment_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22763:1: rule__XOtherOperatorExpression__RightOperandAssignment_1_1 : ( ruleXAdditiveExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22775:1: rule__XOtherOperatorExpression__RightOperandAssignment_1_1 : ( ruleXAdditiveExpression ) ;
     public final void rule__XOtherOperatorExpression__RightOperandAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22767:1: ( ( ruleXAdditiveExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22768:1: ( ruleXAdditiveExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22779:1: ( ( ruleXAdditiveExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22780:1: ( ruleXAdditiveExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22768:1: ( ruleXAdditiveExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22769:1: ruleXAdditiveExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22780:1: ( ruleXAdditiveExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22781:1: ruleXAdditiveExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXOtherOperatorExpressionAccess().getRightOperandXAdditiveExpressionParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXAdditiveExpression_in_rule__XOtherOperatorExpression__RightOperandAssignment_1_146080);
+            pushFollow(FOLLOW_ruleXAdditiveExpression_in_rule__XOtherOperatorExpression__RightOperandAssignment_1_146104);
             ruleXAdditiveExpression();
 
             state._fsp--;
@@ -65024,28 +65072,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XAdditiveExpression__FeatureAssignment_1_0_0_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22778:1: rule__XAdditiveExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpAdd ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22790:1: rule__XAdditiveExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpAdd ) ) ;
     public final void rule__XAdditiveExpression__FeatureAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22782:1: ( ( ( ruleOpAdd ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22783:1: ( ( ruleOpAdd ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22794:1: ( ( ( ruleOpAdd ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22795:1: ( ( ruleOpAdd ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22783:1: ( ( ruleOpAdd ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22784:1: ( ruleOpAdd )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22795:1: ( ( ruleOpAdd ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22796:1: ( ruleOpAdd )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAdditiveExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_1_0()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22785:1: ( ruleOpAdd )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22786:1: ruleOpAdd
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22797:1: ( ruleOpAdd )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22798:1: ruleOpAdd
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAdditiveExpressionAccess().getFeatureJvmIdentifiableElementOpAddParserRuleCall_1_0_0_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleOpAdd_in_rule__XAdditiveExpression__FeatureAssignment_1_0_0_146115);
+            pushFollow(FOLLOW_ruleOpAdd_in_rule__XAdditiveExpression__FeatureAssignment_1_0_0_146139);
             ruleOpAdd();
 
             state._fsp--;
@@ -65081,22 +65129,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XAdditiveExpression__RightOperandAssignment_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22797:1: rule__XAdditiveExpression__RightOperandAssignment_1_1 : ( ruleXMultiplicativeExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22809:1: rule__XAdditiveExpression__RightOperandAssignment_1_1 : ( ruleXMultiplicativeExpression ) ;
     public final void rule__XAdditiveExpression__RightOperandAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22801:1: ( ( ruleXMultiplicativeExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22802:1: ( ruleXMultiplicativeExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22813:1: ( ( ruleXMultiplicativeExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22814:1: ( ruleXMultiplicativeExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22802:1: ( ruleXMultiplicativeExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22803:1: ruleXMultiplicativeExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22814:1: ( ruleXMultiplicativeExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22815:1: ruleXMultiplicativeExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAdditiveExpressionAccess().getRightOperandXMultiplicativeExpressionParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXMultiplicativeExpression_in_rule__XAdditiveExpression__RightOperandAssignment_1_146150);
+            pushFollow(FOLLOW_ruleXMultiplicativeExpression_in_rule__XAdditiveExpression__RightOperandAssignment_1_146174);
             ruleXMultiplicativeExpression();
 
             state._fsp--;
@@ -65126,28 +65174,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XMultiplicativeExpression__FeatureAssignment_1_0_0_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22812:1: rule__XMultiplicativeExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpMulti ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22824:1: rule__XMultiplicativeExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpMulti ) ) ;
     public final void rule__XMultiplicativeExpression__FeatureAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22816:1: ( ( ( ruleOpMulti ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22817:1: ( ( ruleOpMulti ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22828:1: ( ( ( ruleOpMulti ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22829:1: ( ( ruleOpMulti ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22817:1: ( ( ruleOpMulti ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22818:1: ( ruleOpMulti )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22829:1: ( ( ruleOpMulti ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22830:1: ( ruleOpMulti )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMultiplicativeExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_1_0()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22819:1: ( ruleOpMulti )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22820:1: ruleOpMulti
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22831:1: ( ruleOpMulti )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22832:1: ruleOpMulti
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMultiplicativeExpressionAccess().getFeatureJvmIdentifiableElementOpMultiParserRuleCall_1_0_0_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleOpMulti_in_rule__XMultiplicativeExpression__FeatureAssignment_1_0_0_146185);
+            pushFollow(FOLLOW_ruleOpMulti_in_rule__XMultiplicativeExpression__FeatureAssignment_1_0_0_146209);
             ruleOpMulti();
 
             state._fsp--;
@@ -65183,22 +65231,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XMultiplicativeExpression__RightOperandAssignment_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22831:1: rule__XMultiplicativeExpression__RightOperandAssignment_1_1 : ( ruleXUnaryOperation ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22843:1: rule__XMultiplicativeExpression__RightOperandAssignment_1_1 : ( ruleXUnaryOperation ) ;
     public final void rule__XMultiplicativeExpression__RightOperandAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22835:1: ( ( ruleXUnaryOperation ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22836:1: ( ruleXUnaryOperation )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22847:1: ( ( ruleXUnaryOperation ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22848:1: ( ruleXUnaryOperation )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22836:1: ( ruleXUnaryOperation )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22837:1: ruleXUnaryOperation
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22848:1: ( ruleXUnaryOperation )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22849:1: ruleXUnaryOperation
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMultiplicativeExpressionAccess().getRightOperandXUnaryOperationParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXUnaryOperation_in_rule__XMultiplicativeExpression__RightOperandAssignment_1_146220);
+            pushFollow(FOLLOW_ruleXUnaryOperation_in_rule__XMultiplicativeExpression__RightOperandAssignment_1_146244);
             ruleXUnaryOperation();
 
             state._fsp--;
@@ -65228,28 +65276,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XUnaryOperation__FeatureAssignment_0_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22846:1: rule__XUnaryOperation__FeatureAssignment_0_1 : ( ( ruleOpUnary ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22858:1: rule__XUnaryOperation__FeatureAssignment_0_1 : ( ( ruleOpUnary ) ) ;
     public final void rule__XUnaryOperation__FeatureAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22850:1: ( ( ( ruleOpUnary ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22851:1: ( ( ruleOpUnary ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22862:1: ( ( ( ruleOpUnary ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22863:1: ( ( ruleOpUnary ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22851:1: ( ( ruleOpUnary ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22852:1: ( ruleOpUnary )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22863:1: ( ( ruleOpUnary ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22864:1: ( ruleOpUnary )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXUnaryOperationAccess().getFeatureJvmIdentifiableElementCrossReference_0_1_0()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22853:1: ( ruleOpUnary )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22854:1: ruleOpUnary
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22865:1: ( ruleOpUnary )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22866:1: ruleOpUnary
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXUnaryOperationAccess().getFeatureJvmIdentifiableElementOpUnaryParserRuleCall_0_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleOpUnary_in_rule__XUnaryOperation__FeatureAssignment_0_146255);
+            pushFollow(FOLLOW_ruleOpUnary_in_rule__XUnaryOperation__FeatureAssignment_0_146279);
             ruleOpUnary();
 
             state._fsp--;
@@ -65285,22 +65333,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XUnaryOperation__OperandAssignment_0_2"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22865:1: rule__XUnaryOperation__OperandAssignment_0_2 : ( ruleXUnaryOperation ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22877:1: rule__XUnaryOperation__OperandAssignment_0_2 : ( ruleXUnaryOperation ) ;
     public final void rule__XUnaryOperation__OperandAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22869:1: ( ( ruleXUnaryOperation ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22870:1: ( ruleXUnaryOperation )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22881:1: ( ( ruleXUnaryOperation ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22882:1: ( ruleXUnaryOperation )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22870:1: ( ruleXUnaryOperation )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22871:1: ruleXUnaryOperation
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22882:1: ( ruleXUnaryOperation )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22883:1: ruleXUnaryOperation
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXUnaryOperationAccess().getOperandXUnaryOperationParserRuleCall_0_2_0()); 
             }
-            pushFollow(FOLLOW_ruleXUnaryOperation_in_rule__XUnaryOperation__OperandAssignment_0_246290);
+            pushFollow(FOLLOW_ruleXUnaryOperation_in_rule__XUnaryOperation__OperandAssignment_0_246314);
             ruleXUnaryOperation();
 
             state._fsp--;
@@ -65330,22 +65378,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XCastedExpression__TypeAssignment_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22880:1: rule__XCastedExpression__TypeAssignment_1_1 : ( ruleJvmTypeReference ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22892:1: rule__XCastedExpression__TypeAssignment_1_1 : ( ruleJvmTypeReference ) ;
     public final void rule__XCastedExpression__TypeAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22884:1: ( ( ruleJvmTypeReference ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22885:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22896:1: ( ( ruleJvmTypeReference ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22897:1: ( ruleJvmTypeReference )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22885:1: ( ruleJvmTypeReference )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22886:1: ruleJvmTypeReference
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22897:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22898:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXCastedExpressionAccess().getTypeJvmTypeReferenceParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XCastedExpression__TypeAssignment_1_146321);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XCastedExpression__TypeAssignment_1_146345);
             ruleJvmTypeReference();
 
             state._fsp--;
@@ -65375,28 +65423,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XPostfixOperation__FeatureAssignment_1_0_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22895:1: rule__XPostfixOperation__FeatureAssignment_1_0_1 : ( ( ruleOpPostfix ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22907:1: rule__XPostfixOperation__FeatureAssignment_1_0_1 : ( ( ruleOpPostfix ) ) ;
     public final void rule__XPostfixOperation__FeatureAssignment_1_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22899:1: ( ( ( ruleOpPostfix ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22900:1: ( ( ruleOpPostfix ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22911:1: ( ( ( ruleOpPostfix ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22912:1: ( ( ruleOpPostfix ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22900:1: ( ( ruleOpPostfix ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22901:1: ( ruleOpPostfix )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22912:1: ( ( ruleOpPostfix ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22913:1: ( ruleOpPostfix )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXPostfixOperationAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_1_0()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22902:1: ( ruleOpPostfix )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22903:1: ruleOpPostfix
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22914:1: ( ruleOpPostfix )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22915:1: ruleOpPostfix
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXPostfixOperationAccess().getFeatureJvmIdentifiableElementOpPostfixParserRuleCall_1_0_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleOpPostfix_in_rule__XPostfixOperation__FeatureAssignment_1_0_146356);
+            pushFollow(FOLLOW_ruleOpPostfix_in_rule__XPostfixOperation__FeatureAssignment_1_0_146380);
             ruleOpPostfix();
 
             state._fsp--;
@@ -65432,28 +65480,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XMemberFeatureCall__ExplicitStaticAssignment_1_0_0_0_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22914:1: rule__XMemberFeatureCall__ExplicitStaticAssignment_1_0_0_0_1_1 : ( ( '::' ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22926:1: rule__XMemberFeatureCall__ExplicitStaticAssignment_1_0_0_0_1_1 : ( ( '::' ) ) ;
     public final void rule__XMemberFeatureCall__ExplicitStaticAssignment_1_0_0_0_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22918:1: ( ( ( '::' ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22919:1: ( ( '::' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22930:1: ( ( ( '::' ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22931:1: ( ( '::' ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22919:1: ( ( '::' ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22920:1: ( '::' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXMemberFeatureCallAccess().getExplicitStaticColonColonKeyword_1_0_0_0_1_1_0()); 
-            }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22921:1: ( '::' )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22922:1: '::'
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22931:1: ( ( '::' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22932:1: ( '::' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getExplicitStaticColonColonKeyword_1_0_0_0_1_1_0()); 
             }
-            match(input,106,FOLLOW_106_in_rule__XMemberFeatureCall__ExplicitStaticAssignment_1_0_0_0_1_146396); if (state.failed) return ;
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22933:1: ( '::' )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22934:1: '::'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXMemberFeatureCallAccess().getExplicitStaticColonColonKeyword_1_0_0_0_1_1_0()); 
+            }
+            match(input,106,FOLLOW_106_in_rule__XMemberFeatureCall__ExplicitStaticAssignment_1_0_0_0_1_146420); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXMemberFeatureCallAccess().getExplicitStaticColonColonKeyword_1_0_0_0_1_1_0()); 
             }
@@ -65485,28 +65533,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XMemberFeatureCall__FeatureAssignment_1_0_0_0_2"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22937:1: rule__XMemberFeatureCall__FeatureAssignment_1_0_0_0_2 : ( ( ruleFeatureCallID ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22949:1: rule__XMemberFeatureCall__FeatureAssignment_1_0_0_0_2 : ( ( ruleFeatureCallID ) ) ;
     public final void rule__XMemberFeatureCall__FeatureAssignment_1_0_0_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22941:1: ( ( ( ruleFeatureCallID ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22942:1: ( ( ruleFeatureCallID ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22953:1: ( ( ( ruleFeatureCallID ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22954:1: ( ( ruleFeatureCallID ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22942:1: ( ( ruleFeatureCallID ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22943:1: ( ruleFeatureCallID )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22954:1: ( ( ruleFeatureCallID ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22955:1: ( ruleFeatureCallID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_0_2_0()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22944:1: ( ruleFeatureCallID )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22945:1: ruleFeatureCallID
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22956:1: ( ruleFeatureCallID )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22957:1: ruleFeatureCallID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getFeatureJvmIdentifiableElementFeatureCallIDParserRuleCall_1_0_0_0_2_0_1()); 
             }
-            pushFollow(FOLLOW_ruleFeatureCallID_in_rule__XMemberFeatureCall__FeatureAssignment_1_0_0_0_246439);
+            pushFollow(FOLLOW_ruleFeatureCallID_in_rule__XMemberFeatureCall__FeatureAssignment_1_0_0_0_246463);
             ruleFeatureCallID();
 
             state._fsp--;
@@ -65542,22 +65590,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XMemberFeatureCall__ValueAssignment_1_0_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22956:1: rule__XMemberFeatureCall__ValueAssignment_1_0_1 : ( ruleXAssignment ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22968:1: rule__XMemberFeatureCall__ValueAssignment_1_0_1 : ( ruleXAssignment ) ;
     public final void rule__XMemberFeatureCall__ValueAssignment_1_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22960:1: ( ( ruleXAssignment ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22961:1: ( ruleXAssignment )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22972:1: ( ( ruleXAssignment ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22973:1: ( ruleXAssignment )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22961:1: ( ruleXAssignment )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22962:1: ruleXAssignment
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22973:1: ( ruleXAssignment )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22974:1: ruleXAssignment
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getValueXAssignmentParserRuleCall_1_0_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXAssignment_in_rule__XMemberFeatureCall__ValueAssignment_1_0_146474);
+            pushFollow(FOLLOW_ruleXAssignment_in_rule__XMemberFeatureCall__ValueAssignment_1_0_146498);
             ruleXAssignment();
 
             state._fsp--;
@@ -65587,28 +65635,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XMemberFeatureCall__NullSafeAssignment_1_1_0_0_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22971:1: rule__XMemberFeatureCall__NullSafeAssignment_1_1_0_0_1_1 : ( ( '?.' ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22983:1: rule__XMemberFeatureCall__NullSafeAssignment_1_1_0_0_1_1 : ( ( '?.' ) ) ;
     public final void rule__XMemberFeatureCall__NullSafeAssignment_1_1_0_0_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22975:1: ( ( ( '?.' ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22976:1: ( ( '?.' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22987:1: ( ( ( '?.' ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22988:1: ( ( '?.' ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22976:1: ( ( '?.' ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22977:1: ( '?.' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXMemberFeatureCallAccess().getNullSafeQuestionMarkFullStopKeyword_1_1_0_0_1_1_0()); 
-            }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22978:1: ( '?.' )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22979:1: '?.'
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22988:1: ( ( '?.' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22989:1: ( '?.' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getNullSafeQuestionMarkFullStopKeyword_1_1_0_0_1_1_0()); 
             }
-            match(input,107,FOLLOW_107_in_rule__XMemberFeatureCall__NullSafeAssignment_1_1_0_0_1_146510); if (state.failed) return ;
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22990:1: ( '?.' )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22991:1: '?.'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXMemberFeatureCallAccess().getNullSafeQuestionMarkFullStopKeyword_1_1_0_0_1_1_0()); 
+            }
+            match(input,107,FOLLOW_107_in_rule__XMemberFeatureCall__NullSafeAssignment_1_1_0_0_1_146534); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXMemberFeatureCallAccess().getNullSafeQuestionMarkFullStopKeyword_1_1_0_0_1_1_0()); 
             }
@@ -65640,28 +65688,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XMemberFeatureCall__ExplicitStaticAssignment_1_1_0_0_1_2"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22994:1: rule__XMemberFeatureCall__ExplicitStaticAssignment_1_1_0_0_1_2 : ( ( '::' ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23006:1: rule__XMemberFeatureCall__ExplicitStaticAssignment_1_1_0_0_1_2 : ( ( '::' ) ) ;
     public final void rule__XMemberFeatureCall__ExplicitStaticAssignment_1_1_0_0_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22998:1: ( ( ( '::' ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22999:1: ( ( '::' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23010:1: ( ( ( '::' ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23011:1: ( ( '::' ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22999:1: ( ( '::' ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23000:1: ( '::' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXMemberFeatureCallAccess().getExplicitStaticColonColonKeyword_1_1_0_0_1_2_0()); 
-            }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23001:1: ( '::' )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23002:1: '::'
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23011:1: ( ( '::' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23012:1: ( '::' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getExplicitStaticColonColonKeyword_1_1_0_0_1_2_0()); 
             }
-            match(input,106,FOLLOW_106_in_rule__XMemberFeatureCall__ExplicitStaticAssignment_1_1_0_0_1_246554); if (state.failed) return ;
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23013:1: ( '::' )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23014:1: '::'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXMemberFeatureCallAccess().getExplicitStaticColonColonKeyword_1_1_0_0_1_2_0()); 
+            }
+            match(input,106,FOLLOW_106_in_rule__XMemberFeatureCall__ExplicitStaticAssignment_1_1_0_0_1_246578); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXMemberFeatureCallAccess().getExplicitStaticColonColonKeyword_1_1_0_0_1_2_0()); 
             }
@@ -65693,22 +65741,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23017:1: rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_1 : ( ruleJvmArgumentTypeReference ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23029:1: rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23021:1: ( ( ruleJvmArgumentTypeReference ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23022:1: ( ruleJvmArgumentTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23033:1: ( ( ruleJvmArgumentTypeReference ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23034:1: ( ruleJvmArgumentTypeReference )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23022:1: ( ruleJvmArgumentTypeReference )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23023:1: ruleJvmArgumentTypeReference
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23034:1: ( ruleJvmArgumentTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23035:1: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getTypeArgumentsJvmArgumentTypeReferenceParserRuleCall_1_1_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_146593);
+            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_146617);
             ruleJvmArgumentTypeReference();
 
             state._fsp--;
@@ -65738,22 +65786,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_2_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23032:1: rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_2_1 : ( ruleJvmArgumentTypeReference ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23044:1: rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_2_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23036:1: ( ( ruleJvmArgumentTypeReference ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23037:1: ( ruleJvmArgumentTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23048:1: ( ( ruleJvmArgumentTypeReference ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23049:1: ( ruleJvmArgumentTypeReference )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23037:1: ( ruleJvmArgumentTypeReference )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23038:1: ruleJvmArgumentTypeReference
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23049:1: ( ruleJvmArgumentTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23050:1: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getTypeArgumentsJvmArgumentTypeReferenceParserRuleCall_1_1_1_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_2_146624);
+            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_2_146648);
             ruleJvmArgumentTypeReference();
 
             state._fsp--;
@@ -65783,28 +65831,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XMemberFeatureCall__FeatureAssignment_1_1_2"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23047:1: rule__XMemberFeatureCall__FeatureAssignment_1_1_2 : ( ( ruleIdOrSuper ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23059:1: rule__XMemberFeatureCall__FeatureAssignment_1_1_2 : ( ( ruleIdOrSuper ) ) ;
     public final void rule__XMemberFeatureCall__FeatureAssignment_1_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23051:1: ( ( ( ruleIdOrSuper ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23052:1: ( ( ruleIdOrSuper ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23063:1: ( ( ( ruleIdOrSuper ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23064:1: ( ( ruleIdOrSuper ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23052:1: ( ( ruleIdOrSuper ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23053:1: ( ruleIdOrSuper )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23064:1: ( ( ruleIdOrSuper ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23065:1: ( ruleIdOrSuper )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getFeatureJvmIdentifiableElementCrossReference_1_1_2_0()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23054:1: ( ruleIdOrSuper )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23055:1: ruleIdOrSuper
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23066:1: ( ruleIdOrSuper )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23067:1: ruleIdOrSuper
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getFeatureJvmIdentifiableElementIdOrSuperParserRuleCall_1_1_2_0_1()); 
             }
-            pushFollow(FOLLOW_ruleIdOrSuper_in_rule__XMemberFeatureCall__FeatureAssignment_1_1_246659);
+            pushFollow(FOLLOW_ruleIdOrSuper_in_rule__XMemberFeatureCall__FeatureAssignment_1_1_246683);
             ruleIdOrSuper();
 
             state._fsp--;
@@ -65840,28 +65888,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XMemberFeatureCall__ExplicitOperationCallAssignment_1_1_3_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23066:1: rule__XMemberFeatureCall__ExplicitOperationCallAssignment_1_1_3_0 : ( ( '(' ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23078:1: rule__XMemberFeatureCall__ExplicitOperationCallAssignment_1_1_3_0 : ( ( '(' ) ) ;
     public final void rule__XMemberFeatureCall__ExplicitOperationCallAssignment_1_1_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23070:1: ( ( ( '(' ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23071:1: ( ( '(' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23082:1: ( ( ( '(' ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23083:1: ( ( '(' ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23071:1: ( ( '(' ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23072:1: ( '(' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXMemberFeatureCallAccess().getExplicitOperationCallLeftParenthesisKeyword_1_1_3_0_0()); 
-            }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23073:1: ( '(' )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23074:1: '('
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23083:1: ( ( '(' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23084:1: ( '(' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getExplicitOperationCallLeftParenthesisKeyword_1_1_3_0_0()); 
             }
-            match(input,69,FOLLOW_69_in_rule__XMemberFeatureCall__ExplicitOperationCallAssignment_1_1_3_046699); if (state.failed) return ;
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23085:1: ( '(' )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23086:1: '('
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXMemberFeatureCallAccess().getExplicitOperationCallLeftParenthesisKeyword_1_1_3_0_0()); 
+            }
+            match(input,69,FOLLOW_69_in_rule__XMemberFeatureCall__ExplicitOperationCallAssignment_1_1_3_046723); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXMemberFeatureCallAccess().getExplicitOperationCallLeftParenthesisKeyword_1_1_3_0_0()); 
             }
@@ -65893,22 +65941,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23089:1: rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_0 : ( ruleXShortClosure ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23101:1: rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_0 : ( ruleXShortClosure ) ;
     public final void rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23093:1: ( ( ruleXShortClosure ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23094:1: ( ruleXShortClosure )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23105:1: ( ( ruleXShortClosure ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23106:1: ( ruleXShortClosure )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23094:1: ( ruleXShortClosure )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23095:1: ruleXShortClosure
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23106:1: ( ruleXShortClosure )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23107:1: ruleXShortClosure
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getMemberCallArgumentsXShortClosureParserRuleCall_1_1_3_1_0_0()); 
             }
-            pushFollow(FOLLOW_ruleXShortClosure_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_046738);
+            pushFollow(FOLLOW_ruleXShortClosure_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_046762);
             ruleXShortClosure();
 
             state._fsp--;
@@ -65938,22 +65986,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23104:1: rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_0 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23116:1: rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_0 : ( ruleXExpression ) ;
     public final void rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23108:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23109:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23120:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23121:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23109:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23110:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23121:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23122:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getMemberCallArgumentsXExpressionParserRuleCall_1_1_3_1_1_0_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_046769);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_046793);
             ruleXExpression();
 
             state._fsp--;
@@ -65983,22 +66031,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23119:1: rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_1_1 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23131:1: rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_1_1 : ( ruleXExpression ) ;
     public final void rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23123:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23124:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23135:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23136:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23124:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23125:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23136:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23137:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getMemberCallArgumentsXExpressionParserRuleCall_1_1_3_1_1_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_1_146800);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_1_146824);
             ruleXExpression();
 
             state._fsp--;
@@ -66028,22 +66076,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_4"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23134:1: rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_4 : ( ruleXClosure ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23146:1: rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_4 : ( ruleXClosure ) ;
     public final void rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23138:1: ( ( ruleXClosure ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23139:1: ( ruleXClosure )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23150:1: ( ( ruleXClosure ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23151:1: ( ruleXClosure )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23139:1: ( ruleXClosure )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23140:1: ruleXClosure
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23151:1: ( ruleXClosure )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23152:1: ruleXClosure
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getMemberCallArgumentsXClosureParserRuleCall_1_1_4_0()); 
             }
-            pushFollow(FOLLOW_ruleXClosure_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_446831);
+            pushFollow(FOLLOW_ruleXClosure_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_446855);
             ruleXClosure();
 
             state._fsp--;
@@ -66073,22 +66121,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XSetLiteral__ElementsAssignment_3_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23149:1: rule__XSetLiteral__ElementsAssignment_3_0 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23161:1: rule__XSetLiteral__ElementsAssignment_3_0 : ( ruleXExpression ) ;
     public final void rule__XSetLiteral__ElementsAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23153:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23154:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23165:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23166:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23154:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23155:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23166:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23167:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSetLiteralAccess().getElementsXExpressionParserRuleCall_3_0_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XSetLiteral__ElementsAssignment_3_046862);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XSetLiteral__ElementsAssignment_3_046886);
             ruleXExpression();
 
             state._fsp--;
@@ -66118,22 +66166,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XSetLiteral__ElementsAssignment_3_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23164:1: rule__XSetLiteral__ElementsAssignment_3_1_1 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23176:1: rule__XSetLiteral__ElementsAssignment_3_1_1 : ( ruleXExpression ) ;
     public final void rule__XSetLiteral__ElementsAssignment_3_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23168:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23169:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23180:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23181:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23169:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23170:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23181:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23182:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSetLiteralAccess().getElementsXExpressionParserRuleCall_3_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XSetLiteral__ElementsAssignment_3_1_146893);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XSetLiteral__ElementsAssignment_3_1_146917);
             ruleXExpression();
 
             state._fsp--;
@@ -66163,22 +66211,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XListLiteral__ElementsAssignment_3_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23179:1: rule__XListLiteral__ElementsAssignment_3_0 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23191:1: rule__XListLiteral__ElementsAssignment_3_0 : ( ruleXExpression ) ;
     public final void rule__XListLiteral__ElementsAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23183:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23184:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23195:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23196:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23184:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23185:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23196:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23197:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXListLiteralAccess().getElementsXExpressionParserRuleCall_3_0_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XListLiteral__ElementsAssignment_3_046924);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XListLiteral__ElementsAssignment_3_046948);
             ruleXExpression();
 
             state._fsp--;
@@ -66208,22 +66256,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XListLiteral__ElementsAssignment_3_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23194:1: rule__XListLiteral__ElementsAssignment_3_1_1 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23206:1: rule__XListLiteral__ElementsAssignment_3_1_1 : ( ruleXExpression ) ;
     public final void rule__XListLiteral__ElementsAssignment_3_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23198:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23199:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23210:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23211:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23199:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23200:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23211:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23212:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXListLiteralAccess().getElementsXExpressionParserRuleCall_3_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XListLiteral__ElementsAssignment_3_1_146955);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XListLiteral__ElementsAssignment_3_1_146979);
             ruleXExpression();
 
             state._fsp--;
@@ -66253,22 +66301,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23209:1: rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_0 : ( ruleJvmFormalParameter ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23221:1: rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_0 : ( ruleJvmFormalParameter ) ;
     public final void rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23213:1: ( ( ruleJvmFormalParameter ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23214:1: ( ruleJvmFormalParameter )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23225:1: ( ( ruleJvmFormalParameter ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23226:1: ( ruleJvmFormalParameter )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23214:1: ( ruleJvmFormalParameter )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23215:1: ruleJvmFormalParameter
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23226:1: ( ruleJvmFormalParameter )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23227:1: ruleJvmFormalParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXClosureAccess().getDeclaredFormalParametersJvmFormalParameterParserRuleCall_1_0_0_0_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_046986);
+            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_047010);
             ruleJvmFormalParameter();
 
             state._fsp--;
@@ -66298,22 +66346,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23224:1: rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_1_1 : ( ruleJvmFormalParameter ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23236:1: rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_1_1 : ( ruleJvmFormalParameter ) ;
     public final void rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23228:1: ( ( ruleJvmFormalParameter ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23229:1: ( ruleJvmFormalParameter )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23240:1: ( ( ruleJvmFormalParameter ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23241:1: ( ruleJvmFormalParameter )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23229:1: ( ruleJvmFormalParameter )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23230:1: ruleJvmFormalParameter
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23241:1: ( ruleJvmFormalParameter )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23242:1: ruleJvmFormalParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXClosureAccess().getDeclaredFormalParametersJvmFormalParameterParserRuleCall_1_0_0_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_1_147017);
+            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_1_147041);
             ruleJvmFormalParameter();
 
             state._fsp--;
@@ -66343,28 +66391,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XClosure__ExplicitSyntaxAssignment_1_0_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23239:1: rule__XClosure__ExplicitSyntaxAssignment_1_0_1 : ( ( '|' ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23251:1: rule__XClosure__ExplicitSyntaxAssignment_1_0_1 : ( ( '|' ) ) ;
     public final void rule__XClosure__ExplicitSyntaxAssignment_1_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23243:1: ( ( ( '|' ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23244:1: ( ( '|' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23255:1: ( ( ( '|' ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23256:1: ( ( '|' ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23244:1: ( ( '|' ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23245:1: ( '|' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXClosureAccess().getExplicitSyntaxVerticalLineKeyword_1_0_1_0()); 
-            }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23246:1: ( '|' )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23247:1: '|'
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23256:1: ( ( '|' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23257:1: ( '|' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXClosureAccess().getExplicitSyntaxVerticalLineKeyword_1_0_1_0()); 
             }
-            match(input,108,FOLLOW_108_in_rule__XClosure__ExplicitSyntaxAssignment_1_0_147053); if (state.failed) return ;
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23258:1: ( '|' )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23259:1: '|'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXClosureAccess().getExplicitSyntaxVerticalLineKeyword_1_0_1_0()); 
+            }
+            match(input,108,FOLLOW_108_in_rule__XClosure__ExplicitSyntaxAssignment_1_0_147077); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXClosureAccess().getExplicitSyntaxVerticalLineKeyword_1_0_1_0()); 
             }
@@ -66396,22 +66444,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XClosure__ExpressionAssignment_2"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23262:1: rule__XClosure__ExpressionAssignment_2 : ( ruleXExpressionInClosure ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23274:1: rule__XClosure__ExpressionAssignment_2 : ( ruleXExpressionInClosure ) ;
     public final void rule__XClosure__ExpressionAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23266:1: ( ( ruleXExpressionInClosure ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23267:1: ( ruleXExpressionInClosure )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23278:1: ( ( ruleXExpressionInClosure ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23279:1: ( ruleXExpressionInClosure )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23267:1: ( ruleXExpressionInClosure )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23268:1: ruleXExpressionInClosure
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23279:1: ( ruleXExpressionInClosure )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23280:1: ruleXExpressionInClosure
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXClosureAccess().getExpressionXExpressionInClosureParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpressionInClosure_in_rule__XClosure__ExpressionAssignment_247092);
+            pushFollow(FOLLOW_ruleXExpressionInClosure_in_rule__XClosure__ExpressionAssignment_247116);
             ruleXExpressionInClosure();
 
             state._fsp--;
@@ -66441,22 +66489,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XExpressionInClosure__ExpressionsAssignment_1_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23277:1: rule__XExpressionInClosure__ExpressionsAssignment_1_0 : ( ruleXExpressionOrVarDeclaration ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23289:1: rule__XExpressionInClosure__ExpressionsAssignment_1_0 : ( ruleXExpressionOrVarDeclaration ) ;
     public final void rule__XExpressionInClosure__ExpressionsAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23281:1: ( ( ruleXExpressionOrVarDeclaration ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23282:1: ( ruleXExpressionOrVarDeclaration )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23293:1: ( ( ruleXExpressionOrVarDeclaration ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23294:1: ( ruleXExpressionOrVarDeclaration )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23282:1: ( ruleXExpressionOrVarDeclaration )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23283:1: ruleXExpressionOrVarDeclaration
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23294:1: ( ruleXExpressionOrVarDeclaration )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23295:1: ruleXExpressionOrVarDeclaration
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXExpressionInClosureAccess().getExpressionsXExpressionOrVarDeclarationParserRuleCall_1_0_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XExpressionInClosure__ExpressionsAssignment_1_047123);
+            pushFollow(FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XExpressionInClosure__ExpressionsAssignment_1_047147);
             ruleXExpressionOrVarDeclaration();
 
             state._fsp--;
@@ -66486,22 +66534,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23292:1: rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_0 : ( ruleJvmFormalParameter ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23304:1: rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_0 : ( ruleJvmFormalParameter ) ;
     public final void rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23296:1: ( ( ruleJvmFormalParameter ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23297:1: ( ruleJvmFormalParameter )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23308:1: ( ( ruleJvmFormalParameter ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23309:1: ( ruleJvmFormalParameter )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23297:1: ( ruleJvmFormalParameter )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23298:1: ruleJvmFormalParameter
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23309:1: ( ruleJvmFormalParameter )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23310:1: ruleJvmFormalParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXShortClosureAccess().getDeclaredFormalParametersJvmFormalParameterParserRuleCall_0_0_1_0_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_047154);
+            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_047178);
             ruleJvmFormalParameter();
 
             state._fsp--;
@@ -66531,22 +66579,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23307:1: rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_1_1 : ( ruleJvmFormalParameter ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23319:1: rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_1_1 : ( ruleJvmFormalParameter ) ;
     public final void rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23311:1: ( ( ruleJvmFormalParameter ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23312:1: ( ruleJvmFormalParameter )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23323:1: ( ( ruleJvmFormalParameter ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23324:1: ( ruleJvmFormalParameter )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23312:1: ( ruleJvmFormalParameter )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23313:1: ruleJvmFormalParameter
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23324:1: ( ruleJvmFormalParameter )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23325:1: ruleJvmFormalParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXShortClosureAccess().getDeclaredFormalParametersJvmFormalParameterParserRuleCall_0_0_1_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_1_147185);
+            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_1_147209);
             ruleJvmFormalParameter();
 
             state._fsp--;
@@ -66576,28 +66624,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XShortClosure__ExplicitSyntaxAssignment_0_0_2"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23322:1: rule__XShortClosure__ExplicitSyntaxAssignment_0_0_2 : ( ( '|' ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23334:1: rule__XShortClosure__ExplicitSyntaxAssignment_0_0_2 : ( ( '|' ) ) ;
     public final void rule__XShortClosure__ExplicitSyntaxAssignment_0_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23326:1: ( ( ( '|' ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23327:1: ( ( '|' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23338:1: ( ( ( '|' ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23339:1: ( ( '|' ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23327:1: ( ( '|' ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23328:1: ( '|' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXShortClosureAccess().getExplicitSyntaxVerticalLineKeyword_0_0_2_0()); 
-            }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23329:1: ( '|' )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23330:1: '|'
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23339:1: ( ( '|' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23340:1: ( '|' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXShortClosureAccess().getExplicitSyntaxVerticalLineKeyword_0_0_2_0()); 
             }
-            match(input,108,FOLLOW_108_in_rule__XShortClosure__ExplicitSyntaxAssignment_0_0_247221); if (state.failed) return ;
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23341:1: ( '|' )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23342:1: '|'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXShortClosureAccess().getExplicitSyntaxVerticalLineKeyword_0_0_2_0()); 
+            }
+            match(input,108,FOLLOW_108_in_rule__XShortClosure__ExplicitSyntaxAssignment_0_0_247245); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXShortClosureAccess().getExplicitSyntaxVerticalLineKeyword_0_0_2_0()); 
             }
@@ -66629,22 +66677,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XShortClosure__ExpressionAssignment_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23345:1: rule__XShortClosure__ExpressionAssignment_1 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23357:1: rule__XShortClosure__ExpressionAssignment_1 : ( ruleXExpression ) ;
     public final void rule__XShortClosure__ExpressionAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23349:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23350:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23361:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23362:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23350:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23351:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23362:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23363:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXShortClosureAccess().getExpressionXExpressionParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XShortClosure__ExpressionAssignment_147260);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XShortClosure__ExpressionAssignment_147284);
             ruleXExpression();
 
             state._fsp--;
@@ -66674,22 +66722,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XIfExpression__IfAssignment_3"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23360:1: rule__XIfExpression__IfAssignment_3 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23372:1: rule__XIfExpression__IfAssignment_3 : ( ruleXExpression ) ;
     public final void rule__XIfExpression__IfAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23364:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23365:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23376:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23377:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23365:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23366:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23377:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23378:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXIfExpressionAccess().getIfXExpressionParserRuleCall_3_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XIfExpression__IfAssignment_347291);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XIfExpression__IfAssignment_347315);
             ruleXExpression();
 
             state._fsp--;
@@ -66719,22 +66767,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XIfExpression__ThenAssignment_5"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23375:1: rule__XIfExpression__ThenAssignment_5 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23387:1: rule__XIfExpression__ThenAssignment_5 : ( ruleXExpression ) ;
     public final void rule__XIfExpression__ThenAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23379:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23380:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23391:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23392:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23380:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23381:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23392:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23393:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXIfExpressionAccess().getThenXExpressionParserRuleCall_5_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XIfExpression__ThenAssignment_547322);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XIfExpression__ThenAssignment_547346);
             ruleXExpression();
 
             state._fsp--;
@@ -66764,22 +66812,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XIfExpression__ElseAssignment_6_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23390:1: rule__XIfExpression__ElseAssignment_6_1 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23402:1: rule__XIfExpression__ElseAssignment_6_1 : ( ruleXExpression ) ;
     public final void rule__XIfExpression__ElseAssignment_6_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23394:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23395:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23406:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23407:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23395:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23396:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23407:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23408:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXIfExpressionAccess().getElseXExpressionParserRuleCall_6_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XIfExpression__ElseAssignment_6_147353);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XIfExpression__ElseAssignment_6_147377);
             ruleXExpression();
 
             state._fsp--;
@@ -66809,22 +66857,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XSwitchExpression__DeclaredParamAssignment_2_0_0_0_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23405:1: rule__XSwitchExpression__DeclaredParamAssignment_2_0_0_0_1 : ( ruleJvmFormalParameter ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23417:1: rule__XSwitchExpression__DeclaredParamAssignment_2_0_0_0_1 : ( ruleJvmFormalParameter ) ;
     public final void rule__XSwitchExpression__DeclaredParamAssignment_2_0_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23409:1: ( ( ruleJvmFormalParameter ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23410:1: ( ruleJvmFormalParameter )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23421:1: ( ( ruleJvmFormalParameter ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23422:1: ( ruleJvmFormalParameter )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23410:1: ( ruleJvmFormalParameter )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23411:1: ruleJvmFormalParameter
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23422:1: ( ruleJvmFormalParameter )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23423:1: ruleJvmFormalParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSwitchExpressionAccess().getDeclaredParamJvmFormalParameterParserRuleCall_2_0_0_0_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XSwitchExpression__DeclaredParamAssignment_2_0_0_0_147384);
+            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XSwitchExpression__DeclaredParamAssignment_2_0_0_0_147408);
             ruleJvmFormalParameter();
 
             state._fsp--;
@@ -66854,22 +66902,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XSwitchExpression__SwitchAssignment_2_0_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23420:1: rule__XSwitchExpression__SwitchAssignment_2_0_1 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23432:1: rule__XSwitchExpression__SwitchAssignment_2_0_1 : ( ruleXExpression ) ;
     public final void rule__XSwitchExpression__SwitchAssignment_2_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23424:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23425:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23436:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23437:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23425:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23426:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23437:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23438:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSwitchExpressionAccess().getSwitchXExpressionParserRuleCall_2_0_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XSwitchExpression__SwitchAssignment_2_0_147415);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XSwitchExpression__SwitchAssignment_2_0_147439);
             ruleXExpression();
 
             state._fsp--;
@@ -66899,22 +66947,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XSwitchExpression__DeclaredParamAssignment_2_1_0_0_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23435:1: rule__XSwitchExpression__DeclaredParamAssignment_2_1_0_0_0 : ( ruleJvmFormalParameter ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23447:1: rule__XSwitchExpression__DeclaredParamAssignment_2_1_0_0_0 : ( ruleJvmFormalParameter ) ;
     public final void rule__XSwitchExpression__DeclaredParamAssignment_2_1_0_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23439:1: ( ( ruleJvmFormalParameter ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23440:1: ( ruleJvmFormalParameter )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23451:1: ( ( ruleJvmFormalParameter ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23452:1: ( ruleJvmFormalParameter )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23440:1: ( ruleJvmFormalParameter )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23441:1: ruleJvmFormalParameter
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23452:1: ( ruleJvmFormalParameter )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23453:1: ruleJvmFormalParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSwitchExpressionAccess().getDeclaredParamJvmFormalParameterParserRuleCall_2_1_0_0_0_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XSwitchExpression__DeclaredParamAssignment_2_1_0_0_047446);
+            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XSwitchExpression__DeclaredParamAssignment_2_1_0_0_047470);
             ruleJvmFormalParameter();
 
             state._fsp--;
@@ -66944,22 +66992,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XSwitchExpression__SwitchAssignment_2_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23450:1: rule__XSwitchExpression__SwitchAssignment_2_1_1 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23462:1: rule__XSwitchExpression__SwitchAssignment_2_1_1 : ( ruleXExpression ) ;
     public final void rule__XSwitchExpression__SwitchAssignment_2_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23454:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23455:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23466:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23467:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23455:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23456:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23467:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23468:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSwitchExpressionAccess().getSwitchXExpressionParserRuleCall_2_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XSwitchExpression__SwitchAssignment_2_1_147477);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XSwitchExpression__SwitchAssignment_2_1_147501);
             ruleXExpression();
 
             state._fsp--;
@@ -66989,22 +67037,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XSwitchExpression__CasesAssignment_4"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23465:1: rule__XSwitchExpression__CasesAssignment_4 : ( ruleXCasePart ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23477:1: rule__XSwitchExpression__CasesAssignment_4 : ( ruleXCasePart ) ;
     public final void rule__XSwitchExpression__CasesAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23469:1: ( ( ruleXCasePart ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23470:1: ( ruleXCasePart )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23481:1: ( ( ruleXCasePart ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23482:1: ( ruleXCasePart )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23470:1: ( ruleXCasePart )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23471:1: ruleXCasePart
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23482:1: ( ruleXCasePart )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23483:1: ruleXCasePart
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSwitchExpressionAccess().getCasesXCasePartParserRuleCall_4_0()); 
             }
-            pushFollow(FOLLOW_ruleXCasePart_in_rule__XSwitchExpression__CasesAssignment_447508);
+            pushFollow(FOLLOW_ruleXCasePart_in_rule__XSwitchExpression__CasesAssignment_447532);
             ruleXCasePart();
 
             state._fsp--;
@@ -67034,22 +67082,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XSwitchExpression__DefaultAssignment_5_2"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23480:1: rule__XSwitchExpression__DefaultAssignment_5_2 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23492:1: rule__XSwitchExpression__DefaultAssignment_5_2 : ( ruleXExpression ) ;
     public final void rule__XSwitchExpression__DefaultAssignment_5_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23484:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23485:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23496:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23497:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23485:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23486:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23497:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23498:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSwitchExpressionAccess().getDefaultXExpressionParserRuleCall_5_2_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XSwitchExpression__DefaultAssignment_5_247539);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XSwitchExpression__DefaultAssignment_5_247563);
             ruleXExpression();
 
             state._fsp--;
@@ -67079,22 +67127,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XCasePart__TypeGuardAssignment_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23495:1: rule__XCasePart__TypeGuardAssignment_1 : ( ruleJvmTypeReference ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23507:1: rule__XCasePart__TypeGuardAssignment_1 : ( ruleJvmTypeReference ) ;
     public final void rule__XCasePart__TypeGuardAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23499:1: ( ( ruleJvmTypeReference ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23500:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23511:1: ( ( ruleJvmTypeReference ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23512:1: ( ruleJvmTypeReference )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23500:1: ( ruleJvmTypeReference )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23501:1: ruleJvmTypeReference
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23512:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23513:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXCasePartAccess().getTypeGuardJvmTypeReferenceParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XCasePart__TypeGuardAssignment_147570);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XCasePart__TypeGuardAssignment_147594);
             ruleJvmTypeReference();
 
             state._fsp--;
@@ -67124,22 +67172,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XCasePart__CaseAssignment_2_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23510:1: rule__XCasePart__CaseAssignment_2_1 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23522:1: rule__XCasePart__CaseAssignment_2_1 : ( ruleXExpression ) ;
     public final void rule__XCasePart__CaseAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23514:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23515:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23526:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23527:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23515:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23516:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23527:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23528:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXCasePartAccess().getCaseXExpressionParserRuleCall_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XCasePart__CaseAssignment_2_147601);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XCasePart__CaseAssignment_2_147625);
             ruleXExpression();
 
             state._fsp--;
@@ -67169,22 +67217,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XCasePart__ThenAssignment_3_0_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23525:1: rule__XCasePart__ThenAssignment_3_0_1 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23537:1: rule__XCasePart__ThenAssignment_3_0_1 : ( ruleXExpression ) ;
     public final void rule__XCasePart__ThenAssignment_3_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23529:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23530:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23541:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23542:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23530:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23531:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23542:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23543:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXCasePartAccess().getThenXExpressionParserRuleCall_3_0_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XCasePart__ThenAssignment_3_0_147632);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XCasePart__ThenAssignment_3_0_147656);
             ruleXExpression();
 
             state._fsp--;
@@ -67214,28 +67262,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XCasePart__FallThroughAssignment_3_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23540:1: rule__XCasePart__FallThroughAssignment_3_1 : ( ( ',' ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23552:1: rule__XCasePart__FallThroughAssignment_3_1 : ( ( ',' ) ) ;
     public final void rule__XCasePart__FallThroughAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23544:1: ( ( ( ',' ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23545:1: ( ( ',' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23556:1: ( ( ( ',' ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23557:1: ( ( ',' ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23545:1: ( ( ',' ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23546:1: ( ',' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXCasePartAccess().getFallThroughCommaKeyword_3_1_0()); 
-            }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23547:1: ( ',' )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23548:1: ','
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23557:1: ( ( ',' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23558:1: ( ',' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXCasePartAccess().getFallThroughCommaKeyword_3_1_0()); 
             }
-            match(input,58,FOLLOW_58_in_rule__XCasePart__FallThroughAssignment_3_147668); if (state.failed) return ;
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23559:1: ( ',' )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23560:1: ','
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXCasePartAccess().getFallThroughCommaKeyword_3_1_0()); 
+            }
+            match(input,58,FOLLOW_58_in_rule__XCasePart__FallThroughAssignment_3_147692); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXCasePartAccess().getFallThroughCommaKeyword_3_1_0()); 
             }
@@ -67267,22 +67315,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XForLoopExpression__DeclaredParamAssignment_0_0_3"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23563:1: rule__XForLoopExpression__DeclaredParamAssignment_0_0_3 : ( ruleJvmFormalParameter ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23575:1: rule__XForLoopExpression__DeclaredParamAssignment_0_0_3 : ( ruleJvmFormalParameter ) ;
     public final void rule__XForLoopExpression__DeclaredParamAssignment_0_0_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23567:1: ( ( ruleJvmFormalParameter ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23568:1: ( ruleJvmFormalParameter )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23579:1: ( ( ruleJvmFormalParameter ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23580:1: ( ruleJvmFormalParameter )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23568:1: ( ruleJvmFormalParameter )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23569:1: ruleJvmFormalParameter
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23580:1: ( ruleJvmFormalParameter )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23581:1: ruleJvmFormalParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXForLoopExpressionAccess().getDeclaredParamJvmFormalParameterParserRuleCall_0_0_3_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XForLoopExpression__DeclaredParamAssignment_0_0_347707);
+            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XForLoopExpression__DeclaredParamAssignment_0_0_347731);
             ruleJvmFormalParameter();
 
             state._fsp--;
@@ -67312,22 +67360,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XForLoopExpression__ForExpressionAssignment_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23578:1: rule__XForLoopExpression__ForExpressionAssignment_1 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23590:1: rule__XForLoopExpression__ForExpressionAssignment_1 : ( ruleXExpression ) ;
     public final void rule__XForLoopExpression__ForExpressionAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23582:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23583:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23594:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23595:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23583:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23584:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23595:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23596:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXForLoopExpressionAccess().getForExpressionXExpressionParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XForLoopExpression__ForExpressionAssignment_147738);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XForLoopExpression__ForExpressionAssignment_147762);
             ruleXExpression();
 
             state._fsp--;
@@ -67357,22 +67405,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XForLoopExpression__EachExpressionAssignment_3"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23593:1: rule__XForLoopExpression__EachExpressionAssignment_3 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23605:1: rule__XForLoopExpression__EachExpressionAssignment_3 : ( ruleXExpression ) ;
     public final void rule__XForLoopExpression__EachExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23597:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23598:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23609:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23610:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23598:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23599:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23610:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23611:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXForLoopExpressionAccess().getEachExpressionXExpressionParserRuleCall_3_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XForLoopExpression__EachExpressionAssignment_347769);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XForLoopExpression__EachExpressionAssignment_347793);
             ruleXExpression();
 
             state._fsp--;
@@ -67402,22 +67450,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XBasicForLoopExpression__InitExpressionsAssignment_3_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23608:1: rule__XBasicForLoopExpression__InitExpressionsAssignment_3_0 : ( ruleXExpressionOrVarDeclaration ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23620:1: rule__XBasicForLoopExpression__InitExpressionsAssignment_3_0 : ( ruleXExpressionOrVarDeclaration ) ;
     public final void rule__XBasicForLoopExpression__InitExpressionsAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23612:1: ( ( ruleXExpressionOrVarDeclaration ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23613:1: ( ruleXExpressionOrVarDeclaration )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23624:1: ( ( ruleXExpressionOrVarDeclaration ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23625:1: ( ruleXExpressionOrVarDeclaration )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23613:1: ( ruleXExpressionOrVarDeclaration )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23614:1: ruleXExpressionOrVarDeclaration
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23625:1: ( ruleXExpressionOrVarDeclaration )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23626:1: ruleXExpressionOrVarDeclaration
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXBasicForLoopExpressionAccess().getInitExpressionsXExpressionOrVarDeclarationParserRuleCall_3_0_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XBasicForLoopExpression__InitExpressionsAssignment_3_047800);
+            pushFollow(FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XBasicForLoopExpression__InitExpressionsAssignment_3_047824);
             ruleXExpressionOrVarDeclaration();
 
             state._fsp--;
@@ -67447,22 +67495,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XBasicForLoopExpression__InitExpressionsAssignment_3_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23623:1: rule__XBasicForLoopExpression__InitExpressionsAssignment_3_1_1 : ( ruleXExpressionOrVarDeclaration ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23635:1: rule__XBasicForLoopExpression__InitExpressionsAssignment_3_1_1 : ( ruleXExpressionOrVarDeclaration ) ;
     public final void rule__XBasicForLoopExpression__InitExpressionsAssignment_3_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23627:1: ( ( ruleXExpressionOrVarDeclaration ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23628:1: ( ruleXExpressionOrVarDeclaration )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23639:1: ( ( ruleXExpressionOrVarDeclaration ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23640:1: ( ruleXExpressionOrVarDeclaration )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23628:1: ( ruleXExpressionOrVarDeclaration )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23629:1: ruleXExpressionOrVarDeclaration
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23640:1: ( ruleXExpressionOrVarDeclaration )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23641:1: ruleXExpressionOrVarDeclaration
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXBasicForLoopExpressionAccess().getInitExpressionsXExpressionOrVarDeclarationParserRuleCall_3_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XBasicForLoopExpression__InitExpressionsAssignment_3_1_147831);
+            pushFollow(FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XBasicForLoopExpression__InitExpressionsAssignment_3_1_147855);
             ruleXExpressionOrVarDeclaration();
 
             state._fsp--;
@@ -67492,22 +67540,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XBasicForLoopExpression__ExpressionAssignment_5"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23638:1: rule__XBasicForLoopExpression__ExpressionAssignment_5 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23650:1: rule__XBasicForLoopExpression__ExpressionAssignment_5 : ( ruleXExpression ) ;
     public final void rule__XBasicForLoopExpression__ExpressionAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23642:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23643:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23654:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23655:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23643:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23644:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23655:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23656:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXBasicForLoopExpressionAccess().getExpressionXExpressionParserRuleCall_5_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__ExpressionAssignment_547862);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__ExpressionAssignment_547886);
             ruleXExpression();
 
             state._fsp--;
@@ -67537,22 +67585,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23653:1: rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_0 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23665:1: rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_0 : ( ruleXExpression ) ;
     public final void rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23657:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23658:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23669:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23670:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23658:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23659:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23670:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23671:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXBasicForLoopExpressionAccess().getUpdateExpressionsXExpressionParserRuleCall_7_0_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_047893);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_047917);
             ruleXExpression();
 
             state._fsp--;
@@ -67582,22 +67630,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23668:1: rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_1_1 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23680:1: rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_1_1 : ( ruleXExpression ) ;
     public final void rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23672:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23673:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23684:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23685:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23673:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23674:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23685:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23686:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXBasicForLoopExpressionAccess().getUpdateExpressionsXExpressionParserRuleCall_7_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_1_147924);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_1_147948);
             ruleXExpression();
 
             state._fsp--;
@@ -67627,22 +67675,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XBasicForLoopExpression__EachExpressionAssignment_9"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23683:1: rule__XBasicForLoopExpression__EachExpressionAssignment_9 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23695:1: rule__XBasicForLoopExpression__EachExpressionAssignment_9 : ( ruleXExpression ) ;
     public final void rule__XBasicForLoopExpression__EachExpressionAssignment_9() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23687:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23688:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23699:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23700:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23688:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23689:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23700:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23701:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXBasicForLoopExpressionAccess().getEachExpressionXExpressionParserRuleCall_9_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__EachExpressionAssignment_947955);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__EachExpressionAssignment_947979);
             ruleXExpression();
 
             state._fsp--;
@@ -67672,22 +67720,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XWhileExpression__PredicateAssignment_3"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23698:1: rule__XWhileExpression__PredicateAssignment_3 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23710:1: rule__XWhileExpression__PredicateAssignment_3 : ( ruleXExpression ) ;
     public final void rule__XWhileExpression__PredicateAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23702:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23703:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23714:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23715:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23703:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23704:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23715:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23716:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXWhileExpressionAccess().getPredicateXExpressionParserRuleCall_3_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XWhileExpression__PredicateAssignment_347986);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XWhileExpression__PredicateAssignment_348010);
             ruleXExpression();
 
             state._fsp--;
@@ -67717,22 +67765,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XWhileExpression__BodyAssignment_5"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23713:1: rule__XWhileExpression__BodyAssignment_5 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23725:1: rule__XWhileExpression__BodyAssignment_5 : ( ruleXExpression ) ;
     public final void rule__XWhileExpression__BodyAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23717:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23718:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23729:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23730:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23718:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23719:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23730:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23731:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXWhileExpressionAccess().getBodyXExpressionParserRuleCall_5_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XWhileExpression__BodyAssignment_548017);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XWhileExpression__BodyAssignment_548041);
             ruleXExpression();
 
             state._fsp--;
@@ -67762,22 +67810,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XDoWhileExpression__BodyAssignment_2"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23728:1: rule__XDoWhileExpression__BodyAssignment_2 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23740:1: rule__XDoWhileExpression__BodyAssignment_2 : ( ruleXExpression ) ;
     public final void rule__XDoWhileExpression__BodyAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23732:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23733:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23744:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23745:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23733:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23734:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23745:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23746:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXDoWhileExpressionAccess().getBodyXExpressionParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XDoWhileExpression__BodyAssignment_248048);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XDoWhileExpression__BodyAssignment_248072);
             ruleXExpression();
 
             state._fsp--;
@@ -67807,22 +67855,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XDoWhileExpression__PredicateAssignment_5"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23743:1: rule__XDoWhileExpression__PredicateAssignment_5 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23755:1: rule__XDoWhileExpression__PredicateAssignment_5 : ( ruleXExpression ) ;
     public final void rule__XDoWhileExpression__PredicateAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23747:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23748:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23759:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23760:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23748:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23749:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23760:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23761:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXDoWhileExpressionAccess().getPredicateXExpressionParserRuleCall_5_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XDoWhileExpression__PredicateAssignment_548079);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XDoWhileExpression__PredicateAssignment_548103);
             ruleXExpression();
 
             state._fsp--;
@@ -67852,22 +67900,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XBlockExpression__ExpressionsAssignment_2_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23758:1: rule__XBlockExpression__ExpressionsAssignment_2_0 : ( ruleXExpressionOrVarDeclaration ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23770:1: rule__XBlockExpression__ExpressionsAssignment_2_0 : ( ruleXExpressionOrVarDeclaration ) ;
     public final void rule__XBlockExpression__ExpressionsAssignment_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23762:1: ( ( ruleXExpressionOrVarDeclaration ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23763:1: ( ruleXExpressionOrVarDeclaration )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23774:1: ( ( ruleXExpressionOrVarDeclaration ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23775:1: ( ruleXExpressionOrVarDeclaration )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23763:1: ( ruleXExpressionOrVarDeclaration )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23764:1: ruleXExpressionOrVarDeclaration
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23775:1: ( ruleXExpressionOrVarDeclaration )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23776:1: ruleXExpressionOrVarDeclaration
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXBlockExpressionAccess().getExpressionsXExpressionOrVarDeclarationParserRuleCall_2_0_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XBlockExpression__ExpressionsAssignment_2_048110);
+            pushFollow(FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XBlockExpression__ExpressionsAssignment_2_048134);
             ruleXExpressionOrVarDeclaration();
 
             state._fsp--;
@@ -67897,28 +67945,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XVariableDeclaration__WriteableAssignment_1_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23773:1: rule__XVariableDeclaration__WriteableAssignment_1_0 : ( ( 'var' ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23785:1: rule__XVariableDeclaration__WriteableAssignment_1_0 : ( ( 'var' ) ) ;
     public final void rule__XVariableDeclaration__WriteableAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23777:1: ( ( ( 'var' ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23778:1: ( ( 'var' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23789:1: ( ( ( 'var' ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23790:1: ( ( 'var' ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23778:1: ( ( 'var' ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23779:1: ( 'var' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXVariableDeclarationAccess().getWriteableVarKeyword_1_0_0()); 
-            }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23780:1: ( 'var' )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23781:1: 'var'
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23790:1: ( ( 'var' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23791:1: ( 'var' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXVariableDeclarationAccess().getWriteableVarKeyword_1_0_0()); 
             }
-            match(input,109,FOLLOW_109_in_rule__XVariableDeclaration__WriteableAssignment_1_048146); if (state.failed) return ;
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23792:1: ( 'var' )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23793:1: 'var'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXVariableDeclarationAccess().getWriteableVarKeyword_1_0_0()); 
+            }
+            match(input,109,FOLLOW_109_in_rule__XVariableDeclaration__WriteableAssignment_1_048170); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXVariableDeclarationAccess().getWriteableVarKeyword_1_0_0()); 
             }
@@ -67950,22 +67998,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XVariableDeclaration__TypeAssignment_2_0_0_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23796:1: rule__XVariableDeclaration__TypeAssignment_2_0_0_0 : ( ruleJvmTypeReference ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23808:1: rule__XVariableDeclaration__TypeAssignment_2_0_0_0 : ( ruleJvmTypeReference ) ;
     public final void rule__XVariableDeclaration__TypeAssignment_2_0_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23800:1: ( ( ruleJvmTypeReference ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23801:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23812:1: ( ( ruleJvmTypeReference ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23813:1: ( ruleJvmTypeReference )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23801:1: ( ruleJvmTypeReference )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23802:1: ruleJvmTypeReference
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23813:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23814:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXVariableDeclarationAccess().getTypeJvmTypeReferenceParserRuleCall_2_0_0_0_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XVariableDeclaration__TypeAssignment_2_0_0_048185);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XVariableDeclaration__TypeAssignment_2_0_0_048209);
             ruleJvmTypeReference();
 
             state._fsp--;
@@ -67995,22 +68043,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XVariableDeclaration__NameAssignment_2_0_0_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23811:1: rule__XVariableDeclaration__NameAssignment_2_0_0_1 : ( ruleValidID ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23823:1: rule__XVariableDeclaration__NameAssignment_2_0_0_1 : ( ruleValidID ) ;
     public final void rule__XVariableDeclaration__NameAssignment_2_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23815:1: ( ( ruleValidID ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23816:1: ( ruleValidID )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23827:1: ( ( ruleValidID ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23828:1: ( ruleValidID )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23816:1: ( ruleValidID )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23817:1: ruleValidID
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23828:1: ( ruleValidID )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23829:1: ruleValidID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXVariableDeclarationAccess().getNameValidIDParserRuleCall_2_0_0_1_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__XVariableDeclaration__NameAssignment_2_0_0_148216);
+            pushFollow(FOLLOW_ruleValidID_in_rule__XVariableDeclaration__NameAssignment_2_0_0_148240);
             ruleValidID();
 
             state._fsp--;
@@ -68040,22 +68088,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XVariableDeclaration__NameAssignment_2_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23826:1: rule__XVariableDeclaration__NameAssignment_2_1 : ( ruleValidID ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23838:1: rule__XVariableDeclaration__NameAssignment_2_1 : ( ruleValidID ) ;
     public final void rule__XVariableDeclaration__NameAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23830:1: ( ( ruleValidID ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23831:1: ( ruleValidID )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23842:1: ( ( ruleValidID ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23843:1: ( ruleValidID )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23831:1: ( ruleValidID )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23832:1: ruleValidID
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23843:1: ( ruleValidID )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23844:1: ruleValidID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXVariableDeclarationAccess().getNameValidIDParserRuleCall_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__XVariableDeclaration__NameAssignment_2_148247);
+            pushFollow(FOLLOW_ruleValidID_in_rule__XVariableDeclaration__NameAssignment_2_148271);
             ruleValidID();
 
             state._fsp--;
@@ -68085,22 +68133,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XVariableDeclaration__RightAssignment_3_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23841:1: rule__XVariableDeclaration__RightAssignment_3_1 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23853:1: rule__XVariableDeclaration__RightAssignment_3_1 : ( ruleXExpression ) ;
     public final void rule__XVariableDeclaration__RightAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23845:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23846:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23857:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23858:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23846:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23847:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23858:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23859:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXVariableDeclarationAccess().getRightXExpressionParserRuleCall_3_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XVariableDeclaration__RightAssignment_3_148278);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XVariableDeclaration__RightAssignment_3_148302);
             ruleXExpression();
 
             state._fsp--;
@@ -68130,22 +68178,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JvmFormalParameter__ParameterTypeAssignment_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23856:1: rule__JvmFormalParameter__ParameterTypeAssignment_0 : ( ruleJvmTypeReference ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23868:1: rule__JvmFormalParameter__ParameterTypeAssignment_0 : ( ruleJvmTypeReference ) ;
     public final void rule__JvmFormalParameter__ParameterTypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23860:1: ( ( ruleJvmTypeReference ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23861:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23872:1: ( ( ruleJvmTypeReference ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23873:1: ( ruleJvmTypeReference )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23861:1: ( ruleJvmTypeReference )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23862:1: ruleJvmTypeReference
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23873:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23874:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmFormalParameterAccess().getParameterTypeJvmTypeReferenceParserRuleCall_0_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__JvmFormalParameter__ParameterTypeAssignment_048309);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__JvmFormalParameter__ParameterTypeAssignment_048333);
             ruleJvmTypeReference();
 
             state._fsp--;
@@ -68175,22 +68223,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JvmFormalParameter__NameAssignment_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23871:1: rule__JvmFormalParameter__NameAssignment_1 : ( ruleValidID ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23883:1: rule__JvmFormalParameter__NameAssignment_1 : ( ruleValidID ) ;
     public final void rule__JvmFormalParameter__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23875:1: ( ( ruleValidID ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23876:1: ( ruleValidID )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23887:1: ( ( ruleValidID ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23888:1: ( ruleValidID )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23876:1: ( ruleValidID )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23877:1: ruleValidID
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23888:1: ( ruleValidID )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23889:1: ruleValidID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmFormalParameterAccess().getNameValidIDParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__JvmFormalParameter__NameAssignment_148340);
+            pushFollow(FOLLOW_ruleValidID_in_rule__JvmFormalParameter__NameAssignment_148364);
             ruleValidID();
 
             state._fsp--;
@@ -68220,22 +68268,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FullJvmFormalParameter__ParameterTypeAssignment_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23886:1: rule__FullJvmFormalParameter__ParameterTypeAssignment_0 : ( ruleJvmTypeReference ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23898:1: rule__FullJvmFormalParameter__ParameterTypeAssignment_0 : ( ruleJvmTypeReference ) ;
     public final void rule__FullJvmFormalParameter__ParameterTypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23890:1: ( ( ruleJvmTypeReference ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23891:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23902:1: ( ( ruleJvmTypeReference ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23903:1: ( ruleJvmTypeReference )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23891:1: ( ruleJvmTypeReference )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23892:1: ruleJvmTypeReference
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23903:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23904:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFullJvmFormalParameterAccess().getParameterTypeJvmTypeReferenceParserRuleCall_0_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__FullJvmFormalParameter__ParameterTypeAssignment_048371);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__FullJvmFormalParameter__ParameterTypeAssignment_048395);
             ruleJvmTypeReference();
 
             state._fsp--;
@@ -68265,22 +68313,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FullJvmFormalParameter__NameAssignment_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23901:1: rule__FullJvmFormalParameter__NameAssignment_1 : ( ruleValidID ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23913:1: rule__FullJvmFormalParameter__NameAssignment_1 : ( ruleValidID ) ;
     public final void rule__FullJvmFormalParameter__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23905:1: ( ( ruleValidID ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23906:1: ( ruleValidID )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23917:1: ( ( ruleValidID ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23918:1: ( ruleValidID )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23906:1: ( ruleValidID )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23907:1: ruleValidID
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23918:1: ( ruleValidID )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23919:1: ruleValidID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFullJvmFormalParameterAccess().getNameValidIDParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__FullJvmFormalParameter__NameAssignment_148402);
+            pushFollow(FOLLOW_ruleValidID_in_rule__FullJvmFormalParameter__NameAssignment_148426);
             ruleValidID();
 
             state._fsp--;
@@ -68310,22 +68358,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XFeatureCall__TypeArgumentsAssignment_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23916:1: rule__XFeatureCall__TypeArgumentsAssignment_1_1 : ( ruleJvmArgumentTypeReference ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23928:1: rule__XFeatureCall__TypeArgumentsAssignment_1_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__XFeatureCall__TypeArgumentsAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23920:1: ( ( ruleJvmArgumentTypeReference ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23921:1: ( ruleJvmArgumentTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23932:1: ( ( ruleJvmArgumentTypeReference ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23933:1: ( ruleJvmArgumentTypeReference )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23921:1: ( ruleJvmArgumentTypeReference )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23922:1: ruleJvmArgumentTypeReference
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23933:1: ( ruleJvmArgumentTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23934:1: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getTypeArgumentsJvmArgumentTypeReferenceParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__XFeatureCall__TypeArgumentsAssignment_1_148433);
+            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__XFeatureCall__TypeArgumentsAssignment_1_148457);
             ruleJvmArgumentTypeReference();
 
             state._fsp--;
@@ -68355,22 +68403,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XFeatureCall__TypeArgumentsAssignment_1_2_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23931:1: rule__XFeatureCall__TypeArgumentsAssignment_1_2_1 : ( ruleJvmArgumentTypeReference ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23943:1: rule__XFeatureCall__TypeArgumentsAssignment_1_2_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__XFeatureCall__TypeArgumentsAssignment_1_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23935:1: ( ( ruleJvmArgumentTypeReference ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23936:1: ( ruleJvmArgumentTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23947:1: ( ( ruleJvmArgumentTypeReference ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23948:1: ( ruleJvmArgumentTypeReference )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23936:1: ( ruleJvmArgumentTypeReference )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23937:1: ruleJvmArgumentTypeReference
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23948:1: ( ruleJvmArgumentTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23949:1: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getTypeArgumentsJvmArgumentTypeReferenceParserRuleCall_1_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__XFeatureCall__TypeArgumentsAssignment_1_2_148464);
+            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__XFeatureCall__TypeArgumentsAssignment_1_2_148488);
             ruleJvmArgumentTypeReference();
 
             state._fsp--;
@@ -68400,28 +68448,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XFeatureCall__FeatureAssignment_2"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23946:1: rule__XFeatureCall__FeatureAssignment_2 : ( ( ruleIdOrSuper ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23958:1: rule__XFeatureCall__FeatureAssignment_2 : ( ( ruleIdOrSuper ) ) ;
     public final void rule__XFeatureCall__FeatureAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23950:1: ( ( ( ruleIdOrSuper ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23951:1: ( ( ruleIdOrSuper ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23962:1: ( ( ( ruleIdOrSuper ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23963:1: ( ( ruleIdOrSuper ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23951:1: ( ( ruleIdOrSuper ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23952:1: ( ruleIdOrSuper )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23963:1: ( ( ruleIdOrSuper ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23964:1: ( ruleIdOrSuper )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getFeatureJvmIdentifiableElementCrossReference_2_0()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23953:1: ( ruleIdOrSuper )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23954:1: ruleIdOrSuper
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23965:1: ( ruleIdOrSuper )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23966:1: ruleIdOrSuper
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getFeatureJvmIdentifiableElementIdOrSuperParserRuleCall_2_0_1()); 
             }
-            pushFollow(FOLLOW_ruleIdOrSuper_in_rule__XFeatureCall__FeatureAssignment_248499);
+            pushFollow(FOLLOW_ruleIdOrSuper_in_rule__XFeatureCall__FeatureAssignment_248523);
             ruleIdOrSuper();
 
             state._fsp--;
@@ -68457,28 +68505,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XFeatureCall__ExplicitOperationCallAssignment_3_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23965:1: rule__XFeatureCall__ExplicitOperationCallAssignment_3_0 : ( ( '(' ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23977:1: rule__XFeatureCall__ExplicitOperationCallAssignment_3_0 : ( ( '(' ) ) ;
     public final void rule__XFeatureCall__ExplicitOperationCallAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23969:1: ( ( ( '(' ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23970:1: ( ( '(' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23981:1: ( ( ( '(' ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23982:1: ( ( '(' ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23970:1: ( ( '(' ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23971:1: ( '(' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXFeatureCallAccess().getExplicitOperationCallLeftParenthesisKeyword_3_0_0()); 
-            }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23972:1: ( '(' )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23973:1: '('
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23982:1: ( ( '(' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23983:1: ( '(' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getExplicitOperationCallLeftParenthesisKeyword_3_0_0()); 
             }
-            match(input,69,FOLLOW_69_in_rule__XFeatureCall__ExplicitOperationCallAssignment_3_048539); if (state.failed) return ;
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23984:1: ( '(' )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23985:1: '('
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXFeatureCallAccess().getExplicitOperationCallLeftParenthesisKeyword_3_0_0()); 
+            }
+            match(input,69,FOLLOW_69_in_rule__XFeatureCall__ExplicitOperationCallAssignment_3_048563); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXFeatureCallAccess().getExplicitOperationCallLeftParenthesisKeyword_3_0_0()); 
             }
@@ -68510,22 +68558,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23988:1: rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_0 : ( ruleXShortClosure ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24000:1: rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_0 : ( ruleXShortClosure ) ;
     public final void rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23992:1: ( ( ruleXShortClosure ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23993:1: ( ruleXShortClosure )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24004:1: ( ( ruleXShortClosure ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24005:1: ( ruleXShortClosure )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23993:1: ( ruleXShortClosure )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:23994:1: ruleXShortClosure
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24005:1: ( ruleXShortClosure )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24006:1: ruleXShortClosure
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getFeatureCallArgumentsXShortClosureParserRuleCall_3_1_0_0()); 
             }
-            pushFollow(FOLLOW_ruleXShortClosure_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_048578);
+            pushFollow(FOLLOW_ruleXShortClosure_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_048602);
             ruleXShortClosure();
 
             state._fsp--;
@@ -68555,22 +68603,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24003:1: rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_0 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24015:1: rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_0 : ( ruleXExpression ) ;
     public final void rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24007:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24008:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24019:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24020:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24008:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24009:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24020:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24021:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getFeatureCallArgumentsXExpressionParserRuleCall_3_1_1_0_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_048609);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_048633);
             ruleXExpression();
 
             state._fsp--;
@@ -68600,22 +68648,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24018:1: rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_1_1 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24030:1: rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_1_1 : ( ruleXExpression ) ;
     public final void rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24022:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24023:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24034:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24035:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24023:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24024:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24035:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24036:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getFeatureCallArgumentsXExpressionParserRuleCall_3_1_1_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_1_148640);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_1_148664);
             ruleXExpression();
 
             state._fsp--;
@@ -68645,22 +68693,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XFeatureCall__FeatureCallArgumentsAssignment_4"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24033:1: rule__XFeatureCall__FeatureCallArgumentsAssignment_4 : ( ruleXClosure ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24045:1: rule__XFeatureCall__FeatureCallArgumentsAssignment_4 : ( ruleXClosure ) ;
     public final void rule__XFeatureCall__FeatureCallArgumentsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24037:1: ( ( ruleXClosure ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24038:1: ( ruleXClosure )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24049:1: ( ( ruleXClosure ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24050:1: ( ruleXClosure )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24038:1: ( ruleXClosure )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24039:1: ruleXClosure
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24050:1: ( ruleXClosure )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24051:1: ruleXClosure
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getFeatureCallArgumentsXClosureParserRuleCall_4_0()); 
             }
-            pushFollow(FOLLOW_ruleXClosure_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_448671);
+            pushFollow(FOLLOW_ruleXClosure_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_448695);
             ruleXClosure();
 
             state._fsp--;
@@ -68690,28 +68738,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XConstructorCall__ConstructorAssignment_2"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24048:1: rule__XConstructorCall__ConstructorAssignment_2 : ( ( ruleQualifiedName ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24060:1: rule__XConstructorCall__ConstructorAssignment_2 : ( ( ruleQualifiedName ) ) ;
     public final void rule__XConstructorCall__ConstructorAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24052:1: ( ( ( ruleQualifiedName ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24053:1: ( ( ruleQualifiedName ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24064:1: ( ( ( ruleQualifiedName ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24065:1: ( ( ruleQualifiedName ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24053:1: ( ( ruleQualifiedName ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24054:1: ( ruleQualifiedName )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24065:1: ( ( ruleQualifiedName ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24066:1: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getConstructorJvmConstructorCrossReference_2_0()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24055:1: ( ruleQualifiedName )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24056:1: ruleQualifiedName
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24067:1: ( ruleQualifiedName )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24068:1: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getConstructorJvmConstructorQualifiedNameParserRuleCall_2_0_1()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__XConstructorCall__ConstructorAssignment_248706);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__XConstructorCall__ConstructorAssignment_248730);
             ruleQualifiedName();
 
             state._fsp--;
@@ -68747,22 +68795,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XConstructorCall__TypeArgumentsAssignment_3_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24067:1: rule__XConstructorCall__TypeArgumentsAssignment_3_1 : ( ruleJvmArgumentTypeReference ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24079:1: rule__XConstructorCall__TypeArgumentsAssignment_3_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__XConstructorCall__TypeArgumentsAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24071:1: ( ( ruleJvmArgumentTypeReference ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24072:1: ( ruleJvmArgumentTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24083:1: ( ( ruleJvmArgumentTypeReference ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24084:1: ( ruleJvmArgumentTypeReference )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24072:1: ( ruleJvmArgumentTypeReference )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24073:1: ruleJvmArgumentTypeReference
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24084:1: ( ruleJvmArgumentTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24085:1: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getTypeArgumentsJvmArgumentTypeReferenceParserRuleCall_3_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__XConstructorCall__TypeArgumentsAssignment_3_148741);
+            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__XConstructorCall__TypeArgumentsAssignment_3_148765);
             ruleJvmArgumentTypeReference();
 
             state._fsp--;
@@ -68792,22 +68840,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XConstructorCall__TypeArgumentsAssignment_3_2_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24082:1: rule__XConstructorCall__TypeArgumentsAssignment_3_2_1 : ( ruleJvmArgumentTypeReference ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24094:1: rule__XConstructorCall__TypeArgumentsAssignment_3_2_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__XConstructorCall__TypeArgumentsAssignment_3_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24086:1: ( ( ruleJvmArgumentTypeReference ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24087:1: ( ruleJvmArgumentTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24098:1: ( ( ruleJvmArgumentTypeReference ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24099:1: ( ruleJvmArgumentTypeReference )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24087:1: ( ruleJvmArgumentTypeReference )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24088:1: ruleJvmArgumentTypeReference
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24099:1: ( ruleJvmArgumentTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24100:1: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getTypeArgumentsJvmArgumentTypeReferenceParserRuleCall_3_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__XConstructorCall__TypeArgumentsAssignment_3_2_148772);
+            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__XConstructorCall__TypeArgumentsAssignment_3_2_148796);
             ruleJvmArgumentTypeReference();
 
             state._fsp--;
@@ -68837,28 +68885,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XConstructorCall__ExplicitConstructorCallAssignment_4_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24097:1: rule__XConstructorCall__ExplicitConstructorCallAssignment_4_0 : ( ( '(' ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24109:1: rule__XConstructorCall__ExplicitConstructorCallAssignment_4_0 : ( ( '(' ) ) ;
     public final void rule__XConstructorCall__ExplicitConstructorCallAssignment_4_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24101:1: ( ( ( '(' ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24102:1: ( ( '(' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24113:1: ( ( ( '(' ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24114:1: ( ( '(' ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24102:1: ( ( '(' ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24103:1: ( '(' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXConstructorCallAccess().getExplicitConstructorCallLeftParenthesisKeyword_4_0_0()); 
-            }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24104:1: ( '(' )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24105:1: '('
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24114:1: ( ( '(' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24115:1: ( '(' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getExplicitConstructorCallLeftParenthesisKeyword_4_0_0()); 
             }
-            match(input,69,FOLLOW_69_in_rule__XConstructorCall__ExplicitConstructorCallAssignment_4_048808); if (state.failed) return ;
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24116:1: ( '(' )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24117:1: '('
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXConstructorCallAccess().getExplicitConstructorCallLeftParenthesisKeyword_4_0_0()); 
+            }
+            match(input,69,FOLLOW_69_in_rule__XConstructorCall__ExplicitConstructorCallAssignment_4_048832); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXConstructorCallAccess().getExplicitConstructorCallLeftParenthesisKeyword_4_0_0()); 
             }
@@ -68890,22 +68938,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XConstructorCall__ArgumentsAssignment_4_1_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24120:1: rule__XConstructorCall__ArgumentsAssignment_4_1_0 : ( ruleXShortClosure ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24132:1: rule__XConstructorCall__ArgumentsAssignment_4_1_0 : ( ruleXShortClosure ) ;
     public final void rule__XConstructorCall__ArgumentsAssignment_4_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24124:1: ( ( ruleXShortClosure ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24125:1: ( ruleXShortClosure )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24136:1: ( ( ruleXShortClosure ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24137:1: ( ruleXShortClosure )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24125:1: ( ruleXShortClosure )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24126:1: ruleXShortClosure
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24137:1: ( ruleXShortClosure )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24138:1: ruleXShortClosure
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getArgumentsXShortClosureParserRuleCall_4_1_0_0()); 
             }
-            pushFollow(FOLLOW_ruleXShortClosure_in_rule__XConstructorCall__ArgumentsAssignment_4_1_048847);
+            pushFollow(FOLLOW_ruleXShortClosure_in_rule__XConstructorCall__ArgumentsAssignment_4_1_048871);
             ruleXShortClosure();
 
             state._fsp--;
@@ -68935,22 +68983,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XConstructorCall__ArgumentsAssignment_4_1_1_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24135:1: rule__XConstructorCall__ArgumentsAssignment_4_1_1_0 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24147:1: rule__XConstructorCall__ArgumentsAssignment_4_1_1_0 : ( ruleXExpression ) ;
     public final void rule__XConstructorCall__ArgumentsAssignment_4_1_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24139:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24140:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24151:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24152:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24140:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24141:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24152:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24153:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getArgumentsXExpressionParserRuleCall_4_1_1_0_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XConstructorCall__ArgumentsAssignment_4_1_1_048878);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XConstructorCall__ArgumentsAssignment_4_1_1_048902);
             ruleXExpression();
 
             state._fsp--;
@@ -68980,22 +69028,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XConstructorCall__ArgumentsAssignment_4_1_1_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24150:1: rule__XConstructorCall__ArgumentsAssignment_4_1_1_1_1 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24162:1: rule__XConstructorCall__ArgumentsAssignment_4_1_1_1_1 : ( ruleXExpression ) ;
     public final void rule__XConstructorCall__ArgumentsAssignment_4_1_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24154:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24155:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24166:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24167:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24155:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24156:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24167:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24168:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getArgumentsXExpressionParserRuleCall_4_1_1_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XConstructorCall__ArgumentsAssignment_4_1_1_1_148909);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XConstructorCall__ArgumentsAssignment_4_1_1_1_148933);
             ruleXExpression();
 
             state._fsp--;
@@ -69025,22 +69073,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XConstructorCall__ArgumentsAssignment_5"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24165:1: rule__XConstructorCall__ArgumentsAssignment_5 : ( ruleXClosure ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24177:1: rule__XConstructorCall__ArgumentsAssignment_5 : ( ruleXClosure ) ;
     public final void rule__XConstructorCall__ArgumentsAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24169:1: ( ( ruleXClosure ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24170:1: ( ruleXClosure )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24181:1: ( ( ruleXClosure ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24182:1: ( ruleXClosure )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24170:1: ( ruleXClosure )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24171:1: ruleXClosure
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24182:1: ( ruleXClosure )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24183:1: ruleXClosure
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getArgumentsXClosureParserRuleCall_5_0()); 
             }
-            pushFollow(FOLLOW_ruleXClosure_in_rule__XConstructorCall__ArgumentsAssignment_548940);
+            pushFollow(FOLLOW_ruleXClosure_in_rule__XConstructorCall__ArgumentsAssignment_548964);
             ruleXClosure();
 
             state._fsp--;
@@ -69070,28 +69118,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XBooleanLiteral__IsTrueAssignment_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24180:1: rule__XBooleanLiteral__IsTrueAssignment_1_1 : ( ( 'true' ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24192:1: rule__XBooleanLiteral__IsTrueAssignment_1_1 : ( ( 'true' ) ) ;
     public final void rule__XBooleanLiteral__IsTrueAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24184:1: ( ( ( 'true' ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24185:1: ( ( 'true' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24196:1: ( ( ( 'true' ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24197:1: ( ( 'true' ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24185:1: ( ( 'true' ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24186:1: ( 'true' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXBooleanLiteralAccess().getIsTrueTrueKeyword_1_1_0()); 
-            }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24187:1: ( 'true' )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24188:1: 'true'
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24197:1: ( ( 'true' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24198:1: ( 'true' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXBooleanLiteralAccess().getIsTrueTrueKeyword_1_1_0()); 
             }
-            match(input,110,FOLLOW_110_in_rule__XBooleanLiteral__IsTrueAssignment_1_148976); if (state.failed) return ;
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24199:1: ( 'true' )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24200:1: 'true'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXBooleanLiteralAccess().getIsTrueTrueKeyword_1_1_0()); 
+            }
+            match(input,110,FOLLOW_110_in_rule__XBooleanLiteral__IsTrueAssignment_1_149000); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXBooleanLiteralAccess().getIsTrueTrueKeyword_1_1_0()); 
             }
@@ -69123,22 +69171,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XNumberLiteral__ValueAssignment_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24203:1: rule__XNumberLiteral__ValueAssignment_1 : ( ruleNumber ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24215:1: rule__XNumberLiteral__ValueAssignment_1 : ( ruleNumber ) ;
     public final void rule__XNumberLiteral__ValueAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24207:1: ( ( ruleNumber ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24208:1: ( ruleNumber )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24219:1: ( ( ruleNumber ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24220:1: ( ruleNumber )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24208:1: ( ruleNumber )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24209:1: ruleNumber
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24220:1: ( ruleNumber )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24221:1: ruleNumber
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXNumberLiteralAccess().getValueNumberParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleNumber_in_rule__XNumberLiteral__ValueAssignment_149015);
+            pushFollow(FOLLOW_ruleNumber_in_rule__XNumberLiteral__ValueAssignment_149039);
             ruleNumber();
 
             state._fsp--;
@@ -69168,22 +69216,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XStringLiteral__ValueAssignment_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24218:1: rule__XStringLiteral__ValueAssignment_1 : ( RULE_STRING ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24230:1: rule__XStringLiteral__ValueAssignment_1 : ( RULE_STRING ) ;
     public final void rule__XStringLiteral__ValueAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24222:1: ( ( RULE_STRING ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24223:1: ( RULE_STRING )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24234:1: ( ( RULE_STRING ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24235:1: ( RULE_STRING )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24223:1: ( RULE_STRING )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24224:1: RULE_STRING
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24235:1: ( RULE_STRING )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24236:1: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXStringLiteralAccess().getValueSTRINGTerminalRuleCall_1_0()); 
             }
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__XStringLiteral__ValueAssignment_149046); if (state.failed) return ;
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__XStringLiteral__ValueAssignment_149070); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXStringLiteralAccess().getValueSTRINGTerminalRuleCall_1_0()); 
             }
@@ -69209,28 +69257,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XTypeLiteral__TypeAssignment_3"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24233:1: rule__XTypeLiteral__TypeAssignment_3 : ( ( ruleQualifiedName ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24245:1: rule__XTypeLiteral__TypeAssignment_3 : ( ( ruleQualifiedName ) ) ;
     public final void rule__XTypeLiteral__TypeAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24237:1: ( ( ( ruleQualifiedName ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24238:1: ( ( ruleQualifiedName ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24249:1: ( ( ( ruleQualifiedName ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24250:1: ( ( ruleQualifiedName ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24238:1: ( ( ruleQualifiedName ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24239:1: ( ruleQualifiedName )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24250:1: ( ( ruleQualifiedName ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24251:1: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXTypeLiteralAccess().getTypeJvmTypeCrossReference_3_0()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24240:1: ( ruleQualifiedName )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24241:1: ruleQualifiedName
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24252:1: ( ruleQualifiedName )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24253:1: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXTypeLiteralAccess().getTypeJvmTypeQualifiedNameParserRuleCall_3_0_1()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__XTypeLiteral__TypeAssignment_349081);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__XTypeLiteral__TypeAssignment_349105);
             ruleQualifiedName();
 
             state._fsp--;
@@ -69266,22 +69314,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XTypeLiteral__ArrayDimensionsAssignment_4"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24252:1: rule__XTypeLiteral__ArrayDimensionsAssignment_4 : ( ruleArrayBrackets ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24264:1: rule__XTypeLiteral__ArrayDimensionsAssignment_4 : ( ruleArrayBrackets ) ;
     public final void rule__XTypeLiteral__ArrayDimensionsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24256:1: ( ( ruleArrayBrackets ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24257:1: ( ruleArrayBrackets )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24268:1: ( ( ruleArrayBrackets ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24269:1: ( ruleArrayBrackets )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24257:1: ( ruleArrayBrackets )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24258:1: ruleArrayBrackets
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24269:1: ( ruleArrayBrackets )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24270:1: ruleArrayBrackets
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXTypeLiteralAccess().getArrayDimensionsArrayBracketsParserRuleCall_4_0()); 
             }
-            pushFollow(FOLLOW_ruleArrayBrackets_in_rule__XTypeLiteral__ArrayDimensionsAssignment_449116);
+            pushFollow(FOLLOW_ruleArrayBrackets_in_rule__XTypeLiteral__ArrayDimensionsAssignment_449140);
             ruleArrayBrackets();
 
             state._fsp--;
@@ -69311,22 +69359,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XThrowExpression__ExpressionAssignment_2"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24267:1: rule__XThrowExpression__ExpressionAssignment_2 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24279:1: rule__XThrowExpression__ExpressionAssignment_2 : ( ruleXExpression ) ;
     public final void rule__XThrowExpression__ExpressionAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24271:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24272:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24283:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24284:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24272:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24273:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24284:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24285:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXThrowExpressionAccess().getExpressionXExpressionParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XThrowExpression__ExpressionAssignment_249147);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XThrowExpression__ExpressionAssignment_249171);
             ruleXExpression();
 
             state._fsp--;
@@ -69356,22 +69404,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XReturnExpression__ExpressionAssignment_2"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24282:1: rule__XReturnExpression__ExpressionAssignment_2 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24294:1: rule__XReturnExpression__ExpressionAssignment_2 : ( ruleXExpression ) ;
     public final void rule__XReturnExpression__ExpressionAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24286:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24287:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24298:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24299:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24287:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24288:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24299:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24300:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXReturnExpressionAccess().getExpressionXExpressionParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XReturnExpression__ExpressionAssignment_249178);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XReturnExpression__ExpressionAssignment_249202);
             ruleXExpression();
 
             state._fsp--;
@@ -69401,22 +69449,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XTryCatchFinallyExpression__ExpressionAssignment_2"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24297:1: rule__XTryCatchFinallyExpression__ExpressionAssignment_2 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24309:1: rule__XTryCatchFinallyExpression__ExpressionAssignment_2 : ( ruleXExpression ) ;
     public final void rule__XTryCatchFinallyExpression__ExpressionAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24301:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24302:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24313:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24314:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24302:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24303:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24314:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24315:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXTryCatchFinallyExpressionAccess().getExpressionXExpressionParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XTryCatchFinallyExpression__ExpressionAssignment_249209);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XTryCatchFinallyExpression__ExpressionAssignment_249233);
             ruleXExpression();
 
             state._fsp--;
@@ -69446,22 +69494,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XTryCatchFinallyExpression__CatchClausesAssignment_3_0_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24312:1: rule__XTryCatchFinallyExpression__CatchClausesAssignment_3_0_0 : ( ruleXCatchClause ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24324:1: rule__XTryCatchFinallyExpression__CatchClausesAssignment_3_0_0 : ( ruleXCatchClause ) ;
     public final void rule__XTryCatchFinallyExpression__CatchClausesAssignment_3_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24316:1: ( ( ruleXCatchClause ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24317:1: ( ruleXCatchClause )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24328:1: ( ( ruleXCatchClause ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24329:1: ( ruleXCatchClause )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24317:1: ( ruleXCatchClause )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24318:1: ruleXCatchClause
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24329:1: ( ruleXCatchClause )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24330:1: ruleXCatchClause
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXTryCatchFinallyExpressionAccess().getCatchClausesXCatchClauseParserRuleCall_3_0_0_0()); 
             }
-            pushFollow(FOLLOW_ruleXCatchClause_in_rule__XTryCatchFinallyExpression__CatchClausesAssignment_3_0_049240);
+            pushFollow(FOLLOW_ruleXCatchClause_in_rule__XTryCatchFinallyExpression__CatchClausesAssignment_3_0_049264);
             ruleXCatchClause();
 
             state._fsp--;
@@ -69491,22 +69539,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_0_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24327:1: rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_0_1_1 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24339:1: rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_0_1_1 : ( ruleXExpression ) ;
     public final void rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_0_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24331:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24332:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24343:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24344:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24332:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24333:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24344:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24345:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXTryCatchFinallyExpressionAccess().getFinallyExpressionXExpressionParserRuleCall_3_0_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_0_1_149271);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_0_1_149295);
             ruleXExpression();
 
             state._fsp--;
@@ -69536,22 +69584,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24342:1: rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_1_1 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24354:1: rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_1_1 : ( ruleXExpression ) ;
     public final void rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24346:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24347:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24358:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24359:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24347:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24348:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24359:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24360:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXTryCatchFinallyExpressionAccess().getFinallyExpressionXExpressionParserRuleCall_3_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_1_149302);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_1_149326);
             ruleXExpression();
 
             state._fsp--;
@@ -69581,22 +69629,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XSynchronizedExpression__ParamAssignment_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24357:1: rule__XSynchronizedExpression__ParamAssignment_1 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24369:1: rule__XSynchronizedExpression__ParamAssignment_1 : ( ruleXExpression ) ;
     public final void rule__XSynchronizedExpression__ParamAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24361:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24362:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24373:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24374:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24362:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24363:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24374:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24375:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSynchronizedExpressionAccess().getParamXExpressionParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XSynchronizedExpression__ParamAssignment_149333);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XSynchronizedExpression__ParamAssignment_149357);
             ruleXExpression();
 
             state._fsp--;
@@ -69626,22 +69674,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XSynchronizedExpression__ExpressionAssignment_3"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24372:1: rule__XSynchronizedExpression__ExpressionAssignment_3 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24384:1: rule__XSynchronizedExpression__ExpressionAssignment_3 : ( ruleXExpression ) ;
     public final void rule__XSynchronizedExpression__ExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24376:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24377:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24388:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24389:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24377:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24378:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24389:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24390:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSynchronizedExpressionAccess().getExpressionXExpressionParserRuleCall_3_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XSynchronizedExpression__ExpressionAssignment_349364);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XSynchronizedExpression__ExpressionAssignment_349388);
             ruleXExpression();
 
             state._fsp--;
@@ -69671,22 +69719,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XCatchClause__DeclaredParamAssignment_2"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24387:1: rule__XCatchClause__DeclaredParamAssignment_2 : ( ruleFullJvmFormalParameter ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24399:1: rule__XCatchClause__DeclaredParamAssignment_2 : ( ruleFullJvmFormalParameter ) ;
     public final void rule__XCatchClause__DeclaredParamAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24391:1: ( ( ruleFullJvmFormalParameter ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24392:1: ( ruleFullJvmFormalParameter )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24403:1: ( ( ruleFullJvmFormalParameter ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24404:1: ( ruleFullJvmFormalParameter )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24392:1: ( ruleFullJvmFormalParameter )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24393:1: ruleFullJvmFormalParameter
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24404:1: ( ruleFullJvmFormalParameter )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24405:1: ruleFullJvmFormalParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXCatchClauseAccess().getDeclaredParamFullJvmFormalParameterParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleFullJvmFormalParameter_in_rule__XCatchClause__DeclaredParamAssignment_249395);
+            pushFollow(FOLLOW_ruleFullJvmFormalParameter_in_rule__XCatchClause__DeclaredParamAssignment_249419);
             ruleFullJvmFormalParameter();
 
             state._fsp--;
@@ -69716,22 +69764,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XCatchClause__ExpressionAssignment_4"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24402:1: rule__XCatchClause__ExpressionAssignment_4 : ( ruleXExpression ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24414:1: rule__XCatchClause__ExpressionAssignment_4 : ( ruleXExpression ) ;
     public final void rule__XCatchClause__ExpressionAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24406:1: ( ( ruleXExpression ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24407:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24418:1: ( ( ruleXExpression ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24419:1: ( ruleXExpression )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24407:1: ( ruleXExpression )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24408:1: ruleXExpression
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24419:1: ( ruleXExpression )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24420:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXCatchClauseAccess().getExpressionXExpressionParserRuleCall_4_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XCatchClause__ExpressionAssignment_449426);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XCatchClause__ExpressionAssignment_449450);
             ruleXExpression();
 
             state._fsp--;
@@ -69761,22 +69809,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XFunctionTypeRef__ParamTypesAssignment_0_1_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24417:1: rule__XFunctionTypeRef__ParamTypesAssignment_0_1_0 : ( ruleJvmTypeReference ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24429:1: rule__XFunctionTypeRef__ParamTypesAssignment_0_1_0 : ( ruleJvmTypeReference ) ;
     public final void rule__XFunctionTypeRef__ParamTypesAssignment_0_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24421:1: ( ( ruleJvmTypeReference ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24422:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24433:1: ( ( ruleJvmTypeReference ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24434:1: ( ruleJvmTypeReference )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24422:1: ( ruleJvmTypeReference )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24423:1: ruleJvmTypeReference
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24434:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24435:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFunctionTypeRefAccess().getParamTypesJvmTypeReferenceParserRuleCall_0_1_0_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XFunctionTypeRef__ParamTypesAssignment_0_1_049457);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XFunctionTypeRef__ParamTypesAssignment_0_1_049481);
             ruleJvmTypeReference();
 
             state._fsp--;
@@ -69806,22 +69854,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XFunctionTypeRef__ParamTypesAssignment_0_1_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24432:1: rule__XFunctionTypeRef__ParamTypesAssignment_0_1_1_1 : ( ruleJvmTypeReference ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24444:1: rule__XFunctionTypeRef__ParamTypesAssignment_0_1_1_1 : ( ruleJvmTypeReference ) ;
     public final void rule__XFunctionTypeRef__ParamTypesAssignment_0_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24436:1: ( ( ruleJvmTypeReference ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24437:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24448:1: ( ( ruleJvmTypeReference ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24449:1: ( ruleJvmTypeReference )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24437:1: ( ruleJvmTypeReference )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24438:1: ruleJvmTypeReference
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24449:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24450:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFunctionTypeRefAccess().getParamTypesJvmTypeReferenceParserRuleCall_0_1_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XFunctionTypeRef__ParamTypesAssignment_0_1_1_149488);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XFunctionTypeRef__ParamTypesAssignment_0_1_1_149512);
             ruleJvmTypeReference();
 
             state._fsp--;
@@ -69851,22 +69899,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XFunctionTypeRef__ReturnTypeAssignment_2"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24447:1: rule__XFunctionTypeRef__ReturnTypeAssignment_2 : ( ruleJvmTypeReference ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24459:1: rule__XFunctionTypeRef__ReturnTypeAssignment_2 : ( ruleJvmTypeReference ) ;
     public final void rule__XFunctionTypeRef__ReturnTypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24451:1: ( ( ruleJvmTypeReference ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24452:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24463:1: ( ( ruleJvmTypeReference ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24464:1: ( ruleJvmTypeReference )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24452:1: ( ruleJvmTypeReference )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24453:1: ruleJvmTypeReference
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24464:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24465:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFunctionTypeRefAccess().getReturnTypeJvmTypeReferenceParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XFunctionTypeRef__ReturnTypeAssignment_249519);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XFunctionTypeRef__ReturnTypeAssignment_249543);
             ruleJvmTypeReference();
 
             state._fsp--;
@@ -69896,28 +69944,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JvmParameterizedTypeReference__TypeAssignment_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24462:1: rule__JvmParameterizedTypeReference__TypeAssignment_0 : ( ( ruleQualifiedName ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24474:1: rule__JvmParameterizedTypeReference__TypeAssignment_0 : ( ( ruleQualifiedName ) ) ;
     public final void rule__JvmParameterizedTypeReference__TypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24466:1: ( ( ( ruleQualifiedName ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24467:1: ( ( ruleQualifiedName ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24478:1: ( ( ( ruleQualifiedName ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24479:1: ( ( ruleQualifiedName ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24467:1: ( ( ruleQualifiedName ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24468:1: ( ruleQualifiedName )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24479:1: ( ( ruleQualifiedName ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24480:1: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmParameterizedTypeReferenceAccess().getTypeJvmTypeCrossReference_0_0()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24469:1: ( ruleQualifiedName )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24470:1: ruleQualifiedName
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24481:1: ( ruleQualifiedName )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24482:1: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmParameterizedTypeReferenceAccess().getTypeJvmTypeQualifiedNameParserRuleCall_0_0_1()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__JvmParameterizedTypeReference__TypeAssignment_049554);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__JvmParameterizedTypeReference__TypeAssignment_049578);
             ruleQualifiedName();
 
             state._fsp--;
@@ -69953,22 +70001,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24481:1: rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_1 : ( ruleJvmArgumentTypeReference ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24493:1: rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24485:1: ( ( ruleJvmArgumentTypeReference ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24486:1: ( ruleJvmArgumentTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24497:1: ( ( ruleJvmArgumentTypeReference ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24498:1: ( ruleJvmArgumentTypeReference )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24486:1: ( ruleJvmArgumentTypeReference )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24487:1: ruleJvmArgumentTypeReference
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24498:1: ( ruleJvmArgumentTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24499:1: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmParameterizedTypeReferenceAccess().getArgumentsJvmArgumentTypeReferenceParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_149589);
+            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_149613);
             ruleJvmArgumentTypeReference();
 
             state._fsp--;
@@ -69998,22 +70046,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_2_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24496:1: rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_2_1 : ( ruleJvmArgumentTypeReference ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24508:1: rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_2_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24500:1: ( ( ruleJvmArgumentTypeReference ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24501:1: ( ruleJvmArgumentTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24512:1: ( ( ruleJvmArgumentTypeReference ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24513:1: ( ruleJvmArgumentTypeReference )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24501:1: ( ruleJvmArgumentTypeReference )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24502:1: ruleJvmArgumentTypeReference
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24513:1: ( ruleJvmArgumentTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24514:1: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmParameterizedTypeReferenceAccess().getArgumentsJvmArgumentTypeReferenceParserRuleCall_1_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_2_149620);
+            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_2_149644);
             ruleJvmArgumentTypeReference();
 
             state._fsp--;
@@ -70043,28 +70091,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JvmParameterizedTypeReference__TypeAssignment_1_4_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24511:1: rule__JvmParameterizedTypeReference__TypeAssignment_1_4_1 : ( ( ruleValidID ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24523:1: rule__JvmParameterizedTypeReference__TypeAssignment_1_4_1 : ( ( ruleValidID ) ) ;
     public final void rule__JvmParameterizedTypeReference__TypeAssignment_1_4_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24515:1: ( ( ( ruleValidID ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24516:1: ( ( ruleValidID ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24527:1: ( ( ( ruleValidID ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24528:1: ( ( ruleValidID ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24516:1: ( ( ruleValidID ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24517:1: ( ruleValidID )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24528:1: ( ( ruleValidID ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24529:1: ( ruleValidID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmParameterizedTypeReferenceAccess().getTypeJvmTypeCrossReference_1_4_1_0()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24518:1: ( ruleValidID )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24519:1: ruleValidID
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24530:1: ( ruleValidID )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24531:1: ruleValidID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmParameterizedTypeReferenceAccess().getTypeJvmTypeValidIDParserRuleCall_1_4_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__JvmParameterizedTypeReference__TypeAssignment_1_4_149655);
+            pushFollow(FOLLOW_ruleValidID_in_rule__JvmParameterizedTypeReference__TypeAssignment_1_4_149679);
             ruleValidID();
 
             state._fsp--;
@@ -70100,22 +70148,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_4_2_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24530:1: rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_4_2_1 : ( ruleJvmArgumentTypeReference ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24542:1: rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_4_2_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_4_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24534:1: ( ( ruleJvmArgumentTypeReference ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24535:1: ( ruleJvmArgumentTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24546:1: ( ( ruleJvmArgumentTypeReference ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24547:1: ( ruleJvmArgumentTypeReference )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24535:1: ( ruleJvmArgumentTypeReference )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24536:1: ruleJvmArgumentTypeReference
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24547:1: ( ruleJvmArgumentTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24548:1: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmParameterizedTypeReferenceAccess().getArgumentsJvmArgumentTypeReferenceParserRuleCall_1_4_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_4_2_149690);
+            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_4_2_149714);
             ruleJvmArgumentTypeReference();
 
             state._fsp--;
@@ -70145,22 +70193,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_4_2_2_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24545:1: rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_4_2_2_1 : ( ruleJvmArgumentTypeReference ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24557:1: rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_4_2_2_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_4_2_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24549:1: ( ( ruleJvmArgumentTypeReference ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24550:1: ( ruleJvmArgumentTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24561:1: ( ( ruleJvmArgumentTypeReference ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24562:1: ( ruleJvmArgumentTypeReference )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24550:1: ( ruleJvmArgumentTypeReference )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24551:1: ruleJvmArgumentTypeReference
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24562:1: ( ruleJvmArgumentTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24563:1: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmParameterizedTypeReferenceAccess().getArgumentsJvmArgumentTypeReferenceParserRuleCall_1_4_2_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_4_2_2_149721);
+            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_4_2_2_149745);
             ruleJvmArgumentTypeReference();
 
             state._fsp--;
@@ -70190,22 +70238,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24560:1: rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0_0 : ( ruleJvmUpperBound ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24572:1: rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0_0 : ( ruleJvmUpperBound ) ;
     public final void rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24564:1: ( ( ruleJvmUpperBound ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24565:1: ( ruleJvmUpperBound )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24576:1: ( ( ruleJvmUpperBound ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24577:1: ( ruleJvmUpperBound )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24565:1: ( ruleJvmUpperBound )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24566:1: ruleJvmUpperBound
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24577:1: ( ruleJvmUpperBound )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24578:1: ruleJvmUpperBound
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmWildcardTypeReferenceAccess().getConstraintsJvmUpperBoundParserRuleCall_2_0_0_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmUpperBound_in_rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0_049752);
+            pushFollow(FOLLOW_ruleJvmUpperBound_in_rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0_049776);
             ruleJvmUpperBound();
 
             state._fsp--;
@@ -70235,22 +70283,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24575:1: rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0_1 : ( ruleJvmUpperBoundAnded ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24587:1: rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0_1 : ( ruleJvmUpperBoundAnded ) ;
     public final void rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24579:1: ( ( ruleJvmUpperBoundAnded ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24580:1: ( ruleJvmUpperBoundAnded )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24591:1: ( ( ruleJvmUpperBoundAnded ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24592:1: ( ruleJvmUpperBoundAnded )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24580:1: ( ruleJvmUpperBoundAnded )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24581:1: ruleJvmUpperBoundAnded
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24592:1: ( ruleJvmUpperBoundAnded )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24593:1: ruleJvmUpperBoundAnded
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmWildcardTypeReferenceAccess().getConstraintsJvmUpperBoundAndedParserRuleCall_2_0_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmUpperBoundAnded_in_rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0_149783);
+            pushFollow(FOLLOW_ruleJvmUpperBoundAnded_in_rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0_149807);
             ruleJvmUpperBoundAnded();
 
             state._fsp--;
@@ -70280,22 +70328,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24590:1: rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1_0 : ( ruleJvmLowerBound ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24602:1: rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1_0 : ( ruleJvmLowerBound ) ;
     public final void rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24594:1: ( ( ruleJvmLowerBound ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24595:1: ( ruleJvmLowerBound )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24606:1: ( ( ruleJvmLowerBound ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24607:1: ( ruleJvmLowerBound )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24595:1: ( ruleJvmLowerBound )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24596:1: ruleJvmLowerBound
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24607:1: ( ruleJvmLowerBound )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24608:1: ruleJvmLowerBound
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmWildcardTypeReferenceAccess().getConstraintsJvmLowerBoundParserRuleCall_2_1_0_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmLowerBound_in_rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1_049814);
+            pushFollow(FOLLOW_ruleJvmLowerBound_in_rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1_049838);
             ruleJvmLowerBound();
 
             state._fsp--;
@@ -70325,22 +70373,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24605:1: rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1_1 : ( ruleJvmLowerBoundAnded ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24617:1: rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1_1 : ( ruleJvmLowerBoundAnded ) ;
     public final void rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24609:1: ( ( ruleJvmLowerBoundAnded ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24610:1: ( ruleJvmLowerBoundAnded )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24621:1: ( ( ruleJvmLowerBoundAnded ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24622:1: ( ruleJvmLowerBoundAnded )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24610:1: ( ruleJvmLowerBoundAnded )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24611:1: ruleJvmLowerBoundAnded
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24622:1: ( ruleJvmLowerBoundAnded )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24623:1: ruleJvmLowerBoundAnded
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmWildcardTypeReferenceAccess().getConstraintsJvmLowerBoundAndedParserRuleCall_2_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmLowerBoundAnded_in_rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1_149845);
+            pushFollow(FOLLOW_ruleJvmLowerBoundAnded_in_rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1_149869);
             ruleJvmLowerBoundAnded();
 
             state._fsp--;
@@ -70370,22 +70418,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JvmUpperBound__TypeReferenceAssignment_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24620:1: rule__JvmUpperBound__TypeReferenceAssignment_1 : ( ruleJvmTypeReference ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24632:1: rule__JvmUpperBound__TypeReferenceAssignment_1 : ( ruleJvmTypeReference ) ;
     public final void rule__JvmUpperBound__TypeReferenceAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24624:1: ( ( ruleJvmTypeReference ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24625:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24636:1: ( ( ruleJvmTypeReference ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24637:1: ( ruleJvmTypeReference )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24625:1: ( ruleJvmTypeReference )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24626:1: ruleJvmTypeReference
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24637:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24638:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmUpperBoundAccess().getTypeReferenceJvmTypeReferenceParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__JvmUpperBound__TypeReferenceAssignment_149876);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__JvmUpperBound__TypeReferenceAssignment_149900);
             ruleJvmTypeReference();
 
             state._fsp--;
@@ -70415,22 +70463,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JvmUpperBoundAnded__TypeReferenceAssignment_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24635:1: rule__JvmUpperBoundAnded__TypeReferenceAssignment_1 : ( ruleJvmTypeReference ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24647:1: rule__JvmUpperBoundAnded__TypeReferenceAssignment_1 : ( ruleJvmTypeReference ) ;
     public final void rule__JvmUpperBoundAnded__TypeReferenceAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24639:1: ( ( ruleJvmTypeReference ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24640:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24651:1: ( ( ruleJvmTypeReference ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24652:1: ( ruleJvmTypeReference )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24640:1: ( ruleJvmTypeReference )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24641:1: ruleJvmTypeReference
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24652:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24653:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmUpperBoundAndedAccess().getTypeReferenceJvmTypeReferenceParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__JvmUpperBoundAnded__TypeReferenceAssignment_149907);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__JvmUpperBoundAnded__TypeReferenceAssignment_149931);
             ruleJvmTypeReference();
 
             state._fsp--;
@@ -70460,22 +70508,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JvmLowerBound__TypeReferenceAssignment_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24650:1: rule__JvmLowerBound__TypeReferenceAssignment_1 : ( ruleJvmTypeReference ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24662:1: rule__JvmLowerBound__TypeReferenceAssignment_1 : ( ruleJvmTypeReference ) ;
     public final void rule__JvmLowerBound__TypeReferenceAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24654:1: ( ( ruleJvmTypeReference ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24655:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24666:1: ( ( ruleJvmTypeReference ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24667:1: ( ruleJvmTypeReference )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24655:1: ( ruleJvmTypeReference )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24656:1: ruleJvmTypeReference
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24667:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24668:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmLowerBoundAccess().getTypeReferenceJvmTypeReferenceParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__JvmLowerBound__TypeReferenceAssignment_149938);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__JvmLowerBound__TypeReferenceAssignment_149962);
             ruleJvmTypeReference();
 
             state._fsp--;
@@ -70505,22 +70553,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JvmLowerBoundAnded__TypeReferenceAssignment_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24665:1: rule__JvmLowerBoundAnded__TypeReferenceAssignment_1 : ( ruleJvmTypeReference ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24677:1: rule__JvmLowerBoundAnded__TypeReferenceAssignment_1 : ( ruleJvmTypeReference ) ;
     public final void rule__JvmLowerBoundAnded__TypeReferenceAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24669:1: ( ( ruleJvmTypeReference ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24670:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24681:1: ( ( ruleJvmTypeReference ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24682:1: ( ruleJvmTypeReference )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24670:1: ( ruleJvmTypeReference )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24671:1: ruleJvmTypeReference
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24682:1: ( ruleJvmTypeReference )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24683:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmLowerBoundAndedAccess().getTypeReferenceJvmTypeReferenceParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__JvmLowerBoundAnded__TypeReferenceAssignment_149969);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__JvmLowerBoundAnded__TypeReferenceAssignment_149993);
             ruleJvmTypeReference();
 
             state._fsp--;
@@ -70550,22 +70598,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XImportSection__ImportDeclarationsAssignment"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24683:1: rule__XImportSection__ImportDeclarationsAssignment : ( ruleXImportDeclaration ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24695:1: rule__XImportSection__ImportDeclarationsAssignment : ( ruleXImportDeclaration ) ;
     public final void rule__XImportSection__ImportDeclarationsAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24687:1: ( ( ruleXImportDeclaration ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24688:1: ( ruleXImportDeclaration )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24699:1: ( ( ruleXImportDeclaration ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24700:1: ( ruleXImportDeclaration )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24688:1: ( ruleXImportDeclaration )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24689:1: ruleXImportDeclaration
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24700:1: ( ruleXImportDeclaration )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24701:1: ruleXImportDeclaration
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportSectionAccess().getImportDeclarationsXImportDeclarationParserRuleCall_0()); 
             }
-            pushFollow(FOLLOW_ruleXImportDeclaration_in_rule__XImportSection__ImportDeclarationsAssignment50003);
+            pushFollow(FOLLOW_ruleXImportDeclaration_in_rule__XImportSection__ImportDeclarationsAssignment50027);
             ruleXImportDeclaration();
 
             state._fsp--;
@@ -70595,28 +70643,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XImportDeclaration__StaticAssignment_1_0_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24698:1: rule__XImportDeclaration__StaticAssignment_1_0_0 : ( ( 'static' ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24710:1: rule__XImportDeclaration__StaticAssignment_1_0_0 : ( ( 'static' ) ) ;
     public final void rule__XImportDeclaration__StaticAssignment_1_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24702:1: ( ( ( 'static' ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24703:1: ( ( 'static' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24714:1: ( ( ( 'static' ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24715:1: ( ( 'static' ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24703:1: ( ( 'static' ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24704:1: ( 'static' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXImportDeclarationAccess().getStaticStaticKeyword_1_0_0_0()); 
-            }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24705:1: ( 'static' )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24706:1: 'static'
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24715:1: ( ( 'static' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24716:1: ( 'static' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getStaticStaticKeyword_1_0_0_0()); 
             }
-            match(input,46,FOLLOW_46_in_rule__XImportDeclaration__StaticAssignment_1_0_050039); if (state.failed) return ;
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24717:1: ( 'static' )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24718:1: 'static'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXImportDeclarationAccess().getStaticStaticKeyword_1_0_0_0()); 
+            }
+            match(input,46,FOLLOW_46_in_rule__XImportDeclaration__StaticAssignment_1_0_050063); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXImportDeclarationAccess().getStaticStaticKeyword_1_0_0_0()); 
             }
@@ -70648,28 +70696,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XImportDeclaration__ExtensionAssignment_1_0_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24721:1: rule__XImportDeclaration__ExtensionAssignment_1_0_1 : ( ( 'extension' ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24733:1: rule__XImportDeclaration__ExtensionAssignment_1_0_1 : ( ( 'extension' ) ) ;
     public final void rule__XImportDeclaration__ExtensionAssignment_1_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24725:1: ( ( ( 'extension' ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24726:1: ( ( 'extension' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24737:1: ( ( ( 'extension' ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24738:1: ( ( 'extension' ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24726:1: ( ( 'extension' ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24727:1: ( 'extension' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXImportDeclarationAccess().getExtensionExtensionKeyword_1_0_1_0()); 
-            }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24728:1: ( 'extension' )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24729:1: 'extension'
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24738:1: ( ( 'extension' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24739:1: ( 'extension' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getExtensionExtensionKeyword_1_0_1_0()); 
             }
-            match(input,48,FOLLOW_48_in_rule__XImportDeclaration__ExtensionAssignment_1_0_150083); if (state.failed) return ;
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24740:1: ( 'extension' )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24741:1: 'extension'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXImportDeclarationAccess().getExtensionExtensionKeyword_1_0_1_0()); 
+            }
+            match(input,48,FOLLOW_48_in_rule__XImportDeclaration__ExtensionAssignment_1_0_150107); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXImportDeclarationAccess().getExtensionExtensionKeyword_1_0_1_0()); 
             }
@@ -70701,28 +70749,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XImportDeclaration__ImportedTypeAssignment_1_0_2"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24744:1: rule__XImportDeclaration__ImportedTypeAssignment_1_0_2 : ( ( ruleQualifiedNameInStaticImport ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24756:1: rule__XImportDeclaration__ImportedTypeAssignment_1_0_2 : ( ( ruleQualifiedNameInStaticImport ) ) ;
     public final void rule__XImportDeclaration__ImportedTypeAssignment_1_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24748:1: ( ( ( ruleQualifiedNameInStaticImport ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24749:1: ( ( ruleQualifiedNameInStaticImport ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24760:1: ( ( ( ruleQualifiedNameInStaticImport ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24761:1: ( ( ruleQualifiedNameInStaticImport ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24749:1: ( ( ruleQualifiedNameInStaticImport ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24750:1: ( ruleQualifiedNameInStaticImport )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24761:1: ( ( ruleQualifiedNameInStaticImport ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24762:1: ( ruleQualifiedNameInStaticImport )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getImportedTypeJvmDeclaredTypeCrossReference_1_0_2_0()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24751:1: ( ruleQualifiedNameInStaticImport )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24752:1: ruleQualifiedNameInStaticImport
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24763:1: ( ruleQualifiedNameInStaticImport )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24764:1: ruleQualifiedNameInStaticImport
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getImportedTypeJvmDeclaredTypeQualifiedNameInStaticImportParserRuleCall_1_0_2_0_1()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedNameInStaticImport_in_rule__XImportDeclaration__ImportedTypeAssignment_1_0_250126);
+            pushFollow(FOLLOW_ruleQualifiedNameInStaticImport_in_rule__XImportDeclaration__ImportedTypeAssignment_1_0_250150);
             ruleQualifiedNameInStaticImport();
 
             state._fsp--;
@@ -70758,28 +70806,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XImportDeclaration__WildcardAssignment_1_0_3_0"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24763:1: rule__XImportDeclaration__WildcardAssignment_1_0_3_0 : ( ( '*' ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24775:1: rule__XImportDeclaration__WildcardAssignment_1_0_3_0 : ( ( '*' ) ) ;
     public final void rule__XImportDeclaration__WildcardAssignment_1_0_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24767:1: ( ( ( '*' ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24768:1: ( ( '*' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24779:1: ( ( ( '*' ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24780:1: ( ( '*' ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24768:1: ( ( '*' ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24769:1: ( '*' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXImportDeclarationAccess().getWildcardAsteriskKeyword_1_0_3_0_0()); 
-            }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24770:1: ( '*' )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24771:1: '*'
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24780:1: ( ( '*' ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24781:1: ( '*' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getWildcardAsteriskKeyword_1_0_3_0_0()); 
             }
-            match(input,36,FOLLOW_36_in_rule__XImportDeclaration__WildcardAssignment_1_0_3_050166); if (state.failed) return ;
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24782:1: ( '*' )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24783:1: '*'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXImportDeclarationAccess().getWildcardAsteriskKeyword_1_0_3_0_0()); 
+            }
+            match(input,36,FOLLOW_36_in_rule__XImportDeclaration__WildcardAssignment_1_0_3_050190); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXImportDeclarationAccess().getWildcardAsteriskKeyword_1_0_3_0_0()); 
             }
@@ -70811,22 +70859,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XImportDeclaration__MemberNameAssignment_1_0_3_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24786:1: rule__XImportDeclaration__MemberNameAssignment_1_0_3_1 : ( ruleValidID ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24798:1: rule__XImportDeclaration__MemberNameAssignment_1_0_3_1 : ( ruleValidID ) ;
     public final void rule__XImportDeclaration__MemberNameAssignment_1_0_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24790:1: ( ( ruleValidID ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24791:1: ( ruleValidID )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24802:1: ( ( ruleValidID ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24803:1: ( ruleValidID )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24791:1: ( ruleValidID )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24792:1: ruleValidID
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24803:1: ( ruleValidID )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24804:1: ruleValidID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getMemberNameValidIDParserRuleCall_1_0_3_1_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__XImportDeclaration__MemberNameAssignment_1_0_3_150205);
+            pushFollow(FOLLOW_ruleValidID_in_rule__XImportDeclaration__MemberNameAssignment_1_0_3_150229);
             ruleValidID();
 
             state._fsp--;
@@ -70856,28 +70904,28 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XImportDeclaration__ImportedTypeAssignment_1_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24801:1: rule__XImportDeclaration__ImportedTypeAssignment_1_1 : ( ( ruleQualifiedName ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24813:1: rule__XImportDeclaration__ImportedTypeAssignment_1_1 : ( ( ruleQualifiedName ) ) ;
     public final void rule__XImportDeclaration__ImportedTypeAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24805:1: ( ( ( ruleQualifiedName ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24806:1: ( ( ruleQualifiedName ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24817:1: ( ( ( ruleQualifiedName ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24818:1: ( ( ruleQualifiedName ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24806:1: ( ( ruleQualifiedName ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24807:1: ( ruleQualifiedName )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24818:1: ( ( ruleQualifiedName ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24819:1: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getImportedTypeJvmDeclaredTypeCrossReference_1_1_0()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24808:1: ( ruleQualifiedName )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24809:1: ruleQualifiedName
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24820:1: ( ruleQualifiedName )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24821:1: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getImportedTypeJvmDeclaredTypeQualifiedNameParserRuleCall_1_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__XImportDeclaration__ImportedTypeAssignment_1_150240);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__XImportDeclaration__ImportedTypeAssignment_1_150264);
             ruleQualifiedName();
 
             state._fsp--;
@@ -70913,22 +70961,22 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__XImportDeclaration__ImportedNamespaceAssignment_1_2"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24820:1: rule__XImportDeclaration__ImportedNamespaceAssignment_1_2 : ( ruleQualifiedNameWithWildcard ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24832:1: rule__XImportDeclaration__ImportedNamespaceAssignment_1_2 : ( ruleQualifiedNameWithWildcard ) ;
     public final void rule__XImportDeclaration__ImportedNamespaceAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24824:1: ( ( ruleQualifiedNameWithWildcard ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24825:1: ( ruleQualifiedNameWithWildcard )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24836:1: ( ( ruleQualifiedNameWithWildcard ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24837:1: ( ruleQualifiedNameWithWildcard )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24825:1: ( ruleQualifiedNameWithWildcard )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24826:1: ruleQualifiedNameWithWildcard
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24837:1: ( ruleQualifiedNameWithWildcard )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:24838:1: ruleQualifiedNameWithWildcard
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getImportedNamespaceQualifiedNameWithWildcardParserRuleCall_1_2_0()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedNameWithWildcard_in_rule__XImportDeclaration__ImportedNamespaceAssignment_1_250275);
+            pushFollow(FOLLOW_ruleQualifiedNameWithWildcard_in_rule__XImportDeclaration__ImportedNamespaceAssignment_1_250299);
             ruleQualifiedNameWithWildcard();
 
             state._fsp--;
@@ -72592,13 +72640,13 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
     static final String DFA6_eotS =
         "\7\uffff";
     static final String DFA6_eofS =
-        "\2\uffff\1\3\2\uffff\1\3\1\uffff";
+        "\2\uffff\1\3\3\uffff\1\3";
     static final String DFA6_minS =
-        "\1\121\1\4\1\33\1\uffff\1\4\1\33\1\uffff";
+        "\1\121\1\4\1\33\1\uffff\1\4\1\uffff\1\33";
     static final String DFA6_maxS =
-        "\1\121\1\105\1\151\1\uffff\1\44\1\151\1\uffff";
+        "\1\121\1\105\1\151\1\uffff\1\44\1\uffff\1\151";
     static final String DFA6_acceptS =
-        "\3\uffff\1\1\2\uffff\1\2";
+        "\3\uffff\1\1\1\uffff\1\2\1\uffff";
     static final String DFA6_specialS =
         "\7\uffff}>";
     static final String[] DFA6_transitionS = {
@@ -72606,9 +72654,9 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
             "\1\2\32\uffff\1\3\45\uffff\1\3",
             "\1\3\17\uffff\1\4\13\uffff\1\3\6\uffff\1\3\1\uffff\5\3\2\uffff\1\3\4\uffff\2\3\1\uffff\1\3\1\uffff\1\3\27\uffff\1\3",
             "",
-            "\1\5\37\uffff\1\6",
-            "\1\3\17\uffff\1\4\13\uffff\1\3\6\uffff\1\3\1\uffff\5\3\2\uffff\1\3\4\uffff\2\3\1\uffff\1\3\1\uffff\1\3\27\uffff\1\3",
-            ""
+            "\1\6\37\uffff\1\5",
+            "",
+            "\1\3\17\uffff\1\4\13\uffff\1\3\6\uffff\1\3\1\uffff\5\3\2\uffff\1\3\4\uffff\2\3\1\uffff\1\3\1\uffff\1\3\27\uffff\1\3"
     };
 
     static final short[] DFA6_eot = DFA.unpackEncodedString(DFA6_eotS);
@@ -73414,7 +73462,7 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
     static final String DFA76_acceptS =
         "\10\uffff\1\2\1\1";
     static final String DFA76_specialS =
-        "\1\uffff\1\0\1\6\1\5\1\3\1\1\1\4\1\2\2\uffff}>";
+        "\1\uffff\1\0\1\6\1\5\1\4\1\1\1\2\1\3\2\uffff}>";
     static final String[] DFA76_transitionS = {
             "\5\10\5\uffff\2\10\1\1\1\2\1\3\1\4\1\5\5\10\1\7\1\6\27\10\5\uffff\1\10\1\uffff\1\10\5\uffff\1\10\4\uffff\2\10\2\uffff\1\10\5\uffff\2\10\1\uffff\25\10\3\uffff\2\10\1\uffff\2\10",
             "\1\uffff",
@@ -73495,6 +73543,21 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
+                        int LA76_6 = input.LA(1);
+
+                         
+                        int index76_6 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred124_InternalMelange()) ) {s = 9;}
+
+                        else if ( (true) ) {s = 8;}
+
+                         
+                        input.seek(index76_6);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 3 : 
                         int LA76_7 = input.LA(1);
 
                          
@@ -73509,7 +73572,7 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
                         input.seek(index76_7);
                         if ( s>=0 ) return s;
                         break;
-                    case 3 : 
+                    case 4 : 
                         int LA76_4 = input.LA(1);
 
                          
@@ -73522,21 +73585,6 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
                          
                         input.seek(index76_4);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 4 : 
-                        int LA76_6 = input.LA(1);
-
-                         
-                        int index76_6 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred124_InternalMelange()) ) {s = 9;}
-
-                        else if ( (true) ) {s = 8;}
-
-                         
-                        input.seek(index76_6);
                         if ( s>=0 ) return s;
                         break;
                     case 5 : 
@@ -73588,7 +73636,7 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
     static final String DFA82_acceptS =
         "\1\uffff\1\2\10\uffff\1\1";
     static final String DFA82_specialS =
-        "\2\uffff\1\1\1\7\1\0\1\5\1\3\1\4\1\2\1\6\1\uffff}>";
+        "\2\uffff\1\0\1\7\1\1\1\5\1\4\1\3\1\2\1\6\1\uffff}>";
     static final String[] DFA82_transitionS = {
             "\5\1\5\uffff\14\1\1\3\1\2\1\4\1\5\1\6\1\7\1\10\1\11\21\1\5\uffff\1\1\1\uffff\1\1\5\uffff\1\1\4\uffff\2\1\2\uffff\1\1\5\uffff\2\1\1\uffff\25\1\3\uffff\2\1\1\uffff\2\1",
             "",
@@ -73640,21 +73688,6 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA82_4 = input.LA(1);
-
-                         
-                        int index82_4 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred130_InternalMelange()) ) {s = 10;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index82_4);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
                         int LA82_2 = input.LA(1);
 
                          
@@ -73667,6 +73700,21 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
                          
                         input.seek(index82_2);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 1 : 
+                        int LA82_4 = input.LA(1);
+
+                         
+                        int index82_4 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred130_InternalMelange()) ) {s = 10;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index82_4);
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
@@ -73685,21 +73733,6 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
                         if ( s>=0 ) return s;
                         break;
                     case 3 : 
-                        int LA82_6 = input.LA(1);
-
-                         
-                        int index82_6 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred130_InternalMelange()) ) {s = 10;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index82_6);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 4 : 
                         int LA82_7 = input.LA(1);
 
                          
@@ -73712,6 +73745,21 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
                          
                         input.seek(index82_7);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 4 : 
+                        int LA82_6 = input.LA(1);
+
+                         
+                        int index82_6 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred130_InternalMelange()) ) {s = 10;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index82_6);
                         if ( s>=0 ) return s;
                         break;
                     case 5 : 
@@ -76499,7 +76547,7 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
     static final String DFA157_acceptS =
         "\4\uffff\1\2\2\uffff\1\1\3\uffff";
     static final String DFA157_specialS =
-        "\3\uffff\1\1\6\uffff\1\0}>";
+        "\3\uffff\1\0\6\uffff\1\1}>";
     static final String[] DFA157_transitionS = {
             "\1\4\6\uffff\1\2\1\uffff\1\3\1\4\1\1\2\4\2\uffff\1\4\4\uffff\2\4\3\uffff\1\4\27\uffff\1\4",
             "\1\5",
@@ -76551,21 +76599,6 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA157_10 = input.LA(1);
-
-                         
-                        int index157_10 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( synpred206_InternalMelange() && getUnorderedGroupHelper().canSelect(grammarAccess.getEcoreModelTypeAccess().getUnorderedGroup(), 0) ) {s = 7;}
-
-                        else if ( getUnorderedGroupHelper().canLeave(grammarAccess.getEcoreModelTypeAccess().getUnorderedGroup()) ) {s = 4;}
-
-                         
-                        input.seek(index157_10);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
                         int LA157_3 = input.LA(1);
 
                          
@@ -76578,6 +76611,21 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
                          
                         input.seek(index157_3);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 1 : 
+                        int LA157_10 = input.LA(1);
+
+                         
+                        int index157_10 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( synpred206_InternalMelange() && getUnorderedGroupHelper().canSelect(grammarAccess.getEcoreModelTypeAccess().getUnorderedGroup(), 0) ) {s = 7;}
+
+                        else if ( getUnorderedGroupHelper().canLeave(grammarAccess.getEcoreModelTypeAccess().getUnorderedGroup()) ) {s = 4;}
+
+                         
+                        input.seek(index157_10);
                         if ( s>=0 ) return s;
                         break;
             }
@@ -77188,12 +77236,12 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__Mapping__Group__3__Impl_in_rule__Mapping__Group__312992 = new BitSet(new long[]{0x0100000000000000L});
     public static final BitSet FOLLOW_rule__Mapping__Group__4_in_rule__Mapping__Group__312995 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Mapping__ToAssignment_3_in_rule__Mapping__Group__3__Impl13022 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Mapping__Group__4__Impl_in_rule__Mapping__Group__413052 = new BitSet(new long[]{0x0000000000000100L,0x0000000000000001L});
+    public static final BitSet FOLLOW_rule__Mapping__Group__4__Impl_in_rule__Mapping__Group__413052 = new BitSet(new long[]{0x0000000000000010L,0x0000000000000001L});
     public static final BitSet FOLLOW_rule__Mapping__Group__5_in_rule__Mapping__Group__413055 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_56_in_rule__Mapping__Group__4__Impl13083 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Mapping__Group__5__Impl_in_rule__Mapping__Group__513114 = new BitSet(new long[]{0x0000000000000100L,0x0000000000000001L});
+    public static final BitSet FOLLOW_rule__Mapping__Group__5__Impl_in_rule__Mapping__Group__513114 = new BitSet(new long[]{0x0000000000000010L,0x0000000000000001L});
     public static final BitSet FOLLOW_rule__Mapping__Group__6_in_rule__Mapping__Group__513117 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Mapping__RulesAssignment_5_in_rule__Mapping__Group__5__Impl13144 = new BitSet(new long[]{0x0000000000000102L});
+    public static final BitSet FOLLOW_rule__Mapping__RulesAssignment_5_in_rule__Mapping__Group__5__Impl13144 = new BitSet(new long[]{0x0000000000000012L});
     public static final BitSet FOLLOW_rule__Mapping__Group__6__Impl_in_rule__Mapping__Group__613175 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_64_in_rule__Mapping__Group__6__Impl13203 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__PackageMapping__Group__0__Impl_in_rule__PackageMapping__Group__013248 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000100L});
@@ -77205,12 +77253,12 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__PackageMapping__Group__2__Impl_in_rule__PackageMapping__Group__213370 = new BitSet(new long[]{0x0100000000000000L});
     public static final BitSet FOLLOW_rule__PackageMapping__Group__3_in_rule__PackageMapping__Group__213373 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__PackageMapping__ToAssignment_2_in_rule__PackageMapping__Group__2__Impl13400 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PackageMapping__Group__3__Impl_in_rule__PackageMapping__Group__313430 = new BitSet(new long[]{0x0000000000000100L,0x0000000000000001L});
+    public static final BitSet FOLLOW_rule__PackageMapping__Group__3__Impl_in_rule__PackageMapping__Group__313430 = new BitSet(new long[]{0x0000000000000010L,0x0000000000000001L});
     public static final BitSet FOLLOW_rule__PackageMapping__Group__4_in_rule__PackageMapping__Group__313433 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_56_in_rule__PackageMapping__Group__3__Impl13461 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PackageMapping__Group__4__Impl_in_rule__PackageMapping__Group__413492 = new BitSet(new long[]{0x0000000000000100L,0x0000000000000001L});
+    public static final BitSet FOLLOW_rule__PackageMapping__Group__4__Impl_in_rule__PackageMapping__Group__413492 = new BitSet(new long[]{0x0000000000000010L,0x0000000000000001L});
     public static final BitSet FOLLOW_rule__PackageMapping__Group__5_in_rule__PackageMapping__Group__413495 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PackageMapping__ClassesAssignment_4_in_rule__PackageMapping__Group__4__Impl13522 = new BitSet(new long[]{0x0000000000000102L});
+    public static final BitSet FOLLOW_rule__PackageMapping__ClassesAssignment_4_in_rule__PackageMapping__Group__4__Impl13522 = new BitSet(new long[]{0x0000000000000012L});
     public static final BitSet FOLLOW_rule__PackageMapping__Group__5__Impl_in_rule__PackageMapping__Group__513553 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_64_in_rule__PackageMapping__Group__5__Impl13581 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ClassMapping__Group__0__Impl_in_rule__ClassMapping__Group__013624 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000100L});
@@ -77222,12 +77270,12 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__ClassMapping__Group__2__Impl_in_rule__ClassMapping__Group__213746 = new BitSet(new long[]{0x0100000000000000L});
     public static final BitSet FOLLOW_rule__ClassMapping__Group__3_in_rule__ClassMapping__Group__213749 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ClassMapping__ToAssignment_2_in_rule__ClassMapping__Group__2__Impl13776 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ClassMapping__Group__3__Impl_in_rule__ClassMapping__Group__313806 = new BitSet(new long[]{0x0000000000000100L,0x0000000000000001L});
+    public static final BitSet FOLLOW_rule__ClassMapping__Group__3__Impl_in_rule__ClassMapping__Group__313806 = new BitSet(new long[]{0x0000000000000010L,0x0000000000000001L});
     public static final BitSet FOLLOW_rule__ClassMapping__Group__4_in_rule__ClassMapping__Group__313809 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_56_in_rule__ClassMapping__Group__3__Impl13837 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ClassMapping__Group__4__Impl_in_rule__ClassMapping__Group__413868 = new BitSet(new long[]{0x0000000000000100L,0x0000000000000001L});
+    public static final BitSet FOLLOW_rule__ClassMapping__Group__4__Impl_in_rule__ClassMapping__Group__413868 = new BitSet(new long[]{0x0000000000000010L,0x0000000000000001L});
     public static final BitSet FOLLOW_rule__ClassMapping__Group__5_in_rule__ClassMapping__Group__413871 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ClassMapping__PropertiesAssignment_4_in_rule__ClassMapping__Group__4__Impl13898 = new BitSet(new long[]{0x0000000000000102L});
+    public static final BitSet FOLLOW_rule__ClassMapping__PropertiesAssignment_4_in_rule__ClassMapping__Group__4__Impl13898 = new BitSet(new long[]{0x0000000000000012L});
     public static final BitSet FOLLOW_rule__ClassMapping__Group__5__Impl_in_rule__ClassMapping__Group__513929 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_64_in_rule__ClassMapping__Group__5__Impl13957 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__PropertyMapping__Group__0__Impl_in_rule__PropertyMapping__Group__014000 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
@@ -77267,12 +77315,12 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__Import__Group_3__0__Impl_in_rule__Import__Group_3__014802 = new BitSet(new long[]{0x0100000000000000L});
     public static final BitSet FOLLOW_rule__Import__Group_3__1_in_rule__Import__Group_3__014805 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_75_in_rule__Import__Group_3__0__Impl14833 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Import__Group_3__1__Impl_in_rule__Import__Group_3__114864 = new BitSet(new long[]{0x0000000000000100L,0x0000000000000001L});
+    public static final BitSet FOLLOW_rule__Import__Group_3__1__Impl_in_rule__Import__Group_3__114864 = new BitSet(new long[]{0x0000000000000010L,0x0000000000000001L});
     public static final BitSet FOLLOW_rule__Import__Group_3__2_in_rule__Import__Group_3__114867 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_56_in_rule__Import__Group_3__1__Impl14895 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Import__Group_3__2__Impl_in_rule__Import__Group_3__214926 = new BitSet(new long[]{0x0000000000000100L,0x0000000000000001L});
+    public static final BitSet FOLLOW_rule__Import__Group_3__2__Impl_in_rule__Import__Group_3__214926 = new BitSet(new long[]{0x0000000000000010L,0x0000000000000001L});
     public static final BitSet FOLLOW_rule__Import__Group_3__3_in_rule__Import__Group_3__214929 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Import__MappingRulesAssignment_3_2_in_rule__Import__Group_3__2__Impl14956 = new BitSet(new long[]{0x0000000000000102L});
+    public static final BitSet FOLLOW_rule__Import__MappingRulesAssignment_3_2_in_rule__Import__Group_3__2__Impl14956 = new BitSet(new long[]{0x0000000000000012L});
     public static final BitSet FOLLOW_rule__Import__Group_3__3__Impl_in_rule__Import__Group_3__314987 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_64_in_rule__Import__Group_3__3__Impl15015 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Merge__Group__0__Impl_in_rule__Merge__Group__015054 = new BitSet(new long[]{0x0000000000000010L});
@@ -77286,12 +77334,12 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__Merge__Group_2__0__Impl_in_rule__Merge__Group_2__015240 = new BitSet(new long[]{0x0100000000000000L});
     public static final BitSet FOLLOW_rule__Merge__Group_2__1_in_rule__Merge__Group_2__015243 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_75_in_rule__Merge__Group_2__0__Impl15271 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Merge__Group_2__1__Impl_in_rule__Merge__Group_2__115302 = new BitSet(new long[]{0x0000000000000100L,0x0000000000000001L});
+    public static final BitSet FOLLOW_rule__Merge__Group_2__1__Impl_in_rule__Merge__Group_2__115302 = new BitSet(new long[]{0x0000000000000010L,0x0000000000000001L});
     public static final BitSet FOLLOW_rule__Merge__Group_2__2_in_rule__Merge__Group_2__115305 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_56_in_rule__Merge__Group_2__1__Impl15333 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Merge__Group_2__2__Impl_in_rule__Merge__Group_2__215364 = new BitSet(new long[]{0x0000000000000100L,0x0000000000000001L});
+    public static final BitSet FOLLOW_rule__Merge__Group_2__2__Impl_in_rule__Merge__Group_2__215364 = new BitSet(new long[]{0x0000000000000010L,0x0000000000000001L});
     public static final BitSet FOLLOW_rule__Merge__Group_2__3_in_rule__Merge__Group_2__215367 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Merge__MappingRulesAssignment_2_2_in_rule__Merge__Group_2__2__Impl15394 = new BitSet(new long[]{0x0000000000000102L});
+    public static final BitSet FOLLOW_rule__Merge__MappingRulesAssignment_2_2_in_rule__Merge__Group_2__2__Impl15394 = new BitSet(new long[]{0x0000000000000012L});
     public static final BitSet FOLLOW_rule__Merge__Group_2__3__Impl_in_rule__Merge__Group_2__315425 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_64_in_rule__Merge__Group_2__3__Impl15453 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Slice__Group__0__Impl_in_rule__Slice__Group__015492 = new BitSet(new long[]{0x0000000000000010L});
@@ -77325,12 +77373,12 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__Slice__Group_7__0__Impl_in_rule__Slice__Group_7__016118 = new BitSet(new long[]{0x0100000000000000L});
     public static final BitSet FOLLOW_rule__Slice__Group_7__1_in_rule__Slice__Group_7__016121 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_75_in_rule__Slice__Group_7__0__Impl16149 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Slice__Group_7__1__Impl_in_rule__Slice__Group_7__116180 = new BitSet(new long[]{0x0000000000000100L,0x0000000000000001L});
+    public static final BitSet FOLLOW_rule__Slice__Group_7__1__Impl_in_rule__Slice__Group_7__116180 = new BitSet(new long[]{0x0000000000000010L,0x0000000000000001L});
     public static final BitSet FOLLOW_rule__Slice__Group_7__2_in_rule__Slice__Group_7__116183 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_56_in_rule__Slice__Group_7__1__Impl16211 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Slice__Group_7__2__Impl_in_rule__Slice__Group_7__216242 = new BitSet(new long[]{0x0000000000000100L,0x0000000000000001L});
+    public static final BitSet FOLLOW_rule__Slice__Group_7__2__Impl_in_rule__Slice__Group_7__216242 = new BitSet(new long[]{0x0000000000000010L,0x0000000000000001L});
     public static final BitSet FOLLOW_rule__Slice__Group_7__3_in_rule__Slice__Group_7__216245 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Slice__MappingRulesAssignment_7_2_in_rule__Slice__Group_7__2__Impl16272 = new BitSet(new long[]{0x0000000000000102L});
+    public static final BitSet FOLLOW_rule__Slice__MappingRulesAssignment_7_2_in_rule__Slice__Group_7__2__Impl16272 = new BitSet(new long[]{0x0000000000000012L});
     public static final BitSet FOLLOW_rule__Slice__Group_7__3__Impl_in_rule__Slice__Group_7__316303 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_64_in_rule__Slice__Group_7__3__Impl16331 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AspectTypeRef__Group__0__Impl_in_rule__AspectTypeRef__Group__016370 = new BitSet(new long[]{0x0000000080000010L,0x0000000000000020L});
@@ -78462,168 +78510,168 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_ruleQualifiedName_in_rule__Mapping__FromAssignment_144794 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_rule__Mapping__ToAssignment_344833 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleClassMapping_in_rule__Mapping__RulesAssignment_544868 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__PackageMapping__FromAssignment_044899 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__PackageMapping__ToAssignment_244930 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleClassMapping_in_rule__PackageMapping__ClassesAssignment_444961 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__ClassMapping__FromAssignment_044992 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__ClassMapping__ToAssignment_245023 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePropertyMapping_in_rule__ClassMapping__PropertiesAssignment_445054 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__PropertyMapping__FromAssignment_045085 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__PropertyMapping__ToAssignment_245116 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__Import__EcoreUriAssignment_145147 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__Import__GenmodelUrisAssignment_2_1_045178 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__Import__GenmodelUrisAssignment_2_1_1_145209 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePackageMapping_in_rule__Import__MappingRulesAssignment_3_245240 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__Merge__MergedLanguageAssignment_145275 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePackageMapping_in_rule__Merge__MappingRulesAssignment_2_245310 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__Slice__SlicedLanguageAssignment_145345 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__Slice__RootsAssignment_445384 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__Slice__RootsAssignment_5_145423 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePackageMapping_in_rule__Slice__MappingRulesAssignment_7_245458 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__Inherit__SuperLanguageAssignment45493 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__AspectTypeRef__AspectTypeRefAssignment_145528 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedNameWithWildcard_in_rule__AspectWildcard__AspectWildcardImportAssignment_145559 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFeatureCallID_in_rule__XAssignment__FeatureAssignment_0_145594 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXAssignment_in_rule__XAssignment__ValueAssignment_0_345629 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpMultiAssign_in_rule__XAssignment__FeatureAssignment_1_1_0_0_145664 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXAssignment_in_rule__XAssignment__RightOperandAssignment_1_1_145699 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpOr_in_rule__XOrExpression__FeatureAssignment_1_0_0_145734 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXAndExpression_in_rule__XOrExpression__RightOperandAssignment_1_145769 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpAnd_in_rule__XAndExpression__FeatureAssignment_1_0_0_145804 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXEqualityExpression_in_rule__XAndExpression__RightOperandAssignment_1_145839 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpEquality_in_rule__XEqualityExpression__FeatureAssignment_1_0_0_145874 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXRelationalExpression_in_rule__XEqualityExpression__RightOperandAssignment_1_145909 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XRelationalExpression__TypeAssignment_1_0_145940 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpCompare_in_rule__XRelationalExpression__FeatureAssignment_1_1_0_0_145975 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXOtherOperatorExpression_in_rule__XRelationalExpression__RightOperandAssignment_1_1_146010 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpOther_in_rule__XOtherOperatorExpression__FeatureAssignment_1_0_0_146045 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXAdditiveExpression_in_rule__XOtherOperatorExpression__RightOperandAssignment_1_146080 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpAdd_in_rule__XAdditiveExpression__FeatureAssignment_1_0_0_146115 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXMultiplicativeExpression_in_rule__XAdditiveExpression__RightOperandAssignment_1_146150 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpMulti_in_rule__XMultiplicativeExpression__FeatureAssignment_1_0_0_146185 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXUnaryOperation_in_rule__XMultiplicativeExpression__RightOperandAssignment_1_146220 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpUnary_in_rule__XUnaryOperation__FeatureAssignment_0_146255 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXUnaryOperation_in_rule__XUnaryOperation__OperandAssignment_0_246290 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XCastedExpression__TypeAssignment_1_146321 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpPostfix_in_rule__XPostfixOperation__FeatureAssignment_1_0_146356 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_106_in_rule__XMemberFeatureCall__ExplicitStaticAssignment_1_0_0_0_1_146396 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFeatureCallID_in_rule__XMemberFeatureCall__FeatureAssignment_1_0_0_0_246439 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXAssignment_in_rule__XMemberFeatureCall__ValueAssignment_1_0_146474 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_107_in_rule__XMemberFeatureCall__NullSafeAssignment_1_1_0_0_1_146510 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_106_in_rule__XMemberFeatureCall__ExplicitStaticAssignment_1_1_0_0_1_246554 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_146593 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_2_146624 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIdOrSuper_in_rule__XMemberFeatureCall__FeatureAssignment_1_1_246659 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_69_in_rule__XMemberFeatureCall__ExplicitOperationCallAssignment_1_1_3_046699 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXShortClosure_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_046738 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_046769 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_1_146800 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXClosure_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_446831 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSetLiteral__ElementsAssignment_3_046862 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSetLiteral__ElementsAssignment_3_1_146893 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XListLiteral__ElementsAssignment_3_046924 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XListLiteral__ElementsAssignment_3_1_146955 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_046986 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_1_147017 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_108_in_rule__XClosure__ExplicitSyntaxAssignment_1_0_147053 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpressionInClosure_in_rule__XClosure__ExpressionAssignment_247092 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XExpressionInClosure__ExpressionsAssignment_1_047123 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_047154 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_1_147185 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_108_in_rule__XShortClosure__ExplicitSyntaxAssignment_0_0_247221 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XShortClosure__ExpressionAssignment_147260 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XIfExpression__IfAssignment_347291 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XIfExpression__ThenAssignment_547322 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XIfExpression__ElseAssignment_6_147353 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XSwitchExpression__DeclaredParamAssignment_2_0_0_0_147384 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSwitchExpression__SwitchAssignment_2_0_147415 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XSwitchExpression__DeclaredParamAssignment_2_1_0_0_047446 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSwitchExpression__SwitchAssignment_2_1_147477 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXCasePart_in_rule__XSwitchExpression__CasesAssignment_447508 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSwitchExpression__DefaultAssignment_5_247539 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XCasePart__TypeGuardAssignment_147570 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XCasePart__CaseAssignment_2_147601 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XCasePart__ThenAssignment_3_0_147632 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_58_in_rule__XCasePart__FallThroughAssignment_3_147668 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XForLoopExpression__DeclaredParamAssignment_0_0_347707 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XForLoopExpression__ForExpressionAssignment_147738 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XForLoopExpression__EachExpressionAssignment_347769 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XBasicForLoopExpression__InitExpressionsAssignment_3_047800 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XBasicForLoopExpression__InitExpressionsAssignment_3_1_147831 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__ExpressionAssignment_547862 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_047893 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_1_147924 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__EachExpressionAssignment_947955 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XWhileExpression__PredicateAssignment_347986 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XWhileExpression__BodyAssignment_548017 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XDoWhileExpression__BodyAssignment_248048 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XDoWhileExpression__PredicateAssignment_548079 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XBlockExpression__ExpressionsAssignment_2_048110 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_109_in_rule__XVariableDeclaration__WriteableAssignment_1_048146 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XVariableDeclaration__TypeAssignment_2_0_0_048185 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__XVariableDeclaration__NameAssignment_2_0_0_148216 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__XVariableDeclaration__NameAssignment_2_148247 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XVariableDeclaration__RightAssignment_3_148278 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__JvmFormalParameter__ParameterTypeAssignment_048309 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__JvmFormalParameter__NameAssignment_148340 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__FullJvmFormalParameter__ParameterTypeAssignment_048371 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__FullJvmFormalParameter__NameAssignment_148402 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__XFeatureCall__TypeArgumentsAssignment_1_148433 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__XFeatureCall__TypeArgumentsAssignment_1_2_148464 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIdOrSuper_in_rule__XFeatureCall__FeatureAssignment_248499 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_69_in_rule__XFeatureCall__ExplicitOperationCallAssignment_3_048539 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXShortClosure_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_048578 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_048609 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_1_148640 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXClosure_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_448671 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__XConstructorCall__ConstructorAssignment_248706 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__XConstructorCall__TypeArgumentsAssignment_3_148741 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__XConstructorCall__TypeArgumentsAssignment_3_2_148772 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_69_in_rule__XConstructorCall__ExplicitConstructorCallAssignment_4_048808 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXShortClosure_in_rule__XConstructorCall__ArgumentsAssignment_4_1_048847 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XConstructorCall__ArgumentsAssignment_4_1_1_048878 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XConstructorCall__ArgumentsAssignment_4_1_1_1_148909 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXClosure_in_rule__XConstructorCall__ArgumentsAssignment_548940 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_110_in_rule__XBooleanLiteral__IsTrueAssignment_1_148976 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNumber_in_rule__XNumberLiteral__ValueAssignment_149015 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__XStringLiteral__ValueAssignment_149046 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__XTypeLiteral__TypeAssignment_349081 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArrayBrackets_in_rule__XTypeLiteral__ArrayDimensionsAssignment_449116 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XThrowExpression__ExpressionAssignment_249147 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XReturnExpression__ExpressionAssignment_249178 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XTryCatchFinallyExpression__ExpressionAssignment_249209 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXCatchClause_in_rule__XTryCatchFinallyExpression__CatchClausesAssignment_3_0_049240 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_0_1_149271 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_1_149302 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSynchronizedExpression__ParamAssignment_149333 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSynchronizedExpression__ExpressionAssignment_349364 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFullJvmFormalParameter_in_rule__XCatchClause__DeclaredParamAssignment_249395 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XCatchClause__ExpressionAssignment_449426 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XFunctionTypeRef__ParamTypesAssignment_0_1_049457 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XFunctionTypeRef__ParamTypesAssignment_0_1_1_149488 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XFunctionTypeRef__ReturnTypeAssignment_249519 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__JvmParameterizedTypeReference__TypeAssignment_049554 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_149589 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_2_149620 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__JvmParameterizedTypeReference__TypeAssignment_1_4_149655 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_4_2_149690 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_4_2_2_149721 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmUpperBound_in_rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0_049752 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmUpperBoundAnded_in_rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0_149783 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmLowerBound_in_rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1_049814 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmLowerBoundAnded_in_rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1_149845 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__JvmUpperBound__TypeReferenceAssignment_149876 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__JvmUpperBoundAnded__TypeReferenceAssignment_149907 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__JvmLowerBound__TypeReferenceAssignment_149938 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__JvmLowerBoundAnded__TypeReferenceAssignment_149969 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXImportDeclaration_in_rule__XImportSection__ImportDeclarationsAssignment50003 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_rule__XImportDeclaration__StaticAssignment_1_0_050039 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_rule__XImportDeclaration__ExtensionAssignment_1_0_150083 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedNameInStaticImport_in_rule__XImportDeclaration__ImportedTypeAssignment_1_0_250126 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_rule__XImportDeclaration__WildcardAssignment_1_0_3_050166 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__XImportDeclaration__MemberNameAssignment_1_0_3_150205 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__XImportDeclaration__ImportedTypeAssignment_1_150240 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedNameWithWildcard_in_rule__XImportDeclaration__ImportedNamespaceAssignment_1_250275 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__PackageMapping__FromAssignment_044903 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__PackageMapping__ToAssignment_244938 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleClassMapping_in_rule__PackageMapping__ClassesAssignment_444969 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__ClassMapping__FromAssignment_045004 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__ClassMapping__ToAssignment_245039 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePropertyMapping_in_rule__ClassMapping__PropertiesAssignment_445070 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__PropertyMapping__FromAssignment_045105 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__PropertyMapping__ToAssignment_245140 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__Import__EcoreUriAssignment_145171 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__Import__GenmodelUrisAssignment_2_1_045202 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__Import__GenmodelUrisAssignment_2_1_1_145233 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePackageMapping_in_rule__Import__MappingRulesAssignment_3_245264 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__Merge__MergedLanguageAssignment_145299 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePackageMapping_in_rule__Merge__MappingRulesAssignment_2_245334 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__Slice__SlicedLanguageAssignment_145369 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__Slice__RootsAssignment_445408 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__Slice__RootsAssignment_5_145447 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePackageMapping_in_rule__Slice__MappingRulesAssignment_7_245482 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__Inherit__SuperLanguageAssignment45517 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__AspectTypeRef__AspectTypeRefAssignment_145552 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedNameWithWildcard_in_rule__AspectWildcard__AspectWildcardImportAssignment_145583 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFeatureCallID_in_rule__XAssignment__FeatureAssignment_0_145618 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXAssignment_in_rule__XAssignment__ValueAssignment_0_345653 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpMultiAssign_in_rule__XAssignment__FeatureAssignment_1_1_0_0_145688 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXAssignment_in_rule__XAssignment__RightOperandAssignment_1_1_145723 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpOr_in_rule__XOrExpression__FeatureAssignment_1_0_0_145758 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXAndExpression_in_rule__XOrExpression__RightOperandAssignment_1_145793 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpAnd_in_rule__XAndExpression__FeatureAssignment_1_0_0_145828 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXEqualityExpression_in_rule__XAndExpression__RightOperandAssignment_1_145863 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpEquality_in_rule__XEqualityExpression__FeatureAssignment_1_0_0_145898 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXRelationalExpression_in_rule__XEqualityExpression__RightOperandAssignment_1_145933 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XRelationalExpression__TypeAssignment_1_0_145964 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpCompare_in_rule__XRelationalExpression__FeatureAssignment_1_1_0_0_145999 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXOtherOperatorExpression_in_rule__XRelationalExpression__RightOperandAssignment_1_1_146034 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpOther_in_rule__XOtherOperatorExpression__FeatureAssignment_1_0_0_146069 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXAdditiveExpression_in_rule__XOtherOperatorExpression__RightOperandAssignment_1_146104 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpAdd_in_rule__XAdditiveExpression__FeatureAssignment_1_0_0_146139 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXMultiplicativeExpression_in_rule__XAdditiveExpression__RightOperandAssignment_1_146174 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpMulti_in_rule__XMultiplicativeExpression__FeatureAssignment_1_0_0_146209 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXUnaryOperation_in_rule__XMultiplicativeExpression__RightOperandAssignment_1_146244 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpUnary_in_rule__XUnaryOperation__FeatureAssignment_0_146279 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXUnaryOperation_in_rule__XUnaryOperation__OperandAssignment_0_246314 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XCastedExpression__TypeAssignment_1_146345 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpPostfix_in_rule__XPostfixOperation__FeatureAssignment_1_0_146380 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_106_in_rule__XMemberFeatureCall__ExplicitStaticAssignment_1_0_0_0_1_146420 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFeatureCallID_in_rule__XMemberFeatureCall__FeatureAssignment_1_0_0_0_246463 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXAssignment_in_rule__XMemberFeatureCall__ValueAssignment_1_0_146498 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_107_in_rule__XMemberFeatureCall__NullSafeAssignment_1_1_0_0_1_146534 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_106_in_rule__XMemberFeatureCall__ExplicitStaticAssignment_1_1_0_0_1_246578 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_146617 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_2_146648 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIdOrSuper_in_rule__XMemberFeatureCall__FeatureAssignment_1_1_246683 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_69_in_rule__XMemberFeatureCall__ExplicitOperationCallAssignment_1_1_3_046723 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXShortClosure_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_046762 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_046793 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_1_146824 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXClosure_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_446855 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSetLiteral__ElementsAssignment_3_046886 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSetLiteral__ElementsAssignment_3_1_146917 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XListLiteral__ElementsAssignment_3_046948 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XListLiteral__ElementsAssignment_3_1_146979 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_047010 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_1_147041 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_108_in_rule__XClosure__ExplicitSyntaxAssignment_1_0_147077 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpressionInClosure_in_rule__XClosure__ExpressionAssignment_247116 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XExpressionInClosure__ExpressionsAssignment_1_047147 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_047178 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_1_147209 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_108_in_rule__XShortClosure__ExplicitSyntaxAssignment_0_0_247245 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XShortClosure__ExpressionAssignment_147284 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XIfExpression__IfAssignment_347315 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XIfExpression__ThenAssignment_547346 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XIfExpression__ElseAssignment_6_147377 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XSwitchExpression__DeclaredParamAssignment_2_0_0_0_147408 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSwitchExpression__SwitchAssignment_2_0_147439 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XSwitchExpression__DeclaredParamAssignment_2_1_0_0_047470 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSwitchExpression__SwitchAssignment_2_1_147501 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXCasePart_in_rule__XSwitchExpression__CasesAssignment_447532 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSwitchExpression__DefaultAssignment_5_247563 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XCasePart__TypeGuardAssignment_147594 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XCasePart__CaseAssignment_2_147625 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XCasePart__ThenAssignment_3_0_147656 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_58_in_rule__XCasePart__FallThroughAssignment_3_147692 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XForLoopExpression__DeclaredParamAssignment_0_0_347731 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XForLoopExpression__ForExpressionAssignment_147762 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XForLoopExpression__EachExpressionAssignment_347793 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XBasicForLoopExpression__InitExpressionsAssignment_3_047824 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XBasicForLoopExpression__InitExpressionsAssignment_3_1_147855 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__ExpressionAssignment_547886 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_047917 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_1_147948 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__EachExpressionAssignment_947979 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XWhileExpression__PredicateAssignment_348010 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XWhileExpression__BodyAssignment_548041 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XDoWhileExpression__BodyAssignment_248072 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XDoWhileExpression__PredicateAssignment_548103 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XBlockExpression__ExpressionsAssignment_2_048134 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_109_in_rule__XVariableDeclaration__WriteableAssignment_1_048170 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XVariableDeclaration__TypeAssignment_2_0_0_048209 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__XVariableDeclaration__NameAssignment_2_0_0_148240 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__XVariableDeclaration__NameAssignment_2_148271 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XVariableDeclaration__RightAssignment_3_148302 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__JvmFormalParameter__ParameterTypeAssignment_048333 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__JvmFormalParameter__NameAssignment_148364 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__FullJvmFormalParameter__ParameterTypeAssignment_048395 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__FullJvmFormalParameter__NameAssignment_148426 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__XFeatureCall__TypeArgumentsAssignment_1_148457 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__XFeatureCall__TypeArgumentsAssignment_1_2_148488 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIdOrSuper_in_rule__XFeatureCall__FeatureAssignment_248523 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_69_in_rule__XFeatureCall__ExplicitOperationCallAssignment_3_048563 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXShortClosure_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_048602 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_048633 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_1_148664 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXClosure_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_448695 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__XConstructorCall__ConstructorAssignment_248730 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__XConstructorCall__TypeArgumentsAssignment_3_148765 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__XConstructorCall__TypeArgumentsAssignment_3_2_148796 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_69_in_rule__XConstructorCall__ExplicitConstructorCallAssignment_4_048832 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXShortClosure_in_rule__XConstructorCall__ArgumentsAssignment_4_1_048871 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XConstructorCall__ArgumentsAssignment_4_1_1_048902 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XConstructorCall__ArgumentsAssignment_4_1_1_1_148933 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXClosure_in_rule__XConstructorCall__ArgumentsAssignment_548964 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_110_in_rule__XBooleanLiteral__IsTrueAssignment_1_149000 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNumber_in_rule__XNumberLiteral__ValueAssignment_149039 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__XStringLiteral__ValueAssignment_149070 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__XTypeLiteral__TypeAssignment_349105 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArrayBrackets_in_rule__XTypeLiteral__ArrayDimensionsAssignment_449140 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XThrowExpression__ExpressionAssignment_249171 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XReturnExpression__ExpressionAssignment_249202 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XTryCatchFinallyExpression__ExpressionAssignment_249233 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXCatchClause_in_rule__XTryCatchFinallyExpression__CatchClausesAssignment_3_0_049264 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_0_1_149295 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_1_149326 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSynchronizedExpression__ParamAssignment_149357 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSynchronizedExpression__ExpressionAssignment_349388 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFullJvmFormalParameter_in_rule__XCatchClause__DeclaredParamAssignment_249419 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XCatchClause__ExpressionAssignment_449450 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XFunctionTypeRef__ParamTypesAssignment_0_1_049481 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XFunctionTypeRef__ParamTypesAssignment_0_1_1_149512 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XFunctionTypeRef__ReturnTypeAssignment_249543 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__JvmParameterizedTypeReference__TypeAssignment_049578 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_149613 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_2_149644 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__JvmParameterizedTypeReference__TypeAssignment_1_4_149679 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_4_2_149714 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_4_2_2_149745 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmUpperBound_in_rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0_049776 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmUpperBoundAnded_in_rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0_149807 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmLowerBound_in_rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1_049838 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmLowerBoundAnded_in_rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1_149869 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__JvmUpperBound__TypeReferenceAssignment_149900 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__JvmUpperBoundAnded__TypeReferenceAssignment_149931 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__JvmLowerBound__TypeReferenceAssignment_149962 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__JvmLowerBoundAnded__TypeReferenceAssignment_149993 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXImportDeclaration_in_rule__XImportSection__ImportDeclarationsAssignment50027 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_rule__XImportDeclaration__StaticAssignment_1_0_050063 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_rule__XImportDeclaration__ExtensionAssignment_1_0_150107 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedNameInStaticImport_in_rule__XImportDeclaration__ImportedTypeAssignment_1_0_250150 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_rule__XImportDeclaration__WildcardAssignment_1_0_3_050190 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__XImportDeclaration__MemberNameAssignment_1_0_3_150229 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__XImportDeclaration__ImportedTypeAssignment_1_150264 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedNameWithWildcard_in_rule__XImportDeclaration__ImportedNamespaceAssignment_1_250299 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__OpOther__Group_6_1_0__0_in_synpred34_InternalMelange6751 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_27_in_synpred35_InternalMelange6770 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_0_in_synpred48_InternalMelange7329 = new BitSet(new long[]{0x0000000000000002L});

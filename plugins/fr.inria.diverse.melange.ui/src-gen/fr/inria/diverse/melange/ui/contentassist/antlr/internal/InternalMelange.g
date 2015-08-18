@@ -22193,8 +22193,12 @@ rule__PackageMapping__FromAssignment_0
     }
 :
 (
-{ before(grammarAccess.getPackageMappingAccess().getFromSTRINGTerminalRuleCall_0_0()); }
-	RULE_STRING{ after(grammarAccess.getPackageMappingAccess().getFromSTRINGTerminalRuleCall_0_0()); }
+{ before(grammarAccess.getPackageMappingAccess().getFromEPackageCrossReference_0_0()); }
+(
+{ before(grammarAccess.getPackageMappingAccess().getFromEPackageQualifiedNameParserRuleCall_0_0_1()); }
+	ruleQualifiedName{ after(grammarAccess.getPackageMappingAccess().getFromEPackageQualifiedNameParserRuleCall_0_0_1()); }
+)
+{ after(grammarAccess.getPackageMappingAccess().getFromEPackageCrossReference_0_0()); }
 )
 
 ;
@@ -22238,8 +22242,12 @@ rule__ClassMapping__FromAssignment_0
     }
 :
 (
-{ before(grammarAccess.getClassMappingAccess().getFromSTRINGTerminalRuleCall_0_0()); }
-	RULE_STRING{ after(grammarAccess.getClassMappingAccess().getFromSTRINGTerminalRuleCall_0_0()); }
+{ before(grammarAccess.getClassMappingAccess().getFromEClassCrossReference_0_0()); }
+(
+{ before(grammarAccess.getClassMappingAccess().getFromEClassQualifiedNameParserRuleCall_0_0_1()); }
+	ruleQualifiedName{ after(grammarAccess.getClassMappingAccess().getFromEClassQualifiedNameParserRuleCall_0_0_1()); }
+)
+{ after(grammarAccess.getClassMappingAccess().getFromEClassCrossReference_0_0()); }
 )
 
 ;
@@ -22283,8 +22291,12 @@ rule__PropertyMapping__FromAssignment_0
     }
 :
 (
-{ before(grammarAccess.getPropertyMappingAccess().getFromSTRINGTerminalRuleCall_0_0()); }
-	RULE_STRING{ after(grammarAccess.getPropertyMappingAccess().getFromSTRINGTerminalRuleCall_0_0()); }
+{ before(grammarAccess.getPropertyMappingAccess().getFromETypedElementCrossReference_0_0()); }
+(
+{ before(grammarAccess.getPropertyMappingAccess().getFromETypedElementQualifiedNameParserRuleCall_0_0_1()); }
+	ruleQualifiedName{ after(grammarAccess.getPropertyMappingAccess().getFromETypedElementQualifiedNameParserRuleCall_0_0_1()); }
+)
+{ after(grammarAccess.getPropertyMappingAccess().getFromETypedElementCrossReference_0_0()); }
 )
 
 ;
