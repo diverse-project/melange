@@ -212,7 +212,8 @@ class LanguageExtensions
 	 * Get the name of the project containing Java classes reifying the metamodel {@link mm}
 	 */
 	def String getExternalRuntimeName(Language l) {
-		return l.name + "_Gen"
+		return l.fullyQualifiedName.toLowerCase.toString
+//		return l.name + "_Gen"
 //		if (l.syntax.ecoreUri !== null) {
 //			val originalProjectName = URI::createURI(l.syntax.ecoreUri).segment(1)
 //
