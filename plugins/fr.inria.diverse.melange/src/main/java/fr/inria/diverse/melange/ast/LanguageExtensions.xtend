@@ -40,6 +40,13 @@ class LanguageExtensions
 		return l.operators.filter(Inheritance).map[superLanguage].toList
 	}
 
+	def List<Language> getAllSuperLanguages(Language l) {
+		val ret = newArrayList
+		ret += l.superLanguages
+		ret += l.operators.filter(Inheritance).map[superLanguage.allSuperLanguages].flatten
+		return ret
+	}
+
 	def boolean getIsComplete(Language l) {
 		return l.name !== null && l.syntax !== null && l.syntax.isComplete && l.semantics.forall[isComplete]
 	}

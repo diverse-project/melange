@@ -53,24 +53,20 @@ class MelangeValidator extends AbstractMelangeValidator
 
 	@Check
 	def void checkEcoreIsSet(ModelType mt) {
-		if (mt.extracted === null && (mt.ecoreUri === null || mt.ecoreUri.empty))
-			error(
-				"A valid Ecore file must be imported",
-				MelangePackage.Literals.MODELING_ELEMENT__ECORE_URI,
-				MelangeValidationConstants.MODELTYPE_ECORE_EMPTY
-			)
-	}
-
-	@Check
-	def void checkEcoreIsLoadable(ModelType mt) {
-		try {
-			if (mt.extracted === null && mt.ecoreUri !== null && modelUtils.loadPkg(mt.ecoreUri) === null)
+		if (mt.extracted === null) {
+			if (mt.ecoreUri === null || mt.ecoreUri.empty)
+				error(
+					"A valid Ecore file must be imported",
+					MelangePackage.Literals.MODELING_ELEMENT__ECORE_URI,
+					MelangeValidationConstants.MODELTYPE_ECORE_EMPTY
+				)
+			else if (mt.ecoreUri !== null && modelUtils.loadPkg(mt.ecoreUri) === null)
 				error(
 					"Couldn't load specified Ecore",
 					MelangePackage.Literals.MODELING_ELEMENT__ECORE_URI,
 					MelangeValidationConstants.MODELTYPE_ECORE_UNLOADABLE
 				)
-		} catch (Exception e) {}
+		}
 	}
 
 	@Check
@@ -89,65 +85,44 @@ class MelangeValidator extends AbstractMelangeValidator
 	}
 
 	@Check
-	def void checkGenModelIsSet(Language l) {
-		if (l.syntax.ecoreUri !== null && l.syntax.ecoreUri.endsWith(".ecore") && l.syntax.genmodelUris.head === null) {
-			// !!!
-			val speculativeGenmodelPath = l.syntax.ecoreUri.substring(0, l.syntax.ecoreUri.lastIndexOf(".")) + ".genmodel"
-			try {
+	def void checkImportIsValid(Import i) {
+		try {
+			val ecore = modelUtils.loadPkg(i.ecoreUri)
+
+			if (ecore === null)
+				error(
+					"Couldn't load specified Ecore",
+					MelangePackage.Literals.IMPORT__ECORE_URI,
+					MelangeValidationConstants.IMPORT_INVALID_URI
+				)
+
+			if (i.genmodelUris.empty) {
+				val speculativeGenmodelPath = i.ecoreUri.substring(0, i.ecoreUri.lastIndexOf(".")) + ".genmodel"
 				if (modelUtils.loadGenmodel(speculativeGenmodelPath) === null)
 					error(
 						"A valid Genmodel file must be imported",
-						l.syntax,
-						MelangePackage.Literals.METAMODEL__GENMODEL_URIS,
-						MelangeValidationConstants.METAMODEL_GENMODEL_UNLOADABLE
+						MelangePackage.Literals.IMPORT__GENMODEL_URIS,
+						MelangeValidationConstants.IMPORT_INVALID_GENMODEL
 					)
-			} catch (Exception e) {
-				error(
-					"A valid Genmodel file must be imported",
-					l.syntax,
-					MelangePackage.Literals.METAMODEL__GENMODEL_URIS,
-					MelangeValidationConstants.METAMODEL_GENMODEL_UNLOADABLE
-				)
+			} else {
+				i.genmodelUris.forEach[gmUri |
+					if (modelUtils.loadGenmodel(gmUri) === null)
+						error(
+							"A valid Genmodel file must be imported",
+							MelangePackage.Literals.IMPORT__GENMODEL_URIS,
+							MelangeValidationConstants.IMPORT_INVALID_GENMODEL
+						)
+				]
 			}
+		} catch (Exception e) {
+			error(
+				"Unexpected error while loading Ecore/Genmodel",
+				MelangePackage.Literals.IMPORT__ECORE_URI,
+				MelangeValidationConstants.IMPORT_LOADING_EXCEPTION
+			)
 		}
 	}
 
-	@Check
-	def void checkEcoreIsLoadable(Language l) {
-		try {
-			if (!l.generatedByMelange && l.syntax.ecoreUri !== null && modelUtils.loadPkg(l.syntax.ecoreUri) === null)
-				error(
-					"Couldn't load specified Ecore",
-					l.syntax,
-					MelangePackage.Literals.MODELING_ELEMENT__ECORE_URI,
-					MelangeValidationConstants.METAMODEL_ECORE_UNLOADABLE
-				)
-		} catch (Exception e) {}
-	}
-
-	@Check
-	def void checkGenModelIsLoadable(Language l) {
-		try {
-			if (!l.generatedByMelange && l.syntax.genmodelUris.head !== null && modelUtils.loadGenmodel(l.syntax.genmodelUris.head) === null)
-				error(
-					"Couldn't load specified GenModel",
-					l.syntax,
-					MelangePackage.Literals.METAMODEL__GENMODEL_URIS,
-					MelangeValidationConstants.METAMODEL_GENMODEL_UNLOADABLE
-				)
-		} catch (Exception e) {}
-	}
-//
-//	@Check
-//	def void checkAspectExists(Aspect a) {
-//		if (a.aspectTypeRef?.type === null || !(a.aspectTypeRef.type instanceof JvmDeclaredType))
-//			error(
-//				"Cannot find imported aspect class",
-//				MelangePackage.Literals.ASPECT__ASPECT_TYPE_REF,
-//				MelangeValidationConstants.ASPECT_NOT_FOUND
-//			)
-//	}
-	
 	@Check
 	def void checkHasAnnotationProcessorDependency(Aspect asp) {
 		if (asp.aspectTypeRef?.type !== null && asp.aspectTypeRef.type instanceof JvmDeclaredType && 
@@ -159,19 +134,6 @@ class MelangeValidator extends AbstractMelangeValidator
 				MelangeValidationConstants.INVALID_ASPECT_IMPORT
 			)
 	}
-
-//	@Check
-//	def void checkAspectHasAnnotation(Aspect a) {
-//		if (
-//			a.aspectTypeRef?.type instanceof JvmDeclaredType
-//			&& (a.aspectAnnotationValue === null || a.aspectAnnotationValue.length == 0)
-//		)
-//			error(
-//				"Cannot find @Aspect annotation",
-//				MelangePackage.Literals.ASPECT__ASPECT_TYPE_REF,
-//				MelangeValidationConstants.ASPECT_NO_ANNOTATION
-//			)
-//	}
 
 	// FIXME: Only one package is checked there,
 	//        and mtPkg may be null
@@ -207,8 +169,8 @@ class MelangeValidator extends AbstractMelangeValidator
 	}
 
 	@Check
-	def void checkNoSelfInheritance(Language l) {
-		if (l.superLanguages.exists[ll | ll.superLanguages.contains(l)])
+	def void checkNoCyclicInheritance(Language l) {
+		if (l.allSuperLanguages.exists[ll | ll.allSuperLanguages.contains(l)])
 			error(
 				"Cannot inherit from self",
 				MelangePackage.Literals.INHERITANCE__SUPER_LANGUAGE,
