@@ -9,9 +9,9 @@ import org.eclipse.core.resources.IResource
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.core.runtime.OperationCanceledException
 import org.eclipse.core.runtime.Status
-import org.eclipse.core.runtime.SubProgressMonitor
 import org.eclipse.core.runtime.jobs.Job
 import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.jface.viewers.IStructuredSelection
 import org.eclipse.ui.handlers.HandlerUtil
 import org.eclipse.xtext.resource.DerivedStateAwareResource
@@ -31,9 +31,8 @@ class GenerateAll extends AbstractHandler {
 					val selection = sel as IStructuredSelection
 					val resource = selection.firstElement as IResource
 					val project = resource.project
-					val rs = rsProvider.get(project)
+					val rs = new ResourceSetImpl//rsProvider.get(project)
 					val res = rs.getResource(URI::createPlatformResourceURI(resource.fullPath.toString, true), true) as DerivedStateAwareResource
-
 					builder.generateAll(res, project, monitor)
 				} catch (OperationCanceledException e) {
 					return Status.CANCEL_STATUS

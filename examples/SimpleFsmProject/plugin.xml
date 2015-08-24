@@ -1,44 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
 
-   <extension
-         point="fr.inria.diverse.melange.modeltype">
-      <modeltype
-            uri="http://fsmmt/"
-            id="simplefsm.FsmMT">
-      </modeltype>
-      <modeltype
-            uri="http://timedfsmmt/"
-            id="simplefsm.TimedFsmMT">
-         <subtyping
-               modeltypeId="simplefsm.FsmMT">
-         </subtyping>
-      </modeltype>
-   </extension>
-   <extension
-         point="fr.inria.diverse.melange.language">
-      <language
-            exactType="simplefsm.FsmMT"
-            uri="http://fsm/"
-            id="simplefsm.Fsm">
-         <adapter
-               class="simplefsm.fsm.adapters.fsmmt.FsmAdapter"
-               modeltypeId="simplefsm.FsmMT">
-         </adapter>
-      </language>
-      <language
-            exactType="simplefsm.TimedFsmMT"
-            uri="http://timedfsm/"
-            id="simplefsm.TimedFsm">
-         <adapter
-               class="simplefsm.timedfsm.adapters.fsmmt.TimedFsmAdapter"
-               modeltypeId="simplefsm.FsmMT">
-         </adapter>
-         <adapter
-               class="simplefsm.timedfsm.adapters.timedfsmmt.TimedFsmAdapter"
-               modeltypeId="simplefsm.TimedFsmMT">
-         </adapter>
-      </language>
-   </extension>
-
+  
 </plugin>

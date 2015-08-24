@@ -43,35 +43,35 @@ language Z inherits A {
 	exactType ZMT
 }
 
-transformation visitA(AMT m) {
-	val root = m.contents.head as inheritanceoverriding.amt.FSM
-
-	print("f1 = ")
-	root.f1
-	root.ownedState.forEach[s |
-		println("Visiting state("+s.name+")")
-		s.outgoingTransition.forEach[t |
-			println("\tVisiting trans("+t.input+")")
-		]
-	]
-	println
-}
-
-@Main
-transformation main() {
-	val mA = A.load("input/SimpleA.xmi")
-	val mB = B.load("input/SimpleB.xmi")
-	val mC = C.load("input/SimpleC.xmi")
-	val mD = D.load("input/SimpleD.xmi")
-	val mX = X.load("input/SimpleX.xmi")
-	val mY = Y.load("input/SimpleY.xmi")
-	val mZ = Z.load("input/SimpleZ.xmi")
-
-	visitA.call(mA)
-	visitA.call(mB)
-	visitA.call(mC)
-	visitA.call(mD)
-	visitA.call(mX)
-	visitA.call(mY)
-	visitA.call(mZ)
-}
+//transformation visitA(AMT m) {
+//	val root = m.contents.head as inheritanceoverriding.amt.FSM
+//
+//	print("f1 = ")
+//	root.f1
+//	root.ownedState.forEach[s |
+//		println("Visiting state("+s.name+")")
+//		s.outgoingTransition.forEach[t |
+//			println("\tVisiting trans("+t.input+")")
+//		]
+//	]
+//	println
+//}
+//
+//@Main
+//transformation main() {
+//	val mA = A.load("input/SimpleA.xmi")
+//	val mB = B.load("input/SimpleB.xmi")
+//	val mC = C.load("input/SimpleC.xmi")
+//	val mD = D.load("input/SimpleD.xmi")
+//	val mX = X.load("input/SimpleX.xmi")
+//	val mY = Y.load("input/SimpleY.xmi")
+//	val mZ = Z.load("input/SimpleZ.xmi")
+//
+//	visitA.call(mA)
+//	visitA.call(mB)
+//	visitA.call(mC)
+//	visitA.call(mD)
+//	visitA.call(mX)
+//	visitA.call(mY)
+//	visitA.call(mZ)
+//}

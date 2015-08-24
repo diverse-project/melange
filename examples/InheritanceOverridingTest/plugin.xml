@@ -116,7 +116,7 @@
       </language>
       <language
             exactType="inheritanceoverriding.BMT"
-            uri="http://fsm/"
+            uri="http://b/"
             id="inheritanceoverriding.B">
          <adapter
                class="inheritanceoverriding.b.adapters.amt.BAdapter"
@@ -133,7 +133,7 @@
       </language>
       <language
             exactType="inheritanceoverriding.CMT"
-            uri="http://fsm/"
+            uri="http://c/"
             id="inheritanceoverriding.C">
          <adapter
                class="inheritanceoverriding.c.adapters.amt.CAdapter"
@@ -162,7 +162,7 @@
       </language>
       <language
             exactType="inheritanceoverriding.DMT"
-            uri="http://fsm/"
+            uri="http://d/"
             id="inheritanceoverriding.D">
          <adapter
                class="inheritanceoverriding.d.adapters.amt.DAdapter"
@@ -195,7 +195,7 @@
       </language>
       <language
             exactType="inheritanceoverriding.XMT"
-            uri="http://fsm/"
+            uri="http://x/"
             id="inheritanceoverriding.X">
          <adapter
                class="inheritanceoverriding.x.adapters.amt.XAdapter"
@@ -212,7 +212,7 @@
       </language>
       <language
             exactType="inheritanceoverriding.YMT"
-            uri="http://fsm/"
+            uri="http://y/"
             id="inheritanceoverriding.Y">
          <adapter
                class="inheritanceoverriding.y.adapters.amt.YAdapter"
@@ -241,7 +241,7 @@
       </language>
       <language
             exactType="inheritanceoverriding.ZMT"
-            uri="http://fsm/"
+            uri="http://z/"
             id="inheritanceoverriding.Z">
          <adapter
                class="inheritanceoverriding.z.adapters.amt.ZAdapter"

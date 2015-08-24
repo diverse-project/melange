@@ -45,7 +45,7 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 	 */
 	def dispatch void infer(ModelTypingSpace root, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
 			// Only run codegen if everything's ready
-			if (root.languages.exists[!isComplete || !runtimeHasBeenGenerated] || root.modelTypes.exists[!isComplete])
+			/*if (root.languages.exists[!isComplete || !runtimeHasBeenGenerated] || root.modelTypes.exists[!isComplete])
 				return;
 
 			try {
@@ -71,7 +71,7 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 				logger.error('''ASTProcessingException: «e.message»''')
 			} catch (Exception e) {
 				logger.error('''Exception: «e.message»''', e)
-			}
+			}*/
 	}
 
 	/**

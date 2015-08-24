@@ -1,15 +1,14 @@
 package simpleaspects
 
 language Fsm {
-	syntax "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.fsm/model/FSM.ecore"
+	syntax "/SimpleAspectsProject/FSM.ecore"
 	with simpleaspects.ExecutableFsmAspect
 	with simpleaspects.ExecutableStateAspect
 	with simpleaspects.ExecutableTransitionAspect
 	exactType FsmMT
 }
 
-language TimedFsm {
-	syntax "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.timedfsm/model/TimedFSM.ecore"
+language TimedFsm inherits Fsm {
 	with simpleaspects.TimedFsmAspect
 	with simpleaspects.TimedStateAspect
 	with simpleaspects.TimedTransitionAspect

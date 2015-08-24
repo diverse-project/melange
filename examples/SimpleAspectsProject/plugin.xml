@@ -6,6 +6,9 @@
       <modeltype
             uri="http://fsmmt/"
             id="simpleaspects.FsmMT">
+         <subtyping
+               modeltypeId="simpleaspects.TimedFsmMT">
+         </subtyping>
       </modeltype>
       <modeltype
             uri="http://timedfsmmt/"
@@ -24,6 +27,10 @@
          <adapter
                class="simpleaspects.fsm.adapters.fsmmt.FsmAdapter"
                modeltypeId="simpleaspects.FsmMT">
+         </adapter>
+         <adapter
+               class="simpleaspects.fsm.adapters.timedfsmmt.FsmAdapter"
+               modeltypeId="simpleaspects.TimedFsmMT">
          </adapter>
       </language>
       <language
