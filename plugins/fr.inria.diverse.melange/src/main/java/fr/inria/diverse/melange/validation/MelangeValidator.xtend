@@ -1,11 +1,15 @@
 package fr.inria.diverse.melange.validation
 
+import com.google.common.collect.ArrayListMultimap
+import com.google.common.collect.ListMultimap
+import com.google.common.collect.Multimap
 import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
+import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.MatchingHelper
 import fr.inria.diverse.melange.lib.ModelUtils
 import fr.inria.diverse.melange.metamodel.melange.Aspect
@@ -13,38 +17,27 @@ import fr.inria.diverse.melange.metamodel.melange.Import
 import fr.inria.diverse.melange.metamodel.melange.Inheritance
 import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage
+import fr.inria.diverse.melange.metamodel.melange.Merge
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.NamedElement
+import fr.inria.diverse.melange.metamodel.melange.Operator
 import fr.inria.diverse.melange.metamodel.melange.ResourceType
 import fr.inria.diverse.melange.metamodel.melange.Slice
 import fr.inria.diverse.melange.metamodel.melange.Weave
+import fr.inria.diverse.melange.utils.AspectToEcore
+import java.util.ArrayList
 import java.util.Collections
+import java.util.List
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EDataType
+import org.eclipse.emf.ecore.EOperation
 import org.eclipse.xtext.common.types.JvmDeclaredType
+import org.eclipse.xtext.common.types.JvmField
+import org.eclipse.xtext.common.types.JvmGenericType
+import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.validation.Check
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
-import fr.inria.diverse.melange.ast.AspectExtensions
-import org.eclipse.emf.ecore.util.EcoreUtil
-import org.eclipse.xtext.common.types.JvmGenericType
-import org.eclipse.xtext.common.types.JvmField
-import fr.inria.diverse.melange.ast.MetamodelExtensions
-import fr.inria.diverse.melange.metamodel.melange.Merge
-import fr.inria.diverse.melange.metamodel.melange.Slice
-import fr.inria.diverse.melange.metamodel.melange.Operator
-import org.eclipse.emf.ecore.EClass
-import org.eclipse.xtext.common.types.JvmOperation
-import org.eclipse.emf.ecore.EOperation
-import org.eclipse.emf.ecore.EDataType
-import java.util.List
-import com.google.common.collect.Multimap
-import com.google.common.collect.ListMultimap
-import com.google.common.collect.ArrayListMultimap
-import java.util.Set
-import java.util.HashSet
-import fr.inria.diverse.melange.metamodel.melange.Weave
-import java.util.ArrayList
-import fr.inria.diverse.melange.lib.EcoreExtensions
-import fr.inria.diverse.melange.utils.AspectToEcore
 
 class MelangeValidator extends AbstractMelangeValidator
 {
