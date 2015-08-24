@@ -294,6 +294,19 @@ class MelangeValidator extends AbstractMelangeValidator
 							)
 						}
 					}
+					
+					val superRef = superClass.EAllReferences.findFirst[name == fieldName]
+					if(superRef !== null){
+						val superFieldType = superRef.EType
+						
+						if(fieldType.simpleName != superFieldType.name){
+							error(
+								"Aspect \'"+aspectName+"\' has a reference \'"+fieldName+"\' typed "+fieldType.simpleName+" but in \'"+superLang.name+"\' it is typed "+superFieldType.name,
+								MelangePackage.Literals.ASPECT__ASPECT_TYPE_REF,
+								MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING
+							)
+						}
+					}
 				}
 			]
 		]
