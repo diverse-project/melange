@@ -91,6 +91,8 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		language.syntax = MelangeFactory.eINSTANCE.createMetamodel
 		if (!language.isGeneratedByMelange) {
 			val importClause = language.operators.filter(Import).head
+			if (importClause === null)
+				return null;
 			language.syntax.ecoreUri = importClause.ecoreUri
 			language.syntax.genmodelUris += importClause.genmodelUris
 		} else if (language.runtimeHasBeenGenerated) {
