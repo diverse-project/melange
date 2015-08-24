@@ -16,12 +16,21 @@ import fr.inria.diverse.melange.metamodel.melange.ResourceType
 import java.util.Collections
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.validation.Check
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
+import fr.inria.diverse.melange.ast.AspectExtensions
+import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.xtext.common.types.JvmGenericType
+import org.eclipse.xtext.common.types.JvmField
+import fr.inria.diverse.melange.ast.MetamodelExtensions
 
 class MelangeValidator extends AbstractMelangeValidator
 {
 	@Inject extension LanguageExtensions
 	@Inject ModelUtils modelUtils
 	@Inject MatchingHelper matchingHelper
+	@Inject extension AspectExtensions
+	@Inject extension MetamodelExtensions
+	@Inject JvmTypeReferenceBuilder.Factory builderFactory
 
 	@Check
 	def void checkElementsAreNamed(NamedElement e) {
@@ -252,5 +261,41 @@ class MelangeValidator extends AbstractMelangeValidator
 				MelangePackage.Literals.ASPECT__ASPECT_WILDCARD_IMPORT,
 				MelangeValidationConstants.ASPECT_INVALID_WILDCARD
 			)
+	}
+	
+	@Check
+	def void checkOverriding(Aspect asp){
+		val aspectName = asp.aspectTypeRef.qualifiedName
+		val aspectedClass = asp.aspectTypeRef.aspectAnnotationValue
+		
+		val language = asp.eContainer as Language 
+		val typeRefBuilder = builderFactory.create(language.eResource.resourceSet)
+		
+		val ref = typeRefBuilder.typeRef(aspectName+aspectedClass+"AspectProperties")
+		val aspectProperties = ref.type as JvmGenericType
+		
+		aspectProperties.members.filter(JvmField).forEach[field |
+			val fieldName = field.simpleName
+			val fieldType = field.type.type
+			
+			language.operators.filter(Inheritance).forEach[inheritOp | 
+				val superLang = inheritOp.superLanguage
+				val superClass = superLang.syntax.findClass(aspectedClass)
+				if(superClass !== null){
+					val superField = superClass.EAllAttributes.findFirst[name == fieldName]
+					if(superField !== null){
+						val superFieldType = superField.EType
+						
+						if(fieldType.simpleName != superFieldType.name){
+							error(
+								"Aspect \'"+aspectName+"\' has an attribute \'"+fieldName+"\' typed "+fieldType.simpleName+" but in \'"+superLang.name+"\' it is typed "+superFieldType.name,
+								MelangePackage.Literals.ASPECT__ASPECT_TYPE_REF,
+								MelangeValidationConstants.MERGE_ATTRIBUTE_OVERRIDING
+							)
+						}
+					}
+				}
+			]
+		]
 	}
 }
