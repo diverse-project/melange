@@ -214,14 +214,15 @@ class LanguageExtensions
 	 * Get the name of the project containing Java classes reifying the metamodel {@link mm}
 	 */
 	def String getExternalRuntimeName(Language l) {
-		if (l.syntax.ecoreUri !== null) {
-			val originalProjectName = URI::createURI(l.syntax.ecoreUri).segment(1)
-
-			return originalProjectName
-		}
-		else{
-			return l.name + "_Gen"
-		}
+		return l.name + "_Gen"
+//		if (l.syntax.ecoreUri !== null) {
+//			val originalProjectName = URI::createURI(l.syntax.ecoreUri).segment(1)
+//
+//			return originalProjectName
+//		}
+//		else{
+//			return l.name + "_Gen"
+//		}
 //		 else if (mm.inheritanceRelation.superMetamodel.ecoreUri !== null) {
 //			val originalProjectName = URI::createURI(mm.inheritanceRelation.superMetamodel.ecoreUri).segment(1)
 //			
