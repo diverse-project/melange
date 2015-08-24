@@ -165,16 +165,6 @@ class MelangeValidator extends AbstractMelangeValidator
 	}
 
 	@Check
-	def void checkExactTypeIsSet(Language l) {
-		if (l.exactTypeName === null || l.exactType === null)
-			error(
-				"exactType feature must be set",
-				MelangePackage.Literals.LANGUAGE__EXACT_TYPE_NAME,
-				MelangeValidationConstants.METAMODEL_EXACTTYPE_ERROR
-			)
-	}
-
-	@Check
 	def void checkNoCyclicInheritance(Language l) {
 		if (l.allSuperLanguages.exists[ll | ll.allSuperLanguages.contains(l)])
 			error(
