@@ -3,6 +3,7 @@ package fr.inria.diverse.melange.validation
 import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.ast.LanguageExtensions
+import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.lib.MatchingHelper
 import fr.inria.diverse.melange.lib.ModelUtils
 import fr.inria.diverse.melange.metamodel.melange.Aspect
@@ -14,6 +15,7 @@ import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.NamedElement
 import fr.inria.diverse.melange.metamodel.melange.ResourceType
+import fr.inria.diverse.melange.metamodel.melange.Slice
 import fr.inria.diverse.melange.metamodel.melange.Weave
 import java.util.Collections
 import org.eclipse.xtext.common.types.JvmDeclaredType
@@ -21,8 +23,9 @@ import org.eclipse.xtext.validation.Check
 
 class MelangeValidator extends AbstractMelangeValidator
 {
-	@Inject extension LanguageExtensions
 	@Inject extension AspectExtensions
+	@Inject extension LanguageExtensions
+	@Inject extension MetamodelExtensions
 	@Inject ModelUtils modelUtils
 	@Inject MatchingHelper matchingHelper
 
@@ -231,6 +234,19 @@ class MelangeValidator extends AbstractMelangeValidator
 				"Only wildcard imports are supported, e.g. my.pkg.*",
 				MelangePackage.Literals.ASPECT__ASPECT_WILDCARD_IMPORT,
 				MelangeValidationConstants.ASPECT_INVALID_WILDCARD
+			)
+	}
+
+	@Check
+	def void checkSliceCriteria(Slice s) {
+		val invalidRoots = s.roots.filter[clsName | s.slicedLanguage.syntax.findClassifier(clsName) === null]
+		val invalidRootsSize = invalidRoots.size
+
+		if (invalidRootsSize > 0)
+			error(
+				'''Invalid slicing criterion: cannot find class«IF invalidRootsSize > 1»es«ENDIF»: «invalidRoots.join(", ")»''',
+				MelangePackage.Literals.SLICE__ROOTS,
+				MelangeValidationConstants.SLICE_INVALID_ROOT
 			)
 	}
 }

@@ -32,4 +32,5 @@ class MelangeValidationConstants
 	public static final String MAPPING_UNKNOWN_LANG = "MAPPING_UNKNOWN_LANG"
 	public static final String MAPPING_UNKNOWN_CLASS = "MAPPING_UNKNOWN_CLASS"
 	public static final String MAPPING_UNKNOWN_PROPERTY = "MAPPING_UNKNOWN_PROPERTY"
+	public static final String SLICE_INVALID_ROOT = "SLICE_INVALID_ROOT"
 }
