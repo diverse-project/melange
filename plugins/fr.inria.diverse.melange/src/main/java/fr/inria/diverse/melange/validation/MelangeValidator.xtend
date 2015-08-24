@@ -1,6 +1,7 @@
 package fr.inria.diverse.melange.validation
 
 import com.google.inject.Inject
+import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.lib.MatchingHelper
 import fr.inria.diverse.melange.lib.ModelUtils
@@ -13,6 +14,7 @@ import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.NamedElement
 import fr.inria.diverse.melange.metamodel.melange.ResourceType
+import fr.inria.diverse.melange.metamodel.melange.Weave
 import java.util.Collections
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.validation.Check
@@ -20,6 +22,7 @@ import org.eclipse.xtext.validation.Check
 class MelangeValidator extends AbstractMelangeValidator
 {
 	@Inject extension LanguageExtensions
+	@Inject extension AspectExtensions
 	@Inject ModelUtils modelUtils
 	@Inject MatchingHelper matchingHelper
 
@@ -201,6 +204,21 @@ class MelangeValidator extends AbstractMelangeValidator
 				MelangeValidationConstants.METAMODEL_NO_EMF_RUNTIME
 			)
 		}
+	}
+
+	@Check
+	def void checkAspectAnnotationIsValid(Aspect asp) {
+		val clsName = asp.aspectTypeRef.aspectAnnotationValue
+		val lang = asp.eContainer as Language
+		val correspondingWeave = lang.operators.filter(Weave).findFirst[aspectTypeRef.simpleName == asp.aspectTypeRef.simpleName]
+
+		if (clsName !== null && correspondingWeave !== null && asp.aspectedClass === null)
+			error(
+				'''Cannot find target class «clsName»''',
+				correspondingWeave,
+				MelangePackage.Literals.WEAVE__ASPECT_TYPE_REF,
+				MelangeValidationConstants.WEAVE_INVALID_TARGET
+			)
 	}
 
 	@Check
