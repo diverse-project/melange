@@ -60,9 +60,9 @@ class LanguageExtensions
 	 */
 	def List<JvmTypeReference> allAspects(Language l) {
 		val res = newArrayList
-		
-		res.addAll(l.operators.filter(Weave).map[aspectTypeRef])
-		res.addAll(
+
+		res += l.operators.filter(Inheritance).map[superLanguage.allAspects].flatten		
+		res +=
 			l.operators.map[op |
 				if (op instanceof Slice)
 					op.slicedLanguage.allAspects
@@ -71,17 +71,16 @@ class LanguageExtensions
 				else
 					newArrayList
 			].flatten
-		)
-		res.addAll(l.operators.filter(Inheritance).map[superLanguage.allAspects].flatten)
+		res += l.operators.filter(Weave).map[aspectTypeRef]
 
-		return res
+		return res.reverse
 	}
 
 	def List<Aspect> allSemantics(Language l) {
 		val tmp = newArrayList
 		
-		tmp.addAll(l.semantics)
-		tmp.addAll(
+		tmp += l.superLanguages.map[allSemantics].flatten
+		tmp +=
 			l.operators.map[op |
 				if (op instanceof Slice)
 					op.slicedLanguage.allSemantics
@@ -90,15 +89,14 @@ class LanguageExtensions
 				else
 					newArrayList
 			].flatten
-		)
-		tmp.addAll(l.superLanguages.map[allSemantics].flatten)
+		tmp += l.semantics
 
 		val res = newArrayList
 		tmp.forEach[a1 |
 			if (!res.exists[Aspect a2 | a2.aspectTypeRef.identifier == a1.aspectTypeRef.identifier])
 				res += a1
 		]
-		return res
+		return res.reverse
 	}
 
 	def Iterable<Aspect> findAspectsOn(Language l, EClass cls) {
