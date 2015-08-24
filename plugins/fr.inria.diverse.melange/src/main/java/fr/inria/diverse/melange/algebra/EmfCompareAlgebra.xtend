@@ -103,7 +103,10 @@ class EmfCompareAlgebra implements ModelTypeAlgebra
 	/**
 	 * Get elements from {@link left} which are not in {@link right} and copy them in {@link right} 
 	 */
-	def void merge(EPackage left, EPackage right){
+	def void merge(EPackage left, EPackage right) {
+		if (left === null || right === null)
+			return
+
 		val scope = new DefaultComparisonScope(left, right, null)
 		val comparison = customEMFCompare.compare(scope)
 
