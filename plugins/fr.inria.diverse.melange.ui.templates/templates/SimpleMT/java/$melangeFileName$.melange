@@ -3,7 +3,7 @@ package $packageName$
 import static extension fr.inria.diverse.melange.lib.MetamodelExtensions.*
 
 language $metamodelName$ {
-	ecore "platform:/resource/$ecoreFilePath$"
+	syntax "platform:/resource/$ecoreFilePath$"
 	exactType $metamodelName$MT
 }
 

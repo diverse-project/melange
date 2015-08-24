@@ -18,7 +18,7 @@ class MelangeFilesTemplates
 			package «pkgName»
 
 			language «mmName» {
-				ecore «ecoreUri»
+				syntax «ecoreUri»
 				exactType «mmName»MT
 			}
 
