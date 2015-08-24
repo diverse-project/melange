@@ -357,7 +357,9 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 	 * Renames packages, classes & features from {@link model} according to the rules from {@link mappingRules}
 	 */
 	private def void applyRenaming(EPackage modelRoot, List<PackageBinding> mappingRules){
-		
+		if (mappingRules.empty)
+			return;
+
 		mappingRules.forEach[ packageRule |
 			val sourcePack = if(modelRoot.name == packageRule.from) modelRoot else modelRoot.findSubPackage(packageRule.from.substring(packageRule.from.indexOf(".")+1))
 			packageRule.classes.forEach[classRule |
