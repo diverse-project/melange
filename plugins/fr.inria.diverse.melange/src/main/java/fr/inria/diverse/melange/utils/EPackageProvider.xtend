@@ -41,9 +41,6 @@ class EPackageProvider
 	}
 
 	def List<EPackage> getPackages(ModelingElement m) {
-		println("current="+m.eResource+"("+m.eResource.resourceSet+")")
-		println("currentResources = ")
-		rs.resources.forEach[println("\t"+it)]
 		if (!packages.containsKey(m.fqn)) {
 			if (m instanceof Metamodel) {
 				val project = m.eResource.project
