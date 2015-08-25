@@ -28,10 +28,14 @@ import fr.inria.diverse.melange.metamodel.melange.Weave
 import fr.inria.diverse.melange.utils.AspectToEcore
 import java.util.ArrayList
 import java.util.Collections
+<<<<<<< 553867e488f5974d20ad10d6fdc7b2cf7292f2b7
 import java.util.List
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.EOperation
+=======
+import org.eclipse.emf.ecore.EClass
+>>>>>>> Melange validator: refactor overriding error
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmField
 import org.eclipse.xtext.common.types.JvmGenericType
@@ -324,6 +328,7 @@ class MelangeValidator extends AbstractMelangeValidator
 			
 			language.operators.forEach[operator | 
 				
+<<<<<<< 553867e488f5974d20ad10d6fdc7b2cf7292f2b7
 <<<<<<< b1d4537b77632763b1bb6c8c9206ff142d0d2f01
 				val superClass = operator.findClass(aspectedClass)
 =======
@@ -331,6 +336,9 @@ class MelangeValidator extends AbstractMelangeValidator
 				
 				val superClass = superLang.syntax.findClass(aspectedClass)
 >>>>>>> Melange validator: overriding error marker for Merge, Slice and Inherit operator
+=======
+				val superClass = operator.findClass(aspectedClass)
+>>>>>>> Melange validator: refactor overriding error
 				if(superClass !== null){
 					val superField = superClass.EAllAttributes.findFirst[name == fieldName]
 					if(superField !== null){
@@ -426,8 +434,12 @@ class MelangeValidator extends AbstractMelangeValidator
 	 * Return the Language referenced if {@link operator} is an Inheritance, Merge or Slice.
 =======
 	/**
+<<<<<<< 553867e488f5974d20ad10d6fdc7b2cf7292f2b7
 	 * Return the Language if {@link operator} is a Inheritance, Merge or Slice.
 >>>>>>> Melange validator: overriding error marker for Merge, Slice and Inherit operator
+=======
+	 * Return the Language referenced if {@link operator} is an Inheritance, Merge or Slice.
+>>>>>>> Melange validator: refactor overriding error
 	 * Return null otherwise. 
 	 */
 	private def Language getLanguage(Operator operator){
@@ -667,5 +679,20 @@ class MelangeValidator extends AbstractMelangeValidator
 		}
 		return null
 	}
+<<<<<<< 553867e488f5974d20ad10d6fdc7b2cf7292f2b7
 >>>>>>> Melange validator: overriding error marker for Merge, Slice and Inherit operator
+=======
+	
+	/**
+	 * Find {@link className} in the result of {@link op}.
+	 * Return null if not found or if {@link op} is not a Merge,Slice or Inheritance
+	 */
+	private def EClass findClass(Operator op, String className){
+		val superLang = getLanguage(op) //FIXME: Slice result may be smaller than the ref Language
+		if(superLang != null){
+			return superLang.syntax.findClass(className)
+		}
+		return null
+	}
+>>>>>>> Melange validator: refactor overriding error
 }
