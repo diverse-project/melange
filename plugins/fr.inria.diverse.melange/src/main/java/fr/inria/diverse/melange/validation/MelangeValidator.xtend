@@ -255,4 +255,14 @@ class MelangeValidator extends AbstractMelangeValidator
 				MelangeValidationConstants.METAMODEL_NO_GENPACKAGE
 			)
 	}
+
+	@Check
+	def void checkLanguageNameDoesntConflictWithClassifier(Language l) {
+		if (l.syntax.findClassifier(l.name) !== null)
+			error(
+				'''Language name conflicts with one of its meta-classes: «l.name»''',
+				MelangePackage.Literals.NAMED_ELEMENT__NAME,
+				MelangeValidationConstants.LANGUAGE_NAME_CONFLICTS_METACLASS
+			)
+	}
 }
