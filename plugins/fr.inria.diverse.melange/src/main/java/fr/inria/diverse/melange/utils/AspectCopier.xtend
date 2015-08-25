@@ -93,7 +93,7 @@ class AspectCopier
 		//val targetAspectFolder = projectPathTmp.toString + "/../" + targetAspectNamespace + "/src-gen/"
 		val sourceFolderFile = new File(sourceAspectFolder)
 		val sourceProject = ws.getProject(projectNameTmp.toString)
-		val findTargetProject = ws.getProject(l.name+"_Gen")
+		val findTargetProject = ws.getProject(l.externalRuntimeName)
 		// FIXME: Just to have a first call of the EPackageProvider
 		//        in order to set the ecoreUri when inherited
 		val x = l.syntax.pkgs
@@ -105,7 +105,7 @@ class AspectCopier
 			else
 				eclipseHelper.createAspectsRuntimeProject(
 					sourceProject,
-					l.name+"_Gen",
+					l.externalRuntimeName,
 					targetAspectNamespace.toString,
 					emfRuntimeProject
 				)
