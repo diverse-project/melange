@@ -324,7 +324,13 @@ class MelangeValidator extends AbstractMelangeValidator
 			
 			language.operators.forEach[operator | 
 				
+<<<<<<< b1d4537b77632763b1bb6c8c9206ff142d0d2f01
 				val superClass = operator.findClass(aspectedClass)
+=======
+				val superLang = getLanguage(operator)
+				
+				val superClass = superLang.syntax.findClass(aspectedClass)
+>>>>>>> Melange validator: overriding error marker for Merge, Slice and Inherit operator
 				if(superClass !== null){
 					val superField = superClass.EAllAttributes.findFirst[name == fieldName]
 					if(superField !== null){
@@ -356,6 +362,7 @@ class MelangeValidator extends AbstractMelangeValidator
 		]
 	}
 	
+<<<<<<< b1d4537b77632763b1bb6c8c9206ff142d0d2f01
 	@Check
 	def void checkOperationOverriding(Aspect asp){
 		val language = asp.eContainer as Language
@@ -417,10 +424,15 @@ class MelangeValidator extends AbstractMelangeValidator
 	
 	/**
 	 * Return the Language referenced if {@link operator} is an Inheritance, Merge or Slice.
+=======
+	/**
+	 * Return the Language if {@link operator} is a Inheritance, Merge or Slice.
+>>>>>>> Melange validator: overriding error marker for Merge, Slice and Inherit operator
 	 * Return null otherwise. 
 	 */
 	private def Language getLanguage(Operator operator){
 		if(operator instanceof Inheritance){
+<<<<<<< b1d4537b77632763b1bb6c8c9206ff142d0d2f01
 			return (operator as Inheritance).targetLanguage
 		}
 		else if(operator instanceof Merge){
@@ -644,4 +656,16 @@ class MelangeValidator extends AbstractMelangeValidator
 			}
 		]
 	}
+=======
+			return (operator as Inheritance).superLanguage
+		}
+		else if(operator instanceof Merge){
+			return (operator as Merge).mergedLanguage
+		}
+		else if(operator instanceof Slice){
+			return (operator as Slice).slicedLanguage
+		}
+		return null
+	}
+>>>>>>> Melange validator: overriding error marker for Merge, Slice and Inherit operator
 }
