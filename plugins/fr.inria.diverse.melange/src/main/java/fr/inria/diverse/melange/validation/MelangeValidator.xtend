@@ -28,7 +28,10 @@ import fr.inria.diverse.melange.metamodel.melange.Weave
 import fr.inria.diverse.melange.utils.AspectToEcore
 import java.util.ArrayList
 import java.util.Collections
+<<<<<<< f49c541ad4e83608cd183dad960fa01b7536574a
 <<<<<<< 553867e488f5974d20ad10d6fdc7b2cf7292f2b7
+=======
+>>>>>>> Add helper method to find merging classes from a list of Operators
 import java.util.List
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EDataType
@@ -748,5 +751,37 @@ class MelangeValidator extends AbstractMelangeValidator
 		}
 		return false
 	}
+<<<<<<< f49c541ad4e83608cd183dad960fa01b7536574a
 >>>>>>> Melange validator: add an error marker when an Aspect declare an operation already in a super Language with a different return type
+=======
+	
+	/**
+	 * Return classes from results of {@link operators} which have to be merged 
+	 * (i.e classes with the same name).
+	 * 
+	 * Classes are associated with their containing Language
+	 */
+	private def Multimap<String,Pair<EClass,Language>> findMergedClasses(List<Operator> operators){
+		val ListMultimap<String,Pair<EClass,Language>> res = ArrayListMultimap.create
+		
+		val ListMultimap<String,Pair<EClass,Language>> sortByName = ArrayListMultimap.create
+		operators.forEach[op |
+			val lang = op.language //FIXME: Slice result may be smaller than the ref Language 
+			if(lang !== null){
+				lang.syntax.allClasses.forEach[clazz|
+					sortByName.put(clazz.name, clazz->lang)
+				]
+			}
+		]
+		
+		sortByName.keys.forEach[className |
+			val list = sortByName.get(className)
+			if(list.size > 1){
+				res.putAll(className,list)
+			}
+		]
+		
+		return res
+	}
+>>>>>>> Add helper method to find merging classes from a list of Operators
 }
