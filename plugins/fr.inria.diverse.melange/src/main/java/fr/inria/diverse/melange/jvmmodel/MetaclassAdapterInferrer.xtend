@@ -333,6 +333,8 @@ class MetaclassAdapterInferrer
 					op.returnType.type.typeRef(superType.typeRef(mtCls, #[jvmCls]))
 				else
 					superType.typeRef(mtCls, #[jvmCls])
+			else if (op.returnType.isCollection)
+				op.returnType.type.typeRef((op.returnType as JvmParameterizedTypeReference).arguments.head.qualifiedName.typeRef)
 			else
 				op.returnType.qualifiedName.typeRef
 
