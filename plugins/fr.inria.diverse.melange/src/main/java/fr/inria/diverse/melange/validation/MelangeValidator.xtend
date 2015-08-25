@@ -22,6 +22,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtext.common.types.JvmGenericType
 import org.eclipse.xtext.common.types.JvmField
 import fr.inria.diverse.melange.ast.MetamodelExtensions
+import fr.inria.diverse.melange.metamodel.melange.Merge
+import fr.inria.diverse.melange.metamodel.melange.Slice
+import fr.inria.diverse.melange.metamodel.melange.Operator
 
 class MelangeValidator extends AbstractMelangeValidator
 {
@@ -278,8 +281,10 @@ class MelangeValidator extends AbstractMelangeValidator
 			val fieldName = field.simpleName
 			val fieldType = field.type.type
 			
-			language.operators.filter(Inheritance).forEach[inheritOp | 
-				val superLang = inheritOp.superLanguage
+			language.operators.forEach[operator | 
+				
+				val superLang = getLanguage(operator)
+				
 				val superClass = superLang.syntax.findClass(aspectedClass)
 				if(superClass !== null){
 					val superField = superClass.EAllAttributes.findFirst[name == fieldName]
@@ -310,5 +315,22 @@ class MelangeValidator extends AbstractMelangeValidator
 				}
 			]
 		]
+	}
+	
+	/**
+	 * Return the Language if {@link operator} is a Inheritance, Merge or Slice.
+	 * Return null otherwise. 
+	 */
+	private def Language getLanguage(Operator operator){
+		if(operator instanceof Inheritance){
+			return (operator as Inheritance).superLanguage
+		}
+		else if(operator instanceof Merge){
+			return (operator as Merge).mergedLanguage
+		}
+		else if(operator instanceof Slice){
+			return (operator as Slice).slicedLanguage
+		}
+		return null
 	}
 }
