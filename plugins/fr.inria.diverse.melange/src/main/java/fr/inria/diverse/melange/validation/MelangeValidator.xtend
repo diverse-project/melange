@@ -29,6 +29,12 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EDataType
+import java.util.List
+import com.google.common.collect.Multimap
+import com.google.common.collect.ListMultimap
+import com.google.common.collect.ArrayListMultimap
+import java.util.Set
+import java.util.HashSet
 
 class MelangeValidator extends AbstractMelangeValidator
 {
@@ -429,5 +435,34 @@ class MelangeValidator extends AbstractMelangeValidator
 			}
 		}
 		return false
+	}
+	
+	/**
+	 * Return classes from results of {@link operators} which have to be merged 
+	 * (i.e classes with the same name).
+	 * 
+	 * Classes are associated with their containing Language
+	 */
+	private def Multimap<String,Pair<EClass,Language>> findMergedClasses(List<Operator> operators){
+		val ListMultimap<String,Pair<EClass,Language>> res = ArrayListMultimap.create
+		
+		val ListMultimap<String,Pair<EClass,Language>> sortByName = ArrayListMultimap.create
+		operators.forEach[op |
+			val lang = op.language //FIXME: Slice result may be smaller than the ref Language 
+			if(lang !== null){
+				lang.syntax.allClasses.forEach[clazz|
+					sortByName.put(clazz.name, clazz->lang)
+				]
+			}
+		]
+		
+		sortByName.keys.forEach[className |
+			val list = sortByName.get(className)
+			if(list.size > 1){
+				res.putAll(className,list)
+			}
+		]
+		
+		return res
 	}
 }
