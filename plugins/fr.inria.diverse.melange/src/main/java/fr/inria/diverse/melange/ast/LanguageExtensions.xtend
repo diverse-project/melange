@@ -3,6 +3,7 @@ package fr.inria.diverse.melange.ast
 import com.google.inject.Inject
 import fr.inria.diverse.melange.algebra.ModelTypeAlgebra
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
+import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.Import
 import fr.inria.diverse.melange.metamodel.melange.Inheritance
@@ -14,7 +15,6 @@ import fr.inria.diverse.melange.metamodel.melange.Slice
 import fr.inria.diverse.melange.metamodel.melange.Weave
 import fr.inria.diverse.melange.utils.AspectCopier
 import java.util.List
-import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.xtext.common.types.JvmTypeReference
@@ -29,6 +29,7 @@ class LanguageExtensions
 	@Inject extension MetamodelExtensions
 	@Inject extension AspectExtensions
 	@Inject extension ModelTypeExtensions
+	@Inject extension EcoreExtensions
 	@Inject extension IQualifiedNameConverter
 	@Inject extension EclipseProjectHelper
 	@Inject extension IQualifiedNameProvider
@@ -123,10 +124,13 @@ class LanguageExtensions
 	}
 
 	def boolean hasAdapterFor(Language l, ModelType mt, String find) {
+		val syntaxFind = l.syntax.allClasses.findFirst[name == find]
+
 		return
 		   l.^implements.exists[name == mt.name]
-		&& l.syntax.allClasses.exists[name == find]
+		&& syntaxFind !== null
 		&& mt.allClasses.exists[name == find]
+		&& syntaxFind.abstractable
 	}
 
 	def boolean isUml(Language l, EClassifier cls) {
