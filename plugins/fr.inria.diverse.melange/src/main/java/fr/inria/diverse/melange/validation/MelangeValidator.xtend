@@ -25,6 +25,7 @@ import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.metamodel.melange.Merge
 import fr.inria.diverse.melange.metamodel.melange.Slice
 import fr.inria.diverse.melange.metamodel.melange.Operator
+import org.eclipse.emf.ecore.EClass
 
 class MelangeValidator extends AbstractMelangeValidator
 {
@@ -267,7 +268,7 @@ class MelangeValidator extends AbstractMelangeValidator
 	}
 	
 	@Check
-	def void checkOverriding(Aspect asp){
+	def void checkPropertiesOverriding(Aspect asp){
 		val aspectName = asp.aspectTypeRef.qualifiedName
 		val aspectedClass = asp.aspectTypeRef.aspectAnnotationValue
 		
@@ -283,9 +284,7 @@ class MelangeValidator extends AbstractMelangeValidator
 			
 			language.operators.forEach[operator | 
 				
-				val superLang = getLanguage(operator)
-				
-				val superClass = superLang.syntax.findClass(aspectedClass)
+				val superClass = operator.findClass(aspectedClass)
 				if(superClass !== null){
 					val superField = superClass.EAllAttributes.findFirst[name == fieldName]
 					if(superField !== null){
@@ -293,7 +292,7 @@ class MelangeValidator extends AbstractMelangeValidator
 						
 						if(fieldType.simpleName != superFieldType.name){
 							error(
-								"Aspect \'"+aspectName+"\' has an attribute \'"+fieldName+"\' typed "+fieldType.simpleName+" but in \'"+superLang.name+"\' it is typed "+superFieldType.name,
+								"Aspect \'"+aspectName+"\' has an attribute \'"+fieldName+"\' typed "+fieldType.simpleName+" but in \'"+operator.language.name+"\' it is typed "+superFieldType.name,
 								MelangePackage.Literals.ASPECT__ASPECT_TYPE_REF,
 								MelangeValidationConstants.MERGE_ATTRIBUTE_OVERRIDING
 							)
@@ -306,7 +305,7 @@ class MelangeValidator extends AbstractMelangeValidator
 						
 						if(fieldType.simpleName != superFieldType.name){
 							error(
-								"Aspect \'"+aspectName+"\' has a reference \'"+fieldName+"\' typed "+fieldType.simpleName+" but in \'"+superLang.name+"\' it is typed "+superFieldType.name,
+								"Aspect \'"+aspectName+"\' has a reference \'"+fieldName+"\' typed "+fieldType.simpleName+" but in \'"+operator.language.name+"\' it is typed "+superFieldType.name,
 								MelangePackage.Literals.ASPECT__ASPECT_TYPE_REF,
 								MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING
 							)
@@ -318,7 +317,7 @@ class MelangeValidator extends AbstractMelangeValidator
 	}
 	
 	/**
-	 * Return the Language if {@link operator} is a Inheritance, Merge or Slice.
+	 * Return the Language referenced if {@link operator} is an Inheritance, Merge or Slice.
 	 * Return null otherwise. 
 	 */
 	private def Language getLanguage(Operator operator){
@@ -330,6 +329,18 @@ class MelangeValidator extends AbstractMelangeValidator
 		}
 		else if(operator instanceof Slice){
 			return (operator as Slice).slicedLanguage
+		}
+		return null
+	}
+	
+	/**
+	 * Find {@link className} in the result of {@link op}.
+	 * Return null if not found or if {@link op} is not a Merge,Slice or Inheritance
+	 */
+	private def EClass findClass(Operator op, String className){
+		val superLang = getLanguage(op) //FIXME: Slice result may be smaller than the ref Language
+		if(superLang != null){
+			return superLang.syntax.findClass(className)
 		}
 		return null
 	}
