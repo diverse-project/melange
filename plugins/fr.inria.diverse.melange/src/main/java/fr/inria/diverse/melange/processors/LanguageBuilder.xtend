@@ -327,7 +327,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		val res = new ArrayList<EModelElement>()
 		
 		rootPackage.EClassifiers.filter(EClass).forEach[cl|
-			if(classes.contains(cl)) res.add(cl)
+			if(classes.exists[it.name == cl.name]) res.add(cl)
 		]
 		
 		return res
