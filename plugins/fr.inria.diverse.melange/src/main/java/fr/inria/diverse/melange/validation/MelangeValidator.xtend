@@ -246,14 +246,16 @@ class MelangeValidator extends AbstractMelangeValidator
 
 	@Check
 	def void checkEveryPackageHasAGenPackage(Language l) {
-		val invalidPkgs = l.syntax.pkgs.filter[l.syntax.getGenPackageFor(it) === null]
+		if (!l.isGeneratedByMelange) {
+			val invalidPkgs = l.syntax.pkgs.filter[l.syntax.getGenPackageFor(it) === null]
 
-		if (invalidPkgs.size > 0)
-			error(
-				'''Unexpected error: cannot find a GenPackage for: «invalidPkgs.map[name].join(", ")»''',
-				MelangePackage.Literals.LANGUAGE__SYNTAX,
-				MelangeValidationConstants.METAMODEL_NO_GENPACKAGE
-			)
+			if (invalidPkgs.size > 0)
+				error(
+					'''Unexpected error: cannot find a GenPackage for: «invalidPkgs.map[name].join(", ")»''',
+					MelangePackage.Literals.LANGUAGE__SYNTAX,
+					MelangeValidationConstants.METAMODEL_NO_GENPACKAGE
+				)
+		}
 	}
 
 	@Check
