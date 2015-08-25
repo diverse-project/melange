@@ -33,9 +33,12 @@ import java.util.List
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.EOperation
+<<<<<<< 21ff547d139b128ab5a46850cfd568df196cd9a3
 =======
 import org.eclipse.emf.ecore.EClass
 >>>>>>> Melange validator: refactor overriding error
+=======
+>>>>>>> Melange validator: add an error marker when an Aspect declare an operation already in a super Language with a different return type
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmField
 import org.eclipse.xtext.common.types.JvmGenericType
@@ -370,7 +373,10 @@ class MelangeValidator extends AbstractMelangeValidator
 		]
 	}
 	
+<<<<<<< 21ff547d139b128ab5a46850cfd568df196cd9a3
 <<<<<<< b1d4537b77632763b1bb6c8c9206ff142d0d2f01
+=======
+>>>>>>> Melange validator: add an error marker when an Aspect declare an operation already in a super Language with a different return type
 	@Check
 	def void checkOperationOverriding(Aspect asp){
 		val language = asp.eContainer as Language
@@ -412,6 +418,7 @@ class MelangeValidator extends AbstractMelangeValidator
 		]
 	}
 	
+<<<<<<< 21ff547d139b128ab5a46850cfd568df196cd9a3
 	@Check
 	def void checkStructuralOverriding(Language lang){
 		val operators = lang.operators
@@ -430,6 +437,8 @@ class MelangeValidator extends AbstractMelangeValidator
 		]
 	}
 	
+=======
+>>>>>>> Melange validator: add an error marker when an Aspect declare an operation already in a super Language with a different return type
 	/**
 	 * Return the Language referenced if {@link operator} is an Inheritance, Merge or Slice.
 =======
@@ -694,5 +703,50 @@ class MelangeValidator extends AbstractMelangeValidator
 		}
 		return null
 	}
+<<<<<<< 21ff547d139b128ab5a46850cfd568df196cd9a3
 >>>>>>> Melange validator: refactor overriding error
+=======
+	
+	/**
+	 * Return true if {@link method} and {@link operation} have the same name and their arguments'
+	 * type are the same.
+	 * 
+	 * @param method method from a K3 Aspect
+	 */
+	private def boolean isMatching(JvmOperation method, EOperation operation){
+		if(method.simpleName == operation.name){
+			val methodParams = method.parameters
+			val operationParams = operation.EParameters
+			if((methodParams.size -1) == operationParams.size){ //drop the first argument who is the caller in k3 aspects
+				for(var int i = 1; i < methodParams.size; i++){
+					val methodParamType = methodParams.get(i).actualType.simpleName
+					val operationParamType = 
+						if(operationParams.get(i-1).EType instanceof EDataType){
+							val type = operationParams.get(i-1).EType.name
+							switch type {
+								case "EBoolean" : "boolean"
+								case "EString" : "String"
+								case "EByte" : "byte"
+								case "EDouble" : "double"
+								case "EFloat" : "float"
+								case "EInteger" : "Integer"
+								case "EInt" : "int"
+								case "ELong" : "long"
+								case "EShort" : "short"
+								default : type
+							} 
+						}
+						else{
+							operationParams.get(i-1).EType.name
+						}
+					if(methodParamType != operationParamType){
+						return false
+					}
+				}
+				return true
+			}
+		}
+		return false
+	}
+>>>>>>> Melange validator: add an error marker when an Aspect declare an operation already in a super Language with a different return type
 }
