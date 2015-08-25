@@ -828,7 +828,7 @@
             name="Open As">
          <commandParameter
                id="exactType"
-               name="name"
+               name="exactType"
                optional="true">
          </commandParameter>
          <commandParameter
