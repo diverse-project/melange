@@ -4,6 +4,8 @@ import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.MetamodelExtensions
+import fr.inria.diverse.melange.ast.ModelingElementExtensions
+import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.lib.MatchingHelper
 import fr.inria.diverse.melange.lib.ModelUtils
 import fr.inria.diverse.melange.metamodel.melange.Aspect
@@ -26,6 +28,8 @@ class MelangeValidator extends AbstractMelangeValidator
 	@Inject extension AspectExtensions
 	@Inject extension LanguageExtensions
 	@Inject extension MetamodelExtensions
+	@Inject extension ModelingElementExtensions
+	@Inject extension NamingHelper
 	@Inject ModelUtils modelUtils
 	@Inject MatchingHelper matchingHelper
 
@@ -237,6 +241,18 @@ class MelangeValidator extends AbstractMelangeValidator
 				'''Invalid slicing criterion: cannot find class«IF invalidRootsSize > 1»es«ENDIF»: «invalidRoots.join(", ")»''',
 				MelangePackage.Literals.SLICE__ROOTS,
 				MelangeValidationConstants.SLICE_INVALID_ROOT
+			)
+	}
+
+	@Check
+	def void checkEveryPackageHasAGenPackage(Language l) {
+		val invalidPkgs = l.syntax.pkgs.filter[l.syntax.getGenPackageFor(it) === null]
+
+		if (invalidPkgs.size > 0)
+			error(
+				'''Unexpected error: cannot find a GenPackage for: «invalidPkgs.map[name].join(", ")»''',
+				MelangePackage.Literals.LANGUAGE__SYNTAX,
+				MelangeValidationConstants.METAMODEL_NO_GENPACKAGE
 			)
 	}
 }

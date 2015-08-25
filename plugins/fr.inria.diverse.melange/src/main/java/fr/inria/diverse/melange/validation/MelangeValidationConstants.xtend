@@ -33,4 +33,5 @@ class MelangeValidationConstants
 	public static final String MAPPING_UNKNOWN_CLASS = "MAPPING_UNKNOWN_CLASS"
 	public static final String MAPPING_UNKNOWN_PROPERTY = "MAPPING_UNKNOWN_PROPERTY"
 	public static final String SLICE_INVALID_ROOT = "SLICE_INVALID_ROOT"
+	public static final String METAMODEL_NO_GENPACKAGE = "METAMODEL_NO_GENPACKAGE"
 }
