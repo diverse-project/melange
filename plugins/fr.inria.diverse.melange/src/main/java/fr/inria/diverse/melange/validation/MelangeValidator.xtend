@@ -456,6 +456,28 @@ class MelangeValidator extends AbstractMelangeValidator
 	}
 	
 	/**
+	 * Return true if {@link op1} and {@link op2} have the same name and their arguments'
+	 * type are the same.
+	 */
+	private def boolean isMatching(EOperation op1, EOperation op2){
+		if(op1.name == op2.name){
+			val opParams1 = op1.EParameters
+			val opParams2 = op2.EParameters
+			if(opParams1.size == opParams2.size){
+				for(var int i = 0; i < opParams1.size; i++){
+					val opParamType1 = opParams1.get(i).EType.name
+					val opParamType2 = opParams2.get(i).EType.name
+					if(opParamType1 != opParamType2){
+						return false
+					}
+				}
+				return true
+			}
+		}
+		return false
+	}
+	
+	/**
 	 * Return classes from results of {@link operators} which have to be merged 
 	 * (i.e classes with the same name).
 	 * 
@@ -505,9 +527,22 @@ class MelangeValidator extends AbstractMelangeValidator
 			if(secondField !== null){
 				if(firstField.EType.name != secondField.EType.name){
 					error(
-						"Language \'"+first.value.name+"\' has an attribute \'"+fieldName+"\' typed "+firstField.EType.name+" but in \'"+second.value.name+"\' it is "+secondField.EType.name,
+						"Language \'"+first.value.name+"\' has an reference \'"+fieldName+"\' typed "+firstField.EType.name+" but in \'"+second.value.name+"\' it is "+secondField.EType.name,
 						MelangePackage.Literals.OPERATOR__OWNING_LANGUAGE,
-						MelangeValidationConstants.MERGE_ATTRIBUTE_OVERRIDING
+						MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING
+					)
+				}
+			}
+		]
+		
+		first.key.EAllOperations.forEach[firstOp |
+			val secondOp = second.key.EAllOperations.findFirst[it.isMatching(firstOp)]
+			if(secondOp !== null){
+				if(firstOp.EType.name != secondOp.EType.name){
+					error(
+						"Language \'"+first.value.name+"\' has an operation \'"+firstOp.name+"\' typed "+firstOp.EType.name+" but in \'"+second.value.name+"\' it is "+secondOp.EType.name,
+						MelangePackage.Literals.OPERATOR__OWNING_LANGUAGE,
+						MelangeValidationConstants.MERGE_OPERATION_OVERRIDING
 					)
 				}
 			}
