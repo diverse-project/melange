@@ -366,6 +366,24 @@ class MelangeValidator extends AbstractMelangeValidator
 		]
 	}
 	
+	@Check
+	def void checkPropertiesOverriding(Language lang){
+		val operators = lang.operators
+		val candidateClasses = findMergedClasses(operators)
+		candidateClasses.keys.forEach[className |
+			val candidates = candidateClasses.get(className)
+			
+			//Compare an element with its following
+			for(var int i = 0; i < candidates.size; i++){
+				val first = candidates.get(i)
+				for(var int j = i+1; j < candidates.size; j++){
+					val second = candidates.get(j)
+					checkConflict(first,second)
+				}
+			}
+		]
+	}
+	
 	/**
 	 * Return the Language referenced if {@link operator} is an Inheritance, Merge or Slice.
 	 * Return null otherwise. 
@@ -464,5 +482,35 @@ class MelangeValidator extends AbstractMelangeValidator
 		]
 		
 		return res
+	}
+	
+	private def void checkConflict(Pair<EClass,Language> first, Pair<EClass,Language> second){
+		first.key.EAllAttributes.forEach[firstField |
+			val fieldName = firstField.name
+			val secondField = second.key.EAllAttributes.findFirst[name == fieldName]
+			if(secondField !== null){
+				if(firstField.EType.name != secondField.EType.name){
+					error(
+						"Language \'"+first.value.name+"\' has an attribute \'"+fieldName+"\' typed "+firstField.EType.name+" but in \'"+second.value.name+"\' it is "+secondField.EType.name,
+						MelangePackage.Literals.OPERATOR__OWNING_LANGUAGE,
+						MelangeValidationConstants.MERGE_ATTRIBUTE_OVERRIDING
+					)
+				}
+			}
+		]
+		
+		first.key.EAllReferences.forEach[firstField |
+			val fieldName = firstField.name
+			val secondField = second.key.EAllReferences.findFirst[name == fieldName]
+			if(secondField !== null){
+				if(firstField.EType.name != secondField.EType.name){
+					error(
+						"Language \'"+first.value.name+"\' has an attribute \'"+fieldName+"\' typed "+firstField.EType.name+" but in \'"+second.value.name+"\' it is "+secondField.EType.name,
+						MelangePackage.Literals.OPERATOR__OWNING_LANGUAGE,
+						MelangeValidationConstants.MERGE_ATTRIBUTE_OVERRIDING
+					)
+				}
+			}
+		]
 	}
 }
