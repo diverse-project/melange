@@ -155,12 +155,6 @@ class MetaclassAdapterInferrer
 	 * Creates accessors/mutators for references defined in {@link cls} and add them to {@link jvmCls}
 	 */
 	private def void processReference(EReference ref, EClass mmCls, Metamodel mm, ModelType superType, Mapping mapping, JvmGenericType jvmCls) {
-		if (ref.name == "eAnnotations") {
-			jvmCls.members += mm.toMethod("getEAnnotations", "org.eclipse.emf.common.util.EList".typeRef("org.eclipse.emf.ecore.EAnnotation".typeRef))[
-				body = ''' return null; '''
-			]
-			return			
-		}
 		val refType = superType.typeRef(ref, #[jvmCls])
 		val adapName = mm.adapterNameFor(superType, ref.EReferenceType)
 		val mmRef = mapping.findCorrespondingFeature(mmCls, ref)
@@ -174,10 +168,14 @@ class MetaclassAdapterInferrer
 				annotations += Override.annotationRef
 
 				body = '''
-					«IF ref.many»
-						return fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.«mmRef.getterName»(), «adapName».class) ;
+					«IF mm.owningLanguage.hasAdapterFor(superType, ref.EReferenceType)»
+						«IF ref.many»
+							return fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.«mmRef.getterName»(), «adapName».class) ;
+						«ELSE»
+							return adaptersFactory.create«mm.simpleAdapterNameFor(superType, ref.EReferenceType)»(adaptee.«mmRef.getterName»()) ;
+						«ENDIF»
 					«ELSE»
-						return adaptersFactory.create«mm.simpleAdapterNameFor(superType, ref.EReferenceType)»(adaptee.«mmRef.getterName»()) ;
+						return adaptee.«mmRef.getterName»();
 					«ENDIF»
 				'''
 			]

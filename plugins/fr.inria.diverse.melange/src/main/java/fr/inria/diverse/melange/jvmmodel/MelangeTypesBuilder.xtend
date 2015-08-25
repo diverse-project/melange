@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EGenericType
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.ETypedElement
 import org.eclipse.emf.ecore.resource.ResourceSet
@@ -98,6 +99,8 @@ class MelangeTypesBuilder
 						cls.instanceClass.name.typeRef
 					else if (cls.instanceTypeName !== null)
 						cls.instanceTypeName.typeRef
+					else
+						EObject.typeRef
 				EEnum:
 					ctx.getFqnFor(cls).typeRef
 				EDataType:
@@ -126,6 +129,8 @@ class MelangeTypesBuilder
 						cls.instanceClass.name.typeRef
 					else if (cls.instanceTypeName !== null)
 						cls.instanceTypeName.typeRef
+					else
+						EObject.typeRef
 				EEnum:
 					ctx.getFqnFor(cls).typeRef
 				EDataType:
@@ -150,6 +155,8 @@ class MelangeTypesBuilder
 						cls.instanceClass.name.typeRef
 					else if (cls.instanceTypeName !== null)
 						cls.instanceTypeName.typeRef
+					else
+						EObject.typeRef
 				EEnum:
 					sup.getFqnFor(cls).typeRef
 				EDataType:

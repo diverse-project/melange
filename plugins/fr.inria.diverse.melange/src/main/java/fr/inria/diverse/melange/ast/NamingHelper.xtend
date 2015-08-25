@@ -132,11 +132,7 @@ class NamingHelper
 	}
 
 	def String interfaceNameFor(ModelType mt, EClass cls) {
-		return
-			if (cls.EPackage.isEcore)
-				"org.eclipse.emf.ecore." + cls.name
-			else
-				mt.fullyQualifiedName.toLowerCase.append(cls.name).normalize.toString
+		return mt.fullyQualifiedName.toLowerCase.append(cls.name).normalize.toString
 	}
 
 	def String adapterNameFor(Metamodel mm, ModelType mt, EClass cls) {
