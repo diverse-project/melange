@@ -122,7 +122,7 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 				body = '''
 					«FOR l : root.languages»
 						fr.inria.diverse.melange.resource.MelangeRegistryImpl.LanguageDescriptorImpl «l.name.toFirstLower» = new fr.inria.diverse.melange.resource.MelangeRegistryImpl.LanguageDescriptorImpl(
-							"«l.fullyQualifiedName»", "«l.documentation»", "«l.syntax.packageUri»", "«l.exactType.fullyQualifiedName»"
+							"«l.fullyQualifiedName»", "«l.documentation.replace("\"", "'").replace("\n", " ")»", "«l.syntax.packageUri»", "«l.exactType.fullyQualifiedName»"
 						) ;
 						«FOR mt : l.^implements»
 							«l.name.toFirstLower».addAdapter("«mt.fullyQualifiedName»", «l.syntax.adapterNameFor(mt)».class) ;
