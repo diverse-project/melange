@@ -1057,7 +1057,7 @@ ruleClassMapping returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getClassMappingAccess().getFromEClassCrossReference_0_0()); 
+	        newCompositeNode(grammarAccess.getClassMappingAccess().getFromEClassifierCrossReference_0_0()); 
 	    }
 		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();

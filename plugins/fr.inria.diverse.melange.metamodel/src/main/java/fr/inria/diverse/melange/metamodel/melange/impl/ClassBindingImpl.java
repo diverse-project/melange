@@ -14,6 +14,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -28,12 +29,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ClassBindingImpl#getTo <em>To</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ClassBindingImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ClassBindingImpl#getFrom <em>From</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -76,7 +77,7 @@ public class ClassBindingImpl extends MinimalEObjectImpl.Container implements Cl
 	 * @generated
 	 * @ordered
 	 */
-	protected EClass from;
+	protected EClassifier from;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -102,10 +103,10 @@ public class ClassBindingImpl extends MinimalEObjectImpl.Container implements Cl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getFrom() {
+	public EClassifier getFrom() {
 		if (from != null && from.eIsProxy()) {
 			InternalEObject oldFrom = (InternalEObject)from;
-			from = (EClass)eResolveProxy(oldFrom);
+			from = (EClassifier)eResolveProxy(oldFrom);
 			if (from != oldFrom) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MelangePackage.CLASS_BINDING__FROM, oldFrom, from));
@@ -119,7 +120,7 @@ public class ClassBindingImpl extends MinimalEObjectImpl.Container implements Cl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass basicGetFrom() {
+	public EClassifier basicGetFrom() {
 		return from;
 	}
 
@@ -128,8 +129,8 @@ public class ClassBindingImpl extends MinimalEObjectImpl.Container implements Cl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFrom(EClass newFrom) {
-		EClass oldFrom = from;
+	public void setFrom(EClassifier newFrom) {
+		EClassifier oldFrom = from;
 		from = newFrom;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.CLASS_BINDING__FROM, oldFrom, from));
@@ -218,7 +219,7 @@ public class ClassBindingImpl extends MinimalEObjectImpl.Container implements Cl
 				getProperties().addAll((Collection<? extends PropertyBinding>)newValue);
 				return;
 			case MelangePackage.CLASS_BINDING__FROM:
-				setFrom((EClass)newValue);
+				setFrom((EClassifier)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -239,7 +240,7 @@ public class ClassBindingImpl extends MinimalEObjectImpl.Container implements Cl
 				getProperties().clear();
 				return;
 			case MelangePackage.CLASS_BINDING__FROM:
-				setFrom((EClass)null);
+				setFrom((EClassifier)null);
 				return;
 		}
 		super.eUnset(featureID);

@@ -68,7 +68,7 @@ PackageMapping returns PackageBinding:
 ;
 
 ClassMapping returns ClassBinding:
-	from=[ecore::EClass | QualifiedName] "to" to=STRING "{"
+	from=[ecore::EClassifier | QualifiedName] "to" to=STRING "{"
 		(properties+=PropertyMapping)*
 	"}"
 ;

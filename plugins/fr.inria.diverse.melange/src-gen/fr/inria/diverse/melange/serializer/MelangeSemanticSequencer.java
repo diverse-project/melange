@@ -369,6 +369,7 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
+<<<<<<< HEAD
 	 *     (aspectTypeRef=JvmTypeReference | aspectWildcardImport=QualifiedNameWithWildcard)
 	 */
 	protected void sequence_AspectTypeRef_AspectWildcard_Weave(EObject context, Weave semanticObject) {
@@ -397,6 +398,9 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	/**
 	 * Constraint:
 	 *     (from=[EClass|QualifiedName] to=STRING properties+=PropertyMapping*)
+=======
+	 *     (from=[EClassifier|QualifiedName] to=STRING properties+=PropertyMapping*)
+>>>>>>> Update Metamodel: ClassBinding over EClassifier
 	 */
 	protected void sequence_ClassMapping(EObject context, ClassBinding semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

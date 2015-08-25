@@ -3069,7 +3069,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getClassMappingAccess().getFromEClassCrossReference_0_0()); 
+              	        newCompositeNode(grammarAccess.getClassMappingAccess().getFromEClassifierCrossReference_0_0()); 
               	    
             }
             pushFollow(FOLLOW_ruleQualifiedName_in_ruleClassMapping2298);

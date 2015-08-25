@@ -20,11 +20,11 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.PropertyBindingImpl#getTo <em>To</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.PropertyBindingImpl#getFrom <em>From</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -9,6 +9,7 @@ import fr.inria.diverse.melange.metamodel.melange.MelangePackage
 import fr.inria.diverse.melange.metamodel.melange.Merge
 import fr.inria.diverse.melange.metamodel.melange.PackageBinding
 import fr.inria.diverse.melange.metamodel.melange.Slice
+import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.scoping.IScope
@@ -90,7 +91,9 @@ class MelangeScopeProvider extends AbstractDeclarativeScopeProvider{
     def dispatch IScope getScope(ClassBinding clazz, EReference ref) {
     	if (ref.featureID == MelangePackage.CLASS_BINDING__PROPERTIES) {
     		val candidates = newArrayList()
-    		candidates.addAll(clazz.from.EStructuralFeatures)
+    		if (clazz.from instanceof EClass) {
+    			candidates.addAll((clazz.from as EClass).EStructuralFeatures)
+    		}
 			val scope = Scopes::scopeFor(candidates)
 
     		return scope

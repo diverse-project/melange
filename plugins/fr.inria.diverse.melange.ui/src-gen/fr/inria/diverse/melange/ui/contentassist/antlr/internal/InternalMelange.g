@@ -22242,12 +22242,12 @@ rule__ClassMapping__FromAssignment_0
     }
 :
 (
-{ before(grammarAccess.getClassMappingAccess().getFromEClassCrossReference_0_0()); }
+{ before(grammarAccess.getClassMappingAccess().getFromEClassifierCrossReference_0_0()); }
 (
-{ before(grammarAccess.getClassMappingAccess().getFromEClassQualifiedNameParserRuleCall_0_0_1()); }
-	ruleQualifiedName{ after(grammarAccess.getClassMappingAccess().getFromEClassQualifiedNameParserRuleCall_0_0_1()); }
+{ before(grammarAccess.getClassMappingAccess().getFromEClassifierQualifiedNameParserRuleCall_0_0_1()); }
+	ruleQualifiedName{ after(grammarAccess.getClassMappingAccess().getFromEClassifierQualifiedNameParserRuleCall_0_0_1()); }
 )
-{ after(grammarAccess.getClassMappingAccess().getFromEClassCrossReference_0_0()); }
+{ after(grammarAccess.getClassMappingAccess().getFromEClassifierCrossReference_0_0()); }
 )
 
 ;

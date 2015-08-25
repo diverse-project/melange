@@ -12,12 +12,12 @@ import org.eclipse.emf.ecore.EClass;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Slice#getSlicedLanguage <em>Sliced Language</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Slice#getMappingRules <em>Mapping Rules</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Slice#getRoots <em>Roots</em>}</li>
  * </ul>
- * </p>
  *
  * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getSlice()
  * @model

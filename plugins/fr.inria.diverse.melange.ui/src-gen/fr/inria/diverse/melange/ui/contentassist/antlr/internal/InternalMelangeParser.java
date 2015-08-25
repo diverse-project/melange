@@ -63452,13 +63452,13 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
             // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22245:1: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getClassMappingAccess().getFromEClassCrossReference_0_0()); 
+               before(grammarAccess.getClassMappingAccess().getFromEClassifierCrossReference_0_0()); 
             }
             // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22246:1: ( ruleQualifiedName )
             // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22247:1: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getClassMappingAccess().getFromEClassQualifiedNameParserRuleCall_0_0_1()); 
+               before(grammarAccess.getClassMappingAccess().getFromEClassifierQualifiedNameParserRuleCall_0_0_1()); 
             }
             pushFollow(FOLLOW_ruleQualifiedName_in_rule__ClassMapping__FromAssignment_045004);
             ruleQualifiedName();
@@ -63466,13 +63466,13 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getClassMappingAccess().getFromEClassQualifiedNameParserRuleCall_0_0_1()); 
+               after(grammarAccess.getClassMappingAccess().getFromEClassifierQualifiedNameParserRuleCall_0_0_1()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getClassMappingAccess().getFromEClassCrossReference_0_0()); 
+               after(grammarAccess.getClassMappingAccess().getFromEClassifierCrossReference_0_0()); 
             }
 
             }

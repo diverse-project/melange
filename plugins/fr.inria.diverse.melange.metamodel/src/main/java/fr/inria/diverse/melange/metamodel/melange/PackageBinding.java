@@ -14,12 +14,12 @@ import org.eclipse.emf.ecore.EPackage;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.PackageBinding#getTo <em>To</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.PackageBinding#getClasses <em>Classes</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.PackageBinding#getFrom <em>From</em>}</li>
  * </ul>
- * </p>
  *
  * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getPackageBinding()
  * @model

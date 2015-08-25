@@ -16,13 +16,13 @@ import org.eclipse.xtext.xbase.XExpression;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.XbaseTransformation#getBody <em>Body</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.XbaseTransformation#isMain <em>Main</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.XbaseTransformation#getParameters <em>Parameters</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.XbaseTransformation#getReturnTypeRef <em>Return Type Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getXbaseTransformation()
  * @model

@@ -12,11 +12,11 @@ import org.eclipse.emf.ecore.ETypedElement;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.PropertyBinding#getTo <em>To</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.PropertyBinding#getFrom <em>From</em>}</li>
  * </ul>
- * </p>
  *
  * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getPropertyBinding()
  * @model
