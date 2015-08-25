@@ -4,8 +4,9 @@
     modelName="MM2" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
-  <foreignModel>MM2.ecore</foreignModel>
-  <genPackages prefix="Testpackage" disposableProviderFactory="true" ecorePackage="MM2.ecore#/">
+  <foreignModel>tests-inputs/metamodels/merge/MM2.ecore</foreignModel>
+  <genPackages prefix="Testpackage" disposableProviderFactory="true">
+    <ecorePackage href="tests-inputs/metamodels/merge/MM2.ecore#/"/>
     <genDataTypes ecoreDataType="MM2.ecore#//CustomDataType"/>
     <genClasses ecoreClass="MM2.ecore#//D">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MM2.ecore#//D/toC"/>

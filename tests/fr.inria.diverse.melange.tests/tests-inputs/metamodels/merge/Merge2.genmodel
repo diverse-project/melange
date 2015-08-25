@@ -4,8 +4,9 @@
     modelName="Merge2" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
-  <foreignModel>Merge2.ecore</foreignModel>
-  <genPackages prefix="Merge" disposableProviderFactory="true" ecorePackage="Merge2.ecore#/">
+  <foreignModel>tests-inputs/metamodels/merge/Merge2.ecore</foreignModel>
+  <genPackages prefix="Merge" disposableProviderFactory="true">
+    <ecorePackage href="tests-inputs/metamodels/merge/Merge2.ecore#/"/>
     <genClasses ecoreClass="Merge2.ecore#//Clazz">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Merge2.ecore#//Clazz/attribute"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Merge2.ecore#//Clazz/reference"/>

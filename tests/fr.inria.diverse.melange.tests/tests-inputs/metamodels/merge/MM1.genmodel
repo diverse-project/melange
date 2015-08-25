@@ -4,8 +4,9 @@
     modelPluginID="fr.inria.diverse.melange.tests" modelName="MM1" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
-  <foreignModel>MM1.ecore</foreignModel>
-  <genPackages prefix="Testmerge" disposableProviderFactory="true" ecorePackage="MM1.ecore#/">
+  <foreignModel>tests-inputs/metamodels/merge/MM1.ecore</foreignModel>
+  <genPackages prefix="Testmerge" disposableProviderFactory="true">
+    <ecorePackage href="tests-inputs/metamodels/merge/MM1.ecore#/"/>
     <genClasses ecoreClass="MM1.ecore#//A">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MM1.ecore#//A/toB"/>
     </genClasses>
