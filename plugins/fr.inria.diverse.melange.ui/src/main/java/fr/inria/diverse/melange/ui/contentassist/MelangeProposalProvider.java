@@ -22,7 +22,7 @@ import com.google.common.base.Function;
 import com.google.inject.Inject;
 
 public class MelangeProposalProvider extends AbstractMelangeProposalProvider {
-	private final static Logger log = Logger.getLogger(AbstractJavaBasedContentProposalProvider.class);
+	private final static Logger log = Logger.getLogger(MelangeProposalProvider.class);
 
 	@Inject
 	private IEObjectHover hover;
