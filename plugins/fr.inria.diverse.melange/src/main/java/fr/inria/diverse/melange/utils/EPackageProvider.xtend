@@ -49,7 +49,7 @@ class EPackageProvider
 
 			switch (m) {
 				case m.ecoreUri !== null: {
-					val root = modelUtils.loadPkg(m.ecoreUri)
+					val root = modelUtils.loadPkg(m.ecoreUri.toPlatformURI)
 
 					if (root !== null) {
 						val pkgs = newArrayList
@@ -105,7 +105,7 @@ class EPackageProvider
 						mm.genmodelUris += mm.owningLanguage.externalGenmodelUri
 			}
 			mm.genmodelUris.forEach[
-				val gm = modelUtils.loadGenmodel(it)
+				val gm = modelUtils.loadGenmodel(it.toPlatformURI)
 
 				if (gm !== null)
 					genmodels.put(mm.fqn, gm)
@@ -137,5 +137,9 @@ class EPackageProvider
 
 	def dispatch String getFqn(ModelType mt) {
 		return mt.fullyQualifiedName?.toString
+	}
+
+	private def String toPlatformURI(String uri) {
+		return '''«IF uri.startsWith("/")»platform:/resource«ENDIF»«uri»'''
 	}
 }
