@@ -1,7 +1,5 @@
 package $packageName$
 
-import static extension fr.inria.diverse.melange.lib.MetamodelExtensions.*
-
 language $metamodelName$ {
 	syntax "platform:/resource/$ecoreFilePath$"
 	exactType $metamodelName$MT
@@ -16,7 +14,7 @@ transformation foo($metamodelName$MT model) {
 
 @Main
 transformation main() {
-	val m1 = $metamodelName$.load("input/Simple.xmi", $metamodelName$MT)
+	val m1 = $metamodelName$.load("input/Simple.xmi")
 	
 	foo.call(m1)
 }
