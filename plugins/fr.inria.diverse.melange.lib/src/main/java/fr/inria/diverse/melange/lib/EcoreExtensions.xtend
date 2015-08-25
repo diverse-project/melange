@@ -110,11 +110,11 @@ class EcoreExtensions
 	}
 
 	def boolean isInstantiable(EClass cls) {
-		return !cls.^abstract && !cls.^interface && cls.instanceClass === null
+		return !cls.^abstract && !cls.^interface && cls.abstractable
 	}
 
 	def boolean isAbstractable(EClass cls) {
-		return cls.instanceClass === null && cls.instanceTypeName === null
+		return cls.name != "EObject" && cls.instanceClass === null && cls.instanceTypeName === null
 	}
 
 	def boolean isAspectSpecific(ENamedElement f) {
