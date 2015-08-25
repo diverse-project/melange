@@ -8,21 +8,24 @@ import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
-import fr.inria.diverse.melange.lib.ModelUtils
 import fr.inria.diverse.melange.metamodel.melange.Inheritance
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelingElement
 import java.util.List
+import org.apache.log4j.Logger
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
+import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EPackage
+import org.eclipse.emf.ecore.resource.ResourceSet
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 @Singleton
 class EPackageProvider
 {
-	@Inject ModelUtils modelUtils
+	ResourceSet rs = new ResourceSetImpl
 	@Inject extension EcoreExtensions
 	@Inject extension ModelTypeExtensions
 	@Inject extension LanguageExtensions
@@ -30,6 +33,7 @@ class EPackageProvider
 	@Inject extension IQualifiedNameProvider
 	private ListMultimap<String, EPackage> packages = ArrayListMultimap.create
 	private ListMultimap<String, GenModel> genmodels = ArrayListMultimap.create
+	private final Logger log = Logger.getLogger(EPackageProvider)
 
 	def void reset() {
 		packages = ArrayListMultimap.create
@@ -37,6 +41,9 @@ class EPackageProvider
 	}
 
 	def List<EPackage> getPackages(ModelingElement m) {
+		println("current="+m.eResource+"("+m.eResource.resourceSet+")")
+		println("currentResources = ")
+		rs.resources.forEach[println("\t"+it)]
 		if (!packages.containsKey(m.fqn)) {
 			if (m instanceof Metamodel) {
 				val project = m.eResource.project
@@ -49,7 +56,7 @@ class EPackageProvider
 
 			switch (m) {
 				case m.ecoreUri !== null: {
-					val root = modelUtils.loadPkg(m.ecoreUri.toPlatformURI)
+					val root = loadPkg(m.ecoreUri.toPlatformURI)
 
 					if (root !== null) {
 						val pkgs = newArrayList
@@ -105,7 +112,7 @@ class EPackageProvider
 						mm.genmodelUris += mm.owningLanguage.externalGenmodelUri
 			}
 			mm.genmodelUris.forEach[
-				val gm = modelUtils.loadGenmodel(it.toPlatformURI)
+				val gm = loadGenmodel(it.toPlatformURI)
 
 				if (gm !== null)
 					genmodels.put(mm.fqn, gm)
@@ -137,6 +144,32 @@ class EPackageProvider
 
 	def dispatch String getFqn(ModelType mt) {
 		return mt.fullyQualifiedName?.toString
+	}
+
+	private def EPackage loadPkg(String path) {
+		try {
+			val uri = URI.createURI(path)
+			val pkg = rs.getResource(uri, true)
+
+			return pkg.contents.head as EPackage
+		} catch (Exception e) {
+			log.error(e)
+		}
+
+		return null
+	}
+
+	private def GenModel loadGenmodel(String path) {
+		try {
+			val uri = URI.createURI(path)
+			val pkg = rs.getResource(uri, true)
+
+			return pkg.contents.head as GenModel
+		} catch (Exception e) {
+			log.error(e)
+		}
+
+		return null
 	}
 
 	private def String toPlatformURI(String uri) {
