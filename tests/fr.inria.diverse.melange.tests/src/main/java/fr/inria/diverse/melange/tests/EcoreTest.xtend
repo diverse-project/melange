@@ -21,13 +21,11 @@ import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.InMemoryFileSystemAccess
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 
 import static org.junit.Assert.*
 
-@Ignore("Ecore isn't supported anymore, as its features clash with EObjectAdapter")
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
 @XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/EcoreTest.melange")
@@ -41,7 +39,7 @@ class EcoreTest
 	def void testStructure() {
 		assertNotNull(root)
 		assertEquals(root.name, "ecoretest")
-		assertNotNull(root.imports)
+		assertNull(root.imports)
 
 		assertTrue(root.elements.get(0) instanceof Language)
 		assertTrue(root.elements.get(1) instanceof Transformation)
@@ -83,7 +81,7 @@ class EcoreTest
 		val fsa = new InMemoryFileSystemAccess
 		generator.doGenerate(root.eResource, fsa)
 
-		assertEquals(fsa.textFiles.size, 48)
+		assertEquals(fsa.textFiles.size, 46)
 	}
 
 	@Test
