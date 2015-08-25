@@ -26,6 +26,9 @@ import fr.inria.diverse.melange.metamodel.melange.Merge
 import fr.inria.diverse.melange.metamodel.melange.Slice
 import fr.inria.diverse.melange.metamodel.melange.Operator
 import org.eclipse.emf.ecore.EClass
+import org.eclipse.xtext.common.types.JvmOperation
+import org.eclipse.emf.ecore.EOperation
+import org.eclipse.emf.ecore.EDataType
 
 class MelangeValidator extends AbstractMelangeValidator
 {
@@ -316,6 +319,47 @@ class MelangeValidator extends AbstractMelangeValidator
 		]
 	}
 	
+	@Check
+	def void checkOperationOverriding(Aspect asp){
+		val language = asp.eContainer as Language
+		val aspectName = asp.aspectTypeRef.qualifiedName
+		val aspectedClass = asp.aspectTypeRef.aspectAnnotationValue
+		
+		val aspectClass = asp.aspectTypeRef.type as JvmGenericType
+		aspectClass.members.filter(JvmOperation).forEach[method |
+			val methodType = method.returnType.type
+			
+			language.operators.forEach[operator | 
+				
+				val superClass = operator.findClass(aspectedClass)
+				if(superClass !== null){
+					superClass.EAllOperations.forEach[operation |
+						val operationType = operation.EType
+						val opTypeName = if(operationType === null){
+								"Void"
+							}
+							else{
+								operationType.name
+							}
+						val metTypeName = if(methodType === null){
+								"Void"
+							}
+							else{
+								methodType.simpleName
+							}
+						if(method.isMatching(operation) && metTypeName != opTypeName){
+							error(
+								"Aspect \'"+aspectName+"\' has an operation \'"+method.simpleName+"\' typed "+metTypeName+" but in \'"+operator.language.name+"\' it is typed "+opTypeName,
+								MelangePackage.Literals.ASPECT__ASPECT_TYPE_REF,
+								MelangeValidationConstants.MERGE_OPERATION_OVERRIDING
+							)
+						}
+					]
+				}
+			]
+		]
+	}
+	
 	/**
 	 * Return the Language referenced if {@link operator} is an Inheritance, Merge or Slice.
 	 * Return null otherwise. 
@@ -343,5 +387,47 @@ class MelangeValidator extends AbstractMelangeValidator
 			return superLang.syntax.findClass(className)
 		}
 		return null
+	}
+	
+	/**
+	 * Return true if {@link method} and {@link operation} have the same name and their arguments'
+	 * type are the same.
+	 * 
+	 * @param method method from a K3 Aspect
+	 */
+	private def boolean isMatching(JvmOperation method, EOperation operation){
+		if(method.simpleName == operation.name){
+			val methodParams = method.parameters
+			val operationParams = operation.EParameters
+			if((methodParams.size -1) == operationParams.size){ //drop the first argument who is the caller in k3 aspects
+				for(var int i = 1; i < methodParams.size; i++){
+					val methodParamType = methodParams.get(i).actualType.simpleName
+					val operationParamType = 
+						if(operationParams.get(i-1).EType instanceof EDataType){
+							val type = operationParams.get(i-1).EType.name
+							switch type {
+								case "EBoolean" : "boolean"
+								case "EString" : "String"
+								case "EByte" : "byte"
+								case "EDouble" : "double"
+								case "EFloat" : "float"
+								case "EInteger" : "Integer"
+								case "EInt" : "int"
+								case "ELong" : "long"
+								case "EShort" : "short"
+								default : type
+							} 
+						}
+						else{
+							operationParams.get(i-1).EType.name
+						}
+					if(methodParamType != operationParamType){
+						return false
+					}
+				}
+				return true
+			}
+		}
+		return false
 	}
 }
