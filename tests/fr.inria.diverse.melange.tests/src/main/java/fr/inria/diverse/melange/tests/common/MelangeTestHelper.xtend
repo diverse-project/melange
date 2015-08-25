@@ -10,8 +10,11 @@ import fr.inria.diverse.melange.metamodel.melange.Transformation
 import java.io.IOException
 import java.util.List
 import javax.inject.Inject
+import org.eclipse.emf.common.util.Diagnostic
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.ETypedElement
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.emf.ecore.util.Diagnostician
 import org.eclipse.xtext.util.IAcceptor
 import org.eclipse.xtext.xbase.compiler.CompilationTestHelper
 import org.eclipse.xtext.xbase.compiler.CompilationTestHelper.Result
@@ -79,6 +82,18 @@ class MelangeTestHelper
 
 	def void assertImplements(Language l, ModelType mt) {
 		Assert.assertTrue(l.implements.contains(mt))
+	}
+
+	def dispatch void assertIsValid(Resource res) {
+		assertIsValid(res.contents.head)
+	}
+
+	def dispatch void assertIsValid(EObject obj) {
+		val diagnostic = Diagnostician.INSTANCE.validate(obj)
+		Assert.assertTrue(
+			diagnostic.toString,
+			diagnostic.severity == Diagnostic.OK
+		)
 	}
 
 	def EObject getEObject(ModelingElement m, String path) {

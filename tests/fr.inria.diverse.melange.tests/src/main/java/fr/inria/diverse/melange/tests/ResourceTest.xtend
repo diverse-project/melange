@@ -1,12 +1,11 @@
 package fr.inria.diverse.melange.tests
 
 import fr.inria.diverse.melange.resource.MelangeResourceException
-import org.eclipse.emf.common.util.Diagnostic
+import fr.inria.diverse.melange.tests.common.MelangeTestHelper
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.emf.ecore.util.Diagnostician
 import org.junit.Before
 import org.junit.Test
 import simplefsm.StandaloneSetup
@@ -15,6 +14,7 @@ import static org.junit.Assert.*
 
 class ResourceTest
 {
+	extension MelangeTestHelper = new MelangeTestHelper
 	ResourceSet rs
 
 	@Before
@@ -99,14 +99,6 @@ class ResourceTest
 		assertTrue(
 			'''«res» content isn't typed by TimedFsmMT types''',
 			res.allContents.forall[class.interfaces.exists[package.name == "simplefsm.timedfsmmt"]]
-		)
-	}
-
-	private def assertIsValid(Resource res) {
-		val diagnostic = Diagnostician.INSTANCE.validate(res.contents.head)
-		assertTrue(
-			diagnostic.toString,
-			diagnostic.severity == Diagnostic.OK
 		)
 	}
 }
