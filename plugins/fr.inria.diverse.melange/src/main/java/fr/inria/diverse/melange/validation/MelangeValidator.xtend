@@ -35,6 +35,7 @@ import com.google.common.collect.ListMultimap
 import com.google.common.collect.ArrayListMultimap
 import java.util.Set
 import java.util.HashSet
+import fr.inria.diverse.melange.metamodel.melange.Weave
 
 class MelangeValidator extends AbstractMelangeValidator
 {
@@ -399,6 +400,33 @@ class MelangeValidator extends AbstractMelangeValidator
 			return (operator as Slice).slicedLanguage
 		}
 		return null
+	}
+	
+	/**
+	 * Return depending on the type of {@link operator}: <br>
+	 * - the name of the Language <br>
+	 * - the name of the Aspect <br>
+	 * - the uri of the Ecore <br>
+	 * 
+	 * Return <Unknown source> by default
+	 */
+	private def String getSource(Operator operator){
+		if(operator instanceof Inheritance){
+			return (operator as Inheritance).superLanguage.name
+		}
+		else if(operator instanceof Merge){
+			return (operator as Merge).mergedLanguage.name
+		}
+		else if(operator instanceof Slice){
+			return (operator as Slice).slicedLanguage.name
+		}
+		else if(operator instanceof Weave){
+			return (operator as Weave).aspectTypeRef.aspectAnnotationValue
+		}
+		else if(operator instanceof Import){
+			return (operator as Import).ecoreUri
+		}
+		return "<Unknown source>"
 	}
 	
 	/**
