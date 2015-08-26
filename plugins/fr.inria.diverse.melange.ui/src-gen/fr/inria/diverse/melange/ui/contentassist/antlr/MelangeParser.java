@@ -40,6 +40,7 @@ public class MelangeParser extends AbstractContentAssistParser {
 					put(grammarAccess.getElementAccess().getAlternatives(), "rule__Element__Alternatives");
 					put(grammarAccess.getLanguageAccess().getAlternatives_0_6_2(), "rule__Language__Alternatives_0_6_2");
 					put(grammarAccess.getOperatorAccess().getAlternatives(), "rule__Operator__Alternatives");
+					put(grammarAccess.getWeaveAccess().getAlternatives(), "rule__Weave__Alternatives");
 					put(grammarAccess.getXAssignmentAccess().getAlternatives(), "rule__XAssignment__Alternatives");
 					put(grammarAccess.getOpMultiAssignAccess().getAlternatives(), "rule__OpMultiAssign__Alternatives");
 					put(grammarAccess.getOpEqualityAccess().getAlternatives(), "rule__OpEquality__Alternatives");
@@ -115,7 +116,8 @@ public class MelangeParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSliceAccess().getGroup(), "rule__Slice__Group__0");
 					put(grammarAccess.getSliceAccess().getGroup_5(), "rule__Slice__Group_5__0");
 					put(grammarAccess.getSliceAccess().getGroup_7(), "rule__Slice__Group_7__0");
-					put(grammarAccess.getWeaveAccess().getGroup(), "rule__Weave__Group__0");
+					put(grammarAccess.getAspectTypeRefAccess().getGroup(), "rule__AspectTypeRef__Group__0");
+					put(grammarAccess.getAspectWildcardAccess().getGroup(), "rule__AspectWildcard__Group__0");
 					put(grammarAccess.getXAssignmentAccess().getGroup_0(), "rule__XAssignment__Group_0__0");
 					put(grammarAccess.getXAssignmentAccess().getGroup_1(), "rule__XAssignment__Group_1__0");
 					put(grammarAccess.getXAssignmentAccess().getGroup_1_1(), "rule__XAssignment__Group_1_1__0");
@@ -342,7 +344,8 @@ public class MelangeParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSliceAccess().getRootsAssignment_5_1(), "rule__Slice__RootsAssignment_5_1");
 					put(grammarAccess.getSliceAccess().getMappingRulesAssignment_7_2(), "rule__Slice__MappingRulesAssignment_7_2");
 					put(grammarAccess.getInheritAccess().getSuperLanguageAssignment(), "rule__Inherit__SuperLanguageAssignment");
-					put(grammarAccess.getWeaveAccess().getAspectTypeRefAssignment_1(), "rule__Weave__AspectTypeRefAssignment_1");
+					put(grammarAccess.getAspectTypeRefAccess().getAspectTypeRefAssignment_1(), "rule__AspectTypeRef__AspectTypeRefAssignment_1");
+					put(grammarAccess.getAspectWildcardAccess().getAspectWildcardImportAssignment_1(), "rule__AspectWildcard__AspectWildcardImportAssignment_1");
 					put(grammarAccess.getXAssignmentAccess().getFeatureAssignment_0_1(), "rule__XAssignment__FeatureAssignment_0_1");
 					put(grammarAccess.getXAssignmentAccess().getValueAssignment_0_3(), "rule__XAssignment__ValueAssignment_0_3");
 					put(grammarAccess.getXAssignmentAccess().getFeatureAssignment_1_1_0_0_1(), "rule__XAssignment__FeatureAssignment_1_1_0_0_1");

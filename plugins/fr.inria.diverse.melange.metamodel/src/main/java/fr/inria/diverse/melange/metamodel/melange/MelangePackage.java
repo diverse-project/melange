@@ -408,22 +408,13 @@ public interface MelangePackage extends EPackage {
 	int ASPECT__ASPECTED_CLASS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Aspect Wildcard Import</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASPECT__ASPECT_WILDCARD_IMPORT = 2;
-
-	/**
 	 * The feature id for the '<em><b>Ecore Fragment</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASPECT__ECORE_FRAGMENT = 3;
+	int ASPECT__ECORE_FRAGMENT = 2;
 
 	/**
 	 * The number of structural features of the '<em>Aspect</em>' class.
@@ -432,7 +423,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASPECT_FEATURE_COUNT = 4;
+	int ASPECT_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Aspect</em>' class.
@@ -1213,13 +1204,22 @@ public interface MelangePackage extends EPackage {
 	int WEAVE__ASPECT_TYPE_REF = OPERATOR_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Aspect Wildcard Import</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WEAVE__ASPECT_WILDCARD_IMPORT = OPERATOR_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Weave</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WEAVE_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 1;
+	int WEAVE_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Weave</em>' class.
@@ -1410,17 +1410,6 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getAspect_AspectedClass();
-
-	/**
-	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.Aspect#getAspectWildcardImport <em>Aspect Wildcard Import</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Aspect Wildcard Import</em>'.
-	 * @see fr.inria.diverse.melange.metamodel.melange.Aspect#getAspectWildcardImport()
-	 * @see #getAspect()
-	 * @generated
-	 */
-	EAttribute getAspect_AspectWildcardImport();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.melange.metamodel.melange.Aspect#getEcoreFragment <em>Ecore Fragment</em>}'.
@@ -2025,6 +2014,17 @@ public interface MelangePackage extends EPackage {
 	EReference getWeave_AspectTypeRef();
 
 	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.Weave#getAspectWildcardImport <em>Aspect Wildcard Import</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Aspect Wildcard Import</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Weave#getAspectWildcardImport()
+	 * @see #getWeave()
+	 * @generated
+	 */
+	EAttribute getWeave_AspectWildcardImport();
+
+	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.NamedElement <em>Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2217,14 +2217,6 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EReference ASPECT__ASPECTED_CLASS = eINSTANCE.getAspect_AspectedClass();
-
-		/**
-		 * The meta object literal for the '<em><b>Aspect Wildcard Import</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ASPECT__ASPECT_WILDCARD_IMPORT = eINSTANCE.getAspect_AspectWildcardImport();
 
 		/**
 		 * The meta object literal for the '<em><b>Ecore Fragment</b></em>' containment reference feature.
@@ -2701,6 +2693,14 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EReference WEAVE__ASPECT_TYPE_REF = eINSTANCE.getWeave_AspectTypeRef();
+
+		/**
+		 * The meta object literal for the '<em><b>Aspect Wildcard Import</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute WEAVE__ASPECT_WILDCARD_IMPORT = eINSTANCE.getWeave_AspectWildcardImport();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.NamedElementImpl <em>Named Element</em>}' class.

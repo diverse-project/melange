@@ -120,8 +120,20 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 				sequence_Slice(context, (Slice) semanticObject); 
 				return; 
 			case MelangePackage.WEAVE:
-				sequence_Weave(context, (Weave) semanticObject); 
-				return; 
+				if(context == grammarAccess.getOperatorRule() ||
+				   context == grammarAccess.getWeaveRule()) {
+					sequence_AspectTypeRef_AspectWildcard_Weave(context, (Weave) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getAspectTypeRefRule()) {
+					sequence_AspectTypeRef(context, (Weave) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getAspectWildcardRule()) {
+					sequence_AspectWildcard(context, (Weave) semanticObject); 
+					return; 
+				}
+				else break;
 			case MelangePackage.XBASE_TRANSFORMATION:
 				sequence_XbaseTransformation(context, (XbaseTransformation) semanticObject); 
 				return; 
@@ -357,6 +369,33 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     (aspectTypeRef=JvmTypeReference | aspectWildcardImport=QualifiedNameWithWildcard)
+	 */
+	protected void sequence_AspectTypeRef_AspectWildcard_Weave(EObject context, Weave semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     aspectTypeRef=JvmTypeReference
+	 */
+	protected void sequence_AspectTypeRef(EObject context, Weave semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     aspectWildcardImport=QualifiedNameWithWildcard
+	 */
+	protected void sequence_AspectWildcard(EObject context, Weave semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (from=STRING to=STRING properties+=PropertyMapping*)
 	 */
 	protected void sequence_ClassMapping(EObject context, ClassBinding semanticObject) {
@@ -469,15 +508,6 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	 *     (slicedLanguage=[Language|QualifiedName] roots+=STRING roots+=STRING* mappingRules+=PackageMapping*)
 	 */
 	protected void sequence_Slice(EObject context, Slice semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     aspectTypeRef=JvmTypeReference
-	 */
-	protected void sequence_Weave(EObject context, Weave semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

@@ -32,7 +32,6 @@
     <genClasses ecoreClass="Melange.ecore#//Aspect">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Aspect/aspectTypeRef"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Aspect/aspectedClass"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Aspect/aspectWildcardImport"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Aspect/ecoreFragment"/>
     </genClasses>
     <genClasses ecoreClass="Melange.ecore#//Inheritance">
@@ -103,6 +102,7 @@
     </genClasses>
     <genClasses ecoreClass="Melange.ecore#//Weave">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Weave/aspectTypeRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Weave/aspectWildcardImport"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Melange.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//NamedElement/name"/>

@@ -8,6 +8,7 @@ import fr.inria.diverse.melange.processors.ExactTypeInferrer
 import fr.inria.diverse.melange.processors.LanguageBuilder
 import fr.inria.diverse.melange.processors.MelangeProcessor
 import fr.inria.diverse.melange.processors.TypingInferrer
+import fr.inria.diverse.melange.processors.WildcardAspectResolver
 import fr.inria.diverse.melange.utils.EPackageProvider
 import java.util.List
 import org.apache.log4j.Logger
@@ -38,10 +39,12 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 	 */
 	@Inject
 	new(
+		WildcardAspectResolver r,
 		LanguageBuilder l,
 		ExactTypeInferrer e,
 		TypingInferrer t
 	) {
+		processors += r
 		processors += l
 		processors += e
 		processors += t

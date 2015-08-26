@@ -106,8 +106,16 @@ Inherit returns Inheritance:
 	superLanguage = [Language | QualifiedName]
 ;
 
-Weave returns Weave:
+Weave:
+	AspectTypeRef | AspectWildcard
+;
+
+AspectTypeRef returns Weave:
 	'with' aspectTypeRef = JvmTypeReference
+;
+
+AspectWildcard returns Weave:
+	'with' aspectWildcardImport = QualifiedNameWithWildcard
 ;
 
 /* --- Kompren Rules --- */

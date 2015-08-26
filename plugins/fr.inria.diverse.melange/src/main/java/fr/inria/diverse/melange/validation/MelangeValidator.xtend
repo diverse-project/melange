@@ -245,14 +245,14 @@ class MelangeValidator extends AbstractMelangeValidator
 	}
 
 	@Check
-	def void checkWildcardAspectImport(Aspect asp) {
+	def void checkWildcardAspectImport(Weave w) {
 		if (
-			   asp.aspectWildcardImport !== null
-			&& !asp.aspectWildcardImport.endsWith(".*")
+			   w.aspectWildcardImport !== null
+			&& !w.aspectWildcardImport.endsWith(".*")
 		)
 			error(
 				"Only wildcard imports are supported, e.g. my.pkg.*",
-				MelangePackage.Literals.ASPECT__ASPECT_WILDCARD_IMPORT,
+				MelangePackage.Literals.WEAVE__ASPECT_WILDCARD_IMPORT,
 				MelangeValidationConstants.ASPECT_INVALID_WILDCARD
 			)
 	}

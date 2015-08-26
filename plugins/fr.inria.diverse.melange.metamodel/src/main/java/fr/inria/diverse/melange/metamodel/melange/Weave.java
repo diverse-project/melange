@@ -14,6 +14,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  * The following features are supported:
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Weave#getAspectTypeRef <em>Aspect Type Ref</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Weave#getAspectWildcardImport <em>Aspect Wildcard Import</em>}</li>
  * </ul>
  * </p>
  *
@@ -47,5 +48,31 @@ public interface Weave extends Operator {
 	 * @generated
 	 */
 	void setAspectTypeRef(JvmTypeReference value);
+
+	/**
+	 * Returns the value of the '<em><b>Aspect Wildcard Import</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Aspect Wildcard Import</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Aspect Wildcard Import</em>' attribute.
+	 * @see #setAspectWildcardImport(String)
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getWeave_AspectWildcardImport()
+	 * @model
+	 * @generated
+	 */
+	String getAspectWildcardImport();
+
+	/**
+	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.Weave#getAspectWildcardImport <em>Aspect Wildcard Import</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Aspect Wildcard Import</em>' attribute.
+	 * @see #getAspectWildcardImport()
+	 * @generated
+	 */
+	void setAspectWildcardImport(String value);
 
 } // Weave
