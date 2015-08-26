@@ -420,7 +420,7 @@ class MelangeValidator extends AbstractMelangeValidator
 			Inheritance : (operator as Inheritance).superLanguage.name
 			Merge       : operator.mergedLanguage.name
 			Slice       : operator.slicedLanguage.name
-			Weave       : operator.aspectTypeRef.aspectAnnotationValue
+			Weave       : operator.aspectTypeRef.qualifiedName
 			Import      : operator.ecoreUri
 			default     : "<Unknown source>"
 		}
