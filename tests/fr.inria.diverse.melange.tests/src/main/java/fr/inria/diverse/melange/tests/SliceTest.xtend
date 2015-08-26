@@ -148,27 +148,27 @@ class SliceTest
 	@Test
 	def void testIncompatibleReference(){
 		assertError((incompatibleSlice.operators.get(1) as Slice).slicedLanguage,
-					MelangePackage.eINSTANCE.metamodel,
+					MelangePackage.eINSTANCE.language,
 					MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING,
-					"Language \'Merge2\' has a reference \'reference\' typed EObject but in \'Merge1\' it is Clazz"
+					"Language \'Merge1\' has a reference \'reference\' typed Clazz but in \'Merge2\' it is EObject"
 		)
 	}
 	
 	@Test
 	def void testIncompatibleOperation(){
 		assertError((incompatibleSlice.operators.get(1) as Slice).slicedLanguage,
-					MelangePackage.eINSTANCE.metamodel,
+					MelangePackage.eINSTANCE.language,
 					MelangeValidationConstants.MERGE_OPERATION_OVERRIDING,
-					"Language \'Merge2\' has an operation \'operation\' typed EBoolean but in \'Merge1\' it is Void"
+					"Language \'Merge1\' has an operation \'operation\' typed Clazz but in \'Merge2\' it is EBoolean"
 		)
 	}
 	
 	@Test
 	def void testIncompatibleOperation2(){
 		assertError((incompatibleSlice.operators.get(1) as Slice).slicedLanguage,
-					MelangePackage.eINSTANCE.metamodel,
+					MelangePackage.eINSTANCE.language,
 					MelangeValidationConstants.MERGE_OPERATION_OVERRIDING,
-					"Language \'Merge2\' has an operation \'operation2\' typed EBoolean but in \'Merge1\' it is EString"
+					"Language \'Merge1\' has an operation \'operation2\' typed Void but in \'Merge2\' it is EBoolean"
 		)
 	}
 	

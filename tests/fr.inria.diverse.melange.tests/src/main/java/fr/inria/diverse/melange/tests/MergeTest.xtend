@@ -85,36 +85,36 @@ class MergeTest
 	@Test
 	def void testIncompatibleAttribute(){
 		assertError((incompatibleMerge.operators.get(1) as Merge).mergedLanguage,
-					MelangePackage.eINSTANCE.metamodel,
+					MelangePackage.eINSTANCE.language,
 					MelangeValidationConstants.MERGE_ATTRIBUTE_OVERRIDING,
-					"Language \'Merge2\' has an attribute \'attribute\' typed EFloat but in \'Merge1\' it is EChar"
+					"Language \'Merge1\' has an attribute \'attribute\' typed EChar but in \'Merge2\' it is EFloat"
 		)
 	}
 	
 	@Test
 	def void testIncompatibleReference(){
 		assertError((incompatibleMerge.operators.get(1) as Merge).mergedLanguage,
-					MelangePackage.eINSTANCE.metamodel,
+					MelangePackage.eINSTANCE.language,
 					MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING,
-					"Language \'Merge2\' has a reference \'reference\' typed EObject but in \'Merge1\' it is Clazz"
+					"Language \'Merge1\' has a reference \'reference\' typed Clazz but in \'Merge2\' it is EObject"
 		)
 	}
 	
 	@Test
 	def void testIncompatibleOperation(){
 		assertError((incompatibleMerge.operators.get(1) as Merge).mergedLanguage,
-					MelangePackage.eINSTANCE.metamodel,
+					MelangePackage.eINSTANCE.language,
 					MelangeValidationConstants.MERGE_OPERATION_OVERRIDING,
-					"Language \'Merge2\' has an operation \'operation\' typed EBoolean but in \'Merge1\' it is Void"
+					"Language \'Merge1\' has an operation \'operation\' typed Clazz but in \'Merge2\' it is EBoolean"
 		)
 	}
 	
 	@Test
 	def void testIncompatibleOperation2(){
 		assertError((incompatibleMerge.operators.get(1) as Merge).mergedLanguage,
-					MelangePackage.eINSTANCE.metamodel,
+					MelangePackage.eINSTANCE.language,
 					MelangeValidationConstants.MERGE_OPERATION_OVERRIDING,
-					"Language \'Merge2\' has an operation \'operation2\' typed EBoolean but in \'Merge1\' it is EString"
+					"Language \'Merge1\' has an operation \'operation2\' typed Void but in \'Merge2\' it is EBoolean"
 		)
 	}
 	
