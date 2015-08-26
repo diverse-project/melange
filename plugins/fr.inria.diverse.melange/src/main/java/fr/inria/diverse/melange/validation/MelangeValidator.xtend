@@ -478,6 +478,7 @@ class MelangeValidator extends AbstractMelangeValidator
 	 */
 	private def String getSource(Operator operator){
 		switch operator{
+<<<<<<< 744f8c9c2640b7ccb868a4667e976d4c9800a6ad
 			Inheritance : (operator as Inheritance).targetLanguage.name
 			Merge       : operator.targetLanguage.name
 			Slice       : operator.targetLanguage.name
@@ -538,14 +539,49 @@ class MelangeValidator extends AbstractMelangeValidator
 		}
 		else if(operator instanceof Slice){
 			return (operator as Slice).slicedLanguage.name
+=======
+			Inheritance : (operator as Inheritance).superLanguage.name
+			Merge       : operator.mergedLanguage.name
+			Slice       : operator.slicedLanguage.name
+			Weave       : operator.aspectTypeRef.aspectAnnotationValue
+			Import      : operator.ecoreUri
+			default     : "<Unknown source>"
+>>>>>>> Melange validator: add helpers for more generic checks between operators
 		}
-		else if(operator instanceof Weave){
-			return (operator as Weave).aspectTypeRef.aspectAnnotationValue
+	}
+	
+	/**
+	 * Return depending on the type of {@link operator}: <br>
+	 * - Language <br>
+	 * - Aspect <br>
+	 * - Ecore <br>
+	 * 
+	 * Return <Unknown type> by default
+	 */
+	private def String getSourceType(Operator operator){
+		switch operator{
+			Inheritance : "Language"
+			Merge       : "Language"
+			Slice       : "Language"
+			Weave       : "Aspect"
+			Import      : "Ecore"
+			default     : "<Unknown type>"
 		}
-		else if(operator instanceof Import){
-			return (operator as Import).ecoreUri
+	}
+	
+	/**
+	 * Return all classes from the result of the Operator
+	 */
+	private def List<EClass> getAllClasses(Operator operator){
+		switch operator{
+			Inheritance : operator.superLanguage.syntax.allClasses.toList
+			Merge       : operator.mergedLanguage.syntax.allClasses.toList
+			Slice       : operator.slicedLanguage.syntax.allClasses.toList //FIXME: Slice result may be smaller than the ref Language
+			Weave       : operator.owningLanguage.semantics.findFirst[aspectTypeRef.qualifiedName == operator.aspectTypeRef.qualifiedName]
+			               ?.ecoreFragment.getAllClasses
+			Import      : modelUtils.loadPkg(operator.ecoreUri).getAllClasses
+			default     : new ArrayList
 		}
-		return "<Unknown source>"
 	}
 	
 	/**
