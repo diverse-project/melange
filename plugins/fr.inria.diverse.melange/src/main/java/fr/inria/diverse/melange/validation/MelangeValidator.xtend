@@ -367,7 +367,7 @@ class MelangeValidator extends AbstractMelangeValidator
 	}
 	
 	@Check
-	def void checkPropertiesOverriding(Language lang){
+	def void checkStructuralOverriding(Language lang){
 		val operators = lang.operators
 		val candidateClasses = findMergedClasses(operators)
 		candidateClasses.keys.forEach[className |
@@ -495,8 +495,8 @@ class MelangeValidator extends AbstractMelangeValidator
 				]
 			}
 		]
-		
-		sortByName.keys.forEach[className |
+		val k = sortByName.keys.toSet
+		sortByName.keys.toSet.forEach[className |
 			val list = sortByName.get(className)
 			if(list.size > 1){
 				res.putAll(className,list)
@@ -514,7 +514,7 @@ class MelangeValidator extends AbstractMelangeValidator
 				if(firstField.EType.name != secondField.EType.name){
 					error(
 						"Language \'"+first.value.name+"\' has an attribute \'"+fieldName+"\' typed "+firstField.EType.name+" but in \'"+second.value.name+"\' it is "+secondField.EType.name,
-						MelangePackage.Literals.OPERATOR__OWNING_LANGUAGE,
+						MelangePackage.Literals.LANGUAGE__OPERATORS,
 						MelangeValidationConstants.MERGE_ATTRIBUTE_OVERRIDING
 					)
 				}
@@ -527,8 +527,8 @@ class MelangeValidator extends AbstractMelangeValidator
 			if(secondField !== null){
 				if(firstField.EType.name != secondField.EType.name){
 					error(
-						"Language \'"+first.value.name+"\' has an reference \'"+fieldName+"\' typed "+firstField.EType.name+" but in \'"+second.value.name+"\' it is "+secondField.EType.name,
-						MelangePackage.Literals.OPERATOR__OWNING_LANGUAGE,
+						"Language \'"+first.value.name+"\' has a reference \'"+fieldName+"\' typed "+firstField.EType.name+" but in \'"+second.value.name+"\' it is "+secondField.EType.name,
+						MelangePackage.Literals.LANGUAGE__OPERATORS,
 						MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING
 					)
 				}
@@ -538,10 +538,22 @@ class MelangeValidator extends AbstractMelangeValidator
 		first.key.EAllOperations.forEach[firstOp |
 			val secondOp = second.key.EAllOperations.findFirst[it.isMatching(firstOp)]
 			if(secondOp !== null){
-				if(firstOp.EType.name != secondOp.EType.name){
+				val firstTypeName = if(firstOp.EType === null){
+								"Void"
+							}
+							else{
+								firstOp.EType.name
+							}
+				val secondTypeName = if(secondOp.EType === null){
+								"Void"
+							}
+							else{
+								secondOp.EType.name
+							}
+				if(firstTypeName != secondTypeName){
 					error(
-						"Language \'"+first.value.name+"\' has an operation \'"+firstOp.name+"\' typed "+firstOp.EType.name+" but in \'"+second.value.name+"\' it is "+secondOp.EType.name,
-						MelangePackage.Literals.OPERATOR__OWNING_LANGUAGE,
+						"Language \'"+first.value.name+"\' has an operation \'"+firstOp.name+"\' typed "+firstTypeName+" but in \'"+second.value.name+"\' it is "+secondTypeName,
+						MelangePackage.Literals.LANGUAGE__OPERATORS,
 						MelangeValidationConstants.MERGE_OPERATION_OVERRIDING
 					)
 				}
