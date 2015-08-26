@@ -3,9 +3,11 @@ package fr.inria.diverse.melange.lib
 import com.google.inject.ImplementedBy
 import com.google.inject.Inject
 import java.util.List
+import org.eclipse.emf.common.util.Diagnostic
 import org.eclipse.emf.ecore.EAnnotation
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.ENamedElement
@@ -14,6 +16,7 @@ import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EParameter
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.ecore.util.Diagnostician
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtend.lib.annotations.Data
 
@@ -22,36 +25,95 @@ interface EcoreMerger {
 	/**
 	 * Note: assuming that receiving and merged are valid wrt Ecore
 	 */
-	def EPackage merge(EPackage receiving, EPackage merged) throws EcoreMergerException
+	def EPackage merge(EPackage receiving, EPackage merged)
+	def List<EPackage> merge(List<EPackage> receiving, List<EPackage> merged)
+	def List<Conflict> getConflicts()
+
+	@Data
+	static class Conflict {
+		EObject receiving
+		EObject merged
+		String message
+	}
 }
 
+/**
+ * Inspired from UML2.5 PackageMerge specification,
+ * as refined by Dingel et al.
+ * "Understanding and improving UML package merge"
+ * 
+ *   - If any constraint is violated, EcoreMergerException is thrown
+ *   - Which implies that any resulting EPackage is valid
+ *   - Receiving package and resulting package are *different*. The
+ *     receiving package does not play a dual role. Thus, the constraints
+ *     on cycle detection do not make sense.
+ *   - Ignores generics
+ *   - Ignores constraints
+ *   - Resulting elements are checked wrt. EcoreValidator
+ *   - Extremely inefficient
+ */
 class PackageMergeMerger implements EcoreMerger {
 	@Inject extension EcoreExtensions
 	List<Conflict> conflicts
 
-	/**
-	 * Ignore generics
-	 * Ignore constraints
-	 */
-	override merge(EPackage receiving, EPackage merged) throws EcoreMergerException {
+	override merge(EPackage receiving, EPackage merged) {
 		conflicts = newArrayList
 		val resulting = EcoreUtil::copy(receiving)
 
+		if (receiving === null || merged === null)
+			return null
 		if (receiving == merged || receiving.nsURI == merged.nsURI)
 			addConflict(receiving, merged, "Cannot merge packages with same URI")
 		if (receiving.allSubPkgs.contains(merged))
 			addConflict(receiving, merged, "Receiving package cannot contain merged package")
 		if (merged.allSubPkgs.contains(receiving))
 			addConflict(receiving, merged, "Merged package cannot contain receiving package")
-		// FIXME: No cross-ref from one to the other, but costly...
+		// FIXME: We should check for forbidden cross-refs between receiving/merged
+		//         but this is quite costly
 
 		if (receiving.doMatch(merged))
-			receiving.doMerge(merged)
+			resulting.doMerge(merged)
 
 		if (!conflicts.empty)
-			throw new EcoreMergerException(conflicts.join(", "))
+			return null
 
+		resulting.updateReferences
 		return resulting
+	}
+
+	def void updateReferences(EPackage pkg) {
+		EcoreUtil.ExternalCrossReferencer.find(pkg).forEach[o, s |
+			s.forEach[ss |
+				if (ss.EStructuralFeature !== null && !ss.EStructuralFeature.derived && !ss.EStructuralFeature.many) {
+					if (o instanceof EClassifier) {
+						val corresponding = pkg.EClassifiers.findFirst[name == o.name]
+						if (corresponding !== null)
+							ss.EObject.eSet(ss.EStructuralFeature, corresponding)
+					} else if (o instanceof EReference) {
+						if (o.EOpposite !== null) {
+							val correspondingCls = pkg.EClassifiers.findFirst[name == o.EContainingClass.name] as EClass
+							val correspondingRef = correspondingCls.EReferences.findFirst[name == o.name]
+
+							if (correspondingRef !== null)
+								ss.EObject.eSet(ss.EStructuralFeature, correspondingRef)
+						}
+					}
+				}
+			]
+		]
+	}
+
+	override merge(List<EPackage> receiving, List<EPackage> merged) {
+		merged.forEach[mergedPkg |
+			val correspondingPkg = receiving.findFirst[doMatch(mergedPkg)]
+
+			if (correspondingPkg !== null)
+				merge(correspondingPkg, mergedPkg)
+			else
+				receiving += EcoreUtil::copy(mergedPkg)
+		]
+
+		return receiving
 	}
 
 	private def dispatch boolean doMatch(ENamedElement rcv, ENamedElement merged) {
@@ -95,16 +157,18 @@ class PackageMergeMerger implements EcoreMerger {
 	}
 
 	private def dispatch void doMerge(EPackage rcv, EPackage merged) {
-		doCollectionsMerge(rcv.EClassifiers, merged.EClassifiers)
-		doCollectionsMerge(rcv.ESubpackages, merged.ESubpackages)
+		// TODO: what about URIs, prefix, etc. ?
+		doCollectionsMerge(rcv, rcv.EClassifiers, merged.EClassifiers)
+		doCollectionsMerge(rcv, rcv.ESubpackages, merged.ESubpackages)
 	}
 
 	private def dispatch void doMerge(EClass rcv, EClass merged) {
 		// TODO: What about superTypes?
 		rcv.abstract = rcv.abstract && merged.abstract
 		rcv.interface = rcv.interface && merged.interface
-		doCollectionsMerge(rcv.EStructuralFeatures, merged.EStructuralFeatures)
-		doCollectionsMerge(rcv.EOperations, merged.EOperations)
+		doValidateMerge(rcv, merged)
+		doCollectionsMerge(rcv, rcv.EStructuralFeatures, merged.EStructuralFeatures)
+		doCollectionsMerge(rcv, rcv.EOperations, merged.EOperations)
 	}
 
 	private def dispatch void doMerge(EDataType rcv, EDataType merged) {
@@ -120,6 +184,7 @@ class PackageMergeMerger implements EcoreMerger {
 		rcv.unique = rcv.ordered || merged.unique
 		rcv.lowerBound = #[rcv.lowerBound, merged.lowerBound].min
 		rcv.upperBound = maxBound(rcv.upperBound, merged.upperBound)
+		doValidateMerge(rcv, merged)
 	}
 
 	private def dispatch void doMerge(EReference rcv, EReference merged) {
@@ -129,11 +194,13 @@ class PackageMergeMerger implements EcoreMerger {
 		rcv.unique = rcv.ordered || merged.unique
 		rcv.lowerBound = #[rcv.lowerBound, merged.lowerBound].min
 		rcv.upperBound = maxBound(rcv.upperBound, merged.upperBound)
+		doValidateMerge(rcv, merged)
 	}
 
 	private def dispatch void doMerge(EOperation rcv, EOperation merged) {
 		rcv.ordered = rcv.ordered || merged.ordered
 		rcv.unique = rcv.ordered || merged.unique
+		doValidateMerge(rcv, merged)
 	}
 
 	private def dispatch void doMerge(EParameter rcv, EParameter merged) {
@@ -142,14 +209,19 @@ class PackageMergeMerger implements EcoreMerger {
 	private def dispatch void doMerge(EAnnotation rcv, EAnnotation merged) {
 	}
 
-	private def <T extends ENamedElement> void doCollectionsMerge(List<T> rcv, List<T> merged) {
+	private def <T extends ENamedElement> void deepCopy(ENamedElement context, List<T> receiving, T merged) {
+		receiving += EcoreUtil::copy(merged)
+		doValidateCollectionsMerge(context, merged)
+	}
+
+	private def <T extends ENamedElement> void doCollectionsMerge(ENamedElement context, List<T> rcv, List<T> merged) {
 		merged.forEach[m |
 			val match = rcv.findFirst[r | r.doMatch(m)]
 
 			if (match !== null)
 				match.doMerge(m)
 			else
-				rcv.add(m)
+				deepCopy(context, rcv, m)
 		]
 	}
 
@@ -159,20 +231,29 @@ class PackageMergeMerger implements EcoreMerger {
 			else #[a, b].max
 	}
 
+	private def doValidateMerge(ENamedElement rcv, ENamedElement merged) {
+		val diag = Diagnostician.INSTANCE.validate(rcv)
+		if (diag.severity !== Diagnostic.OK) {
+			diag.children.forEach[d |
+				addConflict(rcv, merged, '''1Cannot merge «merged.uniqueId» with «rcv.uniqueId»: «d.message»''')
+			]
+		}
+	}
+
+	private def doValidateCollectionsMerge(ENamedElement rcv, ENamedElement merged) {
+		val diag = Diagnostician.INSTANCE.validate(rcv)
+		if (diag.severity !== Diagnostic.OK) {
+			diag.children.forEach[d |
+				addConflict(rcv, merged, '''Cannot insert «merged.uniqueId» into «rcv.uniqueId»: «d.message»''')
+			]
+		}
+	}
+
 	private def void addConflict(ENamedElement rcv, ENamedElement merged, String message) {
 		conflicts += new Conflict(rcv, merged, message)
 	}
 
-	@Data
-	static class Conflict {
-		EObject receiving
-		EObject merged
-		String message
-	}
-}
-
-class EcoreMergerException extends Exception {
-	new(String message) {
-		super(message)
+	override List<Conflict> getConflicts() {
+		return conflicts
 	}
 }
