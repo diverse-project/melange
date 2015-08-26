@@ -293,6 +293,15 @@ class EcoreExtensions
 			}
 		]
 	}
+	
+	def List<EClass> getAllClasses(EPackage pkg) {
+		val ret = newArrayList
+		
+		ret.addAll(pkg.EClassifiers.filter(EClass))
+		ret.addAll(pkg.allSubPkgs.map[EClassifiers].flatten.filter(EClass))
+		
+		return ret
+	}
 
 	def List<EPackage> getAllSubPkgs(EPackage pkg) {
 		val ret = newArrayList

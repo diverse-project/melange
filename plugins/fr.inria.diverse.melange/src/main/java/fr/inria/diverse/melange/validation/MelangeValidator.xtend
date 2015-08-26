@@ -36,6 +36,9 @@ import com.google.common.collect.ArrayListMultimap
 import java.util.Set
 import java.util.HashSet
 import fr.inria.diverse.melange.metamodel.melange.Weave
+import java.util.ArrayList
+import fr.inria.diverse.melange.lib.EcoreExtensions
+import fr.inria.diverse.melange.utils.AspectToEcore
 
 class MelangeValidator extends AbstractMelangeValidator
 {
@@ -44,6 +47,8 @@ class MelangeValidator extends AbstractMelangeValidator
 	@Inject MatchingHelper matchingHelper
 	@Inject extension AspectExtensions
 	@Inject extension MetamodelExtensions
+	@Inject extension EcoreExtensions
+	@Inject extension AspectToEcore
 	@Inject JvmTypeReferenceBuilder.Factory builderFactory
 
 	@Check
@@ -411,22 +416,48 @@ class MelangeValidator extends AbstractMelangeValidator
 	 * Return <Unknown source> by default
 	 */
 	private def String getSource(Operator operator){
-		if(operator instanceof Inheritance){
-			return (operator as Inheritance).superLanguage.name
+		switch operator{
+			Inheritance : (operator as Inheritance).superLanguage.name
+			Merge       : operator.mergedLanguage.name
+			Slice       : operator.slicedLanguage.name
+			Weave       : operator.aspectTypeRef.aspectAnnotationValue
+			Import      : operator.ecoreUri
+			default     : "<Unknown source>"
 		}
-		else if(operator instanceof Merge){
-			return (operator as Merge).mergedLanguage.name
+	}
+	
+	/**
+	 * Return depending on the type of {@link operator}: <br>
+	 * - Language <br>
+	 * - Aspect <br>
+	 * - Ecore <br>
+	 * 
+	 * Return <Unknown type> by default
+	 */
+	private def String getSourceType(Operator operator){
+		switch operator{
+			Inheritance : "Language"
+			Merge       : "Language"
+			Slice       : "Language"
+			Weave       : "Aspect"
+			Import      : "Ecore"
+			default     : "<Unknown type>"
 		}
-		else if(operator instanceof Slice){
-			return (operator as Slice).slicedLanguage.name
+	}
+	
+	/**
+	 * Return all classes from the result of the Operator
+	 */
+	private def List<EClass> getAllClasses(Operator operator){
+		switch operator{
+			Inheritance : operator.superLanguage.syntax.allClasses.toList
+			Merge       : operator.mergedLanguage.syntax.allClasses.toList
+			Slice       : operator.slicedLanguage.syntax.allClasses.toList //FIXME: Slice result may be smaller than the ref Language
+			Weave       : operator.owningLanguage.semantics.findFirst[aspectTypeRef.qualifiedName == operator.aspectTypeRef.qualifiedName]
+			               ?.ecoreFragment.getAllClasses
+			Import      : modelUtils.loadPkg(operator.ecoreUri).getAllClasses
+			default     : new ArrayList
 		}
-		else if(operator instanceof Weave){
-			return (operator as Weave).aspectTypeRef.aspectAnnotationValue
-		}
-		else if(operator instanceof Import){
-			return (operator as Import).ecoreUri
-		}
-		return "<Unknown source>"
 	}
 	
 	/**
@@ -509,21 +540,18 @@ class MelangeValidator extends AbstractMelangeValidator
 	 * Return classes from results of {@link operators} which have to be merged 
 	 * (i.e classes with the same name).
 	 * 
-	 * Classes are associated with their containing Language
+	 * Classes are associated with their containing Operator
 	 */
-	private def Multimap<String,Pair<EClass,Language>> findMergedClasses(List<Operator> operators){
-		val ListMultimap<String,Pair<EClass,Language>> res = ArrayListMultimap.create
+	private def Multimap<String,Pair<EClass,Operator>> findMergedClasses(List<Operator> operators){
+		val ListMultimap<String,Pair<EClass,Operator>> res = ArrayListMultimap.create
 		
-		val ListMultimap<String,Pair<EClass,Language>> sortByName = ArrayListMultimap.create
+		val ListMultimap<String,Pair<EClass,Operator>> sortByName = ArrayListMultimap.create
 		operators.forEach[op |
-			val lang = op.language //FIXME: Slice result may be smaller than the ref Language 
-			if(lang !== null){
-				lang.syntax.allClasses.forEach[clazz|
-					sortByName.put(clazz.name, clazz->lang)
-				]
-			}
+			op.allClasses.forEach[clazz|
+				sortByName.put(clazz.name, clazz->op)
+			]
 		]
-		val k = sortByName.keys.toSet
+		
 		sortByName.keys.toSet.forEach[className |
 			val list = sortByName.get(className)
 			if(list.size > 1){
@@ -534,14 +562,17 @@ class MelangeValidator extends AbstractMelangeValidator
 		return res
 	}
 	
-	private def void checkConflict(Pair<EClass,Language> first, Pair<EClass,Language> second){
+	private def void checkConflict(Pair<EClass,Operator> first, Pair<EClass,Operator> second){
+		val op1 = first.value
+		val op2 = second.value
+		
 		first.key.EAllAttributes.forEach[firstField |
 			val fieldName = firstField.name
 			val secondField = second.key.EAllAttributes.findFirst[name == fieldName]
 			if(secondField !== null){
 				if(firstField.EType.name != secondField.EType.name){
 					error(
-						"Language \'"+first.value.name+"\' has an attribute \'"+fieldName+"\' typed "+firstField.EType.name+" but in \'"+second.value.name+"\' it is "+secondField.EType.name,
+						op1.sourceType+" \'"+op1.source+"\' has an attribute \'"+fieldName+"\' typed "+firstField.EType.name+" but in \'"+op2.source+"\' it is "+secondField.EType.name,
 						MelangePackage.Literals.LANGUAGE__OPERATORS,
 						MelangeValidationConstants.MERGE_ATTRIBUTE_OVERRIDING
 					)
@@ -555,7 +586,7 @@ class MelangeValidator extends AbstractMelangeValidator
 			if(secondField !== null){
 				if(firstField.EType.name != secondField.EType.name){
 					error(
-						"Language \'"+first.value.name+"\' has a reference \'"+fieldName+"\' typed "+firstField.EType.name+" but in \'"+second.value.name+"\' it is "+secondField.EType.name,
+						op1.sourceType+" \'"+op1.source+"\' has a reference \'"+fieldName+"\' typed "+firstField.EType.name+" but in \'"+op2.source+"\' it is "+secondField.EType.name,
 						MelangePackage.Literals.LANGUAGE__OPERATORS,
 						MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING
 					)
@@ -580,7 +611,7 @@ class MelangeValidator extends AbstractMelangeValidator
 							}
 				if(firstTypeName != secondTypeName){
 					error(
-						"Language \'"+first.value.name+"\' has an operation \'"+firstOp.name+"\' typed "+firstTypeName+" but in \'"+second.value.name+"\' it is "+secondTypeName,
+						op1.sourceType+" \'"+op1.source+"\' has an operation \'"+firstOp.name+"\' typed "+firstTypeName+" but in \'"+op2.source+"\' it is "+secondTypeName,
 						MelangePackage.Literals.LANGUAGE__OPERATORS,
 						MelangeValidationConstants.MERGE_OPERATION_OVERRIDING
 					)
