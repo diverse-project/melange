@@ -1,8 +1,10 @@
 package fr.inria.diverse.melange.tests
 
+import com.google.inject.Inject
 import fr.inria.diverse.melange.lib.EcoreMerger
 import fr.inria.diverse.melange.lib.PackageMergeMerger
 import fr.inria.diverse.melange.tests.common.MelangeTestHelper
+import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.compare.EMFCompare
 import org.eclipse.emf.compare.diff.DefaultDiffEngine
@@ -16,16 +18,21 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl
+import org.eclipse.xtext.junit4.InjectWith
+import org.eclipse.xtext.junit4.XtextRunner
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
 
+@RunWith(XtextRunner)
+@InjectWith(MelangeTestsInjectorProvider)
 class EcoreMergerTest
 {
-	EcoreMerger merger = new PackageMergeMerger
 	EPackage receivingEcore
 	EPackage mergedEcore
-	extension MelangeTestHelper = new MelangeTestHelper
+	@Inject EcoreMerger merger
+	@Inject extension MelangeTestHelper
 
 	@Before
 	def void setUp() {

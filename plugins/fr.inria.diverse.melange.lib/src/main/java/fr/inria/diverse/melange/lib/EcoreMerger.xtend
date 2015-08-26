@@ -1,6 +1,7 @@
 package fr.inria.diverse.melange.lib
 
 import com.google.inject.ImplementedBy
+import com.google.inject.Inject
 import java.util.List
 import org.eclipse.emf.ecore.EAnnotation
 import org.eclipse.emf.ecore.EAttribute
@@ -25,7 +26,7 @@ interface EcoreMerger {
 }
 
 class PackageMergeMerger implements EcoreMerger {
-	extension EcoreExtensions = new EcoreExtensions
+	@Inject extension EcoreExtensions
 	List<Conflict> conflicts
 
 	/**
