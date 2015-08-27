@@ -32,10 +32,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ecoreFragment" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Inheritance" eSuperTypes="#//Operator">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="superLanguage" lowerBound="1"
-        eType="#//Language"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Inheritance" eSuperTypes="#//LanguageOperator"/>
   <eClassifiers xsi:type="ecore:EClass" name="Subtyping">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subType" lowerBound="1"
         eType="#//ModelType" eOpposite="#//ModelType/subtypingRelations"/>
@@ -81,6 +78,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningLanguage" eType="#//Language"
         eOpposite="#//Language/operators"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LanguageOperator" eSuperTypes="#//Operator">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetLanguage" lowerBound="1"
+        eType="#//Language"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Import" eSuperTypes="#//Operator">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ecoreUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="genmodelUris" upperBound="-1"
@@ -88,15 +89,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappingRules" upperBound="-1"
         eType="#//PackageBinding" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Merge" eSuperTypes="#//Operator">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="mergedLanguage" lowerBound="1"
-        eType="#//Language"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Merge" eSuperTypes="#//LanguageOperator">
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappingRules" upperBound="-1"
         eType="#//PackageBinding" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Slice" eSuperTypes="#//Operator">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="slicedLanguage" lowerBound="1"
-        eType="#//Language"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Slice" eSuperTypes="#//LanguageOperator">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="roots" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappingRules" upperBound="-1"

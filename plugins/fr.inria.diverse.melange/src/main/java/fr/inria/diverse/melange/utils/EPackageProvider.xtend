@@ -64,7 +64,7 @@ class EPackageProvider
 				}
 				Metamodel:
 					if (m.owningLanguage.hasSuperLanguage) {
-						val pkgsCopy = m.owningLanguage.operators.filter(Inheritance).map[superLanguage.syntax.packages.map[
+						val pkgsCopy = m.owningLanguage.operators.filter(Inheritance).map[targetLanguage.syntax.packages.map[
 							val copy = EcoreUtil::copy(it)
 							copy.name = m.owningLanguage.name.toLowerCase
 							copy.nsPrefix = copy.name

@@ -38,13 +38,13 @@ class LanguageExtensions
 	@Inject JvmTypeReferenceBuilder.Factory builderFactory
 
 	def List<Language> getSuperLanguages(Language l) {
-		return l.operators.filter(Inheritance).map[superLanguage].toList
+		return l.operators.filter(Inheritance).map[targetLanguage].toList
 	}
 
 	def List<Language> getAllSuperLanguages(Language l) {
 		val ret = newArrayList
 		ret += l.superLanguages
-		ret += l.operators.filter(Inheritance).map[superLanguage.allSuperLanguages].flatten
+		ret += l.operators.filter(Inheritance).map[targetLanguage.allSuperLanguages].flatten
 		return ret
 	}
 
@@ -62,13 +62,13 @@ class LanguageExtensions
 	def List<JvmTypeReference> allAspects(Language l) {
 		val res = newArrayList
 
-		res += l.operators.filter(Inheritance).map[superLanguage.allAspects].flatten		
+		res += l.operators.filter(Inheritance).map[targetLanguage.allAspects].flatten		
 		res +=
 			l.operators.map[op |
 				if (op instanceof Slice)
-					op.slicedLanguage.allAspects
+					op.targetLanguage.allAspects
 				else if (op instanceof Merge)
-					op.mergedLanguage.allAspects
+					op.targetLanguage.allAspects
 				else
 					newArrayList
 			].flatten
@@ -84,9 +84,9 @@ class LanguageExtensions
 		tmp +=
 			l.operators.map[op |
 				if (op instanceof Slice)
-					op.slicedLanguage.allSemantics
+					op.targetLanguage.allSemantics
 				else if (op instanceof Merge)
-					op.mergedLanguage.allSemantics
+					op.targetLanguage.allSemantics
 				else
 					newArrayList
 			].flatten
@@ -116,7 +116,7 @@ class LanguageExtensions
 	}
 
 	def boolean hasSuperLanguage(Language l) {
-		return l.operators.filter(Inheritance).exists[superLanguage !== null]
+		return l.operators.filter(Inheritance).exists[targetLanguage !== null]
 	}
 
 	def boolean hasAdapterFor(Language l, ModelType mt, EClassifier cls) {
