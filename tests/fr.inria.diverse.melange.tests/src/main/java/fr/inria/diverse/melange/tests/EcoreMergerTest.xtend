@@ -122,9 +122,9 @@ class EcoreMergerTest
 		assertNull(resulting)
 		val conflicts = merger.conflicts
 		assertEquals(2, conflicts.size)
-		assertEquals("Cannot merge ecore.EClass.id1 with ecore.EClass: The features 'id1' and 'id2' cannot both be IDs",
+		assertEquals("Cannot merge ecore.EClass.id1 with ecore.EClass.eStructuralFeatures: The features 'id1' and 'id2' cannot both be IDs",
 			conflicts.get(0).message)
-		assertEquals("Cannot merge ecore.EClass.id2 with ecore.EClass: The features 'id1' and 'id2' cannot both be IDs",
+		assertEquals("Cannot merge ecore.EClass.id2 with ecore.EClass.eStructuralFeatures: The features 'id1' and 'id2' cannot both be IDs",
 			conflicts.get(1).message)
 	}
 
@@ -135,7 +135,7 @@ class EcoreMergerTest
 		assertNull(resulting)
 		val conflicts = merger.conflicts
 		assertEquals(1, conflicts.size)
-		assertEquals("Cannot merge ecore.EClass.abstract with ecore.EClass: There may not be two features named 'abstract'",
+		assertEquals("Cannot merge ecore.EClass.abstract with ecore.EClass.eStructuralFeatures: There may not be two features named 'abstract'",
 			conflicts.head.message)
 	}
 
@@ -146,7 +146,7 @@ class EcoreMergerTest
 		assertNull(resulting)
 		val conflicts = merger.conflicts
 		assertEquals(1, conflicts.size)
-		assertEquals("Cannot merge ecore.EClass.eSuperTypes with ecore.EClass: There may not be two features named 'eSuperTypes'",
+		assertEquals("Cannot merge ecore.EClass.eSuperTypes with ecore.EClass.eStructuralFeatures: There may not be two features named 'eSuperTypes'",
 			conflicts.head.message)
 	}
 
@@ -157,7 +157,9 @@ class EcoreMergerTest
 		assertNull(resulting)
 		val conflicts = merger.conflicts
 		assertEquals(2, conflicts.size)
-		assertTrue(conflicts.forall[message == "Conflicting containment values for reference"])
+		conflicts.forEach[
+			assertEquals("Conflicting containment values for reference", message)
+		]
 	}
 
 	@Test
@@ -167,7 +169,7 @@ class EcoreMergerTest
 		assertNull(resulting)
 		val conflicts = merger.conflicts
 		assertEquals(1, conflicts.size)
-		assertTrue(conflicts.head.message.startsWith("Cannot merge ecore.EClass.getOperationID with ecore.EClass: There may not be two operations"))
+		assertTrue(conflicts.head.message.startsWith("Cannot merge ecore.EClass.getOperationID with ecore.EClass.eOperations: There may not be two operations"))
 	}
 
 	@Test
@@ -194,7 +196,6 @@ class EcoreMergerTest
 	def void testDerivedOverride() {
 		val merged = getTestInput("DerivedOverride")
 		val resulting = merger.merge(receivingEcore, merged)
-		println(merger.conflicts)
 		assertNotNull(resulting)
 		assertEquals(0, merger.conflicts.size)
 		assertPkgEquals(resulting, getExpected("DerivedOverride"))
@@ -208,6 +209,27 @@ class EcoreMergerTest
 		assertIsValid(resulting)
 		assertEquals(0, merger.conflicts.size)
 		assertMatch(resulting, getExpected("Ecore"))
+	}
+
+	@Test
+	def void testValidSuperTypes() {
+		val merged = getTestInput("SuperTypes")
+		val resulting = merger.merge(receivingEcore, merged)
+		assertNotNull(resulting)
+		assertIsValid(resulting)
+		assertEquals(0, merger.conflicts.size)
+		assertPkgEquals(resulting, getExpected("SuperTypes"))
+	}
+
+	@Test
+	def void testInvalidValidSuperTypes() {
+		val merged = getTestInput("InvalidSuperTypes")
+		val resulting = merger.merge(receivingEcore, merged)
+		assertNull(resulting)
+		val conflicts = merger.conflicts
+		assertEquals(2, conflicts.size)
+		assertEquals("Cannot merge ecore.EClass with ecore.EClassifier.eSuperTypes: A class may not be a super type of itself", conflicts.get(0).message)
+		assertEquals("Cannot merge ecore.EOperation with ecore.EModelElement.eSuperTypes: A class may not be a super type of itself", conflicts.get(1).message)
 	}
 
 	@Test

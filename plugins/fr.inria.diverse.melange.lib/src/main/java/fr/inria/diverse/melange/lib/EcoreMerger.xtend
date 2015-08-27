@@ -16,10 +16,12 @@ import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EParameter
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.EcoreFactory
 import org.eclipse.emf.ecore.util.Diagnostician
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtend.lib.annotations.Data
+import org.eclipse.emf.ecore.EcorePackage
 
 @ImplementedBy(PackageMergeMerger)
 interface EcoreMerger {
@@ -34,6 +36,7 @@ interface EcoreMerger {
 	static class Conflict {
 		EObject receiving
 		EObject merged
+		EStructuralFeature feature
 		String message
 		Diagnostic emfDiagnostic
 	}
@@ -66,11 +69,11 @@ class PackageMergeMerger implements EcoreMerger {
 		if (receiving === null || merged === null)
 			return null
 		if (receiving == merged || receiving.nsURI == merged.nsURI)
-			addConflict(receiving, merged, "Cannot merge packages with same URI")
+			addConflict(receiving, merged, null, "Cannot merge packages with same URI")
 		if (receiving.allSubPkgs.contains(merged))
-			addConflict(receiving, merged, "Receiving package cannot contain merged package")
+			addConflict(receiving, merged, null, "Receiving package cannot contain merged package")
 		if (merged.allSubPkgs.contains(receiving))
-			addConflict(receiving, merged, "Merged package cannot contain receiving package")
+			addConflict(receiving, merged, null, "Merged package cannot contain receiving package")
 		// FIXME: We should check for forbidden cross-refs between receiving/merged
 		//         but this is quite costly
 
@@ -88,7 +91,9 @@ class PackageMergeMerger implements EcoreMerger {
 				val diagSource = d.data.head
 				if (diagSource instanceof ENamedElement) {
 					diagSource.EAnnotations.filter[source == ORIGIN_ANNOTATION_SOURCE].forEach[ann |
-						addConflict(diagSource, ann.references.head as ENamedElement, d)
+						val receivingElement = ann.references.head as ENamedElement
+						val feature = ann.references.get(1) as EStructuralFeature
+						addConflict(diagSource, receivingElement, feature, d)
 					]
 				}
 			]
@@ -202,16 +207,16 @@ class PackageMergeMerger implements EcoreMerger {
 
 	private def dispatch void doMerge(EPackage rcv, EPackage merged) {
 		// TODO: what about URIs, prefix, etc. ?
-		doCollectionsMerge(rcv, rcv.EClassifiers, merged.EClassifiers)
-		doCollectionsMerge(rcv, rcv.ESubpackages, merged.ESubpackages)
+		doCollectionsMerge(rcv, EcorePackage.Literals.EPACKAGE__ECLASSIFIERS, rcv.EClassifiers, merged.EClassifiers)
+		doCollectionsMerge(rcv, EcorePackage.Literals.EPACKAGE__ESUBPACKAGES, rcv.ESubpackages, merged.ESubpackages)
 	}
 
 	private def dispatch void doMerge(EClass rcv, EClass merged) {
-		// TODO: What about superTypes?
 		rcv.abstract = rcv.abstract && merged.abstract
 		rcv.interface = rcv.interface && merged.interface
-		doCollectionsMerge(rcv, rcv.EStructuralFeatures, merged.EStructuralFeatures)
-		doCollectionsMerge(rcv, rcv.EOperations, merged.EOperations)
+		doCollectionsMerge(rcv, EcorePackage.Literals.ECLASS__ESTRUCTURAL_FEATURES, rcv.EStructuralFeatures, merged.EStructuralFeatures)
+		doCollectionsMerge(rcv, EcorePackage.Literals.ECLASS__EOPERATIONS, rcv.EOperations, merged.EOperations)
+		doCollectionsMerge(rcv, EcorePackage.Literals.ECLASS__ESUPER_TYPES, rcv.ESuperTypes, merged.ESuperTypes)
 	}
 
 	private def dispatch void doMerge(EDataType rcv, EDataType merged) {
@@ -244,7 +249,7 @@ class PackageMergeMerger implements EcoreMerger {
 		rcv.upperBound = maxBound(rcv.upperBound, merged.upperBound)
 
 		if (rcv.containment != merged.containment)
-			addConflict(rcv, merged, "Conflicting containment values for reference")
+			addConflict(rcv, merged, null, "Conflicting containment values for reference")
 	}
 
 	private def dispatch void doMerge(EOperation rcv, EOperation merged) {
@@ -260,22 +265,23 @@ class PackageMergeMerger implements EcoreMerger {
 	private def dispatch void doMerge(EAnnotation rcv, EAnnotation merged) {
 	}
 
-	private def <T extends ENamedElement> void deepCopy(ENamedElement context, List<T> receiving, T merged) {
+	private def <T extends ENamedElement> void deepCopy(ENamedElement context, EStructuralFeature f, List<T> receiving, T merged) {
 		receiving += EcoreUtil::copy(merged)
 		context.EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [
 			source = ORIGIN_ANNOTATION_SOURCE
 			references += merged
+			references += f
 		]
 	}
 
-	private def <T extends ENamedElement> void doCollectionsMerge(ENamedElement context, List<T> rcv, List<T> merged) {
+	private def <T extends ENamedElement> void doCollectionsMerge(ENamedElement context, EStructuralFeature f, List<T> rcv, List<T> merged) {
 		merged.forEach[m |
 			val match = rcv.findFirst[r | r.doMatch(m)]
 
 			if (match !== null)
 				match.doMerge(m)
 			else
-				deepCopy(context, rcv, m)
+				deepCopy(context, f, rcv, m)
 		]
 	}
 
@@ -285,21 +291,22 @@ class PackageMergeMerger implements EcoreMerger {
 			else #[a, b].max
 	}
 
-	private def void addConflict(ENamedElement rcv, ENamedElement merged, String message) {
-		addConflict(rcv, merged, message, null)
+	private def void addConflict(ENamedElement rcv, ENamedElement merged, EStructuralFeature f, String message) {
+		addConflict(rcv, merged, f, message, null)
 	}
 
-	private def void addConflict(ENamedElement rcv, ENamedElement merged, Diagnostic d) {
+	private def void addConflict(ENamedElement rcv, ENamedElement merged, EStructuralFeature f, Diagnostic d) {
 		addConflict(
 			rcv,
 			merged,
-			'''Cannot merge «merged.uniqueId» with «rcv.uniqueId»: «d.message»''',
+			f,
+			'''Cannot merge «merged.uniqueId» with «rcv.uniqueId».«f.name»: «d.message»''',
 			d
 		)
 	}
 
-	private def void addConflict(ENamedElement rcv, ENamedElement merged, String message, Diagnostic d) {
-		conflicts += new Conflict(rcv, merged, message, d)
+	private def void addConflict(ENamedElement rcv, ENamedElement merged, EStructuralFeature f, String message, Diagnostic d) {
+		conflicts += new Conflict(rcv, merged, f, message, d)
 	}
 
 	override List<Conflict> getConflicts() {
