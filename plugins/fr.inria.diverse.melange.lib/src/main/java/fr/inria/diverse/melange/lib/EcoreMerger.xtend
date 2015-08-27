@@ -230,7 +230,7 @@ class PackageMergeMerger implements EcoreMerger {
 		rcv.unsettable = rcv.unsettable && merged.unsettable
 		rcv.changeable = rcv.changeable || merged.changeable
 		rcv.ordered = rcv.ordered || merged.ordered
-		rcv.unique = rcv.ordered || merged.unique
+		rcv.unique = rcv.unique || merged.unique
 		rcv.lowerBound = #[rcv.lowerBound, merged.lowerBound].min
 		rcv.upperBound = maxBound(rcv.upperBound, merged.upperBound)
 	}
@@ -242,7 +242,7 @@ class PackageMergeMerger implements EcoreMerger {
 		rcv.unsettable = rcv.unsettable && merged.unsettable
 		rcv.changeable = rcv.changeable || merged.changeable
 		rcv.ordered = rcv.ordered || merged.ordered
-		rcv.unique = rcv.ordered || merged.unique
+		rcv.unique = rcv.unique || merged.unique
 		rcv.lowerBound = #[rcv.lowerBound, merged.lowerBound].min
 		rcv.upperBound = maxBound(rcv.upperBound, merged.upperBound)
 	}
