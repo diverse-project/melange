@@ -103,25 +103,34 @@ class EcoreMergerTest
 
 		val resulting = merger.merge(receivingEcore, mergedEcore)
 		assertNull(resulting)
-		println(merger.conflicts)
+		val conflicts = merger.conflicts
+		assertEquals(2, conflicts.size)
+		//FIXME: Conflict message is ugly:
+		//"Cannot insert ecore.EClassNotMatching into ecore: The opposite of the opposite may not be a reference different from this one"
 	}
 
 	@Test
 	def void testMultipleIDs() {
-		mergedEcore.EClassifiers.filter(EClass).findFirst[name == "EParameter"].EStructuralFeatures += EcoreFactory.eINSTANCE.createEAttribute => [
-			ID = true
-			name = "id1"
-			EType = EcorePackage.Literals.ESTRING
-		]
-		mergedEcore.EClassifiers.filter(EClass).findFirst[name == "EParameter"].EStructuralFeatures += EcoreFactory.eINSTANCE.createEAttribute => [
-			ID = true
-			name = "id2"
-			EType = EcorePackage.Literals.ESTRING
-		]
+		mergedEcore.EClassifiers.filter(EClass).findFirst[name == "EParameter"].EStructuralFeatures +=
+			EcoreFactory.eINSTANCE.createEAttribute => [
+				ID = true
+				name = "id1"
+				EType = EcorePackage.Literals.ESTRING
+			]
+		mergedEcore.EClassifiers.filter(EClass).findFirst[name == "EParameter"].EStructuralFeatures +=
+			EcoreFactory.eINSTANCE.createEAttribute => [
+				ID = true
+				name = "id2"
+				EType = EcorePackage.Literals.ESTRING
+			]
 
 		val resulting = merger.merge(receivingEcore, mergedEcore)
 		assertNull(resulting)
-		println(merger.conflicts)
+		val conflicts = merger.conflicts
+		assertEquals(1, conflicts.size)
+		println(conflicts)
+		assertEquals("Cannot insert ecore.EParameter.id2 into ecore.EParameter: The features 'id1' and 'id2' cannot both be IDs",
+			conflicts.head.message)
 	}
 
 	@Test
