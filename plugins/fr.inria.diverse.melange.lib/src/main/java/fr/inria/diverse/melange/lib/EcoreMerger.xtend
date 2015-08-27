@@ -225,6 +225,9 @@ class PackageMergeMerger implements EcoreMerger {
 
 	private def dispatch void doMerge(EAttribute rcv, EAttribute merged) {
 		rcv.derived = rcv.derived || merged.derived
+		rcv.transient = rcv.transient || merged.transient
+		rcv.volatile = rcv.volatile || merged.volatile
+		rcv.unsettable = rcv.unsettable && merged.unsettable
 		rcv.changeable = rcv.changeable && merged.changeable
 		rcv.ordered = rcv.ordered || merged.ordered
 		rcv.unique = rcv.ordered || merged.unique
@@ -234,6 +237,9 @@ class PackageMergeMerger implements EcoreMerger {
 
 	private def dispatch void doMerge(EReference rcv, EReference merged) {
 		rcv.derived = rcv.derived || merged.derived
+		rcv.transient = rcv.transient || merged.transient
+		rcv.volatile = rcv.volatile || merged.volatile
+		rcv.unsettable = rcv.unsettable && merged.unsettable
 		rcv.changeable = rcv.changeable && merged.changeable
 		rcv.ordered = rcv.ordered || merged.ordered
 		rcv.unique = rcv.ordered || merged.unique
