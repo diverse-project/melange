@@ -39,7 +39,7 @@ class AspectToEcoreTest
 		val pkg = "SimpleAttributes".aspectPkg
 		assertNotNull(pkg)
 
-		assertMatch(pkg, "SimpleAttributes.ecore")
+		assertMatch(pkg, "tests-inputs/aspect-to-ecore/SimpleAttributes.ecore")
 	}
 
 	@Test
@@ -47,7 +47,7 @@ class AspectToEcoreTest
 		val pkg = "AttributesCollections".aspectPkg
 		assertNotNull(pkg)
 
-		assertMatch(pkg, "AttributesCollections.ecore")
+		assertMatch(pkg, "tests-inputs/aspect-to-ecore/AttributesCollections.ecore")
 	}
 
 	@Test
@@ -55,7 +55,7 @@ class AspectToEcoreTest
 		val pkg = "SimpleReferences".aspectPkg
 		assertNotNull(pkg)
 
-		assertMatch(pkg, "SimpleReferences.ecore")
+		assertMatch(pkg, "tests-inputs/aspect-to-ecore/SimpleReferences.ecore")
 	}
 
 	@Test
@@ -63,7 +63,7 @@ class AspectToEcoreTest
 		val pkg = "ReferencesCollections".aspectPkg
 		assertNotNull(pkg)
 
-		assertMatch(pkg, "ReferencesCollections.ecore")
+		assertMatch(pkg, "tests-inputs/aspect-to-ecore/ReferencesCollections.ecore")
 	}
 
 	@Test
@@ -71,7 +71,7 @@ class AspectToEcoreTest
 		val pkg = "ExternalReferences".aspectPkg
 		assertNotNull(pkg)
 
-		assertMatch(pkg, "ExternalReferences.ecore")
+		assertMatch(pkg, "tests-inputs/aspect-to-ecore/ExternalReferences.ecore")
 	}
 
 	@Test
@@ -79,13 +79,14 @@ class AspectToEcoreTest
 		val pkg = "Visibility".aspectPkg
 		assertNotNull(pkg)
 
-		assertMatch(pkg, "Visibility.ecore")
+		assertMatch(pkg, "tests-inputs/aspect-to-ecore/Visibility.ecore")
 	}
 
 	@Test
 	def void testOperations() {
 		val pkg = "Operations".aspectPkg
 		assertNotNull(pkg)
+
 
 		assertMatch(pkg, "Operations.ecore")
 	}

@@ -1,18 +1,21 @@
 package fr.inria.diverse.melange.tests
 
 import com.google.inject.Inject
+import fr.inria.diverse.melange.algebra.EmfCompareAlgebra
+import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.EcoreMerger
 import fr.inria.diverse.melange.tests.common.MelangeTestHelper
 import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
 import java.util.Collections
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.compare.EMFCompare
+import org.eclipse.emf.compare.Match
 import org.eclipse.emf.compare.diff.DefaultDiffEngine
 import org.eclipse.emf.compare.diff.FeatureFilter
 import org.eclipse.emf.compare.scope.DefaultComparisonScope
 import org.eclipse.emf.ecore.EAttribute
-import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EPackage
+import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.EcoreFactory
 import org.eclipse.emf.ecore.EcorePackage
@@ -40,27 +43,26 @@ class EcoreMergerTest
 	val ecoreFactory = EcoreFactory.eINSTANCE
 	@Inject EcoreMerger merger
 	@Inject extension MelangeTestHelper
+	@Inject extension EcoreExtensions
+	@Inject EmfCompareAlgebra algebra
 
 	@Before
 	def void setUp() {
 		Resource.Factory.Registry.INSTANCE.extensionToFactoryMap.put("ecore", new EcoreResourceFactoryImpl)
-		val res = rs.getResource(URI::createURI("tests-inputs/metamodels/Ecore.ecore"), true)
-		val res2 = rs.getResource(URI::createURI("tests-inputs/metamodels/Ecore2.ecore"), true)
-
-		receivingEcore = res.contents.head as EPackage
-		mergedEcore = res2.contents.head as EPackage => [nsURI = "http://otheruri/"]
+		receivingEcore = loadModel("tests-inputs/metamodels/Ecore.ecore")
+		mergedEcore = loadModel("tests-inputs/metamodels/Ecore2.ecore")
 	}
 
 	@Test
 	def void testPerf() {
 //		val startTime = System.nanoTime();    
-//		for (i : 1..10) {
+//		for (i : 1..10000) {
 //			merger.merge(receivingEcore, mergedEcore)
 //		}
 //		val estimatedTime = System.nanoTime() - startTime;
 //		println("result="+estimatedTime / 1000000f)
 //		val startTime2 = System.nanoTime();    
-//		for (i : 1..10) {
+//		for (i : 1..10000) {
 //			algebra.merge(receivingEcore, mergedEcore)
 //		}
 //		val estimatedTime2 = System.nanoTime() - startTime2;
@@ -69,6 +71,7 @@ class EcoreMergerTest
 
 	@Test
 	def void testIdenticalMerge() {
+		mergedEcore.nsURI = "http://somethingelse"
 		val resulting1 = merger.merge(receivingEcore, mergedEcore)
 		val resulting2 = merger.merge(mergedEcore, receivingEcore)
 
@@ -100,17 +103,10 @@ class EcoreMergerTest
 	@Ignore("This is a bit tricky, every reference to EClass is now broken")
 	@Test
 	def void testPleaseConsiderMeLaterThankYou() {
-		mergedEcore.EClassifiers.filter(EClass)
-		.findFirst[name == "EClass"] => [
-			name = "EClassNotMatching" 
-		]
-
-		println("---")
-		val resulting = merger.merge(receivingEcore, mergedEcore)
-		println("---")
+		val merged = getTestInput("ConflictingEClass")
+		val resulting = merger.merge(receivingEcore, merged)
 		assertNull(resulting)
 		val conflicts = merger.conflicts
-		println(conflicts)
 		assertEquals(2, conflicts.size)
 		//FIXME: Conflict message is ugly:
 		//"Cannot insert ecore.EClassNotMatching into ecore: The opposite of the opposite may not be a reference different from this one"
@@ -118,45 +114,24 @@ class EcoreMergerTest
 
 	@Test
 	def void testMultipleIDs() {
-		mergedEcore.EClassifiers.filter(EClass)
-		.findFirst[name == "EParameter"]
-		.EStructuralFeatures +=
-			ecoreFactory.createEAttribute => [
-				ID = true
-				name = "id1"
-				EType = EcorePackage.Literals.ESTRING
-			]
-		mergedEcore.EClassifiers.filter(EClass)
-		.findFirst[name == "EParameter"]
-		.EStructuralFeatures +=
-			ecoreFactory.createEAttribute => [
-				ID = true
-				name = "id2"
-				EType = EcorePackage.Literals.ESTRING
-			]
+		val id1 = getTestInput("MultipleID1")
+		val id2 = getTestInput("MultipleID2")
 
-		val resulting = merger.merge(receivingEcore, mergedEcore)
+		val first = merger.merge(receivingEcore, id1)
+		val resulting = merger.merge(first, id2)
 		assertNull(resulting)
 		val conflicts = merger.conflicts
 		assertEquals(2, conflicts.size)
-		assertEquals("Cannot merge ecore.EParameter.id1 with ecore.EParameter: The features 'id1' and 'id2' cannot both be IDs",
+		assertEquals("Cannot merge ecore.EClass.id1 with ecore.EClass: The features 'id1' and 'id2' cannot both be IDs",
 			conflicts.get(0).message)
-		assertEquals("Cannot merge ecore.EParameter.id2 with ecore.EParameter: The features 'id1' and 'id2' cannot both be IDs",
+		assertEquals("Cannot merge ecore.EClass.id2 with ecore.EClass: The features 'id1' and 'id2' cannot both be IDs",
 			conflicts.get(1).message)
 	}
 
 	@Test
 	def void testConflictingAttribute() {
-		val merged = dummyEcorePackage
-		merged.EClassifiers.filter(EClass)
-		.findFirst[name == "EClass"]
-		.EStructuralFeatures += ecoreFactory.createEAttribute => [
-			name = "abstract"
-			EType = EcorePackage.Literals.ESTRING
-		]
-
+		val merged = getTestInput("ConflictingAttribute")
 		val resulting = merger.merge(receivingEcore, merged)
-		saveResulting(resulting)
 		assertNull(resulting)
 		val conflicts = merger.conflicts
 		assertEquals(1, conflicts.size)
@@ -166,17 +141,7 @@ class EcoreMergerTest
 
 	@Test
 	def void testConflictingReference() {
-		val merged = dummyEcorePackage
-		val attrCls = ecoreFactory.createEClass => [name = "EAttribute"]
-		merged.EClassifiers += attrCls
-		merged.EClassifiers.filter(EClass)
-		.findFirst[name == "EClass"]
-		.EStructuralFeatures += ecoreFactory.createEReference => [
-			name = "eSuperTypes"
-			EType = attrCls
-			upperBound = -1
-		]
-
+		val merged = getTestInput("ConflictingReference")
 		val resulting = merger.merge(receivingEcore, merged)
 		assertNull(resulting)
 		val conflicts = merger.conflicts
@@ -192,76 +157,42 @@ class EcoreMergerTest
 
 	@Test
 	def void testConflictingOperation() {
-		val merged = dummyEcorePackage
-		val opCls = ecoreFactory.createEClass => [name = "EOperation"]
-		merged.EClassifiers += opCls
-		merged.EClassifiers.filter(EClass)
-		.findFirst[name == "EClass"]
-		.EOperations += ecoreFactory.createEOperation => [
-			name = "getOperationID"
-			EType = EcorePackage.Literals.ESTRING
-			EParameters += ecoreFactory.createEParameter => [
-				name = "nonRelevant"
-				EType = opCls
-			]
-		]
-
+		val merged = getTestInput("ConflictingOperation")
 		val resulting = merger.merge(receivingEcore, merged)
 		assertNull(resulting)
 		val conflicts = merger.conflicts
 		assertEquals(1, conflicts.size)
-		println(conflicts)
 		assertTrue(conflicts.head.message.startsWith("Cannot merge ecore.EClass.getOperationID with ecore.EClass: There may not be two operations"))
 	}
 
 	@Test
 	def void testValidOppositeInsertion() {
-		val merged = dummyEcorePackage
-		val clsCls = merged.EClassifiers.filter(EClass).findFirst[name == "EClass"]
-		val newRef = ecoreFactory.createEReference => [
-			name = "myClasses"
-			containment = true
-			EType = clsCls
-			upperBound = -1
-		]
-		val pkgCls = ecoreFactory.createEClass => [
-			name = "EPackage"
-			EStructuralFeatures += newRef
-		]
-		merged.EClassifiers += pkgCls
-		val newRef2 = ecoreFactory.createEReference => [
-			name = "validOpposite"
-			containment = false
-			EType = pkgCls
-			EOpposite = newRef
-			upperBound = 1
-		]
-		clsCls.EStructuralFeatures += newRef2
-		newRef.EOpposite = newRef2
-		
+		val merged = getTestInput("ValidOpposite")
 		val resulting = merger.merge(receivingEcore, merged)
 		assertNotNull(resulting)
 		assertIsValid(resulting)
 		val conflicts = merger.conflicts
 		assertTrue(conflicts.empty)
-		assertTrue(resulting.EClassifiers.filter(EClass).findFirst[name == "EClass"].EStructuralFeatures.exists[name == "validOpposite"])
-		assertTrue(resulting.EClassifiers.filter(EClass).findFirst[name == "EPackage"].EStructuralFeatures.exists[name == "myClasses"])
+		assertPkgEquals(resulting, getExpected("ValidOpposite"))
+	}
+
+	@Test
+	def void testAbstractOverride1() {
+//		val merged = getTestInput("AbstractOverride1")
+//		val resulting = merger.merge(receivingEcore, merged)
+//		assertNotNull(resulting)
+//		assertEquals(0, merger.conflicts.size)
+//		assertTrue(resulting.EClassifiers.filter(EClass).findFi)
 	}
 
 	@Test
 	def void testSameAttribute() {
-		val merged = dummyEcorePackage
-		merged.EClassifiers.filter(EClass)
-		.findFirst[name == "EClass"]
-		.EStructuralFeatures += ecoreFactory.createEAttribute => [
-			name = "abstract"
-			EType = EcorePackage.Literals.EBOOLEAN
-		]
-
+		val merged = getTestInput("SameAttribute")
 		val resulting = merger.merge(receivingEcore, merged)
 		assertNotNull(resulting)
 		assertIsValid(resulting)
 		assertEquals(0, merger.conflicts.size)
+		assertMatch(resulting, getExpected("Ecore"))
 	}
 
 	@Test
@@ -271,8 +202,7 @@ class EcoreMergerTest
 
 	@Test
 	def void testInvalidSubpackageMerge1() {
-		val res = rs.getResource(URI::createURI("tests-inputs/metamodels/PackagesTest.ecore"), true)
-		val pkg = res.contents.head as EPackage
+		val pkg = loadModel("tests-inputs/metamodels/PackagesTest.ecore")
 		val subPkg = pkg.ESubpackages.get(1).ESubpackages.head
 
 		assertNull(merger.merge(pkg, subPkg))
@@ -280,8 +210,7 @@ class EcoreMergerTest
 
 	@Test
 	def void testInvalidSubpackageMerge2() {
-		val res = rs.getResource(URI::createURI("tests-inputs/metamodels/PackagesTest.ecore"), true)
-		val pkg = res.contents.head as EPackage
+		val pkg = loadModel("tests-inputs/metamodels/PackagesTest.ecore")
 		val subPkg = pkg.ESubpackages.get(1).ESubpackages.head
 
 		assertNull(merger.merge(subPkg, pkg))
@@ -297,24 +226,17 @@ class EcoreMergerTest
 		assertNull(merger.merge(receivingEcore, null))
 	}
 
-	private def EPackage getDummyEcorePackage() {
-		return ecoreFactory.createEPackage => [
-			name = "ecore"
-			nsPrefix=  "ecore"
-			nsURI = "http://dummyecore/"
-
-			EClassifiers += ecoreFactory.createEClass => [
-				name = "EClass"
-			]
-		]
+	private def EPackage getTestInput(String name) {
+		return loadModel("tests-inputs/metamodels/merge/" + name + ".ecore")
 	}
 
-	private def void saveResulting(EPackage pkg) {
-		if (pkg !== null) {
-			val res = rs.createResource(URI::createURI("Resulting.ecore"))
-			res.contents += pkg
-			res.save(null)
-		}
+	private def EPackage getExpected(String name) {
+		return loadModel("tests-inputs/metamodels/merge/expected/" + name + ".ecore")
+	}
+
+	private def EPackage loadModel(String uri) {
+		val res = rs.getResource(URI::createURI(uri), true)
+		return res.contents.head as EPackage
 	}
 
 	private def void assertPkgEquals(EPackage pkgA, EPackage pkgB) {
@@ -334,6 +256,12 @@ class EcoreMergerTest
 							        || super.isIgnoredAttribute(attr)
 						}
 
+						override boolean isIgnoredReference(Match match, EReference ref) {
+							return    ref == EcorePackage.Literals.EMODEL_ELEMENT__EANNOTATIONS
+							        || ref == EcorePackage.Literals.EANNOTATION__REFERENCES
+							        || super.isIgnoredReference(match, ref)
+						}
+
 						override boolean checkForOrderingChanges(EStructuralFeature f) {
 							return false
 						}
@@ -342,8 +270,10 @@ class EcoreMergerTest
 			}
 		).build.compare(scope)
 
-		if (!comparison.differences.empty)
+		if (!comparison.differences.empty) {
+			println(comparison.differences.join("\n"))
 			Assert.fail(comparison.differences.join(", "))
+		}
 
 		Assert.assertTrue(comparison.differences.empty)
 	}
