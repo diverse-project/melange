@@ -112,6 +112,15 @@ public interface MelangeFactory extends EFactory {
 	PropertyBinding createPropertyBinding();
 
 	/**
+	 * Returns a new object of class '<em>Language Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Language Operator</em>'.
+	 * @generated
+	 */
+	LanguageOperator createLanguageOperator();
+
+	/**
 	 * Returns a new object of class '<em>Import</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

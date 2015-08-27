@@ -8,6 +8,7 @@ import fr.inria.diverse.melange.metamodel.melange.Element;
 import fr.inria.diverse.melange.metamodel.melange.Import;
 import fr.inria.diverse.melange.metamodel.melange.Inheritance;
 import fr.inria.diverse.melange.metamodel.melange.Language;
+import fr.inria.diverse.melange.metamodel.melange.LanguageOperator;
 import fr.inria.diverse.melange.metamodel.melange.Mapping;
 import fr.inria.diverse.melange.metamodel.melange.MelangeFactory;
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
@@ -146,6 +147,13 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * @generated
 	 */
 	private EClass operatorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass languageOperatorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -436,15 +444,6 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInheritance_SuperLanguage() {
-		return (EReference)inheritanceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getSubtyping() {
 		return subtypingEClass;
 	}
@@ -652,6 +651,24 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getLanguageOperator() {
+		return languageOperatorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLanguageOperator_TargetLanguage() {
+		return (EReference)languageOperatorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getImport() {
 		return importEClass;
 	}
@@ -697,17 +714,8 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMerge_MergedLanguage() {
-		return (EReference)mergeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getMerge_MappingRules() {
-		return (EReference)mergeEClass.getEStructuralFeatures().get(1);
+		return (EReference)mergeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -724,17 +732,8 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSlice_SlicedLanguage() {
-		return (EReference)sliceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getSlice_Roots() {
-		return (EAttribute)sliceEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)sliceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -743,7 +742,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * @generated
 	 */
 	public EReference getSlice_MappingRules() {
-		return (EReference)sliceEClass.getEStructuralFeatures().get(2);
+		return (EReference)sliceEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1005,7 +1004,6 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		createEReference(aspectEClass, ASPECT__ECORE_FRAGMENT);
 
 		inheritanceEClass = createEClass(INHERITANCE);
-		createEReference(inheritanceEClass, INHERITANCE__SUPER_LANGUAGE);
 
 		subtypingEClass = createEClass(SUBTYPING);
 		createEReference(subtypingEClass, SUBTYPING__SUB_TYPE);
@@ -1037,17 +1035,18 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		operatorEClass = createEClass(OPERATOR);
 		createEReference(operatorEClass, OPERATOR__OWNING_LANGUAGE);
 
+		languageOperatorEClass = createEClass(LANGUAGE_OPERATOR);
+		createEReference(languageOperatorEClass, LANGUAGE_OPERATOR__TARGET_LANGUAGE);
+
 		importEClass = createEClass(IMPORT);
 		createEAttribute(importEClass, IMPORT__ECORE_URI);
 		createEAttribute(importEClass, IMPORT__GENMODEL_URIS);
 		createEReference(importEClass, IMPORT__MAPPING_RULES);
 
 		mergeEClass = createEClass(MERGE);
-		createEReference(mergeEClass, MERGE__MERGED_LANGUAGE);
 		createEReference(mergeEClass, MERGE__MAPPING_RULES);
 
 		sliceEClass = createEClass(SLICE);
-		createEReference(sliceEClass, SLICE__SLICED_LANGUAGE);
 		createEAttribute(sliceEClass, SLICE__ROOTS);
 		createEReference(sliceEClass, SLICE__MAPPING_RULES);
 
@@ -1119,13 +1118,14 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		modelTypeEClass.getESuperTypes().add(this.getModelingElement());
 		modelTypeEClass.getESuperTypes().add(this.getNamedElement());
 		transformationEClass.getESuperTypes().add(this.getNamedElement());
-		inheritanceEClass.getESuperTypes().add(this.getOperator());
+		inheritanceEClass.getESuperTypes().add(this.getLanguageOperator());
 		xbaseTransformationEClass.getESuperTypes().add(this.getTransformation());
 		modelingElementEClass.getESuperTypes().add(this.getElement());
 		mappingEClass.getESuperTypes().add(this.getElement());
+		languageOperatorEClass.getESuperTypes().add(this.getOperator());
 		importEClass.getESuperTypes().add(this.getOperator());
-		mergeEClass.getESuperTypes().add(this.getOperator());
-		sliceEClass.getESuperTypes().add(this.getOperator());
+		mergeEClass.getESuperTypes().add(this.getLanguageOperator());
+		sliceEClass.getESuperTypes().add(this.getLanguageOperator());
 		languageEClass.getESuperTypes().add(this.getNamedElement());
 		weaveEClass.getESuperTypes().add(this.getOperator());
 		namedElementEClass.getESuperTypes().add(this.getElement());
@@ -1155,7 +1155,6 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		initEReference(getAspect_EcoreFragment(), theEcorePackage.getEPackage(), null, "ecoreFragment", null, 0, 1, Aspect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(inheritanceEClass, Inheritance.class, "Inheritance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getInheritance_SuperLanguage(), this.getLanguage(), null, "superLanguage", null, 1, 1, Inheritance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(subtypingEClass, Subtyping.class, "Subtyping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSubtyping_SubType(), this.getModelType(), this.getModelType_SubtypingRelations(), "subType", null, 1, 1, Subtyping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1187,17 +1186,18 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		initEClass(operatorEClass, Operator.class, "Operator", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOperator_OwningLanguage(), this.getLanguage(), this.getLanguage_Operators(), "owningLanguage", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(languageOperatorEClass, LanguageOperator.class, "LanguageOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLanguageOperator_TargetLanguage(), this.getLanguage(), null, "targetLanguage", null, 1, 1, LanguageOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(importEClass, Import.class, "Import", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getImport_EcoreUri(), ecorePackage.getEString(), "ecoreUri", null, 0, 1, Import.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImport_GenmodelUris(), ecorePackage.getEString(), "genmodelUris", null, 0, -1, Import.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getImport_MappingRules(), this.getPackageBinding(), null, "mappingRules", null, 0, -1, Import.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mergeEClass, Merge.class, "Merge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMerge_MergedLanguage(), this.getLanguage(), null, "mergedLanguage", null, 1, 1, Merge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMerge_MappingRules(), this.getPackageBinding(), null, "mappingRules", null, 0, -1, Merge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sliceEClass, Slice.class, "Slice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSlice_SlicedLanguage(), this.getLanguage(), null, "slicedLanguage", null, 1, 1, Slice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSlice_Roots(), ecorePackage.getEString(), "roots", null, 0, -1, Slice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSlice_MappingRules(), this.getPackageBinding(), null, "mappingRules", null, 0, -1, Slice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

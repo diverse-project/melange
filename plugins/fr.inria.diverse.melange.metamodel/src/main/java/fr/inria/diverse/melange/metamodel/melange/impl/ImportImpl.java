@@ -28,12 +28,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ImportImpl#getEcoreUri <em>Ecore Uri</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ImportImpl#getGenmodelUris <em>Genmodel Uris</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ImportImpl#getMappingRules <em>Mapping Rules</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

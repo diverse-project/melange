@@ -12,11 +12,11 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Weave#getAspectTypeRef <em>Aspect Type Ref</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Weave#getAspectWildcardImport <em>Aspect Wildcard Import</em>}</li>
  * </ul>
- * </p>
  *
  * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getWeave()
  * @model

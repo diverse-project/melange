@@ -465,9 +465,9 @@ ruleInherit
     }
 	:
 (
-{ before(grammarAccess.getInheritAccess().getSuperLanguageAssignment()); }
-(rule__Inherit__SuperLanguageAssignment)
-{ after(grammarAccess.getInheritAccess().getSuperLanguageAssignment()); }
+{ before(grammarAccess.getInheritAccess().getTargetLanguageAssignment()); }
+(rule__Inherit__TargetLanguageAssignment)
+{ after(grammarAccess.getInheritAccess().getTargetLanguageAssignment()); }
 )
 
 ;
@@ -7223,9 +7223,9 @@ rule__Merge__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getMergeAccess().getMergedLanguageAssignment_1()); }
-(rule__Merge__MergedLanguageAssignment_1)
-{ after(grammarAccess.getMergeAccess().getMergedLanguageAssignment_1()); }
+{ before(grammarAccess.getMergeAccess().getTargetLanguageAssignment_1()); }
+(rule__Merge__TargetLanguageAssignment_1)
+{ after(grammarAccess.getMergeAccess().getTargetLanguageAssignment_1()); }
 )
 
 ;
@@ -7446,9 +7446,9 @@ rule__Slice__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getSliceAccess().getSlicedLanguageAssignment_1()); }
-(rule__Slice__SlicedLanguageAssignment_1)
-{ after(grammarAccess.getSliceAccess().getSlicedLanguageAssignment_1()); }
+{ before(grammarAccess.getSliceAccess().getTargetLanguageAssignment_1()); }
+(rule__Slice__TargetLanguageAssignment_1)
+{ after(grammarAccess.getSliceAccess().getTargetLanguageAssignment_1()); }
 )
 
 ;
@@ -22367,18 +22367,18 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Merge__MergedLanguageAssignment_1
+rule__Merge__TargetLanguageAssignment_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getMergeAccess().getMergedLanguageLanguageCrossReference_1_0()); }
+{ before(grammarAccess.getMergeAccess().getTargetLanguageLanguageCrossReference_1_0()); }
 (
-{ before(grammarAccess.getMergeAccess().getMergedLanguageLanguageQualifiedNameParserRuleCall_1_0_1()); }
-	ruleQualifiedName{ after(grammarAccess.getMergeAccess().getMergedLanguageLanguageQualifiedNameParserRuleCall_1_0_1()); }
+{ before(grammarAccess.getMergeAccess().getTargetLanguageLanguageQualifiedNameParserRuleCall_1_0_1()); }
+	ruleQualifiedName{ after(grammarAccess.getMergeAccess().getTargetLanguageLanguageQualifiedNameParserRuleCall_1_0_1()); }
 )
-{ after(grammarAccess.getMergeAccess().getMergedLanguageLanguageCrossReference_1_0()); }
+{ after(grammarAccess.getMergeAccess().getTargetLanguageLanguageCrossReference_1_0()); }
 )
 
 ;
@@ -22401,18 +22401,18 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Slice__SlicedLanguageAssignment_1
+rule__Slice__TargetLanguageAssignment_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getSliceAccess().getSlicedLanguageLanguageCrossReference_1_0()); }
+{ before(grammarAccess.getSliceAccess().getTargetLanguageLanguageCrossReference_1_0()); }
 (
-{ before(grammarAccess.getSliceAccess().getSlicedLanguageLanguageQualifiedNameParserRuleCall_1_0_1()); }
-	ruleQualifiedName{ after(grammarAccess.getSliceAccess().getSlicedLanguageLanguageQualifiedNameParserRuleCall_1_0_1()); }
+{ before(grammarAccess.getSliceAccess().getTargetLanguageLanguageQualifiedNameParserRuleCall_1_0_1()); }
+	ruleQualifiedName{ after(grammarAccess.getSliceAccess().getTargetLanguageLanguageQualifiedNameParserRuleCall_1_0_1()); }
 )
-{ after(grammarAccess.getSliceAccess().getSlicedLanguageLanguageCrossReference_1_0()); }
+{ after(grammarAccess.getSliceAccess().getTargetLanguageLanguageCrossReference_1_0()); }
 )
 
 ;
@@ -22465,18 +22465,18 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Inherit__SuperLanguageAssignment
+rule__Inherit__TargetLanguageAssignment
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getInheritAccess().getSuperLanguageLanguageCrossReference_0()); }
+{ before(grammarAccess.getInheritAccess().getTargetLanguageLanguageCrossReference_0()); }
 (
-{ before(grammarAccess.getInheritAccess().getSuperLanguageLanguageQualifiedNameParserRuleCall_0_1()); }
-	ruleQualifiedName{ after(grammarAccess.getInheritAccess().getSuperLanguageLanguageQualifiedNameParserRuleCall_0_1()); }
+{ before(grammarAccess.getInheritAccess().getTargetLanguageLanguageQualifiedNameParserRuleCall_0_1()); }
+	ruleQualifiedName{ after(grammarAccess.getInheritAccess().getTargetLanguageLanguageQualifiedNameParserRuleCall_0_1()); }
 )
-{ after(grammarAccess.getInheritAccess().getSuperLanguageLanguageCrossReference_0()); }
+{ after(grammarAccess.getInheritAccess().getTargetLanguageLanguageCrossReference_0()); }
 )
 
 ;

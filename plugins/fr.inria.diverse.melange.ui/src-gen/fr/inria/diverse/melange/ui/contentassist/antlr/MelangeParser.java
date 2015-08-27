@@ -337,13 +337,13 @@ public class MelangeParser extends AbstractContentAssistParser {
 					put(grammarAccess.getImportAccess().getGenmodelUrisAssignment_2_1_0(), "rule__Import__GenmodelUrisAssignment_2_1_0");
 					put(grammarAccess.getImportAccess().getGenmodelUrisAssignment_2_1_1_1(), "rule__Import__GenmodelUrisAssignment_2_1_1_1");
 					put(grammarAccess.getImportAccess().getMappingRulesAssignment_3_2(), "rule__Import__MappingRulesAssignment_3_2");
-					put(grammarAccess.getMergeAccess().getMergedLanguageAssignment_1(), "rule__Merge__MergedLanguageAssignment_1");
+					put(grammarAccess.getMergeAccess().getTargetLanguageAssignment_1(), "rule__Merge__TargetLanguageAssignment_1");
 					put(grammarAccess.getMergeAccess().getMappingRulesAssignment_2_2(), "rule__Merge__MappingRulesAssignment_2_2");
-					put(grammarAccess.getSliceAccess().getSlicedLanguageAssignment_1(), "rule__Slice__SlicedLanguageAssignment_1");
+					put(grammarAccess.getSliceAccess().getTargetLanguageAssignment_1(), "rule__Slice__TargetLanguageAssignment_1");
 					put(grammarAccess.getSliceAccess().getRootsAssignment_4(), "rule__Slice__RootsAssignment_4");
 					put(grammarAccess.getSliceAccess().getRootsAssignment_5_1(), "rule__Slice__RootsAssignment_5_1");
 					put(grammarAccess.getSliceAccess().getMappingRulesAssignment_7_2(), "rule__Slice__MappingRulesAssignment_7_2");
-					put(grammarAccess.getInheritAccess().getSuperLanguageAssignment(), "rule__Inherit__SuperLanguageAssignment");
+					put(grammarAccess.getInheritAccess().getTargetLanguageAssignment(), "rule__Inherit__TargetLanguageAssignment");
 					put(grammarAccess.getAspectTypeRefAccess().getAspectTypeRefAssignment_1(), "rule__AspectTypeRef__AspectTypeRefAssignment_1");
 					put(grammarAccess.getAspectWildcardAccess().getAspectWildcardImportAssignment_1(), "rule__AspectWildcard__AspectWildcardImportAssignment_1");
 					put(grammarAccess.getXAssignmentAccess().getFeatureAssignment_0_1(), "rule__XAssignment__FeatureAssignment_0_1");

@@ -10,10 +10,10 @@ package fr.inria.diverse.melange.metamodel.melange;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.NamedElement#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getNamedElement()
  * @model abstract="true"

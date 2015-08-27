@@ -3966,7 +3966,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getMergeAccess().getMergedLanguageLanguageCrossReference_1_0()); 
+              	        newCompositeNode(grammarAccess.getMergeAccess().getTargetLanguageLanguageCrossReference_1_0()); 
               	    
             }
             pushFollow(FOLLOW_ruleQualifiedName_in_ruleMerge3024);
@@ -4183,7 +4183,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getSliceAccess().getSlicedLanguageLanguageCrossReference_1_0()); 
+              	        newCompositeNode(grammarAccess.getSliceAccess().getTargetLanguageLanguageCrossReference_1_0()); 
               	    
             }
             pushFollow(FOLLOW_ruleQualifiedName_in_ruleSlice3191);
@@ -4486,7 +4486,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getInheritAccess().getSuperLanguageLanguageCrossReference_0()); 
+              	        newCompositeNode(grammarAccess.getInheritAccess().getTargetLanguageLanguageCrossReference_0()); 
               	    
             }
             pushFollow(FOLLOW_ruleQualifiedName_in_ruleInherit3440);
