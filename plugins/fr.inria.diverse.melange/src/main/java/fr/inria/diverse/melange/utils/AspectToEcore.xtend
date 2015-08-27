@@ -29,6 +29,7 @@ class AspectToEcore
 	 */
 	def EPackage inferEcoreFragment(Aspect aspImport, Language l) {
 		val aspect = aspImport.aspectTypeRef.type as JvmDeclaredType
+		val hasAnnotation = aspect.annotations.exists[annotation.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Aspect"] 
 		val baseCls = aspImport.aspectedClass
 		val basePkg = baseCls?.EPackage ?: l.syntax.pkgs.head
 
@@ -118,7 +119,8 @@ class AspectToEcore
 						name = op.simpleName
 						op.parameters.forEach[p, i |
 							// Skip first generic _self argument
-							if (i > 0) {
+							// only if @Aspect annotation present
+							if (!hasAnnotation || i > 0) {
 								val pType = p.parameterType.type
 								val upperBP = if (p.parameterType.isCollection) -1 else 1
 								val realTypeP =
