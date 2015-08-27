@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 class ExactTypeInferrer extends DispatchMelangeProcessor
 {
 	@Inject extension ASTHelper
-	List<ModelType> inferredMTs
+	List<ModelType> inferredMTs = newArrayList
 
 	def dispatch void preProcess(ModelTypingSpace root, boolean preLinkingPhase) {
 		inferredMTs = newArrayList
