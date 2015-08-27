@@ -154,21 +154,18 @@ class PackageMergeMerger implements EcoreMerger {
 	private def dispatch boolean doMatch(EAttribute rcv, EAttribute merged) {
 		return
 			   rcv.name == merged.name
-			&& rcv.unique == merged.unique
 			&& typesMatch(rcv.EType, merged.EType)
 	}
 
 	private def dispatch boolean doMatch(EReference rcv, EReference merged) {
 		return
 			   rcv.name == merged.name
-			&& rcv.unique == merged.unique
 			&& typesMatch(rcv.EType, merged.EType)
 	}
 
 	private def dispatch boolean doMatch(EOperation rcv, EOperation merged) {
 		return
 			   rcv.name == merged.name
-			&& rcv.unique == merged.unique
 			&& typesMatch(rcv.EType, merged.EType)
 	}
 
