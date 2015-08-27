@@ -53,6 +53,45 @@ class AspectToEcore
 
 		aspPkg.EClassifiers += aspCls
 
+		/*
+		 * "aspects" without @Aspect may have declared fields
+		 */
+		aspect.declaredFields
+		.filter[visibility == JvmVisibility.PUBLIC]
+		.forEach[field |
+			val fieldType = field.type
+			val upperB = if (fieldType.isCollection) -1 else 1
+			val realType =
+				if (fieldType.isCollection)
+					(fieldType as JvmParameterizedTypeReference).arguments.head.type
+				else
+					fieldType.type
+
+			val find = if (realType.simpleName == aspCls.name) aspCls else basePkg.findClass(realType.simpleName)
+			if (find !== null) {
+				// Create EReference
+				aspCls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEReference => [
+					name = field.simpleName
+					EType = aspPkg.getOrCreateClass(find.name)
+					upperBound = upperB
+					containment = field.annotations.exists[annotation.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Containment"]
+					EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
+				]
+			} else {
+				aspCls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEAttribute => [
+					name = field.simpleName
+					EType =
+						if (realType instanceof JvmEnumerationType)
+							// FIXME: Ok for now, but we should also check literals values
+							aspPkg.getOrCreateEnum(realType.simpleName, realType.literals.map[simpleName])
+						else
+							aspPkg.getOrCreateDataType(realType.simpleName, realType.qualifiedName)
+					upperBound = upperB
+					EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
+				]
+			}
+		]
+
 		aspect.declaredOperations
 		.filter[
 			// FIXME: Hard-coded strings
