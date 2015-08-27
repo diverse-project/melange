@@ -253,6 +253,8 @@ class PackageMergeMerger implements EcoreMerger {
 	private def dispatch void doMerge(EOperation rcv, EOperation merged) {
 		rcv.ordered = rcv.ordered || merged.ordered
 		rcv.unique = rcv.ordered || merged.unique
+		rcv.lowerBound = #[rcv.lowerBound, merged.lowerBound].min
+		rcv.upperBound = maxBound(rcv.upperBound, merged.upperBound)
 	}
 
 	private def dispatch void doMerge(EParameter rcv, EParameter merged) {
