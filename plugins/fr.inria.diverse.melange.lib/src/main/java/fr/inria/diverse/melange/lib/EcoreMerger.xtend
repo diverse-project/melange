@@ -51,7 +51,8 @@ interface EcoreMerger {
  *     on cycle detection do not make sense.
  *   - Ignores generics
  *   - Ignores constraints
- *   - Resulting elements are checked wrt. EcoreValidator
+ *   - The resulting EPackage is checked using Diagnostician
+ *   - All elements inserted from the merged package are marked with an annotation
  */
 class PackageMergeMerger implements EcoreMerger {
 	@Inject extension EcoreExtensions
