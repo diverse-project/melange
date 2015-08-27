@@ -5,7 +5,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="eOperations" upperBound="-1"
         eType="#//EOperation" derived="true" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="eAllOperations" upperBound="-1"
-        eType="#//EOperation" containment="true"/>
+        eType="#//EOperation" changeable="false" volatile="true" transient="true"
+        resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EClassifier" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="instanceClass">

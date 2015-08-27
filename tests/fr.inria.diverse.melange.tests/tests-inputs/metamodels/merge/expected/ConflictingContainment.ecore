@@ -63,8 +63,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="eOperations" upperBound="-1"
-        eType="#//EOperation" derived="true" containment="true" resolveProxies="false"
-        eOpposite="#//EOperation/eContainingClass"/>
+        eType="#//EOperation" containment="true" resolveProxies="false" eOpposite="#//EOperation/eContainingClass"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="eAllAttributes" upperBound="-1"
         eType="#//EAttribute" changeable="false" volatile="true" transient="true"
         derived="true"/>
@@ -118,8 +117,8 @@
         <details key="suppressedUnsetVisibility" value="true"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="instanceClass" volatile="true"
-        transient="true" derived="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="instanceClass" changeable="false"
+        volatile="true" transient="true" derived="true">
       <eGenericType eClassifier="#//EJavaClass">
         <eTypeArguments/>
       </eGenericType>
@@ -127,7 +126,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="#//EJavaObject"
         changeable="false" volatile="true" transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="instanceTypeName" eType="#//EString"
-        volatile="true" derived="true">
+        volatile="true" unsettable="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="suppressedIsSetVisibility" value="true"/>
         <details key="suppressedUnsetVisibility" value="true"/>

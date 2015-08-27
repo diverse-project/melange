@@ -152,7 +152,12 @@ class EcoreMergerTest
 
 	@Test
 	def void testConflictingContainment() {
-		
+		val merged = getTestInput("ConflictingContainment")
+		val resulting = merger.merge(receivingEcore, merged)
+		assertNull(resulting)
+		val conflicts = merger.conflicts
+		assertEquals(2, conflicts.size)
+		assertTrue(conflicts.forall[message == "Conflicting containment values for reference"])
 	}
 
 	@Test
@@ -189,6 +194,7 @@ class EcoreMergerTest
 	def void testDerivedOverride() {
 		val merged = getTestInput("DerivedOverride")
 		val resulting = merger.merge(receivingEcore, merged)
+		println(merger.conflicts)
 		assertNotNull(resulting)
 		assertEquals(0, merger.conflicts.size)
 		assertPkgEquals(resulting, getExpected("DerivedOverride"))

@@ -245,6 +245,9 @@ class PackageMergeMerger implements EcoreMerger {
 		rcv.unique = rcv.unique || merged.unique
 		rcv.lowerBound = #[rcv.lowerBound, merged.lowerBound].min
 		rcv.upperBound = maxBound(rcv.upperBound, merged.upperBound)
+
+		if (rcv.containment != merged.containment)
+			addConflict(rcv, merged, "Conflicting containment values for reference")
 	}
 
 	private def dispatch void doMerge(EOperation rcv, EOperation merged) {
