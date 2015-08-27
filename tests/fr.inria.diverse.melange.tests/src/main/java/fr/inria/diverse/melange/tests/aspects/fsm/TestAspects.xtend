@@ -76,3 +76,16 @@ class Operations {
 	def void j(String arg1, Transition arg2) {}
 	def List<State> k(List<Transition> arg1) { return null }
 }
+
+/* Non-crosscutting "aspects" */
+class NoAnnotationSuper {}
+interface NoAnnotationImpl {}
+class NoAnnotation extends NoAnnotationSuper implements NoAnnotationImpl {
+	public A a
+	public List<B> b
+	public List<State> ls
+	public FSM f
+	private def int i(int arg1) { return 0 }
+	def void j(String arg1, Transition arg2) {}
+	def List<State> k(List<Transition> arg1) { return null }
+}

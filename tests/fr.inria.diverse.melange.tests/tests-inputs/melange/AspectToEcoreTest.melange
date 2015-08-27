@@ -7,6 +7,7 @@ import fr.inria.diverse.melange.tests.aspects.fsm.ReferencesCollections
 import fr.inria.diverse.melange.tests.aspects.fsm.ExternalReferences
 import fr.inria.diverse.melange.tests.aspects.fsm.Visibility
 import fr.inria.diverse.melange.tests.aspects.fsm.Operations
+import fr.inria.diverse.melange.tests.aspects.fsm.NoAnnotation
 
 language Fsm {
 	syntax "tests-inputs/metamodels/FSM.ecore" withGenmodel "tests-inputs/metamodels/FSM.genmodel"
@@ -17,5 +18,6 @@ language Fsm {
 	with ExternalReferences
 	with Visibility
 	with Operations
+	with NoAnnotation
 	exactType FsmMT
 }

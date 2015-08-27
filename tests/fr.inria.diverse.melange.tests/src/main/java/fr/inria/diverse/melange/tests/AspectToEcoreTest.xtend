@@ -99,6 +99,14 @@ class AspectToEcoreTest
 		assertMatch(pkg, "Operations.ecore")
 	}
 
+	@Test
+	def void testNoAnnotation() {
+		val pkg = "NoAnnotation".aspectPkg
+		assertNotNull(pkg)
+
+		assertMatch(pkg, "NoAnnotation.ecore")
+	}
+
 	private def void assertMatch(EPackage pkg, String refEcore) {
 		val rs = new ResourceSetImpl
 		val uri = URI::createURI("tests-inputs/aspect-to-ecore/" + refEcore)
