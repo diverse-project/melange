@@ -177,12 +177,21 @@ class EcoreMergerTest
 	}
 
 	@Test
-	def void testAbstractOverride1() {
-//		val merged = getTestInput("AbstractOverride1")
-//		val resulting = merger.merge(receivingEcore, merged)
-//		assertNotNull(resulting)
-//		assertEquals(0, merger.conflicts.size)
-//		assertTrue(resulting.EClassifiers.filter(EClass).findFi)
+	def void testAbstractOverride() {
+		val merged = getTestInput("AbstractOverride")
+		val resulting = merger.merge(receivingEcore, merged)
+		assertNotNull(resulting)
+		assertEquals(0, merger.conflicts.size)
+		assertPkgEquals(resulting, getExpected("AbstractOverride"))
+	}
+
+	@Test
+	def void testDerivedOverride() {
+		val merged = getTestInput("DerivedOverride")
+		val resulting = merger.merge(receivingEcore, merged)
+		assertNotNull(resulting)
+		assertEquals(0, merger.conflicts.size)
+		assertPkgEquals(resulting, getExpected("DerivedOverride"))
 	}
 
 	@Test
