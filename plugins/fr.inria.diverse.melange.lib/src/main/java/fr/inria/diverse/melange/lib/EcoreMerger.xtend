@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EParameter
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.ecore.EcoreFactory
 import org.eclipse.emf.ecore.util.Diagnostician
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtend.lib.annotations.Data
@@ -34,6 +35,7 @@ interface EcoreMerger {
 		EObject receiving
 		EObject merged
 		String message
+		Diagnostic emfDiagnostic
 	}
 }
 
@@ -50,11 +52,11 @@ interface EcoreMerger {
  *   - Ignores generics
  *   - Ignores constraints
  *   - Resulting elements are checked wrt. EcoreValidator
- *   - Extremely inefficient
  */
 class PackageMergeMerger implements EcoreMerger {
 	@Inject extension EcoreExtensions
 	List<Conflict> conflicts
+	static final String ORIGIN_ANNOTATION_SOURCE = "http://www.inria.fr/melange/origin"
 
 	override merge(EPackage receiving, EPackage merged) {
 		conflicts = newArrayList
@@ -78,7 +80,19 @@ class PackageMergeMerger implements EcoreMerger {
 			return null
 
 		resulting.updateReferences
-		return resulting
+
+		val diag = Diagnostician.INSTANCE.validate(resulting)
+		if (diag.severity != Diagnostic::OK) {
+			diag.children.forEach[d |
+				val diagSource = d.data.head
+				if (diagSource instanceof ENamedElement) {
+					diagSource.EAnnotations.filter[source == ORIGIN_ANNOTATION_SOURCE].forEach[ann |
+						addConflict(diagSource, ann.references.head as ENamedElement, d)
+					]
+				}
+			]
+			return null
+		} else return resulting
 	}
 
 	def void updateReferences(EPackage pkg) {
@@ -137,15 +151,24 @@ class PackageMergeMerger implements EcoreMerger {
 	}
 
 	private def dispatch boolean doMatch(EAttribute rcv, EAttribute merged) {
-		return rcv.name == merged.name && rcv.unique == merged.unique
+		return
+			   rcv.name == merged.name
+			&& rcv.unique == merged.unique
+			&& typesMatch(rcv.EType, merged.EType)
 	}
 
 	private def dispatch boolean doMatch(EReference rcv, EReference merged) {
-		return rcv.name == merged.name && rcv.unique == merged.unique
+		return
+			   rcv.name == merged.name
+			&& rcv.unique == merged.unique
+			&& typesMatch(rcv.EType, merged.EType)
 	}
 
 	private def dispatch boolean doMatch(EOperation rcv, EOperation merged) {
-		return rcv.name == merged.name && rcv.unique == merged.unique
+		return
+			   rcv.name == merged.name
+			&& rcv.unique == merged.unique
+			&& typesMatch(rcv.EType, merged.EType)
 	}
 
 	private def dispatch boolean doMatch(EParameter rcv, EParameter merged) {
@@ -154,6 +177,29 @@ class PackageMergeMerger implements EcoreMerger {
 
 	private def dispatch boolean doMatch(EAnnotation rcv, EAnnotation merged) {
 		return false // TODO
+	}
+
+	private def boolean typesMatch(EClassifier eA, EClassifier eB) {
+		return eA == eB || doTypesMatch(eA, eB)
+	}
+
+	private def dispatch boolean doTypesMatch(EClassifier eA, EClassifier eB) {
+		return false
+	}
+
+	private def dispatch boolean doTypesMatch(EClass clsA, EClass clsB) {
+		return
+			   clsA.name == clsB.name
+			|| clsA.EAllSuperTypes.exists[name == clsB.name]
+	}
+
+	private def dispatch boolean doTypesMatch(EDataType dtA, EDataType dtB) {
+		// FIXME: Should we match instanceClass instead?
+		return	dtA.name == dtB.name
+	}
+
+	private def dispatch boolean doTypesMatch(EEnum enumA, EEnum enumB) {
+		return enumA.name == enumB.name
 	}
 
 	private def dispatch void doMerge(EPackage rcv, EPackage merged) {
@@ -166,7 +212,6 @@ class PackageMergeMerger implements EcoreMerger {
 		// TODO: What about superTypes?
 		rcv.abstract = rcv.abstract && merged.abstract
 		rcv.interface = rcv.interface && merged.interface
-		doValidateMerge(rcv, merged)
 		doCollectionsMerge(rcv, rcv.EStructuralFeatures, merged.EStructuralFeatures)
 		doCollectionsMerge(rcv, rcv.EOperations, merged.EOperations)
 	}
@@ -184,7 +229,6 @@ class PackageMergeMerger implements EcoreMerger {
 		rcv.unique = rcv.ordered || merged.unique
 		rcv.lowerBound = #[rcv.lowerBound, merged.lowerBound].min
 		rcv.upperBound = maxBound(rcv.upperBound, merged.upperBound)
-		doValidateMerge(rcv, merged)
 	}
 
 	private def dispatch void doMerge(EReference rcv, EReference merged) {
@@ -194,13 +238,11 @@ class PackageMergeMerger implements EcoreMerger {
 		rcv.unique = rcv.ordered || merged.unique
 		rcv.lowerBound = #[rcv.lowerBound, merged.lowerBound].min
 		rcv.upperBound = maxBound(rcv.upperBound, merged.upperBound)
-		doValidateMerge(rcv, merged)
 	}
 
 	private def dispatch void doMerge(EOperation rcv, EOperation merged) {
 		rcv.ordered = rcv.ordered || merged.ordered
 		rcv.unique = rcv.ordered || merged.unique
-		doValidateMerge(rcv, merged)
 	}
 
 	private def dispatch void doMerge(EParameter rcv, EParameter merged) {
@@ -211,7 +253,10 @@ class PackageMergeMerger implements EcoreMerger {
 
 	private def <T extends ENamedElement> void deepCopy(ENamedElement context, List<T> receiving, T merged) {
 		receiving += EcoreUtil::copy(merged)
-		doValidateCollectionsMerge(context, merged)
+		context.EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [
+			source = ORIGIN_ANNOTATION_SOURCE
+			references += merged
+		]
 	}
 
 	private def <T extends ENamedElement> void doCollectionsMerge(ENamedElement context, List<T> rcv, List<T> merged) {
@@ -231,26 +276,21 @@ class PackageMergeMerger implements EcoreMerger {
 			else #[a, b].max
 	}
 
-	private def doValidateMerge(ENamedElement rcv, ENamedElement merged) {
-		val diag = Diagnostician.INSTANCE.validate(rcv)
-		if (diag.severity !== Diagnostic.OK) {
-			diag.children.forEach[d |
-				addConflict(rcv, merged, '''1Cannot merge «merged.uniqueId» with «rcv.uniqueId»: «d.message»''')
-			]
-		}
-	}
-
-	private def doValidateCollectionsMerge(ENamedElement rcv, ENamedElement merged) {
-		val diag = Diagnostician.INSTANCE.validate(rcv)
-		if (diag.severity !== Diagnostic.OK) {
-			diag.children.forEach[d |
-				addConflict(rcv, merged, '''Cannot insert «merged.uniqueId» into «rcv.uniqueId»: «d.message»''')
-			]
-		}
-	}
-
 	private def void addConflict(ENamedElement rcv, ENamedElement merged, String message) {
-		conflicts += new Conflict(rcv, merged, message)
+		addConflict(rcv, merged, message, null)
+	}
+
+	private def void addConflict(ENamedElement rcv, ENamedElement merged, Diagnostic d) {
+		addConflict(
+			rcv,
+			merged,
+			'''Cannot merge «merged.uniqueId» with «rcv.uniqueId»: «d.message»''',
+			d
+		)
+	}
+
+	private def void addConflict(ENamedElement rcv, ENamedElement merged, String message, Diagnostic d) {
+		conflicts += new Conflict(rcv, merged, message, d)
 	}
 
 	override List<Conflict> getConflicts() {
