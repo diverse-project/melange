@@ -1,18 +1,30 @@
 package fr.inria.diverse.melange.processors
 
+import com.google.inject.Inject
+import fr.inria.diverse.melange.metamodel.melange.MelangeFactory
 import fr.inria.diverse.melange.metamodel.melange.Weave
 import java.util.List
+import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.jdt.core.IPackageFragment
 import org.eclipse.jdt.core.search.IJavaSearchConstants
 import org.eclipse.jdt.core.search.SearchEngine
 import org.eclipse.jdt.core.search.SearchMatch
 import org.eclipse.jdt.core.search.SearchPattern
 import org.eclipse.jdt.core.search.SearchRequestor
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
 class WildcardAspectResolver extends DispatchMelangeProcessor
 {
+	@Inject JvmTypeReferenceBuilder.Factory builderFactory
+
 	def dispatch void preProcess(Weave w, boolean preLinkingPhase) {
+		val typeRefBuilder = builderFactory.create(w.eResource.resourceSet)
 		if (w.aspectWildcardImport !== null) {
+			resolveWildcardImport(w.aspectWildcardImport).forEach[typeRef |
+				w.owningLanguage.operators += MelangeFactory.eINSTANCE.createWeave => [
+					aspectTypeRef = typeRefBuilder.typeRef(typeRef)
+				]
+			]
 		}
 	}
 
