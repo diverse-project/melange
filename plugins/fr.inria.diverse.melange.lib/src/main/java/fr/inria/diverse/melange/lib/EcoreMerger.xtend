@@ -228,7 +228,7 @@ class PackageMergeMerger implements EcoreMerger {
 		rcv.transient = rcv.transient || merged.transient
 		rcv.volatile = rcv.volatile || merged.volatile
 		rcv.unsettable = rcv.unsettable && merged.unsettable
-		rcv.changeable = rcv.changeable && merged.changeable
+		rcv.changeable = rcv.changeable || merged.changeable
 		rcv.ordered = rcv.ordered || merged.ordered
 		rcv.unique = rcv.ordered || merged.unique
 		rcv.lowerBound = #[rcv.lowerBound, merged.lowerBound].min
@@ -240,7 +240,7 @@ class PackageMergeMerger implements EcoreMerger {
 		rcv.transient = rcv.transient || merged.transient
 		rcv.volatile = rcv.volatile || merged.volatile
 		rcv.unsettable = rcv.unsettable && merged.unsettable
-		rcv.changeable = rcv.changeable && merged.changeable
+		rcv.changeable = rcv.changeable || merged.changeable
 		rcv.ordered = rcv.ordered || merged.ordered
 		rcv.unique = rcv.ordered || merged.unique
 		rcv.lowerBound = #[rcv.lowerBound, merged.lowerBound].min
