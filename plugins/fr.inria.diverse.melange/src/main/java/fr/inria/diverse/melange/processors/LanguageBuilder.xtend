@@ -356,7 +356,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 			return;
 
 		mappingRules.forEach[ packageRule |
-			val sourcePack = if(modelRoot.name == packageRule.from) modelRoot else modelRoot.findSubPackage(packageRule.from.name.substring(packageRule.from.name.indexOf(".")+1))
+			val sourcePack = if(modelRoot.name == packageRule.from.name) modelRoot else modelRoot.findSubPackage(packageRule.from.name.substring(packageRule.from.name.indexOf(".")+1))
 			packageRule.classes.forEach[classRule |
 				sourcePack.EClassifiers.filter(EClass).filter[name == classRule.from].forEach[ clazz |
 					
