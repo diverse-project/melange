@@ -201,6 +201,17 @@ class EcoreMergerTest
 		assertPkgEquals(resulting, getExpected("DerivedOverride"))
 	}
 
+
+	@Test
+	def void testMultiplicities() {
+		val merged = getTestInput("Multiplicities")
+		val resulting = merger.merge(receivingEcore, merged)
+		println(merger.conflicts)
+		assertNotNull(resulting)
+		assertEquals(0, merger.conflicts.size)
+		assertPkgEquals(resulting, getExpected("Multiplicities"))
+	}
+
 	@Test
 	def void testSameAttribute() {
 		val merged = getTestInput("SameAttribute")

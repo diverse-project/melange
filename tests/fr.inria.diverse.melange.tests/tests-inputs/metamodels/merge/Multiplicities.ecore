@@ -3,13 +3,13 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ecore" nsURI="http://multiplicities/" nsPrefix="ecore">
   <eClassifiers xsi:type="ecore:EClass" name="EAttribute">
     <eStructuralFeatures xsi:type="ecore:EReference" name="eAttributeType" upperBound="5"
-        eType="#//EDataType"/>
+        eType="#//EDataType" changeable="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EClass">
     <eStructuralFeatures xsi:type="ecore:EReference" name="eAttributes" lowerBound="5"
         upperBound="15" eType="#//EAttribute"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="eIDAttribute" lowerBound="1"
-        upperBound="-1" eType="#//EAttribute"/>
+        upperBound="-1" eType="#//EAttribute" changeable="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EDataType"/>
   <eClassifiers xsi:type="ecore:EClass" name="EPackage"/>

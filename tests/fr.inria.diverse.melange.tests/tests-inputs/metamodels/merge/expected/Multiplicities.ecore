@@ -74,8 +74,7 @@
         eType="#//EReference" changeable="false" volatile="true" transient="true"
         derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="eAttributes" upperBound="-1"
-        eType="#//EAttribute" changeable="false" volatile="true" transient="true"
-        derived="true"/>
+        eType="#//EAttribute" volatile="true" transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="eAllContainments" upperBound="-1"
         eType="#//EReference" changeable="false" volatile="true" transient="true"
         derived="true"/>
