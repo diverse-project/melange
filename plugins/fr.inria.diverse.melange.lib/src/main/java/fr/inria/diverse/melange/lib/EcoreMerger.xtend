@@ -16,12 +16,11 @@ import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EParameter
 import org.eclipse.emf.ecore.EReference
-import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.EcoreFactory
+import org.eclipse.emf.ecore.EcorePackage
 import org.eclipse.emf.ecore.util.Diagnostician
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtend.lib.annotations.Data
-import org.eclipse.emf.ecore.EcorePackage
 
 @ImplementedBy(PackageMergeMerger)
 interface EcoreMerger {
@@ -36,7 +35,7 @@ interface EcoreMerger {
 	static class Conflict {
 		EObject receiving
 		EObject merged
-		EStructuralFeature feature
+		EReference feature
 		String message
 		Diagnostic emfDiagnostic
 	}
@@ -63,6 +62,10 @@ class PackageMergeMerger implements EcoreMerger {
 	static final String ORIGIN_ANNOTATION_SOURCE = "http://www.inria.fr/melange/origin"
 
 	override merge(EPackage receiving, EPackage merged) {
+		return merge(receiving, merged, true)
+	}
+
+	def EPackage merge(EPackage receiving, EPackage merged, boolean validate) {
 		conflicts = newArrayList
 		val resulting = EcoreUtil::copy(receiving)
 
@@ -85,20 +88,33 @@ class PackageMergeMerger implements EcoreMerger {
 
 		resulting.updateReferences
 
+		if (validate)
+			if (!validateAndProduceConflicts(resulting))
+				return null
+
+		return resulting
+	}
+
+	def boolean validateAndProduceConflicts(EPackage resulting) {
 		val diag = Diagnostician.INSTANCE.validate(resulting)
 		if (diag.severity != Diagnostic::OK) {
 			diag.children.forEach[d |
-				val diagSource = d.data.head
-				if (diagSource instanceof ENamedElement) {
-					diagSource.EAnnotations.filter[source == ORIGIN_ANNOTATION_SOURCE].forEach[ann |
-						val receivingElement = ann.references.head as ENamedElement
-						val feature = ann.references.get(1) as EStructuralFeature
-						addConflict(diagSource, receivingElement, feature, d)
-					]
-				}
+				d.data.forEach[diagSource |
+					if (diagSource instanceof ENamedElement) {
+						diagSource.EAnnotations.filter[source == ORIGIN_ANNOTATION_SOURCE].forEach[ann |
+							val mergedElement = ann.references.head as ENamedElement
+							val feature = ann.references.get(1) as EReference
+							val receivingElement = if (feature.containment) diagSource.eContainer else diagSource
+							addConflict(receivingElement as ENamedElement, mergedElement, feature, d)
+						]
+					}
+				]
 			]
-			return null
-		} else return resulting
+
+			return false
+		}
+
+		return true
 	}
 
 	def void updateReferences(EPackage pkg) {
@@ -265,23 +281,30 @@ class PackageMergeMerger implements EcoreMerger {
 	private def dispatch void doMerge(EAnnotation rcv, EAnnotation merged) {
 	}
 
-	private def <T extends ENamedElement> void deepCopy(ENamedElement context, EStructuralFeature f, List<T> receiving, T merged) {
-		receiving += EcoreUtil::copy(merged)
-		context.EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [
+	private def <T extends ENamedElement> void deepCopy(ENamedElement context, EReference ref, List<T> receiving, T merged) {
+		val copy = EcoreUtil::copy(merged)
+		receiving += copy
+
+		val newAnn = EcoreFactory.eINSTANCE.createEAnnotation => [
 			source = ORIGIN_ANNOTATION_SOURCE
 			references += merged
-			references += f
+			references += ref
 		]
+
+		if (ref.containment)
+			copy.EAnnotations += newAnn
+		else
+			context.EAnnotations += newAnn
 	}
 
-	private def <T extends ENamedElement> void doCollectionsMerge(ENamedElement context, EStructuralFeature f, List<T> rcv, List<T> merged) {
+	private def <T extends ENamedElement> void doCollectionsMerge(ENamedElement context, EReference ref, List<T> rcv, List<T> merged) {
 		merged.forEach[m |
 			val match = rcv.findFirst[r | r.doMatch(m)]
 
 			if (match !== null)
 				match.doMerge(m)
 			else
-				deepCopy(context, f, rcv, m)
+				deepCopy(context, ref, rcv, m)
 		]
 	}
 
@@ -291,22 +314,22 @@ class PackageMergeMerger implements EcoreMerger {
 			else #[a, b].max
 	}
 
-	private def void addConflict(ENamedElement rcv, ENamedElement merged, EStructuralFeature f, String message) {
-		addConflict(rcv, merged, f, message, null)
+	private def void addConflict(ENamedElement rcv, ENamedElement merged, EReference ref, String message) {
+		addConflict(rcv, merged, ref, message, null)
 	}
 
-	private def void addConflict(ENamedElement rcv, ENamedElement merged, EStructuralFeature f, Diagnostic d) {
+	private def void addConflict(ENamedElement rcv, ENamedElement merged, EReference ref, Diagnostic d) {
 		addConflict(
 			rcv,
 			merged,
-			f,
-			'''Cannot merge «merged.uniqueId» with «rcv.uniqueId».«f.name»: «d.message»''',
+			ref,
+			'''Cannot merge «merged.uniqueId» with «rcv.uniqueId».«ref.name»: «d.message»''',
 			d
 		)
 	}
 
-	private def void addConflict(ENamedElement rcv, ENamedElement merged, EStructuralFeature f, String message, Diagnostic d) {
-		conflicts += new Conflict(rcv, merged, f, message, d)
+	private def void addConflict(ENamedElement rcv, ENamedElement merged, EReference ref, String message, Diagnostic d) {
+		conflicts += new Conflict(rcv, merged, ref, message, d)
 	}
 
 	override List<Conflict> getConflicts() {
