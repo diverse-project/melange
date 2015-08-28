@@ -5,7 +5,6 @@ import org.eclipse.core.commands.AbstractHandler
 import org.eclipse.core.commands.ExecutionEvent
 import org.eclipse.core.commands.ExecutionException
 import org.eclipse.core.resources.IFile
-import org.eclipse.core.runtime.Platform
 import org.eclipse.jface.viewers.TreeSelection
 import org.eclipse.ui.PartInitException
 import org.eclipse.ui.handlers.HandlerUtil
@@ -14,12 +13,7 @@ import org.eclipse.ui.part.FileEditorInput
 class OpenAsHandler extends AbstractHandler{
 
 	static final String EDITORID    = "editorID"
-	static final String EXACTTYPE   = "exactType"
     static final String SUBTYPE     = "subType"
-    static final String MODELTYPEID = "modeltypeId"
-    static final String ADAPTER     = "adapter"
-    static final String CLASS       = "class"
-    static final String LANGUAGE    = "fr.inria.diverse.melange.language"
 
 	override execute(ExecutionEvent event) throws ExecutionException {
 
@@ -35,12 +29,9 @@ class OpenAsHandler extends AbstractHandler{
 
 		val subType = event.parameters.get(SUBTYPE) as String
 
-		// if you want to open the file with another language's editor
-		// we provide the editor a custom input object
-		// it will gives eclise a melange URI
-		// I don't take care about the adapters, the melange's URI processor do
-		// this is not the best way to open a file but since the adapters are
-		// out-of-scope, it's not the worst we can do!
+		/** if you want to open the file with another language's editor
+		/* we provide the editor a custom input object
+		/* it will gives eclise a melange URI */
 		val input = if (subType == null)
 				new FileEditorInput(file)
 			else
@@ -52,19 +43,6 @@ class OpenAsHandler extends AbstractHandler{
 		}
 
 		return null
-	}
-
-
-	// Not used. But it may be needed in the future.
-	def String getAdapter(String exactType, String subType) {
-
-		val adapter = Platform.extensionRegistry.getConfigurationElementsFor(LANGUAGE)
-						.findFirst[it.getAttribute(EXACTTYPE) == exactType]
-						.getChildren(ADAPTER)
-						.findFirst[it.getAttribute(MODELTYPEID) == subType]
-						.getAttribute(CLASS)
-
-		return adapter
 	}
 
 }
@@ -89,11 +67,19 @@ class MelangeEditorInput extends FileEditorInput {
 		return URI::create("melange:/resource"+ this.fileURI +"?mt="+this.subtype)
 	}
 
-	// @TODO: Need to fix the ClassNotFoundException,
-	// The adapter class is out of scope
-	@SuppressWarnings("rawtypes")
-	override getAdapter(Class adapter) {
-//		return Class.forName(this.adpt)
-		return null
+	// I want to open the file with a custom URI
+	// to do so I need the adapter/path/storage method to return null
+    // check the getURI method from EditUIUtil class
+
+	override getAdapter(Class clazz) {
+	    return null
+	}
+
+	override getPath() {
+	    return null
+	}
+
+	override getStorage() {
+	    return null
 	}
 }
