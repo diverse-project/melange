@@ -5,7 +5,7 @@ import fr.inria.diverse.melange.jvmmodel.JvmModelInferrerHelper
 import fr.inria.diverse.melange.jvmmodel.MelangeTypesBuilder
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.processors.ExactTypeInferrer
-import fr.inria.diverse.melange.processors.LanguageBuilder
+import fr.inria.diverse.melange.processors.LanguageProcessor
 import fr.inria.diverse.melange.processors.MelangeProcessor
 import fr.inria.diverse.melange.processors.TypingInferrer
 import fr.inria.diverse.melange.processors.WildcardAspectResolver
@@ -40,7 +40,7 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 	@Inject
 	new(
 		WildcardAspectResolver r,
-		LanguageBuilder l,
+		LanguageProcessor l,
 		ExactTypeInferrer e,
 		TypingInferrer t
 	) {

@@ -43,7 +43,7 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
  * This class build languages by merging differents parts declared in each language definitions
  * and generates new ecore & genmodel if needed
  */
-class LanguageBuilder extends DispatchMelangeProcessor{
+class LanguageProcessor extends DispatchMelangeProcessor{
 	
 	@Inject extension ASTHelper
 	@Inject extension EcoreExtensions
