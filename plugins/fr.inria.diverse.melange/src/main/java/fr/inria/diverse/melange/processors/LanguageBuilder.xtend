@@ -71,7 +71,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 			language.initialize
 		]
 		root.languages.forEach[language |
-			build(language, newArrayList)
+			build(language)
 		]
 	}
 	
@@ -79,12 +79,10 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 	 * Build {@link language} and register the root EPackage.
 	 * {@link history} store languages waiting for this build.
 	 */
-	private def build(Language language, List<Language> history){
+	private def build(Language language){
 		
 		var EPackage res = registry.get(language)
 		if(res !== null) return res
-
-		history.add(language)
 
 		var EPackage base = null
 
@@ -117,10 +115,10 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		 val inherits = language.operators.filter(Inheritance)
 		 if(inherits.size > 0){
 			val firstInherit = inherits.get(0)
-			val inheritBase = EcoreUtil::copy(getRootPackage(firstInherit.targetLanguage,history))
+			val inheritBase = EcoreUtil::copy(getRootPackage(firstInherit.targetLanguage))
 			
 			inherits.drop(1).forEach[ nextInherit |
-				val inheritUnit = getRootPackage(nextInherit.targetLanguage,history)
+				val inheritUnit = getRootPackage(nextInherit.targetLanguage)
 				algebra.merge(inheritUnit,inheritBase)
 			]
 			
@@ -138,11 +136,11 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		val merges = language.operators.filter(Merge)
 		if(merges.size > 0){
 			val firstMerge = merges.get(0)
-			val mergeBase = EcoreUtil::copy(getRootPackage(firstMerge.targetLanguage,history))
+			val mergeBase = EcoreUtil::copy(getRootPackage(firstMerge.targetLanguage))
 			applyRenaming(mergeBase, firstMerge.mappingRules)
 
 			merges.drop(1).forEach[ nextMerge |
-				val mergeUnit = getRootPackage(nextMerge.targetLanguage,history)
+				val mergeUnit = getRootPackage(nextMerge.targetLanguage)
 				applyRenaming(mergeUnit, nextMerge.mappingRules)
 				algebra.merge(mergeUnit,mergeBase)
 			]
@@ -161,11 +159,11 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		 val slices = language.operators.filter(Slice)
 		 if(slices.size > 0){
 		 	val firstSlice = slices.get(0)
-			val sliceBase = applySlice(firstSlice, history)
+			val sliceBase = applySlice(firstSlice)
 			applyRenaming(sliceBase, firstSlice.mappingRules)
 			
 			slices.drop(1).forEach[ nextSlice |
-				val sliceUnit = applySlice(nextSlice, history)
+				val sliceUnit = applySlice(nextSlice)
 				applyRenaming(sliceUnit, nextSlice.mappingRules)
 				algebra.merge(sliceUnit, sliceBase)
 			]
@@ -197,41 +195,17 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		 * STEP 5: merge aspects
 		 ****************************/
 		aspectWeaver.preProcess(language, false)
-		
-		return history.remove(language)
 	} 
-	
-	/**
-	 * Check if {@link language} is a dependency of an other language
-	 * and has this language as dependency at the same time
-	 */
-	private def boolean isWithCycle(Language language, List<Language> history){
-		
-		val dependencies = newArrayList
-		language.operators.filter(Inheritance).forEach[inherit |
-			dependencies.add(inherit.targetLanguage)
-		]
-		language.operators.filter(Merge).forEach[merge |
-			dependencies.add(merge.targetLanguage)
-		]
-		
-		return dependencies.exists[dep | history.contains(dep)]
-	}
 	
 	/**
 	 * Get the root EPackage of {@link language}.
 	 */
-	private def EPackage getRootPackage(Language language, List<Language> history){
+	private def EPackage getRootPackage(Language language){
 		var EPackage res = registry.get(language)
 		
 		if (res === null && language !== null) {
-			if(isWithCycle(language, history)){
-				//TODO: raise error
-			}
-			else{
-				build(language,history)
-				res = registry.get(language)
-			}
+			build(language)
+			res = registry.get(language)
 		}
 		
 		return res
@@ -307,8 +281,8 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 	/**
 	 * Return a copy of the part of language defined in {@link slice}
 	 */
-	private def EPackage applySlice(Slice slice, List<Language> history){
-		val sliceBase = EcoreUtil::copy(getRootPackage(slice.targetLanguage,history))
+	private def EPackage applySlice(Slice slice){
+		val sliceBase = EcoreUtil::copy(getRootPackage(slice.targetLanguage))
 		
 		val roots = getClasses(sliceBase, slice.roots)
 		val slicer = new StrictEcore(roots,sliceBase,false,"ecore",false)
