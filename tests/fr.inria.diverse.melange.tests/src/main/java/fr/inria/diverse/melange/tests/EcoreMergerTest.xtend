@@ -206,7 +206,6 @@ class EcoreMergerTest
 	def void testMultiplicities() {
 		val merged = getTestInput("Multiplicities")
 		val resulting = merger.merge(receivingEcore, merged)
-		println(merger.conflicts)
 		assertNotNull(resulting)
 		assertEquals(0, merger.conflicts.size)
 		assertPkgEquals(resulting, getExpected("Multiplicities"))
@@ -241,6 +240,27 @@ class EcoreMergerTest
 		assertEquals(2, conflicts.size)
 		assertEquals("Cannot merge ecore.EClass with ecore.EClassifier.eSuperTypes: A class may not be a super type of itself", conflicts.get(0).message)
 		assertEquals("Cannot merge ecore.EOperation with ecore.EModelElement.eSuperTypes: A class may not be a super type of itself", conflicts.get(1).message)
+	}
+
+	@Test
+	def void testAttachedFsm() {
+		val merged = getTestInput("AttachedFsm")
+		val resulting = merger.merge(receivingEcore, merged)
+		assertNotNull(resulting)
+		assertIsValid(resulting)
+		assertEquals(0, merger.conflicts.size)
+		assertPkgEquals(resulting, getExpected("AttachedFsm"))
+	}
+
+	@Test
+	def void testInvalidAttachedFsm() {
+		val merged = getTestInput("InvalidAttachedFsm")
+		val resulting = merger.merge(receivingEcore, merged)
+		assertNull(resulting)
+		val conflicts = merger.conflicts
+		assertEquals(1, merger.conflicts.size)
+		assertEquals("Cannot merge ecore.State with ecore.eClassifiers: There may not be two features named 'name'",
+			conflicts.head.message)
 	}
 
 	@Test
