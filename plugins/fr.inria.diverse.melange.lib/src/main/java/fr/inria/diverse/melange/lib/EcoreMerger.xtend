@@ -199,7 +199,12 @@ class PackageMergeMerger implements EcoreMerger {
 	}
 
 	private def boolean typesMatch(EClassifier eA, EClassifier eB) {
-		return eA == eB || doTypesMatch(eA, eB)
+		if (eA === null && eB === null)
+			return true
+		else if (eA === null || eB === null)
+			return false
+		else
+			return doTypesMatch(eA, eB)
 	}
 
 	private def dispatch boolean doTypesMatch(EClassifier eA, EClassifier eB) {
