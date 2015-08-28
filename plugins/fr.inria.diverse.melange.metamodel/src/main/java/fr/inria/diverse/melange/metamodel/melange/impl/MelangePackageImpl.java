@@ -580,15 +580,6 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClassBinding_From() {
-		return (EReference)classBindingEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getClassBinding_To() {
 		return (EAttribute)classBindingEClass.getEStructuralFeatures().get(0);
 	}
@@ -607,6 +598,15 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getClassBinding_From() {
+		return (EReference)classBindingEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getPropertyBinding() {
 		return propertyBindingEClass;
 	}
@@ -616,8 +616,8 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPropertyBinding_From() {
-		return (EReference)propertyBindingEClass.getEStructuralFeatures().get(1);
+	public EAttribute getPropertyBinding_To() {
+		return (EAttribute)propertyBindingEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -625,8 +625,8 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPropertyBinding_To() {
-		return (EAttribute)propertyBindingEClass.getEStructuralFeatures().get(0);
+	public EReference getPropertyBinding_From() {
+		return (EReference)propertyBindingEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -733,15 +733,6 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSlice_Roots() {
-		return (EReference)sliceEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getSlice_MappingRules() {
 		return (EReference)sliceEClass.getEStructuralFeatures().get(1);
 	}
@@ -751,8 +742,8 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPackageBinding() {
-		return packageBindingEClass;
+	public EReference getSlice_Roots() {
+		return (EReference)sliceEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -760,8 +751,8 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPackageBinding_From() {
-		return (EReference)packageBindingEClass.getEStructuralFeatures().get(2);
+	public EClass getPackageBinding() {
+		return packageBindingEClass;
 	}
 
 	/**
@@ -780,6 +771,15 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 */
 	public EReference getPackageBinding_Classes() {
 		return (EReference)packageBindingEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPackageBinding_From() {
+		return (EReference)packageBindingEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1150,7 +1150,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		initEClass(transformationEClass, Transformation.class, "Transformation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(aspectEClass, Aspect.class, "Aspect", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAspect_AspectTypeRef(), theTypesPackage.getJvmTypeReference(), null, "aspectTypeRef", null, 1, 1, Aspect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAspect_AspectTypeRef(), theTypesPackage.getJvmTypeReference(), null, "aspectTypeRef", null, 0, 1, Aspect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAspect_AspectedClass(), theEcorePackage.getEClass(), null, "aspectedClass", null, 0, 1, Aspect.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getAspect_EcoreFragment(), theEcorePackage.getEPackage(), null, "ecoreFragment", null, 0, 1, Aspect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

@@ -103,6 +103,39 @@ public class ClassBindingImpl extends MinimalEObjectImpl.Container implements Cl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getTo() {
+		return to;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTo(String newTo) {
+		String oldTo = to;
+		to = newTo;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.CLASS_BINDING__TO, oldTo, to));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<PropertyBinding> getProperties() {
+		if (properties == null) {
+			properties = new EObjectContainmentEList<PropertyBinding>(PropertyBinding.class, this, MelangePackage.CLASS_BINDING__PROPERTIES);
+		}
+		return properties;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClassifier getFrom() {
 		if (from != null && from.eIsProxy()) {
 			InternalEObject oldFrom = (InternalEObject)from;
@@ -134,39 +167,6 @@ public class ClassBindingImpl extends MinimalEObjectImpl.Container implements Cl
 		from = newFrom;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.CLASS_BINDING__FROM, oldFrom, from));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getTo() {
-		return to;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTo(String newTo) {
-		String oldTo = to;
-		to = newTo;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.CLASS_BINDING__TO, oldTo, to));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<PropertyBinding> getProperties() {
-		if (properties == null) {
-			properties = new EObjectContainmentEList<PropertyBinding>(PropertyBinding.class, this, MelangePackage.CLASS_BINDING__PROPERTIES);
-		}
-		return properties;
 	}
 
 	/**

@@ -4,11 +4,15 @@ package fr.inria.diverse.melange.metamodel.melange.impl;
 
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
 import fr.inria.diverse.melange.metamodel.melange.Weave;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.xtext.common.types.JvmTypeReference;
 
 /**
@@ -35,6 +39,7 @@ public class WeaveImpl extends OperatorImpl implements Weave {
 	 * @ordered
 	 */
 	protected JvmTypeReference aspectTypeRef;
+
 	/**
 	 * The default value of the '{@link #getAspectWildcardImport() <em>Aspect Wildcard Import</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -44,6 +49,7 @@ public class WeaveImpl extends OperatorImpl implements Weave {
 	 * @ordered
 	 */
 	protected static final String ASPECT_WILDCARD_IMPORT_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getAspectWildcardImport() <em>Aspect Wildcard Import</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -53,6 +59,7 @@ public class WeaveImpl extends OperatorImpl implements Weave {
 	 * @ordered
 	 */
 	protected String aspectWildcardImport = ASPECT_WILDCARD_IMPORT_EDEFAULT;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

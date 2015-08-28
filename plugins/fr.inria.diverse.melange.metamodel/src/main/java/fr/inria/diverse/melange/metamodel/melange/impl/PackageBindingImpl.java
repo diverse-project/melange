@@ -103,6 +103,39 @@ public class PackageBindingImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getTo() {
+		return to;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTo(String newTo) {
+		String oldTo = to;
+		to = newTo;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.PACKAGE_BINDING__TO, oldTo, to));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ClassBinding> getClasses() {
+		if (classes == null) {
+			classes = new EObjectContainmentEList<ClassBinding>(ClassBinding.class, this, MelangePackage.PACKAGE_BINDING__CLASSES);
+		}
+		return classes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EPackage getFrom() {
 		if (from != null && from.eIsProxy()) {
 			InternalEObject oldFrom = (InternalEObject)from;
@@ -134,39 +167,6 @@ public class PackageBindingImpl extends MinimalEObjectImpl.Container implements 
 		from = newFrom;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.PACKAGE_BINDING__FROM, oldFrom, from));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getTo() {
-		return to;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTo(String newTo) {
-		String oldTo = to;
-		to = newTo;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.PACKAGE_BINDING__TO, oldTo, to));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<ClassBinding> getClasses() {
-		if (classes == null) {
-			classes = new EObjectContainmentEList<ClassBinding>(ClassBinding.class, this, MelangePackage.PACKAGE_BINDING__CLASSES);
-		}
-		return classes;
 	}
 
 	/**

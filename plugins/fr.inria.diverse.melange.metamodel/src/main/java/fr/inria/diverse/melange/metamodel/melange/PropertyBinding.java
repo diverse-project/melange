@@ -24,32 +24,6 @@ import org.eclipse.emf.ecore.ETypedElement;
  */
 public interface PropertyBinding extends EObject {
 	/**
-	 * Returns the value of the '<em><b>From</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>From</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>From</em>' reference.
-	 * @see #setFrom(ETypedElement)
-	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getPropertyBinding_From()
-	 * @model required="true"
-	 * @generated
-	 */
-	ETypedElement getFrom();
-
-	/**
-	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.PropertyBinding#getFrom <em>From</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>From</em>' reference.
-	 * @see #getFrom()
-	 * @generated
-	 */
-	void setFrom(ETypedElement value);
-
-	/**
 	 * Returns the value of the '<em><b>To</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -74,5 +48,31 @@ public interface PropertyBinding extends EObject {
 	 * @generated
 	 */
 	void setTo(String value);
+
+	/**
+	 * Returns the value of the '<em><b>From</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>From</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>From</em>' reference.
+	 * @see #setFrom(ETypedElement)
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getPropertyBinding_From()
+	 * @model required="true"
+	 * @generated
+	 */
+	ETypedElement getFrom();
+
+	/**
+	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.PropertyBinding#getFrom <em>From</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>From</em>' reference.
+	 * @see #getFrom()
+	 * @generated
+	 */
+	void setFrom(ETypedElement value);
 
 } // PropertyBinding

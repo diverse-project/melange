@@ -3,6 +3,7 @@
 package fr.inria.diverse.melange.metamodel.melange;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -51,22 +52,6 @@ public interface Slice extends Operator {
 	void setSlicedLanguage(Language value);
 
 	/**
-	 * Returns the value of the '<em><b>Roots</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.emf.ecore.EClass}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Roots</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Roots</em>' reference list.
-	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getSlice_Roots()
-	 * @model
-	 * @generated
-	 */
-	EList<EClass> getRoots();
-
-	/**
 	 * Returns the value of the '<em><b>Mapping Rules</b></em>' containment reference list.
 	 * The list contents are of type {@link fr.inria.diverse.melange.metamodel.melange.PackageBinding}.
 	 * <!-- begin-user-doc -->
@@ -81,5 +66,21 @@ public interface Slice extends Operator {
 	 * @generated
 	 */
 	EList<PackageBinding> getMappingRules();
+
+	/**
+	 * Returns the value of the '<em><b>Roots</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.emf.ecore.EClass}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Roots</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Roots</em>' reference list.
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getSlice_Roots()
+	 * @model
+	 * @generated
+	 */
+	EList<EClass> getRoots();
 
 } // Slice

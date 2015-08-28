@@ -4,7 +4,6 @@ package fr.inria.diverse.melange.metamodel.melange;
 
 import org.eclipse.xtext.common.types.JvmTypeReference;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Weave</b></em>'.

@@ -6,13 +6,19 @@ import fr.inria.diverse.melange.metamodel.melange.Language;
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
 import fr.inria.diverse.melange.metamodel.melange.PackageBinding;
 import fr.inria.diverse.melange.metamodel.melange.Slice;
+
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -125,11 +131,11 @@ public class SliceImpl extends OperatorImpl implements Slice {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<EClass> getRoots() {
-		if (roots == null) {
-			roots = new EObjectResolvingEList<EClass>(EClass.class, this, MelangePackage.SLICE__ROOTS);
+	public EList<PackageBinding> getMappingRules() {
+		if (mappingRules == null) {
+			mappingRules = new EObjectContainmentEList<PackageBinding>(PackageBinding.class, this, MelangePackage.SLICE__MAPPING_RULES);
 		}
-		return roots;
+		return mappingRules;
 	}
 
 	/**
@@ -137,11 +143,11 @@ public class SliceImpl extends OperatorImpl implements Slice {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<PackageBinding> getMappingRules() {
-		if (mappingRules == null) {
-			mappingRules = new EObjectContainmentEList<PackageBinding>(PackageBinding.class, this, MelangePackage.SLICE__MAPPING_RULES);
+	public EList<EClass> getRoots() {
+		if (roots == null) {
+			roots = new EObjectResolvingEList<EClass>(EClass.class, this, MelangePackage.SLICE__ROOTS);
 		}
-		return mappingRules;
+		return roots;
 	}
 
 	/**

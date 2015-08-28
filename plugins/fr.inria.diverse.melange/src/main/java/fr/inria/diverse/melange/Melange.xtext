@@ -111,7 +111,7 @@ Weave:
 ;
 
 AspectTypeRef returns Weave:
-	'with' aspectTypeRef = JvmTypeReference
+    'with' aspectTypeRef = JvmTypeReference
 ;
 
 AspectWildcard returns Weave:
