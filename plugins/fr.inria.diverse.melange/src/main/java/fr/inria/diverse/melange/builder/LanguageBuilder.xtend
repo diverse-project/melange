@@ -302,6 +302,10 @@ class LanguageBuilder extends Builder{
 	def boolean isBuilding(){
 		return isBuilding
 	}
+	
+	def Language getSource(){
+		return source
+	}
 }
 
 class ModelTypingSpaceBuilder{

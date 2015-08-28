@@ -38,6 +38,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import fr.inria.diverse.melange.builder.ModelTypingSpaceBuilder
+import fr.inria.diverse.melange.builder.LanguageBuilder
 
 /**
  * This class build languages by merging differents parts declared in each language definitions
@@ -57,21 +59,20 @@ class LanguageProcessor extends DispatchMelangeProcessor{
 	@Inject JvmTypesBuilder typesBuilder
 	@Inject JvmTypeReferenceBuilder.Factory typeRefBuilderFactory
 	JvmTypeReferenceBuilder typeRefBuilder
-
-	/**
-	 * Store root EPackage for each built languages 
-	 */
-	Map<Language, EPackage> registry
+	
+	ModelTypingSpaceBuilder builder
 	
 	def dispatch void preProcess(ModelTypingSpace root, boolean isPreLinkingPhase) {
-		registry = newHashMap
 		typeRefBuilder = typeRefBuilderFactory.create(root.eResource.resourceSet)
+		
+		builder = new ModelTypingSpaceBuilder(root)
 		
 		root.languages.forEach[language |
 			language.initialize
 		]
 		root.languages.forEach[language |
-			build(language)
+			val langBuilder = builder.getBuilder(language)
+			build(langBuilder)
 		]
 	}
 	
@@ -79,137 +80,20 @@ class LanguageProcessor extends DispatchMelangeProcessor{
 	 * Build {@link language} and register the root EPackage.
 	 * {@link history} store languages waiting for this build.
 	 */
-	private def build(Language language){
+	private def build(LanguageBuilder langBuilder){
 		
-		var EPackage res = registry.get(language)
-		if(res !== null) return res
+		val language = langBuilder.source
+		var syntax = langBuilder.model
 
-		var EPackage base = null
-
-		/****************************
-		 * STEP 1: merge ecore files
-		 ****************************/
-		val ecores = language.operators.filter(Import)
-		if(ecores.size == 1){
-			language.syntax.ecoreUri = ecores.get(0).ecoreUri
-			language.syntax.genmodelUris.addAll(ecores.get(0).genmodelUris)
-			base = modelUtils.loadPkg(ecores.get(0).ecoreUri)
-			applyRenaming(base, ecores.get(0).mappingRules)
-		}
-		else if(ecores.size > 1){
-			val firstEcore = ecores.get(0)
-			val ecoreBase = modelUtils.loadPkg(firstEcore.ecoreUri)
-			applyRenaming(ecoreBase, firstEcore.mappingRules)
-
-			ecores.drop(1).forEach[ nextEcore |
-				val ecoreUnit = modelUtils.loadPkg(nextEcore.ecoreUri)
-				applyRenaming(ecoreUnit, nextEcore.mappingRules)
-				algebra.merge(ecoreUnit,ecoreBase)
-			]
-			base = ecoreBase
+		var List errors = new ArrayList //TODO: init with build errors if yet built
+		if(syntax == null){
+			errors = langBuilder.build() //TODO: manage errors & model not built
 		}
 		
-		/****************************
-		 * STEP 2: merge inherited languages
-		 ****************************/
-		 val inherits = language.operators.filter(Inheritance)
-		 if(inherits.size > 0){
-			val firstInherit = inherits.get(0)
-			val inheritBase = EcoreUtil::copy(getRootPackage(firstInherit.targetLanguage))
-			
-			inherits.drop(1).forEach[ nextInherit |
-				val inheritUnit = getRootPackage(nextInherit.targetLanguage)
-				algebra.merge(inheritUnit,inheritBase)
-			]
-			
-			if(base !== null && inheritBase !== null){
-				algebra.merge(inheritBase,base)
-			}
-			else if(base === null && inheritBase !== null){
-				base = inheritBase
-			}
+		if(errors.isEmpty){
+			packageProvider.registerPackages(language.syntax, syntax)
 		}
-		
-		/****************************
-		 * STEP 3: merge languages
-		 ****************************/
-		val merges = language.operators.filter(Merge)
-		if(merges.size > 0){
-			val firstMerge = merges.get(0)
-			val mergeBase = EcoreUtil::copy(getRootPackage(firstMerge.targetLanguage))
-			applyRenaming(mergeBase, firstMerge.mappingRules)
-
-			merges.drop(1).forEach[ nextMerge |
-				val mergeUnit = getRootPackage(nextMerge.targetLanguage)
-				applyRenaming(mergeUnit, nextMerge.mappingRules)
-				algebra.merge(mergeUnit,mergeBase)
-			]
-			
-			if(base !== null && mergeBase !== null){
-				algebra.merge(mergeBase,base)
-			}
-			else if(base === null && mergeBase !== null){
-				base = mergeBase
-			}
-		}
-		
-		/****************************
-		 * STEP 4: merge sliced languages
-		 ****************************/
-		 val slices = language.operators.filter(Slice)
-		 if(slices.size > 0){
-		 	val firstSlice = slices.get(0)
-			val sliceBase = applySlice(firstSlice)
-			applyRenaming(sliceBase, firstSlice.mappingRules)
-			
-			slices.drop(1).forEach[ nextSlice |
-				val sliceUnit = applySlice(nextSlice)
-				applyRenaming(sliceUnit, nextSlice.mappingRules)
-				algebra.merge(sliceUnit, sliceBase)
-			]
-			
-			if(base !== null && sliceBase !== null){
-				algebra.merge(sliceBase,base)
-			}
-			else if(base === null && sliceBase !== null){
-				base = sliceBase
-			}
-		 }
-		 
-		
-		if(base === null){
-			//TODO: raise an error, language not well defined
-		}
-		
-
-		/****************************
-		 * STEP 5: 
-		 ****************************/
-		if(base !== null){
-			registry.put(language, base)
-		}
-		
-		packageProvider.registerPackages(language.syntax, base)
-		 
-		/****************************
-		 * STEP 5: merge aspects
-		 ****************************/
-		aspectWeaver.preProcess(language, false)
 	} 
-	
-	/**
-	 * Get the root EPackage of {@link language}.
-	 */
-	private def EPackage getRootPackage(Language language){
-		var EPackage res = registry.get(language)
-		
-		if (res === null && language !== null) {
-			build(language)
-			res = registry.get(language)
-		}
-		
-		return res
-	}
 	
 	/**
  	 * Copy/Past from ModelingElementExtension
