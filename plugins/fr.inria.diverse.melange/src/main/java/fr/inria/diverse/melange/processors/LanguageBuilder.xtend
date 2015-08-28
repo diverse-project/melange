@@ -6,6 +6,7 @@ import fr.inria.diverse.melange.algebra.EmfCompareAlgebra
 import fr.inria.diverse.melange.ast.ASTHelper
 import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.ast.LanguageExtensions
+import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.ModelUtils
 import fr.inria.diverse.melange.lib.slicing.ecore.StrictEcore
@@ -30,13 +31,10 @@ import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EModelElement
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.EcoreFactory
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
-import java.util.HashSet
-import com.google.common.collect.Table
-import com.google.common.collect.HashBasedTable
-import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
@@ -55,6 +53,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 	@Inject EPackageProvider packageProvider
 	@Inject extension AspectExtensions
 	@Inject extension LanguageExtensions
+	@Inject extension MetamodelExtensions
 	@Inject JvmTypesBuilder typesBuilder
 	@Inject JvmTypeReferenceBuilder.Factory typeRefBuilderFactory
 	JvmTypeReferenceBuilder typeRefBuilder
@@ -455,6 +454,10 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 			// FIXME: Some checks needed here
 			MelangeFactory.eINSTANCE.createAspect => [
 				aspectTypeRef = typesBuilder.cloneWithProxies(w.aspectTypeRef)
+				val className = aspectTypeRef.aspectAnnotationValue
+				if (className !== null){
+					aspectedClass = language.syntax.findClass(className)
+				}
 			]
 		]
 	}

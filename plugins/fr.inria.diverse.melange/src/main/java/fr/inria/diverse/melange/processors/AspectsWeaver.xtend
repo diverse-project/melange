@@ -19,7 +19,6 @@ class AspectsWeaver extends DispatchMelangeProcessor
 {
 	@Inject ModelTypeAlgebra algebra
 	@Inject extension AspectExtensions
-	@Inject extension MetamodelExtensions
 	@Inject extension AspectToEcore
 	@Inject extension EclipseProjectHelper
 
@@ -34,11 +33,6 @@ class AspectsWeaver extends DispatchMelangeProcessor
 			else
 				-1
 		].forEach[asp |
-			val className = asp.aspectTypeRef.aspectAnnotationValue
-
-			if (className !== null)
-				asp.aspectedClass = l.syntax.findClass(className)
-
 			asp.ecoreFragment = asp.inferEcoreFragment(l)
 			algebra.weaveAspect(l, asp)
 		]
