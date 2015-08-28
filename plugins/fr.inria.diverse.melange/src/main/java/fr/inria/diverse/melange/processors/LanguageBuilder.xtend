@@ -69,7 +69,6 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		typeRefBuilder = typeRefBuilderFactory.create(root.eResource.resourceSet)
 		
 		root.languages.forEach[language |
-			// Initialize syntax & semantics
 			build(language, newArrayList)
 		]
 	}
@@ -87,18 +86,6 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 
 		var EPackage base = null
 		var needNewEcore = false
-
-		language.syntax = MelangeFactory.eINSTANCE.createMetamodel
-		if (!language.isGeneratedByMelange) {
-			val importClause = language.operators.filter(Import).head
-			if (importClause === null)
-				return null;
-			language.syntax.ecoreUri = importClause.ecoreUri
-			language.syntax.genmodelUris += importClause.genmodelUris
-		} else if (language.runtimeHasBeenGenerated) {
-			language.syntax.ecoreUri = language.externalEcoreUri
-			language.syntax.genmodelUris += language.externalGenmodelUri 
-		}
 
 		language.initialize
 
@@ -455,7 +442,22 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		
 	}
 
+	/**
+	 * Initialize syntax & semantics
+	 */
 	def void initialize(Language language) {
+		language.syntax = MelangeFactory.eINSTANCE.createMetamodel
+		if (!language.isGeneratedByMelange) {
+			val importClause = language.operators.filter(Import).head
+			if (importClause !== null){
+				language.syntax.ecoreUri = importClause.ecoreUri
+				language.syntax.genmodelUris += importClause.genmodelUris
+			}
+		} else if (language.runtimeHasBeenGenerated) {
+			language.syntax.ecoreUri = language.externalEcoreUri
+			language.syntax.genmodelUris += language.externalGenmodelUri 
+		}
+		
 		language.semantics.clear
 		language.semantics += language.operators.filter(Weave)
 		.filter[aspectTypeRef?.type instanceof JvmDeclaredType]
