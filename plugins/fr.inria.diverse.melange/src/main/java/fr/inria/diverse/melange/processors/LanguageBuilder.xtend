@@ -446,16 +446,17 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 	 * Initialize syntax & semantics
 	 */
 	def void initialize(Language language) {
+		
 		language.syntax = MelangeFactory.eINSTANCE.createMetamodel
-		if (!language.isGeneratedByMelange) {
+		if (language.isGeneratedByMelange) {
+			language.syntax.ecoreUri = language.externalEcoreUri
+			language.syntax.genmodelUris += language.externalGenmodelUri 
+		} else {
 			val importClause = language.operators.filter(Import).head
 			if (importClause !== null){
 				language.syntax.ecoreUri = importClause.ecoreUri
 				language.syntax.genmodelUris += importClause.genmodelUris
 			}
-		} else if (language.runtimeHasBeenGenerated) {
-			language.syntax.ecoreUri = language.externalEcoreUri
-			language.syntax.genmodelUris += language.externalGenmodelUri 
 		}
 		
 		language.semantics.clear
