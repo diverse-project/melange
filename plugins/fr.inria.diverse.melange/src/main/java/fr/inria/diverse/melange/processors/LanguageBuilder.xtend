@@ -196,17 +196,6 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 			registry.put(language, base)
 		}
 		
-		if(needNewEcore){
-//			pkgs.add(base)
-//			createEcore(pkgs, language.localEcoreUri, null) //should be refactored
-//			language.ecoreUri = language.localEcoreUri
-//			language.createLocalGenmodel
-//			language.genmodelUris += language.getLocalGenmodelUri
-
-			language.syntax.ecoreUri = language.externalEcoreUri
-			language.syntax.genmodelUris += language.externalGenmodelUri
-		}
-		
 		packageProvider.registerPackages(language.syntax, base)
 		 
 		/****************************
