@@ -87,8 +87,6 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		history.add(language)
 
 		var EPackage base = null
-		var needNewEcore = false
-		
 
 		/****************************
 		 * STEP 1: merge ecore files
@@ -101,7 +99,6 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 			applyRenaming(base, ecores.get(0).mappingRules)
 		}
 		else if(ecores.size > 1){
-			needNewEcore = true
 			val firstEcore = ecores.get(0)
 			val ecoreBase = modelUtils.loadPkg(firstEcore.ecoreUri)
 			applyRenaming(ecoreBase, firstEcore.mappingRules)
@@ -119,7 +116,6 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		 ****************************/
 		 val inherits = language.operators.filter(Inheritance)
 		 if(inherits.size > 0){
-			needNewEcore = true
 			val firstInherit = inherits.get(0)
 			val inheritBase = EcoreUtil::copy(getRootPackage(firstInherit.targetLanguage,history))
 			
@@ -141,7 +137,6 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		 ****************************/
 		val merges = language.operators.filter(Merge)
 		if(merges.size > 0){
-			needNewEcore = true
 			val firstMerge = merges.get(0)
 			val mergeBase = EcoreUtil::copy(getRootPackage(firstMerge.targetLanguage,history))
 			applyRenaming(mergeBase, firstMerge.mappingRules)
@@ -165,7 +160,6 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		 ****************************/
 		 val slices = language.operators.filter(Slice)
 		 if(slices.size > 0){
-		 	needNewEcore = true
 		 	val firstSlice = slices.get(0)
 			val sliceBase = applySlice(firstSlice, history)
 			applyRenaming(sliceBase, firstSlice.mappingRules)
