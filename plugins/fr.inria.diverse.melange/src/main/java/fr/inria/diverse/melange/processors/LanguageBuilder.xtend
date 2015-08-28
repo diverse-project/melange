@@ -68,6 +68,9 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		typeRefBuilder = typeRefBuilderFactory.create(root.eResource.resourceSet)
 		
 		root.languages.forEach[language |
+			language.initialize
+		]
+		root.languages.forEach[language |
 			build(language, newArrayList)
 		]
 	}
@@ -85,8 +88,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 
 		var EPackage base = null
 		var needNewEcore = false
-
-		language.initialize
+		
 
 		/****************************
 		 * STEP 1: merge ecore files
