@@ -71,6 +71,10 @@ abstract class Builder{
 		
 		return res
 	}
+	
+	def void reset(){
+		model = null
+	}
 }
 
 abstract class OperatorBuilder extends Builder{
