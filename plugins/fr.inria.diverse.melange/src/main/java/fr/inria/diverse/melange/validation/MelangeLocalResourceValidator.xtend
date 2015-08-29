@@ -27,6 +27,9 @@ class MelangeLocalResourceValidator extends DerivedStateAwareResourceValidator
 	// Just get the root (ModelTypingSpace) and validate it
 	override validate(Resource resource, CheckMode mode,
 		CancelIndicator monitor, IAcceptor<Issue> acceptor) {
+		if (monitor.canceled)
+			return;
+
 		if (resource.URI.fileExtension == "melange") {
 			val task = Stopwatches.forTask("MelangeLocalResourceValidator.validate("+resource.URI+")")
 			task.start
@@ -39,6 +42,8 @@ class MelangeLocalResourceValidator extends DerivedStateAwareResourceValidator
 
 	override validate(Resource resource, EObject element, CheckMode mode,
 		CancelIndicator monitor, IAcceptor<Issue> acceptor) {
+		if (monitor.canceled)
+			return;
 		if (resource.URI.fileExtension == "melange") {
 			val diagChain = new BasicDiagnostic
 			val context = newHashMap => [
