@@ -99,7 +99,6 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 	 * the derived state model
 	 */
 	def void inferFullDerivedState(DerivedStateAwareResource resource) {
-		super.installDerivedState(resource, true)
 		super.installDerivedState(resource, false)
 	}
 }
