@@ -17,4 +17,8 @@ class MelangeRuntimeModule extends fr.inria.diverse.melange.AbstractMelangeRunti
 	def Class<? extends XbaseCompiler> bindXbaseCompiler() {
 		return typeof(fr.inria.diverse.melange.compiler.ModelOrientedXbaseCompiler)
 	}
+
+	override bindIResourceValidator() {
+		return typeof(fr.inria.diverse.melange.validation.MelangeLocalResourceValidator)
+	}
 }
