@@ -90,6 +90,16 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 		helper.setContext(resource.resourceSet)
 
 		task.stop
-		super.installDerivedState(resource, preLinkingPhase)
+		// Avoid computing al the derived state when unnecessary
+		super.installDerivedState(resource, true)
+	}
+
+	/**
+	 * Should be invoked just before code generation to complete
+	 * the derived state model
+	 */
+	def void inferFullDerivedState(DerivedStateAwareResource resource) {
+		super.installDerivedState(resource, true)
+		super.installDerivedState(resource, false)
 	}
 }

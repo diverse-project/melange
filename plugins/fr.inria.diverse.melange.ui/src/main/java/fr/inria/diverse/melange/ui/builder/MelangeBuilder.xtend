@@ -12,6 +12,7 @@ import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.processors.ExtensionPointProcessor
+import fr.inria.diverse.melange.resource.MelangeDerivedStateComputer
 import org.apache.log4j.Logger
 import org.eclipse.core.resources.IProject
 import org.eclipse.core.resources.ResourcesPlugin
@@ -24,10 +25,12 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.builder.EclipseResourceFileSystemAccess2
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.OutputConfigurationProvider
+import org.eclipse.xtext.resource.DerivedStateAwareResource
 
 class MelangeBuilder
 {
 	@Inject IGenerator generator
+	@Inject MelangeDerivedStateComputer computer
 	@Inject Provider<EclipseResourceFileSystemAccess2> fileSystemAccessProvider
 	@Inject OutputConfigurationProvider outputProvider
 	@Inject EclipseProjectHelper eclipseHelper
@@ -102,7 +105,11 @@ class MelangeBuilder
 		]
 
 		cleanAdapters(res, project, monitor)
-		generator.doGenerate(res, fsa)
+
+		if (res instanceof DerivedStateAwareResource) {
+			computer.inferFullDerivedState(res)
+			generator.doGenerate(res, fsa)
+		}
 	}
 
 	def void generatePluginXml(Resource res, IProject project, IProgressMonitor monitor) {
