@@ -42,7 +42,7 @@ class MelangeLocalResourceValidator extends DerivedStateAwareResourceValidator
 		if (resource.URI.fileExtension == "melange") {
 			val diagChain = new BasicDiagnostic
 			val context = newHashMap => [
-				put(CheckMode::KEY, CheckMode::FAST_ONLY)
+				put(CheckMode::KEY, mode)
 				put(ConcreteSyntaxEValidator::DISABLE_CONCRETE_SYNTAX_EVALIDATOR, Boolean::TRUE)
 				put(typeof(EValidator), validator)
 			]
