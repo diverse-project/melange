@@ -11,8 +11,8 @@ import org.eclipse.xtext.util.IAcceptor
 import org.eclipse.xtext.util.internal.Stopwatches
 import org.eclipse.xtext.validation.CheckMode
 import org.eclipse.xtext.validation.Issue
-import org.eclipse.xtext.validation.ResourceValidatorImpl
 import org.eclipse.xtext.validation.impl.ConcreteSyntaxEValidator
+import org.eclipse.xtext.xbase.annotations.validation.DerivedStateAwareResourceValidator
 
 /**
  * Custom efficient validation process:
@@ -20,7 +20,7 @@ import org.eclipse.xtext.validation.impl.ConcreteSyntaxEValidator
  *   - Don't check external Aspects/Ecore resources
  *   - Directly dispatch on the MelangeValidator, Diagnostician is too slow
  */
-class MelangeLocalResourceValidator extends ResourceValidatorImpl
+class MelangeLocalResourceValidator extends DerivedStateAwareResourceValidator
 {
 	@Inject MelangeValidator validator
 
