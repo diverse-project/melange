@@ -60,6 +60,13 @@ class MelangeLocalResourceValidator extends DerivedStateAwareResourceValidator
 				if (obj.eClass.EPackage == MelangePackage.eINSTANCE)
 					validator.validate(obj, diagChain, context)
 			}
+
+			if (!diagChain.children.empty)
+				diagChain.children.forEach[diag |
+					issueFromEValidatorDiagnostic(diag, acceptor)
+				]
+			else
+				issueFromEValidatorDiagnostic(diagChain, acceptor)
 		} else
 			super.validate(resource, mode, monitor, acceptor)
 	}
