@@ -4,6 +4,7 @@ import com.google.inject.Inject
 import fr.inria.diverse.melange.jvmmodel.JvmModelInferrerHelper
 import fr.inria.diverse.melange.jvmmodel.MelangeTypesBuilder
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
+import fr.inria.diverse.melange.metamodel.melange.Transformation
 import fr.inria.diverse.melange.processors.ExactTypeInferrer
 import fr.inria.diverse.melange.processors.LanguageBuilder
 import fr.inria.diverse.melange.processors.MelangeProcessor
@@ -91,7 +92,14 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 
 		task.stop
 		// Avoid computing al the derived state when unnecessary
-		super.installDerivedState(resource, true)
+		if (root.containsTransformations)
+			super.installDerivedState(resource, preLinkingPhase)
+		else
+			super.installDerivedState(resource, true)
+	}
+
+	def boolean containsTransformations(ModelTypingSpace root) {
+		return !root.elements.filter(Transformation).empty
 	}
 
 	/**
