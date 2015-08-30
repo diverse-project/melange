@@ -67,7 +67,7 @@ language SubPackTest1{
 	}
 	exactType SubPackMt
 }
-language SubPackTest2
+language SubPackTest2 {
 	merge PackageLang and-rename{
 		"toppkg.subpkg2" to "toppkg.subpkg1"{}
 		"toppkg.subpkg2.subpkg3" to "toppkg.subpkg1"{}
