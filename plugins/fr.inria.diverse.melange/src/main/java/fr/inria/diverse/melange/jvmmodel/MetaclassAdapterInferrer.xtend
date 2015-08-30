@@ -337,7 +337,7 @@ class MetaclassAdapterInferrer
 				op.returnType.qualifiedName.typeRef
 
 		paramsList.append("adaptee")
-		op.parameters.drop(if (op.parameters.head?.simpleName == "_self") 1 else 0).forEach[p, i |
+		op.parameters.drop(1).forEach[p, i |
 			val realTypeP =
 				if (p.parameterType.isCollection)
 					(p.parameterType as JvmParameterizedTypeReference).arguments.head.type.simpleName
@@ -359,11 +359,6 @@ class MetaclassAdapterInferrer
 			if (featureName === null) op.simpleName
 			else if (op.parameters.size == 1) op.getterName
 			else op.setterName
-		// FIXME: We should safely be able to set drop to 1 in any case
-		val drop =
-			if (featureName === null && op.parameters.head.simpleName != "_self") 0
-			else 1
-
 		val correspondingCls = superType.findClass(aspect.aspectedClass.name)
 
 		// If the super type doesn't expose this method, we don't need to generate it
@@ -378,7 +373,7 @@ class MetaclassAdapterInferrer
 			jvmCls.members += mm.toMethod(opName, retType)[
 				annotations += Override.annotationRef
 
-				op.parameters.drop(drop).forEach[p |
+				op.parameters.drop(1).forEach[p |
 					val realTypeP =
 						if (p.parameterType.isCollection)
 							(p.parameterType as JvmParameterizedTypeReference).arguments.head.type.simpleName
