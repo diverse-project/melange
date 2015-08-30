@@ -20,6 +20,8 @@ class ResourceTest
 	@Before
 	def void setUp() {
 		rs = new ResourceSetImpl
+		fr.inria.diverse.melange.resource.MelangeRegistry.INSTANCE.languageMap.clear
+		fr.inria.diverse.melange.resource.MelangeRegistry.INSTANCE.modelTypeMap.clear
 		StandaloneSetup::doSetup
 	}
 
