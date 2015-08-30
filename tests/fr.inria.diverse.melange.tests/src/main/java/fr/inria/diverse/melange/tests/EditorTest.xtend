@@ -31,6 +31,6 @@ class EditorTest
 
 	@Test
 	def void testInvalidImplements() {
-		root.l("FsmM").assertError(MelangePackage.eINSTANCE.metamodel, MelangeValidationConstants.METAMODEL_IMPLEMENTS_ERROR)
+		root.l("FsmM").assertError(MelangePackage.eINSTANCE.language, MelangeValidationConstants.METAMODEL_IMPLEMENTS_ERROR)
 	}
 }
