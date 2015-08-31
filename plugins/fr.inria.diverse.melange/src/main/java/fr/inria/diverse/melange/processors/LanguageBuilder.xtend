@@ -159,7 +159,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 			applyRenaming(mergeBase, firstMerge.mappingRules)
 
 			merges.drop(1).forEach[ nextMerge |
-				val mergeUnit = getRootPackage(nextMerge.mergedLanguage,history)
+				val mergeUnit = EcoreUtil::copy(getRootPackage(nextMerge.mergedLanguage,history))
 				applyRenaming(mergeUnit, nextMerge.mappingRules)
 				algebra.merge(mergeUnit,mergeBase)
 			]
