@@ -125,4 +125,17 @@ class LanguageBuilder extends Builder{
 		}
 		return null
 	}
+	
+	def debug(){
+		println(source.name)
+		builders.forEach[ 
+			println("	"+it)
+			it.model.allClasses.forEach[cl|
+				println("	"+cl.name)
+				cl.EAllAttributes.forEach[println("		"+it.name+" : "+it.EType?.name)]
+				cl.EAllReferences.forEach[println("		"+it.name+" : "+it.EType?.name)]
+				cl.EAllOperations.forEach[println("		"+it.name+" : "+it.EType?.name)]
+			]
+		]
+	}
 }
