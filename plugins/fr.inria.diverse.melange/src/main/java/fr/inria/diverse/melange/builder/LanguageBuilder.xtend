@@ -1,39 +1,37 @@
 package fr.inria.diverse.melange.builder
 
-import org.eclipse.emf.ecore.EObject
-import org.eclipse.emf.ecore.EPackage
-import java.util.List
-import fr.inria.diverse.melange.metamodel.melange.Operator
-import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
-import java.util.Map
-import fr.inria.diverse.melange.metamodel.melange.Language
-import java.util.HashMap
-import java.util.ArrayList
-import fr.inria.diverse.melange.metamodel.melange.Import
-import fr.inria.diverse.melange.metamodel.melange.PackageBinding
-import org.eclipse.emf.ecore.EClass
-import org.eclipse.emf.ecore.EStructuralFeature
-import java.util.HashSet
-import org.eclipse.emf.ecore.EcoreFactory
 import com.google.common.collect.HashBasedTable
-import fr.inria.diverse.melange.lib.EcoreExtensions
 import com.google.inject.Inject
-import fr.inria.diverse.melange.lib.ModelUtils
-import fr.inria.diverse.melange.metamodel.melange.Weave
-import fr.inria.diverse.melange.metamodel.melange.Aspect
+import com.google.inject.Injector
+import fr.inria.diverse.melange.algebra.EmfCompareAlgebra
 import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.ast.MetamodelExtensions
-import fr.inria.diverse.melange.utils.AspectToEcore
-import org.eclipse.xtext.common.types.JvmDeclaredType
-import fr.inria.diverse.melange.metamodel.melange.Merge
-import fr.inria.diverse.melange.metamodel.melange.Slice
-import fr.inria.diverse.melange.metamodel.melange.Inheritance
-import org.eclipse.emf.ecore.util.EcoreUtil
-import fr.inria.diverse.melange.metamodel.melange.LanguageOperator
+import fr.inria.diverse.melange.lib.EcoreExtensions
+import fr.inria.diverse.melange.lib.ModelUtils
 import fr.inria.diverse.melange.lib.slicing.ecore.StrictEcore
+import fr.inria.diverse.melange.metamodel.melange.Import
+import fr.inria.diverse.melange.metamodel.melange.Inheritance
+import fr.inria.diverse.melange.metamodel.melange.Language
+import fr.inria.diverse.melange.metamodel.melange.LanguageOperator
+import fr.inria.diverse.melange.metamodel.melange.Merge
+import fr.inria.diverse.melange.metamodel.melange.Operator
+import fr.inria.diverse.melange.metamodel.melange.PackageBinding
+import fr.inria.diverse.melange.metamodel.melange.Slice
+import fr.inria.diverse.melange.metamodel.melange.Weave
+import fr.inria.diverse.melange.utils.AspectToEcore
+import java.util.ArrayList
+import java.util.HashMap
+import java.util.HashSet
+import java.util.List
+import java.util.Map
+import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EModelElement
-import fr.inria.diverse.melange.algebra.EmfCompareAlgebra
-import com.google.inject.Injector
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EPackage
+import org.eclipse.emf.ecore.EStructuralFeature
+import org.eclipse.emf.ecore.EcoreFactory
+import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.xtext.common.types.JvmDeclaredType
 
 class Error{
 	String message
@@ -87,8 +85,8 @@ abstract class OperatorBuilder extends Builder{
 
 abstract class LanguageOperatorBuilder extends OperatorBuilder{
 
-	protected ModelTypingSpaceBuilder root
 	protected EPackage targetModel
+	protected ModelTypingSpaceBuilder root
 
 	override List<Error> preBuild(){
 		val langBuilder = root.getBuilder((source as LanguageOperator).targetLanguage)
@@ -209,13 +207,16 @@ class WeaveBuilder extends OperatorBuilder{
 	@Inject extension AspectToEcore
 	@Inject extension MetamodelExtensions
 	
-	new(Weave op){
+	LanguageBuilder rootLanguage
+	
+	new(Weave op, LanguageBuilder langBuilder){
 		this.source = op
+		this.rootLanguage = langBuilder
 	}
 	
 	override make() {
 		val className = (source as Weave).aspectTypeRef.aspectAnnotationValue
-		val baseClass = source.owningLanguage.syntax.findClass(className)
+		val baseClass = rootLanguage.findClass(className)
 		val aspect = (source as Weave).aspectTypeRef.type as JvmDeclaredType
 		model = aspect.inferEcoreFragment(baseClass)
 		
@@ -229,12 +230,14 @@ class LanguageBuilder extends Builder{
 	
 	@Inject EmfCompareAlgebra algebra
 	@Inject Injector injector
+	@Inject extension EcoreExtensions
 
 	ModelTypingSpaceBuilder root
 	
 	Language source
 
 	boolean isBuilding = false
+	List<OperatorBuilder> builders
 	
 	new(Language l, ModelTypingSpaceBuilder root){
 		this.source = l
@@ -255,7 +258,16 @@ class LanguageBuilder extends Builder{
 
 		val List<Error> errors = new ArrayList()
 
-		val List<OperatorBuilder> builders = createBuilders(source.operators)
+		/*
+		 * Aspect operators are built at the end since we need to retrieve the aspected
+		 * EClass to infer the ecore fragment 
+		 */
+		val otherOperators = source.operators.filter[!(it instanceof Weave)].toList
+		val aspectOperators = source.operators.filter(Weave).map[it as Operator].toList
+
+		builders = new ArrayList
+		builders.addAll(createBuilders(otherOperators))
+		builders.addAll(createBuilders(aspectOperators))
 		builders.forEach[builder |
 			errors.addAll(builder.build())
 		]
@@ -294,7 +306,7 @@ class LanguageBuilder extends Builder{
 					Merge       : new MergeBuilder(op,root)
 					Slice       : new SliceBuilder(op,root)
 					Import      : new ImportBuilder(op)
-					Weave       : new WeaveBuilder(op)
+					Weave       : new WeaveBuilder(op,this)
 				}
 			res.add(builder)
 			injector.injectMembers(builder)
@@ -309,6 +321,18 @@ class LanguageBuilder extends Builder{
 	
 	def Language getSource(){
 		return source
+	}
+	
+	/**
+	 * Search in builder for an EClass {@link simpleName}
+	 */
+	def EClass findClass(String simpleName){
+		for(builder : builders){
+			val pack = builder.model
+			val candidate = pack?.allClasses.findFirst[name == simpleName]
+			if(candidate !== null) return candidate
+		}
+		return null
 	}
 }
 
