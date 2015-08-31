@@ -35,4 +35,6 @@ class MelangeValidationConstants
 	public static final String SLICE_INVALID_ROOT = "SLICE_INVALID_ROOT"
 	public static final String METAMODEL_NO_GENPACKAGE = "METAMODEL_NO_GENPACKAGE"
 	public static final String LANGUAGE_NAME_CONFLICTS_METACLASS = "LANGUAGE_NAME_CONFLICTS_METACLASS"
+	public static final String LANGUAGE_NAME_INVALID = "LANGUAGE_NAME_INVALID"
+	public static final String MODELTYPE_NAME_INVALID = "MODELTYPE_NAME_INVALID"
 }
