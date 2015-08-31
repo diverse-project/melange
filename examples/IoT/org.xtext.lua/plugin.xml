@@ -5,20 +5,12 @@
 
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
-       uri = "http://www.xtext.org/Lua" 
+       uri = "http://lua/1.0" 
        class = "org.xtext.lua.LuaPackage"
        genModel = "model/generated/Lua.genmodel" /> 
 	
   </extension>
 
 
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated Lua -->
-      <package
-            uri="http://activitydiagram/1.0"
-            class="activitydiagram.ActivitydiagramPackage"
-            genModel="model/generated/Lua.genmodel"/>
-   </extension>
 
 </plugin>

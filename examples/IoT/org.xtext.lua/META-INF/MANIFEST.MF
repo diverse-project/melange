@@ -18,13 +18,13 @@ Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.xtext,
  org.xtext.services,
+ org.xtext.lua,
+ org.xtext.lua.impl,
+ org.xtext.lua.util,
  org.xtext.serializer,
  org.xtext.parser.antlr,
  org.xtext.parser.antlr.internal,
  org.xtext.validation,
  org.xtext.scoping,
  org.xtext.generator,
- org.xtext.formatting,
- activitydiagram,
- activitydiagram.impl,
- activitydiagram.util
+ org.xtext.formatting
