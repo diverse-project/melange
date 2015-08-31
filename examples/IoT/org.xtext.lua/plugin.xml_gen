@@ -6,7 +6,7 @@
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
        uri = "http://lua/1.0" 
-       class = "org.xtext.lua.LuaPackage"
+       class = "org.xtext.lua.lua.LuaPackage"
        genModel = "model/generated/Lua.genmodel" /> 
 	
   </extension>

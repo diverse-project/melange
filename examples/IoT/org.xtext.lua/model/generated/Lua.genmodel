@@ -5,7 +5,7 @@
     modelName="Lua" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="6.0" copyrightFields="false" editPluginID="org.xtext.lua.edit"
     editorPluginID="org.xtext.lua.editor" runtimeVersion="2.10">
-  <genPackages prefix="Lua" basePackage="org.xtext" disposableProviderFactory="true"
+  <genPackages prefix="Lua" basePackage="org.xtext.lua" disposableProviderFactory="true"
       fileExtensions="lua" ecorePackage="Lua.ecore#/">
     <genClasses ecoreClass="Lua.ecore#//Chunk"/>
     <genClasses ecoreClass="Lua.ecore#//Block">

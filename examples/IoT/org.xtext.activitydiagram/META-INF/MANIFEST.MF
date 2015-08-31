@@ -17,12 +17,13 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.modelexecution.operationalsemantics,
- org.modelexecution.operationalsemantics.services,
- org.modelexecution.operationalsemantics.serializer,
- org.modelexecution.operationalsemantics.parser.antlr,
- org.modelexecution.operationalsemantics.parser.antlr.internal,
- org.modelexecution.operationalsemantics.validation,
- org.modelexecution.operationalsemantics.scoping,
- org.modelexecution.operationalsemantics.generator,
- org.modelexecution.operationalsemantics.formatting
+Export-Package: org.xtext.activitydiagram,
+ org.xtext.activitydiagram.formatting,
+ org.xtext.activitydiagram.generator,
+ org.xtext.activitydiagram.parser.antlr,
+ org.xtext.activitydiagram.parser.antlr.internal,
+ org.xtext.activitydiagram.scoping,
+ org.xtext.activitydiagram.serializer,
+ org.xtext.activitydiagram.services,
+ org.xtext.activitydiagram.validation
+

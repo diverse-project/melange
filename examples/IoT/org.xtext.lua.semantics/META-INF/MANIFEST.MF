@@ -12,7 +12,7 @@ Require-Bundle: fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version
  org.eclipse.emf.codegen.ecore.xtext;bundle-version="1.2.0";resolution:=optional,
  org.xtext.lua;bundle-version="1.0.0",
  org.eclipse.ocl.examples.xtext.base;bundle-version="3.4.2";resolution:=optional
-Export-Package: org.k3.lua.dynamic
+Export-Package: org.xtext.lua.semantics
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Manifest-Version: 1.0

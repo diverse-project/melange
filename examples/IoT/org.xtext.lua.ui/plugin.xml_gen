@@ -6,48 +6,48 @@
     <extension
             point="org.eclipse.ui.editors">
         <editor
-            class="org.xtext.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+            class="org.xtext.lua.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
             contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
             default="true"
             extensions="lua"
-            id="org.xtext.Lua"
+            id="org.xtext.lua.Lua"
             name="Lua Editor">
         </editor>
     </extension>
     <extension
         point="org.eclipse.ui.handlers">
         <handler
-            class="org.xtext.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
+            class="org.xtext.lua.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
             commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
             <activeWhen>
                 <reference
-                    definitionId="org.xtext.Lua.Editor.opened">
+                    definitionId="org.xtext.lua.Lua.Editor.opened">
                 </reference>
             </activeWhen>
         </handler>
         <handler
-            class="org.xtext.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
-            commandId="org.xtext.Lua.validate">
+            class="org.xtext.lua.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
+            commandId="org.xtext.lua.Lua.validate">
          <activeWhen>
             <reference
-                    definitionId="org.xtext.Lua.Editor.opened">
+                    definitionId="org.xtext.lua.Lua.Editor.opened">
             </reference>
          </activeWhen>
       	</handler>
       	<!-- copy qualified name -->
         <handler
-            class="org.xtext.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
+            class="org.xtext.lua.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
             commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName">
             <activeWhen>
-				<reference definitionId="org.xtext.Lua.Editor.opened" />
+				<reference definitionId="org.xtext.lua.Lua.Editor.opened" />
             </activeWhen>
         </handler>
         <handler
-            class="org.xtext.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
+            class="org.xtext.lua.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
             commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName">
             <activeWhen>
             	<and>
-            		<reference definitionId="org.xtext.Lua.XtextEditor.opened" />
+            		<reference definitionId="org.xtext.lua.Lua.XtextEditor.opened" />
 	                <iterate>
 						<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 					</iterate>
@@ -56,22 +56,22 @@
         </handler>
     </extension>
     <extension point="org.eclipse.core.expressions.definitions">
-        <definition id="org.xtext.Lua.Editor.opened">
+        <definition id="org.xtext.lua.Lua.Editor.opened">
             <and>
                 <reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
                 <with variable="activeEditor">
                     <test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-                        value="org.xtext.Lua" 
+                        value="org.xtext.lua.Lua" 
                         forcePluginActivation="true"/>
                 </with>        
             </and>
         </definition>
-        <definition id="org.xtext.Lua.XtextEditor.opened">
+        <definition id="org.xtext.lua.Lua.XtextEditor.opened">
             <and>
                 <reference definitionId="isXtextEditorActive"/>
                 <with variable="activeEditor">
                     <test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-                        value="org.xtext.Lua" 
+                        value="org.xtext.lua.Lua" 
                         forcePluginActivation="true"/>
                 </with>        
             </and>
@@ -80,33 +80,33 @@
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            class="org.xtext.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.xtext.Lua"
+            class="org.xtext.lua.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            id="org.xtext.lua.Lua"
             name="Lua">
-            <keywordReference id="org.xtext.ui.keyword_Lua"/>
+            <keywordReference id="org.xtext.lua.ui.keyword_Lua"/>
         </page>
         <page
-            category="org.xtext.Lua"
-            class="org.xtext.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
-            id="org.xtext.Lua.coloring"
+            category="org.xtext.lua.Lua"
+            class="org.xtext.lua.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+            id="org.xtext.lua.Lua.coloring"
             name="Syntax Coloring">
-            <keywordReference id="org.xtext.ui.keyword_Lua"/>
+            <keywordReference id="org.xtext.lua.ui.keyword_Lua"/>
         </page>
         <page
-            category="org.xtext.Lua"
-            class="org.xtext.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
-            id="org.xtext.Lua.templates"
+            category="org.xtext.lua.Lua"
+            class="org.xtext.lua.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
+            id="org.xtext.lua.Lua.templates"
             name="Templates">
-            <keywordReference id="org.xtext.ui.keyword_Lua"/>
+            <keywordReference id="org.xtext.lua.ui.keyword_Lua"/>
         </page>
     </extension>
     <extension
             point="org.eclipse.ui.propertyPages">
         <page
-            class="org.xtext.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.xtext.Lua"
+            class="org.xtext.lua.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            id="org.xtext.lua.Lua"
             name="Lua">
-            <keywordReference id="org.xtext.ui.keyword_Lua"/>
+            <keywordReference id="org.xtext.lua.ui.keyword_Lua"/>
             <enabledWhen>
 	            <adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -116,14 +116,14 @@
     <extension
         point="org.eclipse.ui.keywords">
         <keyword
-            id="org.xtext.ui.keyword_Lua"
+            id="org.xtext.lua.ui.keyword_Lua"
             label="Lua"/>
     </extension>
     <extension
          point="org.eclipse.ui.commands">
       <command
             description="Trigger expensive validation"
-            id="org.xtext.Lua.validate"
+            id="org.xtext.lua.Lua.validate"
             name="Validate">
       </command>
       <!-- copy qualified name -->
@@ -144,12 +144,12 @@
         <menuContribution
             locationURI="popup:#TextEditorContext?after=group.edit">
              <command
-                 commandId="org.xtext.Lua.validate"
+                 commandId="org.xtext.lua.Lua.validate"
                  style="push"
                  tooltip="Trigger expensive validation">
             <visibleWhen checkEnabled="false">
                 <reference
-                    definitionId="org.xtext.Lua.Editor.opened">
+                    definitionId="org.xtext.lua.Lua.Editor.opened">
                 </reference>
             </visibleWhen>
          </command>  
@@ -159,7 +159,7 @@
          	<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName" 
          		style="push" tooltip="Copy Qualified Name">
             	<visibleWhen checkEnabled="false">
-                	<reference definitionId="org.xtext.Lua.Editor.opened" />
+                	<reference definitionId="org.xtext.lua.Lua.Editor.opened" />
             	</visibleWhen>
          	</command>  
          </menuContribution>
@@ -167,7 +167,7 @@
          	<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
             	style="push" tooltip="Copy Qualified Name">
             	<visibleWhen checkEnabled="false">
-                	<reference definitionId="org.xtext.Lua.Editor.opened" />
+                	<reference definitionId="org.xtext.lua.Lua.Editor.opened" />
             	</visibleWhen>
          	</command>  
          </menuContribution>
@@ -176,7 +176,7 @@
 				style="push" tooltip="Copy Qualified Name">
          		<visibleWhen checkEnabled="false">
 	            	<and>
-	            		<reference definitionId="org.xtext.Lua.XtextEditor.opened" />
+	            		<reference definitionId="org.xtext.lua.Lua.XtextEditor.opened" />
 						<iterate>
 							<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 						</iterate>
@@ -189,7 +189,7 @@
 		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
 			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
 				<visibleWhen checkEnabled="false">
-                	<reference definitionId="org.xtext.Lua.Editor.opened">
+                	<reference definitionId="org.xtext.lua.Lua.Editor.opened">
                 	</reference>
             	</visibleWhen>
 			</command>
@@ -197,11 +197,11 @@
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 	    <handler
-            class="org.xtext.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
+            class="org.xtext.lua.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
             commandId="org.eclipse.xtext.ui.editor.FindReferences">
             <activeWhen>
                 <reference
-                    definitionId="org.xtext.Lua.Editor.opened">
+                    definitionId="org.xtext.lua.Lua.Editor.opened">
                 </reference>
             </activeWhen>
         </handler>
@@ -212,19 +212,19 @@
 	<extension
 		point="org.eclipse.emf.ecore.extension_parser">
 		<parser
-			class="org.xtext.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
+			class="org.xtext.lua.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
 			type="lua">
 		</parser>
 	</extension>
 	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
         <resourceServiceProvider
-            class="org.xtext.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+            class="org.xtext.lua.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
             uriExtension="lua">
         </resourceServiceProvider>
     </extension>
 
 
-	<!-- marker definitions for org.xtext.Lua -->
+	<!-- marker definitions for org.xtext.lua.Lua -->
 	<extension
 	        id="lua.check.fast"
 	        name="Lua Problem"
@@ -250,7 +250,7 @@
    <extension
          point="org.eclipse.xtext.builder.participant">
       <participant
-            class="org.xtext.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
+            class="org.xtext.lua.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
             fileExtensions="lua"
             >
       </participant>
@@ -258,21 +258,21 @@
    <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            category="org.xtext.Lua"
-            class="org.xtext.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-            id="org.xtext.Lua.compiler.preferencePage"
+            category="org.xtext.lua.Lua"
+            class="org.xtext.lua.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+            id="org.xtext.lua.Lua.compiler.preferencePage"
             name="Compiler">
-            <keywordReference id="org.xtext.ui.keyword_Lua"/>
+            <keywordReference id="org.xtext.lua.ui.keyword_Lua"/>
         </page>
     </extension>
     <extension
             point="org.eclipse.ui.propertyPages">
         <page
-            category="org.xtext.Lua"
-            class="org.xtext.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-            id="org.xtext.Lua.compiler.propertyPage"
+            category="org.xtext.lua.Lua"
+            class="org.xtext.lua.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+            id="org.xtext.lua.Lua.compiler.propertyPage"
             name="Compiler">
-            <keywordReference id="org.xtext.ui.keyword_Lua"/>
+            <keywordReference id="org.xtext.lua.ui.keyword_Lua"/>
             <enabledWhen>
 	            <adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -283,20 +283,20 @@
 		<menuContribution locationURI="popup:#TextEditorContext?after=xtext.ui.openDeclaration">
 			<command
 				commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand"
-				id="org.xtext.Lua.OpenGeneratedCode"
+				id="org.xtext.lua.Lua.OpenGeneratedCode"
 				style="push">
 					<visibleWhen checkEnabled="false">
-						<reference definitionId="org.xtext.Lua.Editor.opened" />
+						<reference definitionId="org.xtext.lua.Lua.Editor.opened" />
 					</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 		<handler
-			class="org.xtext.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
+			class="org.xtext.lua.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
 			commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand">
 				<activeWhen>
-					<reference definitionId="org.xtext.Lua.Editor.opened" />
+					<reference definitionId="org.xtext.lua.Lua.Editor.opened" />
 				</activeWhen>
 		</handler>
 	</extension>
@@ -305,11 +305,11 @@
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler 
-			class="org.xtext.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
+			class="org.xtext.lua.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
 			commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline">
 			<activeWhen>
 				<reference
-					definitionId="org.xtext.Lua.Editor.opened">
+					definitionId="org.xtext.lua.Lua.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -329,33 +329,33 @@
 				style="push"
 				tooltip="Open Quick Outline">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.xtext.Lua.Editor.opened"/>
+					<reference definitionId="org.xtext.lua.Lua.Editor.opened"/>
 				</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
-    <!-- quickfix marker resolution generator for org.xtext.Lua -->
+    <!-- quickfix marker resolution generator for org.xtext.lua.Lua -->
     <extension
             point="org.eclipse.ui.ide.markerResolution">
         <markerResolutionGenerator
-            class="org.xtext.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-            markerType="org.xtext.ui.lua.check.fast">
+            class="org.xtext.lua.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="org.xtext.lua.ui.lua.check.fast">
             <attribute
                 name="FIXABLE_KEY"
                 value="true">
             </attribute>
         </markerResolutionGenerator>
         <markerResolutionGenerator
-            class="org.xtext.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-            markerType="org.xtext.ui.lua.check.normal">
+            class="org.xtext.lua.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="org.xtext.lua.ui.lua.check.normal">
             <attribute
                 name="FIXABLE_KEY"
                 value="true">
             </attribute>
         </markerResolutionGenerator>
         <markerResolutionGenerator
-            class="org.xtext.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-            markerType="org.xtext.ui.lua.check.expensive">
+            class="org.xtext.lua.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="org.xtext.lua.ui.lua.check.expensive">
             <attribute
                 name="FIXABLE_KEY"
                 value="true">
@@ -365,11 +365,11 @@
    	<!-- Rename Refactoring -->
 	<extension point="org.eclipse.ui.handlers">
 		<handler 
-			class="org.xtext.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
+			class="org.xtext.lua.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
 			commandId="org.eclipse.xtext.ui.refactoring.RenameElement">
 			<activeWhen>
 				<reference
-					definitionId="org.xtext.Lua.Editor.opened">
+					definitionId="org.xtext.lua.Lua.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -381,7 +381,7 @@
                style="push">
             <visibleWhen checkEnabled="false">
                <reference
-                     definitionId="org.xtext.Lua.Editor.opened">
+                     definitionId="org.xtext.lua.Lua.Editor.opened">
                </reference>
             </visibleWhen>
          </command>
@@ -389,29 +389,29 @@
    </extension>
    <extension point="org.eclipse.ui.preferencePages">
 	    <page
-	        category="org.xtext.Lua"
-	        class="org.xtext.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
-	        id="org.xtext.Lua.refactoring"
+	        category="org.xtext.lua.Lua"
+	        class="org.xtext.lua.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
+	        id="org.xtext.lua.Lua.refactoring"
 	        name="Refactoring">
-	        <keywordReference id="org.xtext.ui.keyword_Lua"/>
+	        <keywordReference id="org.xtext.lua.ui.keyword_Lua"/>
 	    </page>
 	</extension>
 
   <extension point="org.eclipse.compare.contentViewers">
-    <viewer id="org.xtext.Lua.compare.contentViewers"
-            class="org.xtext.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+    <viewer id="org.xtext.lua.Lua.compare.contentViewers"
+            class="org.xtext.lua.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
             extensions="lua">
     </viewer>
   </extension>
   <extension point="org.eclipse.compare.contentMergeViewers">
-    <viewer id="org.xtext.Lua.compare.contentMergeViewers"
-            class="org.xtext.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+    <viewer id="org.xtext.lua.Lua.compare.contentMergeViewers"
+            class="org.xtext.lua.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
             extensions="lua" label="Lua Compare">
      </viewer>
   </extension>
   <extension point="org.eclipse.ui.editors.documentProviders">
-    <provider id="org.xtext.Lua.editors.documentProviders"
-            class="org.xtext.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
+    <provider id="org.xtext.lua.Lua.editors.documentProviders"
+            class="org.xtext.lua.ui.LuaExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
             extensions="lua">
     </provider>
   </extension>

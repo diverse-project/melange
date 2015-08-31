@@ -18,8 +18,12 @@ Require-Bundle: org.xtext.activitydiagram;visibility:=reexport,
  org.eclipse.compare
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.modelexecution.operationalsemantics.ui.quickfix,
- org.modelexecution.operationalsemantics.ui.contentassist,
- org.modelexecution.operationalsemantics.ui.internal,
- org.modelexecution.operationalsemantics.ui.contentassist.antlr
+Export-Package: org.xtext.activitydiagram.ui,
+ org.xtext.activitydiagram.ui.contentassist,
+ org.xtext.activitydiagram.ui.contentassist.antlr,
+ org.xtext.activitydiagram.ui.contentassist.antlr.internal,
+ org.xtext.activitydiagram.ui.internal,
+ org.xtext.activitydiagram.ui.labeling,
+ org.xtext.activitydiagram.ui.outline,
+ org.xtext.activitydiagram.ui.quickfix
 Bundle-Activator: org.modelexecution.operationalsemantics.ui.internal.ActivityDiagramActivator

@@ -18,8 +18,12 @@ Require-Bundle: org.xtext.lua;visibility:=reexport,
  org.eclipse.compare
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.xtext.ui.quickfix,
- org.xtext.ui.contentassist,
- org.xtext.ui.internal,
- org.xtext.ui.contentassist.antlr
+Export-Package: org.xtext.lua.ui,
+ org.xtext.lua.ui.contentassist,
+ org.xtext.lua.ui.contentassist.antlr,
+ org.xtext.lua.ui.contentassist.antlr.internal,
+ org.xtext.lua.ui.internal,
+ org.xtext.lua.ui.labeling,
+ org.xtext.lua.ui.outline,
+ org.xtext.lua.ui.quickfix
 Bundle-Activator: org.xtext.ui.internal.LuaActivator

@@ -16,15 +16,16 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.xtext,
- org.xtext.services,
- org.xtext.lua,
- org.xtext.lua.impl,
- org.xtext.lua.util,
- org.xtext.serializer,
- org.xtext.parser.antlr,
- org.xtext.parser.antlr.internal,
- org.xtext.validation,
- org.xtext.scoping,
- org.xtext.generator,
- org.xtext.formatting
+Export-Package: org.xtext.lua,
+ org.xtext.lua.formatting,
+ org.xtext.lua.generator,
+ org.xtext.lua.lua,
+ org.xtext.lua.lua.impl,
+ org.xtext.lua.lua.util,
+ org.xtext.lua.parser.antlr,
+ org.xtext.lua.parser.antlr.internal,
+ org.xtext.lua.scoping,
+ org.xtext.lua.serializer,
+ org.xtext.lua.services,
+ org.xtext.lua.validation
+

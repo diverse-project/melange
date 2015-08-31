@@ -20,7 +20,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.xtext.activitydiagram.model;bundle-version="0.1.0",
  org.xtext.activitydiagram;bundle-version="1.0.0",
  org.xtext.activitydiagram.input;bundle-version="1.0.0"
-Export-Package: org.modelexecution.operationalsemantics.gemoc.sequential.dynamic
+Export-Package: org.xtext.activitydiagram.semantics
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 
