@@ -20,7 +20,8 @@
       <language
             exactType="simpleaspects.FsmMT"
             uri="http://fsm/"
-            id="simpleaspects.Fsm">
+            id="simpleaspects.Fsm"
+            fileExtension="fsm">
          <adapter
                class="simpleaspects.fsm.adapters.fsmmt.FsmAdapter"
                modeltypeId="simpleaspects.FsmMT">
@@ -29,7 +30,8 @@
       <language
             exactType="simpleaspects.TimedFsmMT"
             uri="http://timedfsm/"
-            id="simpleaspects.TimedFsm">
+            id="simpleaspects.TimedFsm"
+            fileExtension="timedfsm">
          <adapter
                class="simpleaspects.timedfsm.adapters.fsmmt.TimedFsmAdapter"
                modeltypeId="simpleaspects.FsmMT">

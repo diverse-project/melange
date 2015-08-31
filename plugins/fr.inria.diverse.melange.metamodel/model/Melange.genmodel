@@ -56,13 +56,13 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Mapping/to"/>
     </genClasses>
     <genClasses ecoreClass="Melange.ecore#//ClassBinding">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EAttribute Melange.ecore#//ClassBinding/from"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EAttribute Melange.ecore#//ClassBinding/to"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//ClassBinding/properties"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//ClassBinding/from"/>
     </genClasses>
     <genClasses ecoreClass="Melange.ecore#//PropertyBinding">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//PropertyBinding/from"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//PropertyBinding/to"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference Melange.ecore#//PropertyBinding/from"/>
     </genClasses>
     <genClasses ecoreClass="Melange.ecore#//Operator">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Melange.ecore#//Operator/owningLanguage"/>
@@ -78,13 +78,13 @@
     </genClasses>
     <genClasses ecoreClass="Melange.ecore#//Slice">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Slice/slicedLanguage"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EAttribute Melange.ecore#//Slice/roots"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Slice/mappingRules"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Slice/roots"/>
     </genClasses>
     <genClasses ecoreClass="Melange.ecore#//PackageBinding">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//PackageBinding/from"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//PackageBinding/to"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//PackageBinding/classes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference Melange.ecore#//PackageBinding/from"/>
     </genClasses>
     <genClasses ecoreClass="Melange.ecore#//Language">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Language/operators"/>

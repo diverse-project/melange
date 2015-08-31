@@ -396,7 +396,7 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (from=STRING to=STRING properties+=PropertyMapping*)
+	 *     (from=[EClassifier|QualifiedName] to=STRING properties+=PropertyMapping*)
 	 */
 	protected void sequence_ClassMapping(EObject context, ClassBinding semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -477,7 +477,7 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (from=STRING to=STRING classes+=ClassMapping*)
+	 *     (from=[EPackage|QualifiedName] to=STRING classes+=ClassMapping*)
 	 */
 	protected void sequence_PackageMapping(EObject context, PackageBinding semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -486,18 +486,18 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (from=STRING to=STRING)
+	 *     (from=[ETypedElement|QualifiedName] to=STRING)
 	 */
 	protected void sequence_PropertyMapping(EObject context, PropertyBinding semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, MelangePackage.Literals.PROPERTY_BINDING__FROM) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MelangePackage.Literals.PROPERTY_BINDING__FROM));
 			if(transientValues.isValueTransient(semanticObject, MelangePackage.Literals.PROPERTY_BINDING__TO) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MelangePackage.Literals.PROPERTY_BINDING__TO));
+			if(transientValues.isValueTransient(semanticObject, MelangePackage.Literals.PROPERTY_BINDING__FROM) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MelangePackage.Literals.PROPERTY_BINDING__FROM));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPropertyMappingAccess().getFromSTRINGTerminalRuleCall_0_0(), semanticObject.getFrom());
+		feeder.accept(grammarAccess.getPropertyMappingAccess().getFromETypedElementQualifiedNameParserRuleCall_0_0_1(), semanticObject.getFrom());
 		feeder.accept(grammarAccess.getPropertyMappingAccess().getToSTRINGTerminalRuleCall_2_0(), semanticObject.getTo());
 		feeder.finish();
 	}
@@ -505,7 +505,7 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (slicedLanguage=[Language|QualifiedName] roots+=STRING roots+=STRING* mappingRules+=PackageMapping*)
+	 *     (slicedLanguage=[Language|QualifiedName] roots+=[EClass|QualifiedName] roots+=[EClass|QualifiedName]* mappingRules+=PackageMapping*)
 	 */
 	protected void sequence_Slice(EObject context, Slice semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -279,7 +279,7 @@ class MelangeValidator extends AbstractMelangeValidator
 
 	@Check
 	def void checkSliceCriteria(Slice s) {
-		val invalidRoots = s.roots.filter[clsName | s.slicedLanguage.syntax.findClassifier(clsName) === null]
+		val invalidRoots = s.roots.filter[clsName | s.slicedLanguage.syntax.findClassifier(clsName.name) === null]
 		val invalidRootsSize = invalidRoots.size
 
 		if (invalidRootsSize > 0)

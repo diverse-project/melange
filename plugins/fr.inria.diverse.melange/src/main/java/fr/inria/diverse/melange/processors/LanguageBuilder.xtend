@@ -322,12 +322,12 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 	/**
 	 * Search in {@link rootPackage} for EClass named as in {@link classes}
 	 */
-	private def List<EModelElement> getClasses(EPackage rootPackage, List<String> classes){
+	private def List<EModelElement> getClasses(EPackage rootPackage, List<EClass> classes){
 		//TODO: manage sub packages
 		val res = new ArrayList<EModelElement>()
 		
 		rootPackage.EClassifiers.filter(EClass).forEach[cl|
-			if(classes.contains(cl.name)) res.add(cl)
+			if(classes.exists[it.name == cl.name]) res.add(cl)
 		]
 		
 		return res
@@ -356,7 +356,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 			return;
 
 		mappingRules.forEach[ packageRule |
-			val sourcePack = if(modelRoot.name == packageRule.from) modelRoot else modelRoot.findSubPackage(packageRule.from.substring(packageRule.from.indexOf(".")+1))
+			val sourcePack = if(modelRoot.name == packageRule.from.name) modelRoot else modelRoot.findSubPackage(packageRule.from.name.substring(packageRule.from.name.indexOf(".")+1))
 			packageRule.classes.forEach[classRule |
 				sourcePack.EClassifiers.filter(EClass).filter[name == classRule.from].forEach[ clazz |
 					
@@ -379,7 +379,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		val renamedPackages = new HashSet<EPackage>() 
 		val targetedPackages = new HashSet<EPackage>()
 		mappingRules.forEach[ packageRule |
-			val oldPackages = packageRule.from.split("\\.")
+			val oldPackages = packageRule.from.name.split("\\.")
 			val newPackages = packageRule.to.split("\\.")
 
 			//Register source packages
@@ -416,7 +416,7 @@ class LanguageBuilder extends DispatchMelangeProcessor{
 		val movedClasses = HashBasedTable.create
 		val movedPackages = HashBasedTable.create
 		mappingRules.forEach[ packageRule |
-			val sourcePack = if(oldRootName == packageRule.from) modelRoot else modelRoot.findSubPackage(packageRule.from.substring(packageRule.from.indexOf(".")+1))
+			val sourcePack = if(oldRootName == packageRule.from) modelRoot else modelRoot.findSubPackage(packageRule.from.name.substring(packageRule.from.name.indexOf(".")+1))
 			val targetPack = if(modelRoot.name == packageRule.to) modelRoot else modelRoot.findSubPackage(packageRule.to.substring(packageRule.to.indexOf(".")+1))
 			
 			if(sourcePack != targetPack){

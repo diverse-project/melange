@@ -62,19 +62,19 @@ Mapping returns Mapping:
 ;
 
 PackageMapping returns PackageBinding:
-	from=STRING "to" to=STRING "{"
+	from=[ecore::EPackage | QualifiedName] "to" to=STRING "{"
 		(classes+=ClassMapping)*
 	"}"
 ;
 
 ClassMapping returns ClassBinding:
-	from=STRING "to" to=STRING "{"
+	from=[ecore::EClassifier | QualifiedName] "to" to=STRING "{"
 		(properties+=PropertyMapping)*
 	"}"
 ;
 
 PropertyMapping returns PropertyBinding:
-	from=STRING ":" to=STRING
+	from=[ecore::ETypedElement | QualifiedName] ":" to=STRING
 ;
 
 Operator returns Operator:
@@ -96,7 +96,7 @@ Merge returns Merge:
 ;
 
 Slice returns Slice:
-	'slice' slicedLanguage = [Language | QualifiedName] 'on' '[' roots += STRING (',' roots += STRING)* ']'
+	'slice' slicedLanguage = [Language | QualifiedName] 'on' '[' roots += [ecore::EClass | QualifiedName] (',' roots += [ecore::EClass | QualifiedName])* ']'
 	('and-rename' '{'
 		(mappingRules+=PackageMapping)*
 	'}')?
@@ -111,7 +111,7 @@ Weave:
 ;
 
 AspectTypeRef returns Weave:
-	'with' aspectTypeRef = JvmTypeReference
+    'with' aspectTypeRef = JvmTypeReference
 ;
 
 AspectWildcard returns Weave:

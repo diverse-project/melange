@@ -15,12 +15,12 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Aspect#getAspectTypeRef <em>Aspect Type Ref</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Aspect#getAspectedClass <em>Aspected Class</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Aspect#getEcoreFragment <em>Ecore Fragment</em>}</li>
  * </ul>
- * </p>
  *
  * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getAspect()
  * @model
@@ -38,7 +38,7 @@ public interface Aspect extends EObject {
 	 * @return the value of the '<em>Aspect Type Ref</em>' containment reference.
 	 * @see #setAspectTypeRef(JvmTypeReference)
 	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getAspect_AspectTypeRef()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	JvmTypeReference getAspectTypeRef();

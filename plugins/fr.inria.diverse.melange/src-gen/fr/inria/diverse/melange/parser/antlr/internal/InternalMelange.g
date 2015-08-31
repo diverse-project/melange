@@ -967,19 +967,16 @@ rulePackageMapping returns [EObject current=null]
     @after { leaveRule(); }:
 ((
 (
-		lv_from_0_0=RULE_STRING
 		{
-			newLeafNode(lv_from_0_0, grammarAccess.getPackageMappingAccess().getFromSTRINGTerminalRuleCall_0_0()); 
-		}
-		{
-	        if ($current==null) {
+			if ($current==null) {
 	            $current = createModelElement(grammarAccess.getPackageMappingRule());
 	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"from",
-        		lv_from_0_0, 
-        		"STRING");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getPackageMappingAccess().getFromEPackageCrossReference_0_0()); 
+	    }
+		ruleQualifiedName		{ 
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
@@ -1054,19 +1051,16 @@ ruleClassMapping returns [EObject current=null]
     @after { leaveRule(); }:
 ((
 (
-		lv_from_0_0=RULE_STRING
 		{
-			newLeafNode(lv_from_0_0, grammarAccess.getClassMappingAccess().getFromSTRINGTerminalRuleCall_0_0()); 
-		}
-		{
-	        if ($current==null) {
+			if ($current==null) {
 	            $current = createModelElement(grammarAccess.getClassMappingRule());
 	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"from",
-        		lv_from_0_0, 
-        		"STRING");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getClassMappingAccess().getFromEClassifierCrossReference_0_0()); 
+	    }
+		ruleQualifiedName		{ 
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
@@ -1141,19 +1135,16 @@ rulePropertyMapping returns [EObject current=null]
     @after { leaveRule(); }:
 ((
 (
-		lv_from_0_0=RULE_STRING
 		{
-			newLeafNode(lv_from_0_0, grammarAccess.getPropertyMappingAccess().getFromSTRINGTerminalRuleCall_0_0()); 
-		}
-		{
-	        if ($current==null) {
+			if ($current==null) {
 	            $current = createModelElement(grammarAccess.getPropertyMappingRule());
 	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"from",
-        		lv_from_0_0, 
-        		"STRING");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getPropertyMappingAccess().getFromETypedElementCrossReference_0_0()); 
+	    }
+		ruleQualifiedName		{ 
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
@@ -1476,19 +1467,16 @@ ruleSlice returns [EObject current=null]
     }
 (
 (
-		lv_roots_4_0=RULE_STRING
 		{
-			newLeafNode(lv_roots_4_0, grammarAccess.getSliceAccess().getRootsSTRINGTerminalRuleCall_4_0()); 
-		}
-		{
-	        if ($current==null) {
+			if ($current==null) {
 	            $current = createModelElement(grammarAccess.getSliceRule());
 	        }
-       		addWithLastConsumed(
-       			$current, 
-       			"roots",
-        		lv_roots_4_0, 
-        		"STRING");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getSliceAccess().getRootsEClassCrossReference_4_0()); 
+	    }
+		ruleQualifiedName		{ 
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
@@ -1498,19 +1486,16 @@ ruleSlice returns [EObject current=null]
     }
 (
 (
-		lv_roots_6_0=RULE_STRING
 		{
-			newLeafNode(lv_roots_6_0, grammarAccess.getSliceAccess().getRootsSTRINGTerminalRuleCall_5_1_0()); 
-		}
-		{
-	        if ($current==null) {
+			if ($current==null) {
 	            $current = createModelElement(grammarAccess.getSliceRule());
 	        }
-       		addWithLastConsumed(
-       			$current, 
-       			"roots",
-        		lv_roots_6_0, 
-        		"STRING");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getSliceAccess().getRootsEClassCrossReference_5_1_0()); 
+	    }
+		ruleQualifiedName		{ 
+	        afterParserOrEnumRuleCall();
 	    }
 
 )

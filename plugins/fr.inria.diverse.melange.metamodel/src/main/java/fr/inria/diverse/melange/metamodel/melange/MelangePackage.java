@@ -702,22 +702,13 @@ public interface MelangePackage extends EPackage {
 	int CLASS_BINDING = 11;
 
 	/**
-	 * The feature id for the '<em><b>From</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_BINDING__FROM = 0;
-
-	/**
 	 * The feature id for the '<em><b>To</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_BINDING__TO = 1;
+	int CLASS_BINDING__TO = 0;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -726,7 +717,16 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_BINDING__PROPERTIES = 2;
+	int CLASS_BINDING__PROPERTIES = 1;
+
+	/**
+	 * The feature id for the '<em><b>From</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_BINDING__FROM = 2;
 
 	/**
 	 * The number of structural features of the '<em>Class Binding</em>' class.
@@ -757,22 +757,22 @@ public interface MelangePackage extends EPackage {
 	int PROPERTY_BINDING = 12;
 
 	/**
-	 * The feature id for the '<em><b>From</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_BINDING__FROM = 0;
-
-	/**
 	 * The feature id for the '<em><b>To</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_BINDING__TO = 1;
+	int PROPERTY_BINDING__TO = 0;
+
+	/**
+	 * The feature id for the '<em><b>From</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_BINDING__FROM = 1;
 
 	/**
 	 * The number of structural features of the '<em>Property Binding</em>' class.
@@ -940,22 +940,22 @@ public interface MelangePackage extends EPackage {
 	int SLICE__SLICED_LANGUAGE = OPERATOR_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Roots</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SLICE__ROOTS = OPERATOR_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Mapping Rules</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SLICE__MAPPING_RULES = OPERATOR_FEATURE_COUNT + 2;
+	int SLICE__MAPPING_RULES = OPERATOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Roots</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLICE__ROOTS = OPERATOR_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Slice</em>' class.
@@ -986,22 +986,13 @@ public interface MelangePackage extends EPackage {
 	int PACKAGE_BINDING = 17;
 
 	/**
-	 * The feature id for the '<em><b>From</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE_BINDING__FROM = 0;
-
-	/**
 	 * The feature id for the '<em><b>To</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_BINDING__TO = 1;
+	int PACKAGE_BINDING__TO = 0;
 
 	/**
 	 * The feature id for the '<em><b>Classes</b></em>' containment reference list.
@@ -1010,7 +1001,16 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_BINDING__CLASSES = 2;
+	int PACKAGE_BINDING__CLASSES = 1;
+
+	/**
+	 * The feature id for the '<em><b>From</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_BINDING__FROM = 2;
 
 	/**
 	 * The number of structural features of the '<em>Package Binding</em>' class.
@@ -1604,17 +1604,6 @@ public interface MelangePackage extends EPackage {
 	EClass getClassBinding();
 
 	/**
-	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.ClassBinding#getFrom <em>From</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>From</em>'.
-	 * @see fr.inria.diverse.melange.metamodel.melange.ClassBinding#getFrom()
-	 * @see #getClassBinding()
-	 * @generated
-	 */
-	EAttribute getClassBinding_From();
-
-	/**
 	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.ClassBinding#getTo <em>To</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1637,6 +1626,17 @@ public interface MelangePackage extends EPackage {
 	EReference getClassBinding_Properties();
 
 	/**
+	 * Returns the meta object for the reference '{@link fr.inria.diverse.melange.metamodel.melange.ClassBinding#getFrom <em>From</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>From</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.ClassBinding#getFrom()
+	 * @see #getClassBinding()
+	 * @generated
+	 */
+	EReference getClassBinding_From();
+
+	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.PropertyBinding <em>Property Binding</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1645,17 +1645,6 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getPropertyBinding();
-
-	/**
-	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.PropertyBinding#getFrom <em>From</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>From</em>'.
-	 * @see fr.inria.diverse.melange.metamodel.melange.PropertyBinding#getFrom()
-	 * @see #getPropertyBinding()
-	 * @generated
-	 */
-	EAttribute getPropertyBinding_From();
 
 	/**
 	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.PropertyBinding#getTo <em>To</em>}'.
@@ -1667,6 +1656,17 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getPropertyBinding_To();
+
+	/**
+	 * Returns the meta object for the reference '{@link fr.inria.diverse.melange.metamodel.melange.PropertyBinding#getFrom <em>From</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>From</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.PropertyBinding#getFrom()
+	 * @see #getPropertyBinding()
+	 * @generated
+	 */
+	EReference getPropertyBinding_From();
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.Operator <em>Operator</em>}'.
@@ -1786,17 +1786,6 @@ public interface MelangePackage extends EPackage {
 	EReference getSlice_SlicedLanguage();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link fr.inria.diverse.melange.metamodel.melange.Slice#getRoots <em>Roots</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Roots</em>'.
-	 * @see fr.inria.diverse.melange.metamodel.melange.Slice#getRoots()
-	 * @see #getSlice()
-	 * @generated
-	 */
-	EAttribute getSlice_Roots();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link fr.inria.diverse.melange.metamodel.melange.Slice#getMappingRules <em>Mapping Rules</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1808,6 +1797,17 @@ public interface MelangePackage extends EPackage {
 	EReference getSlice_MappingRules();
 
 	/**
+	 * Returns the meta object for the reference list '{@link fr.inria.diverse.melange.metamodel.melange.Slice#getRoots <em>Roots</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Roots</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Slice#getRoots()
+	 * @see #getSlice()
+	 * @generated
+	 */
+	EReference getSlice_Roots();
+
+	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.PackageBinding <em>Package Binding</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1816,17 +1816,6 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getPackageBinding();
-
-	/**
-	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.PackageBinding#getFrom <em>From</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>From</em>'.
-	 * @see fr.inria.diverse.melange.metamodel.melange.PackageBinding#getFrom()
-	 * @see #getPackageBinding()
-	 * @generated
-	 */
-	EAttribute getPackageBinding_From();
 
 	/**
 	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.PackageBinding#getTo <em>To</em>}'.
@@ -1849,6 +1838,17 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPackageBinding_Classes();
+
+	/**
+	 * Returns the meta object for the reference '{@link fr.inria.diverse.melange.metamodel.melange.PackageBinding#getFrom <em>From</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>From</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.PackageBinding#getFrom()
+	 * @see #getPackageBinding()
+	 * @generated
+	 */
+	EReference getPackageBinding_From();
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.Language <em>Language</em>}'.
@@ -2375,14 +2375,6 @@ public interface MelangePackage extends EPackage {
 		EClass CLASS_BINDING = eINSTANCE.getClassBinding();
 
 		/**
-		 * The meta object literal for the '<em><b>From</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CLASS_BINDING__FROM = eINSTANCE.getClassBinding_From();
-
-		/**
 		 * The meta object literal for the '<em><b>To</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2399,6 +2391,14 @@ public interface MelangePackage extends EPackage {
 		EReference CLASS_BINDING__PROPERTIES = eINSTANCE.getClassBinding_Properties();
 
 		/**
+		 * The meta object literal for the '<em><b>From</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS_BINDING__FROM = eINSTANCE.getClassBinding_From();
+
+		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.PropertyBindingImpl <em>Property Binding</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2409,20 +2409,20 @@ public interface MelangePackage extends EPackage {
 		EClass PROPERTY_BINDING = eINSTANCE.getPropertyBinding();
 
 		/**
-		 * The meta object literal for the '<em><b>From</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PROPERTY_BINDING__FROM = eINSTANCE.getPropertyBinding_From();
-
-		/**
 		 * The meta object literal for the '<em><b>To</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute PROPERTY_BINDING__TO = eINSTANCE.getPropertyBinding_To();
+
+		/**
+		 * The meta object literal for the '<em><b>From</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROPERTY_BINDING__FROM = eINSTANCE.getPropertyBinding_From();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.OperatorImpl <em>Operator</em>}' class.
@@ -2521,20 +2521,20 @@ public interface MelangePackage extends EPackage {
 		EReference SLICE__SLICED_LANGUAGE = eINSTANCE.getSlice_SlicedLanguage();
 
 		/**
-		 * The meta object literal for the '<em><b>Roots</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SLICE__ROOTS = eINSTANCE.getSlice_Roots();
-
-		/**
 		 * The meta object literal for the '<em><b>Mapping Rules</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference SLICE__MAPPING_RULES = eINSTANCE.getSlice_MappingRules();
+
+		/**
+		 * The meta object literal for the '<em><b>Roots</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SLICE__ROOTS = eINSTANCE.getSlice_Roots();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.PackageBindingImpl <em>Package Binding</em>}' class.
@@ -2545,14 +2545,6 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EClass PACKAGE_BINDING = eINSTANCE.getPackageBinding();
-
-		/**
-		 * The meta object literal for the '<em><b>From</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PACKAGE_BINDING__FROM = eINSTANCE.getPackageBinding_From();
 
 		/**
 		 * The meta object literal for the '<em><b>To</b></em>' attribute feature.
@@ -2569,6 +2561,14 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EReference PACKAGE_BINDING__CLASSES = eINSTANCE.getPackageBinding_Classes();
+
+		/**
+		 * The meta object literal for the '<em><b>From</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PACKAGE_BINDING__FROM = eINSTANCE.getPackageBinding_From();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl <em>Language</em>}' class.

@@ -584,7 +584,8 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PackageMapping");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cFromAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cFromSTRINGTerminalRuleCall_0_0 = (RuleCall)cFromAssignment_0.eContents().get(0);
+		private final CrossReference cFromEPackageCrossReference_0_0 = (CrossReference)cFromAssignment_0.eContents().get(0);
+		private final RuleCall cFromEPackageQualifiedNameParserRuleCall_0_0_1 = (RuleCall)cFromEPackageCrossReference_0_0.eContents().get(1);
 		private final Keyword cToKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cToAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cToSTRINGTerminalRuleCall_2_0 = (RuleCall)cToAssignment_2.eContents().get(0);
@@ -594,17 +595,20 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//PackageMapping returns PackageBinding:
-		//	from=STRING "to" to=STRING "{" classes+=ClassMapping* "}";
+		//	from=[ecore::EPackage|QualifiedName] "to" to=STRING "{" classes+=ClassMapping* "}";
 		@Override public ParserRule getRule() { return rule; }
 
-		//from=STRING "to" to=STRING "{" classes+=ClassMapping* "}"
+		//from=[ecore::EPackage|QualifiedName] "to" to=STRING "{" classes+=ClassMapping* "}"
 		public Group getGroup() { return cGroup; }
 
-		//from=STRING
+		//from=[ecore::EPackage|QualifiedName]
 		public Assignment getFromAssignment_0() { return cFromAssignment_0; }
 
-		//STRING
-		public RuleCall getFromSTRINGTerminalRuleCall_0_0() { return cFromSTRINGTerminalRuleCall_0_0; }
+		//[ecore::EPackage|QualifiedName]
+		public CrossReference getFromEPackageCrossReference_0_0() { return cFromEPackageCrossReference_0_0; }
+
+		//QualifiedName
+		public RuleCall getFromEPackageQualifiedNameParserRuleCall_0_0_1() { return cFromEPackageQualifiedNameParserRuleCall_0_0_1; }
 
 		//"to"
 		public Keyword getToKeyword_1() { return cToKeyword_1; }
@@ -632,7 +636,8 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ClassMapping");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cFromAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cFromSTRINGTerminalRuleCall_0_0 = (RuleCall)cFromAssignment_0.eContents().get(0);
+		private final CrossReference cFromEClassifierCrossReference_0_0 = (CrossReference)cFromAssignment_0.eContents().get(0);
+		private final RuleCall cFromEClassifierQualifiedNameParserRuleCall_0_0_1 = (RuleCall)cFromEClassifierCrossReference_0_0.eContents().get(1);
 		private final Keyword cToKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cToAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cToSTRINGTerminalRuleCall_2_0 = (RuleCall)cToAssignment_2.eContents().get(0);
@@ -642,17 +647,20 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//ClassMapping returns ClassBinding:
-		//	from=STRING "to" to=STRING "{" properties+=PropertyMapping* "}";
+		//	from=[ecore::EClassifier|QualifiedName] "to" to=STRING "{" properties+=PropertyMapping* "}";
 		@Override public ParserRule getRule() { return rule; }
 
-		//from=STRING "to" to=STRING "{" properties+=PropertyMapping* "}"
+		//from=[ecore::EClassifier|QualifiedName] "to" to=STRING "{" properties+=PropertyMapping* "}"
 		public Group getGroup() { return cGroup; }
 
-		//from=STRING
+		//from=[ecore::EClassifier|QualifiedName]
 		public Assignment getFromAssignment_0() { return cFromAssignment_0; }
 
-		//STRING
-		public RuleCall getFromSTRINGTerminalRuleCall_0_0() { return cFromSTRINGTerminalRuleCall_0_0; }
+		//[ecore::EClassifier|QualifiedName]
+		public CrossReference getFromEClassifierCrossReference_0_0() { return cFromEClassifierCrossReference_0_0; }
+
+		//QualifiedName
+		public RuleCall getFromEClassifierQualifiedNameParserRuleCall_0_0_1() { return cFromEClassifierQualifiedNameParserRuleCall_0_0_1; }
 
 		//"to"
 		public Keyword getToKeyword_1() { return cToKeyword_1; }
@@ -680,23 +688,27 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PropertyMapping");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cFromAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cFromSTRINGTerminalRuleCall_0_0 = (RuleCall)cFromAssignment_0.eContents().get(0);
+		private final CrossReference cFromETypedElementCrossReference_0_0 = (CrossReference)cFromAssignment_0.eContents().get(0);
+		private final RuleCall cFromETypedElementQualifiedNameParserRuleCall_0_0_1 = (RuleCall)cFromETypedElementCrossReference_0_0.eContents().get(1);
 		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cToAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cToSTRINGTerminalRuleCall_2_0 = (RuleCall)cToAssignment_2.eContents().get(0);
 		
 		//PropertyMapping returns PropertyBinding:
-		//	from=STRING ":" to=STRING;
+		//	from=[ecore::ETypedElement|QualifiedName] ":" to=STRING;
 		@Override public ParserRule getRule() { return rule; }
 
-		//from=STRING ":" to=STRING
+		//from=[ecore::ETypedElement|QualifiedName] ":" to=STRING
 		public Group getGroup() { return cGroup; }
 
-		//from=STRING
+		//from=[ecore::ETypedElement|QualifiedName]
 		public Assignment getFromAssignment_0() { return cFromAssignment_0; }
 
-		//STRING
-		public RuleCall getFromSTRINGTerminalRuleCall_0_0() { return cFromSTRINGTerminalRuleCall_0_0; }
+		//[ecore::ETypedElement|QualifiedName]
+		public CrossReference getFromETypedElementCrossReference_0_0() { return cFromETypedElementCrossReference_0_0; }
+
+		//QualifiedName
+		public RuleCall getFromETypedElementQualifiedNameParserRuleCall_0_0_1() { return cFromETypedElementQualifiedNameParserRuleCall_0_0_1; }
 
 		//":"
 		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
@@ -884,11 +896,13 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cOnKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Keyword cLeftSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cRootsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cRootsSTRINGTerminalRuleCall_4_0 = (RuleCall)cRootsAssignment_4.eContents().get(0);
+		private final CrossReference cRootsEClassCrossReference_4_0 = (CrossReference)cRootsAssignment_4.eContents().get(0);
+		private final RuleCall cRootsEClassQualifiedNameParserRuleCall_4_0_1 = (RuleCall)cRootsEClassCrossReference_4_0.eContents().get(1);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
 		private final Keyword cCommaKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
 		private final Assignment cRootsAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cRootsSTRINGTerminalRuleCall_5_1_0 = (RuleCall)cRootsAssignment_5_1.eContents().get(0);
+		private final CrossReference cRootsEClassCrossReference_5_1_0 = (CrossReference)cRootsAssignment_5_1.eContents().get(0);
+		private final RuleCall cRootsEClassQualifiedNameParserRuleCall_5_1_0_1 = (RuleCall)cRootsEClassCrossReference_5_1_0.eContents().get(1);
 		private final Keyword cRightSquareBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
 		private final Keyword cAndRenameKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
@@ -898,12 +912,12 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_7_3 = (Keyword)cGroup_7.eContents().get(3);
 		
 		//Slice:
-		//	"slice" slicedLanguage=[Language|QualifiedName] "on" "[" roots+=STRING ("," roots+=STRING)* "]" ("and-rename" "{"
-		//	mappingRules+=PackageMapping* "}")?;
+		//	"slice" slicedLanguage=[Language|QualifiedName] "on" "[" roots+=[ecore::EClass|QualifiedName] (","
+		//	roots+=[ecore::EClass|QualifiedName])* "]" ("and-rename" "{" mappingRules+=PackageMapping* "}")?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//"slice" slicedLanguage=[Language|QualifiedName] "on" "[" roots+=STRING ("," roots+=STRING)* "]" ("and-rename" "{"
-		//mappingRules+=PackageMapping* "}")?
+		//"slice" slicedLanguage=[Language|QualifiedName] "on" "[" roots+=[ecore::EClass|QualifiedName] (","
+		//roots+=[ecore::EClass|QualifiedName])* "]" ("and-rename" "{" mappingRules+=PackageMapping* "}")?
 		public Group getGroup() { return cGroup; }
 
 		//"slice"
@@ -924,23 +938,29 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		//"["
 		public Keyword getLeftSquareBracketKeyword_3() { return cLeftSquareBracketKeyword_3; }
 
-		//roots+=STRING
+		//roots+=[ecore::EClass|QualifiedName]
 		public Assignment getRootsAssignment_4() { return cRootsAssignment_4; }
 
-		//STRING
-		public RuleCall getRootsSTRINGTerminalRuleCall_4_0() { return cRootsSTRINGTerminalRuleCall_4_0; }
+		//[ecore::EClass|QualifiedName]
+		public CrossReference getRootsEClassCrossReference_4_0() { return cRootsEClassCrossReference_4_0; }
 
-		//("," roots+=STRING)*
+		//QualifiedName
+		public RuleCall getRootsEClassQualifiedNameParserRuleCall_4_0_1() { return cRootsEClassQualifiedNameParserRuleCall_4_0_1; }
+
+		//("," roots+=[ecore::EClass|QualifiedName])*
 		public Group getGroup_5() { return cGroup_5; }
 
 		//","
 		public Keyword getCommaKeyword_5_0() { return cCommaKeyword_5_0; }
 
-		//roots+=STRING
+		//roots+=[ecore::EClass|QualifiedName]
 		public Assignment getRootsAssignment_5_1() { return cRootsAssignment_5_1; }
 
-		//STRING
-		public RuleCall getRootsSTRINGTerminalRuleCall_5_1_0() { return cRootsSTRINGTerminalRuleCall_5_1_0; }
+		//[ecore::EClass|QualifiedName]
+		public CrossReference getRootsEClassCrossReference_5_1_0() { return cRootsEClassCrossReference_5_1_0; }
+
+		//QualifiedName
+		public RuleCall getRootsEClassQualifiedNameParserRuleCall_5_1_0_1() { return cRootsEClassQualifiedNameParserRuleCall_5_1_0_1; }
 
 		//"]"
 		public Keyword getRightSquareBracketKeyword_6() { return cRightSquareBracketKeyword_6; }
@@ -1287,7 +1307,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PackageMapping returns PackageBinding:
-	//	from=STRING "to" to=STRING "{" classes+=ClassMapping* "}";
+	//	from=[ecore::EPackage|QualifiedName] "to" to=STRING "{" classes+=ClassMapping* "}";
 	public PackageMappingElements getPackageMappingAccess() {
 		return pPackageMapping;
 	}
@@ -1297,7 +1317,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ClassMapping returns ClassBinding:
-	//	from=STRING "to" to=STRING "{" properties+=PropertyMapping* "}";
+	//	from=[ecore::EClassifier|QualifiedName] "to" to=STRING "{" properties+=PropertyMapping* "}";
 	public ClassMappingElements getClassMappingAccess() {
 		return pClassMapping;
 	}
@@ -1307,7 +1327,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PropertyMapping returns PropertyBinding:
-	//	from=STRING ":" to=STRING;
+	//	from=[ecore::ETypedElement|QualifiedName] ":" to=STRING;
 	public PropertyMappingElements getPropertyMappingAccess() {
 		return pPropertyMapping;
 	}
@@ -1348,8 +1368,8 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Slice:
-	//	"slice" slicedLanguage=[Language|QualifiedName] "on" "[" roots+=STRING ("," roots+=STRING)* "]" ("and-rename" "{"
-	//	mappingRules+=PackageMapping* "}")?;
+	//	"slice" slicedLanguage=[Language|QualifiedName] "on" "[" roots+=[ecore::EClass|QualifiedName] (","
+	//	roots+=[ecore::EClass|QualifiedName])* "]" ("and-rename" "{" mappingRules+=PackageMapping* "}")?;
 	public SliceElements getSliceAccess() {
 		return pSlice;
 	}

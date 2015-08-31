@@ -73,7 +73,7 @@ class NamingHelper
 
 	def String getFqnFor(Metamodel mm, ModelType mt, EClassifier cls) {
 		val mapping = mm.owningLanguage.mappings.findFirst[to == mt]
-		val mappingName = mapping?.rules?.findFirst[to == cls.name]?.from
+		val mappingName = mapping?.rules?.findFirst[to == cls.name]?.from?.name
 		val realName = mappingName ?: cls.name
 
 		return
