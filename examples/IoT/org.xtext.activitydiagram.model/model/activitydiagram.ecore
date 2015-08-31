@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="activitydiagram" nsURI="http://activitydiagram/1.0" nsPrefix="activitydiagram">
+  <eAnnotations source="http://www.eclipse.org/OCL/Import">
+    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Activity" eSuperTypes="//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1" eType="//ActivityNode" containment="true" eOpposite="//ActivityNode/activity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="edges" upperBound="-1" eType="//ActivityEdge" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="locals" upperBound="-1" eType="//Variable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1" eType="//Variable" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActivityNode" abstract="true" eSuperTypes="//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoing" upperBound="-1" eType="//ActivityEdge" eOpposite="//ActivityEdge/source"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incoming" upperBound="-1" eType="//ActivityEdge" eOpposite="//ActivityEdge/target"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activity" lowerBound="1" eType="//Activity" eOpposite="//Activity/nodes"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="running" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActivityEdge" abstract="true" eSuperTypes="//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1" eType="//ActivityNode" eOpposite="//ActivityNode/outgoing"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1" eType="//ActivityNode" eOpposite="//ActivityNode/incoming"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ControlFlow" eSuperTypes="//ActivityEdge">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="guard" eType="//BooleanVariable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ControlNode" abstract="true" eSuperTypes="//ActivityNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExecutableNode" abstract="true" eSuperTypes="//ActivityNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Action" abstract="true" eSuperTypes="//ExecutableNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OpaqueAction" eSuperTypes="//Action">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expressions" upperBound="-1" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InitialNode" eSuperTypes="//ControlNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FinalNode" abstract="true" eSuperTypes="//ControlNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ActivityFinalNode" eSuperTypes="//FinalNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ForkNode" eSuperTypes="//ControlNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="JoinNode" eSuperTypes="//ControlNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MergeNode" eSuperTypes="//ControlNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DecisionNode" eSuperTypes="//ControlNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Variable" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initialValue" eType="//Value" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currentValue" eType="//Value" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntegerVariable" eSuperTypes="//Variable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanVariable" eSuperTypes="//Variable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Value" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanValue" eSuperTypes="//Value">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntegerValue" eSuperTypes="//Value">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IntegerExpression" abstract="true" eSuperTypes="//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand2" eType="//IntegerVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand1" eType="//IntegerVariable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanExpression" abstract="true" eSuperTypes="//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignee" lowerBound="1" eType="//BooleanVariable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntegerCalculationExpression" eSuperTypes="//IntegerExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignee" lowerBound="1" eType="//IntegerVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" lowerBound="1" eType="//IntegerCalculationOperator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntegerComparisonExpression" eSuperTypes="//IntegerExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignee" lowerBound="1" eType="//BooleanVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" lowerBound="1" eType="//IntegerComparisonOperator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="IntegerCalculationOperator">
+    <eLiterals name="ADD"/>
+    <eLiterals name="SUBRACT" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="IntegerComparisonOperator">
+    <eLiterals name="SMALLER"/>
+    <eLiterals name="SMALLER_EQUALS" value="1"/>
+    <eLiterals name="EQUALS" value="2"/>
+    <eLiterals name="GREATER_EQUALS" value="3"/>
+    <eLiterals name="GREATER" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanUnaryExpression" eSuperTypes="//BooleanExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" lowerBound="1" eType="//BooleanVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" lowerBound="1" eType="//BooleanUnaryOperator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanBinaryExpression" eSuperTypes="//BooleanExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand1" lowerBound="1" eType="//BooleanVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand2" lowerBound="1" eType="//BooleanVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" lowerBound="1" eType="//BooleanBinaryOperator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BooleanUnaryOperator">
+    <eLiterals name="NOT"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BooleanBinaryOperator">
+    <eLiterals name="AND"/>
+    <eLiterals name="OR" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InputValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="//Value" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1" eType="//Variable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Input">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputValues" upperBound="-1" eType="//InputValue" containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>
