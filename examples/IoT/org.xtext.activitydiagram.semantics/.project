@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>org.modelexecution.operationalsemantics.k3.dynamic</name>
+	<name>org.xtext.activitydiagram.semantics</name>
 	<comment></comment>
 	<projects>
 	</projects>
