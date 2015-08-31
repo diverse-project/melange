@@ -14,66 +14,66 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 import org.eclipse.xtext.resource.XtextResourceSet
 import org.xtext.LuaStandaloneSetup
-import activitydiagram.Block
-import activitydiagram.Chunk
-import activitydiagram.Expression
-import activitydiagram.Expression_AccessArray
-import activitydiagram.Expression_AccessMember
-import activitydiagram.Expression_And
-import activitydiagram.Expression_CallFunction
-import activitydiagram.Expression_CallMemberFunction
-import activitydiagram.Expression_Concatenation
-import activitydiagram.Expression_Division
-import activitydiagram.Expression_Equal
-import activitydiagram.Expression_Exponentiation
-import activitydiagram.Expression_False
-import activitydiagram.Expression_Function
-import activitydiagram.Expression_Invert
-import activitydiagram.Expression_Larger
-import activitydiagram.Expression_Larger_Equal
-import activitydiagram.Expression_Length
-import activitydiagram.Expression_Minus
-import activitydiagram.Expression_Modulo
-import activitydiagram.Expression_Multiplication
-import activitydiagram.Expression_Negate
-import activitydiagram.Expression_Nil
-import activitydiagram.Expression_Not_Equal
-import activitydiagram.Expression_Number
-import activitydiagram.Expression_Or
-import activitydiagram.Expression_Plus
-import activitydiagram.Expression_Smaller
-import activitydiagram.Expression_Smaller_Equal
-import activitydiagram.Expression_String
-import activitydiagram.Expression_TableConstructor
-import activitydiagram.Expression_True
-import activitydiagram.Expression_VarArgs
-import activitydiagram.Expression_VariableName
-import activitydiagram.Field
-import activitydiagram.Field_AddEntryToTable
-import activitydiagram.Field_AddEntryToTable_Brackets
-import activitydiagram.Field_AppendEntryToTable
-import activitydiagram.Function
-import activitydiagram.Functioncall_Arguments
-import activitydiagram.LastStatement
-import activitydiagram.LastStatement_Break
-import activitydiagram.LastStatement_Return
-import activitydiagram.LastStatement_ReturnWithValue
-import activitydiagram.ActivitydiagramPackage
-import activitydiagram.Statement
-import activitydiagram.Statement_Assignment
-import activitydiagram.Statement_Block
-import activitydiagram.Statement_CallFunction
-import activitydiagram.Statement_CallMemberFunction
-import activitydiagram.Statement_For_Generic
-import activitydiagram.Statement_For_Numeric
-import activitydiagram.Statement_FunctioncallOrAssignment
-import activitydiagram.Statement_GlobalFunction_Declaration
-import activitydiagram.Statement_If_Then_Else
-import activitydiagram.Statement_If_Then_Else_ElseIfPart
-import activitydiagram.Statement_LocalFunction_Declaration
-import activitydiagram.Statement_Local_Variable_Declaration
-import activitydiagram.Statement_Repeat
-import activitydiagram.Statement_While
+import org.xtext.lua.Block
+import org.xtext.lua.Chunk
+import org.xtext.lua.Expression
+import org.xtext.lua.Expression_AccessArray
+import org.xtext.lua.Expression_AccessMember
+import org.xtext.lua.Expression_And
+import org.xtext.lua.Expression_CallFunction
+import org.xtext.lua.Expression_CallMemberFunction
+import org.xtext.lua.Expression_Concatenation
+import org.xtext.lua.Expression_Division
+import org.xtext.lua.Expression_Equal
+import org.xtext.lua.Expression_Exponentiation
+import org.xtext.lua.Expression_False
+import org.xtext.lua.Expression_Function
+import org.xtext.lua.Expression_Invert
+import org.xtext.lua.Expression_Larger
+import org.xtext.lua.Expression_Larger_Equal
+import org.xtext.lua.Expression_Length
+import org.xtext.lua.Expression_Minus
+import org.xtext.lua.Expression_Modulo
+import org.xtext.lua.Expression_Multiplication
+import org.xtext.lua.Expression_Negate
+import org.xtext.lua.Expression_Nil
+import org.xtext.lua.Expression_Not_Equal
+import org.xtext.lua.Expression_Number
+import org.xtext.lua.Expression_Or
+import org.xtext.lua.Expression_Plus
+import org.xtext.lua.Expression_Smaller
+import org.xtext.lua.Expression_Smaller_Equal
+import org.xtext.lua.Expression_String
+import org.xtext.lua.Expression_TableConstructor
+import org.xtext.lua.Expression_True
+import org.xtext.lua.Expression_VarArgs
+import org.xtext.lua.Expression_VariableName
+import org.xtext.lua.Field
+import org.xtext.lua.Field_AddEntryToTable
+import org.xtext.lua.Field_AddEntryToTable_Brackets
+import org.xtext.lua.Field_AppendEntryToTable
+import org.xtext.lua.Function
+import org.xtext.lua.Functioncall_Arguments
+import org.xtext.lua.LastStatement
+import org.xtext.lua.LastStatement_Break
+import org.xtext.lua.LastStatement_Return
+import org.xtext.lua.LastStatement_ReturnWithValue
+import org.xtext.lua.LuaPackage
+import org.xtext.lua.Statement
+import org.xtext.lua.Statement_Assignment
+import org.xtext.lua.Statement_Block
+import org.xtext.lua.Statement_CallFunction
+import org.xtext.lua.Statement_CallMemberFunction
+import org.xtext.lua.Statement_For_Generic
+import org.xtext.lua.Statement_For_Numeric
+import org.xtext.lua.Statement_FunctioncallOrAssignment
+import org.xtext.lua.Statement_GlobalFunction_Declaration
+import org.xtext.lua.Statement_If_Then_Else
+import org.xtext.lua.Statement_If_Then_Else_ElseIfPart
+import org.xtext.lua.Statement_LocalFunction_Declaration
+import org.xtext.lua.Statement_Local_Variable_Declaration
+import org.xtext.lua.Statement_Repeat
+import org.xtext.lua.Statement_While
 
 import static extension org.k3.lua.dynamic.BlockAspect.*
 import static extension org.k3.lua.dynamic.ExpressionAspect.*
@@ -109,8 +109,8 @@ class Main {
 		resourceSetxmi = new ResourceSetImpl();
 		LuaStandaloneSetup.doSetup();
 
-		if (!EPackage.Registry.INSTANCE.containsKey(ActivitydiagramPackage.eNS_URI)) {
-			EPackage.Registry.INSTANCE.put(ActivitydiagramPackage.eNS_URI, ActivitydiagramPackage.eINSTANCE);
+		if (!EPackage.Registry.INSTANCE.containsKey(LuaPackage.eNS_URI)) {
+			EPackage.Registry.INSTANCE.put(LuaPackage.eNS_URI, LuaPackage.eINSTANCE);
 		}
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl);
 
