@@ -40,6 +40,7 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import fr.inria.diverse.melange.builder.ModelTypingSpaceBuilder
 import fr.inria.diverse.melange.builder.LanguageBuilder
+import com.google.inject.Injector
 
 /**
  * This class build languages by merging differents parts declared in each language definitions
@@ -60,12 +61,10 @@ class LanguageProcessor extends DispatchMelangeProcessor{
 	@Inject JvmTypeReferenceBuilder.Factory typeRefBuilderFactory
 	JvmTypeReferenceBuilder typeRefBuilder
 	
-	ModelTypingSpaceBuilder builder
+	@Inject ModelTypingSpaceBuilder builder
 	
 	def dispatch void preProcess(ModelTypingSpace root, boolean isPreLinkingPhase) {
 		typeRefBuilder = typeRefBuilderFactory.create(root.eResource.resourceSet)
-		
-		builder = new ModelTypingSpaceBuilder(root)
 		
 		root.languages.forEach[language |
 			language.initialize

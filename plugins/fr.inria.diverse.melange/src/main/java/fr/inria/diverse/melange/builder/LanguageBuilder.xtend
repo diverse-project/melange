@@ -33,6 +33,7 @@ import fr.inria.diverse.melange.metamodel.melange.LanguageOperator
 import fr.inria.diverse.melange.lib.slicing.ecore.StrictEcore
 import org.eclipse.emf.ecore.EModelElement
 import fr.inria.diverse.melange.algebra.EmfCompareAlgebra
+import com.google.inject.Injector
 
 class Error{
 	String message
@@ -124,7 +125,7 @@ class ImportBuilder extends OperatorBuilder{
 		model = modelUtils.loadPkg(op.ecoreUri)
 		model.applyRenaming(op.mappingRules)
 		
-		return null //TODO: manage load & renaming errors
+		return new ArrayList //TODO: manage load & renaming errors
 	}
 	
 }
@@ -132,8 +133,9 @@ class MergeBuilder extends LanguageOperatorBuilder{
 	
 	@Inject extension RenamerHelper
 	
-	new(Merge op){
+	new(Merge op, ModelTypingSpaceBuilder root){
 		this.source = op
+		this.root = root
 	}
 	
 	override make() {
@@ -150,8 +152,9 @@ class SliceBuilder extends LanguageOperatorBuilder{
 	
 	@Inject extension RenamerHelper
 	
-	new(Slice op){
+	new(Slice op, ModelTypingSpaceBuilder root){
 		this.source = op
+		this.root = root
 	}
 	
 	override make() {
@@ -187,8 +190,9 @@ class SliceBuilder extends LanguageOperatorBuilder{
 }
 class InheritanceBuilder extends LanguageOperatorBuilder{
 	
-	new(Inheritance op){
+	new(Inheritance op, ModelTypingSpaceBuilder root){
 		this.source = op
+		this.root = root
 	}
 	
 	override make() {
@@ -205,14 +209,12 @@ class WeaveBuilder extends OperatorBuilder{
 	@Inject extension AspectToEcore
 	@Inject extension MetamodelExtensions
 	
-	Aspect asp//TODO:needed?
-	
 	new(Weave op){
 		this.source = op
 	}
 	
 	override make() {
-		val className = asp.aspectTypeRef.aspectAnnotationValue
+		val className = (source as Weave).aspectTypeRef.aspectAnnotationValue
 		val baseClass = source.owningLanguage.syntax.findClass(className)
 		val aspect = (source as Weave).aspectTypeRef.type as JvmDeclaredType
 		model = aspect.inferEcoreFragment(baseClass)
@@ -226,6 +228,7 @@ class WeaveBuilder extends OperatorBuilder{
 class LanguageBuilder extends Builder{
 	
 	@Inject EmfCompareAlgebra algebra
+	@Inject Injector injector
 
 	ModelTypingSpaceBuilder root
 	
@@ -287,13 +290,14 @@ class LanguageBuilder extends Builder{
 		operators.forEach[op |
 			val OperatorBuilder builder = 
 				switch op{
-					Inheritance : new InheritanceBuilder(op)
-					Merge       : new MergeBuilder(op)
-					Slice       : new SliceBuilder(op)
+					Inheritance : new InheritanceBuilder(op,root)
+					Merge       : new MergeBuilder(op,root)
+					Slice       : new SliceBuilder(op,root)
 					Import      : new ImportBuilder(op)
 					Weave       : new WeaveBuilder(op)
 				}
 			res.add(builder)
+			injector.injectMembers(builder)
 		]
 		
 		return res
@@ -310,13 +314,8 @@ class LanguageBuilder extends Builder{
 
 class ModelTypingSpaceBuilder{
 	
-	ModelTypingSpace source
-	
+	@Inject Injector injector
 	Map<Language,LanguageBuilder> registry = new HashMap
-	
-	new(ModelTypingSpace root){
-		this.source = root
-	}
 	
 	/**
 	 * Get a builder to construct a model for {@link l}.
@@ -325,39 +324,13 @@ class ModelTypingSpaceBuilder{
 	def LanguageBuilder getBuilder(Language l){
 		var res = registry.get(l)
 		if(res === null){
+			
 			res = new LanguageBuilder(l,this)
+			injector.injectMembers(res)
 			registry.put(l, res)
 		}
 		return res
 	}
-	
-	/**
-	 * Build all Language models
-	 */
-	def List<Error> buildAll(){
-		
-		val List<Error> errors = new ArrayList
-		
-		source.elements.filter(Language).forEach[lang |
-			val builder = getBuilder(lang)
-			errors.addAll(builder.build)
-		]
-		
-		return errors
-	}
-	
-	def void pre(){
-		/*
-		 * create Aspects here? 
-		 */
-	}
-	
-	def void post(){
-		/*
-		 * 
-		 */
-	}
-	
 }
 
 class RenamerHelper{
