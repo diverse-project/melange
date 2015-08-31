@@ -1,12 +1,12 @@
-module org.xtext.activitydiagram.GenerateActivityDiagram
+module org.xtext.activitydiagram.input.GenerateActivityDiagramInput
 
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
-var grammarURI = "classpath:/org/xtext/activitydiagram/ActivityDiagram.xtext"
-var fileExtensions = "ad"
-var projectName = "org.xtext.activitydiagram"
+var grammarURI = "classpath:/org/xtext/activitydiagram/input/ActivityDiagramInput.xtext"
+var fileExtensions = "adinput"
+var projectName = "org.xtext.activitydiagram.input"
 var runtimeProject = "../${projectName}"
 var generateXtendStub = true
 var encoding = "UTF-8"
