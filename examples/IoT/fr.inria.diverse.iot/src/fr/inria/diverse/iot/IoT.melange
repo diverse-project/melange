@@ -22,10 +22,12 @@ language ActivityLang {
 	with org.xtext.activitydiagram.semantics.IntegerComparisonExpressionAspect
 	with org.xtext.activitydiagram.semantics.BooleanUnaryExpressionAspect
 	with org.xtext.activitydiagram.semantics.BooleanBinaryExpressionAspect
-	/*with org.xtext.activitydiagram.semantics.Token
+	with org.xtext.activitydiagram.semantics.Token
+	with org.xtext.activitydiagram.semantics.ControlToken
+	with org.xtext.activitydiagram.semantics.ForkedToken
 	with org.xtext.activitydiagram.semantics.Offer
-	with org.xtext.activitydiagram.semantics.Util
-	with org.xtext.activitydiagram.semantics.Trace*/
+	with org.xtext.activitydiagram.semantics.Trace
+	with org.xtext.activitydiagram.semantics.Context
 	exactType ActivityLangMT
 }
 
@@ -90,30 +92,32 @@ language LuaLang {
 	with org.xtext.lua.semantics.Expression_ExponentiationAspect
 	with org.xtext.lua.semantics.Expression_CallMemberFunctionAspect
 	with org.xtext.lua.semantics.Expression_AccessArrayAspect
+	with org.xtext.lua.semantics.Environment
 	exactType LuaLangMT
 }
 
 language EcoreLang {
 	syntax "platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore"
 	exactType EcoreMT
-//	with fr.inria.diverse.glue.EOperationAspect
 }
 
-language ActivitySlice {
-	slice ActivityLang on ['OpaqueAction']
-	exactType ActivitySliceMT
-}
+//language ActivitySlice {
+//	slice ActivityLang on ['OpaqueAction', 'MergeNode', 'DecisionNode',
+//			'InitialNode', 'JoinNode', 'ForkNode', 'ActivityFinalNode']
+//	exactType ActivitySliceMT
+//}
 
 language ActivityEcoreLang {
-	merge ActivitySlice
-	merge EcoreLang
-//	with fr.inria.diverse.glue.EOperationAspect
+//	merge ActivitySlice
+	merge ActivityLang
+	merge EcoreLang and-rename { "ecore" to "activitydiagram" {} }
+	with fr.inria.diverse.iot.glue.activityecore.EOperationAspect
 	exactType ActivityEcoreLangMT
 }
 
 language ActivityEcoreLuaLang {
 	merge ActivityEcoreLang
-	merge LuaLang
-//	with fr.inria.diverse.glue.ExpressionAspect
+	merge LuaLang and-rename { "lua" to "activitydiagram" {} }
+	with fr.inria.diverse.iot.glue.activitylua.ExpressionAspect
 	exactType ActivityEcoreLuaLangMT
 }

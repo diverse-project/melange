@@ -1,16 +1,36 @@
 package org.xtext.activitydiagram.semantics
 
 import activitydiagram.Activity
+import activitydiagram.ActivityEdge
+import activitydiagram.ActivityFinalNode
 import activitydiagram.ActivityNode
-import activitydiagram.ActivitydiagramPackage
+import activitydiagram.BooleanBinaryExpression
+import activitydiagram.BooleanBinaryOperator
+import activitydiagram.BooleanUnaryExpression
+import activitydiagram.BooleanUnaryOperator
 import activitydiagram.BooleanValue
 import activitydiagram.BooleanVariable
-import activitydiagram.Input
+import activitydiagram.ControlFlow
+import activitydiagram.DecisionNode
+import activitydiagram.Expression
+import activitydiagram.ForkNode
+import activitydiagram.InitialNode
 import activitydiagram.InputValue
+import activitydiagram.IntegerCalculationExpression
+import activitydiagram.IntegerCalculationOperator
+import activitydiagram.IntegerComparisonExpression
+import activitydiagram.IntegerComparisonOperator
 import activitydiagram.IntegerValue
 import activitydiagram.IntegerVariable
+import activitydiagram.JoinNode
+import activitydiagram.MergeNode
+import activitydiagram.NamedElement
+import activitydiagram.OpaqueAction
 import activitydiagram.Value
 import activitydiagram.Variable
+import fr.inria.diverse.k3.al.annotationprocessor.Aspect
+import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
+import fr.inria.diverse.k3.al.annotationprocessor.ReplaceAspectMethod
 import java.io.BufferedWriter
 import java.io.File
 import java.io.FileOutputStream
@@ -18,147 +38,11 @@ import java.io.IOException
 import java.io.OutputStreamWriter
 import java.util.ArrayList
 import java.util.List
-import org.eclipse.emf.common.util.URI
-import org.eclipse.emf.ecore.EPackage
-import org.eclipse.xtext.resource.XtextResourceSet
-import org.xtext.activitydiagram.input.ActivityDiagramInputStandaloneSetup
-import org.xtext.activitydiagram.ActivityDiagramStandaloneSetup
-import static extension org.xtext.activitydiagram.semantics.ActivityAspect.*
-import static extension org.xtext.activitydiagram.semantics.ControlFlowAspect.*
-import static extension org.xtext.activitydiagram.semantics.OpaqueActionAspect.*
-import static extension org.xtext.activitydiagram.semantics.InitialNodeAspect.*
-import static extension org.xtext.activitydiagram.semantics.ActivityFinalNodeAspect.*
-import static extension org.xtext.activitydiagram.semantics.ForkNodeAspect.*
-import static extension org.xtext.activitydiagram.semantics.JoinNodeAspect.*
-import static extension org.xtext.activitydiagram.semantics.MergeNodeAspect.*
-import static extension org.xtext.activitydiagram.semantics.DecisionNodeAspect.*
-import static extension org.xtext.activitydiagram.semantics.IntegerVariableAspect.*
-import static extension org.xtext.activitydiagram.semantics.BooleanVariableAspect.*
-import static extension org.xtext.activitydiagram.semantics.IntegerCalculationExpressionAspect.*
-import static extension org.xtext.activitydiagram.semantics.IntegerComparisonExpressionAspect.*
-import static extension org.xtext.activitydiagram.semantics.BooleanUnaryExpressionAspect.*
-import static extension org.xtext.activitydiagram.semantics.BooleanBinaryExpressionAspect.*
 
-import fr.inria.diverse.k3.al.annotationprocessor.Aspect
-import activitydiagram.OpaqueAction
-import activitydiagram.InitialNode
-import activitydiagram.ActivityFinalNode
-import activitydiagram.ForkNode
-import activitydiagram.JoinNode
-import activitydiagram.MergeNode
-import activitydiagram.DecisionNode
-import activitydiagram.IntegerCalculationExpression
-import activitydiagram.IntegerComparisonExpression
-import activitydiagram.BooleanUnaryExpression
-import activitydiagram.BooleanBinaryExpression
-import activitydiagram.ControlFlow
-import activitydiagram.NamedElement
-import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
-import fr.inria.diverse.k3.al.annotationprocessor.ReplaceAspectMethod
-import java.util.concurrent.Executors
-import activitydiagram.ActivityEdge
-import java.util.concurrent.Future
-import java.util.concurrent.Callable
-import org.eclipse.emf.ecore.resource.ResourceSet
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
-import org.eclipse.emf.ecore.resource.Resource
-import activitydiagram.Expression
-import activitydiagram.IntegerCalculationOperator
-import activitydiagram.IntegerComparisonOperator
-import activitydiagram.BooleanUnaryOperator
-import activitydiagram.BooleanBinaryOperator
-
-class Main {
-	protected XtextResourceSet resourceSet ;
-	protected ResourceSet resourceSetxmi ;
-
-	def static void main(String[] args) {
-		new Main().run(args);
-	}
-
-	def void run(String[] args) {
-		resourceSet = new XtextResourceSet();
-		resourceSetxmi = new ResourceSetImpl();
-		ActivityDiagramStandaloneSetup.doSetup();
-		ActivityDiagramInputStandaloneSetup.doSetup();
-		if (!EPackage.Registry.INSTANCE.containsKey(ActivitydiagramPackage.eNS_URI)) {
-			EPackage.Registry.INSTANCE.put(ActivitydiagramPackage.eNS_URI, ActivitydiagramPackage.eINSTANCE);
-		}
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl);
-
-//		var inputPath = "../../moliz.ttc2015/org.xtext.activitydiagram.ad.test/model/test4.ad"
-//		var inputPath = "../../moliz.ttc2015/org.xtext.activitydiagram.ad.test/model/test4.ad"
-		var inputPath = "../../moliz.ttc2015/org.xtext.activitydiagram.ad.test/model/testperformance_variant3_1.ad"
-		var inputPath1 = "../../moliz.ttc2015/org.xtext.activitydiagram.ad.test/model/testperformance_variant3_2.adinput"
-		var inputValues = this.getInputValues(inputPath1);
-//		var inputValues = new ArrayList<InputValue>()
-		var activity = getActivity(inputPath)
-//		var inputPath = "../../moliz.ttc2015/org.xtext.activitydiagram.ad.test/model/xmi/test5.xmi"
-//		var activity = getActivityfromXMI(inputPath)
-		var start = System.nanoTime;
-		activity.main(inputValues);
-		var stop = System.nanoTime;
-		println("time to execute " + ( stop - start))
-		println(activity.printTrace())
-	}
-
-	def Activity getActivity(String modelPath) {
-		var resource = resourceSet.getResource(createFileURI(modelPath), true);
-		var eObject = resource.getContents().get(0);
-		if (eObject instanceof Activity) {
-			var activity = eObject as Activity;
-			return activity;
-		}
-		return null;
-	}
-
-	def URI createFileURI(String path) {
-		return URI.createFileURI(createFile(path).getAbsolutePath());
-	}
-
-	def Activity getActivityfromXMI(String modelPath) {
-		var resource = resourceSetxmi.getResource(createFileURI(modelPath), true);
-		var eObject = resource.getContents().get(0);
-		if (eObject instanceof Activity) {
-			var activity = eObject as Activity;
-			// println((activity.locals.get(0) as BooleanVariable).initialValue)
-			return activity;
-		}
-		return null;
-	}
-
-	def File createFile(String path) {
-		return new File(path);
-	}
-
-	def List<InputValue> getInputValues(String inputPath) {
-		var inputValues = new ArrayList<InputValue>();
-		var input = getInput(inputPath);
-		if (input != null) {
-			inputValues.addAll(input.getInputValues());
-		}
-		return inputValues;
-	}
-
-	def Input getInput(String inputPath) {
-		var Input input = null;
-		if (inputPath != null) {
-			var resource = resourceSet.getResource(createFileURI(inputPath), true);
-			var eObject = resource.getContents().get(0);
-			if (eObject instanceof Input) {
-				input = eObject as Input;
-			}
-		}
-		return input;
-	}
-
-}
-
-class Util {
-	public static final Object LINE_BREAK = System.getProperty("line.separator");
-
-}
+import static extension org.xtext.activitydiagram.semantics.ActivityEdgeAspect.*
+import static extension org.xtext.activitydiagram.semantics.ActivityNodeAspect.*
+import static extension org.xtext.activitydiagram.semantics.ExpressionAspect.*
+import static extension org.xtext.activitydiagram.semantics.VariableAspect.*
 
 class Offer {
 	public List<Token> offeredTokens = new ArrayList<Token>() ;
@@ -283,11 +167,11 @@ class ActivityAspect extends NamedElementAspect {
 
 	def String printTrace() {
 		val text = new StringBuffer();
-		_self.trace.executedNodes.forEach[n|text.append(n.getName()); text.append(Util.LINE_BREAK);]
+		_self.trace.executedNodes.forEach[n|text.append(n.getName()); text.append(System.getProperty("line.separator"));]
 
 		_self.getLocals().forEach [ v |
 			text.append(v.print);
-			text.append(Util.LINE_BREAK);
+			text.append(System.getProperty("line.separator"));
 		]
 		return text.toString();
 	}
@@ -342,7 +226,7 @@ class NamedElementAspect {
 }
 
 @Aspect(className=ActivityNode)
-class ActivityNodeAspect extends org.xtext.activitydiagram.semantics.NamedElementAspect {
+class ActivityNodeAspect extends NamedElementAspect {
 	List<Token> heldTokens = new ArrayList<Token>
 
 	@OverrideAspectMethod
@@ -555,7 +439,7 @@ class VariableAspect {
 }
 
 @Aspect(className=IntegerVariable)
-class IntegerVariableAspect extends org.xtext.activitydiagram.semantics.VariableAspect {
+class IntegerVariableAspect extends VariableAspect {
 	@OverrideAspectMethod
 	def void execute(Context c) {
 	}
@@ -572,7 +456,7 @@ class IntegerVariableAspect extends org.xtext.activitydiagram.semantics.Variable
 
 @Aspect(className=BooleanVariable)
 @OverrideAspectMethod
-class BooleanVariableAspect extends org.xtext.activitydiagram.semantics.VariableAspect {
+class BooleanVariableAspect extends VariableAspect {
 	def void execute(Context c) {
 	}
 
@@ -590,7 +474,7 @@ class BooleanVariableAspect extends org.xtext.activitydiagram.semantics.Variable
 
 
 @Aspect(className=IntegerCalculationExpression)
-class IntegerCalculationExpressionAspect extends org.xtext.activitydiagram.semantics.ExpressionAspect {
+class IntegerCalculationExpressionAspect extends ExpressionAspect {
 	@OverrideAspectMethod
 	def void execute(Context c) {
 		if (_self.operator.value == IntegerCalculationOperator.ADD_VALUE) {
@@ -605,7 +489,7 @@ class IntegerCalculationExpressionAspect extends org.xtext.activitydiagram.seman
 }
 
 @Aspect(className=IntegerComparisonExpression)
-class IntegerComparisonExpressionAspect extends org.xtext.activitydiagram.semantics.ExpressionAspect {
+class IntegerComparisonExpressionAspect extends ExpressionAspect {
 	@OverrideAspectMethod
 	def void execute(Context c) {
 		if (_self.operator.value == IntegerComparisonOperator.EQUALS_VALUE) {
@@ -628,7 +512,7 @@ class IntegerComparisonExpressionAspect extends org.xtext.activitydiagram.semant
 }
 
 @Aspect(className=BooleanUnaryExpression)
-class BooleanUnaryExpressionAspect extends org.xtext.activitydiagram.semantics.ExpressionAspect {
+class BooleanUnaryExpressionAspect extends ExpressionAspect {
 	@OverrideAspectMethod
 	def void execute(Context c) {
 		if (_self.operator.value == BooleanUnaryOperator.NOT_VALUE) {
@@ -639,7 +523,7 @@ class BooleanUnaryExpressionAspect extends org.xtext.activitydiagram.semantics.E
 }
 
 @Aspect(className=BooleanBinaryExpression)
-class BooleanBinaryExpressionAspect extends org.xtext.activitydiagram.semantics.ExpressionAspect {
+class BooleanBinaryExpressionAspect extends ExpressionAspect {
 	@OverrideAspectMethod
 	def void execute(Context c) {
 		if (_self.operator.value == BooleanBinaryOperator.AND_VALUE) {

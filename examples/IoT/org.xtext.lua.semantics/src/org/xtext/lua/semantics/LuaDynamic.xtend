@@ -2,20 +2,11 @@ package org.xtext.lua.semantics
 
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
-import java.io.File
 import java.util.ArrayList
 import java.util.HashMap
 import java.util.Map
 import java.util.Scanner
 import java.util.Stack
-import org.eclipse.emf.common.util.URI
-import org.eclipse.emf.ecore.EPackage
-import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.emf.ecore.resource.ResourceSet
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
-import org.eclipse.xtext.resource.XtextResourceSet
-import org.xtext.lua.LuaStandaloneSetup
 import org.xtext.lua.lua.Block
 import org.xtext.lua.lua.Chunk
 import org.xtext.lua.lua.Expression
@@ -60,7 +51,6 @@ import org.xtext.lua.lua.LastStatement
 import org.xtext.lua.lua.LastStatement_Break
 import org.xtext.lua.lua.LastStatement_Return
 import org.xtext.lua.lua.LastStatement_ReturnWithValue
-import org.xtext.lua.lua.LuaPackage
 import org.xtext.lua.lua.Statement
 import org.xtext.lua.lua.Statement_Assignment
 import org.xtext.lua.lua.Statement_Block
@@ -83,81 +73,66 @@ import static extension org.xtext.lua.semantics.LastStatementAspect.*
 import static extension org.xtext.lua.semantics.StatementAspect.*
 
 class Environment {
-	public Environment parent
-	public Stack<Object> values = new Stack<Object>
-	public Map<String, Object> variables = new HashMap<String, Object>
-	public Map<String, Function> functions = new HashMap<String, Function>
+	Environment parent
+	Stack<Object> values = new Stack<Object>
+	Map<String, Object> variables = new HashMap<String, Object>
+	Map<String, Function> functions = new HashMap<String, Function>
 
-}
-
-//@Aspect(className=Chunk)
-class LuaDynamic {
-}
-
-class Main {
-	protected XtextResourceSet resourceSet ;
-	protected ResourceSet resourceSetxmi ;
-
-	def static void main(String[] args) {
-		new Main().run(args);
+	def Environment getParent() {
+		return parent
 	}
 
-	def void run(String[] args) {
-		resourceSet = new XtextResourceSet();
-		resourceSetxmi = new ResourceSetImpl();
-		LuaStandaloneSetup.doSetup();
-
-		if (!EPackage.Registry.INSTANCE.containsKey(LuaPackage.eNS_URI)) {
-			EPackage.Registry.INSTANCE.put(LuaPackage.eNS_URI, LuaPackage.eINSTANCE);
-		}
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl);
-
-//		var inputPath = "../../moliz.ttc2015/org.modelexecution.operationalsemantics.ad.test/model/xmi/test5.xmi"
-		var block = getBlock("test.lua")
-		
-		var resource = resourceSetxmi.createResource(URI.createFileURI("text.xmi"))
-		resource.contents.add(block)
-		resource.save(new HashMap )		
-		// println(block)
-//		var activity = getActivityfromXMI(inputPath)
-		var start = System.nanoTime;
-		var c = new Environment
-		block.execute(c)
-
-		var stop = System.nanoTime;
-		println("time to execute " + ( stop - start))
-
+	def void setParent(Environment e) {
+		parent = e
 	}
 
-	def Block getBlock(String modelPath) {
-		var resource = resourceSet.getResource(createFileURI(modelPath), true);
-		var eObject = resource.getContents().get(0);
-		if (eObject instanceof Chunk) {
-			var ch = eObject as Block;
-			return ch;
-		}
-		return null;
+	def Object getVariable(String s) {
+		return variables.get(s)
 	}
 
-	def URI createFileURI(String path) {
-		return URI.createFileURI(createFile(path).getAbsolutePath());
+	def void pushValue(Object o) {
+		values.push(o)
 	}
 
-	def Chunk getActivityfromXMI(String modelPath) {
-		var resource = resourceSetxmi.getResource(createFileURI(modelPath), true);
-		var eObject = resource.getContents().get(0);
-		if (eObject instanceof Chunk) {
-			var ch = eObject as Chunk;
-			// println((activity.locals.get(0) as BooleanVariable).initialValue)
-			return ch;
-		}
-		return null;
+	def Object popValue() {
+		return values.pop
 	}
 
-	def File createFile(String path) {
-		return new File(path);
+	def void putFunction(String s, Function f) {
+		functions.put(s, f)
 	}
 
+	def Function getFunction(String s) {
+		return functions.get(s)
+	}
+
+	def void putVariable(String s, Object o) {
+		variables.put(s, o)
+	}
+
+	def void putAllVariables(Map<String, Object> v) {
+		variables.putAll(v)
+	}
+
+	def void putAllFunctions(Map<String, Function> f) {
+		functions.putAll(f)
+	}
+
+	def void pushAllValues(Stack<Object> v) {
+		values.addAll(v)
+	}
+
+	def Stack<Object> getValues() {
+		return values
+	}
+
+	def Map<String, Object> getVariables() {
+		return variables
+	}
+
+	def Map<String, Function> getFunctions() {
+		return functions
+	}
 }
 
 @Aspect(className=Chunk)
@@ -181,7 +156,7 @@ class BlockAspect extends ChunkAspect {
 @Aspect(className=Statement_GlobalFunction_Declaration)
 class Statement_GlobalFunction_DeclarationAspect extends StatementAspect {
 	def void execute(Environment c) {
-		c.functions.put(_self.prefix.get(0), _self.function)
+		c.putFunction(_self.prefix.get(0), _self.function)
 	}
 }
 
@@ -189,7 +164,7 @@ class Statement_GlobalFunction_DeclarationAspect extends StatementAspect {
 class Expression_VariableNameAspect extends ExpressionAspect {
 	def void execute(Environment c) {
 		//println(_self.variable)
-		c.values.push(c.variables.get(_self.variable))
+		c.pushValue(c.getVariable(_self.variable))
 
 	}
 }
@@ -199,8 +174,8 @@ class Statement_AssignmentAspect extends Statement_FunctioncallOrAssignmentAspec
 	def void execute(Environment c) {
 		var variableName  = (_self.variable.get(0) as Expression_VariableName) .variable
 		_self.values.get(0).execute(c)
-		var value = c.values.pop
-		c.variables.put(variableName as String, value)
+		var value = c.popValue
+		c.putVariable(variableName as String, value)
 	}
 }
 
@@ -212,34 +187,34 @@ class Statement_CallFunctionAspect extends Statement_FunctioncallOrAssignmentAsp
 		switch x {
 			Expression_VariableName case x.variable.equals("print"): {
 				_self.arguments.arguments.get(0).execute(c)
-				println(c.values.pop)
+				println(c.popValue)
 				return
 			}
 		}
 		//println((c.values.get(0) as Expression_VariableName).variable)
 		if (_self.object instanceof Expression_VariableName){
-				var function = c.functions.get((_self.object as Expression_VariableName).variable)
+				var function = c.getFunction((_self.object as Expression_VariableName).variable)
 				if (function != null){
 					val params = new ArrayList()
-					_self.arguments.arguments.forEach[args | args.execute(c)  params.add(c.values.pop)]				
+					_self.arguments.arguments.forEach[args | args.execute(c)  params.add(c.popValue)]				
 					//function.parameters.forEach[par|println(par)]
 					var newC = new Environment
 					newC.parent = c
-					newC.variables.putAll(c.variables)
-					newC.functions.putAll(c.functions)
-					newC.values.addAll(c.values)
+					newC.putAllVariables(c.variables)
+					newC.putAllFunctions(c.functions)
+					newC.pushAllValues(c.values)
 					for (var i = 0 ; i< function.parameters.size;i++){
-						newC.variables.put(function.parameters.get(i),params.get(i))	
+						newC.putVariable(function.parameters.get(i),params.get(i))	
 					}
 					function.body.execute(newC)
 					//println(newC.values.peek)
-					c.values.push(newC.values.pop)
+					c.pushValue(newC.popValue)
 				}
 		}
 		
 		
 
-		//var res = c.values.pop
+		//var res = c.popValue
 		//	println(res)
 			
 	}
@@ -251,10 +226,10 @@ class Expression_CallFunctionAspect extends ExpressionAspect {
 		_self.object.execute(c)
 		if(_self.arguments.arguments.size>0){
 			_self.arguments.arguments.get(0).execute(c)
-			var res = c.values.pop
+			var res = c.popValue
 			if ("\"*number\"".equals(res)){
-				var res1 = c.values.pop				
-				c.values.push(Double.parseDouble(""+res1))
+				var res1 = c.popValue				
+				c.pushValue(Double.parseDouble(""+res1))
 				return
 			}
 		}
@@ -262,17 +237,17 @@ class Expression_CallFunctionAspect extends ExpressionAspect {
 				var function = c.functions.get((_self.object as Expression_VariableName).variable)
 				if (function != null){
 					val params = new ArrayList()
-					_self.arguments.arguments.forEach[args | args.execute(c)  params.add(c.values.pop)]				
+					_self.arguments.arguments.forEach[args | args.execute(c)  params.add(c.popValue)]				
 					var newC = new Environment
 					newC.parent = c
 					newC.variables.putAll(c.variables)
 					newC.functions.putAll(c.functions)
 					newC.values.addAll(c.values)
 					for (var i = 0 ; i< function.parameters.size;i++){
-						newC.variables.put(function.parameters.get(i),params.get(i))	
+						newC.putVariable(function.parameters.get(i),params.get(i))	
 					}
 					function.body.execute(newC)
-					c.values.push(newC.values.pop)
+					c.pushValue(newC.popValue)
 					//println(newC.values.peek)
 				}
 		}
@@ -298,7 +273,7 @@ class Expression_AccessMemberAspect extends ExpressionAspect {
 					var scanIn = new Scanner(System.in);
 					var in = scanIn.nextLine();
 					scanIn.close();
-					c.values.push(in)
+					c.pushValue(in)
 				}
 			}
 		}
@@ -346,7 +321,7 @@ class Statement_RepeatAspect extends StatementAspect {
 		_self.block.execute(c)				
 		_self.expression.execute(c)
 		
-		}while(c.values.pop as Boolean)	
+		}while(c.popValue as Boolean)	
 	}
 }
 
@@ -354,7 +329,7 @@ class Statement_RepeatAspect extends StatementAspect {
 class Statement_If_Then_ElseAspect extends StatementAspect {
 	def void execute(Environment c) {
 		_self.ifExpression.execute(c)
-		if (c.values.pop as Boolean){
+		if (c.popValue as Boolean){
 			_self.ifBlock.execute(c)
 		}else{
 			_self.elseBlock.execute(c)			
@@ -411,14 +386,14 @@ class ExpressionAspect extends Statement_FunctioncallOrAssignmentAspect {
 @Aspect(className=Expression_Nil)
 class Expression_NilAspect extends ExpressionAspect {
 	def void execute(Environment c) {
-		c.values.push(Void)		
+		c.pushValue(Void)		
 	}
 }
 
 @Aspect(className=Expression_True)
 class Expression_TrueAspect extends ExpressionAspect {
 	def void execute(Environment c) {
-				c.values.push(true)
+				c.pushValue(true)
 		
 	}
 }
@@ -426,7 +401,7 @@ class Expression_TrueAspect extends ExpressionAspect {
 @Aspect(className=Expression_False)
 class Expression_FalseAspect extends ExpressionAspect {
 	def void execute(Environment c) {
-				c.values.push(false)
+				c.pushValue(false)
 		
 	}
 }
@@ -434,7 +409,7 @@ class Expression_FalseAspect extends ExpressionAspect {
 @Aspect(className=Expression_Number)
 class Expression_NumberAspect extends ExpressionAspect {
 	def void execute(Environment c) {
-		c.values.push(_self.value)
+		c.pushValue(_self.value)
 	}
 }
 
@@ -447,7 +422,7 @@ class Expression_VarArgsAspect extends ExpressionAspect {
 @Aspect(className=Expression_String)
 class Expression_StringAspect extends ExpressionAspect {
 	def void execute(Environment c) {
-		c.values.push(_self.value)
+		c.pushValue(_self.value)
 	}
 }
 
@@ -516,10 +491,10 @@ class Statement_CallMemberFunctionAspect extends Statement_FunctioncallOrAssignm
 class Expression_OrAspect extends ExpressionAspect {
 	def void execute(Environment c) {
 		_self.left.execute(c)
-		var  left =c.values.pop as Boolean 
+		var  left =c.popValue as Boolean 
 		_self.right.execute(c) 
-		var  right =c.values.pop as Boolean 	
-		c.values.push(left || right)
+		var  right =c.popValue as Boolean 	
+		c.pushValue(left || right)
 	}
 }
 
@@ -527,10 +502,10 @@ class Expression_OrAspect extends ExpressionAspect {
 class Expression_AndAspect extends ExpressionAspect {
 	def void execute(Environment c) {
 		_self.left.execute(c)
-		var  left =c.values.pop as Boolean 
+		var  left =c.popValue as Boolean 
 		_self.right.execute(c) 
-		var  right =c.values.pop as Boolean 	
-		c.values.push(left && right)
+		var  right =c.popValue as Boolean 	
+		c.pushValue(left && right)
 		
 	}
 }
@@ -539,10 +514,10 @@ class Expression_AndAspect extends ExpressionAspect {
 class Expression_LargerAspect extends ExpressionAspect {
 	def void execute(Environment c) {
 						_self.left.execute(c)
-		var  left =c.values.pop as Comparable 
+		var  left =c.popValue as Comparable 
 		_self.right.execute(c) 
-		var  right =c.values.pop as Comparable 	
-		c.values.push(left.compareTo(right)>0)
+		var  right =c.popValue as Comparable 	
+		c.pushValue(left.compareTo(right)>0)
 		
 	}
 }
@@ -551,10 +526,10 @@ class Expression_LargerAspect extends ExpressionAspect {
 class Expression_Larger_EqualAspect extends ExpressionAspect {
 	def void execute(Environment c) {
 						_self.left.execute(c)
-		var  left =c.values.pop as Comparable 
+		var  left =c.popValue as Comparable 
 		_self.right.execute(c) 
-		var  right =c.values.pop as Comparable 	
-		c.values.push(left.compareTo(right)>=0)
+		var  right =c.popValue as Comparable 	
+		c.pushValue(left.compareTo(right)>=0)
 		
 	}
 }
@@ -563,10 +538,10 @@ class Expression_Larger_EqualAspect extends ExpressionAspect {
 class Expression_SmallerAspect extends ExpressionAspect {
 	def void execute(Environment c) {
 				_self.left.execute(c)
-		var  left =c.values.pop as Comparable 
+		var  left =c.popValue as Comparable 
 		_self.right.execute(c) 
-		var  right =c.values.pop as Comparable 	
-		c.values.push(left.compareTo(right)<0)
+		var  right =c.popValue as Comparable 	
+		c.pushValue(left.compareTo(right)<0)
 	}
 }
 
@@ -574,10 +549,10 @@ class Expression_SmallerAspect extends ExpressionAspect {
 class Expression_Smaller_EqualAspect extends ExpressionAspect {
 	def void execute(Environment c) {
 				_self.left.execute(c)
-		var  left =c.values.pop as Comparable 
+		var  left =c.popValue as Comparable 
 		_self.right.execute(c) 
-		var  right =c.values.pop as Comparable 	
-		c.values.push(left.compareTo(right)<=0)
+		var  right =c.popValue as Comparable 	
+		c.pushValue(left.compareTo(right)<=0)
 		
 	}
 }
@@ -586,10 +561,10 @@ class Expression_Smaller_EqualAspect extends ExpressionAspect {
 class Expression_EqualAspect extends ExpressionAspect {
 	def void execute(Environment c) {
 		_self.left.execute(c)
-		var  left =c.values.pop 
+		var  left =c.popValue 
 		_self.right.execute(c)
-		var  right =c.values.pop 	
-		c.values.push(left.equals(right))
+		var  right =c.popValue 	
+		c.pushValue(left.equals(right))
 	}
 }
 
@@ -597,10 +572,10 @@ class Expression_EqualAspect extends ExpressionAspect {
 class Expression_Not_EqualAspect extends ExpressionAspect {
 	def void execute(Environment c) {
 		_self.left.execute(c)
-		var  left =c.values.pop 
+		var  left =c.popValue 
 		_self.right.execute(c)
-		var  right =c.values.pop 	
-		c.values.push(!left.equals(right))
+		var  right =c.popValue 	
+		c.pushValue(!left.equals(right))
 	}
 }
 
@@ -608,10 +583,10 @@ class Expression_Not_EqualAspect extends ExpressionAspect {
 class Expression_ConcatenationAspect extends ExpressionAspect {
 	def void execute(Environment c) {
 		_self.left.execute(c)
-		var String left =c.values.pop as String
+		var String left =c.popValue as String
 		_self.right.execute(c)
-		var String right =c.values.pop as String		
-		c.values.push(left + right)
+		var String right =c.popValue as String		
+		c.pushValue(left + right)
 	}
 }
 
@@ -619,10 +594,10 @@ class Expression_ConcatenationAspect extends ExpressionAspect {
 class Expression_PlusAspect extends ExpressionAspect {
 	def void execute(Environment c) {
 		_self.left.execute(c)
-		var Double left =c.values.pop as Double
+		var Double left =c.popValue as Double
 		_self.right.execute(c)
-		var Double right =c.values.pop as Double		
-		c.values.push(left + right)
+		var Double right =c.popValue as Double		
+		c.pushValue(left + right)
 	}
 }
 
@@ -630,10 +605,10 @@ class Expression_PlusAspect extends ExpressionAspect {
 class Expression_MinusAspect extends ExpressionAspect {
 	def void execute(Environment c) {
 		_self.left.execute(c)
-		var Double left =c.values.pop as Double
+		var Double left =c.popValue as Double
 		_self.right.execute(c)
-		var Double right =c.values.pop as Double		
-		c.values.push(left - right)
+		var Double right =c.popValue as Double		
+		c.pushValue(left - right)
 
 	}
 }
@@ -642,10 +617,10 @@ class Expression_MinusAspect extends ExpressionAspect {
 class Expression_MultiplicationAspect extends ExpressionAspect {
 	def void execute(Environment c) {
 		_self.left.execute(c)
-		var Double left =c.values.pop as Double
+		var Double left =c.popValue as Double
 		_self.right.execute(c)
-		var Double right =c.values.pop as Double		
-		c.values.push(left * right)
+		var Double right =c.popValue as Double		
+		c.pushValue(left * right)
 		
 	}
 }
@@ -654,10 +629,10 @@ class Expression_MultiplicationAspect extends ExpressionAspect {
 class Expression_DivisionAspect extends ExpressionAspect {
 	def void execute(Environment c) {
 		_self.left.execute(c)
-		var Double left =c.values.pop as Double
+		var Double left =c.popValue as Double
 		_self.right.execute(c)
-		var Double right =c.values.pop as Double		
-		c.values.push(left / right)
+		var Double right =c.popValue as Double		
+		c.pushValue(left / right)
 		
 	}
 }
@@ -666,10 +641,10 @@ class Expression_DivisionAspect extends ExpressionAspect {
 class Expression_ModuloAspect extends ExpressionAspect {
 	def void execute(Environment c) {
 		_self.left.execute(c)
-		var Double left =c.values.pop as Double
+		var Double left =c.popValue as Double
 		_self.right.execute(c)
-		var Double right =c.values.pop as Double		
-		c.values.push(left % right)
+		var Double right =c.popValue as Double		
+		c.pushValue(left % right)
 
 	}
 }
@@ -678,8 +653,8 @@ class Expression_ModuloAspect extends ExpressionAspect {
 class Expression_NegateAspect extends ExpressionAspect {
 	def void execute(Environment c) {
 		_self.exp.execute(c)
-		var Double left =c.values.pop as Double
-		c.values.push(left *(-1))		
+		var Double left =c.popValue as Double
+		c.pushValue(left *(-1))		
 	}
 }
 
@@ -687,8 +662,8 @@ class Expression_NegateAspect extends ExpressionAspect {
 class Expression_LengthAspect extends ExpressionAspect {
 	def void execute(Environment c) {
 		_self.exp.execute(c)
-		var String left =c.values.pop as String
-		c.values.push(left.length)		
+		var String left =c.popValue as String
+		c.pushValue(left.length)		
 	}
 }
 
@@ -696,8 +671,8 @@ class Expression_LengthAspect extends ExpressionAspect {
 class Expression_InvertAspect extends ExpressionAspect {
 	def void execute(Environment c) {
 		_self.exp.execute(c)
-		var Double left =c.values.pop as Double
-		c.values.push(left *(-1))	
+		var Double left =c.popValue as Double
+		c.pushValue(left *(-1))	
 	}
 }
 
@@ -705,10 +680,10 @@ class Expression_InvertAspect extends ExpressionAspect {
 class Expression_ExponentiationAspect extends ExpressionAspect {
 	def void execute(Environment c) {
 		_self.left.execute(c)
-		var Double left =c.values.pop as Double
+		var Double left =c.popValue as Double
 		_self.right.execute(c)
-		var Double right =c.values.pop as Double		
-		c.values.push(Math.pow(left , right))
+		var Double right =c.popValue as Double		
+		c.pushValue(Math.pow(left , right))
 	}
 }
 
