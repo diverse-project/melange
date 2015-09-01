@@ -7,7 +7,9 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenModel
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenBaseGeneratorAdapter
 import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil
+import org.eclipse.emf.common.util.Diagnostic
 import org.eclipse.emf.common.util.Monitor
+import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EDataType
@@ -22,7 +24,6 @@ import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.EcoreFactory
 import org.eclipse.emf.ecore.EcorePackage
 import org.eclipse.emf.ecore.util.EcoreUtil
-import org.eclipse.emf.common.util.Diagnostic
 
 class EcoreExtensions
 {
@@ -373,5 +374,29 @@ class EcoreExtensions
 			]
 			EcoreUtil::delete(eObject)
 		}
+	}
+
+	/**
+	 * Replaces a datatype with a new EClass and update the pointing references
+	 */
+	def void replaceDataTypeWithEClass(EDataType dt) {
+		val dtName = dt.name
+
+		val replacement = EcoreFactory.eINSTANCE.createEClass => [
+			name = dtName
+		]
+		EcoreUtil.UsageCrossReferencer::find(dt, dt.eResource).forEach[setting |
+			val attr = setting.EObject
+			if (attr instanceof EAttribute) {
+				val featureReplacement = EcoreFactory.eINSTANCE.createEReference => [ref |
+					ref.name = attr.name
+					ref.lowerBound = attr.lowerBound
+					ref.upperBound = attr.upperBound
+					ref.EType = replacement
+				]
+				EcoreUtil::replace(attr, featureReplacement)
+			}
+		]
+		EcoreUtil::replace(dt, replacement)
 	}
 }

@@ -4,13 +4,13 @@ import com.google.inject.Inject
 import fr.inria.diverse.melange.algebra.ModelTypeAlgebra
 import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.ast.MetamodelExtensions
-import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
-import fr.inria.diverse.melange.metamodel.melange.Aspect
+import fr.inria.diverse.melange.ast.ModelingElementExtensions
+import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.metamodel.melange.Language
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.utils.AspectToEcore
-import java.util.Properties
-import org.eclipse.core.resources.IProject
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EDataType
+import org.eclipse.emf.ecore.EPackage
 
 /**
  * This class merges all aspects into the Metamodel
