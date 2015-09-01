@@ -357,4 +357,21 @@ class EcoreExtensions
 	def boolean isUml(EPackage pkg) {
 		return pkg.name == "uml"
 	}
+
+	def void replaceLocalEObjectReferencesToEcoreEObjectReferences(EPackage pkg) {
+		val eObject = pkg.findClass("EObject")
+
+		if (eObject !== null) {
+			EcoreUtil.UsageCrossReferencer::find(eObject, pkg).forEach[setting |
+				val ref = setting.EObject
+				if (ref instanceof EReference) {
+					val replacement = EcoreUtil::copy(ref) => [
+						EType = EcorePackage.Literals.EOBJECT
+					]
+					EcoreUtil::replace(ref, replacement)
+				}
+			]
+			EcoreUtil::delete(eObject)
+		}
+	}
 }

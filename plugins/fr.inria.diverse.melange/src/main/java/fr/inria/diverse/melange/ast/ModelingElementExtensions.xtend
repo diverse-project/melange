@@ -1,6 +1,7 @@
 package fr.inria.diverse.melange.ast
 
 import com.google.inject.Inject
+import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.metamodel.melange.ModelingElement
 import fr.inria.diverse.melange.utils.EPackageProvider
 import java.io.IOException
@@ -17,6 +18,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 class ModelingElementExtensions
 {
 	@Inject EPackageProvider registry
+	@Inject extension EcoreExtensions
 
 	def List<EPackage> getPkgs(ModelingElement m) {
 		return registry.getPackages(m)
@@ -38,6 +40,7 @@ class ModelingElementExtensions
 
 		// FIXME:
 		copy.forEach[pkg |
+			pkg.replaceLocalEObjectReferencesToEcoreEObjectReferences
 			EcoreUtil.ExternalCrossReferencer.find(pkg).forEach[o, s |
 				s.forEach[ss |
 					if (ss.EStructuralFeature !== null && !ss.EStructuralFeature.derived && !ss.EStructuralFeature.many) {
