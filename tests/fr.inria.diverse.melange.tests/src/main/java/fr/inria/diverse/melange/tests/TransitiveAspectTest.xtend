@@ -45,7 +45,7 @@ class TransitiveAspectTest
 		assertError(lang.semantics.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING,
-					"Aspect \'LangAspect\' has a reference \'addedReference\' typed ReferencesTest but in \'SuperLang\' it is typed AttributesTest"
+					"Aspect \'fr.inria.diverse.melange.tests.aspects.exhaustive.LangAspect\' has a reference \'addedReference\' typed ReferencesTest but in \'SuperLang\' it is typed AttributesTest"
 		)
 	}
 	
@@ -77,7 +77,7 @@ class TransitiveAspectTest
 		assertError(subLang.semantics.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING,
-					"Aspect \'SubOtherAspect\' has a reference \'addedReference\' typed GenericTest but in \'OtherLang\' it is typed AbstractTest"
+					"Aspect \'fr.inria.diverse.melange.tests.aspects.exhaustive.SubOtherAspect\' has a reference \'addedReference\' typed GenericTest but in \'OtherLang\' it is typed AbstractTest"
 		)
 	}
 	
@@ -224,7 +224,7 @@ class TransitiveAspectTest
 		assertError(aspectedLang.semantics.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING,
-					"Aspect \'LangAspect\' has a reference \'addedReference\' typed ReferencesTest but in \'SuperLang\' it is typed AttributesTest"
+					"Aspect \'fr.inria.diverse.melange.tests.aspects.exhaustive.LangAspect\' has a reference \'addedReference\' typed ReferencesTest but in \'SuperLang\' it is typed AttributesTest"
 		)
 	}
 	
