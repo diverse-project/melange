@@ -1,18 +1,16 @@
 package fr.inria.diverse.melange.builder
 
 import com.google.inject.Inject
-import org.eclipse.xtext.common.types.JvmDeclaredType
-import fr.inria.diverse.melange.metamodel.melange.Weave
-import java.util.ArrayList
 import fr.inria.diverse.melange.ast.AspectExtensions
+import fr.inria.diverse.melange.metamodel.melange.Weave
 import fr.inria.diverse.melange.utils.AspectToEcore
-import fr.inria.diverse.melange.ast.MetamodelExtensions
+import java.util.ArrayList
+import org.eclipse.xtext.common.types.JvmDeclaredType
 
 class WeaveBuilder extends OperatorBuilder{
 	
 	@Inject extension AspectExtensions
 	@Inject extension AspectToEcore
-	@Inject extension MetamodelExtensions
 	
 	LanguageBuilder rootLanguage
 	
@@ -28,5 +26,9 @@ class WeaveBuilder extends OperatorBuilder{
 		model = aspect.inferEcoreFragment(baseClass)
 		
 		return new ArrayList
+	}
+	
+	def Weave getSource(){
+		return source as Weave
 	}
 }

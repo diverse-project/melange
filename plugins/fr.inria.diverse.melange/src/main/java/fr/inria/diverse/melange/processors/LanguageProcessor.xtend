@@ -67,11 +67,14 @@ class LanguageProcessor extends DispatchMelangeProcessor{
 		typeRefBuilder = typeRefBuilderFactory.create(root.eResource.resourceSet)
 		
 		root.languages.forEach[language |
-			language.initialize
+			language.initializeSyntax
 		]
 		root.languages.forEach[language |
 			val langBuilder = builder.getBuilder(language)
 			build(langBuilder)
+		]
+		root.languages.forEach[language |
+			language.initializeSemantic
 		]
 	}
 	
@@ -162,10 +165,7 @@ class LanguageProcessor extends DispatchMelangeProcessor{
 		return res
 	}
 
-	/**
-	 * Initialize syntax & semantics
-	 */
-	def void initialize(Language language) {
+	def void initializeSyntax(Language language) {
 		
 		language.syntax = MelangeFactory.eINSTANCE.createMetamodel
 		if (language.isGeneratedByMelange) {
@@ -179,6 +179,10 @@ class LanguageProcessor extends DispatchMelangeProcessor{
 			}
 		}
 		
+		
+	}
+	
+	def void initializeSemantic(Language language) {
 		language.semantics.clear
 		language.semantics += language.operators.filter(Weave)
 		.filter[aspectTypeRef?.type instanceof JvmDeclaredType]
@@ -189,6 +193,7 @@ class LanguageProcessor extends DispatchMelangeProcessor{
 				val className = aspectTypeRef.aspectAnnotationValue
 				if (className !== null){
 					aspectedClass = language.syntax.findClass(className)
+					ecoreFragment = builder.getBuilder(language).findBuilder(w).model
 				}
 			]
 		]

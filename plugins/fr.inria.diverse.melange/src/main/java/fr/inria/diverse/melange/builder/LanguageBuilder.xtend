@@ -138,4 +138,8 @@ class LanguageBuilder extends Builder{
 			]
 		]
 	}
+	
+	def WeaveBuilder findBuilder(Weave w){
+		return builders.filter(WeaveBuilder).findFirst[it.source === w]
+	}
 }
