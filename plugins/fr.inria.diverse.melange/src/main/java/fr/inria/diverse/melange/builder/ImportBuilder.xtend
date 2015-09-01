@@ -19,7 +19,7 @@ class ImportBuilder extends OperatorBuilder{
 		model = modelUtils.loadPkg(op.ecoreUri)
 		model.applyRenaming(op.mappingRules)
 		
-		return new ArrayList //TODO: manage load & renaming errors
+		//TODO: manage load & renaming errors
 	}
 	
 }

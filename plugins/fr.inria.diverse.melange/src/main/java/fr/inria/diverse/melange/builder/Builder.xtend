@@ -7,28 +7,32 @@ import java.util.ArrayList
 abstract class Builder{
 
 	protected EPackage model
+	protected List<Error> errors
 
-	def List<Error> make()
+	def void make()
 	
-	def List<Error> preBuild(){
-		return new ArrayList
+	def void preBuild(){
+		model = null
+		errors = new ArrayList
 	}
-	def List<Error> postBuild(){
-		return new ArrayList
+	def void postBuild(){
+		
 	}
 	
-	def EPackage	getModel(){
+	def EPackage getModel(){
 		return model
 	}
 	
-	def final List<Error> build(){
-		val  List<Error> res = new ArrayList
+	def  List<Error> getErrors(){
+		return  errors
+	}
+	
+	def final void build(){
 		
-		res.addAll(preBuild())
-		res.addAll(make())
-		res.addAll(postBuild())
+		preBuild()
+		make()
+		postBuild()
 		
-		return res
 	}
 	
 	def void reset(){

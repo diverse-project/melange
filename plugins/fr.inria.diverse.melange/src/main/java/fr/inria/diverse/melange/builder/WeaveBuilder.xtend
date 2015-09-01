@@ -24,8 +24,6 @@ class WeaveBuilder extends OperatorBuilder{
 		val baseClass = rootLanguage.findClass(className)
 		val aspect = (source as Weave).aspectTypeRef.type as JvmDeclaredType
 		model = aspect.inferEcoreFragment(baseClass)
-		
-		return new ArrayList
 	}
 	
 	def Weave getSource(){

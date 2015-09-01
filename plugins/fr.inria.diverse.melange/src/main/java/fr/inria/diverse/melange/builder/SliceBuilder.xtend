@@ -32,7 +32,7 @@ class SliceBuilder extends LanguageOperatorBuilder{
 			model.applyRenaming(op.mappingRules)
 		}
 		
-		return new ArrayList //TODO: manage slice error here?
+		//TODO: manage slice & renaming errors
 	}
 	
 	/**

@@ -10,23 +10,22 @@ abstract class LanguageOperatorBuilder extends OperatorBuilder{
 	protected EPackage targetModel
 	protected ModelTypingSpaceBuilder root
 
-	override List<Error> preBuild(){
+	override preBuild(){
+		super.preBuild
+		
 		val langBuilder = root.getBuilder((source as LanguageOperator).targetLanguage)
+		
 		if(langBuilder.isBuilding){
-			val res = new ArrayList<Error>()
-			res.add(new Error("Cyclic dependency between "+(source as LanguageOperator).targetLanguage+" and "+source.owningLanguage,source))
-			return res
+			errors.add(new Error("Cyclic dependency between "+(source as LanguageOperator).targetLanguage+" and "+source.owningLanguage,source))
 		}
+		
 		targetModel = langBuilder.getModel
-		if(targetModel === null){
-			val errors = langBuilder.build() //FIXME: avoid rebuild if yet in errors
-			if(!errors.isEmpty){
-				val res = new ArrayList<Error>()
-				res.add(new Error("Language \'"+(source as LanguageOperator).targetLanguage+"\' has errors in its definition ",source))
-				return res
+		if(targetModel === null && langBuilder.errors.isEmpty){
+			langBuilder.build()
+			if(!langBuilder.errors.isEmpty){
+				errors.add(new Error("Language \'"+(source as LanguageOperator).targetLanguage+"\' has errors in its definition ",source))
 			}
 			targetModel = langBuilder.getModel()
 		}
-		return new ArrayList
 	}
 }

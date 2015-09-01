@@ -89,7 +89,8 @@ class LanguageProcessor extends DispatchMelangeProcessor{
 
 		var List errors = new ArrayList //TODO: init with build errors if yet built
 		if(syntax == null){
-			errors = langBuilder.build() //TODO: manage errors & model not built
+			langBuilder.build()
+			errors = langBuilder.errors//TODO: manage errors & model not built
 			syntax = langBuilder.model
 		}
 		

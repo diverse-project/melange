@@ -20,7 +20,7 @@ class MergeBuilder extends LanguageOperatorBuilder{
 			model = EcoreUtil::copy(targetModel)
 			model.applyRenaming(op.mappingRules)
 		}
-		return new ArrayList
+		//TODO: manage renaming errors
 	}
 	
 }

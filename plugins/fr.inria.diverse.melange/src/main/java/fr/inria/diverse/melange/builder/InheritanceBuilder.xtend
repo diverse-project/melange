@@ -15,7 +15,6 @@ class InheritanceBuilder extends LanguageOperatorBuilder{
 		if(targetModel != null){
 			model = EcoreUtil::copy(targetModel)
 		}
-		return new ArrayList
 	}
 	
 }

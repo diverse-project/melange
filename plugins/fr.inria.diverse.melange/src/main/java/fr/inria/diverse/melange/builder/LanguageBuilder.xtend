@@ -35,19 +35,16 @@ class LanguageBuilder extends Builder{
 		this.root = root
 	}
 
-	override List<Error> preBuild(){
+	override preBuild(){
+		super.preBuild
 		isBuilding = true
-		return new ArrayList
 	}
 
-	override List<Error> postBuild(){
+	override postBuild(){
 		isBuilding = false
-		return new ArrayList
 	}
 
-	override List<Error> make(){
-
-		val List<Error> errors = new ArrayList()
+	override make(){
 
 		/*
 		 * Aspect operators are built at the end since we need to retrieve the aspected
@@ -60,7 +57,8 @@ class LanguageBuilder extends Builder{
 		builders.addAll(createBuilders(otherOperators))
 		builders.addAll(createBuilders(aspectOperators))
 		builders.forEach[builder |
-			errors.addAll(builder.build())
+			builder.build()
+			errors.addAll(builder.errors)
 		]
 
 		val EPackage base = EcoreUtil::copy(builders.head.getModel)
@@ -74,7 +72,6 @@ class LanguageBuilder extends Builder{
 
 		model = base
 		
-		return errors
 	}
 
 	/*
