@@ -12,6 +12,7 @@ import org.eclipse.xtext.common.types.JvmEnumerationType
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
 import org.eclipse.xtext.common.types.JvmVisibility
+import org.eclipse.emf.ecore.EClass
 
 /**
  * This class creates an EPackage corresponding to an aspect.
@@ -22,16 +23,18 @@ class AspectToEcore
 	@Inject extension EcoreExtensions
 	@Inject extension TypeReferencesHelper
 	@Inject extension ModelingElementExtensions
+	
+	def EPackage inferEcoreFragment(Aspect aspImport, Language l) {
+		return inferEcoreFragment(aspImport.aspectTypeRef.type as JvmDeclaredType, aspImport.aspectedClass)
+	}
 
 	/**
 	 * Try to infer the "modeling intention" of the aspect aspImport
 	 * and put its features into a newly created EPackage
 	 */
-	def EPackage inferEcoreFragment(Aspect aspImport, Language l) {
-		val aspect = aspImport.aspectTypeRef.type as JvmDeclaredType
-		val hasAnnotation = aspect.annotations.exists[annotation.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Aspect"] 
-		val baseCls = aspImport.aspectedClass
-		val basePkg = baseCls?.EPackage ?: l.syntax.pkgs.head
+	def EPackage inferEcoreFragment(JvmDeclaredType aspect, EClass baseCls) {
+		val basePkg = baseCls?.EPackage
+		val hasAnnotation = aspect.annotations.exists[annotation.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Aspect"]
 
 		val aspPkg = EcoreFactory.eINSTANCE.createEPackage => [
 			name = basePkg.name

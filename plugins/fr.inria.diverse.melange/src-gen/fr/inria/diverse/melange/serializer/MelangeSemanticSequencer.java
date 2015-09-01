@@ -423,7 +423,7 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     superLanguage=[Language|QualifiedName]
+	 *     targetLanguage=[Language|QualifiedName]
 	 */
 	protected void sequence_Inherit(EObject context, Inheritance semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -459,7 +459,7 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (mergedLanguage=[Language|QualifiedName] mappingRules+=PackageMapping*)
+	 *     (targetLanguage=[Language|QualifiedName] mappingRules+=PackageMapping*)
 	 */
 	protected void sequence_Merge(EObject context, Merge semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -505,7 +505,7 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (slicedLanguage=[Language|QualifiedName] roots+=STRING roots+=STRING* mappingRules+=PackageMapping*)
+	 *     (targetLanguage=[Language|QualifiedName] roots+=STRING roots+=STRING* mappingRules+=PackageMapping*)
 	 */
 	protected void sequence_Slice(EObject context, Slice semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

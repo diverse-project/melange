@@ -1389,7 +1389,7 @@ ruleMerge returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getMergeAccess().getMergedLanguageLanguageCrossReference_1_0()); 
+	        newCompositeNode(grammarAccess.getMergeAccess().getTargetLanguageLanguageCrossReference_1_0()); 
 	    }
 		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
@@ -1459,7 +1459,7 @@ ruleSlice returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getSliceAccess().getSlicedLanguageLanguageCrossReference_1_0()); 
+	        newCompositeNode(grammarAccess.getSliceAccess().getTargetLanguageLanguageCrossReference_1_0()); 
 	    }
 		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
@@ -1577,7 +1577,7 @@ ruleInherit returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getInheritAccess().getSuperLanguageLanguageCrossReference_0()); 
+	        newCompositeNode(grammarAccess.getInheritAccess().getTargetLanguageLanguageCrossReference_0()); 
 	    }
 		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();

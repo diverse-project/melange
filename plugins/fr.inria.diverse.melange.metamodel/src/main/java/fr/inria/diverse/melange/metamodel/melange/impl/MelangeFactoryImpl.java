@@ -67,6 +67,7 @@ public class MelangeFactoryImpl extends EFactoryImpl implements MelangeFactory {
 			case MelangePackage.MAPPING: return createMapping();
 			case MelangePackage.CLASS_BINDING: return createClassBinding();
 			case MelangePackage.PROPERTY_BINDING: return createPropertyBinding();
+			case MelangePackage.LANGUAGE_OPERATOR: return createLanguageOperator();
 			case MelangePackage.IMPORT: return createImport();
 			case MelangePackage.MERGE: return createMerge();
 			case MelangePackage.SLICE: return createSlice();
@@ -206,6 +207,16 @@ public class MelangeFactoryImpl extends EFactoryImpl implements MelangeFactory {
 	public PropertyBinding createPropertyBinding() {
 		PropertyBindingImpl propertyBinding = new PropertyBindingImpl();
 		return propertyBinding;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LanguageOperator createLanguageOperator() {
+		LanguageOperatorImpl languageOperator = new LanguageOperatorImpl();
+		return languageOperator;
 	}
 
 	/**

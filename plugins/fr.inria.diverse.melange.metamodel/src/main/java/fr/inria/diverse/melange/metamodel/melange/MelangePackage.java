@@ -313,7 +313,7 @@ public interface MelangePackage extends EPackage {
 	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getNamedElement()
 	 * @generated
 	 */
-	int NAMED_ELEMENT = 20;
+	int NAMED_ELEMENT = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -472,6 +472,52 @@ public interface MelangePackage extends EPackage {
 	int OPERATOR_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageOperatorImpl <em>Language Operator</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.LanguageOperatorImpl
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getLanguageOperator()
+	 * @generated
+	 */
+	int LANGUAGE_OPERATOR = 14;
+
+	/**
+	 * The feature id for the '<em><b>Owning Language</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANGUAGE_OPERATOR__OWNING_LANGUAGE = OPERATOR__OWNING_LANGUAGE;
+
+	/**
+	 * The feature id for the '<em><b>Target Language</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANGUAGE_OPERATOR__TARGET_LANGUAGE = OPERATOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Language Operator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANGUAGE_OPERATOR_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Language Operator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANGUAGE_OPERATOR_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.InheritanceImpl <em>Inheritance</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -488,16 +534,16 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INHERITANCE__OWNING_LANGUAGE = OPERATOR__OWNING_LANGUAGE;
+	int INHERITANCE__OWNING_LANGUAGE = LANGUAGE_OPERATOR__OWNING_LANGUAGE;
 
 	/**
-	 * The feature id for the '<em><b>Super Language</b></em>' reference.
+	 * The feature id for the '<em><b>Target Language</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INHERITANCE__SUPER_LANGUAGE = OPERATOR_FEATURE_COUNT + 0;
+	int INHERITANCE__TARGET_LANGUAGE = LANGUAGE_OPERATOR__TARGET_LANGUAGE;
 
 	/**
 	 * The number of structural features of the '<em>Inheritance</em>' class.
@@ -506,7 +552,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INHERITANCE_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 1;
+	int INHERITANCE_FEATURE_COUNT = LANGUAGE_OPERATOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Inheritance</em>' class.
@@ -515,7 +561,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INHERITANCE_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 0;
+	int INHERITANCE_OPERATION_COUNT = LANGUAGE_OPERATOR_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.SubtypingImpl <em>Subtyping</em>}' class.
@@ -800,7 +846,7 @@ public interface MelangePackage extends EPackage {
 	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getImport()
 	 * @generated
 	 */
-	int IMPORT = 14;
+	int IMPORT = 15;
 
 	/**
 	 * The feature id for the '<em><b>Owning Language</b></em>' container reference.
@@ -864,7 +910,7 @@ public interface MelangePackage extends EPackage {
 	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getMerge()
 	 * @generated
 	 */
-	int MERGE = 15;
+	int MERGE = 16;
 
 	/**
 	 * The feature id for the '<em><b>Owning Language</b></em>' container reference.
@@ -873,16 +919,16 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE__OWNING_LANGUAGE = OPERATOR__OWNING_LANGUAGE;
+	int MERGE__OWNING_LANGUAGE = LANGUAGE_OPERATOR__OWNING_LANGUAGE;
 
 	/**
-	 * The feature id for the '<em><b>Merged Language</b></em>' reference.
+	 * The feature id for the '<em><b>Target Language</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE__MERGED_LANGUAGE = OPERATOR_FEATURE_COUNT + 0;
+	int MERGE__TARGET_LANGUAGE = LANGUAGE_OPERATOR__TARGET_LANGUAGE;
 
 	/**
 	 * The feature id for the '<em><b>Mapping Rules</b></em>' containment reference list.
@@ -891,7 +937,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE__MAPPING_RULES = OPERATOR_FEATURE_COUNT + 1;
+	int MERGE__MAPPING_RULES = LANGUAGE_OPERATOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Merge</em>' class.
@@ -900,7 +946,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 2;
+	int MERGE_FEATURE_COUNT = LANGUAGE_OPERATOR_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Merge</em>' class.
@@ -909,7 +955,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 0;
+	int MERGE_OPERATION_COUNT = LANGUAGE_OPERATOR_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.SliceImpl <em>Slice</em>}' class.
@@ -919,7 +965,7 @@ public interface MelangePackage extends EPackage {
 	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getSlice()
 	 * @generated
 	 */
-	int SLICE = 16;
+	int SLICE = 17;
 
 	/**
 	 * The feature id for the '<em><b>Owning Language</b></em>' container reference.
@@ -928,16 +974,16 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SLICE__OWNING_LANGUAGE = OPERATOR__OWNING_LANGUAGE;
+	int SLICE__OWNING_LANGUAGE = LANGUAGE_OPERATOR__OWNING_LANGUAGE;
 
 	/**
-	 * The feature id for the '<em><b>Sliced Language</b></em>' reference.
+	 * The feature id for the '<em><b>Target Language</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SLICE__SLICED_LANGUAGE = OPERATOR_FEATURE_COUNT + 0;
+	int SLICE__TARGET_LANGUAGE = LANGUAGE_OPERATOR__TARGET_LANGUAGE;
 
 	/**
 	 * The feature id for the '<em><b>Roots</b></em>' attribute list.
@@ -946,7 +992,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SLICE__ROOTS = OPERATOR_FEATURE_COUNT + 1;
+	int SLICE__ROOTS = LANGUAGE_OPERATOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Mapping Rules</b></em>' containment reference list.
@@ -955,7 +1001,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SLICE__MAPPING_RULES = OPERATOR_FEATURE_COUNT + 2;
+	int SLICE__MAPPING_RULES = LANGUAGE_OPERATOR_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Slice</em>' class.
@@ -964,7 +1010,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SLICE_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 3;
+	int SLICE_FEATURE_COUNT = LANGUAGE_OPERATOR_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Slice</em>' class.
@@ -973,7 +1019,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SLICE_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 0;
+	int SLICE_OPERATION_COUNT = LANGUAGE_OPERATOR_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.PackageBindingImpl <em>Package Binding</em>}' class.
@@ -983,7 +1029,7 @@ public interface MelangePackage extends EPackage {
 	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getPackageBinding()
 	 * @generated
 	 */
-	int PACKAGE_BINDING = 17;
+	int PACKAGE_BINDING = 18;
 
 	/**
 	 * The feature id for the '<em><b>From</b></em>' attribute.
@@ -1038,7 +1084,7 @@ public interface MelangePackage extends EPackage {
 	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getLanguage()
 	 * @generated
 	 */
-	int LANGUAGE = 18;
+	int LANGUAGE = 19;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1183,7 +1229,7 @@ public interface MelangePackage extends EPackage {
 	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getWeave()
 	 * @generated
 	 */
-	int WEAVE = 19;
+	int WEAVE = 20;
 
 	/**
 	 * The feature id for the '<em><b>Owning Language</b></em>' container reference.
@@ -1238,7 +1284,7 @@ public interface MelangePackage extends EPackage {
 	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getResourceType()
 	 * @generated
 	 */
-	int RESOURCE_TYPE = 21;
+	int RESOURCE_TYPE = 22;
 
 
 	/**
@@ -1431,17 +1477,6 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getInheritance();
-
-	/**
-	 * Returns the meta object for the reference '{@link fr.inria.diverse.melange.metamodel.melange.Inheritance#getSuperLanguage <em>Super Language</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Super Language</em>'.
-	 * @see fr.inria.diverse.melange.metamodel.melange.Inheritance#getSuperLanguage()
-	 * @see #getInheritance()
-	 * @generated
-	 */
-	EReference getInheritance_SuperLanguage();
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.Subtyping <em>Subtyping</em>}'.
@@ -1690,6 +1725,27 @@ public interface MelangePackage extends EPackage {
 	EReference getOperator_OwningLanguage();
 
 	/**
+	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.LanguageOperator <em>Language Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Language Operator</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.LanguageOperator
+	 * @generated
+	 */
+	EClass getLanguageOperator();
+
+	/**
+	 * Returns the meta object for the reference '{@link fr.inria.diverse.melange.metamodel.melange.LanguageOperator#getTargetLanguage <em>Target Language</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target Language</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.LanguageOperator#getTargetLanguage()
+	 * @see #getLanguageOperator()
+	 * @generated
+	 */
+	EReference getLanguageOperator_TargetLanguage();
+
+	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.Import <em>Import</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1743,17 +1799,6 @@ public interface MelangePackage extends EPackage {
 	EClass getMerge();
 
 	/**
-	 * Returns the meta object for the reference '{@link fr.inria.diverse.melange.metamodel.melange.Merge#getMergedLanguage <em>Merged Language</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Merged Language</em>'.
-	 * @see fr.inria.diverse.melange.metamodel.melange.Merge#getMergedLanguage()
-	 * @see #getMerge()
-	 * @generated
-	 */
-	EReference getMerge_MergedLanguage();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link fr.inria.diverse.melange.metamodel.melange.Merge#getMappingRules <em>Mapping Rules</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1773,17 +1818,6 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getSlice();
-
-	/**
-	 * Returns the meta object for the reference '{@link fr.inria.diverse.melange.metamodel.melange.Slice#getSlicedLanguage <em>Sliced Language</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Sliced Language</em>'.
-	 * @see fr.inria.diverse.melange.metamodel.melange.Slice#getSlicedLanguage()
-	 * @see #getSlice()
-	 * @generated
-	 */
-	EReference getSlice_SlicedLanguage();
 
 	/**
 	 * Returns the meta object for the attribute list '{@link fr.inria.diverse.melange.metamodel.melange.Slice#getRoots <em>Roots</em>}'.
@@ -2237,14 +2271,6 @@ public interface MelangePackage extends EPackage {
 		EClass INHERITANCE = eINSTANCE.getInheritance();
 
 		/**
-		 * The meta object literal for the '<em><b>Super Language</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INHERITANCE__SUPER_LANGUAGE = eINSTANCE.getInheritance_SuperLanguage();
-
-		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.SubtypingImpl <em>Subtyping</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2443,6 +2469,24 @@ public interface MelangePackage extends EPackage {
 		EReference OPERATOR__OWNING_LANGUAGE = eINSTANCE.getOperator_OwningLanguage();
 
 		/**
+		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageOperatorImpl <em>Language Operator</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.inria.diverse.melange.metamodel.melange.impl.LanguageOperatorImpl
+		 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getLanguageOperator()
+		 * @generated
+		 */
+		EClass LANGUAGE_OPERATOR = eINSTANCE.getLanguageOperator();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Language</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LANGUAGE_OPERATOR__TARGET_LANGUAGE = eINSTANCE.getLanguageOperator_TargetLanguage();
+
+		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.ImportImpl <em>Import</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2487,14 +2531,6 @@ public interface MelangePackage extends EPackage {
 		EClass MERGE = eINSTANCE.getMerge();
 
 		/**
-		 * The meta object literal for the '<em><b>Merged Language</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MERGE__MERGED_LANGUAGE = eINSTANCE.getMerge_MergedLanguage();
-
-		/**
 		 * The meta object literal for the '<em><b>Mapping Rules</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2511,14 +2547,6 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EClass SLICE = eINSTANCE.getSlice();
-
-		/**
-		 * The meta object literal for the '<em><b>Sliced Language</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SLICE__SLICED_LANGUAGE = eINSTANCE.getSlice_SlicedLanguage();
 
 		/**
 		 * The meta object literal for the '<em><b>Roots</b></em>' attribute list feature.

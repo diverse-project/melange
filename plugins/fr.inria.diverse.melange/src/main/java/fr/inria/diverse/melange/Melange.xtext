@@ -89,21 +89,21 @@ Import returns Import:
 ;
 
 Merge returns Merge:
-	'merge' mergedLanguage = [Language | QualifiedName] 
+	'merge' targetLanguage = [Language | QualifiedName] 
 	('and-rename' '{'
 		(mappingRules+=PackageMapping)*
 	'}')?
 ;
 
 Slice returns Slice:
-	'slice' slicedLanguage = [Language | QualifiedName] 'on' '[' roots += STRING (',' roots += STRING)* ']'
+	'slice' targetLanguage = [Language | QualifiedName] 'on' '[' roots += STRING (',' roots += STRING)* ']'
 	('and-rename' '{'
 		(mappingRules+=PackageMapping)*
 	'}')?
 ;
 
 Inherit returns Inheritance:
-	superLanguage = [Language | QualifiedName]
+	targetLanguage = [Language | QualifiedName]
 ;
 
 Weave:

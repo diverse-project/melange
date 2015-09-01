@@ -1390,26 +1390,26 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleInherit"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:462:1: ruleInherit : ( ( rule__Inherit__SuperLanguageAssignment ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:462:1: ruleInherit : ( ( rule__Inherit__TargetLanguageAssignment ) ) ;
     public final void ruleInherit() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:466:2: ( ( ( rule__Inherit__SuperLanguageAssignment ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:467:1: ( ( rule__Inherit__SuperLanguageAssignment ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:466:2: ( ( ( rule__Inherit__TargetLanguageAssignment ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:467:1: ( ( rule__Inherit__TargetLanguageAssignment ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:467:1: ( ( rule__Inherit__SuperLanguageAssignment ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:468:1: ( rule__Inherit__SuperLanguageAssignment )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:467:1: ( ( rule__Inherit__TargetLanguageAssignment ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:468:1: ( rule__Inherit__TargetLanguageAssignment )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getInheritAccess().getSuperLanguageAssignment()); 
+               before(grammarAccess.getInheritAccess().getTargetLanguageAssignment()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:469:1: ( rule__Inherit__SuperLanguageAssignment )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:469:2: rule__Inherit__SuperLanguageAssignment
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:469:1: ( rule__Inherit__TargetLanguageAssignment )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:469:2: rule__Inherit__TargetLanguageAssignment
             {
-            pushFollow(FOLLOW_rule__Inherit__SuperLanguageAssignment_in_ruleInherit939);
-            rule__Inherit__SuperLanguageAssignment();
+            pushFollow(FOLLOW_rule__Inherit__TargetLanguageAssignment_in_ruleInherit939);
+            rule__Inherit__TargetLanguageAssignment();
 
             state._fsp--;
             if (state.failed) return ;
@@ -1417,7 +1417,7 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getInheritAccess().getSuperLanguageAssignment()); 
+               after(grammarAccess.getInheritAccess().getTargetLanguageAssignment()); 
             }
 
             }
@@ -22236,26 +22236,26 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Merge__Group__1__Impl"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7220:1: rule__Merge__Group__1__Impl : ( ( rule__Merge__MergedLanguageAssignment_1 ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7220:1: rule__Merge__Group__1__Impl : ( ( rule__Merge__TargetLanguageAssignment_1 ) ) ;
     public final void rule__Merge__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7224:1: ( ( ( rule__Merge__MergedLanguageAssignment_1 ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7225:1: ( ( rule__Merge__MergedLanguageAssignment_1 ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7224:1: ( ( ( rule__Merge__TargetLanguageAssignment_1 ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7225:1: ( ( rule__Merge__TargetLanguageAssignment_1 ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7225:1: ( ( rule__Merge__MergedLanguageAssignment_1 ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7226:1: ( rule__Merge__MergedLanguageAssignment_1 )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7225:1: ( ( rule__Merge__TargetLanguageAssignment_1 ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7226:1: ( rule__Merge__TargetLanguageAssignment_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getMergeAccess().getMergedLanguageAssignment_1()); 
+               before(grammarAccess.getMergeAccess().getTargetLanguageAssignment_1()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7227:1: ( rule__Merge__MergedLanguageAssignment_1 )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7227:2: rule__Merge__MergedLanguageAssignment_1
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7227:1: ( rule__Merge__TargetLanguageAssignment_1 )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7227:2: rule__Merge__TargetLanguageAssignment_1
             {
-            pushFollow(FOLLOW_rule__Merge__MergedLanguageAssignment_1_in_rule__Merge__Group__1__Impl15146);
-            rule__Merge__MergedLanguageAssignment_1();
+            pushFollow(FOLLOW_rule__Merge__TargetLanguageAssignment_1_in_rule__Merge__Group__1__Impl15146);
+            rule__Merge__TargetLanguageAssignment_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -22263,7 +22263,7 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getMergeAccess().getMergedLanguageAssignment_1()); 
+               after(grammarAccess.getMergeAccess().getTargetLanguageAssignment_1()); 
             }
 
             }
@@ -22838,26 +22838,26 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Slice__Group__1__Impl"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7443:1: rule__Slice__Group__1__Impl : ( ( rule__Slice__SlicedLanguageAssignment_1 ) ) ;
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7443:1: rule__Slice__Group__1__Impl : ( ( rule__Slice__TargetLanguageAssignment_1 ) ) ;
     public final void rule__Slice__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7447:1: ( ( ( rule__Slice__SlicedLanguageAssignment_1 ) ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7448:1: ( ( rule__Slice__SlicedLanguageAssignment_1 ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7447:1: ( ( ( rule__Slice__TargetLanguageAssignment_1 ) ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7448:1: ( ( rule__Slice__TargetLanguageAssignment_1 ) )
             {
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7448:1: ( ( rule__Slice__SlicedLanguageAssignment_1 ) )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7449:1: ( rule__Slice__SlicedLanguageAssignment_1 )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7448:1: ( ( rule__Slice__TargetLanguageAssignment_1 ) )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7449:1: ( rule__Slice__TargetLanguageAssignment_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSliceAccess().getSlicedLanguageAssignment_1()); 
+               before(grammarAccess.getSliceAccess().getTargetLanguageAssignment_1()); 
             }
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7450:1: ( rule__Slice__SlicedLanguageAssignment_1 )
-            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7450:2: rule__Slice__SlicedLanguageAssignment_1
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7450:1: ( rule__Slice__TargetLanguageAssignment_1 )
+            // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:7450:2: rule__Slice__TargetLanguageAssignment_1
             {
-            pushFollow(FOLLOW_rule__Slice__SlicedLanguageAssignment_1_in_rule__Slice__Group__1__Impl15584);
-            rule__Slice__SlicedLanguageAssignment_1();
+            pushFollow(FOLLOW_rule__Slice__TargetLanguageAssignment_1_in_rule__Slice__Group__1__Impl15584);
+            rule__Slice__TargetLanguageAssignment_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -22865,7 +22865,7 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSliceAccess().getSlicedLanguageAssignment_1()); 
+               after(grammarAccess.getSliceAccess().getTargetLanguageAssignment_1()); 
             }
 
             }
@@ -63799,9 +63799,9 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Import__MappingRulesAssignment_3_2"
 
 
-    // $ANTLR start "rule__Merge__MergedLanguageAssignment_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22370:1: rule__Merge__MergedLanguageAssignment_1 : ( ( ruleQualifiedName ) ) ;
-    public final void rule__Merge__MergedLanguageAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__Merge__TargetLanguageAssignment_1"
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22370:1: rule__Merge__TargetLanguageAssignment_1 : ( ( ruleQualifiedName ) ) ;
+    public final void rule__Merge__TargetLanguageAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -63813,27 +63813,27 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
             // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22376:1: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getMergeAccess().getMergedLanguageLanguageCrossReference_1_0()); 
+               before(grammarAccess.getMergeAccess().getTargetLanguageLanguageCrossReference_1_0()); 
             }
             // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22377:1: ( ruleQualifiedName )
             // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22378:1: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getMergeAccess().getMergedLanguageLanguageQualifiedNameParserRuleCall_1_0_1()); 
+               before(grammarAccess.getMergeAccess().getTargetLanguageLanguageQualifiedNameParserRuleCall_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__Merge__MergedLanguageAssignment_145275);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__Merge__TargetLanguageAssignment_145275);
             ruleQualifiedName();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getMergeAccess().getMergedLanguageLanguageQualifiedNameParserRuleCall_1_0_1()); 
+               after(grammarAccess.getMergeAccess().getTargetLanguageLanguageQualifiedNameParserRuleCall_1_0_1()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getMergeAccess().getMergedLanguageLanguageCrossReference_1_0()); 
+               after(grammarAccess.getMergeAccess().getTargetLanguageLanguageCrossReference_1_0()); 
             }
 
             }
@@ -63853,7 +63853,7 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Merge__MergedLanguageAssignment_1"
+    // $ANTLR end "rule__Merge__TargetLanguageAssignment_1"
 
 
     // $ANTLR start "rule__Merge__MappingRulesAssignment_2_2"
@@ -63901,9 +63901,9 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Merge__MappingRulesAssignment_2_2"
 
 
-    // $ANTLR start "rule__Slice__SlicedLanguageAssignment_1"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22404:1: rule__Slice__SlicedLanguageAssignment_1 : ( ( ruleQualifiedName ) ) ;
-    public final void rule__Slice__SlicedLanguageAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__Slice__TargetLanguageAssignment_1"
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22404:1: rule__Slice__TargetLanguageAssignment_1 : ( ( ruleQualifiedName ) ) ;
+    public final void rule__Slice__TargetLanguageAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -63915,27 +63915,27 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
             // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22410:1: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSliceAccess().getSlicedLanguageLanguageCrossReference_1_0()); 
+               before(grammarAccess.getSliceAccess().getTargetLanguageLanguageCrossReference_1_0()); 
             }
             // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22411:1: ( ruleQualifiedName )
             // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22412:1: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSliceAccess().getSlicedLanguageLanguageQualifiedNameParserRuleCall_1_0_1()); 
+               before(grammarAccess.getSliceAccess().getTargetLanguageLanguageQualifiedNameParserRuleCall_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__Slice__SlicedLanguageAssignment_145345);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__Slice__TargetLanguageAssignment_145345);
             ruleQualifiedName();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSliceAccess().getSlicedLanguageLanguageQualifiedNameParserRuleCall_1_0_1()); 
+               after(grammarAccess.getSliceAccess().getTargetLanguageLanguageQualifiedNameParserRuleCall_1_0_1()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSliceAccess().getSlicedLanguageLanguageCrossReference_1_0()); 
+               after(grammarAccess.getSliceAccess().getTargetLanguageLanguageCrossReference_1_0()); 
             }
 
             }
@@ -63955,7 +63955,7 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Slice__SlicedLanguageAssignment_1"
+    // $ANTLR end "rule__Slice__TargetLanguageAssignment_1"
 
 
     // $ANTLR start "rule__Slice__RootsAssignment_4"
@@ -64085,9 +64085,9 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Slice__MappingRulesAssignment_7_2"
 
 
-    // $ANTLR start "rule__Inherit__SuperLanguageAssignment"
-    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22468:1: rule__Inherit__SuperLanguageAssignment : ( ( ruleQualifiedName ) ) ;
-    public final void rule__Inherit__SuperLanguageAssignment() throws RecognitionException {
+    // $ANTLR start "rule__Inherit__TargetLanguageAssignment"
+    // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22468:1: rule__Inherit__TargetLanguageAssignment : ( ( ruleQualifiedName ) ) ;
+    public final void rule__Inherit__TargetLanguageAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -64099,27 +64099,27 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
             // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22474:1: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getInheritAccess().getSuperLanguageLanguageCrossReference_0()); 
+               before(grammarAccess.getInheritAccess().getTargetLanguageLanguageCrossReference_0()); 
             }
             // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22475:1: ( ruleQualifiedName )
             // ../fr.inria.diverse.melange.ui/src-gen/fr/inria/diverse/melange/ui/contentassist/antlr/internal/InternalMelange.g:22476:1: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getInheritAccess().getSuperLanguageLanguageQualifiedNameParserRuleCall_0_1()); 
+               before(grammarAccess.getInheritAccess().getTargetLanguageLanguageQualifiedNameParserRuleCall_0_1()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__Inherit__SuperLanguageAssignment45477);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__Inherit__TargetLanguageAssignment45477);
             ruleQualifiedName();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getInheritAccess().getSuperLanguageLanguageQualifiedNameParserRuleCall_0_1()); 
+               after(grammarAccess.getInheritAccess().getTargetLanguageLanguageQualifiedNameParserRuleCall_0_1()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getInheritAccess().getSuperLanguageLanguageCrossReference_0()); 
+               after(grammarAccess.getInheritAccess().getTargetLanguageLanguageCrossReference_0()); 
             }
 
             }
@@ -64139,7 +64139,7 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Inherit__SuperLanguageAssignment"
+    // $ANTLR end "rule__Inherit__TargetLanguageAssignment"
 
 
     // $ANTLR start "rule__AspectTypeRef__AspectTypeRefAssignment_1"
@@ -76602,7 +76602,7 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__Slice__Group__0_in_ruleSlice879 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleInherit_in_entryRuleInherit906 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleInherit913 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Inherit__SuperLanguageAssignment_in_ruleInherit939 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Inherit__TargetLanguageAssignment_in_ruleInherit939 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleWeave_in_entryRuleWeave966 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleWeave973 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Weave__Alternatives_in_ruleWeave999 = new BitSet(new long[]{0x0000000000000002L});
@@ -77248,7 +77248,7 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_76_in_rule__Merge__Group__0__Impl15085 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Merge__Group__1__Impl_in_rule__Merge__Group__115116 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
     public static final BitSet FOLLOW_rule__Merge__Group__2_in_rule__Merge__Group__115119 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Merge__MergedLanguageAssignment_1_in_rule__Merge__Group__1__Impl15146 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Merge__TargetLanguageAssignment_1_in_rule__Merge__Group__1__Impl15146 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Merge__Group__2__Impl_in_rule__Merge__Group__215176 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Merge__Group_2__0_in_rule__Merge__Group__2__Impl15203 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Merge__Group_2__0__Impl_in_rule__Merge__Group_2__015240 = new BitSet(new long[]{0x0100000000000000L});
@@ -77267,7 +77267,7 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_77_in_rule__Slice__Group__0__Impl15523 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Slice__Group__1__Impl_in_rule__Slice__Group__115554 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004000L});
     public static final BitSet FOLLOW_rule__Slice__Group__2_in_rule__Slice__Group__115557 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Slice__SlicedLanguageAssignment_1_in_rule__Slice__Group__1__Impl15584 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Slice__TargetLanguageAssignment_1_in_rule__Slice__Group__1__Impl15584 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Slice__Group__2__Impl_in_rule__Slice__Group__215614 = new BitSet(new long[]{0x0000000000000000L,0x0000000000008000L});
     public static final BitSet FOLLOW_rule__Slice__Group__3_in_rule__Slice__Group__215617 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_78_in_rule__Slice__Group__2__Impl15645 = new BitSet(new long[]{0x0000000000000002L});
@@ -78442,13 +78442,13 @@ public class InternalMelangeParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_RULE_STRING_in_rule__Import__GenmodelUrisAssignment_2_1_045178 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_STRING_in_rule__Import__GenmodelUrisAssignment_2_1_1_145209 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePackageMapping_in_rule__Import__MappingRulesAssignment_3_245240 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__Merge__MergedLanguageAssignment_145275 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__Merge__TargetLanguageAssignment_145275 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePackageMapping_in_rule__Merge__MappingRulesAssignment_2_245310 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__Slice__SlicedLanguageAssignment_145345 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__Slice__TargetLanguageAssignment_145345 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_STRING_in_rule__Slice__RootsAssignment_445380 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_STRING_in_rule__Slice__RootsAssignment_5_145411 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePackageMapping_in_rule__Slice__MappingRulesAssignment_7_245442 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__Inherit__SuperLanguageAssignment45477 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__Inherit__TargetLanguageAssignment45477 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__AspectTypeRef__AspectTypeRefAssignment_145512 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQualifiedNameWithWildcard_in_rule__AspectWildcard__AspectWildcardImportAssignment_145543 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleFeatureCallID_in_rule__XAssignment__FeatureAssignment_0_145578 = new BitSet(new long[]{0x0000000000000002L});

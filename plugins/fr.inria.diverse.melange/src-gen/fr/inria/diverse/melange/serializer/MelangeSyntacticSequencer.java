@@ -158,7 +158,7 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ('and-rename' '{' '}')?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     mergedLanguage=[Language|QualifiedName] (ambiguity) (rule end)
+	 *     targetLanguage=[Language|QualifiedName] (ambiguity) (rule end)
 	 */
 	protected void emit_Merge___AndRenameKeyword_2_0_LeftCurlyBracketKeyword_2_1_RightCurlyBracketKeyword_2_3__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

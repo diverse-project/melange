@@ -45,7 +45,7 @@ class TransitiveAspectTest
 		assertError(lang.semantics.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING,
-					"Aspect \'LangAspect\' has a reference \'addedReference\' typed ReferencesTest but in \'SuperLang\' it is typed AttributesTest"
+					"Aspect \'fr.inria.diverse.melange.tests.aspects.exhaustive.LangAspect\' has a reference \'addedReference\' typed ReferencesTest but in \'SuperLang\' it is typed AttributesTest"
 		)
 	}
 	
@@ -77,7 +77,7 @@ class TransitiveAspectTest
 		assertError(subLang.semantics.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING,
-					"Aspect \'SubOtherAspect\' has a reference \'addedReference\' typed GenericTest but in \'OtherLang\' it is typed AbstractTest"
+					"Aspect \'fr.inria.diverse.melange.tests.aspects.exhaustive.SubOtherAspect\' has a reference \'addedReference\' typed GenericTest but in \'OtherLang\' it is typed AbstractTest"
 		)
 	}
 	
@@ -87,12 +87,12 @@ class TransitiveAspectTest
 		assertNotNull(operationTest_MergeLang.EReferences.exists[name == "addedReference"])
 		assertEquals(referencesTest_MergeLang, operationTest_MergeLang.EReferences.findFirst[name == "addedReference"].EType)
 		
-		assertError((mergeLang.operators.get(0) as Merge).mergedLanguage,
+		assertError((mergeLang.operators.get(0) as Merge).targetLanguage,
 					MelangePackage.eINSTANCE.metamodel,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'Lang\' has errors in its definition"
 		)
-		assertError((mergeLang.operators.get(1) as Merge).mergedLanguage,
+		assertError((mergeLang.operators.get(1) as Merge).targetLanguage,
 					MelangePackage.eINSTANCE.metamodel,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'SubOtherLang\' has errors in its definition"
@@ -105,12 +105,12 @@ class TransitiveAspectTest
 		assertNotNull(operationTest_DoubleMergeLang)
 		assertNotNull(multipleSuperTest_DoubleMergeLang)
 		
-		assertError((doubleMergeLang.operators.get(0) as Merge).mergedLanguage,
+		assertError((doubleMergeLang.operators.get(0) as Merge).targetLanguage,
 					MelangePackage.eINSTANCE.metamodel,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'Lang\' has errors in its definition"
 		)
-		assertError((doubleMergeLang.operators.get(1) as Merge).mergedLanguage,
+		assertError((doubleMergeLang.operators.get(1) as Merge).targetLanguage,
 					MelangePackage.eINSTANCE.metamodel,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'SubLang\' has errors in its definition"
@@ -122,12 +122,12 @@ class TransitiveAspectTest
 		assertNotNull(operationTest_DoubleSliceLang)
 		assertNotNull(multipleSuperTest_DoubleSliceLang)
 		
-		assertError((doubleSliceLang.operators.get(0) as Slice).slicedLanguage,
+		assertError((doubleSliceLang.operators.get(0) as Slice).targetLanguage,
 					MelangePackage.eINSTANCE.metamodel,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'Lang\' has errors in its definition"
 		)
-		assertError((doubleSliceLang.operators.get(1) as Slice).slicedLanguage,
+		assertError((doubleSliceLang.operators.get(1) as Slice).targetLanguage,
 					MelangePackage.eINSTANCE.metamodel,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'SubLang\' has errors in its definition"
@@ -139,12 +139,12 @@ class TransitiveAspectTest
 		assertNotNull(operationTest_MergeSliceLang)
 		assertNotNull(multipleSuperTest_MergeSliceLang)
 		
-		assertError((mergeSliceLang.operators.get(0) as Merge).mergedLanguage,
+		assertError((mergeSliceLang.operators.get(0) as Merge).targetLanguage,
 					MelangePackage.eINSTANCE.metamodel,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'Lang\' has errors in its definition"
 		)
-		assertError((mergeSliceLang.operators.get(1) as Slice).slicedLanguage,
+		assertError((mergeSliceLang.operators.get(1) as Slice).targetLanguage,
 					MelangePackage.eINSTANCE.metamodel,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'SubLang\' has errors in its definition"
@@ -158,12 +158,12 @@ class TransitiveAspectTest
 		assertNotNull(operationTest_SliceMergeLang)
 		assertNotNull(multipleSuperTest_SliceMergeLang)
 		
-		assertError((sliceMergeLang.operators.get(0) as Slice).slicedLanguage,
+		assertError((sliceMergeLang.operators.get(0) as Slice).targetLanguage,
 					MelangePackage.eINSTANCE.metamodel,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'Lang\' has errors in its definition"
 		)
-		assertError((sliceMergeLang.operators.get(1) as Merge).mergedLanguage,
+		assertError((sliceMergeLang.operators.get(1) as Merge).targetLanguage,
 					MelangePackage.eINSTANCE.metamodel,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'SubLang\' has errors in its definition"
@@ -175,7 +175,7 @@ class TransitiveAspectTest
 		assertNotNull(operationTest_MergeOverrideLang)
 		assertNotNull(referencesTest_MergeOverrideLang)
 		
-		assertError((mergeOverrideLang.operators.get(1) as Merge).mergedLanguage,
+		assertError((mergeOverrideLang.operators.get(1) as Merge).targetLanguage,
 					MelangePackage.eINSTANCE.metamodel,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'Lang\' has errors in its definition"
@@ -192,7 +192,7 @@ class TransitiveAspectTest
 		assertNotNull(operationTest_SliceOverrideLang)
 		assertNotNull(referencesTest_SliceOverrideLang)
 		
-		assertError((sliceOverrideLang.operators.get(1) as Slice).slicedLanguage,
+		assertError((sliceOverrideLang.operators.get(1) as Slice).targetLanguage,
 					MelangePackage.eINSTANCE.metamodel,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'Lang\' has errors in its definition"
@@ -224,7 +224,7 @@ class TransitiveAspectTest
 		assertError(aspectedLang.semantics.get(0),
 					MelangePackage.eINSTANCE.aspect,
 					MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING,
-					"Aspect \'LangAspect\' has a reference \'addedReference\' typed ReferencesTest but in \'SuperLang\' it is typed AttributesTest"
+					"Aspect \'fr.inria.diverse.melange.tests.aspects.exhaustive.LangAspect\' has a reference \'addedReference\' typed ReferencesTest but in \'SuperLang\' it is typed AttributesTest"
 		)
 	}
 	

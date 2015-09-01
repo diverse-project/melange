@@ -128,7 +128,7 @@ class MelangeValidator extends AbstractMelangeValidator
 	@Check
 	def void checkEcoreIsSet(Language l) {
 		if (l.operators.filter(Import).filter[ecoreUri !== null].empty
-			&& l.operators.filter(Inheritance).forall[superLanguage?.syntax.ecoreUri === null]
+			&& l.operators.filter(Inheritance).forall[targetLanguage?.syntax.ecoreUri === null]
 			&& l.operators.empty
 			&& l.syntax?.ecoreUri === null
 		)
@@ -219,7 +219,7 @@ class MelangeValidator extends AbstractMelangeValidator
 		if (l.allSuperLanguages.exists[ll | ll.allSuperLanguages.contains(l)])
 			error(
 				"Cannot inherit from self",
-				MelangePackage.Literals.INHERITANCE__SUPER_LANGUAGE,
+				MelangePackage.Literals.LANGUAGE_OPERATOR__TARGET_LANGUAGE,
 				MelangeValidationConstants.METAMODEL_SELF_INHERITANCE
 			)
 	}
@@ -279,7 +279,7 @@ class MelangeValidator extends AbstractMelangeValidator
 
 	@Check
 	def void checkSliceCriteria(Slice s) {
-		val invalidRoots = s.roots.filter[clsName | s.slicedLanguage.syntax.findClassifier(clsName) === null]
+		val invalidRoots = s.roots.filter[clsName | s.targetLanguage.syntax.findClassifier(clsName) === null]
 		val invalidRootsSize = invalidRoots.size
 
 		if (invalidRootsSize > 0)
@@ -428,13 +428,13 @@ class MelangeValidator extends AbstractMelangeValidator
 	 */
 	private def Language getLanguage(Operator operator){
 		if(operator instanceof Inheritance){
-			return (operator as Inheritance).superLanguage
+			return (operator as Inheritance).targetLanguage
 		}
 		else if(operator instanceof Merge){
-			return (operator as Merge).mergedLanguage
+			return (operator as Merge).targetLanguage
 		}
 		else if(operator instanceof Slice){
-			return (operator as Slice).slicedLanguage
+			return (operator as Slice).targetLanguage
 		}
 		return null
 	}
@@ -449,9 +449,9 @@ class MelangeValidator extends AbstractMelangeValidator
 	 */
 	private def String getSource(Operator operator){
 		switch operator{
-			Inheritance : (operator as Inheritance).superLanguage.name
-			Merge       : operator.mergedLanguage.name
-			Slice       : operator.slicedLanguage.name
+			Inheritance : (operator as Inheritance).targetLanguage.name
+			Merge       : operator.targetLanguage.name
+			Slice       : operator.targetLanguage.name
 			Weave       : operator.aspectTypeRef.qualifiedName
 			Import      : operator.ecoreUri
 			default     : "<Unknown source>"
@@ -482,9 +482,9 @@ class MelangeValidator extends AbstractMelangeValidator
 	 */
 	private def List<EClass> getAllClasses(Operator operator){
 		switch operator{
-			Inheritance : operator.superLanguage.syntax.allClasses.toList
-			Merge       : operator.mergedLanguage.syntax.allClasses.toList
-			Slice       : operator.slicedLanguage.syntax.allClasses.toList //FIXME: Slice result may be smaller than the ref Language
+			Inheritance : operator.targetLanguage.syntax.allClasses.toList
+			Merge       : operator.targetLanguage.syntax.allClasses.toList
+			Slice       : operator.targetLanguage.syntax.allClasses.toList //FIXME: Slice result may be smaller than the ref Language
 			Weave       : operator.owningLanguage.semantics.findFirst[aspectTypeRef.qualifiedName == operator.aspectTypeRef.qualifiedName]
 			               ?.ecoreFragment.getAllClasses
 			Import      : modelUtils.loadPkg(operator.ecoreUri).getAllClasses
