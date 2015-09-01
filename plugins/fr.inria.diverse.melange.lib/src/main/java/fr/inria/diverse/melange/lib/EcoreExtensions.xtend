@@ -379,13 +379,18 @@ class EcoreExtensions
 	/**
 	 * Replaces a datatype with a new EClass and update the pointing references
 	 */
-	def void replaceDataTypeWithEClass(EDataType dt) {
+	def void replaceDataTypeWithEClass(EPackage pkg, EDataType dt) {
 		val dtName = dt.name
+		val find = pkg.findClass(dtName)
 
-		val replacement = EcoreFactory.eINSTANCE.createEClass => [
-			name = dtName
-		]
-		EcoreUtil.UsageCrossReferencer::find(dt, dt.eResource).forEach[setting |
+		val replacement =
+			if (find !== null)
+				find
+			else
+				EcoreFactory.eINSTANCE.createEClass => [
+					name = dtName
+				]
+		EcoreUtil.UsageCrossReferencer::find(dt, pkg).forEach[setting |
 			val attr = setting.EObject
 			if (attr instanceof EAttribute) {
 				val featureReplacement = EcoreFactory.eINSTANCE.createEReference => [ref |
@@ -397,6 +402,10 @@ class EcoreExtensions
 				EcoreUtil::replace(attr, featureReplacement)
 			}
 		]
-		EcoreUtil::replace(dt, replacement)
+
+		if (find !== null)
+			EcoreUtil::delete(dt)
+		else
+			EcoreUtil::replace(dt, replacement)
 	}
 }
