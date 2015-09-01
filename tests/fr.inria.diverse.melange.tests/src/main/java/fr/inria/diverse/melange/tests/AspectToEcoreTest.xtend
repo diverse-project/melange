@@ -1,37 +1,26 @@
 package fr.inria.diverse.melange.tests
 
 import com.google.inject.Inject
-
-import fr.inria.diverse.melange.tools.xtext.testing.XtextTest
-
 import fr.inria.diverse.melange.ast.ASTHelper
-
+import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
-
+import fr.inria.diverse.melange.tests.common.MelangeTestHelper
 import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
-
+import fr.inria.diverse.melange.tools.xtext.testing.XtextTest
 import org.eclipse.emf.common.util.URI
-
 import org.eclipse.emf.compare.EMFCompare
 import org.eclipse.emf.compare.Match
-
 import org.eclipse.emf.compare.diff.DefaultDiffEngine
 import org.eclipse.emf.compare.diff.FeatureFilter
-
 import org.eclipse.emf.compare.scope.DefaultComparisonScope
-
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.EcorePackage
-
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
-
 import org.junit.Test
-
 import org.junit.runner.RunWith
 
 import static org.junit.Assert.*
@@ -42,6 +31,8 @@ import static org.junit.Assert.*
 class AspectToEcoreTest
 {
 	@Inject extension ASTHelper
+	@Inject extension ModelingElementExtensions
+	@Inject extension MelangeTestHelper
 
 	@Test
 	def void testSimpleAttributes() {
@@ -105,6 +96,23 @@ class AspectToEcoreTest
 		assertNotNull(pkg)
 
 		assertMatch(pkg, "NoAnnotation.ecore")
+	}
+
+	@Test
+	def void testResultingPkg() {
+		val testPkg = root.languages.head.syntax.pkgs.head
+
+		assertNotNull(testPkg)
+		assertIsValid(testPkg)
+	}
+
+	@Test
+	def void testDependencyBetweenRuntimeConcepts() {
+		val testPkg = root.languages.get(1).syntax.pkgs.head
+
+		assertNotNull(testPkg)
+		assertIsValid(testPkg)
+		assertMatch(testPkg, "DependencyBetweenRuntimeConcepts.ecore")
 	}
 
 	private def void assertMatch(EPackage pkg, String refEcore) {

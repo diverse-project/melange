@@ -89,3 +89,14 @@ class NoAnnotation extends NoAnnotationSuper implements NoAnnotationImpl {
 	def void j(String arg1, Transition arg2) {}
 	def List<State> k(List<Transition> arg1) { return null }
 }
+
+/* Dependency between runtime concepts */
+class RuntimeConcept1 {
+	public int foo
+	public State myState
+}
+
+class RuntimeConcept2 {
+	public String bar
+	public List<RuntimeConcept1> myFoos
+}

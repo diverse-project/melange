@@ -14,3 +14,10 @@ language Fsm {
 	with NoAnnotation
 	exactType FsmMT
 }
+
+language DependencyBetweenRuntimeConcepts {
+	syntax "tests-inputs/metamodels/FSM.ecore" withGenmodel "tests-inputs/metamodels/FSM.genmodel"
+	with RuntimeConcept1
+	with RuntimeConcept2
+	exactType DependencyBetweenRuntimeConceptsMT
+}
