@@ -45,7 +45,7 @@ class AspectCopier
 
 	// FIXME: We should first check that aspects are importable (i.e. defined
 	//         on a type group this metamodel is a subtype of)
-	def String copyAspectTo(JvmTypeReference asp, Language l) {
+	def String copyAspectTo(JvmTypeReference asp, String sourceEmfNamespace, Language l) {
 		val task = Stopwatches.forTask("copying aspects in new type group")
 		task.start
 
@@ -58,7 +58,6 @@ class AspectCopier
 		val shader = new DirectoryShader
 		val request = new ShadeRequest
 		val relocators = new ArrayList<Relocator>
-		val sourceEmfNamespace = asp.targetedNamespace
 		val targetEmfNamespace = l.syntax.packageFqn.toQualifiedName.skipLast(1)
 		val sourceAspectNamespace = asp.identifier.toQualifiedName.skipLast(1)
 		val targetAspectNamespace = l.aspectTargetNamespace

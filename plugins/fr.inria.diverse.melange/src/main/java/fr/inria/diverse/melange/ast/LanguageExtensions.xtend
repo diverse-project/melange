@@ -94,7 +94,9 @@ class LanguageExtensions
 
 		val res = newArrayList
 		tmp.forEach[a1 |
-			if (!res.exists[Aspect a2 | a2.aspectTypeRef.identifier == a1.aspectTypeRef.identifier])
+			if (!res.exists[Aspect a2 | a2.aspectTypeRef.identifier == a1.aspectTypeRef.identifier]
+				&& (!a1.hasAspectAnnotation || l.syntax.pkgs.head.allClasses.exists[cls | cls.name == a1.aspectedClass.name])
+			)
 				res += a1
 		]
 		return res.reverse
@@ -307,7 +309,12 @@ class LanguageExtensions
 		.filter[aspectTypeRef.canBeCopiedFor(l.syntax)]
 		.forEach[asp |
 			val typeRefBuilder = builderFactory.create(l.eResource.resourceSet)
-			val newAspectFqn = copier.copyAspectTo(asp.aspectTypeRef, l)
+			val sourceEmfNamespace =
+				if (asp.hasAspectAnnotation)
+					asp.aspectTypeRef.targetedNamespace.toString
+				else
+					(asp.eContainer as Language).syntax.pkgs.head.name
+			val newAspectFqn = copier.copyAspectTo(asp.aspectTypeRef, sourceEmfNamespace, l)
 			res += MelangeFactory.eINSTANCE.createAspect => [
 				aspectTypeRef = typeRefBuilder.typeRef(newAspectFqn)
 			]
