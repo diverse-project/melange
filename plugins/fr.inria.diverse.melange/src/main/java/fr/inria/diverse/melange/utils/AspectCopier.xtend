@@ -16,6 +16,7 @@ import fr.inria.diverse.melange.metamodel.melange.Language
 import java.io.File
 import java.io.IOException
 import java.util.ArrayList
+import java.util.List
 import javax.inject.Inject
 import org.apache.log4j.Logger
 import org.eclipse.core.resources.IFile
@@ -45,7 +46,7 @@ class AspectCopier
 
 	// FIXME: We should first check that aspects are importable (i.e. defined
 	//         on a type group this metamodel is a subtype of)
-	def String copyAspectTo(JvmTypeReference asp, String sourceEmfNamespace, Language l) {
+	def String copyAspectTo(JvmTypeReference asp, List<String> sourceEmfNamespaces, Language l) {
 		val task = Stopwatches.forTask("copying aspects in new type group")
 		task.start
 
@@ -63,9 +64,9 @@ class AspectCopier
 		val targetAspectNamespace = l.aspectTargetNamespace
 		val newFqn = '''«targetAspectNamespace».«asp.simpleName»'''
 		
-		if(sourceEmfNamespace.equals(sourceAspectNamespace)){
-			errorHelper.addError(asp, "Melange cannot correctly handle aspect classes if they use the same package name as the aspectized emf classes, please move the aspect classes in a dedicated package", null)
-		}
+//		if(sourceEmfNamespace.equals(sourceAspectNamespace)){
+//			errorHelper.addError(asp, "Melange cannot correctly handle aspect classes if they use the same package name as the aspectized emf classes, please move the aspect classes in a dedicated package", null)
+//		}
 
 		val projectPathTmp = new StringBuilder
 		val projectNameTmp = new StringBuilder
@@ -119,7 +120,9 @@ class AspectCopier
 		}
 
 		relocators += new SimpleRelocator(sourceAspectNamespace.toString, targetAspectNamespace.toString, null, #[])
-		relocators += new SimpleRelocator(sourceEmfNamespace.toString, targetEmfNamespace.toString, null, #[])
+		sourceEmfNamespaces.forEach[sourceEmfNamespace |
+			relocators += new SimpleRelocator(sourceEmfNamespace.toString, targetEmfNamespace.toString, null, #[])
+		]
 
 		val aspectFqn = asp.identifier
 		val aspectTargetClass = asp.aspectAnnotationValue
@@ -159,7 +162,7 @@ class AspectCopier
 //			if (!fileToBeFound.exists) {
 			shader.shade(request)
 			
-			log.debug('''Copying META-INF aspect_properties «asp.identifier» to «l.name» as «»''')	
+//			log.debug('''Copying META-INF aspect_properties «asp.identifier» to «l.name» as «»''')
 			val sourceMetaInfFolder = projectPathTmp.toString + "/META-INF/"
 			val sourceMetaInfFile = new File(sourceMetaInfFolder)	
 			val targetMetaInfFile = new File(findTargetProject.locationURI.path + "/META-INF/")

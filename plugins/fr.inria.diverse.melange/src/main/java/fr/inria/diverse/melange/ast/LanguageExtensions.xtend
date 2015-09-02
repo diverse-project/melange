@@ -29,6 +29,7 @@ class LanguageExtensions
 	@Inject extension MetamodelExtensions
 	@Inject extension AspectExtensions
 	@Inject extension ModelTypeExtensions
+	@Inject extension NamingHelper
 	@Inject extension EcoreExtensions
 	@Inject extension IQualifiedNameConverter
 	@Inject extension EclipseProjectHelper
@@ -309,18 +310,33 @@ class LanguageExtensions
 		.filter[aspectTypeRef.canBeCopiedFor(l.syntax)]
 		.forEach[asp |
 			val typeRefBuilder = builderFactory.create(l.eResource.resourceSet)
-			val sourceEmfNamespace =
-				if (asp.hasAspectAnnotation)
-					asp.aspectTypeRef.targetedNamespace.toString
-				else
-					(asp.eContainer as Language).syntax.pkgs.head.name
-			val newAspectFqn = copier.copyAspectTo(asp.aspectTypeRef, sourceEmfNamespace, l)
+			val targetedPackages = l.collectTargetedPackages
+			val newAspectFqn = copier.copyAspectTo(asp.aspectTypeRef, targetedPackages, l)
 			res += MelangeFactory.eINSTANCE.createAspect => [
 				aspectTypeRef = typeRefBuilder.typeRef(newAspectFqn)
 			]
 		]
 		
 		return res
+	}
+
+	def List<String> collectTargetedPackages(Language l) {
+		val res = newHashSet
+
+		res += l.operators.filter(Inheritance).map[superLanguage.collectTargetedPackages].flatten		
+		res +=
+			l.operators.map[op |
+				if (op instanceof Slice)
+					op.slicedLanguage.collectTargetedPackages
+				else if (op instanceof Merge)
+					op.mergedLanguage.collectTargetedPackages
+				else
+					newArrayList
+			].flatten
+
+		res += l.syntax.pkgs.map[pkg | l.syntax.getGenPackageFor(pkg)].filterNull.map[fqn]
+
+		return res.toList
 	}
 
 	def boolean hasExternalAspects(Language l) {
