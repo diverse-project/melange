@@ -315,6 +315,8 @@ class ControlFlowAspect extends ActivityEdgeAspect {
 
 @Aspect(className=OpaqueAction)
 class OpaqueActionAspect extends ActivityNodeAspect {
+	public List<Expression> expressions
+
 	@OverrideAspectMethod
 	def void execute(Context c) {
 		c.output.executedNodes.add(_self)

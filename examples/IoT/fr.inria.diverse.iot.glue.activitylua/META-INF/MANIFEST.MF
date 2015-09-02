@@ -7,4 +7,6 @@ Export-Package: fr.inria.diverse.iot.glue.activitylua
 Require-Bundle: fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version="3.0.0";visibility:=reexport,
  org.eclipse.xtend.lib;bundle-version="2.6.0";visibility:=private,
  org.xtext.lua,
- org.xtext.activitydiagram.model;bundle-version="0.1.0"
+ org.xtext.activitydiagram.model;bundle-version="0.1.0",
+ org.xtext.activitydiagram.semantics;bundle-version="0.1.0",
+ org.xtext.lua.semantics;bundle-version="1.0.0"

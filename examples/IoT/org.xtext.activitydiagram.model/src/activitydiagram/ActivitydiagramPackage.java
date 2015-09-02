@@ -635,22 +635,13 @@ public interface ActivitydiagramPackage extends EPackage {
 	int OPAQUE_ACTION__RUNNING = ACTION__RUNNING;
 
 	/**
-	 * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPAQUE_ACTION__EXPRESSIONS = ACTION_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Opaque Action</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPAQUE_ACTION_FEATURE_COUNT = ACTION_FEATURE_COUNT + 1;
+	int OPAQUE_ACTION_FEATURE_COUNT = ACTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Opaque Action</em>' class.
@@ -2123,17 +2114,6 @@ public interface ActivitydiagramPackage extends EPackage {
 	EClass getOpaqueAction();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link activitydiagram.OpaqueAction#getExpressions <em>Expressions</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Expressions</em>'.
-	 * @see activitydiagram.OpaqueAction#getExpressions()
-	 * @see #getOpaqueAction()
-	 * @generated
-	 */
-	EReference getOpaqueAction_Expressions();
-
-	/**
 	 * Returns the meta object for class '{@link activitydiagram.NamedElement <em>Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2824,14 +2804,6 @@ public interface ActivitydiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EClass OPAQUE_ACTION = eINSTANCE.getOpaqueAction();
-
-		/**
-		 * The meta object literal for the '<em><b>Expressions</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OPAQUE_ACTION__EXPRESSIONS = eINSTANCE.getOpaqueAction_Expressions();
 
 		/**
 		 * The meta object literal for the '{@link activitydiagram.impl.NamedElementImpl <em>Named Element</em>}' class.

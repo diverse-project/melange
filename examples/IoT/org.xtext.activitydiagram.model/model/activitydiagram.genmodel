@@ -101,9 +101,6 @@
     </genClasses>
     <genClasses>
       <ecoreClass href="activitydiagram.ecore#//OpaqueAction"/>
-      <genFeatures property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="activitydiagram.ecore#//OpaqueAction/expressions"/>
-      </genFeatures>
     </genClasses>
     <genClasses image="false">
       <ecoreClass href="activitydiagram.ecore#//NamedElement"/>
