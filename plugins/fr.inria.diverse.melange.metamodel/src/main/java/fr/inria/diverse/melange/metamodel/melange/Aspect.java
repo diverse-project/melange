@@ -21,6 +21,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Aspect#getAspectedClass <em>Aspected Class</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Aspect#getAspectWildcardImport <em>Aspect Wildcard Import</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Aspect#getEcoreFragment <em>Ecore Fragment</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Aspect#getOwningLanguage <em>Owning Language</em>}</li>
  * </ul>
  *
  * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getAspect()
@@ -131,5 +132,33 @@ public interface Aspect extends EObject {
 	 * @generated
 	 */
 	void setEcoreFragment(EPackage value);
+
+	/**
+	 * Returns the value of the '<em><b>Owning Language</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link fr.inria.diverse.melange.metamodel.melange.Language#getSemantics <em>Semantics</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owning Language</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owning Language</em>' reference.
+	 * @see #setOwningLanguage(Language)
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getAspect_OwningLanguage()
+	 * @see fr.inria.diverse.melange.metamodel.melange.Language#getSemantics
+	 * @model opposite="semantics" required="true"
+	 * @generated
+	 */
+	Language getOwningLanguage();
+
+	/**
+	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.Aspect#getOwningLanguage <em>Owning Language</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Language</em>' reference.
+	 * @see #getOwningLanguage()
+	 * @generated
+	 */
+	void setOwningLanguage(Language value);
 
 } // Aspect

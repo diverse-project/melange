@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.xtext.common.types.JvmTypeReference;
@@ -519,7 +520,7 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 	 */
 	public EList<Aspect> getSemantics() {
 		if (semantics == null) {
-			semantics = new EObjectResolvingEList<Aspect>(Aspect.class, this, MelangePackage.LANGUAGE__SEMANTICS);
+			semantics = new EObjectWithInverseResolvingEList<Aspect>(Aspect.class, this, MelangePackage.LANGUAGE__SEMANTICS, MelangePackage.ASPECT__OWNING_LANGUAGE);
 		}
 		return semantics;
 	}
@@ -545,6 +546,8 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 				return basicSetSyntax((Metamodel)otherEnd, msgs);
 			case MelangePackage.LANGUAGE__MAPPINGS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getMappings()).basicAdd(otherEnd, msgs);
+			case MelangePackage.LANGUAGE__SEMANTICS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSemantics()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -567,6 +570,8 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 				return basicSetXtextSetupRef(null, msgs);
 			case MelangePackage.LANGUAGE__MAPPINGS:
 				return ((InternalEList<?>)getMappings()).basicRemove(otherEnd, msgs);
+			case MelangePackage.LANGUAGE__SEMANTICS:
+				return ((InternalEList<?>)getSemantics()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}

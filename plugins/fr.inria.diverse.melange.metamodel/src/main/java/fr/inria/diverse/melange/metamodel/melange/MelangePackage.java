@@ -426,13 +426,22 @@ public interface MelangePackage extends EPackage {
 	int ASPECT__ECORE_FRAGMENT = 3;
 
 	/**
+	 * The feature id for the '<em><b>Owning Language</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT__OWNING_LANGUAGE = 4;
+
+	/**
 	 * The number of structural features of the '<em>Aspect</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASPECT_FEATURE_COUNT = 4;
+	int ASPECT_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Aspect</em>' class.
@@ -1434,6 +1443,17 @@ public interface MelangePackage extends EPackage {
 	EReference getAspect_EcoreFragment();
 
 	/**
+	 * Returns the meta object for the reference '{@link fr.inria.diverse.melange.metamodel.melange.Aspect#getOwningLanguage <em>Owning Language</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Owning Language</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Aspect#getOwningLanguage()
+	 * @see #getAspect()
+	 * @generated
+	 */
+	EReference getAspect_OwningLanguage();
+
+	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.Inheritance <em>Inheritance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2233,6 +2253,14 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EReference ASPECT__ECORE_FRAGMENT = eINSTANCE.getAspect_EcoreFragment();
+
+		/**
+		 * The meta object literal for the '<em><b>Owning Language</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASPECT__OWNING_LANGUAGE = eINSTANCE.getAspect_OwningLanguage();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.InheritanceImpl <em>Inheritance</em>}' class.

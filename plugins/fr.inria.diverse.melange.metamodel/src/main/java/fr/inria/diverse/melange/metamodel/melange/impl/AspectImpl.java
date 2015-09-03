@@ -3,6 +3,7 @@
 package fr.inria.diverse.melange.metamodel.melange.impl;
 
 import fr.inria.diverse.melange.metamodel.melange.Aspect;
+import fr.inria.diverse.melange.metamodel.melange.Language;
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -29,6 +30,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.AspectImpl#getAspectedClass <em>Aspected Class</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.AspectImpl#getAspectWildcardImport <em>Aspect Wildcard Import</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.AspectImpl#getEcoreFragment <em>Ecore Fragment</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.AspectImpl#getOwningLanguage <em>Owning Language</em>}</li>
  * </ul>
  *
  * @generated
@@ -83,6 +85,16 @@ public class AspectImpl extends MinimalEObjectImpl.Container implements Aspect {
 	 * @ordered
 	 */
 	protected EPackage ecoreFragment;
+
+	/**
+	 * The cached value of the '{@link #getOwningLanguage() <em>Owning Language</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningLanguage()
+	 * @generated
+	 * @ordered
+	 */
+	protected Language owningLanguage;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -253,6 +265,82 @@ public class AspectImpl extends MinimalEObjectImpl.Container implements Aspect {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Language getOwningLanguage() {
+		if (owningLanguage != null && owningLanguage.eIsProxy()) {
+			InternalEObject oldOwningLanguage = (InternalEObject)owningLanguage;
+			owningLanguage = (Language)eResolveProxy(oldOwningLanguage);
+			if (owningLanguage != oldOwningLanguage) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MelangePackage.ASPECT__OWNING_LANGUAGE, oldOwningLanguage, owningLanguage));
+			}
+		}
+		return owningLanguage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Language basicGetOwningLanguage() {
+		return owningLanguage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningLanguage(Language newOwningLanguage, NotificationChain msgs) {
+		Language oldOwningLanguage = owningLanguage;
+		owningLanguage = newOwningLanguage;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MelangePackage.ASPECT__OWNING_LANGUAGE, oldOwningLanguage, newOwningLanguage);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwningLanguage(Language newOwningLanguage) {
+		if (newOwningLanguage != owningLanguage) {
+			NotificationChain msgs = null;
+			if (owningLanguage != null)
+				msgs = ((InternalEObject)owningLanguage).eInverseRemove(this, MelangePackage.LANGUAGE__SEMANTICS, Language.class, msgs);
+			if (newOwningLanguage != null)
+				msgs = ((InternalEObject)newOwningLanguage).eInverseAdd(this, MelangePackage.LANGUAGE__SEMANTICS, Language.class, msgs);
+			msgs = basicSetOwningLanguage(newOwningLanguage, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.ASPECT__OWNING_LANGUAGE, newOwningLanguage, newOwningLanguage));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MelangePackage.ASPECT__OWNING_LANGUAGE:
+				if (owningLanguage != null)
+					msgs = ((InternalEObject)owningLanguage).eInverseRemove(this, MelangePackage.LANGUAGE__SEMANTICS, Language.class, msgs);
+				return basicSetOwningLanguage((Language)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -260,6 +348,8 @@ public class AspectImpl extends MinimalEObjectImpl.Container implements Aspect {
 				return basicSetAspectTypeRef(null, msgs);
 			case MelangePackage.ASPECT__ECORE_FRAGMENT:
 				return basicSetEcoreFragment(null, msgs);
+			case MelangePackage.ASPECT__OWNING_LANGUAGE:
+				return basicSetOwningLanguage(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -281,6 +371,9 @@ public class AspectImpl extends MinimalEObjectImpl.Container implements Aspect {
 				return getAspectWildcardImport();
 			case MelangePackage.ASPECT__ECORE_FRAGMENT:
 				return getEcoreFragment();
+			case MelangePackage.ASPECT__OWNING_LANGUAGE:
+				if (resolve) return getOwningLanguage();
+				return basicGetOwningLanguage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -304,6 +397,9 @@ public class AspectImpl extends MinimalEObjectImpl.Container implements Aspect {
 				return;
 			case MelangePackage.ASPECT__ECORE_FRAGMENT:
 				setEcoreFragment((EPackage)newValue);
+				return;
+			case MelangePackage.ASPECT__OWNING_LANGUAGE:
+				setOwningLanguage((Language)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -329,6 +425,9 @@ public class AspectImpl extends MinimalEObjectImpl.Container implements Aspect {
 			case MelangePackage.ASPECT__ECORE_FRAGMENT:
 				setEcoreFragment((EPackage)null);
 				return;
+			case MelangePackage.ASPECT__OWNING_LANGUAGE:
+				setOwningLanguage((Language)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -349,6 +448,8 @@ public class AspectImpl extends MinimalEObjectImpl.Container implements Aspect {
 				return ASPECT_WILDCARD_IMPORT_EDEFAULT == null ? aspectWildcardImport != null : !ASPECT_WILDCARD_IMPORT_EDEFAULT.equals(aspectWildcardImport);
 			case MelangePackage.ASPECT__ECORE_FRAGMENT:
 				return ecoreFragment != null;
+			case MelangePackage.ASPECT__OWNING_LANGUAGE:
+				return owningLanguage != null;
 		}
 		return super.eIsSet(featureID);
 	}

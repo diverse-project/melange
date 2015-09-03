@@ -295,6 +295,7 @@ public interface Language extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Semantics</b></em>' reference list.
 	 * The list contents are of type {@link fr.inria.diverse.melange.metamodel.melange.Aspect}.
+	 * It is bidirectional and its opposite is '{@link fr.inria.diverse.melange.metamodel.melange.Aspect#getOwningLanguage <em>Owning Language</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Semantics</em>' reference list isn't clear,
@@ -303,7 +304,8 @@ public interface Language extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Semantics</em>' reference list.
 	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getLanguage_Semantics()
-	 * @model
+	 * @see fr.inria.diverse.melange.metamodel.melange.Aspect#getOwningLanguage
+	 * @model opposite="owningLanguage"
 	 * @generated
 	 */
 	EList<Aspect> getSemantics();
