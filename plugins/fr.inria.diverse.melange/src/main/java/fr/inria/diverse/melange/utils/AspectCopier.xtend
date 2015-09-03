@@ -67,7 +67,7 @@ class AspectCopier
 		/*
 		 * Get namespaces 
 		 */
-		val sourceEmfNamespace = asp.targetedNamespace
+		val sourceEmfNamespace = asp.owningLanguage.syntax.packageFqn.toQualifiedName.skipLast(1).toString //prefixed root package
 		val targetEmfNamespace = l.syntax.packageFqn.toQualifiedName.skipLast(1)
 		val sourceAspectNamespace = asp.aspectTypeRef.identifier.toQualifiedName.skipLast(1)
 		val targetAspectNamespace = getAspectTargetNamespace(sourceAspectNamespace, l)

@@ -31,6 +31,7 @@ class LanguageExtensions
 	@Inject extension ModelTypeExtensions
 	@Inject extension IQualifiedNameConverter
 	@Inject extension EclipseProjectHelper
+	@Inject extension NamingHelper
 	@Inject ModelTypeAlgebra algebra
 	@Inject AspectCopier copier
 	@Inject AspectRenamer renamer
@@ -249,6 +250,7 @@ class LanguageExtensions
 	def List<Aspect> createExternalAspects(Language l) {
 		val res = newArrayList
 		val classesAlreadyWeaved = newArrayList
+		val newRootName = l.syntax.packageFqn.toQualifiedName.skipLast(1).toString
 		
 		//Copy sem
 		res += simpleCopyAsp(l,l.semantics,classesAlreadyWeaved,null)
@@ -268,7 +270,7 @@ class LanguageExtensions
 				if(aspects != null){
 					if(renamingRules != null){ 
 						//Copy with Renaming
-						val rulesManager = new RenamingRuleManager(renamingRules, aspects, aspectExtension)
+						val rulesManager = new RenamingRuleManager(renamingRules, aspects, newRootName, aspectExtension)
 						res += simpleCopyAsp(l,aspects,classesAlreadyWeaved,rulesManager)
 						renamer.processRenaming(aspects,l,rulesManager)
 					}
