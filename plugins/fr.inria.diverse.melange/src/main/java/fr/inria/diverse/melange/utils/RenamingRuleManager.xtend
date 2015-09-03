@@ -150,7 +150,7 @@ class RenamingRuleManager{
 	 */
 	def String applyRootRenaming(String qualifiedName){
 		return 
-			if(qualifiedName.indexOf(originalRootName) != -1){
+			if(originalRootName != null && qualifiedName.indexOf(originalRootName) != -1){
 				//prefix.originalRootName.postfix
 				val postfix = qualifiedName.substring(qualifiedName.indexOf(originalRootName) + originalRootName.length)
 				newRootName+postfix
@@ -161,12 +161,14 @@ class RenamingRuleManager{
 	}
 	
 	def void storeRootName(List<PackageBinding> renamingRules, String rootName){
-		val onePack = renamingRules.head.from
-		originalRootName = if(onePack.indexOf(".") != -1){
-			onePack.substring(0,onePack.indexOf("."))
-		}
-		else{
-			onePack
+		val onePack = renamingRules.head?.from
+		if(onePack != null){
+			originalRootName = if(onePack.indexOf(".") != -1){
+				onePack.substring(0,onePack.indexOf("."))
+			}
+			else{
+				onePack
+			}
 		}
 		newRootName = rootName
 	}
