@@ -78,7 +78,7 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 		// Pre-inferring processors
 		val root = resource.contents.head as ModelTypingSpace
 
-		if (root !== null)
+		if (root !== null) {
 			processors.forEach[p |
 				val pTask = Stopwatches.forTask(p.class.simpleName)
 				pTask.start
@@ -86,16 +86,17 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 				pTask.stop
 			]
 
-		// Setting context for non-inferrer helper classes
-		builder.setContext(resource.resourceSet)
-		helper.setContext(resource.resourceSet)
+			// Setting context for non-inferrer helper classes
+			builder.setContext(resource.resourceSet)
+			helper.setContext(resource.resourceSet)
 
-		task.stop
-		// Avoid computing al the derived state when unnecessary
-		if (root.containsTransformations)
-			super.installDerivedState(resource, preLinkingPhase)
-		else
-			super.installDerivedState(resource, true)
+			task.stop
+			// Avoid computing al the derived state when unnecessary
+			if (root.containsTransformations)
+				super.installDerivedState(resource, preLinkingPhase)
+			else
+				super.installDerivedState(resource, true)
+		}
 	}
 
 	def boolean containsTransformations(ModelTypingSpace root) {

@@ -7,6 +7,7 @@ import java.util.HashMap
 import java.util.Map
 import java.util.Scanner
 import java.util.Stack
+import org.eclipse.xtend.lib.annotations.Accessors
 import org.xtext.lua.lua.Block
 import org.xtext.lua.lua.Chunk
 import org.xtext.lua.lua.Expression
@@ -73,9 +74,13 @@ import static extension org.xtext.lua.semantics.LastStatementAspect.*
 import static extension org.xtext.lua.semantics.StatementAspect.*
 
 class Environment {
+	@Accessors
 	Environment parent
+	@Accessors
 	Stack<Object> values = new Stack<Object>
+	@Accessors
 	Map<String, Object> variables = new HashMap<String, Object>
+	@Accessors
 	Map<String, Function> functions = new HashMap<String, Function>
 
 	def Environment getParent() {

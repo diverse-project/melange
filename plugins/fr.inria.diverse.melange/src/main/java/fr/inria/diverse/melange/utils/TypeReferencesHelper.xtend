@@ -2,6 +2,7 @@ package fr.inria.diverse.melange.utils
 
 import com.google.inject.Inject
 import java.util.Collection
+import java.util.List
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.common.types.JvmTypeParameterDeclarator
 import org.eclipse.xtext.common.types.JvmTypeReference
@@ -43,6 +44,17 @@ class TypeReferencesHelper
 		return
 			if (ref !== null)
 				ref.isSubtypeOf(Collection) && ref.type instanceof JvmTypeParameterDeclarator
+			else false
+	}
+
+	def boolean isList(JvmTypeReference ref) {
+		return
+			if (ref !== null)
+				ref.isSubtypeOf(List)
+				&& #[
+					"java.util.List",
+					"java.util.ArrayList",
+					"org.eclipse.emf.common.util.EList"].contains(ref.type.qualifiedName)
 			else false
 	}
 }

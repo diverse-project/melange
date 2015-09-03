@@ -101,24 +101,15 @@ language EcoreLang {
 	exactType EcoreMT
 }
 
-language ActivitySlice {
+language ActivityEcoreLuaLang {
 	slice ActivityLang on ["ControlFlow", "OpaqueAction", "ActivityFinalNode", "InitialNode",
 			"ForkNode", "JoinNode", "MergeNode", "DecisionNode", "IntegerVariable",
-			"BooleanVariable", "BooleanValue", "IntegerValue", "InputValue", "Input"]
-	exactType ActivitySliceMT
-}
-
-language ActivityEcoreLang {
-	merge ActivitySlice
-//	merge ActivityLang
+			"BooleanVariable", "BooleanValue", "IntegerValue", "InputValue", "Input",
+			"ControlToken", "ForkedToken"]
 	merge EcoreLang and-rename { "ecore" to "activitydiagram" {} }
-	with fr.inria.diverse.iot.glue.activityecore.EOperationAspect
-	exactType ActivityEcoreLangMT
-}
-
-language ActivityEcoreLuaLang {
-	merge ActivityEcoreLang
 	merge LuaLang and-rename { "lua" to "activitydiagram" {} }
-	with fr.inria.diverse.iot.glue.activitylua.OpaqueActionAspectOverride
+	with fr.inria.diverse.iot.glue.activityecore.EOperationAspect
+	with fr.inria.diverse.iot.glue.activitylua.OpaqueActionAspect
+	with fr.inria.diverse.iot.glue.activitylua.ExpressionAspect
 	exactType ActivityEcoreLuaLangMT
 }

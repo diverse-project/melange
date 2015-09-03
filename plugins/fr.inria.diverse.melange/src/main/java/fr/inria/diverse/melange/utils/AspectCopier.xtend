@@ -123,6 +123,21 @@ class AspectCopier
 		sourceEmfNamespaces.forEach[sourceEmfNamespace |
 			relocators += new SimpleRelocator(sourceEmfNamespace.toString, targetEmfNamespace.toString, null, #[])
 		]
+		relocators += new SimpleRelocator("new Context", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.ActivitydiagramFactory.eINSTANCE.createContext", null, #[])
+		relocators += new SimpleRelocator("new Trace", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.ActivitydiagramFactory.eINSTANCE.createTrace", null, #[])
+		relocators += new SimpleRelocator("new Offer", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.ActivitydiagramFactory.eINSTANCE.createOffer", null, #[])
+		relocators += new SimpleRelocator("new Token", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.ActivitydiagramFactory.eINSTANCE.createToken", null, #[])
+		relocators += new SimpleRelocator("new ControlToken", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.ActivitydiagramFactory.eINSTANCE.createControlToken", null, #[])
+		relocators += new SimpleRelocator("new ForkedToken", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.ActivitydiagramFactory.eINSTANCE.createForkedToken", null, #[])
+		relocators += new SimpleRelocator("new Environment", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.ActivitydiagramFactory.eINSTANCE.createEnvironment", null, #[])
+		
+		relocators += new SimpleRelocator("org.xtext.activitydiagram.semantics.Context", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.Context", null, #[])
+		relocators += new SimpleRelocator("org.xtext.activitydiagram.semantics.Trace", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.Trace", null, #[])
+		relocators += new SimpleRelocator("org.xtext.activitydiagram.semantics.Offer", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.Offer", null, #[])
+		relocators += new SimpleRelocator("org.xtext.activitydiagram.semantics.Token", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.Token", null, #[])
+		relocators += new SimpleRelocator("org.xtext.activitydiagram.semantics.ControlToken", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.ControlToken", null, #[])
+		relocators += new SimpleRelocator("org.xtext.activitydiagram.semantics.ForkedToken", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.ForkedToken", null, #[])
+		relocators += new SimpleRelocator("org.xtext.lua.semantics.Environment", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.Environment", null, #[])
 
 		val aspectFqn = asp.identifier
 		val aspectTargetClass = asp.aspectAnnotationValue

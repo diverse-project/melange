@@ -307,14 +307,17 @@ class LanguageExtensions
 		val res = newArrayList
 
 		l.allSemantics
+		.reverse
 		.filter[aspectTypeRef.canBeCopiedFor(l.syntax)]
 		.forEach[asp |
 			val typeRefBuilder = builderFactory.create(l.eResource.resourceSet)
 			val targetedPackages = l.collectTargetedPackages
+			if (asp.hasAspectAnnotation) {
 			val newAspectFqn = copier.copyAspectTo(asp.aspectTypeRef, targetedPackages, l)
-			res += MelangeFactory.eINSTANCE.createAspect => [
-				aspectTypeRef = typeRefBuilder.typeRef(newAspectFqn)
-			]
+				res += MelangeFactory.eINSTANCE.createAspect => [
+					aspectTypeRef = typeRefBuilder.typeRef(newAspectFqn)
+				]
+			}
 		]
 		
 		return res

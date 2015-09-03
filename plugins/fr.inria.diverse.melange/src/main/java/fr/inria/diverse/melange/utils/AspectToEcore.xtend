@@ -59,9 +59,9 @@ class AspectToEcore
 		.filter[visibility == JvmVisibility.PUBLIC]
 		.forEach[field |
 			val fieldType = field.type
-			val upperB = if (fieldType.isCollection) -1 else 1
+			val upperB = if (fieldType.isList) -1 else 1
 			val realType =
-				if (fieldType.isCollection)
+				if (fieldType.isList)
 					(fieldType as JvmParameterizedTypeReference).arguments.head.type
 				else
 					fieldType.type
@@ -104,9 +104,9 @@ class AspectToEcore
 
 			// If we can't infer a feature name, it's obviously really an operation
 			if (featureName === null) {
-				val upperB = if (op.returnType.isCollection) -1 else 1
+				val upperB = if (op.returnType.isList) -1 else 1
 				val realType =
-					if (op.returnType.isCollection)
+					if (op.returnType.isList)
 						(op.returnType as JvmParameterizedTypeReference).arguments.head.type
 					else
 						op.returnType.type
@@ -120,9 +120,9 @@ class AspectToEcore
 							// only if @Aspect annotation present
 							if (!hasAnnotation || i > 0) {
 								val pType = p.parameterType.type
-								val upperBP = if (p.parameterType.isCollection) -1 else 1
+								val upperBP = if (p.parameterType.isList) -1 else 1
 								val realTypeP =
-									if (p.parameterType.isCollection)
+									if (p.parameterType.isList)
 										(p.parameterType as JvmParameterizedTypeReference).arguments.head.type
 									else
 										pType
@@ -163,9 +163,9 @@ class AspectToEcore
 						op.returnType
 					else
 						op.parameters.get(1).parameterType
-				val upperB = if (op.returnType.isCollection) -1 else 1
+				val upperB = if (op.returnType.isList) -1 else 1
 				val realType =
-					if (op.returnType.isCollection)
+					if (op.returnType.isList)
 						(retType as JvmParameterizedTypeReference).arguments.head.type
 					else
 						retType.type
