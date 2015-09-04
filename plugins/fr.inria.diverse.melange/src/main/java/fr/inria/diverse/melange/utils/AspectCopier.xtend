@@ -5,48 +5,46 @@ import fr.inria.diverse.commons.asm.shade.ShadeRequest
 import fr.inria.diverse.commons.asm.shade.filter.Filter
 import fr.inria.diverse.commons.asm.shade.relocation.Relocator
 import fr.inria.diverse.commons.asm.shade.relocation.SimpleRelocator
-import fr.inria.diverse.commons.asm.shade.resource.K3AspectPropertiesTransformer
-import fr.inria.diverse.commons.asm.shade.resource.ResourceTransformer
 import fr.inria.diverse.melange.ast.AspectExtensions
-import fr.inria.diverse.melange.ast.LanguageExtensions
-import fr.inria.diverse.melange.ast.ModelingElementExtensions
-import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
 import fr.inria.diverse.melange.metamodel.melange.Language
+import fr.inria.diverse.melange.utils.AspectCopier.AspectCopierRequest
 import java.io.File
-import java.io.IOException
-import java.util.ArrayList
-import java.util.List
+import java.util.Set
 import javax.inject.Inject
 import org.apache.log4j.Logger
 import org.eclipse.core.resources.IFile
 import org.eclipse.core.resources.IResource
 import org.eclipse.core.resources.IResourceVisitor
 import org.eclipse.core.runtime.CoreException
-import org.eclipse.emf.common.util.URI
+import org.eclipse.xtend.lib.annotations.Data
 import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.util.internal.Stopwatches
 
 import static fr.inria.diverse.melange.utils.AspectCopier.*
 
-/**
- * Baaah, full of sh*t
- */
 class AspectCopier
 {
 	@Inject extension AspectExtensions
-	@Inject extension ModelingElementExtensions
-	@Inject extension LanguageExtensions
 	@Inject extension IQualifiedNameConverter
-	@Inject extension NamingHelper
 	@Inject EclipseProjectHelper eclipseHelper
-	@Inject ErrorHelper errorHelper
 	static Logger log = Logger.getLogger(AspectCopier)
 
-	// FIXME: We should first check that aspects are importable (i.e. defined
-	//         on a type group this metamodel is a subtype of)
-	def String copyAspectTo(JvmTypeReference asp, List<String> sourceEmfNamespaces, Language l) {
+	@Data
+	static class AspectCopierRequest {
+		Set<JvmTypeReference> aspectRefs
+		Set<String> sourceEmfNamespaces
+		String targetEmfNamespace
+		String targetAspectNamespace
+		String targetProjectName
+	}
+
+	/**
+	 * Copy all aspects following the rules of {@link request}
+	 * and returns the set of newly-created aspects' qualified names  
+	 */
+	def Set<String> copy(Language l, AspectCopierRequest request) {
 		val task = Stopwatches.forTask("copying aspects in new type group")
 		task.start
 
@@ -56,152 +54,88 @@ class AspectCopier
 			return null
 
 		val ws = project.workspace.root
-		val shader = new DirectoryShader
-		val request = new ShadeRequest
-		val relocators = new ArrayList<Relocator>
-		val targetEmfNamespace = l.syntax.packageFqn.toQualifiedName.skipLast(1)
-		val sourceAspectNamespace = asp.identifier.toQualifiedName.skipLast(1)
-		val targetAspectNamespace = l.aspectTargetNamespace
-		val newFqn = '''«targetAspectNamespace».«asp.simpleName»'''
-		
-//		if(sourceEmfNamespace.equals(sourceAspectNamespace)){
-//			errorHelper.addError(asp, "Melange cannot correctly handle aspect classes if they use the same package name as the aspectized emf classes, please move the aspect classes in a dedicated package", null)
-//		}
+		val targetProject = ws.getProject(request.targetProjectName)
 
-		val projectPathTmp = new StringBuilder
-		val projectNameTmp = new StringBuilder
+		if (targetProject === null)
+			return null
+
+		val shader = new DirectoryShader
+		val relocators = <Relocator>newArrayList
+		val resultFqn = <String>newHashSet
+		val targetAspectFolder = targetProject.locationURI.path + "/src-gen/"
+		val sourceFolders = <File>newHashSet
+		val shadeRequest = new ShadeRequest
+
+		// Visiting the workspace to gather source projects
 		ws.accept(new IResourceVisitor {
 			override visit(IResource resource) throws CoreException {
 				if (resource instanceof IFile) {
-					val resourcePath = resource.locationURI.path
-					val toBeMatched = asp.identifier.replace(".", "/") + ".java"
-					if (resourcePath.endsWith(toBeMatched)) {
-						val projectPath = resource.project.locationURI.path
-						if (projectPathTmp.length == 0)
-							projectPathTmp.append(projectPath)
-						if (projectNameTmp.length == 0)
-							projectNameTmp.append(resource.project.name)
-					}
+					val possibleMatches = request.aspectRefs.map[identifier.replace(".", "/") + ".java"]
+
+					if (possibleMatches.exists[match | resource.locationURI.path.endsWith(match)])
+						sourceFolders += new File(resource.project.locationURI.path + "/xtend-gen/")
+
 					return false
 				}
-				
+
 				return true
 			}
 		})
 
-		val sourceAspectFolder = projectPathTmp.toString + "/xtend-gen/"
-		//val targetAspectFolder = projectPathTmp.toString + "/../" + targetAspectNamespace + "/src-gen/"
-		val sourceFolderFile = new File(sourceAspectFolder)
-		val sourceProject = ws.getProject(projectNameTmp.toString)
-		val findTargetProject = ws.getProject(l.externalRuntimeName)
-		// FIXME: Just to have a first call of the EPackageProvider
-		//        in order to set the ecoreUri when inherited
-		val x = l.syntax.pkgs
-		val ecoreUri = URI::createURI(l.syntax.ecoreUri)
-		val emfRuntimeProject = ecoreUri.segment(1)
-		val targetProject =
-			if (findTargetProject.exists)
-				findTargetProject
-			else
-				eclipseHelper.createAspectsRuntimeProject(
-					sourceProject,
-					l.externalRuntimeName,
-					targetAspectNamespace.toString,
-					emfRuntimeProject
-				)
-		//ws.getProject(targetAspectNamespace.toString).rawLocation
-		val targetAspectFolder = findTargetProject.locationURI.path + "/src-gen/"
-		val targetFolderFile = new File(targetAspectFolder)
-//		val filenameToBeFound = '''/src-gen/«targetAspectNamespace.toString.replace(".", "/")»/«asp.aspectTypeRef.simpleName».java'''
-//		val fileToBeFound = targetProject.getFile(filenameToBeFound)
-
-		if(project.name != targetProject.name){
-			eclipseHelper.addDependencies(project, #[targetProject.name])
-		}
-
-		relocators += new SimpleRelocator(sourceAspectNamespace.toString, targetAspectNamespace.toString, null, #[])
-		sourceEmfNamespaces.forEach[sourceEmfNamespace |
-			relocators += new SimpleRelocator(sourceEmfNamespace.toString, targetEmfNamespace.toString, null, #[])
+		request.aspectRefs.forEach[aspRef |
+			val sourceAspectNamespace = aspRef.identifier.toQualifiedName.skipLast(1).toString
+			relocators += new SimpleRelocator(
+				sourceAspectNamespace,
+				request.targetAspectNamespace,
+				null,
+				#[]
+			)
+			resultFqn += '''«request.targetAspectNamespace».«aspRef.simpleName»'''
 		]
-		relocators += new SimpleRelocator("new Context", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.ActivitydiagramFactory.eINSTANCE.createContext", null, #[])
-		relocators += new SimpleRelocator("new Trace", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.ActivitydiagramFactory.eINSTANCE.createTrace", null, #[])
-		relocators += new SimpleRelocator("new Offer", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.ActivitydiagramFactory.eINSTANCE.createOffer", null, #[])
-		relocators += new SimpleRelocator("new Token", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.ActivitydiagramFactory.eINSTANCE.createToken", null, #[])
-		relocators += new SimpleRelocator("new ControlToken", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.ActivitydiagramFactory.eINSTANCE.createControlToken", null, #[])
-		relocators += new SimpleRelocator("new ForkedToken", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.ActivitydiagramFactory.eINSTANCE.createForkedToken", null, #[])
-		relocators += new SimpleRelocator("new Environment", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.ActivitydiagramFactory.eINSTANCE.createEnvironment", null, #[])
-		
-		relocators += new SimpleRelocator("org.xtext.activitydiagram.semantics.Context", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.Context", null, #[])
-		relocators += new SimpleRelocator("org.xtext.activitydiagram.semantics.Trace", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.Trace", null, #[])
-		relocators += new SimpleRelocator("org.xtext.activitydiagram.semantics.Offer", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.Offer", null, #[])
-		relocators += new SimpleRelocator("org.xtext.activitydiagram.semantics.Token", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.Token", null, #[])
-		relocators += new SimpleRelocator("org.xtext.activitydiagram.semantics.ControlToken", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.ControlToken", null, #[])
-		relocators += new SimpleRelocator("org.xtext.activitydiagram.semantics.ForkedToken", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.ForkedToken", null, #[])
-		relocators += new SimpleRelocator("org.xtext.lua.semantics.Environment", "fr.inria.diverse.iot.activityecorelualang.activitydiagram.Environment", null, #[])
 
-		val aspectFqn = asp.identifier
-		val aspectTargetClass = asp.aspectAnnotationValue
-		// Filter files not related to targeted aspect
+		request.sourceEmfNamespaces.forEach[fqn |
+			relocators += new SimpleRelocator(fqn, request.targetEmfNamespace, null, #[])
+		]
+
+		relocators += new SimpleRelocator("org.xtext.activitydiagram.semantics", "fr.inria.diverse.iot.activityecorelualang.aspects", null, #[])
+		relocators += new SimpleRelocator("org.xtext.lua.semantics", "fr.inria.diverse.iot.activityecorelualang.aspects", null, #[])
+
 		val filter = new Filter {
-			String prefix = aspectFqn.replaceAll("\\.", "/")
-			String targetClass = aspectTargetClass
-
-			override canFilter(File jar) {
-				return true
-			}
-
+			override canFilter(File jar) { return true }
 			override finished() {}
-
 			override isFiltered(String classFile) {
 				return
-					   !(classFile.endsWith('''«prefix».java''')
-					|| classFile.endsWith('''«prefix»«targetClass»AspectContext.java''')
-					|| classFile.endsWith('''«prefix»«targetClass»AspectProperties.java'''))
+				!request.aspectRefs.exists[aspRef |
+					val prefix = aspRef.identifier.replaceAll("\\.", "/")
+					val targetCls = aspRef.aspectAnnotationValue
+
+					classFile.endsWith('''«prefix».java''')
+					|| classFile.endsWith('''«prefix»«targetCls»AspectContext.java''')
+					|| classFile.endsWith('''«prefix»«targetCls»AspectProperties.java''')
+				]
 			}
 		}
-		request.inputFolders = #{sourceFolderFile}
-		request.outputFolder = targetFolderFile
-		request.filters = #[filter]
-		request.resourceTransformers = #[]
-		request.relocators = relocators
+
+		shadeRequest.inputFolders = sourceFolders
+		shadeRequest.outputFolder = new File(targetAspectFolder)
+		shadeRequest.filters = #[filter]
+		shadeRequest.resourceTransformers = #[]
+		shadeRequest.relocators = relocators
 
 		try {
-			log.debug('''Copying aspect «asp.identifier» to «l.name» as «newFqn»''')
-//			log.debug('''	sourceEmfNamespace    = «sourceEmfNamespace»''')
-//			log.debug('''	targetEmfNamespace    = «targetEmfNamespace»''')
-//			log.debug('''	sourceAspectNamespace = «sourceAspectNamespace»''')
-//			log.debug('''	targetAspectNamespace = «targetAspectNamespace»''')
-//			log.debug('''	sourceAspectFolder    = «sourceAspectFolder»''')
-//			log.debug('''	targetAspectFolder    = «targetAspectFolder»''')
+			log.debug("Copying new aspects for " + l.name)
+			shader.shade(shadeRequest)
+			targetProject.refreshLocal(IResource::DEPTH_INFINITE, null)
 
-//			if (!fileToBeFound.exists) {
-			shader.shade(request)
-			
-//			log.debug('''Copying META-INF aspect_properties «asp.identifier» to «l.name» as «»''')
-			val sourceMetaInfFolder = projectPathTmp.toString + "/META-INF/"
-			val sourceMetaInfFile = new File(sourceMetaInfFolder)	
-			val targetMetaInfFile = new File(findTargetProject.locationURI.path + "/META-INF/")
-			request.inputFolders = #{sourceMetaInfFile}
-			request.outputFolder = targetMetaInfFile
-			request.resourceTransformers = #[new K3AspectPropertiesTransformer(targetAspectNamespace.toString) as ResourceTransformer]
-			
-			shader.shade(request)
-				
-			targetProject.refreshLocal(IResource.DEPTH_INFINITE, null)
-//			}
-			return newFqn
-		} catch (IOException e) {
-			log.debug("Copy failed", e)
-			return null
-		} catch (CoreException e) {
-			log.debug("Refresh failed", e)
-			return null
+			if (project.name != targetProject.name)
+				eclipseHelper.addDependencies(project, #[targetProject.name])
 		} catch (Exception e) {
-			log.error("Unexpected error", e)
-			return null
-		
+			log.error("Unexpected error while copying aspects to runtime", e)
 		} finally {
 			task.stop
+			log.debug("Done")
 		}
+
+		return resultFqn
 	}
 }
