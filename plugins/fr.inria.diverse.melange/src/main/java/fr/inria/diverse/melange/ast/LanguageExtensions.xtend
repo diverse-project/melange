@@ -15,6 +15,7 @@ import fr.inria.diverse.melange.metamodel.melange.Slice
 import fr.inria.diverse.melange.metamodel.melange.Weave
 import fr.inria.diverse.melange.utils.AspectCopier
 import java.util.List
+import java.util.Set
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.xtext.common.types.JvmTypeReference
@@ -305,23 +306,39 @@ class LanguageExtensions
 	 */
 	def List<Aspect> createExternalAspects(Language l) {
 		val res = newArrayList
+		val typeRefBuilder = builderFactory.create(l.eResource.resourceSet)
+		val sourceEmfNamespaces = l.collectTargetedPackages
+		val targetEmfNamespace = l.syntax.packageFqn.toQualifiedName.skipLast(1).toString
+		val targetAspectNamespace = l.aspectTargetNamespace
+		val targetProjectName = l.externalRuntimeName
 
-		l.allSemantics
-		.reverse
-		.filter[aspectTypeRef.canBeCopiedFor(l.syntax)]
-		.forEach[asp |
-			val typeRefBuilder = builderFactory.create(l.eResource.resourceSet)
-			val targetedPackages = l.collectTargetedPackages
-			val newAspectFqn = copier.copyAspectTo(asp.aspectTypeRef, targetedPackages, l)
-				res += MelangeFactory.eINSTANCE.createAspect => [
-					aspectTypeRef = typeRefBuilder.typeRef(newAspectFqn)
-				]
+		val aspectsToCopy =
+			l.allSemantics
+			.reverse
+			.filter[aspectTypeRef.canBeCopiedFor(l.syntax)]
+			.map[aspectTypeRef]
+			.toSet
+
+		val request = new AspectCopier.AspectCopierRequest(
+			aspectsToCopy,
+			sourceEmfNamespaces,
+			targetEmfNamespace,
+			targetAspectNamespace,
+			targetProjectName
+		)
+
+		val newFqns = copier.copy(l, request)
+
+		newFqns.forEach[fqn |
+			res += MelangeFactory.eINSTANCE.createAspect => [
+				aspectTypeRef = typeRefBuilder.typeRef(fqn)
+			]
 		]
 		
 		return res
 	}
 
-	def List<String> collectTargetedPackages(Language l) {
+	def Set<String> collectTargetedPackages(Language l) {
 		val res = newHashSet
 
 		res += l.operators.filter(Inheritance).map[superLanguage.collectTargetedPackages].flatten		
@@ -337,7 +354,7 @@ class LanguageExtensions
 
 		res += l.syntax.pkgs.map[pkg | l.syntax.getGenPackageFor(pkg)].filterNull.map[fqn]
 
-		return res.toList
+		return res
 	}
 
 	def boolean hasExternalAspects(Language l) {
