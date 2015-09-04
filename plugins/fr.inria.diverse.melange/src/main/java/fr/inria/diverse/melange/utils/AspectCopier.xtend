@@ -62,6 +62,7 @@ class AspectCopier
 		val shader = new DirectoryShader
 		val relocators = <Relocator>newArrayList
 		val resultFqn = <String>newHashSet
+		val sourceAspectNamespaces = newHashSet
 		val targetAspectFolder = targetProject.locationURI.path + "/src-gen/"
 		val sourceFolders = <File>newHashSet
 		val shadeRequest = new ShadeRequest
@@ -83,13 +84,7 @@ class AspectCopier
 		})
 
 		request.aspectRefs.forEach[aspRef |
-			val sourceAspectNamespace = aspRef.identifier.toQualifiedName.skipLast(1).toString
-			relocators += new SimpleRelocator(
-				sourceAspectNamespace,
-				request.targetAspectNamespace,
-				null,
-				#[]
-			)
+			sourceAspectNamespaces += aspRef.identifier.toQualifiedName.skipLast(1).toString
 			resultFqn += '''«request.targetAspectNamespace».«aspRef.simpleName»'''
 		]
 
@@ -97,8 +92,9 @@ class AspectCopier
 			relocators += new SimpleRelocator(fqn, request.targetEmfNamespace, null, #[])
 		]
 
-		relocators += new SimpleRelocator("org.xtext.activitydiagram.semantics", "fr.inria.diverse.iot.activityecorelualang.aspects", null, #[])
-		relocators += new SimpleRelocator("org.xtext.lua.semantics", "fr.inria.diverse.iot.activityecorelualang.aspects", null, #[])
+		sourceAspectNamespaces.forEach[fqn |
+			relocators += new SimpleRelocator(fqn, request.targetAspectNamespace, null, #[])
+		]
 
 		val filter = new Filter {
 			override canFilter(File jar) { return true }
