@@ -175,7 +175,7 @@ class EclipseProjectHelper
 				#[JavaCore::BUILDER_ID,	PDE::MANIFEST_BUILDER_ID, PDE::SCHEMA_BUILDER_ID],
 				#["src", "src-gen"],
 				#[],
-				#["org.eclipse.emf.ecore", "fr.inria.diverse.k3.al.annotationprocessor.plugin"],
+				#["org.eclipse.emf.ecore", "fr.inria.diverse.k3.al.annotationprocessor.plugin", "org.eclipse.xtext.xbase.lib"],
 //				#[basePkg, basePkg + ".impl", basePkg + ".util"],
 				if (l.hasExternalAspects) #[l.aspectTargetNamespace] else #[],
 				#[],
