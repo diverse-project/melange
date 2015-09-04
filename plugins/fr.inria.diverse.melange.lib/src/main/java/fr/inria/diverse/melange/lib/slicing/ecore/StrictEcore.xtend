@@ -13,16 +13,18 @@ class StrictEcore{
 	public val boolean optionlowerTypes
 	val String nameExtension
 	public val boolean card1
+	public val boolean keepAnnotations
 
 	val org.eclipse.emf.ecore.EObject _root
 
-	new(java.util.List<org.eclipse.emf.ecore.EModelElement> inputEModelElement, org.eclipse.emf.ecore.EObject metamodelRoot, boolean optionlowerTypes, String nameExtension, boolean card1){
+	new(java.util.List<org.eclipse.emf.ecore.EModelElement> inputEModelElement, org.eclipse.emf.ecore.EObject metamodelRoot, boolean optionlowerTypes, String nameExtension, boolean card1, boolean keepAnnotations){
 		this.inputEModelElement = inputEModelElement
 		if(metamodelRoot===null) throw new IllegalArgumentException
 		this._root = metamodelRoot
 		this.optionlowerTypes = optionlowerTypes
 		this.nameExtension=nameExtension
 		this.card1=card1
+		this.keepAnnotations = keepAnnotations
 	}
 
 	def void slice(){
