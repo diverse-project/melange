@@ -312,12 +312,10 @@ class LanguageExtensions
 		.forEach[asp |
 			val typeRefBuilder = builderFactory.create(l.eResource.resourceSet)
 			val targetedPackages = l.collectTargetedPackages
-			if (asp.hasAspectAnnotation) {
 			val newAspectFqn = copier.copyAspectTo(asp.aspectTypeRef, targetedPackages, l)
 				res += MelangeFactory.eINSTANCE.createAspect => [
 					aspectTypeRef = typeRefBuilder.typeRef(newAspectFqn)
 				]
-			}
 		]
 		
 		return res
