@@ -2,6 +2,7 @@ package fr.inria.diverse.melange.ast
 
 import com.google.inject.Inject
 import fr.inria.diverse.melange.lib.EcoreExtensions
+import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelingElement
 import fr.inria.diverse.melange.utils.EPackageProvider
 import java.io.IOException
@@ -9,8 +10,10 @@ import java.util.List
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
+import org.eclipse.emf.ecore.EModelElement
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
@@ -37,6 +40,31 @@ class ModelingElementExtensions
 			rootPkg.nsURI = pkgUri
 
 		val copy = EcoreUtil::copyAll(m.pkgs.filter[ESuperPackage == null].toList)
+
+		if (m instanceof Metamodel) {
+			val toRemove = <EModelElement>newArrayList
+			val i = copy.head.eAllContents
+			while (i.hasNext) {
+				val obj = i.next
+				
+				if (obj instanceof EModelElement) {
+					if (obj.EAnnotations.exists[source == "aspect"]) {
+						if (obj instanceof EReference)
+							if (obj.containment) {}
+							else toRemove += obj
+						else
+							toRemove += obj
+					}
+				}
+				
+				if (obj instanceof EStructuralFeature) {
+					if (obj.volatile) {
+						obj.volatile = false
+					}
+				}
+			}
+			toRemove.forEach[EcoreUtil::delete(it)]
+		}
 
 		// FIXME:
 		copy.forEach[pkg |

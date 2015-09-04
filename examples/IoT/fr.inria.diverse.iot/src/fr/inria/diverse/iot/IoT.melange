@@ -94,7 +94,7 @@ language LuaLang {
 	with org.xtext.lua.semantics.Expression_AccessArrayAspect
 	with org.xtext.lua.semantics.Environment
 	exactType LuaLangMT
-}
+} 
 
 language EcoreLang {
 	syntax "platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore"
@@ -104,8 +104,7 @@ language EcoreLang {
 language ActivityEcoreLuaLang {
 	slice ActivityLang on ["ControlFlow", "OpaqueAction", "ActivityFinalNode", "InitialNode",
 			"ForkNode", "JoinNode", "MergeNode", "DecisionNode", "IntegerVariable",
-			"BooleanVariable", "BooleanValue", "IntegerValue", "InputValue", "Input",
-			"ControlToken", "ForkedToken"]
+			"BooleanVariable", "BooleanValue", "IntegerValue", "InputValue", "Input"]
 	merge EcoreLang and-rename { "ecore" to "activitydiagram" {} }
 	merge LuaLang and-rename { "lua" to "activitydiagram" {} }
 	with fr.inria.diverse.iot.glue.activityecore.EOperationAspect

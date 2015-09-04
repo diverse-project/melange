@@ -74,13 +74,9 @@ import static extension org.xtext.lua.semantics.LastStatementAspect.*
 import static extension org.xtext.lua.semantics.StatementAspect.*
 
 class Environment {
-	@Accessors
 	Environment parent
-	@Accessors
 	Stack<Object> values = new Stack<Object>
-	@Accessors
 	Map<String, Object> variables = new HashMap<String, Object>
-	@Accessors
 	Map<String, Function> functions = new HashMap<String, Function>
 
 	def Environment getParent() {

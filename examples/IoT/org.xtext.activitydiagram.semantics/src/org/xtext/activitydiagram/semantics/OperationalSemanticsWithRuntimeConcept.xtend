@@ -44,11 +44,8 @@ import static extension org.xtext.activitydiagram.semantics.ActivityNodeAspect.*
 import static extension org.xtext.activitydiagram.semantics.ExpressionAspect.*
 import static extension org.xtext.activitydiagram.semantics.VariableAspect.*
 
-import org.eclipse.xtend.lib.annotations.Accessors
-
 class Offer {
-	@Accessors
-	List<Token> offeredTokens = new ArrayList<Token>() ;
+	public List<Token> offeredTokens = new ArrayList<Token>() ;
 
 	def boolean hasTokens() {
 		removeWithdrawnTokens();
@@ -68,8 +65,7 @@ class Offer {
 }
 
 abstract class Token {
-	@Accessors
-	ActivityNode holder
+	public ActivityNode holder
 
 	def Token transfer(ActivityNode holder) {
 		if (this.holder != null) {
@@ -92,31 +88,23 @@ abstract class Token {
 }
 
 class Trace {
-	@Accessors
-	List<ActivityNode> executedNodes = new ArrayList<ActivityNode>();
+	public List<ActivityNode> executedNodes = new ArrayList<ActivityNode>();
 }
 
 class ControlToken extends Token {
 }
 
 class ForkedToken extends Token {
-	@Accessors
-	Token baseToken ;
-	@Accessors
-	Integer remainingOffersCount;
+	public Token baseToken ;
+	public Integer remainingOffersCount;
 }
 
 class Context {
-	@Accessors
-	Trace output;
-	@Accessors
-	Activity activity;
-	@Accessors
-	Context parent;
-	@Accessors
-	List<InputValue> inputValues ;
-	@Accessors
-	JoinNode node ;
+	public Trace output;
+	public Activity activity;
+	public Context parent;
+	public List<InputValue> inputValues = newArrayList ;
+	public JoinNode node ;
 
 	new() {
 	}
@@ -138,10 +126,10 @@ class ActivityAspect extends NamedElementAspect {
 	@ReplaceAspectMethod
 	def void main(List<InputValue> value) {
 		var c = new Context
-		c.getInputValues() += value
-		c.setActivity(_self)
+		c.inputValues += value
+		c.activity = _self
 		_self.trace = new Trace
-		c.setOutput(_self.trace)
+		c.output = _self.trace
 		value?.forEach[v|v.getVariable().setCurrentValue(v.getValue());]
 		_self.nodes.forEach[n|n.running =true]
 		_self.execute(c)
