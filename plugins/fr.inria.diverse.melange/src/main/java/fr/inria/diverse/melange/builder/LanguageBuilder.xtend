@@ -55,22 +55,27 @@ class LanguageBuilder extends AbstractBuilder {
 
 		builders = newArrayList
 		builders.addAll(createBuilders(otherOperators))
-		builders.addAll(createBuilders(aspectOperators))
 		builders.forEach[builder |
 			builder.build()
 			errors.addAll(builder.errors)
 		]
 
-		val EPackage base = EcoreUtil::copy(builders.head.model)
+		model = EcoreUtil::copy(builders.head.model)
 		builders.drop(1).forEach[builder |
-			errors.addAll(base.merge(builder.model))
+			errors.addAll(model.merge(builder.model))
 		]
 
-		if (base === null) {
+		val weaveBuilders = createBuilders(aspectOperators)
+		weaveBuilders.forEach[builder |
+			builder.build()
+			errors.addAll(builder.errors)
+			errors.addAll(model.merge(builder.model))
+		]
+		builders.addAll(weaveBuilders)
+
+		if (model === null) {
 			errors.add(new BuilderError("Can't build " + source.name, source))
 		}
-
-		model = base
 	}
 
 	/*
@@ -92,7 +97,7 @@ class LanguageBuilder extends AbstractBuilder {
 				Merge: new MergeBuilder(op, root)
 				Slice: new SliceBuilder(op, root)
 				Import: new ImportBuilder(op)
-				Weave: new WeaveBuilder(op, this)
+				Weave: new WeaveBuilder(op, model)
 			}
 			res.add(builder)
 			injector.injectMembers(builder)
