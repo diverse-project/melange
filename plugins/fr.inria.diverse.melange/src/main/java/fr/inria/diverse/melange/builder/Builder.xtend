@@ -6,5 +6,5 @@ interface Builder {
 	def void preBuild()
 	def void make()
 	def void postBuild()
-	def List<Error> getErrors()
+	def List<BuilderError> getErrors()
 }

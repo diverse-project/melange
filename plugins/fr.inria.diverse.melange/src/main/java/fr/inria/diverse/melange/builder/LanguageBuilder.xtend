@@ -11,6 +11,7 @@ import fr.inria.diverse.melange.metamodel.melange.Merge
 import fr.inria.diverse.melange.metamodel.melange.Operator
 import fr.inria.diverse.melange.metamodel.melange.Slice
 import fr.inria.diverse.melange.metamodel.melange.Weave
+import fr.inria.diverse.melange.utils.ErrorHelper
 import java.util.List
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EPackage
@@ -61,7 +62,7 @@ class LanguageBuilder extends AbstractBuilder {
 		]
 
 		if (base === null) {
-			errors.add(new Error("Can't build " + source.name, source))
+			errors.add(new BuilderError("Can't build " + source.name, source))
 		}
 
 		model = base
@@ -70,7 +71,7 @@ class LanguageBuilder extends AbstractBuilder {
 	/*
 	 * Add @merged into @base (-> both can be null)
 	 */
-	def List<Error> merge(EPackage base, EPackage merged) {
+	def List<BuilderError> merge(EPackage base, EPackage merged) {
 		// TODO: Custom merge
 		algebra.merge(merged, base)
 

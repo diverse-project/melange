@@ -19,7 +19,7 @@ abstract class LanguageOperatorBuilder<T extends LanguageOperator> extends Opera
 
 		if (langBuilder.isBuilding) {
 			errors.add(
-				new Error(
+				new BuilderError(
 					'''Cyclic dependency between «source.targetLanguage.name» and «source.owningLanguage.name»''',
 					source)
 			)
@@ -31,7 +31,7 @@ abstract class LanguageOperatorBuilder<T extends LanguageOperator> extends Opera
 
 			if (!langBuilder.errors.isEmpty) {
 				errors.add(
-					new Error('''Language «source.targetLanguage.name» has errors in its definition''', source)
+					new BuilderError('''Language «source.targetLanguage.name» has errors in its definition''', source)
 				)
 			}
 
