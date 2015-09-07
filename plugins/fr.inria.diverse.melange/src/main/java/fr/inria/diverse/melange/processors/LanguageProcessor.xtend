@@ -177,7 +177,7 @@ class LanguageProcessor extends DispatchMelangeProcessor{
 				if (className !== null){
 					aspectedClass = language.syntax.findClass(className)
 				}
-				ecoreFragment = builder.getBuilder(language).findBuilder(w).model
+				ecoreFragment = builder.getBuilder(language).findBuilder(w)?.model
 			]
 		]
 	}

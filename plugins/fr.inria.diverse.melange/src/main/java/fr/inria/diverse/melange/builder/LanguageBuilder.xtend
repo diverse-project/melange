@@ -51,7 +51,7 @@ class LanguageBuilder extends AbstractBuilder {
 		 * EClass to infer the ecore fragment 
 		 */
 		val otherOperators = source.operators.filter[!(it instanceof Weave)].toList
-		val aspectOperators = source.operators.filter(Weave).map[it as Operator].toList
+		val aspectOperators = source.operators.filter(Weave).filter[aspectWildcardImport === null].map[it as Operator].toList
 
 		builders = newArrayList
 		builders.addAll(createBuilders(otherOperators))

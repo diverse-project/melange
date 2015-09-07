@@ -37,18 +37,12 @@ class WildcardAspectResolver extends DispatchMelangeProcessor
 				if (match.element instanceof IPackageFragment) {
 					val pkg = match.element as IPackageFragment
 
-					pkg.children.forEach[child |
-						val name = child.elementName
-
+					matches +=
+						pkg.children
 						// No Context/Properties classes generated from  @Aspect
-						if (!(
-							   (name.endsWith("Context.java")
-							&& name.substring(0, (name.length - 12) / 2) == name.substring((name.length - 12) / 2, name.length - 12))
-							|| (name.endsWith("Properties.java")
-							&& name.substring(0, (name.length - 15) / 2) == name.substring((name.length - 15) / 2, name.length - 15))	
-						))
-							matches.add(pkg.elementName + "." + name.substring(0, name.length - 5))
-						]
+						.filter[!elementName.endsWith("AspectContext.java")
+								&& !elementName.endsWith("AspectProperties.java")]
+						.map['''«pkg.elementName».«elementName.substring(0, elementName.length - 5)»''']
 				}
 			}
 		}
