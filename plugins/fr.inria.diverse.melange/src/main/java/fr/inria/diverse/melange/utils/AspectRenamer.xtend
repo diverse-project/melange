@@ -43,7 +43,7 @@ class AspectRenamer {
     	val targetProject = projects.findFirst[name == l.externalRuntimeName]
 		val javaProject = JavaCore.create(targetProject)
 		val roots = javaProject.allPackageFragmentRoots
-		val src_genFolder = roots.findFirst[elementName == "src-gen"]
+		val src_genFolder = roots.findFirst[elementName == "xtend-gen"]
 		
 		aspects.forEach[asp | 
 	    	val targetAspectNamespace = l.aspectTargetNamespace

@@ -118,7 +118,7 @@ class AspectCopier
 		/*
 		 * Get folder of the generated files
 		 */
-		val targetAspectFolder = findTargetProject.locationURI.path + "/src-gen/"
+		val targetAspectFolder = findTargetProject.locationURI.path + "/xtend-gen/"
 		val targetFolderFile = new File(targetAspectFolder)
 
 		/*
@@ -184,9 +184,9 @@ class AspectCopier
 			targetProject.refreshLocal(IResource.DEPTH_INFINITE, null)
 
 			/*
-			 * Add src-gen/ in the classpath
+			 * Add xtend-gen/ in the classpath
 			 */
-			val srcGenPath = "/"+l.name+"_Gen/src-gen"
+			val srcGenPath = "/"+l.externalRuntimeName+"/xtend-gen"
 			val javaProject = JavaCore.create(findTargetProject)
 			val IClasspathEntry[] entries = javaProject.getRawClasspath()
 			if(!entries.exists[path.toString == srcGenPath]){

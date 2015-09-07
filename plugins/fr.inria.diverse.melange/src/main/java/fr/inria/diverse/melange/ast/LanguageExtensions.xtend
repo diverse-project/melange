@@ -317,11 +317,11 @@ class LanguageExtensions
 				var List<Aspect> aspects = null
 				var List<PackageBinding> renamingRules = null
 				if (op instanceof Slice){
-					aspects = (op as Slice).targetLanguage.allSemantics
+					aspects = (op as Slice).targetLanguage.semantics
 					renamingRules= (op as Slice).mappingRules
 				} 
 				else if (op instanceof Merge){
-					aspects = (op as Merge).targetLanguage.allSemantics
+					aspects = (op as Merge).targetLanguage.semantics
 					renamingRules= (op as Merge).mappingRules
 				}
 				
@@ -339,7 +339,7 @@ class LanguageExtensions
 				}
 			]
 		//Copy super lang
-		res += simpleCopyAsp(l,l.superLanguages.map[allSemantics].flatten,classesAlreadyWeaved,null)
+		res += simpleCopyAsp(l,l.superLanguages.map[semantics].flatten,classesAlreadyWeaved,null)
 		
 		return res
 	}
@@ -370,6 +370,7 @@ class LanguageExtensions
 				}
 			}
 		]
+		l.semantics += res
 		return res
 	}
 
