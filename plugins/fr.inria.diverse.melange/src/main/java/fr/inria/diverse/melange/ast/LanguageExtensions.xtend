@@ -341,13 +341,13 @@ class LanguageExtensions
 	def Set<String> collectTargetedPackages(Language l) {
 		val res = newHashSet
 
-		res += l.operators.filter(Inheritance).map[superLanguage.collectTargetedPackages].flatten		
+		res += l.operators.filter(Inheritance).map[targetLanguage.collectTargetedPackages].flatten		
 		res +=
 			l.operators.map[op |
 				if (op instanceof Slice)
-					op.slicedLanguage.collectTargetedPackages
+					op.targetLanguage.collectTargetedPackages
 				else if (op instanceof Merge)
-					op.mergedLanguage.collectTargetedPackages
+					op.targetLanguage.collectTargetedPackages
 				else
 					newArrayList
 			].flatten
