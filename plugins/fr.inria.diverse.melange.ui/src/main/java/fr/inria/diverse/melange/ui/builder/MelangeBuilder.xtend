@@ -43,24 +43,26 @@ class MelangeBuilder
 	static final Logger log = Logger.getLogger(MelangeBuilder)
 
 	def void generateAll(Resource res, IProject project, IProgressMonitor monitor) {
-		cleanAll(res, project, new SubProgressMonitor(monitor, 1))
-		generateInterfaces(res, project, new SubProgressMonitor(monitor, 1))
-		generateLanguages(res, project, new SubProgressMonitor(monitor, 1))
-		generateAdapters(res, project, new SubProgressMonitor(monitor, 1))
-		generatePluginXml(res, project, new SubProgressMonitor(monitor, 1))
+		monitor.beginTask("Generating all artifacts", 700)
+		cleanAll(res, project, new SubProgressMonitor(monitor, 40))
+		generateInterfaces(res, project, new SubProgressMonitor(monitor, 50))
+		generateLanguages(res, project, new SubProgressMonitor(monitor, 300))
+		generateAdapters(res, project, new SubProgressMonitor(monitor, 300))
+		generatePluginXml(res, project, new SubProgressMonitor(monitor, 10))
 	}
 
 	def void generateInterfaces(Resource res, IProject project, IProgressMonitor monitor) {
 		val root = res.contents.head as ModelTypingSpace
 		val mts = root.elements.filter(ModelType)
+		val nb = mts.size
 
-		monitor.beginTask("Generating interfaces", mts.size)
+		monitor.beginTask("Generating interfaces", 10 * nb)
 
-		cleanInterfaces(res, project, monitor)
 		mts.forEach[mt |
 			if (monitor.canceled)
 				throw new OperationCanceledException
 
+			monitor.subTask("Generating interface for " + mt.name)
 			val ecoreUri = '''platform:/resource/«project.name»/model-gen/«mt.name».ecore'''
 
 			log.debug('''Registering new EPackage for «mt.name» in EMF registry''')
@@ -69,34 +71,49 @@ class MelangeBuilder
 
 			log.debug('''Serializing Ecore interface description for «mt.name» in «ecoreUri»''')
 			mt.createEcore(ecoreUri, mt.uri)
-			monitor.worked(1)
+			monitor.worked(10)
 		]
 	}
 
 	def void generateLanguages(Resource res, IProject project, IProgressMonitor monitor) {
 		val root = res.contents.head as ModelTypingSpace
 		val toGenerate = root.elements.filter(Language).filter[generatedByMelange]
+		val nb = toGenerate.size
 
-		monitor.beginTask("Generating EMF runtime for languages", toGenerate.size)
+		monitor.beginTask("Generating EMF runtime for languages", 100 * nb)
 
-		cleanLanguages(res, project, monitor)
 		toGenerate.forEach[l |
 			if (monitor.canceled)
 				throw new OperationCanceledException
 
+			val sub = new SubProgressMonitor(monitor, 100)
+			sub.beginTask("Generating runtime for " + l.name, 100)
+			sub.subTask("Creating new project for " + l.name)
 			eclipseHelper.createEMFRuntimeProject(l.externalRuntimeName, l)
+			monitor.worked(5)
+			sub.subTask("Serializing Ecore description for " + l.name)
 			l.createExternalEcore
+			monitor.worked(5)
+			sub.subTask("Serializing Genmodel for " + l.name)
 			l.createExternalGenmodel
+			monitor.worked(5)
+			sub.subTask("Generating code")
 			l.syntax.genmodels.head.generateCode
+			monitor.worked(40)
+			sub.subTask("Copying aspects for " + l.name)
 			l.createExternalAspects
+			monitor.worked(40)
+			sub.subTask("Updating dependencies for " + l.name)
 			eclipseHelper.addDependencies(project, #[l.externalRuntimeName])
-			monitor.worked(1)
+			monitor.worked(5)
 		]
 	}
 
 	def void generateAdapters(Resource res, IProject project, IProgressMonitor monitor) {
+		monitor.beginTask("Generating adapters", 100)
+
 		val fsa = fileSystemAccessProvider.get => [f |
-			f.monitor = monitor
+			f.monitor = new SubProgressMonitor(monitor, 50)
 			f.project = project
 		]
 
@@ -104,17 +121,21 @@ class MelangeBuilder
 			fsa.outputConfigurations.put(name, it)
 		]
 
-		cleanAdapters(res, project, monitor)
-
 		if (res instanceof DerivedStateAwareResource) {
+			monitor.subTask("Inferring derived state")
 			computer.inferFullDerivedState(res)
+			monitor.worked(50)
+			monitor.subTask("Generating code")
 			generator.doGenerate(res, fsa)
 		}
 	}
 
 	def void generatePluginXml(Resource res, IProject project, IProgressMonitor monitor) {
+		monitor.beginTask("Generating new plugin.xml", 1)
+		monitor.subTask("Generating new plugin.xml")
 		val root = res.contents.head as ModelTypingSpace
 		extensionProcessor.preProcess(root, false)
+		monitor.worked(1)
 	}
 
 	/**
@@ -123,9 +144,13 @@ class MelangeBuilder
 	 * - Remove the dangling dependencies from the current project
 	 */
 	def void cleanAll(Resource res, IProject project, IProgressMonitor monitor) {
-		cleanAdapters(res, project, monitor)
-		cleanInterfaces(res, project, monitor)
-		cleanLanguages(res, project, monitor)
+		monitor.beginTask("Cleaning old derived artifacts", 60)
+		monitor.subTask("Cleaning generated interfaces")
+		cleanInterfaces(res, project, new SubProgressMonitor(monitor, 20))
+		monitor.subTask("Cleaning generated adapters")
+		cleanAdapters(res, project, new SubProgressMonitor(monitor, 20))
+		monitor.subTask("Cleaning generated projects")		
+		cleanLanguages(res, project, new SubProgressMonitor(monitor, 20))
 	}
 
 	def void cleanLanguages(Resource res, IProject project, IProgressMonitor monitor) {
