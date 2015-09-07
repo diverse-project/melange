@@ -5,7 +5,7 @@ import fr.inria.diverse.melange.metamodel.melange.Merge
 import org.eclipse.emf.ecore.util.EcoreUtil
 import java.util.ArrayList
 
-class MergeBuilder extends LanguageOperatorBuilder{
+class MergeBuilder extends LanguageOperatorBuilder<Merge>{
 	
 	@Inject extension RenamerHelper
 	
@@ -16,9 +16,8 @@ class MergeBuilder extends LanguageOperatorBuilder{
 	
 	override make() {
 		if(targetModel !== null){
-			val op = source as Merge
 			model = EcoreUtil::copy(targetModel)
-			model.applyRenaming(op.mappingRules)
+			model.applyRenaming(source.mappingRules)
 		}
 		//TODO: manage renaming errors
 	}

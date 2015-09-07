@@ -7,7 +7,7 @@ import fr.inria.diverse.melange.utils.AspectToEcore
 import java.util.ArrayList
 import org.eclipse.xtext.common.types.JvmDeclaredType
 
-class WeaveBuilder extends OperatorBuilder{
+class WeaveBuilder extends OperatorBuilder<Weave>{
 	
 	@Inject extension AspectExtensions
 	@Inject extension AspectToEcore
@@ -20,13 +20,13 @@ class WeaveBuilder extends OperatorBuilder{
 	}
 	
 	override make() {
-		val className = (source as Weave).aspectTypeRef.aspectAnnotationValue
+		val className = source.aspectTypeRef.aspectAnnotationValue
 		val baseClass = rootLanguage.findClass(className)
-		val aspect = (source as Weave).aspectTypeRef.type as JvmDeclaredType
+		val aspect = source.aspectTypeRef.type as JvmDeclaredType
 		model = aspect.inferEcoreFragment(baseClass)
 	}
-	
-	def Weave getSource(){
-		return source as Weave
+
+	def Weave getSource() {
+		return source
 	}
 }

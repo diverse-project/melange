@@ -5,7 +5,7 @@ import fr.inria.diverse.melange.lib.ModelUtils
 import fr.inria.diverse.melange.metamodel.melange.Import
 import java.util.ArrayList
 
-class ImportBuilder extends OperatorBuilder{
+class ImportBuilder extends OperatorBuilder<Import>{
 	
 	@Inject ModelUtils modelUtils
 	@Inject extension RenamerHelper
@@ -15,7 +15,7 @@ class ImportBuilder extends OperatorBuilder{
 	}
 	
 	override make() {
-		val op = source as Import
+		val op = source
 		model = modelUtils.loadPkg(op.ecoreUri)
 		model.applyRenaming(op.mappingRules)
 		

@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EModelElement
 import org.eclipse.emf.ecore.EClass
 
-class SliceBuilder extends LanguageOperatorBuilder{
+class SliceBuilder extends LanguageOperatorBuilder<Slice>{
 	
 	@Inject extension RenamerHelper
 	
@@ -21,15 +21,14 @@ class SliceBuilder extends LanguageOperatorBuilder{
 	
 	override make() {
 		if(targetModel != null){
-			val op = source as Slice
 			val sliceBase = EcoreUtil::copy(targetModel)
 			
-			val roots = getClasses(sliceBase, op.roots)
+			val roots = getClasses(sliceBase, source.roots)
 			val slicer = new StrictEcore(roots,sliceBase,false,"ecore",false)
 			slicer.slice
 			
 			model = slicer.getclonedElts.filter(EPackage).filter[eContainer===null].head
-			model.applyRenaming(op.mappingRules)
+			model.applyRenaming(source.mappingRules)
 		}
 		
 		//TODO: manage slice & renaming errors

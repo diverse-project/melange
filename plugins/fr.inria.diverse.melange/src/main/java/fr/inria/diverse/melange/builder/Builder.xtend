@@ -1,10 +1,11 @@
 package fr.inria.diverse.melange.builder
 
-import org.eclipse.emf.ecore.EPackage
-import java.util.List
+import fr.inria.diverse.melange.metamodel.melange.Operator
 import java.util.ArrayList
+import java.util.List
+import org.eclipse.emf.ecore.EPackage
 
-abstract class Builder{
+abstract class Builder<T extends Operator>{
 
 	protected EPackage model
 	protected List<Error> errors

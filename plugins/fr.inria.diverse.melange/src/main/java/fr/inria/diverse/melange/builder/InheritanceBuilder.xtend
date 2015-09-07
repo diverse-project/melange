@@ -4,7 +4,7 @@ import fr.inria.diverse.melange.metamodel.melange.Inheritance
 import org.eclipse.emf.ecore.util.EcoreUtil
 import java.util.ArrayList
 
-class InheritanceBuilder extends LanguageOperatorBuilder{
+class InheritanceBuilder extends LanguageOperatorBuilder<Inheritance>{
 	
 	new(Inheritance op, ModelTypingSpaceBuilder root){
 		this.source = op
