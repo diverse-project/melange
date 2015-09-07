@@ -10,10 +10,10 @@ package fr.inria.diverse.melange.metamodel.melange;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.LanguageOperator#getTargetLanguage <em>Target Language</em>}</li>
  * </ul>
+ * </p>
  *
  * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getLanguageOperator()
  * @model

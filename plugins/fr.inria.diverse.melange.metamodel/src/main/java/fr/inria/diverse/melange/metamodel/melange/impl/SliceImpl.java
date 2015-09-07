@@ -23,11 +23,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.SliceImpl#getRoots <em>Roots</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.SliceImpl#getMappingRules <em>Mapping Rules</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

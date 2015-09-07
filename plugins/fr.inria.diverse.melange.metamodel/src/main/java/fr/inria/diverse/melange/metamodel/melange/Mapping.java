@@ -11,12 +11,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Mapping#getRules <em>Rules</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Mapping#getFrom <em>From</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Mapping#getTo <em>To</em>}</li>
  * </ul>
+ * </p>
  *
  * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getMapping()
  * @model
