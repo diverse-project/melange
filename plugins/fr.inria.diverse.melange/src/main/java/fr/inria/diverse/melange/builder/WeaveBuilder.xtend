@@ -4,21 +4,18 @@ import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.metamodel.melange.Weave
 import fr.inria.diverse.melange.utils.AspectToEcore
-import java.util.ArrayList
 import org.eclipse.xtext.common.types.JvmDeclaredType
 
-class WeaveBuilder extends OperatorBuilder<Weave>{
-	
+class WeaveBuilder extends OperatorBuilder<Weave> {
 	@Inject extension AspectExtensions
 	@Inject extension AspectToEcore
-	
 	LanguageBuilder rootLanguage
-	
-	new(Weave op, LanguageBuilder langBuilder){
+
+	new(Weave op, LanguageBuilder langBuilder) {
 		this.source = op
 		this.rootLanguage = langBuilder
 	}
-	
+
 	override make() {
 		val className = source.aspectTypeRef.aspectAnnotationValue
 		val baseClass = rootLanguage.findClass(className)
