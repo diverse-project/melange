@@ -137,7 +137,7 @@ class RenamingRuleManager{
 	def String renameRoot(String pack, String renamedRootPack){
 		val rootEndIndex = pack.indexOf(".")
 		if(rootEndIndex != -1){
-			return renamedRootPack + pack.substring(rootEndIndex+1)
+			return renamedRootPack + pack.substring(rootEndIndex)
 		}
 		else{
 			return renamedRootPack
