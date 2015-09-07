@@ -19,10 +19,9 @@ class SliceBuilder extends LanguageOperatorBuilder<Slice> {
 
 	override make() {
 		if (targetModel !== null) {
-			val sliceBase = EcoreUtil::copy(targetModel)
-
 			val roots = getClasses(sliceBase, source.roots)
-			val slicer = new StrictEcore(roots, sliceBase, false, "ecore", false)
+			val slicer = new StrictEcore(roots, sliceBase, false, "ecore", false, true)
+
 			slicer.slice
 
 			model = slicer.getclonedElts.filter(EPackage).filter[eContainer === null].head
