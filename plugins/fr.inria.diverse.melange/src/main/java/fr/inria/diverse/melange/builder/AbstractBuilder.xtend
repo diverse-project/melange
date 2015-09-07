@@ -28,8 +28,4 @@ abstract class AbstractBuilder implements Builder {
 		make()
 		postBuild()
 	}
-//	
-//	def void reset(){
-//		model = null
-//	}
 }
