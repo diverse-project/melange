@@ -150,7 +150,10 @@ class RenamingRuleManager{
 	 */
 	def String applyRootRenaming(String qualifiedName){
 		return 
-			if(originalRootName != null && qualifiedName.indexOf(originalRootName) != -1){
+			if(originalRootName != null &&
+				qualifiedName.indexOf(originalRootName) != -1 &&
+				qualifiedName.charAt(qualifiedName.indexOf(originalRootName) + originalRootName.length).toString == "."
+			){
 				//prefix.originalRootName.postfix
 				val postfix = qualifiedName.substring(qualifiedName.indexOf(originalRootName) + originalRootName.length)
 				newRootName+postfix
