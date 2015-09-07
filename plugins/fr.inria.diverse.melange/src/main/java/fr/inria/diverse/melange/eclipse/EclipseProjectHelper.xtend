@@ -2,6 +2,8 @@ package fr.inria.diverse.melange.eclipse
 
 import com.google.common.base.Splitter
 import com.google.common.collect.Sets
+import com.google.inject.Inject
+import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.metamodel.melange.Language
 import java.io.BufferedInputStream
 import java.io.BufferedOutputStream
@@ -14,6 +16,7 @@ import org.apache.log4j.Logger
 import org.eclipse.core.resources.IContainer
 import org.eclipse.core.resources.IFile
 import org.eclipse.core.resources.IProject
+import org.eclipse.core.resources.IResource
 import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.core.runtime.CoreException
 import org.eclipse.core.runtime.IPath
@@ -28,7 +31,8 @@ import org.eclipse.xtext.util.MergeableManifest
 
 class EclipseProjectHelper
 {
-	static Logger log = Logger.getLogger(EclipseProjectHelper)
+	@Inject extension LanguageExtensions
+	Logger log = Logger.getLogger(EclipseProjectHelper)
 
 	def IProject getProject(Resource res) {
 		try {
@@ -41,7 +45,7 @@ class EclipseProjectHelper
 		}
 	}
 
-	def static IProject createAspectsRuntimeProject(
+	def IProject createAspectsRuntimeProject(
 		IProject original,
 		String projectName,
 		String generatedPackage,
@@ -69,7 +73,7 @@ class EclipseProjectHelper
 		return project
 	}
 
-	def static Iterable<String> getDependencies(IProject project) {
+	def Iterable<String> getDependencies(IProject project) {
 		val manifestFile = project.getFile("META-INF/MANIFEST.MF")
 
 		if (manifestFile !== null
@@ -90,7 +94,7 @@ class EclipseProjectHelper
 		}
 	}
 
-	def static void addDependencies(IProject project, Iterable<String> bundles) {
+	def void addDependencies(IProject project, Iterable<String> bundles) {
 		val manifestFile = project.getFile("META-INF/MANIFEST.MF")
 
 		if (manifestFile !== null
@@ -98,6 +102,8 @@ class EclipseProjectHelper
 			&& manifestFile.accessible
 			&& !manifestFile.resourceAttributes.readOnly
 		) {
+			if (!manifestFile.isSynchronized(IResource.DEPTH_ZERO))
+				manifestFile.refreshLocal(IResource.DEPTH_ZERO, null)
 			var OutputStream output = null
 			var InputStream input = null
 			try {
@@ -120,27 +126,59 @@ class EclipseProjectHelper
 		}
 	}
 
-	def static IProject createEMFRuntimeProject(String projectName, Language l) {
+	def void removeDependencies(IProject project, Iterable<String> bundles) {
+		if (bundles.empty)
+			return;
+
+		val manifestFile = project.getFile("META-INF/MANIFEST.MF")
+
+		if (manifestFile !== null
+			&& manifestFile.exists
+			&& manifestFile.accessible
+			&& !manifestFile.resourceAttributes.readOnly
+		) {
+			if (!manifestFile.isSynchronized(IResource.DEPTH_ZERO))
+				manifestFile.refreshLocal(IResource.DEPTH_ZERO, null)
+			var OutputStream output = null
+			var InputStream input = null
+			try {
+				input = manifestFile.contents
+				val manifest = new MergeableManifest(input)
+				// FIXME: Quick & Dirty ;)
+				var requiredBundles = manifest.getMainAttributes().get(MergeableManifest::REQUIRE_BUNDLE) as String
+				val regex = '''(?m)^ ?(«bundles.join("|")»).*$(?:\r?\n)?'''
+				val result = requiredBundles.replaceAll(regex, "") 
+				manifest.getMainAttributes().put(MergeableManifest::REQUIRE_BUNDLE, result.replaceFirst(",$", ""));
+				val out = new ByteArrayOutputStream
+				output = new BufferedOutputStream(out)
+				manifest.write(output)
+				val in = new ByteArrayInputStream(out.toByteArray)
+				input = new BufferedInputStream(in)
+				manifestFile.setContents(input, true, true, null)
+				bundles.forEach[log.debug('''Dependendency «it» removed from «project»''')]
+			} finally {
+				if (output !== null)
+					output.close
+				if (input !== null)
+					input.close
+			}
+		}
+	}
+
+	def IProject createEMFRuntimeProject(String projectName, Language l) {
 		try {
 			// FIXME: Everything's hardcoded...
 			val basePkg = l.name.toLowerCase
-			val generatedEPackageExtension = '''
-				<extension point="org.eclipse.emf.ecore.generated_package">
-					<package
-						uri="http://«basePkg»/"
-						class="«basePkg».«l.name»Package"
-						genModel="model/«l.name».genmodel"/>
-				</extension>
-			'''
 			val project = createEclipseProject(
 				projectName,
 				#[JavaCore::NATURE_ID, PDE::PLUGIN_NATURE],
 				#[JavaCore::BUILDER_ID,	PDE::MANIFEST_BUILDER_ID, PDE::SCHEMA_BUILDER_ID],
-				#["src"],
+				#["src", "src-gen"],
 				#[],
-				#["org.eclipse.emf.ecore"],
-				#[basePkg, basePkg + ".impl", basePkg + ".util"],
-				#[generatedEPackageExtension],
+				#["org.eclipse.emf.ecore", "fr.inria.diverse.k3.al.annotationprocessor.plugin"],
+//				#[basePkg, basePkg + ".impl", basePkg + ".util"],
+				if (l.hasExternalAspects) #[l.aspectTargetNamespace] else #[],
+				#[],
 				new NullProgressMonitor
 			)
 
@@ -157,7 +195,7 @@ class EclipseProjectHelper
 		return null
 	}
 
-	def static IProject createEclipseProject(
+	def IProject createEclipseProject(
 		String name,
 		Iterable<String> natures,
 		Iterable<String> builders,
@@ -233,7 +271,7 @@ class EclipseProjectHelper
 		return null
 	}
 
-	def static private void createManifest(
+	def private void createManifest(
 		String name,
 		Iterable<String> requiredBundles,
 		Iterable<String> exportedPackages,
@@ -261,7 +299,7 @@ class EclipseProjectHelper
 		createFile("MANIFEST.MF", metaInf, content, monitor)
 	}
 
-	def static private void createPluginXml(
+	def private void createPluginXml(
 		IProject project,
 		Iterable<String> extensions,
 		IProgressMonitor monitor
@@ -280,7 +318,7 @@ class EclipseProjectHelper
 		createFile("plugin.xml", project, content, monitor)
 	}
 
-	def static private void createBuildProperties(
+	def private void createBuildProperties(
 		IProject project,
 		Iterable<String> srcFolders,
 		IProgressMonitor monitor
@@ -294,7 +332,7 @@ class EclipseProjectHelper
 		createFile("build.properties", project, content, monitor)
 	}
 
-	def private static IFile createFile(
+	def private IFile createFile(
 		String name,
 		IContainer container,
 		String content,

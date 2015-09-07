@@ -46,10 +46,9 @@ class AspectRenamer {
 		val src_genFolder = roots.findFirst[elementName == "src-gen"]
 		
 		aspects.forEach[asp | 
-			val sourceAspectNamespace = aspects.get(0).aspectTypeRef.identifier.toQualifiedName.skipLast(1)
-	    	val targetAspectNamespace = AspectCopier.getAspectTargetNamespace(sourceAspectNamespace, l)
+	    	val targetAspectNamespace = l.aspectTargetNamespace
 	    	val aspectNamespace = src_genFolder.getPackageFragment(targetAspectNamespace.toString)
-			val targetClass = asp.aspectAnnotationValue
+			val targetClass = asp.aspectTypeRef.aspectAnnotationValue
 			processRenaming(targetClass, aspectNamespace, rulesManager, allClasses)
 		]
 	}

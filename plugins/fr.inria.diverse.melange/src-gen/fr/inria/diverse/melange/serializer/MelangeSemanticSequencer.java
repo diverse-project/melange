@@ -5,7 +5,6 @@ package fr.inria.diverse.melange.serializer;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-import fr.inria.diverse.melange.metamodel.melange.Aspect;
 import fr.inria.diverse.melange.metamodel.melange.ClassBinding;
 import fr.inria.diverse.melange.metamodel.melange.Import;
 import fr.inria.diverse.melange.metamodel.melange.Inheritance;
@@ -87,9 +86,6 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	@Override
 	public void createSequence(EObject context, EObject semanticObject) {
 		if(semanticObject.eClass().getEPackage() == MelangePackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
-			case MelangePackage.ASPECT:
-				sequence_Aspect(context, (Aspect) semanticObject); 
-				return; 
 			case MelangePackage.CLASS_BINDING:
 				sequence_ClassMapping(context, (ClassBinding) semanticObject); 
 				return; 
@@ -124,8 +120,20 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 				sequence_Slice(context, (Slice) semanticObject); 
 				return; 
 			case MelangePackage.WEAVE:
-				sequence_Weave(context, (Weave) semanticObject); 
-				return; 
+				if(context == grammarAccess.getOperatorRule() ||
+				   context == grammarAccess.getWeaveRule()) {
+					sequence_AspectTypeRef_AspectWildcard_Weave(context, (Weave) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getAspectTypeRefRule()) {
+					sequence_AspectTypeRef(context, (Weave) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getAspectWildcardRule()) {
+					sequence_AspectWildcard(context, (Weave) semanticObject); 
+					return; 
+				}
+				else break;
 			case MelangePackage.XBASE_TRANSFORMATION:
 				sequence_XbaseTransformation(context, (XbaseTransformation) semanticObject); 
 				return; 
@@ -363,7 +371,25 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	 * Constraint:
 	 *     (aspectTypeRef=JvmTypeReference | aspectWildcardImport=QualifiedNameWithWildcard)
 	 */
-	protected void sequence_Aspect(EObject context, Aspect semanticObject) {
+	protected void sequence_AspectTypeRef_AspectWildcard_Weave(EObject context, Weave semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     aspectTypeRef=JvmTypeReference
+	 */
+	protected void sequence_AspectTypeRef(EObject context, Weave semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     aspectWildcardImport=QualifiedNameWithWildcard
+	 */
+	protected void sequence_AspectWildcard(EObject context, Weave semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -397,7 +423,7 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     superLanguage=[Language|QualifiedName]
+	 *     targetLanguage=[Language|QualifiedName]
 	 */
 	protected void sequence_Inherit(EObject context, Inheritance semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -433,7 +459,7 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (mergedLanguage=[Language|QualifiedName] mappingRules+=PackageMapping*)
+	 *     (targetLanguage=[Language|QualifiedName] mappingRules+=PackageMapping*)
 	 */
 	protected void sequence_Merge(EObject context, Merge semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -479,18 +505,9 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (slicedLanguage=[Language|QualifiedName] roots+=STRING roots+=STRING* mappingRules+=PackageMapping*)
+	 *     (targetLanguage=[Language|QualifiedName] roots+=STRING roots+=STRING* mappingRules+=PackageMapping*)
 	 */
 	protected void sequence_Slice(EObject context, Slice semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     aspect=Aspect
-	 */
-	protected void sequence_Weave(EObject context, Weave semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

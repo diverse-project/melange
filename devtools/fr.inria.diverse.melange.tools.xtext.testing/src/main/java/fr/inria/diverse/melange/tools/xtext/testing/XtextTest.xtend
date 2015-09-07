@@ -117,8 +117,8 @@ class XtextTestProcessor extends AbstractClassProcessor
 						for(fr.inria.diverse.melange.metamodel.melange.Operator operator : l.getOperators()){
 							if(operator instanceof fr.inria.diverse.melange.metamodel.melange.Inheritance){
 								fr.inria.diverse.melange.metamodel.melange.Inheritance inherit = (fr.inria.diverse.melange.metamodel.melange.Inheritance) operator;
-								org.junit.Assert.assertTrue(l.getName()+"doesn't implement inherited Language "+inherit.getSuperLanguage().getName(),
-									l.getImplements().contains(inherit.getSuperLanguage().getExactType()));
+								org.junit.Assert.assertTrue(l.getName()+"doesn't implement inherited Language "+inherit.getTargetLanguage().getName(),
+									l.getImplements().contains(inherit.getTargetLanguage().getExactType()));
 							}
 						}
 					}

@@ -89,30 +89,35 @@ Import returns Import:
 ;
 
 Merge returns Merge:
-	'merge' mergedLanguage = [Language | QualifiedName] 
+	'merge' targetLanguage = [Language | QualifiedName] 
 	('and-rename' '{'
 		(mappingRules+=PackageMapping)*
 	'}')?
 ;
 
 Slice returns Slice:
-	'slice' slicedLanguage = [Language | QualifiedName] 'on' '[' roots += STRING (',' roots += STRING)* ']'
+	'slice' targetLanguage = [Language | QualifiedName] 'on' '[' roots += STRING (',' roots += STRING)* ']'
 	('and-rename' '{'
 		(mappingRules+=PackageMapping)*
 	'}')?
 ;
 
 Inherit returns Inheritance:
-	superLanguage = [Language | QualifiedName]
+	targetLanguage = [Language | QualifiedName]
 ;
 
-Weave returns Weave:
-	'with' aspect = Aspect
+Weave:
+	AspectTypeRef | AspectWildcard
 ;
 
-Aspect:
-	aspectTypeRef = JvmTypeReference | aspectWildcardImport = QualifiedNameWithWildcard
+AspectTypeRef returns Weave:
+	'with' aspectTypeRef = JvmTypeReference
 ;
+
+AspectWildcard returns Weave:
+	'with' aspectWildcardImport = QualifiedNameWithWildcard
+;
+
 /* --- Kompren Rules --- */
 //Slicer returns kompren::Slicer: 'slicer' (active?='active')? (strict?='strict')? name=QualifiedName '{'
 //		(('domain' ':' uriMetamodel+=STRING)+ &

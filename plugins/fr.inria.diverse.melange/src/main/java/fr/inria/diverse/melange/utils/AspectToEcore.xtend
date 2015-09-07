@@ -12,6 +12,7 @@ import org.eclipse.xtext.common.types.JvmEnumerationType
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
 import org.eclipse.xtext.common.types.JvmVisibility
+import org.eclipse.emf.ecore.EClass
 
 /**
  * This class creates an EPackage corresponding to an aspect.
@@ -22,15 +23,18 @@ class AspectToEcore
 	@Inject extension EcoreExtensions
 	@Inject extension TypeReferencesHelper
 	@Inject extension ModelingElementExtensions
+	
+	def EPackage inferEcoreFragment(Aspect aspImport, Language l) {
+		return inferEcoreFragment(aspImport.aspectTypeRef.type as JvmDeclaredType, aspImport.aspectedClass)
+	}
 
 	/**
 	 * Try to infer the "modeling intention" of the aspect aspImport
 	 * and put its features into a newly created EPackage
 	 */
-	def EPackage inferEcoreFragment(Aspect aspImport, Language l) {
-		val aspect = aspImport.aspectTypeRef.type as JvmDeclaredType
-		val baseCls = aspImport.aspectedClass
-		val basePkg = baseCls?.EPackage ?: l.syntax.pkgs.head
+	def EPackage inferEcoreFragment(JvmDeclaredType aspect, EClass baseCls) {
+		val basePkg = baseCls?.EPackage
+		val hasAnnotation = aspect.annotations.exists[annotation.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Aspect"]
 
 		val aspPkg = EcoreFactory.eINSTANCE.createEPackage => [
 			name = basePkg.name
@@ -52,6 +56,45 @@ class AspectToEcore
 		]
 
 		aspPkg.EClassifiers += aspCls
+
+		/*
+		 * "aspects" without @Aspect may have declared fields
+		 */
+		aspect.declaredFields
+		.filter[visibility == JvmVisibility.PUBLIC]
+		.forEach[field |
+			val fieldType = field.type
+			val upperB = if (fieldType.isCollection) -1 else 1
+			val realType =
+				if (fieldType.isCollection)
+					(fieldType as JvmParameterizedTypeReference).arguments.head.type
+				else
+					fieldType.type
+
+			val find = if (realType.simpleName == aspCls.name) aspCls else basePkg.findClass(realType.simpleName)
+			if (find !== null) {
+				// Create EReference
+				aspCls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEReference => [
+					name = field.simpleName
+					EType = aspPkg.getOrCreateClass(find.name)
+					upperBound = upperB
+					containment = field.annotations.exists[annotation.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Containment"]
+					EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
+				]
+			} else {
+				aspCls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEAttribute => [
+					name = field.simpleName
+					EType =
+						if (realType instanceof JvmEnumerationType)
+							// FIXME: Ok for now, but we should also check literals values
+							aspPkg.getOrCreateEnum(realType.simpleName, realType.literals.map[simpleName])
+						else
+							aspPkg.getOrCreateDataType(realType.simpleName, realType.qualifiedName)
+					upperBound = upperB
+					EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
+				]
+			}
+		]
 
 		aspect.declaredOperations
 		.filter[
@@ -79,7 +122,8 @@ class AspectToEcore
 						name = op.simpleName
 						op.parameters.forEach[p, i |
 							// Skip first generic _self argument
-							if (i > 0) {
+							// only if @Aspect annotation present
+							if (!hasAnnotation || i > 0) {
 								val pType = p.parameterType.type
 								val upperBP = if (p.parameterType.isCollection) -1 else 1
 								val realTypeP =

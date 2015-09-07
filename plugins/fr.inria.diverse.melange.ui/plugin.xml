@@ -248,7 +248,7 @@
 	    <super type="org.eclipse.xtext.ui.check.expensive"/>
 	    <persistent value="true"/>
 	</extension>
-
+	<!--
    <extension
          point="org.eclipse.xtext.builder.participant">
       <participant
@@ -257,6 +257,7 @@
             >
       </participant>
    </extension>
+   -->
    <extension
             point="org.eclipse.ui.preferencePages">
         <page
@@ -650,6 +651,12 @@
            restorable="true">
      </e4view>
   </extension>
+  <extension
+        point="org.eclipse.core.runtime.preferences">
+     <initializer
+           class="fr.inria.diverse.melange.ui.preferences.MelangePreferencesInitializer">
+     </initializer>
+  </extension>
   
   <extension point="org.eclipse.ui.menus">
          <menuContribution
@@ -657,26 +664,50 @@
             <menu
                   icon="icons/melange.png"
                   label="Melange">
+               <visibleWhen
+                     checkEnabled="false">
+                  <with
+                        variable="activeMenuSelection">
+                     <iterate
+                           ifEmpty="false">
+                        <adapt
+                              type="org.eclipse.core.resources.IResource">
+                           <test
+                                 property="org.eclipse.core.resources.extension"
+                                 value="melange">
+                           </test>
+                        </adapt>
+                     </iterate>
+                  </with>
+               </visibleWhen>
                <command
-                     commandId="fr.inria.diverse.melange.Compile"
-                     label="Compile"
+                     commandId="fr.inria.diverse.melange.GenerateAll"
+                     label="Generate All"
                      style="push">
-                  <visibleWhen
-                        checkEnabled="false">
-                     <with
-                           variable="activeMenuSelection">
-                        <iterate
-                              ifEmpty="false">
-                           <adapt
-                                 type="org.eclipse.core.resources.IResource">
-                              <test
-                                    property="org.eclipse.core.resources.extension"
-                                    value="melange">
-                              </test>
-                           </adapt>
-                        </iterate>
-                     </with>
-                  </visibleWhen>
+               </command>
+               <command
+                     commandId="fr.inria.diverse.melange.CleanAll"
+                     label="Clean All"
+                     style="push">
+               </command>
+               <separator
+                     name="fr.inria.diverse.melange.ui.menu.separator"
+                     visible="true">
+               </separator>
+               <command
+                     commandId="fr.inria.diverse.melange.GenerateLanguages"
+                     label="Generate Languages Runtime"
+                     style="push">
+               </command>
+               <command
+                     commandId="fr.inria.diverse.melange.GenerateAdapters"
+                     label="Generate Adapters"
+                     style="push">
+               </command>
+               <command
+                     commandId="fr.inria.diverse.melange.GenerateInterfaces"
+                     label="Generate Interfaces"
+                     style="push">
                </command>
             </menu>
       </menuContribution>
@@ -684,23 +715,104 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="fr.inria.diverse.melange.ui.menu.Compile"
-            id="fr.inria.diverse.melange.Compile"
-            name="Compile">
+            id="fr.inria.diverse.melange.GenerateAll"
+            name="Generate All">
       </command>
    </extension>
    <extension
-         point="org.eclipse.core.runtime.preferences">
-      <initializer
-            class="fr.inria.diverse.melange.ui.preferences.MelangePreferencesInitializer">
-      </initializer>
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="fr.inria.diverse.melange.ui.MelangeExecutableExtensionFactory:fr.inria.diverse.melange.ui.menu.GenerateAll"
+            commandId="fr.inria.diverse.melange.GenerateAll">
+      </handler>
    </extension>
    <extension
-         point="org.eclipse.xtext.builder.participant">
-      <participant
-            class="fr.inria.diverse.melange.ui.builder.MelangeBuilderParticipant"
-            fileExtensions="melange">
-      </participant>
+         point="org.eclipse.ui.commands">
+      <command
+            id="fr.inria.diverse.melange.GenerateLanguages"
+            name="Generate Languages">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="fr.inria.diverse.melange.ui.MelangeExecutableExtensionFactory:fr.inria.diverse.melange.ui.menu.GenerateLanguages"
+            commandId="fr.inria.diverse.melange.GenerateLanguages">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="fr.inria.diverse.melange.GenerateInterfaces"
+            name="Generate Interfaces">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="fr.inria.diverse.melange.ui.MelangeExecutableExtensionFactory:fr.inria.diverse.melange.ui.menu.GenerateInterfaces"
+            commandId="fr.inria.diverse.melange.GenerateInterfaces">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="fr.inria.diverse.melange.GenerateAdapters"
+            name="Generate Adapters">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="fr.inria.diverse.melange.ui.MelangeExecutableExtensionFactory:fr.inria.diverse.melange.ui.menu.GenerateAdapters"
+            commandId="fr.inria.diverse.melange.GenerateAdapters">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="fr.inria.diverse.melange.ui.MelangeExecutableExtensionFactory:fr.inria.diverse.melange.ui.menu.CleanAll"
+            commandId="fr.inria.diverse.melange.CleanAll">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="fr.inria.diverse.melange.CleanAll"
+            name="Clean All">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:#TextEditorContext?after=additions">
+         <command
+               commandId="fr.inria.diverse.melange.GenerateAllFromEditor"
+               icon="icons/melange.png"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <reference
+                     definitionId="fr.inria.diverse.melange.Melange.Editor.opened">
+               </reference>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="fr.inria.diverse.melange.GenerateAllFromEditor"
+            name="Generate All">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="fr.inria.diverse.melange.ui.MelangeExecutableExtensionFactory:fr.inria.diverse.melange.ui.menu.GenerateAllFromEditor"
+            commandId="fr.inria.diverse.melange.GenerateAllFromEditor">
+      </handler>
    </extension>
 
 </plugin>

@@ -3,6 +3,7 @@ package fr.inria.diverse.melange.ast
 import com.google.inject.Inject
 import fr.inria.diverse.melange.algebra.ModelTypeAlgebra
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
+import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.Import
 import fr.inria.diverse.melange.metamodel.melange.Inheritance
@@ -15,13 +16,15 @@ import fr.inria.diverse.melange.metamodel.melange.Slice
 import fr.inria.diverse.melange.utils.AspectCopier
 import fr.inria.diverse.melange.utils.AspectRenamer
 import java.util.List
-import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
+import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.naming.IQualifiedNameConverter
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import fr.inria.diverse.melange.utils.RenamingRuleManager
+import fr.inria.diverse.melange.metamodel.melange.Weave
 
 class LanguageExtensions
 {
@@ -29,20 +32,29 @@ class LanguageExtensions
 	@Inject extension MetamodelExtensions
 	@Inject extension AspectExtensions aspectExtension
 	@Inject extension ModelTypeExtensions
+	@Inject extension EcoreExtensions
 	@Inject extension IQualifiedNameConverter
 	@Inject extension EclipseProjectHelper
 	@Inject extension NamingHelper
+	@Inject extension IQualifiedNameProvider
 	@Inject ModelTypeAlgebra algebra
 	@Inject AspectCopier copier
 	@Inject AspectRenamer renamer
 	@Inject JvmTypeReferenceBuilder.Factory builderFactory
 
 	def List<Language> getSuperLanguages(Language l) {
-		return l.operators.filter(Inheritance).map[superLanguage].toList
+		return l.operators.filter(Inheritance).map[targetLanguage].toList
+	}
+
+	def List<Language> getAllSuperLanguages(Language l) {
+		val ret = newArrayList
+		ret += l.superLanguages
+		ret += l.operators.filter(Inheritance).map[targetLanguage.allSuperLanguages].flatten
+		return ret
 	}
 
 	def boolean getIsComplete(Language l) {
-		return l.syntax !== null && l.syntax.isComplete
+		return l.name !== null && l.syntax !== null && l.syntax.isComplete && l.semantics.forall[isComplete]
 	}
 
 	/**
@@ -52,28 +64,50 @@ class LanguageExtensions
 	 * 2) From Merge relations, in top->bottom order
 	 * 3) From Inheritance relations, in the left->right order <br>
 	 */
-	def List<Aspect> allAspects(Language l) {
+	def List<JvmTypeReference> allAspects(Language l) {
 		val res = newArrayList
-		
-		res.addAll(l.semantics)
-		res.addAll(
+
+		res += l.operators.filter(Inheritance).map[targetLanguage.allAspects].flatten		
+		res +=
 			l.operators.map[op |
 				if (op instanceof Slice)
-					op.slicedLanguage.allAspects
+					op.targetLanguage.allAspects
 				else if (op instanceof Merge)
-					op.mergedLanguage.allAspects
+					op.targetLanguage.allAspects
 				else
 					newArrayList
 			].flatten
-		)
-		res.addAll(l.superLanguages.map[allAspects].flatten)
+		res += l.operators.filter(Weave).map[aspectTypeRef]
+
+		return res.reverse
+	}
+
+	def List<Aspect> allSemantics(Language l) {
+		val tmp = newArrayList
 		
-		return res
+		tmp += l.superLanguages.map[allSemantics].flatten
+		tmp +=
+			l.operators.map[op |
+				if (op instanceof Slice)
+					op.targetLanguage.allSemantics
+				else if (op instanceof Merge)
+					op.targetLanguage.allSemantics
+				else
+					newArrayList
+			].flatten
+		tmp += l.semantics
+
+		val res = newArrayList
+		tmp.forEach[a1 |
+			if (!res.exists[Aspect a2 | a2.aspectTypeRef.identifier == a1.aspectTypeRef.identifier])
+				res += a1
+		]
+		return res.reverse
 	}
 
 	def Iterable<Aspect> findAspectsOn(Language l, EClass cls) {
 		return
-			l.allAspects.filter[asp |
+			l.allSemantics.filter[asp |
 				asp.aspectedClass?.name !== null
 				&& (
 				   asp.aspectedClass.name == cls.name
@@ -87,7 +121,7 @@ class LanguageExtensions
 	}
 
 	def boolean hasSuperLanguage(Language l) {
-		return l.operators.filter(Inheritance).exists[superLanguage !== null]
+		return l.operators.filter(Inheritance).exists[targetLanguage !== null]
 	}
 
 	def boolean hasAdapterFor(Language l, ModelType mt, EClassifier cls) {
@@ -95,18 +129,25 @@ class LanguageExtensions
 	}
 
 	def boolean hasAdapterFor(Language l, ModelType mt, String find) {
+		val syntaxFind = l.syntax.allClasses.findFirst[name == find]
+
 		return
 		   l.^implements.exists[name == mt.name]
-		&& l.syntax.allClasses.exists[name == find]
+		&& syntaxFind !== null
 		&& mt.allClasses.exists[name == find]
+		&& syntaxFind.abstractable
 	}
 
 	def boolean isUml(Language l, EClassifier cls) {
 		return l.syntax.pkgs.findFirst[EClassifiers.exists[name == cls.name]] == "uml"
 	}
 
+	def String getExternalPackageUri(Language l) {
+		return '''http://«l.name.toLowerCase»/'''
+	}
+
 	def void createLocalEcore(Language l) {
-		l.syntax.createEcore(l.localEcoreUri)
+		l.syntax.createEcore(l.localEcoreUri, l.externalPackageUri)
 	}
 
 	def void createLocalGenmodel(Language l) {
@@ -114,7 +155,7 @@ class LanguageExtensions
 	}
 
 	def void createExternalEcore(Language l) {
-		l.syntax.createEcore(l.externalEcoreUri)
+		l.syntax.createEcore(l.externalEcoreUri, l.externalPackageUri)
 	}
 
 	def void createExternalGenmodel(Language l) {
@@ -161,18 +202,35 @@ class LanguageExtensions
 		return '''platform:/resource/«l.externalRuntimeName»/model/«l.name».genmodel'''
 	}
 
+	def String getAspectTargetNamespace(Language l) {
+		return l.fullyQualifiedName.append("aspects").toLowerCase.toString
+//		val postfix =
+//			if (sourceAspectNamespace.segmentCount > 1
+//				&& #["aspect", "aspects", "k3dsa"].contains(sourceAspectNamespace.lastSegment))
+//				sourceAspectNamespace.lastSegment
+//			else
+//				"aspects"
+//
+//		if (sourceAspectNamespace.segmentCount > 2)
+//			return sourceAspectNamespace.skipLast(2).append(l.name.toLowerCase).append(postfix)
+//		else
+//			return sourceAspectNamespace.skipLast(1).append(l.name.toLowerCase).append(postfix)
+	}
+
 	/**
 	 * Get the name of the project containing Java classes reifying the metamodel {@link mm}
 	 */
 	def String getExternalRuntimeName(Language l) {
-		if (l.syntax.ecoreUri !== null) {
-			val originalProjectName = URI::createURI(l.syntax.ecoreUri).segment(1)
-
-			return originalProjectName
-		}
-		else{
-			return l.name + "_Gen"
-		}
+		return l.fullyQualifiedName.toLowerCase.toString
+//		return l.name + "_Gen"
+//		if (l.syntax.ecoreUri !== null) {
+//			val originalProjectName = URI::createURI(l.syntax.ecoreUri).segment(1)
+//
+//			return originalProjectName
+//		}
+//		else{
+//			return l.name + "_Gen"
+//		}
 //		 else if (mm.inheritanceRelation.superMetamodel.ecoreUri !== null) {
 //			val originalProjectName = URI::createURI(mm.inheritanceRelation.superMetamodel.ecoreUri).segment(1)
 //			
@@ -227,7 +285,7 @@ class LanguageExtensions
 			if (gp.prefix !== null && gp.prefix.length > 0)
 				segments += gp.prefix
 
-			val fqn = QualifiedName::create(segments).toString.toLowerCase
+			val fqn = QualifiedName::create(segments).toLowerCase.toString.replace(".", "/")
 			if ((
 				   project.getFile(l.localEcorePath).exists
 				&& project.getFile(l.localGenmodelPath).exists
@@ -240,7 +298,7 @@ class LanguageExtensions
 				return true
 			else return false
 		} else
-			return false
+			return true
 	}
 
 	/**
@@ -259,11 +317,11 @@ class LanguageExtensions
 				var List<Aspect> aspects = null
 				var List<PackageBinding> renamingRules = null
 				if (op instanceof Slice){
-					aspects = (op as Slice).slicedLanguage.allAspects
+					aspects = (op as Slice).targetLanguage.allSemantics
 					renamingRules= (op as Slice).mappingRules
 				} 
 				else if (op instanceof Merge){
-					aspects = (op as Merge).mergedLanguage.allAspects
+					aspects = (op as Merge).targetLanguage.allSemantics
 					renamingRules= (op as Merge).mappingRules
 				}
 				
@@ -281,7 +339,7 @@ class LanguageExtensions
 				}
 			]
 		//Copy super lang
-		res += simpleCopyAsp(l,l.superLanguages.map[allAspects].flatten,classesAlreadyWeaved,null)
+		res += simpleCopyAsp(l,l.superLanguages.map[allSemantics].flatten,classesAlreadyWeaved,null)
 		
 		return res
 	}
@@ -294,9 +352,9 @@ class LanguageExtensions
 		val res = newArrayList
 		aspects.forEach[asp |
 			if (asp.isComplete) {
-				if (asp.canBeCopiedFor(l.syntax)) {
+				if (asp.aspectTypeRef.canBeCopiedFor(l.syntax)) {
 					
-					var className = asp.aspectAnnotationValue
+					var className = asp.aspectTypeRef.aspectAnnotationValue
 					val renaming = rulesManager?.getClassRule(asp.aspectedClassFqName)
 					if(renaming != null) className = renaming.value.substring(renaming.value.lastIndexOf(".")+1)
 					
@@ -313,5 +371,9 @@ class LanguageExtensions
 			}
 		]
 		return res
+	}
+
+	def boolean hasExternalAspects(Language l) {
+		return !l.allAspects.filter[!isDefinedOver(l.syntax) && canBeCopiedFor(l.syntax)].empty
 	}
 }

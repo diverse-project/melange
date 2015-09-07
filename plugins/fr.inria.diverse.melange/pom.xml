@@ -3,9 +3,9 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<relativePath>../fr.inria.diverse.melange.root/pom.xml</relativePath>
+		<relativePath>../fr.inria.diverse.melange.plugins.root/pom.xml</relativePath>
 		<groupId>fr.inria.diverse.melange</groupId>
-		<artifactId>fr.inria.diverse.melange.root</artifactId>
+		<artifactId>fr.inria.diverse.melange.plugins.root</artifactId>
 		<version>0.1.0-SNAPSHOT</version>
 	</parent>
 
@@ -25,21 +25,21 @@
 							<directory>${basedir}/src-gen</directory>
 						</fileset>
 						<fileset>
-                                                        <directory>${basedir}/src/main/xtend-gen</directory>
+							<directory>${basedir}/src/main/xtend-gen</directory>
 						</fileset>
 						<!-- clean ui plugin as well -->
 						<fileset>
 							<directory>${basedir}/../${project.artifactId}.ui/src-gen</directory>
 						</fileset>
 						<fileset>
-                                                        <directory>${basedir}/../${project.artifactId}.ui/src/main/xtend-gen</directory>
+							<directory>${basedir}/../${project.artifactId}.ui/src/main/xtend-gen</directory>
 						</fileset>
 						<!-- clean test fragment as well -->
 						<fileset>
-							<directory>${basedir}/../${project.artifactId}.tests/src-gen</directory>
+							<directory>${basedir}/../../tests/${project.artifactId}.tests/src-gen</directory>
 						</fileset>
 						<fileset>
-                                                        <directory>${basedir}/../${project.artifactId}.tests/src/main/xtend-gen</directory>
+							<directory>${basedir}/../../tests/${project.artifactId}.tests/src/main/xtend-gen</directory>
 						</fileset>
 					</filesets>
 				</configuration>
@@ -82,11 +82,6 @@
 						<artifactId>fr.inria.diverse.melange.metamodel</artifactId>
 						<version>${project.version}</version>
 					</dependency>
-					<!--<dependency>
-						<groupId>fr.inria.diverse.kompren</groupId>
-						<artifactId>fr.inria.diverse.kompren.model</artifactId>
-						<version>3.0.0.v20140722-1602</version>
-					</dependency>-->
 					<dependency>
 						<groupId>org.eclipse.xtext</groupId>
 						<artifactId>org.eclipse.xtext.xtext</artifactId>

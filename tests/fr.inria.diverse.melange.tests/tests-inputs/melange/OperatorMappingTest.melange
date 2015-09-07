@@ -1,0 +1,140 @@
+package mergetest
+
+language MM1 {
+	syntax "tests-inputs/metamodels/merge/MM1.ecore"
+	exactType mm1MT
+}
+
+language PackageLang {
+	syntax "tests-inputs/metamodels/PackagesTest.ecore"
+	exactType PackLangMt
+}
+
+language RenameEcoreMM1{
+	syntax "tests-inputs/metamodels/merge/MM1.ecore" and-rename{
+		"testmerge" to "newpackage"{
+			"A" to "AAAAA"{
+				"toB" : "toZ"
+			}
+			"B" to "Z" {
+				
+			}
+		}
+	}
+	exactType RenameEcoreMT
+}
+
+language RenameMergeMM1{
+	merge MM1 and-rename{
+		"testmerge" to "newpackage"{
+			"A" to "AAAAA"{
+				"toB" : "toZ"
+			}
+			"B" to "Z" {
+				"anAttribute" : "aZebra"
+			}
+		}
+	}
+	exactType RenameMergeMT
+}
+
+language RenameSliceMM1{
+	slice MM1 on ['A', 'SubB'] and-rename{
+		"testmerge" to "newpackage"{
+			"A" to "AAAAA"{
+				"toB" : "toZ"
+			}
+			"B" to "Z" {
+				
+			}
+		}
+	}
+	exactType RenameSliceMT
+}
+
+/*
+ * Merge packages
+ */
+language SubPackTest0{
+	merge PackageLang and-rename{
+		"toppkg" to "toppkg.subpkg1"{}
+	}
+	exactType SubPack0Mt
+}
+language SubPackTest1{
+	merge PackageLang and-rename{
+		"toppkg.subpkg1" to "toppkg"{}
+	}
+	exactType SubPackMt
+}
+language SubPackTest2 {
+	merge PackageLang and-rename{
+		"toppkg.subpkg2" to "toppkg.subpkg1"{}
+		"toppkg.subpkg2.subpkg3" to "toppkg.subpkg1"{}
+	}
+	exactType SubPack2Mt
+}
+
+/*
+ * Own subpackage
+ */
+language SubPackTest3{
+	merge PackageLang and-rename{
+		"toppkg" to "toppkg.newsubpkg"{}
+	}
+	exactType SubPack3Mt
+}
+language SubPackTest4{
+	merge PackageLang and-rename{
+		"toppkg.subpkg1" to "toppkg.subpkg1.newsubpkg"{}
+	}
+	exactType SubPack4Mt
+}
+language SubPackTest4b{
+	merge PackageLang and-rename{
+		"toppkg.subpkg2" to "toppkg.subpkg2.newsubpkg"{}
+	}
+	exactType SubPack4bMt
+}
+
+/*
+ * Switch packages
+ */
+language SubPackTest5{
+	merge PackageLang and-rename{
+		"toppkg" to "toppkg.subpkg1"{}
+		"toppkg.subpkg1" to "toppkg"{}
+	}
+	exactType SubPack5Mt
+}
+language SubPackTest6{
+	merge PackageLang and-rename{
+		"toppkg.subpkg2.subpkg3" to "toppkg.subpkg2"{}
+		"toppkg.subpkg2" to "toppkg.subpkg2.subpkg3"{}
+	}
+	exactType SubPack6Mt
+}
+
+/*
+ * Add new package
+ */
+language SubPackTest7{
+	merge PackageLang and-rename{
+		"toppkg.subpkg1" to "toppkg.newsubpack.subpkg1"{}
+	}
+	exactType SubPack7Mt
+}
+language SubPackTest8{
+	merge PackageLang and-rename{
+		"toppkg" to "newroot.subpkg1"{}
+	}
+	exactType SubPack8Mt
+}
+language SubPackTest9{
+	merge PackageLang and-rename{
+		"toppkg" to "newroot.newsubpack"{}
+		"toppkg.subpkg1" to "newroot.newsubpack.newsubpack2" {}
+	}
+	exactType SubPack9Mt
+}
+ 

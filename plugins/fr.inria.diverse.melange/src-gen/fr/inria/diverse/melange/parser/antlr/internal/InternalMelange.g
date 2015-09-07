@@ -1389,7 +1389,7 @@ ruleMerge returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getMergeAccess().getMergedLanguageLanguageCrossReference_1_0()); 
+	        newCompositeNode(grammarAccess.getMergeAccess().getTargetLanguageLanguageCrossReference_1_0()); 
 	    }
 		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
@@ -1459,7 +1459,7 @@ ruleSlice returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getSliceAccess().getSlicedLanguageLanguageCrossReference_1_0()); 
+	        newCompositeNode(grammarAccess.getSliceAccess().getTargetLanguageLanguageCrossReference_1_0()); 
 	    }
 		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
@@ -1577,7 +1577,7 @@ ruleInherit returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getInheritAccess().getSuperLanguageLanguageCrossReference_0()); 
+	        newCompositeNode(grammarAccess.getInheritAccess().getTargetLanguageLanguageCrossReference_0()); 
 	    }
 		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
@@ -1605,24 +1605,64 @@ ruleWeave returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
+(
+    { 
+        newCompositeNode(grammarAccess.getWeaveAccess().getAspectTypeRefParserRuleCall_0()); 
+    }
+    this_AspectTypeRef_0=ruleAspectTypeRef
+    { 
+        $current = $this_AspectTypeRef_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getWeaveAccess().getAspectWildcardParserRuleCall_1()); 
+    }
+    this_AspectWildcard_1=ruleAspectWildcard
+    { 
+        $current = $this_AspectWildcard_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleAspectTypeRef
+entryRuleAspectTypeRef returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getAspectTypeRefRule()); }
+	 iv_ruleAspectTypeRef=ruleAspectTypeRef 
+	 { $current=$iv_ruleAspectTypeRef.current; } 
+	 EOF 
+;
+
+// Rule AspectTypeRef
+ruleAspectTypeRef returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
 (	otherlv_0='with' 
     {
-    	newLeafNode(otherlv_0, grammarAccess.getWeaveAccess().getWithKeyword_0());
+    	newLeafNode(otherlv_0, grammarAccess.getAspectTypeRefAccess().getWithKeyword_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getWeaveAccess().getAspectAspectParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getAspectTypeRefAccess().getAspectTypeRefJvmTypeReferenceParserRuleCall_1_0()); 
 	    }
-		lv_aspect_1_0=ruleAspect		{
+		lv_aspectTypeRef_1_0=ruleJvmTypeReference		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getWeaveRule());
+	            $current = createModelElementForParent(grammarAccess.getAspectTypeRefRule());
 	        }
        		set(
        			$current, 
-       			"aspect",
-        		lv_aspect_1_0, 
-        		"Aspect");
+       			"aspectTypeRef",
+        		lv_aspectTypeRef_1_0, 
+        		"JvmTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1634,47 +1674,32 @@ ruleWeave returns [EObject current=null]
 
 
 
-// Entry rule entryRuleAspect
-entryRuleAspect returns [EObject current=null] 
+// Entry rule entryRuleAspectWildcard
+entryRuleAspectWildcard returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getAspectRule()); }
-	 iv_ruleAspect=ruleAspect 
-	 { $current=$iv_ruleAspect.current; } 
+	{ newCompositeNode(grammarAccess.getAspectWildcardRule()); }
+	 iv_ruleAspectWildcard=ruleAspectWildcard 
+	 { $current=$iv_ruleAspectWildcard.current; } 
 	 EOF 
 ;
 
-// Rule Aspect
-ruleAspect returns [EObject current=null] 
+// Rule AspectWildcard
+ruleAspectWildcard returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-((
+(	otherlv_0='with' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getAspectWildcardAccess().getWithKeyword_0());
+    }
+(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAspectAccess().getAspectTypeRefJvmTypeReferenceParserRuleCall_0_0()); 
-	    }
-		lv_aspectTypeRef_0_0=ruleJvmTypeReference		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getAspectRule());
-	        }
-       		set(
-       			$current, 
-       			"aspectTypeRef",
-        		lv_aspectTypeRef_0_0, 
-        		"JvmTypeReference");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)
-    |(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getAspectAccess().getAspectWildcardImportQualifiedNameWithWildcardParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getAspectWildcardAccess().getAspectWildcardImportQualifiedNameWithWildcardParserRuleCall_1_0()); 
 	    }
 		lv_aspectWildcardImport_1_0=ruleQualifiedNameWithWildcard		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getAspectRule());
+	            $current = createModelElementForParent(grammarAccess.getAspectWildcardRule());
 	        }
        		set(
        			$current, 

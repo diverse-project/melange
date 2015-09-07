@@ -8,7 +8,7 @@ import fr.inria.diverse.commons.asm.shade.relocation.SimpleRelocator
 import fr.inria.diverse.commons.asm.shade.resource.K3AspectPropertiesTransformer
 import fr.inria.diverse.commons.asm.shade.resource.ResourceTransformer
 import fr.inria.diverse.melange.ast.AspectExtensions
-import fr.inria.diverse.melange.ast.ModelingElementExtensions
+import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
 import fr.inria.diverse.melange.metamodel.melange.Aspect
@@ -40,9 +40,10 @@ import static fr.inria.diverse.melange.utils.AspectCopier.*
 class AspectCopier
 {
 	@Inject extension AspectExtensions
+	@Inject extension LanguageExtensions
 	@Inject extension IQualifiedNameConverter
 	@Inject extension NamingHelper
-	@Inject extension EclipseProjectHelper
+	@Inject EclipseProjectHelper eclipseHelper
 	@Inject ErrorHelper errorHelper
 	static Logger log = Logger.getLogger(AspectCopier)
 	
@@ -56,8 +57,11 @@ class AspectCopier
 		val task = Stopwatches.forTask("copying aspects in new type group")
 		task.start
 
-		val project = l.eResource.project
-		if (project === null) return null
+		val aspTypeRef = asp.aspectTypeRef
+		val project = eclipseHelper.getProject(l.eResource)
+
+		if (project === null)
+			return null
 
 		val ws = project.workspace.root
 		val shader = new DirectoryShader
@@ -69,8 +73,10 @@ class AspectCopier
 		 */
 		val sourceEmfNamespace = asp.owningLanguage.syntax.packageFqn.toQualifiedName.skipLast(1).toString //prefixed root package
 		val targetEmfNamespace = l.syntax.packageFqn.toQualifiedName.skipLast(1)
-		val sourceAspectNamespace = asp.aspectTypeRef.identifier.toQualifiedName.skipLast(1)
-		val targetAspectNamespace = getAspectTargetNamespace(sourceAspectNamespace, l)
+
+		val sourceAspectNamespace = aspTypeRef.identifier.toQualifiedName.skipLast(1)
+		val targetAspectNamespace = l.aspectTargetNamespace
+		val newFqn = '''«targetAspectNamespace».«aspTypeRef.simpleName»'''
 		
 		if(sourceEmfNamespace.equals(sourceAspectNamespace)){
 			errorHelper.addError(asp, "Melange cannot correctly handle aspect classes if they use the same package name as the aspectized emf classes, please move the aspect classes in a dedicated package", null)
@@ -86,16 +92,18 @@ class AspectCopier
 		val sourceAspectFolder = projectPathTmp.toString + "/xtend-gen/"
 		val sourceFolderFile = new File(sourceAspectFolder)
 		val sourceProject = ws.getProject(projectNameTmp.toString)
-		val findTargetProject = ws.getProject(l.name+"_Gen")
+		val findTargetProject = ws.getProject(l.externalRuntimeName)
+		// FIXME: Just to have a first call of the EPackageProvider
+		//        in order to set the ecoreUri when inherited
 		val ecoreUri = URI::createURI(l.syntax.ecoreUri)
 		val emfRuntimeProject = ecoreUri.segment(1)
 		val targetProject =
 			if (findTargetProject.exists)
 				findTargetProject
 			else
-				EclipseProjectHelper::createAspectsRuntimeProject(
+				eclipseHelper.createAspectsRuntimeProject(
 					sourceProject,
-					l.name+"_Gen",
+					l.externalRuntimeName,
 					targetAspectNamespace.toString,
 					emfRuntimeProject
 				)
@@ -104,7 +112,7 @@ class AspectCopier
 		 * of the Language project
 		 */
 		if(project.name != targetProject.name){
-			EclipseProjectHelper::addDependencies(project, #[targetProject.name])
+			eclipseHelper.addDependencies(project, #[targetProject.name])
 		}
 				
 		/*
@@ -122,17 +130,24 @@ class AspectCopier
 		/*
 		 * Filter files not related to targeted aspect
 		 */
-		val className = asp.aspectAnnotationValue
-		val filter = new Filter(){
-			String targetClass = className
+		val aspectFqn = aspTypeRef.identifier
+		val aspectTargetClass = aspTypeRef.aspectAnnotationValue
+		// Filter files not related to targeted aspect
+		val filter = new Filter {
+			String prefix = aspectFqn.replaceAll("\\.", "/")
+			String targetClass = aspectTargetClass
+
 			override canFilter(File jar) {
 				return true
 			}
+
 			override finished() {}
+
 			override isFiltered(String classFile) {
-				return !(classFile.endsWith("/"+targetClass+"Aspect.java") ||
-						classFile.endsWith("/"+targetClass+"Aspect"+targetClass+"AspectContext.java") ||
-						classFile.endsWith("/"+targetClass+"Aspect"+targetClass+"AspectProperties.java"))
+				return
+					   !(classFile.endsWith('''«prefix».java''')
+					|| classFile.endsWith('''«prefix»«targetClass»AspectContext.java''')
+					|| classFile.endsWith('''«prefix»«targetClass»AspectProperties.java'''))
 			}
 		}
 		request.inputFolders = #{sourceFolderFile}
@@ -142,20 +157,20 @@ class AspectCopier
 		request.relocators = relocators
 
 		try {
-			log.debug('''Copying aspect «asp.aspectTypeRef.identifier» to «l.name»:''')
-			log.debug('''	sourceEmfNamespace    = «sourceEmfNamespace»''')
-			log.debug('''	targetEmfNamespace    = «targetEmfNamespace»''')
-			log.debug('''	sourceAspectNamespace = «sourceAspectNamespace»''')
-			log.debug('''	targetAspectNamespace = «targetAspectNamespace»''')
-			log.debug('''	sourceAspectFolder    = «sourceAspectFolder»''')
-			log.debug('''	targetAspectFolder    = «targetAspectFolder»''')
+			log.debug('''Copying aspect «aspTypeRef.identifier» to «l.name» as «newFqn»''')
+//			log.debug('''	sourceEmfNamespace    = «sourceEmfNamespace»''')
+//			log.debug('''	targetEmfNamespace    = «targetEmfNamespace»''')
+//			log.debug('''	sourceAspectNamespace = «sourceAspectNamespace»''')
+//			log.debug('''	targetAspectNamespace = «targetAspectNamespace»''')
+//			log.debug('''	sourceAspectFolder    = «sourceAspectFolder»''')
+//			log.debug('''	targetAspectFolder    = «targetAspectFolder»''')
 
 			shader.shade(request)
 			
 			/*
 			 * Relocate MANIFEST.MF
 			 */
-			log.debug('''Copying META-INF aspect_properties «asp.aspectTypeRef.identifier» to «l.name»:''')	
+			log.debug('''Copying META-INF aspect_properties «aspTypeRef.identifier» to «l.name» as «»''')	
 			val sourceMetaInfFolder = projectPathTmp.toString + "/META-INF/"
 			val sourceMetaInfFile = new File(sourceMetaInfFolder)	
 			val targetMetaInfFile = new File(findTargetProject.locationURI.path + "/META-INF/")
@@ -184,7 +199,7 @@ class AspectCopier
 				javaProject.setRawClasspath(newEntries, null);
 			}
 			
-			return '''«targetAspectNamespace».«asp.aspectTypeRef.simpleName»'''
+			return newFqn
 		} catch (IOException e) {
 			log.debug("Copy failed", e)
 			return null
@@ -242,4 +257,3 @@ class AspectCopier
 		})
 	}
 }
-

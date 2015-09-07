@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="fsm" nsURI="http://fsm/" nsPrefix="fsm">
+  <eClassifiers xsi:type="ecore:EClass" name="NoAnnotationSuper"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NoAnnotation" eSuperTypes="//NoAnnotationSuper">
+    <eAnnotations source="aspect"/>
+    <eOperations name="j">
+      <eAnnotations source="aspect"/>
+      <eParameters name="arg0">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eParameters>
+      <eParameters name="arg1" eType="//Transition"/>
+    </eOperations>
+    <eOperations name="k" upperBound="-1" eType="//State">
+      <eAnnotations source="aspect"/>
+      <eParameters name="arg0" upperBound="-1" eType="//Transition"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="a" eType="//A">
+      <eAnnotations source="aspect"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="b" upperBound="-1" eType="//B">
+      <eAnnotations source="aspect"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ls" upperBound="-1" eType="//State">
+      <eAnnotations source="aspect"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="f" eType="//FSM">
+      <eAnnotations source="aspect"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="A" instanceClassName="fr.inria.diverse.melange.tests.aspects.fsm.A"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="B" instanceClassName="fr.inria.diverse.melange.tests.aspects.fsm.B"/>
+  <eClassifiers xsi:type="ecore:EClass" name="State"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FSM"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Transition"/>
+</ecore:EPackage>

@@ -1,0 +1,16 @@
+package aspecttoecoretest
+
+import fr.inria.diverse.melange.tests.aspects.fsm.*
+
+language Fsm {
+	syntax "tests-inputs/metamodels/FSM.ecore" withGenmodel "tests-inputs/metamodels/FSM.genmodel"
+	with SimpleAttributes
+	with AttributesCollections
+	with SimpleReferences
+	with ReferencesCollections
+	with ExternalReferences
+	with Visibility
+	with Operations
+	with NoAnnotation
+	exactType FsmMT
+}

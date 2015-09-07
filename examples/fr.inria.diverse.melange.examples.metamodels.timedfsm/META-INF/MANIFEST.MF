@@ -11,5 +11,5 @@ Export-Package: timedfsm,
  timedfsm.impl,
  timedfsm.util
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore
+ org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy

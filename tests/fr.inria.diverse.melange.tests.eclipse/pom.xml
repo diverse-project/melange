@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<relativePath>../fr.inria.diverse.melange.tests.root/pom.xml</relativePath>
+		<groupId>fr.inria.diverse.melange</groupId>
+		<artifactId>fr.inria.diverse.melange.tests.root</artifactId>
+		<version>0.1.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>fr.inria.diverse.melange.tests.eclipse</artifactId>
+	<packaging>eclipse-test-plugin</packaging>
+
+	<name>Melange Language Eclipse Tests</name>
+	
+	<build>
+    	<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-surefire-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<useUIHarness>true</useUIHarness>
+					<useUIThread>true</useUIThread>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
+

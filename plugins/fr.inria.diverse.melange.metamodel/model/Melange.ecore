@@ -27,18 +27,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="aspectTypeRef" lowerBound="1"
         eType="ecore:EClass ../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="aspectedClass" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="aspectWildcardImport" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ecoreFragment" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aspectedClass" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"
+        transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ecoreFragment" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningLanguage" lowerBound="1"
         eType="#//Language" eOpposite="#//Language/semantics"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Inheritance" eSuperTypes="#//Operator">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="superLanguage" lowerBound="1"
-        eType="#//Language"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Inheritance" eSuperTypes="#//LanguageOperator"/>
   <eClassifiers xsi:type="ecore:EClass" name="Subtyping">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subType" lowerBound="1"
         eType="#//ModelType" eOpposite="#//ModelType/subtypingRelations"/>
@@ -84,6 +80,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningLanguage" eType="#//Language"
         eOpposite="#//Language/operators"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LanguageOperator" eSuperTypes="#//Operator">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetLanguage" lowerBound="1"
+        eType="#//Language"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Import" eSuperTypes="#//Operator">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ecoreUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="genmodelUris" upperBound="-1"
@@ -91,15 +91,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappingRules" upperBound="-1"
         eType="#//PackageBinding" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Merge" eSuperTypes="#//Operator">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="mergedLanguage" lowerBound="1"
-        eType="#//Language"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Merge" eSuperTypes="#//LanguageOperator">
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappingRules" upperBound="-1"
         eType="#//PackageBinding" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Slice" eSuperTypes="#//Operator">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="slicedLanguage" lowerBound="1"
-        eType="#//Language"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Slice" eSuperTypes="#//LanguageOperator">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="roots" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappingRules" upperBound="-1"
@@ -132,11 +128,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" upperBound="-1"
         eType="#//Mapping" resolveProxies="false" eOpposite="#//Mapping/from"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="semantics" upperBound="-1"
-        eType="#//Aspect" eOpposite="#//Aspect/owningLanguage"/>
+        eType="#//Aspect" containment="true" eOpposite="#//Aspect/owningLanguage"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Weave" eSuperTypes="#//Operator">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="aspect" lowerBound="1"
-        eType="#//Aspect" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aspectTypeRef" eType="ecore:EClass ../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="aspectWildcardImport" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="#//Element">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

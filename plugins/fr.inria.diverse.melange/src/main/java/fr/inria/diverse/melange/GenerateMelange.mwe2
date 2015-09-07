@@ -59,7 +59,7 @@ Workflow {
 	}
 	
 	component = DirectoryCleaner {
-		directory = "${runtimeProject}.tests/src-gen"
+		directory = "../../tests/fr.inria.diverse.melange.tests/src-gen"
 	}
 	
 	component = DirectoryCleaner {
@@ -69,7 +69,7 @@ Workflow {
 	component = Generator {
 		pathRtProject = runtimeProject
 		pathUiProject = "${runtimeProject}.ui"
-		pathTestProject = "${runtimeProject}.tests"
+		pathTestProject = "../../tests/fr.inria.diverse.melange.tests"
 		projectNameRt = projectName
 		projectNameUi = "${projectName}.ui"
 		encoding = encoding

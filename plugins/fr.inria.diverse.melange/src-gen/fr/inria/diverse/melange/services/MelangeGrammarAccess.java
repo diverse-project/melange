@@ -826,9 +826,9 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Merge");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cMergeKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cMergedLanguageAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cMergedLanguageLanguageCrossReference_1_0 = (CrossReference)cMergedLanguageAssignment_1.eContents().get(0);
-		private final RuleCall cMergedLanguageLanguageQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cMergedLanguageLanguageCrossReference_1_0.eContents().get(1);
+		private final Assignment cTargetLanguageAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cTargetLanguageLanguageCrossReference_1_0 = (CrossReference)cTargetLanguageAssignment_1.eContents().get(0);
+		private final RuleCall cTargetLanguageLanguageQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cTargetLanguageLanguageCrossReference_1_0.eContents().get(1);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cAndRenameKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
@@ -837,23 +837,23 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_2_3 = (Keyword)cGroup_2.eContents().get(3);
 		
 		//Merge:
-		//	"merge" mergedLanguage=[Language|QualifiedName] ("and-rename" "{" mappingRules+=PackageMapping* "}")?;
+		//	"merge" targetLanguage=[Language|QualifiedName] ("and-rename" "{" mappingRules+=PackageMapping* "}")?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//"merge" mergedLanguage=[Language|QualifiedName] ("and-rename" "{" mappingRules+=PackageMapping* "}")?
+		//"merge" targetLanguage=[Language|QualifiedName] ("and-rename" "{" mappingRules+=PackageMapping* "}")?
 		public Group getGroup() { return cGroup; }
 
 		//"merge"
 		public Keyword getMergeKeyword_0() { return cMergeKeyword_0; }
 
-		//mergedLanguage=[Language|QualifiedName]
-		public Assignment getMergedLanguageAssignment_1() { return cMergedLanguageAssignment_1; }
+		//targetLanguage=[Language|QualifiedName]
+		public Assignment getTargetLanguageAssignment_1() { return cTargetLanguageAssignment_1; }
 
 		//[Language|QualifiedName]
-		public CrossReference getMergedLanguageLanguageCrossReference_1_0() { return cMergedLanguageLanguageCrossReference_1_0; }
+		public CrossReference getTargetLanguageLanguageCrossReference_1_0() { return cTargetLanguageLanguageCrossReference_1_0; }
 
 		//QualifiedName
-		public RuleCall getMergedLanguageLanguageQualifiedNameParserRuleCall_1_0_1() { return cMergedLanguageLanguageQualifiedNameParserRuleCall_1_0_1; }
+		public RuleCall getTargetLanguageLanguageQualifiedNameParserRuleCall_1_0_1() { return cTargetLanguageLanguageQualifiedNameParserRuleCall_1_0_1; }
 
 		//("and-rename" "{" mappingRules+=PackageMapping* "}")?
 		public Group getGroup_2() { return cGroup_2; }
@@ -878,9 +878,9 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Slice");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cSliceKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cSlicedLanguageAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cSlicedLanguageLanguageCrossReference_1_0 = (CrossReference)cSlicedLanguageAssignment_1.eContents().get(0);
-		private final RuleCall cSlicedLanguageLanguageQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cSlicedLanguageLanguageCrossReference_1_0.eContents().get(1);
+		private final Assignment cTargetLanguageAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cTargetLanguageLanguageCrossReference_1_0 = (CrossReference)cTargetLanguageAssignment_1.eContents().get(0);
+		private final RuleCall cTargetLanguageLanguageQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cTargetLanguageLanguageCrossReference_1_0.eContents().get(1);
 		private final Keyword cOnKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Keyword cLeftSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cRootsAssignment_4 = (Assignment)cGroup.eContents().get(4);
@@ -898,25 +898,25 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_7_3 = (Keyword)cGroup_7.eContents().get(3);
 		
 		//Slice:
-		//	"slice" slicedLanguage=[Language|QualifiedName] "on" "[" roots+=STRING ("," roots+=STRING)* "]" ("and-rename" "{"
+		//	"slice" targetLanguage=[Language|QualifiedName] "on" "[" roots+=STRING ("," roots+=STRING)* "]" ("and-rename" "{"
 		//	mappingRules+=PackageMapping* "}")?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//"slice" slicedLanguage=[Language|QualifiedName] "on" "[" roots+=STRING ("," roots+=STRING)* "]" ("and-rename" "{"
+		//"slice" targetLanguage=[Language|QualifiedName] "on" "[" roots+=STRING ("," roots+=STRING)* "]" ("and-rename" "{"
 		//mappingRules+=PackageMapping* "}")?
 		public Group getGroup() { return cGroup; }
 
 		//"slice"
 		public Keyword getSliceKeyword_0() { return cSliceKeyword_0; }
 
-		//slicedLanguage=[Language|QualifiedName]
-		public Assignment getSlicedLanguageAssignment_1() { return cSlicedLanguageAssignment_1; }
+		//targetLanguage=[Language|QualifiedName]
+		public Assignment getTargetLanguageAssignment_1() { return cTargetLanguageAssignment_1; }
 
 		//[Language|QualifiedName]
-		public CrossReference getSlicedLanguageLanguageCrossReference_1_0() { return cSlicedLanguageLanguageCrossReference_1_0; }
+		public CrossReference getTargetLanguageLanguageCrossReference_1_0() { return cTargetLanguageLanguageCrossReference_1_0; }
 
 		//QualifiedName
-		public RuleCall getSlicedLanguageLanguageQualifiedNameParserRuleCall_1_0_1() { return cSlicedLanguageLanguageQualifiedNameParserRuleCall_1_0_1; }
+		public RuleCall getTargetLanguageLanguageQualifiedNameParserRuleCall_1_0_1() { return cTargetLanguageLanguageQualifiedNameParserRuleCall_1_0_1; }
 
 		//"on"
 		public Keyword getOnKeyword_2() { return cOnKeyword_2; }
@@ -966,54 +966,73 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class InheritElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Inherit");
-		private final Assignment cSuperLanguageAssignment = (Assignment)rule.eContents().get(1);
-		private final CrossReference cSuperLanguageLanguageCrossReference_0 = (CrossReference)cSuperLanguageAssignment.eContents().get(0);
-		private final RuleCall cSuperLanguageLanguageQualifiedNameParserRuleCall_0_1 = (RuleCall)cSuperLanguageLanguageCrossReference_0.eContents().get(1);
+		private final Assignment cTargetLanguageAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cTargetLanguageLanguageCrossReference_0 = (CrossReference)cTargetLanguageAssignment.eContents().get(0);
+		private final RuleCall cTargetLanguageLanguageQualifiedNameParserRuleCall_0_1 = (RuleCall)cTargetLanguageLanguageCrossReference_0.eContents().get(1);
 		
 		//Inherit returns Inheritance:
-		//	superLanguage=[Language|QualifiedName];
+		//	targetLanguage=[Language|QualifiedName];
 		@Override public ParserRule getRule() { return rule; }
 
-		//superLanguage=[Language|QualifiedName]
-		public Assignment getSuperLanguageAssignment() { return cSuperLanguageAssignment; }
+		//targetLanguage=[Language|QualifiedName]
+		public Assignment getTargetLanguageAssignment() { return cTargetLanguageAssignment; }
 
 		//[Language|QualifiedName]
-		public CrossReference getSuperLanguageLanguageCrossReference_0() { return cSuperLanguageLanguageCrossReference_0; }
+		public CrossReference getTargetLanguageLanguageCrossReference_0() { return cTargetLanguageLanguageCrossReference_0; }
 
 		//QualifiedName
-		public RuleCall getSuperLanguageLanguageQualifiedNameParserRuleCall_0_1() { return cSuperLanguageLanguageQualifiedNameParserRuleCall_0_1; }
+		public RuleCall getTargetLanguageLanguageQualifiedNameParserRuleCall_0_1() { return cTargetLanguageLanguageQualifiedNameParserRuleCall_0_1; }
 	}
 
 	public class WeaveElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Weave");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cWithKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cAspectAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cAspectAspectParserRuleCall_1_0 = (RuleCall)cAspectAssignment_1.eContents().get(0);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cAspectTypeRefParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cAspectWildcardParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//Weave:
-		//	"with" aspect=Aspect;
+		//	AspectTypeRef | AspectWildcard;
 		@Override public ParserRule getRule() { return rule; }
 
-		//"with" aspect=Aspect
+		//AspectTypeRef | AspectWildcard
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//AspectTypeRef
+		public RuleCall getAspectTypeRefParserRuleCall_0() { return cAspectTypeRefParserRuleCall_0; }
+
+		//AspectWildcard
+		public RuleCall getAspectWildcardParserRuleCall_1() { return cAspectWildcardParserRuleCall_1; }
+	}
+
+	public class AspectTypeRefElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AspectTypeRef");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cWithKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cAspectTypeRefAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cAspectTypeRefJvmTypeReferenceParserRuleCall_1_0 = (RuleCall)cAspectTypeRefAssignment_1.eContents().get(0);
+		
+		//AspectTypeRef returns Weave:
+		//	"with" aspectTypeRef=JvmTypeReference;
+		@Override public ParserRule getRule() { return rule; }
+
+		//"with" aspectTypeRef=JvmTypeReference
 		public Group getGroup() { return cGroup; }
 
 		//"with"
 		public Keyword getWithKeyword_0() { return cWithKeyword_0; }
 
-		//aspect=Aspect
-		public Assignment getAspectAssignment_1() { return cAspectAssignment_1; }
+		//aspectTypeRef=JvmTypeReference
+		public Assignment getAspectTypeRefAssignment_1() { return cAspectTypeRefAssignment_1; }
 
-		//Aspect
-		public RuleCall getAspectAspectParserRuleCall_1_0() { return cAspectAspectParserRuleCall_1_0; }
+		//JvmTypeReference
+		public RuleCall getAspectTypeRefJvmTypeReferenceParserRuleCall_1_0() { return cAspectTypeRefJvmTypeReferenceParserRuleCall_1_0; }
 	}
 
-	public class AspectElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Aspect");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Assignment cAspectTypeRefAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final RuleCall cAspectTypeRefJvmTypeReferenceParserRuleCall_0_0 = (RuleCall)cAspectTypeRefAssignment_0.eContents().get(0);
-		private final Assignment cAspectWildcardImportAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+	public class AspectWildcardElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AspectWildcard");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cWithKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cAspectWildcardImportAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cAspectWildcardImportQualifiedNameWithWildcardParserRuleCall_1_0 = (RuleCall)cAspectWildcardImportAssignment_1.eContents().get(0);
 		
 		/// * --- Kompren Rules --- * / //Slicer returns kompren::Slicer: 'slicer' (active?='active')? (strict?='strict')? name=QualifiedName '{'
@@ -1044,18 +1063,15 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		////OppositeCreation returns kompren::OppositeCreation: {kompren::OppositeCreation} 'opposite' '(' name=ValidID ')';
 		////
 		////terminal CODE_BLOCK : '[[' -> ']]';
-		//Aspect:
-		//	aspectTypeRef=JvmTypeReference | aspectWildcardImport=QualifiedNameWithWildcard;
+		//AspectWildcard returns Weave:
+		//	"with" aspectWildcardImport=QualifiedNameWithWildcard;
 		@Override public ParserRule getRule() { return rule; }
 
-		//aspectTypeRef=JvmTypeReference | aspectWildcardImport=QualifiedNameWithWildcard
-		public Alternatives getAlternatives() { return cAlternatives; }
+		//"with" aspectWildcardImport=QualifiedNameWithWildcard
+		public Group getGroup() { return cGroup; }
 
-		//aspectTypeRef=JvmTypeReference
-		public Assignment getAspectTypeRefAssignment_0() { return cAspectTypeRefAssignment_0; }
-
-		//JvmTypeReference
-		public RuleCall getAspectTypeRefJvmTypeReferenceParserRuleCall_0_0() { return cAspectTypeRefJvmTypeReferenceParserRuleCall_0_0; }
+		//"with"
+		public Keyword getWithKeyword_0() { return cWithKeyword_0; }
 
 		//aspectWildcardImport=QualifiedNameWithWildcard
 		public Assignment getAspectWildcardImportAssignment_1() { return cAspectWildcardImportAssignment_1; }
@@ -1118,7 +1134,8 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	private final SliceElements pSlice;
 	private final InheritElements pInherit;
 	private final WeaveElements pWeave;
-	private final AspectElements pAspect;
+	private final AspectTypeRefElements pAspectTypeRef;
+	private final AspectWildcardElements pAspectWildcard;
 	
 	private final Grammar grammar;
 
@@ -1146,7 +1163,8 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		this.pSlice = new SliceElements();
 		this.pInherit = new InheritElements();
 		this.pWeave = new WeaveElements();
-		this.pAspect = new AspectElements();
+		this.pAspectTypeRef = new AspectTypeRefElements();
+		this.pAspectWildcard = new AspectWildcardElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -1320,7 +1338,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Merge:
-	//	"merge" mergedLanguage=[Language|QualifiedName] ("and-rename" "{" mappingRules+=PackageMapping* "}")?;
+	//	"merge" targetLanguage=[Language|QualifiedName] ("and-rename" "{" mappingRules+=PackageMapping* "}")?;
 	public MergeElements getMergeAccess() {
 		return pMerge;
 	}
@@ -1330,7 +1348,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Slice:
-	//	"slice" slicedLanguage=[Language|QualifiedName] "on" "[" roots+=STRING ("," roots+=STRING)* "]" ("and-rename" "{"
+	//	"slice" targetLanguage=[Language|QualifiedName] "on" "[" roots+=STRING ("," roots+=STRING)* "]" ("and-rename" "{"
 	//	mappingRules+=PackageMapping* "}")?;
 	public SliceElements getSliceAccess() {
 		return pSlice;
@@ -1341,7 +1359,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Inherit returns Inheritance:
-	//	superLanguage=[Language|QualifiedName];
+	//	targetLanguage=[Language|QualifiedName];
 	public InheritElements getInheritAccess() {
 		return pInherit;
 	}
@@ -1351,13 +1369,23 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Weave:
-	//	"with" aspect=Aspect;
+	//	AspectTypeRef | AspectWildcard;
 	public WeaveElements getWeaveAccess() {
 		return pWeave;
 	}
 	
 	public ParserRule getWeaveRule() {
 		return getWeaveAccess().getRule();
+	}
+
+	//AspectTypeRef returns Weave:
+	//	"with" aspectTypeRef=JvmTypeReference;
+	public AspectTypeRefElements getAspectTypeRefAccess() {
+		return pAspectTypeRef;
+	}
+	
+	public ParserRule getAspectTypeRefRule() {
+		return getAspectTypeRefAccess().getRule();
 	}
 
 	/// * --- Kompren Rules --- * / //Slicer returns kompren::Slicer: 'slicer' (active?='active')? (strict?='strict')? name=QualifiedName '{'
@@ -1388,14 +1416,14 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	////OppositeCreation returns kompren::OppositeCreation: {kompren::OppositeCreation} 'opposite' '(' name=ValidID ')';
 	////
 	////terminal CODE_BLOCK : '[[' -> ']]';
-	//Aspect:
-	//	aspectTypeRef=JvmTypeReference | aspectWildcardImport=QualifiedNameWithWildcard;
-	public AspectElements getAspectAccess() {
-		return pAspect;
+	//AspectWildcard returns Weave:
+	//	"with" aspectWildcardImport=QualifiedNameWithWildcard;
+	public AspectWildcardElements getAspectWildcardAccess() {
+		return pAspectWildcard;
 	}
 	
-	public ParserRule getAspectRule() {
-		return getAspectAccess().getRule();
+	public ParserRule getAspectWildcardRule() {
+		return getAspectWildcardAccess().getRule();
 	}
 
 	//XExpression:

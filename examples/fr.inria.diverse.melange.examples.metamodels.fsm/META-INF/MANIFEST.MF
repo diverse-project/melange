@@ -11,5 +11,5 @@ Export-Package: fsm,
  fsm.impl,
  fsm.util
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;bundle-version="2.9.2"
+ org.eclipse.emf.ecore;bundle-version="2.9.2";visibility:=reexport
 Bundle-ActivationPolicy: lazy

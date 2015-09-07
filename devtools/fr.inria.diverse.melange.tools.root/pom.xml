@@ -7,16 +7,16 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<version>0.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
+	<parent>
+		<relativePath>../../releng/fr.inria.diverse.melange.releng.root/pom.xml</relativePath>
+		<groupId>fr.inria.diverse.melange</groupId>
+		<artifactId>fr.inria.diverse.melange.releng.root</artifactId>
+		<version>0.1.0-SNAPSHOT</version>
+	</parent>
+
 	<modules>
 		<module>../fr.inria.diverse.melange.tools.xtext.testing</module>
 	</modules>
-
-	<properties>
-		<tycho.version>0.21.0</tycho.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<xtend.version>2.8.1</xtend.version>
-		<java.version>1.7</java.version>
-	</properties>
 
 	<build>
 		<plugins>
@@ -43,7 +43,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			<plugin>
 				<groupId>org.eclipse.xtend</groupId>
 				<artifactId>xtend-maven-plugin</artifactId>
-				<version>${xtend.version}</version>
+				<version>${xtext.version}</version>
 				<executions>
 					<execution>
 						<goals>
