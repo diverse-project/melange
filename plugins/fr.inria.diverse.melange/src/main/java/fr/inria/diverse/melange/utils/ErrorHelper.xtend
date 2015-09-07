@@ -8,6 +8,10 @@ class ErrorHelper
 {
 	static final String DEFAULT_PROBLEM_CODE = "MelangeProblemCode"
 
+	def void addError(EObject eo, String message) {
+		addError(eo, message, null)
+	}
+
 	/** 
 	 * Add an error diagnostic (and marker) to an EObject
 	 */

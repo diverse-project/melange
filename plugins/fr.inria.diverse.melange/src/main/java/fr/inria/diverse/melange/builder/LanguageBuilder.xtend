@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 
 class LanguageBuilder extends AbstractBuilder {
 	@Inject EmfCompareAlgebra algebra
+	@Inject ErrorHelper errorHelper
 	@Inject Injector injector
 	@Inject extension EcoreExtensions
 	ModelTypingSpaceBuilder root
@@ -38,6 +39,10 @@ class LanguageBuilder extends AbstractBuilder {
 
 	override postBuild() {
 		isBuilding = false
+
+		errors.forEach[e |
+			errorHelper.addError(e.location, e.message)
+		]
 	}
 
 	override make() {
