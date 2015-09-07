@@ -24,16 +24,11 @@ class AspectToEcore
 	@Inject extension TypeReferencesHelper
 	@Inject extension ModelingElementExtensions
 	
-	def EPackage inferEcoreFragment(Aspect aspImport, Language l) {
-		return inferEcoreFragment(aspImport.aspectTypeRef.type as JvmDeclaredType, aspImport.aspectedClass)
-	}
-
 	/**
 	 * Try to infer the "modeling intention" of the aspect aspImport
 	 * and put its features into a newly created EPackage
 	 */
-	def EPackage inferEcoreFragment(JvmDeclaredType aspect, EClass baseCls) {
-		val basePkg = baseCls?.EPackage
+	def EPackage inferEcoreFragment(JvmDeclaredType aspect, EClass baseCls, EPackage basePkg) {
 		val hasAnnotation = aspect.annotations.exists[annotation.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Aspect"]
 
 		val aspPkg = EcoreFactory.eINSTANCE.createEPackage => [

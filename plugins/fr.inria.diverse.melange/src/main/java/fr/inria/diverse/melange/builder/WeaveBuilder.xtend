@@ -24,9 +24,10 @@ class WeaveBuilder extends OperatorBuilder<Weave> {
 
 		if (aspRef?.type instanceof JvmDeclaredType) {
 			val className = aspRef.aspectAnnotationValue
-			val baseClass = baseModel.findClass(className)
+
+			val baseClass = if (className !== null) baseModel.findClass(className)
 			val aspect = aspRef.type as JvmDeclaredType
-			model = aspect.inferEcoreFragment(baseClass)
+			model = aspect.inferEcoreFragment(baseClass, baseModel)
 		}
 	}
 
