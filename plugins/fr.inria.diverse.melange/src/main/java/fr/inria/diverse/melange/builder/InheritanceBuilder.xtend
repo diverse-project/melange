@@ -5,8 +5,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 
 class InheritanceBuilder extends LanguageOperatorBuilder<Inheritance> {
 	new(Inheritance op, ModelTypingSpaceBuilder root) {
-		this.source = op
-		this.root = root
+		super(op, root)
 	}
 
 	override make() {

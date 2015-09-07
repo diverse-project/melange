@@ -8,8 +8,8 @@ class ImportBuilder extends OperatorBuilder<Import> {
 	@Inject ModelUtils modelUtils
 	@Inject extension RenamerHelper
 
-	new(Import op) {
-		this.source = op
+	new(Import source) {
+		super(source)
 	}
 
 	override make() {

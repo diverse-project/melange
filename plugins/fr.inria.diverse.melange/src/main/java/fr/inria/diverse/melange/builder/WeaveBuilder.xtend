@@ -12,7 +12,7 @@ class WeaveBuilder extends OperatorBuilder<Weave> {
 	LanguageBuilder rootLanguage
 
 	new(Weave op, LanguageBuilder langBuilder) {
-		this.source = op
+		super(op)
 		this.rootLanguage = langBuilder
 	}
 

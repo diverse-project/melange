@@ -14,8 +14,7 @@ class SliceBuilder extends LanguageOperatorBuilder<Slice> {
 	@Inject extension RenamerHelper
 
 	new(Slice op, ModelTypingSpaceBuilder root) {
-		this.source = op
-		this.root = root
+		super(op, root)
 	}
 
 	override make() {

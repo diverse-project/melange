@@ -7,6 +7,11 @@ abstract class LanguageOperatorBuilder<T extends LanguageOperator> extends Opera
 	protected EPackage targetModel
 	protected ModelTypingSpaceBuilder root
 
+	new(T op, ModelTypingSpaceBuilder root) {
+		super(op)
+		this.root = root
+	}
+
 	override preBuild() {
 		super.preBuild
 

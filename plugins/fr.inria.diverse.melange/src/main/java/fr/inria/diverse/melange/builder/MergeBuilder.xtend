@@ -8,8 +8,7 @@ class MergeBuilder extends LanguageOperatorBuilder<Merge> {
 	@Inject extension RenamerHelper
 
 	new(Merge op, ModelTypingSpaceBuilder root) {
-		this.source = op
-		this.root = root
+		super(op, root)
 	}
 
 	override make() {
