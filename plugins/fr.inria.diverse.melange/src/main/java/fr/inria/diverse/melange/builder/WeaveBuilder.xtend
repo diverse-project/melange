@@ -17,10 +17,14 @@ class WeaveBuilder extends OperatorBuilder<Weave> {
 	}
 
 	override make() {
-		val className = source.aspectTypeRef.aspectAnnotationValue
-		val baseClass = rootLanguage.findClass(className)
-		val aspect = source.aspectTypeRef.type as JvmDeclaredType
-		model = aspect.inferEcoreFragment(baseClass)
+		val aspRef = source.aspectTypeRef
+
+		if (aspRef?.type instanceof JvmDeclaredType) {
+			val className = aspRef.aspectAnnotationValue
+			val baseClass = rootLanguage.findClass(className)
+			val aspect = aspRef.type as JvmDeclaredType
+			model = aspect.inferEcoreFragment(baseClass)
+		}
 	}
 
 	def Weave getSource() {
