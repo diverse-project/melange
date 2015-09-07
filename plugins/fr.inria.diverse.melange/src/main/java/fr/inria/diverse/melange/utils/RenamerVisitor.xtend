@@ -104,10 +104,13 @@ class RenamerVisitor extends ASTVisitor{
 		else{
 			if(typeName instanceof QualifiedName){
 				val root = node.root as CompilationUnit
-				val candidate = allClasses.findFirst[it.fqn == typeName.toString.renaming]
+				val packagePart = typeName.toString.substring(0,typeName.toString.lastIndexOf("."))
+				val simpleName = typeName.toString.substring(typeName.toString.lastIndexOf(".")+1)
+				val renamedType = packagePart.renaming+"."+simpleName
+				val candidate = allClasses.findFirst[renamedType.endsWith(it.fqn)]
 				
 				if(candidate != null){
-					val newName = node.AST.toName(candidate.fqn)
+					val newName = node.AST.toName(renamedType)
 					newSimpleTypesNames.put(node,newName)	
 				}
 			}
@@ -468,8 +471,8 @@ class RenamerVisitor extends ASTVisitor{
 	}
 	
 	/**
-	 * Return the renamed package name if their exist a rule for {@link pacakgeName}
-	 * or for a super pacakge.
+	 * Return the renamed package name if their exist a rule for {@link packageName}
+	 * or for a super package.
 	 * 
 	 * Return null if not renamed.
 	 */
