@@ -96,7 +96,7 @@ class RenamingRuleManager{
 	 * @return sourcePackage.sourceClass -> targetPackage.targetClass
 	 */
 	def Pair<String,String> getClassRule(String qualifiedClassName){
-		val className = qualifiedClassName.applyRootRenaming
+		val className = qualifiedClassName?.applyRootRenaming
 		return classRules.findFirst[key == className]
 	} 
 	
