@@ -1,14 +1,14 @@
 package fr.inria.diverse.melange.builder
 
 import com.google.inject.Inject
-import fr.inria.diverse.melange.metamodel.melange.Slice
-import org.eclipse.emf.ecore.util.EcoreUtil
 import fr.inria.diverse.melange.lib.slicing.ecore.StrictEcore
-import java.util.List
+import fr.inria.diverse.melange.metamodel.melange.Slice
 import java.util.ArrayList
-import org.eclipse.emf.ecore.EPackage
-import org.eclipse.emf.ecore.EModelElement
+import java.util.List
 import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EModelElement
+import org.eclipse.emf.ecore.EPackage
+import org.eclipse.emf.ecore.util.EcoreUtil
 
 class SliceBuilder extends LanguageOperatorBuilder<Slice> {
 	@Inject extension RenamerHelper
@@ -19,6 +19,7 @@ class SliceBuilder extends LanguageOperatorBuilder<Slice> {
 
 	override make() {
 		if (targetModel !== null) {
+			val sliceBase = EcoreUtil::copy(targetModel)
 			val roots = getClasses(sliceBase, source.roots)
 			val slicer = new StrictEcore(roots, sliceBase, false, "ecore", false, true)
 
