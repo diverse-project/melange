@@ -1,3 +1,4 @@
+Manifest-Version: 1.0
 Bundle-SymbolicName: fr.inria.diverse.iot; singleton:=true
 Bundle-Name: fr.inria.diverse.iot
 Bundle-Version: 1.0.0
@@ -14,7 +15,9 @@ Require-Bundle: org.eclipse.xtend.lib;bundle-version="2.7.0";visibility:=private
  org.xtext.activitydiagram.semantics;bundle-version="0.1.0",
  org.xtext.lua.semantics;bundle-version="1.0.0",
  org.xtext.activitydiagram.model;bundle-version="0.1.0",
- org.xtext.lua;bundle-version="1.0.0"
+ org.xtext.lua;bundle-version="1.0.0",
+ fr.inria.diverse.iot.glue.activityecore;bundle-version="1.0.0",
+ fr.inria.diverse.iot.glue.activitylua;bundle-version="1.0.0"
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Manifest-Version: 1.0
+
