@@ -183,22 +183,6 @@ class AspectCopier
 			
 			targetProject.refreshLocal(IResource.DEPTH_INFINITE, null)
 
-			/*
-			 * Add xtend-gen/ in the classpath
-			 */
-			val srcGenPath = "/"+l.externalRuntimeName+"/xtend-gen"
-			val javaProject = JavaCore.create(findTargetProject)
-			val IClasspathEntry[] entries = javaProject.getRawClasspath()
-			if(!entries.exists[path.toString == srcGenPath]){
-				val IClasspathEntry[] newEntries = newArrayOfSize(entries.length + 1)
-				System.arraycopy(entries, 0, newEntries, 0, entries.length);
-				
-				val Path aspectsPath = new Path(srcGenPath);
-				val IClasspathEntry newEntry = JavaCore.newSourceEntry(aspectsPath);
-				newEntries.set(entries.length, JavaCore.newSourceEntry(newEntry.getPath()))
-				javaProject.setRawClasspath(newEntries, null);
-			}
-			
 			return newFqn
 		} catch (IOException e) {
 			log.debug("Copy failed", e)

@@ -173,7 +173,7 @@ class EclipseProjectHelper
 				projectName,
 				#[JavaCore::NATURE_ID, PDE::PLUGIN_NATURE],
 				#[JavaCore::BUILDER_ID,	PDE::MANIFEST_BUILDER_ID, PDE::SCHEMA_BUILDER_ID],
-				#["src", "src-gen"],
+				#["src", "src-gen", "xtend-gen"],
 				#[],
 				#["org.eclipse.emf.ecore", "fr.inria.diverse.k3.al.annotationprocessor.plugin"],
 //				#[basePkg, basePkg + ".impl", basePkg + ".util"],
