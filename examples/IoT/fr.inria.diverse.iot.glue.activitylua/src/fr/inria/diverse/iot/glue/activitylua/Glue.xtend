@@ -17,10 +17,6 @@ class OpaqueActionAspect {
 
 	def void execute(Context c) {
 		val env = new Environment
-		c.inputValues.filterNull.forEach[value |
-			env.pushValue(value.value)
-		]
-		env.pushValue("Test")
 		_self.lua.execute(env)
 	}
 }

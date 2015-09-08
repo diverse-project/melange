@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>org.xtext.activitydiagram.semantics</name>
+	<name>fr.inria.diverse.iot</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -16,11 +16,6 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>fr.inria.diverse.k3.ui.k3Builder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
 			<name>org.eclipse.pde.ManifestBuilder</name>
 			<arguments>
 			</arguments>
@@ -32,7 +27,6 @@
 		</buildCommand>
 	</buildSpec>
 	<natures>
-		<nature>fr.inria.diverse.k3.ui.k3Nature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.xtext.ui.shared.xtextNature</nature>
 		<nature>org.eclipse.pde.PluginNature</nature>

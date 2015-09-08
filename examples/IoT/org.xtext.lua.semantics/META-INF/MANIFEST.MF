@@ -1,5 +1,5 @@
 Bundle-SymbolicName: org.xtext.lua.semantics;singleton:=true
-Bundle-Name: org.k3.lua.dynamic
+Bundle-Name: org.xtext.lua.semantics
 Bundle-Version: 1.0.0
 Bundle-ClassPath: .
 Require-Bundle: fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version="3.0.0";visibility:=reexport,
