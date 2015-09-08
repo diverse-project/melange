@@ -94,6 +94,10 @@ class EcoreExtensions
 		return pkgs.map[EClassifiers].flatten.toList
 	}
 
+	def dispatch String getUniqueId(Void it) {
+		return '''null'''
+	}
+
 	def dispatch String getUniqueId(EPackage it) {
 		return '''«IF ESuperPackage !== null»«ESuperPackage.uniqueId»_«ENDIF»«name»'''
 	}
