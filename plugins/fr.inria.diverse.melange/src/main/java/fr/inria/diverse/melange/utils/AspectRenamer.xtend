@@ -22,6 +22,8 @@ import org.eclipse.text.edits.TextEdit
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import fr.inria.diverse.melange.ast.MetamodelExtensions
 import org.eclipse.emf.ecore.EClass
+import org.eclipse.core.resources.IResource
+import org.eclipse.core.resources.IncrementalProjectBuilder
 
 class AspectRenamer {
 	
@@ -48,7 +50,7 @@ class AspectRenamer {
 		aspects.forEach[asp | 
 	    	val targetAspectNamespace = l.aspectTargetNamespace
 	    	val aspectNamespace = src_genFolder.getPackageFragment(targetAspectNamespace.toString)
-			val targetClass = asp.aspectTypeRef.aspectAnnotationValue
+			val targetClass = asp.aspectedClass.name
 			processRenaming(targetClass, aspectNamespace, rulesManager, allClasses)
 		]
 	}

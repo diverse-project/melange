@@ -131,7 +131,7 @@ class AspectCopier
 		 * Filter files not related to targeted aspect
 		 */
 		val aspectFqn = aspTypeRef.identifier
-		val aspectTargetClass = aspTypeRef.aspectAnnotationValue
+		val aspectTargetClass = asp.aspectedClass.name
 		// Filter files not related to targeted aspect
 		val filter = new Filter {
 			String prefix = aspectFqn.replaceAll("\\.", "/")

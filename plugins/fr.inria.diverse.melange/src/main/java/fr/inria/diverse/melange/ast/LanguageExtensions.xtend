@@ -354,16 +354,19 @@ class LanguageExtensions
 			if (asp.isComplete) {
 				if (asp.aspectTypeRef.canBeCopiedFor(l.syntax)) {
 					
-					var className = asp.aspectTypeRef.aspectAnnotationValue
-					val renaming = rulesManager?.getClassRule(asp.aspectedClassFqName)
+					var className = asp.aspectedClass.name
+					var classFqName = asp.aspectedClass.fullyQualifiedName
+					val renaming = rulesManager?.getClassRule(classFqName.toString)
 					if(renaming != null) className = renaming.value.substring(renaming.value.lastIndexOf(".")+1)
 					
+					val eClazz = l.syntax.findClass(className)
 					if(!classesAlreadyWeaved.contains(className) && (l.syntax.findClass(className) !== null)){
 						classesAlreadyWeaved.add(className)
 						
 						val typeRefBuilder = builderFactory.create(l.eResource.resourceSet)
 						val newAspectFqn = copier.copyAspectTo(asp, l)
 						res += MelangeFactory.eINSTANCE.createAspect => [
+									aspectedClass = eClazz
 									aspectTypeRef = typeRefBuilder.typeRef(newAspectFqn)
 								]
 					}
