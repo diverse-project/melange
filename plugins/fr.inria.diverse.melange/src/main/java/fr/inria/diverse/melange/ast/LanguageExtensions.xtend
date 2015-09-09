@@ -327,15 +327,8 @@ class LanguageExtensions
 				}
 				
 				if(aspects != null){
-					if(renamingRules != null){ 
-						//Copy with Renaming
-						val rulesManager = new RenamingRuleManager(renamingRules, aspects, newRootName, aspectExtension)
-						res += simpleCopyAsp(l,aspects,classesAlreadyWeaved,rulesManager)
-					}
-					else{
-						//Copy without renaming
-						res += simpleCopyAsp(l,aspects,classesAlreadyWeaved,null)
-					}
+					val rulesManager = new RenamingRuleManager(renamingRules, aspects, newRootName, aspectExtension)
+					res += simpleCopyAsp(l,aspects,classesAlreadyWeaved,rulesManager)
 				}
 			]
 		//Copy super lang
