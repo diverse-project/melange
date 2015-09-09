@@ -303,15 +303,15 @@ class LanguageExtensions
 	}
 
 	/**
-	 * Copy aspects defined on {@link l} into generated project <br>
-	 * Return a list of created Aspects with type references to the copied classes
+	 * Copy aspects defined on {@link l} into generated project
+	 * and update {@link l}'s semantic with new Aspects 
 	 */
 	def void createExternalAspects(Language l) {
 		val classesAlreadyWeaved = newArrayList
 		val newRootName = l.syntax.packageFqn.toQualifiedName.skipLast(1).toString
 		
 		//Copy sem
-		simpleCopyAsp(l,l.semantics,classesAlreadyWeaved,null)
+		copyAspects(l,l.semantics,classesAlreadyWeaved,null)
 		//Copy+rename op
 		l.operators.forEach[op |
 				var List<Aspect> aspects = null
@@ -327,18 +327,18 @@ class LanguageExtensions
 				
 				if(aspects != null){
 					val rulesManager = new RenamingRuleManager(renamingRules, aspects, newRootName, aspectExtension)
-					simpleCopyAsp(l,aspects,classesAlreadyWeaved,rulesManager)
+					copyAspects(l,aspects,classesAlreadyWeaved,rulesManager)
 				}
 			]
 		//Copy super lang
-		simpleCopyAsp(l,l.superLanguages.map[semantics].flatten,classesAlreadyWeaved,null)
+		copyAspects(l,l.superLanguages.map[semantics].flatten,classesAlreadyWeaved,null)
 	}
 	
 	/**
-	 * Copy aspects defined on {@link l} into generated project <br>
-	 * Return a list of created Aspects with type references to the copied classes
+	 * Copy aspects defined on {@link l} into generated project
+	 * and apply renaming rules on them
 	 */
-	private def void simpleCopyAsp(Language l, Iterable<Aspect> aspects, List<String> classesAlreadyWeaved,RenamingRuleManager rulesManager){
+	private def void copyAspects(Language l, Iterable<Aspect> aspects, List<String> classesAlreadyWeaved,RenamingRuleManager rulesManager){
 		//Copy aspects files
 		aspects.forEach[asp |
 			if (asp.isComplete) {
@@ -358,7 +358,9 @@ class LanguageExtensions
 		]
 		
 		//Apply renaming rules on copied files
-		renamer.processRenaming(aspects.toList,l,rulesManager)
+		if(rulesManager !== null){
+			renamer.processRenaming(aspects.toList,l,rulesManager)
+		}
 		
 		//Update the semantic
 		val newAspects = newArrayList
@@ -367,7 +369,7 @@ class LanguageExtensions
 		aspects.forEach[asp |
 			val targetClass = asp.aspectedClass.name
 	    	val targetFqName = asp.aspectedClass.fullyQualifiedName.toString
-	    	val rule = rulesManager.getClassRule(targetFqName)
+	    	val rule = rulesManager?.getClassRule(targetFqName)
 	    	val newClass = 
 	    		if(rule !== null){
 		    		rule.value.toQualifiedName.lastSegment
