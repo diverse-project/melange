@@ -25,6 +25,7 @@ import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import fr.inria.diverse.melange.utils.RenamingRuleManager
 import fr.inria.diverse.melange.metamodel.melange.Weave
+import org.eclipse.emf.common.util.URI
 
 class LanguageExtensions
 {
@@ -330,7 +331,6 @@ class LanguageExtensions
 						//Copy with Renaming
 						val rulesManager = new RenamingRuleManager(renamingRules, aspects, newRootName, aspectExtension)
 						res += simpleCopyAsp(l,aspects,classesAlreadyWeaved,rulesManager)
-						renamer.processRenaming(aspects,l,rulesManager)
 					}
 					else{
 						//Copy without renaming
@@ -350,6 +350,8 @@ class LanguageExtensions
 	 */
 	private def List<Aspect> simpleCopyAsp(Language l, Iterable<Aspect> aspects, List<String> classesAlreadyWeaved,RenamingRuleManager rulesManager){
 		val res = newArrayList
+		
+		//Copy aspects files
 		aspects.forEach[asp |
 			if (asp.isComplete) {
 				if (asp.aspectTypeRef.canBeCopiedFor(l.syntax)) {
@@ -359,20 +361,38 @@ class LanguageExtensions
 					val renaming = rulesManager?.getClassRule(classFqName.toString)
 					if(renaming != null) className = renaming.value.substring(renaming.value.lastIndexOf(".")+1)
 					
-					val eClazz = l.syntax.findClass(className)
 					if(!classesAlreadyWeaved.contains(className) && (l.syntax.findClass(className) !== null)){
 						classesAlreadyWeaved.add(className)
-						
-						val typeRefBuilder = builderFactory.create(l.eResource.resourceSet)
-						val newAspectFqn = copier.copyAspectTo(asp, l)
-						res += MelangeFactory.eINSTANCE.createAspect => [
-									aspectedClass = eClazz
-									aspectTypeRef = typeRefBuilder.typeRef(newAspectFqn)
-								]
+						copier.copyAspectTo(asp, l)
 					}
 				}
 			}
 		]
+		
+		//Apply renaming rules on copied files
+		renamer.processRenaming(aspects.toList,l,rulesManager)
+		
+		//Update the semantic
+		val typeRefBuilder = builderFactory.create(l.eResource.resourceSet)
+		val targetAspectNamespace = l.aspectTargetNamespace
+		aspects.forEach[asp |
+			val targetClass = asp.aspectedClass.name
+	    	val targetFqName = asp.aspectedClass.fullyQualifiedName.toString
+	    	val rule = rulesManager.getClassRule(targetFqName)
+	    	val newClass = 
+	    		if(rule !== null){
+		    		rule.value.toQualifiedName.lastSegment
+	    		}
+	    		else{
+	    			targetClass
+	    		}
+	    	val eClazz = l.syntax.findClass(newClass)
+	    	res += MelangeFactory.eINSTANCE.createAspect => [
+					aspectedClass = eClazz
+					aspectTypeRef = typeRefBuilder.typeRef(targetAspectNamespace+"."+newClass+"Aspect")
+				]
+		]
+		
 		l.semantics += res
 		return res
 	}
