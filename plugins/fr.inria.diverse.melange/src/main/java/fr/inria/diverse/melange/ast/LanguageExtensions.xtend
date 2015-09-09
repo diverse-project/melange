@@ -306,13 +306,12 @@ class LanguageExtensions
 	 * Copy aspects defined on {@link l} into generated project <br>
 	 * Return a list of created Aspects with type references to the copied classes
 	 */
-	def List<Aspect> createExternalAspects(Language l) {
-		val res = newArrayList
+	def void createExternalAspects(Language l) {
 		val classesAlreadyWeaved = newArrayList
 		val newRootName = l.syntax.packageFqn.toQualifiedName.skipLast(1).toString
 		
 		//Copy sem
-		res += simpleCopyAsp(l,l.semantics,classesAlreadyWeaved,null)
+		simpleCopyAsp(l,l.semantics,classesAlreadyWeaved,null)
 		//Copy+rename op
 		l.operators.forEach[op |
 				var List<Aspect> aspects = null
@@ -328,22 +327,18 @@ class LanguageExtensions
 				
 				if(aspects != null){
 					val rulesManager = new RenamingRuleManager(renamingRules, aspects, newRootName, aspectExtension)
-					res += simpleCopyAsp(l,aspects,classesAlreadyWeaved,rulesManager)
+					simpleCopyAsp(l,aspects,classesAlreadyWeaved,rulesManager)
 				}
 			]
 		//Copy super lang
-		res += simpleCopyAsp(l,l.superLanguages.map[semantics].flatten,classesAlreadyWeaved,null)
-		
-		return res
+		simpleCopyAsp(l,l.superLanguages.map[semantics].flatten,classesAlreadyWeaved,null)
 	}
 	
 	/**
 	 * Copy aspects defined on {@link l} into generated project <br>
 	 * Return a list of created Aspects with type references to the copied classes
 	 */
-	private def List<Aspect> simpleCopyAsp(Language l, Iterable<Aspect> aspects, List<String> classesAlreadyWeaved,RenamingRuleManager rulesManager){
-		val res = newArrayList
-		
+	private def void simpleCopyAsp(Language l, Iterable<Aspect> aspects, List<String> classesAlreadyWeaved,RenamingRuleManager rulesManager){
 		//Copy aspects files
 		aspects.forEach[asp |
 			if (asp.isComplete) {
@@ -366,6 +361,7 @@ class LanguageExtensions
 		renamer.processRenaming(aspects.toList,l,rulesManager)
 		
 		//Update the semantic
+		val newAspects = newArrayList
 		val typeRefBuilder = builderFactory.create(l.eResource.resourceSet)
 		val targetAspectNamespace = l.aspectTargetNamespace
 		aspects.forEach[asp |
@@ -380,14 +376,13 @@ class LanguageExtensions
 	    			targetClass
 	    		}
 	    	val eClazz = l.syntax.findClass(newClass)
-	    	res += MelangeFactory.eINSTANCE.createAspect => [
+	    	newAspects += MelangeFactory.eINSTANCE.createAspect => [
 					aspectedClass = eClazz
 					aspectTypeRef = typeRefBuilder.typeRef(targetAspectNamespace+"."+newClass+"Aspect")
 				]
 		]
 		
-		l.semantics += res
-		return res
+		l.semantics += newAspects
 	}
 
 	def boolean hasExternalAspects(Language l) {
