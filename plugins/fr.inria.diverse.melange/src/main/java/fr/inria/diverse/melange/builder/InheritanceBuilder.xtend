@@ -2,19 +2,15 @@ package fr.inria.diverse.melange.builder
 
 import fr.inria.diverse.melange.metamodel.melange.Inheritance
 import org.eclipse.emf.ecore.util.EcoreUtil
-import java.util.ArrayList
 
-class InheritanceBuilder extends LanguageOperatorBuilder{
-	
-	new(Inheritance op, ModelTypingSpaceBuilder root){
-		this.source = op
-		this.root = root
+class InheritanceBuilder extends LanguageOperatorBuilder<Inheritance> {
+	new(Inheritance op, ModelTypingSpaceBuilder root) {
+		super(op, root)
 	}
-	
+
 	override make() {
-		if(targetModel != null){
+		if (targetModel !== null) {
 			model = EcoreUtil::copy(targetModel)
 		}
 	}
-	
 }

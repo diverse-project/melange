@@ -10,43 +10,39 @@ import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EModelElement
 import org.eclipse.emf.ecore.EClass
 
-class SliceBuilder extends LanguageOperatorBuilder{
-	
+class SliceBuilder extends LanguageOperatorBuilder<Slice> {
 	@Inject extension RenamerHelper
-	
-	new(Slice op, ModelTypingSpaceBuilder root){
-		this.source = op
-		this.root = root
+
+	new(Slice op, ModelTypingSpaceBuilder root) {
+		super(op, root)
 	}
-	
+
 	override make() {
-		if(targetModel != null){
-			val op = source as Slice
+		if (targetModel !== null) {
 			val sliceBase = EcoreUtil::copy(targetModel)
-			
-			val roots = getClasses(sliceBase, op.roots)
-			val slicer = new StrictEcore(roots,sliceBase,false,"ecore",false)
+
+			val roots = getClasses(sliceBase, source.roots)
+			val slicer = new StrictEcore(roots, sliceBase, false, "ecore", false)
 			slicer.slice
-			
-			model = slicer.getclonedElts.filter(EPackage).filter[eContainer===null].head
-			model.applyRenaming(op.mappingRules)
+
+			model = slicer.getclonedElts.filter(EPackage).filter[eContainer === null].head
+			model.applyRenaming(source.mappingRules)
 		}
-		
-		//TODO: manage slice & renaming errors
+
+		// TODO: manage slice & renaming errors
 	}
-	
+
 	/**
 	 * Search in {@link rootPackage} for EClass named as in {@link classes}
 	 */
-	private def List<EModelElement> getClasses(EPackage rootPackage, List<String> classes){
-		//TODO: manage sub packages
+	private def List<EModelElement> getClasses(EPackage rootPackage, List<String> classes) {
+		// TODO: manage sub packages
 		val res = new ArrayList<EModelElement>()
-		
-		rootPackage.EClassifiers.filter(EClass).forEach[cl|
+
+		rootPackage.EClassifiers.filter(EClass).forEach [ cl |
 			if(classes.contains(cl.name)) res.add(cl)
 		]
-		
+
 		return res
 	}
-	
 }
