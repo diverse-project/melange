@@ -3,6 +3,7 @@ package fr.inria.diverse.melange.builder
 import com.google.inject.Inject
 import com.google.inject.Injector
 import fr.inria.diverse.melange.algebra.EmfCompareAlgebra
+import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.metamodel.melange.Import
 import fr.inria.diverse.melange.metamodel.melange.Inheritance
@@ -21,6 +22,7 @@ class LanguageBuilder extends AbstractBuilder {
 	@Inject EmfCompareAlgebra algebra
 	@Inject ErrorHelper errorHelper
 	@Inject Injector injector
+	@Inject extension AspectExtensions
 	@Inject extension EcoreExtensions
 	ModelTypingSpaceBuilder root
 	Language source
@@ -51,7 +53,15 @@ class LanguageBuilder extends AbstractBuilder {
 		 * EClass to infer the ecore fragment 
 		 */
 		val otherOperators = source.operators.filter[!(it instanceof Weave)].toList
-		val aspectOperators = source.operators.filter(Weave).filter[aspectWildcardImport === null].map[it as Operator].toList
+		val aspectOperators =
+			source.operators
+			.filter(Weave)
+			.filter[aspectWildcardImport === null]
+			.sortWith[wA, wB |
+				if (wA.aspectTypeRef?.aspectAnnotationValue !== null) 1 else -1
+			]
+			.map[it as Operator]
+			.toList
 
 		builders = newArrayList
 		builders.addAll(createBuilders(otherOperators))
