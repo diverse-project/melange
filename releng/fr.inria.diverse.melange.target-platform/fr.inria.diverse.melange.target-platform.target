@@ -31,7 +31,7 @@
 <repository location="https://ci.inria.fr/diverse-commons/job/diverse-commons.eclipse.root/lastSuccessfulBuild/artifact/commons-eclipse/fr.inria.diverse.commons.eclipse.root/p2updatesite/target/repository/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
-<unit id="fr.inria.diverse.k3.al.feature.feature.group" version="3.2.0.v20150707-0658"/>
+<unit id="fr.inria.diverse.k3.al.feature.feature.group" version="3.2.0.v20150909-1203"/>
 <repository location="https://ci.inria.fr/k3al/job/k3-al.eclipse/lastSuccessfulBuild/artifact/k3-al.eclipse/fr.inria.diverse.k3.al.p2updatesite/target/site/"/>
 </location>
 </locations>
