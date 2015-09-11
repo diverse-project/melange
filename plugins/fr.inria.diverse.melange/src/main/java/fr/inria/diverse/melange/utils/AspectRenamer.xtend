@@ -122,7 +122,7 @@ class AspectRenamer {
 	   	// computation of the new source code
 	   	edits.apply(document);
 	   	var String newSource = document.get()
-	   	newSource = newSource.replacePatterns(k3pattern)
+		newSource = newSource.replacePatterns(k3pattern)
 	
 	   	// update of the compilation unit
 	   	sourceUnit.getBuffer().setContents(newSource)
@@ -134,13 +134,13 @@ class AspectRenamer {
 	 * Rename AspectContext & AspectProperties in fileContent when exist a renaming rule for their base Class
 	 */
 	private def String replacePatterns(String fileContent, List<Pair<String,String>> patternRules){
-		var newContent = fileContent
+		val StringBuilder newContent = new StringBuilder(fileContent)
 		for(rule : patternRules){
 			val oldPattern = rule.key
 			val newPattern = rule.value
-			newContent = newContent.replaceAll(oldPattern,newPattern)
+			newContent.replaceAll(oldPattern,newPattern)
 		}
-		return newContent
+		return newContent.toString
 	}
 	
 	/**
@@ -156,5 +156,17 @@ class AspectRenamer {
 			res.add(oldPattern -> newPattern)
 		]
 		return res
+	}
+	
+	private def replaceAll(StringBuilder string, String oldPattern, String newPattern){
+		val patternSize = oldPattern.length
+		
+		var startIndex = 0
+		var index = string.indexOf(oldPattern)
+		while(index != -1){
+			string.replace(index, index+patternSize, newPattern)
+			startIndex += index + patternSize
+			index = string.indexOf(oldPattern, startIndex)
+		}
 	}
 }
