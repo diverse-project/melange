@@ -153,6 +153,8 @@ class AspectRenamer {
 			val newClassName =  rule.value.substring( rule.value.lastIndexOf(".")+1)
 			val oldPattern = oldClassName+"Aspect"
 			val newPattern = newClassName+"Aspect"
+			res.add(oldPattern+oldPattern+"Context" -> newPattern+newPattern+"Context") //order matter since first pattern is replaced
+			res.add(oldPattern+oldPattern+"Properties" -> newPattern+newPattern+"Properties")
 			res.add(oldPattern -> newPattern)
 		]
 		return res
@@ -165,8 +167,15 @@ class AspectRenamer {
 		var startIndex = 0
 		var index = string.indexOf(oldPattern)
 		while(index != -1){
-			string.replace(index, index+oldPatternSize, newPattern)
-			startIndex = index + newPatternSize
+			val previousChar = string.charAt(index - 1)
+			val followingChar = string.charAt(index + oldPatternSize)
+			if(!Character.isJavaIdentifierPart(previousChar) && !Character.isJavaIdentifierPart(followingChar)){
+				string.replace(index, index+oldPatternSize, newPattern)
+				startIndex = index + newPatternSize
+			}
+			else{
+				startIndex = index + oldPatternSize
+			}
 			index = string.indexOf(oldPattern, startIndex)
 		}
 	}
