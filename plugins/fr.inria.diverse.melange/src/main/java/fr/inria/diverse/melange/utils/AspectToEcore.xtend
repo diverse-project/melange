@@ -106,7 +106,7 @@ class AspectToEcore
 			if (featureName === null) {
 				val upperB = if (op.returnType.isCollection) -1 else 1
 				val realType =
-					if (op.returnType.isCollection)
+					if (op.returnType.isCollection && (op.returnType as JvmParameterizedTypeReference).arguments.head !== null)
 						(op.returnType as JvmParameterizedTypeReference).arguments.head.type
 					else
 						op.returnType.type
