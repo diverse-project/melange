@@ -159,13 +159,14 @@ class AspectRenamer {
 	}
 	
 	private def replaceAll(StringBuilder string, String oldPattern, String newPattern){
-		val patternSize = oldPattern.length
+		val oldPatternSize = oldPattern.length
+		val newPatternSize = newPattern.length
 		
 		var startIndex = 0
 		var index = string.indexOf(oldPattern)
 		while(index != -1){
-			string.replace(index, index+patternSize, newPattern)
-			startIndex += index + patternSize
+			string.replace(index, index+oldPatternSize, newPattern)
+			startIndex = index + newPatternSize
 			index = string.indexOf(oldPattern, startIndex)
 		}
 	}
