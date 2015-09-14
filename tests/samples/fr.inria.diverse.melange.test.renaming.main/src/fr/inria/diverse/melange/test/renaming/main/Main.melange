@@ -1,0 +1,51 @@
+package fr.inria.diverse.melange.test.renaming.main
+
+import fr.inria.diverse.melange.test.renaming.aspects.ClassAAspect
+import fr.inria.diverse.melange.test.renaming.aspects.ClassBAspect
+import fr.inria.diverse.melange.test.renaming.aspects.SuperBAspect
+
+language TestLanguage {
+	syntax "platform:/resource/fr.inria.diverse.melange.test.renaming.model/model/model.ecore"
+	with ClassAAspect
+	with ClassBAspect
+	with SuperBAspect
+	exactType TestLanguageMT
+}
+
+language TestLanguageRenamed {
+	merge TestLanguage and-rename {
+		"root" to "root2" {
+			"ClassA" to "ClassA2" {
+				"toB" : "toB2"
+			}
+		}
+		"root.subpackage" to "root2.subpackage2"{
+			"ClassB" to "ClassB2" {
+				"toA" : "toA2"
+			}
+			"SuperB" to "SuperB2" {
+				"attrib" : "attrib2"
+			}
+		}
+	}
+	exactType RenamedMT
+}
+
+language TestReverseRenamed {
+	merge TestLanguageRenamed and-rename {
+		"root2" to "root" {
+			"ClassA2" to "ClassA" {
+				"toB2" : "toB"
+			}
+		}
+		"root2.subpackage2" to "root.subpackage"{
+			"ClassB2" to "ClassB" {
+				"toA2" : "toA"
+			}
+			"SuperB2" to "SuperB" {
+				"attrib2" : "attrib"
+			}
+		}
+	}
+	exactType ReverseRenamedMT
+}
