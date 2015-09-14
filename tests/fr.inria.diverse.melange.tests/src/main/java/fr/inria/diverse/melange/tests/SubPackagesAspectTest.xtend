@@ -44,6 +44,10 @@ class SubPackagesAspectTest
 		val subpkg1Class1 = subpkg1.EClassifiers.findFirst[name == "Subpkg1Class1"] as EClass
 		assertEquals(1,subpkg1Class1.EAllAttributes.size)
 		assertEquals("changeableYes",subpkg1Class1.EAllAttributes.head.name)
+		assertEquals(2,subpkg1Class1.EAllReferences.size)
+		assertTrue(subpkg1Class1.EAllReferences.exists[name == "toTopClass1"])
+		assertTrue(subpkg1Class1.EAllReferences.exists[name == "mySubpkg1Class2"])
+		assertEquals(toppkg.EClassifiers.findFirst[name == "TopClass1"],subpkg1Class1.EAllReferences.findFirst[name == "toTopClass1"].EType)
 		
 		val subpkg2 = toppkg.ESubpackages.findFirst[name == "subpkg2"]
 		assertNotNull(subpkg2)
