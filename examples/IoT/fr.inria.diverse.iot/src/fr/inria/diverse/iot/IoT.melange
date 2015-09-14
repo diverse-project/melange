@@ -25,6 +25,6 @@ language ActivityEcoreLuaLang {
 	merge LuaLang and-rename { "lua" to "activitydiagram" {} }
 	with fr.inria.diverse.iot.glue.activityecore.EOperationAspect
 	with fr.inria.diverse.iot.glue.activitylua.OpaqueActionAspect
-	with fr.inria.diverse.iot.glue.activitylua.ExpressionAspect
+	with fr.inria.diverse.iot.glue.activitylua.Statement_CallFunctionAspect
 	exactType ActivityEcoreLuaLangMT
 }
