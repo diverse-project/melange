@@ -82,7 +82,7 @@ class EcoreExtensions
 	}
 
 	def EClass findClass(EPackage pkg, String clsName) {
-		return pkg.EClassifiers.filter(EClass).findFirst[name == clsName]
+		return pkg.allClasses.findFirst[name == clsName]
 	}
 
 	def EClassifier findClassifier(EPackage pkg, String clsName) {
