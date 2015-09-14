@@ -1,0 +1,28 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: fr.inria.diverse.iot.xtext
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: fr.inria.diverse.iot.xtext; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext;visibility:=reexport,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ fr.inria.diverse.iot.activityecorelualang,
+ org.eclipse.xtext.util,
+ org.eclipse.xtext.xbase.lib,
+ org.antlr.runtime,
+ org.eclipse.xtext.common.types,
+ org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional,
+ org.eclipse.xtext.xbase
+Import-Package: org.apache.log4j
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: fr.inria.diverse.iot.xtext,
+ fr.inria.diverse.iot.xtext.services,
+ fr.inria.diverse.iot.xtext.serializer,
+ fr.inria.diverse.iot.xtext.parser.antlr,
+ fr.inria.diverse.iot.xtext.parser.antlr.internal,
+ fr.inria.diverse.iot.xtext.validation,
+ fr.inria.diverse.iot.xtext.scoping,
+ fr.inria.diverse.iot.xtext.generator,
+ fr.inria.diverse.iot.xtext.formatting,
+ fr.inria.diverse.iot.xtext.jvmmodel
