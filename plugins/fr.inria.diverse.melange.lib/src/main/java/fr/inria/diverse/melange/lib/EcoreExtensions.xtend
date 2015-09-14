@@ -169,8 +169,13 @@ class EcoreExtensions
 		)
 	}
 
-	def EClass getOrCreateClass(EPackage pkg, String name) {
-		val find = pkg.EClassifiers.filter(EClass).findFirst[it.name == name]
+	/**
+	 * Look for {@link name} in {@link aspPkg}.
+	 * If not found in the first look inside {@link basePkg}.
+	 * Otherwise create a new class in {@link aspPkg}.
+	 */
+	def EClass getOrCreateClass(EPackage aspPkg, EPackage basePkg, String name) {
+		var find = aspPkg.allClasses.findFirst[it.name == name] ?: basePkg.allClasses.findFirst[it.name == name]
 
 		if (find !== null) {
 			return find
@@ -179,7 +184,7 @@ class EcoreExtensions
 				cls.name = name
 			]
 
-			pkg.EClassifiers += newCls
+			aspPkg.EClassifiers += newCls
 
 			return newCls
 		}

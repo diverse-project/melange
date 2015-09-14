@@ -52,7 +52,7 @@ class AspectToEcore
 				cls.EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
 
 				if (aspect.extendedClass !== null && aspect.extendedClass.simpleName != "Object")
-					cls.ESuperTypes += aspPkg.getOrCreateClass(aspect.extendedClass.simpleName)
+					cls.ESuperTypes += aspPkg.getOrCreateClass(basePkg,aspect.extendedClass.simpleName)
 			}
 		]
 
@@ -77,7 +77,7 @@ class AspectToEcore
 				// Create EReference
 				aspCls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEReference => [
 					name = field.simpleName
-					EType = aspPkg.getOrCreateClass(find.name)
+					EType = aspPkg.getOrCreateClass(basePkg,find.name)
 					upperBound = upperB
 					containment = field.annotations.exists[annotation.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Containment"]
 					EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
@@ -139,7 +139,7 @@ class AspectToEcore
 									pp.upperBound = upperBP
 									pp.EType =
 										if (attrCls !== null)
-											aspPkg.getOrCreateClass(realTypeP.simpleName)
+											aspPkg.getOrCreateClass(basePkg,realTypeP.simpleName)
 										else if (realTypeP instanceof JvmEnumerationType)
 											// FIXME: Ok for now, but we should also check literals values
 											aspPkg.getOrCreateEnum(realTypeP.simpleName, realTypeP.literals.map[simpleName])
@@ -153,7 +153,7 @@ class AspectToEcore
 							upperBound = upperB
 							EType =
 								if (retCls !== null)
-									aspPkg.getOrCreateClass(realType.simpleName)
+									aspPkg.getOrCreateClass(basePkg,realType.simpleName)
 								else if (realType instanceof JvmEnumerationType)
 									// FIXME: Ok for now, but we should also check literals values
 									aspPkg.getOrCreateEnum(realType.simpleName, realType.literals.map[simpleName])
@@ -181,7 +181,7 @@ class AspectToEcore
 					// Create EReference
 					aspCls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEReference => [
 						name = featureName
-						EType = aspPkg.getOrCreateClass(find.name)
+						EType = aspPkg.getOrCreateClass(basePkg,find.name)
 						upperBound = upperB
 						containment = op.annotations.exists[annotation.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Containment"]
 						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
@@ -201,8 +201,14 @@ class AspectToEcore
 				}
 			}
 		]
+		
+		//return the top package
+		var res = aspPkg
+		while(res.ESuperPackage !== null){
+			res = res.ESuperPackage
+		}
 
-		return aspPkg
+		return res
 	}
 	
 	/**
