@@ -49,8 +49,8 @@ class ModelingElementExtensions
 				
 				if (obj instanceof EModelElement) {
 					if (obj.EAnnotations.exists[source == "aspect"]) {
-						if (obj instanceof EReference)
-							if (obj.containment) {}
+						if (obj instanceof EStructuralFeature)
+							if (!obj.EType.EAnnotations.exists[source == "aspect"]) {}
 							else toRemove += obj
 						else
 							toRemove += obj
