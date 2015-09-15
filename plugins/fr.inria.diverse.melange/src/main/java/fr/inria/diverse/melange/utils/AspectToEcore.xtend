@@ -13,6 +13,9 @@ import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
 import org.eclipse.xtext.common.types.JvmVisibility
 import org.eclipse.emf.ecore.EClass
+import org.eclipse.xtext.common.types.JvmType
+import org.eclipse.emf.ecore.util.EcoreUtil
+import java.util.List
 
 /**
  * This class creates an EPackage corresponding to an aspect.
@@ -42,7 +45,14 @@ class AspectToEcore
 					nsURI = basePkg.nsURI
 				]
 			}
-
+			
+		//the top package
+		var tmpPack = aspPkg
+		while(tmpPack.ESuperPackage !== null){
+			tmpPack = tmpPack.ESuperPackage
+		}
+		val aspTopPkg = tmpPack 
+		
 		val aspCls = EcoreFactory.eINSTANCE.createEClass => [cls |
 			cls.name = if (baseCls !== null) baseCls.name else aspect.simpleName
 			cls.^abstract = if (baseCls !== null) baseCls.^abstract else aspect.^abstract
@@ -52,7 +62,7 @@ class AspectToEcore
 				cls.EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
 
 				if (aspect.extendedClass !== null && aspect.extendedClass.simpleName != "Object")
-					cls.ESuperTypes += aspPkg.getOrCreateClass(basePkg,aspect.extendedClass.simpleName)
+					cls.ESuperTypes += aspTopPkg.getOrCreateClass(aspect.extendedClass.qualifiedName)
 			}
 		]
 
@@ -77,7 +87,7 @@ class AspectToEcore
 				// Create EReference
 				aspCls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEReference => [
 					name = field.simpleName
-					EType = aspPkg.getOrCreateClass(basePkg,find.name)
+					EType = aspTopPkg.getOrCreateClass(find.toQualifiedName)
 					upperBound = upperB
 					containment = field.annotations.exists[annotation.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Containment"]
 					EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
@@ -88,9 +98,9 @@ class AspectToEcore
 					EType =
 						if (realType instanceof JvmEnumerationType)
 							// FIXME: Ok for now, but we should also check literals values
-							aspPkg.getOrCreateEnum(realType.simpleName, realType.literals.map[simpleName])
+							aspTopPkg.getOrCreateEnum(realType.simpleName, realType.literals.map[simpleName])
 						else
-							aspPkg.getOrCreateDataType(realType.simpleName, realType.qualifiedName)
+							aspTopPkg.getOrCreateDataType(realType.simpleName, realType.qualifiedName)
 					upperBound = upperB
 					EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
 				]
@@ -139,12 +149,12 @@ class AspectToEcore
 									pp.upperBound = upperBP
 									pp.EType =
 										if (attrCls !== null)
-											aspPkg.getOrCreateClass(basePkg,realTypeP.simpleName)
+											aspTopPkg.getOrCreateClass(realTypeP.qualifiedName)
 										else if (realTypeP instanceof JvmEnumerationType)
 											// FIXME: Ok for now, but we should also check literals values
-											aspPkg.getOrCreateEnum(realTypeP.simpleName, realTypeP.literals.map[simpleName])
+											aspTopPkg.getOrCreateEnum(realTypeP.simpleName, realTypeP.literals.map[simpleName])
 										else
-											aspPkg.getOrCreateDataType(realTypeP.simpleName, realTypeP.qualifiedName)
+											aspTopPkg.getOrCreateDataType(realTypeP.simpleName, realTypeP.qualifiedName)
 								]
 							}
 						]
@@ -153,12 +163,12 @@ class AspectToEcore
 							upperBound = upperB
 							EType =
 								if (retCls !== null)
-									aspPkg.getOrCreateClass(basePkg,realType.simpleName)
+									aspTopPkg.getOrCreateClass(realType.qualifiedName)
 								else if (realType instanceof JvmEnumerationType)
 									// FIXME: Ok for now, but we should also check literals values
-									aspPkg.getOrCreateEnum(realType.simpleName, realType.literals.map[simpleName])
+									aspTopPkg.getOrCreateEnum(realType.simpleName, realType.literals.map[simpleName])
 								else
-									aspPkg.getOrCreateDataType(realType.simpleName, realType.qualifiedName)
+									aspTopPkg.getOrCreateDataType(realType.simpleName, realType.qualifiedName)
 						}
 						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
 					]
@@ -181,7 +191,7 @@ class AspectToEcore
 					// Create EReference
 					aspCls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEReference => [
 						name = featureName
-						EType = aspPkg.getOrCreateClass(basePkg,find.name)
+						EType = aspTopPkg.getOrCreateClass(find.toQualifiedName)
 						upperBound = upperB
 						containment = op.annotations.exists[annotation.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Containment"]
 						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
@@ -192,9 +202,9 @@ class AspectToEcore
 						EType =
 							if (realType instanceof JvmEnumerationType)
 								// FIXME: Ok for now, but we should also check literals values
-								aspPkg.getOrCreateEnum(realType.simpleName, realType.literals.map[simpleName])
+								aspTopPkg.getOrCreateEnum(realType.simpleName, realType.literals.map[simpleName])
 							else
-								aspPkg.getOrCreateDataType(realType.simpleName, realType.qualifiedName)
+								aspTopPkg.getOrCreateDataType(realType.simpleName, realType.qualifiedName)
 						upperBound = upperB
 						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
 					]
@@ -202,13 +212,7 @@ class AspectToEcore
 			}
 		]
 		
-		//return the top package
-		var res = aspPkg
-		while(res.ESuperPackage !== null){
-			res = res.ESuperPackage
-		}
-
-		return res
+		return aspTopPkg
 	}
 	
 	/**
@@ -313,5 +317,18 @@ class AspectToEcore
 		}
 		
 		return res
+	}
+	
+	private def String toQualifiedName(EClass clazz){
+		val List<String> res = newArrayList
+		res.add(clazz.name)
+		
+		var pack = clazz.EPackage
+		while(pack !== null){
+			res.add(pack.name)
+			pack = pack.ESuperPackage
+		}
+		
+		return res.reverse.join(".")
 	}
 }

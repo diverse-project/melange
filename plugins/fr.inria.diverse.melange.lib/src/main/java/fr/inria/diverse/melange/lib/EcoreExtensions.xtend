@@ -80,6 +80,34 @@ class EcoreExtensions
 			return findSubPackage(subRoot, subFqn)
 		}
 	}
+	
+	/** 
+	 * Search in {@link pkg} for {@link qualifiedClsName}
+	 * 
+	 * @param clsName In the form of 'pkg(.subpackage)*.simpleName',
+	 * or just 'simpleName'
+	 */
+	def EClass getClass(EPackage pkg, String clsName){
+		val indexOf = clsName.indexOf("\\.")
+		if(indexOf == -1){
+			//Simple name
+			pkg.EClassifiers.filter(EClass).findFirst[name == clsName]
+		}
+		else{
+			val withoutRoot = clsName.substring(indexOf+1)
+			val lastDot = withoutRoot.lastIndexOf("\\.")
+			
+			if(lastDot == -1){
+				return pkg.EClassifiers.filter(EClass).findFirst[name == withoutRoot]	
+			}
+			else{
+				val subpack = withoutRoot.substring(0, lastDot)
+				val simpleName = withoutRoot.substring(lastDot + 1)
+				val ePack = pkg.findSubPackage(subpack)
+				return ePack?.EClassifiers.filter(EClass).findFirst[name == simpleName]
+			}
+		}
+	}
 
 	def EClass findClass(EPackage pkg, String clsName) {
 		return pkg.allClasses.findFirst[name == clsName]
@@ -170,23 +198,39 @@ class EcoreExtensions
 	}
 
 	/**
-	 * Look for {@link name} in {@link aspPkg}.
-	 * If not found in the first look inside {@link basePkg}.
-	 * Otherwise create a new class in {@link aspPkg}.
+	 * Look for {@link fqn} in {@link aspPkg}.
+	 * Otherwise create a new class in {@link aspPkg} (end eventually the sub-package hierarchy).
 	 */
-	def EClass getOrCreateClass(EPackage aspPkg, EPackage basePkg, String name) {
-		var find = aspPkg.allClasses.findFirst[it.name == name] ?: basePkg.allClasses.findFirst[it.name == name]
+	def EClass getOrCreateClass(EPackage aspPkg, String fqn) {
+		var find = aspPkg.getClass(fqn) 
 
 		if (find !== null) {
 			return find
 		} else {
-			val newCls = EcoreFactory.eINSTANCE.createEClass => [cls |
-				cls.name = name
-			]
-
-			aspPkg.EClassifiers += newCls
-
-			return newCls
+			val segments = fqn.split("\\.")
+			if(segments.length == 1){
+				val newCls = EcoreFactory.eINSTANCE.createEClass => [cls |
+					cls.name = fqn
+				]
+				aspPkg.EClassifiers += newCls
+				return newCls
+			}
+			else{
+				var last = aspPkg
+				for(var int i = 1; i < segments.size-1; i++){
+					val segment = segments.get(i)
+					val newPack = EcoreFactory.eINSTANCE.createEPackage => [p |
+							p.name = segment
+						]
+					last.ESubpackages += newPack
+					last = newPack
+				}
+				val newCls = EcoreFactory.eINSTANCE.createEClass => [cls |
+					cls.name = segments.last
+				]
+				last.EClassifiers += newCls
+				return newCls
+			}
 		}
 	}
 
