@@ -30,6 +30,8 @@ class AspectExtensions {
 	}
 
 	def String getAspectAnnotationValue(JvmTypeReference asp) {
+		if (!(asp.type instanceof JvmDeclaredType))
+			return null
 		return (asp.type as JvmDeclaredType)?.aspectAnnotationValue
 	}
 
