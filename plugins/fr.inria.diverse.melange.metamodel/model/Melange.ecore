@@ -31,6 +31,8 @@
         transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ecoreFragment" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningLanguage" lowerBound="1"
+        eType="#//Language" eOpposite="#//Language/semantics"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Inheritance" eSuperTypes="#//LanguageOperator"/>
   <eClassifiers xsi:type="ecore:EClass" name="Subtyping">
@@ -126,7 +128,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" upperBound="-1"
         eType="#//Mapping" resolveProxies="false" eOpposite="#//Mapping/from"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="semantics" upperBound="-1"
-        eType="#//Aspect" containment="true"/>
+        eType="#//Aspect" containment="true" eOpposite="#//Aspect/owningLanguage"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Weave" eSuperTypes="#//Operator">
     <eStructuralFeatures xsi:type="ecore:EReference" name="aspectTypeRef" eType="ecore:EClass ../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference"

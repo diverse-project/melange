@@ -11,9 +11,10 @@ import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.MelangeFactory
 import fr.inria.diverse.melange.metamodel.melange.Merge
 import fr.inria.diverse.melange.metamodel.melange.ModelType
+import fr.inria.diverse.melange.metamodel.melange.PackageBinding
 import fr.inria.diverse.melange.metamodel.melange.Slice
-import fr.inria.diverse.melange.metamodel.melange.Weave
 import fr.inria.diverse.melange.utils.AspectCopier
+import fr.inria.diverse.melange.utils.AspectRenamer
 import java.util.List
 import java.util.Set
 import org.eclipse.emf.ecore.EClass
@@ -23,12 +24,15 @@ import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
+import fr.inria.diverse.melange.utils.RenamingRuleManager
+import fr.inria.diverse.melange.metamodel.melange.Weave
+import org.eclipse.emf.common.util.URI
 
 class LanguageExtensions
 {
 	@Inject extension ModelingElementExtensions
 	@Inject extension MetamodelExtensions
-	@Inject extension AspectExtensions
+	@Inject extension AspectExtensions aspectExtension
 	@Inject extension ModelTypeExtensions
 	@Inject extension NamingHelper
 	@Inject extension EcoreExtensions
@@ -37,6 +41,7 @@ class LanguageExtensions
 	@Inject extension IQualifiedNameProvider
 	@Inject ModelTypeAlgebra algebra
 	@Inject AspectCopier copier
+	@Inject AspectRenamer renamer
 	@Inject JvmTypeReferenceBuilder.Factory builderFactory
 
 	def List<Language> getSuperLanguages(Language l) {
@@ -301,41 +306,104 @@ class LanguageExtensions
 	}
 
 	/**
-	 * Copy aspects defined on {@link mm} into generated project <br>
-	 * Return a list of created Aspects with type references to the copied classes
+	 * Copy aspects defined on {@link l} into generated project
+	 * and update {@link l}'s semantic with new Aspects 
 	 */
-	def List<Aspect> createExternalAspects(Language l) {
-		val res = newArrayList
+	def void createExternalAspects(Language l) {
+		val classesAlreadyWeaved = newArrayList
+		val newRootName = l.syntax.packageFqn.toQualifiedName.skipLast(1).toString
+		
+		//Copy sem
+		copyAspects(l,l.semantics,classesAlreadyWeaved,null)
+		//Copy+rename op
+		l.operators.forEach[op |
+				var List<Aspect> aspects = null
+				var List<PackageBinding> renamingRules = null
+				if (op instanceof Slice){
+					aspects = (op as Slice).targetLanguage.semantics
+					renamingRules= (op as Slice).mappingRules
+				} 
+				else if (op instanceof Merge){
+					aspects = (op as Merge).targetLanguage.semantics
+					renamingRules= (op as Merge).mappingRules
+				}
+				
+				if(aspects != null){
+					val rulesManager = new RenamingRuleManager(renamingRules, aspects, newRootName, aspectExtension)
+					copyAspects(l,aspects,classesAlreadyWeaved,rulesManager)
+				}
+			]
+		//Copy super lang
+		copyAspects(l,l.superLanguages.map[semantics].flatten,classesAlreadyWeaved,null)
+	}
+	
+	/**
+	 * Copy aspects defined on {@link l} into generated project
+	 * and apply renaming rules on them
+	 */
+	private def void copyAspects(Language l, Iterable<Aspect> aspects, List<String> classesAlreadyWeaved,RenamingRuleManager rulesManager){
+		
+		if(aspects.isEmpty){
+			return
+		}
+		
 		val typeRefBuilder = builderFactory.create(l.eResource.resourceSet)
-		val sourceEmfNamespaces = l.collectTargetedPackages
+		val sourceEmfNamespaces = aspects.head.owningLanguage.syntax.packageFqn.toQualifiedName.skipLast(1).toString //prefixed root package
 		val targetEmfNamespace = l.syntax.packageFqn.toQualifiedName.skipLast(1).toString
 		val targetAspectNamespace = l.aspectTargetNamespace
 		val targetProjectName = l.externalRuntimeName
-
-		val aspectsToCopy =
-			l.allSemantics
-			.reverse
-			.filter[aspectTypeRef.canBeCopiedFor(l.syntax)]
-			.map[aspectTypeRef]
-			.toSet
-
-		val request = new AspectCopier.AspectCopierRequest(
-			aspectsToCopy,
-			sourceEmfNamespaces,
-			targetEmfNamespace,
-			targetAspectNamespace,
-			targetProjectName
-		)
-
-		val newFqns = copier.copy(l, request)
-
-		newFqns.forEach[fqn |
-			res += MelangeFactory.eINSTANCE.createAspect => [
-				aspectTypeRef = typeRefBuilder.typeRef(fqn)
-			]
+		
+		//Copy aspects files
+		aspects.forEach[asp |
+			if (asp.isComplete) {
+				if (asp.aspectTypeRef.canBeCopiedFor(l.syntax)) {
+					
+					var className = asp.aspectedClass.name
+					var classFqName = asp.aspectedClass.fullyQualifiedName
+					val renaming = rulesManager?.getClassRule(classFqName.toString)
+					if(renaming != null) className = renaming.value.substring(renaming.value.lastIndexOf(".")+1)
+					
+					if(!classesAlreadyWeaved.contains(className) && (l.syntax.findClass(className) !== null)){
+						classesAlreadyWeaved.add(className)
+						val request = new AspectCopier.AspectCopierRequest(
+							#[asp.aspectTypeRef].toSet,
+							#[sourceEmfNamespaces].toSet,
+							targetEmfNamespace,
+							targetAspectNamespace,
+							targetProjectName
+						)
+						copier.copy(l,request)
+					}
+				}
+			}
 		]
 		
-		return res
+		//Apply renaming rules on copied files
+		if(rulesManager !== null){
+			renamer.processRenaming(aspects.toList,l,rulesManager)
+		}
+		
+		//Update the semantic
+		val newAspects = newArrayList
+		aspects.forEach[asp |
+			val targetClass = asp.aspectedClass.name
+	    	val targetFqName = asp.aspectedClass.fullyQualifiedName.toString
+	    	val rule = rulesManager?.getClassRule(targetFqName)
+	    	val newClass = 
+	    		if(rule !== null){
+		    		rule.value.toQualifiedName.lastSegment
+	    		}
+	    		else{
+	    			targetClass
+	    		}
+	    	val eClazz = l.syntax.findClass(newClass)
+	    	newAspects += MelangeFactory.eINSTANCE.createAspect => [
+					aspectedClass = eClazz
+					aspectTypeRef = typeRefBuilder.typeRef(targetAspectNamespace+"."+newClass+"Aspect")
+				]
+		]
+		
+		l.semantics += newAspects
 	}
 
 	def Set<String> collectTargetedPackages(Language l) {

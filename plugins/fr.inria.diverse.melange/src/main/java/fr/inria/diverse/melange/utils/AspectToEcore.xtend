@@ -13,6 +13,9 @@ import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
 import org.eclipse.xtext.common.types.JvmVisibility
 import org.eclipse.emf.ecore.EClass
+import org.eclipse.xtext.common.types.JvmType
+import org.eclipse.emf.ecore.util.EcoreUtil
+import java.util.List
 
 /**
  * This class creates an EPackage corresponding to an aspect.
@@ -31,12 +34,25 @@ class AspectToEcore
 	def EPackage inferEcoreFragment(JvmDeclaredType aspect, EClass baseCls, EPackage basePkg) {
 		val hasAnnotation = aspect.annotations.exists[annotation.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Aspect"]
 
-		val aspPkg = EcoreFactory.eINSTANCE.createEPackage => [
-			name = basePkg.name
-			nsPrefix = basePkg.nsPrefix
-			nsURI = basePkg.nsURI
-		]
-
+		val aspPkg = 
+			if(baseCls !== null){
+				baseCls.copyPackage //FIXME: should check aspPkg == basePkg ?
+			} 
+			else{
+				EcoreFactory.eINSTANCE.createEPackage => [
+					name = basePkg.name
+					nsPrefix = basePkg.nsPrefix
+					nsURI = basePkg.nsURI
+				]
+			}
+			
+		//the top package
+		var tmpPack = aspPkg
+		while(tmpPack.ESuperPackage !== null){
+			tmpPack = tmpPack.ESuperPackage
+		}
+		val aspTopPkg = tmpPack 
+		
 		val aspCls = EcoreFactory.eINSTANCE.createEClass => [cls |
 			cls.name = if (baseCls !== null) baseCls.name else aspect.simpleName
 			cls.^abstract = if (baseCls !== null) baseCls.^abstract else aspect.^abstract
@@ -46,7 +62,7 @@ class AspectToEcore
 				cls.EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
 
 				if (aspect.extendedClass !== null && aspect.extendedClass.simpleName != "Object")
-					cls.ESuperTypes += aspPkg.getOrCreateClass(aspect.extendedClass.simpleName)
+					cls.ESuperTypes += aspTopPkg.getOrCreateClass(aspect.extendedClass.qualifiedName)
 			}
 		]
 
@@ -71,7 +87,7 @@ class AspectToEcore
 				// Create EReference
 				aspCls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEReference => [
 					name = field.simpleName
-					EType = aspPkg.getOrCreateClass(find.name)
+					EType = aspTopPkg.getOrCreateClass(find.toQualifiedName)
 					upperBound = upperB
 					containment = field.annotations.exists[annotation.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Containment"]
 					EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
@@ -82,9 +98,9 @@ class AspectToEcore
 					EType =
 						if (realType instanceof JvmEnumerationType)
 							// FIXME: Ok for now, but we should also check literals values
-							aspPkg.getOrCreateEnum(realType.simpleName, realType.literals.map[simpleName])
+							aspTopPkg.getOrCreateEnum(realType.simpleName, realType.literals.map[simpleName])
 						else
-							aspPkg.getOrCreateDataType(realType.simpleName, realType.qualifiedName)
+							aspTopPkg.getOrCreateDataType(realType.simpleName, realType.qualifiedName)
 					upperBound = upperB
 					EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
 				]
@@ -133,12 +149,12 @@ class AspectToEcore
 									pp.upperBound = upperBP
 									pp.EType =
 										if (attrCls !== null)
-											aspPkg.getOrCreateClass(realTypeP.simpleName)
+											aspTopPkg.getOrCreateClass(realTypeP.qualifiedName)
 										else if (realTypeP instanceof JvmEnumerationType)
 											// FIXME: Ok for now, but we should also check literals values
-											aspPkg.getOrCreateEnum(realTypeP.simpleName, realTypeP.literals.map[simpleName])
+											aspTopPkg.getOrCreateEnum(realTypeP.simpleName, realTypeP.literals.map[simpleName])
 										else
-											aspPkg.getOrCreateDataType(realTypeP.simpleName, realTypeP.qualifiedName)
+											aspTopPkg.getOrCreateDataType(realTypeP.simpleName, realTypeP.qualifiedName)
 								]
 							}
 						]
@@ -147,12 +163,12 @@ class AspectToEcore
 							upperBound = upperB
 							EType =
 								if (retCls !== null)
-									aspPkg.getOrCreateClass(realType.simpleName)
+									aspTopPkg.getOrCreateClass(realType.qualifiedName)
 								else if (realType instanceof JvmEnumerationType)
 									// FIXME: Ok for now, but we should also check literals values
-									aspPkg.getOrCreateEnum(realType.simpleName, realType.literals.map[simpleName])
+									aspTopPkg.getOrCreateEnum(realType.simpleName, realType.literals.map[simpleName])
 								else
-									aspPkg.getOrCreateDataType(realType.simpleName, realType.qualifiedName)
+									aspTopPkg.getOrCreateDataType(realType.simpleName, realType.qualifiedName)
 						}
 						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
 					]
@@ -175,7 +191,7 @@ class AspectToEcore
 					// Create EReference
 					aspCls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEReference => [
 						name = featureName
-						EType = aspPkg.getOrCreateClass(find.name)
+						EType = aspTopPkg.getOrCreateClass(find.toQualifiedName)
 						upperBound = upperB
 						containment = op.annotations.exists[annotation.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Containment"]
 						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
@@ -186,17 +202,17 @@ class AspectToEcore
 						EType =
 							if (realType instanceof JvmEnumerationType)
 								// FIXME: Ok for now, but we should also check literals values
-								aspPkg.getOrCreateEnum(realType.simpleName, realType.literals.map[simpleName])
+								aspTopPkg.getOrCreateEnum(realType.simpleName, realType.literals.map[simpleName])
 							else
-								aspPkg.getOrCreateDataType(realType.simpleName, realType.qualifiedName)
+								aspTopPkg.getOrCreateDataType(realType.simpleName, realType.qualifiedName)
 						upperBound = upperB
 						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
 					]
 				}
 			}
 		]
-
-		return aspPkg
+		
+		return aspTopPkg
 	}
 	
 	/**
@@ -273,5 +289,46 @@ class AspectToEcore
 		)
 			return op.simpleName.substring(3, op.simpleName.length).toFirstLower
 		else return null
+	}
+	
+	/**
+	 * Create a copy of the hierachy of sub-packages containing {@link baseCls}
+	 * Return the deepest package
+	 */
+	private def EPackage copyPackage(EClass baseCls){
+		
+		var EPackage res = null
+		
+		var currentPkg = baseCls.EPackage
+		var EPackage last = null
+		while(currentPkg !== null){
+			val pkgCopy = EcoreFactory.eINSTANCE.createEPackage
+			pkgCopy.name = currentPkg.name
+			pkgCopy.nsPrefix = currentPkg.nsPrefix
+			pkgCopy.nsURI = currentPkg.nsURI
+			if(last !== null){
+				pkgCopy.ESubpackages += last 
+			}
+			else{
+				res = pkgCopy
+			}
+			last = pkgCopy
+			currentPkg = currentPkg.ESuperPackage
+		}
+		
+		return res
+	}
+	
+	private def String toQualifiedName(EClass clazz){
+		val List<String> res = newArrayList
+		res.add(clazz.name)
+		
+		var pack = clazz.EPackage
+		while(pack !== null){
+			res.add(pack.name)
+			pack = pack.ESuperPackage
+		}
+		
+		return res.reverse.join(".")
 	}
 }

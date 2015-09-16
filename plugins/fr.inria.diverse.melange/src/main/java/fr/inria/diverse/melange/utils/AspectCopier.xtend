@@ -6,7 +6,9 @@ import fr.inria.diverse.commons.asm.shade.filter.Filter
 import fr.inria.diverse.commons.asm.shade.relocation.Relocator
 import fr.inria.diverse.commons.asm.shade.relocation.SimpleRelocator
 import fr.inria.diverse.melange.ast.AspectExtensions
+import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
+import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.utils.AspectCopier.AspectCopierRequest
 import java.io.File
@@ -16,17 +18,24 @@ import org.apache.log4j.Logger
 import org.eclipse.core.resources.IFile
 import org.eclipse.core.resources.IResource
 import org.eclipse.core.resources.IResourceVisitor
+import org.eclipse.core.resources.IWorkspaceRoot
 import org.eclipse.core.runtime.CoreException
 import org.eclipse.xtend.lib.annotations.Data
 import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.naming.IQualifiedNameConverter
+import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.util.internal.Stopwatches
 
 import static fr.inria.diverse.melange.utils.AspectCopier.*
 
+/**
+ * This class create a new project for a Language and copies Aspects files
+ * from Language dependencies
+ */
 class AspectCopier
 {
 	@Inject extension AspectExtensions
+	@Inject extension LanguageExtensions
 	@Inject extension IQualifiedNameConverter
 	@Inject EclipseProjectHelper eclipseHelper
 	static Logger log = Logger.getLogger(AspectCopier)
@@ -73,8 +82,15 @@ class AspectCopier
 				if (resource instanceof IFile) {
 					val possibleMatches = request.aspectRefs.map[identifier.replace(".", "/") + ".java"]
 
-					if (possibleMatches.exists[match | resource.locationURI.path.endsWith(match)])
-						sourceFolders += new File(resource.project.locationURI.path + "/xtend-gen/")
+					if (possibleMatches.exists[match | resource.locationURI.path.endsWith(match)]){
+						val ressourcePath = resource.locationURI.path
+						if(ressourcePath.contains("/xtend-gen/")){
+							sourceFolders += new File(resource.project.locationURI.path + "/xtend-gen/")
+						}
+						else if(ressourcePath.contains("/src-gen/")){
+							sourceFolders += new File(resource.project.locationURI.path + "/src-gen/")
+						}
+					}
 
 					return false
 				}
@@ -134,4 +150,20 @@ class AspectCopier
 
 		return resultFqn
 	}
+	
+	static def QualifiedName getAspectTargetNamespace(QualifiedName sourceAspectNamespace , Language l){
+		val postfix = if(sourceAspectNamespace.segmentCount > 1 &&(sourceAspectNamespace.lastSegment.equals("aspect") 
+				|| sourceAspectNamespace.lastSegment.equals("aspects")
+				|| sourceAspectNamespace.lastSegment.equals("k3dsa")
+				)){ sourceAspectNamespace.lastSegment } else{"aspect"}
+				
+		
+		if(sourceAspectNamespace.segmentCount > 2){
+			return sourceAspectNamespace.skipLast(2).append(l.name.toLowerCase).append(postfix)
+		} else {
+				return sourceAspectNamespace.skipLast(1).append(l.name.toLowerCase).append(postfix)
+		}
+
+	}
+	
 }

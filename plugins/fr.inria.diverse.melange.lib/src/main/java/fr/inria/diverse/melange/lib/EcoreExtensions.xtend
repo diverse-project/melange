@@ -66,9 +66,13 @@ class EcoreExtensions
 	
 	/**
 	 * Search a subPackage in @{link root} named {@link fqn}.
+	 * Return null if not found.
+	 * 
 	 * @param fqn In the form of 'subpackage(.subpackage)*'
 	 */
 	def EPackage findSubPackage(EPackage root, String fqn){
+		
+		if(root === null) return null
 		
 		val splitName = fqn.split("\\.")
 		
@@ -81,9 +85,43 @@ class EcoreExtensions
 			return findSubPackage(subRoot, subFqn)
 		}
 	}
+	
+	/** 
+	 * Search in {@link pkg} for {@link qualifiedClsName}.
+	 * Return null if not found.
+	 * 
+	 * @param clsName In the form of 'pkg(.subpackage)*.simpleName',
+	 * or just 'simpleName'
+	 */
+	def EClass getClass(EPackage pkg, String clsName){
+		val indexOf = clsName.indexOf(".")
+		if(indexOf == -1){
+			//Simple name
+			pkg.EClassifiers.filter(EClass).findFirst[name == clsName]
+		}
+		else{
+			val withoutRoot = clsName.substring(indexOf+1)
+			val lastDot = withoutRoot.lastIndexOf(".")
+			
+			if(lastDot == -1){
+				return pkg.EClassifiers.filter(EClass).findFirst[name == withoutRoot]	
+			}
+			else{
+				val subpack = withoutRoot.substring(0, lastDot)
+				val simpleName = withoutRoot.substring(lastDot + 1)
+				val ePack = pkg.findSubPackage(subpack)
+				if(ePack === null){
+					return null
+				}
+				else{
+					return ePack.EClassifiers.filter(EClass).findFirst[name == simpleName]
+				}
+			}
+		}
+	}
 
 	def EClass findClass(EPackage pkg, String clsName) {
-		return pkg.EClassifiers.filter(EClass).findFirst[name == clsName]
+		return pkg.allClasses.findFirst[name == clsName]
 	}
 
 	def EClassifier findClassifier(EPackage pkg, String clsName) {
@@ -174,19 +212,53 @@ class EcoreExtensions
 		)
 	}
 
-	def EClass getOrCreateClass(EPackage pkg, String name) {
-		val find = pkg.EClassifiers.filter(EClass).findFirst[it.name == name]
+	/**
+	 * Look for {@link fqn} in {@link aspPkg}.
+	 * Otherwise create a new class in {@link aspPkg} (end eventually the sub-package hierarchy).
+	 */
+	def EClass getOrCreateClass(EPackage aspPkg, String fqn) {
+		var find = aspPkg.getClass(fqn) 
 
 		if (find !== null) {
 			return find
 		} else {
-			val newCls = EcoreFactory.eINSTANCE.createEClass => [cls |
-				cls.name = name
-			]
-
-			pkg.EClassifiers += newCls
-
-			return newCls
+			val segments = fqn.split("\\.")
+			if(segments.length == 1){
+				val newCls = EcoreFactory.eINSTANCE.createEClass => [cls |
+					cls.name = fqn
+				]
+				aspPkg.EClassifiers += newCls
+				return newCls
+			}
+			else{
+				if(segments.get(0) != aspPkg.name){
+					//fqn is not in aspPkg's fragment so we put it inside the root package 
+					val newCls = EcoreFactory.eINSTANCE.createEClass => [cls |
+						cls.name = segments.last
+					]
+					aspPkg.EClassifiers += newCls
+					return newCls
+				}
+				else{
+					var last = aspPkg
+					for(var int i = 1; i < segments.size-1; i++){
+						val finalLast = last
+						val segment = segments.get(i)
+						val newPack = EcoreFactory.eINSTANCE.createEPackage => [p |
+								p.name = segment
+								p.nsPrefix = finalLast.nsPrefix+"."+segment
+								p.nsURI = finalLast.nsURI+"."+segment
+							]
+						last.ESubpackages += newPack
+						last = newPack
+					}
+					val newCls = EcoreFactory.eINSTANCE.createEClass => [cls |
+						cls.name = segments.last
+					]
+					last.EClassifiers += newCls
+					return newCls
+				}
+			}
 		}
 	}
 
