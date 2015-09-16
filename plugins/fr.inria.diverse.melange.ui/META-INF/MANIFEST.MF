@@ -38,5 +38,6 @@ Export-Package: fr.inria.diverse.melange.ui,
  fr.inria.diverse.melange.ui.outline,
  fr.inria.diverse.melange.ui.quickfix,
  fr.inria.diverse.melange.ui.wizards,
- fr.inria.diverse.melange.ui.wizards.pages
+ fr.inria.diverse.melange.ui.wizards.pages,
+ fr.inria.diverse.melange.ui.builder
 Bundle-Activator: fr.inria.diverse.melange.ui.internal.MelangeActivator
