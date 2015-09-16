@@ -237,9 +237,12 @@ class EcoreExtensions
 				else{
 					var last = aspPkg
 					for(var int i = 1; i < segments.size-1; i++){
+						val finalLast = last
 						val segment = segments.get(i)
 						val newPack = EcoreFactory.eINSTANCE.createEPackage => [p |
 								p.name = segment
+								p.nsPrefix = finalLast.nsPrefix+"."+segment
+								p.nsURI = finalLast.nsURI+"."+segment
 							]
 						last.ESubpackages += newPack
 						last = newPack
