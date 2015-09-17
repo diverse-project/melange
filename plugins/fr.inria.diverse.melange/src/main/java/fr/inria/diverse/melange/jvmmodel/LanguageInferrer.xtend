@@ -13,8 +13,12 @@ import fr.inria.diverse.melange.lib.IMetamodel
 import fr.inria.diverse.melange.lib.MappingExtensions
 import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
+import java.util.WeakHashMap
+import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.emf.ecore.resource.ResourceSet
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.util.internal.Stopwatches
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
@@ -67,8 +71,8 @@ class LanguageInferrer
 				parameters += l.toParameter("uri", String.typeRef)
 
 				body = '''
-					org.eclipse.emf.ecore.resource.ResourceSet rs = new org.eclipse.emf.ecore.resource.impl.ResourceSetImpl() ;
-					Resource res = rs.getResource(org.eclipse.emf.common.util.URI.createURI(uri), true) ;
+					«ResourceSet» rs = new «ResourceSetImpl»() ;
+					«Resource» res = rs.getResource(«URI».createURI(uri), true) ;
 					«l.name» mm = new «l.name»() ;
 					mm.setResource(res) ;
 					return mm ;
@@ -117,11 +121,11 @@ class LanguageInferrer
 
 				members += l.toField("instance", adapFactName.typeRef)[static = true]
 				
-				members += l.toField("register" , "java.util.WeakHashMap".typeRef(EObject.typeRef,EObjectAdapter.typeRef))
+				members += l.toField("register" , WeakHashMap.typeRef(EObject.typeRef,EObjectAdapter.typeRef))
 				
 				members += l.toConstructor[
 					body = '''
-						register = new WeakHashMap();
+						register = new «WeakHashMap»();
 					'''
 				]
 
@@ -139,7 +143,7 @@ class LanguageInferrer
 					parameters += l.toParameter("o", EObject.typeRef)
 
 					body = '''
-						EObjectAdapter res = register.get(o);
+						«EObjectAdapter» res = register.get(o);
 						if(res != null){
 							 return res;
 						}

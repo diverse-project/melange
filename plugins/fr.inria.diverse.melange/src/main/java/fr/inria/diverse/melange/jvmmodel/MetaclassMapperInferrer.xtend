@@ -1,25 +1,26 @@
 package fr.inria.diverse.melange.jvmmodel
 
 import com.google.inject.Inject
+import fr.inria.diverse.melange.adapters.EListAdapter
 import fr.inria.diverse.melange.adapters.EObjectAdapter
+import fr.inria.diverse.melange.ast.MetamodelExtensions
+import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
+import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.metamodel.melange.ClassBinding
+import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
+import org.eclipse.emf.common.util.EMap
+import org.eclipse.emf.ecore.EAttribute
+import org.eclipse.emf.ecore.EEnum
+import org.eclipse.emf.ecore.EOperation
+import org.eclipse.emf.ecore.EReference
+import org.eclipse.xtext.common.types.JvmGenericType
+import org.eclipse.xtext.common.types.TypesFactory
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
+import org.eclipse.xtext.xbase.jvmmodel.JvmAnnotationReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
-import org.eclipse.emf.ecore.EAttribute
-import org.eclipse.emf.ecore.EReference
-import org.eclipse.emf.ecore.EOperation
-import org.eclipse.xtext.common.types.JvmGenericType
-import fr.inria.diverse.melange.lib.EcoreExtensions
-import org.eclipse.emf.ecore.EEnum
-import org.eclipse.xtext.xbase.jvmmodel.JvmAnnotationReferenceBuilder
-import org.eclipse.emf.common.util.EMap
-import org.eclipse.xtext.common.types.TypesFactory
-import fr.inria.diverse.melange.ast.ModelTypeExtensions
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
-import fr.inria.diverse.melange.ast.MetamodelExtensions
 
 class MetaclassMapperInferrer
 {
@@ -29,7 +30,7 @@ class MetaclassMapperInferrer
 	@Inject extension MelangeTypesBuilder
 	@Inject extension ModelTypeExtensions
 	@Inject extension MetamodelExtensions
-	@Inject extension JvmAnnotationReferenceBuilder$Factory jvmAnnotationReferenceBuilderFactory
+	@Inject extension JvmAnnotationReferenceBuilder.Factory jvmAnnotationReferenceBuilderFactory
 	
 	extension JvmAnnotationReferenceBuilder jvmAnnotationReferenceBuilder
 	extension JvmTypeReferenceBuilder typeRefBuilder
@@ -152,7 +153,7 @@ class MetaclassMapperInferrer
 				else{
 					body = '''
 					«IF targetRef.many»
-						return fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.«sourceRef.getterName»(), «mapName».class) ;
+						return «EListAdapter».newInstance(adaptee.«sourceRef.getterName»(), «mapName».class) ;
 					«ELSE»
 						return adaptersFactory.create«sourceModel.simpleMapperNameFor(targetMT, targetRef.EReferenceType)»(adaptee.«sourceRef.getterName»()) ;
 					«ENDIF»

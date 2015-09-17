@@ -10,6 +10,7 @@ import fr.inria.diverse.melange.lib.MappingExtensions
 import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import java.io.IOException
+import org.eclipse.emf.common.util.URI
 import org.eclipse.xtext.common.types.TypesFactory
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.util.internal.Stopwatches
@@ -109,7 +110,7 @@ class LanguageAdapterInferrer
 				parameters += l.toParameter("uri", String.typeRef)
 
 				body = '''
-					this.adaptee.setURI(org.eclipse.emf.common.util.URI.createURI(uri));
+					this.adaptee.setURI(«URI».createURI(uri));
 					this.adaptee.save(null);
 				'''
 

@@ -10,7 +10,16 @@ import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.ResourceType
 import fr.inria.diverse.melange.preferences.MelangePreferencesAccess
+import fr.inria.diverse.melange.resource.MelangeRegistry
+import fr.inria.diverse.melange.resource.MelangeRegistry.LanguageDescriptor
+import fr.inria.diverse.melange.resource.MelangeRegistry.ModelTypeDescriptor
+import fr.inria.diverse.melange.resource.MelangeRegistryImpl.LanguageDescriptorImpl
+import fr.inria.diverse.melange.resource.MelangeRegistryImpl.ModelTypeDescriptorImpl
+import fr.inria.diverse.melange.resource.MelangeResourceFactoryImpl
 import org.apache.log4j.Logger
+import org.eclipse.emf.ecore.EPackage
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
@@ -98,7 +107,7 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 						«ELSE»
 							«FOR gm : l.syntax.genmodels.filterNull»
 								«FOR gp : gm.genPackages.filterNull»
-									org.eclipse.emf.ecore.EPackage.Registry.INSTANCE.put(
+									«EPackage.Registry».INSTANCE.put(
 										«gp.packageFqn».eNS_URI,
 										«gp.packageFqn».eINSTANCE
 									) ;
@@ -107,13 +116,13 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 						«ENDIF»
 					«ENDFOR»
 
-					org.eclipse.emf.ecore.resource.Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
+					«Resource.Factory.Registry».INSTANCE.getExtensionToFactoryMap().put(
 						"*",
-						new org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl()
+						new «XMIResourceFactoryImpl»()
 					) ;
-					org.eclipse.emf.ecore.resource.Resource.Factory.Registry.INSTANCE.getProtocolToFactoryMap().put(
+					«Resource.Factory.Registry».INSTANCE.getProtocolToFactoryMap().put(
 						"melange",
-						new fr.inria.diverse.melange.resource.MelangeResourceFactoryImpl()
+						new «MelangeResourceFactoryImpl»()
 					) ;
 				'''
 			]
@@ -121,25 +130,25 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 			members += root.toMethod("doAdaptersRegistration", Void::TYPE.typeRef)[
 				body = '''
 					«FOR l : root.languages»
-						fr.inria.diverse.melange.resource.MelangeRegistryImpl.LanguageDescriptorImpl «l.name.toFirstLower» = new fr.inria.diverse.melange.resource.MelangeRegistryImpl.LanguageDescriptorImpl(
+						«LanguageDescriptor» «l.name.toFirstLower» = new «LanguageDescriptorImpl»(
 							"«l.fullyQualifiedName»", "«l.documentation?.replace("\"", "'")?.replace("\n", " ")»", "«l.syntax.packageUri»", "«l.exactType.fullyQualifiedName»"
 						) ;
 						«FOR mt : l.^implements»
 							«l.name.toFirstLower».addAdapter("«mt.fullyQualifiedName»", «l.syntax.adapterNameFor(mt)».class) ;
 						«ENDFOR»
-						fr.inria.diverse.melange.resource.MelangeRegistry.INSTANCE.getLanguageMap().put(
+						«MelangeRegistry».INSTANCE.getLanguageMap().put(
 							"«l.fullyQualifiedName»",
 							«l.name.toFirstLower»
 						) ;
 					«ENDFOR»
 					«FOR mt : root.modelTypes»
-						fr.inria.diverse.melange.resource.MelangeRegistryImpl.ModelTypeDescriptorImpl «mt.name.toFirstLower» = new fr.inria.diverse.melange.resource.MelangeRegistryImpl.ModelTypeDescriptorImpl(
+						«ModelTypeDescriptor» «mt.name.toFirstLower» = new «ModelTypeDescriptorImpl»(
 							"«mt.fullyQualifiedName»", "«mt.documentation»", "«mt.uri»"
 						) ;
 						«FOR superMt : mt.subtypingRelations»
 							«mt.name.toFirstLower».addSuperType("«superMt.superType.fullyQualifiedName»") ;
 						«ENDFOR»
-						fr.inria.diverse.melange.resource.MelangeRegistry.INSTANCE.getModelTypeMap().put(
+						«MelangeRegistry».INSTANCE.getModelTypeMap().put(
 							"«mt.fullyQualifiedName»",
 							«mt.name.toFirstLower»
 						) ;

@@ -1,6 +1,7 @@
 package fr.inria.diverse.melange.jvmmodel
 
 import com.google.inject.Inject
+import fr.inria.diverse.melange.adapters.EListAdapter
 import fr.inria.diverse.melange.adapters.EObjectAdapter
 import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.ast.LanguageExtensions
@@ -170,7 +171,7 @@ class MetaclassAdapterInferrer
 				body = '''
 					«IF mm.owningLanguage.hasAdapterFor(superType, ref.EReferenceType)»
 						«IF ref.many»
-							return fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.«mmRef.getterName»(), «adapName».class) ;
+							return «EListAdapter».newInstance(adaptee.«mmRef.getterName»(), «adapName».class) ;
 						«ELSE»
 							return adaptersFactory.create«mm.simpleAdapterNameFor(superType, ref.EReferenceType)»(adaptee.«mmRef.getterName»()) ;
 						«ENDIF»
@@ -234,7 +235,7 @@ class MetaclassAdapterInferrer
 			paramsList.append('''«FOR p : op.EParameters SEPARATOR ","»
 				«IF p.EType instanceof EClass && mm.owningLanguage.hasAdapterFor(superType, p.EType)»
 					«IF p.many»
-						((fr.inria.diverse.melange.adapters.EListAdapter) «p.name»).getAdaptee()
+						((«EListAdapter») «p.name»).getAdaptee()
 					«ELSE»
 						((«mm.adapterNameFor(superType, p.EType as EClass)») «p.name»).getAdaptee()
 					«ENDIF»
@@ -258,7 +259,7 @@ class MetaclassAdapterInferrer
 			m.body = '''
 				«IF op.EType instanceof EClass && mm.owningLanguage.hasAdapterFor(superType, op.EType)»
 					«IF op.many»
-						return fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.«opName»(«paramsList»), «mm.adapterNameFor(superType, op.EType as EClass)».class) ;
+						return «EListAdapter».newInstance(adaptee.«opName»(«paramsList»), «mm.adapterNameFor(superType, op.EType as EClass)».class) ;
 					«ELSE»
 						return adaptersFactory.create«mm.simpleAdapterNameFor(superType, op.EType as EClass)»(adaptee.«opName»(«paramsList»)) ;
 					«ENDIF»
@@ -348,7 +349,7 @@ class MetaclassAdapterInferrer
 				«IF mm.owningLanguage.hasAdapterFor(superType, p.parameterType.simpleName)»
 					, ((«mm.adapterNameFor(superType, p.parameterType.simpleName)») «p.name»).getAdaptee()
 				«ELSEIF p.parameterType.isCollection && mm.owningLanguage.hasAdapterFor(superType, realTypeP)»
-					, ((fr.inria.diverse.melange.adapters.EListAdapter) «p.name»).getAdaptee()
+					, ((«EListAdapter») «p.name»).getAdaptee()
 				«ELSE»
 					, «p.name»
 				«ENDIF»
@@ -396,7 +397,7 @@ class MetaclassAdapterInferrer
 					«IF retType.isValidReturnType»
 						«IF mm.owningLanguage.hasAdapterFor(superType, realType)»
 							«IF op.returnType.isCollection»
-								return fr.inria.diverse.melange.adapters.EListAdapter.newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), «mm.adapterNameFor(superType, realType)».class) ;
+								return «EListAdapter».newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), «mm.adapterNameFor(superType, realType)».class) ;
 							«ELSE»
 								return adaptersFactory.create«mm.simpleAdapterNameFor(superType, realType)»(«asp.qualifiedName».«op.simpleName»(«paramsList»)) ;
 							«ENDIF»

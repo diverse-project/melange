@@ -3,6 +3,8 @@ package fr.inria.diverse.melange.jvmmodel
 import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.metamodel.melange.ModelType
+import java.util.Arrays
+import java.util.Collections
 import java.util.List
 import org.eclipse.emf.common.util.Enumerator
 import org.eclipse.emf.ecore.EEnum
@@ -56,7 +58,7 @@ class EnumInferrer
 				^static = true
 				^final = true
 				initializer = '''
-					java.util.Collections.unmodifiableList(java.util.Arrays.asList(VALUES_ARRAY));
+					«Collections».unmodifiableList(«Arrays».asList(VALUES_ARRAY));
 				'''
 			]
 
