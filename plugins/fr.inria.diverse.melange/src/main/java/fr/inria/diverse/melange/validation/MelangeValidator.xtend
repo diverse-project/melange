@@ -28,20 +28,10 @@ import fr.inria.diverse.melange.metamodel.melange.Weave
 import fr.inria.diverse.melange.utils.AspectToEcore
 import java.util.ArrayList
 import java.util.Collections
-<<<<<<< f49c541ad4e83608cd183dad960fa01b7536574a
-<<<<<<< 553867e488f5974d20ad10d6fdc7b2cf7292f2b7
-=======
->>>>>>> Add helper method to find merging classes from a list of Operators
 import java.util.List
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.EOperation
-<<<<<<< 21ff547d139b128ab5a46850cfd568df196cd9a3
-=======
-import org.eclipse.emf.ecore.EClass
->>>>>>> Melange validator: refactor overriding error
-=======
->>>>>>> Melange validator: add an error marker when an Aspect declare an operation already in a super Language with a different return type
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmField
 import org.eclipse.xtext.common.types.JvmGenericType
@@ -316,7 +306,7 @@ class MelangeValidator extends AbstractMelangeValidator
 				MelangeValidationConstants.LANGUAGE_NAME_CONFLICTS_METACLASS
 			)
 	}
-	
+
 	@Check
 	def void checkPropertiesOverriding(Aspect asp){
 		val aspectName = asp.aspectTypeRef.qualifiedName
@@ -334,17 +324,7 @@ class MelangeValidator extends AbstractMelangeValidator
 			
 			language.operators.forEach[operator | 
 				
-<<<<<<< 553867e488f5974d20ad10d6fdc7b2cf7292f2b7
-<<<<<<< b1d4537b77632763b1bb6c8c9206ff142d0d2f01
 				val superClass = operator.findClass(aspectedClass)
-=======
-				val superLang = getLanguage(operator)
-				
-				val superClass = superLang.syntax.findClass(aspectedClass)
->>>>>>> Melange validator: overriding error marker for Merge, Slice and Inherit operator
-=======
-				val superClass = operator.findClass(aspectedClass)
->>>>>>> Melange validator: refactor overriding error
 				if(superClass !== null){
 					val superField = superClass.EAllAttributes.findFirst[name == fieldName]
 					if(superField !== null){
@@ -376,10 +356,6 @@ class MelangeValidator extends AbstractMelangeValidator
 		]
 	}
 	
-<<<<<<< 21ff547d139b128ab5a46850cfd568df196cd9a3
-<<<<<<< b1d4537b77632763b1bb6c8c9206ff142d0d2f01
-=======
->>>>>>> Melange validator: add an error marker when an Aspect declare an operation already in a super Language with a different return type
 	@Check
 	def void checkOperationOverriding(Aspect asp){
 		val language = asp.eContainer as Language
@@ -421,7 +397,6 @@ class MelangeValidator extends AbstractMelangeValidator
 		]
 	}
 	
-<<<<<<< 21ff547d139b128ab5a46850cfd568df196cd9a3
 	@Check
 	def void checkStructuralOverriding(Language lang){
 		val operators = lang.operators
@@ -440,23 +415,12 @@ class MelangeValidator extends AbstractMelangeValidator
 		]
 	}
 	
-=======
->>>>>>> Melange validator: add an error marker when an Aspect declare an operation already in a super Language with a different return type
 	/**
 	 * Return the Language referenced if {@link operator} is an Inheritance, Merge or Slice.
-=======
-	/**
-<<<<<<< 553867e488f5974d20ad10d6fdc7b2cf7292f2b7
-	 * Return the Language if {@link operator} is a Inheritance, Merge or Slice.
->>>>>>> Melange validator: overriding error marker for Merge, Slice and Inherit operator
-=======
-	 * Return the Language referenced if {@link operator} is an Inheritance, Merge or Slice.
->>>>>>> Melange validator: refactor overriding error
 	 * Return null otherwise. 
 	 */
 	private def Language getLanguage(Operator operator){
 		if(operator instanceof Inheritance){
-<<<<<<< b1d4537b77632763b1bb6c8c9206ff142d0d2f01
 			return (operator as Inheritance).targetLanguage
 		}
 		else if(operator instanceof Merge){
@@ -478,7 +442,6 @@ class MelangeValidator extends AbstractMelangeValidator
 	 */
 	private def String getSource(Operator operator){
 		switch operator{
-<<<<<<< 744f8c9c2640b7ccb868a4667e976d4c9800a6ad
 			Inheritance : (operator as Inheritance).targetLanguage.name
 			Merge       : operator.targetLanguage.name
 			Slice       : operator.targetLanguage.name
@@ -515,68 +478,6 @@ class MelangeValidator extends AbstractMelangeValidator
 			Inheritance : operator.targetLanguage.syntax.allClasses.toList
 			Merge       : operator.targetLanguage.syntax.allClasses.toList
 			Slice       : operator.targetLanguage.syntax.allClasses.toList //FIXME: Slice result may be smaller than the ref Language
-			Weave       : operator.owningLanguage.semantics.findFirst[aspectTypeRef.qualifiedName == operator.aspectTypeRef.qualifiedName]
-			               ?.ecoreFragment.getAllClasses
-			Import      : modelUtils.loadPkg(operator.ecoreUri).getAllClasses
-			default     : new ArrayList
-		}
-	}
-	
-	/**
-	 * Return depending on the type of {@link operator}: <br>
-	 * - the name of the Language <br>
-	 * - the name of the Aspect <br>
-	 * - the uri of the Ecore <br>
-	 * 
-	 * Return <Unknown source> by default
-	 */
-	private def String getSource(Operator operator){
-		if(operator instanceof Inheritance){
-			return (operator as Inheritance).superLanguage.name
-		}
-		else if(operator instanceof Merge){
-			return (operator as Merge).mergedLanguage.name
-		}
-		else if(operator instanceof Slice){
-			return (operator as Slice).slicedLanguage.name
-=======
-			Inheritance : (operator as Inheritance).superLanguage.name
-			Merge       : operator.mergedLanguage.name
-			Slice       : operator.slicedLanguage.name
-			Weave       : operator.aspectTypeRef.aspectAnnotationValue
-			Import      : operator.ecoreUri
-			default     : "<Unknown source>"
->>>>>>> Melange validator: add helpers for more generic checks between operators
-		}
-	}
-	
-	/**
-	 * Return depending on the type of {@link operator}: <br>
-	 * - Language <br>
-	 * - Aspect <br>
-	 * - Ecore <br>
-	 * 
-	 * Return <Unknown type> by default
-	 */
-	private def String getSourceType(Operator operator){
-		switch operator{
-			Inheritance : "Language"
-			Merge       : "Language"
-			Slice       : "Language"
-			Weave       : "Aspect"
-			Import      : "Ecore"
-			default     : "<Unknown type>"
-		}
-	}
-	
-	/**
-	 * Return all classes from the result of the Operator
-	 */
-	private def List<EClass> getAllClasses(Operator operator){
-		switch operator{
-			Inheritance : operator.superLanguage.syntax.allClasses.toList
-			Merge       : operator.mergedLanguage.syntax.allClasses.toList
-			Slice       : operator.slicedLanguage.syntax.allClasses.toList //FIXME: Slice result may be smaller than the ref Language
 			Weave       : operator.owningLanguage.semantics.findFirst[aspectTypeRef.qualifiedName == operator.aspectTypeRef.qualifiedName]
 			               ?.ecoreFragment.getAllClasses
 			Import      : modelUtils.loadPkg(operator.ecoreUri).getAllClasses
@@ -743,108 +644,4 @@ class MelangeValidator extends AbstractMelangeValidator
 			}
 		]
 	}
-=======
-			return (operator as Inheritance).superLanguage
-		}
-		else if(operator instanceof Merge){
-			return (operator as Merge).mergedLanguage
-		}
-		else if(operator instanceof Slice){
-			return (operator as Slice).slicedLanguage
-		}
-		return null
-	}
-<<<<<<< 553867e488f5974d20ad10d6fdc7b2cf7292f2b7
->>>>>>> Melange validator: overriding error marker for Merge, Slice and Inherit operator
-=======
-	
-	/**
-	 * Find {@link className} in the result of {@link op}.
-	 * Return null if not found or if {@link op} is not a Merge,Slice or Inheritance
-	 */
-	private def EClass findClass(Operator op, String className){
-		val superLang = getLanguage(op) //FIXME: Slice result may be smaller than the ref Language
-		if(superLang != null){
-			return superLang.syntax.findClass(className)
-		}
-		return null
-	}
-<<<<<<< 21ff547d139b128ab5a46850cfd568df196cd9a3
->>>>>>> Melange validator: refactor overriding error
-=======
-	
-	/**
-	 * Return true if {@link method} and {@link operation} have the same name and their arguments'
-	 * type are the same.
-	 * 
-	 * @param method method from a K3 Aspect
-	 */
-	private def boolean isMatching(JvmOperation method, EOperation operation){
-		if(method.simpleName == operation.name){
-			val methodParams = method.parameters
-			val operationParams = operation.EParameters
-			if((methodParams.size -1) == operationParams.size){ //drop the first argument who is the caller in k3 aspects
-				for(var int i = 1; i < methodParams.size; i++){
-					val methodParamType = methodParams.get(i).actualType.simpleName
-					val operationParamType = 
-						if(operationParams.get(i-1).EType instanceof EDataType){
-							val type = operationParams.get(i-1).EType.name
-							switch type {
-								case "EBoolean" : "boolean"
-								case "EString" : "String"
-								case "EByte" : "byte"
-								case "EDouble" : "double"
-								case "EFloat" : "float"
-								case "EInteger" : "Integer"
-								case "EInt" : "int"
-								case "ELong" : "long"
-								case "EShort" : "short"
-								default : type
-							} 
-						}
-						else{
-							operationParams.get(i-1).EType.name
-						}
-					if(methodParamType != operationParamType){
-						return false
-					}
-				}
-				return true
-			}
-		}
-		return false
-	}
-<<<<<<< f49c541ad4e83608cd183dad960fa01b7536574a
->>>>>>> Melange validator: add an error marker when an Aspect declare an operation already in a super Language with a different return type
-=======
-	
-	/**
-	 * Return classes from results of {@link operators} which have to be merged 
-	 * (i.e classes with the same name).
-	 * 
-	 * Classes are associated with their containing Language
-	 */
-	private def Multimap<String,Pair<EClass,Language>> findMergedClasses(List<Operator> operators){
-		val ListMultimap<String,Pair<EClass,Language>> res = ArrayListMultimap.create
-		
-		val ListMultimap<String,Pair<EClass,Language>> sortByName = ArrayListMultimap.create
-		operators.forEach[op |
-			val lang = op.language //FIXME: Slice result may be smaller than the ref Language 
-			if(lang !== null){
-				lang.syntax.allClasses.forEach[clazz|
-					sortByName.put(clazz.name, clazz->lang)
-				]
-			}
-		]
-		
-		sortByName.keys.forEach[className |
-			val list = sortByName.get(className)
-			if(list.size > 1){
-				res.putAll(className,list)
-			}
-		]
-		
-		return res
-	}
->>>>>>> Add helper method to find merging classes from a list of Operators
 }
