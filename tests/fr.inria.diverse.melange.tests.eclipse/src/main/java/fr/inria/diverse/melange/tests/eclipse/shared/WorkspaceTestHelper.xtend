@@ -133,11 +133,25 @@ class WorkspaceTestHelper {
 		return null
 	}
 
+	/**
+	 * Usage : projectName/folder/file
+	 */
 	def void assertFileExists(String filename) {
 		val ws = ResourcesPlugin::workspace
 		Assert.assertTrue(
 			"Cannot find file " + filename,
 			ws.root.getFile(new Path(filename)).exists
+		)
+	}
+	
+	/**
+	 * Check if {@link project} exist
+	 */
+	def void assertProjectExists(String project){
+		val ws = ResourcesPlugin::workspace
+		Assert.assertTrue(
+			"Cannot find project " + project,
+			ws.root.getProject(project).exists
 		)
 	}
 
@@ -160,9 +174,9 @@ class WorkspaceTestHelper {
 	}
 	
 	/**
-	 * Check for each aspect from {@aspects} that K3-generated files are inside {@link project}
+	 * Check for each aspect from {@link aspects} that K3-generated files are inside {@link project}
 	 */
-	def void assertK3AspectsExist(List<String> aspects, String project){
+	def void assertK3AspectsExists(List<String> aspects, String project){
 		
 		val ASPECTS_NS = project+".aspects"
 		val ASPECTS_FOLDER = ASPECTS_NS.replaceAll("\\.","/")
@@ -177,4 +191,6 @@ class WorkspaceTestHelper {
 			assertFileExists(properties)
 		]
 	}
+	
+	
 }
