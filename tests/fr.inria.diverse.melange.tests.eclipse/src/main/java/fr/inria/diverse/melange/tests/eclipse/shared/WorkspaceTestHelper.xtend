@@ -26,6 +26,7 @@ import org.eclipse.xtext.ui.XtextProjectHelper
 import org.eclipse.xtext.ui.editor.XtextEditor
 import org.eclipse.xtext.ui.editor.utils.EditorUtils
 import org.junit.Assert
+import java.util.List
 
 class WorkspaceTestHelper {
 	static final String MELANGE_CMD_GENERATE_ALL        = "fr.inria.diverse.melange.GenerateAll"
@@ -156,5 +157,24 @@ class WorkspaceTestHelper {
 
 		command.executeWithChecks(executionEvent)
 		IResourcesSetupUtil::reallyWaitForAutoBuild
+	}
+	
+	/**
+	 * Check for each aspect from {@aspects} that K3-generated files are inside {@link project}
+	 */
+	def void assertK3AspectsExist(List<String> aspects, String project){
+		
+		val ASPECTS_NS = project+".aspects"
+		val ASPECTS_FOLDER = ASPECTS_NS.replaceAll("\\.","/")
+		val SRC_GEN = "/src-gen/"
+		
+		aspects.forEach[asp |
+			val aspect     = '''«project»/«SRC_GEN»/«ASPECTS_FOLDER»/«asp».java'''
+			val context    = '''«project»/«SRC_GEN»/«ASPECTS_FOLDER»/«asp»«asp»Context.java'''
+			val properties = '''«project»/«SRC_GEN»/«ASPECTS_FOLDER»/«asp»«asp»Properties.java'''
+			assertFileExists(aspect)
+			assertFileExists(context)
+			assertFileExists(properties)
+		]
 	}
 }
