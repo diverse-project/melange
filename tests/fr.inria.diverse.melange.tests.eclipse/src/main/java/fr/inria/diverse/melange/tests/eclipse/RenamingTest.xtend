@@ -17,6 +17,9 @@ public class RenamingTest extends AbstractXtextTests
 	@Inject WorkspaceTestHelper helper
 	static final String MELANGE_FILE =
 		"fr.inria.diverse.melange.test.renaming.main/src/fr/inria/diverse/melange/test/renaming/main/Main.melange"
+		
+	static final String PROJECT_1 = "fr.inria.diverse.melange.test.renaming.main.testlanguagerenamed"
+	static final String PROJECT_2 = "fr.inria.diverse.melange.test.renaming.main.testreverserenamed"
 	
 	override void setUp() throws Exception {
 		super.setUp
@@ -34,5 +37,11 @@ public class RenamingTest extends AbstractXtextTests
 	def void testNoErrorsInWorkspace() {
 		helper.generateLanguages(MELANGE_FILE)
 		helper.assertNoMarkers
+		
+		helper.assertProjectExists(PROJECT_1)
+		helper.assertProjectExists(PROJECT_2)
+		
+		helper.assertK3AspectsExists(#["ClassA2Aspect","ClassB2Aspect","SuperB2Aspect"],PROJECT_1)
+		helper.assertK3AspectsExists(#["ClassAAspect","ClassBAspect","SuperBAspect"],PROJECT_2)
 	}
 }
