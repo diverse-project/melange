@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.EEnum
+import org.eclipse.emf.ecore.EModelElement
 import org.eclipse.emf.ecore.ENamedElement
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EOperation
@@ -46,8 +47,6 @@ interface EcoreMerger {
  * as refined by Dingel et al.
  * "Understanding and improving UML package merge"
  * 
- *   - If any constraint is violated, EcoreMergerException is thrown
- *   - Which implies that any resulting EPackage is valid
  *   - Receiving package and resulting package are *different*. The
  *     receiving package does not play a dual role. Thus, the constraints
  *     on cycle detection do not make sense.
@@ -67,12 +66,12 @@ class PackageMergeMerger implements EcoreMerger {
 
 	def EPackage merge(EPackage receiving, EPackage merged, boolean validate) {
 		conflicts = newArrayList
-		val resulting = EcoreUtil::copy(receiving)
+		val resulting = receiving//EcoreUtil::copy(receiving)
 
 		if (receiving === null || merged === null)
 			return null
-		if (receiving == merged || receiving.nsURI == merged.nsURI)
-			addConflict(receiving, merged, null, "Cannot merge packages with same URI")
+//		if (receiving == merged || receiving.nsURI == merged.nsURI)
+//			addConflict(receiving, merged, null, "Cannot merge packages with same URI")
 		if (receiving.allSubPkgs.contains(merged))
 			addConflict(receiving, merged, null, "Receiving package cannot contain merged package")
 		if (merged.allSubPkgs.contains(receiving))
@@ -92,7 +91,22 @@ class PackageMergeMerger implements EcoreMerger {
 			if (!validateAndProduceConflicts(resulting))
 				return null
 
+		resulting.cleanAnnotations
+
 		return resulting
+	}
+
+	def void cleanAnnotations(EPackage pkg) {
+		val toRemove = newArrayList
+		val i = pkg.eAllContents
+
+		while (i.hasNext) {
+			val o = i.next
+			if (o instanceof EModelElement)
+				toRemove += o.EAnnotations.filter[source == ORIGIN_ANNOTATION_SOURCE]
+		}
+
+		toRemove.forEach[EcoreUtil::delete(it)]
 	}
 
 	def boolean validateAndProduceConflicts(EPackage resulting) {
@@ -102,10 +116,12 @@ class PackageMergeMerger implements EcoreMerger {
 				d.data.forEach[diagSource |
 					if (diagSource instanceof ENamedElement) {
 						diagSource.EAnnotations.filter[source == ORIGIN_ANNOTATION_SOURCE].forEach[ann |
-							val mergedElement = ann.references.head as ENamedElement
-							val feature = ann.references.get(1) as EReference
-							val receivingElement = if (feature.containment) diagSource.eContainer else diagSource
-							addConflict(receivingElement as ENamedElement, mergedElement, feature, d)
+							if (ann.references.size == 2) {
+								val mergedElement = ann.references.head as ENamedElement
+								val feature = ann.references.get(1) as EReference
+								val receivingElement = if (feature.containment) diagSource.eContainer else diagSource
+								addConflict(receivingElement as ENamedElement, mergedElement, feature, d)
+							}
 						]
 					}
 				]
