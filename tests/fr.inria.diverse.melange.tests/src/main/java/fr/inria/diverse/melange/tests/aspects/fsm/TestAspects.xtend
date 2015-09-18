@@ -7,7 +7,6 @@ import fsm.State
 import fsm.Transition
 
 import java.util.ArrayList
-import java.util.Collection
 import java.util.List
 
 // TODO: Inheritance, can't test static, etc.
@@ -40,7 +39,7 @@ class SimpleReferences {
 class ReferencesCollections {
 	public List<State> ls
 	public ArrayList<FSM> lf
-	public Collection<Transition> lt
+	public List<Transition> lt
 }
 
 interface A {}
