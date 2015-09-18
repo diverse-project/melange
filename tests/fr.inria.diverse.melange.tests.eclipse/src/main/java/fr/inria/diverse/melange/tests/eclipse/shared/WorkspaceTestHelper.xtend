@@ -28,8 +28,11 @@ import org.eclipse.xtext.ui.editor.utils.EditorUtils
 import org.junit.Assert
 
 class WorkspaceTestHelper {
-	static final String MELANGE_CMD_GENERATE_ALL      = "fr.inria.diverse.melange.GenerateAll"
-	static final String MELANGE_CMD_GENERATE_ADAPTERS = "fr.inria.diverse.melange.GenerateAdapters"
+	static final String MELANGE_CMD_GENERATE_ALL        = "fr.inria.diverse.melange.GenerateAll"
+	static final String MELANGE_CMD_GENERATE_ADAPTERS   = "fr.inria.diverse.melange.GenerateAdapters"
+	static final String MELANGE_CMD_GENERATE_LANGUAGES  = "fr.inria.diverse.melange.GenerateLanguages"
+	static final String MELANGE_CMD_GENERATE_INTERFACES = "fr.inria.diverse.melange.GenerateInterfaces"
+	static final String MELANGE_CMD_CLEAN_ALL           = "fr.inria.diverse.melange.CleanAll"
 
 	static final String MELANGE_EDITOR_ID = "fr.inria.diverse.melange.Melange"
 
@@ -75,6 +78,18 @@ class WorkspaceTestHelper {
 
 	def void generateAdapters(String melangeFile) {
 		invokeMelangeCommand(MELANGE_CMD_GENERATE_ADAPTERS, melangeFile)
+	}
+	
+	def void generateLanguages(String melangeFile) {
+		invokeMelangeCommand(MELANGE_CMD_GENERATE_LANGUAGES, melangeFile)
+	}
+	
+	def void generateInterfaces(String melangeFile) {
+		invokeMelangeCommand(MELANGE_CMD_GENERATE_INTERFACES, melangeFile)
+	}
+	
+	def void cleanAll(String melangeFile) {
+		invokeMelangeCommand(MELANGE_CMD_CLEAN_ALL, melangeFile)
 	}
 
 	def void closeWelcomePage() {
@@ -132,14 +147,14 @@ class WorkspaceTestHelper {
 		val commandService = wb.getService(typeof(ICommandService)) as ICommandService
 		val handlerService = wb.getService(typeof(IHandlerService)) as IHandlerService
 
-		val generateAllCmd = commandService.getCommand(MELANGE_CMD_GENERATE_ALL)
-		val executionEvent = handlerService.createExecutionEvent(generateAllCmd, null)
+		val command = commandService.getCommand(commandId)
+		val executionEvent = handlerService.createExecutionEvent(command, null)
 		val context = executionEvent.applicationContext as IEvaluationContext
 
 		context.parent.addVariable(ISources.ACTIVE_MENU_SELECTION_NAME,
 			new StructuredSelection(mlgFile))
 
-		generateAllCmd.executeWithChecks(executionEvent)
+		command.executeWithChecks(executionEvent)
 		IResourcesSetupUtil::reallyWaitForAutoBuild
 	}
 }
