@@ -1,11 +1,9 @@
 package fr.inria.diverse.melange.tests
 
 import com.google.inject.Inject
-import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.lib.MatchingHelper
 import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
 import fr.inria.diverse.melange.tools.xtext.testing.XtextTest
@@ -16,16 +14,17 @@ import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
+import org.eclipse.xtext.junit4.validation.ValidationTestHelper
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
-@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/AspectOverridingTest.melange")
+@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/AspectOverridingTest.melange", withValidation = false)
 class AspectOverridingTest
 {
 	@Inject MatchingHelper helper
-	@Inject extension ModelingElementExtensions
+	@Inject extension ValidationTestHelper
 	
 	@Test
 	def void testInheritAttributeOverride(){

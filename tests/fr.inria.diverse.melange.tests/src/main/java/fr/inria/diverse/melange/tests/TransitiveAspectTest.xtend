@@ -3,7 +3,6 @@ package fr.inria.diverse.melange.tests
 import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
-import fr.inria.diverse.melange.lib.MatchingHelper
 import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage
 import fr.inria.diverse.melange.metamodel.melange.Merge
@@ -15,6 +14,7 @@ import fr.inria.diverse.melange.validation.MelangeValidationConstants
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
+import org.eclipse.xtext.junit4.validation.ValidationTestHelper
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -22,12 +22,12 @@ import static org.junit.Assert.*
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
-@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/TransitiveAspectTest.melange")
+@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/TransitiveAspectTest.melange", withValidation = false)
 class TransitiveAspectTest
 {
-	@Inject MatchingHelper helper
 	@Inject extension ModelingElementExtensions
 	@Inject extension LanguageExtensions
+	@Inject extension ValidationTestHelper
 	
 	@Test
 	def void testSimpleAspect(){

@@ -121,11 +121,9 @@ class EcoreMergerTest
 		val resulting = merger.merge(first, id2)
 		assertNull(resulting)
 		val conflicts = merger.conflicts
-		assertEquals(2, conflicts.size)
-		assertEquals("Cannot merge ecore.EClass.id1 with ecore.EClass.eStructuralFeatures: The features 'id1' and 'id2' cannot both be IDs",
-			conflicts.get(0).message)
+		assertEquals(1, conflicts.size)
 		assertEquals("Cannot merge ecore.EClass.id2 with ecore.EClass.eStructuralFeatures: The features 'id1' and 'id2' cannot both be IDs",
-			conflicts.get(1).message)
+			conflicts.get(0).message)
 	}
 
 	@Test
