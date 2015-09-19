@@ -2,7 +2,7 @@ package mergetest
 
 language MM1 {
 	syntax "tests-inputs/metamodels/merge/MM1.ecore"
-	exactType mm1MT
+	exactType MM1MT
 }
 
 language PackageLang {
