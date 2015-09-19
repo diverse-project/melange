@@ -68,6 +68,10 @@ class PackageMergeMerger implements EcoreMerger {
 		conflicts = newArrayList
 		val resulting = receiving//EcoreUtil::copy(receiving)
 
+		if (receiving == merged) {
+			addConflict(receiving, merged, null, "Cannot merge package with itself")
+			return null
+		}
 		if (receiving === null || merged === null)
 			return null
 //		if (receiving == merged || receiving.nsURI == merged.nsURI)
