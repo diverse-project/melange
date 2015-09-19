@@ -1,5 +1,9 @@
 package fr.inria.diverse.melange.tests.eclipse.shared
 
+import com.google.common.base.Charsets
+import com.google.common.io.CharStreams
+import java.io.ByteArrayInputStream
+import java.util.List
 import java.util.zip.ZipFile
 import org.eclipse.core.expressions.IEvaluationContext
 import org.eclipse.core.resources.IMarker
@@ -8,7 +12,12 @@ import org.eclipse.core.resources.IResource
 import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.core.runtime.NullProgressMonitor
 import org.eclipse.core.runtime.Path
+import org.eclipse.core.runtime.jobs.Job
+import org.eclipse.debug.core.DebugPlugin
+import org.eclipse.debug.core.ILaunchManager
+import org.eclipse.debug.ui.IDebugUIConstants
 import org.eclipse.jdt.core.JavaCore
+import org.eclipse.jdt.launching.IJavaLaunchConfigurationConstants
 import org.eclipse.jdt.ui.JavaUI
 import org.eclipse.jface.viewers.StructuredSelection
 import org.eclipse.pde.internal.core.natures.PDE
@@ -26,7 +35,6 @@ import org.eclipse.xtext.ui.XtextProjectHelper
 import org.eclipse.xtext.ui.editor.XtextEditor
 import org.eclipse.xtext.ui.editor.utils.EditorUtils
 import org.junit.Assert
-import java.util.List
 
 class WorkspaceTestHelper {
 	static final String MELANGE_CMD_GENERATE_ALL        = "fr.inria.diverse.melange.GenerateAll"
@@ -191,6 +199,33 @@ class WorkspaceTestHelper {
 			assertFileExists(properties)
 		]
 	}
-	
-	
+
+	/**
+	 * Creates and lauches a new run configuration for {@link project}
+	 * using {@link mainClass} as the main Java class.
+	 *
+	 * @return the produced console output
+	 */
+	def String runMainClass(IProject project, String mainClass) {
+		val outputFileName = "output.txt"
+		val manager = DebugPlugin::getDefault.launchManager
+		val type = manager.getLaunchConfigurationType(IJavaLaunchConfigurationConstants::ID_JAVA_APPLICATION)
+		val newLaunchConfig = type.newInstance(project, "RunMainTransfo")
+		newLaunchConfig.setAttribute(IJavaLaunchConfigurationConstants::ATTR_PROJECT_NAME, project.name)
+		newLaunchConfig.setAttribute(IJavaLaunchConfigurationConstants::ATTR_MAIN_TYPE_NAME, mainClass)
+		newLaunchConfig.setAttribute(IDebugUIConstants::ATTR_CAPTURE_IN_FILE, '''${workspace_loc:/«project.name»/«outputFileName»}''')
+		newLaunchConfig.doSave
+
+		val outputFile = project.getFile(outputFileName)
+		if (!outputFile.exists)
+			outputFile.create(new ByteArrayInputStream("".bytes), true, null)
+
+		newLaunchConfig.launch(ILaunchManager::RUN_MODE, null)
+
+		Job::getJobManager.join(ResourcesPlugin::FAMILY_AUTO_BUILD, null)
+
+		outputFile.refreshLocal(IResource::DEPTH_ONE, null)
+
+		return CharStreams::toString(CharStreams::newReaderSupplier([outputFile.contents], Charsets::UTF_8))
+	}
 }
