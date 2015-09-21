@@ -325,7 +325,7 @@ class LanguageExtensions
 				} 
 				else if (op instanceof Merge){
 					aspects = (op as Merge).targetLanguage.semantics
-					renamingRules= (op as Merge).mappingRules
+					renamingRules = (op as Merge).mappingRules
 				}
 				
 				if(aspects != null){
@@ -396,10 +396,11 @@ class LanguageExtensions
 	    		else{
 	    			targetClass
 	    		}
+	    	val aspName = asp.aspectTypeRef.simpleName
 	    	val eClazz = l.syntax.findClass(newClass)
 	    	newAspects += MelangeFactory.eINSTANCE.createAspect => [
 					aspectedClass = eClazz
-					aspectTypeRef = typeRefBuilder.typeRef(targetAspectNamespace+"."+newClass+"Aspect")
+					aspectTypeRef = typeRefBuilder.typeRef(targetAspectNamespace+"."+aspName)
 				]
 		]
 		
