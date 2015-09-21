@@ -202,17 +202,21 @@ class WorkspaceTestHelper {
 	
 	/**
 	 * Check for each aspect from {@link aspects} that K3-generated files are inside {@link project}
+	 * 
+	 * @param aspects Pairs of [AspectName->AspectedClass]
 	 */
-	def void assertK3AspectsExists(List<String> aspects, String project){
+	def void assertK3AspectsExists(List<Pair<String,String>> aspects, String project){
 		
 		val ASPECTS_NS = project+".aspects"
 		val ASPECTS_FOLDER = ASPECTS_NS.replaceAll("\\.","/")
-		val SRC_GEN = "/src-gen/"
+		val SRC_GEN = "src-gen"
 		
 		aspects.forEach[asp |
-			val aspect     = '''«project»/«SRC_GEN»/«ASPECTS_FOLDER»/«asp».java'''
-			val context    = '''«project»/«SRC_GEN»/«ASPECTS_FOLDER»/«asp»«asp»Context.java'''
-			val properties = '''«project»/«SRC_GEN»/«ASPECTS_FOLDER»/«asp»«asp»Properties.java'''
+			val aspectName = asp.key
+			val targetClass = asp.value
+			val aspect     = '''«project»/«SRC_GEN»/«ASPECTS_FOLDER»/«aspectName».java'''
+			val context    = '''«project»/«SRC_GEN»/«ASPECTS_FOLDER»/«aspectName»«targetClass»Context.java'''
+			val properties = '''«project»/«SRC_GEN»/«ASPECTS_FOLDER»/«aspectName»«targetClass»Properties.java'''
 			assertFileExists(aspect)
 			assertFileExists(context)
 			assertFileExists(properties)

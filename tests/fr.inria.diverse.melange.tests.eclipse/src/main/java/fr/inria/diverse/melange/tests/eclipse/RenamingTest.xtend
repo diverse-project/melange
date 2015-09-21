@@ -41,7 +41,21 @@ public class RenamingTest extends AbstractXtextTests
 		helper.assertProjectExists(PROJECT_1)
 		helper.assertProjectExists(PROJECT_2)
 		
-		helper.assertK3AspectsExists(#["ClassA2Aspect","ClassB2Aspect","SuperB2Aspect"],PROJECT_1)
-		helper.assertK3AspectsExists(#["ClassAAspect","ClassBAspect","SuperBAspect"],PROJECT_2)
+		helper.assertK3AspectsExists(
+			#[
+				"ClassAAspect" -> "ClassA2",
+				"ClassBAspect" -> "ClassB2",
+				"SuperBAspect" -> "SuperB2"
+			],
+			PROJECT_1)
+			
+		helper.assertK3AspectsExists(
+			#[
+				"ClassAAspect" -> "ClassA",
+				"ClassBAspect" -> "ClassB",
+				"SuperBAspect" -> "SuperB"
+			],
+			PROJECT_2
+		)
 	}
 }
