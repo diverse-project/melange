@@ -348,10 +348,17 @@ class LanguageExtensions
 		}
 		
 		val typeRefBuilder = builderFactory.create(l.eResource.resourceSet)
-		val sourceEmfNamespaces = aspects.head.owningLanguage.syntax.packageFqn.toQualifiedName.skipLast(1).toString //prefixed root package
 		val targetEmfNamespace = l.syntax.packageFqn.toQualifiedName.skipLast(1).toString
 		val targetAspectNamespace = l.aspectTargetNamespace
 		val targetProjectName = l.externalRuntimeName
+		val sourceEmfNamespaces =
+			if(l == aspects.head.owningLanguage){ //aspects come from 'With' operators
+				aspects.head.aspectTypeRef.targetedNamespace.toString
+			}
+			else{
+				aspects.head.owningLanguage.syntax.packageFqn.toQualifiedName.skipLast(1).toString //prefixed root package
+			}
+		
 		
 		//Copy aspects files
 		aspects.forEach[asp |
