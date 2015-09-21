@@ -391,7 +391,7 @@ class MelangeValidator extends AbstractMelangeValidator
 							else{
 								methodType.simpleName
 							}
-						if(method.isMatching(operation) && metTypeName != opTypeName){
+						if(method.isMatching(operation) && !metTypeName.isMatching(opTypeName)){
 							error(
 								"Aspect \'"+aspectName+"\' has an operation \'"+method.simpleName+"\' typed "+metTypeName+" but in \'"+operator.language.name+"\' it is typed "+opTypeName,
 								MelangePackage.Literals.ASPECT__ASPECT_TYPE_REF,
@@ -569,6 +569,33 @@ class MelangeValidator extends AbstractMelangeValidator
 	}
 	
 	/**
+	 * Return true if both type are equals, taking in account 
+	 * Java/EMF Data type conversion
+	 */
+	private def boolean isMatching(String type1, String type2){
+		return type1.toJavaType == type2.toJavaType
+	}
+	
+	/**
+	 * Convert EMF data type to Java type
+	 */
+	private def String toJavaType(String type){
+		return
+			switch type {
+				case "EBoolean" : "boolean"
+				case "EString" : "String"
+				case "EByte" : "byte"
+				case "EDouble" : "double"
+				case "EFloat" : "float"
+				case "EInteger" : "Integer"
+				case "EInt" : "int"
+				case "ELong" : "long"
+				case "EShort" : "short"
+				default : type
+			} 
+	}
+	
+	/**
 	 * Return classes from results of {@link operators} which have to be merged 
 	 * (i.e classes with the same name).
 	 * 
@@ -602,7 +629,7 @@ class MelangeValidator extends AbstractMelangeValidator
 			val fieldName = firstField.name
 			val secondField = second.key.EAllAttributes.findFirst[name == fieldName]
 			if(secondField !== null){
-				if(firstField.EType.name != secondField.EType.name){
+				if(!firstField.EType.name.isMatching(secondField.EType.name)){
 					error(
 						op1.sourceType+" \'"+op1.source+"\' has an attribute \'"+fieldName+"\' typed "+firstField.EType.name+" but in \'"+op2.source+"\' it is "+secondField.EType.name,
 						MelangePackage.Literals.LANGUAGE__OPERATORS,
@@ -616,7 +643,7 @@ class MelangeValidator extends AbstractMelangeValidator
 			val fieldName = firstField.name
 			val secondField = second.key.EAllReferences.findFirst[name == fieldName]
 			if(secondField !== null){
-				if(firstField.EType.name != secondField.EType.name){
+				if(!firstField.EType.name.isMatching(secondField.EType.name)){
 					error(
 						op1.sourceType+" \'"+op1.source+"\' has a reference \'"+fieldName+"\' typed "+firstField.EType.name+" but in \'"+op2.source+"\' it is "+secondField.EType.name,
 						MelangePackage.Literals.LANGUAGE__OPERATORS,
@@ -641,7 +668,7 @@ class MelangeValidator extends AbstractMelangeValidator
 							else{
 								secondOp.EType.name
 							}
-				if(firstTypeName != secondTypeName){
+				if(!firstTypeName.isMatching(secondTypeName)){
 					error(
 						op1.sourceType+" \'"+op1.source+"\' has an operation \'"+firstOp.name+"\' typed "+firstTypeName+" but in \'"+op2.source+"\' it is "+secondTypeName,
 						MelangePackage.Literals.LANGUAGE__OPERATORS,
