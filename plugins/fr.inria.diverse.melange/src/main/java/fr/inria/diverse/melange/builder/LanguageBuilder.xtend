@@ -30,6 +30,7 @@ class LanguageBuilder extends AbstractBuilder {
 	List<OperatorBuilder<? extends Operator>> builders
 
 	new(Language l, ModelTypingSpaceBuilder root) {
+		super()
 		this.source = l
 		this.root = root
 	}

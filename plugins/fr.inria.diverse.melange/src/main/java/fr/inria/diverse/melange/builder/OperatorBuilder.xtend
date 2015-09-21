@@ -6,6 +6,7 @@ abstract class OperatorBuilder<T extends Operator> extends AbstractBuilder {
 	protected T source
 
 	new(T source) {
+		super()
 		this.source = source
 	}
 }

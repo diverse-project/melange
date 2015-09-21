@@ -6,6 +6,11 @@ import org.eclipse.emf.ecore.EPackage
 abstract class AbstractBuilder implements Builder {
 	protected EPackage model
 	protected List<BuilderError> errors
+	
+	new(){
+		model = null
+		errors = newArrayList
+	}
 
 	override preBuild() {
 		model = null
