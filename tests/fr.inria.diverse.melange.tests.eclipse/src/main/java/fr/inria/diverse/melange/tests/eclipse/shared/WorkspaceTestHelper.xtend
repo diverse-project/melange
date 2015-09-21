@@ -215,8 +215,8 @@ class WorkspaceTestHelper {
 			val aspectName = asp.key
 			val targetClass = asp.value
 			val aspect     = '''«project»/«SRC_GEN»/«ASPECTS_FOLDER»/«aspectName».java'''
-			val context    = '''«project»/«SRC_GEN»/«ASPECTS_FOLDER»/«aspectName»«targetClass»Context.java'''
-			val properties = '''«project»/«SRC_GEN»/«ASPECTS_FOLDER»/«aspectName»«targetClass»Properties.java'''
+			val context    = '''«project»/«SRC_GEN»/«ASPECTS_FOLDER»/«aspectName»«targetClass»AspectContext.java'''
+			val properties = '''«project»/«SRC_GEN»/«ASPECTS_FOLDER»/«aspectName»«targetClass»AspectProperties.java'''
 			assertFileExists(aspect)
 			assertFileExists(context)
 			assertFileExists(properties)
