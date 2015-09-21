@@ -314,7 +314,10 @@ class LanguageExtensions
 		val newRootName = l.syntax.packageFqn.toQualifiedName.skipLast(1).toString
 		
 		//Copy sem
+		val toRemove = l.semantics 
 		copyAspects(l,l.semantics,classesAlreadyWeaved,null)
+		l.semantics.removeAll(toRemove)
+		
 		//Copy+rename op
 		l.operators.forEach[op |
 				var List<Aspect> aspects = null
