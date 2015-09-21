@@ -27,6 +27,7 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import fr.inria.diverse.melange.utils.RenamingRuleManager
 import fr.inria.diverse.melange.metamodel.melange.Weave
 import org.eclipse.emf.common.util.URI
+import java.util.ArrayList
 
 class LanguageExtensions
 {
@@ -314,7 +315,7 @@ class LanguageExtensions
 		val newRootName = l.syntax.packageFqn.toQualifiedName.skipLast(1).toString
 		
 		//Copy sem
-		val toRemove = l.semantics 
+		val toRemove = new ArrayList(l.semantics) 
 		copyAspects(l,l.semantics,classesAlreadyWeaved,null)
 		l.semantics.removeAll(toRemove)
 		
@@ -411,6 +412,7 @@ class LanguageExtensions
 	    	newAspects += MelangeFactory.eINSTANCE.createAspect => [
 					aspectedClass = eClazz
 					aspectTypeRef = typeRefBuilder.typeRef(targetAspectNamespace+"."+aspName)
+					ecoreFragment = asp.ecoreFragment
 				]
 		]
 		
