@@ -365,6 +365,7 @@ class LanguageExtensions
 		
 		
 		//Copy aspects files
+		val copiedAspect = newArrayList
 		aspects.forEach[asp |
 			if (asp.isComplete) {
 				if (asp.aspectTypeRef.canBeCopiedFor(l.syntax)) {
@@ -376,6 +377,7 @@ class LanguageExtensions
 					
 					if(!classesAlreadyWeaved.contains(className) && (l.syntax.findClass(className) !== null)){
 						classesAlreadyWeaved.add(className)
+						copiedAspect += asp
 						val request = new AspectCopier.AspectCopierRequest(
 							#[asp.aspectTypeRef].toSet,
 							#[sourceEmfNamespaces].toSet,
@@ -391,12 +393,12 @@ class LanguageExtensions
 		
 		//Apply renaming rules on copied files
 		if(rulesManager !== null){
-			renamer.processRenaming(aspects.toList,l,rulesManager)
+			renamer.processRenaming(copiedAspect,l,rulesManager)
 		}
 		
 		//Update the semantic
 		val newAspects = newArrayList
-		aspects.forEach[asp |
+		copiedAspect.forEach[asp |
 			val targetClass = asp.aspectedClass.name
 	    	val targetFqName = asp.aspectedClass.fullyQualifiedName.toString
 	    	val rule = rulesManager?.getClassRule(targetFqName)
