@@ -22,9 +22,9 @@ public class AspectOverridingTest extends AbstractXtextTests
 {
 	IProject melangeProject
 	@Inject WorkspaceTestHelper helper
-	static final String PROJECT_NAME = "fr.iniria.diverse.melange.test.overriding.main"
+	static final String PROJECT_NAME = "fr.inria.diverse.melange.test.overriding.main"
 	static final String MELANGE_FILE =
-		"fr.iniria.diverse.melange.test.overriding.main/src/fr/iniria/diverse/melange/test/renaming/Main.melange"
+		"fr.inria.diverse.melange.test.overriding.main/src/fr/inria/diverse/melange/test/renaming/main/Main.melange"
 
 	@Before
 	override setUp() {
@@ -36,8 +36,8 @@ public class AspectOverridingTest extends AbstractXtextTests
 			melangeProject = helper.deployMelangeProject(PROJECT_NAME,"tests-inputs/fr.inria.diverse.melange.test.overriding.main.zip")
 			helper.deployMelangeProject("fr.inria.diverse.melange.test.overriding.aspects","tests-inputs/fr.inria.diverse.melange.test.overriding.aspects.zip")
 			helper.deployMelangeProject("fr.inria.diverse.melange.test.overriding.model","tests-inputs/fr.inria.diverse.melange.test.overriding.model.zip")
+//			helper.generateAll(MELANGE_FILE)
 			IResourcesSetupUtil::reallyWaitForAutoBuild
-			helper.openEditor(MELANGE_FILE)
 		} else {
 			melangeProject = helper.getProject(PROJECT_NAME)
 		}
@@ -49,24 +49,28 @@ public class AspectOverridingTest extends AbstractXtextTests
 	}
 
 	@Test
-	def void test0NoErrorsInWorkspace() {
+	def void test1GeneratedLanguages() {
+		helper.generateLanguages(MELANGE_FILE)
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 		helper.assertNoMarkers
 	}
 
 	@Test
-	def void test1GeneratedModelTypes() {
+	def void test2GeneratedModelTypes() {
 		helper.generateInterfaces(MELANGE_FILE)
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 		helper.assertNoMarkers
 	}
 
 	@Test
-	def void test2GeneratedAdaptersCompile() {
+	def void test3GeneratedAdaptersCompile() {
 		helper.generateAdapters(MELANGE_FILE)
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 		helper.assertNoMarkers
 	}
 
 	@Test
-	def void test3TransfoProducesExpectedOutput() {
+	def void test4TransfoProducesExpectedOutput() {
 		val expected = '''
 			Asp0
 			Asp1a
@@ -77,7 +81,7 @@ public class AspectOverridingTest extends AbstractXtextTests
 			Asp4
 		'''
 
-		val mainTransfoOutput = helper.runMainClass(melangeProject, "main")
+		val mainTransfoOutput = helper.runMainClass(melangeProject, "fr.inria.diverse.melange.test.overridding.main")
 		assertEquals(expected, mainTransfoOutput)
 	}
 }
