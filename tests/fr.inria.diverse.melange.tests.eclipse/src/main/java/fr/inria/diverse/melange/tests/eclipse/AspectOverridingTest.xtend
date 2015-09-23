@@ -73,9 +73,9 @@ public class AspectOverridingTest extends AbstractXtextTests
 	def void test4TransfoProducesExpectedOutput() {
 		val expected = '''
 			Asp0
-			Asp1a
+			Asp1b
 			Asp2
-			Asp0
+			Asp1b
 			Asp3
 			Asp4
 			Asp4
