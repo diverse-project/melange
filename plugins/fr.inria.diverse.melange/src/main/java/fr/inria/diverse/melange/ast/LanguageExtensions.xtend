@@ -84,31 +84,50 @@ class LanguageExtensions
 
 		return res.reverse
 	}
-
+	
+	//TODO: merge with createExternalAspect()
 	def List<Aspect> allSemantics(Language l) {
-		val tmp = newArrayList
 		
-		tmp += l.superLanguages.map[allSemantics].flatten
-		tmp +=
-			l.operators.map[op |
-				if (op instanceof Slice)
-					op.targetLanguage.allSemantics
-				else if (op instanceof Merge)
-					op.targetLanguage.allSemantics
-				else
-					newArrayList
-			].flatten
-		tmp += l.semantics
-
-		val res = newArrayList
-		tmp.forEach[a1 |
-			if (!res.exists[Aspect a2 | a2.aspectTypeRef.identifier == a1.aspectTypeRef.identifier]
-				&& (!a1.hasAspectAnnotation || l.syntax.pkgs.head.allClasses.exists[cls | cls.name == a1.aspectedClass.name])
-			)
-				res += a1
-		]
-		return res.reverse
+		if(l.generatedByMelange){ //Aspects were ordered when they were copied
+			return l.semantics
+		}
+		else{
+			val res = newArrayList
+			l.semantics.reverseView.forEach[a1 |
+				if (!res.exists[Aspect a2 | a2.aspectTypeRef.identifier == a1.aspectTypeRef.identifier]
+					&& (!a1.hasAspectAnnotation || l.syntax.pkgs.head.allClasses.exists[cls | cls.name == a1.aspectedClass.name]))
+				{
+					res += a1
+				}
+			]
+			return res
+		}
 	}
+
+//	def List<Aspect> allSemantics(Language l) {
+//		val tmp = newArrayList
+//		
+//		tmp += l.superLanguages.map[allSemantics].flatten
+//		tmp +=
+//			l.operators.map[op |
+//				if (op instanceof Slice)
+//					op.targetLanguage.allSemantics
+//				else if (op instanceof Merge)
+//					op.targetLanguage.allSemantics
+//				else
+//					newArrayList
+//			].flatten
+//		tmp += l.semantics
+//
+//		val res = newArrayList
+//		tmp.forEach[a1 |
+//			if (!res.exists[Aspect a2 | a2.aspectTypeRef.identifier == a1.aspectTypeRef.identifier]
+//				&& (!a1.hasAspectAnnotation || l.syntax.pkgs.head.allClasses.exists[cls | cls.name == a1.aspectedClass.name])
+//			)
+//				res += a1
+//		]
+//		return res.reverse
+//	}
 
 	def Iterable<Aspect> findAspectsOn(Language l, EClass cls) {
 		return
@@ -322,23 +341,42 @@ class LanguageExtensions
 		//Copy+rename op
 		l.operators.reverseView.forEach[op |
 				var List<Aspect> aspects = null
+				var Language superlang = null
 				var List<PackageBinding> renamingRules = null
 				if (op instanceof Slice){
 					aspects = (op as Slice).targetLanguage.semantics
+					superlang = (op as Slice).owningLanguage
 					renamingRules= (op as Slice).mappingRules
 				} 
 				else if (op instanceof Merge){
 					aspects = (op as Merge).targetLanguage.semantics
+					superlang = (op as Merge).owningLanguage
 					renamingRules = (op as Merge).mappingRules
 				}
 				
-				if(aspects != null){
+				if(aspects != null && superlang != null){
+					val orderedAspects = 
+						if(superlang.isGeneratedByMelange){
+							aspects
+						}
+						else{
+							aspects.reverseView
+						}
 					val rulesManager = new RenamingRuleManager(renamingRules, aspects, newRootName, aspectExtension)
 					copyAspects(l,aspects,classesAlreadyWeaved,rulesManager)
 				}
 			]
 		//Copy super lang
-		copyAspects(l,l.superLanguages.reverseView.map[semantics].flatten,classesAlreadyWeaved,null)
+		l.superLanguages.reverseView.forEach[superLang|
+			val orderedAspects = 
+				if(superLang.isGeneratedByMelange){
+					superLang.semantics
+				}
+				else{
+					superLang.semantics.reverseView
+				}
+			copyAspects(l,orderedAspects,classesAlreadyWeaved,null)
+		]
 	}
 	
 	/**
