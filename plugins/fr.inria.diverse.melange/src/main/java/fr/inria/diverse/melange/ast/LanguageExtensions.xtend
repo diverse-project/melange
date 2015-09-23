@@ -316,11 +316,11 @@ class LanguageExtensions
 		
 		//Copy sem
 		val toRemove = new ArrayList(l.semantics) 
-		copyAspects(l,l.semantics,classesAlreadyWeaved,null)
+		copyAspects(l,l.semantics.reverseView,classesAlreadyWeaved,null)
 		l.semantics.removeAll(toRemove)
 		
 		//Copy+rename op
-		l.operators.forEach[op |
+		l.operators.reverseView.forEach[op |
 				var List<Aspect> aspects = null
 				var List<PackageBinding> renamingRules = null
 				if (op instanceof Slice){
@@ -338,7 +338,7 @@ class LanguageExtensions
 				}
 			]
 		//Copy super lang
-		copyAspects(l,l.superLanguages.map[semantics].flatten,classesAlreadyWeaved,null)
+		copyAspects(l,l.superLanguages.reverseView.map[semantics].flatten,classesAlreadyWeaved,null)
 	}
 	
 	/**
