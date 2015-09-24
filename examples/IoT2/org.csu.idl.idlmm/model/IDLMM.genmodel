@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.csu.idl.idlmm/src"
+    modelPluginID="org.csu.udl.idlmm" modelName="IDLMM" featureMapWrapperInternalInterface=""
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    language="">
+  <foreignModel>IDLMM.ecore</foreignModel>
+  <genPackages prefix="Idlmm" basePackage="org.csu.idl" disposableProviderFactory="true"
+      ecorePackage="IDLMM.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="IDLMM.ecore#//ParameterMode">
+      <genEnumLiterals ecoreEnumLiteral="IDLMM.ecore#//ParameterMode/PARAM_IN"/>
+      <genEnumLiterals ecoreEnumLiteral="IDLMM.ecore#//ParameterMode/PARAM_OUT"/>
+      <genEnumLiterals ecoreEnumLiteral="IDLMM.ecore#//ParameterMode/PARAM_INOUT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="IDLMM.ecore#//PrimitiveKind">
+      <genEnumLiterals ecoreEnumLiteral="IDLMM.ecore#//PrimitiveKind/PK_NULL"/>
+      <genEnumLiterals ecoreEnumLiteral="IDLMM.ecore#//PrimitiveKind/PK_VOID"/>
+      <genEnumLiterals ecoreEnumLiteral="IDLMM.ecore#//PrimitiveKind/PK_SHORT"/>
+      <genEnumLiterals ecoreEnumLiteral="IDLMM.ecore#//PrimitiveKind/PK_LONG"/>
+      <genEnumLiterals ecoreEnumLiteral="IDLMM.ecore#//PrimitiveKind/PK_USHORT"/>
+      <genEnumLiterals ecoreEnumLiteral="IDLMM.ecore#//PrimitiveKind/PK_ULONG"/>
+      <genEnumLiterals ecoreEnumLiteral="IDLMM.ecore#//PrimitiveKind/PK_FLOAT"/>
+      <genEnumLiterals ecoreEnumLiteral="IDLMM.ecore#//PrimitiveKind/PK_DOUBLE"/>
+      <genEnumLiterals ecoreEnumLiteral="IDLMM.ecore#//PrimitiveKind/PK_BOOLEAN"/>
+      <genEnumLiterals ecoreEnumLiteral="IDLMM.ecore#//PrimitiveKind/PK_CHAR"/>
+      <genEnumLiterals ecoreEnumLiteral="IDLMM.ecore#//PrimitiveKind/PK_OCTET"/>
+      <genEnumLiterals ecoreEnumLiteral="IDLMM.ecore#//PrimitiveKind/PK_ANY"/>
+      <genEnumLiterals ecoreEnumLiteral="IDLMM.ecore#//PrimitiveKind/PK_LONGDOUBLE"/>
+      <genEnumLiterals ecoreEnumLiteral="IDLMM.ecore#//PrimitiveKind/PK_WSTRING"/>
+      <genEnumLiterals ecoreEnumLiteral="IDLMM.ecore#//PrimitiveKind/PK_TYPECODE"/>
+      <genEnumLiterals ecoreEnumLiteral="IDLMM.ecore#//PrimitiveKind/PK_WCHAR"/>
+      <genEnumLiterals ecoreEnumLiteral="IDLMM.ecore#//PrimitiveKind/PK_PRINCIPAL"/>
+      <genEnumLiterals ecoreEnumLiteral="IDLMM.ecore#//PrimitiveKind/PK_STRING"/>
+      <genEnumLiterals ecoreEnumLiteral="IDLMM.ecore#//PrimitiveKind/PK_ULONGLONG"/>
+      <genEnumLiterals ecoreEnumLiteral="IDLMM.ecore#//PrimitiveKind/PK_OBJREF"/>
+      <genEnumLiterals ecoreEnumLiteral="IDLMM.ecore#//PrimitiveKind/PK_LONGLONG"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="IDLMM.ecore#//EAny"/>
+    <genDataTypes ecoreDataType="IDLMM.ecore#//ETypeCode"/>
+    <genClasses image="false" ecoreClass="IDLMM.ecore#//Container">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IDLMM.ecore#//Container/contains"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="IDLMM.ecore#//Contained">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IDLMM.ecore#//Contained/identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IDLMM.ecore#//Contained/repositoryId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IDLMM.ecore#//Contained/version"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IDLMM.ecore#//Contained/absoluteName"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference IDLMM.ecore#//Contained/definedIn"/>
+    </genClasses>
+    <genClasses ecoreClass="IDLMM.ecore#//InterfaceDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IDLMM.ecore#//InterfaceDef/isAbstract"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IDLMM.ecore#//InterfaceDef/isCustom"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IDLMM.ecore#//InterfaceDef/isTruncatable"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference IDLMM.ecore#//InterfaceDef/derivesFrom"/>
+    </genClasses>
+    <genClasses ecoreClass="IDLMM.ecore#//ModuleDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IDLMM.ecore#//ModuleDef/prefix"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="IDLMM.ecore#//IDLType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IDLMM.ecore#//IDLType/typeCode"/>
+    </genClasses>
+    <genClasses ecoreClass="IDLMM.ecore#//OperationDef">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IDLMM.ecore#//OperationDef/parameters"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IDLMM.ecore#//OperationDef/isOneway"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IDLMM.ecore#//OperationDef/contexts"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference IDLMM.ecore#//OperationDef/canRaise"/>
+    </genClasses>
+    <genClasses ecoreClass="IDLMM.ecore#//AttributeDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference IDLMM.ecore#//AttributeDef/getRaises"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference IDLMM.ecore#//AttributeDef/setRaises"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IDLMM.ecore#//AttributeDef/isReadonly"/>
+    </genClasses>
+    <genClasses ecoreClass="IDLMM.ecore#//ConstantDef">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IDLMM.ecore#//ConstantDef/constValue"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="IDLMM.ecore#//Typed">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IDLMM.ecore#//Typed/containedType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference IDLMM.ecore#//Typed/sharedType"/>
+    </genClasses>
+    <genClasses ecoreClass="IDLMM.ecore#//ParameterDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IDLMM.ecore#//ParameterDef/identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IDLMM.ecore#//ParameterDef/direction"/>
+    </genClasses>
+    <genClasses ecoreClass="IDLMM.ecore#//PrimitiveDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IDLMM.ecore#//PrimitiveDef/kind"/>
+    </genClasses>
+    <genClasses ecoreClass="IDLMM.ecore#//ExceptionDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IDLMM.ecore#//ExceptionDef/typeCode"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IDLMM.ecore#//ExceptionDef/members"/>
+    </genClasses>
+    <genClasses ecoreClass="IDLMM.ecore#//Field">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IDLMM.ecore#//Field/identifier"/>
+    </genClasses>
+    <genClasses ecoreClass="IDLMM.ecore#//FixedDef">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IDLMM.ecore#//FixedDef/digits"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IDLMM.ecore#//FixedDef/scale"/>
+    </genClasses>
+    <genClasses ecoreClass="IDLMM.ecore#//WstringDef">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IDLMM.ecore#//WstringDef/bound"/>
+    </genClasses>
+    <genClasses ecoreClass="IDLMM.ecore#//StringDef">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IDLMM.ecore#//StringDef/bound"/>
+    </genClasses>
+    <genClasses ecoreClass="IDLMM.ecore#//AliasDef"/>
+    <genClasses ecoreClass="IDLMM.ecore#//ArrayDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IDLMM.ecore#//ArrayDef/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IDLMM.ecore#//ArrayDef/bounds"/>
+    </genClasses>
+    <genClasses ecoreClass="IDLMM.ecore#//SequenceDef">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IDLMM.ecore#//SequenceDef/bound"/>
+    </genClasses>
+    <genClasses ecoreClass="IDLMM.ecore#//UnionField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IDLMM.ecore#//UnionField/identifier"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IDLMM.ecore#//UnionField/label"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="IDLMM.ecore#//TypedefDef"/>
+    <genClasses ecoreClass="IDLMM.ecore#//UnionDef">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IDLMM.ecore#//UnionDef/unionMembers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IDLMM.ecore#//UnionDef/containedDiscrim"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference IDLMM.ecore#//UnionDef/sharedDiscrim"/>
+    </genClasses>
+    <genClasses ecoreClass="IDLMM.ecore#//EnumDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IDLMM.ecore#//EnumDef/members"/>
+    </genClasses>
+    <genClasses ecoreClass="IDLMM.ecore#//StructDef">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IDLMM.ecore#//StructDef/members"/>
+    </genClasses>
+    <genClasses ecoreClass="IDLMM.ecore#//TranslationUnit">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IDLMM.ecore#//TranslationUnit/contains"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IDLMM.ecore#//TranslationUnit/identifier"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IDLMM.ecore#//TranslationUnit/includes"/>
+    </genClasses>
+    <genClasses ecoreClass="IDLMM.ecore#//Include">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IDLMM.ecore#//Include/importURI"/>
+    </genClasses>
+    <genClasses ecoreClass="IDLMM.ecore#//Expression"/>
+    <genClasses ecoreClass="IDLMM.ecore#//BinaryExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IDLMM.ecore#//BinaryExpression/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IDLMM.ecore#//BinaryExpression/right"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IDLMM.ecore#//BinaryExpression/operator"/>
+    </genClasses>
+    <genClasses ecoreClass="IDLMM.ecore#//UnaryExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IDLMM.ecore#//UnaryExpression/expression"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IDLMM.ecore#//UnaryExpression/operator"/>
+    </genClasses>
+    <genClasses ecoreClass="IDLMM.ecore#//LiteralExpression"/>
+    <genClasses ecoreClass="IDLMM.ecore#//ConstantDefRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference IDLMM.ecore#//ConstantDefRef/constantDef"/>
+    </genClasses>
+    <genClasses ecoreClass="IDLMM.ecore#//ValueExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IDLMM.ecore#//ValueExpression/value"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
