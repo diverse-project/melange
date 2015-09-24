@@ -10,6 +10,18 @@
       <discovery label="DIverse Commons Update Site" url="https://ci.inria.fr/diverse-commons/job/diverse-commons.eclipse.root/lastSuccessfulBuild/artifact/commons-eclipse/fr.inria.diverse.commons.eclipse.root/p2updatesite/target/repository/"/>
    </url>
 
+   <includes
+         id="fr.inria.diverse.commons.eclipse.feature"
+         version="0.0.0"
+         name="Diverse Commons"
+         search-location="both"/>
+
+   <includes
+         id="fr.inria.diverse.k3.al.feature"
+         version="0.0.0"
+         name="K3AL"
+         search-location="both"/>
+
    <plugin
          id="fr.inria.diverse.melange"
          download-size="0"
