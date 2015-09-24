@@ -269,21 +269,7 @@ public class ActivityAspect extends NamedElementAspect {
   }
   
   protected static Trace _privk3_trace(final ActivityAspectActivityAspectProperties _self_, final Activity _self) {
-    try {
-    	for (java.lang.reflect.Method m : _self.getClass().getMethods()) {
-    		if (m.getName().equals("getTrace") &&
-    			m.getParameterTypes().length == 0) {
-    				Object ret = m.invoke(_self);
-    				if (ret != null) {
-    					return (fr.inria.diverse.iot2.iot2.aspects.Trace) ret;
-    				}
-    		}
-    	}
-    } catch (Exception e) {
-    	// Chut !
-    }
-    
-    return _self_.trace;
+     return _self_.trace; 
   }
   
   protected static void _privk3_trace(final ActivityAspectActivityAspectProperties _self_, final Activity _self, final Trace trace) {

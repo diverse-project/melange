@@ -1,6 +1,7 @@
 package test
 
-import fr.inria.diverse.iot2.iot2.iot2.Iot2Factory
+import fr.inria.diverse.iot2.IoT2StandaloneSetup
+import fr.inria.diverse.iot2.iot2.iot2.IntegerVariable
 import fr.inria.diverse.iot2.iot2.iot2.Iot2Package
 import fr.inria.diverse.iot2.iot2.iot2.System
 import org.eclipse.emf.common.util.URI
@@ -10,7 +11,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 
 import static extension fr.inria.diverse.iot2.iot2.aspects.ActivityAspect.*
-import fr.inria.diverse.iot2.IoT2StandaloneSetup
 
 class Test {
 	def static void main(String[] args) {

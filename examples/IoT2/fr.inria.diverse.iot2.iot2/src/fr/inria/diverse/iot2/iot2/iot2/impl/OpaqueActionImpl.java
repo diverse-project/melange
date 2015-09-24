@@ -10,6 +10,7 @@ import fr.inria.diverse.iot2.iot2.iot2.OperationDef;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -18,7 +19,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,7 +38,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  */
 public class OpaqueActionImpl extends ActionImpl implements OpaqueAction {
 	/**
-	 * The cached value of the '{@link #getExpressions() <em>Expressions</em>}' reference list.
+	 * The cached value of the '{@link #getExpressions() <em>Expressions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getExpressions()
@@ -81,7 +83,7 @@ public class OpaqueActionImpl extends ActionImpl implements OpaqueAction {
 	 */
 	public EList<Expression> getExpressions() {
 		if (expressions == null) {
-			expressions = new EObjectResolvingEList<Expression>(Expression.class, this, Iot2Package.OPAQUE_ACTION__EXPRESSIONS);
+			expressions = new EObjectContainmentEList<Expression>(Expression.class, this, Iot2Package.OPAQUE_ACTION__EXPRESSIONS);
 		}
 		return expressions;
 	}
@@ -122,6 +124,20 @@ public class OpaqueActionImpl extends ActionImpl implements OpaqueAction {
 		service = newService;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Iot2Package.OPAQUE_ACTION__SERVICE, oldService, service));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case Iot2Package.OPAQUE_ACTION__EXPRESSIONS:
+				return ((InternalEList<?>)getExpressions()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

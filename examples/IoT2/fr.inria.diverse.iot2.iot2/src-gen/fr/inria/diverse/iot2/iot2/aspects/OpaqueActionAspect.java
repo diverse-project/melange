@@ -2,6 +2,7 @@ package fr.inria.diverse.iot2.iot2.aspects;
 
 import fr.inria.diverse.iot2.iot2.iot2.Iot2Factory;
 import fr.inria.diverse.iot2.iot2.iot2.BooleanValue;
+import fr.inria.diverse.iot2.iot2.iot2.Expression;
 import fr.inria.diverse.iot2.iot2.iot2.InputValue;
 import fr.inria.diverse.iot2.iot2.iot2.IntegerValue;
 import fr.inria.diverse.iot2.iot2.iot2.IntegerVariable;
@@ -24,6 +25,7 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import fr.inria.diverse.iot2.iot2.aspects.ActivityExpressionAspect;
 import fr.inria.diverse.iot2.iot2.aspects.ActivityNodeAspect;
 import fr.inria.diverse.iot2.iot2.aspects.Context;
 import fr.inria.diverse.iot2.iot2.aspects.Token;
@@ -48,7 +50,7 @@ public class OpaqueActionAspect extends ActivityNodeAspect {
     fr.inria.diverse.iot2.iot2.aspects.OpaqueActionAspectOpaqueActionAspectProperties _self_ = fr.inria.diverse.iot2.iot2.aspects.OpaqueActionAspectOpaqueActionAspectContext.getSelf(_self);
     Object result = null;
     result =_privk3_service(_self_, _self);
-    return (fr.inria.diverse.iot2.iot2.iot2.OperationDef)result;
+    return _self.getService();
   }
   
   public static void service(final OpaqueAction _self, final OperationDef service) {
@@ -57,27 +59,33 @@ public class OpaqueActionAspect extends ActivityNodeAspect {
   }
   
   protected static void _privk3_execute(final OpaqueActionAspectOpaqueActionAspectProperties _self_, final OpaqueAction _self, final Context c) {
+    c.output.executedNodes.add(_self);
+    EList<Expression> _expressions = _self.getExpressions();
+    final Consumer<Expression> _function = (Expression e) -> {
+      ActivityExpressionAspect.execute(e, c);
+    };
+    _expressions.forEach(_function);
     final Iot2Factory fact = Iot2Factory.eINSTANCE;
     OperationDef _service = OpaqueActionAspect.service(_self);
     boolean _tripleNotEquals = (_service != null);
     if (_tripleNotEquals) {
       Environment _environment = new Environment();
-      final Procedure1<Environment> _function = (Environment it) -> {
+      final Procedure1<Environment> _function_1 = (Environment it) -> {
         OperationDef _service_1 = OpaqueActionAspect.service(_self);
         EList<ParameterDef> _parameters = _service_1.getParameters();
-        final Function1<ParameterDef, Boolean> _function_1 = (ParameterDef it_1) -> {
+        final Function1<ParameterDef, Boolean> _function_2 = (ParameterDef it_1) -> {
           ParameterMode _direction = it_1.getDirection();
           return Boolean.valueOf(Collections.<ParameterMode>unmodifiableList(CollectionLiterals.<ParameterMode>newArrayList(ParameterMode.PARAM_IN, ParameterMode.PARAM_INOUT)).contains(_direction));
         };
-        Iterable<ParameterDef> _filter = IterableExtensions.<ParameterDef>filter(_parameters, _function_1);
-        final Consumer<ParameterDef> _function_2 = (ParameterDef p) -> {
-          final Function1<InputValue, Boolean> _function_3 = (InputValue it_1) -> {
+        Iterable<ParameterDef> _filter = IterableExtensions.<ParameterDef>filter(_parameters, _function_2);
+        final Consumer<ParameterDef> _function_3 = (ParameterDef p) -> {
+          final Function1<InputValue, Boolean> _function_4 = (InputValue it_1) -> {
             Variable _variable = it_1.getVariable();
             String _name = _variable.getName();
             String _identifier = p.getIdentifier();
             return Boolean.valueOf(Objects.equal(_name, _identifier));
           };
-          final InputValue find = IterableExtensions.<InputValue>findFirst(c.inputValues, _function_3);
+          final InputValue find = IterableExtensions.<InputValue>findFirst(c.inputValues, _function_4);
           String _identifier = p.getIdentifier();
           Object _elvis = null;
           Variable _variable = null;
@@ -96,26 +104,26 @@ public class OpaqueActionAspect extends ActivityNodeAspect {
           }
           it.putVariable(_identifier, _elvis);
         };
-        _filter.forEach(_function_2);
+        _filter.forEach(_function_3);
       };
-      final Environment wrappedEnv = ObjectExtensions.<Environment>operator_doubleArrow(_environment, _function);
+      final Environment wrappedEnv = ObjectExtensions.<Environment>operator_doubleArrow(_environment, _function_1);
       OperationDef _service_1 = OpaqueActionAspect.service(_self);
       OperationDefAspect.execute(_service_1, wrappedEnv);
       OperationDef _service_2 = OpaqueActionAspect.service(_self);
       EList<ParameterDef> _parameters = _service_2.getParameters();
-      final Function1<ParameterDef, Boolean> _function_1 = (ParameterDef it) -> {
+      final Function1<ParameterDef, Boolean> _function_2 = (ParameterDef it) -> {
         ParameterMode _direction = it.getDirection();
         return Boolean.valueOf(Collections.<ParameterMode>unmodifiableList(CollectionLiterals.<ParameterMode>newArrayList(ParameterMode.PARAM_OUT, ParameterMode.PARAM_INOUT)).contains(_direction));
       };
-      Iterable<ParameterDef> _filter = IterableExtensions.<ParameterDef>filter(_parameters, _function_1);
-      final Consumer<ParameterDef> _function_2 = (ParameterDef p) -> {
-        final Function1<InputValue, Boolean> _function_3 = (InputValue it) -> {
+      Iterable<ParameterDef> _filter = IterableExtensions.<ParameterDef>filter(_parameters, _function_2);
+      final Consumer<ParameterDef> _function_3 = (ParameterDef p) -> {
+        final Function1<InputValue, Boolean> _function_4 = (InputValue it) -> {
           Variable _variable = it.getVariable();
           String _name = _variable.getName();
           String _identifier = p.getIdentifier();
           return Boolean.valueOf(Objects.equal(_name, _identifier));
         };
-        final InputValue updated = IterableExtensions.<InputValue>findFirst(c.inputValues, _function_3);
+        final InputValue updated = IterableExtensions.<InputValue>findFirst(c.inputValues, _function_4);
         String _identifier = p.getIdentifier();
         Object _variable = wrappedEnv.getVariable(_identifier);
         String _string = _variable.toString();
@@ -123,33 +131,33 @@ public class OpaqueActionAspect extends ActivityNodeAspect {
         if ((updated != null)) {
           Variable _variable_1 = updated.getVariable();
           IntegerValue _createIntegerValue = fact.createIntegerValue();
-          final Procedure1<IntegerValue> _function_4 = (IntegerValue it) -> {
+          final Procedure1<IntegerValue> _function_5 = (IntegerValue it) -> {
             it.setValue((retInteger).intValue());
           };
-          IntegerValue _doubleArrow = ObjectExtensions.<IntegerValue>operator_doubleArrow(_createIntegerValue, _function_4);
+          IntegerValue _doubleArrow = ObjectExtensions.<IntegerValue>operator_doubleArrow(_createIntegerValue, _function_5);
           _variable_1.setCurrentValue(_doubleArrow);
         } else {
           InputValue _createInputValue = fact.createInputValue();
-          final Procedure1<InputValue> _function_5 = (InputValue it) -> {
+          final Procedure1<InputValue> _function_6 = (InputValue it) -> {
             IntegerVariable _createIntegerVariable = fact.createIntegerVariable();
-            final Procedure1<IntegerVariable> _function_6 = (IntegerVariable it_1) -> {
+            final Procedure1<IntegerVariable> _function_7 = (IntegerVariable it_1) -> {
               String _identifier_1 = p.getIdentifier();
               it_1.setName(_identifier_1);
               IntegerValue _createIntegerValue_1 = fact.createIntegerValue();
-              final Procedure1<IntegerValue> _function_7 = (IntegerValue it_2) -> {
+              final Procedure1<IntegerValue> _function_8 = (IntegerValue it_2) -> {
                 it_2.setValue((retInteger).intValue());
               };
-              IntegerValue _doubleArrow_1 = ObjectExtensions.<IntegerValue>operator_doubleArrow(_createIntegerValue_1, _function_7);
+              IntegerValue _doubleArrow_1 = ObjectExtensions.<IntegerValue>operator_doubleArrow(_createIntegerValue_1, _function_8);
               it_1.setCurrentValue(_doubleArrow_1);
             };
-            IntegerVariable _doubleArrow_1 = ObjectExtensions.<IntegerVariable>operator_doubleArrow(_createIntegerVariable, _function_6);
+            IntegerVariable _doubleArrow_1 = ObjectExtensions.<IntegerVariable>operator_doubleArrow(_createIntegerVariable, _function_7);
             it.setVariable(_doubleArrow_1);
           };
-          InputValue _doubleArrow_1 = ObjectExtensions.<InputValue>operator_doubleArrow(_createInputValue, _function_5);
+          InputValue _doubleArrow_1 = ObjectExtensions.<InputValue>operator_doubleArrow(_createInputValue, _function_6);
           c.inputValues.add(_doubleArrow_1);
         }
       };
-      _filter.forEach(_function_2);
+      _filter.forEach(_function_3);
     }
     List<Token> _takeOfferdTokens = ActivityNodeAspect.takeOfferdTokens(_self);
     ActivityNodeAspect.sendOffers(_self, _takeOfferdTokens);
@@ -179,21 +187,7 @@ public class OpaqueActionAspect extends ActivityNodeAspect {
   }
   
   protected static OperationDef _privk3_service(final OpaqueActionAspectOpaqueActionAspectProperties _self_, final OpaqueAction _self) {
-    try {
-    	for (java.lang.reflect.Method m : _self.getClass().getMethods()) {
-    		if (m.getName().equals("getService") &&
-    			m.getParameterTypes().length == 0) {
-    				Object ret = m.invoke(_self);
-    				if (ret != null) {
-    					return (fr.inria.diverse.iot2.iot2.iot2.OperationDef) ret;
-    				}
-    		}
-    	}
-    } catch (Exception e) {
-    	// Chut !
-    }
-    
-    return _self_.service;
+     return _self_.service; 
   }
   
   protected static void _privk3_service(final OpaqueActionAspectOpaqueActionAspectProperties _self_, final OpaqueAction _self, final OperationDef service) {

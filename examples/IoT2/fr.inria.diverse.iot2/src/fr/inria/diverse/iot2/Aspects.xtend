@@ -17,12 +17,15 @@ import org.xtext.lua.semantics.Environment
 
 import static extension fr.inria.diverse.iot2.OperationDefAspect.*
 import static extension org.xtext.lua.semantics.BlockAspect.*
+import static extension org.xtext.activitydiagram.semantics.ActivityExpressionAspect.*
 
 @Aspect(className = OpaqueAction)
 class OpaqueActionAspect extends ActivityNodeAspect {
 	public OperationDef service
 
 	def void execute(Context c) {
+		c.output.executedNodes.add(_self)
+		_self.expressions.forEach[e|e.execute(c)]
 		val fact = ActivitydiagramFactory::eINSTANCE
 		if (_self.service !== null) {
 			val wrappedEnv = new Environment => [

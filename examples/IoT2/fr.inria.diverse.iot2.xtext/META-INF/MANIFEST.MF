@@ -23,4 +23,6 @@ Export-Package: fr.inria.diverse.iot2,
  fr.inria.diverse.iot2.parser.antlr.internal,
  fr.inria.diverse.iot2.validation,
  fr.inria.diverse.iot2.formatting,
- fr.inria.diverse.iot2.jvmmodel
+ fr.inria.diverse.iot2.jvmmodel,
+ fr.inria.diverse.iot2.scoping,
+ fr.inria.diverse.iot2.generator

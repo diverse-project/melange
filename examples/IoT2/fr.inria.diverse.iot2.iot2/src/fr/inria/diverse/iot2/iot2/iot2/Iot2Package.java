@@ -3570,7 +3570,7 @@ public interface Iot2Package extends EPackage {
 	int OPAQUE_ACTION__RUNNING = ACTION__RUNNING;
 
 	/**
-	 * The feature id for the '<em><b>Expressions</b></em>' reference list.
+	 * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -7101,10 +7101,10 @@ public interface Iot2Package extends EPackage {
 	EClass getOpaqueAction();
 
 	/**
-	 * Returns the meta object for the reference list '{@link fr.inria.diverse.iot2.iot2.iot2.OpaqueAction#getExpressions <em>Expressions</em>}'.
+	 * Returns the meta object for the containment reference list '{@link fr.inria.diverse.iot2.iot2.iot2.OpaqueAction#getExpressions <em>Expressions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Expressions</em>'.
+	 * @return the meta object for the containment reference list '<em>Expressions</em>'.
 	 * @see fr.inria.diverse.iot2.iot2.iot2.OpaqueAction#getExpressions()
 	 * @see #getOpaqueAction()
 	 * @generated
@@ -9606,7 +9606,7 @@ public interface Iot2Package extends EPackage {
 		EClass OPAQUE_ACTION = eINSTANCE.getOpaqueAction();
 
 		/**
-		 * The meta object literal for the '<em><b>Expressions</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Expressions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

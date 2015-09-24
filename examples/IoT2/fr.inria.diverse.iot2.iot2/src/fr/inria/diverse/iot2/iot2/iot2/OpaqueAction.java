@@ -23,17 +23,17 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface OpaqueAction extends Action {
 	/**
-	 * Returns the value of the '<em><b>Expressions</b></em>' reference list.
+	 * Returns the value of the '<em><b>Expressions</b></em>' containment reference list.
 	 * The list contents are of type {@link fr.inria.diverse.iot2.iot2.iot2.Expression}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Expressions</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Expressions</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Expressions</em>' reference list.
+	 * @return the value of the '<em>Expressions</em>' containment reference list.
 	 * @see fr.inria.diverse.iot2.iot2.iot2.Iot2Package#getOpaqueAction_Expressions()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Expression> getExpressions();
