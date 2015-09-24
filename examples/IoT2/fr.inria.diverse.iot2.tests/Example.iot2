@@ -28,14 +28,12 @@ system MySystem {
 
 	sketch {
 		activity SimpleSketch {
-			int threshold = i25,
-			int temp = 0,
 			bool raiseTemp = false,
 			bool lowerTemp = false
 
 			nodes {
 				initial init1 out (e1),
-				action a1 comp { raiseTemp = temp < threshold, lowerTemp = temp > threshold } in (e1) out (e2) service getTemperature,
+				action a1 comp { raiseTemp = !raiseTemp } in (e1) out (e2) service getTemperature,
 				decision d1 in (e2) out (e3,e4),
 				action a2 in (e3) out (e5) service increase,
 				action a3 in (e4) out (e6) service decrease,
