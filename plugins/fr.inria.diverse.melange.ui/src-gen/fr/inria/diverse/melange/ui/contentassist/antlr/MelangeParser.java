@@ -104,7 +104,9 @@ public class MelangeParser extends AbstractContentAssistParser {
 					put(grammarAccess.getXbaseTransformationAccess().getGroup_5_1(), "rule__XbaseTransformation__Group_5_1__0");
 					put(grammarAccess.getMappingAccess().getGroup(), "rule__Mapping__Group__0");
 					put(grammarAccess.getPackageMappingAccess().getGroup(), "rule__PackageMapping__Group__0");
+					put(grammarAccess.getPackageMappingAccess().getGroup_3(), "rule__PackageMapping__Group_3__0");
 					put(grammarAccess.getClassMappingAccess().getGroup(), "rule__ClassMapping__Group__0");
+					put(grammarAccess.getClassMappingAccess().getGroup_3(), "rule__ClassMapping__Group_3__0");
 					put(grammarAccess.getPropertyMappingAccess().getGroup(), "rule__PropertyMapping__Group__0");
 					put(grammarAccess.getImportAccess().getGroup(), "rule__Import__Group__0");
 					put(grammarAccess.getImportAccess().getGroup_2(), "rule__Import__Group_2__0");
@@ -327,10 +329,10 @@ public class MelangeParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMappingAccess().getRulesAssignment_5(), "rule__Mapping__RulesAssignment_5");
 					put(grammarAccess.getPackageMappingAccess().getFromAssignment_0(), "rule__PackageMapping__FromAssignment_0");
 					put(grammarAccess.getPackageMappingAccess().getToAssignment_2(), "rule__PackageMapping__ToAssignment_2");
-					put(grammarAccess.getPackageMappingAccess().getClassesAssignment_4(), "rule__PackageMapping__ClassesAssignment_4");
+					put(grammarAccess.getPackageMappingAccess().getClassesAssignment_3_1(), "rule__PackageMapping__ClassesAssignment_3_1");
 					put(grammarAccess.getClassMappingAccess().getFromAssignment_0(), "rule__ClassMapping__FromAssignment_0");
 					put(grammarAccess.getClassMappingAccess().getToAssignment_2(), "rule__ClassMapping__ToAssignment_2");
-					put(grammarAccess.getClassMappingAccess().getPropertiesAssignment_4(), "rule__ClassMapping__PropertiesAssignment_4");
+					put(grammarAccess.getClassMappingAccess().getPropertiesAssignment_3_1(), "rule__ClassMapping__PropertiesAssignment_3_1");
 					put(grammarAccess.getPropertyMappingAccess().getFromAssignment_0(), "rule__PropertyMapping__FromAssignment_0");
 					put(grammarAccess.getPropertyMappingAccess().getToAssignment_2(), "rule__PropertyMapping__ToAssignment_2");
 					put(grammarAccess.getImportAccess().getEcoreUriAssignment_1(), "rule__Import__EcoreUriAssignment_1");

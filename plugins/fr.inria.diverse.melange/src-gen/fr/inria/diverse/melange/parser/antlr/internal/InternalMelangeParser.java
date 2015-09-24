@@ -23,7 +23,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalMelangeParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_HEX", "RULE_INT", "RULE_DECIMAL", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'package'", "'language'", "'inherits'", "','", "'implements'", "'requires'", "'{'", "'resource'", "'uri'", "'setup'", "'exactType'", "'}'", "'modeltype'", "'syntax'", "'@Main'", "'transformation'", "'('", "')'", "'map'", "'to'", "':'", "'withGenmodel'", "'and-rename'", "'merge'", "'slice'", "'on'", "'['", "']'", "'with'", "'='", "'+='", "'-='", "'*='", "'/='", "'%='", "'<'", "'>'", "'>='", "'||'", "'&&'", "'=='", "'!='", "'==='", "'!=='", "'instanceof'", "'->'", "'..<'", "'..'", "'=>'", "'<>'", "'?:'", "'+'", "'-'", "'*'", "'**'", "'/'", "'%'", "'!'", "'as'", "'++'", "'--'", "'.'", "'::'", "'?.'", "'#'", "'|'", "';'", "'if'", "'else'", "'switch'", "'default'", "'case'", "'for'", "'while'", "'do'", "'var'", "'val'", "'extends'", "'static'", "'import'", "'extension'", "'super'", "'new'", "'false'", "'true'", "'null'", "'typeof'", "'throw'", "'return'", "'try'", "'finally'", "'synchronized'", "'catch'", "'?'", "'&'", "'Melange'", "'EMF'", "'Xtext'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_HEX", "RULE_INT", "RULE_DECIMAL", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'package'", "'language'", "'inherits'", "','", "'implements'", "'requires'", "'{'", "'resource'", "'uri'", "'setup'", "'exactType'", "'}'", "'modeltype'", "'syntax'", "'@Main'", "'transformation'", "'('", "')'", "'map'", "'to'", "'withGenmodel'", "'renaming'", "'merge'", "'slice'", "'on'", "'['", "']'", "'with'", "'='", "'+='", "'-='", "'*='", "'/='", "'%='", "'<'", "'>'", "'>='", "'||'", "'&&'", "'=='", "'!='", "'==='", "'!=='", "'instanceof'", "'->'", "'..<'", "'..'", "'=>'", "'<>'", "'?:'", "'+'", "'-'", "'*'", "'**'", "'/'", "'%'", "'!'", "'as'", "'++'", "'--'", "'.'", "'::'", "'?.'", "'#'", "'|'", "';'", "'if'", "'else'", "'switch'", "':'", "'default'", "'case'", "'for'", "'while'", "'do'", "'var'", "'val'", "'extends'", "'static'", "'import'", "'extension'", "'super'", "'new'", "'false'", "'true'", "'null'", "'typeof'", "'throw'", "'return'", "'try'", "'finally'", "'synchronized'", "'catch'", "'?'", "'&'", "'Melange'", "'EMF'", "'Xtext'"
     };
     public static final int RULE_HEX=5;
     public static final int T__50=50;
@@ -344,7 +344,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 int alt3=2;
                 int LA3_0 = input.LA(1);
 
-                if ( (LA3_0==14||LA3_0==21||(LA3_0>=23 && LA3_0<=28)||LA3_0==31||(LA3_0>=36 && LA3_0<=37)||LA3_0==41) ) {
+                if ( (LA3_0==14||LA3_0==21||(LA3_0>=23 && LA3_0<=28)||LA3_0==31||(LA3_0>=35 && LA3_0<=36)||LA3_0==40) ) {
                     alt3=1;
                 }
 
@@ -479,9 +479,9 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             case 14:
             case 23:
             case 26:
+            case 35:
             case 36:
-            case 37:
-            case 41:
+            case 40:
                 {
                 alt4=1;
                 }
@@ -1481,7 +1481,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             	            }
             	            break;
-            	        case 36:
+            	        case 35:
             	            {
             	            int LA13_3 = input.LA(2);
 
@@ -1492,7 +1492,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             	            }
             	            break;
-            	        case 37:
+            	        case 36:
             	            {
             	            int LA13_4 = input.LA(2);
 
@@ -1503,7 +1503,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             	            }
             	            break;
-            	        case 41:
+            	        case 40:
             	            {
             	            int LA13_5 = input.LA(2);
 
@@ -2280,11 +2280,11 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( (LA19_0==RULE_ID) ) {
                 int LA19_1 = input.LA(2);
 
-                if ( (LA19_1==RULE_ID||LA19_1==39||LA19_1==48||LA19_1==74) ) {
+                if ( (LA19_1==RULE_ID||LA19_1==38||LA19_1==47||LA19_1==73) ) {
                     alt19=1;
                 }
             }
-            else if ( (LA19_0==29||LA19_0==61) ) {
+            else if ( (LA19_0==29||LA19_0==60) ) {
                 alt19=1;
             }
             switch (alt19) {
@@ -2371,7 +2371,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             int alt21=2;
             int LA21_0 = input.LA(1);
 
-            if ( (LA21_0==RULE_ID||LA21_0==29||LA21_0==61) ) {
+            if ( (LA21_0==RULE_ID||LA21_0==29||LA21_0==60) ) {
                 alt21=1;
             }
             switch (alt21) {
@@ -2816,7 +2816,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePackageMapping"
-    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:964:1: rulePackageMapping returns [EObject current=null] : ( ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= 'to' ( (lv_to_2_0= RULE_STRING ) ) otherlv_3= '{' ( (lv_classes_4_0= ruleClassMapping ) )* otherlv_5= '}' ) ;
+    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:964:1: rulePackageMapping returns [EObject current=null] : ( ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= 'to' ( (lv_to_2_0= RULE_STRING ) ) (otherlv_3= '{' ( (lv_classes_4_0= ruleClassMapping ) )* otherlv_5= '}' )? ) ;
     public final EObject rulePackageMapping() throws RecognitionException {
         EObject current = null;
 
@@ -2831,11 +2831,11 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:967:28: ( ( ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= 'to' ( (lv_to_2_0= RULE_STRING ) ) otherlv_3= '{' ( (lv_classes_4_0= ruleClassMapping ) )* otherlv_5= '}' ) )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:968:1: ( ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= 'to' ( (lv_to_2_0= RULE_STRING ) ) otherlv_3= '{' ( (lv_classes_4_0= ruleClassMapping ) )* otherlv_5= '}' )
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:967:28: ( ( ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= 'to' ( (lv_to_2_0= RULE_STRING ) ) (otherlv_3= '{' ( (lv_classes_4_0= ruleClassMapping ) )* otherlv_5= '}' )? ) )
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:968:1: ( ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= 'to' ( (lv_to_2_0= RULE_STRING ) ) (otherlv_3= '{' ( (lv_classes_4_0= ruleClassMapping ) )* otherlv_5= '}' )? )
             {
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:968:1: ( ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= 'to' ( (lv_to_2_0= RULE_STRING ) ) otherlv_3= '{' ( (lv_classes_4_0= ruleClassMapping ) )* otherlv_5= '}' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:968:2: ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= 'to' ( (lv_to_2_0= RULE_STRING ) ) otherlv_3= '{' ( (lv_classes_4_0= ruleClassMapping ) )* otherlv_5= '}'
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:968:1: ( ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= 'to' ( (lv_to_2_0= RULE_STRING ) ) (otherlv_3= '{' ( (lv_classes_4_0= ruleClassMapping ) )* otherlv_5= '}' )? )
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:968:2: ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= 'to' ( (lv_to_2_0= RULE_STRING ) ) (otherlv_3= '{' ( (lv_classes_4_0= ruleClassMapping ) )* otherlv_5= '}' )?
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:968:2: ( (lv_from_0_0= RULE_STRING ) )
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:969:1: (lv_from_0_0= RULE_STRING )
@@ -2903,71 +2903,88 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_3=(Token)match(input,19,FOLLOW_19_in_rulePackageMapping2169); if (state.failed) return current;
-            if ( state.backtracking==0 ) {
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1008:2: (otherlv_3= '{' ( (lv_classes_4_0= ruleClassMapping ) )* otherlv_5= '}' )?
+            int alt24=2;
+            int LA24_0 = input.LA(1);
 
-                  	newLeafNode(otherlv_3, grammarAccess.getPackageMappingAccess().getLeftCurlyBracketKeyword_3());
-                  
+            if ( (LA24_0==19) ) {
+                alt24=1;
             }
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1012:1: ( (lv_classes_4_0= ruleClassMapping ) )*
-            loop23:
-            do {
-                int alt23=2;
-                int LA23_0 = input.LA(1);
+            switch (alt24) {
+                case 1 :
+                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1008:4: otherlv_3= '{' ( (lv_classes_4_0= ruleClassMapping ) )* otherlv_5= '}'
+                    {
+                    otherlv_3=(Token)match(input,19,FOLLOW_19_in_rulePackageMapping2170); if (state.failed) return current;
+                    if ( state.backtracking==0 ) {
 
-                if ( (LA23_0==RULE_STRING) ) {
-                    alt23=1;
-                }
+                          	newLeafNode(otherlv_3, grammarAccess.getPackageMappingAccess().getLeftCurlyBracketKeyword_3_0());
+                          
+                    }
+                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1012:1: ( (lv_classes_4_0= ruleClassMapping ) )*
+                    loop23:
+                    do {
+                        int alt23=2;
+                        int LA23_0 = input.LA(1);
 
-
-                switch (alt23) {
-            	case 1 :
-            	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1013:1: (lv_classes_4_0= ruleClassMapping )
-            	    {
-            	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1013:1: (lv_classes_4_0= ruleClassMapping )
-            	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1014:3: lv_classes_4_0= ruleClassMapping
-            	    {
-            	    if ( state.backtracking==0 ) {
-            	       
-            	      	        newCompositeNode(grammarAccess.getPackageMappingAccess().getClassesClassMappingParserRuleCall_4_0()); 
-            	      	    
-            	    }
-            	    pushFollow(FOLLOW_ruleClassMapping_in_rulePackageMapping2190);
-            	    lv_classes_4_0=ruleClassMapping();
-
-            	    state._fsp--;
-            	    if (state.failed) return current;
-            	    if ( state.backtracking==0 ) {
-
-            	      	        if (current==null) {
-            	      	            current = createModelElementForParent(grammarAccess.getPackageMappingRule());
-            	      	        }
-            	             		add(
-            	             			current, 
-            	             			"classes",
-            	              		lv_classes_4_0, 
-            	              		"ClassMapping");
-            	      	        afterParserOrEnumRuleCall();
-            	      	    
-            	    }
-
-            	    }
+                        if ( (LA23_0==RULE_STRING) ) {
+                            alt23=1;
+                        }
 
 
-            	    }
-            	    break;
+                        switch (alt23) {
+                    	case 1 :
+                    	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1013:1: (lv_classes_4_0= ruleClassMapping )
+                    	    {
+                    	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1013:1: (lv_classes_4_0= ruleClassMapping )
+                    	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1014:3: lv_classes_4_0= ruleClassMapping
+                    	    {
+                    	    if ( state.backtracking==0 ) {
+                    	       
+                    	      	        newCompositeNode(grammarAccess.getPackageMappingAccess().getClassesClassMappingParserRuleCall_3_1_0()); 
+                    	      	    
+                    	    }
+                    	    pushFollow(FOLLOW_ruleClassMapping_in_rulePackageMapping2191);
+                    	    lv_classes_4_0=ruleClassMapping();
 
-            	default :
-            	    break loop23;
-                }
-            } while (true);
+                    	    state._fsp--;
+                    	    if (state.failed) return current;
+                    	    if ( state.backtracking==0 ) {
 
-            otherlv_5=(Token)match(input,24,FOLLOW_24_in_rulePackageMapping2203); if (state.failed) return current;
-            if ( state.backtracking==0 ) {
+                    	      	        if (current==null) {
+                    	      	            current = createModelElementForParent(grammarAccess.getPackageMappingRule());
+                    	      	        }
+                    	             		add(
+                    	             			current, 
+                    	             			"classes",
+                    	              		lv_classes_4_0, 
+                    	              		"ClassMapping");
+                    	      	        afterParserOrEnumRuleCall();
+                    	      	    
+                    	    }
 
-                  	newLeafNode(otherlv_5, grammarAccess.getPackageMappingAccess().getRightCurlyBracketKeyword_5());
-                  
+                    	    }
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop23;
+                        }
+                    } while (true);
+
+                    otherlv_5=(Token)match(input,24,FOLLOW_24_in_rulePackageMapping2204); if (state.failed) return current;
+                    if ( state.backtracking==0 ) {
+
+                          	newLeafNode(otherlv_5, grammarAccess.getPackageMappingAccess().getRightCurlyBracketKeyword_3_2());
+                          
+                    }
+
+                    }
+                    break;
+
             }
+
 
             }
 
@@ -3005,7 +3022,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getClassMappingRule()); 
             }
-            pushFollow(FOLLOW_ruleClassMapping_in_entryRuleClassMapping2239);
+            pushFollow(FOLLOW_ruleClassMapping_in_entryRuleClassMapping2242);
             iv_ruleClassMapping=ruleClassMapping();
 
             state._fsp--;
@@ -3013,7 +3030,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleClassMapping; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleClassMapping2249); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleClassMapping2252); if (state.failed) return current;
 
             }
 
@@ -3031,7 +3048,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleClassMapping"
-    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1051:1: ruleClassMapping returns [EObject current=null] : ( ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= 'to' ( (lv_to_2_0= RULE_STRING ) ) otherlv_3= '{' ( (lv_properties_4_0= rulePropertyMapping ) )* otherlv_5= '}' ) ;
+    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1051:1: ruleClassMapping returns [EObject current=null] : ( ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= 'to' ( (lv_to_2_0= RULE_STRING ) ) (otherlv_3= '{' ( (lv_properties_4_0= rulePropertyMapping ) )* otherlv_5= '}' )? ) ;
     public final EObject ruleClassMapping() throws RecognitionException {
         EObject current = null;
 
@@ -3046,11 +3063,11 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1054:28: ( ( ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= 'to' ( (lv_to_2_0= RULE_STRING ) ) otherlv_3= '{' ( (lv_properties_4_0= rulePropertyMapping ) )* otherlv_5= '}' ) )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1055:1: ( ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= 'to' ( (lv_to_2_0= RULE_STRING ) ) otherlv_3= '{' ( (lv_properties_4_0= rulePropertyMapping ) )* otherlv_5= '}' )
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1054:28: ( ( ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= 'to' ( (lv_to_2_0= RULE_STRING ) ) (otherlv_3= '{' ( (lv_properties_4_0= rulePropertyMapping ) )* otherlv_5= '}' )? ) )
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1055:1: ( ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= 'to' ( (lv_to_2_0= RULE_STRING ) ) (otherlv_3= '{' ( (lv_properties_4_0= rulePropertyMapping ) )* otherlv_5= '}' )? )
             {
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1055:1: ( ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= 'to' ( (lv_to_2_0= RULE_STRING ) ) otherlv_3= '{' ( (lv_properties_4_0= rulePropertyMapping ) )* otherlv_5= '}' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1055:2: ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= 'to' ( (lv_to_2_0= RULE_STRING ) ) otherlv_3= '{' ( (lv_properties_4_0= rulePropertyMapping ) )* otherlv_5= '}'
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1055:1: ( ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= 'to' ( (lv_to_2_0= RULE_STRING ) ) (otherlv_3= '{' ( (lv_properties_4_0= rulePropertyMapping ) )* otherlv_5= '}' )? )
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1055:2: ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= 'to' ( (lv_to_2_0= RULE_STRING ) ) (otherlv_3= '{' ( (lv_properties_4_0= rulePropertyMapping ) )* otherlv_5= '}' )?
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1055:2: ( (lv_from_0_0= RULE_STRING ) )
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1056:1: (lv_from_0_0= RULE_STRING )
@@ -3058,7 +3075,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1056:1: (lv_from_0_0= RULE_STRING )
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1057:3: lv_from_0_0= RULE_STRING
             {
-            lv_from_0_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleClassMapping2291); if (state.failed) return current;
+            lv_from_0_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleClassMapping2294); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(lv_from_0_0, grammarAccess.getClassMappingAccess().getFromSTRINGTerminalRuleCall_0_0()); 
@@ -3082,7 +3099,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,32,FOLLOW_32_in_ruleClassMapping2308); if (state.failed) return current;
+            otherlv_1=(Token)match(input,32,FOLLOW_32_in_ruleClassMapping2311); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_1, grammarAccess.getClassMappingAccess().getToKeyword_1());
@@ -3094,7 +3111,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1078:1: (lv_to_2_0= RULE_STRING )
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1079:3: lv_to_2_0= RULE_STRING
             {
-            lv_to_2_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleClassMapping2325); if (state.failed) return current;
+            lv_to_2_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleClassMapping2328); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(lv_to_2_0, grammarAccess.getClassMappingAccess().getToSTRINGTerminalRuleCall_2_0()); 
@@ -3118,71 +3135,88 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_3=(Token)match(input,19,FOLLOW_19_in_ruleClassMapping2342); if (state.failed) return current;
-            if ( state.backtracking==0 ) {
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1095:2: (otherlv_3= '{' ( (lv_properties_4_0= rulePropertyMapping ) )* otherlv_5= '}' )?
+            int alt26=2;
+            int LA26_0 = input.LA(1);
 
-                  	newLeafNode(otherlv_3, grammarAccess.getClassMappingAccess().getLeftCurlyBracketKeyword_3());
-                  
+            if ( (LA26_0==19) ) {
+                alt26=1;
             }
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1099:1: ( (lv_properties_4_0= rulePropertyMapping ) )*
-            loop24:
-            do {
-                int alt24=2;
-                int LA24_0 = input.LA(1);
+            switch (alt26) {
+                case 1 :
+                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1095:4: otherlv_3= '{' ( (lv_properties_4_0= rulePropertyMapping ) )* otherlv_5= '}'
+                    {
+                    otherlv_3=(Token)match(input,19,FOLLOW_19_in_ruleClassMapping2346); if (state.failed) return current;
+                    if ( state.backtracking==0 ) {
 
-                if ( (LA24_0==RULE_STRING) ) {
-                    alt24=1;
-                }
+                          	newLeafNode(otherlv_3, grammarAccess.getClassMappingAccess().getLeftCurlyBracketKeyword_3_0());
+                          
+                    }
+                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1099:1: ( (lv_properties_4_0= rulePropertyMapping ) )*
+                    loop25:
+                    do {
+                        int alt25=2;
+                        int LA25_0 = input.LA(1);
 
-
-                switch (alt24) {
-            	case 1 :
-            	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1100:1: (lv_properties_4_0= rulePropertyMapping )
-            	    {
-            	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1100:1: (lv_properties_4_0= rulePropertyMapping )
-            	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1101:3: lv_properties_4_0= rulePropertyMapping
-            	    {
-            	    if ( state.backtracking==0 ) {
-            	       
-            	      	        newCompositeNode(grammarAccess.getClassMappingAccess().getPropertiesPropertyMappingParserRuleCall_4_0()); 
-            	      	    
-            	    }
-            	    pushFollow(FOLLOW_rulePropertyMapping_in_ruleClassMapping2363);
-            	    lv_properties_4_0=rulePropertyMapping();
-
-            	    state._fsp--;
-            	    if (state.failed) return current;
-            	    if ( state.backtracking==0 ) {
-
-            	      	        if (current==null) {
-            	      	            current = createModelElementForParent(grammarAccess.getClassMappingRule());
-            	      	        }
-            	             		add(
-            	             			current, 
-            	             			"properties",
-            	              		lv_properties_4_0, 
-            	              		"PropertyMapping");
-            	      	        afterParserOrEnumRuleCall();
-            	      	    
-            	    }
-
-            	    }
+                        if ( (LA25_0==RULE_STRING) ) {
+                            alt25=1;
+                        }
 
 
-            	    }
-            	    break;
+                        switch (alt25) {
+                    	case 1 :
+                    	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1100:1: (lv_properties_4_0= rulePropertyMapping )
+                    	    {
+                    	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1100:1: (lv_properties_4_0= rulePropertyMapping )
+                    	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1101:3: lv_properties_4_0= rulePropertyMapping
+                    	    {
+                    	    if ( state.backtracking==0 ) {
+                    	       
+                    	      	        newCompositeNode(grammarAccess.getClassMappingAccess().getPropertiesPropertyMappingParserRuleCall_3_1_0()); 
+                    	      	    
+                    	    }
+                    	    pushFollow(FOLLOW_rulePropertyMapping_in_ruleClassMapping2367);
+                    	    lv_properties_4_0=rulePropertyMapping();
 
-            	default :
-            	    break loop24;
-                }
-            } while (true);
+                    	    state._fsp--;
+                    	    if (state.failed) return current;
+                    	    if ( state.backtracking==0 ) {
 
-            otherlv_5=(Token)match(input,24,FOLLOW_24_in_ruleClassMapping2376); if (state.failed) return current;
-            if ( state.backtracking==0 ) {
+                    	      	        if (current==null) {
+                    	      	            current = createModelElementForParent(grammarAccess.getClassMappingRule());
+                    	      	        }
+                    	             		add(
+                    	             			current, 
+                    	             			"properties",
+                    	              		lv_properties_4_0, 
+                    	              		"PropertyMapping");
+                    	      	        afterParserOrEnumRuleCall();
+                    	      	    
+                    	    }
 
-                  	newLeafNode(otherlv_5, grammarAccess.getClassMappingAccess().getRightCurlyBracketKeyword_5());
-                  
+                    	    }
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop25;
+                        }
+                    } while (true);
+
+                    otherlv_5=(Token)match(input,24,FOLLOW_24_in_ruleClassMapping2380); if (state.failed) return current;
+                    if ( state.backtracking==0 ) {
+
+                          	newLeafNode(otherlv_5, grammarAccess.getClassMappingAccess().getRightCurlyBracketKeyword_3_2());
+                          
+                    }
+
+                    }
+                    break;
+
             }
+
 
             }
 
@@ -3220,7 +3254,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getPropertyMappingRule()); 
             }
-            pushFollow(FOLLOW_rulePropertyMapping_in_entryRulePropertyMapping2412);
+            pushFollow(FOLLOW_rulePropertyMapping_in_entryRulePropertyMapping2418);
             iv_rulePropertyMapping=rulePropertyMapping();
 
             state._fsp--;
@@ -3228,7 +3262,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_rulePropertyMapping; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRulePropertyMapping2422); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRulePropertyMapping2428); if (state.failed) return current;
 
             }
 
@@ -3246,7 +3280,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePropertyMapping"
-    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1138:1: rulePropertyMapping returns [EObject current=null] : ( ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= ':' ( (lv_to_2_0= RULE_STRING ) ) ) ;
+    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1138:1: rulePropertyMapping returns [EObject current=null] : ( ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= 'to' ( (lv_to_2_0= RULE_STRING ) ) ) ;
     public final EObject rulePropertyMapping() throws RecognitionException {
         EObject current = null;
 
@@ -3257,11 +3291,11 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1141:28: ( ( ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= ':' ( (lv_to_2_0= RULE_STRING ) ) ) )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1142:1: ( ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= ':' ( (lv_to_2_0= RULE_STRING ) ) )
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1141:28: ( ( ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= 'to' ( (lv_to_2_0= RULE_STRING ) ) ) )
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1142:1: ( ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= 'to' ( (lv_to_2_0= RULE_STRING ) ) )
             {
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1142:1: ( ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= ':' ( (lv_to_2_0= RULE_STRING ) ) )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1142:2: ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= ':' ( (lv_to_2_0= RULE_STRING ) )
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1142:1: ( ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= 'to' ( (lv_to_2_0= RULE_STRING ) ) )
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1142:2: ( (lv_from_0_0= RULE_STRING ) ) otherlv_1= 'to' ( (lv_to_2_0= RULE_STRING ) )
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1142:2: ( (lv_from_0_0= RULE_STRING ) )
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1143:1: (lv_from_0_0= RULE_STRING )
@@ -3269,7 +3303,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1143:1: (lv_from_0_0= RULE_STRING )
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1144:3: lv_from_0_0= RULE_STRING
             {
-            lv_from_0_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rulePropertyMapping2464); if (state.failed) return current;
+            lv_from_0_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rulePropertyMapping2470); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(lv_from_0_0, grammarAccess.getPropertyMappingAccess().getFromSTRINGTerminalRuleCall_0_0()); 
@@ -3293,10 +3327,10 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,33,FOLLOW_33_in_rulePropertyMapping2481); if (state.failed) return current;
+            otherlv_1=(Token)match(input,32,FOLLOW_32_in_rulePropertyMapping2487); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_1, grammarAccess.getPropertyMappingAccess().getColonKeyword_1());
+                  	newLeafNode(otherlv_1, grammarAccess.getPropertyMappingAccess().getToKeyword_1());
                   
             }
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1164:1: ( (lv_to_2_0= RULE_STRING ) )
@@ -3305,7 +3339,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1165:1: (lv_to_2_0= RULE_STRING )
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1166:3: lv_to_2_0= RULE_STRING
             {
-            lv_to_2_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rulePropertyMapping2498); if (state.failed) return current;
+            lv_to_2_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rulePropertyMapping2504); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(lv_to_2_0, grammarAccess.getPropertyMappingAccess().getToSTRINGTerminalRuleCall_2_0()); 
@@ -3366,7 +3400,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getOperatorRule()); 
             }
-            pushFollow(FOLLOW_ruleOperator_in_entryRuleOperator2539);
+            pushFollow(FOLLOW_ruleOperator_in_entryRuleOperator2545);
             iv_ruleOperator=ruleOperator();
 
             state._fsp--;
@@ -3374,7 +3408,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleOperator; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleOperator2549); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleOperator2555); if (state.failed) return current;
 
             }
 
@@ -3412,37 +3446,37 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1203:1: (this_Import_0= ruleImport | this_Merge_1= ruleMerge | this_Slice_2= ruleSlice | this_Weave_3= ruleWeave )
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1203:1: (this_Import_0= ruleImport | this_Merge_1= ruleMerge | this_Slice_2= ruleSlice | this_Weave_3= ruleWeave )
-            int alt25=4;
+            int alt27=4;
             switch ( input.LA(1) ) {
             case 26:
                 {
-                alt25=1;
+                alt27=1;
+                }
+                break;
+            case 35:
+                {
+                alt27=2;
                 }
                 break;
             case 36:
                 {
-                alt25=2;
+                alt27=3;
                 }
                 break;
-            case 37:
+            case 40:
                 {
-                alt25=3;
-                }
-                break;
-            case 41:
-                {
-                alt25=4;
+                alt27=4;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 25, 0, input);
+                    new NoViableAltException("", 27, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt25) {
+            switch (alt27) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1204:5: this_Import_0= ruleImport
                     {
@@ -3451,7 +3485,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getOperatorAccess().getImportParserRuleCall_0()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleImport_in_ruleOperator2596);
+                    pushFollow(FOLLOW_ruleImport_in_ruleOperator2602);
                     this_Import_0=ruleImport();
 
                     state._fsp--;
@@ -3473,7 +3507,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getOperatorAccess().getMergeParserRuleCall_1()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleMerge_in_ruleOperator2623);
+                    pushFollow(FOLLOW_ruleMerge_in_ruleOperator2629);
                     this_Merge_1=ruleMerge();
 
                     state._fsp--;
@@ -3495,7 +3529,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getOperatorAccess().getSliceParserRuleCall_2()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleSlice_in_ruleOperator2650);
+                    pushFollow(FOLLOW_ruleSlice_in_ruleOperator2656);
                     this_Slice_2=ruleSlice();
 
                     state._fsp--;
@@ -3517,7 +3551,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getOperatorAccess().getWeaveParserRuleCall_3()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleWeave_in_ruleOperator2677);
+                    pushFollow(FOLLOW_ruleWeave_in_ruleOperator2683);
                     this_Weave_3=ruleWeave();
 
                     state._fsp--;
@@ -3568,7 +3602,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getImportRule()); 
             }
-            pushFollow(FOLLOW_ruleImport_in_entryRuleImport2712);
+            pushFollow(FOLLOW_ruleImport_in_entryRuleImport2718);
             iv_ruleImport=ruleImport();
 
             state._fsp--;
@@ -3576,7 +3610,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleImport; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleImport2722); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleImport2728); if (state.failed) return current;
 
             }
 
@@ -3594,7 +3628,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleImport"
-    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1259:1: ruleImport returns [EObject current=null] : (otherlv_0= 'syntax' ( (lv_ecoreUri_1_0= RULE_STRING ) ) (otherlv_2= 'withGenmodel' ( ( (lv_genmodelUris_3_0= RULE_STRING ) ) (otherlv_4= ',' ( (lv_genmodelUris_5_0= RULE_STRING ) ) )* ) )? (otherlv_6= 'and-rename' otherlv_7= '{' ( (lv_mappingRules_8_0= rulePackageMapping ) )* otherlv_9= '}' )? ) ;
+    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1259:1: ruleImport returns [EObject current=null] : (otherlv_0= 'syntax' ( (lv_ecoreUri_1_0= RULE_STRING ) ) (otherlv_2= 'withGenmodel' ( ( (lv_genmodelUris_3_0= RULE_STRING ) ) (otherlv_4= ',' ( (lv_genmodelUris_5_0= RULE_STRING ) ) )* ) )? (otherlv_6= 'renaming' otherlv_7= '{' ( (lv_mappingRules_8_0= rulePackageMapping ) )* otherlv_9= '}' )? ) ;
     public final EObject ruleImport() throws RecognitionException {
         EObject current = null;
 
@@ -3613,13 +3647,13 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1262:28: ( (otherlv_0= 'syntax' ( (lv_ecoreUri_1_0= RULE_STRING ) ) (otherlv_2= 'withGenmodel' ( ( (lv_genmodelUris_3_0= RULE_STRING ) ) (otherlv_4= ',' ( (lv_genmodelUris_5_0= RULE_STRING ) ) )* ) )? (otherlv_6= 'and-rename' otherlv_7= '{' ( (lv_mappingRules_8_0= rulePackageMapping ) )* otherlv_9= '}' )? ) )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1263:1: (otherlv_0= 'syntax' ( (lv_ecoreUri_1_0= RULE_STRING ) ) (otherlv_2= 'withGenmodel' ( ( (lv_genmodelUris_3_0= RULE_STRING ) ) (otherlv_4= ',' ( (lv_genmodelUris_5_0= RULE_STRING ) ) )* ) )? (otherlv_6= 'and-rename' otherlv_7= '{' ( (lv_mappingRules_8_0= rulePackageMapping ) )* otherlv_9= '}' )? )
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1262:28: ( (otherlv_0= 'syntax' ( (lv_ecoreUri_1_0= RULE_STRING ) ) (otherlv_2= 'withGenmodel' ( ( (lv_genmodelUris_3_0= RULE_STRING ) ) (otherlv_4= ',' ( (lv_genmodelUris_5_0= RULE_STRING ) ) )* ) )? (otherlv_6= 'renaming' otherlv_7= '{' ( (lv_mappingRules_8_0= rulePackageMapping ) )* otherlv_9= '}' )? ) )
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1263:1: (otherlv_0= 'syntax' ( (lv_ecoreUri_1_0= RULE_STRING ) ) (otherlv_2= 'withGenmodel' ( ( (lv_genmodelUris_3_0= RULE_STRING ) ) (otherlv_4= ',' ( (lv_genmodelUris_5_0= RULE_STRING ) ) )* ) )? (otherlv_6= 'renaming' otherlv_7= '{' ( (lv_mappingRules_8_0= rulePackageMapping ) )* otherlv_9= '}' )? )
             {
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1263:1: (otherlv_0= 'syntax' ( (lv_ecoreUri_1_0= RULE_STRING ) ) (otherlv_2= 'withGenmodel' ( ( (lv_genmodelUris_3_0= RULE_STRING ) ) (otherlv_4= ',' ( (lv_genmodelUris_5_0= RULE_STRING ) ) )* ) )? (otherlv_6= 'and-rename' otherlv_7= '{' ( (lv_mappingRules_8_0= rulePackageMapping ) )* otherlv_9= '}' )? )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1263:3: otherlv_0= 'syntax' ( (lv_ecoreUri_1_0= RULE_STRING ) ) (otherlv_2= 'withGenmodel' ( ( (lv_genmodelUris_3_0= RULE_STRING ) ) (otherlv_4= ',' ( (lv_genmodelUris_5_0= RULE_STRING ) ) )* ) )? (otherlv_6= 'and-rename' otherlv_7= '{' ( (lv_mappingRules_8_0= rulePackageMapping ) )* otherlv_9= '}' )?
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1263:1: (otherlv_0= 'syntax' ( (lv_ecoreUri_1_0= RULE_STRING ) ) (otherlv_2= 'withGenmodel' ( ( (lv_genmodelUris_3_0= RULE_STRING ) ) (otherlv_4= ',' ( (lv_genmodelUris_5_0= RULE_STRING ) ) )* ) )? (otherlv_6= 'renaming' otherlv_7= '{' ( (lv_mappingRules_8_0= rulePackageMapping ) )* otherlv_9= '}' )? )
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1263:3: otherlv_0= 'syntax' ( (lv_ecoreUri_1_0= RULE_STRING ) ) (otherlv_2= 'withGenmodel' ( ( (lv_genmodelUris_3_0= RULE_STRING ) ) (otherlv_4= ',' ( (lv_genmodelUris_5_0= RULE_STRING ) ) )* ) )? (otherlv_6= 'renaming' otherlv_7= '{' ( (lv_mappingRules_8_0= rulePackageMapping ) )* otherlv_9= '}' )?
             {
-            otherlv_0=(Token)match(input,26,FOLLOW_26_in_ruleImport2759); if (state.failed) return current;
+            otherlv_0=(Token)match(input,26,FOLLOW_26_in_ruleImport2765); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_0, grammarAccess.getImportAccess().getSyntaxKeyword_0());
@@ -3631,7 +3665,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1268:1: (lv_ecoreUri_1_0= RULE_STRING )
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1269:3: lv_ecoreUri_1_0= RULE_STRING
             {
-            lv_ecoreUri_1_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleImport2776); if (state.failed) return current;
+            lv_ecoreUri_1_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleImport2782); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(lv_ecoreUri_1_0, grammarAccess.getImportAccess().getEcoreUriSTRINGTerminalRuleCall_1_0()); 
@@ -3656,17 +3690,17 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
 
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1285:2: (otherlv_2= 'withGenmodel' ( ( (lv_genmodelUris_3_0= RULE_STRING ) ) (otherlv_4= ',' ( (lv_genmodelUris_5_0= RULE_STRING ) ) )* ) )?
-            int alt27=2;
-            int LA27_0 = input.LA(1);
+            int alt29=2;
+            int LA29_0 = input.LA(1);
 
-            if ( (LA27_0==34) ) {
-                alt27=1;
+            if ( (LA29_0==33) ) {
+                alt29=1;
             }
-            switch (alt27) {
+            switch (alt29) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1285:4: otherlv_2= 'withGenmodel' ( ( (lv_genmodelUris_3_0= RULE_STRING ) ) (otherlv_4= ',' ( (lv_genmodelUris_5_0= RULE_STRING ) ) )* )
                     {
-                    otherlv_2=(Token)match(input,34,FOLLOW_34_in_ruleImport2794); if (state.failed) return current;
+                    otherlv_2=(Token)match(input,33,FOLLOW_33_in_ruleImport2800); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_2, grammarAccess.getImportAccess().getWithGenmodelKeyword_2_0());
@@ -3681,7 +3715,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1290:1: (lv_genmodelUris_3_0= RULE_STRING )
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1291:3: lv_genmodelUris_3_0= RULE_STRING
                     {
-                    lv_genmodelUris_3_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleImport2812); if (state.failed) return current;
+                    lv_genmodelUris_3_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleImport2818); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                       			newLeafNode(lv_genmodelUris_3_0, grammarAccess.getImportAccess().getGenmodelUrisSTRINGTerminalRuleCall_2_1_0_0()); 
@@ -3706,21 +3740,21 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     }
 
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1307:2: (otherlv_4= ',' ( (lv_genmodelUris_5_0= RULE_STRING ) ) )*
-                    loop26:
+                    loop28:
                     do {
-                        int alt26=2;
-                        int LA26_0 = input.LA(1);
+                        int alt28=2;
+                        int LA28_0 = input.LA(1);
 
-                        if ( (LA26_0==16) ) {
-                            alt26=1;
+                        if ( (LA28_0==16) ) {
+                            alt28=1;
                         }
 
 
-                        switch (alt26) {
+                        switch (alt28) {
                     	case 1 :
                     	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1307:4: otherlv_4= ',' ( (lv_genmodelUris_5_0= RULE_STRING ) )
                     	    {
-                    	    otherlv_4=(Token)match(input,16,FOLLOW_16_in_ruleImport2830); if (state.failed) return current;
+                    	    otherlv_4=(Token)match(input,16,FOLLOW_16_in_ruleImport2836); if (state.failed) return current;
                     	    if ( state.backtracking==0 ) {
 
                     	          	newLeafNode(otherlv_4, grammarAccess.getImportAccess().getCommaKeyword_2_1_1_0());
@@ -3732,7 +3766,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1312:1: (lv_genmodelUris_5_0= RULE_STRING )
                     	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1313:3: lv_genmodelUris_5_0= RULE_STRING
                     	    {
-                    	    lv_genmodelUris_5_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleImport2847); if (state.failed) return current;
+                    	    lv_genmodelUris_5_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleImport2853); if (state.failed) return current;
                     	    if ( state.backtracking==0 ) {
 
                     	      			newLeafNode(lv_genmodelUris_5_0, grammarAccess.getImportAccess().getGenmodelUrisSTRINGTerminalRuleCall_2_1_1_1_0()); 
@@ -3761,7 +3795,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop26;
+                    	    break loop28;
                         }
                     } while (true);
 
@@ -3774,41 +3808,41 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1329:7: (otherlv_6= 'and-rename' otherlv_7= '{' ( (lv_mappingRules_8_0= rulePackageMapping ) )* otherlv_9= '}' )?
-            int alt29=2;
-            int LA29_0 = input.LA(1);
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1329:7: (otherlv_6= 'renaming' otherlv_7= '{' ( (lv_mappingRules_8_0= rulePackageMapping ) )* otherlv_9= '}' )?
+            int alt31=2;
+            int LA31_0 = input.LA(1);
 
-            if ( (LA29_0==35) ) {
-                alt29=1;
+            if ( (LA31_0==34) ) {
+                alt31=1;
             }
-            switch (alt29) {
+            switch (alt31) {
                 case 1 :
-                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1329:9: otherlv_6= 'and-rename' otherlv_7= '{' ( (lv_mappingRules_8_0= rulePackageMapping ) )* otherlv_9= '}'
+                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1329:9: otherlv_6= 'renaming' otherlv_7= '{' ( (lv_mappingRules_8_0= rulePackageMapping ) )* otherlv_9= '}'
                     {
-                    otherlv_6=(Token)match(input,35,FOLLOW_35_in_ruleImport2870); if (state.failed) return current;
+                    otherlv_6=(Token)match(input,34,FOLLOW_34_in_ruleImport2876); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                          	newLeafNode(otherlv_6, grammarAccess.getImportAccess().getAndRenameKeyword_3_0());
+                          	newLeafNode(otherlv_6, grammarAccess.getImportAccess().getRenamingKeyword_3_0());
                           
                     }
-                    otherlv_7=(Token)match(input,19,FOLLOW_19_in_ruleImport2882); if (state.failed) return current;
+                    otherlv_7=(Token)match(input,19,FOLLOW_19_in_ruleImport2888); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_7, grammarAccess.getImportAccess().getLeftCurlyBracketKeyword_3_1());
                           
                     }
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1337:1: ( (lv_mappingRules_8_0= rulePackageMapping ) )*
-                    loop28:
+                    loop30:
                     do {
-                        int alt28=2;
-                        int LA28_0 = input.LA(1);
+                        int alt30=2;
+                        int LA30_0 = input.LA(1);
 
-                        if ( (LA28_0==RULE_STRING) ) {
-                            alt28=1;
+                        if ( (LA30_0==RULE_STRING) ) {
+                            alt30=1;
                         }
 
 
-                        switch (alt28) {
+                        switch (alt30) {
                     	case 1 :
                     	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1338:1: (lv_mappingRules_8_0= rulePackageMapping )
                     	    {
@@ -3820,7 +3854,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	      	        newCompositeNode(grammarAccess.getImportAccess().getMappingRulesPackageMappingParserRuleCall_3_2_0()); 
                     	      	    
                     	    }
-                    	    pushFollow(FOLLOW_rulePackageMapping_in_ruleImport2903);
+                    	    pushFollow(FOLLOW_rulePackageMapping_in_ruleImport2909);
                     	    lv_mappingRules_8_0=rulePackageMapping();
 
                     	    state._fsp--;
@@ -3846,11 +3880,11 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop28;
+                    	    break loop30;
                         }
                     } while (true);
 
-                    otherlv_9=(Token)match(input,24,FOLLOW_24_in_ruleImport2916); if (state.failed) return current;
+                    otherlv_9=(Token)match(input,24,FOLLOW_24_in_ruleImport2922); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_9, grammarAccess.getImportAccess().getRightCurlyBracketKeyword_3_3());
@@ -3899,7 +3933,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getMergeRule()); 
             }
-            pushFollow(FOLLOW_ruleMerge_in_entryRuleMerge2954);
+            pushFollow(FOLLOW_ruleMerge_in_entryRuleMerge2960);
             iv_ruleMerge=ruleMerge();
 
             state._fsp--;
@@ -3907,7 +3941,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleMerge; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleMerge2964); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleMerge2970); if (state.failed) return current;
 
             }
 
@@ -3925,7 +3959,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMerge"
-    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1376:1: ruleMerge returns [EObject current=null] : (otherlv_0= 'merge' ( ( ruleQualifiedName ) ) (otherlv_2= 'and-rename' otherlv_3= '{' ( (lv_mappingRules_4_0= rulePackageMapping ) )* otherlv_5= '}' )? ) ;
+    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1376:1: ruleMerge returns [EObject current=null] : (otherlv_0= 'merge' ( ( ruleQualifiedName ) ) (otherlv_2= 'renaming' otherlv_3= '{' ( (lv_mappingRules_4_0= rulePackageMapping ) )* otherlv_5= '}' )? ) ;
     public final EObject ruleMerge() throws RecognitionException {
         EObject current = null;
 
@@ -3939,13 +3973,13 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1379:28: ( (otherlv_0= 'merge' ( ( ruleQualifiedName ) ) (otherlv_2= 'and-rename' otherlv_3= '{' ( (lv_mappingRules_4_0= rulePackageMapping ) )* otherlv_5= '}' )? ) )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1380:1: (otherlv_0= 'merge' ( ( ruleQualifiedName ) ) (otherlv_2= 'and-rename' otherlv_3= '{' ( (lv_mappingRules_4_0= rulePackageMapping ) )* otherlv_5= '}' )? )
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1379:28: ( (otherlv_0= 'merge' ( ( ruleQualifiedName ) ) (otherlv_2= 'renaming' otherlv_3= '{' ( (lv_mappingRules_4_0= rulePackageMapping ) )* otherlv_5= '}' )? ) )
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1380:1: (otherlv_0= 'merge' ( ( ruleQualifiedName ) ) (otherlv_2= 'renaming' otherlv_3= '{' ( (lv_mappingRules_4_0= rulePackageMapping ) )* otherlv_5= '}' )? )
             {
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1380:1: (otherlv_0= 'merge' ( ( ruleQualifiedName ) ) (otherlv_2= 'and-rename' otherlv_3= '{' ( (lv_mappingRules_4_0= rulePackageMapping ) )* otherlv_5= '}' )? )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1380:3: otherlv_0= 'merge' ( ( ruleQualifiedName ) ) (otherlv_2= 'and-rename' otherlv_3= '{' ( (lv_mappingRules_4_0= rulePackageMapping ) )* otherlv_5= '}' )?
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1380:1: (otherlv_0= 'merge' ( ( ruleQualifiedName ) ) (otherlv_2= 'renaming' otherlv_3= '{' ( (lv_mappingRules_4_0= rulePackageMapping ) )* otherlv_5= '}' )? )
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1380:3: otherlv_0= 'merge' ( ( ruleQualifiedName ) ) (otherlv_2= 'renaming' otherlv_3= '{' ( (lv_mappingRules_4_0= rulePackageMapping ) )* otherlv_5= '}' )?
             {
-            otherlv_0=(Token)match(input,36,FOLLOW_36_in_ruleMerge3001); if (state.failed) return current;
+            otherlv_0=(Token)match(input,35,FOLLOW_35_in_ruleMerge3007); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_0, grammarAccess.getMergeAccess().getMergeKeyword_0());
@@ -3969,7 +4003,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getMergeAccess().getTargetLanguageLanguageCrossReference_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_ruleMerge3024);
+            pushFollow(FOLLOW_ruleQualifiedName_in_ruleMerge3030);
             ruleQualifiedName();
 
             state._fsp--;
@@ -3985,41 +4019,41 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1399:2: (otherlv_2= 'and-rename' otherlv_3= '{' ( (lv_mappingRules_4_0= rulePackageMapping ) )* otherlv_5= '}' )?
-            int alt31=2;
-            int LA31_0 = input.LA(1);
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1399:2: (otherlv_2= 'renaming' otherlv_3= '{' ( (lv_mappingRules_4_0= rulePackageMapping ) )* otherlv_5= '}' )?
+            int alt33=2;
+            int LA33_0 = input.LA(1);
 
-            if ( (LA31_0==35) ) {
-                alt31=1;
+            if ( (LA33_0==34) ) {
+                alt33=1;
             }
-            switch (alt31) {
+            switch (alt33) {
                 case 1 :
-                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1399:4: otherlv_2= 'and-rename' otherlv_3= '{' ( (lv_mappingRules_4_0= rulePackageMapping ) )* otherlv_5= '}'
+                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1399:4: otherlv_2= 'renaming' otherlv_3= '{' ( (lv_mappingRules_4_0= rulePackageMapping ) )* otherlv_5= '}'
                     {
-                    otherlv_2=(Token)match(input,35,FOLLOW_35_in_ruleMerge3037); if (state.failed) return current;
+                    otherlv_2=(Token)match(input,34,FOLLOW_34_in_ruleMerge3043); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                          	newLeafNode(otherlv_2, grammarAccess.getMergeAccess().getAndRenameKeyword_2_0());
+                          	newLeafNode(otherlv_2, grammarAccess.getMergeAccess().getRenamingKeyword_2_0());
                           
                     }
-                    otherlv_3=(Token)match(input,19,FOLLOW_19_in_ruleMerge3049); if (state.failed) return current;
+                    otherlv_3=(Token)match(input,19,FOLLOW_19_in_ruleMerge3055); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_3, grammarAccess.getMergeAccess().getLeftCurlyBracketKeyword_2_1());
                           
                     }
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1407:1: ( (lv_mappingRules_4_0= rulePackageMapping ) )*
-                    loop30:
+                    loop32:
                     do {
-                        int alt30=2;
-                        int LA30_0 = input.LA(1);
+                        int alt32=2;
+                        int LA32_0 = input.LA(1);
 
-                        if ( (LA30_0==RULE_STRING) ) {
-                            alt30=1;
+                        if ( (LA32_0==RULE_STRING) ) {
+                            alt32=1;
                         }
 
 
-                        switch (alt30) {
+                        switch (alt32) {
                     	case 1 :
                     	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1408:1: (lv_mappingRules_4_0= rulePackageMapping )
                     	    {
@@ -4031,7 +4065,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	      	        newCompositeNode(grammarAccess.getMergeAccess().getMappingRulesPackageMappingParserRuleCall_2_2_0()); 
                     	      	    
                     	    }
-                    	    pushFollow(FOLLOW_rulePackageMapping_in_ruleMerge3070);
+                    	    pushFollow(FOLLOW_rulePackageMapping_in_ruleMerge3076);
                     	    lv_mappingRules_4_0=rulePackageMapping();
 
                     	    state._fsp--;
@@ -4057,11 +4091,11 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop30;
+                    	    break loop32;
                         }
                     } while (true);
 
-                    otherlv_5=(Token)match(input,24,FOLLOW_24_in_ruleMerge3083); if (state.failed) return current;
+                    otherlv_5=(Token)match(input,24,FOLLOW_24_in_ruleMerge3089); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_5, grammarAccess.getMergeAccess().getRightCurlyBracketKeyword_2_3());
@@ -4110,7 +4144,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getSliceRule()); 
             }
-            pushFollow(FOLLOW_ruleSlice_in_entryRuleSlice3121);
+            pushFollow(FOLLOW_ruleSlice_in_entryRuleSlice3127);
             iv_ruleSlice=ruleSlice();
 
             state._fsp--;
@@ -4118,7 +4152,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleSlice; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleSlice3131); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleSlice3137); if (state.failed) return current;
 
             }
 
@@ -4136,7 +4170,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSlice"
-    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1446:1: ruleSlice returns [EObject current=null] : (otherlv_0= 'slice' ( ( ruleQualifiedName ) ) otherlv_2= 'on' otherlv_3= '[' ( (lv_roots_4_0= RULE_STRING ) ) (otherlv_5= ',' ( (lv_roots_6_0= RULE_STRING ) ) )* otherlv_7= ']' (otherlv_8= 'and-rename' otherlv_9= '{' ( (lv_mappingRules_10_0= rulePackageMapping ) )* otherlv_11= '}' )? ) ;
+    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1446:1: ruleSlice returns [EObject current=null] : (otherlv_0= 'slice' ( ( ruleQualifiedName ) ) otherlv_2= 'on' otherlv_3= '[' ( (lv_roots_4_0= RULE_STRING ) ) (otherlv_5= ',' ( (lv_roots_6_0= RULE_STRING ) ) )* otherlv_7= ']' (otherlv_8= 'renaming' otherlv_9= '{' ( (lv_mappingRules_10_0= rulePackageMapping ) )* otherlv_11= '}' )? ) ;
     public final EObject ruleSlice() throws RecognitionException {
         EObject current = null;
 
@@ -4156,13 +4190,13 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1449:28: ( (otherlv_0= 'slice' ( ( ruleQualifiedName ) ) otherlv_2= 'on' otherlv_3= '[' ( (lv_roots_4_0= RULE_STRING ) ) (otherlv_5= ',' ( (lv_roots_6_0= RULE_STRING ) ) )* otherlv_7= ']' (otherlv_8= 'and-rename' otherlv_9= '{' ( (lv_mappingRules_10_0= rulePackageMapping ) )* otherlv_11= '}' )? ) )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1450:1: (otherlv_0= 'slice' ( ( ruleQualifiedName ) ) otherlv_2= 'on' otherlv_3= '[' ( (lv_roots_4_0= RULE_STRING ) ) (otherlv_5= ',' ( (lv_roots_6_0= RULE_STRING ) ) )* otherlv_7= ']' (otherlv_8= 'and-rename' otherlv_9= '{' ( (lv_mappingRules_10_0= rulePackageMapping ) )* otherlv_11= '}' )? )
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1449:28: ( (otherlv_0= 'slice' ( ( ruleQualifiedName ) ) otherlv_2= 'on' otherlv_3= '[' ( (lv_roots_4_0= RULE_STRING ) ) (otherlv_5= ',' ( (lv_roots_6_0= RULE_STRING ) ) )* otherlv_7= ']' (otherlv_8= 'renaming' otherlv_9= '{' ( (lv_mappingRules_10_0= rulePackageMapping ) )* otherlv_11= '}' )? ) )
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1450:1: (otherlv_0= 'slice' ( ( ruleQualifiedName ) ) otherlv_2= 'on' otherlv_3= '[' ( (lv_roots_4_0= RULE_STRING ) ) (otherlv_5= ',' ( (lv_roots_6_0= RULE_STRING ) ) )* otherlv_7= ']' (otherlv_8= 'renaming' otherlv_9= '{' ( (lv_mappingRules_10_0= rulePackageMapping ) )* otherlv_11= '}' )? )
             {
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1450:1: (otherlv_0= 'slice' ( ( ruleQualifiedName ) ) otherlv_2= 'on' otherlv_3= '[' ( (lv_roots_4_0= RULE_STRING ) ) (otherlv_5= ',' ( (lv_roots_6_0= RULE_STRING ) ) )* otherlv_7= ']' (otherlv_8= 'and-rename' otherlv_9= '{' ( (lv_mappingRules_10_0= rulePackageMapping ) )* otherlv_11= '}' )? )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1450:3: otherlv_0= 'slice' ( ( ruleQualifiedName ) ) otherlv_2= 'on' otherlv_3= '[' ( (lv_roots_4_0= RULE_STRING ) ) (otherlv_5= ',' ( (lv_roots_6_0= RULE_STRING ) ) )* otherlv_7= ']' (otherlv_8= 'and-rename' otherlv_9= '{' ( (lv_mappingRules_10_0= rulePackageMapping ) )* otherlv_11= '}' )?
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1450:1: (otherlv_0= 'slice' ( ( ruleQualifiedName ) ) otherlv_2= 'on' otherlv_3= '[' ( (lv_roots_4_0= RULE_STRING ) ) (otherlv_5= ',' ( (lv_roots_6_0= RULE_STRING ) ) )* otherlv_7= ']' (otherlv_8= 'renaming' otherlv_9= '{' ( (lv_mappingRules_10_0= rulePackageMapping ) )* otherlv_11= '}' )? )
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1450:3: otherlv_0= 'slice' ( ( ruleQualifiedName ) ) otherlv_2= 'on' otherlv_3= '[' ( (lv_roots_4_0= RULE_STRING ) ) (otherlv_5= ',' ( (lv_roots_6_0= RULE_STRING ) ) )* otherlv_7= ']' (otherlv_8= 'renaming' otherlv_9= '{' ( (lv_mappingRules_10_0= rulePackageMapping ) )* otherlv_11= '}' )?
             {
-            otherlv_0=(Token)match(input,37,FOLLOW_37_in_ruleSlice3168); if (state.failed) return current;
+            otherlv_0=(Token)match(input,36,FOLLOW_36_in_ruleSlice3174); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_0, grammarAccess.getSliceAccess().getSliceKeyword_0());
@@ -4186,7 +4220,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getSliceAccess().getTargetLanguageLanguageCrossReference_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_ruleSlice3191);
+            pushFollow(FOLLOW_ruleQualifiedName_in_ruleSlice3197);
             ruleQualifiedName();
 
             state._fsp--;
@@ -4202,13 +4236,13 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,38,FOLLOW_38_in_ruleSlice3203); if (state.failed) return current;
+            otherlv_2=(Token)match(input,37,FOLLOW_37_in_ruleSlice3209); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_2, grammarAccess.getSliceAccess().getOnKeyword_2());
                   
             }
-            otherlv_3=(Token)match(input,39,FOLLOW_39_in_ruleSlice3215); if (state.failed) return current;
+            otherlv_3=(Token)match(input,38,FOLLOW_38_in_ruleSlice3221); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_3, grammarAccess.getSliceAccess().getLeftSquareBracketKeyword_3());
@@ -4220,7 +4254,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1478:1: (lv_roots_4_0= RULE_STRING )
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1479:3: lv_roots_4_0= RULE_STRING
             {
-            lv_roots_4_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleSlice3232); if (state.failed) return current;
+            lv_roots_4_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleSlice3238); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(lv_roots_4_0, grammarAccess.getSliceAccess().getRootsSTRINGTerminalRuleCall_4_0()); 
@@ -4245,21 +4279,21 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
 
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1495:2: (otherlv_5= ',' ( (lv_roots_6_0= RULE_STRING ) ) )*
-            loop32:
+            loop34:
             do {
-                int alt32=2;
-                int LA32_0 = input.LA(1);
+                int alt34=2;
+                int LA34_0 = input.LA(1);
 
-                if ( (LA32_0==16) ) {
-                    alt32=1;
+                if ( (LA34_0==16) ) {
+                    alt34=1;
                 }
 
 
-                switch (alt32) {
+                switch (alt34) {
             	case 1 :
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1495:4: otherlv_5= ',' ( (lv_roots_6_0= RULE_STRING ) )
             	    {
-            	    otherlv_5=(Token)match(input,16,FOLLOW_16_in_ruleSlice3250); if (state.failed) return current;
+            	    otherlv_5=(Token)match(input,16,FOLLOW_16_in_ruleSlice3256); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	          	newLeafNode(otherlv_5, grammarAccess.getSliceAccess().getCommaKeyword_5_0());
@@ -4271,7 +4305,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1500:1: (lv_roots_6_0= RULE_STRING )
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1501:3: lv_roots_6_0= RULE_STRING
             	    {
-            	    lv_roots_6_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleSlice3267); if (state.failed) return current;
+            	    lv_roots_6_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleSlice3273); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	      			newLeafNode(lv_roots_6_0, grammarAccess.getSliceAccess().getRootsSTRINGTerminalRuleCall_5_1_0()); 
@@ -4300,51 +4334,51 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop32;
+            	    break loop34;
                 }
             } while (true);
 
-            otherlv_7=(Token)match(input,40,FOLLOW_40_in_ruleSlice3286); if (state.failed) return current;
+            otherlv_7=(Token)match(input,39,FOLLOW_39_in_ruleSlice3292); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_7, grammarAccess.getSliceAccess().getRightSquareBracketKeyword_6());
                   
             }
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1521:1: (otherlv_8= 'and-rename' otherlv_9= '{' ( (lv_mappingRules_10_0= rulePackageMapping ) )* otherlv_11= '}' )?
-            int alt34=2;
-            int LA34_0 = input.LA(1);
+            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1521:1: (otherlv_8= 'renaming' otherlv_9= '{' ( (lv_mappingRules_10_0= rulePackageMapping ) )* otherlv_11= '}' )?
+            int alt36=2;
+            int LA36_0 = input.LA(1);
 
-            if ( (LA34_0==35) ) {
-                alt34=1;
+            if ( (LA36_0==34) ) {
+                alt36=1;
             }
-            switch (alt34) {
+            switch (alt36) {
                 case 1 :
-                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1521:3: otherlv_8= 'and-rename' otherlv_9= '{' ( (lv_mappingRules_10_0= rulePackageMapping ) )* otherlv_11= '}'
+                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1521:3: otherlv_8= 'renaming' otherlv_9= '{' ( (lv_mappingRules_10_0= rulePackageMapping ) )* otherlv_11= '}'
                     {
-                    otherlv_8=(Token)match(input,35,FOLLOW_35_in_ruleSlice3299); if (state.failed) return current;
+                    otherlv_8=(Token)match(input,34,FOLLOW_34_in_ruleSlice3305); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                          	newLeafNode(otherlv_8, grammarAccess.getSliceAccess().getAndRenameKeyword_7_0());
+                          	newLeafNode(otherlv_8, grammarAccess.getSliceAccess().getRenamingKeyword_7_0());
                           
                     }
-                    otherlv_9=(Token)match(input,19,FOLLOW_19_in_ruleSlice3311); if (state.failed) return current;
+                    otherlv_9=(Token)match(input,19,FOLLOW_19_in_ruleSlice3317); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_9, grammarAccess.getSliceAccess().getLeftCurlyBracketKeyword_7_1());
                           
                     }
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1529:1: ( (lv_mappingRules_10_0= rulePackageMapping ) )*
-                    loop33:
+                    loop35:
                     do {
-                        int alt33=2;
-                        int LA33_0 = input.LA(1);
+                        int alt35=2;
+                        int LA35_0 = input.LA(1);
 
-                        if ( (LA33_0==RULE_STRING) ) {
-                            alt33=1;
+                        if ( (LA35_0==RULE_STRING) ) {
+                            alt35=1;
                         }
 
 
-                        switch (alt33) {
+                        switch (alt35) {
                     	case 1 :
                     	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1530:1: (lv_mappingRules_10_0= rulePackageMapping )
                     	    {
@@ -4356,7 +4390,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	      	        newCompositeNode(grammarAccess.getSliceAccess().getMappingRulesPackageMappingParserRuleCall_7_2_0()); 
                     	      	    
                     	    }
-                    	    pushFollow(FOLLOW_rulePackageMapping_in_ruleSlice3332);
+                    	    pushFollow(FOLLOW_rulePackageMapping_in_ruleSlice3338);
                     	    lv_mappingRules_10_0=rulePackageMapping();
 
                     	    state._fsp--;
@@ -4382,11 +4416,11 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop33;
+                    	    break loop35;
                         }
                     } while (true);
 
-                    otherlv_11=(Token)match(input,24,FOLLOW_24_in_ruleSlice3345); if (state.failed) return current;
+                    otherlv_11=(Token)match(input,24,FOLLOW_24_in_ruleSlice3351); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_11, grammarAccess.getSliceAccess().getRightCurlyBracketKeyword_7_3());
@@ -4435,7 +4469,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getInheritRule()); 
             }
-            pushFollow(FOLLOW_ruleInherit_in_entryRuleInherit3383);
+            pushFollow(FOLLOW_ruleInherit_in_entryRuleInherit3389);
             iv_ruleInherit=ruleInherit();
 
             state._fsp--;
@@ -4443,7 +4477,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleInherit; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleInherit3393); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleInherit3399); if (state.failed) return current;
 
             }
 
@@ -4489,7 +4523,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getInheritAccess().getTargetLanguageLanguageCrossReference_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_ruleInherit3440);
+            pushFollow(FOLLOW_ruleQualifiedName_in_ruleInherit3446);
             ruleQualifiedName();
 
             state._fsp--;
@@ -4539,7 +4573,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getWeaveRule()); 
             }
-            pushFollow(FOLLOW_ruleWeave_in_entryRuleWeave3475);
+            pushFollow(FOLLOW_ruleWeave_in_entryRuleWeave3481);
             iv_ruleWeave=ruleWeave();
 
             state._fsp--;
@@ -4547,7 +4581,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleWeave; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleWeave3485); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleWeave3491); if (state.failed) return current;
 
             }
 
@@ -4581,9 +4615,9 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1608:1: (this_AspectTypeRef_0= ruleAspectTypeRef | this_AspectWildcard_1= ruleAspectWildcard )
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1608:1: (this_AspectTypeRef_0= ruleAspectTypeRef | this_AspectWildcard_1= ruleAspectWildcard )
-            int alt35=2;
-            alt35 = dfa35.predict(input);
-            switch (alt35) {
+            int alt37=2;
+            alt37 = dfa37.predict(input);
+            switch (alt37) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1609:5: this_AspectTypeRef_0= ruleAspectTypeRef
                     {
@@ -4592,7 +4626,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getWeaveAccess().getAspectTypeRefParserRuleCall_0()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleAspectTypeRef_in_ruleWeave3532);
+                    pushFollow(FOLLOW_ruleAspectTypeRef_in_ruleWeave3538);
                     this_AspectTypeRef_0=ruleAspectTypeRef();
 
                     state._fsp--;
@@ -4614,7 +4648,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getWeaveAccess().getAspectWildcardParserRuleCall_1()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleAspectWildcard_in_ruleWeave3559);
+                    pushFollow(FOLLOW_ruleAspectWildcard_in_ruleWeave3565);
                     this_AspectWildcard_1=ruleAspectWildcard();
 
                     state._fsp--;
@@ -4665,7 +4699,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getAspectTypeRefRule()); 
             }
-            pushFollow(FOLLOW_ruleAspectTypeRef_in_entryRuleAspectTypeRef3594);
+            pushFollow(FOLLOW_ruleAspectTypeRef_in_entryRuleAspectTypeRef3600);
             iv_ruleAspectTypeRef=ruleAspectTypeRef();
 
             state._fsp--;
@@ -4673,7 +4707,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleAspectTypeRef; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleAspectTypeRef3604); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleAspectTypeRef3610); if (state.failed) return current;
 
             }
 
@@ -4708,7 +4742,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1648:1: (otherlv_0= 'with' ( (lv_aspectTypeRef_1_0= ruleJvmTypeReference ) ) )
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1648:3: otherlv_0= 'with' ( (lv_aspectTypeRef_1_0= ruleJvmTypeReference ) )
             {
-            otherlv_0=(Token)match(input,41,FOLLOW_41_in_ruleAspectTypeRef3641); if (state.failed) return current;
+            otherlv_0=(Token)match(input,40,FOLLOW_40_in_ruleAspectTypeRef3647); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_0, grammarAccess.getAspectTypeRefAccess().getWithKeyword_0());
@@ -4725,7 +4759,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getAspectTypeRefAccess().getAspectTypeRefJvmTypeReferenceParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleAspectTypeRef3662);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleAspectTypeRef3668);
             lv_aspectTypeRef_1_0=ruleJvmTypeReference();
 
             state._fsp--;
@@ -4786,7 +4820,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getAspectWildcardRule()); 
             }
-            pushFollow(FOLLOW_ruleAspectWildcard_in_entryRuleAspectWildcard3698);
+            pushFollow(FOLLOW_ruleAspectWildcard_in_entryRuleAspectWildcard3704);
             iv_ruleAspectWildcard=ruleAspectWildcard();
 
             state._fsp--;
@@ -4794,7 +4828,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleAspectWildcard; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleAspectWildcard3708); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleAspectWildcard3714); if (state.failed) return current;
 
             }
 
@@ -4829,7 +4863,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1691:1: (otherlv_0= 'with' ( (lv_aspectWildcardImport_1_0= ruleQualifiedNameWithWildcard ) ) )
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1691:3: otherlv_0= 'with' ( (lv_aspectWildcardImport_1_0= ruleQualifiedNameWithWildcard ) )
             {
-            otherlv_0=(Token)match(input,41,FOLLOW_41_in_ruleAspectWildcard3745); if (state.failed) return current;
+            otherlv_0=(Token)match(input,40,FOLLOW_40_in_ruleAspectWildcard3751); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_0, grammarAccess.getAspectWildcardAccess().getWithKeyword_0());
@@ -4846,7 +4880,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getAspectWildcardAccess().getAspectWildcardImportQualifiedNameWithWildcardParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleQualifiedNameWithWildcard_in_ruleAspectWildcard3766);
+            pushFollow(FOLLOW_ruleQualifiedNameWithWildcard_in_ruleAspectWildcard3772);
             lv_aspectWildcardImport_1_0=ruleQualifiedNameWithWildcard();
 
             state._fsp--;
@@ -4907,7 +4941,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXExpressionRule()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_entryRuleXExpression3802);
+            pushFollow(FOLLOW_ruleXExpression_in_entryRuleXExpression3808);
             iv_ruleXExpression=ruleXExpression();
 
             state._fsp--;
@@ -4915,7 +4949,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXExpression; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXExpression3812); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXExpression3818); if (state.failed) return current;
 
             }
 
@@ -4951,7 +4985,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       newCompositeNode(grammarAccess.getXExpressionAccess().getXAssignmentParserRuleCall()); 
                   
             }
-            pushFollow(FOLLOW_ruleXAssignment_in_ruleXExpression3858);
+            pushFollow(FOLLOW_ruleXAssignment_in_ruleXExpression3864);
             this_XAssignment_0=ruleXAssignment();
 
             state._fsp--;
@@ -4996,7 +5030,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXAssignmentRule()); 
             }
-            pushFollow(FOLLOW_ruleXAssignment_in_entryRuleXAssignment3892);
+            pushFollow(FOLLOW_ruleXAssignment_in_entryRuleXAssignment3898);
             iv_ruleXAssignment=ruleXAssignment();
 
             state._fsp--;
@@ -5004,7 +5038,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXAssignment; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXAssignment3902); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXAssignment3908); if (state.failed) return current;
 
             }
 
@@ -5040,22 +5074,22 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1764:1: ( ( () ( ( ruleFeatureCallID ) ) ruleOpSingleAssign ( (lv_value_3_0= ruleXAssignment ) ) ) | (this_XOrExpression_4= ruleXOrExpression ( ( ( ( () ( ( ruleOpMultiAssign ) ) ) )=> ( () ( ( ruleOpMultiAssign ) ) ) ) ( (lv_rightOperand_7_0= ruleXAssignment ) ) )? ) )
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1764:1: ( ( () ( ( ruleFeatureCallID ) ) ruleOpSingleAssign ( (lv_value_3_0= ruleXAssignment ) ) ) | (this_XOrExpression_4= ruleXOrExpression ( ( ( ( () ( ( ruleOpMultiAssign ) ) ) )=> ( () ( ( ruleOpMultiAssign ) ) ) ) ( (lv_rightOperand_7_0= ruleXAssignment ) ) )? ) )
-            int alt37=2;
+            int alt39=2;
             switch ( input.LA(1) ) {
             case RULE_ID:
                 {
-                int LA37_1 = input.LA(2);
+                int LA39_1 = input.LA(2);
 
-                if ( (LA37_1==EOF||(LA37_1>=RULE_STRING && LA37_1<=RULE_ID)||LA37_1==16||LA37_1==19||LA37_1==24||(LA37_1>=29 && LA37_1<=30)||LA37_1==33||(LA37_1>=39 && LA37_1<=40)||(LA37_1>=43 && LA37_1<=77)||(LA37_1>=79 && LA37_1<=105)) ) {
-                    alt37=2;
+                if ( (LA39_1==41) ) {
+                    alt39=1;
                 }
-                else if ( (LA37_1==42) ) {
-                    alt37=1;
+                else if ( (LA39_1==EOF||(LA39_1>=RULE_STRING && LA39_1<=RULE_ID)||LA39_1==16||LA39_1==19||LA39_1==24||(LA39_1>=29 && LA39_1<=30)||(LA39_1>=38 && LA39_1<=39)||(LA39_1>=42 && LA39_1<=76)||(LA39_1>=78 && LA39_1<=105)) ) {
+                    alt39=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 37, 1, input);
+                        new NoViableAltException("", 39, 1, input);
 
                     throw nvae;
                 }
@@ -5063,18 +5097,18 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 break;
             case 90:
                 {
-                int LA37_2 = input.LA(2);
+                int LA39_2 = input.LA(2);
 
-                if ( (LA37_2==EOF||(LA37_2>=RULE_STRING && LA37_2<=RULE_ID)||LA37_2==16||LA37_2==19||LA37_2==24||(LA37_2>=29 && LA37_2<=30)||LA37_2==33||(LA37_2>=39 && LA37_2<=40)||(LA37_2>=43 && LA37_2<=77)||(LA37_2>=79 && LA37_2<=105)) ) {
-                    alt37=2;
+                if ( (LA39_2==41) ) {
+                    alt39=1;
                 }
-                else if ( (LA37_2==42) ) {
-                    alt37=1;
+                else if ( (LA39_2==EOF||(LA39_2>=RULE_STRING && LA39_2<=RULE_ID)||LA39_2==16||LA39_2==19||LA39_2==24||(LA39_2>=29 && LA39_2<=30)||(LA39_2>=38 && LA39_2<=39)||(LA39_2>=42 && LA39_2<=76)||(LA39_2>=78 && LA39_2<=105)) ) {
+                    alt39=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 37, 2, input);
+                        new NoViableAltException("", 39, 2, input);
 
                     throw nvae;
                 }
@@ -5082,18 +5116,18 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 break;
             case 91:
                 {
-                int LA37_3 = input.LA(2);
+                int LA39_3 = input.LA(2);
 
-                if ( (LA37_3==EOF||(LA37_3>=RULE_STRING && LA37_3<=RULE_ID)||LA37_3==16||LA37_3==19||LA37_3==24||(LA37_3>=29 && LA37_3<=30)||LA37_3==33||(LA37_3>=39 && LA37_3<=40)||(LA37_3>=43 && LA37_3<=77)||(LA37_3>=79 && LA37_3<=105)) ) {
-                    alt37=2;
+                if ( (LA39_3==41) ) {
+                    alt39=1;
                 }
-                else if ( (LA37_3==42) ) {
-                    alt37=1;
+                else if ( (LA39_3==EOF||(LA39_3>=RULE_STRING && LA39_3<=RULE_ID)||LA39_3==16||LA39_3==19||LA39_3==24||(LA39_3>=29 && LA39_3<=30)||(LA39_3>=38 && LA39_3<=39)||(LA39_3>=42 && LA39_3<=76)||(LA39_3>=78 && LA39_3<=105)) ) {
+                    alt39=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 37, 3, input);
+                        new NoViableAltException("", 39, 3, input);
 
                     throw nvae;
                 }
@@ -5101,18 +5135,18 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 break;
             case 92:
                 {
-                int LA37_4 = input.LA(2);
+                int LA39_4 = input.LA(2);
 
-                if ( (LA37_4==42) ) {
-                    alt37=1;
+                if ( (LA39_4==41) ) {
+                    alt39=1;
                 }
-                else if ( (LA37_4==EOF||(LA37_4>=RULE_STRING && LA37_4<=RULE_ID)||LA37_4==16||LA37_4==19||LA37_4==24||(LA37_4>=29 && LA37_4<=30)||LA37_4==33||(LA37_4>=39 && LA37_4<=40)||(LA37_4>=43 && LA37_4<=77)||(LA37_4>=79 && LA37_4<=105)) ) {
-                    alt37=2;
+                else if ( (LA39_4==EOF||(LA39_4>=RULE_STRING && LA39_4<=RULE_ID)||LA39_4==16||LA39_4==19||LA39_4==24||(LA39_4>=29 && LA39_4<=30)||(LA39_4>=38 && LA39_4<=39)||(LA39_4>=42 && LA39_4<=76)||(LA39_4>=78 && LA39_4<=105)) ) {
+                    alt39=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 37, 4, input);
+                        new NoViableAltException("", 39, 4, input);
 
                     throw nvae;
                 }
@@ -5120,18 +5154,18 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 break;
             case 93:
                 {
-                int LA37_5 = input.LA(2);
+                int LA39_5 = input.LA(2);
 
-                if ( (LA37_5==EOF||(LA37_5>=RULE_STRING && LA37_5<=RULE_ID)||LA37_5==16||LA37_5==19||LA37_5==24||(LA37_5>=29 && LA37_5<=30)||LA37_5==33||(LA37_5>=39 && LA37_5<=40)||(LA37_5>=43 && LA37_5<=77)||(LA37_5>=79 && LA37_5<=105)) ) {
-                    alt37=2;
+                if ( (LA39_5==41) ) {
+                    alt39=1;
                 }
-                else if ( (LA37_5==42) ) {
-                    alt37=1;
+                else if ( (LA39_5==EOF||(LA39_5>=RULE_STRING && LA39_5<=RULE_ID)||LA39_5==16||LA39_5==19||LA39_5==24||(LA39_5>=29 && LA39_5<=30)||(LA39_5>=38 && LA39_5<=39)||(LA39_5>=42 && LA39_5<=76)||(LA39_5>=78 && LA39_5<=105)) ) {
+                    alt39=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 37, 5, input);
+                        new NoViableAltException("", 39, 5, input);
 
                     throw nvae;
                 }
@@ -5143,14 +5177,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             case RULE_DECIMAL:
             case 19:
             case 29:
-            case 39:
-            case 48:
+            case 38:
+            case 47:
+            case 63:
             case 64:
-            case 65:
-            case 70:
-            case 77:
-            case 80:
-            case 82:
+            case 69:
+            case 76:
+            case 79:
+            case 81:
             case 85:
             case 86:
             case 87:
@@ -5165,18 +5199,18 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             case 102:
             case 104:
                 {
-                alt37=2;
+                alt39=2;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 37, 0, input);
+                    new NoViableAltException("", 39, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt37) {
+            switch (alt39) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1764:2: ( () ( ( ruleFeatureCallID ) ) ruleOpSingleAssign ( (lv_value_3_0= ruleXAssignment ) ) )
                     {
@@ -5214,7 +5248,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXAssignmentAccess().getFeatureJvmIdentifiableElementCrossReference_0_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleFeatureCallID_in_ruleXAssignment3960);
+                    pushFollow(FOLLOW_ruleFeatureCallID_in_ruleXAssignment3966);
                     ruleFeatureCallID();
 
                     state._fsp--;
@@ -5235,7 +5269,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXAssignmentAccess().getOpSingleAssignParserRuleCall_0_2()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleOpSingleAssign_in_ruleXAssignment3976);
+                    pushFollow(FOLLOW_ruleOpSingleAssign_in_ruleXAssignment3982);
                     ruleOpSingleAssign();
 
                     state._fsp--;
@@ -5256,7 +5290,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXAssignmentAccess().getValueXAssignmentParserRuleCall_0_3_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleXAssignment_in_ruleXAssignment3996);
+                    pushFollow(FOLLOW_ruleXAssignment_in_ruleXAssignment4002);
                     lv_value_3_0=ruleXAssignment();
 
                     state._fsp--;
@@ -5297,7 +5331,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXAssignmentAccess().getXOrExpressionParserRuleCall_1_0()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXOrExpression_in_ruleXAssignment4026);
+                    pushFollow(FOLLOW_ruleXOrExpression_in_ruleXAssignment4032);
                     this_XOrExpression_4=ruleXOrExpression();
 
                     state._fsp--;
@@ -5309,9 +5343,9 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                           
                     }
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1821:1: ( ( ( ( () ( ( ruleOpMultiAssign ) ) ) )=> ( () ( ( ruleOpMultiAssign ) ) ) ) ( (lv_rightOperand_7_0= ruleXAssignment ) ) )?
-                    int alt36=2;
-                    alt36 = dfa36.predict(input);
-                    switch (alt36) {
+                    int alt38=2;
+                    alt38 = dfa38.predict(input);
+                    switch (alt38) {
                         case 1 :
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1821:2: ( ( ( () ( ( ruleOpMultiAssign ) ) ) )=> ( () ( ( ruleOpMultiAssign ) ) ) ) ( (lv_rightOperand_7_0= ruleXAssignment ) )
                             {
@@ -5352,7 +5386,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               	        newCompositeNode(grammarAccess.getXAssignmentAccess().getFeatureJvmIdentifiableElementCrossReference_1_1_0_0_1_0()); 
                               	    
                             }
-                            pushFollow(FOLLOW_ruleOpMultiAssign_in_ruleXAssignment4079);
+                            pushFollow(FOLLOW_ruleOpMultiAssign_in_ruleXAssignment4085);
                             ruleOpMultiAssign();
 
                             state._fsp--;
@@ -5385,7 +5419,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               	        newCompositeNode(grammarAccess.getXAssignmentAccess().getRightOperandXAssignmentParserRuleCall_1_1_1_0()); 
                               	    
                             }
-                            pushFollow(FOLLOW_ruleXAssignment_in_ruleXAssignment4102);
+                            pushFollow(FOLLOW_ruleXAssignment_in_ruleXAssignment4108);
                             lv_rightOperand_7_0=ruleXAssignment();
 
                             state._fsp--;
@@ -5458,7 +5492,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getOpSingleAssignRule()); 
             }
-            pushFollow(FOLLOW_ruleOpSingleAssign_in_entryRuleOpSingleAssign4142);
+            pushFollow(FOLLOW_ruleOpSingleAssign_in_entryRuleOpSingleAssign4148);
             iv_ruleOpSingleAssign=ruleOpSingleAssign();
 
             state._fsp--;
@@ -5466,7 +5500,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleOpSingleAssign.getText(); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleOpSingleAssign4153); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleOpSingleAssign4159); if (state.failed) return current;
 
             }
 
@@ -5496,7 +5530,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1885:28: (kw= '=' )
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1887:2: kw= '='
             {
-            kw=(Token)match(input,42,FOLLOW_42_in_ruleOpSingleAssign4190); if (state.failed) return current;
+            kw=(Token)match(input,41,FOLLOW_41_in_ruleOpSingleAssign4196); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                       current.merge(kw);
@@ -5537,7 +5571,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getOpMultiAssignRule()); 
             }
-            pushFollow(FOLLOW_ruleOpMultiAssign_in_entryRuleOpMultiAssign4230);
+            pushFollow(FOLLOW_ruleOpMultiAssign_in_entryRuleOpMultiAssign4236);
             iv_ruleOpMultiAssign=ruleOpMultiAssign();
 
             state._fsp--;
@@ -5545,7 +5579,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleOpMultiAssign.getText(); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleOpMultiAssign4241); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleOpMultiAssign4247); if (state.failed) return current;
 
             }
 
@@ -5576,56 +5610,56 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1913:1: (kw= '+=' | kw= '-=' | kw= '*=' | kw= '/=' | kw= '%=' | (kw= '<' kw= '<' kw= '=' ) | (kw= '>' (kw= '>' )? kw= '>=' ) )
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1913:1: (kw= '+=' | kw= '-=' | kw= '*=' | kw= '/=' | kw= '%=' | (kw= '<' kw= '<' kw= '=' ) | (kw= '>' (kw= '>' )? kw= '>=' ) )
-            int alt39=7;
+            int alt41=7;
             switch ( input.LA(1) ) {
+            case 42:
+                {
+                alt41=1;
+                }
+                break;
             case 43:
                 {
-                alt39=1;
+                alt41=2;
                 }
                 break;
             case 44:
                 {
-                alt39=2;
+                alt41=3;
                 }
                 break;
             case 45:
                 {
-                alt39=3;
+                alt41=4;
                 }
                 break;
             case 46:
                 {
-                alt39=4;
+                alt41=5;
                 }
                 break;
             case 47:
                 {
-                alt39=5;
+                alt41=6;
                 }
                 break;
             case 48:
                 {
-                alt39=6;
-                }
-                break;
-            case 49:
-                {
-                alt39=7;
+                alt41=7;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 39, 0, input);
+                    new NoViableAltException("", 41, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt39) {
+            switch (alt41) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1914:2: kw= '+='
                     {
-                    kw=(Token)match(input,43,FOLLOW_43_in_ruleOpMultiAssign4279); if (state.failed) return current;
+                    kw=(Token)match(input,42,FOLLOW_42_in_ruleOpMultiAssign4285); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -5638,7 +5672,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 2 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1921:2: kw= '-='
                     {
-                    kw=(Token)match(input,44,FOLLOW_44_in_ruleOpMultiAssign4298); if (state.failed) return current;
+                    kw=(Token)match(input,43,FOLLOW_43_in_ruleOpMultiAssign4304); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -5651,7 +5685,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 3 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1928:2: kw= '*='
                     {
-                    kw=(Token)match(input,45,FOLLOW_45_in_ruleOpMultiAssign4317); if (state.failed) return current;
+                    kw=(Token)match(input,44,FOLLOW_44_in_ruleOpMultiAssign4323); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -5664,7 +5698,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 4 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1935:2: kw= '/='
                     {
-                    kw=(Token)match(input,46,FOLLOW_46_in_ruleOpMultiAssign4336); if (state.failed) return current;
+                    kw=(Token)match(input,45,FOLLOW_45_in_ruleOpMultiAssign4342); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -5677,7 +5711,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 5 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1942:2: kw= '%='
                     {
-                    kw=(Token)match(input,47,FOLLOW_47_in_ruleOpMultiAssign4355); if (state.failed) return current;
+                    kw=(Token)match(input,46,FOLLOW_46_in_ruleOpMultiAssign4361); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -5693,21 +5727,21 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1948:6: (kw= '<' kw= '<' kw= '=' )
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1949:2: kw= '<' kw= '<' kw= '='
                     {
-                    kw=(Token)match(input,48,FOLLOW_48_in_ruleOpMultiAssign4375); if (state.failed) return current;
+                    kw=(Token)match(input,47,FOLLOW_47_in_ruleOpMultiAssign4381); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
                               newLeafNode(kw, grammarAccess.getOpMultiAssignAccess().getLessThanSignKeyword_5_0()); 
                           
                     }
-                    kw=(Token)match(input,48,FOLLOW_48_in_ruleOpMultiAssign4388); if (state.failed) return current;
+                    kw=(Token)match(input,47,FOLLOW_47_in_ruleOpMultiAssign4394); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
                               newLeafNode(kw, grammarAccess.getOpMultiAssignAccess().getLessThanSignKeyword_5_1()); 
                           
                     }
-                    kw=(Token)match(input,42,FOLLOW_42_in_ruleOpMultiAssign4401); if (state.failed) return current;
+                    kw=(Token)match(input,41,FOLLOW_41_in_ruleOpMultiAssign4407); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -5726,7 +5760,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1967:6: (kw= '>' (kw= '>' )? kw= '>=' )
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1968:2: kw= '>' (kw= '>' )? kw= '>='
                     {
-                    kw=(Token)match(input,49,FOLLOW_49_in_ruleOpMultiAssign4422); if (state.failed) return current;
+                    kw=(Token)match(input,48,FOLLOW_48_in_ruleOpMultiAssign4428); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -5734,17 +5768,17 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                           
                     }
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1973:1: (kw= '>' )?
-                    int alt38=2;
-                    int LA38_0 = input.LA(1);
+                    int alt40=2;
+                    int LA40_0 = input.LA(1);
 
-                    if ( (LA38_0==49) ) {
-                        alt38=1;
+                    if ( (LA40_0==48) ) {
+                        alt40=1;
                     }
-                    switch (alt38) {
+                    switch (alt40) {
                         case 1 :
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1974:2: kw= '>'
                             {
-                            kw=(Token)match(input,49,FOLLOW_49_in_ruleOpMultiAssign4436); if (state.failed) return current;
+                            kw=(Token)match(input,48,FOLLOW_48_in_ruleOpMultiAssign4442); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
 
                                       current.merge(kw);
@@ -5757,7 +5791,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    kw=(Token)match(input,50,FOLLOW_50_in_ruleOpMultiAssign4451); if (state.failed) return current;
+                    kw=(Token)match(input,49,FOLLOW_49_in_ruleOpMultiAssign4457); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -5807,7 +5841,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXOrExpressionRule()); 
             }
-            pushFollow(FOLLOW_ruleXOrExpression_in_entryRuleXOrExpression4492);
+            pushFollow(FOLLOW_ruleXOrExpression_in_entryRuleXOrExpression4498);
             iv_ruleXOrExpression=ruleXOrExpression();
 
             state._fsp--;
@@ -5815,7 +5849,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXOrExpression; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXOrExpression4502); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXOrExpression4508); if (state.failed) return current;
 
             }
 
@@ -5856,7 +5890,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       newCompositeNode(grammarAccess.getXOrExpressionAccess().getXAndExpressionParserRuleCall_0()); 
                   
             }
-            pushFollow(FOLLOW_ruleXAndExpression_in_ruleXOrExpression4549);
+            pushFollow(FOLLOW_ruleXAndExpression_in_ruleXOrExpression4555);
             this_XAndExpression_0=ruleXAndExpression();
 
             state._fsp--;
@@ -5868,23 +5902,23 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                   
             }
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2015:1: ( ( ( ( () ( ( ruleOpOr ) ) ) )=> ( () ( ( ruleOpOr ) ) ) ) ( (lv_rightOperand_3_0= ruleXAndExpression ) ) )*
-            loop40:
+            loop42:
             do {
-                int alt40=2;
-                int LA40_0 = input.LA(1);
+                int alt42=2;
+                int LA42_0 = input.LA(1);
 
-                if ( (LA40_0==51) ) {
-                    int LA40_2 = input.LA(2);
+                if ( (LA42_0==50) ) {
+                    int LA42_2 = input.LA(2);
 
                     if ( (synpred4_InternalMelange()) ) {
-                        alt40=1;
+                        alt42=1;
                     }
 
 
                 }
 
 
-                switch (alt40) {
+                switch (alt42) {
             	case 1 :
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2015:2: ( ( ( () ( ( ruleOpOr ) ) ) )=> ( () ( ( ruleOpOr ) ) ) ) ( (lv_rightOperand_3_0= ruleXAndExpression ) )
             	    {
@@ -5925,7 +5959,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	      	        newCompositeNode(grammarAccess.getXOrExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleOpOr_in_ruleXOrExpression4602);
+            	    pushFollow(FOLLOW_ruleOpOr_in_ruleXOrExpression4608);
             	    ruleOpOr();
 
             	    state._fsp--;
@@ -5958,7 +5992,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	      	        newCompositeNode(grammarAccess.getXOrExpressionAccess().getRightOperandXAndExpressionParserRuleCall_1_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleXAndExpression_in_ruleXOrExpression4625);
+            	    pushFollow(FOLLOW_ruleXAndExpression_in_ruleXOrExpression4631);
             	    lv_rightOperand_3_0=ruleXAndExpression();
 
             	    state._fsp--;
@@ -5987,7 +6021,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop40;
+            	    break loop42;
                 }
             } while (true);
 
@@ -6028,7 +6062,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getOpOrRule()); 
             }
-            pushFollow(FOLLOW_ruleOpOr_in_entryRuleOpOr4664);
+            pushFollow(FOLLOW_ruleOpOr_in_entryRuleOpOr4670);
             iv_ruleOpOr=ruleOpOr();
 
             state._fsp--;
@@ -6036,7 +6070,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleOpOr.getText(); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleOpOr4675); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleOpOr4681); if (state.failed) return current;
 
             }
 
@@ -6066,7 +6100,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2079:28: (kw= '||' )
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2081:2: kw= '||'
             {
-            kw=(Token)match(input,51,FOLLOW_51_in_ruleOpOr4712); if (state.failed) return current;
+            kw=(Token)match(input,50,FOLLOW_50_in_ruleOpOr4718); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                       current.merge(kw);
@@ -6107,7 +6141,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXAndExpressionRule()); 
             }
-            pushFollow(FOLLOW_ruleXAndExpression_in_entryRuleXAndExpression4751);
+            pushFollow(FOLLOW_ruleXAndExpression_in_entryRuleXAndExpression4757);
             iv_ruleXAndExpression=ruleXAndExpression();
 
             state._fsp--;
@@ -6115,7 +6149,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXAndExpression; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXAndExpression4761); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXAndExpression4767); if (state.failed) return current;
 
             }
 
@@ -6156,7 +6190,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       newCompositeNode(grammarAccess.getXAndExpressionAccess().getXEqualityExpressionParserRuleCall_0()); 
                   
             }
-            pushFollow(FOLLOW_ruleXEqualityExpression_in_ruleXAndExpression4808);
+            pushFollow(FOLLOW_ruleXEqualityExpression_in_ruleXAndExpression4814);
             this_XEqualityExpression_0=ruleXEqualityExpression();
 
             state._fsp--;
@@ -6168,23 +6202,23 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                   
             }
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2116:1: ( ( ( ( () ( ( ruleOpAnd ) ) ) )=> ( () ( ( ruleOpAnd ) ) ) ) ( (lv_rightOperand_3_0= ruleXEqualityExpression ) ) )*
-            loop41:
+            loop43:
             do {
-                int alt41=2;
-                int LA41_0 = input.LA(1);
+                int alt43=2;
+                int LA43_0 = input.LA(1);
 
-                if ( (LA41_0==52) ) {
-                    int LA41_2 = input.LA(2);
+                if ( (LA43_0==51) ) {
+                    int LA43_2 = input.LA(2);
 
                     if ( (synpred5_InternalMelange()) ) {
-                        alt41=1;
+                        alt43=1;
                     }
 
 
                 }
 
 
-                switch (alt41) {
+                switch (alt43) {
             	case 1 :
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2116:2: ( ( ( () ( ( ruleOpAnd ) ) ) )=> ( () ( ( ruleOpAnd ) ) ) ) ( (lv_rightOperand_3_0= ruleXEqualityExpression ) )
             	    {
@@ -6225,7 +6259,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	      	        newCompositeNode(grammarAccess.getXAndExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleOpAnd_in_ruleXAndExpression4861);
+            	    pushFollow(FOLLOW_ruleOpAnd_in_ruleXAndExpression4867);
             	    ruleOpAnd();
 
             	    state._fsp--;
@@ -6258,7 +6292,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	      	        newCompositeNode(grammarAccess.getXAndExpressionAccess().getRightOperandXEqualityExpressionParserRuleCall_1_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleXEqualityExpression_in_ruleXAndExpression4884);
+            	    pushFollow(FOLLOW_ruleXEqualityExpression_in_ruleXAndExpression4890);
             	    lv_rightOperand_3_0=ruleXEqualityExpression();
 
             	    state._fsp--;
@@ -6287,7 +6321,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop41;
+            	    break loop43;
                 }
             } while (true);
 
@@ -6328,7 +6362,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getOpAndRule()); 
             }
-            pushFollow(FOLLOW_ruleOpAnd_in_entryRuleOpAnd4923);
+            pushFollow(FOLLOW_ruleOpAnd_in_entryRuleOpAnd4929);
             iv_ruleOpAnd=ruleOpAnd();
 
             state._fsp--;
@@ -6336,7 +6370,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleOpAnd.getText(); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleOpAnd4934); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleOpAnd4940); if (state.failed) return current;
 
             }
 
@@ -6366,7 +6400,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2180:28: (kw= '&&' )
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2182:2: kw= '&&'
             {
-            kw=(Token)match(input,52,FOLLOW_52_in_ruleOpAnd4971); if (state.failed) return current;
+            kw=(Token)match(input,51,FOLLOW_51_in_ruleOpAnd4977); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                       current.merge(kw);
@@ -6407,7 +6441,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXEqualityExpressionRule()); 
             }
-            pushFollow(FOLLOW_ruleXEqualityExpression_in_entryRuleXEqualityExpression5010);
+            pushFollow(FOLLOW_ruleXEqualityExpression_in_entryRuleXEqualityExpression5016);
             iv_ruleXEqualityExpression=ruleXEqualityExpression();
 
             state._fsp--;
@@ -6415,7 +6449,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXEqualityExpression; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXEqualityExpression5020); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXEqualityExpression5026); if (state.failed) return current;
 
             }
 
@@ -6456,7 +6490,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       newCompositeNode(grammarAccess.getXEqualityExpressionAccess().getXRelationalExpressionParserRuleCall_0()); 
                   
             }
-            pushFollow(FOLLOW_ruleXRelationalExpression_in_ruleXEqualityExpression5067);
+            pushFollow(FOLLOW_ruleXRelationalExpression_in_ruleXEqualityExpression5073);
             this_XRelationalExpression_0=ruleXRelationalExpression();
 
             state._fsp--;
@@ -6468,16 +6502,27 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                   
             }
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2217:1: ( ( ( ( () ( ( ruleOpEquality ) ) ) )=> ( () ( ( ruleOpEquality ) ) ) ) ( (lv_rightOperand_3_0= ruleXRelationalExpression ) ) )*
-            loop42:
+            loop44:
             do {
-                int alt42=2;
+                int alt44=2;
                 switch ( input.LA(1) ) {
-                case 53:
+                case 52:
                     {
-                    int LA42_2 = input.LA(2);
+                    int LA44_2 = input.LA(2);
 
                     if ( (synpred6_InternalMelange()) ) {
-                        alt42=1;
+                        alt44=1;
+                    }
+
+
+                    }
+                    break;
+                case 53:
+                    {
+                    int LA44_3 = input.LA(2);
+
+                    if ( (synpred6_InternalMelange()) ) {
+                        alt44=1;
                     }
 
 
@@ -6485,10 +6530,10 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     break;
                 case 54:
                     {
-                    int LA42_3 = input.LA(2);
+                    int LA44_4 = input.LA(2);
 
                     if ( (synpred6_InternalMelange()) ) {
-                        alt42=1;
+                        alt44=1;
                     }
 
 
@@ -6496,21 +6541,10 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     break;
                 case 55:
                     {
-                    int LA42_4 = input.LA(2);
+                    int LA44_5 = input.LA(2);
 
                     if ( (synpred6_InternalMelange()) ) {
-                        alt42=1;
-                    }
-
-
-                    }
-                    break;
-                case 56:
-                    {
-                    int LA42_5 = input.LA(2);
-
-                    if ( (synpred6_InternalMelange()) ) {
-                        alt42=1;
+                        alt44=1;
                     }
 
 
@@ -6519,7 +6553,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
                 }
 
-                switch (alt42) {
+                switch (alt44) {
             	case 1 :
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2217:2: ( ( ( () ( ( ruleOpEquality ) ) ) )=> ( () ( ( ruleOpEquality ) ) ) ) ( (lv_rightOperand_3_0= ruleXRelationalExpression ) )
             	    {
@@ -6560,7 +6594,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	      	        newCompositeNode(grammarAccess.getXEqualityExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleOpEquality_in_ruleXEqualityExpression5120);
+            	    pushFollow(FOLLOW_ruleOpEquality_in_ruleXEqualityExpression5126);
             	    ruleOpEquality();
 
             	    state._fsp--;
@@ -6593,7 +6627,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	      	        newCompositeNode(grammarAccess.getXEqualityExpressionAccess().getRightOperandXRelationalExpressionParserRuleCall_1_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleXRelationalExpression_in_ruleXEqualityExpression5143);
+            	    pushFollow(FOLLOW_ruleXRelationalExpression_in_ruleXEqualityExpression5149);
             	    lv_rightOperand_3_0=ruleXRelationalExpression();
 
             	    state._fsp--;
@@ -6622,7 +6656,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop42;
+            	    break loop44;
                 }
             } while (true);
 
@@ -6663,7 +6697,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getOpEqualityRule()); 
             }
-            pushFollow(FOLLOW_ruleOpEquality_in_entryRuleOpEquality5182);
+            pushFollow(FOLLOW_ruleOpEquality_in_entryRuleOpEquality5188);
             iv_ruleOpEquality=ruleOpEquality();
 
             state._fsp--;
@@ -6671,7 +6705,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleOpEquality.getText(); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleOpEquality5193); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleOpEquality5199); if (state.failed) return current;
 
             }
 
@@ -6702,41 +6736,41 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2282:1: (kw= '==' | kw= '!=' | kw= '===' | kw= '!==' )
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2282:1: (kw= '==' | kw= '!=' | kw= '===' | kw= '!==' )
-            int alt43=4;
+            int alt45=4;
             switch ( input.LA(1) ) {
+            case 52:
+                {
+                alt45=1;
+                }
+                break;
             case 53:
                 {
-                alt43=1;
+                alt45=2;
                 }
                 break;
             case 54:
                 {
-                alt43=2;
+                alt45=3;
                 }
                 break;
             case 55:
                 {
-                alt43=3;
-                }
-                break;
-            case 56:
-                {
-                alt43=4;
+                alt45=4;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 43, 0, input);
+                    new NoViableAltException("", 45, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt43) {
+            switch (alt45) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2283:2: kw= '=='
                     {
-                    kw=(Token)match(input,53,FOLLOW_53_in_ruleOpEquality5231); if (state.failed) return current;
+                    kw=(Token)match(input,52,FOLLOW_52_in_ruleOpEquality5237); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -6749,7 +6783,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 2 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2290:2: kw= '!='
                     {
-                    kw=(Token)match(input,54,FOLLOW_54_in_ruleOpEquality5250); if (state.failed) return current;
+                    kw=(Token)match(input,53,FOLLOW_53_in_ruleOpEquality5256); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -6762,7 +6796,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 3 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2297:2: kw= '==='
                     {
-                    kw=(Token)match(input,55,FOLLOW_55_in_ruleOpEquality5269); if (state.failed) return current;
+                    kw=(Token)match(input,54,FOLLOW_54_in_ruleOpEquality5275); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -6775,7 +6809,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 4 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2304:2: kw= '!=='
                     {
-                    kw=(Token)match(input,56,FOLLOW_56_in_ruleOpEquality5288); if (state.failed) return current;
+                    kw=(Token)match(input,55,FOLLOW_55_in_ruleOpEquality5294); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -6822,7 +6856,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXRelationalExpressionRule()); 
             }
-            pushFollow(FOLLOW_ruleXRelationalExpression_in_entryRuleXRelationalExpression5328);
+            pushFollow(FOLLOW_ruleXRelationalExpression_in_entryRuleXRelationalExpression5334);
             iv_ruleXRelationalExpression=ruleXRelationalExpression();
 
             state._fsp--;
@@ -6830,7 +6864,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXRelationalExpression; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXRelationalExpression5338); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXRelationalExpression5344); if (state.failed) return current;
 
             }
 
@@ -6874,7 +6908,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       newCompositeNode(grammarAccess.getXRelationalExpressionAccess().getXOtherOperatorExpressionParserRuleCall_0()); 
                   
             }
-            pushFollow(FOLLOW_ruleXOtherOperatorExpression_in_ruleXRelationalExpression5385);
+            pushFollow(FOLLOW_ruleXOtherOperatorExpression_in_ruleXRelationalExpression5391);
             this_XOtherOperatorExpression_0=ruleXOtherOperatorExpression();
 
             state._fsp--;
@@ -6886,16 +6920,38 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                   
             }
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2339:1: ( ( ( ( ( () 'instanceof' ) )=> ( () otherlv_2= 'instanceof' ) ) ( (lv_type_3_0= ruleJvmTypeReference ) ) ) | ( ( ( ( () ( ( ruleOpCompare ) ) ) )=> ( () ( ( ruleOpCompare ) ) ) ) ( (lv_rightOperand_6_0= ruleXOtherOperatorExpression ) ) ) )*
-            loop44:
+            loop46:
             do {
-                int alt44=3;
+                int alt46=3;
                 switch ( input.LA(1) ) {
-                case 48:
+                case 47:
                     {
-                    int LA44_2 = input.LA(2);
+                    int LA46_2 = input.LA(2);
 
                     if ( (synpred8_InternalMelange()) ) {
-                        alt44=2;
+                        alt46=2;
+                    }
+
+
+                    }
+                    break;
+                case 48:
+                    {
+                    int LA46_3 = input.LA(2);
+
+                    if ( (synpred8_InternalMelange()) ) {
+                        alt46=2;
+                    }
+
+
+                    }
+                    break;
+                case 56:
+                    {
+                    int LA46_4 = input.LA(2);
+
+                    if ( (synpred7_InternalMelange()) ) {
+                        alt46=1;
                     }
 
 
@@ -6903,32 +6959,10 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     break;
                 case 49:
                     {
-                    int LA44_3 = input.LA(2);
+                    int LA46_5 = input.LA(2);
 
                     if ( (synpred8_InternalMelange()) ) {
-                        alt44=2;
-                    }
-
-
-                    }
-                    break;
-                case 57:
-                    {
-                    int LA44_4 = input.LA(2);
-
-                    if ( (synpred7_InternalMelange()) ) {
-                        alt44=1;
-                    }
-
-
-                    }
-                    break;
-                case 50:
-                    {
-                    int LA44_5 = input.LA(2);
-
-                    if ( (synpred8_InternalMelange()) ) {
-                        alt44=2;
+                        alt46=2;
                     }
 
 
@@ -6937,7 +6971,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
                 }
 
-                switch (alt44) {
+                switch (alt46) {
             	case 1 :
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2339:2: ( ( ( ( () 'instanceof' ) )=> ( () otherlv_2= 'instanceof' ) ) ( (lv_type_3_0= ruleJvmTypeReference ) ) )
             	    {
@@ -6963,7 +6997,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             	    }
 
-            	    otherlv_2=(Token)match(input,57,FOLLOW_57_in_ruleXRelationalExpression5421); if (state.failed) return current;
+            	    otherlv_2=(Token)match(input,56,FOLLOW_56_in_ruleXRelationalExpression5427); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	          	newLeafNode(otherlv_2, grammarAccess.getXRelationalExpressionAccess().getInstanceofKeyword_1_0_0_0_1());
@@ -6986,7 +7020,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	      	        newCompositeNode(grammarAccess.getXRelationalExpressionAccess().getTypeJvmTypeReferenceParserRuleCall_1_0_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleXRelationalExpression5444);
+            	    pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleXRelationalExpression5450);
             	    lv_type_3_0=ruleJvmTypeReference();
 
             	    state._fsp--;
@@ -7059,7 +7093,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	      	        newCompositeNode(grammarAccess.getXRelationalExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_1_0_0_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleOpCompare_in_ruleXRelationalExpression5505);
+            	    pushFollow(FOLLOW_ruleOpCompare_in_ruleXRelationalExpression5511);
             	    ruleOpCompare();
 
             	    state._fsp--;
@@ -7092,7 +7126,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	      	        newCompositeNode(grammarAccess.getXRelationalExpressionAccess().getRightOperandXOtherOperatorExpressionParserRuleCall_1_1_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleXOtherOperatorExpression_in_ruleXRelationalExpression5528);
+            	    pushFollow(FOLLOW_ruleXOtherOperatorExpression_in_ruleXRelationalExpression5534);
             	    lv_rightOperand_6_0=ruleXOtherOperatorExpression();
 
             	    state._fsp--;
@@ -7124,7 +7158,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop44;
+            	    break loop46;
                 }
             } while (true);
 
@@ -7165,7 +7199,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getOpCompareRule()); 
             }
-            pushFollow(FOLLOW_ruleOpCompare_in_entryRuleOpCompare5568);
+            pushFollow(FOLLOW_ruleOpCompare_in_entryRuleOpCompare5574);
             iv_ruleOpCompare=ruleOpCompare();
 
             state._fsp--;
@@ -7173,7 +7207,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleOpCompare.getText(); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleOpCompare5579); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleOpCompare5585); if (state.failed) return current;
 
             }
 
@@ -7204,50 +7238,50 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2435:1: (kw= '>=' | (kw= '<' kw= '=' ) | kw= '>' | kw= '<' )
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2435:1: (kw= '>=' | (kw= '<' kw= '=' ) | kw= '>' | kw= '<' )
-            int alt45=4;
+            int alt47=4;
             switch ( input.LA(1) ) {
-            case 50:
+            case 49:
                 {
-                alt45=1;
+                alt47=1;
                 }
                 break;
-            case 48:
+            case 47:
                 {
-                int LA45_2 = input.LA(2);
+                int LA47_2 = input.LA(2);
 
-                if ( (LA45_2==EOF||(LA45_2>=RULE_STRING && LA45_2<=RULE_ID)||LA45_2==19||LA45_2==29||LA45_2==39||LA45_2==48||(LA45_2>=64 && LA45_2<=65)||LA45_2==70||LA45_2==77||LA45_2==80||LA45_2==82||(LA45_2>=85 && LA45_2<=87)||(LA45_2>=90 && LA45_2<=102)||LA45_2==104) ) {
-                    alt45=4;
+                if ( (LA47_2==41) ) {
+                    alt47=2;
                 }
-                else if ( (LA45_2==42) ) {
-                    alt45=2;
+                else if ( (LA47_2==EOF||(LA47_2>=RULE_STRING && LA47_2<=RULE_ID)||LA47_2==19||LA47_2==29||LA47_2==38||LA47_2==47||(LA47_2>=63 && LA47_2<=64)||LA47_2==69||LA47_2==76||LA47_2==79||LA47_2==81||(LA47_2>=85 && LA47_2<=87)||(LA47_2>=90 && LA47_2<=102)||LA47_2==104) ) {
+                    alt47=4;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 45, 2, input);
+                        new NoViableAltException("", 47, 2, input);
 
                     throw nvae;
                 }
                 }
                 break;
-            case 49:
+            case 48:
                 {
-                alt45=3;
+                alt47=3;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 45, 0, input);
+                    new NoViableAltException("", 47, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt45) {
+            switch (alt47) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2436:2: kw= '>='
                     {
-                    kw=(Token)match(input,50,FOLLOW_50_in_ruleOpCompare5617); if (state.failed) return current;
+                    kw=(Token)match(input,49,FOLLOW_49_in_ruleOpCompare5623); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -7263,14 +7297,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2442:6: (kw= '<' kw= '=' )
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2443:2: kw= '<' kw= '='
                     {
-                    kw=(Token)match(input,48,FOLLOW_48_in_ruleOpCompare5637); if (state.failed) return current;
+                    kw=(Token)match(input,47,FOLLOW_47_in_ruleOpCompare5643); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
                               newLeafNode(kw, grammarAccess.getOpCompareAccess().getLessThanSignKeyword_1_0()); 
                           
                     }
-                    kw=(Token)match(input,42,FOLLOW_42_in_ruleOpCompare5650); if (state.failed) return current;
+                    kw=(Token)match(input,41,FOLLOW_41_in_ruleOpCompare5656); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -7286,7 +7320,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 3 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2456:2: kw= '>'
                     {
-                    kw=(Token)match(input,49,FOLLOW_49_in_ruleOpCompare5670); if (state.failed) return current;
+                    kw=(Token)match(input,48,FOLLOW_48_in_ruleOpCompare5676); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -7299,7 +7333,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 4 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2463:2: kw= '<'
                     {
-                    kw=(Token)match(input,48,FOLLOW_48_in_ruleOpCompare5689); if (state.failed) return current;
+                    kw=(Token)match(input,47,FOLLOW_47_in_ruleOpCompare5695); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -7346,7 +7380,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXOtherOperatorExpressionRule()); 
             }
-            pushFollow(FOLLOW_ruleXOtherOperatorExpression_in_entryRuleXOtherOperatorExpression5729);
+            pushFollow(FOLLOW_ruleXOtherOperatorExpression_in_entryRuleXOtherOperatorExpression5735);
             iv_ruleXOtherOperatorExpression=ruleXOtherOperatorExpression();
 
             state._fsp--;
@@ -7354,7 +7388,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXOtherOperatorExpression; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXOtherOperatorExpression5739); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXOtherOperatorExpression5745); if (state.failed) return current;
 
             }
 
@@ -7395,7 +7429,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       newCompositeNode(grammarAccess.getXOtherOperatorExpressionAccess().getXAdditiveExpressionParserRuleCall_0()); 
                   
             }
-            pushFollow(FOLLOW_ruleXAdditiveExpression_in_ruleXOtherOperatorExpression5786);
+            pushFollow(FOLLOW_ruleXAdditiveExpression_in_ruleXOtherOperatorExpression5792);
             this_XAdditiveExpression_0=ruleXAdditiveExpression();
 
             state._fsp--;
@@ -7407,11 +7441,11 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                   
             }
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2498:1: ( ( ( ( () ( ( ruleOpOther ) ) ) )=> ( () ( ( ruleOpOther ) ) ) ) ( (lv_rightOperand_3_0= ruleXAdditiveExpression ) ) )*
-            loop46:
+            loop48:
             do {
-                int alt46=2;
-                alt46 = dfa46.predict(input);
-                switch (alt46) {
+                int alt48=2;
+                alt48 = dfa48.predict(input);
+                switch (alt48) {
             	case 1 :
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2498:2: ( ( ( () ( ( ruleOpOther ) ) ) )=> ( () ( ( ruleOpOther ) ) ) ) ( (lv_rightOperand_3_0= ruleXAdditiveExpression ) )
             	    {
@@ -7452,7 +7486,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	      	        newCompositeNode(grammarAccess.getXOtherOperatorExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleOpOther_in_ruleXOtherOperatorExpression5839);
+            	    pushFollow(FOLLOW_ruleOpOther_in_ruleXOtherOperatorExpression5845);
             	    ruleOpOther();
 
             	    state._fsp--;
@@ -7485,7 +7519,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	      	        newCompositeNode(grammarAccess.getXOtherOperatorExpressionAccess().getRightOperandXAdditiveExpressionParserRuleCall_1_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleXAdditiveExpression_in_ruleXOtherOperatorExpression5862);
+            	    pushFollow(FOLLOW_ruleXAdditiveExpression_in_ruleXOtherOperatorExpression5868);
             	    lv_rightOperand_3_0=ruleXAdditiveExpression();
 
             	    state._fsp--;
@@ -7514,7 +7548,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop46;
+            	    break loop48;
                 }
             } while (true);
 
@@ -7555,7 +7589,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getOpOtherRule()); 
             }
-            pushFollow(FOLLOW_ruleOpOther_in_entryRuleOpOther5901);
+            pushFollow(FOLLOW_ruleOpOther_in_entryRuleOpOther5907);
             iv_ruleOpOther=ruleOpOther();
 
             state._fsp--;
@@ -7563,7 +7597,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleOpOther.getText(); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleOpOther5912); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleOpOther5918); if (state.failed) return current;
 
             }
 
@@ -7594,13 +7628,13 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2563:1: (kw= '->' | kw= '..<' | (kw= '>' kw= '..' ) | kw= '..' | kw= '=>' | (kw= '>' ( ( ( ( '>' '>' ) )=> (kw= '>' kw= '>' ) ) | kw= '>' ) ) | (kw= '<' ( ( ( ( '<' '<' ) )=> (kw= '<' kw= '<' ) ) | kw= '<' | kw= '=>' ) ) | kw= '<>' | kw= '?:' )
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2563:1: (kw= '->' | kw= '..<' | (kw= '>' kw= '..' ) | kw= '..' | kw= '=>' | (kw= '>' ( ( ( ( '>' '>' ) )=> (kw= '>' kw= '>' ) ) | kw= '>' ) ) | (kw= '<' ( ( ( ( '<' '<' ) )=> (kw= '<' kw= '<' ) ) | kw= '<' | kw= '=>' ) ) | kw= '<>' | kw= '?:' )
-            int alt49=9;
-            alt49 = dfa49.predict(input);
-            switch (alt49) {
+            int alt51=9;
+            alt51 = dfa51.predict(input);
+            switch (alt51) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2564:2: kw= '->'
                     {
-                    kw=(Token)match(input,58,FOLLOW_58_in_ruleOpOther5950); if (state.failed) return current;
+                    kw=(Token)match(input,57,FOLLOW_57_in_ruleOpOther5956); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -7613,7 +7647,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 2 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2571:2: kw= '..<'
                     {
-                    kw=(Token)match(input,59,FOLLOW_59_in_ruleOpOther5969); if (state.failed) return current;
+                    kw=(Token)match(input,58,FOLLOW_58_in_ruleOpOther5975); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -7629,14 +7663,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2577:6: (kw= '>' kw= '..' )
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2578:2: kw= '>' kw= '..'
                     {
-                    kw=(Token)match(input,49,FOLLOW_49_in_ruleOpOther5989); if (state.failed) return current;
+                    kw=(Token)match(input,48,FOLLOW_48_in_ruleOpOther5995); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
                               newLeafNode(kw, grammarAccess.getOpOtherAccess().getGreaterThanSignKeyword_2_0()); 
                           
                     }
-                    kw=(Token)match(input,60,FOLLOW_60_in_ruleOpOther6002); if (state.failed) return current;
+                    kw=(Token)match(input,59,FOLLOW_59_in_ruleOpOther6008); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -7652,7 +7686,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 4 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2591:2: kw= '..'
                     {
-                    kw=(Token)match(input,60,FOLLOW_60_in_ruleOpOther6022); if (state.failed) return current;
+                    kw=(Token)match(input,59,FOLLOW_59_in_ruleOpOther6028); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -7665,7 +7699,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 5 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2598:2: kw= '=>'
                     {
-                    kw=(Token)match(input,61,FOLLOW_61_in_ruleOpOther6041); if (state.failed) return current;
+                    kw=(Token)match(input,60,FOLLOW_60_in_ruleOpOther6047); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -7681,7 +7715,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2604:6: (kw= '>' ( ( ( ( '>' '>' ) )=> (kw= '>' kw= '>' ) ) | kw= '>' ) )
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2605:2: kw= '>' ( ( ( ( '>' '>' ) )=> (kw= '>' kw= '>' ) ) | kw= '>' )
                     {
-                    kw=(Token)match(input,49,FOLLOW_49_in_ruleOpOther6061); if (state.failed) return current;
+                    kw=(Token)match(input,48,FOLLOW_48_in_ruleOpOther6067); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -7689,22 +7723,22 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                           
                     }
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2610:1: ( ( ( ( '>' '>' ) )=> (kw= '>' kw= '>' ) ) | kw= '>' )
-                    int alt47=2;
-                    int LA47_0 = input.LA(1);
+                    int alt49=2;
+                    int LA49_0 = input.LA(1);
 
-                    if ( (LA47_0==49) ) {
-                        int LA47_1 = input.LA(2);
+                    if ( (LA49_0==48) ) {
+                        int LA49_1 = input.LA(2);
 
-                        if ( (LA47_1==EOF||(LA47_1>=RULE_STRING && LA47_1<=RULE_ID)||LA47_1==19||LA47_1==29||LA47_1==39||LA47_1==48||(LA47_1>=64 && LA47_1<=65)||LA47_1==70||LA47_1==77||LA47_1==80||LA47_1==82||(LA47_1>=85 && LA47_1<=87)||(LA47_1>=90 && LA47_1<=102)||LA47_1==104) ) {
-                            alt47=2;
+                        if ( (LA49_1==EOF||(LA49_1>=RULE_STRING && LA49_1<=RULE_ID)||LA49_1==19||LA49_1==29||LA49_1==38||LA49_1==47||(LA49_1>=63 && LA49_1<=64)||LA49_1==69||LA49_1==76||LA49_1==79||LA49_1==81||(LA49_1>=85 && LA49_1<=87)||(LA49_1>=90 && LA49_1<=102)||LA49_1==104) ) {
+                            alt49=2;
                         }
-                        else if ( (LA47_1==49) && (synpred10_InternalMelange())) {
-                            alt47=1;
+                        else if ( (LA49_1==48) && (synpred10_InternalMelange())) {
+                            alt49=1;
                         }
                         else {
                             if (state.backtracking>0) {state.failed=true; return current;}
                             NoViableAltException nvae =
-                                new NoViableAltException("", 47, 1, input);
+                                new NoViableAltException("", 49, 1, input);
 
                             throw nvae;
                         }
@@ -7712,11 +7746,11 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     else {
                         if (state.backtracking>0) {state.failed=true; return current;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 47, 0, input);
+                            new NoViableAltException("", 49, 0, input);
 
                         throw nvae;
                     }
-                    switch (alt47) {
+                    switch (alt49) {
                         case 1 :
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2610:2: ( ( ( '>' '>' ) )=> (kw= '>' kw= '>' ) )
                             {
@@ -7726,14 +7760,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2614:5: (kw= '>' kw= '>' )
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2615:2: kw= '>' kw= '>'
                             {
-                            kw=(Token)match(input,49,FOLLOW_49_in_ruleOpOther6092); if (state.failed) return current;
+                            kw=(Token)match(input,48,FOLLOW_48_in_ruleOpOther6098); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
 
                                       current.merge(kw);
                                       newLeafNode(kw, grammarAccess.getOpOtherAccess().getGreaterThanSignKeyword_5_1_0_0_0()); 
                                   
                             }
-                            kw=(Token)match(input,49,FOLLOW_49_in_ruleOpOther6105); if (state.failed) return current;
+                            kw=(Token)match(input,48,FOLLOW_48_in_ruleOpOther6111); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
 
                                       current.merge(kw);
@@ -7752,7 +7786,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         case 2 :
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2628:2: kw= '>'
                             {
-                            kw=(Token)match(input,49,FOLLOW_49_in_ruleOpOther6126); if (state.failed) return current;
+                            kw=(Token)match(input,48,FOLLOW_48_in_ruleOpOther6132); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
 
                                       current.merge(kw);
@@ -7777,7 +7811,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2634:6: (kw= '<' ( ( ( ( '<' '<' ) )=> (kw= '<' kw= '<' ) ) | kw= '<' | kw= '=>' ) )
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2635:2: kw= '<' ( ( ( ( '<' '<' ) )=> (kw= '<' kw= '<' ) ) | kw= '<' | kw= '=>' )
                     {
-                    kw=(Token)match(input,48,FOLLOW_48_in_ruleOpOther6148); if (state.failed) return current;
+                    kw=(Token)match(input,47,FOLLOW_47_in_ruleOpOther6154); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -7785,37 +7819,37 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                           
                     }
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2640:1: ( ( ( ( '<' '<' ) )=> (kw= '<' kw= '<' ) ) | kw= '<' | kw= '=>' )
-                    int alt48=3;
-                    int LA48_0 = input.LA(1);
+                    int alt50=3;
+                    int LA50_0 = input.LA(1);
 
-                    if ( (LA48_0==48) ) {
-                        int LA48_1 = input.LA(2);
+                    if ( (LA50_0==47) ) {
+                        int LA50_1 = input.LA(2);
 
                         if ( (synpred11_InternalMelange()) ) {
-                            alt48=1;
+                            alt50=1;
                         }
                         else if ( (true) ) {
-                            alt48=2;
+                            alt50=2;
                         }
                         else {
                             if (state.backtracking>0) {state.failed=true; return current;}
                             NoViableAltException nvae =
-                                new NoViableAltException("", 48, 1, input);
+                                new NoViableAltException("", 50, 1, input);
 
                             throw nvae;
                         }
                     }
-                    else if ( (LA48_0==61) ) {
-                        alt48=3;
+                    else if ( (LA50_0==60) ) {
+                        alt50=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return current;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 48, 0, input);
+                            new NoViableAltException("", 50, 0, input);
 
                         throw nvae;
                     }
-                    switch (alt48) {
+                    switch (alt50) {
                         case 1 :
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2640:2: ( ( ( '<' '<' ) )=> (kw= '<' kw= '<' ) )
                             {
@@ -7825,14 +7859,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2644:5: (kw= '<' kw= '<' )
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2645:2: kw= '<' kw= '<'
                             {
-                            kw=(Token)match(input,48,FOLLOW_48_in_ruleOpOther6179); if (state.failed) return current;
+                            kw=(Token)match(input,47,FOLLOW_47_in_ruleOpOther6185); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
 
                                       current.merge(kw);
                                       newLeafNode(kw, grammarAccess.getOpOtherAccess().getLessThanSignKeyword_6_1_0_0_0()); 
                                   
                             }
-                            kw=(Token)match(input,48,FOLLOW_48_in_ruleOpOther6192); if (state.failed) return current;
+                            kw=(Token)match(input,47,FOLLOW_47_in_ruleOpOther6198); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
 
                                       current.merge(kw);
@@ -7851,7 +7885,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         case 2 :
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2658:2: kw= '<'
                             {
-                            kw=(Token)match(input,48,FOLLOW_48_in_ruleOpOther6213); if (state.failed) return current;
+                            kw=(Token)match(input,47,FOLLOW_47_in_ruleOpOther6219); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
 
                                       current.merge(kw);
@@ -7864,7 +7898,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         case 3 :
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2665:2: kw= '=>'
                             {
-                            kw=(Token)match(input,61,FOLLOW_61_in_ruleOpOther6232); if (state.failed) return current;
+                            kw=(Token)match(input,60,FOLLOW_60_in_ruleOpOther6238); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
 
                                       current.merge(kw);
@@ -7886,7 +7920,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 8 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2672:2: kw= '<>'
                     {
-                    kw=(Token)match(input,62,FOLLOW_62_in_ruleOpOther6253); if (state.failed) return current;
+                    kw=(Token)match(input,61,FOLLOW_61_in_ruleOpOther6259); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -7899,7 +7933,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 9 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2679:2: kw= '?:'
                     {
-                    kw=(Token)match(input,63,FOLLOW_63_in_ruleOpOther6272); if (state.failed) return current;
+                    kw=(Token)match(input,62,FOLLOW_62_in_ruleOpOther6278); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -7946,7 +7980,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXAdditiveExpressionRule()); 
             }
-            pushFollow(FOLLOW_ruleXAdditiveExpression_in_entryRuleXAdditiveExpression6312);
+            pushFollow(FOLLOW_ruleXAdditiveExpression_in_entryRuleXAdditiveExpression6318);
             iv_ruleXAdditiveExpression=ruleXAdditiveExpression();
 
             state._fsp--;
@@ -7954,7 +7988,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXAdditiveExpression; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXAdditiveExpression6322); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXAdditiveExpression6328); if (state.failed) return current;
 
             }
 
@@ -7995,7 +8029,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       newCompositeNode(grammarAccess.getXAdditiveExpressionAccess().getXMultiplicativeExpressionParserRuleCall_0()); 
                   
             }
-            pushFollow(FOLLOW_ruleXMultiplicativeExpression_in_ruleXAdditiveExpression6369);
+            pushFollow(FOLLOW_ruleXMultiplicativeExpression_in_ruleXAdditiveExpression6375);
             this_XMultiplicativeExpression_0=ruleXMultiplicativeExpression();
 
             state._fsp--;
@@ -8007,32 +8041,32 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                   
             }
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2714:1: ( ( ( ( () ( ( ruleOpAdd ) ) ) )=> ( () ( ( ruleOpAdd ) ) ) ) ( (lv_rightOperand_3_0= ruleXMultiplicativeExpression ) ) )*
-            loop50:
+            loop52:
             do {
-                int alt50=2;
-                int LA50_0 = input.LA(1);
+                int alt52=2;
+                int LA52_0 = input.LA(1);
 
-                if ( (LA50_0==64) ) {
-                    int LA50_2 = input.LA(2);
+                if ( (LA52_0==63) ) {
+                    int LA52_2 = input.LA(2);
 
                     if ( (synpred12_InternalMelange()) ) {
-                        alt50=1;
+                        alt52=1;
                     }
 
 
                 }
-                else if ( (LA50_0==65) ) {
-                    int LA50_3 = input.LA(2);
+                else if ( (LA52_0==64) ) {
+                    int LA52_3 = input.LA(2);
 
                     if ( (synpred12_InternalMelange()) ) {
-                        alt50=1;
+                        alt52=1;
                     }
 
 
                 }
 
 
-                switch (alt50) {
+                switch (alt52) {
             	case 1 :
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2714:2: ( ( ( () ( ( ruleOpAdd ) ) ) )=> ( () ( ( ruleOpAdd ) ) ) ) ( (lv_rightOperand_3_0= ruleXMultiplicativeExpression ) )
             	    {
@@ -8073,7 +8107,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	      	        newCompositeNode(grammarAccess.getXAdditiveExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleOpAdd_in_ruleXAdditiveExpression6422);
+            	    pushFollow(FOLLOW_ruleOpAdd_in_ruleXAdditiveExpression6428);
             	    ruleOpAdd();
 
             	    state._fsp--;
@@ -8106,7 +8140,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	      	        newCompositeNode(grammarAccess.getXAdditiveExpressionAccess().getRightOperandXMultiplicativeExpressionParserRuleCall_1_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleXMultiplicativeExpression_in_ruleXAdditiveExpression6445);
+            	    pushFollow(FOLLOW_ruleXMultiplicativeExpression_in_ruleXAdditiveExpression6451);
             	    lv_rightOperand_3_0=ruleXMultiplicativeExpression();
 
             	    state._fsp--;
@@ -8135,7 +8169,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop50;
+            	    break loop52;
                 }
             } while (true);
 
@@ -8176,7 +8210,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getOpAddRule()); 
             }
-            pushFollow(FOLLOW_ruleOpAdd_in_entryRuleOpAdd6484);
+            pushFollow(FOLLOW_ruleOpAdd_in_entryRuleOpAdd6490);
             iv_ruleOpAdd=ruleOpAdd();
 
             state._fsp--;
@@ -8184,7 +8218,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleOpAdd.getText(); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleOpAdd6495); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleOpAdd6501); if (state.failed) return current;
 
             }
 
@@ -8215,27 +8249,27 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2779:1: (kw= '+' | kw= '-' )
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2779:1: (kw= '+' | kw= '-' )
-            int alt51=2;
-            int LA51_0 = input.LA(1);
+            int alt53=2;
+            int LA53_0 = input.LA(1);
 
-            if ( (LA51_0==64) ) {
-                alt51=1;
+            if ( (LA53_0==63) ) {
+                alt53=1;
             }
-            else if ( (LA51_0==65) ) {
-                alt51=2;
+            else if ( (LA53_0==64) ) {
+                alt53=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 51, 0, input);
+                    new NoViableAltException("", 53, 0, input);
 
                 throw nvae;
             }
-            switch (alt51) {
+            switch (alt53) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2780:2: kw= '+'
                     {
-                    kw=(Token)match(input,64,FOLLOW_64_in_ruleOpAdd6533); if (state.failed) return current;
+                    kw=(Token)match(input,63,FOLLOW_63_in_ruleOpAdd6539); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -8248,7 +8282,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 2 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2787:2: kw= '-'
                     {
-                    kw=(Token)match(input,65,FOLLOW_65_in_ruleOpAdd6552); if (state.failed) return current;
+                    kw=(Token)match(input,64,FOLLOW_64_in_ruleOpAdd6558); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -8295,7 +8329,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXMultiplicativeExpressionRule()); 
             }
-            pushFollow(FOLLOW_ruleXMultiplicativeExpression_in_entryRuleXMultiplicativeExpression6592);
+            pushFollow(FOLLOW_ruleXMultiplicativeExpression_in_entryRuleXMultiplicativeExpression6598);
             iv_ruleXMultiplicativeExpression=ruleXMultiplicativeExpression();
 
             state._fsp--;
@@ -8303,7 +8337,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXMultiplicativeExpression; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXMultiplicativeExpression6602); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXMultiplicativeExpression6608); if (state.failed) return current;
 
             }
 
@@ -8344,7 +8378,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       newCompositeNode(grammarAccess.getXMultiplicativeExpressionAccess().getXUnaryOperationParserRuleCall_0()); 
                   
             }
-            pushFollow(FOLLOW_ruleXUnaryOperation_in_ruleXMultiplicativeExpression6649);
+            pushFollow(FOLLOW_ruleXUnaryOperation_in_ruleXMultiplicativeExpression6655);
             this_XUnaryOperation_0=ruleXUnaryOperation();
 
             state._fsp--;
@@ -8356,16 +8390,27 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                   
             }
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2822:1: ( ( ( ( () ( ( ruleOpMulti ) ) ) )=> ( () ( ( ruleOpMulti ) ) ) ) ( (lv_rightOperand_3_0= ruleXUnaryOperation ) ) )*
-            loop52:
+            loop54:
             do {
-                int alt52=2;
+                int alt54=2;
                 switch ( input.LA(1) ) {
-                case 66:
+                case 65:
                     {
-                    int LA52_2 = input.LA(2);
+                    int LA54_2 = input.LA(2);
 
                     if ( (synpred13_InternalMelange()) ) {
-                        alt52=1;
+                        alt54=1;
+                    }
+
+
+                    }
+                    break;
+                case 66:
+                    {
+                    int LA54_3 = input.LA(2);
+
+                    if ( (synpred13_InternalMelange()) ) {
+                        alt54=1;
                     }
 
 
@@ -8373,10 +8418,10 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     break;
                 case 67:
                     {
-                    int LA52_3 = input.LA(2);
+                    int LA54_4 = input.LA(2);
 
                     if ( (synpred13_InternalMelange()) ) {
-                        alt52=1;
+                        alt54=1;
                     }
 
 
@@ -8384,21 +8429,10 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     break;
                 case 68:
                     {
-                    int LA52_4 = input.LA(2);
+                    int LA54_5 = input.LA(2);
 
                     if ( (synpred13_InternalMelange()) ) {
-                        alt52=1;
-                    }
-
-
-                    }
-                    break;
-                case 69:
-                    {
-                    int LA52_5 = input.LA(2);
-
-                    if ( (synpred13_InternalMelange()) ) {
-                        alt52=1;
+                        alt54=1;
                     }
 
 
@@ -8407,7 +8441,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
                 }
 
-                switch (alt52) {
+                switch (alt54) {
             	case 1 :
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2822:2: ( ( ( () ( ( ruleOpMulti ) ) ) )=> ( () ( ( ruleOpMulti ) ) ) ) ( (lv_rightOperand_3_0= ruleXUnaryOperation ) )
             	    {
@@ -8448,7 +8482,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	      	        newCompositeNode(grammarAccess.getXMultiplicativeExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleOpMulti_in_ruleXMultiplicativeExpression6702);
+            	    pushFollow(FOLLOW_ruleOpMulti_in_ruleXMultiplicativeExpression6708);
             	    ruleOpMulti();
 
             	    state._fsp--;
@@ -8481,7 +8515,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	      	        newCompositeNode(grammarAccess.getXMultiplicativeExpressionAccess().getRightOperandXUnaryOperationParserRuleCall_1_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleXUnaryOperation_in_ruleXMultiplicativeExpression6725);
+            	    pushFollow(FOLLOW_ruleXUnaryOperation_in_ruleXMultiplicativeExpression6731);
             	    lv_rightOperand_3_0=ruleXUnaryOperation();
 
             	    state._fsp--;
@@ -8510,7 +8544,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop52;
+            	    break loop54;
                 }
             } while (true);
 
@@ -8551,7 +8585,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getOpMultiRule()); 
             }
-            pushFollow(FOLLOW_ruleOpMulti_in_entryRuleOpMulti6764);
+            pushFollow(FOLLOW_ruleOpMulti_in_entryRuleOpMulti6770);
             iv_ruleOpMulti=ruleOpMulti();
 
             state._fsp--;
@@ -8559,7 +8593,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleOpMulti.getText(); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleOpMulti6775); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleOpMulti6781); if (state.failed) return current;
 
             }
 
@@ -8590,41 +8624,41 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2887:1: (kw= '*' | kw= '**' | kw= '/' | kw= '%' )
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2887:1: (kw= '*' | kw= '**' | kw= '/' | kw= '%' )
-            int alt53=4;
+            int alt55=4;
             switch ( input.LA(1) ) {
+            case 65:
+                {
+                alt55=1;
+                }
+                break;
             case 66:
                 {
-                alt53=1;
+                alt55=2;
                 }
                 break;
             case 67:
                 {
-                alt53=2;
+                alt55=3;
                 }
                 break;
             case 68:
                 {
-                alt53=3;
-                }
-                break;
-            case 69:
-                {
-                alt53=4;
+                alt55=4;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 53, 0, input);
+                    new NoViableAltException("", 55, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt53) {
+            switch (alt55) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2888:2: kw= '*'
                     {
-                    kw=(Token)match(input,66,FOLLOW_66_in_ruleOpMulti6813); if (state.failed) return current;
+                    kw=(Token)match(input,65,FOLLOW_65_in_ruleOpMulti6819); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -8637,7 +8671,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 2 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2895:2: kw= '**'
                     {
-                    kw=(Token)match(input,67,FOLLOW_67_in_ruleOpMulti6832); if (state.failed) return current;
+                    kw=(Token)match(input,66,FOLLOW_66_in_ruleOpMulti6838); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -8650,7 +8684,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 3 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2902:2: kw= '/'
                     {
-                    kw=(Token)match(input,68,FOLLOW_68_in_ruleOpMulti6851); if (state.failed) return current;
+                    kw=(Token)match(input,67,FOLLOW_67_in_ruleOpMulti6857); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -8663,7 +8697,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 4 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2909:2: kw= '%'
                     {
-                    kw=(Token)match(input,69,FOLLOW_69_in_ruleOpMulti6870); if (state.failed) return current;
+                    kw=(Token)match(input,68,FOLLOW_68_in_ruleOpMulti6876); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -8710,7 +8744,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXUnaryOperationRule()); 
             }
-            pushFollow(FOLLOW_ruleXUnaryOperation_in_entryRuleXUnaryOperation6910);
+            pushFollow(FOLLOW_ruleXUnaryOperation_in_entryRuleXUnaryOperation6916);
             iv_ruleXUnaryOperation=ruleXUnaryOperation();
 
             state._fsp--;
@@ -8718,7 +8752,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXUnaryOperation; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXUnaryOperation6920); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXUnaryOperation6926); if (state.failed) return current;
 
             }
 
@@ -8752,23 +8786,23 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2935:1: ( ( () ( ( ruleOpUnary ) ) ( (lv_operand_2_0= ruleXUnaryOperation ) ) ) | this_XCastedExpression_3= ruleXCastedExpression )
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2935:1: ( ( () ( ( ruleOpUnary ) ) ( (lv_operand_2_0= ruleXUnaryOperation ) ) ) | this_XCastedExpression_3= ruleXCastedExpression )
-            int alt54=2;
-            int LA54_0 = input.LA(1);
+            int alt56=2;
+            int LA56_0 = input.LA(1);
 
-            if ( ((LA54_0>=64 && LA54_0<=65)||LA54_0==70) ) {
-                alt54=1;
+            if ( ((LA56_0>=63 && LA56_0<=64)||LA56_0==69) ) {
+                alt56=1;
             }
-            else if ( ((LA54_0>=RULE_STRING && LA54_0<=RULE_ID)||LA54_0==19||LA54_0==29||LA54_0==39||LA54_0==48||LA54_0==77||LA54_0==80||LA54_0==82||(LA54_0>=85 && LA54_0<=87)||(LA54_0>=90 && LA54_0<=102)||LA54_0==104) ) {
-                alt54=2;
+            else if ( ((LA56_0>=RULE_STRING && LA56_0<=RULE_ID)||LA56_0==19||LA56_0==29||LA56_0==38||LA56_0==47||LA56_0==76||LA56_0==79||LA56_0==81||(LA56_0>=85 && LA56_0<=87)||(LA56_0>=90 && LA56_0<=102)||LA56_0==104) ) {
+                alt56=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 54, 0, input);
+                    new NoViableAltException("", 56, 0, input);
 
                 throw nvae;
             }
-            switch (alt54) {
+            switch (alt56) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2935:2: ( () ( ( ruleOpUnary ) ) ( (lv_operand_2_0= ruleXUnaryOperation ) ) )
                     {
@@ -8806,7 +8840,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXUnaryOperationAccess().getFeatureJvmIdentifiableElementCrossReference_0_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleOpUnary_in_ruleXUnaryOperation6978);
+                    pushFollow(FOLLOW_ruleOpUnary_in_ruleXUnaryOperation6984);
                     ruleOpUnary();
 
                     state._fsp--;
@@ -8833,7 +8867,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXUnaryOperationAccess().getOperandXUnaryOperationParserRuleCall_0_2_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleXUnaryOperation_in_ruleXUnaryOperation6999);
+                    pushFollow(FOLLOW_ruleXUnaryOperation_in_ruleXUnaryOperation7005);
                     lv_operand_2_0=ruleXUnaryOperation();
 
                     state._fsp--;
@@ -8871,7 +8905,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXUnaryOperationAccess().getXCastedExpressionParserRuleCall_1()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXCastedExpression_in_ruleXUnaryOperation7028);
+                    pushFollow(FOLLOW_ruleXCastedExpression_in_ruleXUnaryOperation7034);
                     this_XCastedExpression_3=ruleXCastedExpression();
 
                     state._fsp--;
@@ -8922,7 +8956,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getOpUnaryRule()); 
             }
-            pushFollow(FOLLOW_ruleOpUnary_in_entryRuleOpUnary7064);
+            pushFollow(FOLLOW_ruleOpUnary_in_entryRuleOpUnary7070);
             iv_ruleOpUnary=ruleOpUnary();
 
             state._fsp--;
@@ -8930,7 +8964,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleOpUnary.getText(); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleOpUnary7075); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleOpUnary7081); if (state.failed) return current;
 
             }
 
@@ -8961,36 +8995,36 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3005:1: (kw= '!' | kw= '-' | kw= '+' )
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3005:1: (kw= '!' | kw= '-' | kw= '+' )
-            int alt55=3;
+            int alt57=3;
             switch ( input.LA(1) ) {
-            case 70:
+            case 69:
                 {
-                alt55=1;
-                }
-                break;
-            case 65:
-                {
-                alt55=2;
+                alt57=1;
                 }
                 break;
             case 64:
                 {
-                alt55=3;
+                alt57=2;
+                }
+                break;
+            case 63:
+                {
+                alt57=3;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 55, 0, input);
+                    new NoViableAltException("", 57, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt55) {
+            switch (alt57) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3006:2: kw= '!'
                     {
-                    kw=(Token)match(input,70,FOLLOW_70_in_ruleOpUnary7113); if (state.failed) return current;
+                    kw=(Token)match(input,69,FOLLOW_69_in_ruleOpUnary7119); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -9003,7 +9037,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 2 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3013:2: kw= '-'
                     {
-                    kw=(Token)match(input,65,FOLLOW_65_in_ruleOpUnary7132); if (state.failed) return current;
+                    kw=(Token)match(input,64,FOLLOW_64_in_ruleOpUnary7138); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -9016,7 +9050,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 3 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3020:2: kw= '+'
                     {
-                    kw=(Token)match(input,64,FOLLOW_64_in_ruleOpUnary7151); if (state.failed) return current;
+                    kw=(Token)match(input,63,FOLLOW_63_in_ruleOpUnary7157); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -9063,7 +9097,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXCastedExpressionRule()); 
             }
-            pushFollow(FOLLOW_ruleXCastedExpression_in_entryRuleXCastedExpression7191);
+            pushFollow(FOLLOW_ruleXCastedExpression_in_entryRuleXCastedExpression7197);
             iv_ruleXCastedExpression=ruleXCastedExpression();
 
             state._fsp--;
@@ -9071,7 +9105,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXCastedExpression; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXCastedExpression7201); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXCastedExpression7207); if (state.failed) return current;
 
             }
 
@@ -9113,7 +9147,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       newCompositeNode(grammarAccess.getXCastedExpressionAccess().getXPostfixOperationParserRuleCall_0()); 
                   
             }
-            pushFollow(FOLLOW_ruleXPostfixOperation_in_ruleXCastedExpression7248);
+            pushFollow(FOLLOW_ruleXPostfixOperation_in_ruleXCastedExpression7254);
             this_XPostfixOperation_0=ruleXPostfixOperation();
 
             state._fsp--;
@@ -9125,23 +9159,23 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                   
             }
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3055:1: ( ( ( ( () 'as' ) )=> ( () otherlv_2= 'as' ) ) ( (lv_type_3_0= ruleJvmTypeReference ) ) )*
-            loop56:
+            loop58:
             do {
-                int alt56=2;
-                int LA56_0 = input.LA(1);
+                int alt58=2;
+                int LA58_0 = input.LA(1);
 
-                if ( (LA56_0==71) ) {
-                    int LA56_2 = input.LA(2);
+                if ( (LA58_0==70) ) {
+                    int LA58_2 = input.LA(2);
 
                     if ( (synpred14_InternalMelange()) ) {
-                        alt56=1;
+                        alt58=1;
                     }
 
 
                 }
 
 
-                switch (alt56) {
+                switch (alt58) {
             	case 1 :
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3055:2: ( ( ( () 'as' ) )=> ( () otherlv_2= 'as' ) ) ( (lv_type_3_0= ruleJvmTypeReference ) )
             	    {
@@ -9164,7 +9198,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             	    }
 
-            	    otherlv_2=(Token)match(input,71,FOLLOW_71_in_ruleXCastedExpression7283); if (state.failed) return current;
+            	    otherlv_2=(Token)match(input,70,FOLLOW_70_in_ruleXCastedExpression7289); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	          	newLeafNode(otherlv_2, grammarAccess.getXCastedExpressionAccess().getAsKeyword_1_0_0_1());
@@ -9187,7 +9221,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	      	        newCompositeNode(grammarAccess.getXCastedExpressionAccess().getTypeJvmTypeReferenceParserRuleCall_1_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleXCastedExpression7306);
+            	    pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleXCastedExpression7312);
             	    lv_type_3_0=ruleJvmTypeReference();
 
             	    state._fsp--;
@@ -9216,7 +9250,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop56;
+            	    break loop58;
                 }
             } while (true);
 
@@ -9257,7 +9291,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXPostfixOperationRule()); 
             }
-            pushFollow(FOLLOW_ruleXPostfixOperation_in_entryRuleXPostfixOperation7344);
+            pushFollow(FOLLOW_ruleXPostfixOperation_in_entryRuleXPostfixOperation7350);
             iv_ruleXPostfixOperation=ruleXPostfixOperation();
 
             state._fsp--;
@@ -9265,7 +9299,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXPostfixOperation; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXPostfixOperation7354); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXPostfixOperation7360); if (state.failed) return current;
 
             }
 
@@ -9304,7 +9338,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       newCompositeNode(grammarAccess.getXPostfixOperationAccess().getXMemberFeatureCallParserRuleCall_0()); 
                   
             }
-            pushFollow(FOLLOW_ruleXMemberFeatureCall_in_ruleXPostfixOperation7401);
+            pushFollow(FOLLOW_ruleXMemberFeatureCall_in_ruleXPostfixOperation7407);
             this_XMemberFeatureCall_0=ruleXMemberFeatureCall();
 
             state._fsp--;
@@ -9316,24 +9350,24 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                   
             }
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3115:1: ( ( ( () ( ( ruleOpPostfix ) ) ) )=> ( () ( ( ruleOpPostfix ) ) ) )?
-            int alt57=2;
-            int LA57_0 = input.LA(1);
+            int alt59=2;
+            int LA59_0 = input.LA(1);
 
-            if ( (LA57_0==72) ) {
-                int LA57_1 = input.LA(2);
-
-                if ( (synpred15_InternalMelange()) ) {
-                    alt57=1;
-                }
-            }
-            else if ( (LA57_0==73) ) {
-                int LA57_2 = input.LA(2);
+            if ( (LA59_0==71) ) {
+                int LA59_1 = input.LA(2);
 
                 if ( (synpred15_InternalMelange()) ) {
-                    alt57=1;
+                    alt59=1;
                 }
             }
-            switch (alt57) {
+            else if ( (LA59_0==72) ) {
+                int LA59_2 = input.LA(2);
+
+                if ( (synpred15_InternalMelange()) ) {
+                    alt59=1;
+                }
+            }
+            switch (alt59) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3115:2: ( ( () ( ( ruleOpPostfix ) ) ) )=> ( () ( ( ruleOpPostfix ) ) )
                     {
@@ -9371,7 +9405,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXPostfixOperationAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleOpPostfix_in_ruleXPostfixOperation7453);
+                    pushFollow(FOLLOW_ruleOpPostfix_in_ruleXPostfixOperation7459);
                     ruleOpPostfix();
 
                     state._fsp--;
@@ -9433,7 +9467,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getOpPostfixRule()); 
             }
-            pushFollow(FOLLOW_ruleOpPostfix_in_entryRuleOpPostfix7493);
+            pushFollow(FOLLOW_ruleOpPostfix_in_entryRuleOpPostfix7499);
             iv_ruleOpPostfix=ruleOpPostfix();
 
             state._fsp--;
@@ -9441,7 +9475,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleOpPostfix.getText(); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleOpPostfix7504); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleOpPostfix7510); if (state.failed) return current;
 
             }
 
@@ -9472,27 +9506,27 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3162:1: (kw= '++' | kw= '--' )
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3162:1: (kw= '++' | kw= '--' )
-            int alt58=2;
-            int LA58_0 = input.LA(1);
+            int alt60=2;
+            int LA60_0 = input.LA(1);
 
-            if ( (LA58_0==72) ) {
-                alt58=1;
+            if ( (LA60_0==71) ) {
+                alt60=1;
             }
-            else if ( (LA58_0==73) ) {
-                alt58=2;
+            else if ( (LA60_0==72) ) {
+                alt60=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 58, 0, input);
+                    new NoViableAltException("", 60, 0, input);
 
                 throw nvae;
             }
-            switch (alt58) {
+            switch (alt60) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3163:2: kw= '++'
                     {
-                    kw=(Token)match(input,72,FOLLOW_72_in_ruleOpPostfix7542); if (state.failed) return current;
+                    kw=(Token)match(input,71,FOLLOW_71_in_ruleOpPostfix7548); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -9505,7 +9539,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 2 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3170:2: kw= '--'
                     {
-                    kw=(Token)match(input,73,FOLLOW_73_in_ruleOpPostfix7561); if (state.failed) return current;
+                    kw=(Token)match(input,72,FOLLOW_72_in_ruleOpPostfix7567); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -9552,7 +9586,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXMemberFeatureCallRule()); 
             }
-            pushFollow(FOLLOW_ruleXMemberFeatureCall_in_entryRuleXMemberFeatureCall7601);
+            pushFollow(FOLLOW_ruleXMemberFeatureCall_in_entryRuleXMemberFeatureCall7607);
             iv_ruleXMemberFeatureCall=ruleXMemberFeatureCall();
 
             state._fsp--;
@@ -9560,7 +9594,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXMemberFeatureCall; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXMemberFeatureCall7611); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXMemberFeatureCall7617); if (state.failed) return current;
 
             }
 
@@ -9624,7 +9658,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       newCompositeNode(grammarAccess.getXMemberFeatureCallAccess().getXPrimaryExpressionParserRuleCall_0()); 
                   
             }
-            pushFollow(FOLLOW_ruleXPrimaryExpression_in_ruleXMemberFeatureCall7658);
+            pushFollow(FOLLOW_ruleXPrimaryExpression_in_ruleXMemberFeatureCall7664);
             this_XPrimaryExpression_0=ruleXPrimaryExpression();
 
             state._fsp--;
@@ -9636,19 +9670,33 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                   
             }
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3205:1: ( ( ( ( ( () ( '.' | ( ( '::' ) ) ) ( ( ruleFeatureCallID ) ) ruleOpSingleAssign ) )=> ( () (otherlv_2= '.' | ( (lv_explicitStatic_3_0= '::' ) ) ) ( ( ruleFeatureCallID ) ) ruleOpSingleAssign ) ) ( (lv_value_6_0= ruleXAssignment ) ) ) | ( ( ( ( () ( '.' | ( ( '?.' ) ) | ( ( '::' ) ) ) ) )=> ( () (otherlv_8= '.' | ( (lv_nullSafe_9_0= '?.' ) ) | ( (lv_explicitStatic_10_0= '::' ) ) ) ) ) (otherlv_11= '<' ( (lv_typeArguments_12_0= ruleJvmArgumentTypeReference ) ) (otherlv_13= ',' ( (lv_typeArguments_14_0= ruleJvmArgumentTypeReference ) ) )* otherlv_15= '>' )? ( ( ruleIdOrSuper ) ) ( ( ( ( '(' ) )=> (lv_explicitOperationCall_17_0= '(' ) ) ( ( ( ( () ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) ) ) )=> (lv_memberCallArguments_18_0= ruleXShortClosure ) ) | ( ( (lv_memberCallArguments_19_0= ruleXExpression ) ) (otherlv_20= ',' ( (lv_memberCallArguments_21_0= ruleXExpression ) ) )* ) )? otherlv_22= ')' )? ( ( ( () '[' ) )=> (lv_memberCallArguments_23_0= ruleXClosure ) )? ) )*
-            loop67:
+            loop69:
             do {
-                int alt67=3;
+                int alt69=3;
                 switch ( input.LA(1) ) {
-                case 74:
+                case 73:
                     {
-                    int LA67_2 = input.LA(2);
+                    int LA69_2 = input.LA(2);
 
                     if ( (synpred16_InternalMelange()) ) {
-                        alt67=1;
+                        alt69=1;
                     }
                     else if ( (synpred17_InternalMelange()) ) {
-                        alt67=2;
+                        alt69=2;
+                    }
+
+
+                    }
+                    break;
+                case 74:
+                    {
+                    int LA69_3 = input.LA(2);
+
+                    if ( (synpred16_InternalMelange()) ) {
+                        alt69=1;
+                    }
+                    else if ( (synpred17_InternalMelange()) ) {
+                        alt69=2;
                     }
 
 
@@ -9656,24 +9704,10 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     break;
                 case 75:
                     {
-                    int LA67_3 = input.LA(2);
-
-                    if ( (synpred16_InternalMelange()) ) {
-                        alt67=1;
-                    }
-                    else if ( (synpred17_InternalMelange()) ) {
-                        alt67=2;
-                    }
-
-
-                    }
-                    break;
-                case 76:
-                    {
-                    int LA67_4 = input.LA(2);
+                    int LA69_4 = input.LA(2);
 
                     if ( (synpred17_InternalMelange()) ) {
-                        alt67=2;
+                        alt69=2;
                     }
 
 
@@ -9682,7 +9716,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
                 }
 
-                switch (alt67) {
+                switch (alt69) {
             	case 1 :
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3205:2: ( ( ( ( () ( '.' | ( ( '::' ) ) ) ( ( ruleFeatureCallID ) ) ruleOpSingleAssign ) )=> ( () (otherlv_2= '.' | ( (lv_explicitStatic_3_0= '::' ) ) ) ( ( ruleFeatureCallID ) ) ruleOpSingleAssign ) ) ( (lv_value_6_0= ruleXAssignment ) ) )
             	    {
@@ -9709,27 +9743,27 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	    }
 
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3224:2: (otherlv_2= '.' | ( (lv_explicitStatic_3_0= '::' ) ) )
-            	    int alt59=2;
-            	    int LA59_0 = input.LA(1);
+            	    int alt61=2;
+            	    int LA61_0 = input.LA(1);
 
-            	    if ( (LA59_0==74) ) {
-            	        alt59=1;
+            	    if ( (LA61_0==73) ) {
+            	        alt61=1;
             	    }
-            	    else if ( (LA59_0==75) ) {
-            	        alt59=2;
+            	    else if ( (LA61_0==74) ) {
+            	        alt61=2;
             	    }
             	    else {
             	        if (state.backtracking>0) {state.failed=true; return current;}
             	        NoViableAltException nvae =
-            	            new NoViableAltException("", 59, 0, input);
+            	            new NoViableAltException("", 61, 0, input);
 
             	        throw nvae;
             	    }
-            	    switch (alt59) {
+            	    switch (alt61) {
             	        case 1 :
             	            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3224:4: otherlv_2= '.'
             	            {
-            	            otherlv_2=(Token)match(input,74,FOLLOW_74_in_ruleXMemberFeatureCall7730); if (state.failed) return current;
+            	            otherlv_2=(Token)match(input,73,FOLLOW_73_in_ruleXMemberFeatureCall7736); if (state.failed) return current;
             	            if ( state.backtracking==0 ) {
 
             	                  	newLeafNode(otherlv_2, grammarAccess.getXMemberFeatureCallAccess().getFullStopKeyword_1_0_0_0_1_0());
@@ -9747,7 +9781,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3230:1: (lv_explicitStatic_3_0= '::' )
             	            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3231:3: lv_explicitStatic_3_0= '::'
             	            {
-            	            lv_explicitStatic_3_0=(Token)match(input,75,FOLLOW_75_in_ruleXMemberFeatureCall7754); if (state.failed) return current;
+            	            lv_explicitStatic_3_0=(Token)match(input,74,FOLLOW_74_in_ruleXMemberFeatureCall7760); if (state.failed) return current;
             	            if ( state.backtracking==0 ) {
 
             	                      newLeafNode(lv_explicitStatic_3_0, grammarAccess.getXMemberFeatureCallAccess().getExplicitStaticColonColonKeyword_1_0_0_0_1_1_0());
@@ -9791,7 +9825,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	      	        newCompositeNode(grammarAccess.getXMemberFeatureCallAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_0_2_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleFeatureCallID_in_ruleXMemberFeatureCall7791);
+            	    pushFollow(FOLLOW_ruleFeatureCallID_in_ruleXMemberFeatureCall7797);
             	    ruleFeatureCallID();
 
             	    state._fsp--;
@@ -9812,7 +9846,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	              newCompositeNode(grammarAccess.getXMemberFeatureCallAccess().getOpSingleAssignParserRuleCall_1_0_0_0_3()); 
             	          
             	    }
-            	    pushFollow(FOLLOW_ruleOpSingleAssign_in_ruleXMemberFeatureCall7807);
+            	    pushFollow(FOLLOW_ruleOpSingleAssign_in_ruleXMemberFeatureCall7813);
             	    ruleOpSingleAssign();
 
             	    state._fsp--;
@@ -9839,7 +9873,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	      	        newCompositeNode(grammarAccess.getXMemberFeatureCallAccess().getValueXAssignmentParserRuleCall_1_0_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleXAssignment_in_ruleXMemberFeatureCall7829);
+            	    pushFollow(FOLLOW_ruleXAssignment_in_ruleXMemberFeatureCall7835);
             	    lv_value_6_0=ruleXAssignment();
 
             	    state._fsp--;
@@ -9895,36 +9929,36 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	    }
 
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3308:2: (otherlv_8= '.' | ( (lv_nullSafe_9_0= '?.' ) ) | ( (lv_explicitStatic_10_0= '::' ) ) )
-            	    int alt60=3;
+            	    int alt62=3;
             	    switch ( input.LA(1) ) {
-            	    case 74:
+            	    case 73:
             	        {
-            	        alt60=1;
-            	        }
-            	        break;
-            	    case 76:
-            	        {
-            	        alt60=2;
+            	        alt62=1;
             	        }
             	        break;
             	    case 75:
             	        {
-            	        alt60=3;
+            	        alt62=2;
+            	        }
+            	        break;
+            	    case 74:
+            	        {
+            	        alt62=3;
             	        }
             	        break;
             	    default:
             	        if (state.backtracking>0) {state.failed=true; return current;}
             	        NoViableAltException nvae =
-            	            new NoViableAltException("", 60, 0, input);
+            	            new NoViableAltException("", 62, 0, input);
 
             	        throw nvae;
             	    }
 
-            	    switch (alt60) {
+            	    switch (alt62) {
             	        case 1 :
             	            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3308:4: otherlv_8= '.'
             	            {
-            	            otherlv_8=(Token)match(input,74,FOLLOW_74_in_ruleXMemberFeatureCall7915); if (state.failed) return current;
+            	            otherlv_8=(Token)match(input,73,FOLLOW_73_in_ruleXMemberFeatureCall7921); if (state.failed) return current;
             	            if ( state.backtracking==0 ) {
 
             	                  	newLeafNode(otherlv_8, grammarAccess.getXMemberFeatureCallAccess().getFullStopKeyword_1_1_0_0_1_0());
@@ -9942,7 +9976,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3314:1: (lv_nullSafe_9_0= '?.' )
             	            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3315:3: lv_nullSafe_9_0= '?.'
             	            {
-            	            lv_nullSafe_9_0=(Token)match(input,76,FOLLOW_76_in_ruleXMemberFeatureCall7939); if (state.failed) return current;
+            	            lv_nullSafe_9_0=(Token)match(input,75,FOLLOW_75_in_ruleXMemberFeatureCall7945); if (state.failed) return current;
             	            if ( state.backtracking==0 ) {
 
             	                      newLeafNode(lv_nullSafe_9_0, grammarAccess.getXMemberFeatureCallAccess().getNullSafeQuestionMarkFullStopKeyword_1_1_0_0_1_1_0());
@@ -9974,7 +10008,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3330:1: (lv_explicitStatic_10_0= '::' )
             	            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3331:3: lv_explicitStatic_10_0= '::'
             	            {
-            	            lv_explicitStatic_10_0=(Token)match(input,75,FOLLOW_75_in_ruleXMemberFeatureCall7976); if (state.failed) return current;
+            	            lv_explicitStatic_10_0=(Token)match(input,74,FOLLOW_74_in_ruleXMemberFeatureCall7982); if (state.failed) return current;
             	            if ( state.backtracking==0 ) {
 
             	                      newLeafNode(lv_explicitStatic_10_0, grammarAccess.getXMemberFeatureCallAccess().getExplicitStaticColonColonKeyword_1_1_0_0_1_2_0());
@@ -10007,17 +10041,17 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	    }
 
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3344:5: (otherlv_11= '<' ( (lv_typeArguments_12_0= ruleJvmArgumentTypeReference ) ) (otherlv_13= ',' ( (lv_typeArguments_14_0= ruleJvmArgumentTypeReference ) ) )* otherlv_15= '>' )?
-            	    int alt62=2;
-            	    int LA62_0 = input.LA(1);
+            	    int alt64=2;
+            	    int LA64_0 = input.LA(1);
 
-            	    if ( (LA62_0==48) ) {
-            	        alt62=1;
+            	    if ( (LA64_0==47) ) {
+            	        alt64=1;
             	    }
-            	    switch (alt62) {
+            	    switch (alt64) {
             	        case 1 :
             	            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3344:7: otherlv_11= '<' ( (lv_typeArguments_12_0= ruleJvmArgumentTypeReference ) ) (otherlv_13= ',' ( (lv_typeArguments_14_0= ruleJvmArgumentTypeReference ) ) )* otherlv_15= '>'
             	            {
-            	            otherlv_11=(Token)match(input,48,FOLLOW_48_in_ruleXMemberFeatureCall8005); if (state.failed) return current;
+            	            otherlv_11=(Token)match(input,47,FOLLOW_47_in_ruleXMemberFeatureCall8011); if (state.failed) return current;
             	            if ( state.backtracking==0 ) {
 
             	                  	newLeafNode(otherlv_11, grammarAccess.getXMemberFeatureCallAccess().getLessThanSignKeyword_1_1_1_0());
@@ -10034,7 +10068,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	              	        newCompositeNode(grammarAccess.getXMemberFeatureCallAccess().getTypeArgumentsJvmArgumentTypeReferenceParserRuleCall_1_1_1_1_0()); 
             	              	    
             	            }
-            	            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_ruleXMemberFeatureCall8026);
+            	            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_ruleXMemberFeatureCall8032);
             	            lv_typeArguments_12_0=ruleJvmArgumentTypeReference();
 
             	            state._fsp--;
@@ -10059,21 +10093,21 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	            }
 
             	            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3366:2: (otherlv_13= ',' ( (lv_typeArguments_14_0= ruleJvmArgumentTypeReference ) ) )*
-            	            loop61:
+            	            loop63:
             	            do {
-            	                int alt61=2;
-            	                int LA61_0 = input.LA(1);
+            	                int alt63=2;
+            	                int LA63_0 = input.LA(1);
 
-            	                if ( (LA61_0==16) ) {
-            	                    alt61=1;
+            	                if ( (LA63_0==16) ) {
+            	                    alt63=1;
             	                }
 
 
-            	                switch (alt61) {
+            	                switch (alt63) {
             	            	case 1 :
             	            	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3366:4: otherlv_13= ',' ( (lv_typeArguments_14_0= ruleJvmArgumentTypeReference ) )
             	            	    {
-            	            	    otherlv_13=(Token)match(input,16,FOLLOW_16_in_ruleXMemberFeatureCall8039); if (state.failed) return current;
+            	            	    otherlv_13=(Token)match(input,16,FOLLOW_16_in_ruleXMemberFeatureCall8045); if (state.failed) return current;
             	            	    if ( state.backtracking==0 ) {
 
             	            	          	newLeafNode(otherlv_13, grammarAccess.getXMemberFeatureCallAccess().getCommaKeyword_1_1_1_2_0());
@@ -10090,7 +10124,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	            	      	        newCompositeNode(grammarAccess.getXMemberFeatureCallAccess().getTypeArgumentsJvmArgumentTypeReferenceParserRuleCall_1_1_1_2_1_0()); 
             	            	      	    
             	            	    }
-            	            	    pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_ruleXMemberFeatureCall8060);
+            	            	    pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_ruleXMemberFeatureCall8066);
             	            	    lv_typeArguments_14_0=ruleJvmArgumentTypeReference();
 
             	            	    state._fsp--;
@@ -10119,11 +10153,11 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	            	    break;
 
             	            	default :
-            	            	    break loop61;
+            	            	    break loop63;
             	                }
             	            } while (true);
 
-            	            otherlv_15=(Token)match(input,49,FOLLOW_49_in_ruleXMemberFeatureCall8074); if (state.failed) return current;
+            	            otherlv_15=(Token)match(input,48,FOLLOW_48_in_ruleXMemberFeatureCall8080); if (state.failed) return current;
             	            if ( state.backtracking==0 ) {
 
             	                  	newLeafNode(otherlv_15, grammarAccess.getXMemberFeatureCallAccess().getGreaterThanSignKeyword_1_1_1_3());
@@ -10153,7 +10187,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	      	        newCompositeNode(grammarAccess.getXMemberFeatureCallAccess().getFeatureJvmIdentifiableElementCrossReference_1_1_2_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleIdOrSuper_in_ruleXMemberFeatureCall8099);
+            	    pushFollow(FOLLOW_ruleIdOrSuper_in_ruleXMemberFeatureCall8105);
             	    ruleIdOrSuper();
 
             	    state._fsp--;
@@ -10170,9 +10204,9 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	    }
 
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3407:2: ( ( ( ( '(' ) )=> (lv_explicitOperationCall_17_0= '(' ) ) ( ( ( ( () ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) ) ) )=> (lv_memberCallArguments_18_0= ruleXShortClosure ) ) | ( ( (lv_memberCallArguments_19_0= ruleXExpression ) ) (otherlv_20= ',' ( (lv_memberCallArguments_21_0= ruleXExpression ) ) )* ) )? otherlv_22= ')' )?
-            	    int alt65=2;
-            	    alt65 = dfa65.predict(input);
-            	    switch (alt65) {
+            	    int alt67=2;
+            	    alt67 = dfa67.predict(input);
+            	    switch (alt67) {
             	        case 1 :
             	            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3407:3: ( ( ( '(' ) )=> (lv_explicitOperationCall_17_0= '(' ) ) ( ( ( ( () ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) ) ) )=> (lv_memberCallArguments_18_0= ruleXShortClosure ) ) | ( ( (lv_memberCallArguments_19_0= ruleXExpression ) ) (otherlv_20= ',' ( (lv_memberCallArguments_21_0= ruleXExpression ) ) )* ) )? otherlv_22= ')'
             	            {
@@ -10182,7 +10216,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3414:1: (lv_explicitOperationCall_17_0= '(' )
             	            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3415:3: lv_explicitOperationCall_17_0= '('
             	            {
-            	            lv_explicitOperationCall_17_0=(Token)match(input,29,FOLLOW_29_in_ruleXMemberFeatureCall8133); if (state.failed) return current;
+            	            lv_explicitOperationCall_17_0=(Token)match(input,29,FOLLOW_29_in_ruleXMemberFeatureCall8139); if (state.failed) return current;
             	            if ( state.backtracking==0 ) {
 
             	                      newLeafNode(lv_explicitOperationCall_17_0, grammarAccess.getXMemberFeatureCallAccess().getExplicitOperationCallLeftParenthesisKeyword_1_1_3_0_0());
@@ -10203,9 +10237,9 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	            }
 
             	            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3428:2: ( ( ( ( () ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) ) ) )=> (lv_memberCallArguments_18_0= ruleXShortClosure ) ) | ( ( (lv_memberCallArguments_19_0= ruleXExpression ) ) (otherlv_20= ',' ( (lv_memberCallArguments_21_0= ruleXExpression ) ) )* ) )?
-            	            int alt64=3;
-            	            alt64 = dfa64.predict(input);
-            	            switch (alt64) {
+            	            int alt66=3;
+            	            alt66 = dfa66.predict(input);
+            	            switch (alt66) {
             	                case 1 :
             	                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3428:3: ( ( ( () ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) ) ) )=> (lv_memberCallArguments_18_0= ruleXShortClosure ) )
             	                    {
@@ -10220,7 +10254,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	                      	        newCompositeNode(grammarAccess.getXMemberFeatureCallAccess().getMemberCallArgumentsXShortClosureParserRuleCall_1_1_3_1_0_0()); 
             	                      	    
             	                    }
-            	                    pushFollow(FOLLOW_ruleXShortClosure_in_ruleXMemberFeatureCall8218);
+            	                    pushFollow(FOLLOW_ruleXShortClosure_in_ruleXMemberFeatureCall8224);
             	                    lv_memberCallArguments_18_0=ruleXShortClosure();
 
             	                    state._fsp--;
@@ -10264,7 +10298,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	                      	        newCompositeNode(grammarAccess.getXMemberFeatureCallAccess().getMemberCallArgumentsXExpressionParserRuleCall_1_1_3_1_1_0_0()); 
             	                      	    
             	                    }
-            	                    pushFollow(FOLLOW_ruleXExpression_in_ruleXMemberFeatureCall8246);
+            	                    pushFollow(FOLLOW_ruleXExpression_in_ruleXMemberFeatureCall8252);
             	                    lv_memberCallArguments_19_0=ruleXExpression();
 
             	                    state._fsp--;
@@ -10289,21 +10323,21 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	                    }
 
             	                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3481:2: (otherlv_20= ',' ( (lv_memberCallArguments_21_0= ruleXExpression ) ) )*
-            	                    loop63:
+            	                    loop65:
             	                    do {
-            	                        int alt63=2;
-            	                        int LA63_0 = input.LA(1);
+            	                        int alt65=2;
+            	                        int LA65_0 = input.LA(1);
 
-            	                        if ( (LA63_0==16) ) {
-            	                            alt63=1;
+            	                        if ( (LA65_0==16) ) {
+            	                            alt65=1;
             	                        }
 
 
-            	                        switch (alt63) {
+            	                        switch (alt65) {
             	                    	case 1 :
             	                    	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3481:4: otherlv_20= ',' ( (lv_memberCallArguments_21_0= ruleXExpression ) )
             	                    	    {
-            	                    	    otherlv_20=(Token)match(input,16,FOLLOW_16_in_ruleXMemberFeatureCall8259); if (state.failed) return current;
+            	                    	    otherlv_20=(Token)match(input,16,FOLLOW_16_in_ruleXMemberFeatureCall8265); if (state.failed) return current;
             	                    	    if ( state.backtracking==0 ) {
 
             	                    	          	newLeafNode(otherlv_20, grammarAccess.getXMemberFeatureCallAccess().getCommaKeyword_1_1_3_1_1_1_0());
@@ -10320,7 +10354,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	                    	      	        newCompositeNode(grammarAccess.getXMemberFeatureCallAccess().getMemberCallArgumentsXExpressionParserRuleCall_1_1_3_1_1_1_1_0()); 
             	                    	      	    
             	                    	    }
-            	                    	    pushFollow(FOLLOW_ruleXExpression_in_ruleXMemberFeatureCall8280);
+            	                    	    pushFollow(FOLLOW_ruleXExpression_in_ruleXMemberFeatureCall8286);
             	                    	    lv_memberCallArguments_21_0=ruleXExpression();
 
             	                    	    state._fsp--;
@@ -10349,7 +10383,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	                    	    break;
 
             	                    	default :
-            	                    	    break loop63;
+            	                    	    break loop65;
             	                        }
             	                    } while (true);
 
@@ -10362,7 +10396,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             	            }
 
-            	            otherlv_22=(Token)match(input,30,FOLLOW_30_in_ruleXMemberFeatureCall8297); if (state.failed) return current;
+            	            otherlv_22=(Token)match(input,30,FOLLOW_30_in_ruleXMemberFeatureCall8303); if (state.failed) return current;
             	            if ( state.backtracking==0 ) {
 
             	                  	newLeafNode(otherlv_22, grammarAccess.getXMemberFeatureCallAccess().getRightParenthesisKeyword_1_1_3_2());
@@ -10375,9 +10409,9 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	    }
 
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3507:3: ( ( ( () '[' ) )=> (lv_memberCallArguments_23_0= ruleXClosure ) )?
-            	    int alt66=2;
-            	    alt66 = dfa66.predict(input);
-            	    switch (alt66) {
+            	    int alt68=2;
+            	    alt68 = dfa68.predict(input);
+            	    switch (alt68) {
             	        case 1 :
             	            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3507:4: ( ( () '[' ) )=> (lv_memberCallArguments_23_0= ruleXClosure )
             	            {
@@ -10389,7 +10423,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	              	        newCompositeNode(grammarAccess.getXMemberFeatureCallAccess().getMemberCallArgumentsXClosureParserRuleCall_1_1_4_0()); 
             	              	    
             	            }
-            	            pushFollow(FOLLOW_ruleXClosure_in_ruleXMemberFeatureCall8332);
+            	            pushFollow(FOLLOW_ruleXClosure_in_ruleXMemberFeatureCall8338);
             	            lv_memberCallArguments_23_0=ruleXClosure();
 
             	            state._fsp--;
@@ -10424,7 +10458,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop67;
+            	    break loop69;
                 }
             } while (true);
 
@@ -10465,7 +10499,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXPrimaryExpressionRule()); 
             }
-            pushFollow(FOLLOW_ruleXPrimaryExpression_in_entryRuleXPrimaryExpression8372);
+            pushFollow(FOLLOW_ruleXPrimaryExpression_in_entryRuleXPrimaryExpression8378);
             iv_ruleXPrimaryExpression=ruleXPrimaryExpression();
 
             state._fsp--;
@@ -10473,7 +10507,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXPrimaryExpression; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXPrimaryExpression8382); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXPrimaryExpression8388); if (state.failed) return current;
 
             }
 
@@ -10533,9 +10567,9 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3548:1: (this_XConstructorCall_0= ruleXConstructorCall | this_XBlockExpression_1= ruleXBlockExpression | this_XSwitchExpression_2= ruleXSwitchExpression | ( ( ( () 'synchronized' '(' ) )=>this_XSynchronizedExpression_3= ruleXSynchronizedExpression ) | this_XFeatureCall_4= ruleXFeatureCall | this_XLiteral_5= ruleXLiteral | this_XIfExpression_6= ruleXIfExpression | ( ( ( () 'for' '(' ( ( ruleJvmFormalParameter ) ) ':' ) )=>this_XForLoopExpression_7= ruleXForLoopExpression ) | this_XBasicForLoopExpression_8= ruleXBasicForLoopExpression | this_XWhileExpression_9= ruleXWhileExpression | this_XDoWhileExpression_10= ruleXDoWhileExpression | this_XThrowExpression_11= ruleXThrowExpression | this_XReturnExpression_12= ruleXReturnExpression | this_XTryCatchFinallyExpression_13= ruleXTryCatchFinallyExpression | this_XParenthesizedExpression_14= ruleXParenthesizedExpression )
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3548:1: (this_XConstructorCall_0= ruleXConstructorCall | this_XBlockExpression_1= ruleXBlockExpression | this_XSwitchExpression_2= ruleXSwitchExpression | ( ( ( () 'synchronized' '(' ) )=>this_XSynchronizedExpression_3= ruleXSynchronizedExpression ) | this_XFeatureCall_4= ruleXFeatureCall | this_XLiteral_5= ruleXLiteral | this_XIfExpression_6= ruleXIfExpression | ( ( ( () 'for' '(' ( ( ruleJvmFormalParameter ) ) ':' ) )=>this_XForLoopExpression_7= ruleXForLoopExpression ) | this_XBasicForLoopExpression_8= ruleXBasicForLoopExpression | this_XWhileExpression_9= ruleXWhileExpression | this_XDoWhileExpression_10= ruleXDoWhileExpression | this_XThrowExpression_11= ruleXThrowExpression | this_XReturnExpression_12= ruleXReturnExpression | this_XTryCatchFinallyExpression_13= ruleXTryCatchFinallyExpression | this_XParenthesizedExpression_14= ruleXParenthesizedExpression )
-            int alt68=15;
-            alt68 = dfa68.predict(input);
-            switch (alt68) {
+            int alt70=15;
+            alt70 = dfa70.predict(input);
+            switch (alt70) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3549:5: this_XConstructorCall_0= ruleXConstructorCall
                     {
@@ -10544,7 +10578,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getXConstructorCallParserRuleCall_0()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXConstructorCall_in_ruleXPrimaryExpression8429);
+                    pushFollow(FOLLOW_ruleXConstructorCall_in_ruleXPrimaryExpression8435);
                     this_XConstructorCall_0=ruleXConstructorCall();
 
                     state._fsp--;
@@ -10566,7 +10600,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getXBlockExpressionParserRuleCall_1()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXBlockExpression_in_ruleXPrimaryExpression8456);
+                    pushFollow(FOLLOW_ruleXBlockExpression_in_ruleXPrimaryExpression8462);
                     this_XBlockExpression_1=ruleXBlockExpression();
 
                     state._fsp--;
@@ -10588,7 +10622,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getXSwitchExpressionParserRuleCall_2()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXSwitchExpression_in_ruleXPrimaryExpression8483);
+                    pushFollow(FOLLOW_ruleXSwitchExpression_in_ruleXPrimaryExpression8489);
                     this_XSwitchExpression_2=ruleXSwitchExpression();
 
                     state._fsp--;
@@ -10613,7 +10647,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getXSynchronizedExpressionParserRuleCall_3()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXSynchronizedExpression_in_ruleXPrimaryExpression8527);
+                    pushFollow(FOLLOW_ruleXSynchronizedExpression_in_ruleXPrimaryExpression8533);
                     this_XSynchronizedExpression_3=ruleXSynchronizedExpression();
 
                     state._fsp--;
@@ -10638,7 +10672,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getXFeatureCallParserRuleCall_4()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXFeatureCall_in_ruleXPrimaryExpression8555);
+                    pushFollow(FOLLOW_ruleXFeatureCall_in_ruleXPrimaryExpression8561);
                     this_XFeatureCall_4=ruleXFeatureCall();
 
                     state._fsp--;
@@ -10660,7 +10694,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getXLiteralParserRuleCall_5()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXLiteral_in_ruleXPrimaryExpression8582);
+                    pushFollow(FOLLOW_ruleXLiteral_in_ruleXPrimaryExpression8588);
                     this_XLiteral_5=ruleXLiteral();
 
                     state._fsp--;
@@ -10682,7 +10716,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getXIfExpressionParserRuleCall_6()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXIfExpression_in_ruleXPrimaryExpression8609);
+                    pushFollow(FOLLOW_ruleXIfExpression_in_ruleXPrimaryExpression8615);
                     this_XIfExpression_6=ruleXIfExpression();
 
                     state._fsp--;
@@ -10707,7 +10741,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getXForLoopExpressionParserRuleCall_7()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXForLoopExpression_in_ruleXPrimaryExpression8666);
+                    pushFollow(FOLLOW_ruleXForLoopExpression_in_ruleXPrimaryExpression8672);
                     this_XForLoopExpression_7=ruleXForLoopExpression();
 
                     state._fsp--;
@@ -10732,7 +10766,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getXBasicForLoopExpressionParserRuleCall_8()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXBasicForLoopExpression_in_ruleXPrimaryExpression8694);
+                    pushFollow(FOLLOW_ruleXBasicForLoopExpression_in_ruleXPrimaryExpression8700);
                     this_XBasicForLoopExpression_8=ruleXBasicForLoopExpression();
 
                     state._fsp--;
@@ -10754,7 +10788,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getXWhileExpressionParserRuleCall_9()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXWhileExpression_in_ruleXPrimaryExpression8721);
+                    pushFollow(FOLLOW_ruleXWhileExpression_in_ruleXPrimaryExpression8727);
                     this_XWhileExpression_9=ruleXWhileExpression();
 
                     state._fsp--;
@@ -10776,7 +10810,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getXDoWhileExpressionParserRuleCall_10()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXDoWhileExpression_in_ruleXPrimaryExpression8748);
+                    pushFollow(FOLLOW_ruleXDoWhileExpression_in_ruleXPrimaryExpression8754);
                     this_XDoWhileExpression_10=ruleXDoWhileExpression();
 
                     state._fsp--;
@@ -10798,7 +10832,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getXThrowExpressionParserRuleCall_11()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXThrowExpression_in_ruleXPrimaryExpression8775);
+                    pushFollow(FOLLOW_ruleXThrowExpression_in_ruleXPrimaryExpression8781);
                     this_XThrowExpression_11=ruleXThrowExpression();
 
                     state._fsp--;
@@ -10820,7 +10854,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getXReturnExpressionParserRuleCall_12()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXReturnExpression_in_ruleXPrimaryExpression8802);
+                    pushFollow(FOLLOW_ruleXReturnExpression_in_ruleXPrimaryExpression8808);
                     this_XReturnExpression_12=ruleXReturnExpression();
 
                     state._fsp--;
@@ -10842,7 +10876,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getXTryCatchFinallyExpressionParserRuleCall_13()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXTryCatchFinallyExpression_in_ruleXPrimaryExpression8829);
+                    pushFollow(FOLLOW_ruleXTryCatchFinallyExpression_in_ruleXPrimaryExpression8835);
                     this_XTryCatchFinallyExpression_13=ruleXTryCatchFinallyExpression();
 
                     state._fsp--;
@@ -10864,7 +10898,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getXParenthesizedExpressionParserRuleCall_14()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXParenthesizedExpression_in_ruleXPrimaryExpression8856);
+                    pushFollow(FOLLOW_ruleXParenthesizedExpression_in_ruleXPrimaryExpression8862);
                     this_XParenthesizedExpression_14=ruleXParenthesizedExpression();
 
                     state._fsp--;
@@ -10915,7 +10949,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXLiteralRule()); 
             }
-            pushFollow(FOLLOW_ruleXLiteral_in_entryRuleXLiteral8891);
+            pushFollow(FOLLOW_ruleXLiteral_in_entryRuleXLiteral8897);
             iv_ruleXLiteral=ruleXLiteral();
 
             state._fsp--;
@@ -10923,7 +10957,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXLiteral; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXLiteral8901); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXLiteral8907); if (state.failed) return current;
 
             }
 
@@ -10967,38 +11001,38 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3729:1: (this_XCollectionLiteral_0= ruleXCollectionLiteral | ( ( ( () '[' ) )=>this_XClosure_1= ruleXClosure ) | this_XBooleanLiteral_2= ruleXBooleanLiteral | this_XNumberLiteral_3= ruleXNumberLiteral | this_XNullLiteral_4= ruleXNullLiteral | this_XStringLiteral_5= ruleXStringLiteral | this_XTypeLiteral_6= ruleXTypeLiteral )
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3729:1: (this_XCollectionLiteral_0= ruleXCollectionLiteral | ( ( ( () '[' ) )=>this_XClosure_1= ruleXClosure ) | this_XBooleanLiteral_2= ruleXBooleanLiteral | this_XNumberLiteral_3= ruleXNumberLiteral | this_XNullLiteral_4= ruleXNullLiteral | this_XStringLiteral_5= ruleXStringLiteral | this_XTypeLiteral_6= ruleXTypeLiteral )
-            int alt69=7;
-            int LA69_0 = input.LA(1);
+            int alt71=7;
+            int LA71_0 = input.LA(1);
 
-            if ( (LA69_0==77) ) {
-                alt69=1;
+            if ( (LA71_0==76) ) {
+                alt71=1;
             }
-            else if ( (LA69_0==39) && (synpred23_InternalMelange())) {
-                alt69=2;
+            else if ( (LA71_0==38) && (synpred23_InternalMelange())) {
+                alt71=2;
             }
-            else if ( ((LA69_0>=96 && LA69_0<=97)) ) {
-                alt69=3;
+            else if ( ((LA71_0>=96 && LA71_0<=97)) ) {
+                alt71=3;
             }
-            else if ( ((LA69_0>=RULE_HEX && LA69_0<=RULE_DECIMAL)) ) {
-                alt69=4;
+            else if ( ((LA71_0>=RULE_HEX && LA71_0<=RULE_DECIMAL)) ) {
+                alt71=4;
             }
-            else if ( (LA69_0==98) ) {
-                alt69=5;
+            else if ( (LA71_0==98) ) {
+                alt71=5;
             }
-            else if ( (LA69_0==RULE_STRING) ) {
-                alt69=6;
+            else if ( (LA71_0==RULE_STRING) ) {
+                alt71=6;
             }
-            else if ( (LA69_0==99) ) {
-                alt69=7;
+            else if ( (LA71_0==99) ) {
+                alt71=7;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 69, 0, input);
+                    new NoViableAltException("", 71, 0, input);
 
                 throw nvae;
             }
-            switch (alt69) {
+            switch (alt71) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3730:5: this_XCollectionLiteral_0= ruleXCollectionLiteral
                     {
@@ -11007,7 +11041,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXLiteralAccess().getXCollectionLiteralParserRuleCall_0()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXCollectionLiteral_in_ruleXLiteral8948);
+                    pushFollow(FOLLOW_ruleXCollectionLiteral_in_ruleXLiteral8954);
                     this_XCollectionLiteral_0=ruleXCollectionLiteral();
 
                     state._fsp--;
@@ -11032,7 +11066,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXLiteralAccess().getXClosureParserRuleCall_1()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXClosure_in_ruleXLiteral8988);
+                    pushFollow(FOLLOW_ruleXClosure_in_ruleXLiteral8994);
                     this_XClosure_1=ruleXClosure();
 
                     state._fsp--;
@@ -11057,7 +11091,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXLiteralAccess().getXBooleanLiteralParserRuleCall_2()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXBooleanLiteral_in_ruleXLiteral9016);
+                    pushFollow(FOLLOW_ruleXBooleanLiteral_in_ruleXLiteral9022);
                     this_XBooleanLiteral_2=ruleXBooleanLiteral();
 
                     state._fsp--;
@@ -11079,7 +11113,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXLiteralAccess().getXNumberLiteralParserRuleCall_3()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXNumberLiteral_in_ruleXLiteral9043);
+                    pushFollow(FOLLOW_ruleXNumberLiteral_in_ruleXLiteral9049);
                     this_XNumberLiteral_3=ruleXNumberLiteral();
 
                     state._fsp--;
@@ -11101,7 +11135,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXLiteralAccess().getXNullLiteralParserRuleCall_4()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXNullLiteral_in_ruleXLiteral9070);
+                    pushFollow(FOLLOW_ruleXNullLiteral_in_ruleXLiteral9076);
                     this_XNullLiteral_4=ruleXNullLiteral();
 
                     state._fsp--;
@@ -11123,7 +11157,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXLiteralAccess().getXStringLiteralParserRuleCall_5()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXStringLiteral_in_ruleXLiteral9097);
+                    pushFollow(FOLLOW_ruleXStringLiteral_in_ruleXLiteral9103);
                     this_XStringLiteral_5=ruleXStringLiteral();
 
                     state._fsp--;
@@ -11145,7 +11179,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXLiteralAccess().getXTypeLiteralParserRuleCall_6()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXTypeLiteral_in_ruleXLiteral9124);
+                    pushFollow(FOLLOW_ruleXTypeLiteral_in_ruleXLiteral9130);
                     this_XTypeLiteral_6=ruleXTypeLiteral();
 
                     state._fsp--;
@@ -11196,7 +11230,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXCollectionLiteralRule()); 
             }
-            pushFollow(FOLLOW_ruleXCollectionLiteral_in_entryRuleXCollectionLiteral9159);
+            pushFollow(FOLLOW_ruleXCollectionLiteral_in_entryRuleXCollectionLiteral9165);
             iv_ruleXCollectionLiteral=ruleXCollectionLiteral();
 
             state._fsp--;
@@ -11204,7 +11238,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXCollectionLiteral; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXCollectionLiteral9169); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXCollectionLiteral9175); if (state.failed) return current;
 
             }
 
@@ -11238,22 +11272,22 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3821:1: (this_XSetLiteral_0= ruleXSetLiteral | this_XListLiteral_1= ruleXListLiteral )
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3821:1: (this_XSetLiteral_0= ruleXSetLiteral | this_XListLiteral_1= ruleXListLiteral )
-            int alt70=2;
-            int LA70_0 = input.LA(1);
+            int alt72=2;
+            int LA72_0 = input.LA(1);
 
-            if ( (LA70_0==77) ) {
-                int LA70_1 = input.LA(2);
+            if ( (LA72_0==76) ) {
+                int LA72_1 = input.LA(2);
 
-                if ( (LA70_1==39) ) {
-                    alt70=2;
+                if ( (LA72_1==38) ) {
+                    alt72=2;
                 }
-                else if ( (LA70_1==19) ) {
-                    alt70=1;
+                else if ( (LA72_1==19) ) {
+                    alt72=1;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 70, 1, input);
+                        new NoViableAltException("", 72, 1, input);
 
                     throw nvae;
                 }
@@ -11261,11 +11295,11 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 70, 0, input);
+                    new NoViableAltException("", 72, 0, input);
 
                 throw nvae;
             }
-            switch (alt70) {
+            switch (alt72) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3822:5: this_XSetLiteral_0= ruleXSetLiteral
                     {
@@ -11274,7 +11308,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXCollectionLiteralAccess().getXSetLiteralParserRuleCall_0()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXSetLiteral_in_ruleXCollectionLiteral9216);
+                    pushFollow(FOLLOW_ruleXSetLiteral_in_ruleXCollectionLiteral9222);
                     this_XSetLiteral_0=ruleXSetLiteral();
 
                     state._fsp--;
@@ -11296,7 +11330,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXCollectionLiteralAccess().getXListLiteralParserRuleCall_1()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXListLiteral_in_ruleXCollectionLiteral9243);
+                    pushFollow(FOLLOW_ruleXListLiteral_in_ruleXCollectionLiteral9249);
                     this_XListLiteral_1=ruleXListLiteral();
 
                     state._fsp--;
@@ -11347,7 +11381,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXSetLiteralRule()); 
             }
-            pushFollow(FOLLOW_ruleXSetLiteral_in_entryRuleXSetLiteral9278);
+            pushFollow(FOLLOW_ruleXSetLiteral_in_entryRuleXSetLiteral9284);
             iv_ruleXSetLiteral=ruleXSetLiteral();
 
             state._fsp--;
@@ -11355,7 +11389,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXSetLiteral; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXSetLiteral9288); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXSetLiteral9294); if (state.failed) return current;
 
             }
 
@@ -11408,26 +11442,26 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,77,FOLLOW_77_in_ruleXSetLiteral9334); if (state.failed) return current;
+            otherlv_1=(Token)match(input,76,FOLLOW_76_in_ruleXSetLiteral9340); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_1, grammarAccess.getXSetLiteralAccess().getNumberSignKeyword_1());
                   
             }
-            otherlv_2=(Token)match(input,19,FOLLOW_19_in_ruleXSetLiteral9346); if (state.failed) return current;
+            otherlv_2=(Token)match(input,19,FOLLOW_19_in_ruleXSetLiteral9352); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_2, grammarAccess.getXSetLiteralAccess().getLeftCurlyBracketKeyword_2());
                   
             }
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3875:1: ( ( (lv_elements_3_0= ruleXExpression ) ) (otherlv_4= ',' ( (lv_elements_5_0= ruleXExpression ) ) )* )?
-            int alt72=2;
-            int LA72_0 = input.LA(1);
+            int alt74=2;
+            int LA74_0 = input.LA(1);
 
-            if ( ((LA72_0>=RULE_STRING && LA72_0<=RULE_ID)||LA72_0==19||LA72_0==29||LA72_0==39||LA72_0==48||(LA72_0>=64 && LA72_0<=65)||LA72_0==70||LA72_0==77||LA72_0==80||LA72_0==82||(LA72_0>=85 && LA72_0<=87)||(LA72_0>=90 && LA72_0<=102)||LA72_0==104) ) {
-                alt72=1;
+            if ( ((LA74_0>=RULE_STRING && LA74_0<=RULE_ID)||LA74_0==19||LA74_0==29||LA74_0==38||LA74_0==47||(LA74_0>=63 && LA74_0<=64)||LA74_0==69||LA74_0==76||LA74_0==79||LA74_0==81||(LA74_0>=85 && LA74_0<=87)||(LA74_0>=90 && LA74_0<=102)||LA74_0==104) ) {
+                alt74=1;
             }
-            switch (alt72) {
+            switch (alt74) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3875:2: ( (lv_elements_3_0= ruleXExpression ) ) (otherlv_4= ',' ( (lv_elements_5_0= ruleXExpression ) ) )*
                     {
@@ -11442,7 +11476,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXSetLiteralAccess().getElementsXExpressionParserRuleCall_3_0_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleXExpression_in_ruleXSetLiteral9368);
+                    pushFollow(FOLLOW_ruleXExpression_in_ruleXSetLiteral9374);
                     lv_elements_3_0=ruleXExpression();
 
                     state._fsp--;
@@ -11467,21 +11501,21 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     }
 
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3893:2: (otherlv_4= ',' ( (lv_elements_5_0= ruleXExpression ) ) )*
-                    loop71:
+                    loop73:
                     do {
-                        int alt71=2;
-                        int LA71_0 = input.LA(1);
+                        int alt73=2;
+                        int LA73_0 = input.LA(1);
 
-                        if ( (LA71_0==16) ) {
-                            alt71=1;
+                        if ( (LA73_0==16) ) {
+                            alt73=1;
                         }
 
 
-                        switch (alt71) {
+                        switch (alt73) {
                     	case 1 :
                     	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3893:4: otherlv_4= ',' ( (lv_elements_5_0= ruleXExpression ) )
                     	    {
-                    	    otherlv_4=(Token)match(input,16,FOLLOW_16_in_ruleXSetLiteral9381); if (state.failed) return current;
+                    	    otherlv_4=(Token)match(input,16,FOLLOW_16_in_ruleXSetLiteral9387); if (state.failed) return current;
                     	    if ( state.backtracking==0 ) {
 
                     	          	newLeafNode(otherlv_4, grammarAccess.getXSetLiteralAccess().getCommaKeyword_3_1_0());
@@ -11498,7 +11532,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	      	        newCompositeNode(grammarAccess.getXSetLiteralAccess().getElementsXExpressionParserRuleCall_3_1_1_0()); 
                     	      	    
                     	    }
-                    	    pushFollow(FOLLOW_ruleXExpression_in_ruleXSetLiteral9402);
+                    	    pushFollow(FOLLOW_ruleXExpression_in_ruleXSetLiteral9408);
                     	    lv_elements_5_0=ruleXExpression();
 
                     	    state._fsp--;
@@ -11527,7 +11561,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop71;
+                    	    break loop73;
                         }
                     } while (true);
 
@@ -11537,7 +11571,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_6=(Token)match(input,24,FOLLOW_24_in_ruleXSetLiteral9418); if (state.failed) return current;
+            otherlv_6=(Token)match(input,24,FOLLOW_24_in_ruleXSetLiteral9424); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_6, grammarAccess.getXSetLiteralAccess().getRightCurlyBracketKeyword_4());
@@ -11580,7 +11614,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXListLiteralRule()); 
             }
-            pushFollow(FOLLOW_ruleXListLiteral_in_entryRuleXListLiteral9454);
+            pushFollow(FOLLOW_ruleXListLiteral_in_entryRuleXListLiteral9460);
             iv_ruleXListLiteral=ruleXListLiteral();
 
             state._fsp--;
@@ -11588,7 +11622,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXListLiteral; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXListLiteral9464); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXListLiteral9470); if (state.failed) return current;
 
             }
 
@@ -11641,26 +11675,26 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,77,FOLLOW_77_in_ruleXListLiteral9510); if (state.failed) return current;
+            otherlv_1=(Token)match(input,76,FOLLOW_76_in_ruleXListLiteral9516); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_1, grammarAccess.getXListLiteralAccess().getNumberSignKeyword_1());
                   
             }
-            otherlv_2=(Token)match(input,39,FOLLOW_39_in_ruleXListLiteral9522); if (state.failed) return current;
+            otherlv_2=(Token)match(input,38,FOLLOW_38_in_ruleXListLiteral9528); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_2, grammarAccess.getXListLiteralAccess().getLeftSquareBracketKeyword_2());
                   
             }
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3954:1: ( ( (lv_elements_3_0= ruleXExpression ) ) (otherlv_4= ',' ( (lv_elements_5_0= ruleXExpression ) ) )* )?
-            int alt74=2;
-            int LA74_0 = input.LA(1);
+            int alt76=2;
+            int LA76_0 = input.LA(1);
 
-            if ( ((LA74_0>=RULE_STRING && LA74_0<=RULE_ID)||LA74_0==19||LA74_0==29||LA74_0==39||LA74_0==48||(LA74_0>=64 && LA74_0<=65)||LA74_0==70||LA74_0==77||LA74_0==80||LA74_0==82||(LA74_0>=85 && LA74_0<=87)||(LA74_0>=90 && LA74_0<=102)||LA74_0==104) ) {
-                alt74=1;
+            if ( ((LA76_0>=RULE_STRING && LA76_0<=RULE_ID)||LA76_0==19||LA76_0==29||LA76_0==38||LA76_0==47||(LA76_0>=63 && LA76_0<=64)||LA76_0==69||LA76_0==76||LA76_0==79||LA76_0==81||(LA76_0>=85 && LA76_0<=87)||(LA76_0>=90 && LA76_0<=102)||LA76_0==104) ) {
+                alt76=1;
             }
-            switch (alt74) {
+            switch (alt76) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3954:2: ( (lv_elements_3_0= ruleXExpression ) ) (otherlv_4= ',' ( (lv_elements_5_0= ruleXExpression ) ) )*
                     {
@@ -11675,7 +11709,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXListLiteralAccess().getElementsXExpressionParserRuleCall_3_0_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleXExpression_in_ruleXListLiteral9544);
+                    pushFollow(FOLLOW_ruleXExpression_in_ruleXListLiteral9550);
                     lv_elements_3_0=ruleXExpression();
 
                     state._fsp--;
@@ -11700,21 +11734,21 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     }
 
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3972:2: (otherlv_4= ',' ( (lv_elements_5_0= ruleXExpression ) ) )*
-                    loop73:
+                    loop75:
                     do {
-                        int alt73=2;
-                        int LA73_0 = input.LA(1);
+                        int alt75=2;
+                        int LA75_0 = input.LA(1);
 
-                        if ( (LA73_0==16) ) {
-                            alt73=1;
+                        if ( (LA75_0==16) ) {
+                            alt75=1;
                         }
 
 
-                        switch (alt73) {
+                        switch (alt75) {
                     	case 1 :
                     	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3972:4: otherlv_4= ',' ( (lv_elements_5_0= ruleXExpression ) )
                     	    {
-                    	    otherlv_4=(Token)match(input,16,FOLLOW_16_in_ruleXListLiteral9557); if (state.failed) return current;
+                    	    otherlv_4=(Token)match(input,16,FOLLOW_16_in_ruleXListLiteral9563); if (state.failed) return current;
                     	    if ( state.backtracking==0 ) {
 
                     	          	newLeafNode(otherlv_4, grammarAccess.getXListLiteralAccess().getCommaKeyword_3_1_0());
@@ -11731,7 +11765,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	      	        newCompositeNode(grammarAccess.getXListLiteralAccess().getElementsXExpressionParserRuleCall_3_1_1_0()); 
                     	      	    
                     	    }
-                    	    pushFollow(FOLLOW_ruleXExpression_in_ruleXListLiteral9578);
+                    	    pushFollow(FOLLOW_ruleXExpression_in_ruleXListLiteral9584);
                     	    lv_elements_5_0=ruleXExpression();
 
                     	    state._fsp--;
@@ -11760,7 +11794,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop73;
+                    	    break loop75;
                         }
                     } while (true);
 
@@ -11770,7 +11804,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_6=(Token)match(input,40,FOLLOW_40_in_ruleXListLiteral9594); if (state.failed) return current;
+            otherlv_6=(Token)match(input,39,FOLLOW_39_in_ruleXListLiteral9600); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_6, grammarAccess.getXListLiteralAccess().getRightSquareBracketKeyword_4());
@@ -11813,7 +11847,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXClosureRule()); 
             }
-            pushFollow(FOLLOW_ruleXClosure_in_entryRuleXClosure9630);
+            pushFollow(FOLLOW_ruleXClosure_in_entryRuleXClosure9636);
             iv_ruleXClosure=ruleXClosure();
 
             state._fsp--;
@@ -11821,7 +11855,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXClosure; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXClosure9640); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXClosure9646); if (state.failed) return current;
 
             }
 
@@ -11882,7 +11916,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,39,FOLLOW_39_in_ruleXClosure9700); if (state.failed) return current;
+            otherlv_1=(Token)match(input,38,FOLLOW_38_in_ruleXClosure9706); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_1, grammarAccess.getXClosureAccess().getLeftSquareBracketKeyword_0_0_1());
@@ -11895,9 +11929,9 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
 
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4031:3: ( ( ( ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) ) ) )=> ( ( ( (lv_declaredFormalParameters_2_0= ruleJvmFormalParameter ) ) (otherlv_3= ',' ( (lv_declaredFormalParameters_4_0= ruleJvmFormalParameter ) ) )* )? ( (lv_explicitSyntax_5_0= '|' ) ) ) )?
-            int alt77=2;
-            alt77 = dfa77.predict(input);
-            switch (alt77) {
+            int alt79=2;
+            alt79 = dfa79.predict(input);
+            switch (alt79) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4031:4: ( ( ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) ) ) )=> ( ( ( (lv_declaredFormalParameters_2_0= ruleJvmFormalParameter ) ) (otherlv_3= ',' ( (lv_declaredFormalParameters_4_0= ruleJvmFormalParameter ) ) )* )? ( (lv_explicitSyntax_5_0= '|' ) ) )
                     {
@@ -11905,13 +11939,13 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4046:7: ( ( (lv_declaredFormalParameters_2_0= ruleJvmFormalParameter ) ) (otherlv_3= ',' ( (lv_declaredFormalParameters_4_0= ruleJvmFormalParameter ) ) )* )? ( (lv_explicitSyntax_5_0= '|' ) )
                     {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4046:7: ( ( (lv_declaredFormalParameters_2_0= ruleJvmFormalParameter ) ) (otherlv_3= ',' ( (lv_declaredFormalParameters_4_0= ruleJvmFormalParameter ) ) )* )?
-                    int alt76=2;
-                    int LA76_0 = input.LA(1);
+                    int alt78=2;
+                    int LA78_0 = input.LA(1);
 
-                    if ( (LA76_0==RULE_ID||LA76_0==29||LA76_0==61) ) {
-                        alt76=1;
+                    if ( (LA78_0==RULE_ID||LA78_0==29||LA78_0==60) ) {
+                        alt78=1;
                     }
-                    switch (alt76) {
+                    switch (alt78) {
                         case 1 :
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4046:8: ( (lv_declaredFormalParameters_2_0= ruleJvmFormalParameter ) ) (otherlv_3= ',' ( (lv_declaredFormalParameters_4_0= ruleJvmFormalParameter ) ) )*
                             {
@@ -11926,7 +11960,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               	        newCompositeNode(grammarAccess.getXClosureAccess().getDeclaredFormalParametersJvmFormalParameterParserRuleCall_1_0_0_0_0()); 
                               	    
                             }
-                            pushFollow(FOLLOW_ruleJvmFormalParameter_in_ruleXClosure9773);
+                            pushFollow(FOLLOW_ruleJvmFormalParameter_in_ruleXClosure9779);
                             lv_declaredFormalParameters_2_0=ruleJvmFormalParameter();
 
                             state._fsp--;
@@ -11951,21 +11985,21 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                             }
 
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4064:2: (otherlv_3= ',' ( (lv_declaredFormalParameters_4_0= ruleJvmFormalParameter ) ) )*
-                            loop75:
+                            loop77:
                             do {
-                                int alt75=2;
-                                int LA75_0 = input.LA(1);
+                                int alt77=2;
+                                int LA77_0 = input.LA(1);
 
-                                if ( (LA75_0==16) ) {
-                                    alt75=1;
+                                if ( (LA77_0==16) ) {
+                                    alt77=1;
                                 }
 
 
-                                switch (alt75) {
+                                switch (alt77) {
                             	case 1 :
                             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4064:4: otherlv_3= ',' ( (lv_declaredFormalParameters_4_0= ruleJvmFormalParameter ) )
                             	    {
-                            	    otherlv_3=(Token)match(input,16,FOLLOW_16_in_ruleXClosure9786); if (state.failed) return current;
+                            	    otherlv_3=(Token)match(input,16,FOLLOW_16_in_ruleXClosure9792); if (state.failed) return current;
                             	    if ( state.backtracking==0 ) {
 
                             	          	newLeafNode(otherlv_3, grammarAccess.getXClosureAccess().getCommaKeyword_1_0_0_1_0());
@@ -11982,7 +12016,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                             	      	        newCompositeNode(grammarAccess.getXClosureAccess().getDeclaredFormalParametersJvmFormalParameterParserRuleCall_1_0_0_1_1_0()); 
                             	      	    
                             	    }
-                            	    pushFollow(FOLLOW_ruleJvmFormalParameter_in_ruleXClosure9807);
+                            	    pushFollow(FOLLOW_ruleJvmFormalParameter_in_ruleXClosure9813);
                             	    lv_declaredFormalParameters_4_0=ruleJvmFormalParameter();
 
                             	    state._fsp--;
@@ -12011,7 +12045,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                             	    break;
 
                             	default :
-                            	    break loop75;
+                            	    break loop77;
                                 }
                             } while (true);
 
@@ -12027,7 +12061,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4087:1: (lv_explicitSyntax_5_0= '|' )
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4088:3: lv_explicitSyntax_5_0= '|'
                     {
-                    lv_explicitSyntax_5_0=(Token)match(input,78,FOLLOW_78_in_ruleXClosure9829); if (state.failed) return current;
+                    lv_explicitSyntax_5_0=(Token)match(input,77,FOLLOW_77_in_ruleXClosure9835); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               newLeafNode(lv_explicitSyntax_5_0, grammarAccess.getXClosureAccess().getExplicitSyntaxVerticalLineKeyword_1_0_1_0());
@@ -12067,7 +12101,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getXClosureAccess().getExpressionXExpressionInClosureParserRuleCall_2_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleXExpressionInClosure_in_ruleXClosure9866);
+            pushFollow(FOLLOW_ruleXExpressionInClosure_in_ruleXClosure9872);
             lv_expression_6_0=ruleXExpressionInClosure();
 
             state._fsp--;
@@ -12091,7 +12125,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_7=(Token)match(input,40,FOLLOW_40_in_ruleXClosure9878); if (state.failed) return current;
+            otherlv_7=(Token)match(input,39,FOLLOW_39_in_ruleXClosure9884); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_7, grammarAccess.getXClosureAccess().getRightSquareBracketKeyword_3());
@@ -12134,7 +12168,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXExpressionInClosureRule()); 
             }
-            pushFollow(FOLLOW_ruleXExpressionInClosure_in_entryRuleXExpressionInClosure9914);
+            pushFollow(FOLLOW_ruleXExpressionInClosure_in_entryRuleXExpressionInClosure9920);
             iv_ruleXExpressionInClosure=ruleXExpressionInClosure();
 
             state._fsp--;
@@ -12142,7 +12176,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXExpressionInClosure; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXExpressionInClosure9924); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXExpressionInClosure9930); if (state.failed) return current;
 
             }
 
@@ -12191,17 +12225,17 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
 
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4150:2: ( ( (lv_expressions_1_0= ruleXExpressionOrVarDeclaration ) ) (otherlv_2= ';' )? )*
-            loop79:
+            loop81:
             do {
-                int alt79=2;
-                int LA79_0 = input.LA(1);
+                int alt81=2;
+                int LA81_0 = input.LA(1);
 
-                if ( ((LA79_0>=RULE_STRING && LA79_0<=RULE_ID)||LA79_0==19||LA79_0==29||LA79_0==39||LA79_0==48||(LA79_0>=64 && LA79_0<=65)||LA79_0==70||LA79_0==77||LA79_0==80||LA79_0==82||(LA79_0>=85 && LA79_0<=102)||LA79_0==104) ) {
-                    alt79=1;
+                if ( ((LA81_0>=RULE_STRING && LA81_0<=RULE_ID)||LA81_0==19||LA81_0==29||LA81_0==38||LA81_0==47||(LA81_0>=63 && LA81_0<=64)||LA81_0==69||LA81_0==76||LA81_0==79||LA81_0==81||(LA81_0>=85 && LA81_0<=102)||LA81_0==104) ) {
+                    alt81=1;
                 }
 
 
-                switch (alt79) {
+                switch (alt81) {
             	case 1 :
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4150:3: ( (lv_expressions_1_0= ruleXExpressionOrVarDeclaration ) ) (otherlv_2= ';' )?
             	    {
@@ -12216,7 +12250,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	      	        newCompositeNode(grammarAccess.getXExpressionInClosureAccess().getExpressionsXExpressionOrVarDeclarationParserRuleCall_1_0_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleXExpressionOrVarDeclaration_in_ruleXExpressionInClosure9980);
+            	    pushFollow(FOLLOW_ruleXExpressionOrVarDeclaration_in_ruleXExpressionInClosure9986);
             	    lv_expressions_1_0=ruleXExpressionOrVarDeclaration();
 
             	    state._fsp--;
@@ -12241,17 +12275,17 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	    }
 
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4168:2: (otherlv_2= ';' )?
-            	    int alt78=2;
-            	    int LA78_0 = input.LA(1);
+            	    int alt80=2;
+            	    int LA80_0 = input.LA(1);
 
-            	    if ( (LA78_0==79) ) {
-            	        alt78=1;
+            	    if ( (LA80_0==78) ) {
+            	        alt80=1;
             	    }
-            	    switch (alt78) {
+            	    switch (alt80) {
             	        case 1 :
             	            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4168:4: otherlv_2= ';'
             	            {
-            	            otherlv_2=(Token)match(input,79,FOLLOW_79_in_ruleXExpressionInClosure9993); if (state.failed) return current;
+            	            otherlv_2=(Token)match(input,78,FOLLOW_78_in_ruleXExpressionInClosure9999); if (state.failed) return current;
             	            if ( state.backtracking==0 ) {
 
             	                  	newLeafNode(otherlv_2, grammarAccess.getXExpressionInClosureAccess().getSemicolonKeyword_1_1());
@@ -12268,7 +12302,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop79;
+            	    break loop81;
                 }
             } while (true);
 
@@ -12309,7 +12343,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXShortClosureRule()); 
             }
-            pushFollow(FOLLOW_ruleXShortClosure_in_entryRuleXShortClosure10033);
+            pushFollow(FOLLOW_ruleXShortClosure_in_entryRuleXShortClosure10039);
             iv_ruleXShortClosure=ruleXShortClosure();
 
             state._fsp--;
@@ -12317,7 +12351,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXShortClosure; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXShortClosure10043); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXShortClosure10049); if (state.failed) return current;
 
             }
 
@@ -12377,13 +12411,13 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
 
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4215:2: ( ( (lv_declaredFormalParameters_1_0= ruleJvmFormalParameter ) ) (otherlv_2= ',' ( (lv_declaredFormalParameters_3_0= ruleJvmFormalParameter ) ) )* )?
-            int alt81=2;
-            int LA81_0 = input.LA(1);
+            int alt83=2;
+            int LA83_0 = input.LA(1);
 
-            if ( (LA81_0==RULE_ID||LA81_0==29||LA81_0==61) ) {
-                alt81=1;
+            if ( (LA83_0==RULE_ID||LA83_0==29||LA83_0==60) ) {
+                alt83=1;
             }
-            switch (alt81) {
+            switch (alt83) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4215:3: ( (lv_declaredFormalParameters_1_0= ruleJvmFormalParameter ) ) (otherlv_2= ',' ( (lv_declaredFormalParameters_3_0= ruleJvmFormalParameter ) ) )*
                     {
@@ -12398,7 +12432,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXShortClosureAccess().getDeclaredFormalParametersJvmFormalParameterParserRuleCall_0_0_1_0_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleJvmFormalParameter_in_ruleXShortClosure10151);
+                    pushFollow(FOLLOW_ruleJvmFormalParameter_in_ruleXShortClosure10157);
                     lv_declaredFormalParameters_1_0=ruleJvmFormalParameter();
 
                     state._fsp--;
@@ -12423,21 +12457,21 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     }
 
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4233:2: (otherlv_2= ',' ( (lv_declaredFormalParameters_3_0= ruleJvmFormalParameter ) ) )*
-                    loop80:
+                    loop82:
                     do {
-                        int alt80=2;
-                        int LA80_0 = input.LA(1);
+                        int alt82=2;
+                        int LA82_0 = input.LA(1);
 
-                        if ( (LA80_0==16) ) {
-                            alt80=1;
+                        if ( (LA82_0==16) ) {
+                            alt82=1;
                         }
 
 
-                        switch (alt80) {
+                        switch (alt82) {
                     	case 1 :
                     	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4233:4: otherlv_2= ',' ( (lv_declaredFormalParameters_3_0= ruleJvmFormalParameter ) )
                     	    {
-                    	    otherlv_2=(Token)match(input,16,FOLLOW_16_in_ruleXShortClosure10164); if (state.failed) return current;
+                    	    otherlv_2=(Token)match(input,16,FOLLOW_16_in_ruleXShortClosure10170); if (state.failed) return current;
                     	    if ( state.backtracking==0 ) {
 
                     	          	newLeafNode(otherlv_2, grammarAccess.getXShortClosureAccess().getCommaKeyword_0_0_1_1_0());
@@ -12454,7 +12488,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	      	        newCompositeNode(grammarAccess.getXShortClosureAccess().getDeclaredFormalParametersJvmFormalParameterParserRuleCall_0_0_1_1_1_0()); 
                     	      	    
                     	    }
-                    	    pushFollow(FOLLOW_ruleJvmFormalParameter_in_ruleXShortClosure10185);
+                    	    pushFollow(FOLLOW_ruleJvmFormalParameter_in_ruleXShortClosure10191);
                     	    lv_declaredFormalParameters_3_0=ruleJvmFormalParameter();
 
                     	    state._fsp--;
@@ -12483,7 +12517,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop80;
+                    	    break loop82;
                         }
                     } while (true);
 
@@ -12499,7 +12533,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4256:1: (lv_explicitSyntax_4_0= '|' )
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4257:3: lv_explicitSyntax_4_0= '|'
             {
-            lv_explicitSyntax_4_0=(Token)match(input,78,FOLLOW_78_in_ruleXShortClosure10207); if (state.failed) return current;
+            lv_explicitSyntax_4_0=(Token)match(input,77,FOLLOW_77_in_ruleXShortClosure10213); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                       newLeafNode(lv_explicitSyntax_4_0, grammarAccess.getXShortClosureAccess().getExplicitSyntaxVerticalLineKeyword_0_0_2_0());
@@ -12536,7 +12570,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getXShortClosureAccess().getExpressionXExpressionParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleXExpression_in_ruleXShortClosure10243);
+            pushFollow(FOLLOW_ruleXExpression_in_ruleXShortClosure10249);
             lv_expression_5_0=ruleXExpression();
 
             state._fsp--;
@@ -12597,7 +12631,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXParenthesizedExpressionRule()); 
             }
-            pushFollow(FOLLOW_ruleXParenthesizedExpression_in_entryRuleXParenthesizedExpression10279);
+            pushFollow(FOLLOW_ruleXParenthesizedExpression_in_entryRuleXParenthesizedExpression10285);
             iv_ruleXParenthesizedExpression=ruleXParenthesizedExpression();
 
             state._fsp--;
@@ -12605,7 +12639,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXParenthesizedExpression; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXParenthesizedExpression10289); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXParenthesizedExpression10295); if (state.failed) return current;
 
             }
 
@@ -12641,7 +12675,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4309:1: (otherlv_0= '(' this_XExpression_1= ruleXExpression otherlv_2= ')' )
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4309:3: otherlv_0= '(' this_XExpression_1= ruleXExpression otherlv_2= ')'
             {
-            otherlv_0=(Token)match(input,29,FOLLOW_29_in_ruleXParenthesizedExpression10326); if (state.failed) return current;
+            otherlv_0=(Token)match(input,29,FOLLOW_29_in_ruleXParenthesizedExpression10332); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_0, grammarAccess.getXParenthesizedExpressionAccess().getLeftParenthesisKeyword_0());
@@ -12652,7 +12686,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       newCompositeNode(grammarAccess.getXParenthesizedExpressionAccess().getXExpressionParserRuleCall_1()); 
                   
             }
-            pushFollow(FOLLOW_ruleXExpression_in_ruleXParenthesizedExpression10348);
+            pushFollow(FOLLOW_ruleXExpression_in_ruleXParenthesizedExpression10354);
             this_XExpression_1=ruleXExpression();
 
             state._fsp--;
@@ -12663,7 +12697,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       afterParserOrEnumRuleCall();
                   
             }
-            otherlv_2=(Token)match(input,30,FOLLOW_30_in_ruleXParenthesizedExpression10359); if (state.failed) return current;
+            otherlv_2=(Token)match(input,30,FOLLOW_30_in_ruleXParenthesizedExpression10365); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_2, grammarAccess.getXParenthesizedExpressionAccess().getRightParenthesisKeyword_2());
@@ -12706,7 +12740,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXIfExpressionRule()); 
             }
-            pushFollow(FOLLOW_ruleXIfExpression_in_entryRuleXIfExpression10395);
+            pushFollow(FOLLOW_ruleXIfExpression_in_entryRuleXIfExpression10401);
             iv_ruleXIfExpression=ruleXIfExpression();
 
             state._fsp--;
@@ -12714,7 +12748,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXIfExpression; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXIfExpression10405); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXIfExpression10411); if (state.failed) return current;
 
             }
 
@@ -12769,13 +12803,13 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,80,FOLLOW_80_in_ruleXIfExpression10451); if (state.failed) return current;
+            otherlv_1=(Token)match(input,79,FOLLOW_79_in_ruleXIfExpression10457); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_1, grammarAccess.getXIfExpressionAccess().getIfKeyword_1());
                   
             }
-            otherlv_2=(Token)match(input,29,FOLLOW_29_in_ruleXIfExpression10463); if (state.failed) return current;
+            otherlv_2=(Token)match(input,29,FOLLOW_29_in_ruleXIfExpression10469); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_2, grammarAccess.getXIfExpressionAccess().getLeftParenthesisKeyword_2());
@@ -12792,7 +12826,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getXIfExpressionAccess().getIfXExpressionParserRuleCall_3_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleXExpression_in_ruleXIfExpression10484);
+            pushFollow(FOLLOW_ruleXExpression_in_ruleXIfExpression10490);
             lv_if_3_0=ruleXExpression();
 
             state._fsp--;
@@ -12816,7 +12850,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,30,FOLLOW_30_in_ruleXIfExpression10496); if (state.failed) return current;
+            otherlv_4=(Token)match(input,30,FOLLOW_30_in_ruleXIfExpression10502); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_4, grammarAccess.getXIfExpressionAccess().getRightParenthesisKeyword_4());
@@ -12833,7 +12867,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getXIfExpressionAccess().getThenXExpressionParserRuleCall_5_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleXExpression_in_ruleXIfExpression10517);
+            pushFollow(FOLLOW_ruleXExpression_in_ruleXIfExpression10523);
             lv_then_5_0=ruleXExpression();
 
             state._fsp--;
@@ -12858,24 +12892,24 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
 
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4401:2: ( ( ( 'else' )=>otherlv_6= 'else' ) ( (lv_else_7_0= ruleXExpression ) ) )?
-            int alt82=2;
-            int LA82_0 = input.LA(1);
+            int alt84=2;
+            int LA84_0 = input.LA(1);
 
-            if ( (LA82_0==81) ) {
-                int LA82_1 = input.LA(2);
+            if ( (LA84_0==80) ) {
+                int LA84_1 = input.LA(2);
 
                 if ( (synpred27_InternalMelange()) ) {
-                    alt82=1;
+                    alt84=1;
                 }
             }
-            switch (alt82) {
+            switch (alt84) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4401:3: ( ( 'else' )=>otherlv_6= 'else' ) ( (lv_else_7_0= ruleXExpression ) )
                     {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4401:3: ( ( 'else' )=>otherlv_6= 'else' )
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4401:4: ( 'else' )=>otherlv_6= 'else'
                     {
-                    otherlv_6=(Token)match(input,81,FOLLOW_81_in_ruleXIfExpression10538); if (state.failed) return current;
+                    otherlv_6=(Token)match(input,80,FOLLOW_80_in_ruleXIfExpression10544); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_6, grammarAccess.getXIfExpressionAccess().getElseKeyword_6_0());
@@ -12895,7 +12929,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXIfExpressionAccess().getElseXExpressionParserRuleCall_6_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleXExpression_in_ruleXIfExpression10560);
+                    pushFollow(FOLLOW_ruleXExpression_in_ruleXIfExpression10566);
                     lv_else_7_0=ruleXExpression();
 
                     state._fsp--;
@@ -12962,7 +12996,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXSwitchExpressionRule()); 
             }
-            pushFollow(FOLLOW_ruleXSwitchExpression_in_entryRuleXSwitchExpression10598);
+            pushFollow(FOLLOW_ruleXSwitchExpression_in_entryRuleXSwitchExpression10604);
             iv_ruleXSwitchExpression=ruleXSwitchExpression();
 
             state._fsp--;
@@ -12970,7 +13004,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXSwitchExpression; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXSwitchExpression10608); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXSwitchExpression10614); if (state.failed) return current;
 
             }
 
@@ -13036,16 +13070,16 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,82,FOLLOW_82_in_ruleXSwitchExpression10654); if (state.failed) return current;
+            otherlv_1=(Token)match(input,81,FOLLOW_81_in_ruleXSwitchExpression10660); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_1, grammarAccess.getXSwitchExpressionAccess().getSwitchKeyword_1());
                   
             }
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4455:1: ( ( ( ( ( '(' ( ( ruleJvmFormalParameter ) ) ':' ) )=> (otherlv_2= '(' ( (lv_declaredParam_3_0= ruleJvmFormalParameter ) ) otherlv_4= ':' ) ) ( (lv_switch_5_0= ruleXExpression ) ) otherlv_6= ')' ) | ( ( ( ( ( ( ruleJvmFormalParameter ) ) ':' ) )=> ( ( (lv_declaredParam_7_0= ruleJvmFormalParameter ) ) otherlv_8= ':' ) )? ( (lv_switch_9_0= ruleXExpression ) ) ) )
-            int alt84=2;
-            alt84 = dfa84.predict(input);
-            switch (alt84) {
+            int alt86=2;
+            alt86 = dfa86.predict(input);
+            switch (alt86) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4455:2: ( ( ( ( '(' ( ( ruleJvmFormalParameter ) ) ':' ) )=> (otherlv_2= '(' ( (lv_declaredParam_3_0= ruleJvmFormalParameter ) ) otherlv_4= ':' ) ) ( (lv_switch_5_0= ruleXExpression ) ) otherlv_6= ')' )
                     {
@@ -13058,7 +13092,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4461:5: (otherlv_2= '(' ( (lv_declaredParam_3_0= ruleJvmFormalParameter ) ) otherlv_4= ':' )
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4461:7: otherlv_2= '(' ( (lv_declaredParam_3_0= ruleJvmFormalParameter ) ) otherlv_4= ':'
                     {
-                    otherlv_2=(Token)match(input,29,FOLLOW_29_in_ruleXSwitchExpression10692); if (state.failed) return current;
+                    otherlv_2=(Token)match(input,29,FOLLOW_29_in_ruleXSwitchExpression10698); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_2, grammarAccess.getXSwitchExpressionAccess().getLeftParenthesisKeyword_2_0_0_0_0());
@@ -13075,7 +13109,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXSwitchExpressionAccess().getDeclaredParamJvmFormalParameterParserRuleCall_2_0_0_0_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleJvmFormalParameter_in_ruleXSwitchExpression10713);
+                    pushFollow(FOLLOW_ruleJvmFormalParameter_in_ruleXSwitchExpression10719);
                     lv_declaredParam_3_0=ruleJvmFormalParameter();
 
                     state._fsp--;
@@ -13099,7 +13133,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_4=(Token)match(input,33,FOLLOW_33_in_ruleXSwitchExpression10725); if (state.failed) return current;
+                    otherlv_4=(Token)match(input,82,FOLLOW_82_in_ruleXSwitchExpression10731); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_4, grammarAccess.getXSwitchExpressionAccess().getColonKeyword_2_0_0_0_2());
@@ -13122,7 +13156,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXSwitchExpressionAccess().getSwitchXExpressionParserRuleCall_2_0_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleXExpression_in_ruleXSwitchExpression10748);
+                    pushFollow(FOLLOW_ruleXExpression_in_ruleXSwitchExpression10754);
                     lv_switch_5_0=ruleXExpression();
 
                     state._fsp--;
@@ -13146,7 +13180,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_6=(Token)match(input,30,FOLLOW_30_in_ruleXSwitchExpression10760); if (state.failed) return current;
+                    otherlv_6=(Token)match(input,30,FOLLOW_30_in_ruleXSwitchExpression10766); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_6, grammarAccess.getXSwitchExpressionAccess().getRightParenthesisKeyword_2_0_2());
@@ -13165,9 +13199,9 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4510:7: ( ( ( ( ( ruleJvmFormalParameter ) ) ':' ) )=> ( ( (lv_declaredParam_7_0= ruleJvmFormalParameter ) ) otherlv_8= ':' ) )? ( (lv_switch_9_0= ruleXExpression ) )
                     {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4510:7: ( ( ( ( ( ruleJvmFormalParameter ) ) ':' ) )=> ( ( (lv_declaredParam_7_0= ruleJvmFormalParameter ) ) otherlv_8= ':' ) )?
-                    int alt83=2;
-                    alt83 = dfa83.predict(input);
-                    switch (alt83) {
+                    int alt85=2;
+                    alt85 = dfa85.predict(input);
+                    switch (alt85) {
                         case 1 :
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4510:8: ( ( ( ( ruleJvmFormalParameter ) ) ':' ) )=> ( ( (lv_declaredParam_7_0= ruleJvmFormalParameter ) ) otherlv_8= ':' )
                             {
@@ -13185,7 +13219,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               	        newCompositeNode(grammarAccess.getXSwitchExpressionAccess().getDeclaredParamJvmFormalParameterParserRuleCall_2_1_0_0_0_0()); 
                               	    
                             }
-                            pushFollow(FOLLOW_ruleJvmFormalParameter_in_ruleXSwitchExpression10809);
+                            pushFollow(FOLLOW_ruleJvmFormalParameter_in_ruleXSwitchExpression10815);
                             lv_declaredParam_7_0=ruleJvmFormalParameter();
 
                             state._fsp--;
@@ -13209,7 +13243,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            otherlv_8=(Token)match(input,33,FOLLOW_33_in_ruleXSwitchExpression10821); if (state.failed) return current;
+                            otherlv_8=(Token)match(input,82,FOLLOW_82_in_ruleXSwitchExpression10827); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
 
                                   	newLeafNode(otherlv_8, grammarAccess.getXSwitchExpressionAccess().getColonKeyword_2_1_0_0_1());
@@ -13235,7 +13269,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXSwitchExpressionAccess().getSwitchXExpressionParserRuleCall_2_1_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleXExpression_in_ruleXSwitchExpression10845);
+                    pushFollow(FOLLOW_ruleXExpression_in_ruleXSwitchExpression10851);
                     lv_switch_9_0=ruleXExpression();
 
                     state._fsp--;
@@ -13268,24 +13302,24 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_10=(Token)match(input,19,FOLLOW_19_in_ruleXSwitchExpression10859); if (state.failed) return current;
+            otherlv_10=(Token)match(input,19,FOLLOW_19_in_ruleXSwitchExpression10865); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_10, grammarAccess.getXSwitchExpressionAccess().getLeftCurlyBracketKeyword_3());
                   
             }
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4559:1: ( (lv_cases_11_0= ruleXCasePart ) )*
-            loop85:
+            loop87:
             do {
-                int alt85=2;
-                int LA85_0 = input.LA(1);
+                int alt87=2;
+                int LA87_0 = input.LA(1);
 
-                if ( (LA85_0==RULE_ID||LA85_0==16||LA85_0==29||LA85_0==33||LA85_0==61||LA85_0==84) ) {
-                    alt85=1;
+                if ( (LA87_0==RULE_ID||LA87_0==16||LA87_0==29||LA87_0==60||LA87_0==82||LA87_0==84) ) {
+                    alt87=1;
                 }
 
 
-                switch (alt85) {
+                switch (alt87) {
             	case 1 :
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4560:1: (lv_cases_11_0= ruleXCasePart )
             	    {
@@ -13297,7 +13331,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	      	        newCompositeNode(grammarAccess.getXSwitchExpressionAccess().getCasesXCasePartParserRuleCall_4_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleXCasePart_in_ruleXSwitchExpression10880);
+            	    pushFollow(FOLLOW_ruleXCasePart_in_ruleXSwitchExpression10886);
             	    lv_cases_11_0=ruleXCasePart();
 
             	    state._fsp--;
@@ -13323,28 +13357,28 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop85;
+            	    break loop87;
                 }
             } while (true);
 
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4577:3: (otherlv_12= 'default' otherlv_13= ':' ( (lv_default_14_0= ruleXExpression ) ) )?
-            int alt86=2;
-            int LA86_0 = input.LA(1);
+            int alt88=2;
+            int LA88_0 = input.LA(1);
 
-            if ( (LA86_0==83) ) {
-                alt86=1;
+            if ( (LA88_0==83) ) {
+                alt88=1;
             }
-            switch (alt86) {
+            switch (alt88) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4577:5: otherlv_12= 'default' otherlv_13= ':' ( (lv_default_14_0= ruleXExpression ) )
                     {
-                    otherlv_12=(Token)match(input,83,FOLLOW_83_in_ruleXSwitchExpression10894); if (state.failed) return current;
+                    otherlv_12=(Token)match(input,83,FOLLOW_83_in_ruleXSwitchExpression10900); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_12, grammarAccess.getXSwitchExpressionAccess().getDefaultKeyword_5_0());
                           
                     }
-                    otherlv_13=(Token)match(input,33,FOLLOW_33_in_ruleXSwitchExpression10906); if (state.failed) return current;
+                    otherlv_13=(Token)match(input,82,FOLLOW_82_in_ruleXSwitchExpression10912); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_13, grammarAccess.getXSwitchExpressionAccess().getColonKeyword_5_1());
@@ -13361,7 +13395,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXSwitchExpressionAccess().getDefaultXExpressionParserRuleCall_5_2_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleXExpression_in_ruleXSwitchExpression10927);
+                    pushFollow(FOLLOW_ruleXExpression_in_ruleXSwitchExpression10933);
                     lv_default_14_0=ruleXExpression();
 
                     state._fsp--;
@@ -13391,7 +13425,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_15=(Token)match(input,24,FOLLOW_24_in_ruleXSwitchExpression10941); if (state.failed) return current;
+            otherlv_15=(Token)match(input,24,FOLLOW_24_in_ruleXSwitchExpression10947); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_15, grammarAccess.getXSwitchExpressionAccess().getRightCurlyBracketKeyword_6());
@@ -13434,7 +13468,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXCasePartRule()); 
             }
-            pushFollow(FOLLOW_ruleXCasePart_in_entryRuleXCasePart10977);
+            pushFollow(FOLLOW_ruleXCasePart_in_entryRuleXCasePart10983);
             iv_ruleXCasePart=ruleXCasePart();
 
             state._fsp--;
@@ -13442,7 +13476,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXCasePart; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXCasePart10987); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXCasePart10993); if (state.failed) return current;
 
             }
 
@@ -13497,13 +13531,13 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
 
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4634:2: ( (lv_typeGuard_1_0= ruleJvmTypeReference ) )?
-            int alt87=2;
-            int LA87_0 = input.LA(1);
+            int alt89=2;
+            int LA89_0 = input.LA(1);
 
-            if ( (LA87_0==RULE_ID||LA87_0==29||LA87_0==61) ) {
-                alt87=1;
+            if ( (LA89_0==RULE_ID||LA89_0==29||LA89_0==60) ) {
+                alt89=1;
             }
-            switch (alt87) {
+            switch (alt89) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4635:1: (lv_typeGuard_1_0= ruleJvmTypeReference )
                     {
@@ -13515,7 +13549,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXCasePartAccess().getTypeGuardJvmTypeReferenceParserRuleCall_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleXCasePart11042);
+                    pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleXCasePart11048);
                     lv_typeGuard_1_0=ruleJvmTypeReference();
 
                     state._fsp--;
@@ -13543,17 +13577,17 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
 
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4652:3: (otherlv_2= 'case' ( (lv_case_3_0= ruleXExpression ) ) )?
-            int alt88=2;
-            int LA88_0 = input.LA(1);
+            int alt90=2;
+            int LA90_0 = input.LA(1);
 
-            if ( (LA88_0==84) ) {
-                alt88=1;
+            if ( (LA90_0==84) ) {
+                alt90=1;
             }
-            switch (alt88) {
+            switch (alt90) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4652:5: otherlv_2= 'case' ( (lv_case_3_0= ruleXExpression ) )
                     {
-                    otherlv_2=(Token)match(input,84,FOLLOW_84_in_ruleXCasePart11056); if (state.failed) return current;
+                    otherlv_2=(Token)match(input,84,FOLLOW_84_in_ruleXCasePart11062); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_2, grammarAccess.getXCasePartAccess().getCaseKeyword_2_0());
@@ -13570,7 +13604,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXCasePartAccess().getCaseXExpressionParserRuleCall_2_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleXExpression_in_ruleXCasePart11077);
+                    pushFollow(FOLLOW_ruleXExpression_in_ruleXCasePart11083);
                     lv_case_3_0=ruleXExpression();
 
                     state._fsp--;
@@ -13601,30 +13635,30 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
 
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4674:4: ( (otherlv_4= ':' ( (lv_then_5_0= ruleXExpression ) ) ) | ( (lv_fallThrough_6_0= ',' ) ) )
-            int alt89=2;
-            int LA89_0 = input.LA(1);
+            int alt91=2;
+            int LA91_0 = input.LA(1);
 
-            if ( (LA89_0==33) ) {
-                alt89=1;
+            if ( (LA91_0==82) ) {
+                alt91=1;
             }
-            else if ( (LA89_0==16) ) {
-                alt89=2;
+            else if ( (LA91_0==16) ) {
+                alt91=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 89, 0, input);
+                    new NoViableAltException("", 91, 0, input);
 
                 throw nvae;
             }
-            switch (alt89) {
+            switch (alt91) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4674:5: (otherlv_4= ':' ( (lv_then_5_0= ruleXExpression ) ) )
                     {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4674:5: (otherlv_4= ':' ( (lv_then_5_0= ruleXExpression ) ) )
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4674:7: otherlv_4= ':' ( (lv_then_5_0= ruleXExpression ) )
                     {
-                    otherlv_4=(Token)match(input,33,FOLLOW_33_in_ruleXCasePart11093); if (state.failed) return current;
+                    otherlv_4=(Token)match(input,82,FOLLOW_82_in_ruleXCasePart11099); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_4, grammarAccess.getXCasePartAccess().getColonKeyword_3_0_0());
@@ -13641,7 +13675,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXCasePartAccess().getThenXExpressionParserRuleCall_3_0_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleXExpression_in_ruleXCasePart11114);
+                    pushFollow(FOLLOW_ruleXExpression_in_ruleXCasePart11120);
                     lv_then_5_0=ruleXExpression();
 
                     state._fsp--;
@@ -13680,7 +13714,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4698:1: (lv_fallThrough_6_0= ',' )
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4699:3: lv_fallThrough_6_0= ','
                     {
-                    lv_fallThrough_6_0=(Token)match(input,16,FOLLOW_16_in_ruleXCasePart11139); if (state.failed) return current;
+                    lv_fallThrough_6_0=(Token)match(input,16,FOLLOW_16_in_ruleXCasePart11145); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               newLeafNode(lv_fallThrough_6_0, grammarAccess.getXCasePartAccess().getFallThroughCommaKeyword_3_1_0());
@@ -13743,7 +13777,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXForLoopExpressionRule()); 
             }
-            pushFollow(FOLLOW_ruleXForLoopExpression_in_entryRuleXForLoopExpression11189);
+            pushFollow(FOLLOW_ruleXForLoopExpression_in_entryRuleXForLoopExpression11195);
             iv_ruleXForLoopExpression=ruleXForLoopExpression();
 
             state._fsp--;
@@ -13751,7 +13785,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXForLoopExpression; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXForLoopExpression11199); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXForLoopExpression11205); if (state.failed) return current;
 
             }
 
@@ -13812,13 +13846,13 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,85,FOLLOW_85_in_ruleXForLoopExpression11276); if (state.failed) return current;
+            otherlv_1=(Token)match(input,85,FOLLOW_85_in_ruleXForLoopExpression11282); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_1, grammarAccess.getXForLoopExpressionAccess().getForKeyword_0_0_1());
                   
             }
-            otherlv_2=(Token)match(input,29,FOLLOW_29_in_ruleXForLoopExpression11288); if (state.failed) return current;
+            otherlv_2=(Token)match(input,29,FOLLOW_29_in_ruleXForLoopExpression11294); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_2, grammarAccess.getXForLoopExpressionAccess().getLeftParenthesisKeyword_0_0_2());
@@ -13835,7 +13869,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getXForLoopExpressionAccess().getDeclaredParamJvmFormalParameterParserRuleCall_0_0_3_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleJvmFormalParameter_in_ruleXForLoopExpression11309);
+            pushFollow(FOLLOW_ruleJvmFormalParameter_in_ruleXForLoopExpression11315);
             lv_declaredParam_3_0=ruleJvmFormalParameter();
 
             state._fsp--;
@@ -13859,7 +13893,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,33,FOLLOW_33_in_ruleXForLoopExpression11321); if (state.failed) return current;
+            otherlv_4=(Token)match(input,82,FOLLOW_82_in_ruleXForLoopExpression11327); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_4, grammarAccess.getXForLoopExpressionAccess().getColonKeyword_0_0_4());
@@ -13882,7 +13916,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getXForLoopExpressionAccess().getForExpressionXExpressionParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleXExpression_in_ruleXForLoopExpression11344);
+            pushFollow(FOLLOW_ruleXExpression_in_ruleXForLoopExpression11350);
             lv_forExpression_5_0=ruleXExpression();
 
             state._fsp--;
@@ -13906,7 +13940,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_6=(Token)match(input,30,FOLLOW_30_in_ruleXForLoopExpression11356); if (state.failed) return current;
+            otherlv_6=(Token)match(input,30,FOLLOW_30_in_ruleXForLoopExpression11362); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_6, grammarAccess.getXForLoopExpressionAccess().getRightParenthesisKeyword_2());
@@ -13923,7 +13957,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getXForLoopExpressionAccess().getEachExpressionXExpressionParserRuleCall_3_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleXExpression_in_ruleXForLoopExpression11377);
+            pushFollow(FOLLOW_ruleXExpression_in_ruleXForLoopExpression11383);
             lv_eachExpression_7_0=ruleXExpression();
 
             state._fsp--;
@@ -13984,7 +14018,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXBasicForLoopExpressionRule()); 
             }
-            pushFollow(FOLLOW_ruleXBasicForLoopExpression_in_entryRuleXBasicForLoopExpression11413);
+            pushFollow(FOLLOW_ruleXBasicForLoopExpression_in_entryRuleXBasicForLoopExpression11419);
             iv_ruleXBasicForLoopExpression=ruleXBasicForLoopExpression();
 
             state._fsp--;
@@ -13992,7 +14026,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXBasicForLoopExpression; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXBasicForLoopExpression11423); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXBasicForLoopExpression11429); if (state.failed) return current;
 
             }
 
@@ -14056,26 +14090,26 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,85,FOLLOW_85_in_ruleXBasicForLoopExpression11469); if (state.failed) return current;
+            otherlv_1=(Token)match(input,85,FOLLOW_85_in_ruleXBasicForLoopExpression11475); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_1, grammarAccess.getXBasicForLoopExpressionAccess().getForKeyword_1());
                   
             }
-            otherlv_2=(Token)match(input,29,FOLLOW_29_in_ruleXBasicForLoopExpression11481); if (state.failed) return current;
+            otherlv_2=(Token)match(input,29,FOLLOW_29_in_ruleXBasicForLoopExpression11487); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_2, grammarAccess.getXBasicForLoopExpressionAccess().getLeftParenthesisKeyword_2());
                   
             }
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4852:1: ( ( (lv_initExpressions_3_0= ruleXExpressionOrVarDeclaration ) ) (otherlv_4= ',' ( (lv_initExpressions_5_0= ruleXExpressionOrVarDeclaration ) ) )* )?
-            int alt91=2;
-            int LA91_0 = input.LA(1);
+            int alt93=2;
+            int LA93_0 = input.LA(1);
 
-            if ( ((LA91_0>=RULE_STRING && LA91_0<=RULE_ID)||LA91_0==19||LA91_0==29||LA91_0==39||LA91_0==48||(LA91_0>=64 && LA91_0<=65)||LA91_0==70||LA91_0==77||LA91_0==80||LA91_0==82||(LA91_0>=85 && LA91_0<=102)||LA91_0==104) ) {
-                alt91=1;
+            if ( ((LA93_0>=RULE_STRING && LA93_0<=RULE_ID)||LA93_0==19||LA93_0==29||LA93_0==38||LA93_0==47||(LA93_0>=63 && LA93_0<=64)||LA93_0==69||LA93_0==76||LA93_0==79||LA93_0==81||(LA93_0>=85 && LA93_0<=102)||LA93_0==104) ) {
+                alt93=1;
             }
-            switch (alt91) {
+            switch (alt93) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4852:2: ( (lv_initExpressions_3_0= ruleXExpressionOrVarDeclaration ) ) (otherlv_4= ',' ( (lv_initExpressions_5_0= ruleXExpressionOrVarDeclaration ) ) )*
                     {
@@ -14090,7 +14124,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXBasicForLoopExpressionAccess().getInitExpressionsXExpressionOrVarDeclarationParserRuleCall_3_0_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleXExpressionOrVarDeclaration_in_ruleXBasicForLoopExpression11503);
+                    pushFollow(FOLLOW_ruleXExpressionOrVarDeclaration_in_ruleXBasicForLoopExpression11509);
                     lv_initExpressions_3_0=ruleXExpressionOrVarDeclaration();
 
                     state._fsp--;
@@ -14115,21 +14149,21 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     }
 
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4870:2: (otherlv_4= ',' ( (lv_initExpressions_5_0= ruleXExpressionOrVarDeclaration ) ) )*
-                    loop90:
+                    loop92:
                     do {
-                        int alt90=2;
-                        int LA90_0 = input.LA(1);
+                        int alt92=2;
+                        int LA92_0 = input.LA(1);
 
-                        if ( (LA90_0==16) ) {
-                            alt90=1;
+                        if ( (LA92_0==16) ) {
+                            alt92=1;
                         }
 
 
-                        switch (alt90) {
+                        switch (alt92) {
                     	case 1 :
                     	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4870:4: otherlv_4= ',' ( (lv_initExpressions_5_0= ruleXExpressionOrVarDeclaration ) )
                     	    {
-                    	    otherlv_4=(Token)match(input,16,FOLLOW_16_in_ruleXBasicForLoopExpression11516); if (state.failed) return current;
+                    	    otherlv_4=(Token)match(input,16,FOLLOW_16_in_ruleXBasicForLoopExpression11522); if (state.failed) return current;
                     	    if ( state.backtracking==0 ) {
 
                     	          	newLeafNode(otherlv_4, grammarAccess.getXBasicForLoopExpressionAccess().getCommaKeyword_3_1_0());
@@ -14146,7 +14180,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	      	        newCompositeNode(grammarAccess.getXBasicForLoopExpressionAccess().getInitExpressionsXExpressionOrVarDeclarationParserRuleCall_3_1_1_0()); 
                     	      	    
                     	    }
-                    	    pushFollow(FOLLOW_ruleXExpressionOrVarDeclaration_in_ruleXBasicForLoopExpression11537);
+                    	    pushFollow(FOLLOW_ruleXExpressionOrVarDeclaration_in_ruleXBasicForLoopExpression11543);
                     	    lv_initExpressions_5_0=ruleXExpressionOrVarDeclaration();
 
                     	    state._fsp--;
@@ -14175,7 +14209,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop90;
+                    	    break loop92;
                         }
                     } while (true);
 
@@ -14185,20 +14219,20 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_6=(Token)match(input,79,FOLLOW_79_in_ruleXBasicForLoopExpression11553); if (state.failed) return current;
+            otherlv_6=(Token)match(input,78,FOLLOW_78_in_ruleXBasicForLoopExpression11559); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_6, grammarAccess.getXBasicForLoopExpressionAccess().getSemicolonKeyword_4());
                   
             }
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4896:1: ( (lv_expression_7_0= ruleXExpression ) )?
-            int alt92=2;
-            int LA92_0 = input.LA(1);
+            int alt94=2;
+            int LA94_0 = input.LA(1);
 
-            if ( ((LA92_0>=RULE_STRING && LA92_0<=RULE_ID)||LA92_0==19||LA92_0==29||LA92_0==39||LA92_0==48||(LA92_0>=64 && LA92_0<=65)||LA92_0==70||LA92_0==77||LA92_0==80||LA92_0==82||(LA92_0>=85 && LA92_0<=87)||(LA92_0>=90 && LA92_0<=102)||LA92_0==104) ) {
-                alt92=1;
+            if ( ((LA94_0>=RULE_STRING && LA94_0<=RULE_ID)||LA94_0==19||LA94_0==29||LA94_0==38||LA94_0==47||(LA94_0>=63 && LA94_0<=64)||LA94_0==69||LA94_0==76||LA94_0==79||LA94_0==81||(LA94_0>=85 && LA94_0<=87)||(LA94_0>=90 && LA94_0<=102)||LA94_0==104) ) {
+                alt94=1;
             }
-            switch (alt92) {
+            switch (alt94) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4897:1: (lv_expression_7_0= ruleXExpression )
                     {
@@ -14210,7 +14244,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXBasicForLoopExpressionAccess().getExpressionXExpressionParserRuleCall_5_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleXExpression_in_ruleXBasicForLoopExpression11574);
+                    pushFollow(FOLLOW_ruleXExpression_in_ruleXBasicForLoopExpression11580);
                     lv_expression_7_0=ruleXExpression();
 
                     state._fsp--;
@@ -14237,20 +14271,20 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_8=(Token)match(input,79,FOLLOW_79_in_ruleXBasicForLoopExpression11587); if (state.failed) return current;
+            otherlv_8=(Token)match(input,78,FOLLOW_78_in_ruleXBasicForLoopExpression11593); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_8, grammarAccess.getXBasicForLoopExpressionAccess().getSemicolonKeyword_6());
                   
             }
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4918:1: ( ( (lv_updateExpressions_9_0= ruleXExpression ) ) (otherlv_10= ',' ( (lv_updateExpressions_11_0= ruleXExpression ) ) )* )?
-            int alt94=2;
-            int LA94_0 = input.LA(1);
+            int alt96=2;
+            int LA96_0 = input.LA(1);
 
-            if ( ((LA94_0>=RULE_STRING && LA94_0<=RULE_ID)||LA94_0==19||LA94_0==29||LA94_0==39||LA94_0==48||(LA94_0>=64 && LA94_0<=65)||LA94_0==70||LA94_0==77||LA94_0==80||LA94_0==82||(LA94_0>=85 && LA94_0<=87)||(LA94_0>=90 && LA94_0<=102)||LA94_0==104) ) {
-                alt94=1;
+            if ( ((LA96_0>=RULE_STRING && LA96_0<=RULE_ID)||LA96_0==19||LA96_0==29||LA96_0==38||LA96_0==47||(LA96_0>=63 && LA96_0<=64)||LA96_0==69||LA96_0==76||LA96_0==79||LA96_0==81||(LA96_0>=85 && LA96_0<=87)||(LA96_0>=90 && LA96_0<=102)||LA96_0==104) ) {
+                alt96=1;
             }
-            switch (alt94) {
+            switch (alt96) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4918:2: ( (lv_updateExpressions_9_0= ruleXExpression ) ) (otherlv_10= ',' ( (lv_updateExpressions_11_0= ruleXExpression ) ) )*
                     {
@@ -14265,7 +14299,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXBasicForLoopExpressionAccess().getUpdateExpressionsXExpressionParserRuleCall_7_0_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleXExpression_in_ruleXBasicForLoopExpression11609);
+                    pushFollow(FOLLOW_ruleXExpression_in_ruleXBasicForLoopExpression11615);
                     lv_updateExpressions_9_0=ruleXExpression();
 
                     state._fsp--;
@@ -14290,21 +14324,21 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     }
 
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4936:2: (otherlv_10= ',' ( (lv_updateExpressions_11_0= ruleXExpression ) ) )*
-                    loop93:
+                    loop95:
                     do {
-                        int alt93=2;
-                        int LA93_0 = input.LA(1);
+                        int alt95=2;
+                        int LA95_0 = input.LA(1);
 
-                        if ( (LA93_0==16) ) {
-                            alt93=1;
+                        if ( (LA95_0==16) ) {
+                            alt95=1;
                         }
 
 
-                        switch (alt93) {
+                        switch (alt95) {
                     	case 1 :
                     	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4936:4: otherlv_10= ',' ( (lv_updateExpressions_11_0= ruleXExpression ) )
                     	    {
-                    	    otherlv_10=(Token)match(input,16,FOLLOW_16_in_ruleXBasicForLoopExpression11622); if (state.failed) return current;
+                    	    otherlv_10=(Token)match(input,16,FOLLOW_16_in_ruleXBasicForLoopExpression11628); if (state.failed) return current;
                     	    if ( state.backtracking==0 ) {
 
                     	          	newLeafNode(otherlv_10, grammarAccess.getXBasicForLoopExpressionAccess().getCommaKeyword_7_1_0());
@@ -14321,7 +14355,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	      	        newCompositeNode(grammarAccess.getXBasicForLoopExpressionAccess().getUpdateExpressionsXExpressionParserRuleCall_7_1_1_0()); 
                     	      	    
                     	    }
-                    	    pushFollow(FOLLOW_ruleXExpression_in_ruleXBasicForLoopExpression11643);
+                    	    pushFollow(FOLLOW_ruleXExpression_in_ruleXBasicForLoopExpression11649);
                     	    lv_updateExpressions_11_0=ruleXExpression();
 
                     	    state._fsp--;
@@ -14350,7 +14384,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop93;
+                    	    break loop95;
                         }
                     } while (true);
 
@@ -14360,7 +14394,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_12=(Token)match(input,30,FOLLOW_30_in_ruleXBasicForLoopExpression11659); if (state.failed) return current;
+            otherlv_12=(Token)match(input,30,FOLLOW_30_in_ruleXBasicForLoopExpression11665); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_12, grammarAccess.getXBasicForLoopExpressionAccess().getRightParenthesisKeyword_8());
@@ -14377,7 +14411,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getXBasicForLoopExpressionAccess().getEachExpressionXExpressionParserRuleCall_9_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleXExpression_in_ruleXBasicForLoopExpression11680);
+            pushFollow(FOLLOW_ruleXExpression_in_ruleXBasicForLoopExpression11686);
             lv_eachExpression_13_0=ruleXExpression();
 
             state._fsp--;
@@ -14438,7 +14472,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXWhileExpressionRule()); 
             }
-            pushFollow(FOLLOW_ruleXWhileExpression_in_entryRuleXWhileExpression11716);
+            pushFollow(FOLLOW_ruleXWhileExpression_in_entryRuleXWhileExpression11722);
             iv_ruleXWhileExpression=ruleXWhileExpression();
 
             state._fsp--;
@@ -14446,7 +14480,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXWhileExpression; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXWhileExpression11726); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXWhileExpression11732); if (state.failed) return current;
 
             }
 
@@ -14498,13 +14532,13 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,86,FOLLOW_86_in_ruleXWhileExpression11772); if (state.failed) return current;
+            otherlv_1=(Token)match(input,86,FOLLOW_86_in_ruleXWhileExpression11778); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_1, grammarAccess.getXWhileExpressionAccess().getWhileKeyword_1());
                   
             }
-            otherlv_2=(Token)match(input,29,FOLLOW_29_in_ruleXWhileExpression11784); if (state.failed) return current;
+            otherlv_2=(Token)match(input,29,FOLLOW_29_in_ruleXWhileExpression11790); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_2, grammarAccess.getXWhileExpressionAccess().getLeftParenthesisKeyword_2());
@@ -14521,7 +14555,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getXWhileExpressionAccess().getPredicateXExpressionParserRuleCall_3_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleXExpression_in_ruleXWhileExpression11805);
+            pushFollow(FOLLOW_ruleXExpression_in_ruleXWhileExpression11811);
             lv_predicate_3_0=ruleXExpression();
 
             state._fsp--;
@@ -14545,7 +14579,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,30,FOLLOW_30_in_ruleXWhileExpression11817); if (state.failed) return current;
+            otherlv_4=(Token)match(input,30,FOLLOW_30_in_ruleXWhileExpression11823); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_4, grammarAccess.getXWhileExpressionAccess().getRightParenthesisKeyword_4());
@@ -14562,7 +14596,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getXWhileExpressionAccess().getBodyXExpressionParserRuleCall_5_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleXExpression_in_ruleXWhileExpression11838);
+            pushFollow(FOLLOW_ruleXExpression_in_ruleXWhileExpression11844);
             lv_body_5_0=ruleXExpression();
 
             state._fsp--;
@@ -14623,7 +14657,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXDoWhileExpressionRule()); 
             }
-            pushFollow(FOLLOW_ruleXDoWhileExpression_in_entryRuleXDoWhileExpression11874);
+            pushFollow(FOLLOW_ruleXDoWhileExpression_in_entryRuleXDoWhileExpression11880);
             iv_ruleXDoWhileExpression=ruleXDoWhileExpression();
 
             state._fsp--;
@@ -14631,7 +14665,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXDoWhileExpression; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXDoWhileExpression11884); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXDoWhileExpression11890); if (state.failed) return current;
 
             }
 
@@ -14684,7 +14718,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,87,FOLLOW_87_in_ruleXDoWhileExpression11930); if (state.failed) return current;
+            otherlv_1=(Token)match(input,87,FOLLOW_87_in_ruleXDoWhileExpression11936); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_1, grammarAccess.getXDoWhileExpressionAccess().getDoKeyword_1());
@@ -14701,7 +14735,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getXDoWhileExpressionAccess().getBodyXExpressionParserRuleCall_2_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleXExpression_in_ruleXDoWhileExpression11951);
+            pushFollow(FOLLOW_ruleXExpression_in_ruleXDoWhileExpression11957);
             lv_body_2_0=ruleXExpression();
 
             state._fsp--;
@@ -14725,13 +14759,13 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_3=(Token)match(input,86,FOLLOW_86_in_ruleXDoWhileExpression11963); if (state.failed) return current;
+            otherlv_3=(Token)match(input,86,FOLLOW_86_in_ruleXDoWhileExpression11969); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_3, grammarAccess.getXDoWhileExpressionAccess().getWhileKeyword_3());
                   
             }
-            otherlv_4=(Token)match(input,29,FOLLOW_29_in_ruleXDoWhileExpression11975); if (state.failed) return current;
+            otherlv_4=(Token)match(input,29,FOLLOW_29_in_ruleXDoWhileExpression11981); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_4, grammarAccess.getXDoWhileExpressionAccess().getLeftParenthesisKeyword_4());
@@ -14748,7 +14782,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getXDoWhileExpressionAccess().getPredicateXExpressionParserRuleCall_5_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleXExpression_in_ruleXDoWhileExpression11996);
+            pushFollow(FOLLOW_ruleXExpression_in_ruleXDoWhileExpression12002);
             lv_predicate_5_0=ruleXExpression();
 
             state._fsp--;
@@ -14772,7 +14806,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_6=(Token)match(input,30,FOLLOW_30_in_ruleXDoWhileExpression12008); if (state.failed) return current;
+            otherlv_6=(Token)match(input,30,FOLLOW_30_in_ruleXDoWhileExpression12014); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_6, grammarAccess.getXDoWhileExpressionAccess().getRightParenthesisKeyword_6());
@@ -14815,7 +14849,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXBlockExpressionRule()); 
             }
-            pushFollow(FOLLOW_ruleXBlockExpression_in_entryRuleXBlockExpression12044);
+            pushFollow(FOLLOW_ruleXBlockExpression_in_entryRuleXBlockExpression12050);
             iv_ruleXBlockExpression=ruleXBlockExpression();
 
             state._fsp--;
@@ -14823,7 +14857,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXBlockExpression; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXBlockExpression12054); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXBlockExpression12060); if (state.failed) return current;
 
             }
 
@@ -14873,24 +14907,24 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,19,FOLLOW_19_in_ruleXBlockExpression12100); if (state.failed) return current;
+            otherlv_1=(Token)match(input,19,FOLLOW_19_in_ruleXBlockExpression12106); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_1, grammarAccess.getXBlockExpressionAccess().getLeftCurlyBracketKeyword_1());
                   
             }
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5165:1: ( ( (lv_expressions_2_0= ruleXExpressionOrVarDeclaration ) ) (otherlv_3= ';' )? )*
-            loop96:
+            loop98:
             do {
-                int alt96=2;
-                int LA96_0 = input.LA(1);
+                int alt98=2;
+                int LA98_0 = input.LA(1);
 
-                if ( ((LA96_0>=RULE_STRING && LA96_0<=RULE_ID)||LA96_0==19||LA96_0==29||LA96_0==39||LA96_0==48||(LA96_0>=64 && LA96_0<=65)||LA96_0==70||LA96_0==77||LA96_0==80||LA96_0==82||(LA96_0>=85 && LA96_0<=102)||LA96_0==104) ) {
-                    alt96=1;
+                if ( ((LA98_0>=RULE_STRING && LA98_0<=RULE_ID)||LA98_0==19||LA98_0==29||LA98_0==38||LA98_0==47||(LA98_0>=63 && LA98_0<=64)||LA98_0==69||LA98_0==76||LA98_0==79||LA98_0==81||(LA98_0>=85 && LA98_0<=102)||LA98_0==104) ) {
+                    alt98=1;
                 }
 
 
-                switch (alt96) {
+                switch (alt98) {
             	case 1 :
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5165:2: ( (lv_expressions_2_0= ruleXExpressionOrVarDeclaration ) ) (otherlv_3= ';' )?
             	    {
@@ -14905,7 +14939,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	      	        newCompositeNode(grammarAccess.getXBlockExpressionAccess().getExpressionsXExpressionOrVarDeclarationParserRuleCall_2_0_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleXExpressionOrVarDeclaration_in_ruleXBlockExpression12122);
+            	    pushFollow(FOLLOW_ruleXExpressionOrVarDeclaration_in_ruleXBlockExpression12128);
             	    lv_expressions_2_0=ruleXExpressionOrVarDeclaration();
 
             	    state._fsp--;
@@ -14930,17 +14964,17 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	    }
 
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5183:2: (otherlv_3= ';' )?
-            	    int alt95=2;
-            	    int LA95_0 = input.LA(1);
+            	    int alt97=2;
+            	    int LA97_0 = input.LA(1);
 
-            	    if ( (LA95_0==79) ) {
-            	        alt95=1;
+            	    if ( (LA97_0==78) ) {
+            	        alt97=1;
             	    }
-            	    switch (alt95) {
+            	    switch (alt97) {
             	        case 1 :
             	            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5183:4: otherlv_3= ';'
             	            {
-            	            otherlv_3=(Token)match(input,79,FOLLOW_79_in_ruleXBlockExpression12135); if (state.failed) return current;
+            	            otherlv_3=(Token)match(input,78,FOLLOW_78_in_ruleXBlockExpression12141); if (state.failed) return current;
             	            if ( state.backtracking==0 ) {
 
             	                  	newLeafNode(otherlv_3, grammarAccess.getXBlockExpressionAccess().getSemicolonKeyword_2_1());
@@ -14957,11 +14991,11 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop96;
+            	    break loop98;
                 }
             } while (true);
 
-            otherlv_4=(Token)match(input,24,FOLLOW_24_in_ruleXBlockExpression12151); if (state.failed) return current;
+            otherlv_4=(Token)match(input,24,FOLLOW_24_in_ruleXBlockExpression12157); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_4, grammarAccess.getXBlockExpressionAccess().getRightCurlyBracketKeyword_3());
@@ -15004,7 +15038,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXExpressionOrVarDeclarationRule()); 
             }
-            pushFollow(FOLLOW_ruleXExpressionOrVarDeclaration_in_entryRuleXExpressionOrVarDeclaration12187);
+            pushFollow(FOLLOW_ruleXExpressionOrVarDeclaration_in_entryRuleXExpressionOrVarDeclaration12193);
             iv_ruleXExpressionOrVarDeclaration=ruleXExpressionOrVarDeclaration();
 
             state._fsp--;
@@ -15012,7 +15046,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXExpressionOrVarDeclaration; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXExpressionOrVarDeclaration12197); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXExpressionOrVarDeclaration12203); if (state.failed) return current;
 
             }
 
@@ -15046,23 +15080,23 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5212:1: (this_XVariableDeclaration_0= ruleXVariableDeclaration | this_XExpression_1= ruleXExpression )
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5212:1: (this_XVariableDeclaration_0= ruleXVariableDeclaration | this_XExpression_1= ruleXExpression )
-            int alt97=2;
-            int LA97_0 = input.LA(1);
+            int alt99=2;
+            int LA99_0 = input.LA(1);
 
-            if ( ((LA97_0>=88 && LA97_0<=89)) ) {
-                alt97=1;
+            if ( ((LA99_0>=88 && LA99_0<=89)) ) {
+                alt99=1;
             }
-            else if ( ((LA97_0>=RULE_STRING && LA97_0<=RULE_ID)||LA97_0==19||LA97_0==29||LA97_0==39||LA97_0==48||(LA97_0>=64 && LA97_0<=65)||LA97_0==70||LA97_0==77||LA97_0==80||LA97_0==82||(LA97_0>=85 && LA97_0<=87)||(LA97_0>=90 && LA97_0<=102)||LA97_0==104) ) {
-                alt97=2;
+            else if ( ((LA99_0>=RULE_STRING && LA99_0<=RULE_ID)||LA99_0==19||LA99_0==29||LA99_0==38||LA99_0==47||(LA99_0>=63 && LA99_0<=64)||LA99_0==69||LA99_0==76||LA99_0==79||LA99_0==81||(LA99_0>=85 && LA99_0<=87)||(LA99_0>=90 && LA99_0<=102)||LA99_0==104) ) {
+                alt99=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 97, 0, input);
+                    new NoViableAltException("", 99, 0, input);
 
                 throw nvae;
             }
-            switch (alt97) {
+            switch (alt99) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5213:5: this_XVariableDeclaration_0= ruleXVariableDeclaration
                     {
@@ -15071,7 +15105,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXExpressionOrVarDeclarationAccess().getXVariableDeclarationParserRuleCall_0()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXVariableDeclaration_in_ruleXExpressionOrVarDeclaration12244);
+                    pushFollow(FOLLOW_ruleXVariableDeclaration_in_ruleXExpressionOrVarDeclaration12250);
                     this_XVariableDeclaration_0=ruleXVariableDeclaration();
 
                     state._fsp--;
@@ -15093,7 +15127,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getXExpressionOrVarDeclarationAccess().getXExpressionParserRuleCall_1()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXExpression_in_ruleXExpressionOrVarDeclaration12271);
+                    pushFollow(FOLLOW_ruleXExpression_in_ruleXExpressionOrVarDeclaration12277);
                     this_XExpression_1=ruleXExpression();
 
                     state._fsp--;
@@ -15144,7 +15178,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXVariableDeclarationRule()); 
             }
-            pushFollow(FOLLOW_ruleXVariableDeclaration_in_entryRuleXVariableDeclaration12306);
+            pushFollow(FOLLOW_ruleXVariableDeclaration_in_entryRuleXVariableDeclaration12312);
             iv_ruleXVariableDeclaration=ruleXVariableDeclaration();
 
             state._fsp--;
@@ -15152,7 +15186,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXVariableDeclaration; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXVariableDeclaration12316); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXVariableDeclaration12322); if (state.failed) return current;
 
             }
 
@@ -15209,23 +15243,23 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
 
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5258:2: ( ( (lv_writeable_1_0= 'var' ) ) | otherlv_2= 'val' )
-            int alt98=2;
-            int LA98_0 = input.LA(1);
+            int alt100=2;
+            int LA100_0 = input.LA(1);
 
-            if ( (LA98_0==88) ) {
-                alt98=1;
+            if ( (LA100_0==88) ) {
+                alt100=1;
             }
-            else if ( (LA98_0==89) ) {
-                alt98=2;
+            else if ( (LA100_0==89) ) {
+                alt100=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 98, 0, input);
+                    new NoViableAltException("", 100, 0, input);
 
                 throw nvae;
             }
-            switch (alt98) {
+            switch (alt100) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5258:3: ( (lv_writeable_1_0= 'var' ) )
                     {
@@ -15235,7 +15269,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5259:1: (lv_writeable_1_0= 'var' )
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5260:3: lv_writeable_1_0= 'var'
                     {
-                    lv_writeable_1_0=(Token)match(input,88,FOLLOW_88_in_ruleXVariableDeclaration12369); if (state.failed) return current;
+                    lv_writeable_1_0=(Token)match(input,88,FOLLOW_88_in_ruleXVariableDeclaration12375); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               newLeafNode(lv_writeable_1_0, grammarAccess.getXVariableDeclarationAccess().getWriteableVarKeyword_1_0_0());
@@ -15261,7 +15295,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 2 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5274:7: otherlv_2= 'val'
                     {
-                    otherlv_2=(Token)match(input,89,FOLLOW_89_in_ruleXVariableDeclaration12400); if (state.failed) return current;
+                    otherlv_2=(Token)match(input,89,FOLLOW_89_in_ruleXVariableDeclaration12406); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_2, grammarAccess.getXVariableDeclarationAccess().getValKeyword_1_1());
@@ -15274,40 +15308,40 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
 
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5278:2: ( ( ( ( ( ( ruleJvmTypeReference ) ) ( ( ruleValidID ) ) ) )=> ( ( (lv_type_3_0= ruleJvmTypeReference ) ) ( (lv_name_4_0= ruleValidID ) ) ) ) | ( (lv_name_5_0= ruleValidID ) ) )
-            int alt99=2;
-            int LA99_0 = input.LA(1);
+            int alt101=2;
+            int LA101_0 = input.LA(1);
 
-            if ( (LA99_0==RULE_ID) ) {
-                int LA99_1 = input.LA(2);
+            if ( (LA101_0==RULE_ID) ) {
+                int LA101_1 = input.LA(2);
 
                 if ( (synpred31_InternalMelange()) ) {
-                    alt99=1;
+                    alt101=1;
                 }
                 else if ( (true) ) {
-                    alt99=2;
+                    alt101=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 99, 1, input);
+                        new NoViableAltException("", 101, 1, input);
 
                     throw nvae;
                 }
             }
-            else if ( (LA99_0==29) && (synpred31_InternalMelange())) {
-                alt99=1;
+            else if ( (LA101_0==29) && (synpred31_InternalMelange())) {
+                alt101=1;
             }
-            else if ( (LA99_0==61) && (synpred31_InternalMelange())) {
-                alt99=1;
+            else if ( (LA101_0==60) && (synpred31_InternalMelange())) {
+                alt101=1;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 99, 0, input);
+                    new NoViableAltException("", 101, 0, input);
 
                 throw nvae;
             }
-            switch (alt99) {
+            switch (alt101) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5278:3: ( ( ( ( ( ruleJvmTypeReference ) ) ( ( ruleValidID ) ) ) )=> ( ( (lv_type_3_0= ruleJvmTypeReference ) ) ( (lv_name_4_0= ruleValidID ) ) ) )
                     {
@@ -15328,7 +15362,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXVariableDeclarationAccess().getTypeJvmTypeReferenceParserRuleCall_2_0_0_0_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleXVariableDeclaration12448);
+                    pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleXVariableDeclaration12454);
                     lv_type_3_0=ruleJvmTypeReference();
 
                     state._fsp--;
@@ -15363,7 +15397,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXVariableDeclarationAccess().getNameValidIDParserRuleCall_2_0_0_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleValidID_in_ruleXVariableDeclaration12469);
+                    pushFollow(FOLLOW_ruleValidID_in_ruleXVariableDeclaration12475);
                     lv_name_4_0=ruleValidID();
 
                     state._fsp--;
@@ -15410,7 +15444,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXVariableDeclarationAccess().getNameValidIDParserRuleCall_2_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleValidID_in_ruleXVariableDeclaration12498);
+                    pushFollow(FOLLOW_ruleValidID_in_ruleXVariableDeclaration12504);
                     lv_name_5_0=ruleValidID();
 
                     state._fsp--;
@@ -15441,17 +15475,17 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
 
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5341:3: (otherlv_6= '=' ( (lv_right_7_0= ruleXExpression ) ) )?
-            int alt100=2;
-            int LA100_0 = input.LA(1);
+            int alt102=2;
+            int LA102_0 = input.LA(1);
 
-            if ( (LA100_0==42) ) {
-                alt100=1;
+            if ( (LA102_0==41) ) {
+                alt102=1;
             }
-            switch (alt100) {
+            switch (alt102) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5341:5: otherlv_6= '=' ( (lv_right_7_0= ruleXExpression ) )
                     {
-                    otherlv_6=(Token)match(input,42,FOLLOW_42_in_ruleXVariableDeclaration12512); if (state.failed) return current;
+                    otherlv_6=(Token)match(input,41,FOLLOW_41_in_ruleXVariableDeclaration12518); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_6, grammarAccess.getXVariableDeclarationAccess().getEqualsSignKeyword_3_0());
@@ -15468,7 +15502,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXVariableDeclarationAccess().getRightXExpressionParserRuleCall_3_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleXExpression_in_ruleXVariableDeclaration12533);
+                    pushFollow(FOLLOW_ruleXExpression_in_ruleXVariableDeclaration12539);
                     lv_right_7_0=ruleXExpression();
 
                     state._fsp--;
@@ -15535,7 +15569,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getJvmFormalParameterRule()); 
             }
-            pushFollow(FOLLOW_ruleJvmFormalParameter_in_entryRuleJvmFormalParameter12571);
+            pushFollow(FOLLOW_ruleJvmFormalParameter_in_entryRuleJvmFormalParameter12577);
             iv_ruleJvmFormalParameter=ruleJvmFormalParameter();
 
             state._fsp--;
@@ -15543,7 +15577,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleJvmFormalParameter; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleJvmFormalParameter12581); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleJvmFormalParameter12587); if (state.failed) return current;
 
             }
 
@@ -15580,20 +15614,20 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5384:2: ( (lv_parameterType_0_0= ruleJvmTypeReference ) )? ( (lv_name_1_0= ruleValidID ) )
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5384:2: ( (lv_parameterType_0_0= ruleJvmTypeReference ) )?
-            int alt101=2;
-            int LA101_0 = input.LA(1);
+            int alt103=2;
+            int LA103_0 = input.LA(1);
 
-            if ( (LA101_0==RULE_ID) ) {
-                int LA101_1 = input.LA(2);
+            if ( (LA103_0==RULE_ID) ) {
+                int LA103_1 = input.LA(2);
 
-                if ( (LA101_1==RULE_ID||LA101_1==39||LA101_1==48||LA101_1==74) ) {
-                    alt101=1;
+                if ( (LA103_1==RULE_ID||LA103_1==38||LA103_1==47||LA103_1==73) ) {
+                    alt103=1;
                 }
             }
-            else if ( (LA101_0==29||LA101_0==61) ) {
-                alt101=1;
+            else if ( (LA103_0==29||LA103_0==60) ) {
+                alt103=1;
             }
-            switch (alt101) {
+            switch (alt103) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5385:1: (lv_parameterType_0_0= ruleJvmTypeReference )
                     {
@@ -15605,7 +15639,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getJvmFormalParameterAccess().getParameterTypeJvmTypeReferenceParserRuleCall_0_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleJvmFormalParameter12627);
+                    pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleJvmFormalParameter12633);
                     lv_parameterType_0_0=ruleJvmTypeReference();
 
                     state._fsp--;
@@ -15643,7 +15677,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getJvmFormalParameterAccess().getNameValidIDParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleValidID_in_ruleJvmFormalParameter12649);
+            pushFollow(FOLLOW_ruleValidID_in_ruleJvmFormalParameter12655);
             lv_name_1_0=ruleValidID();
 
             state._fsp--;
@@ -15704,7 +15738,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getFullJvmFormalParameterRule()); 
             }
-            pushFollow(FOLLOW_ruleFullJvmFormalParameter_in_entryRuleFullJvmFormalParameter12685);
+            pushFollow(FOLLOW_ruleFullJvmFormalParameter_in_entryRuleFullJvmFormalParameter12691);
             iv_ruleFullJvmFormalParameter=ruleFullJvmFormalParameter();
 
             state._fsp--;
@@ -15712,7 +15746,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleFullJvmFormalParameter; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleFullJvmFormalParameter12695); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleFullJvmFormalParameter12701); if (state.failed) return current;
 
             }
 
@@ -15759,7 +15793,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getFullJvmFormalParameterAccess().getParameterTypeJvmTypeReferenceParserRuleCall_0_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleFullJvmFormalParameter12741);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleFullJvmFormalParameter12747);
             lv_parameterType_0_0=ruleJvmTypeReference();
 
             state._fsp--;
@@ -15794,7 +15828,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getFullJvmFormalParameterAccess().getNameValidIDParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleValidID_in_ruleFullJvmFormalParameter12762);
+            pushFollow(FOLLOW_ruleValidID_in_ruleFullJvmFormalParameter12768);
             lv_name_1_0=ruleValidID();
 
             state._fsp--;
@@ -15855,7 +15889,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXFeatureCallRule()); 
             }
-            pushFollow(FOLLOW_ruleXFeatureCall_in_entryRuleXFeatureCall12798);
+            pushFollow(FOLLOW_ruleXFeatureCall_in_entryRuleXFeatureCall12804);
             iv_ruleXFeatureCall=ruleXFeatureCall();
 
             state._fsp--;
@@ -15863,7 +15897,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXFeatureCall; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXFeatureCall12808); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXFeatureCall12814); if (state.failed) return current;
 
             }
 
@@ -15927,17 +15961,17 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
 
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5504:2: (otherlv_1= '<' ( (lv_typeArguments_2_0= ruleJvmArgumentTypeReference ) ) (otherlv_3= ',' ( (lv_typeArguments_4_0= ruleJvmArgumentTypeReference ) ) )* otherlv_5= '>' )?
-            int alt103=2;
-            int LA103_0 = input.LA(1);
+            int alt105=2;
+            int LA105_0 = input.LA(1);
 
-            if ( (LA103_0==48) ) {
-                alt103=1;
+            if ( (LA105_0==47) ) {
+                alt105=1;
             }
-            switch (alt103) {
+            switch (alt105) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5504:4: otherlv_1= '<' ( (lv_typeArguments_2_0= ruleJvmArgumentTypeReference ) ) (otherlv_3= ',' ( (lv_typeArguments_4_0= ruleJvmArgumentTypeReference ) ) )* otherlv_5= '>'
                     {
-                    otherlv_1=(Token)match(input,48,FOLLOW_48_in_ruleXFeatureCall12855); if (state.failed) return current;
+                    otherlv_1=(Token)match(input,47,FOLLOW_47_in_ruleXFeatureCall12861); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_1, grammarAccess.getXFeatureCallAccess().getLessThanSignKeyword_1_0());
@@ -15954,7 +15988,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXFeatureCallAccess().getTypeArgumentsJvmArgumentTypeReferenceParserRuleCall_1_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_ruleXFeatureCall12876);
+                    pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_ruleXFeatureCall12882);
                     lv_typeArguments_2_0=ruleJvmArgumentTypeReference();
 
                     state._fsp--;
@@ -15979,21 +16013,21 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     }
 
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5526:2: (otherlv_3= ',' ( (lv_typeArguments_4_0= ruleJvmArgumentTypeReference ) ) )*
-                    loop102:
+                    loop104:
                     do {
-                        int alt102=2;
-                        int LA102_0 = input.LA(1);
+                        int alt104=2;
+                        int LA104_0 = input.LA(1);
 
-                        if ( (LA102_0==16) ) {
-                            alt102=1;
+                        if ( (LA104_0==16) ) {
+                            alt104=1;
                         }
 
 
-                        switch (alt102) {
+                        switch (alt104) {
                     	case 1 :
                     	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5526:4: otherlv_3= ',' ( (lv_typeArguments_4_0= ruleJvmArgumentTypeReference ) )
                     	    {
-                    	    otherlv_3=(Token)match(input,16,FOLLOW_16_in_ruleXFeatureCall12889); if (state.failed) return current;
+                    	    otherlv_3=(Token)match(input,16,FOLLOW_16_in_ruleXFeatureCall12895); if (state.failed) return current;
                     	    if ( state.backtracking==0 ) {
 
                     	          	newLeafNode(otherlv_3, grammarAccess.getXFeatureCallAccess().getCommaKeyword_1_2_0());
@@ -16010,7 +16044,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	      	        newCompositeNode(grammarAccess.getXFeatureCallAccess().getTypeArgumentsJvmArgumentTypeReferenceParserRuleCall_1_2_1_0()); 
                     	      	    
                     	    }
-                    	    pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_ruleXFeatureCall12910);
+                    	    pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_ruleXFeatureCall12916);
                     	    lv_typeArguments_4_0=ruleJvmArgumentTypeReference();
 
                     	    state._fsp--;
@@ -16039,11 +16073,11 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop102;
+                    	    break loop104;
                         }
                     } while (true);
 
-                    otherlv_5=(Token)match(input,49,FOLLOW_49_in_ruleXFeatureCall12924); if (state.failed) return current;
+                    otherlv_5=(Token)match(input,48,FOLLOW_48_in_ruleXFeatureCall12930); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_5, grammarAccess.getXFeatureCallAccess().getGreaterThanSignKeyword_1_3());
@@ -16073,7 +16107,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getXFeatureCallAccess().getFeatureJvmIdentifiableElementCrossReference_2_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleIdOrSuper_in_ruleXFeatureCall12949);
+            pushFollow(FOLLOW_ruleIdOrSuper_in_ruleXFeatureCall12955);
             ruleIdOrSuper();
 
             state._fsp--;
@@ -16090,9 +16124,9 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
 
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5567:2: ( ( ( ( '(' ) )=> (lv_explicitOperationCall_7_0= '(' ) ) ( ( ( ( () ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) ) ) )=> (lv_featureCallArguments_8_0= ruleXShortClosure ) ) | ( ( (lv_featureCallArguments_9_0= ruleXExpression ) ) (otherlv_10= ',' ( (lv_featureCallArguments_11_0= ruleXExpression ) ) )* ) )? otherlv_12= ')' )?
-            int alt106=2;
-            alt106 = dfa106.predict(input);
-            switch (alt106) {
+            int alt108=2;
+            alt108 = dfa108.predict(input);
+            switch (alt108) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5567:3: ( ( ( '(' ) )=> (lv_explicitOperationCall_7_0= '(' ) ) ( ( ( ( () ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) ) ) )=> (lv_featureCallArguments_8_0= ruleXShortClosure ) ) | ( ( (lv_featureCallArguments_9_0= ruleXExpression ) ) (otherlv_10= ',' ( (lv_featureCallArguments_11_0= ruleXExpression ) ) )* ) )? otherlv_12= ')'
                     {
@@ -16102,7 +16136,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5574:1: (lv_explicitOperationCall_7_0= '(' )
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5575:3: lv_explicitOperationCall_7_0= '('
                     {
-                    lv_explicitOperationCall_7_0=(Token)match(input,29,FOLLOW_29_in_ruleXFeatureCall12983); if (state.failed) return current;
+                    lv_explicitOperationCall_7_0=(Token)match(input,29,FOLLOW_29_in_ruleXFeatureCall12989); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               newLeafNode(lv_explicitOperationCall_7_0, grammarAccess.getXFeatureCallAccess().getExplicitOperationCallLeftParenthesisKeyword_3_0_0());
@@ -16123,9 +16157,9 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     }
 
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5588:2: ( ( ( ( () ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) ) ) )=> (lv_featureCallArguments_8_0= ruleXShortClosure ) ) | ( ( (lv_featureCallArguments_9_0= ruleXExpression ) ) (otherlv_10= ',' ( (lv_featureCallArguments_11_0= ruleXExpression ) ) )* ) )?
-                    int alt105=3;
-                    alt105 = dfa105.predict(input);
-                    switch (alt105) {
+                    int alt107=3;
+                    alt107 = dfa107.predict(input);
+                    switch (alt107) {
                         case 1 :
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5588:3: ( ( ( () ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) ) ) )=> (lv_featureCallArguments_8_0= ruleXShortClosure ) )
                             {
@@ -16140,7 +16174,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               	        newCompositeNode(grammarAccess.getXFeatureCallAccess().getFeatureCallArgumentsXShortClosureParserRuleCall_3_1_0_0()); 
                               	    
                             }
-                            pushFollow(FOLLOW_ruleXShortClosure_in_ruleXFeatureCall13068);
+                            pushFollow(FOLLOW_ruleXShortClosure_in_ruleXFeatureCall13074);
                             lv_featureCallArguments_8_0=ruleXShortClosure();
 
                             state._fsp--;
@@ -16184,7 +16218,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               	        newCompositeNode(grammarAccess.getXFeatureCallAccess().getFeatureCallArgumentsXExpressionParserRuleCall_3_1_1_0_0()); 
                               	    
                             }
-                            pushFollow(FOLLOW_ruleXExpression_in_ruleXFeatureCall13096);
+                            pushFollow(FOLLOW_ruleXExpression_in_ruleXFeatureCall13102);
                             lv_featureCallArguments_9_0=ruleXExpression();
 
                             state._fsp--;
@@ -16209,21 +16243,21 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                             }
 
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5641:2: (otherlv_10= ',' ( (lv_featureCallArguments_11_0= ruleXExpression ) ) )*
-                            loop104:
+                            loop106:
                             do {
-                                int alt104=2;
-                                int LA104_0 = input.LA(1);
+                                int alt106=2;
+                                int LA106_0 = input.LA(1);
 
-                                if ( (LA104_0==16) ) {
-                                    alt104=1;
+                                if ( (LA106_0==16) ) {
+                                    alt106=1;
                                 }
 
 
-                                switch (alt104) {
+                                switch (alt106) {
                             	case 1 :
                             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5641:4: otherlv_10= ',' ( (lv_featureCallArguments_11_0= ruleXExpression ) )
                             	    {
-                            	    otherlv_10=(Token)match(input,16,FOLLOW_16_in_ruleXFeatureCall13109); if (state.failed) return current;
+                            	    otherlv_10=(Token)match(input,16,FOLLOW_16_in_ruleXFeatureCall13115); if (state.failed) return current;
                             	    if ( state.backtracking==0 ) {
 
                             	          	newLeafNode(otherlv_10, grammarAccess.getXFeatureCallAccess().getCommaKeyword_3_1_1_1_0());
@@ -16240,7 +16274,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                             	      	        newCompositeNode(grammarAccess.getXFeatureCallAccess().getFeatureCallArgumentsXExpressionParserRuleCall_3_1_1_1_1_0()); 
                             	      	    
                             	    }
-                            	    pushFollow(FOLLOW_ruleXExpression_in_ruleXFeatureCall13130);
+                            	    pushFollow(FOLLOW_ruleXExpression_in_ruleXFeatureCall13136);
                             	    lv_featureCallArguments_11_0=ruleXExpression();
 
                             	    state._fsp--;
@@ -16269,7 +16303,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                             	    break;
 
                             	default :
-                            	    break loop104;
+                            	    break loop106;
                                 }
                             } while (true);
 
@@ -16282,7 +16316,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_12=(Token)match(input,30,FOLLOW_30_in_ruleXFeatureCall13147); if (state.failed) return current;
+                    otherlv_12=(Token)match(input,30,FOLLOW_30_in_ruleXFeatureCall13153); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_12, grammarAccess.getXFeatureCallAccess().getRightParenthesisKeyword_3_2());
@@ -16295,9 +16329,9 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
 
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5667:3: ( ( ( () '[' ) )=> (lv_featureCallArguments_13_0= ruleXClosure ) )?
-            int alt107=2;
-            alt107 = dfa107.predict(input);
-            switch (alt107) {
+            int alt109=2;
+            alt109 = dfa109.predict(input);
+            switch (alt109) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5667:4: ( ( () '[' ) )=> (lv_featureCallArguments_13_0= ruleXClosure )
                     {
@@ -16309,7 +16343,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXFeatureCallAccess().getFeatureCallArgumentsXClosureParserRuleCall_4_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleXClosure_in_ruleXFeatureCall13182);
+                    pushFollow(FOLLOW_ruleXClosure_in_ruleXFeatureCall13188);
                     lv_featureCallArguments_13_0=ruleXClosure();
 
                     state._fsp--;
@@ -16373,7 +16407,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getFeatureCallIDRule()); 
             }
-            pushFollow(FOLLOW_ruleFeatureCallID_in_entryRuleFeatureCallID13220);
+            pushFollow(FOLLOW_ruleFeatureCallID_in_entryRuleFeatureCallID13226);
             iv_ruleFeatureCallID=ruleFeatureCallID();
 
             state._fsp--;
@@ -16381,7 +16415,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleFeatureCallID.getText(); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleFeatureCallID13231); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleFeatureCallID13237); if (state.failed) return current;
 
             }
 
@@ -16414,42 +16448,42 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5708:1: (this_ValidID_0= ruleValidID | kw= 'extends' | kw= 'static' | kw= 'import' | kw= 'extension' )
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5708:1: (this_ValidID_0= ruleValidID | kw= 'extends' | kw= 'static' | kw= 'import' | kw= 'extension' )
-            int alt108=5;
+            int alt110=5;
             switch ( input.LA(1) ) {
             case RULE_ID:
                 {
-                alt108=1;
+                alt110=1;
                 }
                 break;
             case 90:
                 {
-                alt108=2;
+                alt110=2;
                 }
                 break;
             case 91:
                 {
-                alt108=3;
+                alt110=3;
                 }
                 break;
             case 92:
                 {
-                alt108=4;
+                alt110=4;
                 }
                 break;
             case 93:
                 {
-                alt108=5;
+                alt110=5;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 108, 0, input);
+                    new NoViableAltException("", 110, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt108) {
+            switch (alt110) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5709:5: this_ValidID_0= ruleValidID
                     {
@@ -16458,7 +16492,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getFeatureCallIDAccess().getValidIDParserRuleCall_0()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleValidID_in_ruleFeatureCallID13278);
+                    pushFollow(FOLLOW_ruleValidID_in_ruleFeatureCallID13284);
                     this_ValidID_0=ruleValidID();
 
                     state._fsp--;
@@ -16479,7 +16513,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 2 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5721:2: kw= 'extends'
                     {
-                    kw=(Token)match(input,90,FOLLOW_90_in_ruleFeatureCallID13302); if (state.failed) return current;
+                    kw=(Token)match(input,90,FOLLOW_90_in_ruleFeatureCallID13308); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -16492,7 +16526,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 3 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5728:2: kw= 'static'
                     {
-                    kw=(Token)match(input,91,FOLLOW_91_in_ruleFeatureCallID13321); if (state.failed) return current;
+                    kw=(Token)match(input,91,FOLLOW_91_in_ruleFeatureCallID13327); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -16505,7 +16539,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 4 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5735:2: kw= 'import'
                     {
-                    kw=(Token)match(input,92,FOLLOW_92_in_ruleFeatureCallID13340); if (state.failed) return current;
+                    kw=(Token)match(input,92,FOLLOW_92_in_ruleFeatureCallID13346); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -16518,7 +16552,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 5 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5742:2: kw= 'extension'
                     {
-                    kw=(Token)match(input,93,FOLLOW_93_in_ruleFeatureCallID13359); if (state.failed) return current;
+                    kw=(Token)match(input,93,FOLLOW_93_in_ruleFeatureCallID13365); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -16565,7 +16599,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getIdOrSuperRule()); 
             }
-            pushFollow(FOLLOW_ruleIdOrSuper_in_entryRuleIdOrSuper13400);
+            pushFollow(FOLLOW_ruleIdOrSuper_in_entryRuleIdOrSuper13406);
             iv_ruleIdOrSuper=ruleIdOrSuper();
 
             state._fsp--;
@@ -16573,7 +16607,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleIdOrSuper.getText(); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleIdOrSuper13411); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleIdOrSuper13417); if (state.failed) return current;
 
             }
 
@@ -16606,23 +16640,23 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5768:1: (this_FeatureCallID_0= ruleFeatureCallID | kw= 'super' )
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5768:1: (this_FeatureCallID_0= ruleFeatureCallID | kw= 'super' )
-            int alt109=2;
-            int LA109_0 = input.LA(1);
+            int alt111=2;
+            int LA111_0 = input.LA(1);
 
-            if ( (LA109_0==RULE_ID||(LA109_0>=90 && LA109_0<=93)) ) {
-                alt109=1;
+            if ( (LA111_0==RULE_ID||(LA111_0>=90 && LA111_0<=93)) ) {
+                alt111=1;
             }
-            else if ( (LA109_0==94) ) {
-                alt109=2;
+            else if ( (LA111_0==94) ) {
+                alt111=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 109, 0, input);
+                    new NoViableAltException("", 111, 0, input);
 
                 throw nvae;
             }
-            switch (alt109) {
+            switch (alt111) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5769:5: this_FeatureCallID_0= ruleFeatureCallID
                     {
@@ -16631,7 +16665,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getIdOrSuperAccess().getFeatureCallIDParserRuleCall_0()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleFeatureCallID_in_ruleIdOrSuper13458);
+                    pushFollow(FOLLOW_ruleFeatureCallID_in_ruleIdOrSuper13464);
                     this_FeatureCallID_0=ruleFeatureCallID();
 
                     state._fsp--;
@@ -16652,7 +16686,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 case 2 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5781:2: kw= 'super'
                     {
-                    kw=(Token)match(input,94,FOLLOW_94_in_ruleIdOrSuper13482); if (state.failed) return current;
+                    kw=(Token)match(input,94,FOLLOW_94_in_ruleIdOrSuper13488); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -16699,7 +16733,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXConstructorCallRule()); 
             }
-            pushFollow(FOLLOW_ruleXConstructorCall_in_entryRuleXConstructorCall13522);
+            pushFollow(FOLLOW_ruleXConstructorCall_in_entryRuleXConstructorCall13528);
             iv_ruleXConstructorCall=ruleXConstructorCall();
 
             state._fsp--;
@@ -16707,7 +16741,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXConstructorCall; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXConstructorCall13532); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXConstructorCall13538); if (state.failed) return current;
 
             }
 
@@ -16771,7 +16805,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,95,FOLLOW_95_in_ruleXConstructorCall13578); if (state.failed) return current;
+            otherlv_1=(Token)match(input,95,FOLLOW_95_in_ruleXConstructorCall13584); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_1, grammarAccess.getXConstructorCallAccess().getNewKeyword_1());
@@ -16795,7 +16829,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getXConstructorCallAccess().getConstructorJvmConstructorCrossReference_2_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_ruleXConstructorCall13601);
+            pushFollow(FOLLOW_ruleQualifiedName_in_ruleXConstructorCall13607);
             ruleQualifiedName();
 
             state._fsp--;
@@ -16812,16 +16846,16 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
 
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5832:2: ( ( ( '<' )=>otherlv_3= '<' ) ( (lv_typeArguments_4_0= ruleJvmArgumentTypeReference ) ) (otherlv_5= ',' ( (lv_typeArguments_6_0= ruleJvmArgumentTypeReference ) ) )* otherlv_7= '>' )?
-            int alt111=2;
-            alt111 = dfa111.predict(input);
-            switch (alt111) {
+            int alt113=2;
+            alt113 = dfa113.predict(input);
+            switch (alt113) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5832:3: ( ( '<' )=>otherlv_3= '<' ) ( (lv_typeArguments_4_0= ruleJvmArgumentTypeReference ) ) (otherlv_5= ',' ( (lv_typeArguments_6_0= ruleJvmArgumentTypeReference ) ) )* otherlv_7= '>'
                     {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5832:3: ( ( '<' )=>otherlv_3= '<' )
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5832:4: ( '<' )=>otherlv_3= '<'
                     {
-                    otherlv_3=(Token)match(input,48,FOLLOW_48_in_ruleXConstructorCall13622); if (state.failed) return current;
+                    otherlv_3=(Token)match(input,47,FOLLOW_47_in_ruleXConstructorCall13628); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_3, grammarAccess.getXConstructorCallAccess().getLessThanSignKeyword_3_0());
@@ -16841,7 +16875,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXConstructorCallAccess().getTypeArgumentsJvmArgumentTypeReferenceParserRuleCall_3_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_ruleXConstructorCall13644);
+                    pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_ruleXConstructorCall13650);
                     lv_typeArguments_4_0=ruleJvmArgumentTypeReference();
 
                     state._fsp--;
@@ -16866,21 +16900,21 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     }
 
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5855:2: (otherlv_5= ',' ( (lv_typeArguments_6_0= ruleJvmArgumentTypeReference ) ) )*
-                    loop110:
+                    loop112:
                     do {
-                        int alt110=2;
-                        int LA110_0 = input.LA(1);
+                        int alt112=2;
+                        int LA112_0 = input.LA(1);
 
-                        if ( (LA110_0==16) ) {
-                            alt110=1;
+                        if ( (LA112_0==16) ) {
+                            alt112=1;
                         }
 
 
-                        switch (alt110) {
+                        switch (alt112) {
                     	case 1 :
                     	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5855:4: otherlv_5= ',' ( (lv_typeArguments_6_0= ruleJvmArgumentTypeReference ) )
                     	    {
-                    	    otherlv_5=(Token)match(input,16,FOLLOW_16_in_ruleXConstructorCall13657); if (state.failed) return current;
+                    	    otherlv_5=(Token)match(input,16,FOLLOW_16_in_ruleXConstructorCall13663); if (state.failed) return current;
                     	    if ( state.backtracking==0 ) {
 
                     	          	newLeafNode(otherlv_5, grammarAccess.getXConstructorCallAccess().getCommaKeyword_3_2_0());
@@ -16897,7 +16931,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	      	        newCompositeNode(grammarAccess.getXConstructorCallAccess().getTypeArgumentsJvmArgumentTypeReferenceParserRuleCall_3_2_1_0()); 
                     	      	    
                     	    }
-                    	    pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_ruleXConstructorCall13678);
+                    	    pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_ruleXConstructorCall13684);
                     	    lv_typeArguments_6_0=ruleJvmArgumentTypeReference();
 
                     	    state._fsp--;
@@ -16926,11 +16960,11 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop110;
+                    	    break loop112;
                         }
                     } while (true);
 
-                    otherlv_7=(Token)match(input,49,FOLLOW_49_in_ruleXConstructorCall13692); if (state.failed) return current;
+                    otherlv_7=(Token)match(input,48,FOLLOW_48_in_ruleXConstructorCall13698); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_7, grammarAccess.getXConstructorCallAccess().getGreaterThanSignKeyword_3_3());
@@ -16943,9 +16977,9 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
 
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5881:3: ( ( ( ( '(' ) )=> (lv_explicitConstructorCall_8_0= '(' ) ) ( ( ( ( () ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) ) ) )=> (lv_arguments_9_0= ruleXShortClosure ) ) | ( ( (lv_arguments_10_0= ruleXExpression ) ) (otherlv_11= ',' ( (lv_arguments_12_0= ruleXExpression ) ) )* ) )? otherlv_13= ')' )?
-            int alt114=2;
-            alt114 = dfa114.predict(input);
-            switch (alt114) {
+            int alt116=2;
+            alt116 = dfa116.predict(input);
+            switch (alt116) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5881:4: ( ( ( '(' ) )=> (lv_explicitConstructorCall_8_0= '(' ) ) ( ( ( ( () ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) ) ) )=> (lv_arguments_9_0= ruleXShortClosure ) ) | ( ( (lv_arguments_10_0= ruleXExpression ) ) (otherlv_11= ',' ( (lv_arguments_12_0= ruleXExpression ) ) )* ) )? otherlv_13= ')'
                     {
@@ -16955,7 +16989,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5888:1: (lv_explicitConstructorCall_8_0= '(' )
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5889:3: lv_explicitConstructorCall_8_0= '('
                     {
-                    lv_explicitConstructorCall_8_0=(Token)match(input,29,FOLLOW_29_in_ruleXConstructorCall13728); if (state.failed) return current;
+                    lv_explicitConstructorCall_8_0=(Token)match(input,29,FOLLOW_29_in_ruleXConstructorCall13734); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               newLeafNode(lv_explicitConstructorCall_8_0, grammarAccess.getXConstructorCallAccess().getExplicitConstructorCallLeftParenthesisKeyword_4_0_0());
@@ -16976,9 +17010,9 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     }
 
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5902:2: ( ( ( ( () ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) ) ) )=> (lv_arguments_9_0= ruleXShortClosure ) ) | ( ( (lv_arguments_10_0= ruleXExpression ) ) (otherlv_11= ',' ( (lv_arguments_12_0= ruleXExpression ) ) )* ) )?
-                    int alt113=3;
-                    alt113 = dfa113.predict(input);
-                    switch (alt113) {
+                    int alt115=3;
+                    alt115 = dfa115.predict(input);
+                    switch (alt115) {
                         case 1 :
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5902:3: ( ( ( () ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) ) ) )=> (lv_arguments_9_0= ruleXShortClosure ) )
                             {
@@ -16993,7 +17027,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               	        newCompositeNode(grammarAccess.getXConstructorCallAccess().getArgumentsXShortClosureParserRuleCall_4_1_0_0()); 
                               	    
                             }
-                            pushFollow(FOLLOW_ruleXShortClosure_in_ruleXConstructorCall13813);
+                            pushFollow(FOLLOW_ruleXShortClosure_in_ruleXConstructorCall13819);
                             lv_arguments_9_0=ruleXShortClosure();
 
                             state._fsp--;
@@ -17037,7 +17071,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               	        newCompositeNode(grammarAccess.getXConstructorCallAccess().getArgumentsXExpressionParserRuleCall_4_1_1_0_0()); 
                               	    
                             }
-                            pushFollow(FOLLOW_ruleXExpression_in_ruleXConstructorCall13841);
+                            pushFollow(FOLLOW_ruleXExpression_in_ruleXConstructorCall13847);
                             lv_arguments_10_0=ruleXExpression();
 
                             state._fsp--;
@@ -17062,21 +17096,21 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                             }
 
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5955:2: (otherlv_11= ',' ( (lv_arguments_12_0= ruleXExpression ) ) )*
-                            loop112:
+                            loop114:
                             do {
-                                int alt112=2;
-                                int LA112_0 = input.LA(1);
+                                int alt114=2;
+                                int LA114_0 = input.LA(1);
 
-                                if ( (LA112_0==16) ) {
-                                    alt112=1;
+                                if ( (LA114_0==16) ) {
+                                    alt114=1;
                                 }
 
 
-                                switch (alt112) {
+                                switch (alt114) {
                             	case 1 :
                             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5955:4: otherlv_11= ',' ( (lv_arguments_12_0= ruleXExpression ) )
                             	    {
-                            	    otherlv_11=(Token)match(input,16,FOLLOW_16_in_ruleXConstructorCall13854); if (state.failed) return current;
+                            	    otherlv_11=(Token)match(input,16,FOLLOW_16_in_ruleXConstructorCall13860); if (state.failed) return current;
                             	    if ( state.backtracking==0 ) {
 
                             	          	newLeafNode(otherlv_11, grammarAccess.getXConstructorCallAccess().getCommaKeyword_4_1_1_1_0());
@@ -17093,7 +17127,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                             	      	        newCompositeNode(grammarAccess.getXConstructorCallAccess().getArgumentsXExpressionParserRuleCall_4_1_1_1_1_0()); 
                             	      	    
                             	    }
-                            	    pushFollow(FOLLOW_ruleXExpression_in_ruleXConstructorCall13875);
+                            	    pushFollow(FOLLOW_ruleXExpression_in_ruleXConstructorCall13881);
                             	    lv_arguments_12_0=ruleXExpression();
 
                             	    state._fsp--;
@@ -17122,7 +17156,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                             	    break;
 
                             	default :
-                            	    break loop112;
+                            	    break loop114;
                                 }
                             } while (true);
 
@@ -17135,7 +17169,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_13=(Token)match(input,30,FOLLOW_30_in_ruleXConstructorCall13892); if (state.failed) return current;
+                    otherlv_13=(Token)match(input,30,FOLLOW_30_in_ruleXConstructorCall13898); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_13, grammarAccess.getXConstructorCallAccess().getRightParenthesisKeyword_4_2());
@@ -17148,9 +17182,9 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
 
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5981:3: ( ( ( () '[' ) )=> (lv_arguments_14_0= ruleXClosure ) )?
-            int alt115=2;
-            alt115 = dfa115.predict(input);
-            switch (alt115) {
+            int alt117=2;
+            alt117 = dfa117.predict(input);
+            switch (alt117) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5981:4: ( ( () '[' ) )=> (lv_arguments_14_0= ruleXClosure )
                     {
@@ -17162,7 +17196,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXConstructorCallAccess().getArgumentsXClosureParserRuleCall_5_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleXClosure_in_ruleXConstructorCall13927);
+                    pushFollow(FOLLOW_ruleXClosure_in_ruleXConstructorCall13933);
                     lv_arguments_14_0=ruleXClosure();
 
                     state._fsp--;
@@ -17226,7 +17260,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXBooleanLiteralRule()); 
             }
-            pushFollow(FOLLOW_ruleXBooleanLiteral_in_entryRuleXBooleanLiteral13964);
+            pushFollow(FOLLOW_ruleXBooleanLiteral_in_entryRuleXBooleanLiteral13970);
             iv_ruleXBooleanLiteral=ruleXBooleanLiteral();
 
             state._fsp--;
@@ -17234,7 +17268,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXBooleanLiteral; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXBooleanLiteral13974); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXBooleanLiteral13980); if (state.failed) return current;
 
             }
 
@@ -17282,27 +17316,27 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
 
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6028:2: (otherlv_1= 'false' | ( (lv_isTrue_2_0= 'true' ) ) )
-            int alt116=2;
-            int LA116_0 = input.LA(1);
+            int alt118=2;
+            int LA118_0 = input.LA(1);
 
-            if ( (LA116_0==96) ) {
-                alt116=1;
+            if ( (LA118_0==96) ) {
+                alt118=1;
             }
-            else if ( (LA116_0==97) ) {
-                alt116=2;
+            else if ( (LA118_0==97) ) {
+                alt118=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 116, 0, input);
+                    new NoViableAltException("", 118, 0, input);
 
                 throw nvae;
             }
-            switch (alt116) {
+            switch (alt118) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6028:4: otherlv_1= 'false'
                     {
-                    otherlv_1=(Token)match(input,96,FOLLOW_96_in_ruleXBooleanLiteral14021); if (state.failed) return current;
+                    otherlv_1=(Token)match(input,96,FOLLOW_96_in_ruleXBooleanLiteral14027); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_1, grammarAccess.getXBooleanLiteralAccess().getFalseKeyword_1_0());
@@ -17320,7 +17354,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6034:1: (lv_isTrue_2_0= 'true' )
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6035:3: lv_isTrue_2_0= 'true'
                     {
-                    lv_isTrue_2_0=(Token)match(input,97,FOLLOW_97_in_ruleXBooleanLiteral14045); if (state.failed) return current;
+                    lv_isTrue_2_0=(Token)match(input,97,FOLLOW_97_in_ruleXBooleanLiteral14051); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               newLeafNode(lv_isTrue_2_0, grammarAccess.getXBooleanLiteralAccess().getIsTrueTrueKeyword_1_1_0());
@@ -17383,7 +17417,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXNullLiteralRule()); 
             }
-            pushFollow(FOLLOW_ruleXNullLiteral_in_entryRuleXNullLiteral14095);
+            pushFollow(FOLLOW_ruleXNullLiteral_in_entryRuleXNullLiteral14101);
             iv_ruleXNullLiteral=ruleXNullLiteral();
 
             state._fsp--;
@@ -17391,7 +17425,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXNullLiteral; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXNullLiteral14105); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXNullLiteral14111); if (state.failed) return current;
 
             }
 
@@ -17437,7 +17471,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,98,FOLLOW_98_in_ruleXNullLiteral14151); if (state.failed) return current;
+            otherlv_1=(Token)match(input,98,FOLLOW_98_in_ruleXNullLiteral14157); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_1, grammarAccess.getXNullLiteralAccess().getNullKeyword_1());
@@ -17480,7 +17514,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXNumberLiteralRule()); 
             }
-            pushFollow(FOLLOW_ruleXNumberLiteral_in_entryRuleXNumberLiteral14187);
+            pushFollow(FOLLOW_ruleXNumberLiteral_in_entryRuleXNumberLiteral14193);
             iv_ruleXNumberLiteral=ruleXNumberLiteral();
 
             state._fsp--;
@@ -17488,7 +17522,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXNumberLiteral; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXNumberLiteral14197); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXNumberLiteral14203); if (state.failed) return current;
 
             }
 
@@ -17546,7 +17580,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getXNumberLiteralAccess().getValueNumberParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleNumber_in_ruleXNumberLiteral14252);
+            pushFollow(FOLLOW_ruleNumber_in_ruleXNumberLiteral14258);
             lv_value_1_0=ruleNumber();
 
             state._fsp--;
@@ -17607,7 +17641,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXStringLiteralRule()); 
             }
-            pushFollow(FOLLOW_ruleXStringLiteral_in_entryRuleXStringLiteral14288);
+            pushFollow(FOLLOW_ruleXStringLiteral_in_entryRuleXStringLiteral14294);
             iv_ruleXStringLiteral=ruleXStringLiteral();
 
             state._fsp--;
@@ -17615,7 +17649,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXStringLiteral; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXStringLiteral14298); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXStringLiteral14304); if (state.failed) return current;
 
             }
 
@@ -17667,7 +17701,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6152:1: (lv_value_1_0= RULE_STRING )
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6153:3: lv_value_1_0= RULE_STRING
             {
-            lv_value_1_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleXStringLiteral14349); if (state.failed) return current;
+            lv_value_1_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleXStringLiteral14355); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(lv_value_1_0, grammarAccess.getXStringLiteralAccess().getValueSTRINGTerminalRuleCall_1_0()); 
@@ -17728,7 +17762,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXTypeLiteralRule()); 
             }
-            pushFollow(FOLLOW_ruleXTypeLiteral_in_entryRuleXTypeLiteral14390);
+            pushFollow(FOLLOW_ruleXTypeLiteral_in_entryRuleXTypeLiteral14396);
             iv_ruleXTypeLiteral=ruleXTypeLiteral();
 
             state._fsp--;
@@ -17736,7 +17770,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXTypeLiteral; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXTypeLiteral14400); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXTypeLiteral14406); if (state.failed) return current;
 
             }
 
@@ -17786,13 +17820,13 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,99,FOLLOW_99_in_ruleXTypeLiteral14446); if (state.failed) return current;
+            otherlv_1=(Token)match(input,99,FOLLOW_99_in_ruleXTypeLiteral14452); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_1, grammarAccess.getXTypeLiteralAccess().getTypeofKeyword_1());
                   
             }
-            otherlv_2=(Token)match(input,29,FOLLOW_29_in_ruleXTypeLiteral14458); if (state.failed) return current;
+            otherlv_2=(Token)match(input,29,FOLLOW_29_in_ruleXTypeLiteral14464); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_2, grammarAccess.getXTypeLiteralAccess().getLeftParenthesisKeyword_2());
@@ -17816,7 +17850,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getXTypeLiteralAccess().getTypeJvmTypeCrossReference_3_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_ruleXTypeLiteral14481);
+            pushFollow(FOLLOW_ruleQualifiedName_in_ruleXTypeLiteral14487);
             ruleQualifiedName();
 
             state._fsp--;
@@ -17833,17 +17867,17 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
 
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6219:2: ( (lv_arrayDimensions_4_0= ruleArrayBrackets ) )*
-            loop117:
+            loop119:
             do {
-                int alt117=2;
-                int LA117_0 = input.LA(1);
+                int alt119=2;
+                int LA119_0 = input.LA(1);
 
-                if ( (LA117_0==39) ) {
-                    alt117=1;
+                if ( (LA119_0==38) ) {
+                    alt119=1;
                 }
 
 
-                switch (alt117) {
+                switch (alt119) {
             	case 1 :
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6220:1: (lv_arrayDimensions_4_0= ruleArrayBrackets )
             	    {
@@ -17855,7 +17889,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	      	        newCompositeNode(grammarAccess.getXTypeLiteralAccess().getArrayDimensionsArrayBracketsParserRuleCall_4_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleArrayBrackets_in_ruleXTypeLiteral14502);
+            	    pushFollow(FOLLOW_ruleArrayBrackets_in_ruleXTypeLiteral14508);
             	    lv_arrayDimensions_4_0=ruleArrayBrackets();
 
             	    state._fsp--;
@@ -17881,11 +17915,11 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop117;
+            	    break loop119;
                 }
             } while (true);
 
-            otherlv_5=(Token)match(input,30,FOLLOW_30_in_ruleXTypeLiteral14515); if (state.failed) return current;
+            otherlv_5=(Token)match(input,30,FOLLOW_30_in_ruleXTypeLiteral14521); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_5, grammarAccess.getXTypeLiteralAccess().getRightParenthesisKeyword_5());
@@ -17928,7 +17962,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXThrowExpressionRule()); 
             }
-            pushFollow(FOLLOW_ruleXThrowExpression_in_entryRuleXThrowExpression14551);
+            pushFollow(FOLLOW_ruleXThrowExpression_in_entryRuleXThrowExpression14557);
             iv_ruleXThrowExpression=ruleXThrowExpression();
 
             state._fsp--;
@@ -17936,7 +17970,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXThrowExpression; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXThrowExpression14561); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXThrowExpression14567); if (state.failed) return current;
 
             }
 
@@ -17984,7 +18018,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,100,FOLLOW_100_in_ruleXThrowExpression14607); if (state.failed) return current;
+            otherlv_1=(Token)match(input,100,FOLLOW_100_in_ruleXThrowExpression14613); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_1, grammarAccess.getXThrowExpressionAccess().getThrowKeyword_1());
@@ -18001,7 +18035,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getXThrowExpressionAccess().getExpressionXExpressionParserRuleCall_2_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleXExpression_in_ruleXThrowExpression14628);
+            pushFollow(FOLLOW_ruleXExpression_in_ruleXThrowExpression14634);
             lv_expression_2_0=ruleXExpression();
 
             state._fsp--;
@@ -18062,7 +18096,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXReturnExpressionRule()); 
             }
-            pushFollow(FOLLOW_ruleXReturnExpression_in_entryRuleXReturnExpression14664);
+            pushFollow(FOLLOW_ruleXReturnExpression_in_entryRuleXReturnExpression14670);
             iv_ruleXReturnExpression=ruleXReturnExpression();
 
             state._fsp--;
@@ -18070,7 +18104,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXReturnExpression; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXReturnExpression14674); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXReturnExpression14680); if (state.failed) return current;
 
             }
 
@@ -18118,16 +18152,16 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,101,FOLLOW_101_in_ruleXReturnExpression14720); if (state.failed) return current;
+            otherlv_1=(Token)match(input,101,FOLLOW_101_in_ruleXReturnExpression14726); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_1, grammarAccess.getXReturnExpressionAccess().getReturnKeyword_1());
                   
             }
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6321:1: ( ( 'extends' | 'static' | 'import' | 'extension' | '!' | '-' | '+' | 'new' | '{' | 'switch' | 'synchronized' | '<' | 'super' | '#' | '[' | 'false' | 'true' | 'null' | 'typeof' | 'if' | 'for' | 'while' | 'do' | 'throw' | 'return' | 'try' | '(' | RULE_ID | RULE_HEX | RULE_INT | RULE_DECIMAL | RULE_STRING )=> (lv_expression_2_0= ruleXExpression ) )?
-            int alt118=2;
-            alt118 = dfa118.predict(input);
-            switch (alt118) {
+            int alt120=2;
+            alt120 = dfa120.predict(input);
+            switch (alt120) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6321:2: ( 'extends' | 'static' | 'import' | 'extension' | '!' | '-' | '+' | 'new' | '{' | 'switch' | 'synchronized' | '<' | 'super' | '#' | '[' | 'false' | 'true' | 'null' | 'typeof' | 'if' | 'for' | 'while' | 'do' | 'throw' | 'return' | 'try' | '(' | RULE_ID | RULE_HEX | RULE_INT | RULE_DECIMAL | RULE_STRING )=> (lv_expression_2_0= ruleXExpression )
                     {
@@ -18139,7 +18173,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXReturnExpressionAccess().getExpressionXExpressionParserRuleCall_2_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleXExpression_in_ruleXReturnExpression14955);
+                    pushFollow(FOLLOW_ruleXExpression_in_ruleXReturnExpression14961);
                     lv_expression_2_0=ruleXExpression();
 
                     state._fsp--;
@@ -18203,7 +18237,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXTryCatchFinallyExpressionRule()); 
             }
-            pushFollow(FOLLOW_ruleXTryCatchFinallyExpression_in_entryRuleXTryCatchFinallyExpression14992);
+            pushFollow(FOLLOW_ruleXTryCatchFinallyExpression_in_entryRuleXTryCatchFinallyExpression14998);
             iv_ruleXTryCatchFinallyExpression=ruleXTryCatchFinallyExpression();
 
             state._fsp--;
@@ -18211,7 +18245,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXTryCatchFinallyExpression; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXTryCatchFinallyExpression15002); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXTryCatchFinallyExpression15008); if (state.failed) return current;
 
             }
 
@@ -18267,7 +18301,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,102,FOLLOW_102_in_ruleXTryCatchFinallyExpression15048); if (state.failed) return current;
+            otherlv_1=(Token)match(input,102,FOLLOW_102_in_ruleXTryCatchFinallyExpression15054); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_1, grammarAccess.getXTryCatchFinallyExpressionAccess().getTryKeyword_1());
@@ -18284,7 +18318,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getXTryCatchFinallyExpressionAccess().getExpressionXExpressionParserRuleCall_2_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleXExpression_in_ruleXTryCatchFinallyExpression15069);
+            pushFollow(FOLLOW_ruleXExpression_in_ruleXTryCatchFinallyExpression15075);
             lv_expression_2_0=ruleXExpression();
 
             state._fsp--;
@@ -18309,23 +18343,23 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
 
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6415:2: ( ( ( ( 'catch' )=> (lv_catchClauses_3_0= ruleXCatchClause ) )+ ( ( ( 'finally' )=>otherlv_4= 'finally' ) ( (lv_finallyExpression_5_0= ruleXExpression ) ) )? ) | (otherlv_6= 'finally' ( (lv_finallyExpression_7_0= ruleXExpression ) ) ) )
-            int alt121=2;
-            int LA121_0 = input.LA(1);
+            int alt123=2;
+            int LA123_0 = input.LA(1);
 
-            if ( (LA121_0==105) ) {
-                alt121=1;
+            if ( (LA123_0==105) ) {
+                alt123=1;
             }
-            else if ( (LA121_0==103) ) {
-                alt121=2;
+            else if ( (LA123_0==103) ) {
+                alt123=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 121, 0, input);
+                    new NoViableAltException("", 123, 0, input);
 
                 throw nvae;
             }
-            switch (alt121) {
+            switch (alt123) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6415:3: ( ( ( 'catch' )=> (lv_catchClauses_3_0= ruleXCatchClause ) )+ ( ( ( 'finally' )=>otherlv_4= 'finally' ) ( (lv_finallyExpression_5_0= ruleXExpression ) ) )? )
                     {
@@ -18333,24 +18367,24 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6415:4: ( ( 'catch' )=> (lv_catchClauses_3_0= ruleXCatchClause ) )+ ( ( ( 'finally' )=>otherlv_4= 'finally' ) ( (lv_finallyExpression_5_0= ruleXExpression ) ) )?
                     {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6415:4: ( ( 'catch' )=> (lv_catchClauses_3_0= ruleXCatchClause ) )+
-                    int cnt119=0;
-                    loop119:
+                    int cnt121=0;
+                    loop121:
                     do {
-                        int alt119=2;
-                        int LA119_0 = input.LA(1);
+                        int alt121=2;
+                        int LA121_0 = input.LA(1);
 
-                        if ( (LA119_0==105) ) {
-                            int LA119_2 = input.LA(2);
+                        if ( (LA121_0==105) ) {
+                            int LA121_2 = input.LA(2);
 
                             if ( (synpred40_InternalMelange()) ) {
-                                alt119=1;
+                                alt121=1;
                             }
 
 
                         }
 
 
-                        switch (alt119) {
+                        switch (alt121) {
                     	case 1 :
                     	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6415:5: ( 'catch' )=> (lv_catchClauses_3_0= ruleXCatchClause )
                     	    {
@@ -18362,7 +18396,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	      	        newCompositeNode(grammarAccess.getXTryCatchFinallyExpressionAccess().getCatchClausesXCatchClauseParserRuleCall_3_0_0_0()); 
                     	      	    
                     	    }
-                    	    pushFollow(FOLLOW_ruleXCatchClause_in_ruleXTryCatchFinallyExpression15099);
+                    	    pushFollow(FOLLOW_ruleXCatchClause_in_ruleXTryCatchFinallyExpression15105);
                     	    lv_catchClauses_3_0=ruleXCatchClause();
 
                     	    state._fsp--;
@@ -18388,34 +18422,34 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    if ( cnt119 >= 1 ) break loop119;
+                    	    if ( cnt121 >= 1 ) break loop121;
                     	    if (state.backtracking>0) {state.failed=true; return current;}
                                 EarlyExitException eee =
-                                    new EarlyExitException(119, input);
+                                    new EarlyExitException(121, input);
                                 throw eee;
                         }
-                        cnt119++;
+                        cnt121++;
                     } while (true);
 
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6434:3: ( ( ( 'finally' )=>otherlv_4= 'finally' ) ( (lv_finallyExpression_5_0= ruleXExpression ) ) )?
-                    int alt120=2;
-                    int LA120_0 = input.LA(1);
+                    int alt122=2;
+                    int LA122_0 = input.LA(1);
 
-                    if ( (LA120_0==103) ) {
-                        int LA120_1 = input.LA(2);
+                    if ( (LA122_0==103) ) {
+                        int LA122_1 = input.LA(2);
 
                         if ( (synpred41_InternalMelange()) ) {
-                            alt120=1;
+                            alt122=1;
                         }
                     }
-                    switch (alt120) {
+                    switch (alt122) {
                         case 1 :
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6434:4: ( ( 'finally' )=>otherlv_4= 'finally' ) ( (lv_finallyExpression_5_0= ruleXExpression ) )
                             {
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6434:4: ( ( 'finally' )=>otherlv_4= 'finally' )
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6434:5: ( 'finally' )=>otherlv_4= 'finally'
                             {
-                            otherlv_4=(Token)match(input,103,FOLLOW_103_in_ruleXTryCatchFinallyExpression15121); if (state.failed) return current;
+                            otherlv_4=(Token)match(input,103,FOLLOW_103_in_ruleXTryCatchFinallyExpression15127); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
 
                                   	newLeafNode(otherlv_4, grammarAccess.getXTryCatchFinallyExpressionAccess().getFinallyKeyword_3_0_1_0());
@@ -18435,7 +18469,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               	        newCompositeNode(grammarAccess.getXTryCatchFinallyExpressionAccess().getFinallyExpressionXExpressionParserRuleCall_3_0_1_1_0()); 
                               	    
                             }
-                            pushFollow(FOLLOW_ruleXExpression_in_ruleXTryCatchFinallyExpression15143);
+                            pushFollow(FOLLOW_ruleXExpression_in_ruleXTryCatchFinallyExpression15149);
                             lv_finallyExpression_5_0=ruleXExpression();
 
                             state._fsp--;
@@ -18477,7 +18511,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6458:6: (otherlv_6= 'finally' ( (lv_finallyExpression_7_0= ruleXExpression ) ) )
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6458:8: otherlv_6= 'finally' ( (lv_finallyExpression_7_0= ruleXExpression ) )
                     {
-                    otherlv_6=(Token)match(input,103,FOLLOW_103_in_ruleXTryCatchFinallyExpression15165); if (state.failed) return current;
+                    otherlv_6=(Token)match(input,103,FOLLOW_103_in_ruleXTryCatchFinallyExpression15171); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_6, grammarAccess.getXTryCatchFinallyExpressionAccess().getFinallyKeyword_3_1_0());
@@ -18494,7 +18528,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXTryCatchFinallyExpressionAccess().getFinallyExpressionXExpressionParserRuleCall_3_1_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleXExpression_in_ruleXTryCatchFinallyExpression15186);
+                    pushFollow(FOLLOW_ruleXExpression_in_ruleXTryCatchFinallyExpression15192);
                     lv_finallyExpression_7_0=ruleXExpression();
 
                     state._fsp--;
@@ -18564,7 +18598,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXSynchronizedExpressionRule()); 
             }
-            pushFollow(FOLLOW_ruleXSynchronizedExpression_in_entryRuleXSynchronizedExpression15224);
+            pushFollow(FOLLOW_ruleXSynchronizedExpression_in_entryRuleXSynchronizedExpression15230);
             iv_ruleXSynchronizedExpression=ruleXSynchronizedExpression();
 
             state._fsp--;
@@ -18572,7 +18606,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXSynchronizedExpression; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXSynchronizedExpression15234); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXSynchronizedExpression15240); if (state.failed) return current;
 
             }
 
@@ -18630,13 +18664,13 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,104,FOLLOW_104_in_ruleXSynchronizedExpression15298); if (state.failed) return current;
+            otherlv_1=(Token)match(input,104,FOLLOW_104_in_ruleXSynchronizedExpression15304); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_1, grammarAccess.getXSynchronizedExpressionAccess().getSynchronizedKeyword_0_0_1());
                   
             }
-            otherlv_2=(Token)match(input,29,FOLLOW_29_in_ruleXSynchronizedExpression15310); if (state.failed) return current;
+            otherlv_2=(Token)match(input,29,FOLLOW_29_in_ruleXSynchronizedExpression15316); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_2, grammarAccess.getXSynchronizedExpressionAccess().getLeftParenthesisKeyword_0_0_2());
@@ -18659,7 +18693,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getXSynchronizedExpressionAccess().getParamXExpressionParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleXExpression_in_ruleXSynchronizedExpression15333);
+            pushFollow(FOLLOW_ruleXExpression_in_ruleXSynchronizedExpression15339);
             lv_param_3_0=ruleXExpression();
 
             state._fsp--;
@@ -18683,7 +18717,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,30,FOLLOW_30_in_ruleXSynchronizedExpression15345); if (state.failed) return current;
+            otherlv_4=(Token)match(input,30,FOLLOW_30_in_ruleXSynchronizedExpression15351); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_4, grammarAccess.getXSynchronizedExpressionAccess().getRightParenthesisKeyword_2());
@@ -18700,7 +18734,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getXSynchronizedExpressionAccess().getExpressionXExpressionParserRuleCall_3_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleXExpression_in_ruleXSynchronizedExpression15366);
+            pushFollow(FOLLOW_ruleXExpression_in_ruleXSynchronizedExpression15372);
             lv_expression_5_0=ruleXExpression();
 
             state._fsp--;
@@ -18761,7 +18795,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXCatchClauseRule()); 
             }
-            pushFollow(FOLLOW_ruleXCatchClause_in_entryRuleXCatchClause15402);
+            pushFollow(FOLLOW_ruleXCatchClause_in_entryRuleXCatchClause15408);
             iv_ruleXCatchClause=ruleXCatchClause();
 
             state._fsp--;
@@ -18769,7 +18803,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXCatchClause; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXCatchClause15412); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXCatchClause15418); if (state.failed) return current;
 
             }
 
@@ -18811,7 +18845,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6579:2: ( ( 'catch' )=>otherlv_0= 'catch' )
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6579:3: ( 'catch' )=>otherlv_0= 'catch'
             {
-            otherlv_0=(Token)match(input,105,FOLLOW_105_in_ruleXCatchClause15457); if (state.failed) return current;
+            otherlv_0=(Token)match(input,105,FOLLOW_105_in_ruleXCatchClause15463); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_0, grammarAccess.getXCatchClauseAccess().getCatchKeyword_0());
@@ -18820,7 +18854,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,29,FOLLOW_29_in_ruleXCatchClause15470); if (state.failed) return current;
+            otherlv_1=(Token)match(input,29,FOLLOW_29_in_ruleXCatchClause15476); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_1, grammarAccess.getXCatchClauseAccess().getLeftParenthesisKeyword_1());
@@ -18837,7 +18871,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getXCatchClauseAccess().getDeclaredParamFullJvmFormalParameterParserRuleCall_2_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleFullJvmFormalParameter_in_ruleXCatchClause15491);
+            pushFollow(FOLLOW_ruleFullJvmFormalParameter_in_ruleXCatchClause15497);
             lv_declaredParam_2_0=ruleFullJvmFormalParameter();
 
             state._fsp--;
@@ -18861,7 +18895,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_3=(Token)match(input,30,FOLLOW_30_in_ruleXCatchClause15503); if (state.failed) return current;
+            otherlv_3=(Token)match(input,30,FOLLOW_30_in_ruleXCatchClause15509); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_3, grammarAccess.getXCatchClauseAccess().getRightParenthesisKeyword_3());
@@ -18878,7 +18912,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getXCatchClauseAccess().getExpressionXExpressionParserRuleCall_4_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleXExpression_in_ruleXCatchClause15524);
+            pushFollow(FOLLOW_ruleXExpression_in_ruleXCatchClause15530);
             lv_expression_4_0=ruleXExpression();
 
             state._fsp--;
@@ -18939,7 +18973,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getQualifiedNameRule()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName15561);
+            pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName15567);
             iv_ruleQualifiedName=ruleQualifiedName();
 
             state._fsp--;
@@ -18947,7 +18981,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleQualifiedName.getText(); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName15572); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName15578); if (state.failed) return current;
 
             }
 
@@ -18989,7 +19023,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       newCompositeNode(grammarAccess.getQualifiedNameAccess().getValidIDParserRuleCall_0()); 
                   
             }
-            pushFollow(FOLLOW_ruleValidID_in_ruleQualifiedName15619);
+            pushFollow(FOLLOW_ruleValidID_in_ruleQualifiedName15625);
             this_ValidID_0=ruleValidID();
 
             state._fsp--;
@@ -19005,19 +19039,19 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                   
             }
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6660:1: ( ( ( '.' )=>kw= '.' ) this_ValidID_2= ruleValidID )*
-            loop122:
+            loop124:
             do {
-                int alt122=2;
-                int LA122_0 = input.LA(1);
+                int alt124=2;
+                int LA124_0 = input.LA(1);
 
-                if ( (LA122_0==74) ) {
-                    int LA122_2 = input.LA(2);
+                if ( (LA124_0==73) ) {
+                    int LA124_2 = input.LA(2);
 
-                    if ( (LA122_2==RULE_ID) ) {
-                        int LA122_3 = input.LA(3);
+                    if ( (LA124_2==RULE_ID) ) {
+                        int LA124_3 = input.LA(3);
 
                         if ( (synpred44_InternalMelange()) ) {
-                            alt122=1;
+                            alt124=1;
                         }
 
 
@@ -19027,14 +19061,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 }
 
 
-                switch (alt122) {
+                switch (alt124) {
             	case 1 :
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6660:2: ( ( '.' )=>kw= '.' ) this_ValidID_2= ruleValidID
             	    {
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6660:2: ( ( '.' )=>kw= '.' )
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6660:3: ( '.' )=>kw= '.'
             	    {
-            	    kw=(Token)match(input,74,FOLLOW_74_in_ruleQualifiedName15647); if (state.failed) return current;
+            	    kw=(Token)match(input,73,FOLLOW_73_in_ruleQualifiedName15653); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	              current.merge(kw);
@@ -19049,7 +19083,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	              newCompositeNode(grammarAccess.getQualifiedNameAccess().getValidIDParserRuleCall_1_1()); 
             	          
             	    }
-            	    pushFollow(FOLLOW_ruleValidID_in_ruleQualifiedName15670);
+            	    pushFollow(FOLLOW_ruleValidID_in_ruleQualifiedName15676);
             	    this_ValidID_2=ruleValidID();
 
             	    state._fsp--;
@@ -19069,7 +19103,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop122;
+            	    break loop124;
                 }
             } while (true);
 
@@ -19113,7 +19147,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getNumberRule()); 
             }
-            pushFollow(FOLLOW_ruleNumber_in_entryRuleNumber15724);
+            pushFollow(FOLLOW_ruleNumber_in_entryRuleNumber15730);
             iv_ruleNumber=ruleNumber();
 
             state._fsp--;
@@ -19121,7 +19155,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleNumber.getText(); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleNumber15735); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleNumber15741); if (state.failed) return current;
 
             }
 
@@ -19161,27 +19195,27 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6707:1: (this_HEX_0= RULE_HEX | ( (this_INT_1= RULE_INT | this_DECIMAL_2= RULE_DECIMAL ) (kw= '.' (this_INT_4= RULE_INT | this_DECIMAL_5= RULE_DECIMAL ) )? ) )
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6707:1: (this_HEX_0= RULE_HEX | ( (this_INT_1= RULE_INT | this_DECIMAL_2= RULE_DECIMAL ) (kw= '.' (this_INT_4= RULE_INT | this_DECIMAL_5= RULE_DECIMAL ) )? ) )
-            int alt126=2;
-            int LA126_0 = input.LA(1);
+            int alt128=2;
+            int LA128_0 = input.LA(1);
 
-            if ( (LA126_0==RULE_HEX) ) {
-                alt126=1;
+            if ( (LA128_0==RULE_HEX) ) {
+                alt128=1;
             }
-            else if ( ((LA126_0>=RULE_INT && LA126_0<=RULE_DECIMAL)) ) {
-                alt126=2;
+            else if ( ((LA128_0>=RULE_INT && LA128_0<=RULE_DECIMAL)) ) {
+                alt128=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 126, 0, input);
+                    new NoViableAltException("", 128, 0, input);
 
                 throw nvae;
             }
-            switch (alt126) {
+            switch (alt128) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6707:6: this_HEX_0= RULE_HEX
                     {
-                    this_HEX_0=(Token)match(input,RULE_HEX,FOLLOW_RULE_HEX_in_ruleNumber15779); if (state.failed) return current;
+                    this_HEX_0=(Token)match(input,RULE_HEX,FOLLOW_RULE_HEX_in_ruleNumber15785); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                       		current.merge(this_HEX_0);
@@ -19202,27 +19236,27 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6715:7: (this_INT_1= RULE_INT | this_DECIMAL_2= RULE_DECIMAL ) (kw= '.' (this_INT_4= RULE_INT | this_DECIMAL_5= RULE_DECIMAL ) )?
                     {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6715:7: (this_INT_1= RULE_INT | this_DECIMAL_2= RULE_DECIMAL )
-                    int alt123=2;
-                    int LA123_0 = input.LA(1);
+                    int alt125=2;
+                    int LA125_0 = input.LA(1);
 
-                    if ( (LA123_0==RULE_INT) ) {
-                        alt123=1;
+                    if ( (LA125_0==RULE_INT) ) {
+                        alt125=1;
                     }
-                    else if ( (LA123_0==RULE_DECIMAL) ) {
-                        alt123=2;
+                    else if ( (LA125_0==RULE_DECIMAL) ) {
+                        alt125=2;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return current;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 123, 0, input);
+                            new NoViableAltException("", 125, 0, input);
 
                         throw nvae;
                     }
-                    switch (alt123) {
+                    switch (alt125) {
                         case 1 :
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6715:12: this_INT_1= RULE_INT
                             {
-                            this_INT_1=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleNumber15807); if (state.failed) return current;
+                            this_INT_1=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleNumber15813); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
 
                               		current.merge(this_INT_1);
@@ -19239,7 +19273,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         case 2 :
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6723:10: this_DECIMAL_2= RULE_DECIMAL
                             {
-                            this_DECIMAL_2=(Token)match(input,RULE_DECIMAL,FOLLOW_RULE_DECIMAL_in_ruleNumber15833); if (state.failed) return current;
+                            this_DECIMAL_2=(Token)match(input,RULE_DECIMAL,FOLLOW_RULE_DECIMAL_in_ruleNumber15839); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
 
                               		current.merge(this_DECIMAL_2);
@@ -19257,21 +19291,21 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     }
 
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6730:2: (kw= '.' (this_INT_4= RULE_INT | this_DECIMAL_5= RULE_DECIMAL ) )?
-                    int alt125=2;
-                    int LA125_0 = input.LA(1);
+                    int alt127=2;
+                    int LA127_0 = input.LA(1);
 
-                    if ( (LA125_0==74) ) {
-                        int LA125_1 = input.LA(2);
+                    if ( (LA127_0==73) ) {
+                        int LA127_1 = input.LA(2);
 
-                        if ( ((LA125_1>=RULE_INT && LA125_1<=RULE_DECIMAL)) ) {
-                            alt125=1;
+                        if ( ((LA127_1>=RULE_INT && LA127_1<=RULE_DECIMAL)) ) {
+                            alt127=1;
                         }
                     }
-                    switch (alt125) {
+                    switch (alt127) {
                         case 1 :
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6731:2: kw= '.' (this_INT_4= RULE_INT | this_DECIMAL_5= RULE_DECIMAL )
                             {
-                            kw=(Token)match(input,74,FOLLOW_74_in_ruleNumber15853); if (state.failed) return current;
+                            kw=(Token)match(input,73,FOLLOW_73_in_ruleNumber15859); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
 
                                       current.merge(kw);
@@ -19279,27 +19313,27 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                                   
                             }
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6736:1: (this_INT_4= RULE_INT | this_DECIMAL_5= RULE_DECIMAL )
-                            int alt124=2;
-                            int LA124_0 = input.LA(1);
+                            int alt126=2;
+                            int LA126_0 = input.LA(1);
 
-                            if ( (LA124_0==RULE_INT) ) {
-                                alt124=1;
+                            if ( (LA126_0==RULE_INT) ) {
+                                alt126=1;
                             }
-                            else if ( (LA124_0==RULE_DECIMAL) ) {
-                                alt124=2;
+                            else if ( (LA126_0==RULE_DECIMAL) ) {
+                                alt126=2;
                             }
                             else {
                                 if (state.backtracking>0) {state.failed=true; return current;}
                                 NoViableAltException nvae =
-                                    new NoViableAltException("", 124, 0, input);
+                                    new NoViableAltException("", 126, 0, input);
 
                                 throw nvae;
                             }
-                            switch (alt124) {
+                            switch (alt126) {
                                 case 1 :
                                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6736:6: this_INT_4= RULE_INT
                                     {
-                                    this_INT_4=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleNumber15869); if (state.failed) return current;
+                                    this_INT_4=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleNumber15875); if (state.failed) return current;
                                     if ( state.backtracking==0 ) {
 
                                       		current.merge(this_INT_4);
@@ -19316,7 +19350,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                                 case 2 :
                                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6744:10: this_DECIMAL_5= RULE_DECIMAL
                                     {
-                                    this_DECIMAL_5=(Token)match(input,RULE_DECIMAL,FOLLOW_RULE_DECIMAL_in_ruleNumber15895); if (state.failed) return current;
+                                    this_DECIMAL_5=(Token)match(input,RULE_DECIMAL,FOLLOW_RULE_DECIMAL_in_ruleNumber15901); if (state.failed) return current;
                                     if ( state.backtracking==0 ) {
 
                                       		current.merge(this_DECIMAL_5);
@@ -19385,7 +19419,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getJvmTypeReferenceRule()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_entryRuleJvmTypeReference15950);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_entryRuleJvmTypeReference15956);
             iv_ruleJvmTypeReference=ruleJvmTypeReference();
 
             state._fsp--;
@@ -19393,7 +19427,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleJvmTypeReference; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleJvmTypeReference15960); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleJvmTypeReference15966); if (state.failed) return current;
 
             }
 
@@ -19427,23 +19461,23 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6777:1: ( (this_JvmParameterizedTypeReference_0= ruleJvmParameterizedTypeReference ( ( ( () ruleArrayBrackets ) )=> ( () ruleArrayBrackets ) )* ) | this_XFunctionTypeRef_3= ruleXFunctionTypeRef )
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6777:1: ( (this_JvmParameterizedTypeReference_0= ruleJvmParameterizedTypeReference ( ( ( () ruleArrayBrackets ) )=> ( () ruleArrayBrackets ) )* ) | this_XFunctionTypeRef_3= ruleXFunctionTypeRef )
-            int alt128=2;
-            int LA128_0 = input.LA(1);
+            int alt130=2;
+            int LA130_0 = input.LA(1);
 
-            if ( (LA128_0==RULE_ID) ) {
-                alt128=1;
+            if ( (LA130_0==RULE_ID) ) {
+                alt130=1;
             }
-            else if ( (LA128_0==29||LA128_0==61) ) {
-                alt128=2;
+            else if ( (LA130_0==29||LA130_0==60) ) {
+                alt130=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 128, 0, input);
+                    new NoViableAltException("", 130, 0, input);
 
                 throw nvae;
             }
-            switch (alt128) {
+            switch (alt130) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6777:2: (this_JvmParameterizedTypeReference_0= ruleJvmParameterizedTypeReference ( ( ( () ruleArrayBrackets ) )=> ( () ruleArrayBrackets ) )* )
                     {
@@ -19455,7 +19489,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getJvmTypeReferenceAccess().getJvmParameterizedTypeReferenceParserRuleCall_0_0()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleJvmParameterizedTypeReference_in_ruleJvmTypeReference16008);
+                    pushFollow(FOLLOW_ruleJvmParameterizedTypeReference_in_ruleJvmTypeReference16014);
                     this_JvmParameterizedTypeReference_0=ruleJvmParameterizedTypeReference();
 
                     state._fsp--;
@@ -19467,19 +19501,19 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                           
                     }
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6786:1: ( ( ( () ruleArrayBrackets ) )=> ( () ruleArrayBrackets ) )*
-                    loop127:
+                    loop129:
                     do {
-                        int alt127=2;
-                        int LA127_0 = input.LA(1);
+                        int alt129=2;
+                        int LA129_0 = input.LA(1);
 
-                        if ( (LA127_0==39) ) {
-                            int LA127_2 = input.LA(2);
+                        if ( (LA129_0==38) ) {
+                            int LA129_2 = input.LA(2);
 
-                            if ( (LA127_2==40) ) {
-                                int LA127_3 = input.LA(3);
+                            if ( (LA129_2==39) ) {
+                                int LA129_3 = input.LA(3);
 
                                 if ( (synpred45_InternalMelange()) ) {
-                                    alt127=1;
+                                    alt129=1;
                                 }
 
 
@@ -19489,7 +19523,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         }
 
 
-                        switch (alt127) {
+                        switch (alt129) {
                     	case 1 :
                     	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6786:2: ( ( () ruleArrayBrackets ) )=> ( () ruleArrayBrackets )
                     	    {
@@ -19514,7 +19548,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	              newCompositeNode(grammarAccess.getJvmTypeReferenceAccess().getArrayBracketsParserRuleCall_0_1_0_1()); 
                     	          
                     	    }
-                    	    pushFollow(FOLLOW_ruleArrayBrackets_in_ruleJvmTypeReference16044);
+                    	    pushFollow(FOLLOW_ruleArrayBrackets_in_ruleJvmTypeReference16050);
                     	    ruleArrayBrackets();
 
                     	    state._fsp--;
@@ -19532,7 +19566,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop127;
+                    	    break loop129;
                         }
                     } while (true);
 
@@ -19550,7 +19584,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getJvmTypeReferenceAccess().getXFunctionTypeRefParserRuleCall_1()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleXFunctionTypeRef_in_ruleJvmTypeReference16075);
+                    pushFollow(FOLLOW_ruleXFunctionTypeRef_in_ruleJvmTypeReference16081);
                     this_XFunctionTypeRef_3=ruleXFunctionTypeRef();
 
                     state._fsp--;
@@ -19601,7 +19635,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getArrayBracketsRule()); 
             }
-            pushFollow(FOLLOW_ruleArrayBrackets_in_entryRuleArrayBrackets16111);
+            pushFollow(FOLLOW_ruleArrayBrackets_in_entryRuleArrayBrackets16117);
             iv_ruleArrayBrackets=ruleArrayBrackets();
 
             state._fsp--;
@@ -19609,7 +19643,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleArrayBrackets.getText(); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleArrayBrackets16122); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleArrayBrackets16128); if (state.failed) return current;
 
             }
 
@@ -19642,14 +19676,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6832:1: (kw= '[' kw= ']' )
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6833:2: kw= '[' kw= ']'
             {
-            kw=(Token)match(input,39,FOLLOW_39_in_ruleArrayBrackets16160); if (state.failed) return current;
+            kw=(Token)match(input,38,FOLLOW_38_in_ruleArrayBrackets16166); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                       current.merge(kw);
                       newLeafNode(kw, grammarAccess.getArrayBracketsAccess().getLeftSquareBracketKeyword_0()); 
                   
             }
-            kw=(Token)match(input,40,FOLLOW_40_in_ruleArrayBrackets16173); if (state.failed) return current;
+            kw=(Token)match(input,39,FOLLOW_39_in_ruleArrayBrackets16179); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                       current.merge(kw);
@@ -19693,7 +19727,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXFunctionTypeRefRule()); 
             }
-            pushFollow(FOLLOW_ruleXFunctionTypeRef_in_entryRuleXFunctionTypeRef16213);
+            pushFollow(FOLLOW_ruleXFunctionTypeRef_in_entryRuleXFunctionTypeRef16219);
             iv_ruleXFunctionTypeRef=ruleXFunctionTypeRef();
 
             state._fsp--;
@@ -19701,7 +19735,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXFunctionTypeRef; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXFunctionTypeRef16223); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXFunctionTypeRef16229); if (state.failed) return current;
 
             }
 
@@ -19744,30 +19778,30 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6865:2: (otherlv_0= '(' ( ( (lv_paramTypes_1_0= ruleJvmTypeReference ) ) (otherlv_2= ',' ( (lv_paramTypes_3_0= ruleJvmTypeReference ) ) )* )? otherlv_4= ')' )? otherlv_5= '=>' ( (lv_returnType_6_0= ruleJvmTypeReference ) )
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6865:2: (otherlv_0= '(' ( ( (lv_paramTypes_1_0= ruleJvmTypeReference ) ) (otherlv_2= ',' ( (lv_paramTypes_3_0= ruleJvmTypeReference ) ) )* )? otherlv_4= ')' )?
-            int alt131=2;
-            int LA131_0 = input.LA(1);
+            int alt133=2;
+            int LA133_0 = input.LA(1);
 
-            if ( (LA131_0==29) ) {
-                alt131=1;
+            if ( (LA133_0==29) ) {
+                alt133=1;
             }
-            switch (alt131) {
+            switch (alt133) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6865:4: otherlv_0= '(' ( ( (lv_paramTypes_1_0= ruleJvmTypeReference ) ) (otherlv_2= ',' ( (lv_paramTypes_3_0= ruleJvmTypeReference ) ) )* )? otherlv_4= ')'
                     {
-                    otherlv_0=(Token)match(input,29,FOLLOW_29_in_ruleXFunctionTypeRef16261); if (state.failed) return current;
+                    otherlv_0=(Token)match(input,29,FOLLOW_29_in_ruleXFunctionTypeRef16267); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_0, grammarAccess.getXFunctionTypeRefAccess().getLeftParenthesisKeyword_0_0());
                           
                     }
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6869:1: ( ( (lv_paramTypes_1_0= ruleJvmTypeReference ) ) (otherlv_2= ',' ( (lv_paramTypes_3_0= ruleJvmTypeReference ) ) )* )?
-                    int alt130=2;
-                    int LA130_0 = input.LA(1);
+                    int alt132=2;
+                    int LA132_0 = input.LA(1);
 
-                    if ( (LA130_0==RULE_ID||LA130_0==29||LA130_0==61) ) {
-                        alt130=1;
+                    if ( (LA132_0==RULE_ID||LA132_0==29||LA132_0==60) ) {
+                        alt132=1;
                     }
-                    switch (alt130) {
+                    switch (alt132) {
                         case 1 :
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6869:2: ( (lv_paramTypes_1_0= ruleJvmTypeReference ) ) (otherlv_2= ',' ( (lv_paramTypes_3_0= ruleJvmTypeReference ) ) )*
                             {
@@ -19782,7 +19816,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               	        newCompositeNode(grammarAccess.getXFunctionTypeRefAccess().getParamTypesJvmTypeReferenceParserRuleCall_0_1_0_0()); 
                               	    
                             }
-                            pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleXFunctionTypeRef16283);
+                            pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleXFunctionTypeRef16289);
                             lv_paramTypes_1_0=ruleJvmTypeReference();
 
                             state._fsp--;
@@ -19807,21 +19841,21 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                             }
 
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6887:2: (otherlv_2= ',' ( (lv_paramTypes_3_0= ruleJvmTypeReference ) ) )*
-                            loop129:
+                            loop131:
                             do {
-                                int alt129=2;
-                                int LA129_0 = input.LA(1);
+                                int alt131=2;
+                                int LA131_0 = input.LA(1);
 
-                                if ( (LA129_0==16) ) {
-                                    alt129=1;
+                                if ( (LA131_0==16) ) {
+                                    alt131=1;
                                 }
 
 
-                                switch (alt129) {
+                                switch (alt131) {
                             	case 1 :
                             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6887:4: otherlv_2= ',' ( (lv_paramTypes_3_0= ruleJvmTypeReference ) )
                             	    {
-                            	    otherlv_2=(Token)match(input,16,FOLLOW_16_in_ruleXFunctionTypeRef16296); if (state.failed) return current;
+                            	    otherlv_2=(Token)match(input,16,FOLLOW_16_in_ruleXFunctionTypeRef16302); if (state.failed) return current;
                             	    if ( state.backtracking==0 ) {
 
                             	          	newLeafNode(otherlv_2, grammarAccess.getXFunctionTypeRefAccess().getCommaKeyword_0_1_1_0());
@@ -19838,7 +19872,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                             	      	        newCompositeNode(grammarAccess.getXFunctionTypeRefAccess().getParamTypesJvmTypeReferenceParserRuleCall_0_1_1_1_0()); 
                             	      	    
                             	    }
-                            	    pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleXFunctionTypeRef16317);
+                            	    pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleXFunctionTypeRef16323);
                             	    lv_paramTypes_3_0=ruleJvmTypeReference();
 
                             	    state._fsp--;
@@ -19867,7 +19901,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                             	    break;
 
                             	default :
-                            	    break loop129;
+                            	    break loop131;
                                 }
                             } while (true);
 
@@ -19877,7 +19911,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_4=(Token)match(input,30,FOLLOW_30_in_ruleXFunctionTypeRef16333); if (state.failed) return current;
+                    otherlv_4=(Token)match(input,30,FOLLOW_30_in_ruleXFunctionTypeRef16339); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_4, grammarAccess.getXFunctionTypeRefAccess().getRightParenthesisKeyword_0_2());
@@ -19889,7 +19923,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_5=(Token)match(input,61,FOLLOW_61_in_ruleXFunctionTypeRef16347); if (state.failed) return current;
+            otherlv_5=(Token)match(input,60,FOLLOW_60_in_ruleXFunctionTypeRef16353); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_5, grammarAccess.getXFunctionTypeRefAccess().getEqualsSignGreaterThanSignKeyword_1());
@@ -19906,7 +19940,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getXFunctionTypeRefAccess().getReturnTypeJvmTypeReferenceParserRuleCall_2_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleXFunctionTypeRef16368);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleXFunctionTypeRef16374);
             lv_returnType_6_0=ruleJvmTypeReference();
 
             state._fsp--;
@@ -19967,7 +20001,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getJvmParameterizedTypeReferenceRule()); 
             }
-            pushFollow(FOLLOW_ruleJvmParameterizedTypeReference_in_entryRuleJvmParameterizedTypeReference16404);
+            pushFollow(FOLLOW_ruleJvmParameterizedTypeReference_in_entryRuleJvmParameterizedTypeReference16410);
             iv_ruleJvmParameterizedTypeReference=ruleJvmParameterizedTypeReference();
 
             state._fsp--;
@@ -19975,7 +20009,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleJvmParameterizedTypeReference; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleJvmParameterizedTypeReference16414); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleJvmParameterizedTypeReference16420); if (state.failed) return current;
 
             }
 
@@ -20040,7 +20074,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getJvmParameterizedTypeReferenceAccess().getTypeJvmTypeCrossReference_0_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_ruleJvmParameterizedTypeReference16462);
+            pushFollow(FOLLOW_ruleQualifiedName_in_ruleJvmParameterizedTypeReference16468);
             ruleQualifiedName();
 
             state._fsp--;
@@ -20057,16 +20091,16 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
 
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6971:2: ( ( ( '<' )=>otherlv_1= '<' ) ( (lv_arguments_2_0= ruleJvmArgumentTypeReference ) ) (otherlv_3= ',' ( (lv_arguments_4_0= ruleJvmArgumentTypeReference ) ) )* otherlv_5= '>' ( ( ( ( () '.' ) )=> ( () otherlv_7= '.' ) ) ( ( ruleValidID ) ) ( ( ( '<' )=>otherlv_9= '<' ) ( (lv_arguments_10_0= ruleJvmArgumentTypeReference ) ) (otherlv_11= ',' ( (lv_arguments_12_0= ruleJvmArgumentTypeReference ) ) )* otherlv_13= '>' )? )* )?
-            int alt136=2;
-            alt136 = dfa136.predict(input);
-            switch (alt136) {
+            int alt138=2;
+            alt138 = dfa138.predict(input);
+            switch (alt138) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6971:3: ( ( '<' )=>otherlv_1= '<' ) ( (lv_arguments_2_0= ruleJvmArgumentTypeReference ) ) (otherlv_3= ',' ( (lv_arguments_4_0= ruleJvmArgumentTypeReference ) ) )* otherlv_5= '>' ( ( ( ( () '.' ) )=> ( () otherlv_7= '.' ) ) ( ( ruleValidID ) ) ( ( ( '<' )=>otherlv_9= '<' ) ( (lv_arguments_10_0= ruleJvmArgumentTypeReference ) ) (otherlv_11= ',' ( (lv_arguments_12_0= ruleJvmArgumentTypeReference ) ) )* otherlv_13= '>' )? )*
                     {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6971:3: ( ( '<' )=>otherlv_1= '<' )
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6971:4: ( '<' )=>otherlv_1= '<'
                     {
-                    otherlv_1=(Token)match(input,48,FOLLOW_48_in_ruleJvmParameterizedTypeReference16483); if (state.failed) return current;
+                    otherlv_1=(Token)match(input,47,FOLLOW_47_in_ruleJvmParameterizedTypeReference16489); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_1, grammarAccess.getJvmParameterizedTypeReferenceAccess().getLessThanSignKeyword_1_0());
@@ -20086,7 +20120,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getJvmParameterizedTypeReferenceAccess().getArgumentsJvmArgumentTypeReferenceParserRuleCall_1_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_ruleJvmParameterizedTypeReference16505);
+                    pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_ruleJvmParameterizedTypeReference16511);
                     lv_arguments_2_0=ruleJvmArgumentTypeReference();
 
                     state._fsp--;
@@ -20111,21 +20145,21 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     }
 
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6994:2: (otherlv_3= ',' ( (lv_arguments_4_0= ruleJvmArgumentTypeReference ) ) )*
-                    loop132:
+                    loop134:
                     do {
-                        int alt132=2;
-                        int LA132_0 = input.LA(1);
+                        int alt134=2;
+                        int LA134_0 = input.LA(1);
 
-                        if ( (LA132_0==16) ) {
-                            alt132=1;
+                        if ( (LA134_0==16) ) {
+                            alt134=1;
                         }
 
 
-                        switch (alt132) {
+                        switch (alt134) {
                     	case 1 :
                     	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6994:4: otherlv_3= ',' ( (lv_arguments_4_0= ruleJvmArgumentTypeReference ) )
                     	    {
-                    	    otherlv_3=(Token)match(input,16,FOLLOW_16_in_ruleJvmParameterizedTypeReference16518); if (state.failed) return current;
+                    	    otherlv_3=(Token)match(input,16,FOLLOW_16_in_ruleJvmParameterizedTypeReference16524); if (state.failed) return current;
                     	    if ( state.backtracking==0 ) {
 
                     	          	newLeafNode(otherlv_3, grammarAccess.getJvmParameterizedTypeReferenceAccess().getCommaKeyword_1_2_0());
@@ -20142,7 +20176,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	      	        newCompositeNode(grammarAccess.getJvmParameterizedTypeReferenceAccess().getArgumentsJvmArgumentTypeReferenceParserRuleCall_1_2_1_0()); 
                     	      	    
                     	    }
-                    	    pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_ruleJvmParameterizedTypeReference16539);
+                    	    pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_ruleJvmParameterizedTypeReference16545);
                     	    lv_arguments_4_0=ruleJvmArgumentTypeReference();
 
                     	    state._fsp--;
@@ -20171,30 +20205,30 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop132;
+                    	    break loop134;
                         }
                     } while (true);
 
-                    otherlv_5=(Token)match(input,49,FOLLOW_49_in_ruleJvmParameterizedTypeReference16553); if (state.failed) return current;
+                    otherlv_5=(Token)match(input,48,FOLLOW_48_in_ruleJvmParameterizedTypeReference16559); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_5, grammarAccess.getJvmParameterizedTypeReferenceAccess().getGreaterThanSignKeyword_1_3());
                           
                     }
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7020:1: ( ( ( ( () '.' ) )=> ( () otherlv_7= '.' ) ) ( ( ruleValidID ) ) ( ( ( '<' )=>otherlv_9= '<' ) ( (lv_arguments_10_0= ruleJvmArgumentTypeReference ) ) (otherlv_11= ',' ( (lv_arguments_12_0= ruleJvmArgumentTypeReference ) ) )* otherlv_13= '>' )? )*
-                    loop135:
+                    loop137:
                     do {
-                        int alt135=2;
-                        int LA135_0 = input.LA(1);
+                        int alt137=2;
+                        int LA137_0 = input.LA(1);
 
-                        if ( (LA135_0==74) ) {
-                            int LA135_2 = input.LA(2);
+                        if ( (LA137_0==73) ) {
+                            int LA137_2 = input.LA(2);
 
-                            if ( (LA135_2==RULE_ID) ) {
-                                int LA135_3 = input.LA(3);
+                            if ( (LA137_2==RULE_ID) ) {
+                                int LA137_3 = input.LA(3);
 
                                 if ( (synpred47_InternalMelange()) ) {
-                                    alt135=1;
+                                    alt137=1;
                                 }
 
 
@@ -20204,7 +20238,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         }
 
 
-                        switch (alt135) {
+                        switch (alt137) {
                     	case 1 :
                     	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7020:2: ( ( ( () '.' ) )=> ( () otherlv_7= '.' ) ) ( ( ruleValidID ) ) ( ( ( '<' )=>otherlv_9= '<' ) ( (lv_arguments_10_0= ruleJvmArgumentTypeReference ) ) (otherlv_11= ',' ( (lv_arguments_12_0= ruleJvmArgumentTypeReference ) ) )* otherlv_13= '>' )?
                     	    {
@@ -20227,7 +20261,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
                     	    }
 
-                    	    otherlv_7=(Token)match(input,74,FOLLOW_74_in_ruleJvmParameterizedTypeReference16589); if (state.failed) return current;
+                    	    otherlv_7=(Token)match(input,73,FOLLOW_73_in_ruleJvmParameterizedTypeReference16595); if (state.failed) return current;
                     	    if ( state.backtracking==0 ) {
 
                     	          	newLeafNode(otherlv_7, grammarAccess.getJvmParameterizedTypeReferenceAccess().getFullStopKeyword_1_4_0_0_1());
@@ -20257,7 +20291,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	      	        newCompositeNode(grammarAccess.getJvmParameterizedTypeReferenceAccess().getTypeJvmTypeCrossReference_1_4_1_0()); 
                     	      	    
                     	    }
-                    	    pushFollow(FOLLOW_ruleValidID_in_ruleJvmParameterizedTypeReference16614);
+                    	    pushFollow(FOLLOW_ruleValidID_in_ruleJvmParameterizedTypeReference16620);
                     	    ruleValidID();
 
                     	    state._fsp--;
@@ -20274,16 +20308,16 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	    }
 
                     	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7047:2: ( ( ( '<' )=>otherlv_9= '<' ) ( (lv_arguments_10_0= ruleJvmArgumentTypeReference ) ) (otherlv_11= ',' ( (lv_arguments_12_0= ruleJvmArgumentTypeReference ) ) )* otherlv_13= '>' )?
-                    	    int alt134=2;
-                    	    alt134 = dfa134.predict(input);
-                    	    switch (alt134) {
+                    	    int alt136=2;
+                    	    alt136 = dfa136.predict(input);
+                    	    switch (alt136) {
                     	        case 1 :
                     	            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7047:3: ( ( '<' )=>otherlv_9= '<' ) ( (lv_arguments_10_0= ruleJvmArgumentTypeReference ) ) (otherlv_11= ',' ( (lv_arguments_12_0= ruleJvmArgumentTypeReference ) ) )* otherlv_13= '>'
                     	            {
                     	            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7047:3: ( ( '<' )=>otherlv_9= '<' )
                     	            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7047:4: ( '<' )=>otherlv_9= '<'
                     	            {
-                    	            otherlv_9=(Token)match(input,48,FOLLOW_48_in_ruleJvmParameterizedTypeReference16635); if (state.failed) return current;
+                    	            otherlv_9=(Token)match(input,47,FOLLOW_47_in_ruleJvmParameterizedTypeReference16641); if (state.failed) return current;
                     	            if ( state.backtracking==0 ) {
 
                     	                  	newLeafNode(otherlv_9, grammarAccess.getJvmParameterizedTypeReferenceAccess().getLessThanSignKeyword_1_4_2_0());
@@ -20303,7 +20337,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	              	        newCompositeNode(grammarAccess.getJvmParameterizedTypeReferenceAccess().getArgumentsJvmArgumentTypeReferenceParserRuleCall_1_4_2_1_0()); 
                     	              	    
                     	            }
-                    	            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_ruleJvmParameterizedTypeReference16657);
+                    	            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_ruleJvmParameterizedTypeReference16663);
                     	            lv_arguments_10_0=ruleJvmArgumentTypeReference();
 
                     	            state._fsp--;
@@ -20328,21 +20362,21 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	            }
 
                     	            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7070:2: (otherlv_11= ',' ( (lv_arguments_12_0= ruleJvmArgumentTypeReference ) ) )*
-                    	            loop133:
+                    	            loop135:
                     	            do {
-                    	                int alt133=2;
-                    	                int LA133_0 = input.LA(1);
+                    	                int alt135=2;
+                    	                int LA135_0 = input.LA(1);
 
-                    	                if ( (LA133_0==16) ) {
-                    	                    alt133=1;
+                    	                if ( (LA135_0==16) ) {
+                    	                    alt135=1;
                     	                }
 
 
-                    	                switch (alt133) {
+                    	                switch (alt135) {
                     	            	case 1 :
                     	            	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7070:4: otherlv_11= ',' ( (lv_arguments_12_0= ruleJvmArgumentTypeReference ) )
                     	            	    {
-                    	            	    otherlv_11=(Token)match(input,16,FOLLOW_16_in_ruleJvmParameterizedTypeReference16670); if (state.failed) return current;
+                    	            	    otherlv_11=(Token)match(input,16,FOLLOW_16_in_ruleJvmParameterizedTypeReference16676); if (state.failed) return current;
                     	            	    if ( state.backtracking==0 ) {
 
                     	            	          	newLeafNode(otherlv_11, grammarAccess.getJvmParameterizedTypeReferenceAccess().getCommaKeyword_1_4_2_2_0());
@@ -20359,7 +20393,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	            	      	        newCompositeNode(grammarAccess.getJvmParameterizedTypeReferenceAccess().getArgumentsJvmArgumentTypeReferenceParserRuleCall_1_4_2_2_1_0()); 
                     	            	      	    
                     	            	    }
-                    	            	    pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_ruleJvmParameterizedTypeReference16691);
+                    	            	    pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_ruleJvmParameterizedTypeReference16697);
                     	            	    lv_arguments_12_0=ruleJvmArgumentTypeReference();
 
                     	            	    state._fsp--;
@@ -20388,11 +20422,11 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	            	    break;
 
                     	            	default :
-                    	            	    break loop133;
+                    	            	    break loop135;
                     	                }
                     	            } while (true);
 
-                    	            otherlv_13=(Token)match(input,49,FOLLOW_49_in_ruleJvmParameterizedTypeReference16705); if (state.failed) return current;
+                    	            otherlv_13=(Token)match(input,48,FOLLOW_48_in_ruleJvmParameterizedTypeReference16711); if (state.failed) return current;
                     	            if ( state.backtracking==0 ) {
 
                     	                  	newLeafNode(otherlv_13, grammarAccess.getJvmParameterizedTypeReferenceAccess().getGreaterThanSignKeyword_1_4_2_3());
@@ -20409,7 +20443,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop135;
+                    	    break loop137;
                         }
                     } while (true);
 
@@ -20456,7 +20490,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getJvmArgumentTypeReferenceRule()); 
             }
-            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_entryRuleJvmArgumentTypeReference16747);
+            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_entryRuleJvmArgumentTypeReference16753);
             iv_ruleJvmArgumentTypeReference=ruleJvmArgumentTypeReference();
 
             state._fsp--;
@@ -20464,7 +20498,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleJvmArgumentTypeReference; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleJvmArgumentTypeReference16757); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleJvmArgumentTypeReference16763); if (state.failed) return current;
 
             }
 
@@ -20498,23 +20532,23 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7117:1: (this_JvmTypeReference_0= ruleJvmTypeReference | this_JvmWildcardTypeReference_1= ruleJvmWildcardTypeReference )
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7117:1: (this_JvmTypeReference_0= ruleJvmTypeReference | this_JvmWildcardTypeReference_1= ruleJvmWildcardTypeReference )
-            int alt137=2;
-            int LA137_0 = input.LA(1);
+            int alt139=2;
+            int LA139_0 = input.LA(1);
 
-            if ( (LA137_0==RULE_ID||LA137_0==29||LA137_0==61) ) {
-                alt137=1;
+            if ( (LA139_0==RULE_ID||LA139_0==29||LA139_0==60) ) {
+                alt139=1;
             }
-            else if ( (LA137_0==106) ) {
-                alt137=2;
+            else if ( (LA139_0==106) ) {
+                alt139=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 137, 0, input);
+                    new NoViableAltException("", 139, 0, input);
 
                 throw nvae;
             }
-            switch (alt137) {
+            switch (alt139) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7118:5: this_JvmTypeReference_0= ruleJvmTypeReference
                     {
@@ -20523,7 +20557,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getJvmArgumentTypeReferenceAccess().getJvmTypeReferenceParserRuleCall_0()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleJvmArgumentTypeReference16804);
+                    pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleJvmArgumentTypeReference16810);
                     this_JvmTypeReference_0=ruleJvmTypeReference();
 
                     state._fsp--;
@@ -20545,7 +20579,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getJvmArgumentTypeReferenceAccess().getJvmWildcardTypeReferenceParserRuleCall_1()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleJvmWildcardTypeReference_in_ruleJvmArgumentTypeReference16831);
+                    pushFollow(FOLLOW_ruleJvmWildcardTypeReference_in_ruleJvmArgumentTypeReference16837);
                     this_JvmWildcardTypeReference_1=ruleJvmWildcardTypeReference();
 
                     state._fsp--;
@@ -20596,7 +20630,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getJvmWildcardTypeReferenceRule()); 
             }
-            pushFollow(FOLLOW_ruleJvmWildcardTypeReference_in_entryRuleJvmWildcardTypeReference16866);
+            pushFollow(FOLLOW_ruleJvmWildcardTypeReference_in_entryRuleJvmWildcardTypeReference16872);
             iv_ruleJvmWildcardTypeReference=ruleJvmWildcardTypeReference();
 
             state._fsp--;
@@ -20604,7 +20638,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleJvmWildcardTypeReference; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleJvmWildcardTypeReference16876); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleJvmWildcardTypeReference16882); if (state.failed) return current;
 
             }
 
@@ -20658,23 +20692,23 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,106,FOLLOW_106_in_ruleJvmWildcardTypeReference16922); if (state.failed) return current;
+            otherlv_1=(Token)match(input,106,FOLLOW_106_in_ruleJvmWildcardTypeReference16928); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_1, grammarAccess.getJvmWildcardTypeReferenceAccess().getQuestionMarkKeyword_1());
                   
             }
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7167:1: ( ( ( (lv_constraints_2_0= ruleJvmUpperBound ) ) ( (lv_constraints_3_0= ruleJvmUpperBoundAnded ) )* ) | ( ( (lv_constraints_4_0= ruleJvmLowerBound ) ) ( (lv_constraints_5_0= ruleJvmLowerBoundAnded ) )* ) )?
-            int alt140=3;
-            int LA140_0 = input.LA(1);
+            int alt142=3;
+            int LA142_0 = input.LA(1);
 
-            if ( (LA140_0==90) ) {
-                alt140=1;
+            if ( (LA142_0==90) ) {
+                alt142=1;
             }
-            else if ( (LA140_0==94) ) {
-                alt140=2;
+            else if ( (LA142_0==94) ) {
+                alt142=2;
             }
-            switch (alt140) {
+            switch (alt142) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7167:2: ( ( (lv_constraints_2_0= ruleJvmUpperBound ) ) ( (lv_constraints_3_0= ruleJvmUpperBoundAnded ) )* )
                     {
@@ -20692,7 +20726,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getJvmWildcardTypeReferenceAccess().getConstraintsJvmUpperBoundParserRuleCall_2_0_0_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleJvmUpperBound_in_ruleJvmWildcardTypeReference16945);
+                    pushFollow(FOLLOW_ruleJvmUpperBound_in_ruleJvmWildcardTypeReference16951);
                     lv_constraints_2_0=ruleJvmUpperBound();
 
                     state._fsp--;
@@ -20717,17 +20751,17 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     }
 
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7185:2: ( (lv_constraints_3_0= ruleJvmUpperBoundAnded ) )*
-                    loop138:
+                    loop140:
                     do {
-                        int alt138=2;
-                        int LA138_0 = input.LA(1);
+                        int alt140=2;
+                        int LA140_0 = input.LA(1);
 
-                        if ( (LA138_0==107) ) {
-                            alt138=1;
+                        if ( (LA140_0==107) ) {
+                            alt140=1;
                         }
 
 
-                        switch (alt138) {
+                        switch (alt140) {
                     	case 1 :
                     	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7186:1: (lv_constraints_3_0= ruleJvmUpperBoundAnded )
                     	    {
@@ -20739,7 +20773,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	      	        newCompositeNode(grammarAccess.getJvmWildcardTypeReferenceAccess().getConstraintsJvmUpperBoundAndedParserRuleCall_2_0_1_0()); 
                     	      	    
                     	    }
-                    	    pushFollow(FOLLOW_ruleJvmUpperBoundAnded_in_ruleJvmWildcardTypeReference16966);
+                    	    pushFollow(FOLLOW_ruleJvmUpperBoundAnded_in_ruleJvmWildcardTypeReference16972);
                     	    lv_constraints_3_0=ruleJvmUpperBoundAnded();
 
                     	    state._fsp--;
@@ -20765,7 +20799,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop138;
+                    	    break loop140;
                         }
                     } while (true);
 
@@ -20792,7 +20826,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getJvmWildcardTypeReferenceAccess().getConstraintsJvmLowerBoundParserRuleCall_2_1_0_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleJvmLowerBound_in_ruleJvmWildcardTypeReference16996);
+                    pushFollow(FOLLOW_ruleJvmLowerBound_in_ruleJvmWildcardTypeReference17002);
                     lv_constraints_4_0=ruleJvmLowerBound();
 
                     state._fsp--;
@@ -20817,17 +20851,17 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     }
 
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7222:2: ( (lv_constraints_5_0= ruleJvmLowerBoundAnded ) )*
-                    loop139:
+                    loop141:
                     do {
-                        int alt139=2;
-                        int LA139_0 = input.LA(1);
+                        int alt141=2;
+                        int LA141_0 = input.LA(1);
 
-                        if ( (LA139_0==107) ) {
-                            alt139=1;
+                        if ( (LA141_0==107) ) {
+                            alt141=1;
                         }
 
 
-                        switch (alt139) {
+                        switch (alt141) {
                     	case 1 :
                     	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7223:1: (lv_constraints_5_0= ruleJvmLowerBoundAnded )
                     	    {
@@ -20839,7 +20873,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	      	        newCompositeNode(grammarAccess.getJvmWildcardTypeReferenceAccess().getConstraintsJvmLowerBoundAndedParserRuleCall_2_1_1_0()); 
                     	      	    
                     	    }
-                    	    pushFollow(FOLLOW_ruleJvmLowerBoundAnded_in_ruleJvmWildcardTypeReference17017);
+                    	    pushFollow(FOLLOW_ruleJvmLowerBoundAnded_in_ruleJvmWildcardTypeReference17023);
                     	    lv_constraints_5_0=ruleJvmLowerBoundAnded();
 
                     	    state._fsp--;
@@ -20865,7 +20899,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop139;
+                    	    break loop141;
                         }
                     } while (true);
 
@@ -20915,7 +20949,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getJvmUpperBoundRule()); 
             }
-            pushFollow(FOLLOW_ruleJvmUpperBound_in_entryRuleJvmUpperBound17057);
+            pushFollow(FOLLOW_ruleJvmUpperBound_in_entryRuleJvmUpperBound17063);
             iv_ruleJvmUpperBound=ruleJvmUpperBound();
 
             state._fsp--;
@@ -20923,7 +20957,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleJvmUpperBound; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleJvmUpperBound17067); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleJvmUpperBound17073); if (state.failed) return current;
 
             }
 
@@ -20958,7 +20992,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7261:1: (otherlv_0= 'extends' ( (lv_typeReference_1_0= ruleJvmTypeReference ) ) )
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7261:3: otherlv_0= 'extends' ( (lv_typeReference_1_0= ruleJvmTypeReference ) )
             {
-            otherlv_0=(Token)match(input,90,FOLLOW_90_in_ruleJvmUpperBound17104); if (state.failed) return current;
+            otherlv_0=(Token)match(input,90,FOLLOW_90_in_ruleJvmUpperBound17110); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_0, grammarAccess.getJvmUpperBoundAccess().getExtendsKeyword_0());
@@ -20975,7 +21009,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getJvmUpperBoundAccess().getTypeReferenceJvmTypeReferenceParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleJvmUpperBound17125);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleJvmUpperBound17131);
             lv_typeReference_1_0=ruleJvmTypeReference();
 
             state._fsp--;
@@ -21036,7 +21070,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getJvmUpperBoundAndedRule()); 
             }
-            pushFollow(FOLLOW_ruleJvmUpperBoundAnded_in_entryRuleJvmUpperBoundAnded17161);
+            pushFollow(FOLLOW_ruleJvmUpperBoundAnded_in_entryRuleJvmUpperBoundAnded17167);
             iv_ruleJvmUpperBoundAnded=ruleJvmUpperBoundAnded();
 
             state._fsp--;
@@ -21044,7 +21078,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleJvmUpperBoundAnded; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleJvmUpperBoundAnded17171); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleJvmUpperBoundAnded17177); if (state.failed) return current;
 
             }
 
@@ -21079,7 +21113,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7304:1: (otherlv_0= '&' ( (lv_typeReference_1_0= ruleJvmTypeReference ) ) )
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7304:3: otherlv_0= '&' ( (lv_typeReference_1_0= ruleJvmTypeReference ) )
             {
-            otherlv_0=(Token)match(input,107,FOLLOW_107_in_ruleJvmUpperBoundAnded17208); if (state.failed) return current;
+            otherlv_0=(Token)match(input,107,FOLLOW_107_in_ruleJvmUpperBoundAnded17214); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_0, grammarAccess.getJvmUpperBoundAndedAccess().getAmpersandKeyword_0());
@@ -21096,7 +21130,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getJvmUpperBoundAndedAccess().getTypeReferenceJvmTypeReferenceParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleJvmUpperBoundAnded17229);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleJvmUpperBoundAnded17235);
             lv_typeReference_1_0=ruleJvmTypeReference();
 
             state._fsp--;
@@ -21157,7 +21191,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getJvmLowerBoundRule()); 
             }
-            pushFollow(FOLLOW_ruleJvmLowerBound_in_entryRuleJvmLowerBound17265);
+            pushFollow(FOLLOW_ruleJvmLowerBound_in_entryRuleJvmLowerBound17271);
             iv_ruleJvmLowerBound=ruleJvmLowerBound();
 
             state._fsp--;
@@ -21165,7 +21199,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleJvmLowerBound; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleJvmLowerBound17275); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleJvmLowerBound17281); if (state.failed) return current;
 
             }
 
@@ -21200,7 +21234,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7347:1: (otherlv_0= 'super' ( (lv_typeReference_1_0= ruleJvmTypeReference ) ) )
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7347:3: otherlv_0= 'super' ( (lv_typeReference_1_0= ruleJvmTypeReference ) )
             {
-            otherlv_0=(Token)match(input,94,FOLLOW_94_in_ruleJvmLowerBound17312); if (state.failed) return current;
+            otherlv_0=(Token)match(input,94,FOLLOW_94_in_ruleJvmLowerBound17318); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_0, grammarAccess.getJvmLowerBoundAccess().getSuperKeyword_0());
@@ -21217,7 +21251,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getJvmLowerBoundAccess().getTypeReferenceJvmTypeReferenceParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleJvmLowerBound17333);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleJvmLowerBound17339);
             lv_typeReference_1_0=ruleJvmTypeReference();
 
             state._fsp--;
@@ -21278,7 +21312,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getJvmLowerBoundAndedRule()); 
             }
-            pushFollow(FOLLOW_ruleJvmLowerBoundAnded_in_entryRuleJvmLowerBoundAnded17369);
+            pushFollow(FOLLOW_ruleJvmLowerBoundAnded_in_entryRuleJvmLowerBoundAnded17375);
             iv_ruleJvmLowerBoundAnded=ruleJvmLowerBoundAnded();
 
             state._fsp--;
@@ -21286,7 +21320,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleJvmLowerBoundAnded; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleJvmLowerBoundAnded17379); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleJvmLowerBoundAnded17385); if (state.failed) return current;
 
             }
 
@@ -21321,7 +21355,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7390:1: (otherlv_0= '&' ( (lv_typeReference_1_0= ruleJvmTypeReference ) ) )
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7390:3: otherlv_0= '&' ( (lv_typeReference_1_0= ruleJvmTypeReference ) )
             {
-            otherlv_0=(Token)match(input,107,FOLLOW_107_in_ruleJvmLowerBoundAnded17416); if (state.failed) return current;
+            otherlv_0=(Token)match(input,107,FOLLOW_107_in_ruleJvmLowerBoundAnded17422); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_0, grammarAccess.getJvmLowerBoundAndedAccess().getAmpersandKeyword_0());
@@ -21338,7 +21372,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getJvmLowerBoundAndedAccess().getTypeReferenceJvmTypeReferenceParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleJvmLowerBoundAnded17437);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_ruleJvmLowerBoundAnded17443);
             lv_typeReference_1_0=ruleJvmTypeReference();
 
             state._fsp--;
@@ -21399,7 +21433,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getQualifiedNameWithWildcardRule()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedNameWithWildcard_in_entryRuleQualifiedNameWithWildcard17476);
+            pushFollow(FOLLOW_ruleQualifiedNameWithWildcard_in_entryRuleQualifiedNameWithWildcard17482);
             iv_ruleQualifiedNameWithWildcard=ruleQualifiedNameWithWildcard();
 
             state._fsp--;
@@ -21407,7 +21441,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleQualifiedNameWithWildcard.getText(); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedNameWithWildcard17487); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedNameWithWildcard17493); if (state.failed) return current;
 
             }
 
@@ -21447,7 +21481,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       newCompositeNode(grammarAccess.getQualifiedNameWithWildcardAccess().getQualifiedNameParserRuleCall_0()); 
                   
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_ruleQualifiedNameWithWildcard17534);
+            pushFollow(FOLLOW_ruleQualifiedName_in_ruleQualifiedNameWithWildcard17540);
             this_QualifiedName_0=ruleQualifiedName();
 
             state._fsp--;
@@ -21462,14 +21496,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       afterParserOrEnumRuleCall();
                   
             }
-            kw=(Token)match(input,74,FOLLOW_74_in_ruleQualifiedNameWithWildcard17552); if (state.failed) return current;
+            kw=(Token)match(input,73,FOLLOW_73_in_ruleQualifiedNameWithWildcard17558); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                       current.merge(kw);
                       newLeafNode(kw, grammarAccess.getQualifiedNameWithWildcardAccess().getFullStopKeyword_1()); 
                   
             }
-            kw=(Token)match(input,66,FOLLOW_66_in_ruleQualifiedNameWithWildcard17565); if (state.failed) return current;
+            kw=(Token)match(input,65,FOLLOW_65_in_ruleQualifiedNameWithWildcard17571); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                       current.merge(kw);
@@ -21513,7 +21547,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getValidIDRule()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_entryRuleValidID17606);
+            pushFollow(FOLLOW_ruleValidID_in_entryRuleValidID17612);
             iv_ruleValidID=ruleValidID();
 
             state._fsp--;
@@ -21521,7 +21555,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleValidID.getText(); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleValidID17617); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleValidID17623); if (state.failed) return current;
 
             }
 
@@ -21551,7 +21585,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7478:28: (this_ID_0= RULE_ID )
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7479:5: this_ID_0= RULE_ID
             {
-            this_ID_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleValidID17656); if (state.failed) return current;
+            this_ID_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleValidID17662); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               		current.merge(this_ID_0);
@@ -21596,7 +21630,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXImportSectionRule()); 
             }
-            pushFollow(FOLLOW_ruleXImportSection_in_entryRuleXImportSection17700);
+            pushFollow(FOLLOW_ruleXImportSection_in_entryRuleXImportSection17706);
             iv_ruleXImportSection=ruleXImportSection();
 
             state._fsp--;
@@ -21604,7 +21638,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXImportSection; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXImportSection17710); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXImportSection17716); if (state.failed) return current;
 
             }
 
@@ -21636,18 +21670,18 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7507:1: ( (lv_importDeclarations_0_0= ruleXImportDeclaration ) )+
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7507:1: ( (lv_importDeclarations_0_0= ruleXImportDeclaration ) )+
-            int cnt141=0;
-            loop141:
+            int cnt143=0;
+            loop143:
             do {
-                int alt141=2;
-                int LA141_0 = input.LA(1);
+                int alt143=2;
+                int LA143_0 = input.LA(1);
 
-                if ( (LA141_0==92) ) {
-                    alt141=1;
+                if ( (LA143_0==92) ) {
+                    alt143=1;
                 }
 
 
-                switch (alt141) {
+                switch (alt143) {
             	case 1 :
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7508:1: (lv_importDeclarations_0_0= ruleXImportDeclaration )
             	    {
@@ -21659,7 +21693,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	      	        newCompositeNode(grammarAccess.getXImportSectionAccess().getImportDeclarationsXImportDeclarationParserRuleCall_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleXImportDeclaration_in_ruleXImportSection17755);
+            	    pushFollow(FOLLOW_ruleXImportDeclaration_in_ruleXImportSection17761);
             	    lv_importDeclarations_0_0=ruleXImportDeclaration();
 
             	    state._fsp--;
@@ -21685,13 +21719,13 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    if ( cnt141 >= 1 ) break loop141;
+            	    if ( cnt143 >= 1 ) break loop143;
             	    if (state.backtracking>0) {state.failed=true; return current;}
                         EarlyExitException eee =
-                            new EarlyExitException(141, input);
+                            new EarlyExitException(143, input);
                         throw eee;
                 }
-                cnt141++;
+                cnt143++;
             } while (true);
 
 
@@ -21728,7 +21762,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getXImportDeclarationRule()); 
             }
-            pushFollow(FOLLOW_ruleXImportDeclaration_in_entryRuleXImportDeclaration17791);
+            pushFollow(FOLLOW_ruleXImportDeclaration_in_entryRuleXImportDeclaration17797);
             iv_ruleXImportDeclaration=ruleXImportDeclaration();
 
             state._fsp--;
@@ -21736,7 +21770,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleXImportDeclaration; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXImportDeclaration17801); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXImportDeclaration17807); if (state.failed) return current;
 
             }
 
@@ -21777,16 +21811,16 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7546:1: (otherlv_0= 'import' ( ( ( (lv_static_1_0= 'static' ) ) ( (lv_extension_2_0= 'extension' ) )? ( ( ruleQualifiedNameInStaticImport ) ) ( ( (lv_wildcard_4_0= '*' ) ) | ( (lv_memberName_5_0= ruleValidID ) ) ) ) | ( ( ruleQualifiedName ) ) | ( (lv_importedNamespace_7_0= ruleQualifiedNameWithWildcard ) ) ) (otherlv_8= ';' )? )
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7546:3: otherlv_0= 'import' ( ( ( (lv_static_1_0= 'static' ) ) ( (lv_extension_2_0= 'extension' ) )? ( ( ruleQualifiedNameInStaticImport ) ) ( ( (lv_wildcard_4_0= '*' ) ) | ( (lv_memberName_5_0= ruleValidID ) ) ) ) | ( ( ruleQualifiedName ) ) | ( (lv_importedNamespace_7_0= ruleQualifiedNameWithWildcard ) ) ) (otherlv_8= ';' )?
             {
-            otherlv_0=(Token)match(input,92,FOLLOW_92_in_ruleXImportDeclaration17838); if (state.failed) return current;
+            otherlv_0=(Token)match(input,92,FOLLOW_92_in_ruleXImportDeclaration17844); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_0, grammarAccess.getXImportDeclarationAccess().getImportKeyword_0());
                   
             }
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7550:1: ( ( ( (lv_static_1_0= 'static' ) ) ( (lv_extension_2_0= 'extension' ) )? ( ( ruleQualifiedNameInStaticImport ) ) ( ( (lv_wildcard_4_0= '*' ) ) | ( (lv_memberName_5_0= ruleValidID ) ) ) ) | ( ( ruleQualifiedName ) ) | ( (lv_importedNamespace_7_0= ruleQualifiedNameWithWildcard ) ) )
-            int alt144=3;
-            alt144 = dfa144.predict(input);
-            switch (alt144) {
+            int alt146=3;
+            alt146 = dfa146.predict(input);
+            switch (alt146) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7550:2: ( ( (lv_static_1_0= 'static' ) ) ( (lv_extension_2_0= 'extension' ) )? ( ( ruleQualifiedNameInStaticImport ) ) ( ( (lv_wildcard_4_0= '*' ) ) | ( (lv_memberName_5_0= ruleValidID ) ) ) )
                     {
@@ -21799,7 +21833,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7551:1: (lv_static_1_0= 'static' )
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7552:3: lv_static_1_0= 'static'
                     {
-                    lv_static_1_0=(Token)match(input,91,FOLLOW_91_in_ruleXImportDeclaration17858); if (state.failed) return current;
+                    lv_static_1_0=(Token)match(input,91,FOLLOW_91_in_ruleXImportDeclaration17864); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               newLeafNode(lv_static_1_0, grammarAccess.getXImportDeclarationAccess().getStaticStaticKeyword_1_0_0_0());
@@ -21820,20 +21854,20 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     }
 
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7565:2: ( (lv_extension_2_0= 'extension' ) )?
-                    int alt142=2;
-                    int LA142_0 = input.LA(1);
+                    int alt144=2;
+                    int LA144_0 = input.LA(1);
 
-                    if ( (LA142_0==93) ) {
-                        alt142=1;
+                    if ( (LA144_0==93) ) {
+                        alt144=1;
                     }
-                    switch (alt142) {
+                    switch (alt144) {
                         case 1 :
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7566:1: (lv_extension_2_0= 'extension' )
                             {
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7566:1: (lv_extension_2_0= 'extension' )
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7567:3: lv_extension_2_0= 'extension'
                             {
-                            lv_extension_2_0=(Token)match(input,93,FOLLOW_93_in_ruleXImportDeclaration17889); if (state.failed) return current;
+                            lv_extension_2_0=(Token)match(input,93,FOLLOW_93_in_ruleXImportDeclaration17895); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
 
                                       newLeafNode(lv_extension_2_0, grammarAccess.getXImportDeclarationAccess().getExtensionExtensionKeyword_1_0_1_0());
@@ -21874,7 +21908,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXImportDeclarationAccess().getImportedTypeJvmDeclaredTypeCrossReference_1_0_2_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleQualifiedNameInStaticImport_in_ruleXImportDeclaration17926);
+                    pushFollow(FOLLOW_ruleQualifiedNameInStaticImport_in_ruleXImportDeclaration17932);
                     ruleQualifiedNameInStaticImport();
 
                     state._fsp--;
@@ -21891,23 +21925,23 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     }
 
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7595:2: ( ( (lv_wildcard_4_0= '*' ) ) | ( (lv_memberName_5_0= ruleValidID ) ) )
-                    int alt143=2;
-                    int LA143_0 = input.LA(1);
+                    int alt145=2;
+                    int LA145_0 = input.LA(1);
 
-                    if ( (LA143_0==66) ) {
-                        alt143=1;
+                    if ( (LA145_0==65) ) {
+                        alt145=1;
                     }
-                    else if ( (LA143_0==RULE_ID) ) {
-                        alt143=2;
+                    else if ( (LA145_0==RULE_ID) ) {
+                        alt145=2;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return current;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 143, 0, input);
+                            new NoViableAltException("", 145, 0, input);
 
                         throw nvae;
                     }
-                    switch (alt143) {
+                    switch (alt145) {
                         case 1 :
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7595:3: ( (lv_wildcard_4_0= '*' ) )
                             {
@@ -21917,7 +21951,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7596:1: (lv_wildcard_4_0= '*' )
                             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7597:3: lv_wildcard_4_0= '*'
                             {
-                            lv_wildcard_4_0=(Token)match(input,66,FOLLOW_66_in_ruleXImportDeclaration17945); if (state.failed) return current;
+                            lv_wildcard_4_0=(Token)match(input,65,FOLLOW_65_in_ruleXImportDeclaration17951); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
 
                                       newLeafNode(lv_wildcard_4_0, grammarAccess.getXImportDeclarationAccess().getWildcardAsteriskKeyword_1_0_3_0_0());
@@ -21954,7 +21988,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                               	        newCompositeNode(grammarAccess.getXImportDeclarationAccess().getMemberNameValidIDParserRuleCall_1_0_3_1_0()); 
                               	    
                             }
-                            pushFollow(FOLLOW_ruleValidID_in_ruleXImportDeclaration17985);
+                            pushFollow(FOLLOW_ruleValidID_in_ruleXImportDeclaration17991);
                             lv_memberName_5_0=ruleValidID();
 
                             state._fsp--;
@@ -22011,7 +22045,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXImportDeclarationAccess().getImportedTypeJvmDeclaredTypeCrossReference_1_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleQualifiedName_in_ruleXImportDeclaration18016);
+                    pushFollow(FOLLOW_ruleQualifiedName_in_ruleXImportDeclaration18022);
                     ruleQualifiedName();
 
                     state._fsp--;
@@ -22044,7 +22078,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getXImportDeclarationAccess().getImportedNamespaceQualifiedNameWithWildcardParserRuleCall_1_2_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleQualifiedNameWithWildcard_in_ruleXImportDeclaration18043);
+                    pushFollow(FOLLOW_ruleQualifiedNameWithWildcard_in_ruleXImportDeclaration18049);
                     lv_importedNamespace_7_0=ruleQualifiedNameWithWildcard();
 
                     state._fsp--;
@@ -22075,17 +22109,17 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             }
 
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7664:3: (otherlv_8= ';' )?
-            int alt145=2;
-            int LA145_0 = input.LA(1);
+            int alt147=2;
+            int LA147_0 = input.LA(1);
 
-            if ( (LA145_0==79) ) {
-                alt145=1;
+            if ( (LA147_0==78) ) {
+                alt147=1;
             }
-            switch (alt145) {
+            switch (alt147) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7664:5: otherlv_8= ';'
                     {
-                    otherlv_8=(Token)match(input,79,FOLLOW_79_in_ruleXImportDeclaration18057); if (state.failed) return current;
+                    otherlv_8=(Token)match(input,78,FOLLOW_78_in_ruleXImportDeclaration18063); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_8, grammarAccess.getXImportDeclarationAccess().getSemicolonKeyword_2());
@@ -22134,7 +22168,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getQualifiedNameInStaticImportRule()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedNameInStaticImport_in_entryRuleQualifiedNameInStaticImport18096);
+            pushFollow(FOLLOW_ruleQualifiedNameInStaticImport_in_entryRuleQualifiedNameInStaticImport18102);
             iv_ruleQualifiedNameInStaticImport=ruleQualifiedNameInStaticImport();
 
             state._fsp--;
@@ -22142,7 +22176,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleQualifiedNameInStaticImport.getText(); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedNameInStaticImport18107); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedNameInStaticImport18113); if (state.failed) return current;
 
             }
 
@@ -22175,24 +22209,24 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7689:1: (this_ValidID_0= ruleValidID kw= '.' )+
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7689:1: (this_ValidID_0= ruleValidID kw= '.' )+
-            int cnt146=0;
-            loop146:
+            int cnt148=0;
+            loop148:
             do {
-                int alt146=2;
-                int LA146_0 = input.LA(1);
+                int alt148=2;
+                int LA148_0 = input.LA(1);
 
-                if ( (LA146_0==RULE_ID) ) {
-                    int LA146_2 = input.LA(2);
+                if ( (LA148_0==RULE_ID) ) {
+                    int LA148_2 = input.LA(2);
 
-                    if ( (LA146_2==74) ) {
-                        alt146=1;
+                    if ( (LA148_2==73) ) {
+                        alt148=1;
                     }
 
 
                 }
 
 
-                switch (alt146) {
+                switch (alt148) {
             	case 1 :
             	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7690:5: this_ValidID_0= ruleValidID kw= '.'
             	    {
@@ -22201,7 +22235,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	              newCompositeNode(grammarAccess.getQualifiedNameInStaticImportAccess().getValidIDParserRuleCall_0()); 
             	          
             	    }
-            	    pushFollow(FOLLOW_ruleValidID_in_ruleQualifiedNameInStaticImport18154);
+            	    pushFollow(FOLLOW_ruleValidID_in_ruleQualifiedNameInStaticImport18160);
             	    this_ValidID_0=ruleValidID();
 
             	    state._fsp--;
@@ -22216,7 +22250,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	              afterParserOrEnumRuleCall();
             	          
             	    }
-            	    kw=(Token)match(input,74,FOLLOW_74_in_ruleQualifiedNameInStaticImport18172); if (state.failed) return current;
+            	    kw=(Token)match(input,73,FOLLOW_73_in_ruleQualifiedNameInStaticImport18178); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	              current.merge(kw);
@@ -22228,13 +22262,13 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    if ( cnt146 >= 1 ) break loop146;
+            	    if ( cnt148 >= 1 ) break loop148;
             	    if (state.backtracking>0) {state.failed=true; return current;}
                         EarlyExitException eee =
-                            new EarlyExitException(146, input);
+                            new EarlyExitException(148, input);
                         throw eee;
                 }
-                cnt146++;
+                cnt148++;
             } while (true);
 
 
@@ -22271,39 +22305,39 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7717:1: ( (enumLiteral_0= 'Melange' ) | (enumLiteral_1= 'EMF' ) | (enumLiteral_2= 'Xtext' ) )
             {
             // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7717:1: ( (enumLiteral_0= 'Melange' ) | (enumLiteral_1= 'EMF' ) | (enumLiteral_2= 'Xtext' ) )
-            int alt147=3;
+            int alt149=3;
             switch ( input.LA(1) ) {
             case 108:
                 {
-                alt147=1;
+                alt149=1;
                 }
                 break;
             case 109:
                 {
-                alt147=2;
+                alt149=2;
                 }
                 break;
             case 110:
                 {
-                alt147=3;
+                alt149=3;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 147, 0, input);
+                    new NoViableAltException("", 149, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt147) {
+            switch (alt149) {
                 case 1 :
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7717:2: (enumLiteral_0= 'Melange' )
                     {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7717:2: (enumLiteral_0= 'Melange' )
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7717:4: enumLiteral_0= 'Melange'
                     {
-                    enumLiteral_0=(Token)match(input,108,FOLLOW_108_in_ruleResourceType18227); if (state.failed) return current;
+                    enumLiteral_0=(Token)match(input,108,FOLLOW_108_in_ruleResourceType18233); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getResourceTypeAccess().getMELANGEEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
@@ -22322,7 +22356,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7723:6: (enumLiteral_1= 'EMF' )
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7723:8: enumLiteral_1= 'EMF'
                     {
-                    enumLiteral_1=(Token)match(input,109,FOLLOW_109_in_ruleResourceType18244); if (state.failed) return current;
+                    enumLiteral_1=(Token)match(input,109,FOLLOW_109_in_ruleResourceType18250); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getResourceTypeAccess().getEMFEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
@@ -22341,7 +22375,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7729:6: (enumLiteral_2= 'Xtext' )
                     // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7729:8: enumLiteral_2= 'Xtext'
                     {
-                    enumLiteral_2=(Token)match(input,110,FOLLOW_110_in_ruleResourceType18261); if (state.failed) return current;
+                    enumLiteral_2=(Token)match(input,110,FOLLOW_110_in_ruleResourceType18267); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getResourceTypeAccess().getXTEXTEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
@@ -22416,7 +22450,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1823:1: ( ruleOpMultiAssign )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1824:3: ruleOpMultiAssign
         {
-        pushFollow(FOLLOW_ruleOpMultiAssign_in_synpred3_InternalMelange4047);
+        pushFollow(FOLLOW_ruleOpMultiAssign_in_synpred3_InternalMelange4053);
         ruleOpMultiAssign();
 
         state._fsp--;
@@ -22454,7 +22488,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2017:1: ( ruleOpOr )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2018:3: ruleOpOr
         {
-        pushFollow(FOLLOW_ruleOpOr_in_synpred4_InternalMelange4570);
+        pushFollow(FOLLOW_ruleOpOr_in_synpred4_InternalMelange4576);
         ruleOpOr();
 
         state._fsp--;
@@ -22492,7 +22526,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2118:1: ( ruleOpAnd )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2119:3: ruleOpAnd
         {
-        pushFollow(FOLLOW_ruleOpAnd_in_synpred5_InternalMelange4829);
+        pushFollow(FOLLOW_ruleOpAnd_in_synpred5_InternalMelange4835);
         ruleOpAnd();
 
         state._fsp--;
@@ -22530,7 +22564,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2219:1: ( ruleOpEquality )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2220:3: ruleOpEquality
         {
-        pushFollow(FOLLOW_ruleOpEquality_in_synpred6_InternalMelange5088);
+        pushFollow(FOLLOW_ruleOpEquality_in_synpred6_InternalMelange5094);
         ruleOpEquality();
 
         state._fsp--;
@@ -22562,7 +22596,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         {
         }
 
-        match(input,57,FOLLOW_57_in_synpred7_InternalMelange5402); if (state.failed) return ;
+        match(input,56,FOLLOW_56_in_synpred7_InternalMelange5408); if (state.failed) return ;
 
         }
 
@@ -22590,7 +22624,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2372:1: ( ruleOpCompare )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2373:3: ruleOpCompare
         {
-        pushFollow(FOLLOW_ruleOpCompare_in_synpred8_InternalMelange5473);
+        pushFollow(FOLLOW_ruleOpCompare_in_synpred8_InternalMelange5479);
         ruleOpCompare();
 
         state._fsp--;
@@ -22628,7 +22662,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2500:1: ( ruleOpOther )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2501:3: ruleOpOther
         {
-        pushFollow(FOLLOW_ruleOpOther_in_synpred9_InternalMelange5807);
+        pushFollow(FOLLOW_ruleOpOther_in_synpred9_InternalMelange5813);
         ruleOpOther();
 
         state._fsp--;
@@ -22655,8 +22689,8 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2610:4: ( '>' '>' )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2611:2: '>' '>'
         {
-        match(input,49,FOLLOW_49_in_synpred10_InternalMelange6076); if (state.failed) return ;
-        match(input,49,FOLLOW_49_in_synpred10_InternalMelange6081); if (state.failed) return ;
+        match(input,48,FOLLOW_48_in_synpred10_InternalMelange6082); if (state.failed) return ;
+        match(input,48,FOLLOW_48_in_synpred10_InternalMelange6087); if (state.failed) return ;
 
         }
 
@@ -22673,8 +22707,8 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2640:4: ( '<' '<' )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2641:2: '<' '<'
         {
-        match(input,48,FOLLOW_48_in_synpred11_InternalMelange6163); if (state.failed) return ;
-        match(input,48,FOLLOW_48_in_synpred11_InternalMelange6168); if (state.failed) return ;
+        match(input,47,FOLLOW_47_in_synpred11_InternalMelange6169); if (state.failed) return ;
+        match(input,47,FOLLOW_47_in_synpred11_InternalMelange6174); if (state.failed) return ;
 
         }
 
@@ -22702,7 +22736,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2716:1: ( ruleOpAdd )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2717:3: ruleOpAdd
         {
-        pushFollow(FOLLOW_ruleOpAdd_in_synpred12_InternalMelange6390);
+        pushFollow(FOLLOW_ruleOpAdd_in_synpred12_InternalMelange6396);
         ruleOpAdd();
 
         state._fsp--;
@@ -22740,7 +22774,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2824:1: ( ruleOpMulti )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:2825:3: ruleOpMulti
         {
-        pushFollow(FOLLOW_ruleOpMulti_in_synpred13_InternalMelange6670);
+        pushFollow(FOLLOW_ruleOpMulti_in_synpred13_InternalMelange6676);
         ruleOpMulti();
 
         state._fsp--;
@@ -22772,7 +22806,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         {
         }
 
-        match(input,71,FOLLOW_71_in_synpred14_InternalMelange7264); if (state.failed) return ;
+        match(input,70,FOLLOW_70_in_synpred14_InternalMelange7270); if (state.failed) return ;
 
         }
 
@@ -22800,7 +22834,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3117:1: ( ruleOpPostfix )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3118:3: ruleOpPostfix
         {
-        pushFollow(FOLLOW_ruleOpPostfix_in_synpred15_InternalMelange7421);
+        pushFollow(FOLLOW_ruleOpPostfix_in_synpred15_InternalMelange7427);
         ruleOpPostfix();
 
         state._fsp--;
@@ -22833,27 +22867,27 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         }
 
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3206:2: ( '.' | ( ( '::' ) ) )
-        int alt148=2;
-        int LA148_0 = input.LA(1);
+        int alt150=2;
+        int LA150_0 = input.LA(1);
 
-        if ( (LA148_0==74) ) {
-            alt148=1;
+        if ( (LA150_0==73) ) {
+            alt150=1;
         }
-        else if ( (LA148_0==75) ) {
-            alt148=2;
+        else if ( (LA150_0==74) ) {
+            alt150=2;
         }
         else {
             if (state.backtracking>0) {state.failed=true; return ;}
             NoViableAltException nvae =
-                new NoViableAltException("", 148, 0, input);
+                new NoViableAltException("", 150, 0, input);
 
             throw nvae;
         }
-        switch (alt148) {
+        switch (alt150) {
             case 1 :
                 // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3206:4: '.'
                 {
-                match(input,74,FOLLOW_74_in_synpred16_InternalMelange7676); if (state.failed) return ;
+                match(input,73,FOLLOW_73_in_synpred16_InternalMelange7682); if (state.failed) return ;
 
                 }
                 break;
@@ -22866,7 +22900,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3209:1: ( '::' )
                 // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3210:2: '::'
                 {
-                match(input,75,FOLLOW_75_in_synpred16_InternalMelange7690); if (state.failed) return ;
+                match(input,74,FOLLOW_74_in_synpred16_InternalMelange7696); if (state.failed) return ;
 
                 }
 
@@ -22885,7 +22919,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3215:1: ( ruleFeatureCallID )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3216:3: ruleFeatureCallID
         {
-        pushFollow(FOLLOW_ruleFeatureCallID_in_synpred16_InternalMelange7706);
+        pushFollow(FOLLOW_ruleFeatureCallID_in_synpred16_InternalMelange7712);
         ruleFeatureCallID();
 
         state._fsp--;
@@ -22896,7 +22930,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
         }
 
-        pushFollow(FOLLOW_ruleOpSingleAssign_in_synpred16_InternalMelange7712);
+        pushFollow(FOLLOW_ruleOpSingleAssign_in_synpred16_InternalMelange7718);
         ruleOpSingleAssign();
 
         state._fsp--;
@@ -22923,36 +22957,36 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         }
 
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3287:2: ( '.' | ( ( '?.' ) ) | ( ( '::' ) ) )
-        int alt149=3;
+        int alt151=3;
         switch ( input.LA(1) ) {
-        case 74:
+        case 73:
             {
-            alt149=1;
-            }
-            break;
-        case 76:
-            {
-            alt149=2;
+            alt151=1;
             }
             break;
         case 75:
             {
-            alt149=3;
+            alt151=2;
+            }
+            break;
+        case 74:
+            {
+            alt151=3;
             }
             break;
         default:
             if (state.backtracking>0) {state.failed=true; return ;}
             NoViableAltException nvae =
-                new NoViableAltException("", 149, 0, input);
+                new NoViableAltException("", 151, 0, input);
 
             throw nvae;
         }
 
-        switch (alt149) {
+        switch (alt151) {
             case 1 :
                 // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3287:4: '.'
                 {
-                match(input,74,FOLLOW_74_in_synpred17_InternalMelange7854); if (state.failed) return ;
+                match(input,73,FOLLOW_73_in_synpred17_InternalMelange7860); if (state.failed) return ;
 
                 }
                 break;
@@ -22965,7 +22999,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3290:1: ( '?.' )
                 // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3291:2: '?.'
                 {
-                match(input,76,FOLLOW_76_in_synpred17_InternalMelange7868); if (state.failed) return ;
+                match(input,75,FOLLOW_75_in_synpred17_InternalMelange7874); if (state.failed) return ;
 
                 }
 
@@ -22984,7 +23018,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3297:1: ( '::' )
                 // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3298:2: '::'
                 {
-                match(input,75,FOLLOW_75_in_synpred17_InternalMelange7888); if (state.failed) return ;
+                match(input,74,FOLLOW_74_in_synpred17_InternalMelange7894); if (state.failed) return ;
 
                 }
 
@@ -23013,7 +23047,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3408:1: ( '(' )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3409:2: '('
         {
-        match(input,29,FOLLOW_29_in_synpred18_InternalMelange8115); if (state.failed) return ;
+        match(input,29,FOLLOW_29_in_synpred18_InternalMelange8121); if (state.failed) return ;
 
         }
 
@@ -23036,13 +23070,13 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         }
 
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3429:2: ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )?
-        int alt151=2;
-        int LA151_0 = input.LA(1);
+        int alt153=2;
+        int LA153_0 = input.LA(1);
 
-        if ( (LA151_0==RULE_ID||LA151_0==29||LA151_0==61) ) {
-            alt151=1;
+        if ( (LA153_0==RULE_ID||LA153_0==29||LA153_0==60) ) {
+            alt153=1;
         }
-        switch (alt151) {
+        switch (alt153) {
             case 1 :
                 // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3429:3: ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )*
                 {
@@ -23052,7 +23086,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3430:1: ( ruleJvmFormalParameter )
                 // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3431:1: ruleJvmFormalParameter
                 {
-                pushFollow(FOLLOW_ruleJvmFormalParameter_in_synpred19_InternalMelange8167);
+                pushFollow(FOLLOW_ruleJvmFormalParameter_in_synpred19_InternalMelange8173);
                 ruleJvmFormalParameter();
 
                 state._fsp--;
@@ -23064,28 +23098,28 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 }
 
                 // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3433:2: ( ',' ( ( ruleJvmFormalParameter ) ) )*
-                loop150:
+                loop152:
                 do {
-                    int alt150=2;
-                    int LA150_0 = input.LA(1);
+                    int alt152=2;
+                    int LA152_0 = input.LA(1);
 
-                    if ( (LA150_0==16) ) {
-                        alt150=1;
+                    if ( (LA152_0==16) ) {
+                        alt152=1;
                     }
 
 
-                    switch (alt150) {
+                    switch (alt152) {
                 	case 1 :
                 	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3433:4: ',' ( ( ruleJvmFormalParameter ) )
                 	    {
-                	    match(input,16,FOLLOW_16_in_synpred19_InternalMelange8174); if (state.failed) return ;
+                	    match(input,16,FOLLOW_16_in_synpred19_InternalMelange8180); if (state.failed) return ;
                 	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3434:1: ( ( ruleJvmFormalParameter ) )
                 	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3435:1: ( ruleJvmFormalParameter )
                 	    {
                 	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3435:1: ( ruleJvmFormalParameter )
                 	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3436:1: ruleJvmFormalParameter
                 	    {
-                	    pushFollow(FOLLOW_ruleJvmFormalParameter_in_synpred19_InternalMelange8181);
+                	    pushFollow(FOLLOW_ruleJvmFormalParameter_in_synpred19_InternalMelange8187);
                 	    ruleJvmFormalParameter();
 
                 	    state._fsp--;
@@ -23101,7 +23135,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 	    break;
 
                 	default :
-                	    break loop150;
+                	    break loop152;
                     }
                 } while (true);
 
@@ -23117,7 +23151,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3439:1: ( '|' )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3440:2: '|'
         {
-        match(input,78,FOLLOW_78_in_synpred19_InternalMelange8195); if (state.failed) return ;
+        match(input,77,FOLLOW_77_in_synpred19_InternalMelange8201); if (state.failed) return ;
 
         }
 
@@ -23145,7 +23179,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         {
         }
 
-        match(input,39,FOLLOW_39_in_synpred20_InternalMelange8315); if (state.failed) return ;
+        match(input,38,FOLLOW_38_in_synpred20_InternalMelange8321); if (state.failed) return ;
 
         }
 
@@ -23167,8 +23201,8 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         {
         }
 
-        match(input,104,FOLLOW_104_in_synpred21_InternalMelange8504); if (state.failed) return ;
-        match(input,29,FOLLOW_29_in_synpred21_InternalMelange8508); if (state.failed) return ;
+        match(input,104,FOLLOW_104_in_synpred21_InternalMelange8510); if (state.failed) return ;
+        match(input,29,FOLLOW_29_in_synpred21_InternalMelange8514); if (state.failed) return ;
 
         }
 
@@ -23190,15 +23224,15 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         {
         }
 
-        match(input,85,FOLLOW_85_in_synpred22_InternalMelange8630); if (state.failed) return ;
-        match(input,29,FOLLOW_29_in_synpred22_InternalMelange8634); if (state.failed) return ;
+        match(input,85,FOLLOW_85_in_synpred22_InternalMelange8636); if (state.failed) return ;
+        match(input,29,FOLLOW_29_in_synpred22_InternalMelange8640); if (state.failed) return ;
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3624:1: ( ( ruleJvmFormalParameter ) )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3625:1: ( ruleJvmFormalParameter )
         {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3625:1: ( ruleJvmFormalParameter )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:3626:1: ruleJvmFormalParameter
         {
-        pushFollow(FOLLOW_ruleJvmFormalParameter_in_synpred22_InternalMelange8641);
+        pushFollow(FOLLOW_ruleJvmFormalParameter_in_synpred22_InternalMelange8647);
         ruleJvmFormalParameter();
 
         state._fsp--;
@@ -23209,7 +23243,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
         }
 
-        match(input,33,FOLLOW_33_in_synpred22_InternalMelange8647); if (state.failed) return ;
+        match(input,82,FOLLOW_82_in_synpred22_InternalMelange8653); if (state.failed) return ;
 
         }
 
@@ -23231,7 +23265,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         {
         }
 
-        match(input,39,FOLLOW_39_in_synpred23_InternalMelange8969); if (state.failed) return ;
+        match(input,38,FOLLOW_38_in_synpred23_InternalMelange8975); if (state.failed) return ;
 
         }
 
@@ -23249,13 +23283,13 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4031:6: ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) )
         {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4031:6: ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )?
-        int alt153=2;
-        int LA153_0 = input.LA(1);
+        int alt155=2;
+        int LA155_0 = input.LA(1);
 
-        if ( (LA153_0==RULE_ID||LA153_0==29||LA153_0==61) ) {
-            alt153=1;
+        if ( (LA155_0==RULE_ID||LA155_0==29||LA155_0==60) ) {
+            alt155=1;
         }
-        switch (alt153) {
+        switch (alt155) {
             case 1 :
                 // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4031:7: ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )*
                 {
@@ -23265,7 +23299,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4032:1: ( ruleJvmFormalParameter )
                 // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4033:1: ruleJvmFormalParameter
                 {
-                pushFollow(FOLLOW_ruleJvmFormalParameter_in_synpred25_InternalMelange9719);
+                pushFollow(FOLLOW_ruleJvmFormalParameter_in_synpred25_InternalMelange9725);
                 ruleJvmFormalParameter();
 
                 state._fsp--;
@@ -23277,28 +23311,28 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 }
 
                 // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4035:2: ( ',' ( ( ruleJvmFormalParameter ) ) )*
-                loop152:
+                loop154:
                 do {
-                    int alt152=2;
-                    int LA152_0 = input.LA(1);
+                    int alt154=2;
+                    int LA154_0 = input.LA(1);
 
-                    if ( (LA152_0==16) ) {
-                        alt152=1;
+                    if ( (LA154_0==16) ) {
+                        alt154=1;
                     }
 
 
-                    switch (alt152) {
+                    switch (alt154) {
                 	case 1 :
                 	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4035:4: ',' ( ( ruleJvmFormalParameter ) )
                 	    {
-                	    match(input,16,FOLLOW_16_in_synpred25_InternalMelange9726); if (state.failed) return ;
+                	    match(input,16,FOLLOW_16_in_synpred25_InternalMelange9732); if (state.failed) return ;
                 	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4036:1: ( ( ruleJvmFormalParameter ) )
                 	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4037:1: ( ruleJvmFormalParameter )
                 	    {
                 	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4037:1: ( ruleJvmFormalParameter )
                 	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4038:1: ruleJvmFormalParameter
                 	    {
-                	    pushFollow(FOLLOW_ruleJvmFormalParameter_in_synpred25_InternalMelange9733);
+                	    pushFollow(FOLLOW_ruleJvmFormalParameter_in_synpred25_InternalMelange9739);
                 	    ruleJvmFormalParameter();
 
                 	    state._fsp--;
@@ -23314,7 +23348,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 	    break;
 
                 	default :
-                	    break loop152;
+                	    break loop154;
                     }
                 } while (true);
 
@@ -23330,7 +23364,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4041:1: ( '|' )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4042:2: '|'
         {
-        match(input,78,FOLLOW_78_in_synpred25_InternalMelange9747); if (state.failed) return ;
+        match(input,77,FOLLOW_77_in_synpred25_InternalMelange9753); if (state.failed) return ;
 
         }
 
@@ -23350,7 +23384,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4401:4: ( 'else' )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4401:6: 'else'
         {
-        match(input,81,FOLLOW_81_in_synpred27_InternalMelange10530); if (state.failed) return ;
+        match(input,80,FOLLOW_80_in_synpred27_InternalMelange10536); if (state.failed) return ;
 
         }
     }
@@ -23364,14 +23398,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4455:5: ( '(' ( ( ruleJvmFormalParameter ) ) ':' )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4455:7: '(' ( ( ruleJvmFormalParameter ) ) ':'
         {
-        match(input,29,FOLLOW_29_in_synpred28_InternalMelange10669); if (state.failed) return ;
+        match(input,29,FOLLOW_29_in_synpred28_InternalMelange10675); if (state.failed) return ;
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4456:1: ( ( ruleJvmFormalParameter ) )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4457:1: ( ruleJvmFormalParameter )
         {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4457:1: ( ruleJvmFormalParameter )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4458:1: ruleJvmFormalParameter
         {
-        pushFollow(FOLLOW_ruleJvmFormalParameter_in_synpred28_InternalMelange10676);
+        pushFollow(FOLLOW_ruleJvmFormalParameter_in_synpred28_InternalMelange10682);
         ruleJvmFormalParameter();
 
         state._fsp--;
@@ -23382,7 +23416,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
         }
 
-        match(input,33,FOLLOW_33_in_synpred28_InternalMelange10682); if (state.failed) return ;
+        match(input,82,FOLLOW_82_in_synpred28_InternalMelange10688); if (state.failed) return ;
 
         }
 
@@ -23405,7 +23439,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4511:1: ( ruleJvmFormalParameter )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:4512:1: ruleJvmFormalParameter
         {
-        pushFollow(FOLLOW_ruleJvmFormalParameter_in_synpred29_InternalMelange10784);
+        pushFollow(FOLLOW_ruleJvmFormalParameter_in_synpred29_InternalMelange10790);
         ruleJvmFormalParameter();
 
         state._fsp--;
@@ -23416,7 +23450,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
         }
 
-        match(input,33,FOLLOW_33_in_synpred29_InternalMelange10790); if (state.failed) return ;
+        match(input,82,FOLLOW_82_in_synpred29_InternalMelange10796); if (state.failed) return ;
 
         }
 
@@ -23439,7 +23473,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5279:1: ( ruleJvmTypeReference )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5280:1: ruleJvmTypeReference
         {
-        pushFollow(FOLLOW_ruleJvmTypeReference_in_synpred31_InternalMelange12418);
+        pushFollow(FOLLOW_ruleJvmTypeReference_in_synpred31_InternalMelange12424);
         ruleJvmTypeReference();
 
         state._fsp--;
@@ -23456,7 +23490,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5283:1: ( ruleValidID )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5284:1: ruleValidID
         {
-        pushFollow(FOLLOW_ruleValidID_in_synpred31_InternalMelange12427);
+        pushFollow(FOLLOW_ruleValidID_in_synpred31_InternalMelange12433);
         ruleValidID();
 
         state._fsp--;
@@ -23483,7 +23517,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5568:1: ( '(' )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5569:2: '('
         {
-        match(input,29,FOLLOW_29_in_synpred32_InternalMelange12965); if (state.failed) return ;
+        match(input,29,FOLLOW_29_in_synpred32_InternalMelange12971); if (state.failed) return ;
 
         }
 
@@ -23506,13 +23540,13 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         }
 
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5589:2: ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )?
-        int alt157=2;
-        int LA157_0 = input.LA(1);
+        int alt159=2;
+        int LA159_0 = input.LA(1);
 
-        if ( (LA157_0==RULE_ID||LA157_0==29||LA157_0==61) ) {
-            alt157=1;
+        if ( (LA159_0==RULE_ID||LA159_0==29||LA159_0==60) ) {
+            alt159=1;
         }
-        switch (alt157) {
+        switch (alt159) {
             case 1 :
                 // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5589:3: ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )*
                 {
@@ -23522,7 +23556,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5590:1: ( ruleJvmFormalParameter )
                 // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5591:1: ruleJvmFormalParameter
                 {
-                pushFollow(FOLLOW_ruleJvmFormalParameter_in_synpred33_InternalMelange13017);
+                pushFollow(FOLLOW_ruleJvmFormalParameter_in_synpred33_InternalMelange13023);
                 ruleJvmFormalParameter();
 
                 state._fsp--;
@@ -23534,28 +23568,28 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 }
 
                 // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5593:2: ( ',' ( ( ruleJvmFormalParameter ) ) )*
-                loop156:
+                loop158:
                 do {
-                    int alt156=2;
-                    int LA156_0 = input.LA(1);
+                    int alt158=2;
+                    int LA158_0 = input.LA(1);
 
-                    if ( (LA156_0==16) ) {
-                        alt156=1;
+                    if ( (LA158_0==16) ) {
+                        alt158=1;
                     }
 
 
-                    switch (alt156) {
+                    switch (alt158) {
                 	case 1 :
                 	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5593:4: ',' ( ( ruleJvmFormalParameter ) )
                 	    {
-                	    match(input,16,FOLLOW_16_in_synpred33_InternalMelange13024); if (state.failed) return ;
+                	    match(input,16,FOLLOW_16_in_synpred33_InternalMelange13030); if (state.failed) return ;
                 	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5594:1: ( ( ruleJvmFormalParameter ) )
                 	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5595:1: ( ruleJvmFormalParameter )
                 	    {
                 	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5595:1: ( ruleJvmFormalParameter )
                 	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5596:1: ruleJvmFormalParameter
                 	    {
-                	    pushFollow(FOLLOW_ruleJvmFormalParameter_in_synpred33_InternalMelange13031);
+                	    pushFollow(FOLLOW_ruleJvmFormalParameter_in_synpred33_InternalMelange13037);
                 	    ruleJvmFormalParameter();
 
                 	    state._fsp--;
@@ -23571,7 +23605,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 	    break;
 
                 	default :
-                	    break loop156;
+                	    break loop158;
                     }
                 } while (true);
 
@@ -23587,7 +23621,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5599:1: ( '|' )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5600:2: '|'
         {
-        match(input,78,FOLLOW_78_in_synpred33_InternalMelange13045); if (state.failed) return ;
+        match(input,77,FOLLOW_77_in_synpred33_InternalMelange13051); if (state.failed) return ;
 
         }
 
@@ -23615,7 +23649,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         {
         }
 
-        match(input,39,FOLLOW_39_in_synpred34_InternalMelange13165); if (state.failed) return ;
+        match(input,38,FOLLOW_38_in_synpred34_InternalMelange13171); if (state.failed) return ;
 
         }
 
@@ -23629,7 +23663,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5832:4: ( '<' )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5832:6: '<'
         {
-        match(input,48,FOLLOW_48_in_synpred35_InternalMelange13614); if (state.failed) return ;
+        match(input,47,FOLLOW_47_in_synpred35_InternalMelange13620); if (state.failed) return ;
 
         }
     }
@@ -23643,7 +23677,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5882:1: ( '(' )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5883:2: '('
         {
-        match(input,29,FOLLOW_29_in_synpred36_InternalMelange13710); if (state.failed) return ;
+        match(input,29,FOLLOW_29_in_synpred36_InternalMelange13716); if (state.failed) return ;
 
         }
 
@@ -23666,13 +23700,13 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         }
 
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5903:2: ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )?
-        int alt159=2;
-        int LA159_0 = input.LA(1);
+        int alt161=2;
+        int LA161_0 = input.LA(1);
 
-        if ( (LA159_0==RULE_ID||LA159_0==29||LA159_0==61) ) {
-            alt159=1;
+        if ( (LA161_0==RULE_ID||LA161_0==29||LA161_0==60) ) {
+            alt161=1;
         }
-        switch (alt159) {
+        switch (alt161) {
             case 1 :
                 // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5903:3: ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )*
                 {
@@ -23682,7 +23716,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5904:1: ( ruleJvmFormalParameter )
                 // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5905:1: ruleJvmFormalParameter
                 {
-                pushFollow(FOLLOW_ruleJvmFormalParameter_in_synpred37_InternalMelange13762);
+                pushFollow(FOLLOW_ruleJvmFormalParameter_in_synpred37_InternalMelange13768);
                 ruleJvmFormalParameter();
 
                 state._fsp--;
@@ -23694,28 +23728,28 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 }
 
                 // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5907:2: ( ',' ( ( ruleJvmFormalParameter ) ) )*
-                loop158:
+                loop160:
                 do {
-                    int alt158=2;
-                    int LA158_0 = input.LA(1);
+                    int alt160=2;
+                    int LA160_0 = input.LA(1);
 
-                    if ( (LA158_0==16) ) {
-                        alt158=1;
+                    if ( (LA160_0==16) ) {
+                        alt160=1;
                     }
 
 
-                    switch (alt158) {
+                    switch (alt160) {
                 	case 1 :
                 	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5907:4: ',' ( ( ruleJvmFormalParameter ) )
                 	    {
-                	    match(input,16,FOLLOW_16_in_synpred37_InternalMelange13769); if (state.failed) return ;
+                	    match(input,16,FOLLOW_16_in_synpred37_InternalMelange13775); if (state.failed) return ;
                 	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5908:1: ( ( ruleJvmFormalParameter ) )
                 	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5909:1: ( ruleJvmFormalParameter )
                 	    {
                 	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5909:1: ( ruleJvmFormalParameter )
                 	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5910:1: ruleJvmFormalParameter
                 	    {
-                	    pushFollow(FOLLOW_ruleJvmFormalParameter_in_synpred37_InternalMelange13776);
+                	    pushFollow(FOLLOW_ruleJvmFormalParameter_in_synpred37_InternalMelange13782);
                 	    ruleJvmFormalParameter();
 
                 	    state._fsp--;
@@ -23731,7 +23765,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                 	    break;
 
                 	default :
-                	    break loop158;
+                	    break loop160;
                     }
                 } while (true);
 
@@ -23747,7 +23781,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5913:1: ( '|' )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:5914:2: '|'
         {
-        match(input,78,FOLLOW_78_in_synpred37_InternalMelange13790); if (state.failed) return ;
+        match(input,77,FOLLOW_77_in_synpred37_InternalMelange13796); if (state.failed) return ;
 
         }
 
@@ -23775,7 +23809,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         {
         }
 
-        match(input,39,FOLLOW_39_in_synpred38_InternalMelange13910); if (state.failed) return ;
+        match(input,38,FOLLOW_38_in_synpred38_InternalMelange13916); if (state.failed) return ;
 
         }
 
@@ -23789,7 +23823,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6321:2: ( 'extends' | 'static' | 'import' | 'extension' | '!' | '-' | '+' | 'new' | '{' | 'switch' | 'synchronized' | '<' | 'super' | '#' | '[' | 'false' | 'true' | 'null' | 'typeof' | 'if' | 'for' | 'while' | 'do' | 'throw' | 'return' | 'try' | '(' | RULE_ID | RULE_HEX | RULE_INT | RULE_DECIMAL | RULE_STRING )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:
         {
-        if ( (input.LA(1)>=RULE_STRING && input.LA(1)<=RULE_ID)||input.LA(1)==19||input.LA(1)==29||input.LA(1)==39||input.LA(1)==48||(input.LA(1)>=64 && input.LA(1)<=65)||input.LA(1)==70||input.LA(1)==77||input.LA(1)==80||input.LA(1)==82||(input.LA(1)>=85 && input.LA(1)<=87)||(input.LA(1)>=90 && input.LA(1)<=102)||input.LA(1)==104 ) {
+        if ( (input.LA(1)>=RULE_STRING && input.LA(1)<=RULE_ID)||input.LA(1)==19||input.LA(1)==29||input.LA(1)==38||input.LA(1)==47||(input.LA(1)>=63 && input.LA(1)<=64)||input.LA(1)==69||input.LA(1)==76||input.LA(1)==79||input.LA(1)==81||(input.LA(1)>=85 && input.LA(1)<=87)||(input.LA(1)>=90 && input.LA(1)<=102)||input.LA(1)==104 ) {
             input.consume();
             state.errorRecovery=false;state.failed=false;
         }
@@ -23809,7 +23843,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6415:5: ( 'catch' )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6415:7: 'catch'
         {
-        match(input,105,FOLLOW_105_in_synpred40_InternalMelange15083); if (state.failed) return ;
+        match(input,105,FOLLOW_105_in_synpred40_InternalMelange15089); if (state.failed) return ;
 
         }
     }
@@ -23820,7 +23854,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6434:5: ( 'finally' )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6434:7: 'finally'
         {
-        match(input,103,FOLLOW_103_in_synpred41_InternalMelange15113); if (state.failed) return ;
+        match(input,103,FOLLOW_103_in_synpred41_InternalMelange15119); if (state.failed) return ;
 
         }
     }
@@ -23831,7 +23865,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6660:3: ( '.' )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6661:2: '.'
         {
-        match(input,74,FOLLOW_74_in_synpred44_InternalMelange15638); if (state.failed) return ;
+        match(input,73,FOLLOW_73_in_synpred44_InternalMelange15644); if (state.failed) return ;
 
         }
     }
@@ -23850,7 +23884,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         {
         }
 
-        pushFollow(FOLLOW_ruleArrayBrackets_in_synpred45_InternalMelange16023);
+        pushFollow(FOLLOW_ruleArrayBrackets_in_synpred45_InternalMelange16029);
         ruleArrayBrackets();
 
         state._fsp--;
@@ -23868,7 +23902,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6971:4: ( '<' )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:6971:6: '<'
         {
-        match(input,48,FOLLOW_48_in_synpred46_InternalMelange16475); if (state.failed) return ;
+        match(input,47,FOLLOW_47_in_synpred46_InternalMelange16481); if (state.failed) return ;
 
         }
     }
@@ -23887,7 +23921,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         {
         }
 
-        match(input,74,FOLLOW_74_in_synpred47_InternalMelange16570); if (state.failed) return ;
+        match(input,73,FOLLOW_73_in_synpred47_InternalMelange16576); if (state.failed) return ;
 
         }
 
@@ -23901,7 +23935,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7047:4: ( '<' )
         // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7047:6: '<'
         {
-        match(input,48,FOLLOW_48_in_synpred48_InternalMelange16627); if (state.failed) return ;
+        match(input,47,FOLLOW_47_in_synpred48_InternalMelange16633); if (state.failed) return ;
 
         }
     }
@@ -24514,28 +24548,28 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
 
 
     protected DFA15 dfa15 = new DFA15(this);
-    protected DFA35 dfa35 = new DFA35(this);
-    protected DFA36 dfa36 = new DFA36(this);
-    protected DFA46 dfa46 = new DFA46(this);
-    protected DFA49 dfa49 = new DFA49(this);
-    protected DFA65 dfa65 = new DFA65(this);
-    protected DFA64 dfa64 = new DFA64(this);
+    protected DFA37 dfa37 = new DFA37(this);
+    protected DFA38 dfa38 = new DFA38(this);
+    protected DFA48 dfa48 = new DFA48(this);
+    protected DFA51 dfa51 = new DFA51(this);
+    protected DFA67 dfa67 = new DFA67(this);
     protected DFA66 dfa66 = new DFA66(this);
     protected DFA68 dfa68 = new DFA68(this);
-    protected DFA77 dfa77 = new DFA77(this);
-    protected DFA84 dfa84 = new DFA84(this);
-    protected DFA83 dfa83 = new DFA83(this);
-    protected DFA106 dfa106 = new DFA106(this);
-    protected DFA105 dfa105 = new DFA105(this);
+    protected DFA70 dfa70 = new DFA70(this);
+    protected DFA79 dfa79 = new DFA79(this);
+    protected DFA86 dfa86 = new DFA86(this);
+    protected DFA85 dfa85 = new DFA85(this);
+    protected DFA108 dfa108 = new DFA108(this);
     protected DFA107 dfa107 = new DFA107(this);
-    protected DFA111 dfa111 = new DFA111(this);
-    protected DFA114 dfa114 = new DFA114(this);
+    protected DFA109 dfa109 = new DFA109(this);
     protected DFA113 dfa113 = new DFA113(this);
+    protected DFA116 dfa116 = new DFA116(this);
     protected DFA115 dfa115 = new DFA115(this);
-    protected DFA118 dfa118 = new DFA118(this);
+    protected DFA117 dfa117 = new DFA117(this);
+    protected DFA120 dfa120 = new DFA120(this);
+    protected DFA138 dfa138 = new DFA138(this);
     protected DFA136 dfa136 = new DFA136(this);
-    protected DFA134 dfa134 = new DFA134(this);
-    protected DFA144 dfa144 = new DFA144(this);
+    protected DFA146 dfa146 = new DFA146(this);
     static final String DFA15_eotS =
         "\13\uffff";
     static final String DFA15_eofS =
@@ -24543,13 +24577,13 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
     static final String DFA15_minS =
         "\1\16\1\uffff\6\0\3\uffff";
     static final String DFA15_maxS =
-        "\1\51\1\uffff\6\0\3\uffff";
+        "\1\50\1\uffff\6\0\3\uffff";
     static final String DFA15_acceptS =
         "\1\uffff\1\4\6\uffff\1\1\1\2\1\3";
     static final String DFA15_specialS =
-        "\2\uffff\1\5\1\0\1\1\1\2\1\3\1\4\3\uffff}>";
+        "\2\uffff\1\1\1\4\1\2\1\3\1\5\1\0\3\uffff}>";
     static final String[] DFA15_transitionS = {
-            "\1\2\6\uffff\1\1\1\uffff\1\7\2\1\1\3\2\1\2\uffff\1\1\4\uffff\1\4\1\5\3\uffff\1\6",
+            "\1\2\6\uffff\1\1\1\uffff\1\7\2\1\1\3\2\1\2\uffff\1\1\3\uffff\1\4\1\5\3\uffff\1\6",
             "",
             "\1\uffff",
             "\1\uffff",
@@ -24599,66 +24633,6 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA15_3 = input.LA(1);
-
-                         
-                        int index15_3 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( getUnorderedGroupHelper().canSelect(grammarAccess.getLanguageAccess().getUnorderedGroup(), 1) ) {s = 9;}
-
-                        else if ( getUnorderedGroupHelper().canLeave(grammarAccess.getLanguageAccess().getUnorderedGroup()) ) {s = 1;}
-
-                         
-                        input.seek(index15_3);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
-                        int LA15_4 = input.LA(1);
-
-                         
-                        int index15_4 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( getUnorderedGroupHelper().canSelect(grammarAccess.getLanguageAccess().getUnorderedGroup(), 1) ) {s = 9;}
-
-                        else if ( getUnorderedGroupHelper().canLeave(grammarAccess.getLanguageAccess().getUnorderedGroup()) ) {s = 1;}
-
-                         
-                        input.seek(index15_4);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
-                        int LA15_5 = input.LA(1);
-
-                         
-                        int index15_5 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( getUnorderedGroupHelper().canSelect(grammarAccess.getLanguageAccess().getUnorderedGroup(), 1) ) {s = 9;}
-
-                        else if ( getUnorderedGroupHelper().canLeave(grammarAccess.getLanguageAccess().getUnorderedGroup()) ) {s = 1;}
-
-                         
-                        input.seek(index15_5);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 3 : 
-                        int LA15_6 = input.LA(1);
-
-                         
-                        int index15_6 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( getUnorderedGroupHelper().canSelect(grammarAccess.getLanguageAccess().getUnorderedGroup(), 1) ) {s = 9;}
-
-                        else if ( getUnorderedGroupHelper().canLeave(grammarAccess.getLanguageAccess().getUnorderedGroup()) ) {s = 1;}
-
-                         
-                        input.seek(index15_6);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 4 : 
                         int LA15_7 = input.LA(1);
 
                          
@@ -24673,7 +24647,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         input.seek(index15_7);
                         if ( s>=0 ) return s;
                         break;
-                    case 5 : 
+                    case 1 : 
                         int LA15_2 = input.LA(1);
 
                          
@@ -24688,6 +24662,66 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         input.seek(index15_2);
                         if ( s>=0 ) return s;
                         break;
+                    case 2 : 
+                        int LA15_4 = input.LA(1);
+
+                         
+                        int index15_4 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( getUnorderedGroupHelper().canSelect(grammarAccess.getLanguageAccess().getUnorderedGroup(), 1) ) {s = 9;}
+
+                        else if ( getUnorderedGroupHelper().canLeave(grammarAccess.getLanguageAccess().getUnorderedGroup()) ) {s = 1;}
+
+                         
+                        input.seek(index15_4);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 3 : 
+                        int LA15_5 = input.LA(1);
+
+                         
+                        int index15_5 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( getUnorderedGroupHelper().canSelect(grammarAccess.getLanguageAccess().getUnorderedGroup(), 1) ) {s = 9;}
+
+                        else if ( getUnorderedGroupHelper().canLeave(grammarAccess.getLanguageAccess().getUnorderedGroup()) ) {s = 1;}
+
+                         
+                        input.seek(index15_5);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 4 : 
+                        int LA15_3 = input.LA(1);
+
+                         
+                        int index15_3 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( getUnorderedGroupHelper().canSelect(grammarAccess.getLanguageAccess().getUnorderedGroup(), 1) ) {s = 9;}
+
+                        else if ( getUnorderedGroupHelper().canLeave(grammarAccess.getLanguageAccess().getUnorderedGroup()) ) {s = 1;}
+
+                         
+                        input.seek(index15_3);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 5 : 
+                        int LA15_6 = input.LA(1);
+
+                         
+                        int index15_6 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( getUnorderedGroupHelper().canSelect(grammarAccess.getLanguageAccess().getUnorderedGroup(), 1) ) {s = 9;}
+
+                        else if ( getUnorderedGroupHelper().canLeave(grammarAccess.getLanguageAccess().getUnorderedGroup()) ) {s = 1;}
+
+                         
+                        input.seek(index15_6);
+                        if ( s>=0 ) return s;
+                        break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
             NoViableAltException nvae =
@@ -24696,75 +24730,75 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             throw nvae;
         }
     }
-    static final String DFA35_eotS =
+    static final String DFA37_eotS =
         "\7\uffff";
-    static final String DFA35_eofS =
-        "\2\uffff\1\3\2\uffff\1\3\1\uffff";
-    static final String DFA35_minS =
-        "\1\51\1\10\1\16\1\uffff\1\10\1\16\1\uffff";
-    static final String DFA35_maxS =
-        "\1\51\1\75\1\112\1\uffff\1\102\1\112\1\uffff";
-    static final String DFA35_acceptS =
-        "\3\uffff\1\1\2\uffff\1\2";
-    static final String DFA35_specialS =
+    static final String DFA37_eofS =
+        "\2\uffff\1\3\3\uffff\1\3";
+    static final String DFA37_minS =
+        "\1\50\1\10\1\16\1\uffff\1\10\1\uffff\1\16";
+    static final String DFA37_maxS =
+        "\1\50\1\74\1\111\1\uffff\1\101\1\uffff\1\111";
+    static final String DFA37_acceptS =
+        "\3\uffff\1\1\1\uffff\1\2\1\uffff";
+    static final String DFA37_specialS =
         "\7\uffff}>";
-    static final String[] DFA35_transitionS = {
+    static final String[] DFA37_transitionS = {
             "\1\1",
-            "\1\2\24\uffff\1\3\37\uffff\1\3",
-            "\1\3\6\uffff\1\3\1\uffff\6\3\2\uffff\1\3\4\uffff\2\3\1\uffff\1\3\1\uffff\1\3\6\uffff\1\3\31\uffff\1\4",
+            "\1\2\24\uffff\1\3\36\uffff\1\3",
+            "\1\3\6\uffff\1\3\1\uffff\6\3\2\uffff\1\3\3\uffff\2\3\1\uffff\1\3\1\uffff\1\3\6\uffff\1\3\31\uffff\1\4",
             "",
-            "\1\5\71\uffff\1\6",
-            "\1\3\6\uffff\1\3\1\uffff\6\3\2\uffff\1\3\4\uffff\2\3\1\uffff\1\3\1\uffff\1\3\6\uffff\1\3\31\uffff\1\4",
-            ""
+            "\1\6\70\uffff\1\5",
+            "",
+            "\1\3\6\uffff\1\3\1\uffff\6\3\2\uffff\1\3\3\uffff\2\3\1\uffff\1\3\1\uffff\1\3\6\uffff\1\3\31\uffff\1\4"
     };
 
-    static final short[] DFA35_eot = DFA.unpackEncodedString(DFA35_eotS);
-    static final short[] DFA35_eof = DFA.unpackEncodedString(DFA35_eofS);
-    static final char[] DFA35_min = DFA.unpackEncodedStringToUnsignedChars(DFA35_minS);
-    static final char[] DFA35_max = DFA.unpackEncodedStringToUnsignedChars(DFA35_maxS);
-    static final short[] DFA35_accept = DFA.unpackEncodedString(DFA35_acceptS);
-    static final short[] DFA35_special = DFA.unpackEncodedString(DFA35_specialS);
-    static final short[][] DFA35_transition;
+    static final short[] DFA37_eot = DFA.unpackEncodedString(DFA37_eotS);
+    static final short[] DFA37_eof = DFA.unpackEncodedString(DFA37_eofS);
+    static final char[] DFA37_min = DFA.unpackEncodedStringToUnsignedChars(DFA37_minS);
+    static final char[] DFA37_max = DFA.unpackEncodedStringToUnsignedChars(DFA37_maxS);
+    static final short[] DFA37_accept = DFA.unpackEncodedString(DFA37_acceptS);
+    static final short[] DFA37_special = DFA.unpackEncodedString(DFA37_specialS);
+    static final short[][] DFA37_transition;
 
     static {
-        int numStates = DFA35_transitionS.length;
-        DFA35_transition = new short[numStates][];
+        int numStates = DFA37_transitionS.length;
+        DFA37_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA35_transition[i] = DFA.unpackEncodedString(DFA35_transitionS[i]);
+            DFA37_transition[i] = DFA.unpackEncodedString(DFA37_transitionS[i]);
         }
     }
 
-    class DFA35 extends DFA {
+    class DFA37 extends DFA {
 
-        public DFA35(BaseRecognizer recognizer) {
+        public DFA37(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 35;
-            this.eot = DFA35_eot;
-            this.eof = DFA35_eof;
-            this.min = DFA35_min;
-            this.max = DFA35_max;
-            this.accept = DFA35_accept;
-            this.special = DFA35_special;
-            this.transition = DFA35_transition;
+            this.decisionNumber = 37;
+            this.eot = DFA37_eot;
+            this.eof = DFA37_eof;
+            this.min = DFA37_min;
+            this.max = DFA37_max;
+            this.accept = DFA37_accept;
+            this.special = DFA37_special;
+            this.transition = DFA37_transition;
         }
         public String getDescription() {
             return "1608:1: (this_AspectTypeRef_0= ruleAspectTypeRef | this_AspectWildcard_1= ruleAspectWildcard )";
         }
     }
-    static final String DFA36_eotS =
+    static final String DFA38_eotS =
         "\12\uffff";
-    static final String DFA36_eofS =
+    static final String DFA38_eofS =
         "\1\10\11\uffff";
-    static final String DFA36_minS =
+    static final String DFA38_minS =
         "\1\4\7\0\2\uffff";
-    static final String DFA36_maxS =
+    static final String DFA38_maxS =
         "\1\151\7\0\2\uffff";
-    static final String DFA36_acceptS =
+    static final String DFA38_acceptS =
         "\10\uffff\1\2\1\1";
-    static final String DFA36_specialS =
-        "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\0\1\6\2\uffff}>";
-    static final String[] DFA36_transitionS = {
-            "\5\10\7\uffff\1\10\2\uffff\1\10\4\uffff\1\10\4\uffff\2\10\2\uffff\1\10\5\uffff\2\10\2\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\34\10\1\uffff\33\10",
+    static final String DFA38_specialS =
+        "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\0\2\uffff}>";
+    static final String[] DFA38_transitionS = {
+            "\5\10\7\uffff\1\10\2\uffff\1\10\4\uffff\1\10\4\uffff\2\10\7\uffff\2\10\2\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\34\10\1\uffff\34\10",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
@@ -24776,34 +24810,34 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             ""
     };
 
-    static final short[] DFA36_eot = DFA.unpackEncodedString(DFA36_eotS);
-    static final short[] DFA36_eof = DFA.unpackEncodedString(DFA36_eofS);
-    static final char[] DFA36_min = DFA.unpackEncodedStringToUnsignedChars(DFA36_minS);
-    static final char[] DFA36_max = DFA.unpackEncodedStringToUnsignedChars(DFA36_maxS);
-    static final short[] DFA36_accept = DFA.unpackEncodedString(DFA36_acceptS);
-    static final short[] DFA36_special = DFA.unpackEncodedString(DFA36_specialS);
-    static final short[][] DFA36_transition;
+    static final short[] DFA38_eot = DFA.unpackEncodedString(DFA38_eotS);
+    static final short[] DFA38_eof = DFA.unpackEncodedString(DFA38_eofS);
+    static final char[] DFA38_min = DFA.unpackEncodedStringToUnsignedChars(DFA38_minS);
+    static final char[] DFA38_max = DFA.unpackEncodedStringToUnsignedChars(DFA38_maxS);
+    static final short[] DFA38_accept = DFA.unpackEncodedString(DFA38_acceptS);
+    static final short[] DFA38_special = DFA.unpackEncodedString(DFA38_specialS);
+    static final short[][] DFA38_transition;
 
     static {
-        int numStates = DFA36_transitionS.length;
-        DFA36_transition = new short[numStates][];
+        int numStates = DFA38_transitionS.length;
+        DFA38_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA36_transition[i] = DFA.unpackEncodedString(DFA36_transitionS[i]);
+            DFA38_transition[i] = DFA.unpackEncodedString(DFA38_transitionS[i]);
         }
     }
 
-    class DFA36 extends DFA {
+    class DFA38 extends DFA {
 
-        public DFA36(BaseRecognizer recognizer) {
+        public DFA38(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 36;
-            this.eot = DFA36_eot;
-            this.eof = DFA36_eof;
-            this.min = DFA36_min;
-            this.max = DFA36_max;
-            this.accept = DFA36_accept;
-            this.special = DFA36_special;
-            this.transition = DFA36_transition;
+            this.decisionNumber = 38;
+            this.eot = DFA38_eot;
+            this.eof = DFA38_eof;
+            this.min = DFA38_min;
+            this.max = DFA38_max;
+            this.accept = DFA38_accept;
+            this.special = DFA38_special;
+            this.transition = DFA38_transition;
         }
         public String getDescription() {
             return "1821:1: ( ( ( ( () ( ( ruleOpMultiAssign ) ) ) )=> ( () ( ( ruleOpMultiAssign ) ) ) ) ( (lv_rightOperand_7_0= ruleXAssignment ) ) )?";
@@ -24813,10 +24847,10 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA36_6 = input.LA(1);
+                        int LA38_7 = input.LA(1);
 
                          
-                        int index36_6 = input.index();
+                        int index38_7 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred3_InternalMelange()) ) {s = 9;}
@@ -24824,14 +24858,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 8;}
 
                          
-                        input.seek(index36_6);
+                        input.seek(index38_7);
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA36_1 = input.LA(1);
+                        int LA38_1 = input.LA(1);
 
                          
-                        int index36_1 = input.index();
+                        int index38_1 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred3_InternalMelange()) ) {s = 9;}
@@ -24839,14 +24873,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 8;}
 
                          
-                        input.seek(index36_1);
+                        input.seek(index38_1);
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA36_2 = input.LA(1);
+                        int LA38_2 = input.LA(1);
 
                          
-                        int index36_2 = input.index();
+                        int index38_2 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred3_InternalMelange()) ) {s = 9;}
@@ -24854,14 +24888,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 8;}
 
                          
-                        input.seek(index36_2);
+                        input.seek(index38_2);
                         if ( s>=0 ) return s;
                         break;
                     case 3 : 
-                        int LA36_3 = input.LA(1);
+                        int LA38_3 = input.LA(1);
 
                          
-                        int index36_3 = input.index();
+                        int index38_3 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred3_InternalMelange()) ) {s = 9;}
@@ -24869,14 +24903,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 8;}
 
                          
-                        input.seek(index36_3);
+                        input.seek(index38_3);
                         if ( s>=0 ) return s;
                         break;
                     case 4 : 
-                        int LA36_4 = input.LA(1);
+                        int LA38_4 = input.LA(1);
 
                          
-                        int index36_4 = input.index();
+                        int index38_4 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred3_InternalMelange()) ) {s = 9;}
@@ -24884,14 +24918,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 8;}
 
                          
-                        input.seek(index36_4);
+                        input.seek(index38_4);
                         if ( s>=0 ) return s;
                         break;
                     case 5 : 
-                        int LA36_5 = input.LA(1);
+                        int LA38_5 = input.LA(1);
 
                          
-                        int index36_5 = input.index();
+                        int index38_5 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred3_InternalMelange()) ) {s = 9;}
@@ -24899,14 +24933,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 8;}
 
                          
-                        input.seek(index36_5);
+                        input.seek(index38_5);
                         if ( s>=0 ) return s;
                         break;
                     case 6 : 
-                        int LA36_7 = input.LA(1);
+                        int LA38_6 = input.LA(1);
 
                          
-                        int index36_7 = input.index();
+                        int index38_6 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred3_InternalMelange()) ) {s = 9;}
@@ -24914,31 +24948,31 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 8;}
 
                          
-                        input.seek(index36_7);
+                        input.seek(index38_6);
                         if ( s>=0 ) return s;
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 36, _s, input);
+                new NoViableAltException(getDescription(), 38, _s, input);
             error(nvae);
             throw nvae;
         }
     }
-    static final String DFA46_eotS =
+    static final String DFA48_eotS =
         "\13\uffff";
-    static final String DFA46_eofS =
+    static final String DFA48_eofS =
         "\1\1\12\uffff";
-    static final String DFA46_minS =
+    static final String DFA48_minS =
         "\1\4\1\uffff\10\0\1\uffff";
-    static final String DFA46_maxS =
+    static final String DFA48_maxS =
         "\1\151\1\uffff\10\0\1\uffff";
-    static final String DFA46_acceptS =
+    static final String DFA48_acceptS =
         "\1\uffff\1\2\10\uffff\1\1";
-    static final String DFA46_specialS =
-        "\2\uffff\1\4\1\3\1\1\1\2\1\0\1\5\1\6\1\7\1\uffff}>";
-    static final String[] DFA46_transitionS = {
-            "\5\1\7\uffff\1\1\2\uffff\1\1\4\uffff\1\1\4\uffff\2\1\2\uffff\1\1\5\uffff\2\1\2\uffff\5\1\1\2\1\3\10\1\1\4\1\5\1\6\1\7\1\10\1\11\16\1\1\uffff\33\1",
+    static final String DFA48_specialS =
+        "\2\uffff\1\4\1\5\1\2\1\3\1\0\1\1\1\6\1\7\1\uffff}>";
+    static final String[] DFA48_transitionS = {
+            "\5\1\7\uffff\1\1\2\uffff\1\1\4\uffff\1\1\4\uffff\2\1\7\uffff\2\1\2\uffff\5\1\1\2\1\3\10\1\1\4\1\5\1\6\1\7\1\10\1\11\16\1\1\uffff\34\1",
             "",
             "\1\uffff",
             "\1\uffff",
@@ -24951,34 +24985,34 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             ""
     };
 
-    static final short[] DFA46_eot = DFA.unpackEncodedString(DFA46_eotS);
-    static final short[] DFA46_eof = DFA.unpackEncodedString(DFA46_eofS);
-    static final char[] DFA46_min = DFA.unpackEncodedStringToUnsignedChars(DFA46_minS);
-    static final char[] DFA46_max = DFA.unpackEncodedStringToUnsignedChars(DFA46_maxS);
-    static final short[] DFA46_accept = DFA.unpackEncodedString(DFA46_acceptS);
-    static final short[] DFA46_special = DFA.unpackEncodedString(DFA46_specialS);
-    static final short[][] DFA46_transition;
+    static final short[] DFA48_eot = DFA.unpackEncodedString(DFA48_eotS);
+    static final short[] DFA48_eof = DFA.unpackEncodedString(DFA48_eofS);
+    static final char[] DFA48_min = DFA.unpackEncodedStringToUnsignedChars(DFA48_minS);
+    static final char[] DFA48_max = DFA.unpackEncodedStringToUnsignedChars(DFA48_maxS);
+    static final short[] DFA48_accept = DFA.unpackEncodedString(DFA48_acceptS);
+    static final short[] DFA48_special = DFA.unpackEncodedString(DFA48_specialS);
+    static final short[][] DFA48_transition;
 
     static {
-        int numStates = DFA46_transitionS.length;
-        DFA46_transition = new short[numStates][];
+        int numStates = DFA48_transitionS.length;
+        DFA48_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA46_transition[i] = DFA.unpackEncodedString(DFA46_transitionS[i]);
+            DFA48_transition[i] = DFA.unpackEncodedString(DFA48_transitionS[i]);
         }
     }
 
-    class DFA46 extends DFA {
+    class DFA48 extends DFA {
 
-        public DFA46(BaseRecognizer recognizer) {
+        public DFA48(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 46;
-            this.eot = DFA46_eot;
-            this.eof = DFA46_eof;
-            this.min = DFA46_min;
-            this.max = DFA46_max;
-            this.accept = DFA46_accept;
-            this.special = DFA46_special;
-            this.transition = DFA46_transition;
+            this.decisionNumber = 48;
+            this.eot = DFA48_eot;
+            this.eof = DFA48_eof;
+            this.min = DFA48_min;
+            this.max = DFA48_max;
+            this.accept = DFA48_accept;
+            this.special = DFA48_special;
+            this.transition = DFA48_transition;
         }
         public String getDescription() {
             return "()* loopback of 2498:1: ( ( ( ( () ( ( ruleOpOther ) ) ) )=> ( () ( ( ruleOpOther ) ) ) ) ( (lv_rightOperand_3_0= ruleXAdditiveExpression ) ) )*";
@@ -24988,10 +25022,10 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA46_6 = input.LA(1);
+                        int LA48_6 = input.LA(1);
 
                          
-                        int index46_6 = input.index();
+                        int index48_6 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred9_InternalMelange()) ) {s = 10;}
@@ -24999,14 +25033,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index46_6);
+                        input.seek(index48_6);
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA46_4 = input.LA(1);
+                        int LA48_7 = input.LA(1);
 
                          
-                        int index46_4 = input.index();
+                        int index48_7 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred9_InternalMelange()) ) {s = 10;}
@@ -25014,14 +25048,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index46_4);
+                        input.seek(index48_7);
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA46_5 = input.LA(1);
+                        int LA48_4 = input.LA(1);
 
                          
-                        int index46_5 = input.index();
+                        int index48_4 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred9_InternalMelange()) ) {s = 10;}
@@ -25029,14 +25063,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index46_5);
+                        input.seek(index48_4);
                         if ( s>=0 ) return s;
                         break;
                     case 3 : 
-                        int LA46_3 = input.LA(1);
+                        int LA48_5 = input.LA(1);
 
                          
-                        int index46_3 = input.index();
+                        int index48_5 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred9_InternalMelange()) ) {s = 10;}
@@ -25044,14 +25078,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index46_3);
+                        input.seek(index48_5);
                         if ( s>=0 ) return s;
                         break;
                     case 4 : 
-                        int LA46_2 = input.LA(1);
+                        int LA48_2 = input.LA(1);
 
                          
-                        int index46_2 = input.index();
+                        int index48_2 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred9_InternalMelange()) ) {s = 10;}
@@ -25059,14 +25093,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index46_2);
+                        input.seek(index48_2);
                         if ( s>=0 ) return s;
                         break;
                     case 5 : 
-                        int LA46_7 = input.LA(1);
+                        int LA48_3 = input.LA(1);
 
                          
-                        int index46_7 = input.index();
+                        int index48_3 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred9_InternalMelange()) ) {s = 10;}
@@ -25074,14 +25108,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index46_7);
+                        input.seek(index48_3);
                         if ( s>=0 ) return s;
                         break;
                     case 6 : 
-                        int LA46_8 = input.LA(1);
+                        int LA48_8 = input.LA(1);
 
                          
-                        int index46_8 = input.index();
+                        int index48_8 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred9_InternalMelange()) ) {s = 10;}
@@ -25089,14 +25123,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index46_8);
+                        input.seek(index48_8);
                         if ( s>=0 ) return s;
                         break;
                     case 7 : 
-                        int LA46_9 = input.LA(1);
+                        int LA48_9 = input.LA(1);
 
                          
-                        int index46_9 = input.index();
+                        int index48_9 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred9_InternalMelange()) ) {s = 10;}
@@ -25104,30 +25138,30 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index46_9);
+                        input.seek(index48_9);
                         if ( s>=0 ) return s;
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 46, _s, input);
+                new NoViableAltException(getDescription(), 48, _s, input);
             error(nvae);
             throw nvae;
         }
     }
-    static final String DFA49_eotS =
+    static final String DFA51_eotS =
         "\13\uffff";
-    static final String DFA49_eofS =
+    static final String DFA51_eofS =
         "\13\uffff";
-    static final String DFA49_minS =
-        "\1\60\2\uffff\1\61\7\uffff";
-    static final String DFA49_maxS =
-        "\1\77\2\uffff\1\74\7\uffff";
-    static final String DFA49_acceptS =
+    static final String DFA51_minS =
+        "\1\57\2\uffff\1\60\7\uffff";
+    static final String DFA51_maxS =
+        "\1\76\2\uffff\1\73\7\uffff";
+    static final String DFA51_acceptS =
         "\1\uffff\1\1\1\2\1\uffff\1\4\1\5\1\7\1\10\1\11\1\3\1\6";
-    static final String DFA49_specialS =
+    static final String DFA51_specialS =
         "\13\uffff}>";
-    static final String[] DFA49_transitionS = {
+    static final String[] DFA51_transitionS = {
             "\1\6\1\3\10\uffff\1\1\1\2\1\4\1\5\1\7\1\10",
             "",
             "",
@@ -25141,53 +25175,53 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             ""
     };
 
-    static final short[] DFA49_eot = DFA.unpackEncodedString(DFA49_eotS);
-    static final short[] DFA49_eof = DFA.unpackEncodedString(DFA49_eofS);
-    static final char[] DFA49_min = DFA.unpackEncodedStringToUnsignedChars(DFA49_minS);
-    static final char[] DFA49_max = DFA.unpackEncodedStringToUnsignedChars(DFA49_maxS);
-    static final short[] DFA49_accept = DFA.unpackEncodedString(DFA49_acceptS);
-    static final short[] DFA49_special = DFA.unpackEncodedString(DFA49_specialS);
-    static final short[][] DFA49_transition;
+    static final short[] DFA51_eot = DFA.unpackEncodedString(DFA51_eotS);
+    static final short[] DFA51_eof = DFA.unpackEncodedString(DFA51_eofS);
+    static final char[] DFA51_min = DFA.unpackEncodedStringToUnsignedChars(DFA51_minS);
+    static final char[] DFA51_max = DFA.unpackEncodedStringToUnsignedChars(DFA51_maxS);
+    static final short[] DFA51_accept = DFA.unpackEncodedString(DFA51_acceptS);
+    static final short[] DFA51_special = DFA.unpackEncodedString(DFA51_specialS);
+    static final short[][] DFA51_transition;
 
     static {
-        int numStates = DFA49_transitionS.length;
-        DFA49_transition = new short[numStates][];
+        int numStates = DFA51_transitionS.length;
+        DFA51_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA49_transition[i] = DFA.unpackEncodedString(DFA49_transitionS[i]);
+            DFA51_transition[i] = DFA.unpackEncodedString(DFA51_transitionS[i]);
         }
     }
 
-    class DFA49 extends DFA {
+    class DFA51 extends DFA {
 
-        public DFA49(BaseRecognizer recognizer) {
+        public DFA51(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 49;
-            this.eot = DFA49_eot;
-            this.eof = DFA49_eof;
-            this.min = DFA49_min;
-            this.max = DFA49_max;
-            this.accept = DFA49_accept;
-            this.special = DFA49_special;
-            this.transition = DFA49_transition;
+            this.decisionNumber = 51;
+            this.eot = DFA51_eot;
+            this.eof = DFA51_eof;
+            this.min = DFA51_min;
+            this.max = DFA51_max;
+            this.accept = DFA51_accept;
+            this.special = DFA51_special;
+            this.transition = DFA51_transition;
         }
         public String getDescription() {
             return "2563:1: (kw= '->' | kw= '..<' | (kw= '>' kw= '..' ) | kw= '..' | kw= '=>' | (kw= '>' ( ( ( ( '>' '>' ) )=> (kw= '>' kw= '>' ) ) | kw= '>' ) ) | (kw= '<' ( ( ( ( '<' '<' ) )=> (kw= '<' kw= '<' ) ) | kw= '<' | kw= '=>' ) ) | kw= '<>' | kw= '?:' )";
         }
     }
-    static final String DFA65_eotS =
+    static final String DFA67_eotS =
         "\116\uffff";
-    static final String DFA65_eofS =
+    static final String DFA67_eofS =
         "\1\2\115\uffff";
-    static final String DFA65_minS =
+    static final String DFA67_minS =
         "\1\4\1\0\114\uffff";
-    static final String DFA65_maxS =
+    static final String DFA67_maxS =
         "\1\151\1\0\114\uffff";
-    static final String DFA65_acceptS =
+    static final String DFA67_acceptS =
         "\2\uffff\1\2\112\uffff\1\1";
-    static final String DFA65_specialS =
+    static final String DFA67_specialS =
         "\1\uffff\1\0\114\uffff}>";
-    static final String[] DFA65_transitionS = {
-            "\5\2\7\uffff\1\2\2\uffff\1\2\4\uffff\1\2\4\uffff\1\1\1\2\2\uffff\1\2\5\uffff\2\2\2\uffff\43\2\1\uffff\33\2",
+    static final String[] DFA67_transitionS = {
+            "\5\2\7\uffff\1\2\2\uffff\1\2\4\uffff\1\2\4\uffff\1\1\1\2\7\uffff\2\2\2\uffff\43\2\1\uffff\34\2",
             "\1\uffff",
             "",
             "",
@@ -25267,34 +25301,34 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             ""
     };
 
-    static final short[] DFA65_eot = DFA.unpackEncodedString(DFA65_eotS);
-    static final short[] DFA65_eof = DFA.unpackEncodedString(DFA65_eofS);
-    static final char[] DFA65_min = DFA.unpackEncodedStringToUnsignedChars(DFA65_minS);
-    static final char[] DFA65_max = DFA.unpackEncodedStringToUnsignedChars(DFA65_maxS);
-    static final short[] DFA65_accept = DFA.unpackEncodedString(DFA65_acceptS);
-    static final short[] DFA65_special = DFA.unpackEncodedString(DFA65_specialS);
-    static final short[][] DFA65_transition;
+    static final short[] DFA67_eot = DFA.unpackEncodedString(DFA67_eotS);
+    static final short[] DFA67_eof = DFA.unpackEncodedString(DFA67_eofS);
+    static final char[] DFA67_min = DFA.unpackEncodedStringToUnsignedChars(DFA67_minS);
+    static final char[] DFA67_max = DFA.unpackEncodedStringToUnsignedChars(DFA67_maxS);
+    static final short[] DFA67_accept = DFA.unpackEncodedString(DFA67_acceptS);
+    static final short[] DFA67_special = DFA.unpackEncodedString(DFA67_specialS);
+    static final short[][] DFA67_transition;
 
     static {
-        int numStates = DFA65_transitionS.length;
-        DFA65_transition = new short[numStates][];
+        int numStates = DFA67_transitionS.length;
+        DFA67_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA65_transition[i] = DFA.unpackEncodedString(DFA65_transitionS[i]);
+            DFA67_transition[i] = DFA.unpackEncodedString(DFA67_transitionS[i]);
         }
     }
 
-    class DFA65 extends DFA {
+    class DFA67 extends DFA {
 
-        public DFA65(BaseRecognizer recognizer) {
+        public DFA67(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 65;
-            this.eot = DFA65_eot;
-            this.eof = DFA65_eof;
-            this.min = DFA65_min;
-            this.max = DFA65_max;
-            this.accept = DFA65_accept;
-            this.special = DFA65_special;
-            this.transition = DFA65_transition;
+            this.decisionNumber = 67;
+            this.eot = DFA67_eot;
+            this.eof = DFA67_eof;
+            this.min = DFA67_min;
+            this.max = DFA67_max;
+            this.accept = DFA67_accept;
+            this.special = DFA67_special;
+            this.transition = DFA67_transition;
         }
         public String getDescription() {
             return "3407:2: ( ( ( ( '(' ) )=> (lv_explicitOperationCall_17_0= '(' ) ) ( ( ( ( () ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) ) ) )=> (lv_memberCallArguments_18_0= ruleXShortClosure ) ) | ( ( (lv_memberCallArguments_19_0= ruleXExpression ) ) (otherlv_20= ',' ( (lv_memberCallArguments_21_0= ruleXExpression ) ) )* ) )? otherlv_22= ')' )?";
@@ -25304,10 +25338,10 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA65_1 = input.LA(1);
+                        int LA67_1 = input.LA(1);
 
                          
-                        int index65_1 = input.index();
+                        int index67_1 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred18_InternalMelange()) ) {s = 77;}
@@ -25315,223 +25349,33 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index65_1);
+                        input.seek(index67_1);
                         if ( s>=0 ) return s;
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 65, _s, input);
-            error(nvae);
-            throw nvae;
-        }
-    }
-    static final String DFA64_eotS =
-        "\44\uffff";
-    static final String DFA64_eofS =
-        "\44\uffff";
-    static final String DFA64_minS =
-        "\1\4\2\0\41\uffff";
-    static final String DFA64_maxS =
-        "\1\150\2\0\41\uffff";
-    static final String DFA64_acceptS =
-        "\3\uffff\2\1\1\2\35\uffff\1\3";
-    static final String DFA64_specialS =
-        "\1\0\1\1\1\2\41\uffff}>";
-    static final String[] DFA64_transitionS = {
-            "\4\5\1\1\12\uffff\1\5\11\uffff\1\2\1\43\10\uffff\1\5\10\uffff\1\5\14\uffff\1\3\2\uffff\2\5\4\uffff\1\5\6\uffff\1\5\1\4\1\uffff\1\5\1\uffff\1\5\2\uffff\3\5\2\uffff\15\5\1\uffff\1\5",
-            "\1\uffff",
-            "\1\uffff",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-    };
-
-    static final short[] DFA64_eot = DFA.unpackEncodedString(DFA64_eotS);
-    static final short[] DFA64_eof = DFA.unpackEncodedString(DFA64_eofS);
-    static final char[] DFA64_min = DFA.unpackEncodedStringToUnsignedChars(DFA64_minS);
-    static final char[] DFA64_max = DFA.unpackEncodedStringToUnsignedChars(DFA64_maxS);
-    static final short[] DFA64_accept = DFA.unpackEncodedString(DFA64_acceptS);
-    static final short[] DFA64_special = DFA.unpackEncodedString(DFA64_specialS);
-    static final short[][] DFA64_transition;
-
-    static {
-        int numStates = DFA64_transitionS.length;
-        DFA64_transition = new short[numStates][];
-        for (int i=0; i<numStates; i++) {
-            DFA64_transition[i] = DFA.unpackEncodedString(DFA64_transitionS[i]);
-        }
-    }
-
-    class DFA64 extends DFA {
-
-        public DFA64(BaseRecognizer recognizer) {
-            this.recognizer = recognizer;
-            this.decisionNumber = 64;
-            this.eot = DFA64_eot;
-            this.eof = DFA64_eof;
-            this.min = DFA64_min;
-            this.max = DFA64_max;
-            this.accept = DFA64_accept;
-            this.special = DFA64_special;
-            this.transition = DFA64_transition;
-        }
-        public String getDescription() {
-            return "3428:2: ( ( ( ( () ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) ) ) )=> (lv_memberCallArguments_18_0= ruleXShortClosure ) ) | ( ( (lv_memberCallArguments_19_0= ruleXExpression ) ) (otherlv_20= ',' ( (lv_memberCallArguments_21_0= ruleXExpression ) ) )* ) )?";
-        }
-        public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
-            TokenStream input = (TokenStream)_input;
-        	int _s = s;
-            switch ( s ) {
-                    case 0 : 
-                        int LA64_0 = input.LA(1);
-
-                         
-                        int index64_0 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (LA64_0==RULE_ID) ) {s = 1;}
-
-                        else if ( (LA64_0==29) ) {s = 2;}
-
-                        else if ( (LA64_0==61) && (synpred19_InternalMelange())) {s = 3;}
-
-                        else if ( (LA64_0==78) && (synpred19_InternalMelange())) {s = 4;}
-
-                        else if ( ((LA64_0>=RULE_STRING && LA64_0<=RULE_DECIMAL)||LA64_0==19||LA64_0==39||LA64_0==48||(LA64_0>=64 && LA64_0<=65)||LA64_0==70||LA64_0==77||LA64_0==80||LA64_0==82||(LA64_0>=85 && LA64_0<=87)||(LA64_0>=90 && LA64_0<=102)||LA64_0==104) ) {s = 5;}
-
-                        else if ( (LA64_0==30) ) {s = 35;}
-
-                         
-                        input.seek(index64_0);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
-                        int LA64_1 = input.LA(1);
-
-                         
-                        int index64_1 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred19_InternalMelange()) ) {s = 4;}
-
-                        else if ( (true) ) {s = 5;}
-
-                         
-                        input.seek(index64_1);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
-                        int LA64_2 = input.LA(1);
-
-                         
-                        int index64_2 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred19_InternalMelange()) ) {s = 4;}
-
-                        else if ( (true) ) {s = 5;}
-
-                         
-                        input.seek(index64_2);
-                        if ( s>=0 ) return s;
-                        break;
-            }
-            if (state.backtracking>0) {state.failed=true; return -1;}
-            NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 64, _s, input);
+                new NoViableAltException(getDescription(), 67, _s, input);
             error(nvae);
             throw nvae;
         }
     }
     static final String DFA66_eotS =
-        "\116\uffff";
+        "\44\uffff";
     static final String DFA66_eofS =
-        "\1\2\115\uffff";
+        "\44\uffff";
     static final String DFA66_minS =
-        "\1\4\1\0\114\uffff";
+        "\1\4\2\0\41\uffff";
     static final String DFA66_maxS =
-        "\1\151\1\0\114\uffff";
+        "\1\150\2\0\41\uffff";
     static final String DFA66_acceptS =
-        "\2\uffff\1\2\112\uffff\1\1";
+        "\3\uffff\2\1\1\2\35\uffff\1\3";
     static final String DFA66_specialS =
-        "\1\uffff\1\0\114\uffff}>";
+        "\1\0\1\1\1\2\41\uffff}>";
     static final String[] DFA66_transitionS = {
-            "\5\2\7\uffff\1\2\2\uffff\1\2\4\uffff\1\2\4\uffff\2\2\2\uffff\1\2\5\uffff\1\1\1\2\2\uffff\43\2\1\uffff\33\2",
+            "\4\5\1\1\12\uffff\1\5\11\uffff\1\2\1\43\7\uffff\1\5\10\uffff\1\5\14\uffff\1\3\2\uffff\2\5\4\uffff\1\5\6\uffff\1\5\1\4\1\uffff\1\5\1\uffff\1\5\3\uffff\3\5\2\uffff\15\5\1\uffff\1\5",
             "\1\uffff",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
+            "\1\uffff",
             "",
             "",
             "",
@@ -25597,25 +25441,63 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             this.transition = DFA66_transition;
         }
         public String getDescription() {
-            return "3507:3: ( ( ( () '[' ) )=> (lv_memberCallArguments_23_0= ruleXClosure ) )?";
+            return "3428:2: ( ( ( ( () ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) ) ) )=> (lv_memberCallArguments_18_0= ruleXShortClosure ) ) | ( ( (lv_memberCallArguments_19_0= ruleXExpression ) ) (otherlv_20= ',' ( (lv_memberCallArguments_21_0= ruleXExpression ) ) )* ) )?";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
+                        int LA66_0 = input.LA(1);
+
+                         
+                        int index66_0 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (LA66_0==RULE_ID) ) {s = 1;}
+
+                        else if ( (LA66_0==29) ) {s = 2;}
+
+                        else if ( (LA66_0==60) && (synpred19_InternalMelange())) {s = 3;}
+
+                        else if ( (LA66_0==77) && (synpred19_InternalMelange())) {s = 4;}
+
+                        else if ( ((LA66_0>=RULE_STRING && LA66_0<=RULE_DECIMAL)||LA66_0==19||LA66_0==38||LA66_0==47||(LA66_0>=63 && LA66_0<=64)||LA66_0==69||LA66_0==76||LA66_0==79||LA66_0==81||(LA66_0>=85 && LA66_0<=87)||(LA66_0>=90 && LA66_0<=102)||LA66_0==104) ) {s = 5;}
+
+                        else if ( (LA66_0==30) ) {s = 35;}
+
+                         
+                        input.seek(index66_0);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 1 : 
                         int LA66_1 = input.LA(1);
 
                          
                         int index66_1 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred20_InternalMelange()) ) {s = 77;}
+                        if ( (synpred19_InternalMelange()) ) {s = 4;}
 
-                        else if ( (true) ) {s = 2;}
+                        else if ( (true) ) {s = 5;}
 
                          
                         input.seek(index66_1);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
+                        int LA66_2 = input.LA(1);
+
+                         
+                        int index66_2 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred19_InternalMelange()) ) {s = 4;}
+
+                        else if ( (true) ) {s = 5;}
+
+                         
+                        input.seek(index66_2);
                         if ( s>=0 ) return s;
                         break;
             }
@@ -25627,42 +25509,88 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         }
     }
     static final String DFA68_eotS =
-        "\40\uffff";
+        "\116\uffff";
     static final String DFA68_eofS =
-        "\40\uffff";
+        "\1\2\115\uffff";
     static final String DFA68_minS =
-        "\1\4\26\uffff\1\0\10\uffff";
+        "\1\4\1\0\114\uffff";
     static final String DFA68_maxS =
-        "\1\150\26\uffff\1\0\10\uffff";
+        "\1\151\1\0\114\uffff";
     static final String DFA68_acceptS =
-        "\1\uffff\1\1\1\2\1\3\1\4\1\5\6\uffff\1\6\11\uffff\1\7\1\uffff\1\12\1\13\1\14\1\15\1\16\1\17\1\10\1\11";
+        "\2\uffff\1\2\112\uffff\1\1";
     static final String DFA68_specialS =
-        "\1\0\26\uffff\1\1\10\uffff}>";
+        "\1\uffff\1\0\114\uffff}>";
     static final String[] DFA68_transitionS = {
-            "\4\14\1\5\12\uffff\1\2\11\uffff\1\35\11\uffff\1\14\10\uffff\1\5\34\uffff\1\14\2\uffff\1\26\1\uffff\1\3\2\uffff\1\27\1\30\1\31\2\uffff\5\5\1\1\4\14\1\32\1\33\1\34\1\uffff\1\4",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
+            "\5\2\7\uffff\1\2\2\uffff\1\2\4\uffff\1\2\4\uffff\2\2\7\uffff\1\1\1\2\2\uffff\43\2\1\uffff\34\2",
             "\1\uffff",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "",
             "",
             "",
@@ -25703,64 +25631,25 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             this.transition = DFA68_transition;
         }
         public String getDescription() {
-            return "3548:1: (this_XConstructorCall_0= ruleXConstructorCall | this_XBlockExpression_1= ruleXBlockExpression | this_XSwitchExpression_2= ruleXSwitchExpression | ( ( ( () 'synchronized' '(' ) )=>this_XSynchronizedExpression_3= ruleXSynchronizedExpression ) | this_XFeatureCall_4= ruleXFeatureCall | this_XLiteral_5= ruleXLiteral | this_XIfExpression_6= ruleXIfExpression | ( ( ( () 'for' '(' ( ( ruleJvmFormalParameter ) ) ':' ) )=>this_XForLoopExpression_7= ruleXForLoopExpression ) | this_XBasicForLoopExpression_8= ruleXBasicForLoopExpression | this_XWhileExpression_9= ruleXWhileExpression | this_XDoWhileExpression_10= ruleXDoWhileExpression | this_XThrowExpression_11= ruleXThrowExpression | this_XReturnExpression_12= ruleXReturnExpression | this_XTryCatchFinallyExpression_13= ruleXTryCatchFinallyExpression | this_XParenthesizedExpression_14= ruleXParenthesizedExpression )";
+            return "3507:3: ( ( ( () '[' ) )=> (lv_memberCallArguments_23_0= ruleXClosure ) )?";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA68_0 = input.LA(1);
+                        int LA68_1 = input.LA(1);
 
                          
-                        int index68_0 = input.index();
+                        int index68_1 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (LA68_0==95) ) {s = 1;}
+                        if ( (synpred20_InternalMelange()) ) {s = 77;}
 
-                        else if ( (LA68_0==19) ) {s = 2;}
-
-                        else if ( (LA68_0==82) ) {s = 3;}
-
-                        else if ( (LA68_0==104) && (synpred21_InternalMelange())) {s = 4;}
-
-                        else if ( (LA68_0==RULE_ID||LA68_0==48||(LA68_0>=90 && LA68_0<=94)) ) {s = 5;}
-
-                        else if ( ((LA68_0>=RULE_STRING && LA68_0<=RULE_DECIMAL)||LA68_0==39||LA68_0==77||(LA68_0>=96 && LA68_0<=99)) ) {s = 12;}
-
-                        else if ( (LA68_0==80) ) {s = 22;}
-
-                        else if ( (LA68_0==85) ) {s = 23;}
-
-                        else if ( (LA68_0==86) ) {s = 24;}
-
-                        else if ( (LA68_0==87) ) {s = 25;}
-
-                        else if ( (LA68_0==100) ) {s = 26;}
-
-                        else if ( (LA68_0==101) ) {s = 27;}
-
-                        else if ( (LA68_0==102) ) {s = 28;}
-
-                        else if ( (LA68_0==29) ) {s = 29;}
+                        else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index68_0);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
-                        int LA68_23 = input.LA(1);
-
-                         
-                        int index68_23 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred22_InternalMelange()) ) {s = 30;}
-
-                        else if ( (true) ) {s = 31;}
-
-                         
-                        input.seek(index68_23);
+                        input.seek(index68_1);
                         if ( s>=0 ) return s;
                         break;
             }
@@ -25771,20 +25660,165 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             throw nvae;
         }
     }
-    static final String DFA77_eotS =
+    static final String DFA70_eotS =
+        "\40\uffff";
+    static final String DFA70_eofS =
+        "\40\uffff";
+    static final String DFA70_minS =
+        "\1\4\26\uffff\1\0\10\uffff";
+    static final String DFA70_maxS =
+        "\1\150\26\uffff\1\0\10\uffff";
+    static final String DFA70_acceptS =
+        "\1\uffff\1\1\1\2\1\3\1\4\1\5\6\uffff\1\6\11\uffff\1\7\1\uffff\1\12\1\13\1\14\1\15\1\16\1\17\1\10\1\11";
+    static final String DFA70_specialS =
+        "\1\0\26\uffff\1\1\10\uffff}>";
+    static final String[] DFA70_transitionS = {
+            "\4\14\1\5\12\uffff\1\2\11\uffff\1\35\10\uffff\1\14\10\uffff\1\5\34\uffff\1\14\2\uffff\1\26\1\uffff\1\3\3\uffff\1\27\1\30\1\31\2\uffff\5\5\1\1\4\14\1\32\1\33\1\34\1\uffff\1\4",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\uffff",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+    };
+
+    static final short[] DFA70_eot = DFA.unpackEncodedString(DFA70_eotS);
+    static final short[] DFA70_eof = DFA.unpackEncodedString(DFA70_eofS);
+    static final char[] DFA70_min = DFA.unpackEncodedStringToUnsignedChars(DFA70_minS);
+    static final char[] DFA70_max = DFA.unpackEncodedStringToUnsignedChars(DFA70_maxS);
+    static final short[] DFA70_accept = DFA.unpackEncodedString(DFA70_acceptS);
+    static final short[] DFA70_special = DFA.unpackEncodedString(DFA70_specialS);
+    static final short[][] DFA70_transition;
+
+    static {
+        int numStates = DFA70_transitionS.length;
+        DFA70_transition = new short[numStates][];
+        for (int i=0; i<numStates; i++) {
+            DFA70_transition[i] = DFA.unpackEncodedString(DFA70_transitionS[i]);
+        }
+    }
+
+    class DFA70 extends DFA {
+
+        public DFA70(BaseRecognizer recognizer) {
+            this.recognizer = recognizer;
+            this.decisionNumber = 70;
+            this.eot = DFA70_eot;
+            this.eof = DFA70_eof;
+            this.min = DFA70_min;
+            this.max = DFA70_max;
+            this.accept = DFA70_accept;
+            this.special = DFA70_special;
+            this.transition = DFA70_transition;
+        }
+        public String getDescription() {
+            return "3548:1: (this_XConstructorCall_0= ruleXConstructorCall | this_XBlockExpression_1= ruleXBlockExpression | this_XSwitchExpression_2= ruleXSwitchExpression | ( ( ( () 'synchronized' '(' ) )=>this_XSynchronizedExpression_3= ruleXSynchronizedExpression ) | this_XFeatureCall_4= ruleXFeatureCall | this_XLiteral_5= ruleXLiteral | this_XIfExpression_6= ruleXIfExpression | ( ( ( () 'for' '(' ( ( ruleJvmFormalParameter ) ) ':' ) )=>this_XForLoopExpression_7= ruleXForLoopExpression ) | this_XBasicForLoopExpression_8= ruleXBasicForLoopExpression | this_XWhileExpression_9= ruleXWhileExpression | this_XDoWhileExpression_10= ruleXDoWhileExpression | this_XThrowExpression_11= ruleXThrowExpression | this_XReturnExpression_12= ruleXReturnExpression | this_XTryCatchFinallyExpression_13= ruleXTryCatchFinallyExpression | this_XParenthesizedExpression_14= ruleXParenthesizedExpression )";
+        }
+        public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
+            TokenStream input = (TokenStream)_input;
+        	int _s = s;
+            switch ( s ) {
+                    case 0 : 
+                        int LA70_0 = input.LA(1);
+
+                         
+                        int index70_0 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (LA70_0==95) ) {s = 1;}
+
+                        else if ( (LA70_0==19) ) {s = 2;}
+
+                        else if ( (LA70_0==81) ) {s = 3;}
+
+                        else if ( (LA70_0==104) && (synpred21_InternalMelange())) {s = 4;}
+
+                        else if ( (LA70_0==RULE_ID||LA70_0==47||(LA70_0>=90 && LA70_0<=94)) ) {s = 5;}
+
+                        else if ( ((LA70_0>=RULE_STRING && LA70_0<=RULE_DECIMAL)||LA70_0==38||LA70_0==76||(LA70_0>=96 && LA70_0<=99)) ) {s = 12;}
+
+                        else if ( (LA70_0==79) ) {s = 22;}
+
+                        else if ( (LA70_0==85) ) {s = 23;}
+
+                        else if ( (LA70_0==86) ) {s = 24;}
+
+                        else if ( (LA70_0==87) ) {s = 25;}
+
+                        else if ( (LA70_0==100) ) {s = 26;}
+
+                        else if ( (LA70_0==101) ) {s = 27;}
+
+                        else if ( (LA70_0==102) ) {s = 28;}
+
+                        else if ( (LA70_0==29) ) {s = 29;}
+
+                         
+                        input.seek(index70_0);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 1 : 
+                        int LA70_23 = input.LA(1);
+
+                         
+                        int index70_23 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred22_InternalMelange()) ) {s = 30;}
+
+                        else if ( (true) ) {s = 31;}
+
+                         
+                        input.seek(index70_23);
+                        if ( s>=0 ) return s;
+                        break;
+            }
+            if (state.backtracking>0) {state.failed=true; return -1;}
+            NoViableAltException nvae =
+                new NoViableAltException(getDescription(), 70, _s, input);
+            error(nvae);
+            throw nvae;
+        }
+    }
+    static final String DFA79_eotS =
         "\46\uffff";
-    static final String DFA77_eofS =
+    static final String DFA79_eofS =
         "\46\uffff";
-    static final String DFA77_minS =
+    static final String DFA79_minS =
         "\1\4\2\0\43\uffff";
-    static final String DFA77_maxS =
+    static final String DFA79_maxS =
         "\1\150\2\0\43\uffff";
-    static final String DFA77_acceptS =
+    static final String DFA79_acceptS =
         "\3\uffff\2\1\1\2\40\uffff";
-    static final String DFA77_specialS =
+    static final String DFA79_specialS =
         "\1\0\1\1\1\2\43\uffff}>";
-    static final String[] DFA77_transitionS = {
-            "\4\5\1\1\12\uffff\1\5\11\uffff\1\2\11\uffff\2\5\7\uffff\1\5\14\uffff\1\3\2\uffff\2\5\4\uffff\1\5\6\uffff\1\5\1\4\1\uffff\1\5\1\uffff\1\5\2\uffff\22\5\1\uffff\1\5",
+    static final String[] DFA79_transitionS = {
+            "\4\5\1\1\12\uffff\1\5\11\uffff\1\2\10\uffff\2\5\7\uffff\1\5\14\uffff\1\3\2\uffff\2\5\4\uffff\1\5\6\uffff\1\5\1\4\1\uffff\1\5\1\uffff\1\5\3\uffff\22\5\1\uffff\1\5",
             "\1\uffff",
             "\1\uffff",
             "",
@@ -25824,34 +25858,34 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             ""
     };
 
-    static final short[] DFA77_eot = DFA.unpackEncodedString(DFA77_eotS);
-    static final short[] DFA77_eof = DFA.unpackEncodedString(DFA77_eofS);
-    static final char[] DFA77_min = DFA.unpackEncodedStringToUnsignedChars(DFA77_minS);
-    static final char[] DFA77_max = DFA.unpackEncodedStringToUnsignedChars(DFA77_maxS);
-    static final short[] DFA77_accept = DFA.unpackEncodedString(DFA77_acceptS);
-    static final short[] DFA77_special = DFA.unpackEncodedString(DFA77_specialS);
-    static final short[][] DFA77_transition;
+    static final short[] DFA79_eot = DFA.unpackEncodedString(DFA79_eotS);
+    static final short[] DFA79_eof = DFA.unpackEncodedString(DFA79_eofS);
+    static final char[] DFA79_min = DFA.unpackEncodedStringToUnsignedChars(DFA79_minS);
+    static final char[] DFA79_max = DFA.unpackEncodedStringToUnsignedChars(DFA79_maxS);
+    static final short[] DFA79_accept = DFA.unpackEncodedString(DFA79_acceptS);
+    static final short[] DFA79_special = DFA.unpackEncodedString(DFA79_specialS);
+    static final short[][] DFA79_transition;
 
     static {
-        int numStates = DFA77_transitionS.length;
-        DFA77_transition = new short[numStates][];
+        int numStates = DFA79_transitionS.length;
+        DFA79_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA77_transition[i] = DFA.unpackEncodedString(DFA77_transitionS[i]);
+            DFA79_transition[i] = DFA.unpackEncodedString(DFA79_transitionS[i]);
         }
     }
 
-    class DFA77 extends DFA {
+    class DFA79 extends DFA {
 
-        public DFA77(BaseRecognizer recognizer) {
+        public DFA79(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 77;
-            this.eot = DFA77_eot;
-            this.eof = DFA77_eof;
-            this.min = DFA77_min;
-            this.max = DFA77_max;
-            this.accept = DFA77_accept;
-            this.special = DFA77_special;
-            this.transition = DFA77_transition;
+            this.decisionNumber = 79;
+            this.eot = DFA79_eot;
+            this.eof = DFA79_eof;
+            this.min = DFA79_min;
+            this.max = DFA79_max;
+            this.accept = DFA79_accept;
+            this.special = DFA79_special;
+            this.transition = DFA79_transition;
         }
         public String getDescription() {
             return "4031:3: ( ( ( ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) ) ) )=> ( ( ( (lv_declaredFormalParameters_2_0= ruleJvmFormalParameter ) ) (otherlv_3= ',' ( (lv_declaredFormalParameters_4_0= ruleJvmFormalParameter ) ) )* )? ( (lv_explicitSyntax_5_0= '|' ) ) ) )?";
@@ -25861,31 +25895,31 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA77_0 = input.LA(1);
+                        int LA79_0 = input.LA(1);
 
                          
-                        int index77_0 = input.index();
+                        int index79_0 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (LA77_0==RULE_ID) ) {s = 1;}
+                        if ( (LA79_0==RULE_ID) ) {s = 1;}
 
-                        else if ( (LA77_0==29) ) {s = 2;}
+                        else if ( (LA79_0==29) ) {s = 2;}
 
-                        else if ( (LA77_0==61) && (synpred25_InternalMelange())) {s = 3;}
+                        else if ( (LA79_0==60) && (synpred25_InternalMelange())) {s = 3;}
 
-                        else if ( (LA77_0==78) && (synpred25_InternalMelange())) {s = 4;}
+                        else if ( (LA79_0==77) && (synpred25_InternalMelange())) {s = 4;}
 
-                        else if ( ((LA77_0>=RULE_STRING && LA77_0<=RULE_DECIMAL)||LA77_0==19||(LA77_0>=39 && LA77_0<=40)||LA77_0==48||(LA77_0>=64 && LA77_0<=65)||LA77_0==70||LA77_0==77||LA77_0==80||LA77_0==82||(LA77_0>=85 && LA77_0<=102)||LA77_0==104) ) {s = 5;}
+                        else if ( ((LA79_0>=RULE_STRING && LA79_0<=RULE_DECIMAL)||LA79_0==19||(LA79_0>=38 && LA79_0<=39)||LA79_0==47||(LA79_0>=63 && LA79_0<=64)||LA79_0==69||LA79_0==76||LA79_0==79||LA79_0==81||(LA79_0>=85 && LA79_0<=102)||LA79_0==104) ) {s = 5;}
 
                          
-                        input.seek(index77_0);
+                        input.seek(index79_0);
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA77_1 = input.LA(1);
+                        int LA79_1 = input.LA(1);
 
                          
-                        int index77_1 = input.index();
+                        int index79_1 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred25_InternalMelange()) ) {s = 4;}
@@ -25893,14 +25927,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 5;}
 
                          
-                        input.seek(index77_1);
+                        input.seek(index79_1);
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA77_2 = input.LA(1);
+                        int LA79_2 = input.LA(1);
 
                          
-                        int index77_2 = input.index();
+                        int index79_2 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred25_InternalMelange()) ) {s = 4;}
@@ -25908,31 +25942,31 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 5;}
 
                          
-                        input.seek(index77_2);
+                        input.seek(index79_2);
                         if ( s>=0 ) return s;
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 77, _s, input);
+                new NoViableAltException(getDescription(), 79, _s, input);
             error(nvae);
             throw nvae;
         }
     }
-    static final String DFA84_eotS =
+    static final String DFA86_eotS =
         "\43\uffff";
-    static final String DFA84_eofS =
+    static final String DFA86_eofS =
         "\43\uffff";
-    static final String DFA84_minS =
+    static final String DFA86_minS =
         "\1\4\1\0\41\uffff";
-    static final String DFA84_maxS =
+    static final String DFA86_maxS =
         "\1\150\1\0\41\uffff";
-    static final String DFA84_acceptS =
+    static final String DFA86_acceptS =
         "\2\uffff\1\2\37\uffff\1\1";
-    static final String DFA84_specialS =
+    static final String DFA86_specialS =
         "\1\uffff\1\0\41\uffff}>";
-    static final String[] DFA84_transitionS = {
-            "\5\2\12\uffff\1\2\11\uffff\1\1\11\uffff\1\2\10\uffff\1\2\14\uffff\1\2\2\uffff\2\2\4\uffff\1\2\6\uffff\1\2\2\uffff\1\2\1\uffff\1\2\2\uffff\3\2\2\uffff\15\2\1\uffff\1\2",
+    static final String[] DFA86_transitionS = {
+            "\5\2\12\uffff\1\2\11\uffff\1\1\10\uffff\1\2\10\uffff\1\2\14\uffff\1\2\2\uffff\2\2\4\uffff\1\2\6\uffff\1\2\2\uffff\1\2\1\uffff\1\2\3\uffff\3\2\2\uffff\15\2\1\uffff\1\2",
             "\1\uffff",
             "",
             "",
@@ -25969,34 +26003,34 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             ""
     };
 
-    static final short[] DFA84_eot = DFA.unpackEncodedString(DFA84_eotS);
-    static final short[] DFA84_eof = DFA.unpackEncodedString(DFA84_eofS);
-    static final char[] DFA84_min = DFA.unpackEncodedStringToUnsignedChars(DFA84_minS);
-    static final char[] DFA84_max = DFA.unpackEncodedStringToUnsignedChars(DFA84_maxS);
-    static final short[] DFA84_accept = DFA.unpackEncodedString(DFA84_acceptS);
-    static final short[] DFA84_special = DFA.unpackEncodedString(DFA84_specialS);
-    static final short[][] DFA84_transition;
+    static final short[] DFA86_eot = DFA.unpackEncodedString(DFA86_eotS);
+    static final short[] DFA86_eof = DFA.unpackEncodedString(DFA86_eofS);
+    static final char[] DFA86_min = DFA.unpackEncodedStringToUnsignedChars(DFA86_minS);
+    static final char[] DFA86_max = DFA.unpackEncodedStringToUnsignedChars(DFA86_maxS);
+    static final short[] DFA86_accept = DFA.unpackEncodedString(DFA86_acceptS);
+    static final short[] DFA86_special = DFA.unpackEncodedString(DFA86_specialS);
+    static final short[][] DFA86_transition;
 
     static {
-        int numStates = DFA84_transitionS.length;
-        DFA84_transition = new short[numStates][];
+        int numStates = DFA86_transitionS.length;
+        DFA86_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA84_transition[i] = DFA.unpackEncodedString(DFA84_transitionS[i]);
+            DFA86_transition[i] = DFA.unpackEncodedString(DFA86_transitionS[i]);
         }
     }
 
-    class DFA84 extends DFA {
+    class DFA86 extends DFA {
 
-        public DFA84(BaseRecognizer recognizer) {
+        public DFA86(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 84;
-            this.eot = DFA84_eot;
-            this.eof = DFA84_eof;
-            this.min = DFA84_min;
-            this.max = DFA84_max;
-            this.accept = DFA84_accept;
-            this.special = DFA84_special;
-            this.transition = DFA84_transition;
+            this.decisionNumber = 86;
+            this.eot = DFA86_eot;
+            this.eof = DFA86_eof;
+            this.min = DFA86_min;
+            this.max = DFA86_max;
+            this.accept = DFA86_accept;
+            this.special = DFA86_special;
+            this.transition = DFA86_transition;
         }
         public String getDescription() {
             return "4455:1: ( ( ( ( ( '(' ( ( ruleJvmFormalParameter ) ) ':' ) )=> (otherlv_2= '(' ( (lv_declaredParam_3_0= ruleJvmFormalParameter ) ) otherlv_4= ':' ) ) ( (lv_switch_5_0= ruleXExpression ) ) otherlv_6= ')' ) | ( ( ( ( ( ( ruleJvmFormalParameter ) ) ':' ) )=> ( ( (lv_declaredParam_7_0= ruleJvmFormalParameter ) ) otherlv_8= ':' ) )? ( (lv_switch_9_0= ruleXExpression ) ) ) )";
@@ -26006,10 +26040,10 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA84_1 = input.LA(1);
+                        int LA86_1 = input.LA(1);
 
                          
-                        int index84_1 = input.index();
+                        int index86_1 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred28_InternalMelange()) ) {s = 34;}
@@ -26017,31 +26051,31 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index84_1);
+                        input.seek(index86_1);
                         if ( s>=0 ) return s;
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 84, _s, input);
+                new NoViableAltException(getDescription(), 86, _s, input);
             error(nvae);
             throw nvae;
         }
     }
-    static final String DFA83_eotS =
+    static final String DFA85_eotS =
         "\42\uffff";
-    static final String DFA83_eofS =
+    static final String DFA85_eofS =
         "\42\uffff";
-    static final String DFA83_minS =
+    static final String DFA85_minS =
         "\1\4\2\0\37\uffff";
-    static final String DFA83_maxS =
+    static final String DFA85_maxS =
         "\1\150\2\0\37\uffff";
-    static final String DFA83_acceptS =
+    static final String DFA85_acceptS =
         "\3\uffff\1\1\1\2\35\uffff";
-    static final String DFA83_specialS =
+    static final String DFA85_specialS =
         "\1\0\1\1\1\2\37\uffff}>";
-    static final String[] DFA83_transitionS = {
-            "\4\4\1\1\12\uffff\1\4\11\uffff\1\2\11\uffff\1\4\10\uffff\1\4\14\uffff\1\3\2\uffff\2\4\4\uffff\1\4\6\uffff\1\4\2\uffff\1\4\1\uffff\1\4\2\uffff\3\4\2\uffff\15\4\1\uffff\1\4",
+    static final String[] DFA85_transitionS = {
+            "\4\4\1\1\12\uffff\1\4\11\uffff\1\2\10\uffff\1\4\10\uffff\1\4\14\uffff\1\3\2\uffff\2\4\4\uffff\1\4\6\uffff\1\4\2\uffff\1\4\1\uffff\1\4\3\uffff\3\4\2\uffff\15\4\1\uffff\1\4",
             "\1\uffff",
             "\1\uffff",
             "",
@@ -26077,34 +26111,34 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             ""
     };
 
-    static final short[] DFA83_eot = DFA.unpackEncodedString(DFA83_eotS);
-    static final short[] DFA83_eof = DFA.unpackEncodedString(DFA83_eofS);
-    static final char[] DFA83_min = DFA.unpackEncodedStringToUnsignedChars(DFA83_minS);
-    static final char[] DFA83_max = DFA.unpackEncodedStringToUnsignedChars(DFA83_maxS);
-    static final short[] DFA83_accept = DFA.unpackEncodedString(DFA83_acceptS);
-    static final short[] DFA83_special = DFA.unpackEncodedString(DFA83_specialS);
-    static final short[][] DFA83_transition;
+    static final short[] DFA85_eot = DFA.unpackEncodedString(DFA85_eotS);
+    static final short[] DFA85_eof = DFA.unpackEncodedString(DFA85_eofS);
+    static final char[] DFA85_min = DFA.unpackEncodedStringToUnsignedChars(DFA85_minS);
+    static final char[] DFA85_max = DFA.unpackEncodedStringToUnsignedChars(DFA85_maxS);
+    static final short[] DFA85_accept = DFA.unpackEncodedString(DFA85_acceptS);
+    static final short[] DFA85_special = DFA.unpackEncodedString(DFA85_specialS);
+    static final short[][] DFA85_transition;
 
     static {
-        int numStates = DFA83_transitionS.length;
-        DFA83_transition = new short[numStates][];
+        int numStates = DFA85_transitionS.length;
+        DFA85_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA83_transition[i] = DFA.unpackEncodedString(DFA83_transitionS[i]);
+            DFA85_transition[i] = DFA.unpackEncodedString(DFA85_transitionS[i]);
         }
     }
 
-    class DFA83 extends DFA {
+    class DFA85 extends DFA {
 
-        public DFA83(BaseRecognizer recognizer) {
+        public DFA85(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 83;
-            this.eot = DFA83_eot;
-            this.eof = DFA83_eof;
-            this.min = DFA83_min;
-            this.max = DFA83_max;
-            this.accept = DFA83_accept;
-            this.special = DFA83_special;
-            this.transition = DFA83_transition;
+            this.decisionNumber = 85;
+            this.eot = DFA85_eot;
+            this.eof = DFA85_eof;
+            this.min = DFA85_min;
+            this.max = DFA85_max;
+            this.accept = DFA85_accept;
+            this.special = DFA85_special;
+            this.transition = DFA85_transition;
         }
         public String getDescription() {
             return "4510:7: ( ( ( ( ( ruleJvmFormalParameter ) ) ':' ) )=> ( ( (lv_declaredParam_7_0= ruleJvmFormalParameter ) ) otherlv_8= ':' ) )?";
@@ -26114,29 +26148,29 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA83_0 = input.LA(1);
+                        int LA85_0 = input.LA(1);
 
                          
-                        int index83_0 = input.index();
+                        int index85_0 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (LA83_0==RULE_ID) ) {s = 1;}
+                        if ( (LA85_0==RULE_ID) ) {s = 1;}
 
-                        else if ( (LA83_0==29) ) {s = 2;}
+                        else if ( (LA85_0==29) ) {s = 2;}
 
-                        else if ( (LA83_0==61) && (synpred29_InternalMelange())) {s = 3;}
+                        else if ( (LA85_0==60) && (synpred29_InternalMelange())) {s = 3;}
 
-                        else if ( ((LA83_0>=RULE_STRING && LA83_0<=RULE_DECIMAL)||LA83_0==19||LA83_0==39||LA83_0==48||(LA83_0>=64 && LA83_0<=65)||LA83_0==70||LA83_0==77||LA83_0==80||LA83_0==82||(LA83_0>=85 && LA83_0<=87)||(LA83_0>=90 && LA83_0<=102)||LA83_0==104) ) {s = 4;}
+                        else if ( ((LA85_0>=RULE_STRING && LA85_0<=RULE_DECIMAL)||LA85_0==19||LA85_0==38||LA85_0==47||(LA85_0>=63 && LA85_0<=64)||LA85_0==69||LA85_0==76||LA85_0==79||LA85_0==81||(LA85_0>=85 && LA85_0<=87)||(LA85_0>=90 && LA85_0<=102)||LA85_0==104) ) {s = 4;}
 
                          
-                        input.seek(index83_0);
+                        input.seek(index85_0);
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA83_1 = input.LA(1);
+                        int LA85_1 = input.LA(1);
 
                          
-                        int index83_1 = input.index();
+                        int index85_1 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred29_InternalMelange()) ) {s = 3;}
@@ -26144,14 +26178,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 4;}
 
                          
-                        input.seek(index83_1);
+                        input.seek(index85_1);
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA83_2 = input.LA(1);
+                        int LA85_2 = input.LA(1);
 
                          
-                        int index83_2 = input.index();
+                        int index85_2 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred29_InternalMelange()) ) {s = 3;}
@@ -26159,31 +26193,31 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 4;}
 
                          
-                        input.seek(index83_2);
+                        input.seek(index85_2);
                         if ( s>=0 ) return s;
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 83, _s, input);
+                new NoViableAltException(getDescription(), 85, _s, input);
             error(nvae);
             throw nvae;
         }
     }
-    static final String DFA106_eotS =
+    static final String DFA108_eotS =
         "\116\uffff";
-    static final String DFA106_eofS =
+    static final String DFA108_eofS =
         "\1\2\115\uffff";
-    static final String DFA106_minS =
+    static final String DFA108_minS =
         "\1\4\1\0\114\uffff";
-    static final String DFA106_maxS =
+    static final String DFA108_maxS =
         "\1\151\1\0\114\uffff";
-    static final String DFA106_acceptS =
+    static final String DFA108_acceptS =
         "\2\uffff\1\2\112\uffff\1\1";
-    static final String DFA106_specialS =
+    static final String DFA108_specialS =
         "\1\uffff\1\0\114\uffff}>";
-    static final String[] DFA106_transitionS = {
-            "\5\2\7\uffff\1\2\2\uffff\1\2\4\uffff\1\2\4\uffff\1\1\1\2\2\uffff\1\2\5\uffff\2\2\2\uffff\43\2\1\uffff\33\2",
+    static final String[] DFA108_transitionS = {
+            "\5\2\7\uffff\1\2\2\uffff\1\2\4\uffff\1\2\4\uffff\1\1\1\2\7\uffff\2\2\2\uffff\43\2\1\uffff\34\2",
             "\1\uffff",
             "",
             "",
@@ -26263,34 +26297,34 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             ""
     };
 
-    static final short[] DFA106_eot = DFA.unpackEncodedString(DFA106_eotS);
-    static final short[] DFA106_eof = DFA.unpackEncodedString(DFA106_eofS);
-    static final char[] DFA106_min = DFA.unpackEncodedStringToUnsignedChars(DFA106_minS);
-    static final char[] DFA106_max = DFA.unpackEncodedStringToUnsignedChars(DFA106_maxS);
-    static final short[] DFA106_accept = DFA.unpackEncodedString(DFA106_acceptS);
-    static final short[] DFA106_special = DFA.unpackEncodedString(DFA106_specialS);
-    static final short[][] DFA106_transition;
+    static final short[] DFA108_eot = DFA.unpackEncodedString(DFA108_eotS);
+    static final short[] DFA108_eof = DFA.unpackEncodedString(DFA108_eofS);
+    static final char[] DFA108_min = DFA.unpackEncodedStringToUnsignedChars(DFA108_minS);
+    static final char[] DFA108_max = DFA.unpackEncodedStringToUnsignedChars(DFA108_maxS);
+    static final short[] DFA108_accept = DFA.unpackEncodedString(DFA108_acceptS);
+    static final short[] DFA108_special = DFA.unpackEncodedString(DFA108_specialS);
+    static final short[][] DFA108_transition;
 
     static {
-        int numStates = DFA106_transitionS.length;
-        DFA106_transition = new short[numStates][];
+        int numStates = DFA108_transitionS.length;
+        DFA108_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA106_transition[i] = DFA.unpackEncodedString(DFA106_transitionS[i]);
+            DFA108_transition[i] = DFA.unpackEncodedString(DFA108_transitionS[i]);
         }
     }
 
-    class DFA106 extends DFA {
+    class DFA108 extends DFA {
 
-        public DFA106(BaseRecognizer recognizer) {
+        public DFA108(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 106;
-            this.eot = DFA106_eot;
-            this.eof = DFA106_eof;
-            this.min = DFA106_min;
-            this.max = DFA106_max;
-            this.accept = DFA106_accept;
-            this.special = DFA106_special;
-            this.transition = DFA106_transition;
+            this.decisionNumber = 108;
+            this.eot = DFA108_eot;
+            this.eof = DFA108_eof;
+            this.min = DFA108_min;
+            this.max = DFA108_max;
+            this.accept = DFA108_accept;
+            this.special = DFA108_special;
+            this.transition = DFA108_transition;
         }
         public String getDescription() {
             return "5567:2: ( ( ( ( '(' ) )=> (lv_explicitOperationCall_7_0= '(' ) ) ( ( ( ( () ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) ) ) )=> (lv_featureCallArguments_8_0= ruleXShortClosure ) ) | ( ( (lv_featureCallArguments_9_0= ruleXExpression ) ) (otherlv_10= ',' ( (lv_featureCallArguments_11_0= ruleXExpression ) ) )* ) )? otherlv_12= ')' )?";
@@ -26300,10 +26334,10 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA106_1 = input.LA(1);
+                        int LA108_1 = input.LA(1);
 
                          
-                        int index106_1 = input.index();
+                        int index108_1 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred32_InternalMelange()) ) {s = 77;}
@@ -26311,223 +26345,33 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index106_1);
+                        input.seek(index108_1);
                         if ( s>=0 ) return s;
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 106, _s, input);
-            error(nvae);
-            throw nvae;
-        }
-    }
-    static final String DFA105_eotS =
-        "\44\uffff";
-    static final String DFA105_eofS =
-        "\44\uffff";
-    static final String DFA105_minS =
-        "\1\4\2\0\41\uffff";
-    static final String DFA105_maxS =
-        "\1\150\2\0\41\uffff";
-    static final String DFA105_acceptS =
-        "\3\uffff\2\1\1\2\35\uffff\1\3";
-    static final String DFA105_specialS =
-        "\1\0\1\1\1\2\41\uffff}>";
-    static final String[] DFA105_transitionS = {
-            "\4\5\1\1\12\uffff\1\5\11\uffff\1\2\1\43\10\uffff\1\5\10\uffff\1\5\14\uffff\1\3\2\uffff\2\5\4\uffff\1\5\6\uffff\1\5\1\4\1\uffff\1\5\1\uffff\1\5\2\uffff\3\5\2\uffff\15\5\1\uffff\1\5",
-            "\1\uffff",
-            "\1\uffff",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-    };
-
-    static final short[] DFA105_eot = DFA.unpackEncodedString(DFA105_eotS);
-    static final short[] DFA105_eof = DFA.unpackEncodedString(DFA105_eofS);
-    static final char[] DFA105_min = DFA.unpackEncodedStringToUnsignedChars(DFA105_minS);
-    static final char[] DFA105_max = DFA.unpackEncodedStringToUnsignedChars(DFA105_maxS);
-    static final short[] DFA105_accept = DFA.unpackEncodedString(DFA105_acceptS);
-    static final short[] DFA105_special = DFA.unpackEncodedString(DFA105_specialS);
-    static final short[][] DFA105_transition;
-
-    static {
-        int numStates = DFA105_transitionS.length;
-        DFA105_transition = new short[numStates][];
-        for (int i=0; i<numStates; i++) {
-            DFA105_transition[i] = DFA.unpackEncodedString(DFA105_transitionS[i]);
-        }
-    }
-
-    class DFA105 extends DFA {
-
-        public DFA105(BaseRecognizer recognizer) {
-            this.recognizer = recognizer;
-            this.decisionNumber = 105;
-            this.eot = DFA105_eot;
-            this.eof = DFA105_eof;
-            this.min = DFA105_min;
-            this.max = DFA105_max;
-            this.accept = DFA105_accept;
-            this.special = DFA105_special;
-            this.transition = DFA105_transition;
-        }
-        public String getDescription() {
-            return "5588:2: ( ( ( ( () ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) ) ) )=> (lv_featureCallArguments_8_0= ruleXShortClosure ) ) | ( ( (lv_featureCallArguments_9_0= ruleXExpression ) ) (otherlv_10= ',' ( (lv_featureCallArguments_11_0= ruleXExpression ) ) )* ) )?";
-        }
-        public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
-            TokenStream input = (TokenStream)_input;
-        	int _s = s;
-            switch ( s ) {
-                    case 0 : 
-                        int LA105_0 = input.LA(1);
-
-                         
-                        int index105_0 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (LA105_0==RULE_ID) ) {s = 1;}
-
-                        else if ( (LA105_0==29) ) {s = 2;}
-
-                        else if ( (LA105_0==61) && (synpred33_InternalMelange())) {s = 3;}
-
-                        else if ( (LA105_0==78) && (synpred33_InternalMelange())) {s = 4;}
-
-                        else if ( ((LA105_0>=RULE_STRING && LA105_0<=RULE_DECIMAL)||LA105_0==19||LA105_0==39||LA105_0==48||(LA105_0>=64 && LA105_0<=65)||LA105_0==70||LA105_0==77||LA105_0==80||LA105_0==82||(LA105_0>=85 && LA105_0<=87)||(LA105_0>=90 && LA105_0<=102)||LA105_0==104) ) {s = 5;}
-
-                        else if ( (LA105_0==30) ) {s = 35;}
-
-                         
-                        input.seek(index105_0);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
-                        int LA105_1 = input.LA(1);
-
-                         
-                        int index105_1 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred33_InternalMelange()) ) {s = 4;}
-
-                        else if ( (true) ) {s = 5;}
-
-                         
-                        input.seek(index105_1);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
-                        int LA105_2 = input.LA(1);
-
-                         
-                        int index105_2 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred33_InternalMelange()) ) {s = 4;}
-
-                        else if ( (true) ) {s = 5;}
-
-                         
-                        input.seek(index105_2);
-                        if ( s>=0 ) return s;
-                        break;
-            }
-            if (state.backtracking>0) {state.failed=true; return -1;}
-            NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 105, _s, input);
+                new NoViableAltException(getDescription(), 108, _s, input);
             error(nvae);
             throw nvae;
         }
     }
     static final String DFA107_eotS =
-        "\116\uffff";
+        "\44\uffff";
     static final String DFA107_eofS =
-        "\1\2\115\uffff";
+        "\44\uffff";
     static final String DFA107_minS =
-        "\1\4\1\0\114\uffff";
+        "\1\4\2\0\41\uffff";
     static final String DFA107_maxS =
-        "\1\151\1\0\114\uffff";
+        "\1\150\2\0\41\uffff";
     static final String DFA107_acceptS =
-        "\2\uffff\1\2\112\uffff\1\1";
+        "\3\uffff\2\1\1\2\35\uffff\1\3";
     static final String DFA107_specialS =
-        "\1\uffff\1\0\114\uffff}>";
+        "\1\0\1\1\1\2\41\uffff}>";
     static final String[] DFA107_transitionS = {
-            "\5\2\7\uffff\1\2\2\uffff\1\2\4\uffff\1\2\4\uffff\2\2\2\uffff\1\2\5\uffff\1\1\1\2\2\uffff\43\2\1\uffff\33\2",
+            "\4\5\1\1\12\uffff\1\5\11\uffff\1\2\1\43\7\uffff\1\5\10\uffff\1\5\14\uffff\1\3\2\uffff\2\5\4\uffff\1\5\6\uffff\1\5\1\4\1\uffff\1\5\1\uffff\1\5\3\uffff\3\5\2\uffff\15\5\1\uffff\1\5",
             "\1\uffff",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
+            "\1\uffff",
             "",
             "",
             "",
@@ -26593,25 +26437,63 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             this.transition = DFA107_transition;
         }
         public String getDescription() {
-            return "5667:3: ( ( ( () '[' ) )=> (lv_featureCallArguments_13_0= ruleXClosure ) )?";
+            return "5588:2: ( ( ( ( () ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) ) ) )=> (lv_featureCallArguments_8_0= ruleXShortClosure ) ) | ( ( (lv_featureCallArguments_9_0= ruleXExpression ) ) (otherlv_10= ',' ( (lv_featureCallArguments_11_0= ruleXExpression ) ) )* ) )?";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
+                        int LA107_0 = input.LA(1);
+
+                         
+                        int index107_0 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (LA107_0==RULE_ID) ) {s = 1;}
+
+                        else if ( (LA107_0==29) ) {s = 2;}
+
+                        else if ( (LA107_0==60) && (synpred33_InternalMelange())) {s = 3;}
+
+                        else if ( (LA107_0==77) && (synpred33_InternalMelange())) {s = 4;}
+
+                        else if ( ((LA107_0>=RULE_STRING && LA107_0<=RULE_DECIMAL)||LA107_0==19||LA107_0==38||LA107_0==47||(LA107_0>=63 && LA107_0<=64)||LA107_0==69||LA107_0==76||LA107_0==79||LA107_0==81||(LA107_0>=85 && LA107_0<=87)||(LA107_0>=90 && LA107_0<=102)||LA107_0==104) ) {s = 5;}
+
+                        else if ( (LA107_0==30) ) {s = 35;}
+
+                         
+                        input.seek(index107_0);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 1 : 
                         int LA107_1 = input.LA(1);
 
                          
                         int index107_1 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred34_InternalMelange()) ) {s = 77;}
+                        if ( (synpred33_InternalMelange()) ) {s = 4;}
 
-                        else if ( (true) ) {s = 2;}
+                        else if ( (true) ) {s = 5;}
 
                          
                         input.seek(index107_1);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
+                        int LA107_2 = input.LA(1);
+
+                         
+                        int index107_2 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred33_InternalMelange()) ) {s = 4;}
+
+                        else if ( (true) ) {s = 5;}
+
+                         
+                        input.seek(index107_2);
                         if ( s>=0 ) return s;
                         break;
             }
@@ -26622,20 +26504,20 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             throw nvae;
         }
     }
-    static final String DFA111_eotS =
+    static final String DFA109_eotS =
         "\116\uffff";
-    static final String DFA111_eofS =
+    static final String DFA109_eofS =
         "\1\2\115\uffff";
-    static final String DFA111_minS =
+    static final String DFA109_minS =
         "\1\4\1\0\114\uffff";
-    static final String DFA111_maxS =
+    static final String DFA109_maxS =
         "\1\151\1\0\114\uffff";
-    static final String DFA111_acceptS =
+    static final String DFA109_acceptS =
         "\2\uffff\1\2\112\uffff\1\1";
-    static final String DFA111_specialS =
+    static final String DFA109_specialS =
         "\1\uffff\1\0\114\uffff}>";
-    static final String[] DFA111_transitionS = {
-            "\5\2\7\uffff\1\2\2\uffff\1\2\4\uffff\1\2\4\uffff\2\2\2\uffff\1\2\5\uffff\2\2\2\uffff\5\2\1\1\35\2\1\uffff\33\2",
+    static final String[] DFA109_transitionS = {
+            "\5\2\7\uffff\1\2\2\uffff\1\2\4\uffff\1\2\4\uffff\2\2\7\uffff\1\1\1\2\2\uffff\43\2\1\uffff\34\2",
             "\1\uffff",
             "",
             "",
@@ -26715,233 +26597,123 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             ""
     };
 
-    static final short[] DFA111_eot = DFA.unpackEncodedString(DFA111_eotS);
-    static final short[] DFA111_eof = DFA.unpackEncodedString(DFA111_eofS);
-    static final char[] DFA111_min = DFA.unpackEncodedStringToUnsignedChars(DFA111_minS);
-    static final char[] DFA111_max = DFA.unpackEncodedStringToUnsignedChars(DFA111_maxS);
-    static final short[] DFA111_accept = DFA.unpackEncodedString(DFA111_acceptS);
-    static final short[] DFA111_special = DFA.unpackEncodedString(DFA111_specialS);
-    static final short[][] DFA111_transition;
+    static final short[] DFA109_eot = DFA.unpackEncodedString(DFA109_eotS);
+    static final short[] DFA109_eof = DFA.unpackEncodedString(DFA109_eofS);
+    static final char[] DFA109_min = DFA.unpackEncodedStringToUnsignedChars(DFA109_minS);
+    static final char[] DFA109_max = DFA.unpackEncodedStringToUnsignedChars(DFA109_maxS);
+    static final short[] DFA109_accept = DFA.unpackEncodedString(DFA109_acceptS);
+    static final short[] DFA109_special = DFA.unpackEncodedString(DFA109_specialS);
+    static final short[][] DFA109_transition;
 
     static {
-        int numStates = DFA111_transitionS.length;
-        DFA111_transition = new short[numStates][];
+        int numStates = DFA109_transitionS.length;
+        DFA109_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA111_transition[i] = DFA.unpackEncodedString(DFA111_transitionS[i]);
+            DFA109_transition[i] = DFA.unpackEncodedString(DFA109_transitionS[i]);
         }
     }
 
-    class DFA111 extends DFA {
+    class DFA109 extends DFA {
 
-        public DFA111(BaseRecognizer recognizer) {
+        public DFA109(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 111;
-            this.eot = DFA111_eot;
-            this.eof = DFA111_eof;
-            this.min = DFA111_min;
-            this.max = DFA111_max;
-            this.accept = DFA111_accept;
-            this.special = DFA111_special;
-            this.transition = DFA111_transition;
+            this.decisionNumber = 109;
+            this.eot = DFA109_eot;
+            this.eof = DFA109_eof;
+            this.min = DFA109_min;
+            this.max = DFA109_max;
+            this.accept = DFA109_accept;
+            this.special = DFA109_special;
+            this.transition = DFA109_transition;
         }
         public String getDescription() {
-            return "5832:2: ( ( ( '<' )=>otherlv_3= '<' ) ( (lv_typeArguments_4_0= ruleJvmArgumentTypeReference ) ) (otherlv_5= ',' ( (lv_typeArguments_6_0= ruleJvmArgumentTypeReference ) ) )* otherlv_7= '>' )?";
+            return "5667:3: ( ( ( () '[' ) )=> (lv_featureCallArguments_13_0= ruleXClosure ) )?";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA111_1 = input.LA(1);
+                        int LA109_1 = input.LA(1);
 
                          
-                        int index111_1 = input.index();
+                        int index109_1 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred35_InternalMelange()) ) {s = 77;}
+                        if ( (synpred34_InternalMelange()) ) {s = 77;}
 
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index111_1);
+                        input.seek(index109_1);
                         if ( s>=0 ) return s;
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 111, _s, input);
-            error(nvae);
-            throw nvae;
-        }
-    }
-    static final String DFA114_eotS =
-        "\116\uffff";
-    static final String DFA114_eofS =
-        "\1\2\115\uffff";
-    static final String DFA114_minS =
-        "\1\4\1\0\114\uffff";
-    static final String DFA114_maxS =
-        "\1\151\1\0\114\uffff";
-    static final String DFA114_acceptS =
-        "\2\uffff\1\2\112\uffff\1\1";
-    static final String DFA114_specialS =
-        "\1\uffff\1\0\114\uffff}>";
-    static final String[] DFA114_transitionS = {
-            "\5\2\7\uffff\1\2\2\uffff\1\2\4\uffff\1\2\4\uffff\1\1\1\2\2\uffff\1\2\5\uffff\2\2\2\uffff\43\2\1\uffff\33\2",
-            "\1\uffff",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-    };
-
-    static final short[] DFA114_eot = DFA.unpackEncodedString(DFA114_eotS);
-    static final short[] DFA114_eof = DFA.unpackEncodedString(DFA114_eofS);
-    static final char[] DFA114_min = DFA.unpackEncodedStringToUnsignedChars(DFA114_minS);
-    static final char[] DFA114_max = DFA.unpackEncodedStringToUnsignedChars(DFA114_maxS);
-    static final short[] DFA114_accept = DFA.unpackEncodedString(DFA114_acceptS);
-    static final short[] DFA114_special = DFA.unpackEncodedString(DFA114_specialS);
-    static final short[][] DFA114_transition;
-
-    static {
-        int numStates = DFA114_transitionS.length;
-        DFA114_transition = new short[numStates][];
-        for (int i=0; i<numStates; i++) {
-            DFA114_transition[i] = DFA.unpackEncodedString(DFA114_transitionS[i]);
-        }
-    }
-
-    class DFA114 extends DFA {
-
-        public DFA114(BaseRecognizer recognizer) {
-            this.recognizer = recognizer;
-            this.decisionNumber = 114;
-            this.eot = DFA114_eot;
-            this.eof = DFA114_eof;
-            this.min = DFA114_min;
-            this.max = DFA114_max;
-            this.accept = DFA114_accept;
-            this.special = DFA114_special;
-            this.transition = DFA114_transition;
-        }
-        public String getDescription() {
-            return "5881:3: ( ( ( ( '(' ) )=> (lv_explicitConstructorCall_8_0= '(' ) ) ( ( ( ( () ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) ) ) )=> (lv_arguments_9_0= ruleXShortClosure ) ) | ( ( (lv_arguments_10_0= ruleXExpression ) ) (otherlv_11= ',' ( (lv_arguments_12_0= ruleXExpression ) ) )* ) )? otherlv_13= ')' )?";
-        }
-        public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
-            TokenStream input = (TokenStream)_input;
-        	int _s = s;
-            switch ( s ) {
-                    case 0 : 
-                        int LA114_1 = input.LA(1);
-
-                         
-                        int index114_1 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred36_InternalMelange()) ) {s = 77;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index114_1);
-                        if ( s>=0 ) return s;
-                        break;
-            }
-            if (state.backtracking>0) {state.failed=true; return -1;}
-            NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 114, _s, input);
+                new NoViableAltException(getDescription(), 109, _s, input);
             error(nvae);
             throw nvae;
         }
     }
     static final String DFA113_eotS =
-        "\44\uffff";
+        "\116\uffff";
     static final String DFA113_eofS =
-        "\44\uffff";
+        "\1\2\115\uffff";
     static final String DFA113_minS =
-        "\1\4\2\0\41\uffff";
+        "\1\4\1\0\114\uffff";
     static final String DFA113_maxS =
-        "\1\150\2\0\41\uffff";
+        "\1\151\1\0\114\uffff";
     static final String DFA113_acceptS =
-        "\3\uffff\2\1\1\2\35\uffff\1\3";
+        "\2\uffff\1\2\112\uffff\1\1";
     static final String DFA113_specialS =
-        "\1\0\1\1\1\2\41\uffff}>";
+        "\1\uffff\1\0\114\uffff}>";
     static final String[] DFA113_transitionS = {
-            "\4\5\1\1\12\uffff\1\5\11\uffff\1\2\1\43\10\uffff\1\5\10\uffff\1\5\14\uffff\1\3\2\uffff\2\5\4\uffff\1\5\6\uffff\1\5\1\4\1\uffff\1\5\1\uffff\1\5\2\uffff\3\5\2\uffff\15\5\1\uffff\1\5",
+            "\5\2\7\uffff\1\2\2\uffff\1\2\4\uffff\1\2\4\uffff\2\2\7\uffff\2\2\2\uffff\5\2\1\1\35\2\1\uffff\34\2",
             "\1\uffff",
-            "\1\uffff",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "",
             "",
             "",
@@ -27007,63 +26779,25 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             this.transition = DFA113_transition;
         }
         public String getDescription() {
-            return "5902:2: ( ( ( ( () ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) ) ) )=> (lv_arguments_9_0= ruleXShortClosure ) ) | ( ( (lv_arguments_10_0= ruleXExpression ) ) (otherlv_11= ',' ( (lv_arguments_12_0= ruleXExpression ) ) )* ) )?";
+            return "5832:2: ( ( ( '<' )=>otherlv_3= '<' ) ( (lv_typeArguments_4_0= ruleJvmArgumentTypeReference ) ) (otherlv_5= ',' ( (lv_typeArguments_6_0= ruleJvmArgumentTypeReference ) ) )* otherlv_7= '>' )?";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA113_0 = input.LA(1);
-
-                         
-                        int index113_0 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (LA113_0==RULE_ID) ) {s = 1;}
-
-                        else if ( (LA113_0==29) ) {s = 2;}
-
-                        else if ( (LA113_0==61) && (synpred37_InternalMelange())) {s = 3;}
-
-                        else if ( (LA113_0==78) && (synpred37_InternalMelange())) {s = 4;}
-
-                        else if ( ((LA113_0>=RULE_STRING && LA113_0<=RULE_DECIMAL)||LA113_0==19||LA113_0==39||LA113_0==48||(LA113_0>=64 && LA113_0<=65)||LA113_0==70||LA113_0==77||LA113_0==80||LA113_0==82||(LA113_0>=85 && LA113_0<=87)||(LA113_0>=90 && LA113_0<=102)||LA113_0==104) ) {s = 5;}
-
-                        else if ( (LA113_0==30) ) {s = 35;}
-
-                         
-                        input.seek(index113_0);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
                         int LA113_1 = input.LA(1);
 
                          
                         int index113_1 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred37_InternalMelange()) ) {s = 4;}
+                        if ( (synpred35_InternalMelange()) ) {s = 77;}
 
-                        else if ( (true) ) {s = 5;}
+                        else if ( (true) ) {s = 2;}
 
                          
                         input.seek(index113_1);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
-                        int LA113_2 = input.LA(1);
-
-                         
-                        int index113_2 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred37_InternalMelange()) ) {s = 4;}
-
-                        else if ( (true) ) {s = 5;}
-
-                         
-                        input.seek(index113_2);
                         if ( s>=0 ) return s;
                         break;
             }
@@ -27074,20 +26808,20 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             throw nvae;
         }
     }
-    static final String DFA115_eotS =
+    static final String DFA116_eotS =
         "\116\uffff";
-    static final String DFA115_eofS =
+    static final String DFA116_eofS =
         "\1\2\115\uffff";
-    static final String DFA115_minS =
+    static final String DFA116_minS =
         "\1\4\1\0\114\uffff";
-    static final String DFA115_maxS =
+    static final String DFA116_maxS =
         "\1\151\1\0\114\uffff";
-    static final String DFA115_acceptS =
+    static final String DFA116_acceptS =
         "\2\uffff\1\2\112\uffff\1\1";
-    static final String DFA115_specialS =
+    static final String DFA116_specialS =
         "\1\uffff\1\0\114\uffff}>";
-    static final String[] DFA115_transitionS = {
-            "\5\2\7\uffff\1\2\2\uffff\1\2\4\uffff\1\2\4\uffff\2\2\2\uffff\1\2\5\uffff\1\1\1\2\2\uffff\43\2\1\uffff\33\2",
+    static final String[] DFA116_transitionS = {
+            "\5\2\7\uffff\1\2\2\uffff\1\2\4\uffff\1\2\4\uffff\1\1\1\2\7\uffff\2\2\2\uffff\43\2\1\uffff\34\2",
             "\1\uffff",
             "",
             "",
@@ -27132,6 +26866,116 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             "",
             "",
             "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+    };
+
+    static final short[] DFA116_eot = DFA.unpackEncodedString(DFA116_eotS);
+    static final short[] DFA116_eof = DFA.unpackEncodedString(DFA116_eofS);
+    static final char[] DFA116_min = DFA.unpackEncodedStringToUnsignedChars(DFA116_minS);
+    static final char[] DFA116_max = DFA.unpackEncodedStringToUnsignedChars(DFA116_maxS);
+    static final short[] DFA116_accept = DFA.unpackEncodedString(DFA116_acceptS);
+    static final short[] DFA116_special = DFA.unpackEncodedString(DFA116_specialS);
+    static final short[][] DFA116_transition;
+
+    static {
+        int numStates = DFA116_transitionS.length;
+        DFA116_transition = new short[numStates][];
+        for (int i=0; i<numStates; i++) {
+            DFA116_transition[i] = DFA.unpackEncodedString(DFA116_transitionS[i]);
+        }
+    }
+
+    class DFA116 extends DFA {
+
+        public DFA116(BaseRecognizer recognizer) {
+            this.recognizer = recognizer;
+            this.decisionNumber = 116;
+            this.eot = DFA116_eot;
+            this.eof = DFA116_eof;
+            this.min = DFA116_min;
+            this.max = DFA116_max;
+            this.accept = DFA116_accept;
+            this.special = DFA116_special;
+            this.transition = DFA116_transition;
+        }
+        public String getDescription() {
+            return "5881:3: ( ( ( ( '(' ) )=> (lv_explicitConstructorCall_8_0= '(' ) ) ( ( ( ( () ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) ) ) )=> (lv_arguments_9_0= ruleXShortClosure ) ) | ( ( (lv_arguments_10_0= ruleXExpression ) ) (otherlv_11= ',' ( (lv_arguments_12_0= ruleXExpression ) ) )* ) )? otherlv_13= ')' )?";
+        }
+        public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
+            TokenStream input = (TokenStream)_input;
+        	int _s = s;
+            switch ( s ) {
+                    case 0 : 
+                        int LA116_1 = input.LA(1);
+
+                         
+                        int index116_1 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred36_InternalMelange()) ) {s = 77;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index116_1);
+                        if ( s>=0 ) return s;
+                        break;
+            }
+            if (state.backtracking>0) {state.failed=true; return -1;}
+            NoViableAltException nvae =
+                new NoViableAltException(getDescription(), 116, _s, input);
+            error(nvae);
+            throw nvae;
+        }
+    }
+    static final String DFA115_eotS =
+        "\44\uffff";
+    static final String DFA115_eofS =
+        "\44\uffff";
+    static final String DFA115_minS =
+        "\1\4\2\0\41\uffff";
+    static final String DFA115_maxS =
+        "\1\150\2\0\41\uffff";
+    static final String DFA115_acceptS =
+        "\3\uffff\2\1\1\2\35\uffff\1\3";
+    static final String DFA115_specialS =
+        "\1\0\1\1\1\2\41\uffff}>";
+    static final String[] DFA115_transitionS = {
+            "\4\5\1\1\12\uffff\1\5\11\uffff\1\2\1\43\7\uffff\1\5\10\uffff\1\5\14\uffff\1\3\2\uffff\2\5\4\uffff\1\5\6\uffff\1\5\1\4\1\uffff\1\5\1\uffff\1\5\3\uffff\3\5\2\uffff\15\5\1\uffff\1\5",
+            "\1\uffff",
+            "\1\uffff",
             "",
             "",
             "",
@@ -27197,25 +27041,63 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             this.transition = DFA115_transition;
         }
         public String getDescription() {
-            return "5981:3: ( ( ( () '[' ) )=> (lv_arguments_14_0= ruleXClosure ) )?";
+            return "5902:2: ( ( ( ( () ( ( ( ruleJvmFormalParameter ) ) ( ',' ( ( ruleJvmFormalParameter ) ) )* )? ( ( '|' ) ) ) )=> (lv_arguments_9_0= ruleXShortClosure ) ) | ( ( (lv_arguments_10_0= ruleXExpression ) ) (otherlv_11= ',' ( (lv_arguments_12_0= ruleXExpression ) ) )* ) )?";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
+                        int LA115_0 = input.LA(1);
+
+                         
+                        int index115_0 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (LA115_0==RULE_ID) ) {s = 1;}
+
+                        else if ( (LA115_0==29) ) {s = 2;}
+
+                        else if ( (LA115_0==60) && (synpred37_InternalMelange())) {s = 3;}
+
+                        else if ( (LA115_0==77) && (synpred37_InternalMelange())) {s = 4;}
+
+                        else if ( ((LA115_0>=RULE_STRING && LA115_0<=RULE_DECIMAL)||LA115_0==19||LA115_0==38||LA115_0==47||(LA115_0>=63 && LA115_0<=64)||LA115_0==69||LA115_0==76||LA115_0==79||LA115_0==81||(LA115_0>=85 && LA115_0<=87)||(LA115_0>=90 && LA115_0<=102)||LA115_0==104) ) {s = 5;}
+
+                        else if ( (LA115_0==30) ) {s = 35;}
+
+                         
+                        input.seek(index115_0);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 1 : 
                         int LA115_1 = input.LA(1);
 
                          
                         int index115_1 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred38_InternalMelange()) ) {s = 77;}
+                        if ( (synpred37_InternalMelange()) ) {s = 4;}
 
-                        else if ( (true) ) {s = 2;}
+                        else if ( (true) ) {s = 5;}
 
                          
                         input.seek(index115_1);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
+                        int LA115_2 = input.LA(1);
+
+                         
+                        int index115_2 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred37_InternalMelange()) ) {s = 4;}
+
+                        else if ( (true) ) {s = 5;}
+
+                         
+                        input.seek(index115_2);
                         if ( s>=0 ) return s;
                         break;
             }
@@ -27226,20 +27108,172 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             throw nvae;
         }
     }
-    static final String DFA118_eotS =
+    static final String DFA117_eotS =
         "\116\uffff";
-    static final String DFA118_eofS =
+    static final String DFA117_eofS =
+        "\1\2\115\uffff";
+    static final String DFA117_minS =
+        "\1\4\1\0\114\uffff";
+    static final String DFA117_maxS =
+        "\1\151\1\0\114\uffff";
+    static final String DFA117_acceptS =
+        "\2\uffff\1\2\112\uffff\1\1";
+    static final String DFA117_specialS =
+        "\1\uffff\1\0\114\uffff}>";
+    static final String[] DFA117_transitionS = {
+            "\5\2\7\uffff\1\2\2\uffff\1\2\4\uffff\1\2\4\uffff\2\2\7\uffff\1\1\1\2\2\uffff\43\2\1\uffff\34\2",
+            "\1\uffff",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+    };
+
+    static final short[] DFA117_eot = DFA.unpackEncodedString(DFA117_eotS);
+    static final short[] DFA117_eof = DFA.unpackEncodedString(DFA117_eofS);
+    static final char[] DFA117_min = DFA.unpackEncodedStringToUnsignedChars(DFA117_minS);
+    static final char[] DFA117_max = DFA.unpackEncodedStringToUnsignedChars(DFA117_maxS);
+    static final short[] DFA117_accept = DFA.unpackEncodedString(DFA117_acceptS);
+    static final short[] DFA117_special = DFA.unpackEncodedString(DFA117_specialS);
+    static final short[][] DFA117_transition;
+
+    static {
+        int numStates = DFA117_transitionS.length;
+        DFA117_transition = new short[numStates][];
+        for (int i=0; i<numStates; i++) {
+            DFA117_transition[i] = DFA.unpackEncodedString(DFA117_transitionS[i]);
+        }
+    }
+
+    class DFA117 extends DFA {
+
+        public DFA117(BaseRecognizer recognizer) {
+            this.recognizer = recognizer;
+            this.decisionNumber = 117;
+            this.eot = DFA117_eot;
+            this.eof = DFA117_eof;
+            this.min = DFA117_min;
+            this.max = DFA117_max;
+            this.accept = DFA117_accept;
+            this.special = DFA117_special;
+            this.transition = DFA117_transition;
+        }
+        public String getDescription() {
+            return "5981:3: ( ( ( () '[' ) )=> (lv_arguments_14_0= ruleXClosure ) )?";
+        }
+        public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
+            TokenStream input = (TokenStream)_input;
+        	int _s = s;
+            switch ( s ) {
+                    case 0 : 
+                        int LA117_1 = input.LA(1);
+
+                         
+                        int index117_1 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred38_InternalMelange()) ) {s = 77;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index117_1);
+                        if ( s>=0 ) return s;
+                        break;
+            }
+            if (state.backtracking>0) {state.failed=true; return -1;}
+            NoViableAltException nvae =
+                new NoViableAltException(getDescription(), 117, _s, input);
+            error(nvae);
+            throw nvae;
+        }
+    }
+    static final String DFA120_eotS =
+        "\116\uffff";
+    static final String DFA120_eofS =
         "\1\41\115\uffff";
-    static final String DFA118_minS =
+    static final String DFA120_minS =
         "\1\4\40\0\55\uffff";
-    static final String DFA118_maxS =
+    static final String DFA120_maxS =
         "\1\151\40\0\55\uffff";
-    static final String DFA118_acceptS =
+    static final String DFA120_acceptS =
         "\41\uffff\1\2\53\uffff\1\1";
-    static final String DFA118_specialS =
+    static final String DFA120_specialS =
         "\1\uffff\1\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1\27\1\30\1\31\1\32\1\33\1\34\1\35\1\36\1\37\55\uffff}>";
-    static final String[] DFA118_transitionS = {
-            "\1\27\1\23\1\24\1\25\1\1\7\uffff\1\41\2\uffff\1\12\4\uffff\1\41\4\uffff\1\40\1\41\2\uffff\1\41\5\uffff\1\20\1\41\2\uffff\5\41\1\15\17\41\1\10\1\7\4\41\1\6\6\41\1\17\1\uffff\1\41\1\31\1\41\1\13\2\41\1\32\1\33\1\34\2\41\1\2\1\3\1\4\1\5\1\16\1\11\1\21\1\22\1\26\1\30\1\35\1\36\1\37\1\41\1\14\1\41",
+    static final String[] DFA120_transitionS = {
+            "\1\27\1\23\1\24\1\25\1\1\7\uffff\1\41\2\uffff\1\12\4\uffff\1\41\4\uffff\1\40\1\41\7\uffff\1\20\1\41\2\uffff\5\41\1\15\17\41\1\10\1\7\4\41\1\6\6\41\1\17\1\uffff\1\41\1\31\1\41\1\13\3\41\1\32\1\33\1\34\2\41\1\2\1\3\1\4\1\5\1\16\1\11\1\21\1\22\1\26\1\30\1\35\1\36\1\37\1\41\1\14\1\41",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
@@ -27319,34 +27353,34 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             ""
     };
 
-    static final short[] DFA118_eot = DFA.unpackEncodedString(DFA118_eotS);
-    static final short[] DFA118_eof = DFA.unpackEncodedString(DFA118_eofS);
-    static final char[] DFA118_min = DFA.unpackEncodedStringToUnsignedChars(DFA118_minS);
-    static final char[] DFA118_max = DFA.unpackEncodedStringToUnsignedChars(DFA118_maxS);
-    static final short[] DFA118_accept = DFA.unpackEncodedString(DFA118_acceptS);
-    static final short[] DFA118_special = DFA.unpackEncodedString(DFA118_specialS);
-    static final short[][] DFA118_transition;
+    static final short[] DFA120_eot = DFA.unpackEncodedString(DFA120_eotS);
+    static final short[] DFA120_eof = DFA.unpackEncodedString(DFA120_eofS);
+    static final char[] DFA120_min = DFA.unpackEncodedStringToUnsignedChars(DFA120_minS);
+    static final char[] DFA120_max = DFA.unpackEncodedStringToUnsignedChars(DFA120_maxS);
+    static final short[] DFA120_accept = DFA.unpackEncodedString(DFA120_acceptS);
+    static final short[] DFA120_special = DFA.unpackEncodedString(DFA120_specialS);
+    static final short[][] DFA120_transition;
 
     static {
-        int numStates = DFA118_transitionS.length;
-        DFA118_transition = new short[numStates][];
+        int numStates = DFA120_transitionS.length;
+        DFA120_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA118_transition[i] = DFA.unpackEncodedString(DFA118_transitionS[i]);
+            DFA120_transition[i] = DFA.unpackEncodedString(DFA120_transitionS[i]);
         }
     }
 
-    class DFA118 extends DFA {
+    class DFA120 extends DFA {
 
-        public DFA118(BaseRecognizer recognizer) {
+        public DFA120(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 118;
-            this.eot = DFA118_eot;
-            this.eof = DFA118_eof;
-            this.min = DFA118_min;
-            this.max = DFA118_max;
-            this.accept = DFA118_accept;
-            this.special = DFA118_special;
-            this.transition = DFA118_transition;
+            this.decisionNumber = 120;
+            this.eot = DFA120_eot;
+            this.eof = DFA120_eof;
+            this.min = DFA120_min;
+            this.max = DFA120_max;
+            this.accept = DFA120_accept;
+            this.special = DFA120_special;
+            this.transition = DFA120_transition;
         }
         public String getDescription() {
             return "6321:1: ( ( 'extends' | 'static' | 'import' | 'extension' | '!' | '-' | '+' | 'new' | '{' | 'switch' | 'synchronized' | '<' | 'super' | '#' | '[' | 'false' | 'true' | 'null' | 'typeof' | 'if' | 'for' | 'while' | 'do' | 'throw' | 'return' | 'try' | '(' | RULE_ID | RULE_HEX | RULE_INT | RULE_DECIMAL | RULE_STRING )=> (lv_expression_2_0= ruleXExpression ) )?";
@@ -27356,10 +27390,10 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA118_1 = input.LA(1);
+                        int LA120_1 = input.LA(1);
 
                          
-                        int index118_1 = input.index();
+                        int index120_1 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27367,14 +27401,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_1);
+                        input.seek(index120_1);
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA118_2 = input.LA(1);
+                        int LA120_2 = input.LA(1);
 
                          
-                        int index118_2 = input.index();
+                        int index120_2 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27382,14 +27416,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_2);
+                        input.seek(index120_2);
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA118_3 = input.LA(1);
+                        int LA120_3 = input.LA(1);
 
                          
-                        int index118_3 = input.index();
+                        int index120_3 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27397,14 +27431,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_3);
+                        input.seek(index120_3);
                         if ( s>=0 ) return s;
                         break;
                     case 3 : 
-                        int LA118_4 = input.LA(1);
+                        int LA120_4 = input.LA(1);
 
                          
-                        int index118_4 = input.index();
+                        int index120_4 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27412,14 +27446,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_4);
+                        input.seek(index120_4);
                         if ( s>=0 ) return s;
                         break;
                     case 4 : 
-                        int LA118_5 = input.LA(1);
+                        int LA120_5 = input.LA(1);
 
                          
-                        int index118_5 = input.index();
+                        int index120_5 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27427,14 +27461,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_5);
+                        input.seek(index120_5);
                         if ( s>=0 ) return s;
                         break;
                     case 5 : 
-                        int LA118_6 = input.LA(1);
+                        int LA120_6 = input.LA(1);
 
                          
-                        int index118_6 = input.index();
+                        int index120_6 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27442,14 +27476,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_6);
+                        input.seek(index120_6);
                         if ( s>=0 ) return s;
                         break;
                     case 6 : 
-                        int LA118_7 = input.LA(1);
+                        int LA120_7 = input.LA(1);
 
                          
-                        int index118_7 = input.index();
+                        int index120_7 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27457,14 +27491,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_7);
+                        input.seek(index120_7);
                         if ( s>=0 ) return s;
                         break;
                     case 7 : 
-                        int LA118_8 = input.LA(1);
+                        int LA120_8 = input.LA(1);
 
                          
-                        int index118_8 = input.index();
+                        int index120_8 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27472,14 +27506,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_8);
+                        input.seek(index120_8);
                         if ( s>=0 ) return s;
                         break;
                     case 8 : 
-                        int LA118_9 = input.LA(1);
+                        int LA120_9 = input.LA(1);
 
                          
-                        int index118_9 = input.index();
+                        int index120_9 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27487,14 +27521,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_9);
+                        input.seek(index120_9);
                         if ( s>=0 ) return s;
                         break;
                     case 9 : 
-                        int LA118_10 = input.LA(1);
+                        int LA120_10 = input.LA(1);
 
                          
-                        int index118_10 = input.index();
+                        int index120_10 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27502,14 +27536,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_10);
+                        input.seek(index120_10);
                         if ( s>=0 ) return s;
                         break;
                     case 10 : 
-                        int LA118_11 = input.LA(1);
+                        int LA120_11 = input.LA(1);
 
                          
-                        int index118_11 = input.index();
+                        int index120_11 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27517,14 +27551,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_11);
+                        input.seek(index120_11);
                         if ( s>=0 ) return s;
                         break;
                     case 11 : 
-                        int LA118_12 = input.LA(1);
+                        int LA120_12 = input.LA(1);
 
                          
-                        int index118_12 = input.index();
+                        int index120_12 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27532,14 +27566,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_12);
+                        input.seek(index120_12);
                         if ( s>=0 ) return s;
                         break;
                     case 12 : 
-                        int LA118_13 = input.LA(1);
+                        int LA120_13 = input.LA(1);
 
                          
-                        int index118_13 = input.index();
+                        int index120_13 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27547,14 +27581,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_13);
+                        input.seek(index120_13);
                         if ( s>=0 ) return s;
                         break;
                     case 13 : 
-                        int LA118_14 = input.LA(1);
+                        int LA120_14 = input.LA(1);
 
                          
-                        int index118_14 = input.index();
+                        int index120_14 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27562,14 +27596,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_14);
+                        input.seek(index120_14);
                         if ( s>=0 ) return s;
                         break;
                     case 14 : 
-                        int LA118_15 = input.LA(1);
+                        int LA120_15 = input.LA(1);
 
                          
-                        int index118_15 = input.index();
+                        int index120_15 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27577,14 +27611,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_15);
+                        input.seek(index120_15);
                         if ( s>=0 ) return s;
                         break;
                     case 15 : 
-                        int LA118_16 = input.LA(1);
+                        int LA120_16 = input.LA(1);
 
                          
-                        int index118_16 = input.index();
+                        int index120_16 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27592,14 +27626,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_16);
+                        input.seek(index120_16);
                         if ( s>=0 ) return s;
                         break;
                     case 16 : 
-                        int LA118_17 = input.LA(1);
+                        int LA120_17 = input.LA(1);
 
                          
-                        int index118_17 = input.index();
+                        int index120_17 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27607,14 +27641,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_17);
+                        input.seek(index120_17);
                         if ( s>=0 ) return s;
                         break;
                     case 17 : 
-                        int LA118_18 = input.LA(1);
+                        int LA120_18 = input.LA(1);
 
                          
-                        int index118_18 = input.index();
+                        int index120_18 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27622,14 +27656,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_18);
+                        input.seek(index120_18);
                         if ( s>=0 ) return s;
                         break;
                     case 18 : 
-                        int LA118_19 = input.LA(1);
+                        int LA120_19 = input.LA(1);
 
                          
-                        int index118_19 = input.index();
+                        int index120_19 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27637,14 +27671,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_19);
+                        input.seek(index120_19);
                         if ( s>=0 ) return s;
                         break;
                     case 19 : 
-                        int LA118_20 = input.LA(1);
+                        int LA120_20 = input.LA(1);
 
                          
-                        int index118_20 = input.index();
+                        int index120_20 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27652,14 +27686,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_20);
+                        input.seek(index120_20);
                         if ( s>=0 ) return s;
                         break;
                     case 20 : 
-                        int LA118_21 = input.LA(1);
+                        int LA120_21 = input.LA(1);
 
                          
-                        int index118_21 = input.index();
+                        int index120_21 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27667,14 +27701,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_21);
+                        input.seek(index120_21);
                         if ( s>=0 ) return s;
                         break;
                     case 21 : 
-                        int LA118_22 = input.LA(1);
+                        int LA120_22 = input.LA(1);
 
                          
-                        int index118_22 = input.index();
+                        int index120_22 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27682,14 +27716,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_22);
+                        input.seek(index120_22);
                         if ( s>=0 ) return s;
                         break;
                     case 22 : 
-                        int LA118_23 = input.LA(1);
+                        int LA120_23 = input.LA(1);
 
                          
-                        int index118_23 = input.index();
+                        int index120_23 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27697,14 +27731,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_23);
+                        input.seek(index120_23);
                         if ( s>=0 ) return s;
                         break;
                     case 23 : 
-                        int LA118_24 = input.LA(1);
+                        int LA120_24 = input.LA(1);
 
                          
-                        int index118_24 = input.index();
+                        int index120_24 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27712,14 +27746,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_24);
+                        input.seek(index120_24);
                         if ( s>=0 ) return s;
                         break;
                     case 24 : 
-                        int LA118_25 = input.LA(1);
+                        int LA120_25 = input.LA(1);
 
                          
-                        int index118_25 = input.index();
+                        int index120_25 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27727,14 +27761,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_25);
+                        input.seek(index120_25);
                         if ( s>=0 ) return s;
                         break;
                     case 25 : 
-                        int LA118_26 = input.LA(1);
+                        int LA120_26 = input.LA(1);
 
                          
-                        int index118_26 = input.index();
+                        int index120_26 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27742,14 +27776,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_26);
+                        input.seek(index120_26);
                         if ( s>=0 ) return s;
                         break;
                     case 26 : 
-                        int LA118_27 = input.LA(1);
+                        int LA120_27 = input.LA(1);
 
                          
-                        int index118_27 = input.index();
+                        int index120_27 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27757,14 +27791,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_27);
+                        input.seek(index120_27);
                         if ( s>=0 ) return s;
                         break;
                     case 27 : 
-                        int LA118_28 = input.LA(1);
+                        int LA120_28 = input.LA(1);
 
                          
-                        int index118_28 = input.index();
+                        int index120_28 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27772,14 +27806,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_28);
+                        input.seek(index120_28);
                         if ( s>=0 ) return s;
                         break;
                     case 28 : 
-                        int LA118_29 = input.LA(1);
+                        int LA120_29 = input.LA(1);
 
                          
-                        int index118_29 = input.index();
+                        int index120_29 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27787,14 +27821,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_29);
+                        input.seek(index120_29);
                         if ( s>=0 ) return s;
                         break;
                     case 29 : 
-                        int LA118_30 = input.LA(1);
+                        int LA120_30 = input.LA(1);
 
                          
-                        int index118_30 = input.index();
+                        int index120_30 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27802,14 +27836,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_30);
+                        input.seek(index120_30);
                         if ( s>=0 ) return s;
                         break;
                     case 30 : 
-                        int LA118_31 = input.LA(1);
+                        int LA120_31 = input.LA(1);
 
                          
-                        int index118_31 = input.index();
+                        int index120_31 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27817,14 +27851,14 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_31);
+                        input.seek(index120_31);
                         if ( s>=0 ) return s;
                         break;
                     case 31 : 
-                        int LA118_32 = input.LA(1);
+                        int LA120_32 = input.LA(1);
 
                          
-                        int index118_32 = input.index();
+                        int index120_32 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred39_InternalMelange()) ) {s = 77;}
@@ -27832,13 +27866,177 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 33;}
 
                          
-                        input.seek(index118_32);
+                        input.seek(index120_32);
                         if ( s>=0 ) return s;
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 118, _s, input);
+                new NoViableAltException(getDescription(), 120, _s, input);
+            error(nvae);
+            throw nvae;
+        }
+    }
+    static final String DFA138_eotS =
+        "\132\uffff";
+    static final String DFA138_eofS =
+        "\1\2\131\uffff";
+    static final String DFA138_minS =
+        "\1\4\1\0\130\uffff";
+    static final String DFA138_maxS =
+        "\1\153\1\0\130\uffff";
+    static final String DFA138_acceptS =
+        "\2\uffff\1\2\126\uffff\1\1";
+    static final String DFA138_specialS =
+        "\1\uffff\1\0\130\uffff}>";
+    static final String[] DFA138_transitionS = {
+            "\5\2\5\uffff\1\2\1\uffff\1\2\2\uffff\1\2\1\uffff\1\2\1\uffff\11\2\3\uffff\2\2\1\uffff\3\2\1\uffff\5\2\1\1\35\2\1\uffff\34\2\1\uffff\1\2",
+            "\1\uffff",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+    };
+
+    static final short[] DFA138_eot = DFA.unpackEncodedString(DFA138_eotS);
+    static final short[] DFA138_eof = DFA.unpackEncodedString(DFA138_eofS);
+    static final char[] DFA138_min = DFA.unpackEncodedStringToUnsignedChars(DFA138_minS);
+    static final char[] DFA138_max = DFA.unpackEncodedStringToUnsignedChars(DFA138_maxS);
+    static final short[] DFA138_accept = DFA.unpackEncodedString(DFA138_acceptS);
+    static final short[] DFA138_special = DFA.unpackEncodedString(DFA138_specialS);
+    static final short[][] DFA138_transition;
+
+    static {
+        int numStates = DFA138_transitionS.length;
+        DFA138_transition = new short[numStates][];
+        for (int i=0; i<numStates; i++) {
+            DFA138_transition[i] = DFA.unpackEncodedString(DFA138_transitionS[i]);
+        }
+    }
+
+    class DFA138 extends DFA {
+
+        public DFA138(BaseRecognizer recognizer) {
+            this.recognizer = recognizer;
+            this.decisionNumber = 138;
+            this.eot = DFA138_eot;
+            this.eof = DFA138_eof;
+            this.min = DFA138_min;
+            this.max = DFA138_max;
+            this.accept = DFA138_accept;
+            this.special = DFA138_special;
+            this.transition = DFA138_transition;
+        }
+        public String getDescription() {
+            return "6971:2: ( ( ( '<' )=>otherlv_1= '<' ) ( (lv_arguments_2_0= ruleJvmArgumentTypeReference ) ) (otherlv_3= ',' ( (lv_arguments_4_0= ruleJvmArgumentTypeReference ) ) )* otherlv_5= '>' ( ( ( ( () '.' ) )=> ( () otherlv_7= '.' ) ) ( ( ruleValidID ) ) ( ( ( '<' )=>otherlv_9= '<' ) ( (lv_arguments_10_0= ruleJvmArgumentTypeReference ) ) (otherlv_11= ',' ( (lv_arguments_12_0= ruleJvmArgumentTypeReference ) ) )* otherlv_13= '>' )? )* )?";
+        }
+        public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
+            TokenStream input = (TokenStream)_input;
+        	int _s = s;
+            switch ( s ) {
+                    case 0 : 
+                        int LA138_1 = input.LA(1);
+
+                         
+                        int index138_1 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred46_InternalMelange()) ) {s = 89;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index138_1);
+                        if ( s>=0 ) return s;
+                        break;
+            }
+            if (state.backtracking>0) {state.failed=true; return -1;}
+            NoViableAltException nvae =
+                new NoViableAltException(getDescription(), 138, _s, input);
             error(nvae);
             throw nvae;
         }
@@ -27856,7 +28054,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
     static final String DFA136_specialS =
         "\1\uffff\1\0\130\uffff}>";
     static final String[] DFA136_transitionS = {
-            "\5\2\5\uffff\1\2\1\uffff\1\2\2\uffff\1\2\1\uffff\1\2\1\uffff\11\2\1\uffff\1\2\2\uffff\2\2\1\uffff\3\2\1\uffff\5\2\1\1\35\2\1\uffff\33\2\1\uffff\1\2",
+            "\5\2\5\uffff\1\2\1\uffff\1\2\2\uffff\1\2\1\uffff\1\2\1\uffff\11\2\3\uffff\2\2\1\uffff\3\2\1\uffff\5\2\1\1\35\2\1\uffff\34\2\1\uffff\1\2",
             "\1\uffff",
             "",
             "",
@@ -27978,7 +28176,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             this.transition = DFA136_transition;
         }
         public String getDescription() {
-            return "6971:2: ( ( ( '<' )=>otherlv_1= '<' ) ( (lv_arguments_2_0= ruleJvmArgumentTypeReference ) ) (otherlv_3= ',' ( (lv_arguments_4_0= ruleJvmArgumentTypeReference ) ) )* otherlv_5= '>' ( ( ( ( () '.' ) )=> ( () otherlv_7= '.' ) ) ( ( ruleValidID ) ) ( ( ( '<' )=>otherlv_9= '<' ) ( (lv_arguments_10_0= ruleJvmArgumentTypeReference ) ) (otherlv_11= ',' ( (lv_arguments_12_0= ruleJvmArgumentTypeReference ) ) )* otherlv_13= '>' )? )* )?";
+            return "7047:2: ( ( ( '<' )=>otherlv_9= '<' ) ( (lv_arguments_10_0= ruleJvmArgumentTypeReference ) ) (otherlv_11= ',' ( (lv_arguments_12_0= ruleJvmArgumentTypeReference ) ) )* otherlv_13= '>' )?";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
@@ -27991,7 +28189,7 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
                         int index136_1 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred46_InternalMelange()) ) {s = 89;}
+                        if ( (synpred48_InternalMelange()) ) {s = 89;}
 
                         else if ( (true) ) {s = 2;}
 
@@ -28007,220 +28205,56 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
             throw nvae;
         }
     }
-    static final String DFA134_eotS =
-        "\132\uffff";
-    static final String DFA134_eofS =
-        "\1\2\131\uffff";
-    static final String DFA134_minS =
-        "\1\4\1\0\130\uffff";
-    static final String DFA134_maxS =
-        "\1\153\1\0\130\uffff";
-    static final String DFA134_acceptS =
-        "\2\uffff\1\2\126\uffff\1\1";
-    static final String DFA134_specialS =
-        "\1\uffff\1\0\130\uffff}>";
-    static final String[] DFA134_transitionS = {
-            "\5\2\5\uffff\1\2\1\uffff\1\2\2\uffff\1\2\1\uffff\1\2\1\uffff\11\2\1\uffff\1\2\2\uffff\2\2\1\uffff\3\2\1\uffff\5\2\1\1\35\2\1\uffff\33\2\1\uffff\1\2",
-            "\1\uffff",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-    };
-
-    static final short[] DFA134_eot = DFA.unpackEncodedString(DFA134_eotS);
-    static final short[] DFA134_eof = DFA.unpackEncodedString(DFA134_eofS);
-    static final char[] DFA134_min = DFA.unpackEncodedStringToUnsignedChars(DFA134_minS);
-    static final char[] DFA134_max = DFA.unpackEncodedStringToUnsignedChars(DFA134_maxS);
-    static final short[] DFA134_accept = DFA.unpackEncodedString(DFA134_acceptS);
-    static final short[] DFA134_special = DFA.unpackEncodedString(DFA134_specialS);
-    static final short[][] DFA134_transition;
-
-    static {
-        int numStates = DFA134_transitionS.length;
-        DFA134_transition = new short[numStates][];
-        for (int i=0; i<numStates; i++) {
-            DFA134_transition[i] = DFA.unpackEncodedString(DFA134_transitionS[i]);
-        }
-    }
-
-    class DFA134 extends DFA {
-
-        public DFA134(BaseRecognizer recognizer) {
-            this.recognizer = recognizer;
-            this.decisionNumber = 134;
-            this.eot = DFA134_eot;
-            this.eof = DFA134_eof;
-            this.min = DFA134_min;
-            this.max = DFA134_max;
-            this.accept = DFA134_accept;
-            this.special = DFA134_special;
-            this.transition = DFA134_transition;
-        }
-        public String getDescription() {
-            return "7047:2: ( ( ( '<' )=>otherlv_9= '<' ) ( (lv_arguments_10_0= ruleJvmArgumentTypeReference ) ) (otherlv_11= ',' ( (lv_arguments_12_0= ruleJvmArgumentTypeReference ) ) )* otherlv_13= '>' )?";
-        }
-        public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
-            TokenStream input = (TokenStream)_input;
-        	int _s = s;
-            switch ( s ) {
-                    case 0 : 
-                        int LA134_1 = input.LA(1);
-
-                         
-                        int index134_1 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred48_InternalMelange()) ) {s = 89;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index134_1);
-                        if ( s>=0 ) return s;
-                        break;
-            }
-            if (state.backtracking>0) {state.failed=true; return -1;}
-            NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 134, _s, input);
-            error(nvae);
-            throw nvae;
-        }
-    }
-    static final String DFA144_eotS =
+    static final String DFA146_eotS =
         "\7\uffff";
-    static final String DFA144_eofS =
-        "\2\uffff\1\4\2\uffff\1\4\1\uffff";
-    static final String DFA144_minS =
-        "\1\10\1\uffff\1\16\1\10\1\uffff\1\16\1\uffff";
-    static final String DFA144_maxS =
-        "\1\133\1\uffff\1\134\1\102\1\uffff\1\134\1\uffff";
-    static final String DFA144_acceptS =
-        "\1\uffff\1\1\2\uffff\1\2\1\uffff\1\3";
-    static final String DFA144_specialS =
+    static final String DFA146_eofS =
+        "\2\uffff\1\4\3\uffff\1\4";
+    static final String DFA146_minS =
+        "\1\10\1\uffff\1\16\1\10\2\uffff\1\16";
+    static final String DFA146_maxS =
+        "\1\133\1\uffff\1\134\1\101\2\uffff\1\134";
+    static final String DFA146_acceptS =
+        "\1\uffff\1\1\2\uffff\1\2\1\3\1\uffff";
+    static final String DFA146_specialS =
         "\7\uffff}>";
-    static final String[] DFA144_transitionS = {
+    static final String[] DFA146_transitionS = {
             "\1\2\122\uffff\1\1",
             "",
-            "\1\4\6\uffff\1\4\1\uffff\6\4\2\uffff\1\4\4\uffff\2\4\3\uffff\1\4\40\uffff\1\3\4\uffff\1\4\14\uffff\1\4",
-            "\1\5\71\uffff\1\6",
+            "\1\4\6\uffff\1\4\1\uffff\6\4\2\uffff\1\4\3\uffff\2\4\3\uffff\1\4\40\uffff\1\3\4\uffff\1\4\15\uffff\1\4",
+            "\1\6\70\uffff\1\5",
             "",
-            "\1\4\6\uffff\1\4\1\uffff\6\4\2\uffff\1\4\4\uffff\2\4\3\uffff\1\4\40\uffff\1\3\4\uffff\1\4\14\uffff\1\4",
-            ""
+            "",
+            "\1\4\6\uffff\1\4\1\uffff\6\4\2\uffff\1\4\3\uffff\2\4\3\uffff\1\4\40\uffff\1\3\4\uffff\1\4\15\uffff\1\4"
     };
 
-    static final short[] DFA144_eot = DFA.unpackEncodedString(DFA144_eotS);
-    static final short[] DFA144_eof = DFA.unpackEncodedString(DFA144_eofS);
-    static final char[] DFA144_min = DFA.unpackEncodedStringToUnsignedChars(DFA144_minS);
-    static final char[] DFA144_max = DFA.unpackEncodedStringToUnsignedChars(DFA144_maxS);
-    static final short[] DFA144_accept = DFA.unpackEncodedString(DFA144_acceptS);
-    static final short[] DFA144_special = DFA.unpackEncodedString(DFA144_specialS);
-    static final short[][] DFA144_transition;
+    static final short[] DFA146_eot = DFA.unpackEncodedString(DFA146_eotS);
+    static final short[] DFA146_eof = DFA.unpackEncodedString(DFA146_eofS);
+    static final char[] DFA146_min = DFA.unpackEncodedStringToUnsignedChars(DFA146_minS);
+    static final char[] DFA146_max = DFA.unpackEncodedStringToUnsignedChars(DFA146_maxS);
+    static final short[] DFA146_accept = DFA.unpackEncodedString(DFA146_acceptS);
+    static final short[] DFA146_special = DFA.unpackEncodedString(DFA146_specialS);
+    static final short[][] DFA146_transition;
 
     static {
-        int numStates = DFA144_transitionS.length;
-        DFA144_transition = new short[numStates][];
+        int numStates = DFA146_transitionS.length;
+        DFA146_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA144_transition[i] = DFA.unpackEncodedString(DFA144_transitionS[i]);
+            DFA146_transition[i] = DFA.unpackEncodedString(DFA146_transitionS[i]);
         }
     }
 
-    class DFA144 extends DFA {
+    class DFA146 extends DFA {
 
-        public DFA144(BaseRecognizer recognizer) {
+        public DFA146(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 144;
-            this.eot = DFA144_eot;
-            this.eof = DFA144_eof;
-            this.min = DFA144_min;
-            this.max = DFA144_max;
-            this.accept = DFA144_accept;
-            this.special = DFA144_special;
-            this.transition = DFA144_transition;
+            this.decisionNumber = 146;
+            this.eot = DFA146_eot;
+            this.eof = DFA146_eof;
+            this.min = DFA146_min;
+            this.max = DFA146_max;
+            this.accept = DFA146_accept;
+            this.special = DFA146_special;
+            this.transition = DFA146_transition;
         }
         public String getDescription() {
             return "7550:1: ( ( ( (lv_static_1_0= 'static' ) ) ( (lv_extension_2_0= 'extension' ) )? ( ( ruleQualifiedNameInStaticImport ) ) ( ( (lv_wildcard_4_0= '*' ) ) | ( (lv_memberName_5_0= ruleValidID ) ) ) ) | ( ( ruleQualifiedName ) ) | ( (lv_importedNamespace_7_0= ruleQualifiedNameWithWildcard ) ) )";
@@ -28231,9 +28265,9 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleModelTypingSpace_in_entryRuleModelTypingSpace75 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleModelTypingSpace85 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_13_in_ruleModelTypingSpace123 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleModelTypingSpace144 = new BitSet(new long[]{0x000002309FA04002L,0x0000000010000000L});
-    public static final BitSet FOLLOW_ruleXImportSection_in_ruleModelTypingSpace167 = new BitSet(new long[]{0x000002309FA04002L});
-    public static final BitSet FOLLOW_ruleElement_in_ruleModelTypingSpace189 = new BitSet(new long[]{0x000002309FA04002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleModelTypingSpace144 = new BitSet(new long[]{0x000001189FA04002L,0x0000000010000000L});
+    public static final BitSet FOLLOW_ruleXImportSection_in_ruleModelTypingSpace167 = new BitSet(new long[]{0x000001189FA04002L});
+    public static final BitSet FOLLOW_ruleElement_in_ruleModelTypingSpace189 = new BitSet(new long[]{0x000001189FA04002L});
     public static final BitSet FOLLOW_ruleElement_in_entryRuleElement226 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleElement236 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleLanguage_in_ruleElement283 = new BitSet(new long[]{0x0000000000000002L});
@@ -28259,19 +28293,19 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleQualifiedName_in_ruleLanguage786 = new BitSet(new long[]{0x0000000000090000L});
     public static final BitSet FOLLOW_16_in_ruleLanguage799 = new BitSet(new long[]{0x0000000000000100L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_ruleLanguage822 = new BitSet(new long[]{0x0000000000090000L});
-    public static final BitSet FOLLOW_19_in_ruleLanguage838 = new BitSet(new long[]{0x0000023004904002L});
+    public static final BitSet FOLLOW_19_in_ruleLanguage838 = new BitSet(new long[]{0x0000011804904002L});
     public static final BitSet FOLLOW_20_in_ruleLanguage851 = new BitSet(new long[]{0x0000000000000000L,0x0000700000000000L});
-    public static final BitSet FOLLOW_ruleResourceType_in_ruleLanguage872 = new BitSet(new long[]{0x0000023004E04002L});
+    public static final BitSet FOLLOW_ruleResourceType_in_ruleLanguage872 = new BitSet(new long[]{0x0000011804E04002L});
     public static final BitSet FOLLOW_21_in_ruleLanguage894 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleLanguage912 = new BitSet(new long[]{0x0000023004804002L});
-    public static final BitSet FOLLOW_22_in_ruleLanguage937 = new BitSet(new long[]{0x2000000020000100L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleLanguage958 = new BitSet(new long[]{0x0000023004804002L});
-    public static final BitSet FOLLOW_ruleOperator_in_ruleLanguage1039 = new BitSet(new long[]{0x0000023004804002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleLanguage912 = new BitSet(new long[]{0x0000011804804002L});
+    public static final BitSet FOLLOW_22_in_ruleLanguage937 = new BitSet(new long[]{0x1000000020000100L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleLanguage958 = new BitSet(new long[]{0x0000011804804002L});
+    public static final BitSet FOLLOW_ruleOperator_in_ruleLanguage1039 = new BitSet(new long[]{0x0000011804804002L});
     public static final BitSet FOLLOW_23_in_ruleLanguage1108 = new BitSet(new long[]{0x0000000000000100L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleLanguage1129 = new BitSet(new long[]{0x0000000001200000L});
     public static final BitSet FOLLOW_21_in_ruleLanguage1150 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_RULE_STRING_in_ruleLanguage1168 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_24_in_ruleLanguage1188 = new BitSet(new long[]{0x0000023004804002L});
+    public static final BitSet FOLLOW_24_in_ruleLanguage1188 = new BitSet(new long[]{0x0000011804804002L});
     public static final BitSet FOLLOW_ruleEcoreModelType_in_entryRuleEcoreModelType1270 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleEcoreModelType1280 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_25_in_ruleEcoreModelType1362 = new BitSet(new long[]{0x0000000000000100L});
@@ -28285,12 +28319,12 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleXbaseTransformation_in_entryRuleXbaseTransformation1616 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXbaseTransformation1626 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_27_in_ruleXbaseTransformation1669 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_ruleXbaseTransformation1695 = new BitSet(new long[]{0x2000000020000100L});
+    public static final BitSet FOLLOW_28_in_ruleXbaseTransformation1695 = new BitSet(new long[]{0x1000000020000100L});
     public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleXbaseTransformation1716 = new BitSet(new long[]{0x0000000000000100L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleXbaseTransformation1738 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_ruleXbaseTransformation1750 = new BitSet(new long[]{0x2000000060000100L});
+    public static final BitSet FOLLOW_29_in_ruleXbaseTransformation1750 = new BitSet(new long[]{0x1000000060000100L});
     public static final BitSet FOLLOW_ruleFullJvmFormalParameter_in_ruleXbaseTransformation1772 = new BitSet(new long[]{0x0000000040010000L});
-    public static final BitSet FOLLOW_16_in_ruleXbaseTransformation1785 = new BitSet(new long[]{0x2000000020000100L});
+    public static final BitSet FOLLOW_16_in_ruleXbaseTransformation1785 = new BitSet(new long[]{0x1000000020000100L});
     public static final BitSet FOLLOW_ruleFullJvmFormalParameter_in_ruleXbaseTransformation1806 = new BitSet(new long[]{0x0000000040010000L});
     public static final BitSet FOLLOW_30_in_ruleXbaseTransformation1822 = new BitSet(new long[]{0x0000000000080000L});
     public static final BitSet FOLLOW_ruleXBlockExpression_in_ruleXbaseTransformation1843 = new BitSet(new long[]{0x0000000000000002L});
@@ -28307,672 +28341,672 @@ public class InternalMelangeParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_EOF_in_entryRulePackageMapping2076 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_STRING_in_rulePackageMapping2118 = new BitSet(new long[]{0x0000000100000000L});
     public static final BitSet FOLLOW_32_in_rulePackageMapping2135 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rulePackageMapping2152 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_19_in_rulePackageMapping2169 = new BitSet(new long[]{0x0000000001000010L});
-    public static final BitSet FOLLOW_ruleClassMapping_in_rulePackageMapping2190 = new BitSet(new long[]{0x0000000001000010L});
-    public static final BitSet FOLLOW_24_in_rulePackageMapping2203 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleClassMapping_in_entryRuleClassMapping2239 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleClassMapping2249 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleClassMapping2291 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_ruleClassMapping2308 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleClassMapping2325 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_19_in_ruleClassMapping2342 = new BitSet(new long[]{0x0000000001000010L});
-    public static final BitSet FOLLOW_rulePropertyMapping_in_ruleClassMapping2363 = new BitSet(new long[]{0x0000000001000010L});
-    public static final BitSet FOLLOW_24_in_ruleClassMapping2376 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePropertyMapping_in_entryRulePropertyMapping2412 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulePropertyMapping2422 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rulePropertyMapping2464 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_rulePropertyMapping2481 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rulePropertyMapping2498 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOperator_in_entryRuleOperator2539 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleOperator2549 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleImport_in_ruleOperator2596 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMerge_in_ruleOperator2623 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSlice_in_ruleOperator2650 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleWeave_in_ruleOperator2677 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleImport_in_entryRuleImport2712 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleImport2722 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_26_in_ruleImport2759 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleImport2776 = new BitSet(new long[]{0x0000000C00000002L});
-    public static final BitSet FOLLOW_34_in_ruleImport2794 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleImport2812 = new BitSet(new long[]{0x0000000800010002L});
-    public static final BitSet FOLLOW_16_in_ruleImport2830 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleImport2847 = new BitSet(new long[]{0x0000000800010002L});
-    public static final BitSet FOLLOW_35_in_ruleImport2870 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_19_in_ruleImport2882 = new BitSet(new long[]{0x0000000001000010L});
-    public static final BitSet FOLLOW_rulePackageMapping_in_ruleImport2903 = new BitSet(new long[]{0x0000000001000010L});
-    public static final BitSet FOLLOW_24_in_ruleImport2916 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMerge_in_entryRuleMerge2954 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleMerge2964 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_ruleMerge3001 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleMerge3024 = new BitSet(new long[]{0x0000000800000002L});
-    public static final BitSet FOLLOW_35_in_ruleMerge3037 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_19_in_ruleMerge3049 = new BitSet(new long[]{0x0000000001000010L});
-    public static final BitSet FOLLOW_rulePackageMapping_in_ruleMerge3070 = new BitSet(new long[]{0x0000000001000010L});
-    public static final BitSet FOLLOW_24_in_ruleMerge3083 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSlice_in_entryRuleSlice3121 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleSlice3131 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_ruleSlice3168 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleSlice3191 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_38_in_ruleSlice3203 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_ruleSlice3215 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleSlice3232 = new BitSet(new long[]{0x0000010000010000L});
-    public static final BitSet FOLLOW_16_in_ruleSlice3250 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleSlice3267 = new BitSet(new long[]{0x0000010000010000L});
-    public static final BitSet FOLLOW_40_in_ruleSlice3286 = new BitSet(new long[]{0x0000000800000002L});
-    public static final BitSet FOLLOW_35_in_ruleSlice3299 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_19_in_ruleSlice3311 = new BitSet(new long[]{0x0000000001000010L});
-    public static final BitSet FOLLOW_rulePackageMapping_in_ruleSlice3332 = new BitSet(new long[]{0x0000000001000010L});
-    public static final BitSet FOLLOW_24_in_ruleSlice3345 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleInherit_in_entryRuleInherit3383 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleInherit3393 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleInherit3440 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleWeave_in_entryRuleWeave3475 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleWeave3485 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAspectTypeRef_in_ruleWeave3532 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAspectWildcard_in_ruleWeave3559 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAspectTypeRef_in_entryRuleAspectTypeRef3594 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleAspectTypeRef3604 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_41_in_ruleAspectTypeRef3641 = new BitSet(new long[]{0x2000000020000100L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleAspectTypeRef3662 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAspectWildcard_in_entryRuleAspectWildcard3698 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleAspectWildcard3708 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_41_in_ruleAspectWildcard3745 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_ruleQualifiedNameWithWildcard_in_ruleAspectWildcard3766 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_entryRuleXExpression3802 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXExpression3812 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXAssignment_in_ruleXExpression3858 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXAssignment_in_entryRuleXAssignment3892 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXAssignment3902 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFeatureCallID_in_ruleXAssignment3960 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_ruleOpSingleAssign_in_ruleXAssignment3976 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXAssignment_in_ruleXAssignment3996 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXOrExpression_in_ruleXAssignment4026 = new BitSet(new long[]{0x0003F80000000002L});
-    public static final BitSet FOLLOW_ruleOpMultiAssign_in_ruleXAssignment4079 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXAssignment_in_ruleXAssignment4102 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpSingleAssign_in_entryRuleOpSingleAssign4142 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleOpSingleAssign4153 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_42_in_ruleOpSingleAssign4190 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpMultiAssign_in_entryRuleOpMultiAssign4230 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleOpMultiAssign4241 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_43_in_ruleOpMultiAssign4279 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_44_in_ruleOpMultiAssign4298 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_ruleOpMultiAssign4317 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_ruleOpMultiAssign4336 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_ruleOpMultiAssign4355 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_ruleOpMultiAssign4375 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_ruleOpMultiAssign4388 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_42_in_ruleOpMultiAssign4401 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_49_in_ruleOpMultiAssign4422 = new BitSet(new long[]{0x0006000000000000L});
-    public static final BitSet FOLLOW_49_in_ruleOpMultiAssign4436 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_50_in_ruleOpMultiAssign4451 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXOrExpression_in_entryRuleXOrExpression4492 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXOrExpression4502 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXAndExpression_in_ruleXOrExpression4549 = new BitSet(new long[]{0x0008000000000002L});
-    public static final BitSet FOLLOW_ruleOpOr_in_ruleXOrExpression4602 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXAndExpression_in_ruleXOrExpression4625 = new BitSet(new long[]{0x0008000000000002L});
-    public static final BitSet FOLLOW_ruleOpOr_in_entryRuleOpOr4664 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleOpOr4675 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_ruleOpOr4712 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXAndExpression_in_entryRuleXAndExpression4751 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXAndExpression4761 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXEqualityExpression_in_ruleXAndExpression4808 = new BitSet(new long[]{0x0010000000000002L});
-    public static final BitSet FOLLOW_ruleOpAnd_in_ruleXAndExpression4861 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXEqualityExpression_in_ruleXAndExpression4884 = new BitSet(new long[]{0x0010000000000002L});
-    public static final BitSet FOLLOW_ruleOpAnd_in_entryRuleOpAnd4923 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleOpAnd4934 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_52_in_ruleOpAnd4971 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXEqualityExpression_in_entryRuleXEqualityExpression5010 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXEqualityExpression5020 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXRelationalExpression_in_ruleXEqualityExpression5067 = new BitSet(new long[]{0x01E0000000000002L});
-    public static final BitSet FOLLOW_ruleOpEquality_in_ruleXEqualityExpression5120 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXRelationalExpression_in_ruleXEqualityExpression5143 = new BitSet(new long[]{0x01E0000000000002L});
-    public static final BitSet FOLLOW_ruleOpEquality_in_entryRuleOpEquality5182 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleOpEquality5193 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_53_in_ruleOpEquality5231 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_54_in_ruleOpEquality5250 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_55_in_ruleOpEquality5269 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_ruleOpEquality5288 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXRelationalExpression_in_entryRuleXRelationalExpression5328 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXRelationalExpression5338 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXOtherOperatorExpression_in_ruleXRelationalExpression5385 = new BitSet(new long[]{0x0207000000000002L});
-    public static final BitSet FOLLOW_57_in_ruleXRelationalExpression5421 = new BitSet(new long[]{0x2000000020000100L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleXRelationalExpression5444 = new BitSet(new long[]{0x0207000000000002L});
-    public static final BitSet FOLLOW_ruleOpCompare_in_ruleXRelationalExpression5505 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXOtherOperatorExpression_in_ruleXRelationalExpression5528 = new BitSet(new long[]{0x0207000000000002L});
-    public static final BitSet FOLLOW_ruleOpCompare_in_entryRuleOpCompare5568 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleOpCompare5579 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_ruleOpCompare5617 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_ruleOpCompare5637 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_42_in_ruleOpCompare5650 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_49_in_ruleOpCompare5670 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_ruleOpCompare5689 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXOtherOperatorExpression_in_entryRuleXOtherOperatorExpression5729 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXOtherOperatorExpression5739 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXAdditiveExpression_in_ruleXOtherOperatorExpression5786 = new BitSet(new long[]{0xFC03000000000002L});
-    public static final BitSet FOLLOW_ruleOpOther_in_ruleXOtherOperatorExpression5839 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXAdditiveExpression_in_ruleXOtherOperatorExpression5862 = new BitSet(new long[]{0xFC03000000000002L});
-    public static final BitSet FOLLOW_ruleOpOther_in_entryRuleOpOther5901 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleOpOther5912 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_58_in_ruleOpOther5950 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_59_in_ruleOpOther5969 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_49_in_ruleOpOther5989 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_60_in_ruleOpOther6002 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_60_in_ruleOpOther6022 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_61_in_ruleOpOther6041 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_49_in_ruleOpOther6061 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_49_in_ruleOpOther6092 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_49_in_ruleOpOther6105 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_49_in_ruleOpOther6126 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_ruleOpOther6148 = new BitSet(new long[]{0x2001000000000000L});
-    public static final BitSet FOLLOW_48_in_ruleOpOther6179 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_ruleOpOther6192 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_ruleOpOther6213 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_61_in_ruleOpOther6232 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_62_in_ruleOpOther6253 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_63_in_ruleOpOther6272 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXAdditiveExpression_in_entryRuleXAdditiveExpression6312 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXAdditiveExpression6322 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXMultiplicativeExpression_in_ruleXAdditiveExpression6369 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000003L});
-    public static final BitSet FOLLOW_ruleOpAdd_in_ruleXAdditiveExpression6422 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXMultiplicativeExpression_in_ruleXAdditiveExpression6445 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000003L});
-    public static final BitSet FOLLOW_ruleOpAdd_in_entryRuleOpAdd6484 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleOpAdd6495 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_64_in_ruleOpAdd6533 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_65_in_ruleOpAdd6552 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXMultiplicativeExpression_in_entryRuleXMultiplicativeExpression6592 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXMultiplicativeExpression6602 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXUnaryOperation_in_ruleXMultiplicativeExpression6649 = new BitSet(new long[]{0x0000000000000002L,0x000000000000003CL});
-    public static final BitSet FOLLOW_ruleOpMulti_in_ruleXMultiplicativeExpression6702 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXUnaryOperation_in_ruleXMultiplicativeExpression6725 = new BitSet(new long[]{0x0000000000000002L,0x000000000000003CL});
-    public static final BitSet FOLLOW_ruleOpMulti_in_entryRuleOpMulti6764 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleOpMulti6775 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_66_in_ruleOpMulti6813 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_67_in_ruleOpMulti6832 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_68_in_ruleOpMulti6851 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_69_in_ruleOpMulti6870 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXUnaryOperation_in_entryRuleXUnaryOperation6910 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXUnaryOperation6920 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpUnary_in_ruleXUnaryOperation6978 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXUnaryOperation_in_ruleXUnaryOperation6999 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXCastedExpression_in_ruleXUnaryOperation7028 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpUnary_in_entryRuleOpUnary7064 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleOpUnary7075 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_70_in_ruleOpUnary7113 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_65_in_ruleOpUnary7132 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_64_in_ruleOpUnary7151 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXCastedExpression_in_entryRuleXCastedExpression7191 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXCastedExpression7201 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXPostfixOperation_in_ruleXCastedExpression7248 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000080L});
-    public static final BitSet FOLLOW_71_in_ruleXCastedExpression7283 = new BitSet(new long[]{0x2000000020000100L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleXCastedExpression7306 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000080L});
-    public static final BitSet FOLLOW_ruleXPostfixOperation_in_entryRuleXPostfixOperation7344 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXPostfixOperation7354 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXMemberFeatureCall_in_ruleXPostfixOperation7401 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000300L});
-    public static final BitSet FOLLOW_ruleOpPostfix_in_ruleXPostfixOperation7453 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpPostfix_in_entryRuleOpPostfix7493 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleOpPostfix7504 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_72_in_ruleOpPostfix7542 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_73_in_ruleOpPostfix7561 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXMemberFeatureCall_in_entryRuleXMemberFeatureCall7601 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXMemberFeatureCall7611 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXPrimaryExpression_in_ruleXMemberFeatureCall7658 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001C00L});
-    public static final BitSet FOLLOW_74_in_ruleXMemberFeatureCall7730 = new BitSet(new long[]{0x0000000000000100L,0x000000003C000000L});
-    public static final BitSet FOLLOW_75_in_ruleXMemberFeatureCall7754 = new BitSet(new long[]{0x0000000000000100L,0x000000003C000000L});
-    public static final BitSet FOLLOW_ruleFeatureCallID_in_ruleXMemberFeatureCall7791 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_ruleOpSingleAssign_in_ruleXMemberFeatureCall7807 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXAssignment_in_ruleXMemberFeatureCall7829 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001C00L});
-    public static final BitSet FOLLOW_74_in_ruleXMemberFeatureCall7915 = new BitSet(new long[]{0x0001000000000100L,0x000000007C000000L});
-    public static final BitSet FOLLOW_76_in_ruleXMemberFeatureCall7939 = new BitSet(new long[]{0x0001000000000100L,0x000000007C000000L});
-    public static final BitSet FOLLOW_75_in_ruleXMemberFeatureCall7976 = new BitSet(new long[]{0x0001000000000100L,0x000000007C000000L});
-    public static final BitSet FOLLOW_48_in_ruleXMemberFeatureCall8005 = new BitSet(new long[]{0x2000000020000100L,0x0000040000000000L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleXMemberFeatureCall8026 = new BitSet(new long[]{0x0002000000010000L});
-    public static final BitSet FOLLOW_16_in_ruleXMemberFeatureCall8039 = new BitSet(new long[]{0x2000000020000100L,0x0000040000000000L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleXMemberFeatureCall8060 = new BitSet(new long[]{0x0002000000010000L});
-    public static final BitSet FOLLOW_49_in_ruleXMemberFeatureCall8074 = new BitSet(new long[]{0x0001000000000100L,0x000000007C000000L});
-    public static final BitSet FOLLOW_ruleIdOrSuper_in_ruleXMemberFeatureCall8099 = new BitSet(new long[]{0x0000008020000002L,0x0000000000001C00L});
-    public static final BitSet FOLLOW_29_in_ruleXMemberFeatureCall8133 = new BitSet(new long[]{0x20010080600801F0L,0x0000017FFCE56043L});
-    public static final BitSet FOLLOW_ruleXShortClosure_in_ruleXMemberFeatureCall8218 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXMemberFeatureCall8246 = new BitSet(new long[]{0x0000000040010000L});
-    public static final BitSet FOLLOW_16_in_ruleXMemberFeatureCall8259 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXMemberFeatureCall8280 = new BitSet(new long[]{0x0000000040010000L});
-    public static final BitSet FOLLOW_30_in_ruleXMemberFeatureCall8297 = new BitSet(new long[]{0x0000008000000002L,0x0000000000001C00L});
-    public static final BitSet FOLLOW_ruleXClosure_in_ruleXMemberFeatureCall8332 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001C00L});
-    public static final BitSet FOLLOW_ruleXPrimaryExpression_in_entryRuleXPrimaryExpression8372 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXPrimaryExpression8382 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXConstructorCall_in_ruleXPrimaryExpression8429 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXBlockExpression_in_ruleXPrimaryExpression8456 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXSwitchExpression_in_ruleXPrimaryExpression8483 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXSynchronizedExpression_in_ruleXPrimaryExpression8527 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXFeatureCall_in_ruleXPrimaryExpression8555 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXLiteral_in_ruleXPrimaryExpression8582 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXIfExpression_in_ruleXPrimaryExpression8609 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXForLoopExpression_in_ruleXPrimaryExpression8666 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXBasicForLoopExpression_in_ruleXPrimaryExpression8694 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXWhileExpression_in_ruleXPrimaryExpression8721 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXDoWhileExpression_in_ruleXPrimaryExpression8748 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXThrowExpression_in_ruleXPrimaryExpression8775 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXReturnExpression_in_ruleXPrimaryExpression8802 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXTryCatchFinallyExpression_in_ruleXPrimaryExpression8829 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXParenthesizedExpression_in_ruleXPrimaryExpression8856 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXLiteral_in_entryRuleXLiteral8891 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXLiteral8901 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXCollectionLiteral_in_ruleXLiteral8948 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXClosure_in_ruleXLiteral8988 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXBooleanLiteral_in_ruleXLiteral9016 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXNumberLiteral_in_ruleXLiteral9043 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXNullLiteral_in_ruleXLiteral9070 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXStringLiteral_in_ruleXLiteral9097 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXTypeLiteral_in_ruleXLiteral9124 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXCollectionLiteral_in_entryRuleXCollectionLiteral9159 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXCollectionLiteral9169 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXSetLiteral_in_ruleXCollectionLiteral9216 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXListLiteral_in_ruleXCollectionLiteral9243 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXSetLiteral_in_entryRuleXSetLiteral9278 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXSetLiteral9288 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_77_in_ruleXSetLiteral9334 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_19_in_ruleXSetLiteral9346 = new BitSet(new long[]{0x00010080210801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXSetLiteral9368 = new BitSet(new long[]{0x0000000001010000L});
-    public static final BitSet FOLLOW_16_in_ruleXSetLiteral9381 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXSetLiteral9402 = new BitSet(new long[]{0x0000000001010000L});
-    public static final BitSet FOLLOW_24_in_ruleXSetLiteral9418 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXListLiteral_in_entryRuleXListLiteral9454 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXListLiteral9464 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_77_in_ruleXListLiteral9510 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_ruleXListLiteral9522 = new BitSet(new long[]{0x00010180200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXListLiteral9544 = new BitSet(new long[]{0x0000010000010000L});
-    public static final BitSet FOLLOW_16_in_ruleXListLiteral9557 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXListLiteral9578 = new BitSet(new long[]{0x0000010000010000L});
-    public static final BitSet FOLLOW_40_in_ruleXListLiteral9594 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXClosure_in_entryRuleXClosure9630 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXClosure9640 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_ruleXClosure9700 = new BitSet(new long[]{0x20010180200801F0L,0x0000017FFFE56043L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_ruleXClosure9773 = new BitSet(new long[]{0x0000000000010000L,0x0000000000004000L});
-    public static final BitSet FOLLOW_16_in_ruleXClosure9786 = new BitSet(new long[]{0x2000000020000100L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_ruleXClosure9807 = new BitSet(new long[]{0x0000000000010000L,0x0000000000004000L});
-    public static final BitSet FOLLOW_78_in_ruleXClosure9829 = new BitSet(new long[]{0x00010180200801F0L,0x0000017FFFE52043L});
-    public static final BitSet FOLLOW_ruleXExpressionInClosure_in_ruleXClosure9866 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_40_in_ruleXClosure9878 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpressionInClosure_in_entryRuleXExpressionInClosure9914 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXExpressionInClosure9924 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpressionOrVarDeclaration_in_ruleXExpressionInClosure9980 = new BitSet(new long[]{0x00010080200801F2L,0x0000017FFFE5A043L});
-    public static final BitSet FOLLOW_79_in_ruleXExpressionInClosure9993 = new BitSet(new long[]{0x00010080200801F2L,0x0000017FFFE52043L});
-    public static final BitSet FOLLOW_ruleXShortClosure_in_entryRuleXShortClosure10033 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXShortClosure10043 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_ruleXShortClosure10151 = new BitSet(new long[]{0x0000000000010000L,0x0000000000004000L});
-    public static final BitSet FOLLOW_16_in_ruleXShortClosure10164 = new BitSet(new long[]{0x2000000020000100L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_ruleXShortClosure10185 = new BitSet(new long[]{0x0000000000010000L,0x0000000000004000L});
-    public static final BitSet FOLLOW_78_in_ruleXShortClosure10207 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXShortClosure10243 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXParenthesizedExpression_in_entryRuleXParenthesizedExpression10279 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXParenthesizedExpression10289 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_ruleXParenthesizedExpression10326 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXParenthesizedExpression10348 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_ruleXParenthesizedExpression10359 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXIfExpression_in_entryRuleXIfExpression10395 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXIfExpression10405 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_80_in_ruleXIfExpression10451 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_ruleXIfExpression10463 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXIfExpression10484 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_ruleXIfExpression10496 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXIfExpression10517 = new BitSet(new long[]{0x0000000000000002L,0x0000000000020000L});
-    public static final BitSet FOLLOW_81_in_ruleXIfExpression10538 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXIfExpression10560 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXSwitchExpression_in_entryRuleXSwitchExpression10598 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXSwitchExpression10608 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_82_in_ruleXSwitchExpression10654 = new BitSet(new long[]{0x20010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_29_in_ruleXSwitchExpression10692 = new BitSet(new long[]{0x2000000020000100L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_ruleXSwitchExpression10713 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_ruleXSwitchExpression10725 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXSwitchExpression10748 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_ruleXSwitchExpression10760 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_ruleXSwitchExpression10809 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_ruleXSwitchExpression10821 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXSwitchExpression10845 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_19_in_ruleXSwitchExpression10859 = new BitSet(new long[]{0x2000000221010100L,0x0000000000180000L});
-    public static final BitSet FOLLOW_ruleXCasePart_in_ruleXSwitchExpression10880 = new BitSet(new long[]{0x2000000221010100L,0x0000000000180000L});
-    public static final BitSet FOLLOW_83_in_ruleXSwitchExpression10894 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_ruleXSwitchExpression10906 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXSwitchExpression10927 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_24_in_ruleXSwitchExpression10941 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXCasePart_in_entryRuleXCasePart10977 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXCasePart10987 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleXCasePart11042 = new BitSet(new long[]{0x0000000200010000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_ruleXCasePart11056 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXCasePart11077 = new BitSet(new long[]{0x0000000200010000L});
-    public static final BitSet FOLLOW_33_in_ruleXCasePart11093 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXCasePart11114 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_16_in_ruleXCasePart11139 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXForLoopExpression_in_entryRuleXForLoopExpression11189 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXForLoopExpression11199 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_85_in_ruleXForLoopExpression11276 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_ruleXForLoopExpression11288 = new BitSet(new long[]{0x2000000020000100L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_ruleXForLoopExpression11309 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_ruleXForLoopExpression11321 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXForLoopExpression11344 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_ruleXForLoopExpression11356 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXForLoopExpression11377 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXBasicForLoopExpression_in_entryRuleXBasicForLoopExpression11413 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXBasicForLoopExpression11423 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_85_in_ruleXBasicForLoopExpression11469 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_ruleXBasicForLoopExpression11481 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFFE5A043L});
-    public static final BitSet FOLLOW_ruleXExpressionOrVarDeclaration_in_ruleXBasicForLoopExpression11503 = new BitSet(new long[]{0x0000000000010000L,0x0000000000008000L});
-    public static final BitSet FOLLOW_16_in_ruleXBasicForLoopExpression11516 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFFE52043L});
-    public static final BitSet FOLLOW_ruleXExpressionOrVarDeclaration_in_ruleXBasicForLoopExpression11537 = new BitSet(new long[]{0x0000000000010000L,0x0000000000008000L});
-    public static final BitSet FOLLOW_79_in_ruleXBasicForLoopExpression11553 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE5A043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXBasicForLoopExpression11574 = new BitSet(new long[]{0x0000000000000000L,0x0000000000008000L});
-    public static final BitSet FOLLOW_79_in_ruleXBasicForLoopExpression11587 = new BitSet(new long[]{0x00010080600801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXBasicForLoopExpression11609 = new BitSet(new long[]{0x0000000040010000L});
-    public static final BitSet FOLLOW_16_in_ruleXBasicForLoopExpression11622 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXBasicForLoopExpression11643 = new BitSet(new long[]{0x0000000040010000L});
-    public static final BitSet FOLLOW_30_in_ruleXBasicForLoopExpression11659 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXBasicForLoopExpression11680 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXWhileExpression_in_entryRuleXWhileExpression11716 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXWhileExpression11726 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_86_in_ruleXWhileExpression11772 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_ruleXWhileExpression11784 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXWhileExpression11805 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_ruleXWhileExpression11817 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXWhileExpression11838 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXDoWhileExpression_in_entryRuleXDoWhileExpression11874 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXDoWhileExpression11884 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_87_in_ruleXDoWhileExpression11930 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXDoWhileExpression11951 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
-    public static final BitSet FOLLOW_86_in_ruleXDoWhileExpression11963 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_ruleXDoWhileExpression11975 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXDoWhileExpression11996 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_ruleXDoWhileExpression12008 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXBlockExpression_in_entryRuleXBlockExpression12044 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXBlockExpression12054 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_19_in_ruleXBlockExpression12100 = new BitSet(new long[]{0x00010080210801F0L,0x0000017FFFE52043L});
-    public static final BitSet FOLLOW_ruleXExpressionOrVarDeclaration_in_ruleXBlockExpression12122 = new BitSet(new long[]{0x00010080210801F0L,0x0000017FFFE5A043L});
-    public static final BitSet FOLLOW_79_in_ruleXBlockExpression12135 = new BitSet(new long[]{0x00010080210801F0L,0x0000017FFFE52043L});
-    public static final BitSet FOLLOW_24_in_ruleXBlockExpression12151 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpressionOrVarDeclaration_in_entryRuleXExpressionOrVarDeclaration12187 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXExpressionOrVarDeclaration12197 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXVariableDeclaration_in_ruleXExpressionOrVarDeclaration12244 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXExpressionOrVarDeclaration12271 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXVariableDeclaration_in_entryRuleXVariableDeclaration12306 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXVariableDeclaration12316 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_88_in_ruleXVariableDeclaration12369 = new BitSet(new long[]{0x2000000020000100L});
-    public static final BitSet FOLLOW_89_in_ruleXVariableDeclaration12400 = new BitSet(new long[]{0x2000000020000100L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleXVariableDeclaration12448 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleXVariableDeclaration12469 = new BitSet(new long[]{0x0000040000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleXVariableDeclaration12498 = new BitSet(new long[]{0x0000040000000002L});
-    public static final BitSet FOLLOW_42_in_ruleXVariableDeclaration12512 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXVariableDeclaration12533 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_entryRuleJvmFormalParameter12571 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleJvmFormalParameter12581 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleJvmFormalParameter12627 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleJvmFormalParameter12649 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFullJvmFormalParameter_in_entryRuleFullJvmFormalParameter12685 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleFullJvmFormalParameter12695 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleFullJvmFormalParameter12741 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleFullJvmFormalParameter12762 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXFeatureCall_in_entryRuleXFeatureCall12798 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXFeatureCall12808 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_ruleXFeatureCall12855 = new BitSet(new long[]{0x2000000020000100L,0x0000040000000000L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleXFeatureCall12876 = new BitSet(new long[]{0x0002000000010000L});
-    public static final BitSet FOLLOW_16_in_ruleXFeatureCall12889 = new BitSet(new long[]{0x2000000020000100L,0x0000040000000000L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleXFeatureCall12910 = new BitSet(new long[]{0x0002000000010000L});
-    public static final BitSet FOLLOW_49_in_ruleXFeatureCall12924 = new BitSet(new long[]{0x0001000000000100L,0x000000007C000000L});
-    public static final BitSet FOLLOW_ruleIdOrSuper_in_ruleXFeatureCall12949 = new BitSet(new long[]{0x0000008020000002L});
-    public static final BitSet FOLLOW_29_in_ruleXFeatureCall12983 = new BitSet(new long[]{0x20010080600801F0L,0x0000017FFCE56043L});
-    public static final BitSet FOLLOW_ruleXShortClosure_in_ruleXFeatureCall13068 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXFeatureCall13096 = new BitSet(new long[]{0x0000000040010000L});
-    public static final BitSet FOLLOW_16_in_ruleXFeatureCall13109 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXFeatureCall13130 = new BitSet(new long[]{0x0000000040010000L});
-    public static final BitSet FOLLOW_30_in_ruleXFeatureCall13147 = new BitSet(new long[]{0x0000008000000002L});
-    public static final BitSet FOLLOW_ruleXClosure_in_ruleXFeatureCall13182 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFeatureCallID_in_entryRuleFeatureCallID13220 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleFeatureCallID13231 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleFeatureCallID13278 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_90_in_ruleFeatureCallID13302 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_91_in_ruleFeatureCallID13321 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_92_in_ruleFeatureCallID13340 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_93_in_ruleFeatureCallID13359 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIdOrSuper_in_entryRuleIdOrSuper13400 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleIdOrSuper13411 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFeatureCallID_in_ruleIdOrSuper13458 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_94_in_ruleIdOrSuper13482 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXConstructorCall_in_entryRuleXConstructorCall13522 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXConstructorCall13532 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_95_in_ruleXConstructorCall13578 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleXConstructorCall13601 = new BitSet(new long[]{0x0001008020000002L});
-    public static final BitSet FOLLOW_48_in_ruleXConstructorCall13622 = new BitSet(new long[]{0x2000000020000100L,0x0000040000000000L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleXConstructorCall13644 = new BitSet(new long[]{0x0002000000010000L});
-    public static final BitSet FOLLOW_16_in_ruleXConstructorCall13657 = new BitSet(new long[]{0x2000000020000100L,0x0000040000000000L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleXConstructorCall13678 = new BitSet(new long[]{0x0002000000010000L});
-    public static final BitSet FOLLOW_49_in_ruleXConstructorCall13692 = new BitSet(new long[]{0x0000008020000002L});
-    public static final BitSet FOLLOW_29_in_ruleXConstructorCall13728 = new BitSet(new long[]{0x20010080600801F0L,0x0000017FFCE56043L});
-    public static final BitSet FOLLOW_ruleXShortClosure_in_ruleXConstructorCall13813 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXConstructorCall13841 = new BitSet(new long[]{0x0000000040010000L});
-    public static final BitSet FOLLOW_16_in_ruleXConstructorCall13854 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXConstructorCall13875 = new BitSet(new long[]{0x0000000040010000L});
-    public static final BitSet FOLLOW_30_in_ruleXConstructorCall13892 = new BitSet(new long[]{0x0000008000000002L});
-    public static final BitSet FOLLOW_ruleXClosure_in_ruleXConstructorCall13927 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXBooleanLiteral_in_entryRuleXBooleanLiteral13964 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXBooleanLiteral13974 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_96_in_ruleXBooleanLiteral14021 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_97_in_ruleXBooleanLiteral14045 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXNullLiteral_in_entryRuleXNullLiteral14095 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXNullLiteral14105 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_98_in_ruleXNullLiteral14151 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXNumberLiteral_in_entryRuleXNumberLiteral14187 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXNumberLiteral14197 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNumber_in_ruleXNumberLiteral14252 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXStringLiteral_in_entryRuleXStringLiteral14288 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXStringLiteral14298 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleXStringLiteral14349 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXTypeLiteral_in_entryRuleXTypeLiteral14390 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXTypeLiteral14400 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_99_in_ruleXTypeLiteral14446 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_ruleXTypeLiteral14458 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleXTypeLiteral14481 = new BitSet(new long[]{0x0000008040000000L});
-    public static final BitSet FOLLOW_ruleArrayBrackets_in_ruleXTypeLiteral14502 = new BitSet(new long[]{0x0000008040000000L});
-    public static final BitSet FOLLOW_30_in_ruleXTypeLiteral14515 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXThrowExpression_in_entryRuleXThrowExpression14551 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXThrowExpression14561 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_100_in_ruleXThrowExpression14607 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXThrowExpression14628 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXReturnExpression_in_entryRuleXReturnExpression14664 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXReturnExpression14674 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_101_in_ruleXReturnExpression14720 = new BitSet(new long[]{0x00010080200801F2L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXReturnExpression14955 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXTryCatchFinallyExpression_in_entryRuleXTryCatchFinallyExpression14992 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXTryCatchFinallyExpression15002 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_102_in_ruleXTryCatchFinallyExpression15048 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXTryCatchFinallyExpression15069 = new BitSet(new long[]{0x0000000000000000L,0x0000028000000000L});
-    public static final BitSet FOLLOW_ruleXCatchClause_in_ruleXTryCatchFinallyExpression15099 = new BitSet(new long[]{0x0000000000000002L,0x0000028000000000L});
-    public static final BitSet FOLLOW_103_in_ruleXTryCatchFinallyExpression15121 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXTryCatchFinallyExpression15143 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_103_in_ruleXTryCatchFinallyExpression15165 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXTryCatchFinallyExpression15186 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXSynchronizedExpression_in_entryRuleXSynchronizedExpression15224 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXSynchronizedExpression15234 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_104_in_ruleXSynchronizedExpression15298 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_ruleXSynchronizedExpression15310 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXSynchronizedExpression15333 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_ruleXSynchronizedExpression15345 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXSynchronizedExpression15366 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXCatchClause_in_entryRuleXCatchClause15402 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXCatchClause15412 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_105_in_ruleXCatchClause15457 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_ruleXCatchClause15470 = new BitSet(new long[]{0x2000000020000100L});
-    public static final BitSet FOLLOW_ruleFullJvmFormalParameter_in_ruleXCatchClause15491 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_ruleXCatchClause15503 = new BitSet(new long[]{0x00010080200801F0L,0x0000017FFCE52043L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXCatchClause15524 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName15561 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName15572 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleQualifiedName15619 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
-    public static final BitSet FOLLOW_74_in_ruleQualifiedName15647 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleQualifiedName15670 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
-    public static final BitSet FOLLOW_ruleNumber_in_entryRuleNumber15724 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleNumber15735 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_HEX_in_ruleNumber15779 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleNumber15807 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
-    public static final BitSet FOLLOW_RULE_DECIMAL_in_ruleNumber15833 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
-    public static final BitSet FOLLOW_74_in_ruleNumber15853 = new BitSet(new long[]{0x00000000000000C0L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleNumber15869 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_DECIMAL_in_ruleNumber15895 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_entryRuleJvmTypeReference15950 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleJvmTypeReference15960 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmParameterizedTypeReference_in_ruleJvmTypeReference16008 = new BitSet(new long[]{0x0000008000000002L});
-    public static final BitSet FOLLOW_ruleArrayBrackets_in_ruleJvmTypeReference16044 = new BitSet(new long[]{0x0000008000000002L});
-    public static final BitSet FOLLOW_ruleXFunctionTypeRef_in_ruleJvmTypeReference16075 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArrayBrackets_in_entryRuleArrayBrackets16111 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleArrayBrackets16122 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_ruleArrayBrackets16160 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_40_in_ruleArrayBrackets16173 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXFunctionTypeRef_in_entryRuleXFunctionTypeRef16213 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXFunctionTypeRef16223 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_ruleXFunctionTypeRef16261 = new BitSet(new long[]{0x2000000060000100L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleXFunctionTypeRef16283 = new BitSet(new long[]{0x0000000040010000L});
-    public static final BitSet FOLLOW_16_in_ruleXFunctionTypeRef16296 = new BitSet(new long[]{0x2000000020000100L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleXFunctionTypeRef16317 = new BitSet(new long[]{0x0000000040010000L});
-    public static final BitSet FOLLOW_30_in_ruleXFunctionTypeRef16333 = new BitSet(new long[]{0x2000000000000000L});
-    public static final BitSet FOLLOW_61_in_ruleXFunctionTypeRef16347 = new BitSet(new long[]{0x2000000020000100L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleXFunctionTypeRef16368 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmParameterizedTypeReference_in_entryRuleJvmParameterizedTypeReference16404 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleJvmParameterizedTypeReference16414 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleJvmParameterizedTypeReference16462 = new BitSet(new long[]{0x0001000000000002L});
-    public static final BitSet FOLLOW_48_in_ruleJvmParameterizedTypeReference16483 = new BitSet(new long[]{0x2000000020000100L,0x0000040000000000L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleJvmParameterizedTypeReference16505 = new BitSet(new long[]{0x0002000000010000L});
-    public static final BitSet FOLLOW_16_in_ruleJvmParameterizedTypeReference16518 = new BitSet(new long[]{0x2000000020000100L,0x0000040000000000L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleJvmParameterizedTypeReference16539 = new BitSet(new long[]{0x0002000000010000L});
-    public static final BitSet FOLLOW_49_in_ruleJvmParameterizedTypeReference16553 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
-    public static final BitSet FOLLOW_74_in_ruleJvmParameterizedTypeReference16589 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleJvmParameterizedTypeReference16614 = new BitSet(new long[]{0x0001000000000002L,0x0000000000000400L});
-    public static final BitSet FOLLOW_48_in_ruleJvmParameterizedTypeReference16635 = new BitSet(new long[]{0x2000000020000100L,0x0000040000000000L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleJvmParameterizedTypeReference16657 = new BitSet(new long[]{0x0002000000010000L});
-    public static final BitSet FOLLOW_16_in_ruleJvmParameterizedTypeReference16670 = new BitSet(new long[]{0x2000000020000100L,0x0000040000000000L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleJvmParameterizedTypeReference16691 = new BitSet(new long[]{0x0002000000010000L});
-    public static final BitSet FOLLOW_49_in_ruleJvmParameterizedTypeReference16705 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_entryRuleJvmArgumentTypeReference16747 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleJvmArgumentTypeReference16757 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleJvmArgumentTypeReference16804 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmWildcardTypeReference_in_ruleJvmArgumentTypeReference16831 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmWildcardTypeReference_in_entryRuleJvmWildcardTypeReference16866 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleJvmWildcardTypeReference16876 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_106_in_ruleJvmWildcardTypeReference16922 = new BitSet(new long[]{0x0000000000000002L,0x0000000044000000L});
-    public static final BitSet FOLLOW_ruleJvmUpperBound_in_ruleJvmWildcardTypeReference16945 = new BitSet(new long[]{0x0000000000000002L,0x0000080000000000L});
-    public static final BitSet FOLLOW_ruleJvmUpperBoundAnded_in_ruleJvmWildcardTypeReference16966 = new BitSet(new long[]{0x0000000000000002L,0x0000080000000000L});
-    public static final BitSet FOLLOW_ruleJvmLowerBound_in_ruleJvmWildcardTypeReference16996 = new BitSet(new long[]{0x0000000000000002L,0x0000080000000000L});
-    public static final BitSet FOLLOW_ruleJvmLowerBoundAnded_in_ruleJvmWildcardTypeReference17017 = new BitSet(new long[]{0x0000000000000002L,0x0000080000000000L});
-    public static final BitSet FOLLOW_ruleJvmUpperBound_in_entryRuleJvmUpperBound17057 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleJvmUpperBound17067 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_90_in_ruleJvmUpperBound17104 = new BitSet(new long[]{0x2000000020000100L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleJvmUpperBound17125 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmUpperBoundAnded_in_entryRuleJvmUpperBoundAnded17161 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleJvmUpperBoundAnded17171 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_107_in_ruleJvmUpperBoundAnded17208 = new BitSet(new long[]{0x2000000020000100L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleJvmUpperBoundAnded17229 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmLowerBound_in_entryRuleJvmLowerBound17265 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleJvmLowerBound17275 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_94_in_ruleJvmLowerBound17312 = new BitSet(new long[]{0x2000000020000100L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleJvmLowerBound17333 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmLowerBoundAnded_in_entryRuleJvmLowerBoundAnded17369 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleJvmLowerBoundAnded17379 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_107_in_ruleJvmLowerBoundAnded17416 = new BitSet(new long[]{0x2000000020000100L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleJvmLowerBoundAnded17437 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedNameWithWildcard_in_entryRuleQualifiedNameWithWildcard17476 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedNameWithWildcard17487 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleQualifiedNameWithWildcard17534 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000400L});
-    public static final BitSet FOLLOW_74_in_ruleQualifiedNameWithWildcard17552 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-    public static final BitSet FOLLOW_66_in_ruleQualifiedNameWithWildcard17565 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_entryRuleValidID17606 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleValidID17617 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleValidID17656 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXImportSection_in_entryRuleXImportSection17700 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXImportSection17710 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXImportDeclaration_in_ruleXImportSection17755 = new BitSet(new long[]{0x0000000000000002L,0x0000000010000000L});
-    public static final BitSet FOLLOW_ruleXImportDeclaration_in_entryRuleXImportDeclaration17791 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXImportDeclaration17801 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_92_in_ruleXImportDeclaration17838 = new BitSet(new long[]{0x0000000000000100L,0x0000000008000000L});
-    public static final BitSet FOLLOW_91_in_ruleXImportDeclaration17858 = new BitSet(new long[]{0x0000000000000100L,0x0000000020000000L});
-    public static final BitSet FOLLOW_93_in_ruleXImportDeclaration17889 = new BitSet(new long[]{0x0000000000000100L,0x0000000020000000L});
-    public static final BitSet FOLLOW_ruleQualifiedNameInStaticImport_in_ruleXImportDeclaration17926 = new BitSet(new long[]{0x0000000000000100L,0x0000000000000004L});
-    public static final BitSet FOLLOW_66_in_ruleXImportDeclaration17945 = new BitSet(new long[]{0x0000000000000002L,0x0000000000008000L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleXImportDeclaration17985 = new BitSet(new long[]{0x0000000000000002L,0x0000000000008000L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleXImportDeclaration18016 = new BitSet(new long[]{0x0000000000000002L,0x0000000000008000L});
-    public static final BitSet FOLLOW_ruleQualifiedNameWithWildcard_in_ruleXImportDeclaration18043 = new BitSet(new long[]{0x0000000000000002L,0x0000000000008000L});
-    public static final BitSet FOLLOW_79_in_ruleXImportDeclaration18057 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedNameInStaticImport_in_entryRuleQualifiedNameInStaticImport18096 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedNameInStaticImport18107 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleQualifiedNameInStaticImport18154 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000400L});
-    public static final BitSet FOLLOW_74_in_ruleQualifiedNameInStaticImport18172 = new BitSet(new long[]{0x0000000000000102L});
-    public static final BitSet FOLLOW_108_in_ruleResourceType18227 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_109_in_ruleResourceType18244 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_110_in_ruleResourceType18261 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rulePackageMapping2152 = new BitSet(new long[]{0x0000000000080002L});
+    public static final BitSet FOLLOW_19_in_rulePackageMapping2170 = new BitSet(new long[]{0x0000000001000010L});
+    public static final BitSet FOLLOW_ruleClassMapping_in_rulePackageMapping2191 = new BitSet(new long[]{0x0000000001000010L});
+    public static final BitSet FOLLOW_24_in_rulePackageMapping2204 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleClassMapping_in_entryRuleClassMapping2242 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleClassMapping2252 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleClassMapping2294 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_ruleClassMapping2311 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleClassMapping2328 = new BitSet(new long[]{0x0000000000080002L});
+    public static final BitSet FOLLOW_19_in_ruleClassMapping2346 = new BitSet(new long[]{0x0000000001000010L});
+    public static final BitSet FOLLOW_rulePropertyMapping_in_ruleClassMapping2367 = new BitSet(new long[]{0x0000000001000010L});
+    public static final BitSet FOLLOW_24_in_ruleClassMapping2380 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePropertyMapping_in_entryRulePropertyMapping2418 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulePropertyMapping2428 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rulePropertyMapping2470 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_rulePropertyMapping2487 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rulePropertyMapping2504 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOperator_in_entryRuleOperator2545 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleOperator2555 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleImport_in_ruleOperator2602 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMerge_in_ruleOperator2629 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSlice_in_ruleOperator2656 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleWeave_in_ruleOperator2683 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleImport_in_entryRuleImport2718 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleImport2728 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_26_in_ruleImport2765 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleImport2782 = new BitSet(new long[]{0x0000000600000002L});
+    public static final BitSet FOLLOW_33_in_ruleImport2800 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleImport2818 = new BitSet(new long[]{0x0000000400010002L});
+    public static final BitSet FOLLOW_16_in_ruleImport2836 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleImport2853 = new BitSet(new long[]{0x0000000400010002L});
+    public static final BitSet FOLLOW_34_in_ruleImport2876 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_19_in_ruleImport2888 = new BitSet(new long[]{0x0000000001000010L});
+    public static final BitSet FOLLOW_rulePackageMapping_in_ruleImport2909 = new BitSet(new long[]{0x0000000001000010L});
+    public static final BitSet FOLLOW_24_in_ruleImport2922 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMerge_in_entryRuleMerge2960 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleMerge2970 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_ruleMerge3007 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleMerge3030 = new BitSet(new long[]{0x0000000400000002L});
+    public static final BitSet FOLLOW_34_in_ruleMerge3043 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_19_in_ruleMerge3055 = new BitSet(new long[]{0x0000000001000010L});
+    public static final BitSet FOLLOW_rulePackageMapping_in_ruleMerge3076 = new BitSet(new long[]{0x0000000001000010L});
+    public static final BitSet FOLLOW_24_in_ruleMerge3089 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSlice_in_entryRuleSlice3127 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleSlice3137 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_ruleSlice3174 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleSlice3197 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_37_in_ruleSlice3209 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_ruleSlice3221 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleSlice3238 = new BitSet(new long[]{0x0000008000010000L});
+    public static final BitSet FOLLOW_16_in_ruleSlice3256 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleSlice3273 = new BitSet(new long[]{0x0000008000010000L});
+    public static final BitSet FOLLOW_39_in_ruleSlice3292 = new BitSet(new long[]{0x0000000400000002L});
+    public static final BitSet FOLLOW_34_in_ruleSlice3305 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_19_in_ruleSlice3317 = new BitSet(new long[]{0x0000000001000010L});
+    public static final BitSet FOLLOW_rulePackageMapping_in_ruleSlice3338 = new BitSet(new long[]{0x0000000001000010L});
+    public static final BitSet FOLLOW_24_in_ruleSlice3351 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleInherit_in_entryRuleInherit3389 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleInherit3399 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleInherit3446 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleWeave_in_entryRuleWeave3481 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleWeave3491 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAspectTypeRef_in_ruleWeave3538 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAspectWildcard_in_ruleWeave3565 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAspectTypeRef_in_entryRuleAspectTypeRef3600 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleAspectTypeRef3610 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_ruleAspectTypeRef3647 = new BitSet(new long[]{0x1000000020000100L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleAspectTypeRef3668 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAspectWildcard_in_entryRuleAspectWildcard3704 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleAspectWildcard3714 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_ruleAspectWildcard3751 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_ruleQualifiedNameWithWildcard_in_ruleAspectWildcard3772 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_entryRuleXExpression3808 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXExpression3818 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXAssignment_in_ruleXExpression3864 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXAssignment_in_entryRuleXAssignment3898 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXAssignment3908 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFeatureCallID_in_ruleXAssignment3966 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_ruleOpSingleAssign_in_ruleXAssignment3982 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXAssignment_in_ruleXAssignment4002 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXOrExpression_in_ruleXAssignment4032 = new BitSet(new long[]{0x0001FC0000000002L});
+    public static final BitSet FOLLOW_ruleOpMultiAssign_in_ruleXAssignment4085 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXAssignment_in_ruleXAssignment4108 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpSingleAssign_in_entryRuleOpSingleAssign4148 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleOpSingleAssign4159 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_41_in_ruleOpSingleAssign4196 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpMultiAssign_in_entryRuleOpMultiAssign4236 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleOpMultiAssign4247 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_42_in_ruleOpMultiAssign4285 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_43_in_ruleOpMultiAssign4304 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_44_in_ruleOpMultiAssign4323 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_45_in_ruleOpMultiAssign4342 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_ruleOpMultiAssign4361 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_ruleOpMultiAssign4381 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_ruleOpMultiAssign4394 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_41_in_ruleOpMultiAssign4407 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_ruleOpMultiAssign4428 = new BitSet(new long[]{0x0003000000000000L});
+    public static final BitSet FOLLOW_48_in_ruleOpMultiAssign4442 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_49_in_ruleOpMultiAssign4457 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXOrExpression_in_entryRuleXOrExpression4498 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXOrExpression4508 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXAndExpression_in_ruleXOrExpression4555 = new BitSet(new long[]{0x0004000000000002L});
+    public static final BitSet FOLLOW_ruleOpOr_in_ruleXOrExpression4608 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXAndExpression_in_ruleXOrExpression4631 = new BitSet(new long[]{0x0004000000000002L});
+    public static final BitSet FOLLOW_ruleOpOr_in_entryRuleOpOr4670 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleOpOr4681 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_50_in_ruleOpOr4718 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXAndExpression_in_entryRuleXAndExpression4757 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXAndExpression4767 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXEqualityExpression_in_ruleXAndExpression4814 = new BitSet(new long[]{0x0008000000000002L});
+    public static final BitSet FOLLOW_ruleOpAnd_in_ruleXAndExpression4867 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXEqualityExpression_in_ruleXAndExpression4890 = new BitSet(new long[]{0x0008000000000002L});
+    public static final BitSet FOLLOW_ruleOpAnd_in_entryRuleOpAnd4929 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleOpAnd4940 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_51_in_ruleOpAnd4977 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXEqualityExpression_in_entryRuleXEqualityExpression5016 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXEqualityExpression5026 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXRelationalExpression_in_ruleXEqualityExpression5073 = new BitSet(new long[]{0x00F0000000000002L});
+    public static final BitSet FOLLOW_ruleOpEquality_in_ruleXEqualityExpression5126 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXRelationalExpression_in_ruleXEqualityExpression5149 = new BitSet(new long[]{0x00F0000000000002L});
+    public static final BitSet FOLLOW_ruleOpEquality_in_entryRuleOpEquality5188 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleOpEquality5199 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_52_in_ruleOpEquality5237 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_53_in_ruleOpEquality5256 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_54_in_ruleOpEquality5275 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_55_in_ruleOpEquality5294 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXRelationalExpression_in_entryRuleXRelationalExpression5334 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXRelationalExpression5344 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXOtherOperatorExpression_in_ruleXRelationalExpression5391 = new BitSet(new long[]{0x0103800000000002L});
+    public static final BitSet FOLLOW_56_in_ruleXRelationalExpression5427 = new BitSet(new long[]{0x1000000020000100L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleXRelationalExpression5450 = new BitSet(new long[]{0x0103800000000002L});
+    public static final BitSet FOLLOW_ruleOpCompare_in_ruleXRelationalExpression5511 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXOtherOperatorExpression_in_ruleXRelationalExpression5534 = new BitSet(new long[]{0x0103800000000002L});
+    public static final BitSet FOLLOW_ruleOpCompare_in_entryRuleOpCompare5574 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleOpCompare5585 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_49_in_ruleOpCompare5623 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_ruleOpCompare5643 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_41_in_ruleOpCompare5656 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_ruleOpCompare5676 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_ruleOpCompare5695 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXOtherOperatorExpression_in_entryRuleXOtherOperatorExpression5735 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXOtherOperatorExpression5745 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXAdditiveExpression_in_ruleXOtherOperatorExpression5792 = new BitSet(new long[]{0x7E01800000000002L});
+    public static final BitSet FOLLOW_ruleOpOther_in_ruleXOtherOperatorExpression5845 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXAdditiveExpression_in_ruleXOtherOperatorExpression5868 = new BitSet(new long[]{0x7E01800000000002L});
+    public static final BitSet FOLLOW_ruleOpOther_in_entryRuleOpOther5907 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleOpOther5918 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_57_in_ruleOpOther5956 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_58_in_ruleOpOther5975 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_ruleOpOther5995 = new BitSet(new long[]{0x0800000000000000L});
+    public static final BitSet FOLLOW_59_in_ruleOpOther6008 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_59_in_ruleOpOther6028 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_60_in_ruleOpOther6047 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_ruleOpOther6067 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_ruleOpOther6098 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_ruleOpOther6111 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_ruleOpOther6132 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_ruleOpOther6154 = new BitSet(new long[]{0x1000800000000000L});
+    public static final BitSet FOLLOW_47_in_ruleOpOther6185 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_ruleOpOther6198 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_ruleOpOther6219 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_60_in_ruleOpOther6238 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_61_in_ruleOpOther6259 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_62_in_ruleOpOther6278 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXAdditiveExpression_in_entryRuleXAdditiveExpression6318 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXAdditiveExpression6328 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXMultiplicativeExpression_in_ruleXAdditiveExpression6375 = new BitSet(new long[]{0x8000000000000002L,0x0000000000000001L});
+    public static final BitSet FOLLOW_ruleOpAdd_in_ruleXAdditiveExpression6428 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXMultiplicativeExpression_in_ruleXAdditiveExpression6451 = new BitSet(new long[]{0x8000000000000002L,0x0000000000000001L});
+    public static final BitSet FOLLOW_ruleOpAdd_in_entryRuleOpAdd6490 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleOpAdd6501 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_63_in_ruleOpAdd6539 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_64_in_ruleOpAdd6558 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXMultiplicativeExpression_in_entryRuleXMultiplicativeExpression6598 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXMultiplicativeExpression6608 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXUnaryOperation_in_ruleXMultiplicativeExpression6655 = new BitSet(new long[]{0x0000000000000002L,0x000000000000001EL});
+    public static final BitSet FOLLOW_ruleOpMulti_in_ruleXMultiplicativeExpression6708 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXUnaryOperation_in_ruleXMultiplicativeExpression6731 = new BitSet(new long[]{0x0000000000000002L,0x000000000000001EL});
+    public static final BitSet FOLLOW_ruleOpMulti_in_entryRuleOpMulti6770 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleOpMulti6781 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_65_in_ruleOpMulti6819 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_66_in_ruleOpMulti6838 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_67_in_ruleOpMulti6857 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_68_in_ruleOpMulti6876 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXUnaryOperation_in_entryRuleXUnaryOperation6916 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXUnaryOperation6926 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpUnary_in_ruleXUnaryOperation6984 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXUnaryOperation_in_ruleXUnaryOperation7005 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXCastedExpression_in_ruleXUnaryOperation7034 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpUnary_in_entryRuleOpUnary7070 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleOpUnary7081 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_69_in_ruleOpUnary7119 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_64_in_ruleOpUnary7138 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_63_in_ruleOpUnary7157 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXCastedExpression_in_entryRuleXCastedExpression7197 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXCastedExpression7207 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXPostfixOperation_in_ruleXCastedExpression7254 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000040L});
+    public static final BitSet FOLLOW_70_in_ruleXCastedExpression7289 = new BitSet(new long[]{0x1000000020000100L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleXCastedExpression7312 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000040L});
+    public static final BitSet FOLLOW_ruleXPostfixOperation_in_entryRuleXPostfixOperation7350 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXPostfixOperation7360 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXMemberFeatureCall_in_ruleXPostfixOperation7407 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000180L});
+    public static final BitSet FOLLOW_ruleOpPostfix_in_ruleXPostfixOperation7459 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpPostfix_in_entryRuleOpPostfix7499 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleOpPostfix7510 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_71_in_ruleOpPostfix7548 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_72_in_ruleOpPostfix7567 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXMemberFeatureCall_in_entryRuleXMemberFeatureCall7607 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXMemberFeatureCall7617 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXPrimaryExpression_in_ruleXMemberFeatureCall7664 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000E00L});
+    public static final BitSet FOLLOW_73_in_ruleXMemberFeatureCall7736 = new BitSet(new long[]{0x0000000000000100L,0x000000003C000000L});
+    public static final BitSet FOLLOW_74_in_ruleXMemberFeatureCall7760 = new BitSet(new long[]{0x0000000000000100L,0x000000003C000000L});
+    public static final BitSet FOLLOW_ruleFeatureCallID_in_ruleXMemberFeatureCall7797 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_ruleOpSingleAssign_in_ruleXMemberFeatureCall7813 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXAssignment_in_ruleXMemberFeatureCall7835 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000E00L});
+    public static final BitSet FOLLOW_73_in_ruleXMemberFeatureCall7921 = new BitSet(new long[]{0x0000800000000100L,0x000000007C000000L});
+    public static final BitSet FOLLOW_75_in_ruleXMemberFeatureCall7945 = new BitSet(new long[]{0x0000800000000100L,0x000000007C000000L});
+    public static final BitSet FOLLOW_74_in_ruleXMemberFeatureCall7982 = new BitSet(new long[]{0x0000800000000100L,0x000000007C000000L});
+    public static final BitSet FOLLOW_47_in_ruleXMemberFeatureCall8011 = new BitSet(new long[]{0x1000000020000100L,0x0000040000000000L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleXMemberFeatureCall8032 = new BitSet(new long[]{0x0001000000010000L});
+    public static final BitSet FOLLOW_16_in_ruleXMemberFeatureCall8045 = new BitSet(new long[]{0x1000000020000100L,0x0000040000000000L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleXMemberFeatureCall8066 = new BitSet(new long[]{0x0001000000010000L});
+    public static final BitSet FOLLOW_48_in_ruleXMemberFeatureCall8080 = new BitSet(new long[]{0x0000800000000100L,0x000000007C000000L});
+    public static final BitSet FOLLOW_ruleIdOrSuper_in_ruleXMemberFeatureCall8105 = new BitSet(new long[]{0x0000004020000002L,0x0000000000000E00L});
+    public static final BitSet FOLLOW_29_in_ruleXMemberFeatureCall8139 = new BitSet(new long[]{0x90008040600801F0L,0x0000017FFCE2B021L});
+    public static final BitSet FOLLOW_ruleXShortClosure_in_ruleXMemberFeatureCall8224 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXMemberFeatureCall8252 = new BitSet(new long[]{0x0000000040010000L});
+    public static final BitSet FOLLOW_16_in_ruleXMemberFeatureCall8265 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXMemberFeatureCall8286 = new BitSet(new long[]{0x0000000040010000L});
+    public static final BitSet FOLLOW_30_in_ruleXMemberFeatureCall8303 = new BitSet(new long[]{0x0000004000000002L,0x0000000000000E00L});
+    public static final BitSet FOLLOW_ruleXClosure_in_ruleXMemberFeatureCall8338 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000E00L});
+    public static final BitSet FOLLOW_ruleXPrimaryExpression_in_entryRuleXPrimaryExpression8378 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXPrimaryExpression8388 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXConstructorCall_in_ruleXPrimaryExpression8435 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXBlockExpression_in_ruleXPrimaryExpression8462 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXSwitchExpression_in_ruleXPrimaryExpression8489 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXSynchronizedExpression_in_ruleXPrimaryExpression8533 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXFeatureCall_in_ruleXPrimaryExpression8561 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXLiteral_in_ruleXPrimaryExpression8588 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXIfExpression_in_ruleXPrimaryExpression8615 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXForLoopExpression_in_ruleXPrimaryExpression8672 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXBasicForLoopExpression_in_ruleXPrimaryExpression8700 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXWhileExpression_in_ruleXPrimaryExpression8727 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXDoWhileExpression_in_ruleXPrimaryExpression8754 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXThrowExpression_in_ruleXPrimaryExpression8781 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXReturnExpression_in_ruleXPrimaryExpression8808 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXTryCatchFinallyExpression_in_ruleXPrimaryExpression8835 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXParenthesizedExpression_in_ruleXPrimaryExpression8862 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXLiteral_in_entryRuleXLiteral8897 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXLiteral8907 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXCollectionLiteral_in_ruleXLiteral8954 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXClosure_in_ruleXLiteral8994 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXBooleanLiteral_in_ruleXLiteral9022 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXNumberLiteral_in_ruleXLiteral9049 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXNullLiteral_in_ruleXLiteral9076 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXStringLiteral_in_ruleXLiteral9103 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXTypeLiteral_in_ruleXLiteral9130 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXCollectionLiteral_in_entryRuleXCollectionLiteral9165 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXCollectionLiteral9175 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXSetLiteral_in_ruleXCollectionLiteral9222 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXListLiteral_in_ruleXCollectionLiteral9249 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXSetLiteral_in_entryRuleXSetLiteral9284 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXSetLiteral9294 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_76_in_ruleXSetLiteral9340 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_19_in_ruleXSetLiteral9352 = new BitSet(new long[]{0x80008040210801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXSetLiteral9374 = new BitSet(new long[]{0x0000000001010000L});
+    public static final BitSet FOLLOW_16_in_ruleXSetLiteral9387 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXSetLiteral9408 = new BitSet(new long[]{0x0000000001010000L});
+    public static final BitSet FOLLOW_24_in_ruleXSetLiteral9424 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXListLiteral_in_entryRuleXListLiteral9460 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXListLiteral9470 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_76_in_ruleXListLiteral9516 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_ruleXListLiteral9528 = new BitSet(new long[]{0x800080C0200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXListLiteral9550 = new BitSet(new long[]{0x0000008000010000L});
+    public static final BitSet FOLLOW_16_in_ruleXListLiteral9563 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXListLiteral9584 = new BitSet(new long[]{0x0000008000010000L});
+    public static final BitSet FOLLOW_39_in_ruleXListLiteral9600 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXClosure_in_entryRuleXClosure9636 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXClosure9646 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_ruleXClosure9706 = new BitSet(new long[]{0x900080C0200801F0L,0x0000017FFFE2B021L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_ruleXClosure9779 = new BitSet(new long[]{0x0000000000010000L,0x0000000000002000L});
+    public static final BitSet FOLLOW_16_in_ruleXClosure9792 = new BitSet(new long[]{0x1000000020000100L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_ruleXClosure9813 = new BitSet(new long[]{0x0000000000010000L,0x0000000000002000L});
+    public static final BitSet FOLLOW_77_in_ruleXClosure9835 = new BitSet(new long[]{0x800080C0200801F0L,0x0000017FFFE29021L});
+    public static final BitSet FOLLOW_ruleXExpressionInClosure_in_ruleXClosure9872 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_ruleXClosure9884 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpressionInClosure_in_entryRuleXExpressionInClosure9920 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXExpressionInClosure9930 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpressionOrVarDeclaration_in_ruleXExpressionInClosure9986 = new BitSet(new long[]{0x80008040200801F2L,0x0000017FFFE2D021L});
+    public static final BitSet FOLLOW_78_in_ruleXExpressionInClosure9999 = new BitSet(new long[]{0x80008040200801F2L,0x0000017FFFE29021L});
+    public static final BitSet FOLLOW_ruleXShortClosure_in_entryRuleXShortClosure10039 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXShortClosure10049 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_ruleXShortClosure10157 = new BitSet(new long[]{0x0000000000010000L,0x0000000000002000L});
+    public static final BitSet FOLLOW_16_in_ruleXShortClosure10170 = new BitSet(new long[]{0x1000000020000100L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_ruleXShortClosure10191 = new BitSet(new long[]{0x0000000000010000L,0x0000000000002000L});
+    public static final BitSet FOLLOW_77_in_ruleXShortClosure10213 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXShortClosure10249 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXParenthesizedExpression_in_entryRuleXParenthesizedExpression10285 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXParenthesizedExpression10295 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_ruleXParenthesizedExpression10332 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXParenthesizedExpression10354 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_30_in_ruleXParenthesizedExpression10365 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXIfExpression_in_entryRuleXIfExpression10401 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXIfExpression10411 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_79_in_ruleXIfExpression10457 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_29_in_ruleXIfExpression10469 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXIfExpression10490 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_30_in_ruleXIfExpression10502 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXIfExpression10523 = new BitSet(new long[]{0x0000000000000002L,0x0000000000010000L});
+    public static final BitSet FOLLOW_80_in_ruleXIfExpression10544 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXIfExpression10566 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXSwitchExpression_in_entryRuleXSwitchExpression10604 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXSwitchExpression10614 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_81_in_ruleXSwitchExpression10660 = new BitSet(new long[]{0x90008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_29_in_ruleXSwitchExpression10698 = new BitSet(new long[]{0x1000000020000100L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_ruleXSwitchExpression10719 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_82_in_ruleXSwitchExpression10731 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXSwitchExpression10754 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_30_in_ruleXSwitchExpression10766 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_ruleXSwitchExpression10815 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_82_in_ruleXSwitchExpression10827 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXSwitchExpression10851 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_19_in_ruleXSwitchExpression10865 = new BitSet(new long[]{0x1000000021010100L,0x00000000001C0000L});
+    public static final BitSet FOLLOW_ruleXCasePart_in_ruleXSwitchExpression10886 = new BitSet(new long[]{0x1000000021010100L,0x00000000001C0000L});
+    public static final BitSet FOLLOW_83_in_ruleXSwitchExpression10900 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_82_in_ruleXSwitchExpression10912 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXSwitchExpression10933 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_24_in_ruleXSwitchExpression10947 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXCasePart_in_entryRuleXCasePart10983 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXCasePart10993 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleXCasePart11048 = new BitSet(new long[]{0x0000000000010000L,0x0000000000140000L});
+    public static final BitSet FOLLOW_84_in_ruleXCasePart11062 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXCasePart11083 = new BitSet(new long[]{0x0000000000010000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_82_in_ruleXCasePart11099 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXCasePart11120 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_16_in_ruleXCasePart11145 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXForLoopExpression_in_entryRuleXForLoopExpression11195 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXForLoopExpression11205 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_85_in_ruleXForLoopExpression11282 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_29_in_ruleXForLoopExpression11294 = new BitSet(new long[]{0x1000000020000100L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_ruleXForLoopExpression11315 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_82_in_ruleXForLoopExpression11327 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXForLoopExpression11350 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_30_in_ruleXForLoopExpression11362 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXForLoopExpression11383 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXBasicForLoopExpression_in_entryRuleXBasicForLoopExpression11419 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXBasicForLoopExpression11429 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_85_in_ruleXBasicForLoopExpression11475 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_29_in_ruleXBasicForLoopExpression11487 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFFE2D021L});
+    public static final BitSet FOLLOW_ruleXExpressionOrVarDeclaration_in_ruleXBasicForLoopExpression11509 = new BitSet(new long[]{0x0000000000010000L,0x0000000000004000L});
+    public static final BitSet FOLLOW_16_in_ruleXBasicForLoopExpression11522 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFFE29021L});
+    public static final BitSet FOLLOW_ruleXExpressionOrVarDeclaration_in_ruleXBasicForLoopExpression11543 = new BitSet(new long[]{0x0000000000010000L,0x0000000000004000L});
+    public static final BitSet FOLLOW_78_in_ruleXBasicForLoopExpression11559 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE2D021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXBasicForLoopExpression11580 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004000L});
+    public static final BitSet FOLLOW_78_in_ruleXBasicForLoopExpression11593 = new BitSet(new long[]{0x80008040600801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXBasicForLoopExpression11615 = new BitSet(new long[]{0x0000000040010000L});
+    public static final BitSet FOLLOW_16_in_ruleXBasicForLoopExpression11628 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXBasicForLoopExpression11649 = new BitSet(new long[]{0x0000000040010000L});
+    public static final BitSet FOLLOW_30_in_ruleXBasicForLoopExpression11665 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXBasicForLoopExpression11686 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXWhileExpression_in_entryRuleXWhileExpression11722 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXWhileExpression11732 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_86_in_ruleXWhileExpression11778 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_29_in_ruleXWhileExpression11790 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXWhileExpression11811 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_30_in_ruleXWhileExpression11823 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXWhileExpression11844 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXDoWhileExpression_in_entryRuleXDoWhileExpression11880 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXDoWhileExpression11890 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_87_in_ruleXDoWhileExpression11936 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXDoWhileExpression11957 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
+    public static final BitSet FOLLOW_86_in_ruleXDoWhileExpression11969 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_29_in_ruleXDoWhileExpression11981 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXDoWhileExpression12002 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_30_in_ruleXDoWhileExpression12014 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXBlockExpression_in_entryRuleXBlockExpression12050 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXBlockExpression12060 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_19_in_ruleXBlockExpression12106 = new BitSet(new long[]{0x80008040210801F0L,0x0000017FFFE29021L});
+    public static final BitSet FOLLOW_ruleXExpressionOrVarDeclaration_in_ruleXBlockExpression12128 = new BitSet(new long[]{0x80008040210801F0L,0x0000017FFFE2D021L});
+    public static final BitSet FOLLOW_78_in_ruleXBlockExpression12141 = new BitSet(new long[]{0x80008040210801F0L,0x0000017FFFE29021L});
+    public static final BitSet FOLLOW_24_in_ruleXBlockExpression12157 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpressionOrVarDeclaration_in_entryRuleXExpressionOrVarDeclaration12193 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXExpressionOrVarDeclaration12203 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXVariableDeclaration_in_ruleXExpressionOrVarDeclaration12250 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXExpressionOrVarDeclaration12277 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXVariableDeclaration_in_entryRuleXVariableDeclaration12312 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXVariableDeclaration12322 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_88_in_ruleXVariableDeclaration12375 = new BitSet(new long[]{0x1000000020000100L});
+    public static final BitSet FOLLOW_89_in_ruleXVariableDeclaration12406 = new BitSet(new long[]{0x1000000020000100L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleXVariableDeclaration12454 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleXVariableDeclaration12475 = new BitSet(new long[]{0x0000020000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleXVariableDeclaration12504 = new BitSet(new long[]{0x0000020000000002L});
+    public static final BitSet FOLLOW_41_in_ruleXVariableDeclaration12518 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXVariableDeclaration12539 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_entryRuleJvmFormalParameter12577 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleJvmFormalParameter12587 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleJvmFormalParameter12633 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleJvmFormalParameter12655 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFullJvmFormalParameter_in_entryRuleFullJvmFormalParameter12691 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleFullJvmFormalParameter12701 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleFullJvmFormalParameter12747 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleFullJvmFormalParameter12768 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXFeatureCall_in_entryRuleXFeatureCall12804 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXFeatureCall12814 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_ruleXFeatureCall12861 = new BitSet(new long[]{0x1000000020000100L,0x0000040000000000L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleXFeatureCall12882 = new BitSet(new long[]{0x0001000000010000L});
+    public static final BitSet FOLLOW_16_in_ruleXFeatureCall12895 = new BitSet(new long[]{0x1000000020000100L,0x0000040000000000L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleXFeatureCall12916 = new BitSet(new long[]{0x0001000000010000L});
+    public static final BitSet FOLLOW_48_in_ruleXFeatureCall12930 = new BitSet(new long[]{0x0000800000000100L,0x000000007C000000L});
+    public static final BitSet FOLLOW_ruleIdOrSuper_in_ruleXFeatureCall12955 = new BitSet(new long[]{0x0000004020000002L});
+    public static final BitSet FOLLOW_29_in_ruleXFeatureCall12989 = new BitSet(new long[]{0x90008040600801F0L,0x0000017FFCE2B021L});
+    public static final BitSet FOLLOW_ruleXShortClosure_in_ruleXFeatureCall13074 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXFeatureCall13102 = new BitSet(new long[]{0x0000000040010000L});
+    public static final BitSet FOLLOW_16_in_ruleXFeatureCall13115 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXFeatureCall13136 = new BitSet(new long[]{0x0000000040010000L});
+    public static final BitSet FOLLOW_30_in_ruleXFeatureCall13153 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_ruleXClosure_in_ruleXFeatureCall13188 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFeatureCallID_in_entryRuleFeatureCallID13226 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleFeatureCallID13237 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleFeatureCallID13284 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_90_in_ruleFeatureCallID13308 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_91_in_ruleFeatureCallID13327 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_92_in_ruleFeatureCallID13346 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_93_in_ruleFeatureCallID13365 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIdOrSuper_in_entryRuleIdOrSuper13406 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleIdOrSuper13417 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFeatureCallID_in_ruleIdOrSuper13464 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_94_in_ruleIdOrSuper13488 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXConstructorCall_in_entryRuleXConstructorCall13528 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXConstructorCall13538 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_95_in_ruleXConstructorCall13584 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleXConstructorCall13607 = new BitSet(new long[]{0x0000804020000002L});
+    public static final BitSet FOLLOW_47_in_ruleXConstructorCall13628 = new BitSet(new long[]{0x1000000020000100L,0x0000040000000000L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleXConstructorCall13650 = new BitSet(new long[]{0x0001000000010000L});
+    public static final BitSet FOLLOW_16_in_ruleXConstructorCall13663 = new BitSet(new long[]{0x1000000020000100L,0x0000040000000000L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleXConstructorCall13684 = new BitSet(new long[]{0x0001000000010000L});
+    public static final BitSet FOLLOW_48_in_ruleXConstructorCall13698 = new BitSet(new long[]{0x0000004020000002L});
+    public static final BitSet FOLLOW_29_in_ruleXConstructorCall13734 = new BitSet(new long[]{0x90008040600801F0L,0x0000017FFCE2B021L});
+    public static final BitSet FOLLOW_ruleXShortClosure_in_ruleXConstructorCall13819 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXConstructorCall13847 = new BitSet(new long[]{0x0000000040010000L});
+    public static final BitSet FOLLOW_16_in_ruleXConstructorCall13860 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXConstructorCall13881 = new BitSet(new long[]{0x0000000040010000L});
+    public static final BitSet FOLLOW_30_in_ruleXConstructorCall13898 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_ruleXClosure_in_ruleXConstructorCall13933 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXBooleanLiteral_in_entryRuleXBooleanLiteral13970 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXBooleanLiteral13980 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_96_in_ruleXBooleanLiteral14027 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_97_in_ruleXBooleanLiteral14051 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXNullLiteral_in_entryRuleXNullLiteral14101 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXNullLiteral14111 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_98_in_ruleXNullLiteral14157 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXNumberLiteral_in_entryRuleXNumberLiteral14193 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXNumberLiteral14203 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNumber_in_ruleXNumberLiteral14258 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXStringLiteral_in_entryRuleXStringLiteral14294 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXStringLiteral14304 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleXStringLiteral14355 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXTypeLiteral_in_entryRuleXTypeLiteral14396 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXTypeLiteral14406 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_99_in_ruleXTypeLiteral14452 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_29_in_ruleXTypeLiteral14464 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleXTypeLiteral14487 = new BitSet(new long[]{0x0000004040000000L});
+    public static final BitSet FOLLOW_ruleArrayBrackets_in_ruleXTypeLiteral14508 = new BitSet(new long[]{0x0000004040000000L});
+    public static final BitSet FOLLOW_30_in_ruleXTypeLiteral14521 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXThrowExpression_in_entryRuleXThrowExpression14557 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXThrowExpression14567 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_100_in_ruleXThrowExpression14613 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXThrowExpression14634 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXReturnExpression_in_entryRuleXReturnExpression14670 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXReturnExpression14680 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_101_in_ruleXReturnExpression14726 = new BitSet(new long[]{0x80008040200801F2L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXReturnExpression14961 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXTryCatchFinallyExpression_in_entryRuleXTryCatchFinallyExpression14998 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXTryCatchFinallyExpression15008 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_102_in_ruleXTryCatchFinallyExpression15054 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXTryCatchFinallyExpression15075 = new BitSet(new long[]{0x0000000000000000L,0x0000028000000000L});
+    public static final BitSet FOLLOW_ruleXCatchClause_in_ruleXTryCatchFinallyExpression15105 = new BitSet(new long[]{0x0000000000000002L,0x0000028000000000L});
+    public static final BitSet FOLLOW_103_in_ruleXTryCatchFinallyExpression15127 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXTryCatchFinallyExpression15149 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_103_in_ruleXTryCatchFinallyExpression15171 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXTryCatchFinallyExpression15192 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXSynchronizedExpression_in_entryRuleXSynchronizedExpression15230 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXSynchronizedExpression15240 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_104_in_ruleXSynchronizedExpression15304 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_29_in_ruleXSynchronizedExpression15316 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXSynchronizedExpression15339 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_30_in_ruleXSynchronizedExpression15351 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXSynchronizedExpression15372 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXCatchClause_in_entryRuleXCatchClause15408 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXCatchClause15418 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_105_in_ruleXCatchClause15463 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_29_in_ruleXCatchClause15476 = new BitSet(new long[]{0x1000000020000100L});
+    public static final BitSet FOLLOW_ruleFullJvmFormalParameter_in_ruleXCatchClause15497 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_30_in_ruleXCatchClause15509 = new BitSet(new long[]{0x80008040200801F0L,0x0000017FFCE29021L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXCatchClause15530 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName15567 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName15578 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleQualifiedName15625 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+    public static final BitSet FOLLOW_73_in_ruleQualifiedName15653 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleQualifiedName15676 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+    public static final BitSet FOLLOW_ruleNumber_in_entryRuleNumber15730 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleNumber15741 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_HEX_in_ruleNumber15785 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleNumber15813 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+    public static final BitSet FOLLOW_RULE_DECIMAL_in_ruleNumber15839 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+    public static final BitSet FOLLOW_73_in_ruleNumber15859 = new BitSet(new long[]{0x00000000000000C0L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleNumber15875 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_DECIMAL_in_ruleNumber15901 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_entryRuleJvmTypeReference15956 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleJvmTypeReference15966 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmParameterizedTypeReference_in_ruleJvmTypeReference16014 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_ruleArrayBrackets_in_ruleJvmTypeReference16050 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_ruleXFunctionTypeRef_in_ruleJvmTypeReference16081 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArrayBrackets_in_entryRuleArrayBrackets16117 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleArrayBrackets16128 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_ruleArrayBrackets16166 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_ruleArrayBrackets16179 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXFunctionTypeRef_in_entryRuleXFunctionTypeRef16219 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXFunctionTypeRef16229 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_ruleXFunctionTypeRef16267 = new BitSet(new long[]{0x1000000060000100L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleXFunctionTypeRef16289 = new BitSet(new long[]{0x0000000040010000L});
+    public static final BitSet FOLLOW_16_in_ruleXFunctionTypeRef16302 = new BitSet(new long[]{0x1000000020000100L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleXFunctionTypeRef16323 = new BitSet(new long[]{0x0000000040010000L});
+    public static final BitSet FOLLOW_30_in_ruleXFunctionTypeRef16339 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_60_in_ruleXFunctionTypeRef16353 = new BitSet(new long[]{0x1000000020000100L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleXFunctionTypeRef16374 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmParameterizedTypeReference_in_entryRuleJvmParameterizedTypeReference16410 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleJvmParameterizedTypeReference16420 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleJvmParameterizedTypeReference16468 = new BitSet(new long[]{0x0000800000000002L});
+    public static final BitSet FOLLOW_47_in_ruleJvmParameterizedTypeReference16489 = new BitSet(new long[]{0x1000000020000100L,0x0000040000000000L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleJvmParameterizedTypeReference16511 = new BitSet(new long[]{0x0001000000010000L});
+    public static final BitSet FOLLOW_16_in_ruleJvmParameterizedTypeReference16524 = new BitSet(new long[]{0x1000000020000100L,0x0000040000000000L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleJvmParameterizedTypeReference16545 = new BitSet(new long[]{0x0001000000010000L});
+    public static final BitSet FOLLOW_48_in_ruleJvmParameterizedTypeReference16559 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+    public static final BitSet FOLLOW_73_in_ruleJvmParameterizedTypeReference16595 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleJvmParameterizedTypeReference16620 = new BitSet(new long[]{0x0000800000000002L,0x0000000000000200L});
+    public static final BitSet FOLLOW_47_in_ruleJvmParameterizedTypeReference16641 = new BitSet(new long[]{0x1000000020000100L,0x0000040000000000L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleJvmParameterizedTypeReference16663 = new BitSet(new long[]{0x0001000000010000L});
+    public static final BitSet FOLLOW_16_in_ruleJvmParameterizedTypeReference16676 = new BitSet(new long[]{0x1000000020000100L,0x0000040000000000L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleJvmParameterizedTypeReference16697 = new BitSet(new long[]{0x0001000000010000L});
+    public static final BitSet FOLLOW_48_in_ruleJvmParameterizedTypeReference16711 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_entryRuleJvmArgumentTypeReference16753 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleJvmArgumentTypeReference16763 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleJvmArgumentTypeReference16810 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmWildcardTypeReference_in_ruleJvmArgumentTypeReference16837 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmWildcardTypeReference_in_entryRuleJvmWildcardTypeReference16872 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleJvmWildcardTypeReference16882 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_106_in_ruleJvmWildcardTypeReference16928 = new BitSet(new long[]{0x0000000000000002L,0x0000000044000000L});
+    public static final BitSet FOLLOW_ruleJvmUpperBound_in_ruleJvmWildcardTypeReference16951 = new BitSet(new long[]{0x0000000000000002L,0x0000080000000000L});
+    public static final BitSet FOLLOW_ruleJvmUpperBoundAnded_in_ruleJvmWildcardTypeReference16972 = new BitSet(new long[]{0x0000000000000002L,0x0000080000000000L});
+    public static final BitSet FOLLOW_ruleJvmLowerBound_in_ruleJvmWildcardTypeReference17002 = new BitSet(new long[]{0x0000000000000002L,0x0000080000000000L});
+    public static final BitSet FOLLOW_ruleJvmLowerBoundAnded_in_ruleJvmWildcardTypeReference17023 = new BitSet(new long[]{0x0000000000000002L,0x0000080000000000L});
+    public static final BitSet FOLLOW_ruleJvmUpperBound_in_entryRuleJvmUpperBound17063 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleJvmUpperBound17073 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_90_in_ruleJvmUpperBound17110 = new BitSet(new long[]{0x1000000020000100L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleJvmUpperBound17131 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmUpperBoundAnded_in_entryRuleJvmUpperBoundAnded17167 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleJvmUpperBoundAnded17177 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_107_in_ruleJvmUpperBoundAnded17214 = new BitSet(new long[]{0x1000000020000100L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleJvmUpperBoundAnded17235 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmLowerBound_in_entryRuleJvmLowerBound17271 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleJvmLowerBound17281 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_94_in_ruleJvmLowerBound17318 = new BitSet(new long[]{0x1000000020000100L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleJvmLowerBound17339 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmLowerBoundAnded_in_entryRuleJvmLowerBoundAnded17375 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleJvmLowerBoundAnded17385 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_107_in_ruleJvmLowerBoundAnded17422 = new BitSet(new long[]{0x1000000020000100L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleJvmLowerBoundAnded17443 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedNameWithWildcard_in_entryRuleQualifiedNameWithWildcard17482 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedNameWithWildcard17493 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleQualifiedNameWithWildcard17540 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
+    public static final BitSet FOLLOW_73_in_ruleQualifiedNameWithWildcard17558 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_65_in_ruleQualifiedNameWithWildcard17571 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_entryRuleValidID17612 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleValidID17623 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleValidID17662 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXImportSection_in_entryRuleXImportSection17706 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXImportSection17716 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXImportDeclaration_in_ruleXImportSection17761 = new BitSet(new long[]{0x0000000000000002L,0x0000000010000000L});
+    public static final BitSet FOLLOW_ruleXImportDeclaration_in_entryRuleXImportDeclaration17797 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXImportDeclaration17807 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_92_in_ruleXImportDeclaration17844 = new BitSet(new long[]{0x0000000000000100L,0x0000000008000000L});
+    public static final BitSet FOLLOW_91_in_ruleXImportDeclaration17864 = new BitSet(new long[]{0x0000000000000100L,0x0000000020000000L});
+    public static final BitSet FOLLOW_93_in_ruleXImportDeclaration17895 = new BitSet(new long[]{0x0000000000000100L,0x0000000020000000L});
+    public static final BitSet FOLLOW_ruleQualifiedNameInStaticImport_in_ruleXImportDeclaration17932 = new BitSet(new long[]{0x0000000000000100L,0x0000000000000002L});
+    public static final BitSet FOLLOW_65_in_ruleXImportDeclaration17951 = new BitSet(new long[]{0x0000000000000002L,0x0000000000004000L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleXImportDeclaration17991 = new BitSet(new long[]{0x0000000000000002L,0x0000000000004000L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleXImportDeclaration18022 = new BitSet(new long[]{0x0000000000000002L,0x0000000000004000L});
+    public static final BitSet FOLLOW_ruleQualifiedNameWithWildcard_in_ruleXImportDeclaration18049 = new BitSet(new long[]{0x0000000000000002L,0x0000000000004000L});
+    public static final BitSet FOLLOW_78_in_ruleXImportDeclaration18063 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedNameInStaticImport_in_entryRuleQualifiedNameInStaticImport18102 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedNameInStaticImport18113 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleQualifiedNameInStaticImport18160 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
+    public static final BitSet FOLLOW_73_in_ruleQualifiedNameInStaticImport18178 = new BitSet(new long[]{0x0000000000000102L});
+    public static final BitSet FOLLOW_108_in_ruleResourceType18233 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_109_in_ruleResourceType18250 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_110_in_ruleResourceType18267 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_21_in_synpred1_InternalMelange886 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_21_in_synpred2_InternalMelange1142 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpMultiAssign_in_synpred3_InternalMelange4047 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpOr_in_synpred4_InternalMelange4570 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpAnd_in_synpred5_InternalMelange4829 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpEquality_in_synpred6_InternalMelange5088 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_synpred7_InternalMelange5402 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpCompare_in_synpred8_InternalMelange5473 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpOther_in_synpred9_InternalMelange5807 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_49_in_synpred10_InternalMelange6076 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_49_in_synpred10_InternalMelange6081 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_synpred11_InternalMelange6163 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_synpred11_InternalMelange6168 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpAdd_in_synpred12_InternalMelange6390 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpMulti_in_synpred13_InternalMelange6670 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_71_in_synpred14_InternalMelange7264 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpPostfix_in_synpred15_InternalMelange7421 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_74_in_synpred16_InternalMelange7676 = new BitSet(new long[]{0x0000000000000100L,0x000000003C000000L});
-    public static final BitSet FOLLOW_75_in_synpred16_InternalMelange7690 = new BitSet(new long[]{0x0000000000000100L,0x000000003C000000L});
-    public static final BitSet FOLLOW_ruleFeatureCallID_in_synpred16_InternalMelange7706 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_ruleOpSingleAssign_in_synpred16_InternalMelange7712 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_74_in_synpred17_InternalMelange7854 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_76_in_synpred17_InternalMelange7868 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_75_in_synpred17_InternalMelange7888 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_synpred18_InternalMelange8115 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred19_InternalMelange8167 = new BitSet(new long[]{0x0000000000010000L,0x0000000000004000L});
-    public static final BitSet FOLLOW_16_in_synpred19_InternalMelange8174 = new BitSet(new long[]{0x2000000020000100L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred19_InternalMelange8181 = new BitSet(new long[]{0x0000000000010000L,0x0000000000004000L});
-    public static final BitSet FOLLOW_78_in_synpred19_InternalMelange8195 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_synpred20_InternalMelange8315 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_104_in_synpred21_InternalMelange8504 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_synpred21_InternalMelange8508 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_85_in_synpred22_InternalMelange8630 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_synpred22_InternalMelange8634 = new BitSet(new long[]{0x2000000020000100L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred22_InternalMelange8641 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_synpred22_InternalMelange8647 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_synpred23_InternalMelange8969 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred25_InternalMelange9719 = new BitSet(new long[]{0x0000000000010000L,0x0000000000004000L});
-    public static final BitSet FOLLOW_16_in_synpred25_InternalMelange9726 = new BitSet(new long[]{0x2000000020000100L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred25_InternalMelange9733 = new BitSet(new long[]{0x0000000000010000L,0x0000000000004000L});
-    public static final BitSet FOLLOW_78_in_synpred25_InternalMelange9747 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_81_in_synpred27_InternalMelange10530 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_synpred28_InternalMelange10669 = new BitSet(new long[]{0x2000000020000100L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred28_InternalMelange10676 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_synpred28_InternalMelange10682 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred29_InternalMelange10784 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_synpred29_InternalMelange10790 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_synpred31_InternalMelange12418 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_ruleValidID_in_synpred31_InternalMelange12427 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_synpred32_InternalMelange12965 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred33_InternalMelange13017 = new BitSet(new long[]{0x0000000000010000L,0x0000000000004000L});
-    public static final BitSet FOLLOW_16_in_synpred33_InternalMelange13024 = new BitSet(new long[]{0x2000000020000100L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred33_InternalMelange13031 = new BitSet(new long[]{0x0000000000010000L,0x0000000000004000L});
-    public static final BitSet FOLLOW_78_in_synpred33_InternalMelange13045 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_synpred34_InternalMelange13165 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_synpred35_InternalMelange13614 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_synpred36_InternalMelange13710 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred37_InternalMelange13762 = new BitSet(new long[]{0x0000000000010000L,0x0000000000004000L});
-    public static final BitSet FOLLOW_16_in_synpred37_InternalMelange13769 = new BitSet(new long[]{0x2000000020000100L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred37_InternalMelange13776 = new BitSet(new long[]{0x0000000000010000L,0x0000000000004000L});
-    public static final BitSet FOLLOW_78_in_synpred37_InternalMelange13790 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_synpred38_InternalMelange13910 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_synpred39_InternalMelange14730 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_105_in_synpred40_InternalMelange15083 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_103_in_synpred41_InternalMelange15113 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_74_in_synpred44_InternalMelange15638 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArrayBrackets_in_synpred45_InternalMelange16023 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_synpred46_InternalMelange16475 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_74_in_synpred47_InternalMelange16570 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_synpred48_InternalMelange16627 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpMultiAssign_in_synpred3_InternalMelange4053 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpOr_in_synpred4_InternalMelange4576 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpAnd_in_synpred5_InternalMelange4835 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpEquality_in_synpred6_InternalMelange5094 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_synpred7_InternalMelange5408 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpCompare_in_synpred8_InternalMelange5479 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpOther_in_synpred9_InternalMelange5813 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_synpred10_InternalMelange6082 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_synpred10_InternalMelange6087 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_synpred11_InternalMelange6169 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_synpred11_InternalMelange6174 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpAdd_in_synpred12_InternalMelange6396 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpMulti_in_synpred13_InternalMelange6676 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_70_in_synpred14_InternalMelange7270 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpPostfix_in_synpred15_InternalMelange7427 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_73_in_synpred16_InternalMelange7682 = new BitSet(new long[]{0x0000000000000100L,0x000000003C000000L});
+    public static final BitSet FOLLOW_74_in_synpred16_InternalMelange7696 = new BitSet(new long[]{0x0000000000000100L,0x000000003C000000L});
+    public static final BitSet FOLLOW_ruleFeatureCallID_in_synpred16_InternalMelange7712 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_ruleOpSingleAssign_in_synpred16_InternalMelange7718 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_73_in_synpred17_InternalMelange7860 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_75_in_synpred17_InternalMelange7874 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_74_in_synpred17_InternalMelange7894 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_synpred18_InternalMelange8121 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred19_InternalMelange8173 = new BitSet(new long[]{0x0000000000010000L,0x0000000000002000L});
+    public static final BitSet FOLLOW_16_in_synpred19_InternalMelange8180 = new BitSet(new long[]{0x1000000020000100L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred19_InternalMelange8187 = new BitSet(new long[]{0x0000000000010000L,0x0000000000002000L});
+    public static final BitSet FOLLOW_77_in_synpred19_InternalMelange8201 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_synpred20_InternalMelange8321 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_104_in_synpred21_InternalMelange8510 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_29_in_synpred21_InternalMelange8514 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_85_in_synpred22_InternalMelange8636 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_29_in_synpred22_InternalMelange8640 = new BitSet(new long[]{0x1000000020000100L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred22_InternalMelange8647 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_82_in_synpred22_InternalMelange8653 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_synpred23_InternalMelange8975 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred25_InternalMelange9725 = new BitSet(new long[]{0x0000000000010000L,0x0000000000002000L});
+    public static final BitSet FOLLOW_16_in_synpred25_InternalMelange9732 = new BitSet(new long[]{0x1000000020000100L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred25_InternalMelange9739 = new BitSet(new long[]{0x0000000000010000L,0x0000000000002000L});
+    public static final BitSet FOLLOW_77_in_synpred25_InternalMelange9753 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_80_in_synpred27_InternalMelange10536 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_synpred28_InternalMelange10675 = new BitSet(new long[]{0x1000000020000100L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred28_InternalMelange10682 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_82_in_synpred28_InternalMelange10688 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred29_InternalMelange10790 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_82_in_synpred29_InternalMelange10796 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_synpred31_InternalMelange12424 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_ruleValidID_in_synpred31_InternalMelange12433 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_synpred32_InternalMelange12971 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred33_InternalMelange13023 = new BitSet(new long[]{0x0000000000010000L,0x0000000000002000L});
+    public static final BitSet FOLLOW_16_in_synpred33_InternalMelange13030 = new BitSet(new long[]{0x1000000020000100L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred33_InternalMelange13037 = new BitSet(new long[]{0x0000000000010000L,0x0000000000002000L});
+    public static final BitSet FOLLOW_77_in_synpred33_InternalMelange13051 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_synpred34_InternalMelange13171 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_synpred35_InternalMelange13620 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_synpred36_InternalMelange13716 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred37_InternalMelange13768 = new BitSet(new long[]{0x0000000000010000L,0x0000000000002000L});
+    public static final BitSet FOLLOW_16_in_synpred37_InternalMelange13775 = new BitSet(new long[]{0x1000000020000100L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred37_InternalMelange13782 = new BitSet(new long[]{0x0000000000010000L,0x0000000000002000L});
+    public static final BitSet FOLLOW_77_in_synpred37_InternalMelange13796 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_synpred38_InternalMelange13916 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_synpred39_InternalMelange14736 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_105_in_synpred40_InternalMelange15089 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_103_in_synpred41_InternalMelange15119 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_73_in_synpred44_InternalMelange15644 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArrayBrackets_in_synpred45_InternalMelange16029 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_synpred46_InternalMelange16481 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_73_in_synpred47_InternalMelange16576 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_synpred48_InternalMelange16633 = new BitSet(new long[]{0x0000000000000002L});
 
 }
