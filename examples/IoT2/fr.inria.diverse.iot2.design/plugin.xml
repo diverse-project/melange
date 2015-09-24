@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+  <extension point="org.eclipse.sirius.componentization">
+    <component class="fr.inria.diverse.iot2.design.Activator"
+               id="fr.inria.diverse.iot2.design"
+	       name="iot2">
+    </component>
+  </extension>
+  <extension
+        point="org.eclipse.sirius.externalJavaAction">
+     <javaActions
+           actionClass="fr.inria.diverse.iot2.design.service.OpenEmbeddedEditor"
+           id="fr.inria.diverse.iot2.design.OpenEmbeddedEditor">
+     </javaActions>
+  </extension>
+</plugin>
