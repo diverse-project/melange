@@ -28,6 +28,11 @@ import fr.inria.diverse.melange.utils.RenamingRuleManager
 import fr.inria.diverse.melange.metamodel.melange.Weave
 import org.eclipse.emf.common.util.URI
 import java.util.ArrayList
+import org.eclipse.xtext.common.types.JvmDeclaredType
+import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
+import fr.inria.diverse.melange.metamodel.melange.LanguageOperator
+import org.eclipse.xtext.common.types.JvmUnknownTypeReference
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
 class LanguageExtensions
 {
@@ -43,6 +48,7 @@ class LanguageExtensions
 	@Inject ModelTypeAlgebra algebra
 	@Inject AspectCopier copier
 	@Inject AspectRenamer renamer
+	@Inject JvmTypesBuilder typesBuilder
 	@Inject JvmTypeReferenceBuilder.Factory builderFactory
 
 	def List<Language> getSuperLanguages(Language l) {
@@ -102,6 +108,23 @@ class LanguageExtensions
 			]
 			return res
 		}
+	}
+	
+	/**
+	 * Return Aspects created from With Operators,
+	 * the order is the same as With Operators
+	 */
+	def List<Aspect> getLocalSemantics(Language l){
+		val res = newArrayList
+		
+		l.operators.filter(Weave).forEach[op |
+			val withAsp = l.semantics.findFirst[asp | asp.aspectTypeRef.simpleName == op.aspectTypeRef.simpleName]
+			if(withAsp !== null){
+				res += withAsp
+			}
+		]
+		
+		return res
 	}
 
 //	def List<Aspect> allSemantics(Language l) {
@@ -333,10 +356,11 @@ class LanguageExtensions
 		val classesAlreadyWeaved = newArrayList
 		val newRootName = l.syntax.packageFqn.toQualifiedName.skipLast(1).toString
 		
+		
 		//Copy sem
-		val toRemove = new ArrayList(l.semantics) 
-		copyAspects(l,l.semantics.reverseView,classesAlreadyWeaved,null)
-		l.semantics.removeAll(toRemove)
+		val withAspects = l.getLocalSemantics
+		copyAspects(l,withAspects.reverseView,classesAlreadyWeaved,null)
+		l.semantics.removeAll(withAspects)
 		
 		//Copy+rename op
 		l.operators.reverseView.forEach[op |
@@ -480,5 +504,109 @@ class LanguageExtensions
 
 	def boolean hasExternalAspects(Language l) {
 		return !l.allAspects.filter[!isDefinedOver(l.syntax) && canBeCopiedFor(l.syntax)].empty
+	}
+	
+	
+	
+	/**
+	 * For each Language, gather Aspects from all dependencies to form
+	 * the complete semantic.
+	 */
+	def void makeAllSemantics(ModelTypingSpace root){
+		root.clearSemantics
+		
+		val processed = newArrayList
+		val languages = root.elements.filter(Language)
+		languages.filter[isGeneratedByMelange].filter[!processed.contains(it)].forEach[lang |
+			lang.makeAllSemantic(processed)
+		]
+	}
+	
+	/**
+	 * For each Language, remove all Aspects except those from With Operators
+	 */
+	def void clearSemantics(ModelTypingSpace root){
+		root.elements.filter(Language).forEach[lang |
+			val localAspects = lang.localSemantics
+			lang.semantics.clear
+			lang.semantics += localAspects
+		]
+	}
+	
+	private def void makeAllSemantic(Language language, List<Language> processed){
+		if(!processed.contains(language)){
+			processed += language
+			
+			val dependencies = language.operators.filter(LanguageOperator).map[targetLanguage].filter[isGeneratedByMelange]
+			dependencies.filter[!processed.contains(it)].forEach[superLang |
+				superLang.makeAllSemantic(processed)
+			]
+			makeAllSemantic(language)
+		}
+	}
+	
+	/**
+	 * Create Aspects based on semantics from Operators' Languages and update
+	 * With Operators' semantics to target copied Aspects classes.<br>
+	 * 
+	 * Note: assume semantics from {@link language} dependencies are made.
+	 */
+	private def void makeAllSemantic(Language language) {
+		val typeRefBuilder = builderFactory.create(language.eResource.resourceSet)
+		//with
+		language.updateLocalAspects
+		
+		//merge & slice
+		language.operators.reverseView.filter[it instanceof Merge || it instanceof Slice].forEach[op|
+			var superLang = (op as LanguageOperator).targetLanguage
+			superLang.getOrderedAspects.forEach[asp |
+				val localAspectedClass = language.syntax.findClass(asp.aspectedClass.name)//TODO: renaming here
+				language.semantics += MelangeFactory.eINSTANCE.createAspect => [
+					aspectedClass = localAspectedClass
+					aspectTypeRef = typesBuilder.cloneWithProxies(asp.aspectTypeRef)
+					ecoreFragment = asp.ecoreFragment
+				]
+			]
+		]
+		//inherits
+		language.getSuperLanguages.reverseView.forEach[superLang |
+			superLang.getOrderedAspects.forEach[asp |
+				val localAspectedClass = language.syntax.findClass(asp.aspectedClass.name)
+				language.semantics += MelangeFactory.eINSTANCE.createAspect => [
+					aspectedClass = localAspectedClass
+					aspectTypeRef = typesBuilder.cloneWithProxies(asp.aspectTypeRef)
+					ecoreFragment = asp.ecoreFragment
+				]
+			]
+		]
+	}
+	
+	/**
+	 * Get Aspects from {@link language} in the overriding order.
+	 * (ie: the first override its followings)
+	 */
+	private def List<Aspect> getOrderedAspects(Language language){
+		return 
+			if(language.isGeneratedByMelange){
+				language.semantics
+			}
+			else{
+				language.semantics.reverseView
+			}
+	}
+	
+	/**
+	 * For Aspects from With Operator, try to change targeted classes
+	 * to point copied aspects classes.
+	 * Do nothing it we can't find these classes
+	 */
+	private def void updateLocalAspects(Language language){
+		val typeRefBuilder = builderFactory.create(language.eResource.resourceSet)
+		language.localSemantics.reverseView.forEach[asp|
+			val newRef = typeRefBuilder.typeRef(language.aspectTargetNamespace+"."+asp.aspectTypeRef.simpleName)
+			if(!(newRef instanceof JvmUnknownTypeReference)){
+				asp.aspectTypeRef = newRef
+			}
+		]
 	}
 }
