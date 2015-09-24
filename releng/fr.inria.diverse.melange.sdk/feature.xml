@@ -11,8 +11,9 @@
    </url>
 
    <requires>
-      <import plugin="fr.inria.diverse.commons.asm" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="fr.inria.diverse.k3.al.annotationprocessor.plugin" version="3.1.0" match="greaterOrEqual"/>
+      <import feature="fr.inria.diverse.commons.eclipse.feature" version="1.0.0.201506091325" match="greaterOrEqual"/>
+      <import feature="fr.inria.diverse.commons.provisionner4eclipse.feature" version="1.0.0.201506091325" match="greaterOrEqual"/>
+      <import feature="fr.inria.diverse.k3.al.feature" version="3.2.0.v20150914-2034" match="greaterOrEqual"/>
    </requires>
 
    <plugin
