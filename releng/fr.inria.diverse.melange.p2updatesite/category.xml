@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/fr.inria.diverse.melange.sdk_0.1.0.qualifier.jar" id="fr.inria.diverse.melange.sdk" version="0.1.0.qualifier">
+      <category name="Melange"/>
+   </feature>
+   <category-def name="Melange" label="Melange"/>
+   <repository-reference location="https://ci.inria.fr/k3al/job/k3-al.eclipse/lastSuccessfulBuild/artifact/k3-al.eclipse/fr.inria.diverse.k3.al.p2updatesite/target/site/" enabled="true" />
+   <repository-reference location="https://ci.inria.fr/diverse-commons/job/diverse-commons.eclipse.root/lastSuccessfulBuild/artifact/commons-eclipse/fr.inria.diverse.commons.eclipse.root/p2updatesite/target/repository/" enabled="true" />
+</site>

@@ -6,8 +6,10 @@
       provider-name="DIVERSE">
 
    <url>
+      <update label="Melange Update Site" url="https://ci.inria.fr/k3al/job/melange-master/lastSuccessfulBuild/artifact/releng/fr.inria.diverse.melange.p2updatesite/target/site/"/>
       <discovery label="K3AL Update Site" url="https://ci.inria.fr/k3al/job/k3-al.eclipse/lastSuccessfulBuild/artifact/k3-al.eclipse/fr.inria.diverse.k3.al.p2updatesite/target/site/"/>
-      <discovery label="DIverse Commons Update Site" url="https://ci.inria.fr/diverse-commons/job/diverse-commons.eclipse.root/lastSuccessfulBuild/artifact/commons-eclipse/fr.inria.diverse.commons.eclipse.root/p2updatesite/target/repository/"/>
+      <discovery label="Diverse Commons Update Site" url="https://ci.inria.fr/diverse-commons/job/diverse-commons.eclipse.root/lastSuccessfulBuild/artifact/commons-eclipse/fr.inria.diverse.commons.eclipse.root/p2updatesite/target/repository/"/>
+      <discovery label="Melange Update Site" url="https://ci.inria.fr/k3al/job/melange-master/lastSuccessfulBuild/artifact/releng/fr.inria.diverse.melange.p2updatesite/target/site/"/>
    </url>
 
    <requires>
