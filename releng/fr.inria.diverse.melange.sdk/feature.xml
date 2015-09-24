@@ -5,6 +5,11 @@
       version="0.1.0.qualifier"
       provider-name="DIVERSE">
 
+   <url>
+      <discovery label="K3AL Update Site" url="https://ci.inria.fr/k3al/job/k3-al.eclipse/lastSuccessfulBuild/artifact/k3-al.eclipse/fr.inria.diverse.k3.al.p2updatesite/target/site/"/>
+      <discovery label="DIverse Commons Update Site" url="https://ci.inria.fr/diverse-commons/job/diverse-commons.eclipse.root/lastSuccessfulBuild/artifact/commons-eclipse/fr.inria.diverse.commons.eclipse.root/p2updatesite/target/repository/"/>
+   </url>
+
    <plugin
          id="fr.inria.diverse.melange"
          download-size="0"
