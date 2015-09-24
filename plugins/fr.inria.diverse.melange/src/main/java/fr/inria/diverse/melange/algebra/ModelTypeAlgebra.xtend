@@ -16,5 +16,5 @@ interface ModelTypeAlgebra
 {
 	def boolean isSubtypeOf(ModelType mt1, ModelType mt2)
 	def boolean isTypedBy(Language l, ModelType mt)
-	def void weaveAspect(Language l, Aspect aspect)
+//	def void weaveAspect(Language l, Aspect aspect)
 }
