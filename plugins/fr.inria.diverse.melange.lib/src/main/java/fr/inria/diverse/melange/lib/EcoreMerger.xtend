@@ -86,18 +86,22 @@ class PackageMergeMerger implements EcoreMerger {
 		if (receiving.doMatch(merged))
 			resulting.doMerge(merged)
 
-		if (!conflicts.empty)
+		if (!conflicts.empty) {
+			resulting.cleanAnnotations
 			return null
+		}
 
 		resulting.updateReferences
 
-		if (validate)
-			if (!validateAndProduceConflicts(resulting))
-				return null
+		val isValid =
+			if (validate) validateAndProduceConflicts(resulting)
+			else true
 
 		resulting.cleanAnnotations
 
-		return resulting
+		return
+			if (isValid) resulting
+			else null
 	}
 
 	def void cleanAnnotations(EPackage pkg) {
