@@ -10,11 +10,11 @@ package activitydiagram;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link activitydiagram.ActivityEdge#getSource <em>Source</em>}</li>
  *   <li>{@link activitydiagram.ActivityEdge#getTarget <em>Target</em>}</li>
  * </ul>
- * </p>
  *
  * @see activitydiagram.ActivitydiagramPackage#getActivityEdge()
  * @model abstract="true"

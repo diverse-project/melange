@@ -29,13 +29,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link activitydiagram.impl.ActivityNodeImpl#getOutgoing <em>Outgoing</em>}</li>
  *   <li>{@link activitydiagram.impl.ActivityNodeImpl#getIncoming <em>Incoming</em>}</li>
  *   <li>{@link activitydiagram.impl.ActivityNodeImpl#getActivity <em>Activity</em>}</li>
  *   <li>{@link activitydiagram.impl.ActivityNodeImpl#isRunning <em>Running</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

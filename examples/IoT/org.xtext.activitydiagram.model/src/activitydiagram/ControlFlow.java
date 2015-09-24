@@ -10,10 +10,10 @@ package activitydiagram;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link activitydiagram.ControlFlow#getGuard <em>Guard</em>}</li>
  * </ul>
- * </p>
  *
  * @see activitydiagram.ActivitydiagramPackage#getControlFlow()
  * @model

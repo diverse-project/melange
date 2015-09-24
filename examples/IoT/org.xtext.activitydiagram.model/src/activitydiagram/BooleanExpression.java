@@ -10,10 +10,10 @@ package activitydiagram;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link activitydiagram.BooleanExpression#getAssignee <em>Assignee</em>}</li>
  * </ul>
- * </p>
  *
  * @see activitydiagram.ActivitydiagramPackage#getBooleanExpression()
  * @model abstract="true"

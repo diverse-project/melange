@@ -21,12 +21,12 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link activitydiagram.impl.VariableImpl#getInitialValue <em>Initial Value</em>}</li>
  *   <li>{@link activitydiagram.impl.VariableImpl#getName <em>Name</em>}</li>
  *   <li>{@link activitydiagram.impl.VariableImpl#getCurrentValue <em>Current Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

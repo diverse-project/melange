@@ -10,11 +10,11 @@ package activitydiagram;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link activitydiagram.IntegerExpression#getOperand2 <em>Operand2</em>}</li>
  *   <li>{@link activitydiagram.IntegerExpression#getOperand1 <em>Operand1</em>}</li>
  * </ul>
- * </p>
  *
  * @see activitydiagram.ActivitydiagramPackage#getIntegerExpression()
  * @model abstract="true"

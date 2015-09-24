@@ -10,11 +10,11 @@ package activitydiagram;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link activitydiagram.IntegerCalculationExpression#getAssignee <em>Assignee</em>}</li>
  *   <li>{@link activitydiagram.IntegerCalculationExpression#getOperator <em>Operator</em>}</li>
  * </ul>
- * </p>
  *
  * @see activitydiagram.ActivitydiagramPackage#getIntegerCalculationExpression()
  * @model

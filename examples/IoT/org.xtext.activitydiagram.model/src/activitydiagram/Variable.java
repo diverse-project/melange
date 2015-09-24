@@ -11,12 +11,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link activitydiagram.Variable#getInitialValue <em>Initial Value</em>}</li>
  *   <li>{@link activitydiagram.Variable#getName <em>Name</em>}</li>
  *   <li>{@link activitydiagram.Variable#getCurrentValue <em>Current Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see activitydiagram.ActivitydiagramPackage#getVariable()
  * @model abstract="true"

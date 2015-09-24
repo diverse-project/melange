@@ -10,12 +10,12 @@ package activitydiagram;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link activitydiagram.BooleanBinaryExpression#getOperand1 <em>Operand1</em>}</li>
  *   <li>{@link activitydiagram.BooleanBinaryExpression#getOperand2 <em>Operand2</em>}</li>
  *   <li>{@link activitydiagram.BooleanBinaryExpression#getOperator <em>Operator</em>}</li>
  * </ul>
- * </p>
  *
  * @see activitydiagram.ActivitydiagramPackage#getBooleanBinaryExpression()
  * @model

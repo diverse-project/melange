@@ -11,13 +11,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link activitydiagram.ActivityNode#getOutgoing <em>Outgoing</em>}</li>
  *   <li>{@link activitydiagram.ActivityNode#getIncoming <em>Incoming</em>}</li>
  *   <li>{@link activitydiagram.ActivityNode#getActivity <em>Activity</em>}</li>
  *   <li>{@link activitydiagram.ActivityNode#isRunning <em>Running</em>}</li>
  * </ul>
- * </p>
  *
  * @see activitydiagram.ActivitydiagramPackage#getActivityNode()
  * @model abstract="true"

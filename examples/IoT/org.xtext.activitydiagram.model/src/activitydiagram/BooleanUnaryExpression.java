@@ -10,11 +10,11 @@ package activitydiagram;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link activitydiagram.BooleanUnaryExpression#getOperand <em>Operand</em>}</li>
  *   <li>{@link activitydiagram.BooleanUnaryExpression#getOperator <em>Operator</em>}</li>
  * </ul>
- * </p>
  *
  * @see activitydiagram.ActivitydiagramPackage#getBooleanUnaryExpression()
  * @model

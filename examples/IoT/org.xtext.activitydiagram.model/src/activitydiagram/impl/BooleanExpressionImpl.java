@@ -19,10 +19,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link activitydiagram.impl.BooleanExpressionImpl#getAssignee <em>Assignee</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
