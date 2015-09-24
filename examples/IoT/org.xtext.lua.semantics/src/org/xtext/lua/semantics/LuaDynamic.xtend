@@ -69,7 +69,7 @@ import org.xtext.lua.lua.Statement_Repeat
 import org.xtext.lua.lua.Statement_While
 
 import static extension org.xtext.lua.semantics.BlockAspect.*
-import static extension org.xtext.lua.semantics.ExpressionAspect.*
+import static extension org.xtext.lua.semantics.LuaExpressionAspect.*
 import static extension org.xtext.lua.semantics.LastStatementAspect.*
 import static extension org.xtext.lua.semantics.StatementAspect.*
 
@@ -162,7 +162,7 @@ class Statement_GlobalFunction_DeclarationAspect extends StatementAspect {
 }
 
 @Aspect(className=Expression_VariableName)
-class Expression_VariableNameAspect extends ExpressionAspect {
+class Expression_VariableNameAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 		//println(_self.variable)
 		c.pushValue(c.getVariable(_self.variable))
@@ -222,7 +222,7 @@ class Statement_CallFunctionAspect extends Statement_FunctioncallOrAssignmentAsp
 }
 
 @Aspect(className=Expression_CallFunction)
-class Expression_CallFunctionAspect extends ExpressionAspect {
+class Expression_CallFunctionAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 		_self.object.execute(c)
 		if(_self.arguments.arguments.size>0){
@@ -264,7 +264,7 @@ class Expression_CallFunctionAspect extends ExpressionAspect {
 }
 
 @Aspect(className=Expression_AccessMember)
-class Expression_AccessMemberAspect extends ExpressionAspect {
+class Expression_AccessMemberAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 		if (_self.memberName.equals("read")) {
 			var x = _self.object
@@ -379,20 +379,20 @@ class Statement_FunctioncallOrAssignmentAspect extends StatementAspect {
 }
 
 @Aspect(className=Expression)
-class ExpressionAspect extends Statement_FunctioncallOrAssignmentAspect {
+class LuaExpressionAspect extends Statement_FunctioncallOrAssignmentAspect {
 	def void execute(Environment c) {
 	}
 }
 
 @Aspect(className=Expression_Nil)
-class Expression_NilAspect extends ExpressionAspect {
+class Expression_NilAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 		c.pushValue(Void)		
 	}
 }
 
 @Aspect(className=Expression_True)
-class Expression_TrueAspect extends ExpressionAspect {
+class Expression_TrueAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 				c.pushValue(true)
 		
@@ -400,7 +400,7 @@ class Expression_TrueAspect extends ExpressionAspect {
 }
 
 @Aspect(className=Expression_False)
-class Expression_FalseAspect extends ExpressionAspect {
+class Expression_FalseAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 				c.pushValue(false)
 		
@@ -408,33 +408,33 @@ class Expression_FalseAspect extends ExpressionAspect {
 }
 
 @Aspect(className=Expression_Number)
-class Expression_NumberAspect extends ExpressionAspect {
+class Expression_NumberAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 		c.pushValue(_self.value)
 	}
 }
 
 @Aspect(className=Expression_VarArgs)
-class Expression_VarArgsAspect extends ExpressionAspect {
+class Expression_VarArgsAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 	}
 }
 
 @Aspect(className=Expression_String)
-class Expression_StringAspect extends ExpressionAspect {
+class Expression_StringAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 		c.pushValue(_self.value)
 	}
 }
 
 @Aspect(className=Expression_Function)
-class Expression_FunctionAspect extends ExpressionAspect {
+class Expression_FunctionAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 	}
 }
 
 @Aspect(className=Expression_TableConstructor)
-class Expression_TableConstructorAspect extends ExpressionAspect {
+class Expression_TableConstructorAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 	}
 }
@@ -489,7 +489,7 @@ class Statement_CallMemberFunctionAspect extends Statement_FunctioncallOrAssignm
 }
 
 @Aspect(className=Expression_Or)
-class Expression_OrAspect extends ExpressionAspect {
+class Expression_OrAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 		_self.left.execute(c)
 		var  left =c.popValue as Boolean 
@@ -500,7 +500,7 @@ class Expression_OrAspect extends ExpressionAspect {
 }
 
 @Aspect(className=Expression_And)
-class Expression_AndAspect extends ExpressionAspect {
+class Expression_AndAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 		_self.left.execute(c)
 		var  left =c.popValue as Boolean 
@@ -512,7 +512,7 @@ class Expression_AndAspect extends ExpressionAspect {
 }
 
 @Aspect(className=Expression_Larger)
-class Expression_LargerAspect extends ExpressionAspect {
+class Expression_LargerAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 						_self.left.execute(c)
 		var  left =c.popValue as Comparable 
@@ -524,7 +524,7 @@ class Expression_LargerAspect extends ExpressionAspect {
 }
 
 @Aspect(className=Expression_Larger_Equal)
-class Expression_Larger_EqualAspect extends ExpressionAspect {
+class Expression_Larger_EqualAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 						_self.left.execute(c)
 		var  left =c.popValue as Comparable 
@@ -536,7 +536,7 @@ class Expression_Larger_EqualAspect extends ExpressionAspect {
 }
 
 @Aspect(className=Expression_Smaller)
-class Expression_SmallerAspect extends ExpressionAspect {
+class Expression_SmallerAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 				_self.left.execute(c)
 		var  left =c.popValue as Comparable 
@@ -547,7 +547,7 @@ class Expression_SmallerAspect extends ExpressionAspect {
 }
 
 @Aspect(className=Expression_Smaller_Equal)
-class Expression_Smaller_EqualAspect extends ExpressionAspect {
+class Expression_Smaller_EqualAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 				_self.left.execute(c)
 		var  left =c.popValue as Comparable 
@@ -559,7 +559,7 @@ class Expression_Smaller_EqualAspect extends ExpressionAspect {
 }
 
 @Aspect(className=Expression_Equal)
-class Expression_EqualAspect extends ExpressionAspect {
+class Expression_EqualAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 		_self.left.execute(c)
 		var  left =c.popValue 
@@ -570,7 +570,7 @@ class Expression_EqualAspect extends ExpressionAspect {
 }
 
 @Aspect(className=Expression_Not_Equal)
-class Expression_Not_EqualAspect extends ExpressionAspect {
+class Expression_Not_EqualAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 		_self.left.execute(c)
 		var  left =c.popValue 
@@ -581,7 +581,7 @@ class Expression_Not_EqualAspect extends ExpressionAspect {
 }
 
 @Aspect(className=Expression_Concatenation)
-class Expression_ConcatenationAspect extends ExpressionAspect {
+class Expression_ConcatenationAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 		_self.left.execute(c)
 		var String left =c.popValue as String
@@ -592,7 +592,7 @@ class Expression_ConcatenationAspect extends ExpressionAspect {
 }
 
 @Aspect(className=Expression_Plus)
-class Expression_PlusAspect extends ExpressionAspect {
+class Expression_PlusAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 		_self.left.execute(c)
 		var Double left =c.popValue as Double
@@ -603,7 +603,7 @@ class Expression_PlusAspect extends ExpressionAspect {
 }
 
 @Aspect(className=Expression_Minus)
-class Expression_MinusAspect extends ExpressionAspect {
+class Expression_MinusAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 		_self.left.execute(c)
 		var Double left =c.popValue as Double
@@ -615,7 +615,7 @@ class Expression_MinusAspect extends ExpressionAspect {
 }
 
 @Aspect(className=Expression_Multiplication)
-class Expression_MultiplicationAspect extends ExpressionAspect {
+class Expression_MultiplicationAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 		_self.left.execute(c)
 		var Double left =c.popValue as Double
@@ -627,7 +627,7 @@ class Expression_MultiplicationAspect extends ExpressionAspect {
 }
 
 @Aspect(className=Expression_Division)
-class Expression_DivisionAspect extends ExpressionAspect {
+class Expression_DivisionAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 		_self.left.execute(c)
 		var Double left =c.popValue as Double
@@ -639,7 +639,7 @@ class Expression_DivisionAspect extends ExpressionAspect {
 }
 
 @Aspect(className=Expression_Modulo)
-class Expression_ModuloAspect extends ExpressionAspect {
+class Expression_ModuloAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 		_self.left.execute(c)
 		var Double left =c.popValue as Double
@@ -651,7 +651,7 @@ class Expression_ModuloAspect extends ExpressionAspect {
 }
 
 @Aspect(className=Expression_Negate)
-class Expression_NegateAspect extends ExpressionAspect {
+class Expression_NegateAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 		_self.exp.execute(c)
 		var Double left =c.popValue as Double
@@ -660,7 +660,7 @@ class Expression_NegateAspect extends ExpressionAspect {
 }
 
 @Aspect(className=Expression_Length)
-class Expression_LengthAspect extends ExpressionAspect {
+class Expression_LengthAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 		_self.exp.execute(c)
 		var String left =c.popValue as String
@@ -669,7 +669,7 @@ class Expression_LengthAspect extends ExpressionAspect {
 }
 
 @Aspect(className=Expression_Invert)
-class Expression_InvertAspect extends ExpressionAspect {
+class Expression_InvertAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 		_self.exp.execute(c)
 		var Double left =c.popValue as Double
@@ -678,7 +678,7 @@ class Expression_InvertAspect extends ExpressionAspect {
 }
 
 @Aspect(className=Expression_Exponentiation)
-class Expression_ExponentiationAspect extends ExpressionAspect {
+class Expression_ExponentiationAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 		_self.left.execute(c)
 		var Double left =c.popValue as Double
@@ -689,13 +689,13 @@ class Expression_ExponentiationAspect extends ExpressionAspect {
 }
 
 @Aspect(className=Expression_CallMemberFunction)
-class Expression_CallMemberFunctionAspect extends ExpressionAspect {
+class Expression_CallMemberFunctionAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 	}
 }
 
 @Aspect(className=Expression_AccessArray)
-class Expression_AccessArrayAspect extends ExpressionAspect {
+class Expression_AccessArrayAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
 	}
 }
