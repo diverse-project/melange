@@ -11,9 +11,20 @@ import java.io.IOException
 import java.util.List
 import javax.inject.Inject
 import org.eclipse.emf.common.util.Diagnostic
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.compare.EMFCompare
+import org.eclipse.emf.compare.Match
+import org.eclipse.emf.compare.diff.DefaultDiffEngine
+import org.eclipse.emf.compare.diff.FeatureFilter
+import org.eclipse.emf.compare.scope.DefaultComparisonScope
 import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EPackage
+import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.ETypedElement
+import org.eclipse.emf.ecore.EcorePackage
 import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.Diagnostician
 import org.eclipse.xtext.util.IAcceptor
 import org.eclipse.xtext.xbase.compiler.CompilationTestHelper
@@ -94,6 +105,44 @@ class MelangeTestHelper
 			diagnostic.toString,
 			diagnostic.severity == Diagnostic.OK
 		)
+	}
+
+	def void assertMatch(EPackage pkg, String refEcore) {
+		val rs = new ResourceSetImpl
+		val uri = URI::createURI(refEcore)
+		val res = rs.getResource(uri, true)
+		val ref = res.contents.head as EPackage
+
+		assertMatch(pkg, ref)
+	}
+
+	def void assertMatch(EPackage pkg, EPackage ref) {
+		val scope = new DefaultComparisonScope(pkg, ref, null)
+		// We don't want to take order into account
+		// We don't want to take eAnnotations into account
+		val comparison = EMFCompare.builder().setDiffEngine(
+			new DefaultDiffEngine() {
+				override def FeatureFilter createFeatureFilter() {
+					return new FeatureFilter() {
+						override boolean isIgnoredReference(Match match, EReference ref) {
+							return ref == EcorePackage.Literals.EMODEL_ELEMENT__EANNOTATIONS
+							        || super.isIgnoredReference(match, ref)
+						}
+
+						override boolean checkForOrderingChanges(EStructuralFeature f) {
+							return false
+						}
+					}
+				}
+			}
+		).build.compare(scope)
+
+		if (!comparison.differences.empty) {
+			println(comparison.differences.join("\n"))
+			Assert.fail(comparison.differences.join(", "))
+		}
+
+		Assert.assertTrue(comparison.differences.empty)
 	}
 
 	def EObject getEObject(ModelingElement m, String path) {

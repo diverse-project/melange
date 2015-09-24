@@ -5,6 +5,7 @@ import com.google.inject.Injector
 import fr.inria.diverse.melange.algebra.EmfCompareAlgebra
 import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.lib.EcoreExtensions
+import fr.inria.diverse.melange.lib.EcoreMerger
 import fr.inria.diverse.melange.metamodel.melange.Import
 import fr.inria.diverse.melange.metamodel.melange.Inheritance
 import fr.inria.diverse.melange.metamodel.melange.Language
@@ -24,6 +25,7 @@ class LanguageBuilder extends AbstractBuilder {
 	@Inject Injector injector
 	@Inject extension AspectExtensions
 	@Inject extension EcoreExtensions
+	@Inject EcoreMerger ecoreMerger
 	ModelTypingSpaceBuilder root
 	Language source
 	boolean isBuilding = false
@@ -48,6 +50,9 @@ class LanguageBuilder extends AbstractBuilder {
 	}
 
 	override make() {
+		if (source.operators.empty)
+			return;
+
 		/*
 		 * Aspect operators are built at the end since we need to retrieve the aspected
 		 * EClass to infer the ecore fragment 
@@ -72,14 +77,14 @@ class LanguageBuilder extends AbstractBuilder {
 
 		model = EcoreUtil::copy(builders.head.model)
 		builders.drop(1).forEach[builder |
-			errors.addAll(model.merge(builder.model))
+			errors.addAll(model.merge(builder.model, builder.source))
 		]
 
 		val weaveBuilders = createBuilders(aspectOperators)
 		weaveBuilders.forEach[builder |
 			builder.build()
 			errors.addAll(builder.errors)
-			errors.addAll(model.merge(builder.model))
+			errors.addAll(model.merge(builder.model, builder.source))
 		]
 		builders.addAll(weaveBuilders)
 
@@ -91,11 +96,14 @@ class LanguageBuilder extends AbstractBuilder {
 	/*
 	 * Add @merged into @base (-> both can be null)
 	 */
-	def List<BuilderError> merge(EPackage base, EPackage merged) {
+	def List<BuilderError> merge(EPackage base, EPackage merged, Operator context) {
 		// TODO: Custom merge
-		algebra.merge(merged, base)
+//		algebra.merge(merged, base)
+		ecoreMerger.merge(base, merged)
 
-		return newArrayList // TODO: manage merge errors
+		return ecoreMerger.conflicts.map[
+			new BuilderError(message, context)
+		]
 	}
 
 	def List<OperatorBuilder<? extends Operator>> createBuilders(List<Operator> operators) {

@@ -41,7 +41,7 @@ import java.util.List
 
 import static extension org.xtext.activitydiagram.semantics.ActivityEdgeAspect.*
 import static extension org.xtext.activitydiagram.semantics.ActivityNodeAspect.*
-import static extension org.xtext.activitydiagram.semantics.ExpressionAspect.*
+import static extension org.xtext.activitydiagram.semantics.ActivityExpressionAspect.*
 import static extension org.xtext.activitydiagram.semantics.VariableAspect.*
 
 class Offer {
@@ -343,7 +343,7 @@ class InitialNodeAspect extends ActivityNodeAspect {
 }
 
 @Aspect(className=Expression)
-class ExpressionAspect {
+class ActivityExpressionAspect {
 	def void execute(Context c) {
 	}
 }
@@ -475,7 +475,7 @@ class BooleanVariableAspect extends VariableAspect {
 
 
 @Aspect(className=IntegerCalculationExpression)
-class IntegerCalculationExpressionAspect extends ExpressionAspect {
+class IntegerCalculationActivityExpressionAspect extends ActivityExpressionAspect {
 	@OverrideAspectMethod
 	def void execute(Context c) {
 		if (_self.operator.value == IntegerCalculationOperator.ADD_VALUE) {
@@ -490,7 +490,7 @@ class IntegerCalculationExpressionAspect extends ExpressionAspect {
 }
 
 @Aspect(className=IntegerComparisonExpression)
-class IntegerComparisonExpressionAspect extends ExpressionAspect {
+class IntegerComparisonActivityExpressionAspect extends ActivityExpressionAspect {
 	@OverrideAspectMethod
 	def void execute(Context c) {
 		if (_self.operator.value == IntegerComparisonOperator.EQUALS_VALUE) {
@@ -513,7 +513,7 @@ class IntegerComparisonExpressionAspect extends ExpressionAspect {
 }
 
 @Aspect(className=BooleanUnaryExpression)
-class BooleanUnaryExpressionAspect extends ExpressionAspect {
+class BooleanUnaryActivityExpressionAspect extends ActivityExpressionAspect {
 	@OverrideAspectMethod
 	def void execute(Context c) {
 		if (_self.operator.value == BooleanUnaryOperator.NOT_VALUE) {
@@ -524,7 +524,7 @@ class BooleanUnaryExpressionAspect extends ExpressionAspect {
 }
 
 @Aspect(className=BooleanBinaryExpression)
-class BooleanBinaryExpressionAspect extends ExpressionAspect {
+class BooleanBinaryActivityExpressionAspect extends ActivityExpressionAspect {
 	@OverrideAspectMethod
 	def void execute(Context c) {
 		if (_self.operator.value == BooleanBinaryOperator.AND_VALUE) {

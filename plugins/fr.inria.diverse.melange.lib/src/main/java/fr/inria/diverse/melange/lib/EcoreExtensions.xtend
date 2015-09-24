@@ -137,19 +137,19 @@ class EcoreExtensions
 	}
 
 	def dispatch String getUniqueId(EPackage it) {
-		return '''«IF ESuperPackage !== null»«ESuperPackage.uniqueId»_«ENDIF»«name»'''
+		return '''«IF ESuperPackage !== null»«ESuperPackage.uniqueId».«ENDIF»«name»'''
 	}
 
 	def dispatch String getUniqueId(EClassifier it) {
-		return '''«EPackage.uniqueId»_«name»'''
+		return '''«EPackage.uniqueId».«name»'''
 	}
 
 	def dispatch String getUniqueId(EOperation it) {
-		return '''«EContainingClass.uniqueId»_«name»'''
+		return '''«EContainingClass.uniqueId».«name»'''
 	}
 
 	def dispatch String getUniqueId(EStructuralFeature it) {
-		return '''«EContainingClass.uniqueId»_«name»'''
+		return '''«EContainingClass.uniqueId».«name»'''
 	}
 
 	def boolean isInstantiable(EClass cls) {

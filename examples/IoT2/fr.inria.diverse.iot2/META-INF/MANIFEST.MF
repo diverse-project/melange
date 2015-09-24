@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: fr.inria.diverse.iot2; singleton:=true
+Bundle-Name: fr.inria.diverse.iot2
+Bundle-Version: 1.0.0
+Bundle-ClassPath: .
+Require-Bundle: org.eclipse.xtend.lib;bundle-version="2.7.0";visibility:=private,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.7.0";visibility:=private,
+ com.google.guava;bundle-version="0.0.0";visibility:=private,
+ org.eclipse.emf.ecore.xmi;bundle-version="2.8.0";visibility:=reexport,
+ org.eclipse.emf.ecore;bundle-version="2.8.0";visibility:=reexport,
+ org.eclipse.emf.common;bundle-version="2.8.0";visibility:=reexport,
+ fr.inria.diverse.melange.lib;bundle-version="0.1.0";visibility:=reexport,
+ fr.inria.diverse.melange.resource;bundle-version="0.1.0";visibility:=reexport,
+ fr.inria.diverse.melange.adapters;bundle-version="0.1.0";visibility:=reexport,
+ org.csu.idl.idlmm;bundle-version="1.1.0",
+ org.xtext.activitydiagram.semantics;bundle-version="0.1.0",
+ org.xtext.lua.semantics;bundle-version="1.0.0",
+ org.xtext.activitydiagram.model;bundle-version="0.1.0",
+ org.xtext.lua;bundle-version="1.0.0",
+ fr.inria.diverse.iot2.model;bundle-version="0.1.0",
+ fr.inria.diverse.iot2.iot2
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+

@@ -87,6 +87,7 @@ class AspectToEcoreTest
 		val pkg = "Operations".aspectPkg
 		assertNotNull(pkg)
 
+
 		assertMatch(pkg, "Operations.ecore")
 	}
 

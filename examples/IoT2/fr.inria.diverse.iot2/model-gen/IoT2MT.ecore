@@ -1,0 +1,1024 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="iot2" nsURI="http://iot2mt/" nsPrefix="iot2">
+  <eClassifiers xsi:type="ecore:EClass" name="System">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="components" upperBound="-1" eType="//HWComponent" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boards" upperBound="-1" eType="//Board" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sketch" eType="//Sketch" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Board">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="//BoardType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="components" upperBound="-1" eType="//HWComponent"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Sketch">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activity" eType="//Activity" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HWComponent" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="services" upperBound="-1" eType="//OperationDef" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Sensor" eSuperTypes="//HWComponent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Actuator" eSuperTypes="//HWComponent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Activity" eSuperTypes="//NamedElement">
+    <eOperations name="main">
+      <eAnnotations source="aspect"/>
+      <eParameters name="value" upperBound="-1" eType="//InputValue"/>
+    </eOperations>
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Context"/>
+    </eOperations>
+    <eOperations name="reset">
+      <eAnnotations source="aspect"/>
+    </eOperations>
+    <eOperations name="writeToFile">
+      <eAnnotations source="aspect"/>
+    </eOperations>
+    <eOperations name="printTrace">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="getIntegerVariableValue">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eParameters name="variableName">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eParameters>
+    </eOperations>
+    <eOperations name="getBooleanVariableValue">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="variableName">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eParameters>
+    </eOperations>
+    <eOperations name="getVariableValue" eType="//Value">
+      <eAnnotations source="aspect"/>
+      <eParameters name="variableName">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eParameters>
+    </eOperations>
+    <eOperations name="getVariable" eType="//Variable">
+      <eAnnotations source="aspect"/>
+      <eParameters name="variableName">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eParameters>
+    </eOperations>
+    <eOperations name="writeTrace">
+      <eAnnotations source="aspect"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1" eType="//ActivityNode" containment="true" eOpposite="//ActivityNode/activity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="edges" upperBound="-1" eType="//ActivityEdge" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="locals" upperBound="-1" eType="//Variable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1" eType="//Variable" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationDef" eSuperTypes="//Contained //Typed">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1" eType="//ParameterDef" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isOneway">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="contexts" upperBound="-1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="canRaise" upperBound="-1" eType="//ExceptionDef"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lua" eType="//Block" containment="true">
+      <eAnnotations source="aspect"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BoardType">
+    <eLiterals name="RaspberryPi"/>
+    <eLiterals name="Arduino" value="1"/>
+    <eLiterals name="BeagleBoard" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Contained" abstract="true" eSuperTypes="//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="repositoryId">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="version">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="absoluteName">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definedIn" eType="//Container" eOpposite="//Container/contains"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Context"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Container" abstract="true" eSuperTypes="//Contained">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contains" upperBound="-1" eType="//Contained" containment="true" eOpposite="//Contained/definedIn"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Typed" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containedType" eType="//IDLType" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sharedType" eType="//TypedefDef"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IDLType" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeCode" eType="//ETypeCode"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="ETypeCode" instanceClassName="java.lang.String"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TypedefDef" abstract="true" eSuperTypes="//IDLType //Contained"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ParameterDef" eSuperTypes="//Typed">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" eType="//ParameterMode"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ParameterMode">
+    <eLiterals name="PARAM_IN"/>
+    <eLiterals name="PARAM_OUT" value="1"/>
+    <eLiterals name="PARAM_INOUT" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExceptionDef" eSuperTypes="//Contained">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeCode" eType="//ETypeCode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1" eType="//Field" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Field" eSuperTypes="//Typed">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveDef" eSuperTypes="//IDLType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="//PrimitiveKind"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PrimitiveKind">
+    <eLiterals name="PK_NULL"/>
+    <eLiterals name="PK_VOID" value="1"/>
+    <eLiterals name="PK_SHORT" value="2"/>
+    <eLiterals name="PK_LONG" value="3"/>
+    <eLiterals name="PK_USHORT" value="4"/>
+    <eLiterals name="PK_ULONG" value="5"/>
+    <eLiterals name="PK_FLOAT" value="6"/>
+    <eLiterals name="PK_DOUBLE" value="7"/>
+    <eLiterals name="PK_BOOLEAN" value="8"/>
+    <eLiterals name="PK_CHAR" value="9"/>
+    <eLiterals name="PK_OCTET" value="10"/>
+    <eLiterals name="PK_ANY" value="11"/>
+    <eLiterals name="PK_LONGDOUBLE" value="12"/>
+    <eLiterals name="PK_WSTRING" value="13"/>
+    <eLiterals name="PK_TYPECODE" value="14"/>
+    <eLiterals name="PK_WCHAR" value="15"/>
+    <eLiterals name="PK_PRINCIPAL" value="16"/>
+    <eLiterals name="PK_STRING" value="17"/>
+    <eLiterals name="PK_ULONGLONG" value="18"/>
+    <eLiterals name="PK_OBJREF" value="19"/>
+    <eLiterals name="PK_LONGLONG" value="20"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Chunk">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Block" eSuperTypes="//Chunk">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1" eType="//Statement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="returnValue" eType="//LastStatement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LastStatement">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LastStatement_Return" eSuperTypes="//LastStatement">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LastStatement_Break" eSuperTypes="//LastStatement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Statement">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Statement_Block" eSuperTypes="//Statement">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="//Block" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Statement_While" eSuperTypes="//Statement">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="//Block" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Statement_Repeat" eSuperTypes="//Statement">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="//Block" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Statement_If_Then_Else" eSuperTypes="//Statement">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ifExpression" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ifBlock" eType="//Block" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elseIf" upperBound="-1" eType="//Statement_If_Then_Else_ElseIfPart" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elseBlock" eType="//Block" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Statement_If_Then_Else_ElseIfPart">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elseifExpression" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elseifBlock" eType="//Block" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Statement_For_Numeric" eSuperTypes="//Statement">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iteratorName">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startExpr" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="untilExpr" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stepExpr" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="//Block" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Statement_For_Generic" eSuperTypes="//Statement">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="names" unique="false" upperBound="-1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expressions" upperBound="-1" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="//Block" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Statement_GlobalFunction_Declaration" eSuperTypes="//Statement">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prefix" unique="false" upperBound="-1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="functionName">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="function" eType="//Function" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Statement_LocalFunction_Declaration" eSuperTypes="//Statement">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="functionName">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="function" eType="//Function" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Statement_Local_Variable_Declaration" eSuperTypes="//Statement">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="variableNames" unique="false" upperBound="-1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initialValue" upperBound="-1" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Statement_FunctioncallOrAssignment" eSuperTypes="//Statement">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="//Statement_FunctioncallOrAssignment">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_Nil" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_True" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_False" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_Number" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_VarArgs" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_String" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_Function" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="function" eType="//Function" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_TableConstructor" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1" eType="//Field" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Function">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameters" unique="false" upperBound="-1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="varArgs">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="//Block" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Functioncall_Arguments">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Field_AddEntryToTable_Brackets" eSuperTypes="//Field">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="indexExpression" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Field_AddEntryToTable" eSuperTypes="//Field">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Field_AppendEntryToTable" eSuperTypes="//Field">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LastStatement_ReturnWithValue" eSuperTypes="//LastStatement_Return">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="returnValues" upperBound="-1" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Statement_Assignment" eSuperTypes="//Statement_FunctioncallOrAssignment">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" upperBound="-1" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Statement_CallMemberFunction" eSuperTypes="//Statement_FunctioncallOrAssignment">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="object" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="memberFunctionName">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" eType="//Functioncall_Arguments" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Statement_CallFunction" eSuperTypes="//Statement_FunctioncallOrAssignment">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="object" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" eType="//Functioncall_Arguments" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_Or" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_And" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_Larger" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_Larger_Equal" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_Smaller" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_Smaller_Equal" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_Equal" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_Not_Equal" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_Concatenation" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_Plus" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_Minus" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_Multiplication" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_Division" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_Modulo" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_Negate" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_Length" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_Invert" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_Exponentiation" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_CallMemberFunction" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="object" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="memberFunctionName">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" eType="//Functioncall_Arguments" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_CallFunction" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="object" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" eType="//Functioncall_Arguments" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_AccessArray" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="array" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="index" eType="//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_AccessMember" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="object" eType="//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="memberName">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression_VariableName" eSuperTypes="//Expression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Environment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="variable">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Environment">
+    <eAnnotations source="aspect"/>
+    <eOperations name="getVariable" eType="//Object">
+      <eAnnotations source="aspect"/>
+      <eParameters name="s">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eParameters>
+    </eOperations>
+    <eOperations name="pushValue">
+      <eAnnotations source="aspect"/>
+      <eParameters name="o" eType="//Object"/>
+    </eOperations>
+    <eOperations name="popValue" eType="//Object">
+      <eAnnotations source="aspect"/>
+    </eOperations>
+    <eOperations name="putFunction">
+      <eAnnotations source="aspect"/>
+      <eParameters name="s">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eParameters>
+      <eParameters name="f" eType="//Function"/>
+    </eOperations>
+    <eOperations name="getFunction" eType="//Function">
+      <eAnnotations source="aspect"/>
+      <eParameters name="s">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eParameters>
+    </eOperations>
+    <eOperations name="putVariable">
+      <eAnnotations source="aspect"/>
+      <eParameters name="s">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eParameters>
+      <eParameters name="o" eType="//Object"/>
+    </eOperations>
+    <eOperations name="putAllVariables">
+      <eAnnotations source="aspect"/>
+      <eParameters name="v">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+      </eParameters>
+    </eOperations>
+    <eOperations name="putAllFunctions">
+      <eAnnotations source="aspect"/>
+      <eParameters name="f">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+      </eParameters>
+    </eOperations>
+    <eOperations name="pushAllValues">
+      <eAnnotations source="aspect"/>
+      <eParameters name="v" eType="//Stack"/>
+    </eOperations>
+    <eOperations name="getValues" eType="//Stack">
+      <eAnnotations source="aspect"/>
+    </eOperations>
+    <eOperations name="getVariables">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eOperations name="getFunctions">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="//Environment">
+      <eAnnotations source="aspect"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Object" instanceClassName="java.lang.Object"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Stack" instanceClassName="java.util.Stack"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ActivityNode" eSuperTypes="//NamedElement">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Context"/>
+    </eOperations>
+    <eOperations name="terminate">
+      <eAnnotations source="aspect"/>
+    </eOperations>
+    <eOperations name="isReady">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
+    <eOperations name="sendOffers">
+      <eAnnotations source="aspect"/>
+      <eParameters name="tokens" upperBound="-1" eType="//Token"/>
+    </eOperations>
+    <eOperations name="takeOfferdTokens" upperBound="-1" eType="//Token">
+      <eAnnotations source="aspect"/>
+    </eOperations>
+    <eOperations name="addTokens">
+      <eAnnotations source="aspect"/>
+      <eParameters name="tokens" upperBound="-1" eType="//Token"/>
+    </eOperations>
+    <eOperations name="hasOffers">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
+    <eOperations name="removeToken">
+      <eAnnotations source="aspect"/>
+      <eParameters name="token" eType="//Token"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoing" upperBound="-1" eType="//ActivityEdge" eOpposite="//ActivityEdge/source"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incoming" upperBound="-1" eType="//ActivityEdge" eOpposite="//ActivityEdge/target"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activity" lowerBound="1" eType="//Activity" eOpposite="//Activity/nodes"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="running" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActivityEdge" abstract="true" eSuperTypes="//NamedElement">
+    <eOperations name="sendOffer">
+      <eAnnotations source="aspect"/>
+      <eParameters name="tokens" upperBound="-1" eType="//Token"/>
+    </eOperations>
+    <eOperations name="takeOfferedTokens" upperBound="-1" eType="//Token">
+      <eAnnotations source="aspect"/>
+    </eOperations>
+    <eOperations name="hasOffer">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1" eType="//ActivityNode" eOpposite="//ActivityNode/outgoing"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1" eType="//ActivityNode" eOpposite="//ActivityNode/incoming"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="offers" upperBound="-1" eType="//Offer">
+      <eAnnotations source="aspect"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ControlFlow" eSuperTypes="//ActivityEdge">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="guard" eType="//BooleanVariable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ControlNode" abstract="true" eSuperTypes="//ActivityNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExecutableNode" abstract="true" eSuperTypes="//ActivityNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Action" abstract="true" eSuperTypes="//ExecutableNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OpaqueAction" eSuperTypes="//Action">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Context"/>
+    </eOperations>
+    <eOperations name="getValueAsString">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="v" eType="//Value"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expressions" upperBound="-1" eType="//Expression">
+      <eAnnotations source="aspect"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="service" eType="//OperationDef">
+      <eAnnotations source="aspect"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InitialNode" eSuperTypes="//ControlNode">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Context"/>
+    </eOperations>
+    <eOperations name="hasOffers">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FinalNode" abstract="true" eSuperTypes="//ControlNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ActivityFinalNode" eSuperTypes="//FinalNode">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Context"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ForkNode" eSuperTypes="//ControlNode">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Context"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="JoinNode" eSuperTypes="//ControlNode">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Context"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MergeNode" eSuperTypes="//ControlNode">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Context"/>
+    </eOperations>
+    <eOperations name="hasOffers">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DecisionNode" eSuperTypes="//ControlNode">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Context"/>
+    </eOperations>
+    <eOperations name="sendOffers">
+      <eAnnotations source="aspect"/>
+      <eParameters name="tokens" upperBound="-1" eType="//Token"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Variable">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Context"/>
+    </eOperations>
+    <eOperations name="init">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Context"/>
+    </eOperations>
+    <eOperations name="print">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initialValue" eType="//Value" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currentValue" eType="//Value" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntegerVariable" eSuperTypes="//Variable">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Context"/>
+    </eOperations>
+    <eOperations name="print">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanVariable" eSuperTypes="//Variable">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Context"/>
+    </eOperations>
+    <eOperations name="print">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Value"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanValue" eSuperTypes="//Value">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntegerValue" eSuperTypes="//Value">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntegerExpression" abstract="true" eSuperTypes="//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand2" eType="//IntegerVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand1" eType="//IntegerVariable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanExpression" abstract="true" eSuperTypes="//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignee" lowerBound="1" eType="//BooleanVariable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntegerCalculationExpression" eSuperTypes="//IntegerExpression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Context"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignee" lowerBound="1" eType="//IntegerVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" lowerBound="1" eType="//IntegerCalculationOperator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntegerComparisonExpression" eSuperTypes="//IntegerExpression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Context"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignee" lowerBound="1" eType="//BooleanVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" lowerBound="1" eType="//IntegerComparisonOperator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="IntegerCalculationOperator">
+    <eLiterals name="ADD"/>
+    <eLiterals name="SUBRACT" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="IntegerComparisonOperator">
+    <eLiterals name="SMALLER"/>
+    <eLiterals name="SMALLER_EQUALS" value="1"/>
+    <eLiterals name="EQUALS" value="2"/>
+    <eLiterals name="GREATER_EQUALS" value="3"/>
+    <eLiterals name="GREATER" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanUnaryExpression" eSuperTypes="//BooleanExpression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Context"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" lowerBound="1" eType="//BooleanVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" lowerBound="1" eType="//BooleanUnaryOperator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanBinaryExpression" eSuperTypes="//BooleanExpression">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="c" eType="//Context"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand1" lowerBound="1" eType="//BooleanVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand2" lowerBound="1" eType="//BooleanVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" lowerBound="1" eType="//BooleanBinaryOperator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BooleanUnaryOperator">
+    <eLiterals name="NOT"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BooleanBinaryOperator">
+    <eLiterals name="AND"/>
+    <eLiterals name="OR" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InputValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="//Value" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1" eType="//Variable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Input">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputValues" upperBound="-1" eType="//InputValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Offer">
+    <eAnnotations source="aspect"/>
+    <eOperations name="hasTokens">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
+    <eOperations name="removeWithdrawnTokens">
+      <eAnnotations source="aspect"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="offeredTokens" upperBound="-1" eType="//Token"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Token">
+    <eOperations name="transfer" eType="//Token">
+      <eAnnotations source="aspect"/>
+      <eParameters name="holder" eType="//ActivityNode"/>
+    </eOperations>
+    <eOperations name="withdraw">
+      <eAnnotations source="aspect"/>
+    </eOperations>
+    <eOperations name="isWithdrawn">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="holder" eType="//ActivityNode">
+      <eAnnotations source="aspect"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Context">
+    <eAnnotations source="aspect"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="output" eType="//Trace"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activity" eType="//Activity">
+      <eAnnotations source="aspect"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="//Context">
+      <eAnnotations source="aspect"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputValues" upperBound="-1" eType="//InputValue">
+      <eAnnotations source="aspect"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="node" eType="//JoinNode">
+      <eAnnotations source="aspect"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Trace">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="executedNodes" upperBound="-1" eType="//ActivityNode">
+      <eAnnotations source="aspect"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ForkedToken" eSuperTypes="//Token">
+    <eAnnotations source="aspect"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="baseToken" eType="//Token"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="remainingOffersCount">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ControlToken" eSuperTypes="//Token">
+    <eAnnotations source="aspect"/>
+  </eClassifiers>
+</ecore:EPackage>
