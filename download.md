@@ -9,13 +9,9 @@ navorder: 3
 
 Melange is continuously built on [our Jenkins server](https://ci.inria.fr/k3al/job/melange-master/).
 
-Nightly (unstable) plugins for Eclipse are available in these update sites:
+Nightly (unstable) plugins for Eclipse are available on these update sites:
 
-- [Melange & dependencies](updatesite)
-
-Or
-
-- [Melange alone](https://ci.inria.fr/k3al/job/melange-master/lastSuccessfulBuild/artifact/releng/fr.inria.diverse.melange.p2updatesite/target/site/)
+- [Melange & dependencies](http://melange-lang.org/updatesite/)
 
 -------------------------------
 
