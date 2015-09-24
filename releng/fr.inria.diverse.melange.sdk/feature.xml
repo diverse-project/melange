@@ -11,8 +11,8 @@
    </url>
 
    <requires>
-      <import plugin="fr.inria.diverse.commons.asm"/>
-      <import plugin="fr.inria.diverse.k3.al.annotationprocessor.plugin"/>
+      <import plugin="fr.inria.diverse.commons.asm" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="fr.inria.diverse.k3.al.annotationprocessor.plugin" version="3.1.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
