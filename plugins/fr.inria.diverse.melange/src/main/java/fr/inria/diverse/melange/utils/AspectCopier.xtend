@@ -6,9 +6,7 @@ import fr.inria.diverse.commons.asm.shade.filter.Filter
 import fr.inria.diverse.commons.asm.shade.relocation.Relocator
 import fr.inria.diverse.commons.asm.shade.relocation.SimpleRelocator
 import fr.inria.diverse.melange.ast.AspectExtensions
-import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
-import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.utils.AspectCopier.AspectCopierRequest
 import java.io.File
@@ -18,12 +16,10 @@ import org.apache.log4j.Logger
 import org.eclipse.core.resources.IFile
 import org.eclipse.core.resources.IResource
 import org.eclipse.core.resources.IResourceVisitor
-import org.eclipse.core.resources.IWorkspaceRoot
 import org.eclipse.core.runtime.CoreException
 import org.eclipse.xtend.lib.annotations.Data
 import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.naming.IQualifiedNameConverter
-import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.util.internal.Stopwatches
 
 import static fr.inria.diverse.melange.utils.AspectCopier.*
@@ -35,7 +31,6 @@ import static fr.inria.diverse.melange.utils.AspectCopier.*
 class AspectCopier
 {
 	@Inject extension AspectExtensions
-	@Inject extension LanguageExtensions
 	@Inject extension IQualifiedNameConverter
 	@Inject EclipseProjectHelper eclipseHelper
 	static Logger log = Logger.getLogger(AspectCopier)
@@ -128,7 +123,14 @@ class AspectCopier
 			}
 		}
 
-		shadeRequest.inputFolders = sourceFolders
+		// FIXME: ad-hoc
+		relocators += new SimpleRelocator(
+			"ActivitydiagramFactory",
+			"Iot2Factory",
+			null,
+			#[]
+		)
+		shadeRequest.inputFolders = sourceFolders.toList.reverseView.toSet
 		shadeRequest.outputFolder = new File(targetAspectFolder)
 		shadeRequest.filters = #[filter]
 		shadeRequest.resourceTransformers = #[]
@@ -150,20 +152,4 @@ class AspectCopier
 
 		return resultFqn
 	}
-	
-	static def QualifiedName getAspectTargetNamespace(QualifiedName sourceAspectNamespace , Language l){
-		val postfix = if(sourceAspectNamespace.segmentCount > 1 &&(sourceAspectNamespace.lastSegment.equals("aspect") 
-				|| sourceAspectNamespace.lastSegment.equals("aspects")
-				|| sourceAspectNamespace.lastSegment.equals("k3dsa")
-				)){ sourceAspectNamespace.lastSegment } else{"aspect"}
-				
-		
-		if(sourceAspectNamespace.segmentCount > 2){
-			return sourceAspectNamespace.skipLast(2).append(l.name.toLowerCase).append(postfix)
-		} else {
-				return sourceAspectNamespace.skipLast(1).append(l.name.toLowerCase).append(postfix)
-		}
-
-	}
-	
 }

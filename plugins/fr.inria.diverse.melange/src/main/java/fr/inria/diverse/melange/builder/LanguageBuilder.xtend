@@ -50,6 +50,9 @@ class LanguageBuilder extends AbstractBuilder {
 	}
 
 	override make() {
+		if (source.operators.empty)
+			return;
+
 		/*
 		 * Aspect operators are built at the end since we need to retrieve the aspected
 		 * EClass to infer the ecore fragment 
