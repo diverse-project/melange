@@ -27,6 +27,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import org.eclipse.emf.ecore.resource.impl.ResourceImpl
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl
 
 /**
  * This class build languages by merging differents parts declared in each language definitions
@@ -77,6 +79,14 @@ class LanguageProcessor extends DispatchMelangeProcessor{
 		}
 		
 		if(errors.isEmpty){
+			val rs = language.eResource.resourceSet
+			var r = rs.getResource(URI::createURI(language.name+"RootPackage"), false)
+			if(r !== null){
+				rs.resources.remove(r)
+			}
+			r = rs.createResource(URI::createURI(language.name+"RootPackage"))
+			r?.contents?.add(syntax)
+
 			packageProvider.registerPackages(language.syntax, syntax)
 		}
 	} 
