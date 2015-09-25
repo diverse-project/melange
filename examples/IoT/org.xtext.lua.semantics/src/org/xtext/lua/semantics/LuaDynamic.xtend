@@ -72,6 +72,7 @@ import static extension org.xtext.lua.semantics.BlockAspect.*
 import static extension org.xtext.lua.semantics.LuaExpressionAspect.*
 import static extension org.xtext.lua.semantics.LastStatementAspect.*
 import static extension org.xtext.lua.semantics.StatementAspect.*
+import java.util.concurrent.ThreadLocalRandom
 
 class Environment {
 	Environment parent
@@ -224,6 +225,19 @@ class Statement_CallFunctionAspect extends Statement_FunctioncallOrAssignmentAsp
 @Aspect(className=Expression_CallFunction)
 class Expression_CallFunctionAspect extends LuaExpressionAspect {
 	def void execute(Environment c) {
+		val x = _self.object
+		switch x {
+			Expression_VariableName case x.variable.equals("rand"): {
+				_self.arguments.arguments.get(0).execute(c)
+				val min = Double::parseDouble(c.popValue.toString).intValue
+				_self.arguments.arguments.get(1).execute(c)
+				val max = Double::parseDouble(c.popValue.toString).intValue
+				val rand = ThreadLocalRandom::current.nextInt(min, max)
+				c.pushValue(rand)
+				return
+			}
+		}
+
 		_self.object.execute(c)
 		if(_self.arguments.arguments.size>0){
 			_self.arguments.arguments.get(0).execute(c)

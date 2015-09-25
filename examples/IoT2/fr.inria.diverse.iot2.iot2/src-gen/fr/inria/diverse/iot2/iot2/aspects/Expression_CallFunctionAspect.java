@@ -5,6 +5,7 @@ import fr.inria.diverse.k3.al.annotationprocessor.Aspect;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Stack;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import fr.inria.diverse.iot2.iot2.iot2.Block;
@@ -35,6 +36,37 @@ public class Expression_CallFunctionAspect extends LuaExpressionAspect {
   }
   
   protected static void _privk3_execute(final Expression_CallFunctionAspectExpression_CallFunctionAspectProperties _self_, final Expression_CallFunction _self, final Environment c) {
+    final Expression x = _self.getObject();
+    boolean _matched = false;
+    if (!_matched) {
+      if (x instanceof Expression_VariableName) {
+        String _variable = ((Expression_VariableName)x).getVariable();
+        boolean _equals = _variable.equals("rand");
+        if (_equals) {
+          _matched=true;
+          Functioncall_Arguments _arguments = _self.getArguments();
+          EList<Expression> _arguments_1 = _arguments.getArguments();
+          Expression _get = _arguments_1.get(0);
+          LuaExpressionAspect.execute(_get, c);
+          Object _popValue = c.popValue();
+          String _string = _popValue.toString();
+          double _parseDouble = Double.parseDouble(_string);
+          final int min = Double.valueOf(_parseDouble).intValue();
+          Functioncall_Arguments _arguments_2 = _self.getArguments();
+          EList<Expression> _arguments_3 = _arguments_2.getArguments();
+          Expression _get_1 = _arguments_3.get(1);
+          LuaExpressionAspect.execute(_get_1, c);
+          Object _popValue_1 = c.popValue();
+          String _string_1 = _popValue_1.toString();
+          double _parseDouble_1 = Double.parseDouble(_string_1);
+          final int max = Double.valueOf(_parseDouble_1).intValue();
+          ThreadLocalRandom _current = ThreadLocalRandom.current();
+          final int rand = _current.nextInt(min, max);
+          c.pushValue(Integer.valueOf(rand));
+          return;
+        }
+      }
+    }
     Expression _object = _self.getObject();
     LuaExpressionAspect.execute(_object, c);
     Functioncall_Arguments _arguments = _self.getArguments();

@@ -4,7 +4,8 @@ system MySystem {
 	sensor Thermometer {
 		provides operation getTemp(out long temp) {
 			print("Thermometer::getTemperature")
-			temp = 50
+			temp = rand(0, 10)
+			print(temp)
 		}
 	}
 
