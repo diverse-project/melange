@@ -192,6 +192,12 @@ class Statement_CallFunctionAspect extends Statement_FunctioncallOrAssignmentAsp
 				println(c.popValue)
 				return
 			}
+			Expression_VariableName case x.variable.equals("sleep"): {
+				_self.arguments.arguments.get(0).execute(c)
+				val sleep = Double::parseDouble(c.popValue.toString).intValue
+				Thread.sleep(sleep)
+				return
+			}
 		}
 		//println((c.values.get(0) as Expression_VariableName).variable)
 		if (_self.object instanceof Expression_VariableName){

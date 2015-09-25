@@ -35,8 +35,15 @@ system MySystem {
 		}
 	}
 
+	actuator Timer {
+		provides operation wait(in long waitingTime) {
+			sleep(waitingTime)
+		}
+	}
+
 	board B1 [Arduino] {
 		provides Thermometer
+		provides Timer
 	}
 
 	board B2 [RaspberryPi] {
@@ -62,7 +69,8 @@ system MySystem {
 			int lumenThreshold = 1600,
 			int i = 0,
 			int one = 1,
-			int nbIter = 5
+			int nbIter = 5,
+			int waitingTime = 500
 
 			nodes {
 				initial init out (e1),
@@ -79,7 +87,7 @@ system MySystem {
 				merge m2 in (e11, e12) out (e15),
 				merge m3 in (e13, e14) out (e16),
 				join j1 in (e15, e16) out (e17),
-				action computeStop comp { i = i + one, stop = i >= nbIter, dontStop = i < nbIter } in (e17) out (e20),
+				action computeIterations comp { i = i + one, stop = i >= nbIter, dontStop = i < nbIter } in (e17) out (e20) service wait,
 				decision d3 in (e20) out (e18, e19),
 				final fin in (e18)
 			}
@@ -100,10 +108,10 @@ system MySystem {
 				flow e14 from a6 to m3,
 				flow e15 from m2 to j1,
 				flow e16 from m3 to j1,
-				flow e17 from j1 to computeStop,
+				flow e17 from j1 to computeIterations,
 				flow e18 from d3 to fin [stop],
 				flow e19 from d3 to m1 [dontStop],
-				flow e20 from computeStop to d3
+				flow e20 from computeIterations to d3
 			}
 		}
 	}

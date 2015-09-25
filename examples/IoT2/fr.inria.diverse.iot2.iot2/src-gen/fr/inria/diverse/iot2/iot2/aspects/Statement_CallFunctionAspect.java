@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Stack;
 import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import fr.inria.diverse.iot2.iot2.iot2.Block;
 import fr.inria.diverse.iot2.iot2.iot2.Expression;
@@ -42,59 +43,82 @@ public class Statement_CallFunctionAspect extends Statement_FunctioncallOrAssign
   }
   
   protected static void _privk3_execute(final Statement_CallFunctionAspectStatement_CallFunctionAspectProperties _self_, final Statement_CallFunction _self, final Environment c) {
-    Expression x = _self.getObject();
-    boolean _matched = false;
-    if (!_matched) {
-      if (x instanceof Expression_VariableName) {
-        String _variable = ((Expression_VariableName)x).getVariable();
-        boolean _equals = _variable.equals("print");
-        if (_equals) {
-          _matched=true;
+    try {
+      Expression x = _self.getObject();
+      boolean _matched = false;
+      if (!_matched) {
+        if (x instanceof Expression_VariableName) {
+          String _variable = ((Expression_VariableName)x).getVariable();
+          boolean _equals = _variable.equals("print");
+          if (_equals) {
+            _matched=true;
+            Functioncall_Arguments _arguments = _self.getArguments();
+            EList<Expression> _arguments_1 = _arguments.getArguments();
+            Expression _get = _arguments_1.get(0);
+            LuaExpressionAspect.execute(_get, c);
+            Object _popValue = c.popValue();
+            InputOutput.<Object>println(_popValue);
+            return;
+          }
+        }
+      }
+      if (!_matched) {
+        if (x instanceof Expression_VariableName) {
+          String _variable = ((Expression_VariableName)x).getVariable();
+          boolean _equals = _variable.equals("sleep");
+          if (_equals) {
+            _matched=true;
+            Functioncall_Arguments _arguments = _self.getArguments();
+            EList<Expression> _arguments_1 = _arguments.getArguments();
+            Expression _get = _arguments_1.get(0);
+            LuaExpressionAspect.execute(_get, c);
+            Object _popValue = c.popValue();
+            String _string = _popValue.toString();
+            double _parseDouble = Double.parseDouble(_string);
+            final int sleep = Double.valueOf(_parseDouble).intValue();
+            Thread.sleep(sleep);
+            return;
+          }
+        }
+      }
+      Expression _object = _self.getObject();
+      if ((_object instanceof Expression_VariableName)) {
+        Expression _object_1 = _self.getObject();
+        String _variable = ((Expression_VariableName) _object_1).getVariable();
+        Function function = c.getFunction(_variable);
+        boolean _notEquals = (!Objects.equal(function, null));
+        if (_notEquals) {
+          final ArrayList<Object> params = new ArrayList<Object>();
           Functioncall_Arguments _arguments = _self.getArguments();
           EList<Expression> _arguments_1 = _arguments.getArguments();
-          Expression _get = _arguments_1.get(0);
-          LuaExpressionAspect.execute(_get, c);
-          Object _popValue = c.popValue();
-          InputOutput.<Object>println(_popValue);
-          return;
+          final Consumer<Expression> _function = (Expression args) -> {
+            LuaExpressionAspect.execute(args, c);
+            Object _popValue = c.popValue();
+            params.add(_popValue);
+          };
+          _arguments_1.forEach(_function);
+          Environment newC = new Environment();
+          newC.setParent(c);
+          Map<String, Object> _variables = c.getVariables();
+          newC.putAllVariables(_variables);
+          Map<String, Function> _functions = c.getFunctions();
+          newC.putAllFunctions(_functions);
+          Stack<Object> _values = c.getValues();
+          newC.pushAllValues(_values);
+          for (int i = 0; (i < function.getParameters().size()); i++) {
+            EList<String> _parameters = function.getParameters();
+            String _get = _parameters.get(i);
+            Object _get_1 = params.get(i);
+            newC.putVariable(_get, _get_1);
+          }
+          Block _body = function.getBody();
+          BlockAspect.execute(_body, newC);
+          Object _popValue = newC.popValue();
+          c.pushValue(_popValue);
         }
       }
-    }
-    Expression _object = _self.getObject();
-    if ((_object instanceof Expression_VariableName)) {
-      Expression _object_1 = _self.getObject();
-      String _variable = ((Expression_VariableName) _object_1).getVariable();
-      Function function = c.getFunction(_variable);
-      boolean _notEquals = (!Objects.equal(function, null));
-      if (_notEquals) {
-        final ArrayList<Object> params = new ArrayList<Object>();
-        Functioncall_Arguments _arguments = _self.getArguments();
-        EList<Expression> _arguments_1 = _arguments.getArguments();
-        final Consumer<Expression> _function = (Expression args) -> {
-          LuaExpressionAspect.execute(args, c);
-          Object _popValue = c.popValue();
-          params.add(_popValue);
-        };
-        _arguments_1.forEach(_function);
-        Environment newC = new Environment();
-        newC.setParent(c);
-        Map<String, Object> _variables = c.getVariables();
-        newC.putAllVariables(_variables);
-        Map<String, Function> _functions = c.getFunctions();
-        newC.putAllFunctions(_functions);
-        Stack<Object> _values = c.getValues();
-        newC.pushAllValues(_values);
-        for (int i = 0; (i < function.getParameters().size()); i++) {
-          EList<String> _parameters = function.getParameters();
-          String _get = _parameters.get(i);
-          Object _get_1 = params.get(i);
-          newC.putVariable(_get, _get_1);
-        }
-        Block _body = function.getBody();
-        BlockAspect.execute(_body, newC);
-        Object _popValue = newC.popValue();
-        c.pushValue(_popValue);
-      }
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
     }
   }
 }
