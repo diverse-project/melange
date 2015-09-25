@@ -20,20 +20,20 @@ public class ActivityNodeAspect extends NamedElementAspect {
   @OverrideAspectMethod
   public static void execute(final ActivityNode _self, final Context c) {
     fr.inria.diverse.iot2.iot2.aspects.ActivityNodeAspectActivityNodeAspectProperties _self_ = fr.inria.diverse.iot2.iot2.aspects.ActivityNodeAspectActivityNodeAspectContext.getSelf(_self);
-     if (_self instanceof fr.inria.diverse.iot2.iot2.iot2.InitialNode){
-     fr.inria.diverse.iot2.iot2.aspects.InitialNodeAspect.execute((fr.inria.diverse.iot2.iot2.iot2.InitialNode)_self,c);
+     if (_self instanceof fr.inria.diverse.iot2.iot2.iot2.JoinNode){
+     fr.inria.diverse.iot2.iot2.aspects.JoinNodeAspect.execute((fr.inria.diverse.iot2.iot2.iot2.JoinNode)_self,c);
+    } else  if (_self instanceof fr.inria.diverse.iot2.iot2.iot2.OpaqueAction){
+     fr.inria.diverse.iot2.iot2.aspects.OpaqueActionAspect.execute((fr.inria.diverse.iot2.iot2.iot2.OpaqueAction)_self,c);
+    } else  if (_self instanceof fr.inria.diverse.iot2.iot2.iot2.MergeNode){
+     fr.inria.diverse.iot2.iot2.aspects.MergeNodeAspect.execute((fr.inria.diverse.iot2.iot2.iot2.MergeNode)_self,c);
+    } else  if (_self instanceof fr.inria.diverse.iot2.iot2.iot2.ForkNode){
+     fr.inria.diverse.iot2.iot2.aspects.ForkNodeAspect.execute((fr.inria.diverse.iot2.iot2.iot2.ForkNode)_self,c);
     } else  if (_self instanceof fr.inria.diverse.iot2.iot2.iot2.ActivityFinalNode){
      fr.inria.diverse.iot2.iot2.aspects.ActivityFinalNodeAspect.execute((fr.inria.diverse.iot2.iot2.iot2.ActivityFinalNode)_self,c);
     } else  if (_self instanceof fr.inria.diverse.iot2.iot2.iot2.DecisionNode){
      fr.inria.diverse.iot2.iot2.aspects.DecisionNodeAspect.execute((fr.inria.diverse.iot2.iot2.iot2.DecisionNode)_self,c);
-    } else  if (_self instanceof fr.inria.diverse.iot2.iot2.iot2.OpaqueAction){
-     fr.inria.diverse.iot2.iot2.aspects.OpaqueActionAspect.execute((fr.inria.diverse.iot2.iot2.iot2.OpaqueAction)_self,c);
-    } else  if (_self instanceof fr.inria.diverse.iot2.iot2.iot2.ForkNode){
-     fr.inria.diverse.iot2.iot2.aspects.ForkNodeAspect.execute((fr.inria.diverse.iot2.iot2.iot2.ForkNode)_self,c);
-    } else  if (_self instanceof fr.inria.diverse.iot2.iot2.iot2.JoinNode){
-     fr.inria.diverse.iot2.iot2.aspects.JoinNodeAspect.execute((fr.inria.diverse.iot2.iot2.iot2.JoinNode)_self,c);
-    } else  if (_self instanceof fr.inria.diverse.iot2.iot2.iot2.MergeNode){
-     fr.inria.diverse.iot2.iot2.aspects.MergeNodeAspect.execute((fr.inria.diverse.iot2.iot2.iot2.MergeNode)_self,c);
+    } else  if (_self instanceof fr.inria.diverse.iot2.iot2.iot2.InitialNode){
+     fr.inria.diverse.iot2.iot2.aspects.InitialNodeAspect.execute((fr.inria.diverse.iot2.iot2.iot2.InitialNode)_self,c);
     } else  if (_self instanceof fr.inria.diverse.iot2.iot2.iot2.ActivityNode){
      fr.inria.diverse.iot2.iot2.aspects.ActivityNodeAspect._privk3_execute(_self_, (fr.inria.diverse.iot2.iot2.iot2.ActivityNode)_self,c);
     } else  if (_self instanceof fr.inria.diverse.iot2.iot2.iot2.NamedElement){
@@ -80,10 +80,10 @@ public class ActivityNodeAspect extends NamedElementAspect {
   public static boolean hasOffers(final ActivityNode _self) {
     fr.inria.diverse.iot2.iot2.aspects.ActivityNodeAspectActivityNodeAspectProperties _self_ = fr.inria.diverse.iot2.iot2.aspects.ActivityNodeAspectActivityNodeAspectContext.getSelf(_self);
     Object result = null;
-     if (_self instanceof fr.inria.diverse.iot2.iot2.iot2.InitialNode){
-    result = fr.inria.diverse.iot2.iot2.aspects.InitialNodeAspect.hasOffers((fr.inria.diverse.iot2.iot2.iot2.InitialNode)_self);
-    } else  if (_self instanceof fr.inria.diverse.iot2.iot2.iot2.MergeNode){
+     if (_self instanceof fr.inria.diverse.iot2.iot2.iot2.MergeNode){
     result = fr.inria.diverse.iot2.iot2.aspects.MergeNodeAspect.hasOffers((fr.inria.diverse.iot2.iot2.iot2.MergeNode)_self);
+    } else  if (_self instanceof fr.inria.diverse.iot2.iot2.iot2.InitialNode){
+    result = fr.inria.diverse.iot2.iot2.aspects.InitialNodeAspect.hasOffers((fr.inria.diverse.iot2.iot2.iot2.InitialNode)_self);
     } else  if (_self instanceof fr.inria.diverse.iot2.iot2.iot2.ActivityNode){
     result = fr.inria.diverse.iot2.iot2.aspects.ActivityNodeAspect._privk3_hasOffers(_self_, (fr.inria.diverse.iot2.iot2.iot2.ActivityNode)_self);
     } else  { throw new IllegalArgumentException("Unhandled parameter types: " + java.util.Arrays.<Object>asList(_self).toString()); };
@@ -177,21 +177,32 @@ public class ActivityNodeAspect extends NamedElementAspect {
   }
   
   protected static List<Token> _privk3_heldTokens(final ActivityNodeAspectActivityNodeAspectProperties _self_, final ActivityNode _self) {
-     return _self_.heldTokens; 
+    try {
+    	for (java.lang.reflect.Method m : _self.getClass().getMethods()) {
+    		if (m.getName().equals("getHeldTokens") &&
+    			m.getParameterTypes().length == 0) {
+    				Object ret = m.invoke(_self);
+    				if (ret != null) {
+    					return (java.util.List) ret;
+    				}
+    		}
+    	}
+    } catch (Exception e) {
+    	// Chut !
+    }
+    return _self_.heldTokens;
   }
   
   protected static void _privk3_heldTokens(final ActivityNodeAspectActivityNodeAspectProperties _self_, final ActivityNode _self, final List<Token> heldTokens) {
     _self_.heldTokens = heldTokens; try {
-    
-    			for (java.lang.reflect.Method m : _self.getClass().getMethods()) {
-    				if (m.getName().equals("set" + "HeldTokens")
-    						&& m.getParameterTypes().length == 1) {
-    					m.invoke(_self, heldTokens);
-    
-    				}
-    			}
-    		} catch (Exception e) {
-    			// Chut !
-    		} 
+    	for (java.lang.reflect.Method m : _self.getClass().getMethods()) {
+    		if (m.getName().equals("setHeldTokens")
+    				&& m.getParameterTypes().length == 1) {
+    			m.invoke(_self, heldTokens);
+    		}
+    	}
+    } catch (Exception e) {
+    	// Chut !
+    }
   }
 }

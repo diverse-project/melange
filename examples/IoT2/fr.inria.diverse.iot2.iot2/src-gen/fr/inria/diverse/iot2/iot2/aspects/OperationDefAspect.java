@@ -21,7 +21,7 @@ public class OperationDefAspect {
     fr.inria.diverse.iot2.iot2.aspects.OperationDefAspectOperationDefAspectProperties _self_ = fr.inria.diverse.iot2.iot2.aspects.OperationDefAspectOperationDefAspectContext.getSelf(_self);
     Object result = null;
     result =_privk3_lua(_self_, _self);
-    return _self.getLua();
+    return (fr.inria.diverse.iot2.iot2.iot2.Block)result;
   }
   
   @Containment
@@ -36,7 +36,21 @@ public class OperationDefAspect {
   }
   
   protected static Block _privk3_lua(final OperationDefAspectOperationDefAspectProperties _self_, final OperationDef _self) {
-     return _self_.lua; 
+    try {
+    	for (java.lang.reflect.Method m : _self.getClass().getMethods()) {
+    		if (m.getName().equals("getLua") &&
+    			m.getParameterTypes().length == 0) {
+    				Object ret = m.invoke(_self);
+    				if (ret != null) {
+    					return (fr.inria.diverse.iot2.iot2.iot2.Block) ret;
+    				}
+    		}
+    	}
+    } catch (Exception e) {
+    	// Chut !
+    }
+    
+    return _self_.lua;
   }
   
   protected static void _privk3_lua(final OperationDefAspectOperationDefAspectProperties _self_, final OperationDef _self, final Block lua) {

@@ -50,7 +50,7 @@ public class OpaqueActionAspect extends ActivityNodeAspect {
     fr.inria.diverse.iot2.iot2.aspects.OpaqueActionAspectOpaqueActionAspectProperties _self_ = fr.inria.diverse.iot2.iot2.aspects.OpaqueActionAspectOpaqueActionAspectContext.getSelf(_self);
     Object result = null;
     result =_privk3_service(_self_, _self);
-    return _self.getService();
+    return (fr.inria.diverse.iot2.iot2.iot2.OperationDef)result;
   }
   
   public static void service(final OpaqueAction _self, final OperationDef service) {
@@ -187,7 +187,21 @@ public class OpaqueActionAspect extends ActivityNodeAspect {
   }
   
   protected static OperationDef _privk3_service(final OpaqueActionAspectOpaqueActionAspectProperties _self_, final OpaqueAction _self) {
-     return _self_.service; 
+    try {
+    	for (java.lang.reflect.Method m : _self.getClass().getMethods()) {
+    		if (m.getName().equals("getService") &&
+    			m.getParameterTypes().length == 0) {
+    				Object ret = m.invoke(_self);
+    				if (ret != null) {
+    					return (fr.inria.diverse.iot2.iot2.iot2.OperationDef) ret;
+    				}
+    		}
+    	}
+    } catch (Exception e) {
+    	// Chut !
+    }
+    
+    return _self_.service;
   }
   
   protected static void _privk3_service(final OpaqueActionAspectOpaqueActionAspectProperties _self_, final OpaqueAction _self, final OperationDef service) {

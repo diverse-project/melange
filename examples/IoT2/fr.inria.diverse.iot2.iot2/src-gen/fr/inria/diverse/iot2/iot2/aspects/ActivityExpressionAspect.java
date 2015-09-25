@@ -10,10 +10,10 @@ import fr.inria.diverse.iot2.iot2.aspects.Context;
 public class ActivityExpressionAspect {
   public static void execute(final Expression _self, final Context c) {
     fr.inria.diverse.iot2.iot2.aspects.ActivityExpressionAspectExpressionAspectProperties _self_ = fr.inria.diverse.iot2.iot2.aspects.ActivityExpressionAspectExpressionAspectContext.getSelf(_self);
-     if (_self instanceof fr.inria.diverse.iot2.iot2.iot2.IntegerComparisonExpression){
-     fr.inria.diverse.iot2.iot2.aspects.IntegerComparisonActivityExpressionAspect.execute((fr.inria.diverse.iot2.iot2.iot2.IntegerComparisonExpression)_self,c);
-    } else  if (_self instanceof fr.inria.diverse.iot2.iot2.iot2.BooleanUnaryExpression){
+     if (_self instanceof fr.inria.diverse.iot2.iot2.iot2.BooleanUnaryExpression){
      fr.inria.diverse.iot2.iot2.aspects.BooleanUnaryActivityExpressionAspect.execute((fr.inria.diverse.iot2.iot2.iot2.BooleanUnaryExpression)_self,c);
+    } else  if (_self instanceof fr.inria.diverse.iot2.iot2.iot2.IntegerComparisonExpression){
+     fr.inria.diverse.iot2.iot2.aspects.IntegerComparisonActivityExpressionAspect.execute((fr.inria.diverse.iot2.iot2.iot2.IntegerComparisonExpression)_self,c);
     } else  if (_self instanceof fr.inria.diverse.iot2.iot2.iot2.IntegerCalculationExpression){
      fr.inria.diverse.iot2.iot2.aspects.IntegerCalculationActivityExpressionAspect.execute((fr.inria.diverse.iot2.iot2.iot2.IntegerCalculationExpression)_self,c);
     } else  if (_self instanceof fr.inria.diverse.iot2.iot2.iot2.BooleanBinaryExpression){

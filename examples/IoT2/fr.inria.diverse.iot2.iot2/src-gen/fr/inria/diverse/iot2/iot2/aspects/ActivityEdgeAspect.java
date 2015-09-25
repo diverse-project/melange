@@ -77,21 +77,32 @@ public class ActivityEdgeAspect extends NamedElementAspect {
   }
   
   protected static List<Offer> _privk3_offers(final ActivityEdgeAspectActivityEdgeAspectProperties _self_, final ActivityEdge _self) {
-     return _self_.offers; 
+    try {
+    	for (java.lang.reflect.Method m : _self.getClass().getMethods()) {
+    		if (m.getName().equals("getOffers") &&
+    			m.getParameterTypes().length == 0) {
+    				Object ret = m.invoke(_self);
+    				if (ret != null) {
+    					return (java.util.List) ret;
+    				}
+    		}
+    	}
+    } catch (Exception e) {
+    	// Chut !
+    }
+    return _self_.offers;
   }
   
   protected static void _privk3_offers(final ActivityEdgeAspectActivityEdgeAspectProperties _self_, final ActivityEdge _self, final List<Offer> offers) {
     _self_.offers = offers; try {
-    
-    			for (java.lang.reflect.Method m : _self.getClass().getMethods()) {
-    				if (m.getName().equals("set" + "Offers")
-    						&& m.getParameterTypes().length == 1) {
-    					m.invoke(_self, offers);
-    
-    				}
-    			}
-    		} catch (Exception e) {
-    			// Chut !
-    		} 
+    	for (java.lang.reflect.Method m : _self.getClass().getMethods()) {
+    		if (m.getName().equals("setOffers")
+    				&& m.getParameterTypes().length == 1) {
+    			m.invoke(_self, offers);
+    		}
+    	}
+    } catch (Exception e) {
+    	// Chut !
+    }
   }
 }
