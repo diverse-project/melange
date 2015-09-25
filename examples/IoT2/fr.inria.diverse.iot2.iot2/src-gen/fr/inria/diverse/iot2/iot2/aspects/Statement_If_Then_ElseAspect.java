@@ -31,7 +31,11 @@ public class Statement_If_Then_ElseAspect extends StatementAspect {
       BlockAspect.execute(_ifBlock, c);
     } else {
       Block _elseBlock = _self.getElseBlock();
-      BlockAspect.execute(_elseBlock, c);
+      boolean _tripleNotEquals = (_elseBlock != null);
+      if (_tripleNotEquals) {
+        Block _elseBlock_1 = _self.getElseBlock();
+        BlockAspect.execute(_elseBlock_1, c);
+      }
     }
   }
 }

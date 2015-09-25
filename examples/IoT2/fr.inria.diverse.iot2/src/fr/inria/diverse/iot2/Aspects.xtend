@@ -32,7 +32,7 @@ class OpaqueActionAspect extends ActivityNodeAspect {
 				.filter[#[ParameterMode::PARAM_IN, ParameterMode::PARAM_INOUT].contains(direction)]
 				.forEach[p |
 					val find = _self.activity.locals.findFirst[name == p.identifier]
-					putVariable(p.identifier, _self.getValueAsString(find?.currentValue) ?: null)
+					putVariable(p.identifier, _self.getValue(find?.currentValue) ?: null)
 				]
 			]
 
@@ -61,11 +61,11 @@ class OpaqueActionAspect extends ActivityNodeAspect {
 		_self.sendOffers(_self.takeOfferdTokens)
 	}
 
-	def String getValueAsString(Value v) {
+	def Object getValue(Value v) {
 		return
 			switch (v) {
-				IntegerValue: v.value.toString
-				BooleanValue: v.value.toString
+				IntegerValue: v.value as double
+				BooleanValue: v.value
 				default: null
 			}
 	}

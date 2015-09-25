@@ -39,11 +39,11 @@ public class OpaqueActionAspect extends ActivityNodeAspect {
     _privk3_execute(_self_, _self,c);
   }
   
-  public static String getValueAsString(final OpaqueAction _self, final Value v) {
+  public static Object getValue(final OpaqueAction _self, final Value v) {
     fr.inria.diverse.iot2.iot2.aspects.OpaqueActionAspectOpaqueActionAspectProperties _self_ = fr.inria.diverse.iot2.iot2.aspects.OpaqueActionAspectOpaqueActionAspectContext.getSelf(_self);
     Object result = null;
-    result =_privk3_getValueAsString(_self_, _self,v);
-    return (java.lang.String)result;
+    result =_privk3_getValue(_self_, _self,v);
+    return (java.lang.Object)result;
   }
   
   public static OperationDef service(final OpaqueAction _self) {
@@ -88,9 +88,9 @@ public class OpaqueActionAspect extends ActivityNodeAspect {
           if (find!=null) {
             _currentValue=find.getCurrentValue();
           }
-          String _valueAsString = OpaqueActionAspect.getValueAsString(_self, _currentValue);
-          if (_valueAsString != null) {
-            _elvis = _valueAsString;
+          Object _value = OpaqueActionAspect.getValue(_self, _currentValue);
+          if (_value != null) {
+            _elvis = _value;
           } else {
             _elvis = null;
           }
@@ -158,27 +158,26 @@ public class OpaqueActionAspect extends ActivityNodeAspect {
     ActivityNodeAspect.sendOffers(_self, _takeOfferdTokens);
   }
   
-  protected static String _privk3_getValueAsString(final OpaqueActionAspectOpaqueActionAspectProperties _self_, final OpaqueAction _self, final Value v) {
-    String _switchResult = null;
+  protected static Object _privk3_getValue(final OpaqueActionAspectOpaqueActionAspectProperties _self_, final OpaqueAction _self, final Value v) {
+    Object _switchResult = null;
     boolean _matched = false;
     if (!_matched) {
       if (v instanceof IntegerValue) {
         _matched=true;
         int _value = ((IntegerValue)v).getValue();
-        _switchResult = Integer.valueOf(_value).toString();
+        _switchResult = Double.valueOf(((double) _value));
       }
     }
     if (!_matched) {
       if (v instanceof BooleanValue) {
         _matched=true;
-        boolean _isValue = ((BooleanValue)v).isValue();
-        _switchResult = Boolean.valueOf(_isValue).toString();
+        _switchResult = Boolean.valueOf(((BooleanValue)v).isValue());
       }
     }
     if (!_matched) {
       _switchResult = null;
     }
-    return _switchResult;
+    return ((Comparable<?>)_switchResult);
   }
   
   protected static OperationDef _privk3_service(final OpaqueActionAspectOpaqueActionAspectProperties _self_, final OpaqueAction _self) {

@@ -62,7 +62,7 @@ public class Expression_CallFunctionAspect extends LuaExpressionAspect {
           final int max = Double.valueOf(_parseDouble_1).intValue();
           ThreadLocalRandom _current = ThreadLocalRandom.current();
           final int rand = _current.nextInt(min, max);
-          c.pushValue(Integer.valueOf(rand));
+          c.pushValue(Double.valueOf(((double) rand)));
           return;
         }
       }

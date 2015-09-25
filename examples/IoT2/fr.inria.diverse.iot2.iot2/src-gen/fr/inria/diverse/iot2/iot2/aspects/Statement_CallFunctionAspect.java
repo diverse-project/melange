@@ -57,6 +57,22 @@ public class Statement_CallFunctionAspect extends Statement_FunctioncallOrAssign
             Expression _get = _arguments_1.get(0);
             LuaExpressionAspect.execute(_get, c);
             Object _popValue = c.popValue();
+            InputOutput.<Object>print(_popValue);
+            return;
+          }
+        }
+      }
+      if (!_matched) {
+        if (x instanceof Expression_VariableName) {
+          String _variable = ((Expression_VariableName)x).getVariable();
+          boolean _equals = _variable.equals("println");
+          if (_equals) {
+            _matched=true;
+            Functioncall_Arguments _arguments = _self.getArguments();
+            EList<Expression> _arguments_1 = _arguments.getArguments();
+            Expression _get = _arguments_1.get(0);
+            LuaExpressionAspect.execute(_get, c);
+            Object _popValue = c.popValue();
             InputOutput.<Object>println(_popValue);
             return;
           }

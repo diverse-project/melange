@@ -189,6 +189,11 @@ class Statement_CallFunctionAspect extends Statement_FunctioncallOrAssignmentAsp
 		switch x {
 			Expression_VariableName case x.variable.equals("print"): {
 				_self.arguments.arguments.get(0).execute(c)
+				print(c.popValue)
+				return
+			}
+			Expression_VariableName case x.variable.equals("println"): {
+				_self.arguments.arguments.get(0).execute(c)
 				println(c.popValue)
 				return
 			}
@@ -239,7 +244,7 @@ class Expression_CallFunctionAspect extends LuaExpressionAspect {
 				_self.arguments.arguments.get(1).execute(c)
 				val max = Double::parseDouble(c.popValue.toString).intValue
 				val rand = ThreadLocalRandom::current.nextInt(min, max)
-				c.pushValue(rand)
+				c.pushValue(rand as double)
 				return
 			}
 		}
@@ -352,7 +357,7 @@ class Statement_If_Then_ElseAspect extends StatementAspect {
 		_self.ifExpression.execute(c)
 		if (c.popValue as Boolean){
 			_self.ifBlock.execute(c)
-		}else{
+		}else if (_self.elseBlock !== null){
 			_self.elseBlock.execute(c)			
 		}
 	}

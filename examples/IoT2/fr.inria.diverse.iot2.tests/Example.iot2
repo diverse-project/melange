@@ -2,41 +2,55 @@
 
 system MySystem {
 	sensor Thermometer {
-		provides operation getTemp(out long temp) {
-			print("Thermometer::getTemperature")
-			temp = rand(15, 30)
+		provides operation getTemp(inout long temp) {
+			if (temp == 0) then
+				temp = rand(15, 30)
+			else
+				temp = temp + rand(-10, 10)
+			end
 		}
 	}
 
 	sensor LightMeter {
-		provides operation getLuminosity(out long lumen) {
-			print("LightMeter::getLuminosity")
-			lumen = rand(1500, 1700)
+		provides operation getLuminosity(inout long lumen) {
+			if (lumen == 0) then
+				lumen = rand(1500, 1700)
+			else
+				lumen = lumen + rand(-400, 400)
+			end
 		}
 	}
 
 	actuator Heater {
-		provides operation lowerTemp() {
-			print("Heater::lowerTemp")
+		provides operation lowerTemp(inout long temp) {
+			println("Lowering temp by 5")
+			temp = temp - 5
 		}
 
-		provides operation raiseTemp() {
-			print("Heater::raiseTemp")
+		provides operation raiseTemp(inout long temp) {
+			println("Raising temp by 5")
+			temp = temp + 5
 		}
 	}
 
 	actuator LightController {
-		provides operation turnLightOn() {
-			print("LightController::turnLightOn")
+		provides operation turnLightOn(inout long lumen) {
+			println("Raising lumen by 400")
+			lumen = lumen + 400
 		}
 
-		provides operation turnLightOff() {
-			print("LightController::turnLightOff")
+		provides operation turnLightOff(inout long lumen) {
+			println("Lowering lumen by 400")
+			lumen = lumen - 400
 		}
 	}
 
 	actuator Timer {
-		provides operation wait(in long waitingTime) {
+		provides operation wait(in long waitingTime, in long temp, in long lumen) {
+			print("currentTemp = ")
+			println(temp)
+			print("currentLumen = ")
+			println(lumen)
 			sleep(waitingTime)
 		}
 	}
@@ -69,7 +83,7 @@ system MySystem {
 			int lumenThreshold = 1600,
 			int i = 0,
 			int one = 1,
-			int nbIter = 5,
+			int nbIter = 15,
 			int waitingTime = 500
 
 			nodes {

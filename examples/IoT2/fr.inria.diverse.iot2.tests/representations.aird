@@ -625,7 +625,7 @@
               <styles xmi:type="notation:FilteringStyle" xmi:id="_PonsA2ODEeW5OOfYgzFniw"/>
             </children>
             <styles xmi:type="notation:ShapeStyle" xmi:id="_PonE9GODEeW5OOfYgzFniw" fontName="Cantarell" fontHeight="8"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PonE9WODEeW5OOfYgzFniw" x="348"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PonE9WODEeW5OOfYgzFniw" x="252" y="228"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_WS5LoGODEeW5OOfYgzFniw" type="2002" element="_WSyd8GODEeW5OOfYgzFniw">
             <children xmi:type="notation:Node" xmi:id="_WS5ysGODEeW5OOfYgzFniw" type="5006"/>
@@ -694,8 +694,8 @@
             </children>
             <styles xmi:type="notation:ConnectorStyle" xmi:id="_WS82A2ODEeW5OOfYgzFniw"/>
             <styles xmi:type="notation:FontStyle" xmi:id="_WS82BGODEeW5OOfYgzFniw" fontName="Cantarell" fontHeight="8" italic="true"/>
-            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_WS82BWODEeW5OOfYgzFniw" points="[-77, 36, -59, 83]$[-18, 36, 0, 83]$[-18, -47, 0, 0]"/>
-            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WS9dEGODEeW5OOfYgzFniw" id="(2.0547945205479454,0.0)"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_WS82BWODEeW5OOfYgzFniw" points="[-2, 2, 0, -108]$[-2, 37, 0, -73]$[-2, 49, 0, -61]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WS9dEGODEeW5OOfYgzFniw" id="(0.5205479452054794,0.9726027397260274)"/>
             <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WS9dEWODEeW5OOfYgzFniw" id="(0.49333333333333335,1.0)"/>
           </edges>
           <edges xmi:type="notation:Edge" xmi:id="_WS9dEmODEeW5OOfYgzFniw" type="4001" element="_WS39g2ODEeW5OOfYgzFniw" source="_QR3QkGNzEeWQALQ85Hytwg" target="_QR2Cc2NzEeWQALQ85Hytwg">
@@ -1078,10 +1078,10 @@
                 <styles xmi:type="notation:ShapeStyle" xmi:id="_Pt5wcWOKEeWv-Z7R5lLLgg" fontName="Cantarell" fontHeight="8"/>
                 <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Pt5wcmOKEeWv-Z7R5lLLgg" x="259" y="80"/>
               </children>
-              <children xmi:type="notation:Node" xmi:id="_Pt5wd2OKEeWv-Z7R5lLLgg" type="3009" element="_PthWDmOKEeWv-Z7R5lLLgg">
+              <children xmi:type="notation:Node" xmi:id="_Pt5wd2OKEeWv-Z7R5lLLgg" visible="false" type="3009" element="_PthWDmOKEeWv-Z7R5lLLgg">
                 <children xmi:type="notation:Node" xmi:id="_Pt5wemOKEeWv-Z7R5lLLgg" type="5004"/>
                 <children xmi:type="notation:Node" xmi:id="_Pt5we2OKEeWv-Z7R5lLLgg" type="7003">
-                  <children xmi:type="notation:Node" xmi:id="_PuGkxmOKEeWv-Z7R5lLLgg" type="3010" element="_PthWEGOKEeWv-Z7R5lLLgg">
+                  <children xmi:type="notation:Node" xmi:id="_PuGkxmOKEeWv-Z7R5lLLgg" visible="false" type="3010" element="_PthWEGOKEeWv-Z7R5lLLgg">
                     <styles xmi:type="notation:FontStyle" xmi:id="_PuGkx2OKEeWv-Z7R5lLLgg" fontName="Cantarell" fontHeight="8"/>
                     <layoutConstraint xmi:type="notation:Location" xmi:id="_PuGkyGOKEeWv-Z7R5lLLgg"/>
                   </children>
@@ -1091,10 +1091,10 @@
                 <styles xmi:type="notation:ShapeStyle" xmi:id="_Pt5weGOKEeWv-Z7R5lLLgg" fontName="Cantarell" fontHeight="8"/>
                 <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Pt5weWOKEeWv-Z7R5lLLgg" x="751" y="84"/>
               </children>
-              <children xmi:type="notation:Node" xmi:id="_Pt6XgGOKEeWv-Z7R5lLLgg" type="3009" element="_PthWEmOKEeWv-Z7R5lLLgg">
+              <children xmi:type="notation:Node" xmi:id="_Pt6XgGOKEeWv-Z7R5lLLgg" visible="false" type="3009" element="_PthWEmOKEeWv-Z7R5lLLgg">
                 <children xmi:type="notation:Node" xmi:id="_Pt6-kGOKEeWv-Z7R5lLLgg" type="5004"/>
                 <children xmi:type="notation:Node" xmi:id="_Pt6-kWOKEeWv-Z7R5lLLgg" type="7003">
-                  <children xmi:type="notation:Node" xmi:id="_PuHL0GOKEeWv-Z7R5lLLgg" type="3010" element="_PthWFGOKEeWv-Z7R5lLLgg">
+                  <children xmi:type="notation:Node" xmi:id="_PuHL0GOKEeWv-Z7R5lLLgg" visible="false" type="3010" element="_PthWFGOKEeWv-Z7R5lLLgg">
                     <styles xmi:type="notation:FontStyle" xmi:id="_PuHL0WOKEeWv-Z7R5lLLgg" fontName="Cantarell" fontHeight="8"/>
                     <layoutConstraint xmi:type="notation:Location" xmi:id="_PuHL0mOKEeWv-Z7R5lLLgg"/>
                   </children>
@@ -1167,7 +1167,7 @@
                   <styles xmi:type="notation:FilteringStyle" xmi:id="_Pt8zwmOKEeWv-Z7R5lLLgg"/>
                 </children>
                 <styles xmi:type="notation:ShapeStyle" xmi:id="_Pt8Mu2OKEeWv-Z7R5lLLgg" fontName="Cantarell" fontHeight="8"/>
-                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Pt8MvGOKEeWv-Z7R5lLLgg" x="97" y="102"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Pt8MvGOKEeWv-Z7R5lLLgg" x="871" y="6"/>
               </children>
               <children xmi:type="notation:Node" xmi:id="_Pt8zw2OKEeWv-Z7R5lLLgg" type="3009" element="_PthWKmOKEeWv-Z7R5lLLgg">
                 <children xmi:type="notation:Node" xmi:id="_Pt8zxmOKEeWv-Z7R5lLLgg" type="5004"/>
@@ -1180,7 +1180,7 @@
                   <styles xmi:type="notation:FilteringStyle" xmi:id="_Pt8zyWOKEeWv-Z7R5lLLgg"/>
                 </children>
                 <styles xmi:type="notation:ShapeStyle" xmi:id="_Pt8zxGOKEeWv-Z7R5lLLgg" fontName="Cantarell" fontHeight="8"/>
-                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Pt8zxWOKEeWv-Z7R5lLLgg" x="14" y="102"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Pt8zxWOKEeWv-Z7R5lLLgg" x="787" y="6"/>
               </children>
               <children xmi:type="notation:Node" xmi:id="_Pt9a0GOKEeWv-Z7R5lLLgg" type="3007" element="_PthWLmOKEeWv-Z7R5lLLgg">
                 <children xmi:type="notation:Node" xmi:id="_Pt-B4GOKEeWv-Z7R5lLLgg" type="5003">
@@ -1835,9 +1835,10 @@
             <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@subNodeMappings[name='AD_InitialValue']"/>
           </ownedElements>
         </ownedDiagramElements>
-        <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PthWDmOKEeWv-Z7R5lLLgg" name="temp">
+        <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PthWDmOKEeWv-Z7R5lLLgg" name="temp" visible="false">
           <target xmi:type="iot2:IntegerVariable" href="Example.iot2#//@sketch/@activity/@locals.6"/>
           <semanticElements xmi:type="iot2:IntegerVariable" href="Example.iot2#//@sketch/@activity/@locals.6"/>
+          <graphicalFilters xmi:type="diagram:HideFilter" xmi:id="_Y1wY4GOiEeWwOOBjB7hkDA"/>
           <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
           <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
           <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -1845,7 +1846,7 @@
             <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']"/>
-          <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_PthWEGOKEeWv-Z7R5lLLgg" name="init=0">
+          <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_PthWEGOKEeWv-Z7R5lLLgg" name="init=0" visible="false">
             <target xmi:type="iot2:IntegerValue" href="Example.iot2#//@sketch/@activity/@locals.6/@initialValue"/>
             <semanticElements xmi:type="iot2:IntegerValue" href="Example.iot2#//@sketch/@activity/@locals.6/@initialValue"/>
             <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_PthWEWOKEeWv-Z7R5lLLgg" showIcon="false" labelAlignment="LEFT">
@@ -1854,9 +1855,10 @@
             <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@subNodeMappings[name='AD_InitialValue']"/>
           </ownedElements>
         </ownedDiagramElements>
-        <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PthWEmOKEeWv-Z7R5lLLgg" name="lumen">
+        <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PthWEmOKEeWv-Z7R5lLLgg" name="lumen" visible="false">
           <target xmi:type="iot2:IntegerVariable" href="Example.iot2#//@sketch/@activity/@locals.7"/>
           <semanticElements xmi:type="iot2:IntegerVariable" href="Example.iot2#//@sketch/@activity/@locals.7"/>
+          <graphicalFilters xmi:type="diagram:HideFilter" xmi:id="_Y1xnAGOiEeWwOOBjB7hkDA"/>
           <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
           <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
           <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -1864,7 +1866,7 @@
             <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']"/>
-          <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_PthWFGOKEeWv-Z7R5lLLgg" name="init=0">
+          <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_PthWFGOKEeWv-Z7R5lLLgg" name="init=0" visible="false">
             <target xmi:type="iot2:IntegerValue" href="Example.iot2#//@sketch/@activity/@locals.7/@initialValue"/>
             <semanticElements xmi:type="iot2:IntegerValue" href="Example.iot2#//@sketch/@activity/@locals.7/@initialValue"/>
             <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_PthWFWOKEeWv-Z7R5lLLgg" showIcon="false" labelAlignment="LEFT">
@@ -1955,7 +1957,7 @@
             <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']"/>
-          <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_PthWKGOKEeWv-Z7R5lLLgg" name="init=5">
+          <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_PthWKGOKEeWv-Z7R5lLLgg" name="init=15">
             <target xmi:type="iot2:IntegerValue" href="Example.iot2#//@sketch/@activity/@locals.12/@initialValue"/>
             <semanticElements xmi:type="iot2:IntegerValue" href="Example.iot2#//@sketch/@activity/@locals.12/@initialValue"/>
             <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_PthWKWOKEeWv-Z7R5lLLgg" showIcon="false" labelAlignment="LEFT">
