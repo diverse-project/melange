@@ -4,14 +4,14 @@ system MySystem {
 	sensor Thermometer {
 		provides operation getTemp(out long temp) {
 			print("Thermometer::getTemperature")
-			temp = 25
+			temp = 50
 		}
 	}
 
 	sensor LightMeter {
-		provides operation getLuminosity(out long luminosity) {
+		provides operation getLuminosity(out long lumen) {
 			print("LightMeter::getLuminosity")
-			luminosity = 99
+			lumen = 99
 		}
 	}
 
@@ -44,20 +44,28 @@ system MySystem {
 	}
 
 	sketch {
-		activity SimpleSketch {
+		activity DummyIoTSketch {
 			bool stop = false,
-			bool dontStop = true,
-			bool tooBright = true,
+			bool dontStop = false,
+			bool tooBright = false,
 			bool tooObscure = false,
-			bool tooHot = true,
-			bool tooCold = false
+			bool tooHot = false,
+			bool tooCold = false,
+			bool tmp1 = false,
+			bool tmp2 = false,
+			int idealTemp = 50,
+			int idealLumen = 99,
+			int temp = 0,
+			int lumen = 0,
+			int tempThreshold = 21,
+			int lumenThreshold = 1600
 
 			nodes {
 				initial init out (e1),
 				merge m1 in(e1, e19) out (e2),
 				fork f1 in(e2) out (e3, e4),
-				action a1 in (e3) out (e5) service getTemp,
-				action a2 in (e4) out (e6) service getLuminosity,
+				action a1 comp { tooHot = temp >= tempThreshold, tooCold = temp < tempThreshold } in (e3) out (e5) service getTemp,
+				action a2 comp { tooBright = lumen >= lumenThreshold, tooObscure = lumen < lumenThreshold } in (e4) out (e6) service getLuminosity,
 				decision d1 in (e5) out (e7, e8),
 				decision d2 in (e6) out (e9, e10),
 				action a3 in (e7) out (e11) service lowerTemp,
@@ -67,7 +75,8 @@ system MySystem {
 				merge m2 in (e11, e12) out (e15),
 				merge m3 in (e13, e14) out (e16),
 				join j1 in (e15, e16) out (e17),
-				decision d3 in (e17) out (e18, e19),
+				action computeStop comp { tmp1 = temp == idealTemp, tmp2 = lumen == idealLumen, stop = tmp1 & tmp2 } in (e17) out (e20),
+				decision d3 in (e20) out (e18, e19),
 				final fin in (e18)
 			}
 			edges {
@@ -87,9 +96,10 @@ system MySystem {
 				flow e14 from a6 to m3,
 				flow e15 from m2 to j1,
 				flow e16 from m3 to j1,
-				flow e17 from j1 to d3,
+				flow e17 from j1 to computeStop,
 				flow e18 from d3 to fin [stop],
-				flow e19 from d3 to m1 [dontStop]
+				flow e19 from d3 to m1 [dontStop],
+				flow e20 from computeStop to d3
 			}
 		}
 	}
