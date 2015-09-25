@@ -809,7 +809,7 @@
                   <styles xmi:type="notation:FilteringStyle" xmi:id="_2AQSGWN_EeWFAeMDZFU3SA"/>
                 </children>
                 <styles xmi:type="notation:ShapeStyle" xmi:id="_2AQSFGN_EeWFAeMDZFU3SA" fontName="Cantarell" fontHeight="8"/>
-                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2AQSFWN_EeWFAeMDZFU3SA" x="91" y="67"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2AQSFWN_EeWFAeMDZFU3SA" x="175" y="19"/>
               </children>
               <children xmi:type="notation:Node" xmi:id="_2AQSGmN_EeWFAeMDZFU3SA" type="3009" element="_1_fdE2N_EeWFAeMDZFU3SA">
                 <children xmi:type="notation:Node" xmi:id="_2AQSHWN_EeWFAeMDZFU3SA" type="5004"/>
@@ -822,7 +822,7 @@
                   <styles xmi:type="notation:FilteringStyle" xmi:id="_2AQ5ImN_EeWFAeMDZFU3SA"/>
                 </children>
                 <styles xmi:type="notation:ShapeStyle" xmi:id="_2AQSG2N_EeWFAeMDZFU3SA" fontName="Cantarell" fontHeight="8"/>
-                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2AQSHGN_EeWFAeMDZFU3SA" x="235" y="67"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2AQSHGN_EeWFAeMDZFU3SA" x="275" y="19"/>
               </children>
               <children xmi:type="notation:Node" xmi:id="_OYyjMGOAEeWFAeMDZFU3SA" type="3007" element="_OYirkGOAEeWFAeMDZFU3SA">
                 <children xmi:type="notation:Node" xmi:id="_OYzKQGOAEeWFAeMDZFU3SA" type="5003">
@@ -892,20 +892,7 @@
                   <styles xmi:type="notation:FilteringStyle" xmi:id="_J0UdEWOBEeWFAeMDZFU3SA"/>
                 </children>
                 <styles xmi:type="notation:ShapeStyle" xmi:id="_J0UdDGOBEeWFAeMDZFU3SA" fontName="Cantarell" fontHeight="8"/>
-                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_J0UdDWOBEeWFAeMDZFU3SA" x="91" y="14"/>
-              </children>
-              <children xmi:type="notation:Node" xmi:id="_J0VEEGOBEeWFAeMDZFU3SA" type="3009" element="_J0ElZGOBEeWFAeMDZFU3SA">
-                <children xmi:type="notation:Node" xmi:id="_J0VEE2OBEeWFAeMDZFU3SA" type="5004"/>
-                <children xmi:type="notation:Node" xmi:id="_J0VEFGOBEeWFAeMDZFU3SA" type="7003">
-                  <children xmi:type="notation:Node" xmi:id="_J0VrJmOBEeWFAeMDZFU3SA" type="3010" element="_J0FzgWOBEeWFAeMDZFU3SA">
-                    <styles xmi:type="notation:FontStyle" xmi:id="_J0VrJ2OBEeWFAeMDZFU3SA" fontName="Cantarell" fontHeight="8"/>
-                    <layoutConstraint xmi:type="notation:Location" xmi:id="_J0VrKGOBEeWFAeMDZFU3SA"/>
-                  </children>
-                  <styles xmi:type="notation:SortingStyle" xmi:id="_J0VEFWOBEeWFAeMDZFU3SA"/>
-                  <styles xmi:type="notation:FilteringStyle" xmi:id="_J0VEFmOBEeWFAeMDZFU3SA"/>
-                </children>
-                <styles xmi:type="notation:ShapeStyle" xmi:id="_J0VEEWOBEeWFAeMDZFU3SA" fontName="Cantarell" fontHeight="8"/>
-                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_J0VEEmOBEeWFAeMDZFU3SA" x="235" y="14"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_J0UdDWOBEeWFAeMDZFU3SA" x="115" y="19"/>
               </children>
               <styles xmi:type="notation:SortingStyle" xmi:id="_0gJE0WNsEeWQALQ85Hytwg"/>
               <styles xmi:type="notation:FilteringStyle" xmi:id="_0gJE0mNsEeWQALQ85Hytwg"/>
@@ -1301,7 +1288,7 @@
             <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']"/>
-          <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_0f3_IWNsEeWQALQ85Hytwg" name="init=false" visible="false">
+          <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_0f3_IWNsEeWQALQ85Hytwg" name="init=true" visible="false">
             <target xmi:type="iot2:BooleanValue" href="Example.iot2#//@sketch/@activity/@locals.1/@initialValue"/>
             <semanticElements xmi:type="iot2:BooleanValue" href="Example.iot2#//@sketch/@activity/@locals.1/@initialValue"/>
             <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_0f3_ImNsEeWQALQ85Hytwg" showIcon="false" labelAlignment="LEFT">
@@ -1548,9 +1535,9 @@
             <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@subNodeMappings[name='AD_InitialValue']"/>
           </ownedElements>
         </ownedDiagramElements>
-        <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_1_YvYGN_EeWFAeMDZFU3SA" name="tmp1" visible="false">
-          <target xmi:type="iot2:BooleanVariable" href="Example.iot2#//@sketch/@activity/@locals.6"/>
-          <semanticElements xmi:type="iot2:BooleanVariable" href="Example.iot2#//@sketch/@activity/@locals.6"/>
+        <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_1_YvYGN_EeWFAeMDZFU3SA" name="temp" visible="false">
+          <target xmi:type="iot2:IntegerVariable" href="Example.iot2#//@sketch/@activity/@locals.6"/>
+          <semanticElements xmi:type="iot2:IntegerVariable" href="Example.iot2#//@sketch/@activity/@locals.6"/>
           <graphicalFilters xmi:type="diagram:HideFilter" xmi:id="_500BcGOCEeW5OOfYgzFniw"/>
           <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
           <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
@@ -1559,18 +1546,18 @@
             <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']"/>
-          <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_1_gEIGN_EeWFAeMDZFU3SA" name="init=false" visible="false">
-            <target xmi:type="iot2:BooleanValue" href="Example.iot2#//@sketch/@activity/@locals.6/@initialValue"/>
-            <semanticElements xmi:type="iot2:BooleanValue" href="Example.iot2#//@sketch/@activity/@locals.6/@initialValue"/>
-            <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_J0HosGOBEeWFAeMDZFU3SA" showIcon="false" labelAlignment="LEFT">
-              <description xmi:type="style:BundledImageDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@subNodeMappings[name='AD_InitialValue']/@conditionnalStyles.0/@style"/>
+          <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_1_gEIGN_EeWFAeMDZFU3SA" name="init=0" visible="false">
+            <target xmi:type="iot2:IntegerValue" href="Example.iot2#//@sketch/@activity/@locals.6/@initialValue"/>
+            <semanticElements xmi:type="iot2:IntegerValue" href="Example.iot2#//@sketch/@activity/@locals.6/@initialValue"/>
+            <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_6mYy4GODEeW5OOfYgzFniw" showIcon="false" labelAlignment="LEFT">
+              <description xmi:type="style:BundledImageDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@subNodeMappings[name='AD_InitialValue']/@conditionnalStyles.1/@style"/>
             </ownedStyle>
             <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@subNodeMappings[name='AD_InitialValue']"/>
           </ownedElements>
         </ownedDiagramElements>
-        <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_1_e2AGN_EeWFAeMDZFU3SA" name="tmp2" visible="false">
-          <target xmi:type="iot2:BooleanVariable" href="Example.iot2#//@sketch/@activity/@locals.7"/>
-          <semanticElements xmi:type="iot2:BooleanVariable" href="Example.iot2#//@sketch/@activity/@locals.7"/>
+        <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_1_e2AGN_EeWFAeMDZFU3SA" name="lumen" visible="false">
+          <target xmi:type="iot2:IntegerVariable" href="Example.iot2#//@sketch/@activity/@locals.7"/>
+          <semanticElements xmi:type="iot2:IntegerVariable" href="Example.iot2#//@sketch/@activity/@locals.7"/>
           <graphicalFilters xmi:type="diagram:HideFilter" xmi:id="_501PlGOCEeW5OOfYgzFniw"/>
           <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
           <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
@@ -1579,16 +1566,16 @@
             <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']"/>
-          <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_1_s4cWN_EeWFAeMDZFU3SA" name="init=false" visible="false">
-            <target xmi:type="iot2:BooleanValue" href="Example.iot2#//@sketch/@activity/@locals.7/@initialValue"/>
-            <semanticElements xmi:type="iot2:BooleanValue" href="Example.iot2#//@sketch/@activity/@locals.7/@initialValue"/>
-            <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_J0HosWOBEeWFAeMDZFU3SA" showIcon="false" labelAlignment="LEFT">
-              <description xmi:type="style:BundledImageDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@subNodeMappings[name='AD_InitialValue']/@conditionnalStyles.0/@style"/>
+          <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_1_s4cWN_EeWFAeMDZFU3SA" name="init=0" visible="false">
+            <target xmi:type="iot2:IntegerValue" href="Example.iot2#//@sketch/@activity/@locals.7/@initialValue"/>
+            <semanticElements xmi:type="iot2:IntegerValue" href="Example.iot2#//@sketch/@activity/@locals.7/@initialValue"/>
+            <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_6mZZ8GODEeW5OOfYgzFniw" showIcon="false" labelAlignment="LEFT">
+              <description xmi:type="style:BundledImageDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@subNodeMappings[name='AD_InitialValue']/@conditionnalStyles.1/@style"/>
             </ownedStyle>
             <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@subNodeMappings[name='AD_InitialValue']"/>
           </ownedElements>
         </ownedDiagramElements>
-        <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_1_fdEWN_EeWFAeMDZFU3SA" name="idealTemp">
+        <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_1_fdEWN_EeWFAeMDZFU3SA" name="tempThreshold">
           <target xmi:type="iot2:IntegerVariable" href="Example.iot2#//@sketch/@activity/@locals.8"/>
           <semanticElements xmi:type="iot2:IntegerVariable" href="Example.iot2#//@sketch/@activity/@locals.8"/>
           <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -1598,7 +1585,7 @@
             <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']"/>
-          <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_1_uGkGN_EeWFAeMDZFU3SA" name="init=50">
+          <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_1_uGkGN_EeWFAeMDZFU3SA" name="init=21">
             <target xmi:type="iot2:IntegerValue" href="Example.iot2#//@sketch/@activity/@locals.8/@initialValue"/>
             <semanticElements xmi:type="iot2:IntegerValue" href="Example.iot2#//@sketch/@activity/@locals.8/@initialValue"/>
             <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_1_utoGN_EeWFAeMDZFU3SA" showIcon="false" labelAlignment="LEFT">
@@ -1607,7 +1594,7 @@
             <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@subNodeMappings[name='AD_InitialValue']"/>
           </ownedElements>
         </ownedDiagramElements>
-        <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_1_fdE2N_EeWFAeMDZFU3SA" name="idealLumen">
+        <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_1_fdE2N_EeWFAeMDZFU3SA" name="lumenThreshold">
           <target xmi:type="iot2:IntegerVariable" href="Example.iot2#//@sketch/@activity/@locals.9"/>
           <semanticElements xmi:type="iot2:IntegerVariable" href="Example.iot2#//@sketch/@activity/@locals.9"/>
           <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -1617,7 +1604,7 @@
             <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']"/>
-          <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_1_utoWN_EeWFAeMDZFU3SA" name="init=99">
+          <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_1_utoWN_EeWFAeMDZFU3SA" name="init=1600">
             <target xmi:type="iot2:IntegerValue" href="Example.iot2#//@sketch/@activity/@locals.9/@initialValue"/>
             <semanticElements xmi:type="iot2:IntegerValue" href="Example.iot2#//@sketch/@activity/@locals.9/@initialValue"/>
             <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_1_vUsGN_EeWFAeMDZFU3SA" showIcon="false" labelAlignment="LEFT">
@@ -1638,7 +1625,7 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_ExecutableNode']"/>
         </ownedDiagramElements>
-        <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_J0D-UGOBEeWFAeMDZFU3SA" name="temp" visible="false">
+        <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_J0D-UGOBEeWFAeMDZFU3SA" name="i" visible="false">
           <target xmi:type="iot2:IntegerVariable" href="Example.iot2#//@sketch/@activity/@locals.10"/>
           <semanticElements xmi:type="iot2:IntegerVariable" href="Example.iot2#//@sketch/@activity/@locals.10"/>
           <graphicalFilters xmi:type="diagram:HideFilter" xmi:id="_5012oWOCEeW5OOfYgzFniw"/>
@@ -1658,7 +1645,7 @@
             <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@subNodeMappings[name='AD_InitialValue']"/>
           </ownedElements>
         </ownedDiagramElements>
-        <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_J0ElYGOBEeWFAeMDZFU3SA" name="lumen" visible="false">
+        <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_J0ElYGOBEeWFAeMDZFU3SA" name="one" visible="false">
           <target xmi:type="iot2:IntegerVariable" href="Example.iot2#//@sketch/@activity/@locals.11"/>
           <semanticElements xmi:type="iot2:IntegerVariable" href="Example.iot2#//@sketch/@activity/@locals.11"/>
           <graphicalFilters xmi:type="diagram:HideFilter" xmi:id="_501Pk2OCEeW5OOfYgzFniw"/>
@@ -1669,7 +1656,7 @@
             <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']"/>
-          <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_J0FMcWOBEeWFAeMDZFU3SA" name="init=0" visible="false">
+          <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_J0FMcWOBEeWFAeMDZFU3SA" name="init=1" visible="false">
             <target xmi:type="iot2:IntegerValue" href="Example.iot2#//@sketch/@activity/@locals.11/@initialValue"/>
             <semanticElements xmi:type="iot2:IntegerValue" href="Example.iot2#//@sketch/@activity/@locals.11/@initialValue"/>
             <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_J0FMcmOBEeWFAeMDZFU3SA" showIcon="false" labelAlignment="LEFT">
@@ -1678,7 +1665,7 @@
             <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@subNodeMappings[name='AD_InitialValue']"/>
           </ownedElements>
         </ownedDiagramElements>
-        <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_J0ElYmOBEeWFAeMDZFU3SA" name="tempThreshold">
+        <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_J0ElYmOBEeWFAeMDZFU3SA" name="nbIter">
           <target xmi:type="iot2:IntegerVariable" href="Example.iot2#//@sketch/@activity/@locals.12"/>
           <semanticElements xmi:type="iot2:IntegerVariable" href="Example.iot2#//@sketch/@activity/@locals.12"/>
           <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -1688,29 +1675,10 @@
             <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']"/>
-          <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_J0FMc2OBEeWFAeMDZFU3SA" name="init=21">
+          <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_J0FMc2OBEeWFAeMDZFU3SA" name="init=3">
             <target xmi:type="iot2:IntegerValue" href="Example.iot2#//@sketch/@activity/@locals.12/@initialValue"/>
             <semanticElements xmi:type="iot2:IntegerValue" href="Example.iot2#//@sketch/@activity/@locals.12/@initialValue"/>
             <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_J0FzgGOBEeWFAeMDZFU3SA" showIcon="false" labelAlignment="LEFT">
-              <description xmi:type="style:BundledImageDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@subNodeMappings[name='AD_InitialValue']/@conditionnalStyles.1/@style"/>
-            </ownedStyle>
-            <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@subNodeMappings[name='AD_InitialValue']"/>
-          </ownedElements>
-        </ownedDiagramElements>
-        <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_J0ElZGOBEeWFAeMDZFU3SA" name="lumenThreshold">
-          <target xmi:type="iot2:IntegerVariable" href="Example.iot2#//@sketch/@activity/@locals.13"/>
-          <semanticElements xmi:type="iot2:IntegerVariable" href="Example.iot2#//@sketch/@activity/@locals.13"/>
-          <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
-          <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
-          <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-          <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_J0ElZWOBEeWFAeMDZFU3SA" labelAlignment="LEFT" backgroundColor="232,239,247" foregroundColor="194,239,255">
-            <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@style"/>
-          </ownedStyle>
-          <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']"/>
-          <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_J0FzgWOBEeWFAeMDZFU3SA" name="init=1600">
-            <target xmi:type="iot2:IntegerValue" href="Example.iot2#//@sketch/@activity/@locals.13/@initialValue"/>
-            <semanticElements xmi:type="iot2:IntegerValue" href="Example.iot2#//@sketch/@activity/@locals.13/@initialValue"/>
-            <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_J0FzgmOBEeWFAeMDZFU3SA" showIcon="false" labelAlignment="LEFT">
               <description xmi:type="style:BundledImageDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@subNodeMappings[name='AD_InitialValue']/@conditionnalStyles.1/@style"/>
             </ownedStyle>
             <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@subNodeMappings[name='AD_InitialValue']"/>
