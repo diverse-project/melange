@@ -40,7 +40,12 @@ system MySystem {
 	}
 
 	board B2 [RaspberryPi] {
+		provides LightMeter
+	}
+
+	board B3 [BeagleBoard] {
 		provides Heater
+		provides LightController
 	}
 
 	sketch {
