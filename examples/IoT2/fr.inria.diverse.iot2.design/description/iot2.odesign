@@ -5,6 +5,12 @@
       <metamodel href="http://iot2/#/"/>
       <defaultLayer name="Activity">
         <edgeMappings name="AD_ControlFlow" semanticElements="service:getSemanticElements" documentation="Edge specified with source mapping as the target semantic (&amp; vice versa) to work around top to bottom layout (see VP-930)" sourceMapping="//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_ExecutableNode'] //@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subNodeMappings[name='AD_ControlNode']" targetMapping="//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subNodeMappings[name='AD_ControlNode'] //@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_ExecutableNode']" targetFinderExpression="[self.target/]" sourceFinderExpression="[self.source/]" domainClass="ControlFlow" useDomainElement="true" reconnections="//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@toolSections.0/@subSections[name='reconnect']/@ownedTools[name='AD_ReconnectControlSource'] //@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@toolSections.0/@subSections[name='reconnect']/@ownedTools[name='AD_ReconnectControlTarget']">
+          <style routingStyle="manhattan">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription showIcon="false">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
           <conditionnalStyles predicateExpression="[self.guard = null/]">
             <style routingStyle="manhattan">
               <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
@@ -78,7 +84,13 @@
                 <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
               </style>
             </borderedNodeMappings>
-            <conditionnalStyles predicateExpression="[self.oclIsTypeOf(OpaqueAction) and self.service &lt;> null/]">
+            <style xsi:type="style:FlatContainerStyleDescription" arcWidth="25" arcHeight="25" borderSizeComputationExpression="1" showIcon="false" labelExpression="[self.name /]" roundedCorner="true" backgroundStyle="Liquid" foregroundColor="//@userColorsPalettes[name='UMLPalette']/@entries[name='lighter%20orange']">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_orange']"/>
+              <labelFormat>bold</labelFormat>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            </style>
+            <conditionnalStyles predicateExpression="[self.oclIsTypeOf(OpaqueAction) and self.oclAsType(OpaqueAction).service &lt;> null/]">
               <style xsi:type="style:FlatContainerStyleDescription" arcWidth="25" arcHeight="25" borderSizeComputationExpression="1" showIcon="false" labelExpression="[self.oclAsType(OpaqueAction).service.eContainer().oclAsType(HWComponent).name + '::' + self.oclAsType(OpaqueAction).service.name /]" roundedCorner="true" backgroundStyle="Liquid" foregroundColor="//@userColorsPalettes[name='UMLPalette']/@entries[name='lighter%20orange']">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_orange']"/>
                 <labelFormat>bold</labelFormat>
@@ -86,7 +98,7 @@
                 <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
               </style>
             </conditionnalStyles>
-            <conditionnalStyles predicateExpression="[self.oclIsTypeOf(OpaqueAction) and self.service = null/]">
+            <conditionnalStyles predicateExpression="[self.oclIsTypeOf(OpaqueAction) and self.oclAsType(OpaqueAction).service = null/]">
               <style xsi:type="style:FlatContainerStyleDescription" arcWidth="25" arcHeight="25" borderSizeComputationExpression="1" showIcon="false" labelExpression="[self.name /]" roundedCorner="true" backgroundStyle="Liquid" foregroundColor="//@userColorsPalettes[name='UMLPalette']/@entries[name='lighter%20orange']">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_orange']"/>
                 <labelFormat>bold</labelFormat>
@@ -111,6 +123,27 @@
               </conditionnalStyles>
               <conditionnalStyles predicateExpression="[self.oclIsKindOf(IntegerValue)/]">
                 <style xsi:type="style:BundledImageDescription" showIcon="false" labelExpression="['init='+self.oclAsType(IntegerValue).value/]" labelAlignment="LEFT" resizeKind="NSEW">
+                  <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                </style>
+              </conditionnalStyles>
+            </subNodeMappings>
+            <subNodeMappings name="AD_CurrentValue" semanticCandidatesExpression="feature:currentValue" domainClass="iot2.Value">
+              <style xsi:type="style:BundledImageDescription" labelExpression="['init'+self.toString()/]" labelAlignment="LEFT" resizeKind="NSEW">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              </style>
+              <conditionnalStyles predicateExpression="[self.oclIsTypeOf(BooleanValue)/]">
+                <style xsi:type="style:BundledImageDescription" showIcon="false" labelExpression="['current='+self.oclAsType(BooleanValue).value/]" labelAlignment="LEFT" resizeKind="NSEW">
+                  <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                </style>
+              </conditionnalStyles>
+              <conditionnalStyles predicateExpression="[self.oclIsKindOf(IntegerValue)/]">
+                <style xsi:type="style:BundledImageDescription" showIcon="false" labelExpression="['current='+self.oclAsType(IntegerValue).value/]" labelAlignment="LEFT" resizeKind="NSEW">
                   <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                   <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                   <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
