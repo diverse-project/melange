@@ -2,19 +2,36 @@
 
 system MySystem {
 	sensor Thermometer {
-		provides operation getTemperature(out long temp) {
-			print("Thermometer::getTemperature()")
-			temp = 22
+		provides operation getTemp(out long temp) {
+			print("Thermometer::getTemperature")
+			temp = 25
+		}
+	}
+
+	sensor LightMeter {
+		provides operation getLuminosity(out long luminosity) {
+			print("LightMeter::getLuminosity")
+			luminosity = 99
 		}
 	}
 
 	actuator Heater {
-		provides operation increase() {
-			print("Heater::increase")
+		provides operation lowerTemp() {
+			print("Heater::lowerTemp")
 		}
 
-		provides operation decrease() {
-			print("Heater::decrease")
+		provides operation raiseTemp() {
+			print("Heater::raiseTemp")
+		}
+	}
+
+	actuator LightController {
+		provides operation turnLightOn() {
+			print("LightController::turnLightOn")
+		}
+
+		provides operation turnLightOff() {
+			print("LightController::turnLightOff")
 		}
 	}
 
@@ -28,28 +45,51 @@ system MySystem {
 
 	sketch {
 		activity SimpleSketch {
-			bool raiseTemp = false,
-			bool lowerTemp = false,
-			int temp = 0,
-			int threshold = 25
+			bool stop = false,
+			bool dontStop = true,
+			bool tooBright = true,
+			bool tooObscure = false,
+			bool tooHot = true,
+			bool tooCold = false
 
 			nodes {
-				initial init1 out (e1),
-				action a1 comp { raiseTemp = temp < threshold, lowerTemp = temp > threshold } in (e1) out (e2) service getTemperature,
-				decision d1 in (e2) out (e3,e4),
-				action a2 in (e3) out (e5) service increase,
-				action a3 in (e4) out (e6) service decrease,
-				merge m1 in (e5,e6) out (e7),
-				final final1 in (e7)
+				initial init out (e1),
+				merge m1 in(e1, e19) out (e2),
+				fork f1 in(e2) out (e3, e4),
+				action a1 in (e3) out (e5) service getTemp,
+				action a2 in (e4) out (e6) service getLuminosity,
+				decision d1 in (e5) out (e7, e8),
+				decision d2 in (e6) out (e9, e10),
+				action a3 in (e7) out (e11) service lowerTemp,
+				action a4 in (e8) out (e12) service raiseTemp,
+				action a5 in (e9) out (e13) service turnLightOff,
+				action a6 in (e10) out (e14) service turnLightOn,
+				merge m2 in (e11, e12) out (e15),
+				merge m3 in (e13, e14) out (e16),
+				join j1 in (e15, e16) out (e17),
+				decision d3 in (e17) out (e18, e19),
+				final fin in (e18)
 			}
 			edges {
-				flow e1 from init1 to a1,
-				flow e2 from a1 to d1,
-				flow e3 from d1 to a2 [raiseTemp],
-				flow e4 from d1 to a3 [lowerTemp],
-				flow e5 from a2 to m1,
-				flow e6 from a3 to m1,
-				flow e7 from m1 to final1
+				flow e1 from init to m1,
+				flow e2 from m1 to f1,
+				flow e3 from f1 to a1,
+				flow e4 from f1 to a2,
+				flow e5 from a1 to d1,
+				flow e6 from a2 to d2,
+				flow e7 from d1 to a3 [tooHot],
+				flow e8 from d1 to a4 [tooCold],
+				flow e9 from d2 to a5 [tooBright],
+				flow e10 from d2 to a6 [tooObscure],
+				flow e11 from a3 to m2,
+				flow e12 from a4 to m2,
+				flow e13 from a5 to m3,
+				flow e14 from a6 to m3,
+				flow e15 from m2 to j1,
+				flow e16 from m3 to j1,
+				flow e17 from j1 to d3,
+				flow e18 from d3 to fin [stop],
+				flow e19 from d3 to m1 [dontStop]
 			}
 		}
 	}
