@@ -31,8 +31,8 @@ class OpaqueActionAspect extends ActivityNodeAspect {
 				_self.service.parameters
 				.filter[#[ParameterMode::PARAM_IN, ParameterMode::PARAM_INOUT].contains(direction)]
 				.forEach[p |
-					val find = c.inputValues.findFirst[variable.name == p.identifier]
-					putVariable(p.identifier, _self.getValueAsString(find?.variable?.currentValue) ?: null)
+					val find = _self.activity.locals.findFirst[name == p.identifier]
+					putVariable(p.identifier, _self.getValueAsString(find?.currentValue) ?: null)
 				]
 			]
 
@@ -41,20 +41,18 @@ class OpaqueActionAspect extends ActivityNodeAspect {
 			_self.service.parameters
 			.filter[#[ParameterMode::PARAM_OUT, ParameterMode::PARAM_INOUT].contains(direction)]
 			.forEach[p |
-				val updated = c.inputValues.findFirst[variable.name == p.identifier]
+				val updated = _self.activity.locals.findFirst[name == p.identifier]
 				val retInteger = new Integer(Double::parseDouble(wrappedEnv.getVariable(p.identifier).toString) as int)
 
 				if (updated !== null)
-					updated.variable.currentValue = fact.createIntegerValue => [
+					updated.currentValue = fact.createIntegerValue => [
 						value = retInteger
 					]
 				else
-					c.inputValues += fact.createInputValue => [
-						variable = fact.createIntegerVariable => [
-							name = p.identifier
-							currentValue = fact.createIntegerValue => [
-								value = retInteger
-							]
+					_self.activity.locals += fact.createIntegerVariable => [
+						name = p.identifier
+						currentValue = fact.createIntegerValue => [
+							value = retInteger
 						]
 					]
 			]

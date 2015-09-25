@@ -4,7 +4,7 @@ system MySystem {
 	sensor Thermometer {
 		provides operation getTemperature(out long temp) {
 			print("Thermometer::getTemperature()")
-			temp = 3
+			temp = 22
 		}
 	}
 
@@ -30,7 +30,7 @@ system MySystem {
 		activity SimpleSketch {
 			bool raiseTemp = false,
 			bool lowerTemp = false,
-			int temp = 20,
+			int temp = 0,
 			int threshold = 25
 
 			nodes {

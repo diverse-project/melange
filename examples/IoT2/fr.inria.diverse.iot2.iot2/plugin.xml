@@ -11,11 +11,4 @@
             class="fr.inria.diverse.iot2.iot2.iot2.Iot2Package"
             genModel="model/IoT2.genmodel"/>
    </extension>
-
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated IoT2 -->
-      <parser
-            type="iot2"
-            class="fr.inria.diverse.iot2.iot2.iot2.util.Iot2ResourceFactoryImpl"/>
-   </extension>
 </plugin>

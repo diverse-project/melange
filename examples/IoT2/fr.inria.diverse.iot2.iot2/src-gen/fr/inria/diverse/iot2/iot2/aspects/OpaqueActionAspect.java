@@ -1,9 +1,9 @@
 package fr.inria.diverse.iot2.iot2.aspects;
 
+import fr.inria.diverse.iot2.iot2.iot2.Activity;
 import fr.inria.diverse.iot2.iot2.iot2.Iot2Factory;
 import fr.inria.diverse.iot2.iot2.iot2.BooleanValue;
 import fr.inria.diverse.iot2.iot2.iot2.Expression;
-import fr.inria.diverse.iot2.iot2.iot2.InputValue;
 import fr.inria.diverse.iot2.iot2.iot2.IntegerValue;
 import fr.inria.diverse.iot2.iot2.iot2.IntegerVariable;
 import fr.inria.diverse.iot2.iot2.iot2.OpaqueAction;
@@ -74,22 +74,19 @@ public class OpaqueActionAspect extends ActivityNodeAspect {
         };
         Iterable<ParameterDef> _filter = IterableExtensions.<ParameterDef>filter(_parameters, _function_1);
         final Consumer<ParameterDef> _function_2 = (ParameterDef p) -> {
-          final Function1<InputValue, Boolean> _function_3 = (InputValue it_1) -> {
-            Variable _variable = it_1.getVariable();
-            String _name = _variable.getName();
+          Activity _activity = _self.getActivity();
+          EList<Variable> _locals = _activity.getLocals();
+          final Function1<Variable, Boolean> _function_3 = (Variable it_1) -> {
+            String _name = it_1.getName();
             String _identifier = p.getIdentifier();
             return Boolean.valueOf(Objects.equal(_name, _identifier));
           };
-          final InputValue find = IterableExtensions.<InputValue>findFirst(c.inputValues, _function_3);
+          final Variable find = IterableExtensions.<Variable>findFirst(_locals, _function_3);
           String _identifier = p.getIdentifier();
           Object _elvis = null;
-          Variable _variable = null;
-          if (find!=null) {
-            _variable=find.getVariable();
-          }
           Value _currentValue = null;
-          if (_variable!=null) {
-            _currentValue=_variable.getCurrentValue();
+          if (find!=null) {
+            _currentValue=find.getCurrentValue();
           }
           String _valueAsString = OpaqueActionAspect.getValueAsString(_self, _currentValue);
           if (_valueAsString != null) {
@@ -112,45 +109,42 @@ public class OpaqueActionAspect extends ActivityNodeAspect {
       };
       Iterable<ParameterDef> _filter = IterableExtensions.<ParameterDef>filter(_parameters, _function_1);
       final Consumer<ParameterDef> _function_2 = (ParameterDef p) -> {
-        final Function1<InputValue, Boolean> _function_3 = (InputValue it) -> {
-          Variable _variable = it.getVariable();
-          String _name = _variable.getName();
+        Activity _activity = _self.getActivity();
+        EList<Variable> _locals = _activity.getLocals();
+        final Function1<Variable, Boolean> _function_3 = (Variable it) -> {
+          String _name = it.getName();
           String _identifier = p.getIdentifier();
           return Boolean.valueOf(Objects.equal(_name, _identifier));
         };
-        final InputValue updated = IterableExtensions.<InputValue>findFirst(c.inputValues, _function_3);
+        final Variable updated = IterableExtensions.<Variable>findFirst(_locals, _function_3);
         String _identifier = p.getIdentifier();
         Object _variable = wrappedEnv.getVariable(_identifier);
         String _string = _variable.toString();
         double _parseDouble = Double.parseDouble(_string);
         final Integer retInteger = new Integer(((int) _parseDouble));
         if ((updated != null)) {
-          Variable _variable_1 = updated.getVariable();
           IntegerValue _createIntegerValue = fact.createIntegerValue();
           final Procedure1<IntegerValue> _function_4 = (IntegerValue it) -> {
             it.setValue((retInteger).intValue());
           };
           IntegerValue _doubleArrow = ObjectExtensions.<IntegerValue>operator_doubleArrow(_createIntegerValue, _function_4);
-          _variable_1.setCurrentValue(_doubleArrow);
+          updated.setCurrentValue(_doubleArrow);
         } else {
-          InputValue _createInputValue = fact.createInputValue();
-          final Procedure1<InputValue> _function_5 = (InputValue it) -> {
-            IntegerVariable _createIntegerVariable = fact.createIntegerVariable();
-            final Procedure1<IntegerVariable> _function_6 = (IntegerVariable it_1) -> {
-              String _identifier_1 = p.getIdentifier();
-              it_1.setName(_identifier_1);
-              IntegerValue _createIntegerValue_1 = fact.createIntegerValue();
-              final Procedure1<IntegerValue> _function_7 = (IntegerValue it_2) -> {
-                it_2.setValue((retInteger).intValue());
-              };
-              IntegerValue _doubleArrow_1 = ObjectExtensions.<IntegerValue>operator_doubleArrow(_createIntegerValue_1, _function_7);
-              it_1.setCurrentValue(_doubleArrow_1);
+          Activity _activity_1 = _self.getActivity();
+          EList<Variable> _locals_1 = _activity_1.getLocals();
+          IntegerVariable _createIntegerVariable = fact.createIntegerVariable();
+          final Procedure1<IntegerVariable> _function_5 = (IntegerVariable it) -> {
+            String _identifier_1 = p.getIdentifier();
+            it.setName(_identifier_1);
+            IntegerValue _createIntegerValue_1 = fact.createIntegerValue();
+            final Procedure1<IntegerValue> _function_6 = (IntegerValue it_1) -> {
+              it_1.setValue((retInteger).intValue());
             };
-            IntegerVariable _doubleArrow_1 = ObjectExtensions.<IntegerVariable>operator_doubleArrow(_createIntegerVariable, _function_6);
-            it.setVariable(_doubleArrow_1);
+            IntegerValue _doubleArrow_1 = ObjectExtensions.<IntegerValue>operator_doubleArrow(_createIntegerValue_1, _function_6);
+            it.setCurrentValue(_doubleArrow_1);
           };
-          InputValue _doubleArrow_1 = ObjectExtensions.<InputValue>operator_doubleArrow(_createInputValue, _function_5);
-          c.inputValues.add(_doubleArrow_1);
+          IntegerVariable _doubleArrow_1 = ObjectExtensions.<IntegerVariable>operator_doubleArrow(_createIntegerVariable, _function_5);
+          _locals_1.add(_doubleArrow_1);
         }
       };
       _filter.forEach(_function_2);
