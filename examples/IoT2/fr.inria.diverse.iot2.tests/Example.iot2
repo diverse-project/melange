@@ -4,15 +4,14 @@ system MySystem {
 	sensor Thermometer {
 		provides operation getTemp(out long temp) {
 			print("Thermometer::getTemperature")
-			temp = rand(0, 10)
-			print(temp)
+			temp = rand(15, 30)
 		}
 	}
 
 	sensor LightMeter {
 		provides operation getLuminosity(out long lumen) {
 			print("LightMeter::getLuminosity")
-			lumen = 99
+			lumen = rand(1500, 1700)
 		}
 	}
 
@@ -63,7 +62,7 @@ system MySystem {
 			int lumenThreshold = 1600,
 			int i = 0,
 			int one = 1,
-			int nbIter = 3
+			int nbIter = 5
 
 			nodes {
 				initial init out (e1),
