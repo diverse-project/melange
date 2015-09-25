@@ -2359,17 +2359,17 @@ public class IoT2GrammarAccess extends AbstractGrammarElementFinder {
 	public class Expression_NumberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Expression_Number");
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cValueLUA_NUMBERTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		private final RuleCall cValueDoubleParserRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//Expression_Number:
-		//	value=LUA_NUMBER;
+		//	value=Double;
 		@Override public ParserRule getRule() { return rule; }
 
-		//value=LUA_NUMBER
+		//value=Double
 		public Assignment getValueAssignment() { return cValueAssignment; }
 
-		//LUA_NUMBER
-		public RuleCall getValueLUA_NUMBERTerminalRuleCall_0() { return cValueLUA_NUMBERTerminalRuleCall_0; }
+		//Double
+		public RuleCall getValueDoubleParserRuleCall_0() { return cValueDoubleParserRuleCall_0; }
 	}
 
 	public class Expression_VarArgsElements extends AbstractParserRuleElementFinder {
@@ -3013,6 +3013,10 @@ public class IoT2GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_7_4 = (Keyword)cGroup_7.eContents().get(4);
 		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
+		//// ****************************************************
+		//// TERMINALS
+		//// ****************************************************
+		//// Identifiers can be any string of letters, digits, and underscores, but mustn't begin with a digit.
 		//Activity:
 		//	{Activity} "activity" name=ID ("(" inputs+=Variable ("," inputs+=Variable)* ")")? "{" (locals+=Variable (","
 		//	locals+=Variable)*)? ("nodes" "{" nodes+=ActivityNode ("," nodes+=ActivityNode)* "}")? ("edges" "{"
@@ -4372,17 +4376,17 @@ public class IoT2GrammarAccess extends AbstractGrammarElementFinder {
 	public class IntegerValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IntegerValue");
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cValueEINTTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		private final RuleCall cValueINTTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//IntegerValue:
-		//	value=EINT;
+		//	value=INT;
 		@Override public ParserRule getRule() { return rule; }
 
-		//value=EINT
+		//value=INT
 		public Assignment getValueAssignment() { return cValueAssignment; }
 
-		//EINT
-		public RuleCall getValueEINTTerminalRuleCall_0() { return cValueEINTTerminalRuleCall_0; }
+		//INT
+		public RuleCall getValueINTTerminalRuleCall_0() { return cValueINTTerminalRuleCall_0; }
 	}
 
 	public class ControlFlowElements extends AbstractParserRuleElementFinder {
@@ -4463,6 +4467,34 @@ public class IoT2GrammarAccess extends AbstractGrammarElementFinder {
 
 		//"]"
 		public Keyword getRightSquareBracketKeyword_6_2() { return cRightSquareBracketKeyword_6_2; }
+	}
+
+	public class DoubleElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Double");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cINTTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final RuleCall cINTTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		
+		//Double returns ecore::EDouble:
+		//	INT ("." INT)?;
+		@Override public ParserRule getRule() { return rule; }
+
+		//INT ("." INT)?
+		public Group getGroup() { return cGroup; }
+
+		//INT
+		public RuleCall getINTTerminalRuleCall_0() { return cINTTerminalRuleCall_0; }
+
+		//("." INT)?
+		public Group getGroup_1() { return cGroup_1; }
+
+		//"."
+		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
+
+		//INT
+		public RuleCall getINTTerminalRuleCall_1_1() { return cINTTerminalRuleCall_1_1; }
 	}
 	
 	
@@ -4949,7 +4981,6 @@ public class IoT2GrammarAccess extends AbstractGrammarElementFinder {
 	private final Field_AddEntryToTable_BracketsElements pField_AddEntryToTable_Brackets;
 	private final Field_AddEntryToTableElements pField_AddEntryToTable;
 	private final Field_AppendEntryToTableElements pField_AppendEntryToTable;
-	private final TerminalRule tLUA_NUMBER;
 	private final ActivityElements pActivity;
 	private final ActivityNodeElements pActivityNode;
 	private final ActivityEdgeElements pActivityEdge;
@@ -4975,8 +5006,8 @@ public class IoT2GrammarAccess extends AbstractGrammarElementFinder {
 	private final BooleanVariableElements pBooleanVariable;
 	private final BooleanValueElements pBooleanValue;
 	private final IntegerValueElements pIntegerValue;
-	private final TerminalRule tEINT;
 	private final ControlFlowElements pControlFlow;
+	private final DoubleElements pDouble;
 	
 	private final Grammar grammar;
 
@@ -5066,7 +5097,6 @@ public class IoT2GrammarAccess extends AbstractGrammarElementFinder {
 		this.pField_AddEntryToTable_Brackets = new Field_AddEntryToTable_BracketsElements();
 		this.pField_AddEntryToTable = new Field_AddEntryToTableElements();
 		this.pField_AppendEntryToTable = new Field_AppendEntryToTableElements();
-		this.tLUA_NUMBER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LUA_NUMBER");
 		this.pActivity = new ActivityElements();
 		this.pActivityNode = new ActivityNodeElements();
 		this.pActivityEdge = new ActivityEdgeElements();
@@ -5092,8 +5122,8 @@ public class IoT2GrammarAccess extends AbstractGrammarElementFinder {
 		this.pBooleanVariable = new BooleanVariableElements();
 		this.pBooleanValue = new BooleanValueElements();
 		this.pIntegerValue = new IntegerValueElements();
-		this.tEINT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "EINT");
 		this.pControlFlow = new ControlFlowElements();
+		this.pDouble = new DoubleElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -5825,7 +5855,7 @@ public class IoT2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Expression_Number:
-	//	value=LUA_NUMBER;
+	//	value=Double;
 	public Expression_NumberElements getExpression_NumberAccess() {
 		return pExpression_Number;
 	}
@@ -5988,12 +6018,6 @@ public class IoT2GrammarAccess extends AbstractGrammarElementFinder {
 	//// TERMINALS
 	//// ****************************************************
 	//// Identifiers can be any string of letters, digits, and underscores, but mustn't begin with a digit.
-	//terminal LUA_NUMBER returns ecore::EDouble:
-	//	"0".."9"+ ("." "0".."9"+ (("E" | "e") "-"? "0".."9"+)?)? | "0x" ("0".."9" | "a".."f")+;
-	public TerminalRule getLUA_NUMBERRule() {
-		return tLUA_NUMBER;
-	} 
-
 	//Activity:
 	//	{Activity} "activity" name=ID ("(" inputs+=Variable ("," inputs+=Variable)* ")")? "{" (locals+=Variable (","
 	//	locals+=Variable)*)? ("nodes" "{" nodes+=ActivityNode ("," nodes+=ActivityNode)* "}")? ("edges" "{"
@@ -6245,7 +6269,7 @@ public class IoT2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IntegerValue:
-	//	value=EINT;
+	//	value=INT;
 	public IntegerValueElements getIntegerValueAccess() {
 		return pIntegerValue;
 	}
@@ -6253,12 +6277,6 @@ public class IoT2GrammarAccess extends AbstractGrammarElementFinder {
 	public ParserRule getIntegerValueRule() {
 		return getIntegerValueAccess().getRule();
 	}
-
-	//terminal EINT returns ecore::EInt:
-	//	"i" "0".."9" ("0".."9" | "_")*;
-	public TerminalRule getEINTRule() {
-		return tEINT;
-	} 
 
 	//ControlFlow:
 	//	"flow" name=ID "from" source=[ActivityNode] "to" target=[ActivityNode] ("[" guard=[BooleanVariable] "]")?;
@@ -6268,6 +6286,16 @@ public class IoT2GrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getControlFlowRule() {
 		return getControlFlowAccess().getRule();
+	}
+
+	//Double returns ecore::EDouble:
+	//	INT ("." INT)?;
+	public DoubleElements getDoubleAccess() {
+		return pDouble;
+	}
+	
+	public ParserRule getDoubleRule() {
+		return getDoubleAccess().getRule();
 	}
 
 	//terminal ID:

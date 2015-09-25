@@ -261,7 +261,7 @@ public abstract class AbstractIoT2SyntacticSequencer extends AbstractSyntacticSe
 	 *     (rule start) (ambiguity) '{' '}' '~=' (rule start)
 	 *     (rule start) (ambiguity) '{' '}' (rule start)
 	 *     (rule start) (ambiguity) '{' fields+=Field
-	 *     (rule start) (ambiguity) value=LUA_NUMBER
+	 *     (rule start) (ambiguity) value=Double
 	 *     (rule start) (ambiguity) value=STRING
 	 *     (rule start) (ambiguity) variable=ID
 	 *     (rule start) (ambiguity) {Expression_AccessArray.array=}
@@ -318,7 +318,7 @@ public abstract class AbstractIoT2SyntacticSequencer extends AbstractSyntacticSe
 	 *     (rule start) (ambiguity) '{' '}' ')' '[' (rule start)
 	 *     (rule start) (ambiguity) '{' '}' ')' (rule start)
 	 *     (rule start) (ambiguity) '{' fields+=Field
-	 *     (rule start) (ambiguity) value=LUA_NUMBER
+	 *     (rule start) (ambiguity) value=Double
 	 *     (rule start) (ambiguity) value=STRING
 	 *     (rule start) (ambiguity) {Expression_AccessArray.array=}
 	 *     (rule start) (ambiguity) {Expression_AccessMember.object=}

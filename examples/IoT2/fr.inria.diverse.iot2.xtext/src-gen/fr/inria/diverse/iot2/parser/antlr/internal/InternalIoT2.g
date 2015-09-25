@@ -3823,19 +3823,19 @@ ruleExpression_Number returns [EObject current=null]
     @after { leaveRule(); }:
 (
 (
-		lv_value_0_0=RULE_LUA_NUMBER
-		{
-			newLeafNode(lv_value_0_0, grammarAccess.getExpression_NumberAccess().getValueLUA_NUMBERTerminalRuleCall_0()); 
-		}
-		{
+		{ 
+	        newCompositeNode(grammarAccess.getExpression_NumberAccess().getValueDoubleParserRuleCall_0()); 
+	    }
+		lv_value_0_0=ruleDouble		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getExpression_NumberRule());
+	            $current = createModelElementForParent(grammarAccess.getExpression_NumberRule());
 	        }
-       		setWithLastConsumed(
+       		set(
        			$current, 
        			"value",
         		lv_value_0_0, 
-        		"LUA_NUMBER");
+        		"Double");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
@@ -6577,9 +6577,9 @@ ruleIntegerValue returns [EObject current=null]
     @after { leaveRule(); }:
 (
 (
-		lv_value_0_0=RULE_EINT
+		lv_value_0_0=RULE_INT
 		{
-			newLeafNode(lv_value_0_0, grammarAccess.getIntegerValueAccess().getValueEINTTerminalRuleCall_0()); 
+			newLeafNode(lv_value_0_0, grammarAccess.getIntegerValueAccess().getValueINTTerminalRuleCall_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -6589,7 +6589,7 @@ ruleIntegerValue returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_0_0, 
-        		"EINT");
+        		"INT");
 	    }
 
 )
@@ -6693,6 +6693,47 @@ ruleControlFlow returns [EObject current=null]
     }
 )?)
 ;
+
+
+
+
+
+// Entry rule entryRuleDouble
+entryRuleDouble returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getDoubleRule()); } 
+	 iv_ruleDouble=ruleDouble 
+	 { $current=$iv_ruleDouble.current.getText(); }  
+	 EOF 
+;
+
+// Rule Double
+ruleDouble returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(    this_INT_0=RULE_INT    {
+		$current.merge(this_INT_0);
+    }
+
+    { 
+    newLeafNode(this_INT_0, grammarAccess.getDoubleAccess().getINTTerminalRuleCall_0()); 
+    }
+(
+	kw='.' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getDoubleAccess().getFullStopKeyword_1_0()); 
+    }
+    this_INT_2=RULE_INT    {
+		$current.merge(this_INT_2);
+    }
+
+    { 
+    newLeafNode(this_INT_2, grammarAccess.getDoubleAccess().getINTTerminalRuleCall_1_1()); 
+    }
+)?)
+    ;
 
 
 
@@ -6982,10 +7023,6 @@ ruleBooleanBinaryOperator returns [Enumerator current=null]
 ));
 
 
-
-RULE_LUA_NUMBER : (('0'..'9')+ ('.' ('0'..'9')+ (('E'|'e') '-'? ('0'..'9')+)?)?|'0x' ('0'..'9'|'a'..'f')+);
-
-RULE_EINT : 'i' '0'..'9' ('0'..'9'|'_')*;
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

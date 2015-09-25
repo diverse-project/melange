@@ -221,6 +221,8 @@ public class IoT2Parser extends AbstractContentAssistParser {
 					put(grammarAccess.getBooleanVariableAccess().getGroup_3(), "rule__BooleanVariable__Group_3__0");
 					put(grammarAccess.getControlFlowAccess().getGroup(), "rule__ControlFlow__Group__0");
 					put(grammarAccess.getControlFlowAccess().getGroup_6(), "rule__ControlFlow__Group_6__0");
+					put(grammarAccess.getDoubleAccess().getGroup(), "rule__Double__Group__0");
+					put(grammarAccess.getDoubleAccess().getGroup_1(), "rule__Double__Group_1__0");
 					put(grammarAccess.getSystemAccess().getNameAssignment_1(), "rule__System__NameAssignment_1");
 					put(grammarAccess.getSystemAccess().getComponentsAssignment_3_0(), "rule__System__ComponentsAssignment_3_0");
 					put(grammarAccess.getSystemAccess().getComponentsAssignment_3_1(), "rule__System__ComponentsAssignment_3_1");

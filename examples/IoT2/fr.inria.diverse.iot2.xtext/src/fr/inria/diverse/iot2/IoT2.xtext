@@ -348,7 +348,7 @@ Expression_True:
 Expression_False:
     'false' {Expression_False};
 Expression_Number:
-    value=LUA_NUMBER;
+    value=Double;
 Expression_VarArgs:
     '...' {Expression_VarArgs};
 Expression_String:
@@ -424,12 +424,8 @@ Field_AppendEntryToTable:
 // TERMINALS
 // ****************************************************
 // Identifiers can be any string of letters, digits, and underscores, but mustn't begin with a digit.
- 
-terminal LUA_NUMBER returns ecore::EDouble:
-    ( ('0'..'9')+ ( '.' ('0'..'9')+ ( ('E'|'e') ('-')? ('0'..'9')+ )? )? ) |
-    ( '0x' ('0'..'9'|'a'..'f')+ );
 
-    Activity returns Activity:
+Activity returns Activity:
 	{Activity}
 	'activity'
 	name=ID ('(' inputs+=Variable ( "," inputs+=Variable)* ')' )?
@@ -562,10 +558,7 @@ BooleanValue returns BooleanValue:
 	value=EBoolean;
 
 IntegerValue returns IntegerValue:
-	value=EINT;
-
-terminal EINT returns ecore::EInt:
-	'i' '0'..'9' ('0'..'9'|'_')*;
+	value=INT;
 
 ControlFlow returns ControlFlow:
 	'flow'
@@ -573,3 +566,7 @@ ControlFlow returns ControlFlow:
 		'from' source=[ActivityNode]
 		'to' target=[ActivityNode]
 		('[' guard=[BooleanVariable] ']')?;
+
+Double returns ecore::EDouble:
+	(INT) ('.' INT)?
+;

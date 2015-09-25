@@ -824,7 +824,7 @@ public abstract class AbstractIoT2SemanticSequencer extends AbstractDelegatingSe
 	
 	/**
 	 * Constraint:
-	 *     value=LUA_NUMBER
+	 *     value=Double
 	 */
 	protected void sequence_Expression_Number(EObject context, Expression_Number semanticObject) {
 		if(errorAcceptor != null) {
@@ -833,7 +833,7 @@ public abstract class AbstractIoT2SemanticSequencer extends AbstractDelegatingSe
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getExpression_NumberAccess().getValueLUA_NUMBERTerminalRuleCall_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getExpression_NumberAccess().getValueDoubleParserRuleCall_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
@@ -1099,7 +1099,7 @@ public abstract class AbstractIoT2SemanticSequencer extends AbstractDelegatingSe
 	
 	/**
 	 * Constraint:
-	 *     value=EINT
+	 *     value=INT
 	 */
 	protected void sequence_IntegerValue(EObject context, IntegerValue semanticObject) {
 		if(errorAcceptor != null) {
@@ -1108,7 +1108,7 @@ public abstract class AbstractIoT2SemanticSequencer extends AbstractDelegatingSe
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getIntegerValueAccess().getValueEINTTerminalRuleCall_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getIntegerValueAccess().getValueINTTerminalRuleCall_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
