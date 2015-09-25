@@ -25,7 +25,6 @@ class OpaqueActionAspect extends ActivityNodeAspect {
 
 	def void execute(Context c) {
 		c.output.executedNodes.add(_self)
-		_self.expressions.forEach[e|e.execute(c)]
 		val fact = ActivitydiagramFactory::eINSTANCE
 		if (_self.service !== null) {
 			val wrappedEnv = new Environment => [
@@ -43,7 +42,7 @@ class OpaqueActionAspect extends ActivityNodeAspect {
 			.filter[#[ParameterMode::PARAM_OUT, ParameterMode::PARAM_INOUT].contains(direction)]
 			.forEach[p |
 				val updated = c.inputValues.findFirst[variable.name == p.identifier]
-				val retInteger = new Integer(wrappedEnv.getVariable(p.identifier).toString)
+				val retInteger = new Integer(Double::parseDouble(wrappedEnv.getVariable(p.identifier).toString) as int)
 
 				if (updated !== null)
 					updated.variable.currentValue = fact.createIntegerValue => [
@@ -60,6 +59,7 @@ class OpaqueActionAspect extends ActivityNodeAspect {
 					]
 			]
 		}
+		_self.expressions.forEach[e|e.execute(c)]
 		_self.sendOffers(_self.takeOfferdTokens)
 	}
 

@@ -49,22 +49,19 @@ public class OperationDefAspect {
     } catch (Exception e) {
     	// Chut !
     }
-    
     return _self_.lua;
   }
   
   protected static void _privk3_lua(final OperationDefAspectOperationDefAspectProperties _self_, final OperationDef _self, final Block lua) {
     _self_.lua = lua; try {
-    
-    			for (java.lang.reflect.Method m : _self.getClass().getMethods()) {
-    				if (m.getName().equals("set" + "Lua")
-    						&& m.getParameterTypes().length == 1) {
-    					m.invoke(_self, lua);
-    
-    				}
-    			}
-    		} catch (Exception e) {
-    			// Chut !
-    		} 
+    	for (java.lang.reflect.Method m : _self.getClass().getMethods()) {
+    		if (m.getName().equals("setLua")
+    				&& m.getParameterTypes().length == 1) {
+    			m.invoke(_self, lua);
+    		}
+    	}
+    } catch (Exception e) {
+    	// Chut !
+    }
   }
 }

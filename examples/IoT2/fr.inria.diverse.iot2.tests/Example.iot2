@@ -4,7 +4,7 @@ system MySystem {
 	sensor Thermometer {
 		provides operation getTemperature(out long temp) {
 			print("Thermometer::getTemperature()")
-			temp = "3"
+			temp = 3
 		}
 	}
 
@@ -29,11 +29,13 @@ system MySystem {
 	sketch {
 		activity SimpleSketch {
 			bool raiseTemp = false,
-			bool lowerTemp = false
+			bool lowerTemp = false,
+			int temp = 20,
+			int threshold = 25
 
 			nodes {
 				initial init1 out (e1),
-				action a1 comp { raiseTemp = !raiseTemp } in (e1) out (e2) service getTemperature,
+				action a1 comp { raiseTemp = temp < threshold, lowerTemp = temp > threshold } in (e1) out (e2) service getTemperature,
 				decision d1 in (e2) out (e3,e4),
 				action a2 in (e3) out (e5) service increase,
 				action a3 in (e4) out (e6) service decrease,

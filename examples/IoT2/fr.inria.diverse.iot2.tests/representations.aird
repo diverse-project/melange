@@ -337,12 +337,12 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@containerMappings[name='Services_Container']/@subContainerMappings[name='InterfaceDef_Container']"/>
           <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_HhlAt2FEEeW0SdYWRj90Cg" name="myOp1" outgoingEdges="_HhlA5WFEEeW0SdYWRj90Cg" incomingEdges="_6acV4GFEEeW6Cfb6DniK9w">
+            <target xmi:type="iot2:OperationDef" href="Example.iot2#/0/@services.0/@interface/@contains.0"/>
+            <semanticElements xmi:type="iot2:OperationDef" href="Example.iot2#/0/@services.0/@interface/@contains.0"/>
             <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_HhlAuGFEEeW0SdYWRj90Cg">
               <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@containerMappings[name='Services_Container']/@subContainerMappings[name='InterfaceDef_Container']/@subContainerMappings[name='OperationDefRep']/@style"/>
             </ownedStyle>
             <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@containerMappings[name='Services_Container']/@subContainerMappings[name='InterfaceDef_Container']/@subContainerMappings[name='OperationDefRep']"/>
-            <target xmi:type="iot2:OperationDef" href="Example.iot2#/0/@services.0/@interface/@contains.0"/>
-            <semanticElements xmi:type="iot2:OperationDef" href="Example.iot2#/0/@services.0/@interface/@contains.0"/>
           </ownedDiagramElements>
           <target xmi:type="iot2:InterfaceDef" href="Example.iot2#/0/@services.0/@interface"/>
           <semanticElements xmi:type="iot2:InterfaceDef" href="Example.iot2#/0/@services.0/@interface"/>
@@ -361,12 +361,12 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@containerMappings[name='Services_Container']/@subContainerMappings[name='InterfaceDef_Container']"/>
           <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_HhlAvWFEEeW0SdYWRj90Cg" name="myOp2" outgoingEdges="_HhlA6GFEEeW0SdYWRj90Cg" incomingEdges="_6adkAGFEEeW6Cfb6DniK9w">
+            <target xmi:type="iot2:OperationDef" href="Example.iot2#/0/@services.1/@interface/@contains.0"/>
+            <semanticElements xmi:type="iot2:OperationDef" href="Example.iot2#/0/@services.1/@interface/@contains.0"/>
             <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_HhlAvmFEEeW0SdYWRj90Cg">
               <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@containerMappings[name='Services_Container']/@subContainerMappings[name='InterfaceDef_Container']/@subContainerMappings[name='OperationDefRep']/@style"/>
             </ownedStyle>
             <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@containerMappings[name='Services_Container']/@subContainerMappings[name='InterfaceDef_Container']/@subContainerMappings[name='OperationDefRep']"/>
-            <target xmi:type="iot2:OperationDef" href="Example.iot2#/0/@services.1/@interface/@contains.0"/>
-            <semanticElements xmi:type="iot2:OperationDef" href="Example.iot2#/0/@services.1/@interface/@contains.0"/>
           </ownedDiagramElements>
           <target xmi:type="iot2:InterfaceDef" href="Example.iot2#/0/@services.1/@interface"/>
           <semanticElements xmi:type="iot2:InterfaceDef" href="Example.iot2#/0/@services.1/@interface"/>
@@ -375,40 +375,44 @@
         <semanticElements xmi:type="iot2:Service" href="Example.iot2#/0/@services.1"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_HhlAv2FEEeW0SdYWRj90Cg" name="IoT Sketch">
+        <target xmi:type="iot2:Sketch" href="Example.iot2#//@sketch"/>
+        <semanticElements xmi:type="iot2:Sketch" href="Example.iot2#//@sketch"/>
         <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_HhlAwGFEEeW0SdYWRj90Cg" foregroundColor="224,133,3">
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@containerMappings[name='Sketch_Container']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@containerMappings[name='Sketch_Container']"/>
         <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_HhlAwWFEEeW0SdYWRj90Cg" name="test1">
+          <target xmi:type="iot2:Activity" href="Example.iot2#//@sketch/@activity"/>
+          <semanticElements xmi:type="iot2:Activity" href="Example.iot2#//@sketch/@activity"/>
           <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_HhlAwmFEEeW0SdYWRj90Cg" labelSize="9" showIcon="false" borderSize="1" borderSizeComputationExpression="1" borderColor="114,73,110" backgroundStyle="Liquid" foregroundColor="245,239,244">
             <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@containerMappings[name='Sketch_Container']/@subContainerMappings[name='Activity_Container']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@containerMappings[name='Sketch_Container']/@subContainerMappings[name='Activity_Container']"/>
           <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_HhlAw2FEEeW0SdYWRj90Cg" name="a1" outgoingEdges="_HhlA3GFEEeW0SdYWRj90Cg _6acV4GFEEeW6Cfb6DniK9w" incomingEdges="_HhlA1mFEEeW0SdYWRj90Cg">
+            <target xmi:type="iot2:OpaqueAction" href="Example.iot2#//@sketch/@activity/@nodes.1"/>
+            <semanticElements xmi:type="iot2:OpaqueAction" href="Example.iot2#//@sketch/@activity/@nodes.1"/>
             <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_HhlAxGFEEeW0SdYWRj90Cg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" borderColor="224,133,3" backgroundStyle="Liquid" foregroundColor="254,238,214">
               <labelFormat>bold</labelFormat>
               <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@containerMappings[name='Sketch_Container']/@subContainerMappings[name='Activity_Container']/@subContainerMappings[name='AD_ExecutableNode']/@conditionnalStyles.0/@style"/>
             </ownedStyle>
             <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@containerMappings[name='Sketch_Container']/@subContainerMappings[name='Activity_Container']/@subContainerMappings[name='AD_ExecutableNode']"/>
-            <target xmi:type="iot2:OpaqueAction" href="Example.iot2#//@sketch/@activity/@nodes.1"/>
-            <semanticElements xmi:type="iot2:OpaqueAction" href="Example.iot2#//@sketch/@activity/@nodes.1"/>
           </ownedDiagramElements>
           <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_HhlAxWFEEeW0SdYWRj90Cg" name="a2" outgoingEdges="_HhlA32FEEeW0SdYWRj90Cg _6adkAGFEEeW6Cfb6DniK9w" incomingEdges="_HhlA2WFEEeW0SdYWRj90Cg">
+            <target xmi:type="iot2:DecisionNode" href="Example.iot2#//@sketch/@activity/@nodes.2"/>
+            <semanticElements xmi:type="iot2:DecisionNode" href="Example.iot2#//@sketch/@activity/@nodes.2"/>
             <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_HhlAxmFEEeW0SdYWRj90Cg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" borderColor="224,133,3" backgroundStyle="Liquid" foregroundColor="254,238,214">
               <labelFormat>bold</labelFormat>
               <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@containerMappings[name='Sketch_Container']/@subContainerMappings[name='Activity_Container']/@subContainerMappings[name='AD_ExecutableNode']/@conditionnalStyles.0/@style"/>
             </ownedStyle>
             <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@containerMappings[name='Sketch_Container']/@subContainerMappings[name='Activity_Container']/@subContainerMappings[name='AD_ExecutableNode']"/>
-            <target xmi:type="iot2:OpaqueAction" href="Example.iot2#//@sketch/@activity/@nodes.2"/>
-            <semanticElements xmi:type="iot2:OpaqueAction" href="Example.iot2#//@sketch/@activity/@nodes.2"/>
           </ownedDiagramElements>
           <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_HhlAx2FEEeW0SdYWRj90Cg" name="init1" outgoingEdges="_HhlA02FEEeW0SdYWRj90Cg" width="3" height="3" resizeKind="NSEW">
+            <target xmi:type="iot2:InitialNode" href="Example.iot2#//@sketch/@activity/@nodes.0"/>
+            <semanticElements xmi:type="iot2:InitialNode" href="Example.iot2#//@sketch/@activity/@nodes.0"/>
             <ownedStyle xmi:type="diagram:WorkspaceImage" xmi:id="_HhlAyGFEEeW0SdYWRj90Cg" showIcon="false" workspacePath="/fr.inria.diverse.iot2.design/images/InitNode.png">
               <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@containerMappings[name='Sketch_Container']/@subContainerMappings[name='Activity_Container']/@subNodeMappings[name='AD_ControlNode']/@conditionnalStyles.0/@style"/>
             </ownedStyle>
             <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@containerMappings[name='Sketch_Container']/@subContainerMappings[name='Activity_Container']/@subNodeMappings[name='AD_ControlNode']"/>
-            <target xmi:type="iot2:InitialNode" href="Example.iot2#//@sketch/@activity/@nodes.0"/>
-            <semanticElements xmi:type="iot2:InitialNode" href="Example.iot2#//@sketch/@activity/@nodes.0"/>
           </ownedDiagramElements>
           <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_HhlAyWFEEeW0SdYWRj90Cg" name="fork1" outgoingEdges="_HhlA1mFEEeW0SdYWRj90Cg _HhlA2WFEEeW0SdYWRj90Cg" incomingEdges="_HhlA02FEEeW0SdYWRj90Cg" width="3" height="1" resizeKind="EAST_WEST">
             <ownedStyle xmi:type="diagram:Square" xmi:id="_HhlAymFEEeW0SdYWRj90Cg" showIcon="false" borderColor="39,76,114" width="3" height="1" color="114,159,207">
@@ -423,124 +427,684 @@
             <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@containerMappings[name='Sketch_Container']/@subContainerMappings[name='Activity_Container']/@subNodeMappings[name='AD_ControlNode']"/>
           </ownedDiagramElements>
           <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_HhlAzWFEEeW0SdYWRj90Cg" name="final1" incomingEdges="_HhlA4mFEEeW0SdYWRj90Cg" width="3" height="3" resizeKind="NSEW">
+            <target xmi:type="iot2:OpaqueAction" href="Example.iot2#//@sketch/@activity/@nodes.3"/>
+            <semanticElements xmi:type="iot2:OpaqueAction" href="Example.iot2#//@sketch/@activity/@nodes.3"/>
             <ownedStyle xmi:type="diagram:WorkspaceImage" xmi:id="_HhlAzmFEEeW0SdYWRj90Cg" showIcon="false" workspacePath="/fr.inria.diverse.iot2.design/images/FinalNode.png">
               <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@containerMappings[name='Sketch_Container']/@subContainerMappings[name='Activity_Container']/@subNodeMappings[name='AD_ControlNode']/@conditionnalStyles.3/@style"/>
             </ownedStyle>
             <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@containerMappings[name='Sketch_Container']/@subContainerMappings[name='Activity_Container']/@subNodeMappings[name='AD_ControlNode']"/>
-            <target xmi:type="iot2:OpaqueAction" href="Example.iot2#//@sketch/@activity/@nodes.3"/>
-            <semanticElements xmi:type="iot2:OpaqueAction" href="Example.iot2#//@sketch/@activity/@nodes.3"/>
           </ownedDiagramElements>
-          <target xmi:type="iot2:Activity" href="Example.iot2#//@sketch/@activity"/>
-          <semanticElements xmi:type="iot2:Activity" href="Example.iot2#//@sketch/@activity"/>
         </ownedDiagramElements>
-        <target xmi:type="iot2:Sketch" href="Example.iot2#//@sketch"/>
-        <semanticElements xmi:type="iot2:Sketch" href="Example.iot2#//@sketch"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_HhlAz2FEEeW0SdYWRj90Cg" name="Link" incomingEdges="_HhlA5WFEEeW0SdYWRj90Cg">
+        <target xmi:type="iot2:Block" href="Example.iot2#/0/@services.0/@interface/@contains.0/@lua"/>
+        <semanticElements xmi:type="iot2:Block" href="Example.iot2#/0/@services.0/@interface/@contains.0/@lua"/>
         <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_HhlA0GFEEeW0SdYWRj90Cg">
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@containerMappings[name='LuaBlock_Rep']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@containerMappings[name='LuaBlock_Rep']"/>
-        <target xmi:type="iot2:Block" href="Example.iot2#/0/@services.0/@interface/@contains.0/@lua"/>
-        <semanticElements xmi:type="iot2:Block" href="Example.iot2#/0/@services.0/@interface/@contains.0/@lua"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_HhlA0WFEEeW0SdYWRj90Cg" name="Link" incomingEdges="_HhlA6GFEEeW0SdYWRj90Cg">
+        <target xmi:type="iot2:Block" href="Example.iot2#/0/@services.1/@interface/@contains.0/@lua"/>
+        <semanticElements xmi:type="iot2:Block" href="Example.iot2#/0/@services.1/@interface/@contains.0/@lua"/>
         <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_HhlA0mFEEeW0SdYWRj90Cg">
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@containerMappings[name='LuaBlock_Rep']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@containerMappings[name='LuaBlock_Rep']"/>
-        <target xmi:type="iot2:Block" href="Example.iot2#/0/@services.1/@interface/@contains.0/@lua"/>
-        <semanticElements xmi:type="iot2:Block" href="Example.iot2#/0/@services.1/@interface/@contains.0/@lua"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_HhlA02FEEeW0SdYWRj90Cg" name="e1" sourceNode="_HhlAx2FEEeW0SdYWRj90Cg" targetNode="_HhlAyWFEEeW0SdYWRj90Cg">
+        <target xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.0"/>
+        <semanticElements xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.0"/>
         <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_HhlA1GFEEeW0SdYWRj90Cg" routingStyle="manhattan">
           <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@edgeMappings[name='AD_ControlFlow']/@style"/>
           <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_HhlA1WFEEeW0SdYWRj90Cg" showIcon="false"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@edgeMappings[name='AD_ControlFlow']"/>
-        <target xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.0"/>
-        <semanticElements xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.0"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_HhlA1mFEEeW0SdYWRj90Cg" name="e2" sourceNode="_HhlAyWFEEeW0SdYWRj90Cg" targetNode="_HhlAw2FEEeW0SdYWRj90Cg">
+        <target xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.1"/>
+        <semanticElements xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.1"/>
         <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_HhlA12FEEeW0SdYWRj90Cg" routingStyle="manhattan">
           <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@edgeMappings[name='AD_ControlFlow']/@style"/>
           <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_HhlA2GFEEeW0SdYWRj90Cg" showIcon="false"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@edgeMappings[name='AD_ControlFlow']"/>
-        <target xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.1"/>
-        <semanticElements xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.1"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_HhlA2WFEEeW0SdYWRj90Cg" name="e3" sourceNode="_HhlAyWFEEeW0SdYWRj90Cg" targetNode="_HhlAxWFEEeW0SdYWRj90Cg">
+        <target xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.2"/>
+        <semanticElements xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.2"/>
         <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_HhlA2mFEEeW0SdYWRj90Cg" routingStyle="manhattan">
           <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@edgeMappings[name='AD_ControlFlow']/@style"/>
           <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_HhlA22FEEeW0SdYWRj90Cg" showIcon="false"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@edgeMappings[name='AD_ControlFlow']"/>
-        <target xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.2"/>
-        <semanticElements xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.2"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_HhlA3GFEEeW0SdYWRj90Cg" name="e4" sourceNode="_HhlAw2FEEeW0SdYWRj90Cg" targetNode="_HhlAy2FEEeW0SdYWRj90Cg">
+        <target xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.3"/>
+        <semanticElements xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.3"/>
         <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_HhlA3WFEEeW0SdYWRj90Cg" routingStyle="manhattan">
           <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@edgeMappings[name='AD_ControlFlow']/@style"/>
           <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_HhlA3mFEEeW0SdYWRj90Cg" showIcon="false"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@edgeMappings[name='AD_ControlFlow']"/>
-        <target xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.3"/>
-        <semanticElements xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.3"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_HhlA32FEEeW0SdYWRj90Cg" name="e5" sourceNode="_HhlAxWFEEeW0SdYWRj90Cg" targetNode="_HhlAy2FEEeW0SdYWRj90Cg">
+        <target xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.4"/>
+        <semanticElements xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.4"/>
         <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_HhlA4GFEEeW0SdYWRj90Cg" routingStyle="manhattan">
           <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@edgeMappings[name='AD_ControlFlow']/@style"/>
           <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_HhlA4WFEEeW0SdYWRj90Cg" showIcon="false"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@edgeMappings[name='AD_ControlFlow']"/>
-        <target xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.4"/>
-        <semanticElements xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.4"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_HhlA4mFEEeW0SdYWRj90Cg" name="e6" sourceNode="_HhlAy2FEEeW0SdYWRj90Cg" targetNode="_HhlAzWFEEeW0SdYWRj90Cg">
+        <target xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.5"/>
+        <semanticElements xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.5"/>
         <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_HhlA42FEEeW0SdYWRj90Cg" routingStyle="manhattan">
           <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@edgeMappings[name='AD_ControlFlow']/@style"/>
           <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_HhlA5GFEEeW0SdYWRj90Cg" showIcon="false"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@edgeMappings[name='AD_ControlFlow']"/>
-        <target xmi:type="iot2:ControlFlow" href="Example.iot2#/0/@sketch/@activity/@edges.5"/>
-        <semanticElements xmi:type="iot2:ControlFlow" href="Example.iot2#/0/@sketch/@activity/@edges.5"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_HhlA5WFEEeW0SdYWRj90Cg" sourceNode="_HhlAt2FEEeW0SdYWRj90Cg" targetNode="_HhlAz2FEEeW0SdYWRj90Cg">
+        <target xmi:type="iot2:OperationDef" href="Example.iot2#/0/@services.0/@interface/@contains.0"/>
         <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_HhlA5mFEEeW0SdYWRj90Cg" size="2">
           <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@edgeMappings[name='OpToLua']/@style"/>
           <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_HhlA52FEEeW0SdYWRj90Cg"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@edgeMappings[name='OpToLua']"/>
-        <target xmi:type="iot2:OperationDef" href="Example.iot2#/0/@services.0/@interface/@contains.0"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_HhlA6GFEEeW0SdYWRj90Cg" sourceNode="_HhlAvWFEEeW0SdYWRj90Cg" targetNode="_HhlA0WFEEeW0SdYWRj90Cg">
+        <target xmi:type="iot2:OperationDef" href="Example.iot2#/0/@services.1/@interface/@contains.0"/>
         <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_HhlA6WFEEeW0SdYWRj90Cg" size="2">
           <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@edgeMappings[name='OpToLua']/@style"/>
           <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_HhlA6mFEEeW0SdYWRj90Cg"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@edgeMappings[name='OpToLua']"/>
-        <target xmi:type="iot2:OperationDef" href="Example.iot2#/0/@services.1/@interface/@contains.0"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_6acV4GFEEeW6Cfb6DniK9w" name="calledService" sourceNode="_HhlAw2FEEeW0SdYWRj90Cg" targetNode="_HhlAt2FEEeW0SdYWRj90Cg">
+        <target xmi:type="iot2:OpaqueAction" href="Example.iot2#//@sketch/@activity/@nodes.1"/>
         <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_6acV4WFEEeW6Cfb6DniK9w" size="2">
           <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@edgeMappings[name='OaToOperationDef']/@style"/>
           <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_6acV4mFEEeW6Cfb6DniK9w"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@edgeMappings[name='OaToOperationDef']"/>
-        <target xmi:type="iot2:OpaqueAction" href="Example.iot2#//@sketch/@activity/@nodes.1"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_6adkAGFEEeW6Cfb6DniK9w" name="calledService" sourceNode="_HhlAxWFEEeW0SdYWRj90Cg" targetNode="_HhlAvWFEEeW0SdYWRj90Cg">
+        <target xmi:type="iot2:DecisionNode" href="Example.iot2#//@sketch/@activity/@nodes.2"/>
         <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_6aeLEGFEEeW6Cfb6DniK9w" size="2">
           <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@edgeMappings[name='OaToOperationDef']/@style"/>
           <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_6aeLEWFEEeW6Cfb6DniK9w"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer/@edgeMappings[name='OaToOperationDef']"/>
-        <target xmi:type="iot2:OpaqueAction" href="Example.iot2#//@sketch/@activity/@nodes.2"/>
       </ownedDiagramElements>
       <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']"/>
       <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_HhlA62FEEeW0SdYWRj90Cg"/>
       <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Diagram']/@defaultLayer"/>
+      <target xmi:type="iot2:System" href="Example.iot2#/"/>
+    </ownedRepresentations>
+    <ownedRepresentations xmi:type="diagram:DSemanticDiagram" xmi:id="_0f3_EGNsEeWQALQ85Hytwg" name="SimpleSketch">
+      <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_0f3_EWNsEeWQALQ85Hytwg" source="DANNOTATION_CUSTOMIZATION_KEY">
+        <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_0f3_EmNsEeWQALQ85Hytwg"/>
+      </ownedAnnotationEntries>
+      <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_0f-swGNsEeWQALQ85Hytwg" source="GMF_DIAGRAMS">
+        <data xmi:type="notation:Diagram" xmi:id="_0f-swWNsEeWQALQ85Hytwg" type="Sirius" element="_0f3_EGNsEeWQALQ85Hytwg" measurementUnit="Pixel">
+          <children xmi:type="notation:Node" xmi:id="_0gGBgGNsEeWQALQ85Hytwg" type="2002" element="_0f3_E2NsEeWQALQ85Hytwg">
+            <children xmi:type="notation:Node" xmi:id="_0gIdwGNsEeWQALQ85Hytwg" type="5006"/>
+            <children xmi:type="notation:Node" xmi:id="_0gJE0GNsEeWQALQ85Hytwg" type="7001">
+              <children xmi:type="notation:Node" xmi:id="_0gK6AGNsEeWQALQ85Hytwg" type="3008" element="_0f3_FWNsEeWQALQ85Hytwg">
+                <children xmi:type="notation:Node" xmi:id="_0gLhEGNsEeWQALQ85Hytwg" type="5005"/>
+                <children xmi:type="notation:Node" xmi:id="_0gMIIGNsEeWQALQ85Hytwg" type="7002">
+                  <styles xmi:type="notation:SortingStyle" xmi:id="_0gMIIWNsEeWQALQ85Hytwg"/>
+                  <styles xmi:type="notation:FilteringStyle" xmi:id="_0gMIImNsEeWQALQ85Hytwg"/>
+                </children>
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_0gK6AWNsEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8" bold="true"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0gK6AmNsEeWQALQ85Hytwg" x="364" y="390"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_0gMII2NsEeWQALQ85Hytwg" type="3008" element="_0f3_F2NsEeWQALQ85Hytwg">
+                <children xmi:type="notation:Node" xmi:id="_0gMvMGNsEeWQALQ85Hytwg" type="5005"/>
+                <children xmi:type="notation:Node" xmi:id="_0gMvMWNsEeWQALQ85Hytwg" type="7002">
+                  <styles xmi:type="notation:SortingStyle" xmi:id="_0gMvMmNsEeWQALQ85Hytwg"/>
+                  <styles xmi:type="notation:FilteringStyle" xmi:id="_0gMvM2NsEeWQALQ85Hytwg"/>
+                </children>
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_0gMIJGNsEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8" bold="true"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0gMIJWNsEeWQALQ85Hytwg" x="271" y="170"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_0gNWQGNsEeWQALQ85Hytwg" type="3008" element="_0f3_GWNsEeWQALQ85Hytwg">
+                <children xmi:type="notation:Node" xmi:id="_0gNWQ2NsEeWQALQ85Hytwg" type="5005"/>
+                <children xmi:type="notation:Node" xmi:id="_0gNWRGNsEeWQALQ85Hytwg" type="7002">
+                  <styles xmi:type="notation:SortingStyle" xmi:id="_0gN9UGNsEeWQALQ85Hytwg"/>
+                  <styles xmi:type="notation:FilteringStyle" xmi:id="_0gN9UWNsEeWQALQ85Hytwg"/>
+                </children>
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_0gNWQWNsEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8" bold="true"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0gNWQmNsEeWQALQ85Hytwg" x="475" y="170"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_0gN9UmNsEeWQALQ85Hytwg" type="3009" element="_0f3_G2NsEeWQALQ85Hytwg">
+                <children xmi:type="notation:Node" xmi:id="_0gOkYGNsEeWQALQ85Hytwg" type="5004"/>
+                <children xmi:type="notation:Node" xmi:id="_0gPLcGNsEeWQALQ85Hytwg" type="7003">
+                  <children xmi:type="notation:Node" xmi:id="_0gd08GNsEeWQALQ85Hytwg" type="3010" element="_0f3_HWNsEeWQALQ85Hytwg">
+                    <styles xmi:type="notation:FontStyle" xmi:id="_0gd08WNsEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8"/>
+                    <layoutConstraint xmi:type="notation:Location" xmi:id="_0gd08mNsEeWQALQ85Hytwg"/>
+                  </children>
+                  <styles xmi:type="notation:SortingStyle" xmi:id="_0gPLcWNsEeWQALQ85Hytwg"/>
+                  <styles xmi:type="notation:FilteringStyle" xmi:id="_0gPLcmNsEeWQALQ85Hytwg"/>
+                </children>
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_0gN9U2NsEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0gN9VGNsEeWQALQ85Hytwg" x="31" y="30"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_0gPygGNsEeWQALQ85Hytwg" type="3009" element="_0f3_H2NsEeWQALQ85Hytwg">
+                <children xmi:type="notation:Node" xmi:id="_0gPyg2NsEeWQALQ85Hytwg" type="5004"/>
+                <children xmi:type="notation:Node" xmi:id="_0gQZkGNsEeWQALQ85Hytwg" type="7003">
+                  <children xmi:type="notation:Node" xmi:id="_0gecAGNsEeWQALQ85Hytwg" type="3010" element="_0f3_IWNsEeWQALQ85Hytwg">
+                    <styles xmi:type="notation:FontStyle" xmi:id="_0gecAWNsEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8"/>
+                    <layoutConstraint xmi:type="notation:Location" xmi:id="_0gecAmNsEeWQALQ85Hytwg"/>
+                  </children>
+                  <styles xmi:type="notation:SortingStyle" xmi:id="_0gQZkWNsEeWQALQ85Hytwg"/>
+                  <styles xmi:type="notation:FilteringStyle" xmi:id="_0gQZkmNsEeWQALQ85Hytwg"/>
+                </children>
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_0gPygWNsEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0gPygmNsEeWQALQ85Hytwg" x="127" y="30"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_0gRAoGNsEeWQALQ85Hytwg" type="3007" element="_0f3_I2NsEeWQALQ85Hytwg">
+                <children xmi:type="notation:Node" xmi:id="_0gSOwGNsEeWQALQ85Hytwg" type="5003">
+                  <layoutConstraint xmi:type="notation:Location" xmi:id="_0gSOwWNsEeWQALQ85Hytwg" x="31"/>
+                </children>
+                <children xmi:type="notation:Node" xmi:id="_0gfDEGNsEeWQALQ85Hytwg" type="3005" element="_0f3_JGNsEeWQALQ85Hytwg">
+                  <styles xmi:type="notation:ShapeStyle" xmi:id="_0gfDEWNsEeWQALQ85Hytwg" fontName="Cantarell"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0gfDEmNsEeWQALQ85Hytwg"/>
+                </children>
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_0gRAoWNsEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0gRAomNsEeWQALQ85Hytwg" x="431" y="522" width="30" height="30"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_0gaxoGNsEeWQALQ85Hytwg" type="3007" element="_0f3_JWNsEeWQALQ85Hytwg">
+                <children xmi:type="notation:Node" xmi:id="_0gbYsGNsEeWQALQ85Hytwg" type="5003">
+                  <layoutConstraint xmi:type="notation:Location" xmi:id="_0gbYsWNsEeWQALQ85Hytwg" x="31"/>
+                </children>
+                <children xmi:type="notation:Node" xmi:id="_0gfqIGNsEeWQALQ85Hytwg" type="3017" element="_0f3_JmNsEeWQALQ85Hytwg">
+                  <styles xmi:type="notation:ShapeStyle" xmi:id="_0gfqIWNsEeWQALQ85Hytwg" fontName="Cantarell"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0gfqImNsEeWQALQ85Hytwg"/>
+                </children>
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_0gaxoWNsEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0gaxomNsEeWQALQ85Hytwg" x="431" y="306" width="30" height="30"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_0gbYsmNsEeWQALQ85Hytwg" type="3007" element="_0f3_J2NsEeWQALQ85Hytwg">
+                <children xmi:type="notation:Node" xmi:id="_0gb_wGNsEeWQALQ85Hytwg" type="5003">
+                  <layoutConstraint xmi:type="notation:Location" xmi:id="_0gb_wWNsEeWQALQ85Hytwg" x="21"/>
+                </children>
+                <children xmi:type="notation:Node" xmi:id="_0ggRMGNsEeWQALQ85Hytwg" type="3017" element="_0f3_KGNsEeWQALQ85Hytwg">
+                  <styles xmi:type="notation:ShapeStyle" xmi:id="_0ggRMWNsEeWQALQ85Hytwg" fontName="Cantarell"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0ggRMmNsEeWQALQ85Hytwg"/>
+                </children>
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_0gbYs2NsEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0gbYtGNsEeWQALQ85Hytwg" x="436" y="90" width="20" height="20"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_0gb_wmNsEeWQALQ85Hytwg" type="3007" element="_0f4mIGNsEeWQALQ85Hytwg">
+                <children xmi:type="notation:Node" xmi:id="_0gcm0GNsEeWQALQ85Hytwg" type="5003">
+                  <layoutConstraint xmi:type="notation:Location" xmi:id="_0gcm0WNsEeWQALQ85Hytwg" x="31"/>
+                </children>
+                <children xmi:type="notation:Node" xmi:id="_0ggRM2NsEeWQALQ85Hytwg" type="3005" element="_0f4mIWNsEeWQALQ85Hytwg">
+                  <styles xmi:type="notation:ShapeStyle" xmi:id="_0ggRNGNsEeWQALQ85Hytwg" fontName="Cantarell"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0ggRNWNsEeWQALQ85Hytwg"/>
+                </children>
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_0gb_w2NsEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0gb_xGNsEeWQALQ85Hytwg" x="431" y="30" width="30" height="30"/>
+              </children>
+              <styles xmi:type="notation:SortingStyle" xmi:id="_0gJE0WNsEeWQALQ85Hytwg"/>
+              <styles xmi:type="notation:FilteringStyle" xmi:id="_0gJE0mNsEeWQALQ85Hytwg"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_0gGBgWNsEeWQALQ85Hytwg" fontName="Cantarell"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0gGBgmNsEeWQALQ85Hytwg"/>
+          </children>
+          <styles xmi:type="notation:DiagramStyle" xmi:id="_0f-swmNsEeWQALQ85Hytwg"/>
+          <edges xmi:type="notation:Edge" xmi:id="_0gqpQGNsEeWQALQ85Hytwg" type="4001" element="_0f4mImNsEeWQALQ85Hytwg" source="_0gRAoGNsEeWQALQ85Hytwg" target="_0gK6AGNsEeWQALQ85Hytwg">
+            <children xmi:type="notation:Node" xmi:id="_0grQUGNsEeWQALQ85Hytwg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0grQUWNsEeWQALQ85Hytwg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_0gr3YGNsEeWQALQ85Hytwg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0gr3YWNsEeWQALQ85Hytwg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_0gr3YmNsEeWQALQ85Hytwg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0gr3Y2NsEeWQALQ85Hytwg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_0gqpQWNsEeWQALQ85Hytwg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_0gqpQmNsEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_0gqpQ2NsEeWQALQ85Hytwg" points="[0, -15, 0, 95]$[0, -75, 0, 35]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_0gzMIGNsEeWQALQ85Hytwg" id="(0.5,0.0)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_0gzMIWNsEeWQALQ85Hytwg" id="(0.49696969696969695,1.0)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_0gzzMGNsEeWQALQ85Hytwg" type="4001" element="_0f4mJWNsEeWQALQ85Hytwg" source="_0gK6AGNsEeWQALQ85Hytwg" target="_0gaxoGNsEeWQALQ85Hytwg">
+            <children xmi:type="notation:Node" xmi:id="_0gzzNGNsEeWQALQ85Hytwg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0gzzNWNsEeWQALQ85Hytwg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_0gzzNmNsEeWQALQ85Hytwg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0gzzN2NsEeWQALQ85Hytwg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_0g0aQGNsEeWQALQ85Hytwg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0g0aQWNsEeWQALQ85Hytwg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_0gzzMWNsEeWQALQ85Hytwg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_0gzzMmNsEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_0gzzM2NsEeWQALQ85Hytwg" points="[0, -35, 0, 75]$[0, -95, 0, 15]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_0g0aQmNsEeWQALQ85Hytwg" id="(0.5,0.5)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_0g0aQ2NsEeWQALQ85Hytwg" id="(0.5,0.5)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_0g0aRGNsEeWQALQ85Hytwg" type="4001" element="_0f4mKGNsEeWQALQ85Hytwg" source="_0gaxoGNsEeWQALQ85Hytwg" target="_0gMII2NsEeWQALQ85Hytwg">
+            <children xmi:type="notation:Node" xmi:id="_0g1BUGNsEeWQALQ85Hytwg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0g1BUWNsEeWQALQ85Hytwg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_0g1BUmNsEeWQALQ85Hytwg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0g1BU2NsEeWQALQ85Hytwg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_0g1BVGNsEeWQALQ85Hytwg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0g1BVWNsEeWQALQ85Hytwg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_0g0aRWNsEeWQALQ85Hytwg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_0g0aRmNsEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_0g0aR2NsEeWQALQ85Hytwg" points="[0, 0, 105, 60]$[-105, -60, 0, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_0g1BVmNsEeWQALQ85Hytwg" id="(0.5,0.0)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_0g1BV2NsEeWQALQ85Hytwg" id="(0.5,1.0)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_0g1BWGNsEeWQALQ85Hytwg" type="4001" element="_0f4mK2NsEeWQALQ85Hytwg" source="_0gaxoGNsEeWQALQ85Hytwg" target="_0gNWQGNsEeWQALQ85Hytwg">
+            <children xmi:type="notation:Node" xmi:id="_0g1oYGNsEeWQALQ85Hytwg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0g1oYWNsEeWQALQ85Hytwg" x="24" y="18"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_0g1oYmNsEeWQALQ85Hytwg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0g1oY2NsEeWQALQ85Hytwg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_0g1oZGNsEeWQALQ85Hytwg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0g1oZWNsEeWQALQ85Hytwg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_0g1BWWNsEeWQALQ85Hytwg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_0g1BWmNsEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_0g1BW2NsEeWQALQ85Hytwg" points="[0, 0, -105, 60]$[105, -60, 0, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_0g1oZmNsEeWQALQ85Hytwg" id="(0.5,0.0)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_0g1oZ2NsEeWQALQ85Hytwg" id="(0.5,1.0)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_0g1oaGNsEeWQALQ85Hytwg" type="4001" element="_0f4mLmNsEeWQALQ85Hytwg" source="_0gMII2NsEeWQALQ85Hytwg" target="_0gbYsmNsEeWQALQ85Hytwg">
+            <children xmi:type="notation:Node" xmi:id="_0g2PcGNsEeWQALQ85Hytwg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0g2PcWNsEeWQALQ85Hytwg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_0g2PcmNsEeWQALQ85Hytwg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0g2Pc2NsEeWQALQ85Hytwg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_0g2PdGNsEeWQALQ85Hytwg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0g2PdWNsEeWQALQ85Hytwg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_0g1oaWNsEeWQALQ85Hytwg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_0g1oamNsEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_0g1oa2NsEeWQALQ85Hytwg" points="[0, 0, -105, 60]$[105, -60, 0, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_0g22gGNsEeWQALQ85Hytwg" id="(0.5,0.0)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_0g22gWNsEeWQALQ85Hytwg" id="(0.5,1.0)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_0g22gmNsEeWQALQ85Hytwg" type="4001" element="_0f4mMWNsEeWQALQ85Hytwg" source="_0gNWQGNsEeWQALQ85Hytwg" target="_0gbYsmNsEeWQALQ85Hytwg">
+            <children xmi:type="notation:Node" xmi:id="_0g22hmNsEeWQALQ85Hytwg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0g22h2NsEeWQALQ85Hytwg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_0g22iGNsEeWQALQ85Hytwg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0g22iWNsEeWQALQ85Hytwg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_0g22imNsEeWQALQ85Hytwg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0g22i2NsEeWQALQ85Hytwg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_0g22g2NsEeWQALQ85Hytwg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_0g22hGNsEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_0g22hWNsEeWQALQ85Hytwg" points="[0, 0, 105, 60]$[-105, -60, 0, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_0g3dkGNsEeWQALQ85Hytwg" id="(0.5,0.0)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_0g3dkWNsEeWQALQ85Hytwg" id="(0.5,1.0)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_0g3dkmNsEeWQALQ85Hytwg" type="4001" element="_0f4mNGNsEeWQALQ85Hytwg" source="_0gbYsmNsEeWQALQ85Hytwg" target="_0gb_wmNsEeWQALQ85Hytwg">
+            <children xmi:type="notation:Node" xmi:id="_0g3dlmNsEeWQALQ85Hytwg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0g3dl2NsEeWQALQ85Hytwg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_0g3dmGNsEeWQALQ85Hytwg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0g3dmWNsEeWQALQ85Hytwg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_0g3dmmNsEeWQALQ85Hytwg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0g3dm2NsEeWQALQ85Hytwg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_0g3dk2NsEeWQALQ85Hytwg" routing="Rectilinear"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_0g3dlGNsEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_0g3dlWNsEeWQALQ85Hytwg" points="[0, -10, 0, 75]$[0, -70, 0, 15]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_0g4EoGNsEeWQALQ85Hytwg" id="(0.5,0.5)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_0g4EoWNsEeWQALQ85Hytwg" id="(0.5,0.5)"/>
+          </edges>
+        </data>
+      </ownedAnnotationEntries>
+      <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_0f3_E2NsEeWQALQ85Hytwg" name="SimpleSketch">
+        <target xmi:type="iot2:Activity" href="Example.iot2#//@sketch/@activity"/>
+        <semanticElements xmi:type="iot2:Activity" href="Example.iot2#//@sketch/@activity"/>
+        <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_0f3_FGNsEeWQALQ85Hytwg" labelSize="9" showIcon="false" borderSize="1" borderSizeComputationExpression="1" borderColor="114,73,110" backgroundStyle="Liquid" foregroundColor="245,239,244">
+          <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']"/>
+        <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_0f3_FWNsEeWQALQ85Hytwg" name="a1&#xA;(Thermometer::getTemperature)" outgoingEdges="_0f4mJWNsEeWQALQ85Hytwg" incomingEdges="_0f4mImNsEeWQALQ85Hytwg">
+          <target xmi:type="iot2:OpaqueAction" href="Example.iot2#//@sketch/@activity/@nodes.1"/>
+          <semanticElements xmi:type="iot2:OpaqueAction" href="Example.iot2#//@sketch/@activity/@nodes.1"/>
+          <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_0f3_FmNsEeWQALQ85Hytwg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" borderColor="224,133,3" backgroundStyle="Liquid" foregroundColor="254,238,214">
+            <labelFormat>bold</labelFormat>
+            <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_ExecutableNode']/@conditionnalStyles.0/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_ExecutableNode']"/>
+        </ownedDiagramElements>
+        <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_0f3_F2NsEeWQALQ85Hytwg" name="a2&#xA;(Heater::increase)" outgoingEdges="_0f4mLmNsEeWQALQ85Hytwg" incomingEdges="_0f4mKGNsEeWQALQ85Hytwg">
+          <target xmi:type="iot2:OpaqueAction" href="Example.iot2#//@sketch/@activity/@nodes.3"/>
+          <semanticElements xmi:type="iot2:OpaqueAction" href="Example.iot2#//@sketch/@activity/@nodes.3"/>
+          <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_0f3_GGNsEeWQALQ85Hytwg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" borderColor="224,133,3" backgroundStyle="Liquid" foregroundColor="254,238,214">
+            <labelFormat>bold</labelFormat>
+            <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_ExecutableNode']/@conditionnalStyles.0/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_ExecutableNode']"/>
+        </ownedDiagramElements>
+        <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_0f3_GWNsEeWQALQ85Hytwg" name="a3&#xA;(Heater::decrease)" outgoingEdges="_0f4mMWNsEeWQALQ85Hytwg" incomingEdges="_0f4mK2NsEeWQALQ85Hytwg">
+          <target xmi:type="iot2:OpaqueAction" href="Example.iot2#//@sketch/@activity/@nodes.4"/>
+          <semanticElements xmi:type="iot2:OpaqueAction" href="Example.iot2#//@sketch/@activity/@nodes.4"/>
+          <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_0f3_GmNsEeWQALQ85Hytwg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" borderColor="224,133,3" backgroundStyle="Liquid" foregroundColor="254,238,214">
+            <labelFormat>bold</labelFormat>
+            <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_ExecutableNode']/@conditionnalStyles.0/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_ExecutableNode']"/>
+        </ownedDiagramElements>
+        <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_0f3_G2NsEeWQALQ85Hytwg" name="raiseTemp">
+          <target xmi:type="iot2:BooleanVariable" href="Example.iot2#//@sketch/@activity/@locals.0"/>
+          <semanticElements xmi:type="iot2:BooleanVariable" href="Example.iot2#//@sketch/@activity/@locals.0"/>
+          <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_0f3_HGNsEeWQALQ85Hytwg" labelAlignment="LEFT" backgroundColor="232,239,247" foregroundColor="194,239,255">
+            <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']"/>
+          <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_0f3_HWNsEeWQALQ85Hytwg" name="init=false">
+            <target xmi:type="iot2:BooleanValue" href="Example.iot2#//@sketch/@activity/@locals.0/@initialValue"/>
+            <semanticElements xmi:type="iot2:BooleanValue" href="Example.iot2#//@sketch/@activity/@locals.0/@initialValue"/>
+            <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_0f3_HmNsEeWQALQ85Hytwg" showIcon="false" labelAlignment="LEFT">
+              <description xmi:type="style:BundledImageDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@subNodeMappings[name='AD_InitialValue']/@conditionnalStyles.0/@style"/>
+            </ownedStyle>
+            <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@subNodeMappings[name='AD_InitialValue']"/>
+          </ownedElements>
+        </ownedDiagramElements>
+        <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_0f3_H2NsEeWQALQ85Hytwg" name="lowerTemp">
+          <target xmi:type="iot2:BooleanVariable" href="Example.iot2#//@sketch/@activity/@locals.1"/>
+          <semanticElements xmi:type="iot2:BooleanVariable" href="Example.iot2#//@sketch/@activity/@locals.1"/>
+          <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_0f3_IGNsEeWQALQ85Hytwg" labelAlignment="LEFT" backgroundColor="232,239,247" foregroundColor="194,239,255">
+            <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']"/>
+          <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_0f3_IWNsEeWQALQ85Hytwg" name="init=false">
+            <target xmi:type="iot2:BooleanValue" href="Example.iot2#//@sketch/@activity/@locals.1/@initialValue"/>
+            <semanticElements xmi:type="iot2:BooleanValue" href="Example.iot2#//@sketch/@activity/@locals.1/@initialValue"/>
+            <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_0f3_ImNsEeWQALQ85Hytwg" showIcon="false" labelAlignment="LEFT">
+              <description xmi:type="style:BundledImageDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@subNodeMappings[name='AD_InitialValue']/@conditionnalStyles.0/@style"/>
+            </ownedStyle>
+            <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subContainerMappings[name='AD_LocalVariable']/@subNodeMappings[name='AD_InitialValue']"/>
+          </ownedElements>
+        </ownedDiagramElements>
+        <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_0f3_I2NsEeWQALQ85Hytwg" name="init1" outgoingEdges="_0f4mImNsEeWQALQ85Hytwg" width="3" height="3" resizeKind="NSEW">
+          <target xmi:type="iot2:InitialNode" href="Example.iot2#//@sketch/@activity/@nodes.0"/>
+          <semanticElements xmi:type="iot2:InitialNode" href="Example.iot2#//@sketch/@activity/@nodes.0"/>
+          <ownedStyle xmi:type="diagram:WorkspaceImage" xmi:id="_0f3_JGNsEeWQALQ85Hytwg" showIcon="false" workspacePath="/fr.inria.diverse.iot2.design/images/InitNode.png">
+            <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subNodeMappings[name='AD_ControlNode']/@conditionnalStyles.0/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subNodeMappings[name='AD_ControlNode']"/>
+        </ownedDiagramElements>
+        <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_0f3_JWNsEeWQALQ85Hytwg" name="d1" outgoingEdges="_0f4mKGNsEeWQALQ85Hytwg _0f4mK2NsEeWQALQ85Hytwg" incomingEdges="_0f4mJWNsEeWQALQ85Hytwg" width="3" height="3">
+          <target xmi:type="iot2:DecisionNode" href="Example.iot2#//@sketch/@activity/@nodes.2"/>
+          <semanticElements xmi:type="iot2:DecisionNode" href="Example.iot2#//@sketch/@activity/@nodes.2"/>
+          <ownedStyle xmi:type="diagram:Lozenge" xmi:id="_0f3_JmNsEeWQALQ85Hytwg" showIcon="false" borderColor="39,76,114" color="114,159,207">
+            <description xmi:type="style:LozengeNodeDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subNodeMappings[name='AD_ControlNode']/@conditionnalStyles.5/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subNodeMappings[name='AD_ControlNode']"/>
+        </ownedDiagramElements>
+        <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_0f3_J2NsEeWQALQ85Hytwg" name="m1" outgoingEdges="_0f4mNGNsEeWQALQ85Hytwg" incomingEdges="_0f4mLmNsEeWQALQ85Hytwg _0f4mMWNsEeWQALQ85Hytwg" width="2" height="2">
+          <target xmi:type="iot2:MergeNode" href="Example.iot2#//@sketch/@activity/@nodes.5"/>
+          <semanticElements xmi:type="iot2:MergeNode" href="Example.iot2#//@sketch/@activity/@nodes.5"/>
+          <ownedStyle xmi:type="diagram:Lozenge" xmi:id="_0f3_KGNsEeWQALQ85Hytwg" showIcon="false" borderColor="114,73,110" color="173,127,168">
+            <description xmi:type="style:LozengeNodeDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subNodeMappings[name='AD_ControlNode']/@conditionnalStyles.4/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subNodeMappings[name='AD_ControlNode']"/>
+        </ownedDiagramElements>
+        <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_0f4mIGNsEeWQALQ85Hytwg" name="final1" incomingEdges="_0f4mNGNsEeWQALQ85Hytwg" width="3" height="3" resizeKind="NSEW">
+          <target xmi:type="iot2:ActivityFinalNode" href="Example.iot2#//@sketch/@activity/@nodes.6"/>
+          <semanticElements xmi:type="iot2:ActivityFinalNode" href="Example.iot2#//@sketch/@activity/@nodes.6"/>
+          <ownedStyle xmi:type="diagram:WorkspaceImage" xmi:id="_0f4mIWNsEeWQALQ85Hytwg" showIcon="false" workspacePath="/fr.inria.diverse.iot2.design/images/FinalNode.png">
+            <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subNodeMappings[name='AD_ControlNode']/@conditionnalStyles.3/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@containerMappings[name='Activity_Container']/@subNodeMappings[name='AD_ControlNode']"/>
+        </ownedDiagramElements>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_0f4mImNsEeWQALQ85Hytwg" name="e1" sourceNode="_0f3_I2NsEeWQALQ85Hytwg" targetNode="_0f3_FWNsEeWQALQ85Hytwg">
+        <target xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.0"/>
+        <semanticElements xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.0"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_0f4mI2NsEeWQALQ85Hytwg" routingStyle="manhattan">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@edgeMappings[name='AD_ControlFlow']/@conditionnalStyles.0/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_0f4mJGNsEeWQALQ85Hytwg" showIcon="false"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@edgeMappings[name='AD_ControlFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_0f4mJWNsEeWQALQ85Hytwg" name="e2" sourceNode="_0f3_FWNsEeWQALQ85Hytwg" targetNode="_0f3_JWNsEeWQALQ85Hytwg">
+        <target xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.1"/>
+        <semanticElements xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.1"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_0f4mJmNsEeWQALQ85Hytwg" routingStyle="manhattan">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@edgeMappings[name='AD_ControlFlow']/@conditionnalStyles.0/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_0f4mJ2NsEeWQALQ85Hytwg" showIcon="false"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@edgeMappings[name='AD_ControlFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_0f4mKGNsEeWQALQ85Hytwg" name="e3[raiseTemp]" sourceNode="_0f3_JWNsEeWQALQ85Hytwg" targetNode="_0f3_F2NsEeWQALQ85Hytwg">
+        <target xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.2"/>
+        <semanticElements xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.2"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_0f4mKWNsEeWQALQ85Hytwg" routingStyle="manhattan">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@edgeMappings[name='AD_ControlFlow']/@conditionnalStyles.1/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_0f4mKmNsEeWQALQ85Hytwg" showIcon="false"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@edgeMappings[name='AD_ControlFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_0f4mK2NsEeWQALQ85Hytwg" name="e4[lowerTemp]" sourceNode="_0f3_JWNsEeWQALQ85Hytwg" targetNode="_0f3_GWNsEeWQALQ85Hytwg">
+        <target xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.3"/>
+        <semanticElements xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.3"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_0f4mLGNsEeWQALQ85Hytwg" routingStyle="manhattan">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@edgeMappings[name='AD_ControlFlow']/@conditionnalStyles.1/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_0f4mLWNsEeWQALQ85Hytwg" showIcon="false"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@edgeMappings[name='AD_ControlFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_0f4mLmNsEeWQALQ85Hytwg" name="e5" sourceNode="_0f3_F2NsEeWQALQ85Hytwg" targetNode="_0f3_J2NsEeWQALQ85Hytwg">
+        <target xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.4"/>
+        <semanticElements xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.4"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_0f4mL2NsEeWQALQ85Hytwg" routingStyle="manhattan">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@edgeMappings[name='AD_ControlFlow']/@conditionnalStyles.0/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_0f4mMGNsEeWQALQ85Hytwg" showIcon="false"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@edgeMappings[name='AD_ControlFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_0f4mMWNsEeWQALQ85Hytwg" name="e6" sourceNode="_0f3_GWNsEeWQALQ85Hytwg" targetNode="_0f3_J2NsEeWQALQ85Hytwg">
+        <target xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.5"/>
+        <semanticElements xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.5"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_0f4mMmNsEeWQALQ85Hytwg" routingStyle="manhattan">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@edgeMappings[name='AD_ControlFlow']/@conditionnalStyles.0/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_0f4mM2NsEeWQALQ85Hytwg" showIcon="false"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@edgeMappings[name='AD_ControlFlow']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_0f4mNGNsEeWQALQ85Hytwg" name="e7" sourceNode="_0f3_J2NsEeWQALQ85Hytwg" targetNode="_0f4mIGNsEeWQALQ85Hytwg">
+        <target xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.6"/>
+        <semanticElements xmi:type="iot2:ControlFlow" href="Example.iot2#//@sketch/@activity/@edges.6"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_0f4mNWNsEeWQALQ85Hytwg" routingStyle="manhattan">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@edgeMappings[name='AD_ControlFlow']/@conditionnalStyles.0/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_0f4mNmNsEeWQALQ85Hytwg" showIcon="false"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer/@edgeMappings[name='AD_ControlFlow']"/>
+      </ownedDiagramElements>
+      <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']"/>
+      <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_0f4mN2NsEeWQALQ85Hytwg"/>
+      <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20Sketch']/@defaultLayer"/>
+      <target xmi:type="iot2:Activity" href="Example.iot2#//@sketch/@activity"/>
+    </ownedRepresentations>
+    <ownedRepresentations xmi:type="diagram:DSemanticDiagram" xmi:id="_QR0NQGNzEeWQALQ85Hytwg" name="new IoT2 IDL">
+      <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_QR0NQWNzEeWQALQ85Hytwg" source="DANNOTATION_CUSTOMIZATION_KEY">
+        <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_QR0NQmNzEeWQALQ85Hytwg"/>
+      </ownedAnnotationEntries>
+      <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_QR00UGNzEeWQALQ85Hytwg" source="GMF_DIAGRAMS">
+        <data xmi:type="notation:Diagram" xmi:id="_QR00UWNzEeWQALQ85Hytwg" type="Sirius" element="_QR0NQGNzEeWQALQ85Hytwg" measurementUnit="Pixel">
+          <children xmi:type="notation:Node" xmi:id="_QR1bYGNzEeWQALQ85Hytwg" type="2003" element="_QR0NQ2NzEeWQALQ85Hytwg">
+            <children xmi:type="notation:Node" xmi:id="_QR1bY2NzEeWQALQ85Hytwg" type="5007"/>
+            <children xmi:type="notation:Node" xmi:id="_QR2CcGNzEeWQALQ85Hytwg" type="7004">
+              <children xmi:type="notation:Node" xmi:id="_QR33oGNzEeWQALQ85Hytwg" type="3010" element="_QR0NRWNzEeWQALQ85Hytwg">
+                <styles xmi:type="notation:FontStyle" xmi:id="_QR33oWNzEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8"/>
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_QR33omNzEeWQALQ85Hytwg"/>
+              </children>
+              <styles xmi:type="notation:SortingStyle" xmi:id="_QR2CcWNzEeWQALQ85Hytwg"/>
+              <styles xmi:type="notation:FilteringStyle" xmi:id="_QR2CcmNzEeWQALQ85Hytwg"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_QR1bYWNzEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QR1bYmNzEeWQALQ85Hytwg" x="108"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_QR2Cc2NzEeWQALQ85Hytwg" type="2003" element="_QR0NR2NzEeWQALQ85Hytwg">
+            <children xmi:type="notation:Node" xmi:id="_QR2CdmNzEeWQALQ85Hytwg" type="5007"/>
+            <children xmi:type="notation:Node" xmi:id="_QR2Cd2NzEeWQALQ85Hytwg" type="7004">
+              <children xmi:type="notation:Node" xmi:id="_QR33o2NzEeWQALQ85Hytwg" type="3010" element="_QR0NSWNzEeWQALQ85Hytwg">
+                <styles xmi:type="notation:FontStyle" xmi:id="_QR33pGNzEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8"/>
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_QR33pWNzEeWQALQ85Hytwg"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_QR33pmNzEeWQALQ85Hytwg" type="3010" element="_QR0NS2NzEeWQALQ85Hytwg">
+                <styles xmi:type="notation:FontStyle" xmi:id="_QR33p2NzEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8"/>
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_QR33qGNzEeWQALQ85Hytwg"/>
+              </children>
+              <styles xmi:type="notation:SortingStyle" xmi:id="_QR2CeGNzEeWQALQ85Hytwg"/>
+              <styles xmi:type="notation:FilteringStyle" xmi:id="_QR2CeWNzEeWQALQ85Hytwg"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_QR2CdGNzEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QR2CdWNzEeWQALQ85Hytwg" x="480"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_QR2pgGNzEeWQALQ85Hytwg" type="2002" element="_QR0NTWNzEeWQALQ85Hytwg">
+            <children xmi:type="notation:Node" xmi:id="_QR2pg2NzEeWQALQ85Hytwg" type="5006"/>
+            <children xmi:type="notation:Node" xmi:id="_QR2phGNzEeWQALQ85Hytwg" type="7001">
+              <styles xmi:type="notation:SortingStyle" xmi:id="_QR2phWNzEeWQALQ85Hytwg"/>
+              <styles xmi:type="notation:FilteringStyle" xmi:id="_QR2phmNzEeWQALQ85Hytwg"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_QR2pgWNzEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QR2pgmNzEeWQALQ85Hytwg" y="108"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_QR3QkGNzEeWQALQ85Hytwg" type="2002" element="_QR0NT2NzEeWQALQ85Hytwg">
+            <children xmi:type="notation:Node" xmi:id="_QR3Qk2NzEeWQALQ85Hytwg" type="5006"/>
+            <children xmi:type="notation:Node" xmi:id="_QR3QlGNzEeWQALQ85Hytwg" type="7001">
+              <styles xmi:type="notation:SortingStyle" xmi:id="_QR3QlWNzEeWQALQ85Hytwg"/>
+              <styles xmi:type="notation:FilteringStyle" xmi:id="_QR3QlmNzEeWQALQ85Hytwg"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_QR3QkWNzEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QR3QkmNzEeWQALQ85Hytwg" x="336" y="126"/>
+          </children>
+          <styles xmi:type="notation:DiagramStyle" xmi:id="_QR00UmNzEeWQALQ85Hytwg"/>
+          <edges xmi:type="notation:Edge" xmi:id="_QR4esGNzEeWQALQ85Hytwg" type="4001" element="_QR0NUWNzEeWQALQ85Hytwg" source="_QR2pgGNzEeWQALQ85Hytwg" target="_QR1bYGNzEeWQALQ85Hytwg">
+            <children xmi:type="notation:Node" xmi:id="_QR4etGNzEeWQALQ85Hytwg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QR4etWNzEeWQALQ85Hytwg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_QR4etmNzEeWQALQ85Hytwg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QR4et2NzEeWQALQ85Hytwg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_QR4euGNzEeWQALQ85Hytwg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QR4euWNzEeWQALQ85Hytwg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_QR4esWNzEeWQALQ85Hytwg"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_QR4esmNzEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8" italic="true"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_QR4es2NzEeWQALQ85Hytwg" points="[0, 0, 0, 60]$[0, -60, 0, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_QR5FwGNzEeWQALQ85Hytwg" id="(0.5,0.0)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_QR5FwWNzEeWQALQ85Hytwg" id="(0.5,1.0)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_QR5FwmNzEeWQALQ85Hytwg" type="4001" element="_QR0NVGNzEeWQALQ85Hytwg" source="_QR3QkGNzEeWQALQ85Hytwg" target="_QR2Cc2NzEeWQALQ85Hytwg">
+            <children xmi:type="notation:Node" xmi:id="_QR5FxmNzEeWQALQ85Hytwg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QR5Fx2NzEeWQALQ85Hytwg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_QR5FyGNzEeWQALQ85Hytwg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QR5FyWNzEeWQALQ85Hytwg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_QR5FymNzEeWQALQ85Hytwg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QR5Fy2NzEeWQALQ85Hytwg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_QR5Fw2NzEeWQALQ85Hytwg"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_QR5FxGNzEeWQALQ85Hytwg" fontName="Cantarell" fontHeight="8" italic="true"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_QR5FxWNzEeWQALQ85Hytwg" points="[0, 0, 0, 60]$[0, -60, 0, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_QR5s0GNzEeWQALQ85Hytwg" id="(0.5,0.0)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_QR5s0WNzEeWQALQ85Hytwg" id="(0.5,1.0)"/>
+          </edges>
+        </data>
+      </ownedAnnotationEntries>
+      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_QR0NQ2NzEeWQALQ85Hytwg" name="Thermometer" incomingEdges="_QR0NUWNzEeWQALQ85Hytwg">
+        <target xmi:type="iot2:Sensor" href="Example.iot2#//@components.0"/>
+        <semanticElements xmi:type="iot2:Sensor" href="Example.iot2#//@components.0"/>
+        <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_QR0NRGNzEeWQALQ85Hytwg" showIcon="false" foregroundColor="232,239,247">
+          <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20IDL']/@defaultLayer/@containerMappings[name='HWComponent_Container']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20IDL']/@defaultLayer/@containerMappings[name='HWComponent_Container']"/>
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_QR0NRWNzEeWQALQ85Hytwg" name="getTemperature">
+          <target xmi:type="iot2:OperationDef" href="Example.iot2#//@components.0/@services.0"/>
+          <semanticElements xmi:type="iot2:OperationDef" href="Example.iot2#//@components.0/@services.0"/>
+          <ownedStyle xmi:type="diagram:Square" xmi:id="_QR0NRmNzEeWQALQ85Hytwg" showIcon="false" labelAlignment="LEFT" labelPosition="node">
+            <description xmi:type="style:SquareDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20IDL']/@defaultLayer/@containerMappings[name='HWComponent_Container']/@subNodeMappings[name='OperationDef']/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20IDL']/@defaultLayer/@containerMappings[name='HWComponent_Container']/@subNodeMappings[name='OperationDef']"/>
+        </ownedElements>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_QR0NR2NzEeWQALQ85Hytwg" name="Heater" incomingEdges="_QR0NVGNzEeWQALQ85Hytwg">
+        <target xmi:type="iot2:Actuator" href="Example.iot2#//@components.1"/>
+        <semanticElements xmi:type="iot2:Actuator" href="Example.iot2#//@components.1"/>
+        <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_QR0NSGNzEeWQALQ85Hytwg" showIcon="false" foregroundColor="232,239,247">
+          <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20IDL']/@defaultLayer/@containerMappings[name='HWComponent_Container']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20IDL']/@defaultLayer/@containerMappings[name='HWComponent_Container']"/>
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_QR0NSWNzEeWQALQ85Hytwg" name="increase">
+          <target xmi:type="iot2:OperationDef" href="Example.iot2#//@components.1/@services.0"/>
+          <semanticElements xmi:type="iot2:OperationDef" href="Example.iot2#//@components.1/@services.0"/>
+          <ownedStyle xmi:type="diagram:Square" xmi:id="_QR0NSmNzEeWQALQ85Hytwg" showIcon="false" labelAlignment="LEFT" labelPosition="node">
+            <description xmi:type="style:SquareDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20IDL']/@defaultLayer/@containerMappings[name='HWComponent_Container']/@subNodeMappings[name='OperationDef']/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20IDL']/@defaultLayer/@containerMappings[name='HWComponent_Container']/@subNodeMappings[name='OperationDef']"/>
+        </ownedElements>
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_QR0NS2NzEeWQALQ85Hytwg" name="decrease">
+          <target xmi:type="iot2:OperationDef" href="Example.iot2#//@components.1/@services.1"/>
+          <semanticElements xmi:type="iot2:OperationDef" href="Example.iot2#//@components.1/@services.1"/>
+          <ownedStyle xmi:type="diagram:Square" xmi:id="_QR0NTGNzEeWQALQ85Hytwg" showIcon="false" labelAlignment="LEFT" labelPosition="node">
+            <description xmi:type="style:SquareDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20IDL']/@defaultLayer/@containerMappings[name='HWComponent_Container']/@subNodeMappings[name='OperationDef']/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20IDL']/@defaultLayer/@containerMappings[name='HWComponent_Container']/@subNodeMappings[name='OperationDef']"/>
+        </ownedElements>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_QR0NTWNzEeWQALQ85Hytwg" name="B1" outgoingEdges="_QR0NUWNzEeWQALQ85Hytwg">
+        <target xmi:type="iot2:Board" href="Example.iot2#//@boards.0"/>
+        <semanticElements xmi:type="iot2:Board" href="Example.iot2#//@boards.0"/>
+        <ownedStyle xmi:type="diagram:WorkspaceImage" xmi:id="_QR0NTmNzEeWQALQ85Hytwg" showIcon="false" workspacePath="/fr.inria.diverse.iot2.design/images/arduino.png">
+          <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20IDL']/@defaultLayer/@containerMappings[name='Board_Container']/@conditionnalStyles.0/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20IDL']/@defaultLayer/@containerMappings[name='Board_Container']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_QR0NT2NzEeWQALQ85Hytwg" name="B2" outgoingEdges="_QR0NVGNzEeWQALQ85Hytwg">
+        <target xmi:type="iot2:Board" href="Example.iot2#//@boards.1"/>
+        <semanticElements xmi:type="iot2:Board" href="Example.iot2#//@boards.1"/>
+        <ownedStyle xmi:type="diagram:WorkspaceImage" xmi:id="_QR0NUGNzEeWQALQ85Hytwg" showIcon="false" workspacePath="/fr.inria.diverse.iot2.design/images/raspberry.png">
+          <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20IDL']/@defaultLayer/@containerMappings[name='Board_Container']/@conditionnalStyles.1/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20IDL']/@defaultLayer/@containerMappings[name='Board_Container']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_QR0NUWNzEeWQALQ85Hytwg" name="provides" sourceNode="_QR0NTWNzEeWQALQ85Hytwg" targetNode="_QR0NQ2NzEeWQALQ85Hytwg">
+        <target xmi:type="iot2:Board" href="Example.iot2#//@boards.0"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_QR0NUmNzEeWQALQ85Hytwg" lineStyle="dash" size="2">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20IDL']/@defaultLayer/@edgeMappings[name='BoardToComponents']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_QR0NU2NzEeWQALQ85Hytwg" showIcon="false">
+            <labelFormat>italic</labelFormat>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20IDL']/@defaultLayer/@edgeMappings[name='BoardToComponents']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_QR0NVGNzEeWQALQ85Hytwg" name="provides" sourceNode="_QR0NT2NzEeWQALQ85Hytwg" targetNode="_QR0NR2NzEeWQALQ85Hytwg">
+        <target xmi:type="iot2:Board" href="Example.iot2#//@boards.1"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_QR0NVWNzEeWQALQ85Hytwg" lineStyle="dash" size="2">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20IDL']/@defaultLayer/@edgeMappings[name='BoardToComponents']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_QR0NVmNzEeWQALQ85Hytwg" showIcon="false">
+            <labelFormat>italic</labelFormat>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20IDL']/@defaultLayer/@edgeMappings[name='BoardToComponents']"/>
+      </ownedDiagramElements>
+      <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20IDL']"/>
+      <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_QR0NV2NzEeWQALQ85Hytwg"/>
+      <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']/@ownedRepresentations[name='IoT2%20IDL']/@defaultLayer"/>
       <target xmi:type="iot2:System" href="Example.iot2#/"/>
     </ownedRepresentations>
     <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/fr.inria.diverse.iot2.design/description/iot2.odesign#//@ownedViewpoints[name='IoT2%20viewpoint']"/>
