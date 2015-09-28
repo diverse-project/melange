@@ -25,7 +25,7 @@ import static org.junit.Assert.*
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
-@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/MappingTest.melange")
+@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/MappingTest.melange", withValidation = false)
 class MappingTest
 {
 	@Inject MatchingHelper helper

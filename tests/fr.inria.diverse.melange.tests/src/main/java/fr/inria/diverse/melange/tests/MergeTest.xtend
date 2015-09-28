@@ -23,7 +23,7 @@ import static org.junit.Assert.*
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
-@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/MergeTest.melange")
+@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/MergeTest.melange", withValidation = false)
 class MergeTest
 {
 	@Inject MatchingHelper helper

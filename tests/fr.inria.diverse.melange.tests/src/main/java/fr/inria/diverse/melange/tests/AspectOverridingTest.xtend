@@ -21,7 +21,7 @@ import org.junit.runner.RunWith
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
-@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/AspectOverridingTest.melange")
+@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/AspectOverridingTest.melange", withValidation = false)
 class AspectOverridingTest
 {
 	@Inject MatchingHelper helper

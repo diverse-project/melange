@@ -22,7 +22,7 @@ import static org.junit.Assert.*
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
-@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/TransitiveAspectTest.melange")
+@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/TransitiveAspectTest.melange", withValidation = false)
 class TransitiveAspectTest
 {
 	@Inject MatchingHelper helper
