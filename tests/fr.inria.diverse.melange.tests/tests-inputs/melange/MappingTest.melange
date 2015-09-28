@@ -10,7 +10,7 @@ language MM3 {
 	exactType MM3MT
 }
 
-map "MyMapping" MM3 to MM1MT {
+map /*MyMapping*/ MM3 to MM1MT {
 	
 	"SuperA3" to "SuperA"{
 		
@@ -32,15 +32,15 @@ language MergeLang{
 	exactType MergeMT
 }
 
-map "WrongMapping" MM3 to SomeMT {
+map /*WrongMapping*/ MM3 to SomeMT {
 
 }
 
-map "WrongMapping2" SomeLang to MM1MT {
+map /*WrongMapping2*/ SomeLang to MM1MT {
 
 }
 
-map "WrongMapping3" MM3 to MM1MT {
+map /*WrongMapping3*/ MM3 to MM1MT {
 	
 	"SuperA3" to "SomeClass" {
 	
