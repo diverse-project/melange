@@ -34,8 +34,7 @@ class OperatorMappingTest
 		assertEquals(1, renameEcoreMM1.syntax.pkgs.size)
 		assertEquals("newpackage", renameEcoreMM1.syntax.pkgs.get(0).name)
 		
-		assertEquals(7, renameEcoreMM1.syntax.pkgs.get(0).EClassifiers.size
-		)
+		assertEquals(7, renameEcoreMM1.syntax.pkgs.get(0).EClassifiers.size)
 		assertEquals("AAAAA", renamedEcoreClasses.get(0).name)
 		assertEquals("Z", renamedEcoreClasses.get(1).name)
 		assertEquals("C", renamedEcoreClasses.get(2).name)
@@ -68,8 +67,7 @@ class OperatorMappingTest
 		assertEquals(1, renameMergeMM1.syntax.pkgs.size)
 		assertEquals("newpackage", renameMergeMM1.syntax.pkgs.get(0).name)
 		
-		assertEquals(7, renameMergeMM1.syntax.pkgs.get(0).EClassifiers.size
-		)
+		assertEquals(7, renameMergeMM1.syntax.pkgs.get(0).EClassifiers.size)
 		assertEquals("AAAAA", renamedMergeClasses.get(0).name)
 		assertEquals("Z", renamedMergeClasses.get(1).name)
 		assertEquals("C", renamedMergeClasses.get(2).name)
@@ -104,8 +102,7 @@ class OperatorMappingTest
 		assertEquals(1, renameSliceMM1.syntax.pkgs.size)
 		assertEquals("newpackage", renameSliceMM1.syntax.pkgs.get(0).name)
 		
-		assertEquals(4, renameSliceMM1.syntax.pkgs.get(0).EClassifiers.size
-		)
+		assertEquals(4, renameSliceMM1.syntax.pkgs.get(0).EClassifiers.size)
 		assertEquals("AAAAA", renamedSliceClasses.get(0).name)
 		assertEquals("SuperA", renamedSliceClasses.get(1).name)
 		assertEquals("Z", renamedSliceClasses.get(2).name)
@@ -143,16 +140,6 @@ class OperatorMappingTest
 		assertEquals(0, subpkg3.ESubpackages.size)
 		assertEquals(2, subpkg3.EClassifiers.size)
 		
-		//Get classes
-		val TopClass1 = toppkg.EClassifiers.get(0)
-		val TopClass2 = toppkg.EClassifiers.get(1)
-		val Subpkg1Class1 = subpkg1.EClassifiers.get(0)
-		val Subpkg1Class2 = subpkg1.EClassifiers.get(1)
-		val Subpkg2Class1 = subpkg2.EClassifiers.get(0)
-		val Subpkg2Class2 = subpkg2.EClassifiers.get(1)
-		val Subpkg3Class1 = subpkg3.EClassifiers.get(0)
-		val Subpkg3Class2 = subpkg3.EClassifiers.get(1)
-		
 		//Check package name
 		assertEquals("toppkg", toppkg.name)
 		assertEquals("subpkg1", subpkg1.name)
@@ -160,14 +147,14 @@ class OperatorMappingTest
 		assertEquals("subpkg3", subpkg3.name)
 		
 		//Check classes names
-		assertEquals("TopClass1", TopClass1.name)
-		assertEquals("TopClass2", TopClass2.name)
-		assertEquals("Subpkg1Class1", Subpkg1Class1.name)
-		assertEquals("Subpkg1Class2", Subpkg1Class2.name)
-		assertEquals("Subpkg2Class1", Subpkg2Class1.name)
-		assertEquals("Subpkg2Class2", Subpkg2Class2.name)
-		assertEquals("Subpkg3Class1", Subpkg3Class1.name)
-		assertEquals("Subpkg3Class2", Subpkg3Class2.name)
+		assertTrue(toppkg.EClassifiers.exists[name == "TopClass1"])
+		assertTrue(toppkg.EClassifiers.exists[name == "TopClass2"])
+		assertTrue(subpkg1.EClassifiers.exists[name == "Subpkg1Class1"])
+		assertTrue(subpkg1.EClassifiers.exists[name == "Subpkg1Class2"])
+		assertTrue(subpkg2.EClassifiers.exists[name == "Subpkg2Class1"])
+		assertTrue(subpkg2.EClassifiers.exists[name == "Subpkg2Class2"])
+		assertTrue(subpkg3.EClassifiers.exists[name == "Subpkg3Class1"])
+		assertTrue(subpkg3.EClassifiers.exists[name == "Subpkg3Class2"])
 	}
 	@Test
 	def void testMergePackage1(){
@@ -188,16 +175,6 @@ class OperatorMappingTest
 		assertEquals(0, subpkg3.ESubpackages.size)
 		assertEquals(2, subpkg3.EClassifiers.size)
 		
-		//Get classes
-		val TopClass1 = subpkg1.EClassifiers.get(2)
-		val TopClass2 = subpkg1.EClassifiers.get(3)
-		val Subpkg1Class1 = subpkg1.EClassifiers.get(0)
-		val Subpkg1Class2 = subpkg1.EClassifiers.get(1)
-		val Subpkg2Class1 = subpkg2.EClassifiers.get(0)
-		val Subpkg2Class2 = subpkg2.EClassifiers.get(1)
-		val Subpkg3Class1 = subpkg3.EClassifiers.get(0)
-		val Subpkg3Class2 = subpkg3.EClassifiers.get(1)
-		
 		//Check package name
 		assertEquals("toppkg", toppkg.name)
 		assertEquals("subpkg1", subpkg1.name)
@@ -205,14 +182,14 @@ class OperatorMappingTest
 		assertEquals("subpkg3", subpkg3.name)
 		
 		//Check classes names
-		assertEquals("TopClass1", TopClass1.name)
-		assertEquals("TopClass2", TopClass2.name)
-		assertEquals("Subpkg1Class1", Subpkg1Class1.name)
-		assertEquals("Subpkg1Class2", Subpkg1Class2.name)
-		assertEquals("Subpkg2Class1", Subpkg2Class1.name)
-		assertEquals("Subpkg2Class2", Subpkg2Class2.name)
-		assertEquals("Subpkg3Class1", Subpkg3Class1.name)
-		assertEquals("Subpkg3Class2", Subpkg3Class2.name)
+		assertTrue(subpkg1.EClassifiers.exists[name == "TopClass1"])
+		assertTrue(subpkg1.EClassifiers.exists[name == "TopClass2"])
+		assertTrue(subpkg1.EClassifiers.exists[name == "Subpkg1Class1"])
+		assertTrue(subpkg1.EClassifiers.exists[name == "Subpkg1Class2"])
+		assertTrue(subpkg2.EClassifiers.exists[name == "Subpkg2Class1"])
+		assertTrue(subpkg2.EClassifiers.exists[name == "Subpkg2Class2"])
+		assertTrue(subpkg3.EClassifiers.exists[name == "Subpkg3Class1"])
+		assertTrue(subpkg3.EClassifiers.exists[name == "Subpkg3Class2"])
 	}
 	@Test
 	def void testMergePackage2(){
@@ -230,30 +207,20 @@ class OperatorMappingTest
 		assertEquals(0, subpkg3.ESubpackages.size)
 		assertEquals(2, subpkg3.EClassifiers.size)
 		
-		//Get classes
-		val TopClass1 = toppkg.EClassifiers.get(0)
-		val TopClass2 = toppkg.EClassifiers.get(1)
-		val Subpkg1Class1 = toppkg.EClassifiers.get(2)
-		val Subpkg1Class2 = toppkg.EClassifiers.get(3)
-		val Subpkg2Class1 = subpkg2.EClassifiers.get(0)
-		val Subpkg2Class2 = subpkg2.EClassifiers.get(1)
-		val Subpkg3Class1 = subpkg3.EClassifiers.get(0)
-		val Subpkg3Class2 = subpkg3.EClassifiers.get(1)
-		
 		//Check package name
 		assertEquals("toppkg", toppkg.name)
 		assertEquals("subpkg2", subpkg2.name)
 		assertEquals("subpkg3", subpkg3.name)
 		
 		//Check classes names
-		assertEquals("TopClass1", TopClass1.name)
-		assertEquals("TopClass2", TopClass2.name)
-		assertEquals("Subpkg1Class1", Subpkg1Class1.name)
-		assertEquals("Subpkg1Class2", Subpkg1Class2.name)
-		assertEquals("Subpkg2Class1", Subpkg2Class1.name)
-		assertEquals("Subpkg2Class2", Subpkg2Class2.name)
-		assertEquals("Subpkg3Class1", Subpkg3Class1.name)
-		assertEquals("Subpkg3Class2", Subpkg3Class2.name)
+		assertTrue(toppkg.EClassifiers.exists[name == "TopClass1"])
+		assertTrue(toppkg.EClassifiers.exists[name == "TopClass2"])
+		assertTrue(toppkg.EClassifiers.exists[name == "Subpkg1Class1"])
+		assertTrue(toppkg.EClassifiers.exists[name == "Subpkg1Class2"])
+		assertTrue(subpkg2.EClassifiers.exists[name == "Subpkg2Class1"])
+		assertTrue(subpkg2.EClassifiers.exists[name == "Subpkg2Class2"])
+		assertTrue(subpkg3.EClassifiers.exists[name == "Subpkg3Class1"])
+		assertTrue(subpkg3.EClassifiers.exists[name == "Subpkg3Class2"])
 	}
 	@Test
 	def void testMergePackage3(){
@@ -268,29 +235,19 @@ class OperatorMappingTest
 		assertEquals(0, subpkg1.ESubpackages.size)
 		assertEquals(6, subpkg1.EClassifiers.size)
 		
-		//Get classes
-		val TopClass1 = toppkg.EClassifiers.get(0)
-		val TopClass2 = toppkg.EClassifiers.get(1)
-		val Subpkg1Class1 = subpkg1.EClassifiers.get(0)
-		val Subpkg1Class2 = subpkg1.EClassifiers.get(1)
-		val Subpkg2Class1 = subpkg1.EClassifiers.get(2)
-		val Subpkg2Class2 = subpkg1.EClassifiers.get(3)
-		val Subpkg3Class1 = subpkg1.EClassifiers.get(4)
-		val Subpkg3Class2 = subpkg1.EClassifiers.get(5)
-		
 		//Check package name
 		assertEquals("toppkg", toppkg.name)
 		assertEquals("subpkg1", subpkg1.name)
 		
 		//Check classes names
-		assertEquals("TopClass1", TopClass1.name)
-		assertEquals("TopClass2", TopClass2.name)
-		assertEquals("Subpkg1Class1", Subpkg1Class1.name)
-		assertEquals("Subpkg1Class2", Subpkg1Class2.name)
-		assertEquals("Subpkg2Class1", Subpkg2Class1.name)
-		assertEquals("Subpkg2Class2", Subpkg2Class2.name)
-		assertEquals("Subpkg3Class1", Subpkg3Class1.name)
-		assertEquals("Subpkg3Class2", Subpkg3Class2.name)
+		assertTrue(toppkg.EClassifiers.exists[name == "TopClass1"])
+		assertTrue(toppkg.EClassifiers.exists[name == "TopClass2"])
+		assertTrue(subpkg1.EClassifiers.exists[name == "Subpkg1Class1"])
+		assertTrue(subpkg1.EClassifiers.exists[name == "Subpkg1Class2"])
+		assertTrue(subpkg1.EClassifiers.exists[name == "Subpkg2Class1"])
+		assertTrue(subpkg1.EClassifiers.exists[name == "Subpkg2Class2"])
+		assertTrue(subpkg1.EClassifiers.exists[name == "Subpkg3Class1"])
+		assertTrue(subpkg1.EClassifiers.exists[name == "Subpkg3Class2"])
 	}
 	
 	@Test
@@ -299,8 +256,8 @@ class OperatorMappingTest
 		//Get packages
 		val toppkg    = subPackTest3.syntax.pkgs.head
 		val newsubpkg = toppkg.ESubpackages.get(0)
-		val subpkg1   = newsubpkg.ESubpackages.get(0)
-		val subpkg2   = newsubpkg.ESubpackages.get(1)
+		val subpkg1   = newsubpkg.ESubpackages.findFirst[name == "subpkg1"]
+		val subpkg2   = newsubpkg.ESubpackages.findFirst[name == "subpkg2"]
 		val subpkg3   = subpkg2.ESubpackages.get(0)
 		
 		//Check numbers of elements
@@ -315,16 +272,6 @@ class OperatorMappingTest
 		assertEquals(0, subpkg3.ESubpackages.size)
 		assertEquals(2, subpkg3.EClassifiers.size)
 		
-		//Get classes
-		val TopClass1 = newsubpkg.EClassifiers.get(0)
-		val TopClass2 = newsubpkg.EClassifiers.get(1)
-		val Subpkg1Class1 = subpkg1.EClassifiers.get(0)
-		val Subpkg1Class2 = subpkg1.EClassifiers.get(1)
-		val Subpkg2Class1 = subpkg2.EClassifiers.get(0)
-		val Subpkg2Class2 = subpkg2.EClassifiers.get(1)
-		val Subpkg3Class1 = subpkg3.EClassifiers.get(0)
-		val Subpkg3Class2 = subpkg3.EClassifiers.get(1)
-		
 		//Check package name
 		assertEquals("toppkg", toppkg.name)
 		assertEquals("subpkg1", subpkg1.name)
@@ -333,22 +280,22 @@ class OperatorMappingTest
 		assertEquals("newsubpkg", newsubpkg.name)
 		
 		//Check classes names
-		assertEquals("TopClass1", TopClass1.name)
-		assertEquals("TopClass2", TopClass2.name)
-		assertEquals("Subpkg1Class1", Subpkg1Class1.name)
-		assertEquals("Subpkg1Class2", Subpkg1Class2.name)
-		assertEquals("Subpkg2Class1", Subpkg2Class1.name)
-		assertEquals("Subpkg2Class2", Subpkg2Class2.name)
-		assertEquals("Subpkg3Class1", Subpkg3Class1.name)
-		assertEquals("Subpkg3Class2", Subpkg3Class2.name)
+		assertTrue(newsubpkg.EClassifiers.exists[name == "TopClass1"])
+		assertTrue(newsubpkg.EClassifiers.exists[name == "TopClass2"])
+		assertTrue(subpkg1.EClassifiers.exists[name == "Subpkg1Class1"])
+		assertTrue(subpkg1.EClassifiers.exists[name == "Subpkg1Class2"])
+		assertTrue(subpkg2.EClassifiers.exists[name == "Subpkg2Class1"])
+		assertTrue(subpkg2.EClassifiers.exists[name == "Subpkg2Class2"])
+		assertTrue(subpkg3.EClassifiers.exists[name == "Subpkg3Class1"])
+		assertTrue(subpkg3.EClassifiers.exists[name == "Subpkg3Class2"])
 	}
 	@Test
 	def void testOwnPackage2(){
 		
 		//Get packages
 		val toppkg    = subPackTest4.syntax.pkgs.head
-		val subpkg1   = toppkg.ESubpackages.get(0)
-		val subpkg2   = toppkg.ESubpackages.get(1)
+		val subpkg1   = toppkg.ESubpackages.findFirst[name == "subpkg1"]
+		val subpkg2   = toppkg.ESubpackages.findFirst[name == "subpkg2"]
 		val subpkg3   = subpkg2.ESubpackages.get(0)
 		val newsubpkg = subpkg1.ESubpackages.get(0)
 		
@@ -364,16 +311,6 @@ class OperatorMappingTest
 		assertEquals(0, newsubpkg.ESubpackages.size)
 		assertEquals(2, newsubpkg.EClassifiers.size)
 		
-		//Get classes
-		val TopClass1 = toppkg.EClassifiers.get(0)
-		val TopClass2 = toppkg.EClassifiers.get(1)
-		val Subpkg1Class1 = newsubpkg.EClassifiers.get(0)
-		val Subpkg1Class2 = newsubpkg.EClassifiers.get(1)
-		val Subpkg2Class1 = subpkg2.EClassifiers.get(0)
-		val Subpkg2Class2 = subpkg2.EClassifiers.get(1)
-		val Subpkg3Class1 = subpkg3.EClassifiers.get(0)
-		val Subpkg3Class2 = subpkg3.EClassifiers.get(1)
-		
 		//Check package name
 		assertEquals("toppkg", toppkg.name)
 		assertEquals("subpkg1", subpkg1.name)
@@ -382,22 +319,22 @@ class OperatorMappingTest
 		assertEquals("newsubpkg", newsubpkg.name)
 		
 		//Check classes names
-		assertEquals("TopClass1", TopClass1.name)
-		assertEquals("TopClass2", TopClass2.name)
-		assertEquals("Subpkg1Class1", Subpkg1Class1.name)
-		assertEquals("Subpkg1Class2", Subpkg1Class2.name)
-		assertEquals("Subpkg2Class1", Subpkg2Class1.name)
-		assertEquals("Subpkg2Class2", Subpkg2Class2.name)
-		assertEquals("Subpkg3Class1", Subpkg3Class1.name)
-		assertEquals("Subpkg3Class2", Subpkg3Class2.name)
+		assertTrue(toppkg.EClassifiers.exists[name == "TopClass1"])
+		assertTrue(toppkg.EClassifiers.exists[name == "TopClass2"])
+		assertTrue(newsubpkg.EClassifiers.exists[name == "Subpkg1Class1"])
+		assertTrue(newsubpkg.EClassifiers.exists[name == "Subpkg1Class2"])
+		assertTrue(subpkg2.EClassifiers.exists[name == "Subpkg2Class1"])
+		assertTrue(subpkg2.EClassifiers.exists[name == "Subpkg2Class2"])
+		assertTrue(subpkg3.EClassifiers.exists[name == "Subpkg3Class1"])
+		assertTrue(subpkg3.EClassifiers.exists[name == "Subpkg3Class2"])
 	}
 	@Test
 	def void testOwnPackage3(){
 		
 		//Get packages
 		val toppkg    = subPackTest4b.syntax.pkgs.head
-		val subpkg1   = toppkg.ESubpackages.get(0)
-		val subpkg2   = toppkg.ESubpackages.get(1)
+		val subpkg1   = toppkg.ESubpackages.findFirst[name == "subpkg1"]
+		val subpkg2   = toppkg.ESubpackages.findFirst[name == "subpkg2"]
 		val newsubpkg = subpkg2.ESubpackages.get(0)
 		val subpkg3   = newsubpkg.ESubpackages.get(0)
 		
@@ -413,16 +350,6 @@ class OperatorMappingTest
 		assertEquals(1, newsubpkg.ESubpackages.size)
 		assertEquals(2, newsubpkg.EClassifiers.size)
 		
-		//Get classes
-		val TopClass1 = toppkg.EClassifiers.get(0)
-		val TopClass2 = toppkg.EClassifiers.get(1)
-		val Subpkg1Class1 = subpkg1.EClassifiers.get(0)
-		val Subpkg1Class2 = subpkg1.EClassifiers.get(1)
-		val Subpkg2Class1 = newsubpkg.EClassifiers.get(0)
-		val Subpkg2Class2 = newsubpkg.EClassifiers.get(1)
-		val Subpkg3Class1 = subpkg3.EClassifiers.get(0)
-		val Subpkg3Class2 = subpkg3.EClassifiers.get(1)
-		
 		//Check package name
 		assertEquals("toppkg", toppkg.name)
 		assertEquals("subpkg1", subpkg1.name)
@@ -431,14 +358,14 @@ class OperatorMappingTest
 		assertEquals("newsubpkg", newsubpkg.name)
 		
 		//Check classes names
-		assertEquals("TopClass1", TopClass1.name)
-		assertEquals("TopClass2", TopClass2.name)
-		assertEquals("Subpkg1Class1", Subpkg1Class1.name)
-		assertEquals("Subpkg1Class2", Subpkg1Class2.name)
-		assertEquals("Subpkg2Class1", Subpkg2Class1.name)
-		assertEquals("Subpkg2Class2", Subpkg2Class2.name)
-		assertEquals("Subpkg3Class1", Subpkg3Class1.name)
-		assertEquals("Subpkg3Class2", Subpkg3Class2.name)
+		assertTrue(toppkg.EClassifiers.exists[name == "TopClass1"])
+		assertTrue(toppkg.EClassifiers.exists[name == "TopClass2"])
+		assertTrue(subpkg1.EClassifiers.exists[name == "Subpkg1Class1"])
+		assertTrue(subpkg1.EClassifiers.exists[name == "Subpkg1Class2"])
+		assertTrue(newsubpkg.EClassifiers.exists[name == "Subpkg2Class1"])
+		assertTrue(newsubpkg.EClassifiers.exists[name == "Subpkg2Class2"])
+		assertTrue(subpkg3.EClassifiers.exists[name == "Subpkg3Class1"])
+		assertTrue(subpkg3.EClassifiers.exists[name == "Subpkg3Class2"])
 	}
 	
 	@Test
@@ -460,16 +387,6 @@ class OperatorMappingTest
 		assertEquals(0, subpkg3.ESubpackages.size)
 		assertEquals(2, subpkg3.EClassifiers.size)
 		
-		//Get classes
-		val TopClass1 = subpkg1.EClassifiers.get(0)
-		val TopClass2 = subpkg1.EClassifiers.get(1)
-		val Subpkg1Class1 = toppkg.EClassifiers.get(0)
-		val Subpkg1Class2 = toppkg.EClassifiers.get(1)
-		val Subpkg2Class1 = subpkg2.EClassifiers.get(0)
-		val Subpkg2Class2 = subpkg2.EClassifiers.get(1)
-		val Subpkg3Class1 = subpkg3.EClassifiers.get(0)
-		val Subpkg3Class2 = subpkg3.EClassifiers.get(1)
-		
 		//Check package name
 		assertEquals("toppkg", toppkg.name)
 		assertEquals("subpkg1", subpkg1.name)
@@ -477,22 +394,22 @@ class OperatorMappingTest
 		assertEquals("subpkg3", subpkg3.name)
 		
 		//Check classes names
-		assertEquals("TopClass1", TopClass1.name)
-		assertEquals("TopClass2", TopClass2.name)
-		assertEquals("Subpkg1Class1", Subpkg1Class1.name)
-		assertEquals("Subpkg1Class2", Subpkg1Class2.name)
-		assertEquals("Subpkg2Class1", Subpkg2Class1.name)
-		assertEquals("Subpkg2Class2", Subpkg2Class2.name)
-		assertEquals("Subpkg3Class1", Subpkg3Class1.name)
-		assertEquals("Subpkg3Class2", Subpkg3Class2.name)
+		assertTrue(subpkg1.EClassifiers.exists[name == "TopClass1"])
+		assertTrue(subpkg1.EClassifiers.exists[name == "TopClass2"])
+		assertTrue(toppkg.EClassifiers.exists[name == "Subpkg1Class1"])
+		assertTrue(toppkg.EClassifiers.exists[name == "Subpkg1Class2"])
+		assertTrue(subpkg2.EClassifiers.exists[name == "Subpkg2Class1"])
+		assertTrue(subpkg2.EClassifiers.exists[name == "Subpkg2Class2"])
+		assertTrue(subpkg3.EClassifiers.exists[name == "Subpkg3Class1"])
+		assertTrue(subpkg3.EClassifiers.exists[name == "Subpkg3Class2"])
 	}
 	@Test
 	def void testSwitchPackage2(){
 		
 		//Get packages
 		val toppkg = subPackTest6.syntax.pkgs.head
-		val subpkg1 = toppkg.ESubpackages.get(0)
-		val subpkg2 = toppkg.ESubpackages.get(1)
+		val subpkg1 = toppkg.ESubpackages.findFirst[name == "subpkg1"]
+		val subpkg2 = toppkg.ESubpackages.findFirst[name == "subpkg2"]
 		val subpkg3 = subpkg2.ESubpackages.get(0)
 		
 		//Check numbers of elements
@@ -505,16 +422,6 @@ class OperatorMappingTest
 		assertEquals(0, subpkg3.ESubpackages.size)
 		assertEquals(2, subpkg3.EClassifiers.size)
 		
-		//Get classes
-		val TopClass1 = toppkg.EClassifiers.get(0)
-		val TopClass2 = toppkg.EClassifiers.get(1)
-		val Subpkg1Class1 = subpkg1.EClassifiers.get(0)
-		val Subpkg1Class2 = subpkg1.EClassifiers.get(1)
-		val Subpkg2Class1 = subpkg3.EClassifiers.get(0)
-		val Subpkg2Class2 = subpkg3.EClassifiers.get(1)
-		val Subpkg3Class1 = subpkg2.EClassifiers.get(0)
-		val Subpkg3Class2 = subpkg2.EClassifiers.get(1)
-		
 		//Check package name
 		assertEquals("toppkg", toppkg.name)
 		assertEquals("subpkg1", subpkg1.name)
@@ -522,14 +429,14 @@ class OperatorMappingTest
 		assertEquals("subpkg3", subpkg3.name)
 		
 		//Check classes names
-		assertEquals("TopClass1", TopClass1.name)
-		assertEquals("TopClass2", TopClass2.name)
-		assertEquals("Subpkg1Class1", Subpkg1Class1.name)
-		assertEquals("Subpkg1Class2", Subpkg1Class2.name)
-		assertEquals("Subpkg2Class1", Subpkg2Class1.name)
-		assertEquals("Subpkg2Class2", Subpkg2Class2.name)
-		assertEquals("Subpkg3Class1", Subpkg3Class1.name)
-		assertEquals("Subpkg3Class2", Subpkg3Class2.name)
+		assertTrue(toppkg.EClassifiers.exists[name == "TopClass1"])
+		assertTrue(toppkg.EClassifiers.exists[name == "TopClass2"])
+		assertTrue(subpkg1.EClassifiers.exists[name == "Subpkg1Class1"])
+		assertTrue(subpkg1.EClassifiers.exists[name == "Subpkg1Class2"])
+		assertTrue(subpkg3.EClassifiers.exists[name == "Subpkg2Class1"])
+		assertTrue(subpkg3.EClassifiers.exists[name == "Subpkg2Class2"])
+		assertTrue(subpkg2.EClassifiers.exists[name == "Subpkg3Class1"])
+		assertTrue(subpkg2.EClassifiers.exists[name == "Subpkg3Class2"])
 	}
 	
 	@Test
@@ -537,9 +444,9 @@ class OperatorMappingTest
 		
 		//Get packages
 		val toppkg     = subPackTest7.syntax.pkgs.head
-		val newsubpack = toppkg.ESubpackages.get(1)
+		val newsubpack = toppkg.ESubpackages.findFirst[name == "newsubpack"]
 		val subpkg1    = newsubpack.ESubpackages.get(0)
-		val subpkg2    = toppkg.ESubpackages.get(0)
+		val subpkg2    = toppkg.ESubpackages.findFirst[name == "subpkg2"]
 		val subpkg3    = subpkg2.ESubpackages.get(0)
 		
 		//Check numbers of elements
@@ -554,16 +461,6 @@ class OperatorMappingTest
 		assertEquals(1, newsubpack.ESubpackages.size)
 		assertEquals(0, newsubpack.EClassifiers.size)
 		
-		//Get classes
-		val TopClass1 = toppkg.EClassifiers.get(0)
-		val TopClass2 = toppkg.EClassifiers.get(1)
-		val Subpkg1Class1 = subpkg1.EClassifiers.get(0)
-		val Subpkg1Class2 = subpkg1.EClassifiers.get(1)
-		val Subpkg2Class1 = subpkg2.EClassifiers.get(0)
-		val Subpkg2Class2 = subpkg2.EClassifiers.get(1)
-		val Subpkg3Class1 = subpkg3.EClassifiers.get(0)
-		val Subpkg3Class2 = subpkg3.EClassifiers.get(1)
-		
 		//Check package name
 		assertEquals("toppkg", toppkg.name)
 		assertEquals("subpkg1", subpkg1.name)
@@ -572,15 +469,16 @@ class OperatorMappingTest
 		assertEquals("newsubpack", newsubpack.name)
 		
 		//Check classes names
-		assertEquals("TopClass1", TopClass1.name)
-		assertEquals("TopClass2", TopClass2.name)
-		assertEquals("Subpkg1Class1", Subpkg1Class1.name)
-		assertEquals("Subpkg1Class2", Subpkg1Class2.name)
-		assertEquals("Subpkg2Class1", Subpkg2Class1.name)
-		assertEquals("Subpkg2Class2", Subpkg2Class2.name)
-		assertEquals("Subpkg3Class1", Subpkg3Class1.name)
-		assertEquals("Subpkg3Class2", Subpkg3Class2.name)
+		assertTrue(toppkg.EClassifiers.exists[name == "TopClass1"])
+		assertTrue(toppkg.EClassifiers.exists[name == "TopClass2"])
+		assertTrue(subpkg1.EClassifiers.exists[name == "Subpkg1Class1"])
+		assertTrue(subpkg1.EClassifiers.exists[name == "Subpkg1Class2"])
+		assertTrue(subpkg2.EClassifiers.exists[name == "Subpkg2Class1"])
+		assertTrue(subpkg2.EClassifiers.exists[name == "Subpkg2Class2"])
+		assertTrue(subpkg3.EClassifiers.exists[name == "Subpkg3Class1"])
+		assertTrue(subpkg3.EClassifiers.exists[name == "Subpkg3Class2"])
 	}
+	
 	@Test
 	def void testNewPackage2(){
 		
@@ -600,16 +498,6 @@ class OperatorMappingTest
 		assertEquals(0, subpkg3.ESubpackages.size)
 		assertEquals(2, subpkg3.EClassifiers.size)
 		
-		//Get classes
-		val TopClass1 = subpkg1.EClassifiers.get(2)
-		val TopClass2 = subpkg1.EClassifiers.get(3)
-		val Subpkg1Class1 = subpkg1.EClassifiers.get(0)
-		val Subpkg1Class2 = subpkg1.EClassifiers.get(1)
-		val Subpkg2Class1 = subpkg2.EClassifiers.get(0)
-		val Subpkg2Class2 = subpkg2.EClassifiers.get(1)
-		val Subpkg3Class1 = subpkg3.EClassifiers.get(0)
-		val Subpkg3Class2 = subpkg3.EClassifiers.get(1)
-		
 		//Check package name
 		assertEquals("newroot", newroot.name)
 		assertEquals("subpkg1", subpkg1.name)
@@ -617,23 +505,24 @@ class OperatorMappingTest
 		assertEquals("subpkg3", subpkg3.name)
 		
 		//Check classes names
-		assertEquals("TopClass1", TopClass1.name)
-		assertEquals("TopClass2", TopClass2.name)
-		assertEquals("Subpkg1Class1", Subpkg1Class1.name)
-		assertEquals("Subpkg1Class2", Subpkg1Class2.name)
-		assertEquals("Subpkg2Class1", Subpkg2Class1.name)
-		assertEquals("Subpkg2Class2", Subpkg2Class2.name)
-		assertEquals("Subpkg3Class1", Subpkg3Class1.name)
-		assertEquals("Subpkg3Class2", Subpkg3Class2.name)
+		assertTrue(subpkg1.EClassifiers.exists[name == "TopClass1"])
+		assertTrue(subpkg1.EClassifiers.exists[name == "TopClass2"])
+		assertTrue(subpkg1.EClassifiers.exists[name == "Subpkg1Class1"])
+		assertTrue(subpkg1.EClassifiers.exists[name == "Subpkg1Class2"])
+		assertTrue(subpkg2.EClassifiers.exists[name == "Subpkg2Class1"])
+		assertTrue(subpkg2.EClassifiers.exists[name == "Subpkg2Class2"])
+		assertTrue(subpkg3.EClassifiers.exists[name == "Subpkg3Class1"])
+		assertTrue(subpkg3.EClassifiers.exists[name == "Subpkg3Class2"])
 	}
+	
 	@Test
 	def void testNewPackage3(){
 		
 		//Get packages
 		val newroot     = subPackTest9.syntax.pkgs.head
 		val newsubpack  = newroot.ESubpackages.get(0)
-		val newsubpack2 = newsubpack.ESubpackages.get(0)
-		val subpkg2     = newsubpack.ESubpackages.get(1)
+		val newsubpack2 = newsubpack.ESubpackages.findFirst[name == "newsubpack2"]
+		val subpkg2     = newsubpack.ESubpackages.findFirst[name == "subpkg2"]
 		val subpkg3     = subpkg2.ESubpackages.get(0)
 		
 		//Check numbers of elements
@@ -648,16 +537,6 @@ class OperatorMappingTest
 		assertEquals(0, newsubpack2.ESubpackages.size)
 		assertEquals(2, newsubpack2.EClassifiers.size)
 		
-		//Get classes
-		val TopClass1 = newsubpack.EClassifiers.get(0)
-		val TopClass2 = newsubpack.EClassifiers.get(1)
-		val Subpkg1Class1 = newsubpack2.EClassifiers.get(0)
-		val Subpkg1Class2 = newsubpack2.EClassifiers.get(1)
-		val Subpkg2Class1 = subpkg2.EClassifiers.get(0)
-		val Subpkg2Class2 = subpkg2.EClassifiers.get(1)
-		val Subpkg3Class1 = subpkg3.EClassifiers.get(0)
-		val Subpkg3Class2 = subpkg3.EClassifiers.get(1)
-		
 		//Check package name
 		assertEquals("newroot", newroot.name)
 		assertEquals("subpkg2", subpkg2.name)
@@ -666,14 +545,14 @@ class OperatorMappingTest
 		assertEquals("newsubpack2", newsubpack2.name)
 		
 		//Check classes names
-		assertEquals("TopClass1", TopClass1.name)
-		assertEquals("TopClass2", TopClass2.name)
-		assertEquals("Subpkg1Class1", Subpkg1Class1.name)
-		assertEquals("Subpkg1Class2", Subpkg1Class2.name)
-		assertEquals("Subpkg2Class1", Subpkg2Class1.name)
-		assertEquals("Subpkg2Class2", Subpkg2Class2.name)
-		assertEquals("Subpkg3Class1", Subpkg3Class1.name)
-		assertEquals("Subpkg3Class2", Subpkg3Class2.name)
+		assertTrue(newsubpack.EClassifiers.exists[name == "TopClass1"])
+		assertTrue(newsubpack.EClassifiers.exists[name == "TopClass2"])
+		assertTrue(newsubpack2.EClassifiers.exists[name == "Subpkg1Class1"])
+		assertTrue(newsubpack2.EClassifiers.exists[name == "Subpkg1Class2"])
+		assertTrue(subpkg2.EClassifiers.exists[name == "Subpkg2Class1"])
+		assertTrue(subpkg2.EClassifiers.exists[name == "Subpkg2Class2"])
+		assertTrue(subpkg3.EClassifiers.exists[name == "Subpkg3Class1"])
+		assertTrue(subpkg3.EClassifiers.exists[name == "Subpkg3Class2"])
 	}
 	
 	private def EPackage loadEcore(String uri) {
@@ -687,22 +566,26 @@ class OperatorMappingTest
 		return helper.match(Collections.singletonList(pkgA), Collections.singletonList(pkgB), null)
 	}
 	
-	def Language getMM1()              { return root.elements.get(0) as Language }
-	def Language getPackagesLang()     { return root.elements.get(1) as Language }
-	def Language getRenameEcoreMM1()   { return root.elements.get(2) as Language }
-	def Language getRenameMergeMM1()   { return root.elements.get(3) as Language }
-	def Language getRenameSliceMM1()   { return root.elements.get(4) as Language }
-	def Language getSubPackTest0()     { return root.elements.get(5) as Language }
-	def Language getSubPackTest1()     { return root.elements.get(6) as Language }
-	def Language getSubPackTest2()     { return root.elements.get(7) as Language }
-	def Language getSubPackTest3()     { return root.elements.get(8) as Language }
-	def Language getSubPackTest4()     { return root.elements.get(9) as Language }
-	def Language getSubPackTest4b()    { return root.elements.get(10) as Language }
-	def Language getSubPackTest5()     { return root.elements.get(11) as Language }
-	def Language getSubPackTest6()     { return root.elements.get(12) as Language }
-	def Language getSubPackTest7()     { return root.elements.get(13) as Language }
-	def Language getSubPackTest8()     { return root.elements.get(14) as Language }
-	def Language getSubPackTest9()     { return root.elements.get(15) as Language }
+	def Language findLang(String langName)  {
+		return root.elements.filter(Language).findFirst[name == langName]
+	}
+	
+	def Language getMM1()              { return findLang("MM1") }
+	def Language getPackagesLang()     { return findLang("PackageLang") }
+	def Language getRenameEcoreMM1()   { return findLang("RenameEcoreMM1") }
+	def Language getRenameMergeMM1()   { return findLang("RenameMergeMM1") }
+	def Language getRenameSliceMM1()   { return findLang("RenameSliceMM1") }
+	def Language getSubPackTest0()     { return findLang("SubPackTest0") }
+	def Language getSubPackTest1()     { return findLang("SubPackTest1") }
+	def Language getSubPackTest2()     { return findLang("SubPackTest2") }
+	def Language getSubPackTest3()     { return findLang("SubPackTest3") }
+	def Language getSubPackTest4()     { return findLang("SubPackTest4") }
+	def Language getSubPackTest4b()    { return findLang("SubPackTest4b") }
+	def Language getSubPackTest5()     { return findLang("SubPackTest5") }
+	def Language getSubPackTest6()     { return findLang("SubPackTest6") }
+	def Language getSubPackTest7()     { return findLang("SubPackTest7") }
+	def Language getSubPackTest8()     { return findLang("SubPackTest8") }
+	def Language getSubPackTest9()     { return findLang("SubPackTest9") }
 	
 	def List<EClass> getRenamedEcoreClasses() {return getRenameEcoreMM1.syntax.pkgs.get(0).EClassifiers.filter(EClass).toList}
 	def List<EClass> getRenamedMergeClasses() {return getRenameMergeMM1.syntax.pkgs.get(0).EClassifiers.filter(EClass).toList}
