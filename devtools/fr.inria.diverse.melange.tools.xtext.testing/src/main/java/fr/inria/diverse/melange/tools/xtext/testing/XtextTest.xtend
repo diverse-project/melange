@@ -129,13 +129,12 @@ class XtextTestProcessor extends AbstractClassProcessor
 
 	def void generateFields(MutableClassDeclaration cls, extension TransformationContext ctx) {
 		// ValidationTestHelper
-		if (withValidation)
-			cls.addField("_validationTestHelper")[
-				primarySourceElement = cls
-				addAnnotation(findTypeGlobally("com.google.inject.Inject").newAnnotationReference)
-				addAnnotation(findTypeGlobally("org.eclipse.xtext.xbase.lib.Extension").newAnnotationReference)
-				type = findTypeGlobally("org.eclipse.xtext.junit4.validation.ValidationTestHelper").newTypeReference
-			]
+		cls.addField("_validationTestHelper")[
+			primarySourceElement = cls
+			addAnnotation(findTypeGlobally("com.google.inject.Inject").newAnnotationReference)
+			addAnnotation(findTypeGlobally("org.eclipse.xtext.xbase.lib.Extension").newAnnotationReference)
+			type = findTypeGlobally("org.eclipse.xtext.junit4.validation.ValidationTestHelper").newTypeReference
+		]
 
 		// ValidationTestHelper
 		cls.addField("_compilationTestHelper")[
