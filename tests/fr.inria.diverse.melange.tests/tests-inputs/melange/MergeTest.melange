@@ -2,64 +2,64 @@ package mergetest
 
 language MM1 {
 	syntax "tests-inputs/metamodels/merge/MM1.ecore"
-	exactType mm1MT
+	exactType MM1MT
 }
 
 language MM2 {
 	syntax "tests-inputs/metamodels/merge/MM2.ecore"
-	exactType mm2MT
+	exactType MM2MT
 }
 
 language AutoMerge1a{
 	merge MM1
-	exactType autoMerge1aMT
+	exactType AutoMerge1aMT
 }
 
 language AutoMerge1b{
 	merge MM1
 	merge MM1
-	exactType autoMerge1bMT
+	exactType AutoMerge1bMT
 }
 
 language AutoMerge2a{
 	merge MM2
-	exactType autoMerge2aMT
+	exactType AutoMerge2aMT
 }
 
 language AutoMerge2b{
 	merge MM2
 	merge MM2
-	exactType autoMerge2bMT
+	exactType AutoMerge2bMT
 }
 
 language MergeLangA{
 	merge MM1
 	merge MM2
-	exactType mergeLangAMT
+	exactType MergeLangAMT
 }
 
 language MergeLangB{
 	merge MM2
 	merge MM1
-	exactType mergeLangBMT
+	exactType MergeLangBMT
 }
 
 language MergeEcore{
 	syntax "tests-inputs/metamodels/merge/MM1.ecore"
 	syntax "tests-inputs/metamodels/merge/MM2.ecore"
-	exactType mergeEcoreMT
+	exactType MergeEcoreMT
 }
 
 language BothLangA{
 	syntax "tests-inputs/metamodels/merge/MM1.ecore"
 	merge MM2
-	exactType bothLangA
+	exactType BothLangA
 }
 
 language BothLangB{
 	syntax "tests-inputs/metamodels/merge/MM2.ecore"
 	merge MM1
-	exactType bothLangB
+	exactType BothLangB
 }
 
 language Merge1 {

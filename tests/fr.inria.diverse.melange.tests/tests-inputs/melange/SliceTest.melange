@@ -2,12 +2,12 @@ package mergetest
 
 language MM1 {
 	syntax "tests-inputs/metamodels/merge/MM1.ecore"
-	exactType mm1MT
+	exactType MM1MT
 }
 
 language MM2 {
 	syntax "tests-inputs/metamodels/merge/MM2.ecore"
-	exactType mm2MT
+	exactType MM2MT
 }
 
 language SliceMM1{

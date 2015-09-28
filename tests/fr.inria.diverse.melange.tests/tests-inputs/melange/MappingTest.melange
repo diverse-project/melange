@@ -2,12 +2,12 @@ package mergetest
 
 language MM1 {
 	syntax "tests-inputs/metamodels/merge/MM1.ecore"
-	exactType mm1MT
+	exactType MM1MT
 }
 
 language MM3 {
 	syntax "tests-inputs/metamodels/merge/MM3.ecore"
-	exactType mm3MT
+	exactType MM3MT
 }
 
 map "MyMapping" MM3 to MM1MT {
