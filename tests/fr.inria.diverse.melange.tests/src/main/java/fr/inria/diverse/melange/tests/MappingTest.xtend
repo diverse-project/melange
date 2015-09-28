@@ -74,7 +74,7 @@ class MappingTest
 	
 	@Test
 	def void testUnknownModelType(){
-		assertNull(wrongMapping1.to.eResource)
+		assertNull(wrongMapping1.to)
 		assertError(root,
 					MelangePackage.eINSTANCE.modelType,
 					MelangeValidationConstants.MAPPING_UNKNOWN_MODELTYPE,

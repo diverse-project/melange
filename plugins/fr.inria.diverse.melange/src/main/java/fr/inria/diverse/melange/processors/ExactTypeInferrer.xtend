@@ -33,6 +33,9 @@ class ExactTypeInferrer extends DispatchMelangeProcessor
 		root.languages.forEach[l |
 			l.exactType = root.modelTypes.findFirst[name == l.exactTypeName]
 		]
+		root.mappings.forEach[m |
+			m.to = root.modelTypes.findFirst[name == m.to?.name]
+		]
 	}
 
 	def dispatch void postProcess(ModelTypingSpace root) {
