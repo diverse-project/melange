@@ -14,6 +14,7 @@ import org.junit.FixMethodOrder
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.MethodSorters
+import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeUiInjectorProvider)
@@ -90,4 +91,42 @@ public class SimpleFsmProject extends AbstractXtextTests
 		val mainTransfoOutput = helper.runMainClass(melangeFsm, "simplefsm.main")
 		assertEquals(expected, mainTransfoOutput)
 	}
+	
+	@Test
+	def void test4Outline() {
+		val treeViewer = helper.getOutline(MELANGE_FILE)
+		treeViewer.expandAll
+		val topElement = treeViewer.getInput() as IOutlineNode
+
+		val treeRoot = topElement.children.head
+		assertEquals("simplefsm", treeRoot.text.toString)
+		assertEquals(6, treeRoot.children.size)
+
+		val fsmLang = treeRoot.children.get(0)
+		val timedFsmLang = treeRoot.children.get(1)
+		val execute = treeRoot.children.get(2)
+		val main = treeRoot.children.get(3)
+		val fsmMT = treeRoot.children.get(4)
+		val tfsmMT = treeRoot.children.get(5)
+
+		//Check top elements
+		assertEquals("Fsm \u25C1 FsmMT", fsmLang.text.toString)
+		assertEquals("TimedFsm \u25C1 FsmMT, TimedFsmMT", timedFsmLang.text.toString)
+		assertEquals("execute", execute.text.toString)
+		assertEquals("main", main.text.toString)
+		assertEquals("FsmMT", fsmMT.text.toString)
+		assertEquals("TimedFsmMT \u25C1 FsmMT", tfsmMT.text.toString)
+
+		//Check packages for Languages & ModelTypes
+		val fsmSyntax = fsmLang.children.head
+		val tfsmSyntax = timedFsmLang.children.head
+		val fsmMTSyntax = fsmMT.children.head
+		val tfsmMTSyntax = tfsmMT.children.head
+		
+		helper.assertMatch("tests-inputs/modelTypes/FsmMT.ecore", fsmSyntax)
+		helper.assertMatch("tests-inputs/modelTypes/FsmMT.ecore", fsmMTSyntax)
+		helper.assertMatch("tests-inputs/modelTypes/TimedFsmMT.ecore", tfsmSyntax)
+		helper.assertMatch("tests-inputs/modelTypes/TimedFsmMT.ecore", tfsmMTSyntax)
+	}
+	
 }
