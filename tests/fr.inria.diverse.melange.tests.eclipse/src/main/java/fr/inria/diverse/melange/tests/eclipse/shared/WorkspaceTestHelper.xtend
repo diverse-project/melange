@@ -342,6 +342,7 @@ class WorkspaceTestHelper {
 		
 		val ref = cls.EAllReferences
 		val att = cls.EAllAttributes
+		val op  = cls.EAllOperations
 		val subNodes = node.children
 		
 		ref.forEach[r |
@@ -351,6 +352,11 @@ class WorkspaceTestHelper {
 		
 		att.forEach[a |
 			val n = subNodes.findFirst[text.toString == a.name +" : "+ a.EType.name]
+			Assert.assertNotNull(n)
+		]
+		
+		op.forEach[o |
+			val n = subNodes.findFirst[text.toString == o.name +" : "+ o.EType.name]
 			Assert.assertNotNull(n)
 		]
 	}
