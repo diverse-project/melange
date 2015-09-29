@@ -77,6 +77,14 @@ class LanguageProcessor extends DispatchMelangeProcessor{
 		}
 		
 		if(errors.isEmpty){
+			val rs = language.eResource.resourceSet
+			var r = rs.getResource(URI::createURI(language.name+"RootPackage"), false)
+			if(r !== null){
+				rs.resources.remove(r)
+			}
+			r = rs.createResource(URI::createURI(language.name+"RootPackage"))
+			r?.contents?.add(syntax)
+			
 			packageProvider.registerPackages(language.syntax, syntax)
 		}
 	} 
