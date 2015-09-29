@@ -345,12 +345,12 @@ class WorkspaceTestHelper {
 		val subNodes = node.children
 		
 		ref.forEach[r |
-			val n = subNodes.findFirst[text.toString == r.name]
+			val n = subNodes.findFirst[text.toString == (r.name +" : "+ r.EType.name)]
 			Assert.assertNotNull(n)
 		]
 		
 		att.forEach[a |
-			val n = subNodes.findFirst[text.toString == a.name]
+			val n = subNodes.findFirst[text.toString == a.name +" : "+ a.EType.name]
 			Assert.assertNotNull(n)
 		]
 	}
