@@ -32,6 +32,7 @@ import org.eclipse.jdt.launching.IJavaLaunchConfigurationConstants
 import org.eclipse.jdt.ui.JavaUI
 import org.eclipse.jface.viewers.StructuredSelection
 import org.eclipse.pde.internal.core.natures.PDE
+import org.eclipse.ui.IPageLayout
 import org.eclipse.ui.ISources
 import org.eclipse.ui.PlatformUI
 import org.eclipse.ui.commands.ICommandService
@@ -39,6 +40,8 @@ import org.eclipse.ui.dialogs.IOverwriteQuery
 import org.eclipse.ui.handlers.IHandlerService
 import org.eclipse.ui.internal.wizards.datatransfer.ZipLeveledStructureProvider
 import org.eclipse.ui.part.FileEditorInput
+import org.eclipse.ui.views.contentoutline.ContentOutlinePage
+import org.eclipse.ui.views.contentoutline.IContentOutlinePage
 import org.eclipse.ui.wizards.datatransfer.ImportOperation
 import org.eclipse.xtext.junit4.ui.util.IResourcesSetupUtil
 import org.eclipse.xtext.junit4.ui.util.JavaProjectSetupUtil
@@ -46,6 +49,10 @@ import org.eclipse.xtext.ui.XtextProjectHelper
 import org.eclipse.xtext.ui.editor.XtextEditor
 import org.eclipse.xtext.ui.editor.utils.EditorUtils
 import org.junit.Assert
+import org.eclipse.swt.widgets.Tree
+import org.eclipse.jface.viewers.TreeViewer
+import org.eclipse.xtext.ui.editor.outline.impl.OutlinePage
+import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 
 class WorkspaceTestHelper {
 	static final String MELANGE_CMD_GENERATE_ALL        = "fr.inria.diverse.melange.GenerateAll"
@@ -158,6 +165,13 @@ class WorkspaceTestHelper {
 		}
 
 		return null
+	}
+	
+	def TreeViewer getOutline(String melangeFile){
+		val editor = openEditor(melangeFile)
+		val outlinePage = editor.getAdapter(typeof(IContentOutlinePage)) as OutlinePage
+		val treeViewer = outlinePage.treeViewer
+		return treeViewer
 	}
 
 	/**
