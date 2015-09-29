@@ -53,6 +53,7 @@ import org.eclipse.swt.widgets.Tree
 import org.eclipse.jface.viewers.TreeViewer
 import org.eclipse.xtext.ui.editor.outline.impl.OutlinePage
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
+import org.eclipse.emf.ecore.EClass
 
 class WorkspaceTestHelper {
 	static final String MELANGE_CMD_GENERATE_ALL        = "fr.inria.diverse.melange.GenerateAll"
@@ -307,5 +308,58 @@ class WorkspaceTestHelper {
 			Assert::fail(comparison.differences.join(", "))
 
 		Assert::assertTrue(comparison.differences.empty)
+	}
+	
+	/*
+	 * Assert node contains at least pkg
+	 */
+	def void assertMatch(EPackage pkg, IOutlineNode node){
+		
+		Assert.assertEquals(pkg.name, node.text.toString)
+		
+		val subPack = pkg.ESubpackages
+		val classes = pkg.EClassifiers
+		val subNodes = node.children
+		
+		subPack.forEach[p |
+			val n = subNodes.findFirst[text.toString == p.name]
+			Assert.assertNotNull(n)
+			assertMatch(p,n)
+		]
+		
+		classes.forEach[c |
+			val n = subNodes.findFirst[text.toString == c.name]
+			Assert.assertNotNull(n)
+			if(c instanceof EClass){
+				assertMatch(c,n)
+			}
+		]
+	}
+	
+	def void assertMatch(EClass cls, IOutlineNode node){
+		
+		Assert.assertEquals(cls.name, node.text.toString)
+		
+		val ref = cls.EAllReferences
+		val att = cls.EAllAttributes
+		val subNodes = node.children
+		
+		ref.forEach[r |
+			val n = subNodes.findFirst[text.toString == r.name]
+			Assert.assertNotNull(n)
+		]
+		
+		att.forEach[a |
+			val n = subNodes.findFirst[text.toString == a.name]
+			Assert.assertNotNull(n)
+		]
+	}
+	
+	def void assertMatch(String refEcore, IOutlineNode node){
+		val rs = new ResourceSetImpl
+		val uri = URI::createURI(refEcore)
+		val res = rs.getResource(uri, true)
+		val ref = res.contents.head as EPackage
+		assertMatch(ref,node)
 	}
 }
