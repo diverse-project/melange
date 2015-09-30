@@ -33,6 +33,7 @@ import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.LanguageOperator
 import org.eclipse.xtext.common.types.JvmUnknownTypeReference
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import org.eclipse.emf.ecore.util.EcoreUtil
 
 class LanguageExtensions
 {
@@ -476,7 +477,7 @@ class LanguageExtensions
 	    	newAspects += MelangeFactory.eINSTANCE.createAspect => [
 					aspectedClass = eClazz
 					aspectTypeRef = typeRefBuilder.typeRef(targetAspectNamespace+"."+aspName)
-					ecoreFragment = asp.ecoreFragment
+					ecoreFragment = EcoreUtil.copy(asp.ecoreFragment)
 				]
 		]
 		
@@ -564,7 +565,7 @@ class LanguageExtensions
 				language.semantics += MelangeFactory.eINSTANCE.createAspect => [
 					aspectedClass = localAspectedClass
 					aspectTypeRef = typesBuilder.cloneWithProxies(asp.aspectTypeRef)
-					ecoreFragment = asp.ecoreFragment
+					ecoreFragment = EcoreUtil.copy(asp.ecoreFragment)
 				]
 			]
 		]
@@ -575,7 +576,7 @@ class LanguageExtensions
 				language.semantics += MelangeFactory.eINSTANCE.createAspect => [
 					aspectedClass = localAspectedClass
 					aspectTypeRef = typesBuilder.cloneWithProxies(asp.aspectTypeRef)
-					ecoreFragment = asp.ecoreFragment
+					ecoreFragment = EcoreUtil.copy(asp.ecoreFragment)
 				]
 			]
 		]
