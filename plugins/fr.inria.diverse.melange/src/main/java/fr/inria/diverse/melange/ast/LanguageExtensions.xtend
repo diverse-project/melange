@@ -599,7 +599,7 @@ class LanguageExtensions
 	/**
 	 * For Aspects from With Operator, try to change targeted classes
 	 * to point copied aspects classes.
-	 * Do nothing it we can't find these classes
+	 * Do nothing if we can't find these classes
 	 */
 	private def void updateLocalAspects(Language language){
 		val typeRefBuilder = builderFactory.create(language.eResource.resourceSet)
