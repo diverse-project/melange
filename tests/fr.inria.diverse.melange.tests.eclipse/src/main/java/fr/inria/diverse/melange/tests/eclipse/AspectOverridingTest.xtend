@@ -172,11 +172,32 @@ public class AspectOverridingTest extends AbstractXtextTests
 		val L4_Asp4 = L4Lang.children.get(1)
 		
 		assertEquals("Asp0 @ A", L0_Asp0.text.toString)
+		checkFragement(L0_Asp0)
 		assertEquals("Asp1a @ A", L1_Asp1a.text.toString)
+		checkFragement(L1_Asp1a)
 		assertEquals("Asp1b @ A", L1_Asp1b.text.toString)
+		checkFragement(L1_Asp1b)
 		assertEquals("Asp2 @ A", L2_Asp2.text.toString)
+		checkFragement(L2_Asp2)
 		assertEquals("Asp3 @ A", L3_Asp3.text.toString)
+		checkFragement(L3_Asp3)
 		assertEquals("Asp4 @ A", L4_Asp4.text.toString)
+		checkFragement(L4_Asp4)
 		
+	}
+	
+	def void checkFragement(IOutlineNode aspNode){
+		assertEquals(1,aspNode.children.size)
+		var root = aspNode.children.head
+		
+		assertEquals(1,root.children.size)
+		var clsA = root.children.head
+		
+		assertEquals(1,clsA.children.size)
+		var op = clsA.children.head
+		
+		assertEquals("root", root.text.toString)
+		assertEquals("A", clsA.text.toString)
+		assertEquals("whoIAm", op.text.toString)
 	}
 }
