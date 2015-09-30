@@ -338,7 +338,7 @@ public class AspectOverridingTest extends AbstractXtextTests
 		checkFragment(asp0_L3.ecoreFragment)
 		
 		//L3b
-		val asp4_L3b = allSemL3.get(0)
+		val asp4_L3b = allSemL3b.get(0)
 		assertEquals("A",asp4_L3b.aspectedClass.name)
 		assertEquals("fr.inria.diverse.melange.test.overridding.l3b.aspects.Asp4",asp4_L3b.aspectTypeRef.qualifiedName)
 		val asp2_L3b = allSemL3b.get(1)
@@ -362,7 +362,7 @@ public class AspectOverridingTest extends AbstractXtextTests
 		//L4
 		val asp4 = allSemL4.get(0)
 		assertEquals("A",asp4.aspectedClass.name)
-		assertEquals("fr.inria.diverse.melange.test.overridding.l4.aspects.Asp4",asp4.aspectTypeRef.qualifiedName)
+		assertEquals("fr.inria.diverse.melange.test.overridding.aspects.Asp4",asp4.aspectTypeRef.qualifiedName)
 		checkFragment(asp4.ecoreFragment)
 	}
 }
