@@ -562,22 +562,26 @@ class LanguageExtensions
 			var superLang = (op as LanguageOperator).targetLanguage
 			superLang.getOrderedAspects.forEach[asp |
 				val localAspectedClass = language.syntax.findClass(asp.aspectedClass.name)//TODO: renaming here
-				language.semantics += MelangeFactory.eINSTANCE.createAspect => [
+				val newAsp = MelangeFactory.eINSTANCE.createAspect => [
 					aspectedClass = localAspectedClass
 					aspectTypeRef = typesBuilder.cloneWithProxies(asp.aspectTypeRef)
 					ecoreFragment = EcoreUtil.copy(asp.ecoreFragment)
 				]
+				language.semantics += newAsp
+				newAsp.tryUpdateAspect
 			]
 		]
 		//inherits
 		language.getSuperLanguages.reverseView.forEach[superLang |
 			superLang.getOrderedAspects.forEach[asp |
 				val localAspectedClass = language.syntax.findClass(asp.aspectedClass.name)
-				language.semantics += MelangeFactory.eINSTANCE.createAspect => [
+				val newAsp =  MelangeFactory.eINSTANCE.createAspect => [
 					aspectedClass = localAspectedClass
 					aspectTypeRef = typesBuilder.cloneWithProxies(asp.aspectTypeRef)
 					ecoreFragment = EcoreUtil.copy(asp.ecoreFragment)
 				]
+				language.semantics += newAsp
+				newAsp.tryUpdateAspect
 			]
 		]
 	}
@@ -602,12 +606,34 @@ class LanguageExtensions
 	 * Do nothing if we can't find these classes
 	 */
 	private def void updateLocalAspects(Language language){
-		val typeRefBuilder = builderFactory.create(language.eResource.resourceSet)
 		language.localSemantics.reverseView.forEach[asp|
-			val newRef = typeRefBuilder.typeRef(language.aspectTargetNamespace+"."+asp.aspectTypeRef.simpleName)
-			if(!(newRef instanceof JvmUnknownTypeReference)){
-				asp.aspectTypeRef = newRef
-			}
+			asp.tryUpdateAspect
 		]
+	}
+	
+	/**
+	 * Try update asp.aspectTypeRef to reference copied aspect
+	 */
+	private def void tryUpdateAspect(Aspect asp){
+		var language = asp.owningLanguage
+		val newRef = language.getCopiedAspectRef(asp.aspectTypeRef.simpleName)
+		if(newRef !== null){
+			asp.aspectTypeRef = newRef
+		}
+	}
+	
+	/**
+	 * Get a reference to the copied class corresponding to {@link aspectSimpleName}
+	 * in the project generated for {@link language}.
+	 * 
+	 * Return null if not found
+	 */
+	private def getCopiedAspectRef(Language language, String aspectSimpleName){
+		val typeRefBuilder = builderFactory.create(language.eResource.resourceSet)
+		val newRef = typeRefBuilder.typeRef(language.aspectTargetNamespace+"."+aspectSimpleName)
+		if(newRef instanceof JvmUnknownTypeReference){
+			return null
+		}
+		return newRef
 	}
 }
