@@ -354,13 +354,12 @@ class LanguageExtensions
 	 * and update {@link l}'s semantic with new Aspects 
 	 */
 	def void createExternalAspects(Language l) {
-		val classesAlreadyWeaved = newArrayList
 		val newRootName = l.syntax.packageFqn.toQualifiedName.skipLast(1).toString
 		
 		
 		//Copy sem
 		val withAspects = l.getLocalSemantics
-		copyAspects(l,withAspects.reverseView,classesAlreadyWeaved,null)
+		copyAspects(l,withAspects.reverseView,null)
 		l.semantics.removeAll(withAspects)
 		
 		//Copy+rename op
@@ -388,7 +387,7 @@ class LanguageExtensions
 							aspects.reverseView
 						}
 					val rulesManager = new RenamingRuleManager(renamingRules, aspects, newRootName, aspectExtension)
-					copyAspects(l,aspects,classesAlreadyWeaved,rulesManager)
+					copyAspects(l,aspects,rulesManager)
 				}
 			]
 		//Copy super lang
@@ -400,7 +399,7 @@ class LanguageExtensions
 				else{
 					superLang.semantics.reverseView
 				}
-			copyAspects(l,orderedAspects,classesAlreadyWeaved,null)
+			copyAspects(l,orderedAspects,null)
 		]
 	}
 	
@@ -408,7 +407,7 @@ class LanguageExtensions
 	 * Copy aspects defined on {@link l} into generated project
 	 * and apply renaming rules on them
 	 */
-	private def void copyAspects(Language l, Iterable<Aspect> aspects, List<String> classesAlreadyWeaved,RenamingRuleManager rulesManager){
+	private def void copyAspects(Language l, Iterable<Aspect> aspects,RenamingRuleManager rulesManager){
 		
 		if(aspects.isEmpty){
 			return
@@ -438,8 +437,7 @@ class LanguageExtensions
 					val renaming = rulesManager?.getClassRule(classFqName.toString)
 					if(renaming != null) className = renaming.value.substring(renaming.value.lastIndexOf(".")+1)
 					
-					if(!classesAlreadyWeaved.contains(className) && (l.syntax.findClass(className) !== null)){
-						classesAlreadyWeaved.add(className)
+					if(l.syntax.findClass(className) !== null){
 						copiedAspect += asp
 						val request = new AspectCopier.AspectCopierRequest(
 							#[asp.aspectTypeRef].toSet,
