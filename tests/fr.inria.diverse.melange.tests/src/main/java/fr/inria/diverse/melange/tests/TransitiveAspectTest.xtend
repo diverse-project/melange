@@ -27,7 +27,6 @@ class TransitiveAspectTest
 {
 	@Inject extension ModelingElementExtensions
 	@Inject extension LanguageExtensions
-	@Inject extension ValidationTestHelper
 	
 	@Test
 	def void testSimpleAspect(){

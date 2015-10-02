@@ -27,6 +27,13 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import fr.inria.diverse.melange.utils.RenamingRuleManager
 import fr.inria.diverse.melange.metamodel.melange.Weave
 import org.eclipse.emf.common.util.URI
+import java.util.ArrayList
+import org.eclipse.xtext.common.types.JvmDeclaredType
+import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
+import fr.inria.diverse.melange.metamodel.melange.LanguageOperator
+import org.eclipse.xtext.common.types.JvmUnknownTypeReference
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import org.eclipse.emf.ecore.util.EcoreUtil
 
 class LanguageExtensions
 {
@@ -42,6 +49,7 @@ class LanguageExtensions
 	@Inject ModelTypeAlgebra algebra
 	@Inject AspectCopier copier
 	@Inject AspectRenamer renamer
+	@Inject JvmTypesBuilder typesBuilder
 	@Inject JvmTypeReferenceBuilder.Factory builderFactory
 
 	def List<Language> getSuperLanguages(Language l) {
@@ -83,31 +91,67 @@ class LanguageExtensions
 
 		return res.reverse
 	}
-
+	
+	//TODO: merge with createExternalAspect()
 	def List<Aspect> allSemantics(Language l) {
-		val tmp = newArrayList
 		
-		tmp += l.superLanguages.map[allSemantics].flatten
-		tmp +=
-			l.operators.map[op |
-				if (op instanceof Slice)
-					op.targetLanguage.allSemantics
-				else if (op instanceof Merge)
-					op.targetLanguage.allSemantics
-				else
-					newArrayList
-			].flatten
-		tmp += l.semantics
-
-		val res = newArrayList
-		tmp.forEach[a1 |
-			if (!res.exists[Aspect a2 | a2.aspectTypeRef.identifier == a1.aspectTypeRef.identifier]
-				&& (!a1.hasAspectAnnotation || l.syntax.pkgs.head.allClasses.exists[cls | cls.name == a1.aspectedClass.name])
-			)
-				res += a1
-		]
-		return res.reverse
+		if(l.generatedByMelange){ //Aspects were ordered when they were copied
+			return l.semantics
+		}
+		else{
+			val res = newArrayList
+			l.semantics.reverseView.forEach[a1 |
+				if (!res.exists[Aspect a2 | a2.aspectTypeRef.identifier == a1.aspectTypeRef.identifier]
+					&& (!a1.hasAspectAnnotation || l.syntax.pkgs.head.allClasses.exists[cls | cls.name == a1.aspectedClass.name]))
+				{
+					res += a1
+				}
+			]
+			return res
+		}
 	}
+	
+	/**
+	 * Return Aspects created from With Operators,
+	 * the order is the same as With Operators
+	 */
+	def List<Aspect> getLocalSemantics(Language l){
+		val res = newArrayList
+		
+		l.operators.filter(Weave).forEach[op |
+			val withAsp = l.semantics.findFirst[asp | asp.aspectTypeRef.simpleName == op.aspectTypeRef.simpleName]
+			if(withAsp !== null){
+				res += withAsp
+			}
+		]
+		
+		return res
+	}
+
+//	def List<Aspect> allSemantics(Language l) {
+//		val tmp = newArrayList
+//		
+//		tmp += l.superLanguages.map[allSemantics].flatten
+//		tmp +=
+//			l.operators.map[op |
+//				if (op instanceof Slice)
+//					op.targetLanguage.allSemantics
+//				else if (op instanceof Merge)
+//					op.targetLanguage.allSemantics
+//				else
+//					newArrayList
+//			].flatten
+//		tmp += l.semantics
+//
+//		val res = newArrayList
+//		tmp.forEach[a1 |
+//			if (!res.exists[Aspect a2 | a2.aspectTypeRef.identifier == a1.aspectTypeRef.identifier]
+//				&& (!a1.hasAspectAnnotation || l.syntax.pkgs.head.allClasses.exists[cls | cls.name == a1.aspectedClass.name])
+//			)
+//				res += a1
+//		]
+//		return res.reverse
+//	}
 
 	def Iterable<Aspect> findAspectsOn(Language l, EClass cls) {
 		return
@@ -305,38 +349,136 @@ class LanguageExtensions
 			return true
 	}
 
-	def List<Aspect> createExternalAspects(Language l) {
-		val res = newArrayList
+	/**
+	 * Copy aspects defined on {@link l} into generated project
+	 * and update {@link l}'s semantic with new Aspects 
+	 */
+	def void createExternalAspects(Language l) {
+		val newRootName = l.syntax.packageFqn.toQualifiedName.skipLast(1).toString
+		
+		
+		//Copy sem
+		val withAspects = l.getLocalSemantics
+		copyAspects(l,withAspects.reverseView,null)
+		l.semantics.removeAll(withAspects)
+		
+		//Copy+rename op
+		l.operators.reverseView.forEach[op |
+				var List<Aspect> aspects = null
+				var Language superlang = null
+				var List<PackageBinding> renamingRules = null
+				if (op instanceof Slice){
+					aspects = (op as Slice).targetLanguage.semantics
+					superlang = (op as Slice).owningLanguage
+					renamingRules= (op as Slice).mappingRules
+				} 
+				else if (op instanceof Merge){
+					aspects = (op as Merge).targetLanguage.semantics
+					superlang = (op as Merge).owningLanguage
+					renamingRules = (op as Merge).mappingRules
+				}
+				
+				if(aspects != null && superlang != null){
+					val orderedAspects = 
+						if(superlang.isGeneratedByMelange){
+							aspects
+						}
+						else{
+							aspects.reverseView
+						}
+					val rulesManager = new RenamingRuleManager(renamingRules, aspects, newRootName, aspectExtension)
+					copyAspects(l,aspects,rulesManager)
+				}
+			]
+		//Copy super lang
+		l.superLanguages.reverseView.forEach[superLang|
+			val orderedAspects = 
+				if(superLang.isGeneratedByMelange){
+					superLang.semantics
+				}
+				else{
+					superLang.semantics.reverseView
+				}
+			copyAspects(l,orderedAspects,null)
+		]
+	}
+	
+	/**
+	 * Copy aspects defined on {@link l} into generated project
+	 * and apply renaming rules on them
+	 */
+	private def void copyAspects(Language l, Iterable<Aspect> aspects,RenamingRuleManager rulesManager){
+		
+		if(aspects.isEmpty){
+			return
+		}
+		
 		val typeRefBuilder = builderFactory.create(l.eResource.resourceSet)
-		val sourceEmfNamespaces = l.collectTargetedPackages
 		val targetEmfNamespace = l.syntax.packageFqn.toQualifiedName.skipLast(1).toString
 		val targetAspectNamespace = l.aspectTargetNamespace
 		val targetProjectName = l.externalRuntimeName
-
-		val aspectsToCopy =
-			l.allSemantics
-			.reverse
-			.filter[aspectTypeRef.canBeCopiedFor(l.syntax)]
-			.map[aspectTypeRef]
-			.toSet
-
-		val request = new AspectCopier.AspectCopierRequest(
-			aspectsToCopy,
-			sourceEmfNamespaces,
-			targetEmfNamespace,
-			targetAspectNamespace,
-			targetProjectName
-		)
-
-		val newFqns = copier.copy(l, request)
-
-		newFqns.forEach[fqn |
-			res += MelangeFactory.eINSTANCE.createAspect => [
-				aspectTypeRef = typeRefBuilder.typeRef(fqn)
-			]
+		val sourceEmfNamespaces =
+			if(l == aspects.head.owningLanguage){ //aspects come from 'With' operators
+				aspects.head.aspectTypeRef.targetedNamespace.toString
+			}
+			else{
+				aspects.head.owningLanguage.syntax.packageFqn.toQualifiedName.skipLast(1).toString //prefixed root package
+			}
+		
+		
+		//Copy aspects files
+		val copiedAspect = newArrayList
+		aspects.forEach[asp |
+			if (asp.isComplete) {
+				if (asp.aspectTypeRef.canBeCopiedFor(l.syntax)) {
+					
+					var className = asp.aspectedClass.name
+					var classFqName = asp.aspectedClass.fullyQualifiedName
+					val renaming = rulesManager?.getClassRule(classFqName.toString)
+					if(renaming != null) className = renaming.value.substring(renaming.value.lastIndexOf(".")+1)
+					
+					if(l.syntax.findClass(className) !== null){
+						copiedAspect += asp
+						val request = new AspectCopier.AspectCopierRequest(
+							#[asp.aspectTypeRef].toSet,
+							#[sourceEmfNamespaces].toSet,
+							targetEmfNamespace,
+							targetAspectNamespace,
+							targetProjectName
+						)
+						copier.copy(l,request)
+					}
+				}
+			}
 		]
-
-		return res
+		
+		//Apply renaming rules on copied files
+		if(rulesManager !== null){
+			renamer.processRenaming(copiedAspect,l,rulesManager)
+		}
+		
+		//Update the semantic
+		val newAspects = newArrayList
+		copiedAspect.forEach[asp |
+			val targetClass = asp.aspectedClass.name
+	    	val targetFqName = asp.aspectedClass.fullyQualifiedName.toString
+	    	val rule = rulesManager?.getClassRule(targetFqName)
+	    	val newClass = 
+	    		if(rule !== null){
+		    		rule.value.toQualifiedName.lastSegment
+	    		}
+	    		else{
+	    			targetClass
+	    		}
+	    	val aspName = asp.aspectTypeRef.simpleName
+	    	val eClazz = l.syntax.findClass(newClass)
+	    	newAspects += MelangeFactory.eINSTANCE.createAspect => [
+					aspectedClass = eClazz
+					aspectTypeRef = typeRefBuilder.typeRef(targetAspectNamespace+"."+aspName)
+					ecoreFragment = EcoreUtil.copy(asp.ecoreFragment)
+				]
+			l.semantics += newAspects
+		]
 	}
 
 	def Set<String> collectTargetedPackages(Language l) {
@@ -360,5 +502,135 @@ class LanguageExtensions
 
 	def boolean hasExternalAspects(Language l) {
 		return !l.allAspects.filter[!isDefinedOver(l.syntax) && canBeCopiedFor(l.syntax)].empty
+	}
+	
+	
+	
+	/**
+	 * For each Language, gather Aspects from all dependencies to form
+	 * the complete semantic.
+	 */
+	def void makeAllSemantics(ModelTypingSpace root){
+		root.clearSemantics
+		
+		val processed = newArrayList
+		val languages = root.elements.filter(Language)
+		languages.filter[isGeneratedByMelange].filter[!processed.contains(it)].forEach[lang |
+			lang.makeAllSemantic(processed)
+		]
+	}
+	
+	/**
+	 * For each Language, remove all Aspects except those from With Operators
+	 */
+	def void clearSemantics(ModelTypingSpace root){
+		root.elements.filter(Language).forEach[lang |
+			val localAspects = lang.localSemantics
+			lang.semantics.clear
+			lang.semantics += localAspects
+		]
+	}
+	
+	private def void makeAllSemantic(Language language, List<Language> processed){
+		if(!processed.contains(language)){
+			processed += language
+			
+			val dependencies = language.operators.filter(LanguageOperator).map[targetLanguage].filter[isGeneratedByMelange]
+			dependencies.filter[!processed.contains(it)].forEach[superLang |
+				superLang.makeAllSemantic(processed)
+			]
+			makeAllSemantic(language)
+		}
+	}
+	
+	/**
+	 * Create Aspects based on semantics from Operators' Languages and update
+	 * With Operators' semantics to target copied Aspects classes.<br>
+	 * 
+	 * Note: assume semantics from {@link language} dependencies are made.
+	 */
+	private def void makeAllSemantic(Language language) {
+		val typeRefBuilder = builderFactory.create(language.eResource.resourceSet)
+		//with
+		language.updateLocalAspects
+		
+		//merge & slice
+		language.operators.reverseView.filter[it instanceof Merge || it instanceof Slice].forEach[op|
+			var superLang = (op as LanguageOperator).targetLanguage
+			superLang.getOrderedAspects.forEach[asp |
+				val localAspectedClass = language.syntax.findClass(asp.aspectedClass.name)//TODO: renaming here
+				val newAsp = MelangeFactory.eINSTANCE.createAspect => [
+					aspectedClass = localAspectedClass
+					aspectTypeRef = typesBuilder.cloneWithProxies(asp.aspectTypeRef)
+					ecoreFragment = EcoreUtil.copy(asp.ecoreFragment)
+				]
+				language.semantics += newAsp
+				newAsp.tryUpdateAspect
+			]
+		]
+		//inherits
+		language.getSuperLanguages.reverseView.forEach[superLang |
+			superLang.getOrderedAspects.forEach[asp |
+				val localAspectedClass = language.syntax.findClass(asp.aspectedClass.name)
+				val newAsp =  MelangeFactory.eINSTANCE.createAspect => [
+					aspectedClass = localAspectedClass
+					aspectTypeRef = typesBuilder.cloneWithProxies(asp.aspectTypeRef)
+					ecoreFragment = EcoreUtil.copy(asp.ecoreFragment)
+				]
+				language.semantics += newAsp
+				newAsp.tryUpdateAspect
+			]
+		]
+	}
+	
+	/**
+	 * Get Aspects from {@link language} in the overriding order.
+	 * (ie: the first override its followings)
+	 */
+	private def List<Aspect> getOrderedAspects(Language language){
+		return 
+			if(language.isGeneratedByMelange){
+				language.semantics
+			}
+			else{
+				language.semantics.reverseView
+			}
+	}
+	
+	/**
+	 * For Aspects from With Operator, try to change targeted classes
+	 * to point copied aspects classes.
+	 * Do nothing if we can't find these classes
+	 */
+	private def void updateLocalAspects(Language language){
+		language.localSemantics.reverseView.forEach[asp|
+			asp.tryUpdateAspect
+		]
+	}
+	
+	/**
+	 * Try update asp.aspectTypeRef to reference copied aspect
+	 */
+	private def void tryUpdateAspect(Aspect asp){
+		var language = asp.owningLanguage
+		val newRef = language.getCopiedAspectRef(asp.aspectTypeRef.simpleName)
+		if(newRef !== null){
+			asp.aspectTypeRef = newRef
+		}
+	}
+	
+	/**
+	 * Get a reference to the copied class corresponding to {@link aspectSimpleName}
+	 * in the project generated for {@link language}.
+	 * 
+	 * Return null if not found
+	 */
+	private def getCopiedAspectRef(Language language, String aspectSimpleName){
+		val typeRefBuilder = builderFactory.create(language.eResource.resourceSet)
+		val newRef = typeRefBuilder.typeRef(language.aspectTargetNamespace+"."+aspectSimpleName)
+		if(newRef instanceof JvmUnknownTypeReference){
+			return null
+		}
+		return newRef
 	}
 }

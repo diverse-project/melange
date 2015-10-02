@@ -27,7 +27,6 @@ import org.junit.runner.RunWith
 class EditorTest
 {
 	@Inject extension MelangeTestHelper
-	@Inject extension ValidationTestHelper
 
 	@Test
 	def void testInvalidImplements() {

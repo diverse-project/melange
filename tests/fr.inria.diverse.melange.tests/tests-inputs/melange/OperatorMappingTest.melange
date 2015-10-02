@@ -11,10 +11,10 @@ language PackageLang {
 }
 
 language RenameEcoreMM1{
-	syntax "tests-inputs/metamodels/merge/MM1.ecore" and-rename{
+	syntax "tests-inputs/metamodels/merge/MM1.ecore" renaming{
 		"testmerge" to "newpackage"{
 			"A" to "AAAAA"{
-				"toB" : "toZ"
+				"toB" to "toZ"
 			}
 			"B" to "Z" {
 				
@@ -25,13 +25,13 @@ language RenameEcoreMM1{
 }
 
 language RenameMergeMM1{
-	merge MM1 and-rename{
+	merge MM1 renaming{
 		"testmerge" to "newpackage"{
 			"A" to "AAAAA"{
-				"toB" : "toZ"
+				"toB" to "toZ"
 			}
 			"B" to "Z" {
-				"anAttribute" : "aZebra"
+				"anAttribute" to "aZebra"
 			}
 		}
 	}
@@ -39,10 +39,10 @@ language RenameMergeMM1{
 }
 
 language RenameSliceMM1{
-	slice MM1 on ['A', 'SubB'] and-rename{
+	slice MM1 on ['A', 'SubB'] renaming{
 		"testmerge" to "newpackage"{
 			"A" to "AAAAA"{
-				"toB" : "toZ"
+				"toB" to "toZ"
 			}
 			"B" to "Z" {
 				
@@ -56,19 +56,19 @@ language RenameSliceMM1{
  * Merge packages
  */
 language SubPackTest0{
-	merge PackageLang and-rename{
+	merge PackageLang renaming{
 		"toppkg" to "toppkg.subpkg1"{}
 	}
 	exactType SubPack0Mt
 }
 language SubPackTest1{
-	merge PackageLang and-rename{
+	merge PackageLang renaming{
 		"toppkg.subpkg1" to "toppkg"{}
 	}
 	exactType SubPackMt
 }
 language SubPackTest2 {
-	merge PackageLang and-rename{
+	merge PackageLang renaming{
 		"toppkg.subpkg2" to "toppkg.subpkg1"{}
 		"toppkg.subpkg2.subpkg3" to "toppkg.subpkg1"{}
 	}
@@ -79,19 +79,19 @@ language SubPackTest2 {
  * Own subpackage
  */
 language SubPackTest3{
-	merge PackageLang and-rename{
+	merge PackageLang renaming{
 		"toppkg" to "toppkg.newsubpkg"{}
 	}
 	exactType SubPack3Mt
 }
 language SubPackTest4{
-	merge PackageLang and-rename{
+	merge PackageLang renaming{
 		"toppkg.subpkg1" to "toppkg.subpkg1.newsubpkg"{}
 	}
 	exactType SubPack4Mt
 }
 language SubPackTest4b{
-	merge PackageLang and-rename{
+	merge PackageLang renaming{
 		"toppkg.subpkg2" to "toppkg.subpkg2.newsubpkg"{}
 	}
 	exactType SubPack4bMt
@@ -101,14 +101,14 @@ language SubPackTest4b{
  * Switch packages
  */
 language SubPackTest5{
-	merge PackageLang and-rename{
+	merge PackageLang renaming{
 		"toppkg" to "toppkg.subpkg1"{}
 		"toppkg.subpkg1" to "toppkg"{}
 	}
 	exactType SubPack5Mt
 }
 language SubPackTest6{
-	merge PackageLang and-rename{
+	merge PackageLang renaming{
 		"toppkg.subpkg2.subpkg3" to "toppkg.subpkg2"{}
 		"toppkg.subpkg2" to "toppkg.subpkg2.subpkg3"{}
 	}
@@ -119,19 +119,19 @@ language SubPackTest6{
  * Add new package
  */
 language SubPackTest7{
-	merge PackageLang and-rename{
+	merge PackageLang renaming{
 		"toppkg.subpkg1" to "toppkg.newsubpack.subpkg1"{}
 	}
 	exactType SubPack7Mt
 }
 language SubPackTest8{
-	merge PackageLang and-rename{
+	merge PackageLang renaming{
 		"toppkg" to "newroot.subpkg1"{}
 	}
 	exactType SubPack8Mt
 }
 language SubPackTest9{
-	merge PackageLang and-rename{
+	merge PackageLang renaming{
 		"toppkg" to "newroot.newsubpack"{}
 		"toppkg.subpkg1" to "newroot.newsubpack.newsubpack2" {}
 	}

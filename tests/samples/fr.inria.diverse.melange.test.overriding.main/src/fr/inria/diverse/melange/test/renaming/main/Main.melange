@@ -1,0 +1,71 @@
+package fr.inria.diverse.melange.test.overridding
+
+import fr.inria.diverse.melange.test.overridding.aspects.Asp0
+import fr.inria.diverse.melange.test.overridding.aspects.Asp1a
+import fr.inria.diverse.melange.test.overridding.aspects.Asp1b
+import fr.inria.diverse.melange.test.overridding.aspects.Asp2
+import fr.inria.diverse.melange.test.overridding.aspects.Asp3
+import fr.inria.diverse.melange.test.overridding.aspects.Asp4
+
+language L0 {
+	syntax "platform:/resource/fr.inria.diverse.melange.test.overriding.model/model/model.ecore"
+	with Asp0
+	exactType L0mt
+}
+
+language L1 {
+	syntax "platform:/resource/fr.inria.diverse.melange.test.overriding.model/model/model.ecore"
+	with Asp1a
+	with Asp1b
+	exactType L1mt
+}
+
+language L2 inherits L0,L1{
+	with Asp2
+	exactType L2mt
+}
+
+language L2b inherits L0,L1{
+	exactType L2bmt
+}
+
+language L3 inherits L2{
+	merge L4
+	with Asp3
+	exactType L3mt
+}
+
+language L3b inherits L2{
+	merge L4
+	exactType L3bmt
+}
+
+language L4 {
+	syntax "platform:/resource/fr.inria.diverse.melange.test.overriding.model/model/model.ecore"
+	with Asp4
+	exactType L4mt
+}
+
+transformation execute(L0mt m) {
+	val root = m.contents.head as fr.inria.diverse.melange.test.overridding.l0mt.A
+	println(root.whoIAm)
+}
+
+@Main
+transformation main() {
+	val m0  = L0.load("inputs/testModel_L0.root")
+	val m1  = L1.load("inputs/testModel_L0.root")
+	val m2  = L2.load("inputs/testModel_L2.root")
+	val m2b = L2b.load("inputs/testModel_L2b.root")
+	val m3  = L3.load("inputs/testModel_L3.root")
+	val m3b = L3b.load("inputs/testModel_L3b.root")
+	val m4  = L4.load("inputs/testModel_L0.root")
+
+	execute.call(m0.toL0mt)
+	execute.call(m1.toL0mt)
+	execute.call(m2.toL0mt)
+	execute.call(m2b.toL0mt)
+	execute.call(m3.toL0mt)
+	execute.call(m3b.toL0mt)
+	execute.call(m4.toL0mt)
+}

@@ -26,8 +26,8 @@ import org.junit.Ignore
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
-@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/MappingTest.melange")
 @Ignore("We'll take care of that later on")
+@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/MappingTest.melange", withValidation = false)
 class MappingTest
 {
 	@Inject MatchingHelper helper
@@ -74,6 +74,26 @@ class MappingTest
 		assertTrue(mergeLang.implements.contains(MM1.exactType))
 	}
 	
+//	@Test
+//	def void testUnknownModelType(){
+//		assertNull(wrongMapping1.to)
+//		assertError(root,
+//					MelangePackage.eINSTANCE.modelType,
+//					MelangeValidationConstants.MAPPING_UNKNOWN_MODELTYPE,
+//					"ModelType \'SomeMT\' is undefined"
+//		)
+//	}
+//	
+//	@Test
+//	def void testUnknownLanguage(){
+//		assertNull(wrongMapping2.from.eResource)
+//		assertError(root,
+//					MelangePackage.eINSTANCE.metamodel,
+//					MelangeValidationConstants.MAPPING_UNKNOWN_LANG,
+//					"Language \'SomeLang\' is undefined"
+//		)
+//	}
+	
 	@Test
 	def void testUnknownClass(){
 		assertError(wrongMapping3.rules.get(0),
@@ -114,10 +134,14 @@ class MappingTest
 		return helper.match(Collections.singletonList(pkgA), Collections.singletonList(pkgB), null)
 	}
 	
-	def Language getMM1()              { return root.elements.get(0) as Language }
-	def Language getMM3()              { return root.elements.get(1) as Language }
+	def Language getLang(String langName){
+		return root.elements.filter(Language).findFirst[name == langName]
+	}
+	
+	def Language getMM1()               { return getLang("MM1") }
+	def Language getMM3()               { return getLang("MM3") }
 	def Mapping   getMapping()          { return root.elements.get(2) as Mapping }
-	def Language getMergeLang()       { return root.elements.get(3) as Language }
+	def Language getMergeLang()         { return getLang("MergeLang") }
 	def Mapping   getWrongMapping1()    { return root.elements.get(4) as Mapping }
 	def Mapping   getWrongMapping2()    { return root.elements.get(5) as Mapping }
 	def Mapping   getWrongMapping3()    { return root.elements.get(6) as Mapping }

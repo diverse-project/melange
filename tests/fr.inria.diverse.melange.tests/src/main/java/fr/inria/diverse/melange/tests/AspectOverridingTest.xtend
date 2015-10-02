@@ -24,7 +24,6 @@ import org.junit.runner.RunWith
 class AspectOverridingTest
 {
 	@Inject MatchingHelper helper
-	@Inject extension ValidationTestHelper
 	
 	@Test
 	def void testInheritAttributeOverride(){

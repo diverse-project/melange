@@ -99,7 +99,7 @@ class XtextTestProcessor extends AbstractClassProcessor
 				for(fr.inria.diverse.melange.metamodel.melange.Element e : root.getElements()){
 					if(e instanceof fr.inria.diverse.melange.metamodel.melange.Language){
 						fr.inria.diverse.melange.metamodel.melange.Language l = (fr.inria.diverse.melange.metamodel.melange.Language) e;
-						org.junit.Assert.assertTrue(l.getName()+"doesn't implement itself",l.getImplements().contains(l.getExactType()));
+						org.junit.Assert.assertTrue(l.getName()+" doesn't implement itself",l.getImplements().contains(l.getExactType()));
 					}
 				}
 			'''
@@ -117,7 +117,7 @@ class XtextTestProcessor extends AbstractClassProcessor
 						for(fr.inria.diverse.melange.metamodel.melange.Operator operator : l.getOperators()){
 							if(operator instanceof fr.inria.diverse.melange.metamodel.melange.Inheritance){
 								fr.inria.diverse.melange.metamodel.melange.Inheritance inherit = (fr.inria.diverse.melange.metamodel.melange.Inheritance) operator;
-								org.junit.Assert.assertTrue(l.getName()+"doesn't implement inherited Language "+inherit.getTargetLanguage().getName(),
+								org.junit.Assert.assertTrue(l.getName()+" doesn't implement inherited Language "+inherit.getTargetLanguage().getName(),
 									l.getImplements().contains(inherit.getTargetLanguage().getExactType()));
 							}
 						}
@@ -129,13 +129,12 @@ class XtextTestProcessor extends AbstractClassProcessor
 
 	def void generateFields(MutableClassDeclaration cls, extension TransformationContext ctx) {
 		// ValidationTestHelper
-		if (withValidation)
-			cls.addField("_validationTestHelper")[
-				primarySourceElement = cls
-				addAnnotation(findTypeGlobally("com.google.inject.Inject").newAnnotationReference)
-				addAnnotation(findTypeGlobally("org.eclipse.xtext.xbase.lib.Extension").newAnnotationReference)
-				type = findTypeGlobally("org.eclipse.xtext.junit4.validation.ValidationTestHelper").newTypeReference
-			]
+		cls.addField("_validationTestHelper")[
+			primarySourceElement = cls
+			addAnnotation(findTypeGlobally("com.google.inject.Inject").newAnnotationReference)
+			addAnnotation(findTypeGlobally("org.eclipse.xtext.xbase.lib.Extension").newAnnotationReference)
+			type = findTypeGlobally("org.eclipse.xtext.junit4.validation.ValidationTestHelper").newTypeReference
+		]
 
 		// ValidationTestHelper
 		cls.addField("_compilationTestHelper")[

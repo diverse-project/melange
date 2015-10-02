@@ -28,7 +28,6 @@ import static org.junit.Assert.*
 class MergeTest
 {
 	@Inject MatchingHelper helper
-	@Inject extension ValidationTestHelper
 	@Inject extension ModelingElementExtensions
 	
 	@Test

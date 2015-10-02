@@ -46,7 +46,7 @@ class MelangeOutlineTreeProvider extends DefaultOutlineTreeProvider
 	def void _createNode(IOutlineNode parentNode, ModelType mt) {
 		val mNode = createEObjectNode(parentNode, mt)
 
-		mt.pkgs.forEach[pkg |
+		mt.pkgs.filter[ESuperPackage === null].forEach[pkg |
 		    createNode(mNode, pkg)
 		]
 	}

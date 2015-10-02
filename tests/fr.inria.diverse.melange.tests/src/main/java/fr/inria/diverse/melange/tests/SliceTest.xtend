@@ -32,7 +32,6 @@ class SliceTest
 {
 	@Inject MatchingHelper helper
 	@Inject extension ModelingElementExtensions
-	@Inject extension ValidationTestHelper
 	
 	@Test
 	def void testPackagesSelfMatching() {
