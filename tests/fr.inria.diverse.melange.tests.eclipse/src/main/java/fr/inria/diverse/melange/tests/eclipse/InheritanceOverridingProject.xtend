@@ -28,10 +28,10 @@ public class InheritanceOverridingProject extends AbstractXtextTests
 		helper.init
 		val project = helper.deployMelangeProject("InheritanceOverridingProject",
 			"tests-inputs/InheritanceOverridingProject.zip")
-		IResourcesSetupUtil::reallyWaitForAutoBuild
+		IResourcesSetupUtil::waitForAutoBuild
 		ResourcesPlugin::workspace.root.refreshLocal(IResource::DEPTH_INFINITE, null)
 		project.build(IncrementalProjectBuilder::CLEAN_BUILD, null)
-		IResourcesSetupUtil::reallyWaitForAutoBuild
+		IResourcesSetupUtil::waitForAutoBuild
 		helper.openEditor(MELANGE_FILE)
 	}
 
@@ -40,10 +40,10 @@ public class InheritanceOverridingProject extends AbstractXtextTests
 		println("testNoErrorsInWorkspace")
 		helper.assertFileExists(MELANGE_FILE)
 		helper.generateAll(MELANGE_FILE)
-		IResourcesSetupUtil::reallyWaitForAutoBuild
+		IResourcesSetupUtil::waitForAutoBuild
 		ResourcesPlugin::workspace.root.refreshLocal(IResource::DEPTH_INFINITE, null)
 		helper.generateAdapters(MELANGE_FILE)
-		IResourcesSetupUtil::reallyWaitForAutoBuild
+		IResourcesSetupUtil::waitForAutoBuild
 		ResourcesPlugin::workspace.root.refreshLocal(IResource::DEPTH_INFINITE, null)
 		helper.assertNoMarkers
 		println("testNoErrorsInWorkspace : DONE")

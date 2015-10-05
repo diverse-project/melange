@@ -45,7 +45,7 @@ public class AspectOverridingTest extends AbstractXtextTests
 			helper.deployMelangeProject("fr.inria.diverse.melange.test.overriding.aspects","tests-inputs/fr.inria.diverse.melange.test.overriding.aspects.zip")
 			helper.deployMelangeProject("fr.inria.diverse.melange.test.overriding.model","tests-inputs/fr.inria.diverse.melange.test.overriding.model.zip")
 //			helper.generateAll(MELANGE_FILE)
-			IResourcesSetupUtil::reallyWaitForAutoBuild
+			IResourcesSetupUtil::waitForAutoBuild
 		} else {
 			melangeProject = helper.getProject(PROJECT_NAME)
 		}
@@ -59,21 +59,21 @@ public class AspectOverridingTest extends AbstractXtextTests
 	@Test
 	def void test1GeneratedLanguages() {
 		helper.generateLanguages(MELANGE_FILE)
-		IResourcesSetupUtil::reallyWaitForAutoBuild
+		IResourcesSetupUtil::waitForAutoBuild
 		helper.assertNoMarkers
 	}
 
 	@Test
 	def void test2GeneratedModelTypes() {
 		helper.generateInterfaces(MELANGE_FILE)
-		IResourcesSetupUtil::reallyWaitForAutoBuild
+		IResourcesSetupUtil::waitForAutoBuild
 		helper.assertNoMarkers
 	}
 
 	@Test
 	def void test3GeneratedAdaptersCompile() {
 		helper.generateAdapters(MELANGE_FILE)
-		IResourcesSetupUtil::reallyWaitForAutoBuild
+		IResourcesSetupUtil::waitForAutoBuild
 		helper.assertNoMarkers
 	}
 
