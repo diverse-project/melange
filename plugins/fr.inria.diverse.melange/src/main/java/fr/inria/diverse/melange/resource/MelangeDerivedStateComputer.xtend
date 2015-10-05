@@ -13,6 +13,7 @@ import fr.inria.diverse.melange.processors.WildcardAspectResolver
 import fr.inria.diverse.melange.utils.EPackageProvider
 import java.util.List
 import org.apache.log4j.Logger
+import org.eclipse.emf.ecore.xml.namespace.XMLNamespacePackage
 import org.eclipse.xtext.resource.DerivedStateAwareResource
 import org.eclipse.xtext.util.internal.Stopwatches
 import org.eclipse.xtext.xbase.jvmmodel.JvmModelAssociator
@@ -68,6 +69,10 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 	override installDerivedState(DerivedStateAwareResource resource, boolean preLinkingPhase) {
 		val task = Stopwatches.forTask("installing derived state")
 		task.start
+
+		// In a test environment, automatic XMLNamespacePackage
+		// initialization may fail for no apparent reason
+		val testsBug = XMLNamespacePackage::eINSTANCE
 
 		// Activate stop watches before anything happens
 		Stopwatches.enabled = true
