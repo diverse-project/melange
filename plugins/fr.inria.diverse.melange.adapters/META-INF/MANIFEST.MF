@@ -4,7 +4,7 @@ Bundle-Name: Melange Adapters
 Bundle-SymbolicName: fr.inria.diverse.melange.adapters;singleton:=true
 Bundle-Version: 0.1.0.qualifier
 Bundle-Vendor: DIVERSE
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtend.lib,
  org.eclipse.emf.ecore;bundle-version="2.10.2"
