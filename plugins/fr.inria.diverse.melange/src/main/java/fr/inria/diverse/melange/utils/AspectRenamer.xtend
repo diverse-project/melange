@@ -67,33 +67,36 @@ class AspectRenamer {
 	 */
 	private def void processRenaming(Aspect asp, IPackageFragment aspectNamespace, RenamingRuleManager rulesManager, List<Pair<String,String>> k3Pattern, List<EClass> allClasses){
 		
-		val targetClass = asp.aspectedClass.name
-    	val targetFqName = asp.aspectedClass.fullyQualifiedName.toString
-    	val rule = rulesManager.getClassRule(targetFqName)
-    	val newClass = 
-    		if(rule !== null){
-	    		rule.value.toQualifiedName.lastSegment
-    		}
-    		else{
-    			targetClass
-    		}
-    	val aspName = asp.aspectTypeRef.simpleName 
+		val aspName = asp.aspectTypeRef.simpleName 
 		
 		val fileName1 = aspName+".java"
-		val fileName2 = aspName+targetClass+"AspectContext.java"
-		val fileName3 = aspName+targetClass+"AspectProperties.java"
-		
 		val cu1 = aspectNamespace.getCompilationUnit(fileName1)
-		val cu2 = aspectNamespace.getCompilationUnit(fileName2)
-		val cu3 = aspectNamespace.getCompilationUnit(fileName3)
-		
-		
 		applyRenaming(cu1, new RenamerVisitor(rulesManager,allClasses),k3Pattern)
-		applyRenaming(cu2, new RenamerVisitor(rulesManager,allClasses),k3Pattern)
-		applyRenaming(cu3, new RenamerVisitor(rulesManager,allClasses),k3Pattern)
 		
-		cu2.rename(aspName+newClass+"AspectContext.java",true,null)
-		cu3.rename(aspName+newClass+"AspectProperties.java",true,null)
+		if(asp.hasAspectAnnotation){
+			val targetClass = asp.aspectedClass.name
+	    	val targetFqName = asp.aspectedClass.fullyQualifiedName.toString
+	    	val rule = rulesManager.getClassRule(targetFqName)
+	    	val newClass = 
+	    		if(rule !== null){
+		    		rule.value.toQualifiedName.lastSegment
+	    		}
+	    		else{
+	    			targetClass
+	    		}
+			
+			val fileName2 = aspName+targetClass+"AspectContext.java"
+			val fileName3 = aspName+targetClass+"AspectProperties.java"
+			
+			val cu2 = aspectNamespace.getCompilationUnit(fileName2)
+			val cu3 = aspectNamespace.getCompilationUnit(fileName3)
+			
+			applyRenaming(cu2, new RenamerVisitor(rulesManager,allClasses),k3Pattern)
+			applyRenaming(cu3, new RenamerVisitor(rulesManager,allClasses),k3Pattern)
+			
+			cu2.rename(aspName+newClass+"AspectContext.java",true,null)
+			cu3.rename(aspName+newClass+"AspectProperties.java",true,null)
+		}
 	}
 	
 	/**
@@ -149,8 +152,7 @@ class AspectRenamer {
 	 */
 	private def List<Pair<String,String>> convertToPattern(List<Aspect> aspects, RenamingRuleManager rulesManager){
 		val res = newArrayList
-		aspects.forEach[asp|
-			val targetClass = asp.aspectedClass.name
+		aspects.filter[hasAspectAnnotation].forEach[asp|
     		val targetFqName = asp.aspectedClass.fullyQualifiedName.toString
     		val aspName = asp.aspectTypeRef.simpleName
     		val rule = rulesManager.getClassRule(targetFqName)
