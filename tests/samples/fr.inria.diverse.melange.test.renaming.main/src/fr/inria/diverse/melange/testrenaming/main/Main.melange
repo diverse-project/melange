@@ -1,8 +1,8 @@
-package fr.inria.diverse.melange.test.renaming.main
+package fr.inria.diverse.melange.testrenaming.main
 
-import fr.inria.diverse.melange.test.renaming.aspects.ClassAAspect
-import fr.inria.diverse.melange.test.renaming.aspects.ClassBAspect
-import fr.inria.diverse.melange.test.renaming.aspects.SuperBAspect
+import fr.inria.diverse.melange.testrenaming.aspects.ClassAAspect
+import fr.inria.diverse.melange.testrenaming.aspects.ClassBAspect
+import fr.inria.diverse.melange.testrenaming.aspects.SuperBAspect
 
 language TestLanguage {
 	syntax "platform:/resource/fr.inria.diverse.melange.test.renaming.model/model/model.ecore"
@@ -19,7 +19,7 @@ language TestLanguageRenamed {
 				"toB" to "toB2"
 			}
 		}
-		"root.subpackage" to "root2.subpackage2"{
+		"root.subpackage" to "root2.subpackage2"{ 
 			"ClassB" to "ClassB2" {
 				"toA" to "toA2"
 			}

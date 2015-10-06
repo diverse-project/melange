@@ -1,8 +1,8 @@
-package fr.inria.diverse.melange.test.renaming.aspects
+package fr.inria.diverse.melange.testrenaming.aspects
 
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 
-import static extension fr.inria.diverse.melange.test.renaming.aspects.ClassAAspect.*
+import static extension fr.inria.diverse.melange.testrenaming.aspects.ClassAAspect.*
 import some.basepackage.root.ClassA
 import some.basepackage.root.subpackage.ClassB
 import some.basepackage.root.subpackage.SuperB
@@ -21,6 +21,7 @@ class ClassBAspect extends SuperBAspect{
 class SuperBAspect {
 	public String attrib
 }
+
 
 
 
