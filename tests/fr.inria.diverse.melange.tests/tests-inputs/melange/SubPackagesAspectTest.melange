@@ -3,5 +3,6 @@ package subpackagestest
 language SubPackagesTest {
 	syntax "tests-inputs/metamodels/PackagesTest.ecore" withGenmodel "tests-inputs/metamodels/PackagesTest.genmodel"
 	with subpackage.aspect.Subpkg1Class1Aspect
+	with subpackage.aspect.TopClass1Aspect
 	exactType SubPackagesTestMT
 }

@@ -49,6 +49,10 @@ class SubPackagesAspectTest
 		assertTrue(subpkg1Class1.EAllReferences.exists[name == "mySubpkg1Class2"])
 		assertEquals(toppkg.EClassifiers.findFirst[name == "TopClass1"],subpkg1Class1.EAllReferences.findFirst[name == "toTopClass1"].EType)
 		
+		val topClass1 = toppkg.EClassifiers.findFirst[name == "TopClass1"] as EClass
+		assertTrue(topClass1.EAllReferences.exists[name == "toSubpkg1Class1"])
+		assertEquals(subpkg1Class1,topClass1.EAllReferences.findFirst[name == "toSubpkg1Class1"].EType)
+		
 		val subpkg2 = toppkg.ESubpackages.findFirst[name == "subpkg2"]
 		assertNotNull(subpkg2)
 		assertEquals(2, subpkg2.EClassifiers.size)

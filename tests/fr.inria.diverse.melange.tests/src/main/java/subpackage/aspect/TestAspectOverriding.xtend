@@ -9,3 +9,8 @@ class Subpkg1Class1Aspect {
 	public String changeableYes
 	public TopClass1 toTopClass1
 }
+
+@Aspect(className = TopClass1)
+class TopClass1Aspect {
+	public Subpkg1Class1 toSubpkg1Class1
+}
