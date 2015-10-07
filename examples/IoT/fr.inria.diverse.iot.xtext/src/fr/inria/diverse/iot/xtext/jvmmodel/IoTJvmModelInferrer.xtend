@@ -4,7 +4,7 @@ import com.google.inject.Inject
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.EPackage
+import fr.inria.diverse.iot.iotlang.iot.EPackage
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
