@@ -584,6 +584,7 @@ class MelangeValidator extends AbstractMelangeValidator
 				case "EInt" : "int"
 				case "ELong" : "long"
 				case "EShort" : "short"
+				case "Void" : "void"
 				default : type
 			} 
 	}
