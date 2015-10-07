@@ -117,16 +117,30 @@ class LanguageExtensions
 	 */
 	def List<Aspect> getLocalSemantics(Language l){
 		val res = newArrayList
-		
-		l.operators.filter(Weave).forEach[op |
-			val withAsp = l.semantics.findFirst[asp | asp.aspectTypeRef.simpleName == op.aspectTypeRef.simpleName]
-			if(withAsp !== null){
+
+		//Simple imports
+		l.operators.filter(Weave).filter[aspectWildcardImport === null].forEach [ op |
+			val withAsp = l.semantics.findFirst [ asp |
+				asp.aspectTypeRef.simpleName == op.aspectTypeRef.simpleName
+			]
+			if (withAsp !== null) {
 				res += withAsp
 			}
 		]
-		
+
+		//Wildcard imports
+		l.operators.filter(Weave).filter[aspectWildcardImport !== null].forEach [ op |
+			val wildcardImportNS = op.aspectWildcardImport.substring(0,
+				op.aspectWildcardImport.length - 2)
+			val withAsps = l.semantics.filter [ asp |
+				asp.aspectTypeRef.simpleName.startsWith(wildcardImportNS)
+			]
+			res += withAsps
+		]
+
 		return res
 	}
+	
 
 //	def List<Aspect> allSemantics(Language l) {
 //		val tmp = newArrayList
