@@ -25,7 +25,7 @@
 		<emf.version>2.11.0</emf.version>
 		<tycho.version>0.23.1</tycho.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<xtext.version>2.8.3</xtext.version>
+		<xtext.version>2.8.4</xtext.version>
 	</properties>
 
 	<build>
