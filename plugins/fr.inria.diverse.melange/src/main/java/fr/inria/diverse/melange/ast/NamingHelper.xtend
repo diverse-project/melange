@@ -26,6 +26,7 @@ class NamingHelper
 	@Inject extension MetamodelExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension IQualifiedNameProvider
+	@Inject extension LanguageExtensions
 
 	def String normalize(QualifiedName name) {
 		val res = new StringBuilder
@@ -90,7 +91,10 @@ class NamingHelper
 		val realName = mappingName ?: cls.name
 
 		return
-			if (cls instanceof EClass || cls instanceof EEnum)
+			if(cls.isAspectSpecific){
+				mm.owningLanguage.aspectTargetNamespace+"."+cls.name
+			}
+			else if (cls instanceof EClass || cls instanceof EEnum)
 				mm.getGenPackageFor(mm.pkgs.findFirst[EClassifiers.exists[name == realName]])
 				  .getFqnFor(realName)
 			else
