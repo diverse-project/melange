@@ -99,9 +99,9 @@ class MetaclassAdapterInferrer
 					'''
 				]
 				cls.EAllOperations.sortByOverridingPriority.filter[!hasSuppressedVisibility && !isAspectSpecific].forEach[processOperation(mm, superType, jvmCls)]
-				mm.owningLanguage.findAspectsOn(cls).toList.sortByOverridingPriority.forEach[processAspect(mm, superType, jvmCls)]
 				cls.EAllAttributes.filter[!isAspectSpecific].forEach[processAttribute(mmCls, mm, superType, mapping, jvmCls)]
 				cls.EAllReferences.filter[!isAspectSpecific].forEach[processReference(mmCls, mm, superType, mapping, jvmCls)]
+				mm.owningLanguage.findAspectsOn(cls).toList.sortByOverridingPriority.forEach[processAspect(mm, superType, jvmCls)]
 			}
 			
 			jvmCls.superTypes += superType.typeRef(cls, #[jvmCls])
