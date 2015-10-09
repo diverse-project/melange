@@ -8,5 +8,5 @@ import org.eclipse.emf.ecore.EObject
  */
 interface AdaptersFactory
 {
-	def EObjectAdapter<EObject> createAdapter(EObject o)
+	def GenericAdapter<EObject> createAdapter(EObject o)
 }

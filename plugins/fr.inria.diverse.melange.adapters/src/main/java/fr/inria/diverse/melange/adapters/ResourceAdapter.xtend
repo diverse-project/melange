@@ -30,7 +30,7 @@ abstract class ResourceAdapter implements GenericAdapter<Resource>, Resource
 		val ret = new BasicInternalEList<EObject>(EObject) ;
 
 		adaptee.contents.forEach[o |
-			ret += adaptersFactory.createAdapter(o) ?: o
+			ret += (adaptersFactory.createAdapter(o) ?: o) as EObject
 		]
 
 		return ret
@@ -41,7 +41,7 @@ abstract class ResourceAdapter implements GenericAdapter<Resource>, Resource
 	}
 
 	override getEObject(String uriFragment) {
-		return adaptersFactory.createAdapter(adaptee.getEObject(uriFragment))
+		return adaptersFactory.createAdapter(adaptee.getEObject(uriFragment)) as EObject
 	}
 
 	override toString() {

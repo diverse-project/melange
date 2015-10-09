@@ -28,14 +28,14 @@ abstract class EObjectAdapter<E extends EObject> extends EObjectImpl implements 
 	override setAdaptee(E a) { adaptee = a }
 
 	override eContainer() {
-		return adaptersFactory.createAdapter(adaptee.eContainer)
+		return adaptersFactory.createAdapter(adaptee.eContainer) as EObject
 	}
 
 	override eContents() {
 		val ret = new BasicInternalEList<EObject>(EObject) ;
 
 		adaptee.eContents.forEach[o |
-			ret += adaptersFactory.createAdapter(o) ?: o
+			ret += (adaptersFactory.createAdapter(o) ?: o) as EObject
 		]
 
 		return ret

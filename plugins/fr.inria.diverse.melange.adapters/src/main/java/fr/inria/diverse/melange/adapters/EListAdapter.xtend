@@ -4,6 +4,8 @@ import com.google.common.collect.Iterators
 import java.lang.reflect.InvocationTargetException
 import java.util.Collection
 import org.eclipse.emf.common.util.EList
+import java.util.List
+import java.util.Collections
 
 /**
  * Adapter delegation pattern for manipulating a {@link EList EList} of
@@ -11,16 +13,16 @@ import org.eclipse.emf.common.util.EList
  * providing that we have an {@link ListAdapter#adapType adapter type} between
  * {@link F} and {@link E}.
  */
-class EListAdapter<E, F> implements GenericAdapter<EList<F>>, EList<E>
+class EListAdapter<E, F> implements GenericAdapter<List<F>>, EList<E>
 {
-	EList<F> adaptee
+	List<F> adaptee
 	Class<? extends GenericAdapter<F>> adapType
 
-	def static <E, F> EListAdapter<E, F> newInstance(EList<F> a, Class<? extends GenericAdapter<F>> type) {
+	def static <E, F> EListAdapter<E, F> newInstance(List<F> a, Class<? extends GenericAdapter<F>> type) {
 		return new EListAdapter<E, F>(a, type)
 	}
 
-	new(EList<F> a, Class<? extends GenericAdapter<F>> type) {
+	new(List<F> a, Class<? extends GenericAdapter<F>> type) {
 		adaptee = a
 		adapType = type
 	}
@@ -152,12 +154,25 @@ class EListAdapter<E, F> implements GenericAdapter<EList<F>>, EList<E>
 	}
 
 	override move(int newPosition, E object) {
-		adaptee.move(newPosition, (object as GenericAdapter<F>).adaptee)
+		if(adaptee instanceof EList){
+			adaptee.move(newPosition, (object as GenericAdapter<F>).adaptee)
+		}
+		else{
+			val oldPosition = adaptee.indexOf((object as GenericAdapter<F>).adaptee)
+			Collections.swap(adaptee,oldPosition,newPosition)
+		}
 	}
 
 	override move(int newPosition, int oldPosition) {
 		try {
-			return adapType.declaredConstructors.head.newInstance(adaptee.move(newPosition, oldPosition)) as E
+			if(adaptee instanceof EList){
+				return adapType.declaredConstructors.head.newInstance((adaptee as EList).move(newPosition, oldPosition)) as E
+			}
+			else{
+				Collections.swap(adaptee,oldPosition,newPosition)
+				return adapType.declaredConstructors.head.newInstance(adaptee.get(newPosition)) as E
+			}
+			
 		} catch (InstantiationException e) {
 			// ...
 		} catch (IllegalAccessException e) {
@@ -171,7 +186,7 @@ class EListAdapter<E, F> implements GenericAdapter<EList<F>>, EList<E>
 		return adaptee
 	}
 
-	override setAdaptee(EList<F> a) {
+	override setAdaptee(List<F> a) {
 		adaptee = a
 	}
 }
