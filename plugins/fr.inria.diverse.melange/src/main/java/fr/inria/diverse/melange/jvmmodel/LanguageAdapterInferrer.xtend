@@ -76,9 +76,16 @@ class LanguageAdapterInferrer
 						m.typeParameters += TypesFactory.eINSTANCE.createJvmTypeParameter => [it.name = t.name]
 					]
 
-					m.body = '''
-							return adaptersFactory.create«l.syntax.simpleAdapterNameFor(superType, cls)»(«associatedPkg.name»Adaptee.create«associatedCls»()) ;
-						'''
+					if(cls.isAspectSpecific){
+						m.body = '''
+							throw new UnsupportedOperationException("It's a mock");
+						'''						
+					}
+					else{
+						m.body = '''
+								return adaptersFactory.create«l.syntax.simpleAdapterNameFor(superType, cls)»(«associatedPkg.name»Adaptee.create«associatedCls»()) ;
+							'''
+					}	
 				]
 
 				newCreate.returnType = superType.typeRef(cls, #[newCreate])

@@ -24,6 +24,7 @@ import org.eclipse.xtext.util.internal.Stopwatches
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import fr.inria.diverse.melange.adapters.GenericAdapter
 
 /**
  * This class manages generation of Java classes that implements a Metamodel.
@@ -121,7 +122,7 @@ class LanguageInferrer
 
 				members += l.toField("instance", adapFactName.typeRef)[static = true]
 				
-				members += l.toField("register" , WeakHashMap.typeRef(EObject.typeRef,EObjectAdapter.typeRef))
+				members += l.toField("register" , WeakHashMap.typeRef(EObject.typeRef,GenericAdapter.typeRef))
 				
 				members += l.toConstructor[
 					body = '''
@@ -139,11 +140,11 @@ class LanguageInferrer
 					'''
 				]
 
-				members += l.toMethod("createAdapter", EObjectAdapter.typeRef)[
+				members += l.toMethod("createAdapter", GenericAdapter.typeRef)[
 					parameters += l.toParameter("o", EObject.typeRef)
 
 					body = '''
-						«EObjectAdapter» res = register.get(o);
+						«GenericAdapter» res = register.get(o);
 						if(res != null){
 							 return res;
 						}
