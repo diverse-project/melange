@@ -34,6 +34,8 @@ import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmAnnotationReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import fr.inria.diverse.melange.adapters.MockAdapter
+import org.eclipse.emf.common.util.EList
 
 /**
  * This class generates a Java class that implements an Object type for a Metaclass.
@@ -81,7 +83,27 @@ class MetaclassAdapterInferrer
 				jvmCls.typeParameters += TypesFactory::eINSTANCE.createJvmTypeParameter => [name = p.name]
 			]
 
-			jvmCls.superTypes += EObjectAdapter.typeRef(mm.typeRef(mmCls, #[jvmCls]))
+			if(cls.isAspectSpecific){
+				jvmCls.superTypes += MockAdapter.typeRef(mm.typeRef(mmCls, #[jvmCls]))
+				
+				cls.EAllOperations.sortByOverridingPriority.filter[!hasSuppressedVisibility].forEach[processOperation(mm, superType, jvmCls)]
+				cls.EAllAttributes.forEach[processAttribute(mmCls, mm, superType, mapping, jvmCls)]
+				cls.EAllReferences.forEach[processReference(mmCls, mm, superType, mapping, jvmCls)]
+			}
+			else{
+				jvmCls.superTypes += EObjectAdapter.typeRef(mm.typeRef(mmCls, #[jvmCls]))
+				
+				jvmCls.members += mm.toConstructor[
+					body = '''
+						super(«mm.getAdaptersFactoryNameFor(superType)».getInstance()) ;
+					'''
+				]
+				cls.EAllOperations.sortByOverridingPriority.filter[!hasSuppressedVisibility && !isAspectSpecific].forEach[processOperation(mm, superType, jvmCls)]
+				mm.owningLanguage.findAspectsOn(cls).toList.sortByOverridingPriority.forEach[processAspect(mm, superType, jvmCls)]
+				cls.EAllAttributes.filter[!isAspectSpecific].forEach[processAttribute(mmCls, mm, superType, mapping, jvmCls)]
+				cls.EAllReferences.filter[!isAspectSpecific].forEach[processReference(mmCls, mm, superType, mapping, jvmCls)]
+			}
+			
 			jvmCls.superTypes += superType.typeRef(cls, #[jvmCls])
 
 			// TODO: Generic super types
@@ -92,18 +114,9 @@ class MetaclassAdapterInferrer
 
 			jvmCls.members += mm.toField("adaptersFactory", mm.getAdaptersFactoryNameFor(superType).typeRef)
 
-			jvmCls.members += mm.toConstructor[
-				body = '''
-					super(«mm.getAdaptersFactoryNameFor(superType)».getInstance()) ;
-				'''
-			]
-
 			// TODO: Also override eAllContents() to perform adaptation
 
-			cls.EAllAttributes.filter[!isAspectSpecific].forEach[processAttribute(mmCls, mm, superType, mapping, jvmCls)]
-			cls.EAllReferences.filter[!isAspectSpecific].forEach[processReference(mmCls, mm, superType, mapping, jvmCls)]
-			cls.EAllOperations.sortByOverridingPriority.filter[!hasSuppressedVisibility && !isAspectSpecific].forEach[processOperation(mm, superType, jvmCls)]
-			mm.owningLanguage.findAspectsOn(cls).sortByOverridingPriority.forEach[processAspect(mm, superType, jvmCls)]
+			
 		]
 
 		task.stop
@@ -123,6 +136,11 @@ class MetaclassAdapterInferrer
 				body = '''
 					return «superType.getFqnFor(attr.EType)».get(adaptee.«mmAttr.getterName»().getValue());
 				'''
+			else if (mmCls.isAspectSpecific){
+				body = '''
+					throw new UnsupportedOperationException("It's a mock") ;
+				'''
+			}
 			else
 				body = '''
 					return adaptee.«mmAttr.getterName»() ;
@@ -138,6 +156,11 @@ class MetaclassAdapterInferrer
 					body = '''
 						adaptee.«mmAttr.setterName»(«mm.getFqnFor(superType, attr.EType)».get(o.getValue())) ;
 					'''
+				else if (mmCls.isAspectSpecific){
+					body = '''
+						throw new UnsupportedOperationException("It's a mock") ;
+					'''
+				}
 				else
 					body = '''
 						adaptee.«mmAttr.setterName»(o) ;
@@ -168,17 +191,24 @@ class MetaclassAdapterInferrer
 			jvmCls.members += mm.toMethod(ref.getterName, refType)[
 				annotations += Override.annotationRef
 
-				body = '''
-					«IF mm.owningLanguage.hasAdapterFor(superType, ref.EReferenceType)»
-						«IF ref.many»
-							return «EListAdapter».newInstance(adaptee.«mmRef.getterName»(), «adapName».class) ;
+				if (mmCls.isAspectSpecific){
+					body = '''
+						throw new UnsupportedOperationException("It's a mock") ;
+					'''
+				}
+				else{
+					body = '''
+						«IF mm.owningLanguage.hasAdapterFor(superType, ref.EReferenceType)»
+							«IF ref.many»
+								return «EListAdapter».newInstance(adaptee.«mmRef.getterName»(), «adapName».class) ;
+							«ELSE»
+								return adaptersFactory.create«mm.simpleAdapterNameFor(superType, ref.EReferenceType)»(adaptee.«mmRef.getterName»()) ;
+							«ENDIF»
 						«ELSE»
-							return adaptersFactory.create«mm.simpleAdapterNameFor(superType, ref.EReferenceType)»(adaptee.«mmRef.getterName»()) ;
+							return adaptee.«mmRef.getterName»();
 						«ENDIF»
-					«ELSE»
-						return adaptee.«mmRef.getterName»();
-					«ENDIF»
-				'''
+					'''
+				}
 			]
 
 		if (ref.needsSetter) {
@@ -186,9 +216,16 @@ class MetaclassAdapterInferrer
 				annotations += Override.annotationRef
 				parameters += mm.toParameter("o", refType)
 
-				body = '''
-					adaptee.«mmRef.setterName»(((«adapName») o).getAdaptee()) ;
-				'''
+				if (mmCls.isAspectSpecific){
+					body = '''
+						throw new UnsupportedOperationException("It's a mock") ;
+					'''
+				}
+				else{
+					body = '''
+						adaptee.«mmRef.setterName»(((«adapName») o).getAdaptee()) ;
+					'''
+				}
 			]
 		}
 
@@ -256,19 +293,26 @@ class MetaclassAdapterInferrer
 			// TODO: Manage generic exceptions
 			op.EGenericExceptions.forEach[e |]
 
-			m.body = '''
-				«IF op.EType instanceof EClass && mm.owningLanguage.hasAdapterFor(superType, op.EType)»
-					«IF op.many»
-						return «EListAdapter».newInstance(adaptee.«opName»(«paramsList»), «mm.adapterNameFor(superType, op.EType as EClass)».class) ;
+			if (op.EContainingClass.isAspectSpecific){
+				m.body = '''
+					throw new UnsupportedOperationException("It's a mock") ;
+				'''
+			}
+			else{
+				m.body = '''
+					«IF op.EType instanceof EClass && mm.owningLanguage.hasAdapterFor(superType, op.EType)»
+						«IF op.many»
+							return «EListAdapter».newInstance(adaptee.«opName»(«paramsList»), «mm.adapterNameFor(superType, op.EType as EClass)».class) ;
+						«ELSE»
+							return adaptersFactory.create«mm.simpleAdapterNameFor(superType, op.EType as EClass)»(adaptee.«opName»(«paramsList»)) ;
+						«ENDIF»
+					«ELSEIF op.EType !== null»
+						return adaptee.«opName»(«paramsList») ;
 					«ELSE»
-						return adaptersFactory.create«mm.simpleAdapterNameFor(superType, op.EType as EClass)»(adaptee.«opName»(«paramsList»)) ;
+						adaptee.«opName»(«paramsList») ;
 					«ENDIF»
-				«ELSEIF op.EType !== null»
-					return adaptee.«opName»(«paramsList») ;
-				«ELSE»
-					adaptee.«opName»(«paramsList») ;
-				«ENDIF»
-			'''
+				'''
+			}
 		]
 
 		newOp.returnType = superType.typeRef(op, #[newOp, jvmCls])
@@ -302,7 +346,7 @@ class MetaclassAdapterInferrer
 					   !op.simpleName.startsWith("_privk3")
 					&& !op.simpleName.startsWith("super_")
 					//&& op.parameters.head?.name == "_self"
-					&& !jvmCls.members.exists[opp | opp.simpleName == op.simpleName] // FIXME
+					&& !jvmCls.members.filter(JvmOperation).exists[opp | op.matchSignature(opp)]
 					&& op.visibility == JvmVisibility.PUBLIC
 				]
 				.forEach[processAspectOperation(aspect, mm, superType, jvmCls)]
@@ -328,12 +372,14 @@ class MetaclassAdapterInferrer
 			if (op.returnType.simpleName == "void")
 				typeRef(Void.TYPE)
 			else if (mtCls !== null)
-				if (op.returnType.isCollection)
-					op.returnType.type.typeRef(superType.typeRef(mtCls, #[jvmCls]))
+				if (op.returnType.isCollection){
+					EList.typeRef(superType.typeRef(mtCls, #[jvmCls]))
+				}
 				else
 					superType.typeRef(mtCls, #[jvmCls])
-			else if (op.returnType.isCollection)
-				op.returnType.type.typeRef((op.returnType as JvmParameterizedTypeReference).arguments.head.qualifiedName.typeRef)
+			else if (op.returnType.isCollection){
+				EList.typeRef((op.returnType as JvmParameterizedTypeReference).arguments.head.qualifiedName.typeRef)
+			}
 			else
 				op.returnType.qualifiedName.typeRef
 
@@ -383,8 +429,9 @@ class MetaclassAdapterInferrer
 					val pCls = superType.findClassifier(realTypeP)
 					val pType =
 						if (pCls !== null)
-							if (p.parameterType.isCollection)
-								p.parameterType.type.typeRef(superType.typeRef(pCls, #[jvmCls]))
+							if (p.parameterType.isCollection){
+								EList.typeRef(superType.typeRef(pCls, #[jvmCls]))
+							}
 							else
 								superType.typeRef(pCls, #[jvmCls])
 						else
@@ -427,6 +474,28 @@ class MetaclassAdapterInferrer
 				return 1
 			else return 0
 		]
+	}
+	
+	/**
+	 * Return true if both operations have exactly the same signature.
+	 * (comparing types' simple name)
+	 * 
+	 * @op1 Method from Aspect
+	 * @op2 Method from Adapter
+	 */
+	def private boolean matchSignature(JvmOperation op1, JvmOperation op2){
+		val matchName = op1.simpleName == op2.simpleName
+		val matchReturn = op1.returnType.simpleName == op2.returnType.simpleName
+		val matchParams = 
+			op1.parameters.size-1 == op2.parameters.size &&
+			op1.parameters.drop(1).forall[p1|
+				val pos = op1.parameters.indexOf(p1) - 1
+				val p1Type = p1.parameterType
+				val p2Type = op2.parameters.get(pos).parameterType
+				return p1Type.simpleName == p2Type.simpleName
+			]
+		
+		return matchName && matchParams && matchReturn
 	}
 
 	/*def boolean +=(EList<JvmMember> members, JvmOperation m) {
