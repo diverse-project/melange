@@ -212,6 +212,12 @@ class PackageMergeMerger implements EcoreMerger {
 		return
 			   rcv.name == merged.name
 			&& typesMatch(rcv.EType, merged.EType)
+			&& rcv.EParameters.size == merged.EParameters.size
+			&& rcv.EParameters.forall[rcvParam|
+				val pos = rcv.EParameters.indexOf(rcvParam)
+				val mergedParam = merged.EParameters.get(pos)
+				rcvParam.EType.name == mergedParam.EType.name
+			]
 	}
 
 	private def dispatch boolean doMatch(EParameter rcv, EParameter merged) {
