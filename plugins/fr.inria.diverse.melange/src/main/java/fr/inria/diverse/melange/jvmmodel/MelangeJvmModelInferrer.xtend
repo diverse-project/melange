@@ -63,7 +63,6 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 				root.modelTypes.forEach[generateInterfaces(acceptor, _typeReferenceBuilder)]
 				
 				if (MelangePreferencesAccess.instance.generateAdaptersCode || (MelangePreferencesAccess.instance.isUserLaunch && !isPreIndexingPhase)) {
-					root.makeAllSemantics
 					root.languages.forEach[generateAdapters(root, acceptor, _typeReferenceBuilder)]
 					root.transformations.forEach[generateTransformation(acceptor, _typeReferenceBuilder)]
 					root.createStandaloneSetup(acceptor)

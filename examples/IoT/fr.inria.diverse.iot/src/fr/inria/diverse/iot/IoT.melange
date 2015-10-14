@@ -25,6 +25,7 @@ language IoTLang {
 	merge EcoreLang renaming { "ecore" to "iot" }
 	merge LuaLang renaming { "lua" to "iot" }
 	with fr.inria.diverse.iot.glue.activityecore.EOperationAspect
+	with fr.inria.diverse.iot.glue.activityecore.ExpressionAspect
 	with fr.inria.diverse.iot.glue.activitylua.OpaqueActionAspect
 	exactType ActivityEcoreLuaLangMT
 }
