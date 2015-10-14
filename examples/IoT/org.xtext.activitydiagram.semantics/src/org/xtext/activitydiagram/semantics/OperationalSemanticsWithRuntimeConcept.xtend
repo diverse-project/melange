@@ -343,7 +343,7 @@ class InitialNodeAspect extends ActivityNodeAspect {
 }
 
 @Aspect(className=Expression)
-class ActivityExpressionAspect {
+class ExpressionAspect {
 	def void execute(Context c) {
 	}
 }
