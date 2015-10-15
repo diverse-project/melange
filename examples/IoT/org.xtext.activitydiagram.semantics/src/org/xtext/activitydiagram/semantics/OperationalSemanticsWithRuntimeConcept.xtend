@@ -41,7 +41,7 @@ import java.util.List
 
 import static extension org.xtext.activitydiagram.semantics.ActivityEdgeAspect.*
 import static extension org.xtext.activitydiagram.semantics.ActivityNodeAspect.*
-import static extension org.xtext.activitydiagram.semantics.ActivityExpressionAspect.*
+import static extension org.xtext.activitydiagram.semantics.ExpressionAspect.*
 import static extension org.xtext.activitydiagram.semantics.VariableAspect.*
 
 class Offer {
@@ -475,7 +475,7 @@ class BooleanVariableAspect extends VariableAspect {
 
 
 @Aspect(className=IntegerCalculationExpression)
-class IntegerCalculationActivityExpressionAspect extends ActivityExpressionAspect {
+class IntegerCalculationExpressionAspect extends ExpressionAspect {
 	@OverrideAspectMethod
 	def void execute(Context c) {
 		if (_self.operator.value == IntegerCalculationOperator.ADD_VALUE) {
@@ -490,7 +490,7 @@ class IntegerCalculationActivityExpressionAspect extends ActivityExpressionAspec
 }
 
 @Aspect(className=IntegerComparisonExpression)
-class IntegerComparisonActivityExpressionAspect extends ActivityExpressionAspect {
+class IntegerComparisonExpressionAspect extends ExpressionAspect {
 	@OverrideAspectMethod
 	def void execute(Context c) {
 		if (_self.operator.value == IntegerComparisonOperator.EQUALS_VALUE) {
@@ -513,7 +513,7 @@ class IntegerComparisonActivityExpressionAspect extends ActivityExpressionAspect
 }
 
 @Aspect(className=BooleanUnaryExpression)
-class BooleanUnaryActivityExpressionAspect extends ActivityExpressionAspect {
+class BooleanUnaryExpressionAspect extends ExpressionAspect {
 	@OverrideAspectMethod
 	def void execute(Context c) {
 		if (_self.operator.value == BooleanUnaryOperator.NOT_VALUE) {
@@ -524,7 +524,7 @@ class BooleanUnaryActivityExpressionAspect extends ActivityExpressionAspect {
 }
 
 @Aspect(className=BooleanBinaryExpression)
-class BooleanBinaryActivityExpressionAspect extends ActivityExpressionAspect {
+class BooleanBinaryExpressionAspect extends ExpressionAspect {
 	@OverrideAspectMethod
 	def void execute(Context c) {
 		if (_self.operator.value == BooleanBinaryOperator.AND_VALUE) {

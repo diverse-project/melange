@@ -1,6 +1,10 @@
 package fr.inria.diverse.iot.glue.activitylua
 
+import activitydiagram.BooleanValue
+import activitydiagram.IntegerValue
 import activitydiagram.OpaqueAction
+import activitydiagram.Value
+import activitydiagram.Variable
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import fr.inria.diverse.k3.al.annotationprocessor.Containment
 import org.xtext.activitydiagram.semantics.ActivityNodeAspect
@@ -16,9 +20,42 @@ class OpaqueActionAspect extends ActivityNodeAspect {
 	public Block lua
 
 	def void execute(Context c) {
-		val env = new Environment
-		env.putVariable("context", c)
-		_self.lua.execute(env)
+		c.output.executedNodes.add(_self)
+
+		if (_self.lua !== null) {
+			val wrappedEnv = new Environment => [
+				_self.activity.locals.forEach[v |
+					println("Putting " + v)
+					putVariable(v.name, _self.getValue(v.currentValue))
+				]
+			]
+
+			_self.lua.execute(wrappedEnv)
+
+			_self.activity.locals.forEach[v |
+				val find = wrappedEnv.getVariable(v.name)
+				println("find="+find)
+				_self.setValue(v, find)
+			]
+		}
+
 		_self.sendOffers(_self.takeOfferdTokens)
+	}
+
+	def Object getValue(Value v) {
+		return
+			switch (v) {
+				IntegerValue: v.value as double
+				BooleanValue: v.value
+				default: null
+			}
+	}
+
+	def void setValue(Variable v, Object value) {
+		if (v.currentValue instanceof IntegerValue) {
+			(v.currentValue as IntegerValue).value = value as Integer
+		} else if (v.currentValue instanceof BooleanValue) {
+			(v.currentValue as BooleanValue).value = value as Boolean
+		}
 	}
 }

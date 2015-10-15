@@ -27,5 +27,5 @@ language IoTLang {
 	with fr.inria.diverse.iot.glue.activityecore.EOperationAspect
 	with fr.inria.diverse.iot.glue.activityecore.ExpressionAspect
 	with fr.inria.diverse.iot.glue.activitylua.OpaqueActionAspect
-	exactType ActivityEcoreLuaLangMT
+	exactType IoTLangMT
 }
