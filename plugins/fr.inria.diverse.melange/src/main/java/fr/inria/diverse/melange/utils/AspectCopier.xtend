@@ -130,7 +130,7 @@ class AspectCopier
 			null,
 			#[]
 		)
-		shadeRequest.inputFolders = sourceFolders.toList.reverseView.toSet
+		shadeRequest.inputFolders = sourceFolders
 		shadeRequest.outputFolder = new File(targetAspectFolder)
 		shadeRequest.filters = #[filter]
 		shadeRequest.resourceTransformers = #[]

@@ -315,7 +315,7 @@ class LanguageExtensions
 
 		val aspectsToCopy =
 			l.allSemantics
-			.reverse
+//			.reverse
 			.filter[aspectTypeRef.canBeCopiedFor(l.syntax)]
 			.map[aspectTypeRef]
 			.toSet
