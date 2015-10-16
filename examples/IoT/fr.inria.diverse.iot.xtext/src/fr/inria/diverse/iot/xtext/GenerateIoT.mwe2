@@ -16,8 +16,8 @@ Workflow {
 		platformUri = "${runtimeProject}/.."
 		registerGeneratedEPackage = "org.eclipse.xtext.xbase.XbasePackage"
 		registerGenModelFile = "platform:/resource/org.eclipse.xtext.xbase/model/Xbase.genmodel"
-		registerGeneratedEPackage = "fr.inria.diverse.iot.activityecorelualang.activitydiagram.ActivitydiagramPackage"
-		registerGenModelFile = "platform:/resource/fr.inria.diverse.iot.activityecorelualang/model/ActivityEcoreLuaLang.genmodel"
+		registerGeneratedEPackage = "fr.inria.diverse.iot.iotlang.iot.IotPackage"
+		registerGenModelFile = "platform:/resource/fr.inria.diverse.iot.iotlang/model/IoTLang.genmodel"
 	}
 
 	component = DirectoryCleaner {

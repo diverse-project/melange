@@ -5,75 +5,75 @@ package fr.inria.diverse.iot.xtext.serializer;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Activity;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.ActivityFinalNode;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.ActivitydiagramPackage;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Block;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.BooleanValue;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.BooleanVariable;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.ControlFlow;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.DecisionNode;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.EClass;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.EOperation;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.EPackage;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_AccessArray;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_AccessMember;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_And;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_CallFunction;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_CallMemberFunction;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_Concatenation;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_Division;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_Equal;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_Exponentiation;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_False;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_Function;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_Invert;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_Larger;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_Larger_Equal;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_Length;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_Minus;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_Modulo;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_Multiplication;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_Negate;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_Nil;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_Not_Equal;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_Number;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_Or;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_Plus;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_Smaller;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_Smaller_Equal;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_String;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_TableConstructor;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_True;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_VarArgs;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Expression_VariableName;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Field_AddEntryToTable;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Field_AddEntryToTable_Brackets;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Field_AppendEntryToTable;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.ForkNode;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Function;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Functioncall_Arguments;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.InitialNode;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.IntegerValue;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.IntegerVariable;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.JoinNode;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.LastStatement_Break;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.LastStatement_ReturnWithValue;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.MergeNode;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.OpaqueAction;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Statement_Assignment;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Statement_Block;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Statement_CallFunction;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Statement_CallMemberFunction;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Statement_For_Generic;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Statement_For_Numeric;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Statement_GlobalFunction_Declaration;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Statement_If_Then_Else;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Statement_If_Then_Else_ElseIfPart;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Statement_LocalFunction_Declaration;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Statement_Local_Variable_Declaration;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Statement_Repeat;
-import fr.inria.diverse.iot.activityecorelualang.activitydiagram.Statement_While;
+import fr.inria.diverse.iot.iotlang.iot.Activity;
+import fr.inria.diverse.iot.iotlang.iot.ActivityFinalNode;
+import fr.inria.diverse.iot.iotlang.iot.Block;
+import fr.inria.diverse.iot.iotlang.iot.BooleanValue;
+import fr.inria.diverse.iot.iotlang.iot.BooleanVariable;
+import fr.inria.diverse.iot.iotlang.iot.ControlFlow;
+import fr.inria.diverse.iot.iotlang.iot.DecisionNode;
+import fr.inria.diverse.iot.iotlang.iot.EClass;
+import fr.inria.diverse.iot.iotlang.iot.EOperation;
+import fr.inria.diverse.iot.iotlang.iot.EPackage;
+import fr.inria.diverse.iot.iotlang.iot.Expression_AccessArray;
+import fr.inria.diverse.iot.iotlang.iot.Expression_AccessMember;
+import fr.inria.diverse.iot.iotlang.iot.Expression_And;
+import fr.inria.diverse.iot.iotlang.iot.Expression_CallFunction;
+import fr.inria.diverse.iot.iotlang.iot.Expression_CallMemberFunction;
+import fr.inria.diverse.iot.iotlang.iot.Expression_Concatenation;
+import fr.inria.diverse.iot.iotlang.iot.Expression_Division;
+import fr.inria.diverse.iot.iotlang.iot.Expression_Equal;
+import fr.inria.diverse.iot.iotlang.iot.Expression_Exponentiation;
+import fr.inria.diverse.iot.iotlang.iot.Expression_False;
+import fr.inria.diverse.iot.iotlang.iot.Expression_Function;
+import fr.inria.diverse.iot.iotlang.iot.Expression_Invert;
+import fr.inria.diverse.iot.iotlang.iot.Expression_Larger;
+import fr.inria.diverse.iot.iotlang.iot.Expression_Larger_Equal;
+import fr.inria.diverse.iot.iotlang.iot.Expression_Length;
+import fr.inria.diverse.iot.iotlang.iot.Expression_Minus;
+import fr.inria.diverse.iot.iotlang.iot.Expression_Modulo;
+import fr.inria.diverse.iot.iotlang.iot.Expression_Multiplication;
+import fr.inria.diverse.iot.iotlang.iot.Expression_Negate;
+import fr.inria.diverse.iot.iotlang.iot.Expression_Nil;
+import fr.inria.diverse.iot.iotlang.iot.Expression_Not_Equal;
+import fr.inria.diverse.iot.iotlang.iot.Expression_Number;
+import fr.inria.diverse.iot.iotlang.iot.Expression_Or;
+import fr.inria.diverse.iot.iotlang.iot.Expression_Plus;
+import fr.inria.diverse.iot.iotlang.iot.Expression_Smaller;
+import fr.inria.diverse.iot.iotlang.iot.Expression_Smaller_Equal;
+import fr.inria.diverse.iot.iotlang.iot.Expression_String;
+import fr.inria.diverse.iot.iotlang.iot.Expression_TableConstructor;
+import fr.inria.diverse.iot.iotlang.iot.Expression_True;
+import fr.inria.diverse.iot.iotlang.iot.Expression_VarArgs;
+import fr.inria.diverse.iot.iotlang.iot.Expression_VariableName;
+import fr.inria.diverse.iot.iotlang.iot.Field_AddEntryToTable;
+import fr.inria.diverse.iot.iotlang.iot.Field_AddEntryToTable_Brackets;
+import fr.inria.diverse.iot.iotlang.iot.Field_AppendEntryToTable;
+import fr.inria.diverse.iot.iotlang.iot.ForkNode;
+import fr.inria.diverse.iot.iotlang.iot.Function;
+import fr.inria.diverse.iot.iotlang.iot.Functioncall_Arguments;
+import fr.inria.diverse.iot.iotlang.iot.InitialNode;
+import fr.inria.diverse.iot.iotlang.iot.IntegerValue;
+import fr.inria.diverse.iot.iotlang.iot.IntegerVariable;
+import fr.inria.diverse.iot.iotlang.iot.IotPackage;
+import fr.inria.diverse.iot.iotlang.iot.JoinNode;
+import fr.inria.diverse.iot.iotlang.iot.LastStatement_Break;
+import fr.inria.diverse.iot.iotlang.iot.LastStatement_ReturnWithValue;
+import fr.inria.diverse.iot.iotlang.iot.MergeNode;
+import fr.inria.diverse.iot.iotlang.iot.OpaqueAction;
+import fr.inria.diverse.iot.iotlang.iot.Statement_Assignment;
+import fr.inria.diverse.iot.iotlang.iot.Statement_Block;
+import fr.inria.diverse.iot.iotlang.iot.Statement_CallFunction;
+import fr.inria.diverse.iot.iotlang.iot.Statement_CallMemberFunction;
+import fr.inria.diverse.iot.iotlang.iot.Statement_For_Generic;
+import fr.inria.diverse.iot.iotlang.iot.Statement_For_Numeric;
+import fr.inria.diverse.iot.iotlang.iot.Statement_GlobalFunction_Declaration;
+import fr.inria.diverse.iot.iotlang.iot.Statement_If_Then_Else;
+import fr.inria.diverse.iot.iotlang.iot.Statement_If_Then_Else_ElseIfPart;
+import fr.inria.diverse.iot.iotlang.iot.Statement_LocalFunction_Declaration;
+import fr.inria.diverse.iot.iotlang.iot.Statement_Local_Variable_Declaration;
+import fr.inria.diverse.iot.iotlang.iot.Statement_Repeat;
+import fr.inria.diverse.iot.iotlang.iot.Statement_While;
 import fr.inria.diverse.iot.xtext.services.IoTGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.common.types.JvmFormalParameter;
@@ -140,209 +140,209 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	
 	@Override
 	public void createSequence(EObject context, EObject semanticObject) {
-		if(semanticObject.eClass().getEPackage() == ActivitydiagramPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
-			case ActivitydiagramPackage.ACTIVITY:
+		if(semanticObject.eClass().getEPackage() == IotPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
+			case IotPackage.ACTIVITY:
 				sequence_Activity(context, (Activity) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.ACTIVITY_FINAL_NODE:
+			case IotPackage.ACTIVITY_FINAL_NODE:
 				sequence_ActivityFinalNode(context, (ActivityFinalNode) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.BLOCK:
+			case IotPackage.BLOCK:
 				sequence_Block(context, (Block) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.BOOLEAN_VALUE:
+			case IotPackage.BOOLEAN_VALUE:
 				sequence_BooleanValue(context, (BooleanValue) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.BOOLEAN_VARIABLE:
+			case IotPackage.BOOLEAN_VARIABLE:
 				sequence_BooleanVariable(context, (BooleanVariable) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.CONTROL_FLOW:
+			case IotPackage.CONTROL_FLOW:
 				sequence_ControlFlow(context, (ControlFlow) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.DECISION_NODE:
+			case IotPackage.DECISION_NODE:
 				sequence_DecisionNode(context, (DecisionNode) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.ECLASS:
+			case IotPackage.ECLASS:
 				sequence_Device(context, (EClass) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EOPERATION:
+			case IotPackage.EOPERATION:
 				sequence_Service(context, (EOperation) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EPACKAGE:
+			case IotPackage.EPACKAGE:
 				sequence_System(context, (EPackage) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_ACCESS_ARRAY:
+			case IotPackage.EXPRESSION_ACCESS_ARRAY:
 				sequence_Expression_AccessMemberOrArrayElement(context, (Expression_AccessArray) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_ACCESS_MEMBER:
+			case IotPackage.EXPRESSION_ACCESS_MEMBER:
 				sequence_Expression_AccessMemberOrArrayElement(context, (Expression_AccessMember) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_AND:
+			case IotPackage.EXPRESSION_AND:
 				sequence_Expression_And(context, (Expression_And) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_CALL_FUNCTION:
+			case IotPackage.EXPRESSION_CALL_FUNCTION:
 				sequence_Expression_Functioncall(context, (Expression_CallFunction) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_CALL_MEMBER_FUNCTION:
+			case IotPackage.EXPRESSION_CALL_MEMBER_FUNCTION:
 				sequence_Expression_Functioncall(context, (Expression_CallMemberFunction) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_CONCATENATION:
+			case IotPackage.EXPRESSION_CONCATENATION:
 				sequence_Expression_Concatenation(context, (Expression_Concatenation) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_DIVISION:
+			case IotPackage.EXPRESSION_DIVISION:
 				sequence_Expression_MultiplicationDivisionModulo(context, (Expression_Division) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_EQUAL:
+			case IotPackage.EXPRESSION_EQUAL:
 				sequence_Expression_Compare(context, (Expression_Equal) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_EXPONENTIATION:
+			case IotPackage.EXPRESSION_EXPONENTIATION:
 				sequence_Expression_Exponentiation(context, (Expression_Exponentiation) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_FALSE:
+			case IotPackage.EXPRESSION_FALSE:
 				sequence_Statement_FunctioncallOrAssignment_Statement_Assignment_1_0_0_Statement_CallFunction_1_2_0_Statement_CallMemberFunction_1_1_1(context, (Expression_False) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_FUNCTION:
+			case IotPackage.EXPRESSION_FUNCTION:
 				sequence_Expression_Function(context, (Expression_Function) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_INVERT:
+			case IotPackage.EXPRESSION_INVERT:
 				sequence_Expression_Unary(context, (Expression_Invert) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_LARGER:
+			case IotPackage.EXPRESSION_LARGER:
 				sequence_Expression_Compare(context, (Expression_Larger) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_LARGER_EQUAL:
+			case IotPackage.EXPRESSION_LARGER_EQUAL:
 				sequence_Expression_Compare(context, (Expression_Larger_Equal) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_LENGTH:
+			case IotPackage.EXPRESSION_LENGTH:
 				sequence_Expression_Unary(context, (Expression_Length) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_MINUS:
+			case IotPackage.EXPRESSION_MINUS:
 				sequence_Expression_PlusMinus(context, (Expression_Minus) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_MODULO:
+			case IotPackage.EXPRESSION_MODULO:
 				sequence_Expression_MultiplicationDivisionModulo(context, (Expression_Modulo) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_MULTIPLICATION:
+			case IotPackage.EXPRESSION_MULTIPLICATION:
 				sequence_Expression_MultiplicationDivisionModulo(context, (Expression_Multiplication) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_NEGATE:
+			case IotPackage.EXPRESSION_NEGATE:
 				sequence_Expression_Unary(context, (Expression_Negate) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_NIL:
+			case IotPackage.EXPRESSION_NIL:
 				sequence_Statement_FunctioncallOrAssignment_Statement_Assignment_1_0_0_Statement_CallFunction_1_2_0_Statement_CallMemberFunction_1_1_1(context, (Expression_Nil) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_NOT_EQUAL:
+			case IotPackage.EXPRESSION_NOT_EQUAL:
 				sequence_Expression_Compare(context, (Expression_Not_Equal) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_NUMBER:
+			case IotPackage.EXPRESSION_NUMBER:
 				sequence_Expression_Number(context, (Expression_Number) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_OR:
+			case IotPackage.EXPRESSION_OR:
 				sequence_Expression_Or(context, (Expression_Or) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_PLUS:
+			case IotPackage.EXPRESSION_PLUS:
 				sequence_Expression_PlusMinus(context, (Expression_Plus) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_SMALLER:
+			case IotPackage.EXPRESSION_SMALLER:
 				sequence_Expression_Compare(context, (Expression_Smaller) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_SMALLER_EQUAL:
+			case IotPackage.EXPRESSION_SMALLER_EQUAL:
 				sequence_Expression_Compare(context, (Expression_Smaller_Equal) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_STRING:
+			case IotPackage.EXPRESSION_STRING:
 				sequence_Expression_String(context, (Expression_String) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_TABLE_CONSTRUCTOR:
+			case IotPackage.EXPRESSION_TABLE_CONSTRUCTOR:
 				sequence_Expression_TableConstructor(context, (Expression_TableConstructor) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_TRUE:
+			case IotPackage.EXPRESSION_TRUE:
 				sequence_Statement_FunctioncallOrAssignment_Statement_Assignment_1_0_0_Statement_CallFunction_1_2_0_Statement_CallMemberFunction_1_1_1(context, (Expression_True) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_VAR_ARGS:
+			case IotPackage.EXPRESSION_VAR_ARGS:
 				sequence_Statement_FunctioncallOrAssignment_Statement_Assignment_1_0_0_Statement_CallFunction_1_2_0_Statement_CallMemberFunction_1_1_1(context, (Expression_VarArgs) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.EXPRESSION_VARIABLE_NAME:
+			case IotPackage.EXPRESSION_VARIABLE_NAME:
 				sequence_Expression_VariableName(context, (Expression_VariableName) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.FIELD_ADD_ENTRY_TO_TABLE:
+			case IotPackage.FIELD_ADD_ENTRY_TO_TABLE:
 				sequence_Field_AddEntryToTable(context, (Field_AddEntryToTable) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.FIELD_ADD_ENTRY_TO_TABLE_BRACKETS:
+			case IotPackage.FIELD_ADD_ENTRY_TO_TABLE_BRACKETS:
 				sequence_Field_AddEntryToTable_Brackets(context, (Field_AddEntryToTable_Brackets) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.FIELD_APPEND_ENTRY_TO_TABLE:
+			case IotPackage.FIELD_APPEND_ENTRY_TO_TABLE:
 				sequence_Field_AppendEntryToTable(context, (Field_AppendEntryToTable) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.FORK_NODE:
+			case IotPackage.FORK_NODE:
 				sequence_ForkNode(context, (ForkNode) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.FUNCTION:
+			case IotPackage.FUNCTION:
 				sequence_Function(context, (Function) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.FUNCTIONCALL_ARGUMENTS:
+			case IotPackage.FUNCTIONCALL_ARGUMENTS:
 				sequence_Functioncall_Arguments(context, (Functioncall_Arguments) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.INITIAL_NODE:
+			case IotPackage.INITIAL_NODE:
 				sequence_InitialNode(context, (InitialNode) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.INTEGER_VALUE:
+			case IotPackage.INTEGER_VALUE:
 				sequence_IntegerValue(context, (IntegerValue) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.INTEGER_VARIABLE:
+			case IotPackage.INTEGER_VARIABLE:
 				sequence_IntegerVariable(context, (IntegerVariable) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.JOIN_NODE:
+			case IotPackage.JOIN_NODE:
 				sequence_JoinNode(context, (JoinNode) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.LAST_STATEMENT_BREAK:
+			case IotPackage.LAST_STATEMENT_BREAK:
 				sequence_LastStatement_Break(context, (LastStatement_Break) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.LAST_STATEMENT_RETURN_WITH_VALUE:
+			case IotPackage.LAST_STATEMENT_RETURN_WITH_VALUE:
 				sequence_LastStatement_Return(context, (LastStatement_ReturnWithValue) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.MERGE_NODE:
+			case IotPackage.MERGE_NODE:
 				sequence_MergeNode(context, (MergeNode) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.OPAQUE_ACTION:
+			case IotPackage.OPAQUE_ACTION:
 				sequence_OpaqueAction(context, (OpaqueAction) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.STATEMENT_ASSIGNMENT:
+			case IotPackage.STATEMENT_ASSIGNMENT:
 				sequence_Statement_FunctioncallOrAssignment(context, (Statement_Assignment) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.STATEMENT_BLOCK:
+			case IotPackage.STATEMENT_BLOCK:
 				sequence_Statement_Block(context, (Statement_Block) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.STATEMENT_CALL_FUNCTION:
+			case IotPackage.STATEMENT_CALL_FUNCTION:
 				sequence_Statement_FunctioncallOrAssignment(context, (Statement_CallFunction) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.STATEMENT_CALL_MEMBER_FUNCTION:
+			case IotPackage.STATEMENT_CALL_MEMBER_FUNCTION:
 				sequence_Statement_FunctioncallOrAssignment(context, (Statement_CallMemberFunction) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.STATEMENT_FOR_GENERIC:
+			case IotPackage.STATEMENT_FOR_GENERIC:
 				sequence_Statement_For_Generic(context, (Statement_For_Generic) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.STATEMENT_FOR_NUMERIC:
+			case IotPackage.STATEMENT_FOR_NUMERIC:
 				sequence_Statement_For_Numeric(context, (Statement_For_Numeric) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.STATEMENT_GLOBAL_FUNCTION_DECLARATION:
+			case IotPackage.STATEMENT_GLOBAL_FUNCTION_DECLARATION:
 				sequence_Statement_GlobalFunction_Declaration(context, (Statement_GlobalFunction_Declaration) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.STATEMENT_IF_THEN_ELSE:
+			case IotPackage.STATEMENT_IF_THEN_ELSE:
 				sequence_Statement_If_Then_Else(context, (Statement_If_Then_Else) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.STATEMENT_IF_THEN_ELSE_ELSE_IF_PART:
+			case IotPackage.STATEMENT_IF_THEN_ELSE_ELSE_IF_PART:
 				sequence_Statement_If_Then_Else_ElseIfPart(context, (Statement_If_Then_Else_ElseIfPart) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.STATEMENT_LOCAL_FUNCTION_DECLARATION:
+			case IotPackage.STATEMENT_LOCAL_FUNCTION_DECLARATION:
 				sequence_Statement_LocalFunction_Declaration(context, (Statement_LocalFunction_Declaration) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.STATEMENT_LOCAL_VARIABLE_DECLARATION:
+			case IotPackage.STATEMENT_LOCAL_VARIABLE_DECLARATION:
 				sequence_Statement_Local_Variable_Declaration(context, (Statement_Local_Variable_Declaration) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.STATEMENT_REPEAT:
+			case IotPackage.STATEMENT_REPEAT:
 				sequence_Statement_Repeat(context, (Statement_Repeat) semanticObject); 
 				return; 
-			case ActivitydiagramPackage.STATEMENT_WHILE:
+			case IotPackage.STATEMENT_WHILE:
 				sequence_Statement_While(context, (Statement_While) semanticObject); 
 				return; 
 			}
@@ -614,8 +614,8 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_BooleanValue(EObject context, BooleanValue semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.BOOLEAN_VALUE__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.BOOLEAN_VALUE__VALUE));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.BOOLEAN_VALUE__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.BOOLEAN_VALUE__VALUE));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -666,10 +666,10 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Expression_AccessMemberOrArrayElement(EObject context, Expression_AccessArray semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_ACCESS_ARRAY__ARRAY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_ACCESS_ARRAY__ARRAY));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_ACCESS_ARRAY__INDEX) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_ACCESS_ARRAY__INDEX));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_ACCESS_ARRAY__ARRAY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_ACCESS_ARRAY__ARRAY));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_ACCESS_ARRAY__INDEX) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_ACCESS_ARRAY__INDEX));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -685,10 +685,10 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Expression_AccessMemberOrArrayElement(EObject context, Expression_AccessMember semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_ACCESS_MEMBER__OBJECT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_ACCESS_MEMBER__OBJECT));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_ACCESS_MEMBER__MEMBER_NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_ACCESS_MEMBER__MEMBER_NAME));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_ACCESS_MEMBER__OBJECT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_ACCESS_MEMBER__OBJECT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_ACCESS_MEMBER__MEMBER_NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_ACCESS_MEMBER__MEMBER_NAME));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -704,10 +704,10 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Expression_And(EObject context, Expression_And semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_AND__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_AND__LEFT));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_AND__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_AND__RIGHT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_AND__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_AND__LEFT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_AND__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_AND__RIGHT));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -723,10 +723,10 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Expression_Compare(EObject context, Expression_Equal semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_EQUAL__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_EQUAL__LEFT));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_EQUAL__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_EQUAL__RIGHT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_EQUAL__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_EQUAL__LEFT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_EQUAL__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_EQUAL__RIGHT));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -742,10 +742,10 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Expression_Compare(EObject context, Expression_Larger semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_LARGER__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_LARGER__LEFT));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_LARGER__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_LARGER__RIGHT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_LARGER__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_LARGER__LEFT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_LARGER__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_LARGER__RIGHT));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -761,10 +761,10 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Expression_Compare(EObject context, Expression_Larger_Equal semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_LARGER_EQUAL__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_LARGER_EQUAL__LEFT));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_LARGER_EQUAL__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_LARGER_EQUAL__RIGHT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_LARGER_EQUAL__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_LARGER_EQUAL__LEFT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_LARGER_EQUAL__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_LARGER_EQUAL__RIGHT));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -780,10 +780,10 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Expression_Compare(EObject context, Expression_Not_Equal semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_NOT_EQUAL__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_NOT_EQUAL__LEFT));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_NOT_EQUAL__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_NOT_EQUAL__RIGHT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_NOT_EQUAL__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_NOT_EQUAL__LEFT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_NOT_EQUAL__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_NOT_EQUAL__RIGHT));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -799,10 +799,10 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Expression_Compare(EObject context, Expression_Smaller semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_SMALLER__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_SMALLER__LEFT));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_SMALLER__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_SMALLER__RIGHT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_SMALLER__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_SMALLER__LEFT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_SMALLER__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_SMALLER__RIGHT));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -818,10 +818,10 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Expression_Compare(EObject context, Expression_Smaller_Equal semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_SMALLER_EQUAL__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_SMALLER_EQUAL__LEFT));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_SMALLER_EQUAL__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_SMALLER_EQUAL__RIGHT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_SMALLER_EQUAL__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_SMALLER_EQUAL__LEFT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_SMALLER_EQUAL__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_SMALLER_EQUAL__RIGHT));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -837,10 +837,10 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Expression_Concatenation(EObject context, Expression_Concatenation semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_CONCATENATION__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_CONCATENATION__LEFT));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_CONCATENATION__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_CONCATENATION__RIGHT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_CONCATENATION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_CONCATENATION__LEFT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_CONCATENATION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_CONCATENATION__RIGHT));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -856,10 +856,10 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Expression_Exponentiation(EObject context, Expression_Exponentiation semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_EXPONENTIATION__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_EXPONENTIATION__LEFT));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_EXPONENTIATION__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_EXPONENTIATION__RIGHT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_EXPONENTIATION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_EXPONENTIATION__LEFT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_EXPONENTIATION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_EXPONENTIATION__RIGHT));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -875,8 +875,8 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Expression_Function(EObject context, Expression_Function semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_FUNCTION__FUNCTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_FUNCTION__FUNCTION));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_FUNCTION__FUNCTION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_FUNCTION__FUNCTION));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -891,10 +891,10 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Expression_Functioncall(EObject context, Expression_CallFunction semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_CALL_FUNCTION__OBJECT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_CALL_FUNCTION__OBJECT));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_CALL_FUNCTION__ARGUMENTS) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_CALL_FUNCTION__ARGUMENTS));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_CALL_FUNCTION__OBJECT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_CALL_FUNCTION__OBJECT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_CALL_FUNCTION__ARGUMENTS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_CALL_FUNCTION__ARGUMENTS));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -910,12 +910,12 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Expression_Functioncall(EObject context, Expression_CallMemberFunction semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_CALL_MEMBER_FUNCTION__OBJECT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_CALL_MEMBER_FUNCTION__OBJECT));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_CALL_MEMBER_FUNCTION__MEMBER_FUNCTION_NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_CALL_MEMBER_FUNCTION__MEMBER_FUNCTION_NAME));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_CALL_MEMBER_FUNCTION__ARGUMENTS) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_CALL_MEMBER_FUNCTION__ARGUMENTS));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_CALL_MEMBER_FUNCTION__OBJECT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_CALL_MEMBER_FUNCTION__OBJECT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_CALL_MEMBER_FUNCTION__MEMBER_FUNCTION_NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_CALL_MEMBER_FUNCTION__MEMBER_FUNCTION_NAME));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_CALL_MEMBER_FUNCTION__ARGUMENTS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_CALL_MEMBER_FUNCTION__ARGUMENTS));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -932,10 +932,10 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Expression_MultiplicationDivisionModulo(EObject context, Expression_Division semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_DIVISION__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_DIVISION__LEFT));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_DIVISION__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_DIVISION__RIGHT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_DIVISION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_DIVISION__LEFT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_DIVISION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_DIVISION__RIGHT));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -951,10 +951,10 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Expression_MultiplicationDivisionModulo(EObject context, Expression_Modulo semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_MODULO__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_MODULO__LEFT));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_MODULO__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_MODULO__RIGHT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_MODULO__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_MODULO__LEFT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_MODULO__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_MODULO__RIGHT));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -970,10 +970,10 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Expression_MultiplicationDivisionModulo(EObject context, Expression_Multiplication semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_MULTIPLICATION__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_MULTIPLICATION__LEFT));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_MULTIPLICATION__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_MULTIPLICATION__RIGHT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_MULTIPLICATION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_MULTIPLICATION__LEFT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_MULTIPLICATION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_MULTIPLICATION__RIGHT));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -989,8 +989,8 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Expression_Number(EObject context, Expression_Number semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_NUMBER__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_NUMBER__VALUE));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_NUMBER__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_NUMBER__VALUE));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1005,10 +1005,10 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Expression_Or(EObject context, Expression_Or semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_OR__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_OR__LEFT));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_OR__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_OR__RIGHT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_OR__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_OR__LEFT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_OR__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_OR__RIGHT));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1024,10 +1024,10 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Expression_PlusMinus(EObject context, Expression_Minus semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_MINUS__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_MINUS__LEFT));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_MINUS__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_MINUS__RIGHT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_MINUS__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_MINUS__LEFT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_MINUS__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_MINUS__RIGHT));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1043,10 +1043,10 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Expression_PlusMinus(EObject context, Expression_Plus semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_PLUS__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_PLUS__LEFT));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_PLUS__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_PLUS__RIGHT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_PLUS__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_PLUS__LEFT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_PLUS__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_PLUS__RIGHT));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1062,8 +1062,8 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Expression_String(EObject context, Expression_String semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_STRING__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_STRING__VALUE));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_STRING__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_STRING__VALUE));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1087,8 +1087,8 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Expression_Unary(EObject context, Expression_Invert semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_INVERT__EXP) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_INVERT__EXP));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_INVERT__EXP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_INVERT__EXP));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1103,8 +1103,8 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Expression_Unary(EObject context, Expression_Length semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_LENGTH__EXP) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_LENGTH__EXP));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_LENGTH__EXP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_LENGTH__EXP));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1119,8 +1119,8 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Expression_Unary(EObject context, Expression_Negate semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_NEGATE__EXP) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_NEGATE__EXP));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_NEGATE__EXP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_NEGATE__EXP));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1135,8 +1135,8 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Expression_VariableName(EObject context, Expression_VariableName semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_VARIABLE_NAME__VARIABLE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.EXPRESSION_VARIABLE_NAME__VARIABLE));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.EXPRESSION_VARIABLE_NAME__VARIABLE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.EXPRESSION_VARIABLE_NAME__VARIABLE));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1151,10 +1151,10 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Field_AddEntryToTable_Brackets(EObject context, Field_AddEntryToTable_Brackets semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.FIELD__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.FIELD__VALUE));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.FIELD_ADD_ENTRY_TO_TABLE_BRACKETS__INDEX_EXPRESSION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.FIELD_ADD_ENTRY_TO_TABLE_BRACKETS__INDEX_EXPRESSION));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.FIELD__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.FIELD__VALUE));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.FIELD_ADD_ENTRY_TO_TABLE_BRACKETS__INDEX_EXPRESSION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.FIELD_ADD_ENTRY_TO_TABLE_BRACKETS__INDEX_EXPRESSION));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1170,10 +1170,10 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Field_AddEntryToTable(EObject context, Field_AddEntryToTable semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.FIELD__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.FIELD__VALUE));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.FIELD_ADD_ENTRY_TO_TABLE__KEY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.FIELD_ADD_ENTRY_TO_TABLE__KEY));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.FIELD__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.FIELD__VALUE));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.FIELD_ADD_ENTRY_TO_TABLE__KEY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.FIELD_ADD_ENTRY_TO_TABLE__KEY));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1189,8 +1189,8 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Field_AppendEntryToTable(EObject context, Field_AppendEntryToTable semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.FIELD__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.FIELD__VALUE));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.FIELD__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.FIELD__VALUE));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1241,8 +1241,8 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_IntegerValue(EObject context, IntegerValue semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.INTEGER_VALUE__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.INTEGER_VALUE__VALUE));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.INTEGER_VALUE__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.INTEGER_VALUE__VALUE));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1320,8 +1320,8 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Statement_Block(EObject context, Statement_Block semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.STATEMENT_BLOCK__BLOCK) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.STATEMENT_BLOCK__BLOCK));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.STATEMENT_BLOCK__BLOCK) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.STATEMENT_BLOCK__BLOCK));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1404,7 +1404,17 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 *     (object=Statement_FunctioncallOrAssignment_Statement_CallFunction_1_2_0 arguments=Functioncall_Arguments)
 	 */
 	protected void sequence_Statement_FunctioncallOrAssignment(EObject context, Statement_CallFunction semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.STATEMENT_CALL_FUNCTION__OBJECT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.STATEMENT_CALL_FUNCTION__OBJECT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.STATEMENT_CALL_FUNCTION__ARGUMENTS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.STATEMENT_CALL_FUNCTION__ARGUMENTS));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getStatement_FunctioncallOrAssignmentAccess().getStatement_CallFunctionObjectAction_1_2_0(), semanticObject.getObject());
+		feeder.accept(grammarAccess.getStatement_FunctioncallOrAssignmentAccess().getArgumentsFunctioncall_ArgumentsParserRuleCall_1_2_1_0(), semanticObject.getArguments());
+		feeder.finish();
 	}
 	
 	
@@ -1414,12 +1424,12 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Statement_FunctioncallOrAssignment(EObject context, Statement_CallMemberFunction semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.STATEMENT_CALL_MEMBER_FUNCTION__OBJECT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.STATEMENT_CALL_MEMBER_FUNCTION__OBJECT));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.STATEMENT_CALL_MEMBER_FUNCTION__MEMBER_FUNCTION_NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.STATEMENT_CALL_MEMBER_FUNCTION__MEMBER_FUNCTION_NAME));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.STATEMENT_CALL_MEMBER_FUNCTION__ARGUMENTS) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.STATEMENT_CALL_MEMBER_FUNCTION__ARGUMENTS));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.STATEMENT_CALL_MEMBER_FUNCTION__OBJECT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.STATEMENT_CALL_MEMBER_FUNCTION__OBJECT));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.STATEMENT_CALL_MEMBER_FUNCTION__MEMBER_FUNCTION_NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.STATEMENT_CALL_MEMBER_FUNCTION__MEMBER_FUNCTION_NAME));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.STATEMENT_CALL_MEMBER_FUNCTION__ARGUMENTS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.STATEMENT_CALL_MEMBER_FUNCTION__ARGUMENTS));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1445,10 +1455,10 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Statement_If_Then_Else_ElseIfPart(EObject context, Statement_If_Then_Else_ElseIfPart semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.STATEMENT_IF_THEN_ELSE_ELSE_IF_PART__ELSEIF_EXPRESSION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.STATEMENT_IF_THEN_ELSE_ELSE_IF_PART__ELSEIF_EXPRESSION));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.STATEMENT_IF_THEN_ELSE_ELSE_IF_PART__ELSEIF_BLOCK) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.STATEMENT_IF_THEN_ELSE_ELSE_IF_PART__ELSEIF_BLOCK));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.STATEMENT_IF_THEN_ELSE_ELSE_IF_PART__ELSEIF_EXPRESSION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.STATEMENT_IF_THEN_ELSE_ELSE_IF_PART__ELSEIF_EXPRESSION));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.STATEMENT_IF_THEN_ELSE_ELSE_IF_PART__ELSEIF_BLOCK) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.STATEMENT_IF_THEN_ELSE_ELSE_IF_PART__ELSEIF_BLOCK));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1473,10 +1483,10 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Statement_LocalFunction_Declaration(EObject context, Statement_LocalFunction_Declaration semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.STATEMENT_LOCAL_FUNCTION_DECLARATION__FUNCTION_NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.STATEMENT_LOCAL_FUNCTION_DECLARATION__FUNCTION_NAME));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.STATEMENT_LOCAL_FUNCTION_DECLARATION__FUNCTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.STATEMENT_LOCAL_FUNCTION_DECLARATION__FUNCTION));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.STATEMENT_LOCAL_FUNCTION_DECLARATION__FUNCTION_NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.STATEMENT_LOCAL_FUNCTION_DECLARATION__FUNCTION_NAME));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.STATEMENT_LOCAL_FUNCTION_DECLARATION__FUNCTION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.STATEMENT_LOCAL_FUNCTION_DECLARATION__FUNCTION));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1501,10 +1511,10 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Statement_Repeat(EObject context, Statement_Repeat semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.STATEMENT_REPEAT__BLOCK) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.STATEMENT_REPEAT__BLOCK));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.STATEMENT_REPEAT__EXPRESSION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.STATEMENT_REPEAT__EXPRESSION));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.STATEMENT_REPEAT__BLOCK) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.STATEMENT_REPEAT__BLOCK));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.STATEMENT_REPEAT__EXPRESSION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.STATEMENT_REPEAT__EXPRESSION));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1520,10 +1530,10 @@ public abstract class AbstractIoTSemanticSequencer extends XbaseSemanticSequence
 	 */
 	protected void sequence_Statement_While(EObject context, Statement_While semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.STATEMENT_WHILE__EXPRESSION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.STATEMENT_WHILE__EXPRESSION));
-			if(transientValues.isValueTransient(semanticObject, ActivitydiagramPackage.Literals.STATEMENT_WHILE__BLOCK) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ActivitydiagramPackage.Literals.STATEMENT_WHILE__BLOCK));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.STATEMENT_WHILE__EXPRESSION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.STATEMENT_WHILE__EXPRESSION));
+			if(transientValues.isValueTransient(semanticObject, IotPackage.Literals.STATEMENT_WHILE__BLOCK) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, IotPackage.Literals.STATEMENT_WHILE__BLOCK));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);

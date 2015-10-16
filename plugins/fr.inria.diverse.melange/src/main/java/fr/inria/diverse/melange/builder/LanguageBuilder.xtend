@@ -18,6 +18,7 @@ import java.util.List
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.util.EcoreUtil
+import fr.inria.diverse.melange.ast.LanguageExtensions
 
 class LanguageBuilder extends AbstractBuilder {
 	@Inject EmfCompareAlgebra algebra
@@ -25,6 +26,7 @@ class LanguageBuilder extends AbstractBuilder {
 	@Inject Injector injector
 	@Inject extension AspectExtensions
 	@Inject extension EcoreExtensions
+	@Inject extension LanguageExtensions
 	@Inject EcoreMerger ecoreMerger
 	ModelTypingSpaceBuilder root
 	Language source
@@ -48,6 +50,10 @@ class LanguageBuilder extends AbstractBuilder {
 		errors.forEach[e |
 			errorHelper.addError(e.location, e.message)
 		]
+		
+		if(source.isGeneratedByMelange){
+			model.nsURI = source.externalPackageUri
+		}
 	}
 
 	override make() {

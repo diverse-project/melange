@@ -102,7 +102,7 @@ class LanguageExtensions
 			val res = newArrayList
 			l.semantics.reverseView.forEach[a1 |
 				if (!res.exists[Aspect a2 | a2.aspectTypeRef.identifier == a1.aspectTypeRef.identifier]
-					&& (!a1.hasAspectAnnotation || l.syntax.pkgs.head.allClasses.exists[cls | cls.name == a1.aspectedClass.name]))
+					&& (!a1.hasAspectAnnotation || l.syntax.pkgs.head.allClasses.exists[cls | cls.name == a1.aspectedClass?.name]))
 				{
 					res += a1
 				}
@@ -117,16 +117,30 @@ class LanguageExtensions
 	 */
 	def List<Aspect> getLocalSemantics(Language l){
 		val res = newArrayList
-		
-		l.operators.filter(Weave).forEach[op |
-			val withAsp = l.semantics.findFirst[asp | asp.aspectTypeRef.simpleName == op.aspectTypeRef.simpleName]
-			if(withAsp !== null){
+
+		//Simple imports
+		l.operators.filter(Weave).filter[aspectWildcardImport === null].forEach [ op |
+			val withAsp = l.semantics.findFirst [ asp |
+				asp.aspectTypeRef.simpleName == op.aspectTypeRef.simpleName
+			]
+			if (withAsp !== null) {
 				res += withAsp
 			}
 		]
-		
+
+		//Wildcard imports
+		l.operators.filter(Weave).filter[aspectWildcardImport !== null].forEach [ op |
+			val wildcardImportNS = op.aspectWildcardImport.substring(0,
+				op.aspectWildcardImport.length - 2)
+			val withAsps = l.semantics.filter [ asp |
+				asp.aspectTypeRef.simpleName.startsWith(wildcardImportNS)
+			]
+			res += withAsps
+		]
+
 		return res
 	}
+	
 
 //	def List<Aspect> allSemantics(Language l) {
 //		val tmp = newArrayList
@@ -158,8 +172,8 @@ class LanguageExtensions
 			l.allSemantics.filter[asp |
 				asp.aspectedClass?.name !== null
 				&& (
-				   asp.aspectedClass.name == cls.name
-				|| cls.EAllSuperTypes.exists[asp.aspectedClass.name == name]
+				   asp.aspectedClass?.name == cls.name
+				|| cls.EAllSuperTypes.exists[asp.aspectedClass?.name == name]
 				)
 			]
 	}
@@ -359,7 +373,7 @@ class LanguageExtensions
 		
 		//Copy sem
 		val withAspects = l.getLocalSemantics
-		copyAspects(l,withAspects.reverseView,null)
+		copyAspects(l,withAspects.reverseView,#[]/*l.getAllRulesManagers*/)
 		l.semantics.removeAll(withAspects)
 		
 		//Copy+rename op
@@ -387,7 +401,7 @@ class LanguageExtensions
 							aspects.reverseView
 						}
 					val rulesManager = new RenamingRuleManager(renamingRules, aspects, newRootName, aspectExtension)
-					copyAspects(l,aspects,rulesManager)
+					copyAspects(l,aspects,#[rulesManager])
 				}
 			]
 		//Copy super lang
@@ -399,7 +413,7 @@ class LanguageExtensions
 				else{
 					superLang.semantics.reverseView
 				}
-			copyAspects(l,orderedAspects,null)
+			copyAspects(l,orderedAspects,#[])
 		]
 	}
 	
@@ -407,7 +421,7 @@ class LanguageExtensions
 	 * Copy aspects defined on {@link l} into generated project
 	 * and apply renaming rules on them
 	 */
-	private def void copyAspects(Language l, Iterable<Aspect> aspects,RenamingRuleManager rulesManager){
+	private def void copyAspects(Language l, Iterable<Aspect> aspects, List<RenamingRuleManager> rulesManagers){
 		
 		if(aspects.isEmpty){
 			return
@@ -418,30 +432,39 @@ class LanguageExtensions
 		val targetAspectNamespace = l.aspectTargetNamespace
 		val targetProjectName = l.externalRuntimeName
 		val sourceEmfNamespaces =
-			if(l == aspects.head.owningLanguage){ //aspects come from 'With' operators
-				aspects.head.aspectTypeRef.targetedNamespace.toString
+			if(l == aspects.filter[hasAspectAnnotation].head?.owningLanguage){ //aspects come from 'With' operators
+				l.collectTargetedPackages
+//				#[aspects.filter[hasAspectAnnotation].head.aspectTypeRef.targetedNamespace.toString].toSet
 			}
 			else{
-				aspects.head.owningLanguage.syntax.packageFqn.toQualifiedName.skipLast(1).toString //prefixed root package
+				#[aspects.head.owningLanguage.syntax.packageFqn.toQualifiedName.skipLast(1).toString].toSet //prefixed root package
 			}
 		
 		
 		//Copy aspects files
+		val externalAsp = newArrayList
+		if(aspects.head.owningLanguage === l){
+			externalAsp += l.allAspects.toSet
+			externalAsp.removeAll(aspects.map[aspectTypeRef].toList.filterNull)//exclude local aspects 
+		}
 		val copiedAspect = newArrayList
 		aspects.forEach[asp |
 			if (asp.isComplete) {
 				if (asp.aspectTypeRef.canBeCopiedFor(l.syntax)) {
 					
-					var className = asp.aspectedClass.name
-					var classFqName = asp.aspectedClass.fullyQualifiedName
-					val renaming = rulesManager?.getClassRule(classFqName.toString)
+					var className = asp.aspectedClass?.name
+					var classFqName = asp.aspectedClass?.fullyQualifiedName
+					val classNameTmp = className
+					val renaming = rulesManagers.map[getClassRule(classNameTmp?.toString)].filterNull.head
 					if(renaming != null) className = renaming.value.substring(renaming.value.lastIndexOf(".")+1)
 					
-					if(l.syntax.findClass(className) !== null){
+					if(l.syntax.findClass(className) !== null || !asp.hasAspectAnnotation){
 						copiedAspect += asp
+						val asp4Request = #[asp.aspectTypeRef].toSet
+						asp4Request.addAll(externalAsp)
 						val request = new AspectCopier.AspectCopierRequest(
-							#[asp.aspectTypeRef].toSet,
-							#[sourceEmfNamespaces].toSet,
+							asp4Request,
+							sourceEmfNamespaces,
 							targetEmfNamespace,
 							targetAspectNamespace,
 							targetProjectName
@@ -453,16 +476,16 @@ class LanguageExtensions
 		]
 		
 		//Apply renaming rules on copied files
-		if(rulesManager !== null){
-			renamer.processRenaming(copiedAspect,l,rulesManager)
+		if(!rulesManagers.isEmpty){
+			renamer.processRenaming(copiedAspect,l,rulesManagers)
 		}
 		
 		//Update the semantic
 		val newAspects = newArrayList
 		copiedAspect.forEach[asp |
-			val targetClass = asp.aspectedClass.name
-	    	val targetFqName = asp.aspectedClass.fullyQualifiedName.toString
-	    	val rule = rulesManager?.getClassRule(targetFqName)
+			val targetClass = asp.aspectedClass?.name
+	    	val targetFqName = asp.aspectedClass?.fullyQualifiedName?.toString
+	    	val rule = rulesManagers.map[getClassRule(targetFqName)].filterNull.head
 	    	val newClass = 
 	    		if(rule !== null){
 		    		rule.value.toQualifiedName.lastSegment
@@ -479,6 +502,27 @@ class LanguageExtensions
 				]
 			l.semantics += newAspects
 		]
+	}
+	
+	def getAllRulesManagers(Language l){
+		val rulesManagers = newArrayList
+		l.operators.forEach[op |
+			var List<PackageBinding> renamingRules = null
+			var Language opLang = null
+			if (op instanceof Slice){
+				renamingRules = op.mappingRules
+				opLang = op.targetLanguage
+			}
+			else if (op instanceof Merge){
+				renamingRules = op.mappingRules
+				opLang = op.targetLanguage
+			}
+			if(renamingRules !== null){
+				val newRootName = opLang.syntax.packageFqn.toQualifiedName.skipLast(1).toString
+				rulesManagers += new RenamingRuleManager(renamingRules, #[], newRootName, aspectExtension)
+			}
+		]
+		return rulesManagers
 	}
 
 	def Set<String> collectTargetedPackages(Language l) {
@@ -558,7 +602,7 @@ class LanguageExtensions
 		language.operators.reverseView.filter[it instanceof Merge || it instanceof Slice].forEach[op|
 			var superLang = (op as LanguageOperator).targetLanguage
 			superLang.getOrderedAspects.forEach[asp |
-				val localAspectedClass = language.syntax.findClass(asp.aspectedClass.name)//TODO: renaming here
+				val localAspectedClass = language.syntax.findClass(asp.aspectedClass?.name)//TODO: renaming here
 				val newAsp = MelangeFactory.eINSTANCE.createAspect => [
 					aspectedClass = localAspectedClass
 					aspectTypeRef = typesBuilder.cloneWithProxies(asp.aspectTypeRef)
@@ -571,7 +615,7 @@ class LanguageExtensions
 		//inherits
 		language.getSuperLanguages.reverseView.forEach[superLang |
 			superLang.getOrderedAspects.forEach[asp |
-				val localAspectedClass = language.syntax.findClass(asp.aspectedClass.name)
+				val localAspectedClass = language.syntax.findClass(asp.aspectedClass?.name)
 				val newAsp =  MelangeFactory.eINSTANCE.createAspect => [
 					aspectedClass = localAspectedClass
 					aspectTypeRef = typesBuilder.cloneWithProxies(asp.aspectTypeRef)

@@ -18,7 +18,7 @@ Require-Bundle: org.eclipse.xtend.lib;bundle-version="2.7.0";visibility:=private
  org.xtext.lua;bundle-version="1.0.0",
  fr.inria.diverse.iot.glue.activityecore;bundle-version="1.0.0",
  fr.inria.diverse.iot.glue.activitylua;bundle-version="1.0.0",
- fr.inria.diverse.iot.activityecorelualang
+ fr.inria.diverse.iot.iotlang
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 

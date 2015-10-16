@@ -4,7 +4,6 @@ import activitydiagram.Activity
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import fr.inria.diverse.k3.al.annotationprocessor.Containment
 import org.eclipse.emf.ecore.EOperation
-import org.xtext.activitydiagram.semantics.Context
 
 import static extension org.xtext.activitydiagram.semantics.ActivityAspect.*
 
@@ -13,7 +12,7 @@ class EOperationAspect {
 	@Containment
 	public Activity activity
 
-	def void execute(Context c) {
-		_self.activity.execute(c)
+	def void execute() {
+		_self.activity.main(#[])
 	}
 }

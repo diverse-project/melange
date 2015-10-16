@@ -1,8 +1,8 @@
-package fr.inria.diverse.melange.test.renaming.main
+package fr.inria.diverse.melange.testrenaming.main
 
-import fr.inria.diverse.melange.test.renaming.aspects.ClassAAspect
-import fr.inria.diverse.melange.test.renaming.aspects.ClassBAspect
-import fr.inria.diverse.melange.test.renaming.aspects.SuperBAspect
+import fr.inria.diverse.melange.testrenaming.aspects.ClassAAspect
+import fr.inria.diverse.melange.testrenaming.aspects.ClassBAspect
+import fr.inria.diverse.melange.testrenaming.aspects.SuperBAspect
 
 language TestLanguage {
 	syntax "platform:/resource/fr.inria.diverse.melange.test.renaming.model/model/model.ecore"
@@ -13,18 +13,18 @@ language TestLanguage {
 }
 
 language TestLanguageRenamed {
-	merge TestLanguage and-rename {
+	merge TestLanguage renaming {
 		"root" to "root2" {
 			"ClassA" to "ClassA2" {
-				"toB" : "toB2"
+				"toB" to "toB2"
 			}
 		}
-		"root.subpackage" to "root2.subpackage2"{
+		"root.subpackage" to "root2.subpackage2"{ 
 			"ClassB" to "ClassB2" {
-				"toA" : "toA2"
+				"toA" to "toA2"
 			}
 			"SuperB" to "SuperB2" {
-				"attrib" : "attrib2"
+				"attrib" to "attrib2"
 			}
 		}
 	}
@@ -32,18 +32,18 @@ language TestLanguageRenamed {
 }
 
 language TestReverseRenamed {
-	merge TestLanguageRenamed and-rename {
+	merge TestLanguageRenamed renaming {
 		"root2" to "root" {
 			"ClassA2" to "ClassA" {
-				"toB2" : "toB"
+				"toB2" to "toB"
 			}
 		}
 		"root2.subpackage2" to "root.subpackage"{
 			"ClassB2" to "ClassB" {
-				"toA2" : "toA"
+				"toA2" to "toA"
 			}
 			"SuperB2" to "SuperB" {
-				"attrib2" : "attrib"
+				"attrib2" to "attrib"
 			}
 		}
 	}

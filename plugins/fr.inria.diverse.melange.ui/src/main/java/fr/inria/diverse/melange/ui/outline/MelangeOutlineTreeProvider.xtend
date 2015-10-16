@@ -13,10 +13,17 @@ import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
+import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode
+import org.eclipse.emf.ecore.EClass
+import fr.inria.diverse.melange.lib.EcoreExtensions
+import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.ecore.EAttribute
+import org.eclipse.emf.ecore.EOperation
 
 class MelangeOutlineTreeProvider extends DefaultOutlineTreeProvider
 {
 	@Inject extension ModelingElementExtensions
+	@Inject extension EcoreExtensions
 
 	def boolean _isLeaf(Transformation t) {
 		return true
@@ -65,10 +72,46 @@ class MelangeOutlineTreeProvider extends DefaultOutlineTreeProvider
 
     def void _createNode(IOutlineNode parentNode, EPackage p){
         val mNode = createEObjectNode(parentNode, p)
-
-        p.ESubpackages.forEach[pkg |
-            createNode(mNode, pkg)
-        ]
+        
+        val target = mNode.isInsideModelTypeOrAspect
+    }
+    
+    def void _createNode(IOutlineNode parentNode, EClass c){
+    	if(parentNode.isInsideModelTypeOrAspect || !c.isAspectSpecific){
+    		createEObjectNode(parentNode, c)
+    	}
+    }
+    
+    def void _createNode(IOutlineNode parentNode, EReference r) {
+    	if(parentNode.isInsideModelTypeOrAspect || !r.isAspectSpecific){
+			createEObjectNode(parentNode, r)
+		}
+    }
+    
+	def void _createNode(IOutlineNode parentNode, EAttribute a) {
+		if(parentNode.isInsideModelTypeOrAspect || !a.isAspectSpecific){
+			createEObjectNode(parentNode, a)
+		}
+    }
+    
+    def void _createNode(IOutlineNode parentNode, EOperation o) {
+		if(parentNode.isInsideModelTypeOrAspect || !o.isAspectSpecific){
+			createEObjectNode(parentNode, o)
+		}
+    }
+    
+    private def isInsideModelTypeOrAspect(IOutlineNode node){
+    	var parent = node?.parent
+    	while(parent !== null){
+    		if(parent instanceof EObjectNode){
+    			if(parent.EClass.name == "ModelType" || parent.EClass.name == "Aspect"){
+    				return true
+    			}
+    		}
+    		
+    		parent = parent.parent
+    	}
+    	return false
     }
 
 }

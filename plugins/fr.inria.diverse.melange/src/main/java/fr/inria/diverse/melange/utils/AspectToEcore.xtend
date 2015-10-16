@@ -72,7 +72,10 @@ class AspectToEcore
 		 * "aspects" without @Aspect may have declared fields
 		 */
 		aspect.declaredFields
-		.filter[visibility == JvmVisibility.PUBLIC]
+		.filter[
+			   visibility == JvmVisibility.PUBLIC
+			&& !^static
+		]
 		.forEach[field |
 			val fieldType = field.type
 			val upperB = if (fieldType.isList) -1 else 1
