@@ -6,9 +6,9 @@ Bundle-Version: 0.1.0.qualifier
 Bundle-SymbolicName: fr.inria.diverse.melange.tests;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: fr.inria.diverse.melange.ui,
- org.eclipse.xtext.junit4;bundle-version="[2.8.0,2.9.0)",
- org.eclipse.xtext.generator;bundle-version="[2.8.0,2.9.0)",
- org.eclipse.xtext.xbase.junit;bundle-version="[2.8.0,2.9.0)",
+ org.eclipse.xtext.junit4;bundle-version="[2.7.0,2.9.0)",
+ org.eclipse.xtext.generator;bundle-version="[2.7.0,2.9.0)",
+ org.eclipse.xtext.xbase.junit;bundle-version="[2.7.0,2.9.0)",
  fr.inria.diverse.melange.metamodel;bundle-version="0.1.0",
  fr.inria.diverse.melange.tools.xtext.testing;bundle-version="0.1.0",
  fr.inria.diverse.melange.examples.metamodels.fsm;bundle-version="0.1.0",
@@ -32,7 +32,7 @@ Import-Package: org.hamcrest.core,
  org.junit.runner.notification;version="4.5.0",
  org.junit.runners;version="4.5.0",
  org.junit.runners.model;version="4.5.0"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: fr.inria.diverse.melange.tests,
  fr.inria.diverse.melange.tests.aspects.fsm,
  fr.inria.diverse.melange.tests.common,

@@ -30,7 +30,7 @@ public class RenamingTest extends AbstractXtextTests
 		helper.deployMelangeProject("fr.inria.diverse.melange.test.renaming.model", "tests-inputs/fr.inria.diverse.melange.test.renaming.model.zip")
 		helper.deployMelangeProject("fr.inria.diverse.melange.test.renaming.main", "tests-inputs/fr.inria.diverse.melange.test.renaming.main.zip")
 		
-		IResourcesSetupUtil::reallyWaitForAutoBuild
+		IResourcesSetupUtil::waitForAutoBuild
 	}
 
 	@Test
