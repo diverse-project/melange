@@ -12,14 +12,14 @@ import org.eclipse.xtext.ui.editor.contentassist.antlr.FollowElement;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.AbstractInternalContentAssistParser;
 import org.eclipse.xtext.util.PolymorphicDispatcher;
 
-/*
- * Template CodetemplatesGeneratorFragment.xpt
+/**
+ * @author Sebastian Zarnekow - Initial contribution and API
  */
+@SuppressWarnings("restriction")
 public class PartialMelangeContentAssistParser extends MelangeParser implements IPartialContentAssistParser {
 
 	private AbstractRule rule;
 
-	@Override
 	public void initializeFor(AbstractRule rule) {
 		this.rule = rule;
 	}

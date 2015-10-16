@@ -280,27 +280,6 @@
 	        <filter name="projectNature" value="org.eclipse.xtext.ui.shared.xtextNature"/>
         </page>
     </extension>
-    <extension point="org.eclipse.ui.menus">
-		<menuContribution locationURI="popup:#TextEditorContext?after=xtext.ui.openDeclaration">
-			<command
-				commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand"
-				id="fr.inria.diverse.melange.Melange.OpenGeneratedCode"
-				style="push">
-					<visibleWhen checkEnabled="false">
-						<reference definitionId="fr.inria.diverse.melange.Melange.Editor.opened" />
-					</visibleWhen>
-			</command>
-		</menuContribution>
-	</extension>
-	<extension point="org.eclipse.ui.handlers">
-		<handler
-			class="fr.inria.diverse.melange.ui.MelangeExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
-			commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand">
-				<activeWhen>
-					<reference definitionId="fr.inria.diverse.melange.Melange.Editor.opened" />
-				</activeWhen>
-		</handler>
-	</extension>
 
 	<!-- Quick Outline -->
 	<extension
@@ -600,12 +579,6 @@
             class="fr.inria.diverse.melange.ui.MelangeExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
             extensions="melange">
     </provider>
-  </extension>
-  <extension point="org.eclipse.team.core.fileTypes">
-    <fileTypes
-            extension="melange"
-            type="text">
-    </fileTypes>
   </extension>
 
 </plugin>
