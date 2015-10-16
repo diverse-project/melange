@@ -379,6 +379,15 @@ class EcoreExtensions
 		
 		return ret
 	}
+	
+	def List<EClassifier> getAllClassifiers(EPackage pkg) {
+		val ret = newArrayList
+		
+		ret.addAll(pkg.EClassifiers)
+		ret.addAll(pkg.allSubPkgs.map[EClassifiers].flatten)
+		
+		return ret
+	}
 
 	def List<EPackage> getAllSubPkgs(EPackage pkg) {
 		val ret = newArrayList

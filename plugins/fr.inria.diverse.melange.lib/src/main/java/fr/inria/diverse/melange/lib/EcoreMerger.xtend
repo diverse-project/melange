@@ -146,12 +146,12 @@ class PackageMergeMerger implements EcoreMerger {
 			s.forEach[ss |
 				if (ss.EStructuralFeature !== null && !ss.EStructuralFeature.derived && !ss.EStructuralFeature.many) {
 					if (o instanceof EClassifier) {
-						val corresponding = pkg.EClassifiers.findFirst[name == o.name]
+						val corresponding = pkg.getAllClassifiers.findFirst[name == o.name]
 						if (corresponding !== null)
 							ss.EObject.eSet(ss.EStructuralFeature, corresponding)
 					} else if (o instanceof EReference) {
 						if (o.EOpposite !== null) {
-							val correspondingCls = pkg.EClassifiers.findFirst[name == o.EContainingClass.name] as EClass
+							val correspondingCls = pkg.getAllClassifiers.findFirst[name == o.EContainingClass.name] as EClass
 							val correspondingRef = correspondingCls.EReferences.findFirst[name == o.name]
 
 							if (correspondingRef !== null)
