@@ -56,7 +56,7 @@ class MetamodelExtensions
 	}
 
 	def Iterable<EClassifier> getAllClassifiers(Metamodel mm) {
-		return mm.pkgs.map[EClassifiers].flatten
+		return mm.pkgs.map[getAllClassifiers].flatten
 	}
 
 	def Iterable<EClass> getAllClasses(Metamodel mm) {
