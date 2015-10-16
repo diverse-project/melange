@@ -60,7 +60,7 @@ class MetamodelExtensions
 	}
 
 	def Iterable<EClass> getAllClasses(Metamodel mm) {
-		return mm.allClassifiers.filter(EClass)
+		return mm.pkgs.map[getAllClasses].flatten
 	}
 
 	def void createGenmodel(Metamodel mm, String ecoreUri, String gmUri, String modelDirectory) {
