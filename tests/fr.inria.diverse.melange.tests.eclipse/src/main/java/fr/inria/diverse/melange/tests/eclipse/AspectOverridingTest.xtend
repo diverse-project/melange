@@ -79,6 +79,8 @@ public class AspectOverridingTest extends AbstractXtextTests
 
 	@Test
 	def void test4TransfoProducesExpectedOutput() {
+		helper.assertNoMarkers
+
 		val expected = '''
 			Asp0
 			Asp1b

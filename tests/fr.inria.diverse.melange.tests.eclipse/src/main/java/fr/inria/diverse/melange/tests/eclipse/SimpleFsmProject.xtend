@@ -73,6 +73,8 @@ public class SimpleFsmProject extends AbstractXtextTests
 
 	@Test
 	def void test3TransfoProducesExpectedOutput() {
+		helper.assertNoMarkers
+
 		val expected = '''
 			State 1
 				Transition a
