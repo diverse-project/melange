@@ -8,20 +8,20 @@ import root.B
 
 @Aspect(className=SuperA)
 class SuperAAspect{
-	public String attrib
+	public String attrib1
 }
 
 @Aspect(className=A)
 class AAspect{
-	public String attrib
+	public String attrib2
 }
 
 @Aspect(className=SubA)
 class SubAAspect{
-	public String attrib
+	public String attrib3
 }
 
 @Aspect(className=B)
 class BAspect{
-	public String attrib
+	public String attrib4
 }

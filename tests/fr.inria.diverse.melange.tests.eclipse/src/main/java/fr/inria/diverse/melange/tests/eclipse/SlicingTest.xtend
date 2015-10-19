@@ -43,14 +43,13 @@ public class SlicingTest extends AbstractXtextTests
 			#[
 				"AAspect" -> "A",
 				"SuperAAspect" -> "SuperA",
-				"SubAAspect" -> "SubA",
 				"BAspect" -> "B"
 			],
 			PROJECT_1)
 			
 		helper.assertK3AspectsDontExists(
 			#[
-				"BAspect" -> "B"
+				"SubAAspect" -> "SubA"
 			],
 			PROJECT_1)
 	}
