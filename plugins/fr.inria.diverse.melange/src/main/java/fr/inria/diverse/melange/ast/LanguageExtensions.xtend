@@ -64,6 +64,13 @@ class LanguageExtensions
 		ret += l.operators.filter(Inheritance).map[targetLanguage.allSuperLanguages].flatten
 		return ret
 	}
+	
+	def Set<Language> getAllDependences(Language l) {
+		val ret = newHashSet
+		ret += l.operators.filter(LanguageOperator).map[targetLanguage]
+		ret += l.operators.filter(LanguageOperator).map[targetLanguage.allDependences].flatten
+		return ret
+	}
 
 	def boolean getIsComplete(Language l) {
 		return l.name !== null && l.syntax !== null && l.syntax.isComplete && l.semantics.forall[isComplete]
