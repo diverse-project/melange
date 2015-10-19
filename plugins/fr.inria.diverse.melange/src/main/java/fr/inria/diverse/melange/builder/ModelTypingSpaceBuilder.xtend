@@ -4,7 +4,9 @@ import com.google.inject.Inject
 import com.google.inject.Injector
 import fr.inria.diverse.melange.metamodel.melange.Language
 import java.util.Map
+import com.google.inject.Singleton
 
+@Singleton
 class ModelTypingSpaceBuilder {
 	@Inject Injector injector
 	Map<Language, LanguageBuilder> registry = newHashMap
@@ -21,5 +23,9 @@ class ModelTypingSpaceBuilder {
 			registry.put(l, res)
 		}
 		return res
+	}
+	
+	def void reset(){
+		registry = newHashMap
 	}
 }

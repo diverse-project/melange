@@ -34,6 +34,7 @@ import fr.inria.diverse.melange.metamodel.melange.LanguageOperator
 import org.eclipse.xtext.common.types.JvmUnknownTypeReference
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import org.eclipse.emf.ecore.util.EcoreUtil
+import fr.inria.diverse.melange.builder.ModelTypingSpaceBuilder
 
 class LanguageExtensions
 {
@@ -51,6 +52,7 @@ class LanguageExtensions
 	@Inject AspectRenamer renamer
 	@Inject JvmTypesBuilder typesBuilder
 	@Inject JvmTypeReferenceBuilder.Factory builderFactory
+	@Inject ModelTypingSpaceBuilder modelTypingSpaceBuilder
 
 	def List<Language> getSuperLanguages(Language l) {
 		return l.operators.filter(Inheritance).map[targetLanguage].toList
