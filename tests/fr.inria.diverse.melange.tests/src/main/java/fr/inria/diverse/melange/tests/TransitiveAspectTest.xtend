@@ -56,7 +56,7 @@ class TransitiveAspectTest
 		assertNotNull(multipleSuperTest_SubLang)
 		
 		assertError(subLang.superLanguages.head,
-					MelangePackage.eINSTANCE.metamodel,
+					MelangePackage.eINSTANCE.languageOperator,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'Lang\' has errors in its definition"
 		)
@@ -90,12 +90,12 @@ class TransitiveAspectTest
 		assertEquals(referencesTest_MergeLang, operationTest_MergeLang.EReferences.findFirst[name == "addedReference"].EType)
 		
 		assertError((mergeLang.operators.get(0) as Merge).targetLanguage,
-					MelangePackage.eINSTANCE.metamodel,
+					MelangePackage.eINSTANCE.languageOperator,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'Lang\' has errors in its definition"
 		)
 		assertError((mergeLang.operators.get(1) as Merge).targetLanguage,
-					MelangePackage.eINSTANCE.metamodel,
+					MelangePackage.eINSTANCE.languageOperator,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'SubOtherLang\' has errors in its definition"
 		)
@@ -108,12 +108,12 @@ class TransitiveAspectTest
 		assertNotNull(multipleSuperTest_DoubleMergeLang)
 		
 		assertError((doubleMergeLang.operators.get(0) as Merge).targetLanguage,
-					MelangePackage.eINSTANCE.metamodel,
+					MelangePackage.eINSTANCE.languageOperator,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'Lang\' has errors in its definition"
 		)
 		assertError((doubleMergeLang.operators.get(1) as Merge).targetLanguage,
-					MelangePackage.eINSTANCE.metamodel,
+					MelangePackage.eINSTANCE.languageOperator,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'SubLang\' has errors in its definition"
 		)
@@ -125,12 +125,12 @@ class TransitiveAspectTest
 		assertNotNull(multipleSuperTest_DoubleSliceLang)
 		
 		assertError((doubleSliceLang.operators.get(0) as Slice).targetLanguage,
-					MelangePackage.eINSTANCE.metamodel,
+					MelangePackage.eINSTANCE.languageOperator,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'Lang\' has errors in its definition"
 		)
 		assertError((doubleSliceLang.operators.get(1) as Slice).targetLanguage,
-					MelangePackage.eINSTANCE.metamodel,
+					MelangePackage.eINSTANCE.languageOperator,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'SubLang\' has errors in its definition"
 		)
@@ -142,12 +142,12 @@ class TransitiveAspectTest
 		assertNotNull(multipleSuperTest_MergeSliceLang)
 		
 		assertError((mergeSliceLang.operators.get(0) as Merge).targetLanguage,
-					MelangePackage.eINSTANCE.metamodel,
+					MelangePackage.eINSTANCE.languageOperator,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'Lang\' has errors in its definition"
 		)
 		assertError((mergeSliceLang.operators.get(1) as Slice).targetLanguage,
-					MelangePackage.eINSTANCE.metamodel,
+					MelangePackage.eINSTANCE.languageOperator,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'SubLang\' has errors in its definition"
 		)
@@ -161,12 +161,12 @@ class TransitiveAspectTest
 		assertNotNull(multipleSuperTest_SliceMergeLang)
 		
 		assertError((sliceMergeLang.operators.get(0) as Slice).targetLanguage,
-					MelangePackage.eINSTANCE.metamodel,
+					MelangePackage.eINSTANCE.languageOperator,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'Lang\' has errors in its definition"
 		)
 		assertError((sliceMergeLang.operators.get(1) as Merge).targetLanguage,
-					MelangePackage.eINSTANCE.metamodel,
+					MelangePackage.eINSTANCE.languageOperator,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'SubLang\' has errors in its definition"
 		)
@@ -179,12 +179,12 @@ class TransitiveAspectTest
 		assertNotNull(referencesTest_MergeOverrideLang)
 		
 		assertError((mergeOverrideLang.operators.get(1) as Merge).targetLanguage,
-					MelangePackage.eINSTANCE.metamodel,
+					MelangePackage.eINSTANCE.languageOperator,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'Lang\' has errors in its definition"
 		)
 		assertError(mergeOverrideLang.superLanguages.head,
-					MelangePackage.eINSTANCE.metamodel,
+					MelangePackage.eINSTANCE.languageOperator,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'SuperLang\' has errors in its definition"
 		)		
@@ -197,12 +197,12 @@ class TransitiveAspectTest
 		assertNotNull(referencesTest_SliceOverrideLang)
 		
 		assertError((sliceOverrideLang.operators.get(1) as Slice).targetLanguage,
-					MelangePackage.eINSTANCE.metamodel,
+					MelangePackage.eINSTANCE.languageOperator,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'Lang\' has errors in its definition"
 		)
 		assertError(sliceOverrideLang.superLanguages.head,
-					MelangePackage.eINSTANCE.metamodel,
+					MelangePackage.eINSTANCE.languageOperator,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'SuperLang\' has errors in its definition"
 		)
@@ -214,7 +214,7 @@ class TransitiveAspectTest
 		assertNotNull(referencesTest_AspectOverrideLang)
 		
 		assertError(aspectOverrideLang.superLanguages.head,
-					MelangePackage.eINSTANCE.metamodel,
+					MelangePackage.eINSTANCE.languageOperator,
 					MelangeValidationConstants.METAMODEL_IN_ERROR,
 					"Language \'SliceMergeLang\' has errors in its definition"
 		)
