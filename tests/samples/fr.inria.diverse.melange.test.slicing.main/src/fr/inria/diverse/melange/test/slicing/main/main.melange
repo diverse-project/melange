@@ -1,0 +1,15 @@
+package fr.inria.diverse.test.slicing.main
+
+language BaseLang{
+	syntax "platform:/resource/fr.inria.diverse.melange.test.slicing.model/model/model.ecore"
+	with fr.inria.diverse.melange.slicing.aspects.AAspect
+	with fr.inria.diverse.melange.slicing.aspects.SuperAAspect
+	with fr.inria.diverse.melange.slicing.aspects.SubAAspect
+	with fr.inria.diverse.melange.slicing.aspects.BAspect
+	exactType BaseLangMT
+}
+
+language SliceBaseLang{
+	slice BaseLang on ["A"]
+	exactType SliceLangMT
+}

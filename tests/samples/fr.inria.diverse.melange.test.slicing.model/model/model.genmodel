@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ASCII"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.inria.diverse.melange.test.slicing.model/src" modelPluginID="fr.inria.diverse.melange.test.slicing.model" modelName="Model" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>model.ecore</foreignModel>
+  <genPackages prefix="Root" disposableProviderFactory="true">
+    <ecorePackage href="model.ecore#/"/>
+    <genClasses>
+      <ecoreClass href="model.ecore#//SuperA"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="model.ecore#//A"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="model.ecore#//A/toB"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="model.ecore#//SubA"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="model.ecore#//B"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,16 @@
+Bundle-SymbolicName: fr.inria.diverse.melange.test.slicing.aspects;singleton:=true
+Export-Package: fr.inria.diverse.melange.slicing.aspects
+Bundle-Name: fr.inria.diverse.melange.slicing.aspects
+Bundle-Version: 1.0.0
+Bundle-ClassPath: .
+Require-Bundle: fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version="3.0.0";visibility:="reexport",
+ org.eclipse.xtend.lib;bundle-version="2.6.0";visibility:="private",
+ org.eclipse.xtext.xbase.lib;bundle-version="2.6.0";visibility:="private",
+ com.google.guava;bundle-version="0.0.0";visibility:="private",
+ org.eclipse.emf.ecore.xmi;bundle-version="2.8.0";visibility:="reexport",
+ org.eclipse.emf.ecore;bundle-version="2.8.0";visibility:="reexport",
+ org.eclipse.emf.common;bundle-version=2.8.0;visibility:=reexport,
+ fr.inria.diverse.melange.test.slicing.model
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Manifest-Version: 1.0

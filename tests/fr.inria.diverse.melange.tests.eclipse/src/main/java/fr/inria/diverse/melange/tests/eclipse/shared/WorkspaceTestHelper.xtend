@@ -190,6 +190,17 @@ class WorkspaceTestHelper {
 	}
 	
 	/**
+	 * Usage : projectName/folder/file
+	 */
+	def void assertFileDontExists(String filename) {
+		val ws = ResourcesPlugin::workspace
+		Assert.assertFalse(
+			"Found file " + filename,
+			ws.root.getFile(new Path(filename)).exists
+		)
+	}
+	
+	/**
 	 * Check if {@link project} exist
 	 */
 	def void assertProjectExists(String project){
@@ -238,6 +249,29 @@ class WorkspaceTestHelper {
 			assertFileExists(aspect)
 			assertFileExists(context)
 			assertFileExists(properties)
+		]
+	}
+	
+	/**
+	 * Check for each aspect from {@link aspects} that K3-generated files are NOT inside {@link project}
+	 * 
+	 * @param aspects Pairs of [AspectName->AspectedClass]
+	 */
+	def void assertK3AspectsDontExists(List<Pair<String,String>> aspects, String project){
+		
+		val ASPECTS_NS = project+".aspects"
+		val ASPECTS_FOLDER = ASPECTS_NS.replaceAll("\\.","/")
+		val SRC_GEN = "src-gen"
+		
+		aspects.forEach[asp |
+			val aspectName = asp.key
+			val targetClass = asp.value
+			val aspect     = '''«project»/«SRC_GEN»/«ASPECTS_FOLDER»/«aspectName».java'''
+			val context    = '''«project»/«SRC_GEN»/«ASPECTS_FOLDER»/«aspectName»«targetClass»AspectContext.java'''
+			val properties = '''«project»/«SRC_GEN»/«ASPECTS_FOLDER»/«aspectName»«targetClass»AspectProperties.java'''
+			assertFileDontExists(aspect)
+			assertFileDontExists(context)
+			assertFileDontExists(properties)
 		]
 	}
 
