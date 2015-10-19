@@ -38,6 +38,9 @@ import org.eclipse.xtext.common.types.JvmGenericType
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.validation.Check
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
+import org.eclipse.xtext.validation.EObjectDiagnosticImpl
+import org.eclipse.emf.ecore.EObject
+import fr.inria.diverse.melange.metamodel.melange.LanguageOperator
 
 class MelangeValidator extends AbstractMelangeValidator
 {
@@ -672,4 +675,45 @@ class MelangeValidator extends AbstractMelangeValidator
 //			}
 //		]
 //	}
+
+	@Check
+	def checkMerge(LanguageOperator op){
+		val targetLang = op.targetLanguage
+		if(targetLang.isInError){
+			error(
+				"Language \'"+targetLang.name+"\' has errors in its definition",
+				MelangePackage.Literals.LANGUAGE_OPERATOR__TARGET_LANGUAGE,
+				MelangeValidationConstants.METAMODEL_IN_ERROR
+			)
+		}
+	}
+	
+	def boolean isInside(EObject o, Language l){
+		var parent = o.eContainer
+		while(parent !== null){
+			if(parent == l){
+				return true
+			}
+			parent = parent.eContainer
+		}
+		return false
+	}
+	
+	/**
+	 * Return true if @l or one of its dependencies is in error
+	 */
+	def boolean isInError(Language l){
+		val langs = newArrayList
+		langs += l
+		langs += l.allDependences
+		
+		return langs.exists[lang |
+				val resource = lang.eResource
+				resource.errors.exists[error|
+					if(error instanceof EObjectDiagnosticImpl){
+						error.problematicObject.isInside(lang)
+					}
+				]
+			]
+	}
 }
