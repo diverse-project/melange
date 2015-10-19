@@ -167,4 +167,11 @@ class LanguageBuilder extends AbstractBuilder {
 	def WeaveBuilder findBuilder(Weave w) {
 		return builders.filter(WeaveBuilder).findFirst[it.source === w]
 	}
+	
+	/**
+	 * Return the list of Operators' builder
+	 */
+	def List<OperatorBuilder<? extends Operator>> getSubBuilders(){
+		return builders
+	}
 }

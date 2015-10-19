@@ -49,7 +49,7 @@ class LanguageProcessor extends DispatchMelangeProcessor{
 	
 	def dispatch void preProcess(ModelTypingSpace root, boolean isPreLinkingPhase) {
 		typeRefBuilder = typeRefBuilderFactory.create(root.eResource.resourceSet)
-		builder.reset
+//		builder.reset
 		
 		root.languages.forEach[language |
 			language.initializeSyntax

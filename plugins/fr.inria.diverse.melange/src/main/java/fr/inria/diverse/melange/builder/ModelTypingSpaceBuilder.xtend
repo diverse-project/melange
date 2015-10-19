@@ -28,4 +28,12 @@ class ModelTypingSpaceBuilder {
 	def void reset(){
 		registry = newHashMap
 	}
+	
+	/**
+	 * Return the builder corresponding to {@link l}.
+	 * Return null if not found.
+	 */
+	def findBuilder(Language l){
+		return registry.get(l)
+	}
 }

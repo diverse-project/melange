@@ -384,9 +384,17 @@ class LanguageExtensions
 				var Language superlang = null
 				var List<PackageBinding> renamingRules = null
 				if (op instanceof Slice){
-					aspects = (op as Slice).targetLanguage.semantics
+					val targetLang = (op as Slice).targetLanguage
 					superlang = (op as Slice).owningLanguage
-					renamingRules= (op as Slice).mappingRules
+					renamingRules = (op as Slice).mappingRules
+					
+					val opBuilders = modelTypingSpaceBuilder.findBuilder(superlang).subBuilders
+					val sliceBuilder = opBuilders.findFirst[source == op]
+					val sliceClasses = sliceBuilder.model.allClasses
+					
+					aspects = targetLang.semantics
+						.filter[asp | sliceClasses.exists[name == asp.aspectedClass.name]].toList
+					
 				} 
 				else if (op instanceof Merge){
 					aspects = (op as Merge).targetLanguage.semantics
