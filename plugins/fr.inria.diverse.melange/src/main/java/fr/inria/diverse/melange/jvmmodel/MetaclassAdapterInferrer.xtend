@@ -272,7 +272,7 @@ class MetaclassAdapterInferrer
 			paramsList.append('''«FOR p : op.EParameters SEPARATOR ","»
 				«IF p.EType instanceof EClass && mm.owningLanguage.hasAdapterFor(superType, p.EType)»
 					«IF p.many»
-						((«EListAdapter») «p.name»).getAdaptee()
+						((«EListAdapter.name») «p.name»).getAdaptee()
 					«ELSE»
 						((«mm.adapterNameFor(superType, p.EType as EClass)») «p.name»).getAdaptee()
 					«ENDIF»
@@ -395,7 +395,7 @@ class MetaclassAdapterInferrer
 				«IF mm.owningLanguage.hasAdapterFor(superType, p.parameterType.simpleName)»
 					, ((«mm.adapterNameFor(superType, p.parameterType.simpleName)») «p.name»).getAdaptee()
 				«ELSEIF p.parameterType.isCollection && mm.owningLanguage.hasAdapterFor(superType, realTypeP)»
-					, ((«EListAdapter») «p.name»).getAdaptee()
+					, ((«EListAdapter.name») «p.name»).getAdaptee()
 				«ELSE»
 					, «p.name»
 				«ENDIF»
