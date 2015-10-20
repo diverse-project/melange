@@ -92,8 +92,10 @@ class NamingHelper
 
 		return
 			if(cls.isAspectSpecific){
-				val asp = mm.owningLanguage.semantics.findFirst[aspectedClass.name == cls.name]
-				return asp.aspectTypeRef.qualifiedName
+				val asp = mm.owningLanguage.semantics.findFirst[aspectTypeRef.simpleName == cls.name]
+				if(asp !== null){
+					return asp.aspectTypeRef.qualifiedName
+				}
 			}
 			else if (cls instanceof EClass || cls instanceof EEnum)
 				mm.getGenPackageFor(mm.pkgs.findFirst[EClassifiers.exists[name == realName]])
