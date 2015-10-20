@@ -72,18 +72,21 @@ class AspectCopier
 		val shadeRequest = new ShadeRequest
 
 		// Visiting the workspace to gather source projects
+		val aspects2folders = newHashMap
 		ws.accept(new IResourceVisitor {
 			override visit(IResource resource) throws CoreException {
 				if (resource instanceof IFile) {
-					val possibleMatches = request.aspectRefs.map[identifier.replace(".", "/") + ".java"]
-
-					if (possibleMatches.exists[match | resource.locationURI.path.endsWith(match)]){
+					val firstMatch = request.aspectRefs.findFirst[ref|
+						val pattern = ref.identifier.replace(".", "/") + ".java"
+						resource.locationURI.path.endsWith(pattern)
+					]
+					if (firstMatch !== null){
 						val ressourcePath = resource.locationURI.path
 						if(ressourcePath.contains("/xtend-gen/")){
-							sourceFolders += new File(resource.project.locationURI.path + "/xtend-gen/")
+							aspects2folders.put(firstMatch,new File(resource.project.locationURI.path + "/xtend-gen/"))
 						}
 						else if(ressourcePath.contains("/src-gen/")){
-							sourceFolders += new File(resource.project.locationURI.path + "/src-gen/")
+							aspects2folders.put(firstMatch,new File(resource.project.locationURI.path + "/src-gen/"))
 						}
 					}
 
@@ -93,6 +96,13 @@ class AspectCopier
 				return true
 			}
 		})
+		// Ordering source folders
+		request.aspectRefs.forEach[ref |
+			val File folder = aspects2folders.get(ref)
+			if(folder !== null){
+				sourceFolders += folder
+			}
+		]
 
 		request.aspectRefs.forEach[aspRef |
 			sourceAspectNamespaces += aspRef.identifier.toQualifiedName.skipLast(1).toString
