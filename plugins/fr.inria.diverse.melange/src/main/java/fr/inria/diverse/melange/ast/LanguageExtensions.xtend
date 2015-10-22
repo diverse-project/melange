@@ -458,12 +458,14 @@ class LanguageExtensions
 			}
 		
 		
-		//Copy aspects files
+		//Exclude local aspects
 		val externalAsp = newArrayList
 		if(aspects.head.owningLanguage === l){
-			externalAsp += l.allAspects.toSet
-			externalAsp.removeAll(aspects.map[aspectTypeRef].toList.filterNull)//exclude local aspects 
+			val allAspRef = l.allAspects.toSet
+			val localTypeRef = aspects.map[aspectTypeRef].toList.filterNull
+			externalAsp += allAspRef.filter[ref | !localTypeRef.exists[ref.qualifiedName == qualifiedName]]
 		}
+		//Copy aspects files
 		val copiedAspect = newArrayList
 		aspects.forEach[asp |
 			if (asp.isComplete) {
