@@ -24,6 +24,9 @@ Language:
 	('requires' requires += [ModelType | QualifiedName] (',' requires += [ModelType | QualifiedName])*)?
 	'{'
 		('resource' resourceType = ResourceType (=> 'uri' resourceUri = STRING | 'setup' xtextSetupRef = JvmTypeReference)?)? &
+		('xtext' xtext+=STRING (',' xtext+=STRING)* )? &
+		('sirius' sirius+=STRING (',' sirius+=STRING)* )? &
+		('ecl' ecl+=STRING (',' ecl+=STRING)* )? &
 		(operators += Operator)* &
 		('exactType' exactTypeName = ValidID (=> 'uri' exactTypeUri = STRING)?)
 	'}'
