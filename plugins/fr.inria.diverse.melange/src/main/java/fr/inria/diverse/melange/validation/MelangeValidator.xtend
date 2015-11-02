@@ -720,7 +720,7 @@ class MelangeValidator extends AbstractMelangeValidator
 	@Check
 	def checkEntryPoints(Language lang){
 		val entries = lang.entryPoints
-		if(entries.isEmpty){
+		if(entries.isEmpty && lang.ecl.isEmpty){
 			warning(
 				"Language "+lang.name+" doesn't define entry point. An Aspect's method should be tagged with @Main to be identified as an entry point for the execution.",
 				MelangePackage.Literals.MODEL_TYPING_SPACE__ELEMENTS,
