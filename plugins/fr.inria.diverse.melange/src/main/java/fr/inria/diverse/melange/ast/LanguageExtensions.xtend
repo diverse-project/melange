@@ -35,6 +35,7 @@ import org.eclipse.xtext.common.types.JvmUnknownTypeReference
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import org.eclipse.emf.ecore.util.EcoreUtil
 import fr.inria.diverse.melange.builder.ModelTypingSpaceBuilder
+import org.eclipse.xtext.common.types.JvmOperation
 
 class LanguageExtensions
 {
@@ -695,5 +696,20 @@ class LanguageExtensions
 			return null
 		}
 		return newRef
+	}
+	
+	/**
+	 * Return the list of methods tagged with @Main found
+	 * in {@link language}'s Aspects
+	 */
+	public def Set<JvmOperation> getEntryPoints(Language language){
+		return
+			language.allSemantics
+			        .map[aspectTypeRef.type]
+			        .filter(JvmDeclaredType)
+			        .map[declaredOperations]
+			        .flatten
+			        .filter[op | op.annotations.exists[annotation.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Main"]]
+			        .toSet
 	}
 }
