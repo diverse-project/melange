@@ -3,9 +3,9 @@ package fr.inria.diverse.melange.ast
 import com.google.inject.Inject
 import fr.inria.diverse.melange.algebra.ModelTypeAlgebra
 import fr.inria.diverse.melange.codegen.ModelTypeGeneratorAdapterFactory
+import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.metamodel.melange.ModelType
-import fr.inria.diverse.melange.metamodel.melange.ModelingElement
 import java.io.IOException
 import java.util.List
 import org.eclipse.emf.codegen.ecore.generator.Generator
@@ -23,29 +23,31 @@ import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 class ModelTypeExtensions
 {
 	@Inject extension LanguageExtensions
 	@Inject extension ModelingElementExtensions
 	@Inject extension EcoreExtensions
+	@Inject extension IQualifiedNameProvider
 	@Inject ModelTypeAlgebra algebra
+	@Inject EclipseProjectHelper helper
 
-	def GenModel createGenmodel(ModelingElement m, String ecoreUri, String gmUri) {
+	def GenModel createGenmodel(ModelType mt, String ecoreUri, String gmUri) {
 		val resSet = new ResourceSetImpl
 		val pkgRes = resSet.getResource(URI::createURI(ecoreUri), true)
 		val pkgs = pkgRes.contents
 
 		val genmodel = GenModelFactory.eINSTANCE.createGenModel => [
-			it.complianceLevel = GenJDKLevel.JDK70_LITERAL
-			it.modelDirectory = "/SimpleFsmProject/src-gen/"// FIXME: modelDirectory.replaceFirst("platform:/resource", "").replaceFirst("..", "")
-			it.foreignModel += ecoreUri
-			it.modelName = "MyModelName" // FIXME
-			it.modelPluginID = "MyPluginID" // FIXME
-			it.initialize(pkgs.map[it as EPackage])
-//			genPackages.forEach[gp |
-//				gp.basePackage = mm.owningLanguage.fullyQualifiedName.toLowerCase.toString
-//			]
+			complianceLevel = GenJDKLevel.JDK70_LITERAL
+			modelDirectory = helper.getProject(mt.eResource).getFolder("src-gen").fullPath.toString
+			foreignModel += ecoreUri
+			modelName = mt.name
+			initialize(pkgs.map[it as EPackage])
+			genPackages.forEach[gp |
+				gp.basePackage = mt.fullyQualifiedName.toString.toLowerCase
+			]
 		]
 
 		val res = resSet.createResource(URI::createURI(gmUri))
