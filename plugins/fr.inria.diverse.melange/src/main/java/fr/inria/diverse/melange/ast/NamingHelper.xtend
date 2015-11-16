@@ -140,12 +140,22 @@ class NamingHelper
 			}
 	}
 
+	def String getPackageName(ModelType mt) {
+		return mt.pkgs.head.name.toFirstUpper + "Package"
+	}
+
+	def String getPackageFqn(ModelType mt) {
+		return mt.fullyQualifiedName.append(mt.pkgs.head.name).append(mt.pkgs.head.name.toFirstUpper + "Package").normalize.toString
+	}
+
 	def String getFactoryName(ModelType mt) {
-		return mt.fullyQualifiedName.toLowerCase.append(mt.name + "Factory").normalize.toString
+//		return mt.fullyQualifiedName.toLowerCase.append(mt.name + "Factory").normalize.toString
+		return mt.fullyQualifiedName.append(mt.pkgs.head.name).append(mt.pkgs.head.name.toFirstUpper + "Factory").normalize.toString
 	}
 
 	def String interfaceNameFor(ModelType mt, EClass cls) {
-		return mt.fullyQualifiedName.toLowerCase.append(cls.name).normalize.toString
+//		return mt.fullyQualifiedName.toLowerCase.append(cls.name).normalize.toString
+		return mt.fullyQualifiedName.append(cls.EPackage.name).append(cls.name).normalize.toString
 	}
 
 	def String adapterNameFor(Metamodel mm, ModelType mt, EClass cls) {

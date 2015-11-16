@@ -11,6 +11,7 @@ import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import java.io.IOException
 import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.impl.EFactoryImpl
 import org.eclipse.xtext.common.types.TypesFactory
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.util.internal.Stopwatches
@@ -54,6 +55,7 @@ class LanguageAdapterInferrer
 		acceptor.accept(l.toClass(l.syntax.factoryAdapterNameFor(superType)))
 		[
 			superTypes += superType.factoryName.typeRef
+			superTypes += EFactoryImpl.typeRef
 
 			members += l.toField("adaptersFactory", l.syntax.getAdaptersFactoryNameFor(superType).typeRef)[
 				initializer = '''«l.syntax.getAdaptersFactoryNameFor(superType)».getInstance()'''
@@ -83,6 +85,12 @@ class LanguageAdapterInferrer
 
 				newCreate.returnType = superType.typeRef(cls, #[newCreate])
 				members += newCreate
+			]
+
+			members += l.toMethod("get" + superType.packageName, superType.packageFqn.typeRef)[
+				body = '''
+					return «superType.packageFqn».eINSTANCE;
+				'''
 			]
 		]
 
