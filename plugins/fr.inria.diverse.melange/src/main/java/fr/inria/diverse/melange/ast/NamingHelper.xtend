@@ -131,10 +131,7 @@ class NamingHelper
 				EClass:
 					mt.interfaceNameFor(cls)
 				EEnum:
-//					if (mt.isExtracted)
-//						mt.extracted.getFqnFor(cls)
-//					else
-						mt.fullyQualifiedName.toLowerCase.append(cls.name).normalize.toString
+					mt.interfaceNameFor(cls)
 				EDataType:
 					cls.instanceClass.name ?: cls.instanceTypeName
 			}
@@ -153,7 +150,7 @@ class NamingHelper
 		return mt.fullyQualifiedName.append(mt.pkgs.head.name).append(mt.pkgs.head.name.toFirstUpper + "Factory").normalize.toString
 	}
 
-	def String interfaceNameFor(ModelType mt, EClass cls) {
+	def String interfaceNameFor(ModelType mt, EClassifier cls) {
 //		return mt.fullyQualifiedName.toLowerCase.append(cls.name).normalize.toString
 		return mt.fullyQualifiedName.append(cls.EPackage.name).append(cls.name).normalize.toString
 	}
