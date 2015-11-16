@@ -35,10 +35,10 @@ class GenerateAdapters extends AbstractHandler {
 					val project = resource.project
 					val rs = rsProvider.get(project)
 					val res = rs.getResource(URI::createPlatformResourceURI(resource.fullPath.toString, true), true) as DerivedStateAwareResource
-					val srcGenFolder = project.getFolder("src-gen/")
-
-					if (srcGenFolder.exists)
-						srcGenFolder.members.forEach[delete(true, monitor)]
+//					val srcGenFolder = project.getFolder("src-gen/")
+//
+//					if (srcGenFolder.exists)
+//						srcGenFolder.members.forEach[delete(true, monitor)]
 					builder.generateAdapters(res, project, monitor)
 				}
 			})
