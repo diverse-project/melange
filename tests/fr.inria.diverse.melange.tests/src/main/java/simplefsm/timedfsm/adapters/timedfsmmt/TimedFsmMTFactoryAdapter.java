@@ -1,17 +1,18 @@
 package simplefsm.timedfsm.adapters.timedfsmmt;
 
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import simplefsm.timedfsm.adapters.timedfsmmt.TimedFsmMTAdaptersFactory;
-import simplefsm.timedfsmmt.FSM;
-import simplefsm.timedfsmmt.State;
-import simplefsm.timedfsmmt.TimedFsmMTFactory;
-import simplefsm.timedfsmmt.Transition;
-import timedfsm.TimedfsmFactory;
+import simplefsm.timedfsmmt.timedfsm.FSM;
+import simplefsm.timedfsmmt.timedfsm.State;
+import simplefsm.timedfsmmt.timedfsm.TimedfsmFactory;
+import simplefsm.timedfsmmt.timedfsm.TimedfsmPackage;
+import simplefsm.timedfsmmt.timedfsm.Transition;
 
 @SuppressWarnings("all")
-public class TimedFsmMTFactoryAdapter implements TimedFsmMTFactory {
+public class TimedFsmMTFactoryAdapter extends EFactoryImpl implements TimedfsmFactory {
   private TimedFsmMTAdaptersFactory adaptersFactory = simplefsm.timedfsm.adapters.timedfsmmt.TimedFsmMTAdaptersFactory.getInstance();
   
-  private TimedfsmFactory timedfsmAdaptee = timedfsm.TimedfsmFactory.eINSTANCE;
+  private timedfsm.TimedfsmFactory timedfsmAdaptee = timedfsm.TimedfsmFactory.eINSTANCE;
   
   @Override
   public FSM createFSM() {
@@ -26,5 +27,9 @@ public class TimedFsmMTFactoryAdapter implements TimedFsmMTFactory {
   @Override
   public Transition createTransition() {
     return adaptersFactory.createTransitionAdapter(timedfsmAdaptee.createTransition()) ;
+  }
+  
+  public TimedfsmPackage getTimedfsmPackage() {
+    return simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.eINSTANCE;
   }
 }

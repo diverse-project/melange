@@ -1,12 +1,12 @@
 package simplefsm.timedfsm.adapters.fsmmt;
 
 import fr.inria.diverse.melange.adapters.EObjectAdapter;
-import simplefsm.fsmmt.State;
+import simplefsm.fsmmt.fsm.State;
 import simplefsm.timedfsm.adapters.fsmmt.FsmMTAdaptersFactory;
 import timedfsm.Transition;
 
 @SuppressWarnings("all")
-public class TransitionAdapter extends EObjectAdapter<Transition> implements simplefsm.fsmmt.Transition {
+public class TransitionAdapter extends EObjectAdapter<Transition> implements simplefsm.fsmmt.fsm.Transition {
   private FsmMTAdaptersFactory adaptersFactory;
   
   public TransitionAdapter() {

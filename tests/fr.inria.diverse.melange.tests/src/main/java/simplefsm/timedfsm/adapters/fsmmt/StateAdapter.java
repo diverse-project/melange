@@ -1,14 +1,15 @@
 package simplefsm.timedfsm.adapters.fsmmt;
 
+import fr.inria.diverse.melange.adapters.EListAdapter;
 import fr.inria.diverse.melange.adapters.EObjectAdapter;
 import org.eclipse.emf.common.util.EList;
-import simplefsm.fsmmt.FSM;
-import simplefsm.fsmmt.Transition;
+import simplefsm.fsmmt.fsm.FSM;
+import simplefsm.fsmmt.fsm.Transition;
 import simplefsm.timedfsm.adapters.fsmmt.FsmMTAdaptersFactory;
 import timedfsm.State;
 
 @SuppressWarnings("all")
-public class StateAdapter extends EObjectAdapter<State> implements simplefsm.fsmmt.State {
+public class StateAdapter extends EObjectAdapter<State> implements simplefsm.fsmmt.fsm.State {
   private FsmMTAdaptersFactory adaptersFactory;
   
   public StateAdapter() {
@@ -37,11 +38,11 @@ public class StateAdapter extends EObjectAdapter<State> implements simplefsm.fsm
   
   @Override
   public EList<Transition> getOutgoingTransition() {
-    return fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.getOutgoingTransition(), simplefsm.timedfsm.adapters.fsmmt.TransitionAdapter.class) ;
+    return EListAdapter.newInstance(adaptee.getOutgoingTransition(), simplefsm.timedfsm.adapters.fsmmt.TransitionAdapter.class) ;
   }
   
   @Override
   public EList<Transition> getIncomingTransition() {
-    return fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.getIncomingTransition(), simplefsm.timedfsm.adapters.fsmmt.TransitionAdapter.class) ;
+    return EListAdapter.newInstance(adaptee.getIncomingTransition(), simplefsm.timedfsm.adapters.fsmmt.TransitionAdapter.class) ;
   }
 }

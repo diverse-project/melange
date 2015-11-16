@@ -1,13 +1,14 @@
 package simplefsm.fsm.adapters.fsmmt;
 
+import fr.inria.diverse.melange.adapters.EListAdapter;
 import fr.inria.diverse.melange.adapters.EObjectAdapter;
 import fsm.FSM;
 import org.eclipse.emf.common.util.EList;
 import simplefsm.fsm.adapters.fsmmt.FsmMTAdaptersFactory;
-import simplefsm.fsmmt.State;
+import simplefsm.fsmmt.fsm.State;
 
 @SuppressWarnings("all")
-public class FSMAdapter extends EObjectAdapter<FSM> implements simplefsm.fsmmt.FSM {
+public class FSMAdapter extends EObjectAdapter<FSM> implements simplefsm.fsmmt.fsm.FSM {
   private FsmMTAdaptersFactory adaptersFactory;
   
   public FSMAdapter() {
@@ -16,7 +17,7 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements simplefsm.fsmmt.F
   
   @Override
   public EList<State> getOwnedState() {
-    return fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.getOwnedState(), simplefsm.fsm.adapters.fsmmt.StateAdapter.class) ;
+    return EListAdapter.newInstance(adaptee.getOwnedState(), simplefsm.fsm.adapters.fsmmt.StateAdapter.class) ;
   }
   
   @Override
@@ -31,6 +32,6 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements simplefsm.fsmmt.F
   
   @Override
   public EList<State> getFinalState() {
-    return fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.getFinalState(), simplefsm.fsm.adapters.fsmmt.StateAdapter.class) ;
+    return EListAdapter.newInstance(adaptee.getFinalState(), simplefsm.fsm.adapters.fsmmt.StateAdapter.class) ;
   }
 }

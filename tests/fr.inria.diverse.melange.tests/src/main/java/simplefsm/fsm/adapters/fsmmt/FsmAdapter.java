@@ -2,8 +2,9 @@ package simplefsm.fsm.adapters.fsmmt;
 
 import fr.inria.diverse.melange.adapters.ResourceAdapter;
 import java.io.IOException;
+import org.eclipse.emf.common.util.URI;
 import simplefsm.FsmMT;
-import simplefsm.fsmmt.FsmMTFactory;
+import simplefsm.fsmmt.fsm.FsmFactory;
 
 @SuppressWarnings("all")
 public class FsmAdapter extends ResourceAdapter implements FsmMT {
@@ -12,13 +13,13 @@ public class FsmAdapter extends ResourceAdapter implements FsmMT {
   }
   
   @Override
-  public FsmMTFactory getFactory() {
+  public FsmFactory getFactory() {
     return new simplefsm.fsm.adapters.fsmmt.FsmMTFactoryAdapter() ;
   }
   
   @Override
   public void save(final String uri) throws IOException {
-    this.adaptee.setURI(org.eclipse.emf.common.util.URI.createURI(uri));
+    this.adaptee.setURI(URI.createURI(uri));
     this.adaptee.save(null);
   }
 }

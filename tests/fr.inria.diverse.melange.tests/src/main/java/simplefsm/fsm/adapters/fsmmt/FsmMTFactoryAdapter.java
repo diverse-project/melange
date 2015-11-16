@@ -1,17 +1,18 @@
 package simplefsm.fsm.adapters.fsmmt;
 
-import fsm.FsmFactory;
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import simplefsm.fsm.adapters.fsmmt.FsmMTAdaptersFactory;
-import simplefsm.fsmmt.FSM;
-import simplefsm.fsmmt.FsmMTFactory;
-import simplefsm.fsmmt.State;
-import simplefsm.fsmmt.Transition;
+import simplefsm.fsmmt.fsm.FSM;
+import simplefsm.fsmmt.fsm.FsmFactory;
+import simplefsm.fsmmt.fsm.FsmPackage;
+import simplefsm.fsmmt.fsm.State;
+import simplefsm.fsmmt.fsm.Transition;
 
 @SuppressWarnings("all")
-public class FsmMTFactoryAdapter implements FsmMTFactory {
+public class FsmMTFactoryAdapter extends EFactoryImpl implements FsmFactory {
   private FsmMTAdaptersFactory adaptersFactory = simplefsm.fsm.adapters.fsmmt.FsmMTAdaptersFactory.getInstance();
   
-  private FsmFactory fsmAdaptee = fsm.FsmFactory.eINSTANCE;
+  private fsm.FsmFactory fsmAdaptee = fsm.FsmFactory.eINSTANCE;
   
   @Override
   public FSM createFSM() {
@@ -26,5 +27,9 @@ public class FsmMTFactoryAdapter implements FsmMTFactory {
   @Override
   public Transition createTransition() {
     return adaptersFactory.createTransitionAdapter(fsmAdaptee.createTransition()) ;
+  }
+  
+  public FsmPackage getFsmPackage() {
+    return simplefsm.fsmmt.fsm.FsmPackage.eINSTANCE;
   }
 }
