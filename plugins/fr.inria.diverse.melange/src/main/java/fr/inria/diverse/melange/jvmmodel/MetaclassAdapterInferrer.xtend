@@ -98,7 +98,14 @@ class MetaclassAdapterInferrer
 				'''
 			]
 
-			// TODO: Also override eAllContents() to perform adaptation
+			// Return the meta-description of the implemented model type
+			jvmCls.members += mm.toMethod("eClass", EClass.typeRef)[
+				annotations += Override.annotationRef
+
+				body = '''
+					return «superType.packageFqn».eINSTANCE.get«cls.name»();
+				'''
+			]
 
 			cls.EAllAttributes.filter[!isAspectSpecific].forEach[processAttribute(mmCls, mm, superType, mapping, jvmCls)]
 			cls.EAllReferences.filter[!isAspectSpecific].forEach[processReference(mmCls, mm, superType, mapping, jvmCls)]
