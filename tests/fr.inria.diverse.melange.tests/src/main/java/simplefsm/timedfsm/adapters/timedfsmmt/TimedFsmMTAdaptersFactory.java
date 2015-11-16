@@ -29,46 +29,55 @@ public class TimedFsmMTAdaptersFactory implements AdaptersFactory {
   }
   
   public EObjectAdapter createAdapter(final EObject o) {
-    EObjectAdapter res = register.get(o);
-    if(res != null){
-    	 return res;
+    if (o instanceof timedfsm.FSM){
+    	return createFSMAdapter((timedfsm.FSM) o) ;
     }
-    else{
-    	if (o instanceof timedfsm.FSM){
-    		res = createFSMAdapter((timedfsm.FSM) o) ;
-    		register.put(o,res);
-    		return res;
-    	}
-    	if (o instanceof timedfsm.State){
-    		res = createStateAdapter((timedfsm.State) o) ;
-    		register.put(o,res);
-    		return res;
-    	}
-    	if (o instanceof timedfsm.Transition){
-    		res = createTransitionAdapter((timedfsm.Transition) o) ;
-    		register.put(o,res);
-    		return res;
-    	}
+    if (o instanceof timedfsm.State){
+    	return createStateAdapter((timedfsm.State) o) ;
     }
-    					
+    if (o instanceof timedfsm.Transition){
+    	return createTransitionAdapter((timedfsm.Transition) o) ;
+    }
+    
     return null ;
   }
   
   public FSMAdapter createFSMAdapter(final FSM adaptee) {
-    simplefsm.timedfsm.adapters.timedfsmmt.FSMAdapter adap = new simplefsm.timedfsm.adapters.timedfsmmt.FSMAdapter() ;
-    adap.setAdaptee(adaptee) ;
-    return adap ;
+    EObjectAdapter res = register.get(adaptee);
+    if(res != null){
+    	 return (simplefsm.timedfsm.adapters.timedfsmmt.FSMAdapter) res;
+    }
+    else{
+    	res = new simplefsm.timedfsm.adapters.timedfsmmt.FSMAdapter() ;
+    	res.setAdaptee(adaptee) ;
+    	register.put(adaptee,res);
+    	return (simplefsm.timedfsm.adapters.timedfsmmt.FSMAdapter) res ;
+    }
   }
   
   public StateAdapter createStateAdapter(final State adaptee) {
-    simplefsm.timedfsm.adapters.timedfsmmt.StateAdapter adap = new simplefsm.timedfsm.adapters.timedfsmmt.StateAdapter() ;
-    adap.setAdaptee(adaptee) ;
-    return adap ;
+    EObjectAdapter res = register.get(adaptee);
+    if(res != null){
+    	 return (simplefsm.timedfsm.adapters.timedfsmmt.StateAdapter) res;
+    }
+    else{
+    	res = new simplefsm.timedfsm.adapters.timedfsmmt.StateAdapter() ;
+    	res.setAdaptee(adaptee) ;
+    	register.put(adaptee,res);
+    	return (simplefsm.timedfsm.adapters.timedfsmmt.StateAdapter) res ;
+    }
   }
   
   public TransitionAdapter createTransitionAdapter(final Transition adaptee) {
-    simplefsm.timedfsm.adapters.timedfsmmt.TransitionAdapter adap = new simplefsm.timedfsm.adapters.timedfsmmt.TransitionAdapter() ;
-    adap.setAdaptee(adaptee) ;
-    return adap ;
+    EObjectAdapter res = register.get(adaptee);
+    if(res != null){
+    	 return (simplefsm.timedfsm.adapters.timedfsmmt.TransitionAdapter) res;
+    }
+    else{
+    	res = new simplefsm.timedfsm.adapters.timedfsmmt.TransitionAdapter() ;
+    	res.setAdaptee(adaptee) ;
+    	register.put(adaptee,res);
+    	return (simplefsm.timedfsm.adapters.timedfsmmt.TransitionAdapter) res ;
+    }
   }
 }

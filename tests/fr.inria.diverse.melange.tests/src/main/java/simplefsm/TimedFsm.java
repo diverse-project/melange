@@ -1,7 +1,10 @@
 package simplefsm;
 
 import fr.inria.diverse.melange.lib.IMetamodel;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import simplefsm.FsmMT;
 import simplefsm.TimedFsmMT;
 
@@ -18,8 +21,8 @@ public class TimedFsm implements IMetamodel {
   }
   
   public static TimedFsm load(final String uri) {
-    org.eclipse.emf.ecore.resource.ResourceSet rs = new org.eclipse.emf.ecore.resource.impl.ResourceSetImpl() ;
-    Resource res = rs.getResource(org.eclipse.emf.common.util.URI.createURI(uri), true) ;
+    ResourceSet rs = new ResourceSetImpl() ;
+    Resource res = rs.getResource(URI.createURI(uri), true) ;
     TimedFsm mm = new TimedFsm() ;
     mm.setResource(res) ;
     return mm ;

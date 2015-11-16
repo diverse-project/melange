@@ -1,5 +1,12 @@
 package simplefsm;
 
+import fr.inria.diverse.melange.resource.MelangeRegistry;
+import fr.inria.diverse.melange.resource.MelangeRegistryImpl;
+import fr.inria.diverse.melange.resource.MelangeResourceFactoryImpl;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+
 @SuppressWarnings("all")
 public class StandaloneSetup {
   public static void doSetup() {
@@ -9,55 +16,55 @@ public class StandaloneSetup {
   }
   
   public void doEMFRegistration() {
-    org.eclipse.emf.ecore.EPackage.Registry.INSTANCE.put(
+    EPackage.Registry.INSTANCE.put(
     	fsm.FsmPackage.eNS_URI,
     	fsm.FsmPackage.eINSTANCE
     ) ;
-    org.eclipse.emf.ecore.EPackage.Registry.INSTANCE.put(
+    EPackage.Registry.INSTANCE.put(
     	timedfsm.TimedfsmPackage.eNS_URI,
     	timedfsm.TimedfsmPackage.eINSTANCE
     ) ;
-    
-    org.eclipse.emf.ecore.resource.Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
+
+    Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
     	"*",
-    	new org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl()
+    	new XMIResourceFactoryImpl()
     ) ;
-    org.eclipse.emf.ecore.resource.Resource.Factory.Registry.INSTANCE.getProtocolToFactoryMap().put(
+    Resource.Factory.Registry.INSTANCE.getProtocolToFactoryMap().put(
     	"melange",
-    	new fr.inria.diverse.melange.resource.MelangeResourceFactoryImpl()
+    	new MelangeResourceFactoryImpl()
     ) ;
   }
   
   public void doAdaptersRegistration() {
-    fr.inria.diverse.melange.resource.MelangeRegistryImpl.LanguageDescriptorImpl fsm = new fr.inria.diverse.melange.resource.MelangeRegistryImpl.LanguageDescriptorImpl(
+    MelangeRegistry.LanguageDescriptor fsm = new MelangeRegistryImpl.LanguageDescriptorImpl(
     	"simplefsm.Fsm", "", "http://fsm/", "simplefsm.FsmMT"
     ) ;
     fsm.addAdapter("simplefsm.FsmMT", simplefsm.fsm.adapters.fsmmt.FsmAdapter.class) ;
-    fr.inria.diverse.melange.resource.MelangeRegistry.INSTANCE.getLanguageMap().put(
+    MelangeRegistry.INSTANCE.getLanguageMap().put(
     	"simplefsm.Fsm",
     	fsm
     ) ;
-    fr.inria.diverse.melange.resource.MelangeRegistryImpl.LanguageDescriptorImpl timedFsm = new fr.inria.diverse.melange.resource.MelangeRegistryImpl.LanguageDescriptorImpl(
+    MelangeRegistry.LanguageDescriptor timedFsm = new MelangeRegistryImpl.LanguageDescriptorImpl(
     	"simplefsm.TimedFsm", "", "http://timedfsm/", "simplefsm.TimedFsmMT"
     ) ;
     timedFsm.addAdapter("simplefsm.FsmMT", simplefsm.timedfsm.adapters.fsmmt.TimedFsmAdapter.class) ;
     timedFsm.addAdapter("simplefsm.TimedFsmMT", simplefsm.timedfsm.adapters.timedfsmmt.TimedFsmAdapter.class) ;
-    fr.inria.diverse.melange.resource.MelangeRegistry.INSTANCE.getLanguageMap().put(
+    MelangeRegistry.INSTANCE.getLanguageMap().put(
     	"simplefsm.TimedFsm",
     	timedFsm
     ) ;
-    fr.inria.diverse.melange.resource.MelangeRegistryImpl.ModelTypeDescriptorImpl fsmMT = new fr.inria.diverse.melange.resource.MelangeRegistryImpl.ModelTypeDescriptorImpl(
+    MelangeRegistry.ModelTypeDescriptor fsmMT = new MelangeRegistryImpl.ModelTypeDescriptorImpl(
     	"simplefsm.FsmMT", "", "http://fsmmt/"
     ) ;
-    fr.inria.diverse.melange.resource.MelangeRegistry.INSTANCE.getModelTypeMap().put(
+    MelangeRegistry.INSTANCE.getModelTypeMap().put(
     	"simplefsm.FsmMT",
     	fsmMT
     ) ;
-    fr.inria.diverse.melange.resource.MelangeRegistryImpl.ModelTypeDescriptorImpl timedFsmMT = new fr.inria.diverse.melange.resource.MelangeRegistryImpl.ModelTypeDescriptorImpl(
+    MelangeRegistry.ModelTypeDescriptor timedFsmMT = new MelangeRegistryImpl.ModelTypeDescriptorImpl(
     	"simplefsm.TimedFsmMT", "", "http://timedfsmmt/"
     ) ;
     timedFsmMT.addSuperType("simplefsm.FsmMT") ;
-    fr.inria.diverse.melange.resource.MelangeRegistry.INSTANCE.getModelTypeMap().put(
+    MelangeRegistry.INSTANCE.getModelTypeMap().put(
     	"simplefsm.TimedFsmMT",
     	timedFsmMT
     ) ;
