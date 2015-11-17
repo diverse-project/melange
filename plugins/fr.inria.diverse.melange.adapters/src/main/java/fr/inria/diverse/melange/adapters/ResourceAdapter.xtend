@@ -3,20 +3,26 @@ package fr.inria.diverse.melange.adapters
 import org.eclipse.emf.common.util.AbstractTreeIterator
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.emf.ecore.resource.impl.ResourceImpl
 import org.eclipse.emf.ecore.util.BasicInternalEList
-import org.eclipse.xtend.lib.annotations.Delegate
 
 /**
  * Uses the appropriate {@link AdaptersFactory} to handle creation of
  * {@link EObject} from a {@link Resource} using the appropriate adapters.
  */
-abstract class ResourceAdapter implements GenericAdapter<Resource>, Resource
+abstract class ResourceAdapter extends ResourceImpl implements GenericAdapter<Resource>, Resource
 {
-	@Delegate protected Resource adaptee
+	protected Resource adaptee
+	protected Resource parent
 	protected AdaptersFactory adaptersFactory
 
 	new(AdaptersFactory factory) {
 		adaptersFactory = factory
+		parent = parent
+	}
+
+	def void setParent(Resource p) {
+		parent = p
 	}
 
 	override getAdaptee() {
@@ -31,7 +37,7 @@ abstract class ResourceAdapter implements GenericAdapter<Resource>, Resource
 		val ret = new BasicInternalEList<EObject>(EObject) ;
 
 		adaptee.contents.forEach[o |
-			ret += adaptersFactory.createAdapter(o) ?: o
+			ret += adaptersFactory.createAdapter(o, parent) ?: o
 		]
 
 		return ret
@@ -50,7 +56,7 @@ abstract class ResourceAdapter implements GenericAdapter<Resource>, Resource
 	}
 
 	override getEObject(String uriFragment) {
-		return adaptersFactory.createAdapter(adaptee.getEObject(uriFragment))
+		return adaptersFactory.createAdapter(adaptee.getEObject(uriFragment), parent)
 	}
 
 	override toString() {

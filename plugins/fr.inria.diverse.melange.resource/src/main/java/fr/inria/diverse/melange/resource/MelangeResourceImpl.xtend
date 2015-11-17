@@ -33,6 +33,10 @@ class MelangeResourceImpl implements Resource.Internal
 			expectedLang = query.get(1)
 	}
 
+	def Resource getWrappedResource() {
+		return wrappedResource
+	}
+
 	override getContents() throws RuntimeException {
 		val objs = wrappedResource.getContents()
 
@@ -50,7 +54,10 @@ class MelangeResourceImpl implements Resource.Internal
 
 			if (adapterCls !== null) {
 				try {
-					val adapter = adapterCls.newInstance => [adaptee = wrappedResource]
+					val adapter = adapterCls.newInstance => [
+						adaptee = wrappedResource
+						parent = this
+					]
 					return adapter.contents
 				} catch (InstantiationException e) {
 					throw new MelangeResourceException('''Cannot instantiate adapter type «adapterCls»''', e)
