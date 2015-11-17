@@ -39,6 +39,10 @@ abstract class EObjectAdapter<E extends EObject> extends EObjectImpl implements 
 		return adaptersFactory.createAdapter(adaptee.eContainer, eResource)
 	}
 
+	override eInternalContainer() {
+		return adaptersFactory.createAdapter(adaptee.eContainer, eResource)
+	}
+
 	override eContents() {
 		val ret = new BasicInternalEList<EObject>(EObject) ;
 
