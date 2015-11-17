@@ -78,8 +78,9 @@ class LanguageAdapterInferrer
 						m.typeParameters += TypesFactory.eINSTANCE.createJvmTypeParameter => [it.name = t.name]
 					]
 
+					// FIXME: Second parameter (Resource) shouldn't be null
 					m.body = '''
-							return adaptersFactory.create«l.syntax.simpleAdapterNameFor(superType, cls)»(«associatedPkg.name»Adaptee.create«associatedCls»()) ;
+							return adaptersFactory.create«l.syntax.simpleAdapterNameFor(superType, cls)»(«associatedPkg.name»Adaptee.create«associatedCls»(), null) ;
 						'''
 				]
 
