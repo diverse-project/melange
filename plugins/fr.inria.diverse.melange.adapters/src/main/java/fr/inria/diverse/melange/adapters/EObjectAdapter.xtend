@@ -5,8 +5,8 @@ import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.impl.EObjectImpl
+import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.util.BasicInternalEList
-import org.eclipse.xtend.lib.annotations.Delegate
 
 /**
  * Adapter delegation pattern for manipulating an {@link EObject} through the
@@ -16,26 +16,34 @@ import org.eclipse.xtend.lib.annotations.Delegate
  */
 abstract class EObjectAdapter<E extends EObject> extends EObjectImpl implements EObject, GenericAdapter<E>
 {
-	/** Best. Annotation. Ever. */
-	@Delegate protected E adaptee
+	protected E adaptee
+	protected Resource eResource
 	protected AdaptersFactory adaptersFactory
 
 	new(AdaptersFactory factory) {
 		adaptersFactory = factory
 	}
 
+	def void setEResource(Resource res) {
+		eResource = res
+	}
+
+	override eResource() {
+		return eResource
+	}
+
 	override getAdaptee() { return adaptee }
 	override setAdaptee(E a) { adaptee = a }
 
 	override eContainer() {
-		return adaptersFactory.createAdapter(adaptee.eContainer)
+		return adaptersFactory.createAdapter(adaptee.eContainer, eResource)
 	}
 
 	override eContents() {
 		val ret = new BasicInternalEList<EObject>(EObject) ;
 
 		adaptee.eContents.forEach[o |
-			ret += adaptersFactory.createAdapter(o) ?: o
+			ret += adaptersFactory.createAdapter(o, eResource) ?: o
 		]
 
 		return ret
@@ -57,10 +65,10 @@ abstract class EObjectAdapter<E extends EObject> extends EObjectImpl implements 
 			switch (ret) {
 				EList<EObject>:
 					new BasicInternalEList<EObject>(EObject) => [
-						addAll(ret.map[adaptersFactory.createAdapter(it)])
+						addAll(ret.map[adaptersFactory.createAdapter(it, eResource)])
 					]
 				EObject:
-					adaptersFactory.createAdapter(ret)
+					adaptersFactory.createAdapter(ret, eResource)
 				default: ret
 			}
 	}
@@ -72,10 +80,10 @@ abstract class EObjectAdapter<E extends EObject> extends EObjectImpl implements 
 			switch (ret) {
 				EList<EObject>:
 					new BasicInternalEList<EObject>(EObject) => [
-						addAll(ret.map[adaptersFactory.createAdapter(it)])
+						addAll(ret.map[adaptersFactory.createAdapter(it, eResource)])
 					]
 				EObject:
-					adaptersFactory.createAdapter(ret)
+					adaptersFactory.createAdapter(ret, eResource)
 				default: ret
 			}
 	}
