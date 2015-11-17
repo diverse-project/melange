@@ -141,11 +141,12 @@ class LanguageInferrer
 
 				members += l.toMethod("createAdapter", EObjectAdapter.typeRef)[
 					parameters += l.toParameter("o", EObject.typeRef)
+					parameters += l.toParameter("res", Resource.typeRef)
 
 					body = '''
 						«FOR cls : mt.allClasses.filter[l.hasAdapterFor(mt, it) && instantiable && abstractable].sortByClassInheritance»
 						if (o instanceof «l.syntax.getFqnFor(cls)»){
-							return create«cls.name»Adapter((«l.syntax.getFqnFor(cls)») o) ;
+							return create«cls.name»Adapter((«l.syntax.getFqnFor(cls)») o, res) ;
 						}
 						«ENDFOR»
 
@@ -159,17 +160,18 @@ class LanguageInferrer
 
 					members += l.toMethod('''create«cls.name»Adapter''', adapName.typeRef)[
 						parameters += l.toParameter("adaptee", l.syntax.getFqnFor(mmCls).typeRef)
+						parameters += l.toParameter("res", Resource.typeRef)
 
 						body = '''
-							«EObjectAdapter» res = register.get(adaptee);
-							if(res != null){
-								 return («adapName») res;
+							«EObjectAdapter» adapter = register.get(adaptee);
+							if(adapter != null) {
+								 return («adapName») adapter;
 							}
-							else{
-								res = new «adapName»() ;
-								res.setAdaptee(adaptee) ;
-								register.put(adaptee,res);
-								return («adapName») res ;
+							else {
+								adapter = new «adapName»() ;
+								adapter.setAdaptee(adaptee) ;
+								register.put(adaptee, adapter);
+								return («adapName») adapter ;
 							}
 						'''
 					]
