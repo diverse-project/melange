@@ -24,7 +24,7 @@ abstract class EObjectAdapter<E extends EObject> extends EObjectImpl implements 
 		adaptersFactory = factory
 	}
 
-	def void setEResource(Resource res) {
+	def void setResource(Resource res) {
 		eResource = res
 	}
 
