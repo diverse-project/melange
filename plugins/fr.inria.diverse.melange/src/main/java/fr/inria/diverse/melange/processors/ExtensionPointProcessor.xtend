@@ -119,6 +119,15 @@ class ExtensionPointProcessor extends DispatchMelangeProcessor
 
 								if (doc !== null && !doc.empty)
 									setAttribute("description", doc)	
+								
+								setAttribute("entryPoints",
+									l.entryPoints
+									 .map[
+									 	val args = parameters.map[it.parameterType.type.qualifiedName].join(',')
+									 	declaringType.qualifiedName+"."+simpleName+"("+args+")"
+									 ]
+									 .join(';')
+								)
 							]
 
 							// Register adapters

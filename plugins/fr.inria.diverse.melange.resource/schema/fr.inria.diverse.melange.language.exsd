@@ -83,6 +83,14 @@
                </appinfo>
             </annotation>
          </attribute>
+         <attribute name="entryPoints" type="string">
+            <annotation>
+               <documentation>
+                  Entry points of this languages.
+It is a list of methods separated by semicolon
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 
