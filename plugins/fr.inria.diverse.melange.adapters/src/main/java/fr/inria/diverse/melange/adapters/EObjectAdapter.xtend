@@ -1,9 +1,7 @@
 package fr.inria.diverse.melange.adapters
 
 import org.eclipse.emf.common.util.AbstractTreeIterator
-import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.ecore.EObject
-import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.impl.EObjectImpl
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.util.BasicInternalEList
@@ -59,36 +57,6 @@ abstract class EObjectAdapter<E extends EObject> extends EObjectImpl implements 
 				override getChildren(Object object) {
 					return (object as EObject).eContents.iterator
 				}
-			}
-	}
-
-	override eGet(EStructuralFeature feature) {
-		val ret = adaptee.eGet(feature)
-
-		return
-			switch (ret) {
-				EList<EObject>:
-					new BasicInternalEList<EObject>(EObject) => [
-						addAll(ret.map[adaptersFactory.createAdapter(it, eResource)])
-					]
-				EObject:
-					adaptersFactory.createAdapter(ret, eResource)
-				default: ret
-			}
-	}
-
-	override eGet(EStructuralFeature feature, boolean resolve) {
-		val ret = adaptee.eGet(feature, resolve)
-
-		return
-			switch (ret) {
-				EList<EObject>:
-					new BasicInternalEList<EObject>(EObject) => [
-						addAll(ret.map[adaptersFactory.createAdapter(it, eResource)])
-					]
-				EObject:
-					adaptersFactory.createAdapter(ret, eResource)
-				default: ret
 			}
 	}
 
