@@ -16,6 +16,7 @@ import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.utils.AspectToEcore
 import fr.inria.diverse.melange.utils.TypeReferencesHelper
+import java.util.Collection
 import org.eclipse.emf.common.util.EMap
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
@@ -95,15 +96,7 @@ class MetaclassAdapterInferrer
 			jvmCls.members += mm.toConstructor[
 				body = '''
 					super(«mm.getAdaptersFactoryNameFor(superType)».getInstance()) ;
-				'''
-			]
-
-			// Return the meta-description of the implemented model type
-			jvmCls.members += mm.toMethod("eClass", EClass.typeRef)[
-				annotations += Override.annotationRef
-
-				body = '''
-					return «superType.packageFqn».eINSTANCE.get«cls.name»();
+					adaptersFactory = «mm.getAdaptersFactoryNameFor(superType)».getInstance() ;
 				'''
 			]
 
@@ -111,6 +104,7 @@ class MetaclassAdapterInferrer
 			cls.EAllReferences.filter[!isAspectSpecific].forEach[processReference(mmCls, mm, superType, mapping, jvmCls)]
 			cls.EAllOperations.sortByOverridingPriority.filter[!hasSuppressedVisibility && !isAspectSpecific].forEach[processOperation(mm, superType, jvmCls)]
 			mm.owningLanguage.findAspectsOn(cls).sortByOverridingPriority.forEach[processAspect(mm, superType, jvmCls)]
+			cls.processReflectiveLayer(mm, superType, jvmCls)
 		]
 
 		task.stop
@@ -419,8 +413,97 @@ class MetaclassAdapterInferrer
 		}
 	}
 
+	private def void processReflectiveLayer(EClass cls, Metamodel mm, ModelType superType, JvmGenericType jvmCls) {
+		jvmCls.members += mm.toMethod("eClass", EClass.typeRef)[
+			annotations += Override.annotationRef
+
+			body = '''
+				return «superType.packageFqn».eINSTANCE.get«cls.name»();
+			'''
+		]
+
+		jvmCls.members += mm.toMethod("eGet", Object.typeRef)[
+			annotations += Override.annotationRef
+
+			parameters += mm.toParameter("featureID", Integer::TYPE.typeRef)
+			parameters += mm.toParameter("resolve", Boolean::TYPE.typeRef)
+			parameters += mm.toParameter("coreType", Boolean::TYPE.typeRef)
+
+			body = '''
+				switch (featureID) {
+					«FOR feature : cls.EAllStructuralFeatures»
+					case «superType.packageFqn».«feature.formatFeatureID»:
+						return «feature.getterName»();
+					«ENDFOR»
+				}
+
+				return super.eGet(featureID, resolve, coreType);
+			'''
+		]
+
+		jvmCls.members += mm.toMethod("eSet", Void::TYPE.typeRef)[
+			annotations += Override.annotationRef
+
+			parameters += mm.toParameter("featureID", Integer::TYPE.typeRef)
+			parameters += mm.toParameter("newValue", Object.typeRef)
+
+			body = '''
+				switch (featureID) {
+					«FOR feature : cls.EAllStructuralFeatures»
+					case «superType.packageFqn».«feature.formatFeatureID»:
+						«IF feature.many»
+							«feature.getterName»().clear();
+							«feature.getterName»().addAll((«Collection»<? extends «superType.typeRef(feature.EType, #[jvmCls])»>) newValue);
+						«ELSE»
+							«feature.setterName»((«superType.typeRef(feature, #[jvmCls])») newValue);
+						«ENDIF»
+						return;
+					«ENDFOR»
+				}
+
+				super.eSet(featureID, newValue);
+			'''
+		]
+
+		jvmCls.members += mm.toMethod("eUnset", Void::TYPE.typeRef)[
+			annotations += Override.annotationRef
+
+			parameters += mm.toParameter("featureID", Integer::TYPE.typeRef)
+
+			body = '''
+				switch (featureID) {
+					«FOR feature : cls.EAllStructuralFeatures»
+					case «superType.packageFqn».«feature.formatFeatureID»:
+						«IF feature.many»
+							«feature.getterName»().clear();
+						«ELSE»
+							«feature.setterName»((«superType.typeRef(feature, #[jvmCls]).wrapperIfPrimitiveType») null);
+						«ENDIF»
+						return;
+					«ENDFOR»
+				}
+
+				super.eUnset(featureID);
+			'''
+		]
+	}
+
 	private def boolean isValidReturnType(JvmTypeReference ref) {
 		return ref.type !== null && ref.type.simpleName != "void" && ref.type.simpleName != "null"
+	}
+
+	private def JvmTypeReference wrapperIfPrimitiveType(JvmTypeReference ref) {
+		return
+			switch (ref.simpleName) {
+				case "int": Integer.typeRef
+				case "float": Float.typeRef
+				case "boolean": Boolean.typeRef
+				case "double": Double.typeRef
+				case "short": Short.typeRef
+				case "byte": Byte.typeRef
+				case "char": Character.typeRef
+				default: ref
+			}
 	}
 
 	private def Iterable<Aspect> sortByOverridingPriority(Iterable<Aspect> aspects) {
