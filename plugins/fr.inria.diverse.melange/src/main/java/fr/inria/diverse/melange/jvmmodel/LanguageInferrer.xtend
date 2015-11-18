@@ -170,6 +170,7 @@ class LanguageInferrer
 							else {
 								adapter = new «adapName»() ;
 								adapter.setAdaptee(adaptee) ;
+								adapter.setResource(res) ;
 								register.put(adaptee, adapter);
 								return («adapName») adapter ;
 							}
