@@ -454,7 +454,7 @@ class MetaclassAdapterInferrer
 						«IF feature.many»
 							«feature.getterName»().clear();
 							«feature.getterName»().addAll((«Collection»<? extends «superType.typeRef(feature.EType, #[jvmCls])»>) newValue);
-						«ELSE»
+						«ELSEIF feature.needsSetter»
 							«feature.setterName»((«superType.typeRef(feature, #[jvmCls])») newValue);
 						«ENDIF»
 						return;
@@ -476,7 +476,7 @@ class MetaclassAdapterInferrer
 					case «superType.packageFqn».«feature.formatFeatureID»:
 						«IF feature.many»
 							«feature.getterName»().clear();
-						«ELSE»
+						«ELSEIF feature.needsSetter»
 							«feature.setterName»((«superType.typeRef(feature, #[jvmCls]).wrapperIfPrimitiveType») null);
 						«ENDIF»
 						return;
