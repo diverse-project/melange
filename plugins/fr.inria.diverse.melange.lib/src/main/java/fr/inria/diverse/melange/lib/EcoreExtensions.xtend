@@ -1,14 +1,13 @@
 package fr.inria.diverse.melange.lib
 
-import com.google.common.base.CaseFormat
 import com.google.inject.Inject
 import java.util.ArrayList
 import java.util.List
-import java.util.regex.Pattern
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenBaseGeneratorAdapter
 import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil
+import org.eclipse.emf.codegen.util.CodeGenUtil
 import org.eclipse.emf.common.util.Diagnostic
 import org.eclipse.emf.common.util.Monitor
 import org.eclipse.emf.ecore.EAttribute
@@ -40,20 +39,7 @@ class EcoreExtensions
 	}
 
 	def String camelToUnderscores(String s) {
-		return CaseFormat::UPPER_CAMEL.to(CaseFormat::UPPER_UNDERSCORE, s.removeConsecutiveCaps)
-	}
-
-	def String removeConsecutiveCaps(String s) {
-		val expr = "(?<=[A-Z])[A-Z]+(?=[A-Z]|$)"
-		val pattern = Pattern.compile(expr)
-		val matcher = pattern.matcher(s)
-		val sb = new StringBuffer
-
-		while (matcher.find)
-			matcher.appendReplacement(sb, matcher.group.toLowerCase)
-		matcher.appendTail(sb)
-
-		return sb.toString
+		return CodeGenUtil.format(s, "_", "", true, true).toUpperCase
 	}
 
 	def Iterable<EClass> sortByClassInheritance(Iterable<EClass> classes) {
