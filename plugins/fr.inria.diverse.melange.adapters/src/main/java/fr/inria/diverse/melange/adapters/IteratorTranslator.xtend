@@ -17,10 +17,8 @@ class IteratorTranslator<E, F> implements Function<E, F>
 			val adap = adapType.newInstance as GenericAdapter<E>
 			adap.adaptee = arg
 			return adap as F
-		} catch (InstantiationException e) {
-			// ...
-		} catch (IllegalAccessException e) {
-			// ...
+		} catch (Exception e) {
+			throw new RuntimeException("Cannot instantiate adapter type", e)
 		}
 	}
 }

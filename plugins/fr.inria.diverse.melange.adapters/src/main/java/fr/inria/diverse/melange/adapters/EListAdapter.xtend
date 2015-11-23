@@ -1,7 +1,6 @@
 package fr.inria.diverse.melange.adapters
 
 import com.google.common.collect.Iterators
-import java.lang.reflect.InvocationTargetException
 import java.util.Collection
 import org.eclipse.emf.common.util.EList
 
@@ -26,21 +25,19 @@ class EListAdapter<E, F> implements GenericAdapter<EList<F>>, EList<E>
 	}
 
 	override add(E e) {
-		return adaptee.add(decapsulate(e))
+		return adaptee.add(e.decapsulate)
 	}
 
-	override add(int index, E element) {
-		adaptee.add(index, decapsulate(element))
+	override add(int index, E e) {
+		adaptee.add(index, e.decapsulate)
 	}
 
 	override addAll(Collection<? extends E> c) {
-		c.forEach[adaptee.add(decapsulate(it))]
-		return true
+		return adaptee.addAll(c.map[decapsulate].toList)
 	}
 
 	override addAll(int index, Collection<? extends E> c) {
-		c.forEach[it, i | adaptee.add(index + i, decapsulate(it))]
-		return true
+		return adaptee.addAll(index, c.map[decapsulate].toList)
 	}
 
 	override clear() {
@@ -56,19 +53,11 @@ class EListAdapter<E, F> implements GenericAdapter<EList<F>>, EList<E>
 	}
 
 	override get(int index) {
-		try {
-			val adap = adapType.newInstance
-			adap.adaptee = adaptee.get(index)
-			return adap as E
-		} catch (InstantiationException e) {
-			// ...
-		} catch (IllegalAccessException e) {
-			// ...
-		}
+		return adaptee.get(index).newAdapter
 	}
 
 	override indexOf(Object o) {
-		return adaptee.indexOf(o)
+		return adaptee.indexOf(o.decapsulate)
 	}
 
 	override isEmpty() {
@@ -80,7 +69,7 @@ class EListAdapter<E, F> implements GenericAdapter<EList<F>>, EList<E>
 	}
 
 	override lastIndexOf(Object o) {
-		return adaptee.lastIndexOf(decapsulate(o))
+		return adaptee.lastIndexOf(o.decapsulate)
 	}
 
 	override listIterator() {
@@ -96,39 +85,24 @@ class EListAdapter<E, F> implements GenericAdapter<EList<F>>, EList<E>
 	}
 
 	override remove(Object o) {
-		return adaptee.remove(decapsulate(o))
+		return adaptee.remove(o.decapsulate)
 	}
 
 	override remove(int index) {
-		try {
-			val adap = adapType.newInstance
-			adap.adaptee = adaptee.remove(index)
-			return adap as E
-		} catch (InstantiationException e) {
-			// ...
-		} catch (IllegalAccessException e) {
-			// ...
-		}
+		return adaptee.remove(index).newAdapter
 	}
 
 	override removeAll(Collection<?> c) {
-		return adaptee.removeAll(c)
+		return adaptee.removeAll(c.map[decapsulate].toList)
 	}
 
 	override retainAll(Collection<?> c) {
-		return adaptee.retainAll(c)
+		return adaptee.retainAll(c.map[decapsulate].toList)
 	}
 
+	// FIXME
 	override set(int index, E element) {
-		try {
-			val adap = adapType.newInstance
-			adap.adaptee = adaptee.set(index, decapsulate(element))
-			return adap as E
-		} catch (InstantiationException e) {
-			// ...
-		} catch (IllegalAccessException e) {
-			// ...
-		}
+		return adaptee.set(index, element.decapsulate).newAdapter
 	}
 
 	override size() {
@@ -136,13 +110,15 @@ class EListAdapter<E, F> implements GenericAdapter<EList<F>>, EList<E>
 	}
 
 	override subList(int fromIndex, int toIndex) {
-		return new ListAdapter<E, F>(adaptee.subList(fromIndex, toIndex), adapType)
+		return EListAdapter::newInstance(
+			adaptee.subList(fromIndex, toIndex) as EList<F>, adapType)
 	}
 
 	override toArray() {
-		return adaptee.toArray
+		return adaptee.toArray.map[	(it as F).newAdapter]
 	}
 
+	// FIXME: Won't work
 	override <T> toArray(T[] a) {
 		return adaptee.toArray(a)
 	}
@@ -152,18 +128,20 @@ class EListAdapter<E, F> implements GenericAdapter<EList<F>>, EList<E>
 	}
 
 	override move(int newPosition, E object) {
-		adaptee.move(newPosition, (object as GenericAdapter<F>).adaptee)
+		adaptee.move(newPosition, object.decapsulate)
 	}
 
 	override move(int newPosition, int oldPosition) {
+		return adaptee.move(newPosition, oldPosition).newAdapter
+	}
+
+	private def newAdapter(F o) {
 		try {
-			return adapType.declaredConstructors.head.newInstance(adaptee.move(newPosition, oldPosition)) as E
-		} catch (InstantiationException e) {
-			// ...
-		} catch (IllegalAccessException e) {
-			// ...
-		} catch (InvocationTargetException e) {
-			// ...
+			val adap = adapType.newInstance
+			adap.adaptee = o
+			return adap as E
+		} catch (Exception e) {
+			throw new RuntimeException("Couldn't instantiate adapter", e)
 		}
 	}
 
