@@ -16,17 +16,17 @@ public class FsmMTFactoryAdapter extends EFactoryImpl implements FsmFactory {
   
   @Override
   public FSM createFSM() {
-    return adaptersFactory.createFSMAdapter(fsmAdaptee.createFSM()) ;
+    return adaptersFactory.createFSMAdapter(fsmAdaptee.createFSM(), null) ;
   }
   
   @Override
   public State createState() {
-    return adaptersFactory.createStateAdapter(fsmAdaptee.createState()) ;
+    return adaptersFactory.createStateAdapter(fsmAdaptee.createState(), null) ;
   }
   
   @Override
   public Transition createTransition() {
-    return adaptersFactory.createTransitionAdapter(fsmAdaptee.createTransition()) ;
+    return adaptersFactory.createTransitionAdapter(fsmAdaptee.createTransition(), null) ;
   }
   
   public FsmPackage getFsmPackage() {

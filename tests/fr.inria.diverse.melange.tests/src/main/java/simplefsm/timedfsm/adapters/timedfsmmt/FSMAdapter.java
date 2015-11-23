@@ -2,7 +2,9 @@ package simplefsm.timedfsm.adapters.timedfsmmt;
 
 import fr.inria.diverse.melange.adapters.EListAdapter;
 import fr.inria.diverse.melange.adapters.EObjectAdapter;
+import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import simplefsm.timedfsm.adapters.timedfsmmt.TimedFsmMTAdaptersFactory;
 import simplefsm.timedfsmmt.timedfsm.State;
 import timedfsm.FSM;
@@ -13,6 +15,7 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements simplefsm.timedfs
   
   public FSMAdapter() {
     super(simplefsm.timedfsm.adapters.timedfsmmt.TimedFsmMTAdaptersFactory.getInstance()) ;
+    adaptersFactory = simplefsm.timedfsm.adapters.timedfsmmt.TimedFsmMTAdaptersFactory.getInstance() ;
   }
   
   @Override
@@ -22,7 +25,7 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements simplefsm.timedfs
   
   @Override
   public State getInitialState() {
-    return adaptersFactory.createStateAdapter(adaptee.getInitialState()) ;
+    return adaptersFactory.createStateAdapter(adaptee.getInitialState(), eResource) ;
   }
   
   @Override
@@ -33,5 +36,60 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements simplefsm.timedfs
   @Override
   public EList<State> getFinalState() {
     return EListAdapter.newInstance(adaptee.getFinalState(), simplefsm.timedfsm.adapters.timedfsmmt.StateAdapter.class) ;
+  }
+  
+  @Override
+  public EClass eClass() {
+    return simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.eINSTANCE.getFSM();
+  }
+  
+  @Override
+  public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
+    switch (featureID) {
+    	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.FSM__OWNED_STATE:
+    		return getOwnedState();
+    	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.FSM__INITIAL_STATE:
+    		return getInitialState();
+    	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.FSM__FINAL_STATE:
+    		return getFinalState();
+    }
+    
+    return super.eGet(featureID, resolve, coreType);
+  }
+  
+  @Override
+  public void eSet(final int featureID, final Object newValue) {
+    switch (featureID) {
+    	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.FSM__OWNED_STATE:
+    		getOwnedState().clear();
+    		getOwnedState().addAll((Collection<? extends simplefsm.timedfsmmt.timedfsm.State>) newValue);
+    		return;
+    	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.FSM__INITIAL_STATE:
+    		setInitialState((simplefsm.timedfsmmt.timedfsm.State) newValue);
+    		return;
+    	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.FSM__FINAL_STATE:
+    		getFinalState().clear();
+    		getFinalState().addAll((Collection<? extends simplefsm.timedfsmmt.timedfsm.State>) newValue);
+    		return;
+    }
+    
+    super.eSet(featureID, newValue);
+  }
+  
+  @Override
+  public void eUnset(final int featureID) {
+    switch (featureID) {
+    	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.FSM__OWNED_STATE:
+    		getOwnedState().clear();
+    		return;
+    	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.FSM__INITIAL_STATE:
+    		setInitialState((simplefsm.timedfsmmt.timedfsm.State) null);
+    		return;
+    	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.FSM__FINAL_STATE:
+    		getFinalState().clear();
+    		return;
+    }
+    
+    super.eUnset(featureID);
   }
 }
