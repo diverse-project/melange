@@ -48,11 +48,11 @@ class EListAdapter<E, F> implements GenericAdapter<EList<F>>, EList<E>
 	}
 
 	override contains(Object o) {
-		return adaptee.contains(o)
+		return adaptee.contains(o.decapsulate)
 	}
 
 	override containsAll(Collection<?> c) {
-		return adaptee.containsAll(c)
+		return adaptee.containsAll(c.map[decapsulate].toList)
 	}
 
 	override get(int index) {
