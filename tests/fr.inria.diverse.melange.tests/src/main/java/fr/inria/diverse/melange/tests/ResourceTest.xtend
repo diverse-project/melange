@@ -86,7 +86,7 @@ class ResourceTest
 	private def assertIsFsmMT(Resource res) {
 		assertTrue(
 			'''«res.URI» content isn't typed by FsmMT types''',
-			res.allContents.forall[class.interfaces.exists[package.name == "simplefsm.fsmmt"]]
+			res.allContents.forall[class.interfaces.exists[package.name == "simplefsm.fsmmt.fsm"]]
 		)
 	}
 
@@ -100,7 +100,7 @@ class ResourceTest
 	private def assertIsTimedFsmMT(Resource res) {
 		assertTrue(
 			'''«res» content isn't typed by TimedFsmMT types''',
-			res.allContents.forall[class.interfaces.exists[package.name == "simplefsm.timedfsmmt"]]
+			res.allContents.forall[class.interfaces.exists[package.name == "simplefsm.timedfsmmt.timedfsm"]]
 		)
 	}
 }
