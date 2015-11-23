@@ -16,17 +16,17 @@ public class TimedFsmMTFactoryAdapter extends EFactoryImpl implements TimedfsmFa
   
   @Override
   public FSM createFSM() {
-    return adaptersFactory.createFSMAdapter(timedfsmAdaptee.createFSM()) ;
+    return adaptersFactory.createFSMAdapter(timedfsmAdaptee.createFSM(), null) ;
   }
   
   @Override
   public State createState() {
-    return adaptersFactory.createStateAdapter(timedfsmAdaptee.createState()) ;
+    return adaptersFactory.createStateAdapter(timedfsmAdaptee.createState(), null) ;
   }
   
   @Override
   public Transition createTransition() {
-    return adaptersFactory.createTransitionAdapter(timedfsmAdaptee.createTransition()) ;
+    return adaptersFactory.createTransitionAdapter(timedfsmAdaptee.createTransition(), null) ;
   }
   
   public TimedfsmPackage getTimedfsmPackage() {

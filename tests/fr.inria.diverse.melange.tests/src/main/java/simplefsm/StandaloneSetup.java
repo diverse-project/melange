@@ -24,7 +24,7 @@ public class StandaloneSetup {
     	timedfsm.TimedfsmPackage.eNS_URI,
     	timedfsm.TimedfsmPackage.eINSTANCE
     ) ;
-
+    
     Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
     	"*",
     	new XMIResourceFactoryImpl()

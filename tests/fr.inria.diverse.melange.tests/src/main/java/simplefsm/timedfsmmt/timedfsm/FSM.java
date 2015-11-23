@@ -13,12 +13,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link simplefsm.timedfsmmt.timedfsm.FSM#getOwnedState <em>Owned State</em>}</li>
  *   <li>{@link simplefsm.timedfsmmt.timedfsm.FSM#getInitialState <em>Initial State</em>}</li>
  *   <li>{@link simplefsm.timedfsmmt.timedfsm.FSM#getFinalState <em>Final State</em>}</li>
  * </ul>
+ * </p>
  *
  * @see simplefsm.timedfsmmt.timedfsm.TimedfsmPackage#getFSM()
  * @model
