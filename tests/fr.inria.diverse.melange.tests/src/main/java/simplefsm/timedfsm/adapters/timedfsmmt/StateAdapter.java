@@ -38,7 +38,9 @@ public class StateAdapter extends EObjectAdapter<State> implements simplefsm.tim
   
   @Override
   public void setOwningFSM(final FSM o) {
-    adaptee.setOwningFSM(((simplefsm.timedfsm.adapters.timedfsmmt.FSMAdapter) o).getAdaptee()) ;
+    if (o != null)
+    	adaptee.setOwningFSM(((simplefsm.timedfsm.adapters.timedfsmmt.FSMAdapter) o).getAdaptee()) ;
+    else adaptee.setOwningFSM(null) ;
   }
   
   private EList<Transition> outgoingTransition;

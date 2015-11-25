@@ -44,7 +44,9 @@ public class TransitionAdapter extends EObjectAdapter<Transition> implements sim
   
   @Override
   public void setSource(final State o) {
-    adaptee.setSource(((simplefsm.fsm.adapters.fsmmt.StateAdapter) o).getAdaptee()) ;
+    if (o != null)
+    	adaptee.setSource(((simplefsm.fsm.adapters.fsmmt.StateAdapter) o).getAdaptee()) ;
+    else adaptee.setSource(null) ;
   }
   
   private State target;
@@ -56,7 +58,9 @@ public class TransitionAdapter extends EObjectAdapter<Transition> implements sim
   
   @Override
   public void setTarget(final State o) {
-    adaptee.setTarget(((simplefsm.fsm.adapters.fsmmt.StateAdapter) o).getAdaptee()) ;
+    if (o != null)
+    	adaptee.setTarget(((simplefsm.fsm.adapters.fsmmt.StateAdapter) o).getAdaptee()) ;
+    else adaptee.setTarget(null) ;
   }
   
   @Override
