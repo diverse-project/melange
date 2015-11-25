@@ -44,10 +44,11 @@ public class FsmMTAdaptersFactory implements AdaptersFactory {
   }
   
   public FSMAdapter createFSMAdapter(final FSM adaptee, final Resource res) {
+    if (adaptee == null)
+    	return null;
     EObjectAdapter adapter = register.get(adaptee);
-    if(adapter != null) {
+    if(adapter != null)
     	 return (simplefsm.timedfsm.adapters.fsmmt.FSMAdapter) adapter;
-    }
     else {
     	adapter = new simplefsm.timedfsm.adapters.fsmmt.FSMAdapter() ;
     	adapter.setAdaptee(adaptee) ;
@@ -58,10 +59,11 @@ public class FsmMTAdaptersFactory implements AdaptersFactory {
   }
   
   public StateAdapter createStateAdapter(final State adaptee, final Resource res) {
+    if (adaptee == null)
+    	return null;
     EObjectAdapter adapter = register.get(adaptee);
-    if(adapter != null) {
+    if(adapter != null)
     	 return (simplefsm.timedfsm.adapters.fsmmt.StateAdapter) adapter;
-    }
     else {
     	adapter = new simplefsm.timedfsm.adapters.fsmmt.StateAdapter() ;
     	adapter.setAdaptee(adaptee) ;
@@ -72,10 +74,11 @@ public class FsmMTAdaptersFactory implements AdaptersFactory {
   }
   
   public TransitionAdapter createTransitionAdapter(final Transition adaptee, final Resource res) {
+    if (adaptee == null)
+    	return null;
     EObjectAdapter adapter = register.get(adaptee);
-    if(adapter != null) {
+    if(adapter != null)
     	 return (simplefsm.timedfsm.adapters.fsmmt.TransitionAdapter) adapter;
-    }
     else {
     	adapter = new simplefsm.timedfsm.adapters.fsmmt.TransitionAdapter() ;
     	adapter.setAdaptee(adaptee) ;

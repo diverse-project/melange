@@ -18,10 +18,16 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements simplefsm.timedfs
     adaptersFactory = simplefsm.timedfsm.adapters.timedfsmmt.TimedFsmMTAdaptersFactory.getInstance() ;
   }
   
+  private EList<State> ownedState;
+  
   @Override
   public EList<State> getOwnedState() {
-    return EListAdapter.newInstance(adaptee.getOwnedState(), simplefsm.timedfsm.adapters.timedfsmmt.StateAdapter.class) ;
+    if (ownedState == null)
+    	ownedState = EListAdapter.newInstance(adaptee.getOwnedState(), adaptersFactory) ;
+    return ownedState;
   }
+  
+  private State initialState;
   
   @Override
   public State getInitialState() {
@@ -33,9 +39,13 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements simplefsm.timedfs
     adaptee.setInitialState(((simplefsm.timedfsm.adapters.timedfsmmt.StateAdapter) o).getAdaptee()) ;
   }
   
+  private EList<State> finalState;
+  
   @Override
   public EList<State> getFinalState() {
-    return EListAdapter.newInstance(adaptee.getFinalState(), simplefsm.timedfsm.adapters.timedfsmmt.StateAdapter.class) ;
+    if (finalState == null)
+    	finalState = EListAdapter.newInstance(adaptee.getFinalState(), adaptersFactory) ;
+    return finalState;
   }
   
   @Override
@@ -62,14 +72,14 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements simplefsm.timedfs
     switch (featureID) {
     	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.FSM__OWNED_STATE:
     		getOwnedState().clear();
-    		getOwnedState().addAll((Collection<? extends simplefsm.timedfsmmt.timedfsm.State>) newValue);
+    		getOwnedState().addAll((Collection<? extends State>) newValue);
     		return;
     	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.FSM__INITIAL_STATE:
-    		setInitialState((simplefsm.timedfsmmt.timedfsm.State) newValue);
+    		setInitialState((State) newValue);
     		return;
     	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.FSM__FINAL_STATE:
     		getFinalState().clear();
-    		getFinalState().addAll((Collection<? extends simplefsm.timedfsmmt.timedfsm.State>) newValue);
+    		getFinalState().addAll((Collection<? extends State>) newValue);
     		return;
     }
     
@@ -83,7 +93,7 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements simplefsm.timedfs
     		getOwnedState().clear();
     		return;
     	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.FSM__INITIAL_STATE:
-    		setInitialState((simplefsm.timedfsmmt.timedfsm.State) null);
+    		setInitialState((State) null);
     		return;
     	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.FSM__FINAL_STATE:
     		getFinalState().clear();

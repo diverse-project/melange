@@ -35,6 +35,8 @@ public class TransitionAdapter extends EObjectAdapter<Transition> implements sim
     adaptee.setOutput(o) ;
   }
   
+  private State source;
+  
   @Override
   public State getSource() {
     return adaptersFactory.createStateAdapter(adaptee.getSource(), eResource) ;
@@ -44,6 +46,8 @@ public class TransitionAdapter extends EObjectAdapter<Transition> implements sim
   public void setSource(final State o) {
     adaptee.setSource(((simplefsm.fsm.adapters.fsmmt.StateAdapter) o).getAdaptee()) ;
   }
+  
+  private State target;
   
   @Override
   public State getTarget() {
@@ -80,16 +84,16 @@ public class TransitionAdapter extends EObjectAdapter<Transition> implements sim
   public void eSet(final int featureID, final Object newValue) {
     switch (featureID) {
     	case simplefsm.fsmmt.fsm.FsmPackage.TRANSITION__SOURCE:
-    		setSource((simplefsm.fsmmt.fsm.State) newValue);
+    		setSource((State) newValue);
     		return;
     	case simplefsm.fsmmt.fsm.FsmPackage.TRANSITION__TARGET:
-    		setTarget((simplefsm.fsmmt.fsm.State) newValue);
+    		setTarget((State) newValue);
     		return;
     	case simplefsm.fsmmt.fsm.FsmPackage.TRANSITION__INPUT:
-    		setInput((java.lang.String) newValue);
+    		setInput((String) newValue);
     		return;
     	case simplefsm.fsmmt.fsm.FsmPackage.TRANSITION__OUTPUT:
-    		setOutput((java.lang.String) newValue);
+    		setOutput((String) newValue);
     		return;
     }
     
@@ -100,16 +104,16 @@ public class TransitionAdapter extends EObjectAdapter<Transition> implements sim
   public void eUnset(final int featureID) {
     switch (featureID) {
     	case simplefsm.fsmmt.fsm.FsmPackage.TRANSITION__SOURCE:
-    		setSource((simplefsm.fsmmt.fsm.State) null);
+    		setSource((State) null);
     		return;
     	case simplefsm.fsmmt.fsm.FsmPackage.TRANSITION__TARGET:
-    		setTarget((simplefsm.fsmmt.fsm.State) null);
+    		setTarget((State) null);
     		return;
     	case simplefsm.fsmmt.fsm.FsmPackage.TRANSITION__INPUT:
-    		setInput((java.lang.String) null);
+    		setInput((String) null);
     		return;
     	case simplefsm.fsmmt.fsm.FsmPackage.TRANSITION__OUTPUT:
-    		setOutput((java.lang.String) null);
+    		setOutput((String) null);
     		return;
     }
     
