@@ -1,8 +1,7 @@
 package fr.inria.diverse.melange.resource
 
+import fr.inria.diverse.melange.adapters.EObjectAdapter
 import fr.inria.diverse.melange.resource.loader.DozerLoader
-import java.io.IOException
-import java.util.Map
 import org.eclipse.emf.common.util.AbstractTreeIterator
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EObject
@@ -14,6 +13,7 @@ import org.eclipse.xtend.lib.annotations.Delegate
 class MelangeResourceImpl implements Resource.Internal
 {
 	@Delegate Resource.Internal wrappedResource
+	Resource adapter
 	String expectedMt
 	String expectedLang
 	URI melangeUri
@@ -54,7 +54,7 @@ class MelangeResourceImpl implements Resource.Internal
 
 			if (adapterCls !== null) {
 				try {
-					val adapter = adapterCls.newInstance => [
+					adapter = adapterCls.newInstance => [
 						adaptee = wrappedResource
 						parent = this
 					]
@@ -129,13 +129,14 @@ class MelangeResourceImpl implements Resource.Internal
 	}
 
 	override getEObject(String uriFragment) {
-		// FIXME: Should perform adaptation here
-		throw new UnsupportedOperationException("FIXME: Should perform adaptation here")
+		return adapter.getEObject(uriFragment)
 	}
 
-	override save(Map<?, ?> options) throws IOException {
-		// FIXME: Should perform adaptation here
-		throw new UnsupportedOperationException("FIXME: Should perform adaptation here")
+	override getURIFragment(EObject o) {
+		return
+			if (o instanceof EObjectAdapter<?>)
+				wrappedResource.getURIFragment(o.adaptee)
+			else null
 	}
 
 	override getURI() {
