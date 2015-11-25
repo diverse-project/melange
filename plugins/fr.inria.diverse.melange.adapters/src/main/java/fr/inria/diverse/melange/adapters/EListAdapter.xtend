@@ -3,25 +3,27 @@ package fr.inria.diverse.melange.adapters
 import com.google.common.collect.Iterators
 import java.util.Collection
 import org.eclipse.emf.common.util.EList
+import org.eclipse.emf.ecore.EObject
 
 /**
- * Adapter delegation pattern for manipulating a {@link EList EList} of
- * elements of type {@link F} as an EList of elements of type {@link E},
- * providing that we have an {@link ListAdapter#adapType adapter type} between
- * {@link F} and {@link E}.
+ * Adapter delegation pattern for manipulating a {@link EList list} of
+ * {@link EObject} of type {@link F} as a {@link EList list} of {@link EObject}
+ * of type {@link E}, providing that we have an appropriate
+ * {@link EListAdapter#adaptersFactory adapters factory} between {@link F}
+ * and {@link E}.
  */
-class EListAdapter<E, F> implements GenericAdapter<EList<F>>, EList<E>
+class EListAdapter<E extends EObject, F extends EObject> implements GenericAdapter<EList<F>>, EList<E>
 {
 	EList<F> adaptee
-	Class<? extends GenericAdapter<F>> adapType
+	AdaptersFactory adaptersFactory
 
-	def static <E, F> EListAdapter<E, F> newInstance(EList<F> a, Class<? extends GenericAdapter<F>> type) {
-		return new EListAdapter<E, F>(a, type)
+	def static <E extends EObject, F extends EObject> EListAdapter<E, F> newInstance(EList<F> a, AdaptersFactory adapFact) {
+		return new EListAdapter<E, F>(a, adapFact)
 	}
 
-	new(EList<F> a, Class<? extends GenericAdapter<F>> type) {
+	new(EList<F> a, AdaptersFactory adapFact) {
 		adaptee = a
-		adapType = type
+		adaptersFactory = adapFact
 	}
 
 	override add(E e) {
@@ -52,8 +54,9 @@ class EListAdapter<E, F> implements GenericAdapter<EList<F>>, EList<E>
 		return adaptee.containsAll(c.map[decapsulate].toList)
 	}
 
+	// FIXME: how can we get the current resource and give it to the factory?
 	override get(int index) {
-		return adaptee.get(index).newAdapter
+		return adaptersFactory.createAdapter(adaptee.get(index), null) as E
 	}
 
 	override indexOf(Object o) {
@@ -65,7 +68,7 @@ class EListAdapter<E, F> implements GenericAdapter<EList<F>>, EList<E>
 	}
 
 	override iterator() {
-		return Iterators.transform(adaptee.iterator, new IteratorTranslator<F, E>(adapType))
+		return Iterators.transform(adaptee.iterator, new IteratorTranslator<F, E>(adaptersFactory))
 	}
 
 	override lastIndexOf(Object o) {
@@ -74,13 +77,13 @@ class EListAdapter<E, F> implements GenericAdapter<EList<F>>, EList<E>
 
 	override listIterator() {
 		return new ListIteratorWrapper(
-			Iterators.transform(adaptee.listIterator, new IteratorTranslator<F, E>(adapType))
+			Iterators.transform(adaptee.listIterator, new IteratorTranslator<F, E>(adaptersFactory))
 		)
 	}
 
 	override listIterator(int index) {
 		return new ListIteratorWrapper(
-			Iterators.transform(adaptee.listIterator(index), new IteratorTranslator<F, E>(adapType))
+			Iterators.transform(adaptee.listIterator(index), new IteratorTranslator<F, E>(adaptersFactory))
 		)
 	}
 
@@ -88,8 +91,9 @@ class EListAdapter<E, F> implements GenericAdapter<EList<F>>, EList<E>
 		return adaptee.remove(o.decapsulate)
 	}
 
+	// FIXME: how can we get the current resource and give it to the factory?
 	override remove(int index) {
-		return adaptee.remove(index).newAdapter
+		return adaptersFactory.createAdapter(adaptee.remove(index), null) as E
 	}
 
 	override removeAll(Collection<?> c) {
@@ -100,9 +104,9 @@ class EListAdapter<E, F> implements GenericAdapter<EList<F>>, EList<E>
 		return adaptee.retainAll(c.map[decapsulate].toList)
 	}
 
-	// FIXME
+	// FIXME: how can we get the current resource and give it to the factory?
 	override set(int index, E element) {
-		return adaptee.set(index, element.decapsulate).newAdapter
+		return adaptersFactory.createAdapter(adaptee.set(index, element.decapsulate), null) as E
 	}
 
 	override size() {
@@ -111,11 +115,12 @@ class EListAdapter<E, F> implements GenericAdapter<EList<F>>, EList<E>
 
 	override subList(int fromIndex, int toIndex) {
 		return EListAdapter::newInstance(
-			adaptee.subList(fromIndex, toIndex) as EList<F>, adapType)
+			adaptee.subList(fromIndex, toIndex) as EList<F>, adaptersFactory)
 	}
 
+	// FIXME: how can we get the current resource and give it to the factory?
 	override toArray() {
-		return adaptee.toArray.map[	(it as F).newAdapter]
+		return adaptee.toArray.map[adaptersFactory.createAdapter(it as F, null)]
 	}
 
 	// FIXME: Won't work
@@ -131,18 +136,9 @@ class EListAdapter<E, F> implements GenericAdapter<EList<F>>, EList<E>
 		adaptee.move(newPosition, object.decapsulate)
 	}
 
+	// FIXME: how can we get the current resource and give it to the factory?
 	override move(int newPosition, int oldPosition) {
-		return adaptee.move(newPosition, oldPosition).newAdapter
-	}
-
-	private def newAdapter(F o) {
-		try {
-			val adap = adapType.newInstance
-			adap.adaptee = o
-			return adap as E
-		} catch (Exception e) {
-			throw new RuntimeException("Couldn't instantiate adapter", e)
-		}
+		return adaptersFactory.createAdapter(adaptee.move(newPosition, oldPosition), null) as E
 	}
 
 	override getAdaptee() {
