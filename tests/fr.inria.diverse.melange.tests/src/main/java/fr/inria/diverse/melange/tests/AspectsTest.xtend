@@ -1,13 +1,12 @@
 package fr.inria.diverse.melange.tests
 
 import com.google.inject.Inject
+import fr.inria.diverse.melange.adapters.EListAdapter
 import fr.inria.diverse.melange.adapters.GenericAdapter
-import fr.inria.diverse.melange.adapters.ListAdapter
 import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.lib.IModelType
 import fr.inria.diverse.melange.metamodel.melange.Language
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.XbaseTransformation
@@ -251,7 +250,7 @@ class AspectsTest
 				MelangeRegistry,
 				IModelType,
 				GenericAdapter,
-				ListAdapter,
+				EListAdapter,
 				Resource,
 				EObject,
 				EList,
