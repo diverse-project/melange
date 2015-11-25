@@ -45,6 +45,8 @@ public class TransitionAdapter extends EObjectAdapter<Transition> implements sim
     adaptee.setTime(o) ;
   }
   
+  private State source;
+  
   @Override
   public State getSource() {
     return adaptersFactory.createStateAdapter(adaptee.getSource(), eResource) ;
@@ -54,6 +56,8 @@ public class TransitionAdapter extends EObjectAdapter<Transition> implements sim
   public void setSource(final State o) {
     adaptee.setSource(((simplefsm.timedfsm.adapters.timedfsmmt.StateAdapter) o).getAdaptee()) ;
   }
+  
+  private State target;
   
   @Override
   public State getTarget() {
@@ -92,16 +96,16 @@ public class TransitionAdapter extends EObjectAdapter<Transition> implements sim
   public void eSet(final int featureID, final Object newValue) {
     switch (featureID) {
     	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.TRANSITION__SOURCE:
-    		setSource((simplefsm.timedfsmmt.timedfsm.State) newValue);
+    		setSource((State) newValue);
     		return;
     	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.TRANSITION__TARGET:
-    		setTarget((simplefsm.timedfsmmt.timedfsm.State) newValue);
+    		setTarget((State) newValue);
     		return;
     	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.TRANSITION__INPUT:
-    		setInput((java.lang.String) newValue);
+    		setInput((String) newValue);
     		return;
     	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.TRANSITION__OUTPUT:
-    		setOutput((java.lang.String) newValue);
+    		setOutput((String) newValue);
     		return;
     	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.TRANSITION__TIME:
     		setTime((int) newValue);
@@ -115,16 +119,16 @@ public class TransitionAdapter extends EObjectAdapter<Transition> implements sim
   public void eUnset(final int featureID) {
     switch (featureID) {
     	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.TRANSITION__SOURCE:
-    		setSource((simplefsm.timedfsmmt.timedfsm.State) null);
+    		setSource((State) null);
     		return;
     	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.TRANSITION__TARGET:
-    		setTarget((simplefsm.timedfsmmt.timedfsm.State) null);
+    		setTarget((State) null);
     		return;
     	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.TRANSITION__INPUT:
-    		setInput((java.lang.String) null);
+    		setInput((String) null);
     		return;
     	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.TRANSITION__OUTPUT:
-    		setOutput((java.lang.String) null);
+    		setOutput((String) null);
     		return;
     	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.TRANSITION__TIME:
     		setTime((Integer) null);

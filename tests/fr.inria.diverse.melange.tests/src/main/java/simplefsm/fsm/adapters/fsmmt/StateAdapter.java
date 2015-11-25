@@ -29,6 +29,8 @@ public class StateAdapter extends EObjectAdapter<State> implements simplefsm.fsm
     adaptee.setName(o) ;
   }
   
+  private FSM owningFSM;
+  
   @Override
   public FSM getOwningFSM() {
     return adaptersFactory.createFSMAdapter(adaptee.getOwningFSM(), eResource) ;
@@ -39,14 +41,22 @@ public class StateAdapter extends EObjectAdapter<State> implements simplefsm.fsm
     adaptee.setOwningFSM(((simplefsm.fsm.adapters.fsmmt.FSMAdapter) o).getAdaptee()) ;
   }
   
+  private EList<Transition> outgoingTransition;
+  
   @Override
   public EList<Transition> getOutgoingTransition() {
-    return EListAdapter.newInstance(adaptee.getOutgoingTransition(), simplefsm.fsm.adapters.fsmmt.TransitionAdapter.class) ;
+    if (outgoingTransition == null)
+    	outgoingTransition = EListAdapter.newInstance(adaptee.getOutgoingTransition(), adaptersFactory) ;
+    return outgoingTransition;
   }
+  
+  private EList<Transition> incomingTransition;
   
   @Override
   public EList<Transition> getIncomingTransition() {
-    return EListAdapter.newInstance(adaptee.getIncomingTransition(), simplefsm.fsm.adapters.fsmmt.TransitionAdapter.class) ;
+    if (incomingTransition == null)
+    	incomingTransition = EListAdapter.newInstance(adaptee.getIncomingTransition(), adaptersFactory) ;
+    return incomingTransition;
   }
   
   @Override
@@ -74,18 +84,18 @@ public class StateAdapter extends EObjectAdapter<State> implements simplefsm.fsm
   public void eSet(final int featureID, final Object newValue) {
     switch (featureID) {
     	case simplefsm.fsmmt.fsm.FsmPackage.STATE__OWNING_FSM:
-    		setOwningFSM((simplefsm.fsmmt.fsm.FSM) newValue);
+    		setOwningFSM((FSM) newValue);
     		return;
     	case simplefsm.fsmmt.fsm.FsmPackage.STATE__NAME:
-    		setName((java.lang.String) newValue);
+    		setName((String) newValue);
     		return;
     	case simplefsm.fsmmt.fsm.FsmPackage.STATE__OUTGOING_TRANSITION:
     		getOutgoingTransition().clear();
-    		getOutgoingTransition().addAll((Collection<? extends simplefsm.fsmmt.fsm.Transition>) newValue);
+    		getOutgoingTransition().addAll((Collection<? extends Transition>) newValue);
     		return;
     	case simplefsm.fsmmt.fsm.FsmPackage.STATE__INCOMING_TRANSITION:
     		getIncomingTransition().clear();
-    		getIncomingTransition().addAll((Collection<? extends simplefsm.fsmmt.fsm.Transition>) newValue);
+    		getIncomingTransition().addAll((Collection<? extends Transition>) newValue);
     		return;
     }
     
@@ -96,10 +106,10 @@ public class StateAdapter extends EObjectAdapter<State> implements simplefsm.fsm
   public void eUnset(final int featureID) {
     switch (featureID) {
     	case simplefsm.fsmmt.fsm.FsmPackage.STATE__OWNING_FSM:
-    		setOwningFSM((simplefsm.fsmmt.fsm.FSM) null);
+    		setOwningFSM((FSM) null);
     		return;
     	case simplefsm.fsmmt.fsm.FsmPackage.STATE__NAME:
-    		setName((java.lang.String) null);
+    		setName((String) null);
     		return;
     	case simplefsm.fsmmt.fsm.FsmPackage.STATE__OUTGOING_TRANSITION:
     		getOutgoingTransition().clear();
