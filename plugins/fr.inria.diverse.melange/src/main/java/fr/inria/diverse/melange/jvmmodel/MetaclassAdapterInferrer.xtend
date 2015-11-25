@@ -192,7 +192,9 @@ class MetaclassAdapterInferrer
 				parameters += mm.toParameter("o", refType)
 
 				body = '''
-					adaptee.«mmRef.setterName»(((«adapName») o).getAdaptee()) ;
+					if (o != null)
+						adaptee.«mmRef.setterName»(((«adapName») o).getAdaptee()) ;
+					else adaptee.«mmRef.setterName»(null) ;
 				'''
 			]
 		}
