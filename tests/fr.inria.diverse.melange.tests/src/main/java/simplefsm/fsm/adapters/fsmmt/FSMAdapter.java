@@ -36,7 +36,9 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements simplefsm.fsmmt.f
   
   @Override
   public void setInitialState(final State o) {
-    adaptee.setInitialState(((simplefsm.fsm.adapters.fsmmt.StateAdapter) o).getAdaptee()) ;
+    if (o != null)
+    	adaptee.setInitialState(((simplefsm.fsm.adapters.fsmmt.StateAdapter) o).getAdaptee()) ;
+    else adaptee.setInitialState(null) ;
   }
   
   private EList<State> finalState;

@@ -36,7 +36,9 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements simplefsm.timedfs
   
   @Override
   public void setInitialState(final State o) {
-    adaptee.setInitialState(((simplefsm.timedfsm.adapters.timedfsmmt.StateAdapter) o).getAdaptee()) ;
+    if (o != null)
+    	adaptee.setInitialState(((simplefsm.timedfsm.adapters.timedfsmmt.StateAdapter) o).getAdaptee()) ;
+    else adaptee.setInitialState(null) ;
   }
   
   private EList<State> finalState;
