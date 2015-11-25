@@ -105,6 +105,23 @@ class ResourceTest
 	}
 
 	@Test
+	def void testEListEquality() {
+		assertEquals(wRoot.ownedState, wRoot.ownedState)
+		assertEquals(root.ownedState, root.ownedState)
+	}
+
+	@Test
+	def void testEObjectEquality() {
+		assertEquals(root.ownedState.head, root.ownedState.head)
+	}
+
+	@Test
+	def void testDifferentReferencesContainingSameObjectsEquality() {
+		assertEquals(root.ownedState.get(2), root.finalState.head)
+		assertEquals(root.ownedState.get(3), root.finalState.get(1))
+	}
+
+	@Test
 	def void testEListContainsEObject() {
 		assertTrue(root.ownedState.contains(root.ownedState.head))
 	}
