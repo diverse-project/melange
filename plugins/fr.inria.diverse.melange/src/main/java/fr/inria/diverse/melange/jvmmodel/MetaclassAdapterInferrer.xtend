@@ -158,21 +158,24 @@ class MetaclassAdapterInferrer
 	 */
 	private def void processReference(EReference ref, EClass mmCls, Metamodel mm, ModelType superType, Mapping mapping, JvmGenericType jvmCls) {
 		val refType = superType.typeRef(ref, #[jvmCls])
-		val adapName = mm.adapterNameFor(superType, ref.EReferenceType)
 		val mmRef = mapping.findCorrespondingFeature(mmCls, ref)
+		val adapName = mm.adapterNameFor(superType, ref.EReferenceType)
 
 		if (ref.isEMFMapDetails) // Special case: EMF Map$Entry
 			jvmCls.members += mm.toMethod("getDetails", EMap.typeRef(String.typeRef, String.typeRef))[
 				body = '''return adaptee.getDetails() ;'''
 			]
-		else
+		else {
+			jvmCls.members += mm.toField(ref.name, refType)
 			jvmCls.members += mm.toMethod(ref.getterName, refType)[
 				annotations += Override.annotationRef
 
 				body = '''
 					«IF mm.owningLanguage.hasAdapterFor(superType, ref.EReferenceType)»
 						«IF ref.many»
-							return «EListAdapter».newInstance(adaptee.«mmRef.getterName»(), «adapName».class) ;
+							if («ref.name» == null)
+								«ref.name» = «EListAdapter».newInstance(adaptee.«mmRef.getterName»(), adaptersFactory) ;
+							return «ref.name»;
 						«ELSE»
 							return adaptersFactory.create«mm.simpleAdapterNameFor(superType, ref.EReferenceType)»(adaptee.«mmRef.getterName»(), eResource) ;
 						«ENDIF»
@@ -181,6 +184,7 @@ class MetaclassAdapterInferrer
 					«ENDIF»
 				'''
 			]
+		}
 
 		if (ref.needsSetter) {
 			jvmCls.members += mm.toMethod(ref.setterName, Void::TYPE.typeRef)[
@@ -260,7 +264,7 @@ class MetaclassAdapterInferrer
 			m.body = '''
 				«IF op.EType instanceof EClass && mm.owningLanguage.hasAdapterFor(superType, op.EType)»
 					«IF op.many»
-						return «EListAdapter».newInstance(adaptee.«opName»(«paramsList»), «mm.adapterNameFor(superType, op.EType as EClass)».class) ;
+						return «EListAdapter».newInstance(adaptee.«opName»(«paramsList»), adaptersFactory) ;
 					«ELSE»
 						return adaptersFactory.create«mm.simpleAdapterNameFor(superType, op.EType as EClass)»(adaptee.«opName»(«paramsList»), eResource) ;
 					«ENDIF»
@@ -398,7 +402,7 @@ class MetaclassAdapterInferrer
 					«IF retType.isValidReturnType»
 						«IF mm.owningLanguage.hasAdapterFor(superType, realType)»
 							«IF op.returnType.isCollection»
-								return «EListAdapter».newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), «mm.adapterNameFor(superType, realType)».class) ;
+								return «EListAdapter».newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), adaptersFactory) ;
 							«ELSE»
 								return adaptersFactory.create«mm.simpleAdapterNameFor(superType, realType)»(«asp.qualifiedName».«op.simpleName»(«paramsList»), eResource) ;
 							«ENDIF»
