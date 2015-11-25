@@ -163,10 +163,11 @@ class LanguageInferrer
 						parameters += l.toParameter("res", Resource.typeRef)
 
 						body = '''
+							if (adaptee == null)
+								return null;
 							«EObjectAdapter» adapter = register.get(adaptee);
-							if(adapter != null) {
+							if(adapter != null)
 								 return («adapName») adapter;
-							}
 							else {
 								adapter = new «adapName»() ;
 								adapter.setAdaptee(adaptee) ;
