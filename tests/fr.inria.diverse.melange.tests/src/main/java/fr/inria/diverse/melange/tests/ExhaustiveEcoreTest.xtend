@@ -2,8 +2,8 @@ package fr.inria.diverse.melange.tests
 
 import com.google.inject.Inject
 import exhaustive.AbstractTest
+import fr.inria.diverse.melange.adapters.EListAdapter
 import fr.inria.diverse.melange.adapters.GenericAdapter
-import fr.inria.diverse.melange.adapters.ListAdapter
 import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.lib.IModelType
 import fr.inria.diverse.melange.metamodel.melange.Language
@@ -109,7 +109,7 @@ class ExhaustiveEcoreTest
 				IModelType,
 				GenericAdapter,
 				MelangeRegistry,
-				ListAdapter,
+				EListAdapter,
 				Resource,
 				EObject,
 				EList,

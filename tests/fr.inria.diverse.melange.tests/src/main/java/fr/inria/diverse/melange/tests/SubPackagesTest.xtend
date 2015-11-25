@@ -1,37 +1,23 @@
 package fr.inria.diverse.melange.tests
 
 import com.google.inject.Inject
-
+import fr.inria.diverse.melange.adapters.EListAdapter
 import fr.inria.diverse.melange.adapters.GenericAdapter
-import fr.inria.diverse.melange.adapters.ListAdapter
-
 import fr.inria.diverse.melange.lib.IModelType
-
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
-
 import fr.inria.diverse.melange.resource.MelangeRegistry
-
 import fr.inria.diverse.melange.tests.common.MelangeTestHelper
 import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
-
 import fr.inria.diverse.melange.tools.xtext.testing.XtextTest
-
 import org.eclipse.emf.common.util.EList
-
 import org.eclipse.emf.ecore.resource.Resource
-
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
-
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.InMemoryFileSystemAccess
-
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
-
 import org.junit.Test
-
 import org.junit.runner.RunWith
-
 import toppkg.TopClass1
 
 import static org.junit.Assert.*
@@ -61,7 +47,7 @@ class SubPackagesTest
 				MelangeRegistry,
 				IModelType,
 				GenericAdapter,
-				ListAdapter,
+				EListAdapter,
 				Resource,
 				EList,
 				Exceptions,
