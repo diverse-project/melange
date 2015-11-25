@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.Diagnostician
-import org.eclipse.emf.ecore.util.EcoreUtil.ExternalCrossReferencer
+import org.eclipse.emf.ecore.util.EcoreUtil
 import org.junit.Before
 import org.junit.Test
 import simplefsm.StandaloneSetup
@@ -138,6 +138,37 @@ class ResourceTest
 	}
 
 	@Test
+	def void testURIFragments() {
+		assertEquals("/",
+			res.getURIFragment(root))
+		assertEquals("//@ownedState.0",
+			res.getURIFragment(root.ownedState.head))
+		assertEquals("//@ownedState.0/@outgoingTransition.0",
+			res.getURIFragment(root.ownedState.head.outgoingTransition.head))
+	}
+
+	@Test
+	def void testGetEObject() {
+		val wObj1 = wRes.getEObject("/") 
+		val obj1 = res.getEObject("/")
+		val wObj2 = wRes.getEObject("//@ownedState.0") 
+		val obj2 = res.getEObject("//@ownedState.0")
+		val wObj3 = wRes.getEObject("//@ownedState.0/@outgoingTransition.0") 
+		val obj3 = res.getEObject("//@ownedState.0/@outgoingTransition.0")
+
+		assertEquals(wObj1, (obj1 as FSMAdapter).adaptee)
+		assertEquals(wObj2, (obj2 as StateAdapter).adaptee)
+		assertEquals(wObj3, (obj3 as TransitionAdapter).adaptee)
+	}
+
+	@Test
+	def void testStupidReflexiveURIGetEObject() {
+		root.eAllContents.forEach[o |
+			assertEquals(o, res.getEObject(res.getURIFragment(o)))
+		]
+	}
+
+	@Test
 	def void testEListIterator() {
 		val i = root.ownedState.iterator
 
@@ -202,15 +233,10 @@ class ResourceTest
 	}
 
 	@Test
-	def void testSave() {
-		val newRes = rs.createResource(URI::createURI("output.fsm"))
-		newRes.contents += root
-
-		try {
-			newRes.save(null)
-		} catch (Exception e) {
-			e.printStackTrace
-		}
+	def void testSimpleSave() {
+		EcoreUtil::delete(root.ownedState.head.outgoingTransition.head)
+		res.URI = URI::createURI("output/Simple.fsm")
+		res.save(null)
 	}
 
 	@Test
@@ -257,7 +283,6 @@ class ResourceTest
 
 		assertEquals(FsmPackage::eINSTANCE.FSM_OwnedState, containmentFeature)
 		assertEquals(container, s1.eGet(containmentFeature))
-		assertNull(container.eContainmentFeature)
 	}
 
 	@Test
