@@ -2,6 +2,7 @@ package fr.inria.diverse.melange.adapters
 
 import org.eclipse.emf.common.util.AbstractTreeIterator
 import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.impl.BasicEObjectImpl
 import org.eclipse.emf.ecore.impl.EObjectImpl
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.util.BasicInternalEList
@@ -39,6 +40,10 @@ abstract class EObjectAdapter<E extends EObject> extends EObjectImpl implements 
 
 	override eInternalContainer() {
 		return adaptersFactory.createAdapter(adaptee.eContainer, eResource)
+	}
+
+	override eContainerFeatureID() {
+		return (adaptee as BasicEObjectImpl).eContainerFeatureID
 	}
 
 	override eContents() {
