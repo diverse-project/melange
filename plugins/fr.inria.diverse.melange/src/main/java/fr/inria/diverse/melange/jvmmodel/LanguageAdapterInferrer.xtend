@@ -11,6 +11,7 @@ import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import java.io.IOException
 import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.impl.EFactoryImpl
 import org.eclipse.xtext.common.types.TypesFactory
 import org.eclipse.xtext.naming.IQualifiedNameProvider
@@ -86,6 +87,14 @@ class LanguageAdapterInferrer
 
 				newCreate.returnType = superType.typeRef(cls, #[newCreate])
 				members += newCreate
+			]
+
+			members += l.toMethod("getEPackage", EPackage.typeRef)[
+				annotations += Override.annotationRef
+
+				body = '''
+					return get«superType.packageName»();
+				'''
 			]
 
 			members += l.toMethod("get" + superType.packageName, superType.packageFqn.typeRef)[
