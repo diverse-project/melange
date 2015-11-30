@@ -177,7 +177,7 @@ class MetaclassAdapterInferrer
 								«ref.name» = «EListAdapter».newInstance(adaptee.«mmRef.getterName»(), adaptersFactory) ;
 							return «ref.name»;
 						«ELSE»
-							return adaptersFactory.create«mm.simpleAdapterNameFor(superType, ref.EReferenceType)»(adaptee.«mmRef.getterName»(), eResource) ;
+							return («refType») adaptersFactory.createAdapter(adaptee.«mmRef.getterName»(), eResource) ;
 						«ENDIF»
 					«ELSE»
 						return adaptee.«mmRef.getterName»();
@@ -268,7 +268,7 @@ class MetaclassAdapterInferrer
 					«IF op.many»
 						return «EListAdapter».newInstance(adaptee.«opName»(«paramsList»), adaptersFactory) ;
 					«ELSE»
-						return adaptersFactory.create«mm.simpleAdapterNameFor(superType, op.EType as EClass)»(adaptee.«opName»(«paramsList»), eResource) ;
+						return («superType.typeRef(op, #[jvmCls])») adaptersFactory.createAdapter(adaptee.«opName»(«paramsList»), eResource) ;
 					«ENDIF»
 				«ELSEIF op.EType !== null»
 					return adaptee.«opName»(«paramsList») ;
@@ -406,7 +406,7 @@ class MetaclassAdapterInferrer
 							«IF op.returnType.isCollection»
 								return «EListAdapter».newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), adaptersFactory) ;
 							«ELSE»
-								return adaptersFactory.create«mm.simpleAdapterNameFor(superType, realType)»(«asp.qualifiedName».«op.simpleName»(«paramsList»), eResource) ;
+								return («retType») adaptersFactory.createAdapter(«asp.qualifiedName».«op.simpleName»(«paramsList»), eResource) ;
 							«ENDIF»
 						«ELSE»
 							return «asp.qualifiedName».«op.simpleName»(«paramsList») ;
