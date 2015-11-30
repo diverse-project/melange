@@ -129,7 +129,10 @@ class EListAdapter<E extends EObject, F extends EObject> implements GenericAdapt
 	}
 
 	def F decapsulate(Object e) {
-		return (e as GenericAdapter<F>).adaptee
+		if (e instanceof GenericAdapter<?>)
+			return (e as GenericAdapter<F>).adaptee
+		else
+			return e as F
 	}
 
 	override move(int newPosition, E object) {
