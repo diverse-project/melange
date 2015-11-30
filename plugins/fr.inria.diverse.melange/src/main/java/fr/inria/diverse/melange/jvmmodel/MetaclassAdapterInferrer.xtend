@@ -438,7 +438,7 @@ class MetaclassAdapterInferrer
 			body = '''
 				switch (featureID) {
 					«FOR feature : cls.EAllStructuralFeatures»
-					case «superType.packageFqn».«feature.formatFeatureID»:
+					case «superType.packageFqn».«cls.formatFeatureID(feature)»:
 						return «feature.getterName»();
 					«ENDFOR»
 				}
@@ -456,7 +456,7 @@ class MetaclassAdapterInferrer
 			body = '''
 				switch (featureID) {
 					«FOR feature : cls.EAllStructuralFeatures»
-					case «superType.packageFqn».«feature.formatFeatureID»:
+					case «superType.packageFqn».«cls.formatFeatureID(feature)»:
 						«IF feature.many»
 							«feature.getterName»().clear();
 							«feature.getterName»().addAll((«Collection»<? extends «superType.typeRef(feature.EType, #[jvmCls])»>) newValue);
@@ -479,7 +479,7 @@ class MetaclassAdapterInferrer
 			body = '''
 				switch (featureID) {
 					«FOR feature : cls.EAllStructuralFeatures»
-					case «superType.packageFqn».«feature.formatFeatureID»:
+					case «superType.packageFqn».«cls.formatFeatureID(feature)»:
 						«IF feature.many»
 							«feature.getterName»().clear();
 						«ELSEIF feature.needsSetter»

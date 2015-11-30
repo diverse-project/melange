@@ -34,8 +34,8 @@ class EcoreExtensions
 		return EcoreUtil.equals(o1, o2)
 	}
 
-	def String formatFeatureID(EStructuralFeature it) {
-		return '''«EContainingClass.name.camelToUnderscores»__«name.camelToUnderscores»'''
+	def String formatFeatureID(EClass cls, EStructuralFeature f) {
+		return '''«cls.name.camelToUnderscores»__«f.name.camelToUnderscores»'''
 	}
 
 	def String camelToUnderscores(String s) {
