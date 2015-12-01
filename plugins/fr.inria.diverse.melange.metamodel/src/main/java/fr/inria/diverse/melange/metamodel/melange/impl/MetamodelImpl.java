@@ -5,20 +5,11 @@ package fr.inria.diverse.melange.metamodel.melange.impl;
 import fr.inria.diverse.melange.metamodel.melange.Language;
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
 import fr.inria.diverse.melange.metamodel.melange.Metamodel;
-
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
@@ -29,23 +20,12 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * The following features are implemented:
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getOwningLanguage <em>Owning Language</em>}</li>
- *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.MetamodelImpl#getGenmodelUris <em>Genmodel Uris</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
-	/**
-	 * The cached value of the '{@link #getGenmodelUris() <em>Genmodel Uris</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGenmodelUris()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<String> genmodelUris;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -111,18 +91,6 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<String> getGenmodelUris() {
-		if (genmodelUris == null) {
-			genmodelUris = new EDataTypeUniqueEList<String>(String.class, this, MelangePackage.METAMODEL__GENMODEL_URIS);
-		}
-		return genmodelUris;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -172,8 +140,6 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 		switch (featureID) {
 			case MelangePackage.METAMODEL__OWNING_LANGUAGE:
 				return getOwningLanguage();
-			case MelangePackage.METAMODEL__GENMODEL_URIS:
-				return getGenmodelUris();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -190,10 +156,6 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 			case MelangePackage.METAMODEL__OWNING_LANGUAGE:
 				setOwningLanguage((Language)newValue);
 				return;
-			case MelangePackage.METAMODEL__GENMODEL_URIS:
-				getGenmodelUris().clear();
-				getGenmodelUris().addAll((Collection<? extends String>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -209,9 +171,6 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 			case MelangePackage.METAMODEL__OWNING_LANGUAGE:
 				setOwningLanguage((Language)null);
 				return;
-			case MelangePackage.METAMODEL__GENMODEL_URIS:
-				getGenmodelUris().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -226,26 +185,8 @@ public class MetamodelImpl extends ModelingElementImpl implements Metamodel {
 		switch (featureID) {
 			case MelangePackage.METAMODEL__OWNING_LANGUAGE:
 				return getOwningLanguage() != null;
-			case MelangePackage.METAMODEL__GENMODEL_URIS:
-				return genmodelUris != null && !genmodelUris.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (genmodelUris: ");
-		result.append(genmodelUris);
-		result.append(')');
-		return result.toString();
 	}
 
 } //MetamodelImpl

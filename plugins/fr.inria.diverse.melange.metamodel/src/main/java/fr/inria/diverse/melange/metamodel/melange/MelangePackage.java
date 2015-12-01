@@ -160,13 +160,22 @@ public interface MelangePackage extends EPackage {
 	int MODELING_ELEMENT__ECORE_URI = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Genmodel Uris</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODELING_ELEMENT__GENMODEL_URIS = ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Modeling Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODELING_ELEMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
+	int MODELING_ELEMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Modeling Element</em>' class.
@@ -197,6 +206,15 @@ public interface MelangePackage extends EPackage {
 	int METAMODEL__ECORE_URI = MODELING_ELEMENT__ECORE_URI;
 
 	/**
+	 * The feature id for the '<em><b>Genmodel Uris</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL__GENMODEL_URIS = MODELING_ELEMENT__GENMODEL_URIS;
+
+	/**
 	 * The feature id for the '<em><b>Owning Language</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -206,22 +224,13 @@ public interface MelangePackage extends EPackage {
 	int METAMODEL__OWNING_LANGUAGE = MODELING_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Genmodel Uris</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METAMODEL__GENMODEL_URIS = MODELING_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Metamodel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL_FEATURE_COUNT = MODELING_ELEMENT_FEATURE_COUNT + 2;
+	int METAMODEL_FEATURE_COUNT = MODELING_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Metamodel</em>' class.
@@ -250,6 +259,15 @@ public interface MelangePackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_TYPE__ECORE_URI = MODELING_ELEMENT__ECORE_URI;
+
+	/**
+	 * The feature id for the '<em><b>Genmodel Uris</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_TYPE__GENMODEL_URIS = MODELING_ELEMENT__GENMODEL_URIS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1371,17 +1389,6 @@ public interface MelangePackage extends EPackage {
 	EReference getMetamodel_OwningLanguage();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link fr.inria.diverse.melange.metamodel.melange.Metamodel#getGenmodelUris <em>Genmodel Uris</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Genmodel Uris</em>'.
-	 * @see fr.inria.diverse.melange.metamodel.melange.Metamodel#getGenmodelUris()
-	 * @see #getMetamodel()
-	 * @generated
-	 */
-	EAttribute getMetamodel_GenmodelUris();
-
-	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.ModelType <em>Model Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1604,6 +1611,17 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getModelingElement_EcoreUri();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link fr.inria.diverse.melange.metamodel.melange.ModelingElement#getGenmodelUris <em>Genmodel Uris</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Genmodel Uris</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.ModelingElement#getGenmodelUris()
+	 * @see #getModelingElement()
+	 * @generated
+	 */
+	EAttribute getModelingElement_GenmodelUris();
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.Mapping <em>Mapping</em>}'.
@@ -2195,14 +2213,6 @@ public interface MelangePackage extends EPackage {
 		EReference METAMODEL__OWNING_LANGUAGE = eINSTANCE.getMetamodel_OwningLanguage();
 
 		/**
-		 * The meta object literal for the '<em><b>Genmodel Uris</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute METAMODEL__GENMODEL_URIS = eINSTANCE.getMetamodel_GenmodelUris();
-
-		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypeImpl <em>Model Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2383,6 +2393,14 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MODELING_ELEMENT__ECORE_URI = eINSTANCE.getModelingElement_EcoreUri();
+
+		/**
+		 * The meta object literal for the '<em><b>Genmodel Uris</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODELING_ELEMENT__GENMODEL_URIS = eINSTANCE.getModelingElement_GenmodelUris();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.MappingImpl <em>Mapping</em>}' class.
