@@ -4,8 +4,8 @@ import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.ASTHelper
 import fr.inria.diverse.melange.ast.ASTProcessingException
 import fr.inria.diverse.melange.ast.LanguageExtensions
-import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
+import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.ResourceType
@@ -35,7 +35,7 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 	@Inject extension LanguageInferrer
 	@Inject extension TransformationInferrer
 	@Inject extension LanguageExtensions
-	@Inject extension MetamodelExtensions
+	@Inject extension ModelingElementExtensions
 	@Inject extension ModelTypeExtensions
 	@Inject extension JvmTypesBuilder
 	@Inject extension IQualifiedNameProvider

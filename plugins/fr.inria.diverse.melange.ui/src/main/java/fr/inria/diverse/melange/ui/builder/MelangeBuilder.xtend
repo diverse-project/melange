@@ -63,12 +63,12 @@ class MelangeBuilder
 				throw new OperationCanceledException
 
 			monitor.subTask("Generating interface for " + mt.name)
-			val ecoreUri = '''platform:/resource/«project.name»/model-gen/«mt.name».ecore'''
 
 			log.debug('''Registering new EPackage for «mt.name» in EMF registry''')
 			if (!EPackage.Registry.INSTANCE.containsKey(mt.pkgs.head.nsURI))
 				EPackage.Registry.INSTANCE.put(mt.pkgs.head.nsURI, mt.pkgs.head)
 
+			val ecoreUri = mt.inferredEcoreUri
 			log.debug('''Serializing Ecore interface description for «mt.name» in «ecoreUri»''')
 			mt.createEcore(ecoreUri, mt.uri)
 			val gmUri = ecoreUri.substring(0, ecoreUri.lastIndexOf(".")) + ".genmodel"

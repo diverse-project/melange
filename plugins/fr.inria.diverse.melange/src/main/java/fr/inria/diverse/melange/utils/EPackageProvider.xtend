@@ -48,6 +48,26 @@ class EPackageProvider
 			}
 
 			switch (m) {
+				ModelType case m.isExtracted:
+					packages.putAll(m.fqn, m.extracted.syntax.packages)
+				Metamodel case m.owningLanguage.hasSuperLanguage: {
+					val pkgsCopy = m.owningLanguage.operators.filter(Inheritance).map[targetLanguage.syntax.packages.map[
+						val copy = EcoreUtil::copy(it)
+						copy.name = m.owningLanguage.name.toLowerCase
+						copy.nsPrefix = copy.name
+						copy.nsURI = '''http://«copy.name»'''
+						return copy
+					]].flatten
+
+//					val newUri = m.createEcore(pkgsCopy.head)
+//					val newGmUri = newUri.trimFileExtension.appendFileExtension("genmodel").toString
+//					pkgsCopy.head.createGenModel(m, newUri.toString, newGmUri)
+
+//					m.ecoreUri = newUri.toString
+//					m.genmodelUris += newGmUri
+
+					packages.putAll(m.fqn, pkgsCopy)
+				}
 				case m.ecoreUri !== null: {
 					val root = modelUtils.loadPkg(m.ecoreUri.toPlatformURI)
 
@@ -62,56 +82,33 @@ class EPackageProvider
 						pkgs.forEach[ESubpackages.clear]
 					}
 				}
-				Metamodel:
-					if (m.owningLanguage.hasSuperLanguage) {
-						val pkgsCopy = m.owningLanguage.operators.filter(Inheritance).map[targetLanguage.syntax.packages.map[
-							val copy = EcoreUtil::copy(it)
-							copy.name = m.owningLanguage.name.toLowerCase
-							copy.nsPrefix = copy.name
-							copy.nsURI = '''http://«copy.name»'''
-							return copy
-						]].flatten
-
-//						val newUri = m.createEcore(pkgsCopy.head)
-//						val newGmUri = newUri.trimFileExtension.appendFileExtension("genmodel").toString
-//						pkgsCopy.head.createGenModel(m, newUri.toString, newGmUri)
-
-//						m.ecoreUri = newUri.toString
-//						m.genmodelUris += newGmUri
-
-						packages.putAll(m.fqn, pkgsCopy)
-					}
-				ModelType:
-					if (m.isExtracted) {
-						packages.putAll(m.fqn, m.extracted.syntax.packages)
-					}
 			}
 		}
 
 		return packages.get(m.fqn)
 	}
 
-	def List<GenModel> getGenModels(Metamodel mm) {
-		if (!genmodels.containsKey(mm.fqn)) {
-			if (mm.genmodelUris.size == 0 && mm.ecoreUri !== null)
-				mm.genmodelUris += mm.ecoreUri.substring(0, mm.ecoreUri.lastIndexOf(".")) + ".genmodel"
-			else {
-				val project = mm.eResource.project
-				if (mm.owningLanguage.isGeneratedByMelange && project !== null)
-					if (project.getFile(mm.owningLanguage.localGenmodelPath).exists)
-						mm.genmodelUris += mm.owningLanguage.localGenmodelUri
-					else if (project.getFile(mm.owningLanguage.externalGenmodelPath).exists)
-						mm.genmodelUris += mm.owningLanguage.externalGenmodelUri
+	def List<GenModel> getGenModels(ModelingElement m) {
+		if (!genmodels.containsKey(m.fqn)) {
+			if (m.genmodelUris.size == 0 && m.ecoreUri !== null)
+				m.genmodelUris += m.ecoreUri.substring(0, m.ecoreUri.lastIndexOf(".")) + ".genmodel"
+			else if (m instanceof Metamodel) {
+				val project = m.eResource.project
+				if (m.owningLanguage.isGeneratedByMelange && project !== null)
+					if (project.getFile(m.owningLanguage.localGenmodelPath).exists)
+						m.genmodelUris += m.owningLanguage.localGenmodelUri
+					else if (project.getFile(m.owningLanguage.externalGenmodelPath).exists)
+						m.genmodelUris += m.owningLanguage.externalGenmodelUri
 			}
-			mm.genmodelUris.forEach[
+			m.genmodelUris.forEach[
 				val gm = modelUtils.loadGenmodel(it.toPlatformURI)
 
 				if (gm !== null)
-					genmodels.put(mm.fqn, gm)
+					genmodels.put(m.fqn, gm)
 			]
 		}
 
-		return genmodels.get(mm.fqn)
+		return genmodels.get(m.fqn)
 	}
 	
 	/**
@@ -130,12 +127,8 @@ class EPackageProvider
 		}
 	}
 
-	def dispatch String getFqn(Metamodel mm) {
-		return mm.owningLanguage.fullyQualifiedName?.toString
-	}
-
-	def dispatch String getFqn(ModelType mt) {
-		return mt.fullyQualifiedName?.toString
+	def String getFqn(ModelingElement m) {
+		return m.fullyQualifiedName?.toString
 	}
 
 	private def String toPlatformURI(String uri) {

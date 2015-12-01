@@ -5,6 +5,7 @@ import fr.inria.diverse.melange.ast.ASTHelper
 import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.MetamodelExtensions
+import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.builder.LanguageBuilder
 import fr.inria.diverse.melange.builder.ModelTypingSpaceBuilder
 import fr.inria.diverse.melange.metamodel.melange.Import
@@ -27,8 +28,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
-import org.eclipse.emf.ecore.resource.impl.ResourceImpl
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl
 
 /**
  * This class build languages by merging differents parts declared in each language definitions
@@ -41,6 +40,7 @@ class LanguageProcessor extends DispatchMelangeProcessor{
 	@Inject extension AspectExtensions
 	@Inject extension LanguageExtensions
 	@Inject extension MetamodelExtensions
+	@Inject extension ModelTypeExtensions
 	@Inject JvmTypesBuilder typesBuilder
 	@Inject JvmTypeReferenceBuilder.Factory typeRefBuilderFactory
 	JvmTypeReferenceBuilder typeRefBuilder
@@ -52,6 +52,7 @@ class LanguageProcessor extends DispatchMelangeProcessor{
 //		builder.reset
 		
 		root.languages.forEach[language |
+			language.initializeExactType
 			language.initializeSyntax
 		]
 		root.languages.forEach[language |
@@ -174,6 +175,11 @@ class LanguageProcessor extends DispatchMelangeProcessor{
 		}
 		
 		
+	}
+
+	def void initializeExactType(Language language) {
+		if (language.exactType !== null)
+			language.exactType.ecoreUri = language.exactType.inferredEcoreUri
 	}
 	
 	def void initializeSemantic(Language language) {

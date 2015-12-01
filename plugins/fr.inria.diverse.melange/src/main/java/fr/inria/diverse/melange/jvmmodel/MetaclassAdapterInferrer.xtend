@@ -7,6 +7,7 @@ import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
+import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.MappingExtensions
@@ -46,6 +47,7 @@ class MetaclassAdapterInferrer
 	@Inject extension NamingHelper
 	@Inject extension ModelTypeExtensions
 	@Inject extension AspectExtensions
+	@Inject extension ModelingElementExtensions
 	@Inject extension MetamodelExtensions
 	@Inject extension LanguageExtensions
 	@Inject extension EcoreExtensions
@@ -177,7 +179,7 @@ class MetaclassAdapterInferrer
 								«ref.name» = «EListAdapter».newInstance(adaptee.«mmRef.getterName»(), adaptersFactory) ;
 							return «ref.name»;
 						«ELSE»
-							return («refType») adaptersFactory.createAdapter(adaptee.«mmRef.getterName»(), eResource) ;
+							return («refType.type») adaptersFactory.createAdapter(adaptee.«mmRef.getterName»(), eResource) ;
 						«ENDIF»
 					«ELSE»
 						return adaptee.«mmRef.getterName»();
@@ -268,7 +270,7 @@ class MetaclassAdapterInferrer
 					«IF op.many»
 						return «EListAdapter».newInstance(adaptee.«opName»(«paramsList»), adaptersFactory) ;
 					«ELSE»
-						return («superType.typeRef(op, #[jvmCls])») adaptersFactory.createAdapter(adaptee.«opName»(«paramsList»), eResource) ;
+						return («superType.typeRef(op, #[jvmCls]).type») adaptersFactory.createAdapter(adaptee.«opName»(«paramsList»), eResource) ;
 					«ENDIF»
 				«ELSEIF op.EType !== null»
 					return adaptee.«opName»(«paramsList») ;
@@ -406,7 +408,7 @@ class MetaclassAdapterInferrer
 							«IF op.returnType.isCollection»
 								return «EListAdapter».newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), adaptersFactory) ;
 							«ELSE»
-								return («retType») adaptersFactory.createAdapter(«asp.qualifiedName».«op.simpleName»(«paramsList»), eResource) ;
+								return («retType.type») adaptersFactory.createAdapter(«asp.qualifiedName».«op.simpleName»(«paramsList»), eResource) ;
 							«ENDIF»
 						«ELSE»
 							return «asp.qualifiedName».«op.simpleName»(«paramsList») ;
@@ -420,6 +422,8 @@ class MetaclassAdapterInferrer
 	}
 
 	private def void processReflectiveLayer(EClass cls, Metamodel mm, ModelType superType, JvmGenericType jvmCls) {
+		val genCls = superType.getGenClassFor(cls)
+
 		jvmCls.members += mm.toMethod("eClass", EClass.typeRef)[
 			annotations += Override.annotationRef
 
