@@ -423,6 +423,20 @@ class MetaclassAdapterInferrer
 
 	private def void processReflectiveLayer(EClass cls, Metamodel mm, ModelType superType, JvmGenericType jvmCls) {
 		val genCls = superType.getGenClassFor(cls)
+		val negativeOffsetCorrection =
+			if (genCls.hasOffsetCorrection) " - " + genCls.getOffsetCorrectionField(null)
+			else ""
+
+		genCls.allGenFeatures
+		.filter[hasEDefault && !volatile]
+		.forEach[genFeature |
+			jvmCls.members += mm.toField(genFeature.EDefault, genFeature.getImportedType(genCls).typeRef)[
+				visibility = JvmVisibility::PROTECTED
+				static = true
+				final = true
+				initializer = '''«genFeature.staticDefaultValue»'''
+			]
+		]
 
 		jvmCls.members += mm.toMethod("eClass", EClass.typeRef)[
 			annotations += Override.annotationRef
@@ -432,88 +446,116 @@ class MetaclassAdapterInferrer
 			'''
 		]
 
-		jvmCls.members += mm.toMethod("eGet", Object.typeRef)[
-			annotations += Override.annotationRef
+		if (!genCls.allGenFeatures.empty) {
+			jvmCls.members += mm.toMethod("eGet", Object.typeRef)[
+				annotations += Override.annotationRef
 
-			parameters += mm.toParameter("featureID", Integer::TYPE.typeRef)
-			parameters += mm.toParameter("resolve", Boolean::TYPE.typeRef)
-			parameters += mm.toParameter("coreType", Boolean::TYPE.typeRef)
+				parameters += mm.toParameter("featureID", Integer::TYPE.typeRef)
+				parameters += mm.toParameter("resolve", Boolean::TYPE.typeRef)
+				parameters += mm.toParameter("coreType", Boolean::TYPE.typeRef)
 
-			body = '''
-				switch (featureID) {
-					«FOR feature : cls.EAllStructuralFeatures»
-					case «superType.packageFqn».«cls.formatFeatureID(feature)»:
-						return «feature.getterName»();
-					«ENDFOR»
-				}
+				body = '''
+					switch (featureID«negativeOffsetCorrection») {
+						«FOR genFeature : genCls.allGenFeatures»
+						case «genCls.getQualifiedFeatureID(genFeature)»:
+							«IF genFeature.primitiveType»
+								«IF genFeature.booleanType»
+									return «genFeature.getAccessor»() ? Boolean.TRUE : Boolean.FALSE;
+								«ELSE»
+									return new «genFeature.getObjectType(genCls)»(«genFeature.getAccessor»());
+								«ENDIF»
+							«ELSE» 
+								return «genFeature.getAccessor»();
+							«ENDIF»
+						«ENDFOR»
+					}
 
-				return super.eGet(featureID, resolve, coreType);
-			'''
-		]
+					return super.eGet(featureID, resolve, coreType);
+				'''
+			]
 
-		jvmCls.members += mm.toMethod("eSet", Void::TYPE.typeRef)[
-			annotations += Override.annotationRef
+			jvmCls.members += mm.toMethod("eUnset", Void::TYPE.typeRef)[
+				annotations += Override.annotationRef
 
-			parameters += mm.toParameter("featureID", Integer::TYPE.typeRef)
-			parameters += mm.toParameter("newValue", Object.typeRef)
+				parameters += mm.toParameter("featureID", Integer::TYPE.typeRef)
 
-			body = '''
-				switch (featureID) {
-					«FOR feature : cls.EAllStructuralFeatures»
-					case «superType.packageFqn».«cls.formatFeatureID(feature)»:
-						«IF feature.many»
-							«feature.getterName»().clear();
-							«feature.getterName»().addAll((«Collection»<? extends «superType.typeRef(feature.EType, #[jvmCls])»>) newValue);
-						«ELSEIF feature.needsSetter»
-							«feature.setterName»((«superType.typeRef(feature, #[jvmCls])») newValue);
-						«ENDIF»
+				body = '''
+					switch (featureID«negativeOffsetCorrection») {
+						«FOR genFeature : genCls.allGenFeatures»
+						case «genCls.getQualifiedFeatureID(genFeature)»:
+							«IF genFeature.listType && ! genFeature.unsettable»
+								«genFeature.getAccessor»().clear();
+							«ELSEIF genFeature.unsettable»
+								unset«genFeature.accessorName»();
+							«ELSEIF !genFeature.hasEDefault»
+								set«genFeature.accessorName»((«genFeature.getImportedType(genCls)») null);
+							«ELSE»
+								set«genFeature.accessorName»(«genFeature.EDefault»);
+							«ENDIF»
+						«ENDFOR»
 						return;
-					«ENDFOR»
-				}
+					}
 
-				super.eSet(featureID, newValue);
-			'''
-		]
+					super.eUnset(featureID);
+				'''
+			]
 
-		jvmCls.members += mm.toMethod("eUnset", Void::TYPE.typeRef)[
-			annotations += Override.annotationRef
+			jvmCls.members += mm.toMethod("eIsSet", Boolean::TYPE.typeRef)[
+				annotations += Override.annotationRef
 
-			parameters += mm.toParameter("featureID", Integer::TYPE.typeRef)
+				parameters += mm.toParameter("featureID", Integer::TYPE.typeRef)
 
-			body = '''
-				switch (featureID) {
-					«FOR feature : cls.EAllStructuralFeatures»
-					case «superType.packageFqn».«cls.formatFeatureID(feature)»:
-						«IF feature.many»
-							«feature.getterName»().clear();
-						«ELSEIF feature.needsSetter»
-							«feature.setterName»((«superType.typeRef(feature, #[jvmCls]).wrapperIfPrimitiveType») null);
-						«ENDIF»
-						return;
-					«ENDFOR»
-				}
+				body = '''
+					switch (featureID«negativeOffsetCorrection») {
+						«FOR genFeature : genCls.allGenFeatures»
+						case «genCls.getQualifiedFeatureID(genFeature)»:
+							«IF genFeature.listType && !genFeature.unsettable»
+								return «genFeature.getAccessor»() != null && !«genFeature.getAccessor»().isEmpty();
+							«ELSEIF genFeature.unsettable»
+								return isSet«genFeature.accessorName»();
+							«ELSEIF !genFeature.hasEDefault»
+								return «genFeature.getAccessor»() != null;
+							«ELSE»
+								return «genFeature.getAccessor»() != «genFeature.EDefault»;
+							«ENDIF»
+						«ENDFOR»
+					}
 
-				super.eUnset(featureID);
-			'''
-		]
+					return super.eIsSet(featureID);
+				'''
+			]
+		}
+
+		if (!genCls.allGenFeatures.filter[changeable].empty)
+			jvmCls.members += mm.toMethod("eSet", Void::TYPE.typeRef)[
+				annotations += Override.annotationRef
+
+				parameters += mm.toParameter("featureID", Integer::TYPE.typeRef)
+				parameters += mm.toParameter("newValue", Object.typeRef)
+
+				body = '''
+					switch (featureID«negativeOffsetCorrection») {
+						«FOR genFeature : genCls.allGenFeatures.filter[changeable]»
+						case «genCls.getQualifiedFeatureID(genFeature)»:
+							«IF genFeature.listType»
+								«genFeature.getAccessor»().clear();
+								«genFeature.getAccessor»().addAll((«Collection») newValue);
+							«ELSEIF genFeature.primitiveType»
+								set«genFeature.accessorName»(((«genFeature.getObjectType(genCls)») newValue).«genFeature.primitiveValueFunction»());
+							«ELSE»
+								set«genFeature.accessorName»(«IF genFeature.typeGenDataType === null || !genFeature.typeGenDataType.isObjectType || !genFeature.rawType.equals(genFeature.getType(genCls))»(«genFeature.getObjectType(genCls)»)«ENDIF» newValue);
+							«ENDIF»
+							return;
+						«ENDFOR»
+					}
+
+					super.eSet(featureID, newValue);
+				'''
+			]
 	}
 
 	private def boolean isValidReturnType(JvmTypeReference ref) {
 		return ref.type !== null && ref.type.simpleName != "void" && ref.type.simpleName != "null"
-	}
-
-	private def JvmTypeReference wrapperIfPrimitiveType(JvmTypeReference ref) {
-		return
-			switch (ref.simpleName) {
-				case "int": Integer.typeRef
-				case "float": Float.typeRef
-				case "boolean": Boolean.typeRef
-				case "double": Double.typeRef
-				case "short": Short.typeRef
-				case "byte": Byte.typeRef
-				case "char": Character.typeRef
-				default: ref
-			}
 	}
 
 	private def Iterable<Aspect> sortByOverridingPriority(Iterable<Aspect> aspects) {
