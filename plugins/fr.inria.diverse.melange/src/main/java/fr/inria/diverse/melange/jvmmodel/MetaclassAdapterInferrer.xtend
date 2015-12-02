@@ -426,6 +426,9 @@ class MetaclassAdapterInferrer
 		val negativeOffsetCorrection =
 			if (genCls.hasOffsetCorrection) " - " + genCls.getOffsetCorrectionField(null)
 			else ""
+		val positiveOffsetCorrection =
+			if (genCls.hasOffsetCorrection) " + " + genCls.getOffsetCorrectionField(null)
+			else ""
 
 		genCls.allGenFeatures
 		.filter[hasEDefault && !volatile]
@@ -524,6 +527,66 @@ class MetaclassAdapterInferrer
 					return super.eIsSet(featureID);
 				'''
 			]
+
+			if (!genCls.mixinGenFeatures.empty || genCls.hasOffsetCorrection) {
+				jvmCls.members += mm.toMethod("eBaseStructuralFeatureID", Integer::TYPE.typeRef)[
+					annotations += Override.annotationRef
+
+					parameters += mm.toParameter("derivedFeatureID", Integer::TYPE.typeRef)
+					parameters += mm.toParameter("baseClass", Class.typeRef(TypesFactory::eINSTANCE.createJvmWildcardTypeReference))
+
+					body = '''
+						«FOR mixinCls : genCls.mixinGenClasses»
+							if (baseClass == «mixinCls.rawImportedInterfaceName».class) {
+								switch (derivedFeatureID«negativeOffsetCorrection») {
+									«FOR genFeature : mixinCls.genFeatures»
+										case «genCls.getQualifiedFeatureID(genFeature)»:
+											return «mixinCls.getQualifiedFeatureID(genFeature)»;
+									«ENDFOR»
+									default: return -1;
+								}
+							}
+						«ENDFOR»
+
+						return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+					'''
+				]
+
+				jvmCls.members += mm.toMethod("eDerivedStructuralFeatureID", Integer::TYPE.typeRef)[
+					annotations += Override.annotationRef
+
+					parameters += mm.toParameter("baseFeatureID", Integer::TYPE.typeRef)
+					parameters += mm.toParameter("baseClass", Class.typeRef(TypesFactory::eINSTANCE.createJvmWildcardTypeReference))
+
+					body = '''
+						«FOR mixinCls : genCls.mixinGenClasses»
+							if (baseClass == «mixinCls.rawImportedInterfaceName».class) {
+								switch (baseFeatureID) {
+									«FOR genFeature : mixinCls.genFeatures»
+										case «mixinCls.getQualifiedFeatureID(genFeature)»:
+											return «genCls.getQualifiedFeatureID(genFeature)»;
+									«ENDFOR»
+									default: return -1;
+								}
+							}
+						«ENDFOR»
+
+						«IF genCls.hasOffsetCorrection»
+							if (baseClass == «genCls.rawImportedInterfaceName».class) {
+								switch (baseFeatureID«negativeOffsetCorrection») {
+									«FOR genFeature : genCls.genFeatures»
+										case «genCls.getQualifiedFeatureID(genFeature)»:
+											return «genCls.getQualifiedFeatureID(genFeature)»«positiveOffsetCorrection»;
+									«ENDFOR»
+									default: return -1;
+								}
+							}
+						«ENDIF»
+
+						return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+					'''
+				]
+			}
 		}
 
 		if (!genCls.allGenFeatures.filter[changeable].empty)
