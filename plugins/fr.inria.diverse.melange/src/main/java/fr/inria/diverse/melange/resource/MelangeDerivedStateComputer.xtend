@@ -42,13 +42,13 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 	@Inject
 	new(
 		WildcardAspectResolver r,
-		LanguageProcessor l,
 		ExactTypeInferrer e,
+		LanguageProcessor l,
 		TypingInferrer t
 	) {
 		processors += r
-		processors += l
 		processors += e
+		processors += l
 		processors += t
 	}
 
