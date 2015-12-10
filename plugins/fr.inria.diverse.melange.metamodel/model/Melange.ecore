@@ -129,6 +129,11 @@
         eType="#//Mapping" resolveProxies="false" eOpposite="#//Mapping/from"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="semantics" upperBound="-1"
         eType="#//Aspect" containment="true" eOpposite="#//Aspect/owningLanguage"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="xtext" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sirius" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ecl" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Weave" eSuperTypes="#//Operator">
     <eStructuralFeatures xsi:type="ecore:EReference" name="aspectTypeRef" eType="ecore:EClass ../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference"

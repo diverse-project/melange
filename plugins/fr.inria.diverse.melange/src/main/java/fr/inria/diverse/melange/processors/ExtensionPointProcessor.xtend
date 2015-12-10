@@ -1,11 +1,13 @@
 package fr.inria.diverse.melange.processors
 
+import com.google.common.collect.ListMultimap
 import fr.inria.diverse.melange.ast.ASTHelper
 import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
+import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import javax.inject.Inject
 import org.apache.log4j.Logger
@@ -15,6 +17,8 @@ import org.eclipse.pde.internal.core.plugin.WorkspacePluginModel
 import org.eclipse.pde.internal.core.project.PDEProject
 import org.eclipse.xtext.documentation.IEObjectDocumentationProvider
 import org.eclipse.xtext.naming.IQualifiedNameProvider
+import com.google.common.collect.ListMultimap
+import com.google.common.collect.ArrayListMultimap
 
 /**
  * For each model type, create a new fr.inria.diverse.melange.modeltype
@@ -119,6 +123,16 @@ class ExtensionPointProcessor extends DispatchMelangeProcessor
 
 								if (doc !== null && !doc.empty)
 									setAttribute("description", doc)	
+								
+								setAttribute("entryPoints",
+									l.entryPoints
+									 .map[
+									 	val args = parameters.map[it.parameterType.type.qualifiedName].join(',')
+									 	declaringType.qualifiedName+"."+simpleName+"("+args+")"
+									 ]
+									 .join(';')
+								)
+								setAttribute("aspects", l.serializedAspects)
 							]
 
 							// Register adapters
@@ -144,5 +158,25 @@ class ExtensionPointProcessor extends DispatchMelangeProcessor
 
 			fModel.save
 		}
+	}
+	
+	/**
+	 * Return all Aspects following this template:<br>
+	 * aspectizedClass:aspect,aspect,...,aspect;...;aspectizedClass:aspect,aspect,...,aspect
+	 */
+	def private String serializedAspects(Language lang){
+		val mapping = ArrayListMultimap.create
+		lang.semantics.forEach[asp |
+			val aspName = asp.aspectTypeRef.qualifiedName 
+			val targetName = asp.aspectedClass.name
+			mapping.put(targetName,aspName)
+		]
+		
+		return mapping.keySet
+					.map[target|
+						val aspects = mapping.get(target).join(",")
+						target+":"+aspects
+					]
+					.join(";")
 	}
 }
