@@ -26,6 +26,9 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getXtextSetupRef <em>Xtext Setup Ref</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getMappings <em>Mappings</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getSemantics <em>Semantics</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getXtext <em>Xtext</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getSirius <em>Sirius</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getEcl <em>Ecl</em>}</li>
  * </ul>
  * </p>
  *
@@ -309,5 +312,53 @@ public interface Language extends NamedElement {
 	 * @generated
 	 */
 	EList<Aspect> getSemantics();
+
+	/**
+	 * Returns the value of the '<em><b>Xtext</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Xtext</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Xtext</em>' attribute list.
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getLanguage_Xtext()
+	 * @model
+	 * @generated
+	 */
+	EList<String> getXtext();
+
+	/**
+	 * Returns the value of the '<em><b>Sirius</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Sirius</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sirius</em>' attribute list.
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getLanguage_Sirius()
+	 * @model
+	 * @generated
+	 */
+	EList<String> getSirius();
+
+	/**
+	 * Returns the value of the '<em><b>Ecl</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Ecl</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Ecl</em>' attribute list.
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getLanguage_Ecl()
+	 * @model
+	 * @generated
+	 */
+	EList<String> getEcl();
 
 } // Language
