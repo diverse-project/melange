@@ -49,7 +49,7 @@ public abstract class MelangeTemplateSection extends OptionTemplateSection {
 		return null;
 	}
 
-	private String[] getDirectoryCandidates() {
+	protected String[] getDirectoryCandidates() {
 		ArrayList<String> result = new ArrayList<String>();
 		result.add("templates" + "/" + getSectionId() + "/"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$		
 		return (String[]) result.toArray(new String[result.size()]);
