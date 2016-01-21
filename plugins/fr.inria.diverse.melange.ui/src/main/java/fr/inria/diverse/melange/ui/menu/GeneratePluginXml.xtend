@@ -27,7 +27,7 @@ class GeneratePluginXml extends AbstractHandler {
 		try {
 			new ProgressMonitorDialog(shell).run(true, true, new IRunnableWithProgress() {
 				override run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
-					val sel = HandlerUtil.getActiveMenuSelection(event)
+					val sel = HandlerUtil.getCurrentSelection(event)
 					val selection = sel as IStructuredSelection
 					val resource = selection.firstElement as IResource
 					val project = resource.project
