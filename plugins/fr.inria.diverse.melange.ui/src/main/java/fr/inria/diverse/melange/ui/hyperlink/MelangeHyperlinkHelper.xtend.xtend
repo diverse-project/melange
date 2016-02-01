@@ -18,6 +18,9 @@ class MelangeHyperlinkHelper extends XbaseHyperLinkHelper{
     override createHyperlinksByOffset(XtextResource resource, int offset, IHyperlinkAcceptor acceptor) {
         
         val element = getEObjectAtOffsetHelper.resolveElementAt(resource, offset)
+
+		val root = resource.parseResult.rootNode
+		val cursor = NodeModelUtils.findLeafNodeAtOffset(root,offset)
         
         if (element instanceof Import) {            
             
@@ -32,6 +35,23 @@ class MelangeHyperlinkHelper extends XbaseHyperLinkHelper{
             ]
             
             acceptor.accept(hyperlink)
+        }
+        else if(element instanceof Language){
+        	val language = element as Language
+        	val List<INode> nodesOp = NodeModelUtils.findNodesForFeature(language, MelangePackage.eINSTANCE.language_Ecl);
+        	val firstNode = nodesOp.head
+        	
+        	if(firstNode.startLine <= offset && offset <= firstNode.endOffset){
+        		val eclLocation = language.ecl?.head
+        		val uri = URI.createPlatformResourceURI(eclLocation,true)
+        		val nodeRegion = firstNode.textRegion
+        		val hyperlink = hyperlinkProvider.get() => [
+	                hyperlinkRegion = new Region(nodeRegion.offset, nodeRegion.length)
+	                URI = uri
+	                hyperlinkText = ("Open "+ language.name +" ECL file")
+	            ]
+            acceptor.accept(hyperlink)
+        	}
         }
         else {
             super.createHyperlinksByOffset(resource, offset, acceptor)
