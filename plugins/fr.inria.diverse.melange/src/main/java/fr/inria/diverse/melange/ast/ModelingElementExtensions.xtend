@@ -31,7 +31,7 @@ class ModelingElementExtensions
  	 * create the ecore for this ModelingElement
  	 * return the root package  
  	 */
-	def EPackage createEcore(ModelingElement m, String uri, String pkgUri) {
+	def EPackage createEcore(ModelingElement m, String uri, String pkgUri, boolean hideAspectElements) {
 		val resSet = new ResourceSetImpl
 		val res = resSet.createResource(URI::createURI(uri))
 		val rootPkg = m.pkgs.head
@@ -42,20 +42,22 @@ class ModelingElementExtensions
 		val copy = EcoreUtil::copyAll(m.pkgs.filter[ESuperPackage == null].toList)
 
 		if (m instanceof Metamodel) {
-//			val toRemove = <EModelElement>newArrayList
+			val toRemove = <EModelElement>newArrayList
 			val i = copy.head.eAllContents
 			while (i.hasNext) {
 				val obj = i.next
 				
-//				if (obj instanceof EModelElement) {
-//					if (obj.EAnnotations.exists[source == "aspect"]) {
-//						if (obj instanceof EStructuralFeature)
-//							if (!obj.EType.EAnnotations.exists[source == "aspect"]) {}
-//							else toRemove += obj
-//						else
-//							toRemove += obj
-//					}
-//				}
+				if(hideAspectElements){
+					if (obj instanceof EModelElement) {
+						if (obj.EAnnotations.exists[source == "aspect"]) {
+							if (obj instanceof EStructuralFeature)
+								if (!obj.EType.EAnnotations.exists[source == "aspect"]) {}
+								else toRemove += obj
+							else
+								toRemove += obj
+						}
+					}
+				}
 				
 				if (obj instanceof EStructuralFeature) {
 					if (obj.volatile) {
@@ -63,7 +65,7 @@ class ModelingElementExtensions
 					}
 				}
 			}
-//			toRemove.forEach[EcoreUtil::delete(it)]
+			toRemove.forEach[EcoreUtil::delete(it)]
 		}
 
 		// FIXME:

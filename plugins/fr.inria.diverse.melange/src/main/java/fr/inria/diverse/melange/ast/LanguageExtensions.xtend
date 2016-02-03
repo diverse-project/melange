@@ -219,7 +219,7 @@ class LanguageExtensions
 	}
 
 	def void createLocalEcore(Language l) {
-		l.syntax.createEcore(l.localEcoreUri, l.externalPackageUri)
+		l.syntax.createEcore(l.localEcoreUri, l.externalPackageUri, false)
 	}
 
 	def void createLocalGenmodel(Language l) {
@@ -227,7 +227,7 @@ class LanguageExtensions
 	}
 
 	def void createExternalEcore(Language l) {
-		l.syntax.createEcore(l.externalEcoreUri, l.externalPackageUri)
+		l.syntax.createEcore(l.externalEcoreUri, l.externalPackageUri, false)
 	}
 
 	def void createExternalGenmodel(Language l) {
