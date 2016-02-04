@@ -53,6 +53,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getXtext <em>Xtext</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getSirius <em>Sirius</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getEcl <em>Ecl</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getFileExtension <em>File Extension</em>}</li>
  * </ul>
  * </p>
  *
@@ -248,6 +249,26 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 	 * @ordered
 	 */
 	protected EList<String> ecl;
+
+	/**
+	 * The default value of the '{@link #getFileExtension() <em>File Extension</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFileExtension()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String FILE_EXTENSION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getFileExtension() <em>File Extension</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFileExtension()
+	 * @generated
+	 * @ordered
+	 */
+	protected String fileExtension = FILE_EXTENSION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -599,6 +620,27 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getFileExtension() {
+		return fileExtension;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFileExtension(String newFileExtension) {
+		String oldFileExtension = fileExtension;
+		fileExtension = newFileExtension;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.LANGUAGE__FILE_EXTENSION, oldFileExtension, fileExtension));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -684,6 +726,8 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 				return getSirius();
 			case MelangePackage.LANGUAGE__ECL:
 				return getEcl();
+			case MelangePackage.LANGUAGE__FILE_EXTENSION:
+				return getFileExtension();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -750,6 +794,9 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 				getEcl().clear();
 				getEcl().addAll((Collection<? extends String>)newValue);
 				return;
+			case MelangePackage.LANGUAGE__FILE_EXTENSION:
+				setFileExtension((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -807,6 +854,9 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 			case MelangePackage.LANGUAGE__ECL:
 				getEcl().clear();
 				return;
+			case MelangePackage.LANGUAGE__FILE_EXTENSION:
+				setFileExtension(FILE_EXTENSION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -849,6 +899,8 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 				return sirius != null && !sirius.isEmpty();
 			case MelangePackage.LANGUAGE__ECL:
 				return ecl != null && !ecl.isEmpty();
+			case MelangePackage.LANGUAGE__FILE_EXTENSION:
+				return FILE_EXTENSION_EDEFAULT == null ? fileExtension != null : !FILE_EXTENSION_EDEFAULT.equals(fileExtension);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -877,6 +929,8 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 		result.append(sirius);
 		result.append(", ecl: ");
 		result.append(ecl);
+		result.append(", fileExtension: ");
+		result.append(fileExtension);
 		result.append(')');
 		return result.toString();
 	}
