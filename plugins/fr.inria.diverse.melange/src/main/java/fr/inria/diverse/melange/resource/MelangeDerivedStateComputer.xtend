@@ -19,6 +19,7 @@ import org.eclipse.xtext.util.internal.Stopwatches
 import org.eclipse.xtext.xbase.jvmmodel.JvmModelAssociator
 
 import static org.eclipse.xtext.util.internal.Stopwatches.*
+import fr.inria.diverse.melange.processors.ExtensionPointProcessor
 
 /**
  * This class merge aspects into the base model of the metamodel,
@@ -44,12 +45,14 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 		WildcardAspectResolver r,
 		LanguageProcessor l,
 		ExactTypeInferrer e,
-		TypingInferrer t
+		TypingInferrer t,
+		ExtensionPointProcessor p
 	) {
 		processors += r
 		processors += l
 		processors += e
 		processors += t
+		processors += p
 	}
 
 	override discardDerivedState(DerivedStateAwareResource resource) {
