@@ -10,7 +10,7 @@
       <!-- @generated fsm -->
       <package
             uri="http://timedfsm/"
-            class="fsm.FsmPackage"
+            class="timedfsm.fsm.FsmPackage"
             genModel="model/fsm.genmodel"/>
    </extension>
 

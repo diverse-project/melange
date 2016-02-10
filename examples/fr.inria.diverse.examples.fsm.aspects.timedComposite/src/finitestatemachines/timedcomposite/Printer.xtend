@@ -19,11 +19,11 @@ import com.itextpdf.awt.DefaultFontMapper
 import java.awt.Graphics2D
 import java.awt.geom.Rectangle2D
 
-import fsm.State
-import fsm.StateMachine
-import fsm.Fork
-import fsm.Join
-import fsm.CompositeState
+import timedcompositefsm.fsm.State
+import timedcompositefsm.fsm.StateMachine
+import timedcompositefsm.fsm.Fork
+import timedcompositefsm.fsm.Join
+import timedcompositefsm.fsm.CompositeState
 import java.util.List
 import java.util.ArrayList
 

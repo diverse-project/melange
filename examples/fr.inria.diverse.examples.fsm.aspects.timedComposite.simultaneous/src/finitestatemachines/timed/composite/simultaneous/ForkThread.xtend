@@ -6,10 +6,10 @@ import static extension finitestatemachines.timed.composite.simultaneous.StateAs
 
 class ForkThread extends Thread {
 	
-	fsm.State state
+	timedcompositefsm.fsm.State state
 	Context context
 	
-	new (fsm.State _state, Context _context){
+	new (timedcompositefsm.fsm.State _state, Context _context){
 		state = _state
 		context = _context
 	}

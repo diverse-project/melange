@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="ASCII"?>
-<finitestatemachinestimed:StateMachine
+<fsm:StateMachine
     xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:finitestatemachinestimed="http://fr.inria.diverse.examples.fsm.timed"
-    xsi:schemaLocation="http://fr.inria.diverse.examples.fsm.timed ../../fr.inria.diverse.example.fsm.metamodel.timed/model/fsm.ecore"
+    xmlns:fsm="http://timedfsm/"
+    xsi:schemaLocation="http://timedfsm ../../fr.inria.diverse.example.fsm.metamodel.timed/model/fsm.ecore"
     name="Dummie">
-  <states xsi:type="finitestatemachinestimed:InitialState"
+  <states xsi:type="fsm:InitialState"
       name="Init"
       outgoing="//@transitions.0"/>
-  <states xsi:type="finitestatemachinestimed:FinalState"
+  <states xsi:type="fsm:FinalState"
       name="End"
       incoming="//@transitions.9"/>
   <states name="A"
@@ -30,11 +30,11 @@
   <states name="F"
       outgoing="//@transitions.9"
       incoming="//@transitions.8"/>
-  <states xsi:type="finitestatemachinestimed:Fork"
+  <states xsi:type="fsm:Fork"
       name="AToBC"
       outgoing="//@transitions.2 //@transitions.3"
       incoming="//@transitions.1"/>
-  <states xsi:type="finitestatemachinestimed:Join"
+  <states xsi:type="fsm:Join"
       name="DEToP"
       outgoing="//@transitions.8"
       incoming="//@transitions.6 //@transitions.7"/>
@@ -99,4 +99,4 @@
     <trigger
         expression="q"/>
   </transitions>
-</finitestatemachinestimed:StateMachine>
+</fsm:StateMachine>

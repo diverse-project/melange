@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="ASCII"?>
-<finitestatemachinestimedcomposite:StateMachine
+<fsm:StateMachine
     xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:finitestatemachinestimedcomposite="http://fr.inria.diverse.examples.fsm.timedcomposite"
-    xsi:schemaLocation="http://fr.inria.diverse.examples.fsm.timedcomposite ../../fr.inria.diverse.example.fsm.metamodel.timedComposite/model/fsm.ecore"
+    xmlns:fsm="http://timedcompositefsm/"
+    xsi:schemaLocation="http://timedcompositefsm/ ../../fr.inria.diverse.example.fsm.metamodel.timedComposite/model/fsm.ecore"
     name="Dummie">
-  <states xsi:type="finitestatemachinestimedcomposite:InitialState"
+  <states xsi:type="fsm:InitialState"
       name="Init"
       outgoing="//@transitions.0"/>
-  <states xsi:type="finitestatemachinestimedcomposite:FinalState"
+  <states xsi:type="fsm:FinalState"
       name="End"
       incoming="//@transitions.5"/>
   <states name="A"
@@ -18,19 +18,19 @@
   <states name="F"
       outgoing="//@transitions.5"
       incoming="//@transitions.4"/>
-  <states xsi:type="finitestatemachinestimedcomposite:CompositeState"
+  <states xsi:type="fsm:CompositeState"
       name="Top"
       outgoing="//@transitions.4"
       incoming="//@transitions.1">
     <regions
         parent="//@states.4">
       <states
-          xsi:type="finitestatemachinestimedcomposite:InitialState"
+          xsi:type="fsm:InitialState"
           name="B"
           outgoing="//@transitions.2"
           parentState="//@states.4"/>
       <states
-          xsi:type="finitestatemachinestimedcomposite:FinalState"
+          xsi:type="fsm:FinalState"
           name="D"
           incoming="//@transitions.2"
           parentState="//@states.4"/>
@@ -38,12 +38,12 @@
     <regions
         parent="//@states.4">
       <states
-          xsi:type="finitestatemachinestimedcomposite:InitialState"
+          xsi:type="fsm:InitialState"
           name="C"
           outgoing="//@transitions.3"
           parentState="//@states.4"/>
       <states
-          xsi:type="finitestatemachinestimedcomposite:FinalState"
+          xsi:type="fsm:FinalState"
           name="E"
           incoming="//@transitions.3"
           parentState="//@states.4"/>
@@ -94,4 +94,4 @@
     <trigger
         expression="q"/>
   </transitions>
-</finitestatemachinestimedcomposite:StateMachine>
+</fsm:StateMachine>

@@ -1,10 +1,10 @@
 package finitestatemachines.simultaneous
 
 import FSM.interfaces.Context
-import fsm.InitialState
-import fsm.State
-import fsm.StateMachine
-import fsm.Transition
+import flatfsm.fsm.InitialState
+import flatfsm.fsm.State
+import flatfsm.fsm.StateMachine
+import flatfsm.fsm.Transition
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import java.util.ArrayList
 import java.util.List

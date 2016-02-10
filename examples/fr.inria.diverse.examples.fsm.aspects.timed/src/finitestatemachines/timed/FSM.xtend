@@ -1,12 +1,12 @@
 package finitestatemachines.timed
 
 import FSM.interfaces.Context
-import fsm.Fork
-import fsm.InitialState
-import fsm.Join
-import fsm.State
-import fsm.StateMachine
-import fsm.Transition
+import timedfsm.fsm.Fork
+import timedfsm.fsm.InitialState
+import timedfsm.fsm.Join
+import timedfsm.fsm.State
+import timedfsm.fsm.StateMachine
+import timedfsm.fsm.Transition
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import java.util.ArrayList
 import org.eclipse.emf.common.util.BasicEList

@@ -1,12 +1,12 @@
 package finitestatemachines.rtc
 
 import FSM.interfaces.Context
-import fsm.Fork
-import fsm.InitialState
-import fsm.Join
-import fsm.State
-import fsm.StateMachine
-import fsm.Transition
+import flatfsm.fsm.Fork
+import flatfsm.fsm.InitialState
+import flatfsm.fsm.Join
+import flatfsm.fsm.State
+import flatfsm.fsm.StateMachine
+import flatfsm.fsm.Transition
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import java.util.ArrayList
 import org.eclipse.emf.common.util.BasicEList

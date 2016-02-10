@@ -1,10 +1,10 @@
 package finitestatemachines.timed.simultaneous
 
 import FSM.interfaces.Context
-import fsm.InitialState
-import fsm.State
-import fsm.StateMachine
-import fsm.Transition
+import timedfsm.fsm.InitialState
+import timedfsm.fsm.State
+import timedfsm.fsm.StateMachine
+import timedfsm.fsm.Transition
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import java.util.ArrayList
 import org.eclipse.emf.common.util.BasicEList

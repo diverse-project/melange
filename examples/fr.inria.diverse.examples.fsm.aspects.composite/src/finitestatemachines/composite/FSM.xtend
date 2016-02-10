@@ -1,13 +1,13 @@
 package finitestatemachines.composite
 
 import FSM.interfaces.Context
-import fsm.CompositeState
-import fsm.Fork
-import fsm.InitialState
-import fsm.Join
-import fsm.State
-import fsm.StateMachine
-import fsm.Transition
+import compositefsm.fsm.CompositeState
+import compositefsm.fsm.Fork
+import compositefsm.fsm.InitialState
+import compositefsm.fsm.Join
+import compositefsm.fsm.State
+import compositefsm.fsm.StateMachine
+import compositefsm.fsm.Transition
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
 import java.util.ArrayList

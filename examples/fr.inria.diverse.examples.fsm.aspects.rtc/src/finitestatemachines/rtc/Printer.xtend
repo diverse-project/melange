@@ -19,10 +19,10 @@ import com.itextpdf.awt.DefaultFontMapper
 import java.awt.Graphics2D
 import java.awt.geom.Rectangle2D
 
-import fsm.State
-import fsm.StateMachine
-import fsm.Fork
-import fsm.Join
+import flatfsm.fsm.State
+import flatfsm.fsm.StateMachine
+import flatfsm.fsm.Fork
+import flatfsm.fsm.Join
 
 class Printer {
 	

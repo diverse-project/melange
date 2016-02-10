@@ -1,13 +1,13 @@
 package finitestatemachines.timedcomposite
 
 import FSM.interfaces.Context
-import fsm.CompositeState
-import fsm.Fork
-import fsm.InitialState
-import fsm.Join
-import fsm.State
-import fsm.StateMachine
-import fsm.Transition
+import timedcompositefsm.fsm.CompositeState
+import timedcompositefsm.fsm.Fork
+import timedcompositefsm.fsm.InitialState
+import timedcompositefsm.fsm.Join
+import timedcompositefsm.fsm.State
+import timedcompositefsm.fsm.StateMachine
+import timedcompositefsm.fsm.Transition
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
 import java.util.ArrayList

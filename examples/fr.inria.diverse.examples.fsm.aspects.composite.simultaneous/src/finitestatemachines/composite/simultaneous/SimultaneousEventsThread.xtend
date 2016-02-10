@@ -1,12 +1,12 @@
 package finitestatemachines.composite.simultaneous
 
 import FSM.interfaces.Context
-import fsm.CompositeState
-import fsm.Fork
-import fsm.InitialState
-import fsm.Join
-import fsm.StateMachine
-import fsm.Transition
+import compositefsm.fsm.CompositeState
+import compositefsm.fsm.Fork
+import compositefsm.fsm.InitialState
+import compositefsm.fsm.Join
+import compositefsm.fsm.StateMachine
+import compositefsm.fsm.Transition
 import java.util.ArrayList
 import org.eclipse.emf.common.util.BasicEList
 import org.eclipse.emf.common.util.EList
@@ -26,7 +26,7 @@ class SimultaneousEventsThread extends Thread {
 	String event
 	StateMachine stateMachine
 	Context context
-	ArrayList<fsm.State> currentState
+	ArrayList<compositefsm.fsm.State> currentState
 	ArrayList<Transition> currentTransitions
 	
 	/**
@@ -37,7 +37,7 @@ class SimultaneousEventsThread extends Thread {
 		event = _event
 		stateMachine = _stateMachine
 		context = _context
-		currentState = new ArrayList<fsm.State>()
+		currentState = new ArrayList<compositefsm.fsm.State>()
 		currentTransitions = new ArrayList<Transition>()
 	}
 	
@@ -45,9 +45,9 @@ class SimultaneousEventsThread extends Thread {
 	 * Runs the thread!
 	 */
 	override run(){
-		var EList<fsm.State> attendedStates = new BasicEList<fsm.State>()
+		var EList<compositefsm.fsm.State> attendedStates = new BasicEList<compositefsm.fsm.State>()
 		
-		for(fsm.State _state : stateMachine.currentState){
+		for(compositefsm.fsm.State _state : stateMachine.currentState){
 			for(Transition transition : _state.outgoing){
 				if(transition.trigger != null && 
 					transition.trigger.expression.equals(event)){
@@ -56,7 +56,7 @@ class SimultaneousEventsThread extends Thread {
 			}
 		}
 		
-		for(fsm.State _state : currentState){
+		for(compositefsm.fsm.State _state : currentState){
 			for(Transition transition : _state.outgoing){
 				if(transition.trigger.expression.equals(event)){
 					attendedStates.add(_state)
@@ -150,10 +150,10 @@ class SimultaneousEventsThread extends Thread {
 		
 		// Join: If the current state is followed by a Join, we need to jump to it.
 		//		there are neither guards nor triggers in this kind of situation. 
-		var EList<fsm.State> toAdd = new BasicEList<fsm.State>()
-		var EList<fsm.State> toRemove = new BasicEList<fsm.State>()
+		var EList<compositefsm.fsm.State> toAdd = new BasicEList<compositefsm.fsm.State>()
+		var EList<compositefsm.fsm.State> toRemove = new BasicEList<compositefsm.fsm.State>()
 		
-		for(fsm.State _state : currentState){
+		for(compositefsm.fsm.State _state : currentState){
 			if(_state.outgoing.size() > 0 && _state.outgoing.get(0).target instanceof Join){
 				
 				if(!toAdd.contains(_state.outgoing.get(0).target) && 

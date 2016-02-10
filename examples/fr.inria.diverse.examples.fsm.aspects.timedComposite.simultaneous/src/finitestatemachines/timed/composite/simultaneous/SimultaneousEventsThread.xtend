@@ -1,12 +1,12 @@
 package finitestatemachines.timed.composite.simultaneous
 
 import FSM.interfaces.Context
-import fsm.CompositeState
-import fsm.Fork
-import fsm.InitialState
-import fsm.Join
-import fsm.StateMachine
-import fsm.Transition
+import timedcompositefsm.fsm.CompositeState
+import timedcompositefsm.fsm.Fork
+import timedcompositefsm.fsm.InitialState
+import timedcompositefsm.fsm.Join
+import timedcompositefsm.fsm.StateMachine
+import timedcompositefsm.fsm.Transition
 import java.util.ArrayList
 import org.eclipse.emf.common.util.BasicEList
 import org.eclipse.emf.common.util.EList
@@ -27,7 +27,7 @@ class SimultaneousEventsThread extends Thread {
 	String event
 	StateMachine stateMachine
 	Context context
-	ArrayList<fsm.State> currentState
+	ArrayList<timedcompositefsm.fsm.State> currentState
 	ArrayList<Transition> currentTransitions
 	
 	/**
@@ -38,7 +38,7 @@ class SimultaneousEventsThread extends Thread {
 		event = _event
 		stateMachine = _stateMachine
 		context = _context
-		currentState = new ArrayList<fsm.State>()
+		currentState = new ArrayList<timedcompositefsm.fsm.State>()
 		currentTransitions = new ArrayList<Transition>()
 	}
 	
@@ -46,9 +46,9 @@ class SimultaneousEventsThread extends Thread {
 	 * Runs the thread!
 	 */
 	override run(){
-		var EList<fsm.State> attendedStates = new BasicEList<fsm.State>()
+		var EList<timedcompositefsm.fsm.State> attendedStates = new BasicEList<timedcompositefsm.fsm.State>()
 		
-		for(fsm.State _state : stateMachine.currentState){
+		for(timedcompositefsm.fsm.State _state : stateMachine.currentState){
 			for(Transition transition : _state.outgoing){
 				if(transition.trigger != null && 
 					transition.trigger.expression.equals(event)){
@@ -57,7 +57,7 @@ class SimultaneousEventsThread extends Thread {
 			}
 		}
 		
-		for(fsm.State _state : currentState){
+		for(timedcompositefsm.fsm.State _state : currentState){
 			for(Transition transition : _state.outgoing){
 				if(transition.trigger.expression.equals(event)){
 					attendedStates.add(_state)
@@ -152,10 +152,10 @@ class SimultaneousEventsThread extends Thread {
 		
 		// Join: If the current state is followed by a Join, we need to jump to it.
 		//		there are neither guards nor triggers in this kind of situation. 
-		var EList<fsm.State> toAdd = new BasicEList<fsm.State>()
-		var EList<fsm.State> toRemove = new BasicEList<fsm.State>()
+		var EList<timedcompositefsm.fsm.State> toAdd = new BasicEList<timedcompositefsm.fsm.State>()
+		var EList<timedcompositefsm.fsm.State> toRemove = new BasicEList<timedcompositefsm.fsm.State>()
 		
-		for(fsm.State _state : currentState){
+		for(timedcompositefsm.fsm.State _state : currentState){
 			if(_state.outgoing.size() > 0 && _state.outgoing.get(0).target instanceof Join){
 				
 				if(!toAdd.contains(_state.outgoing.get(0).target) && 

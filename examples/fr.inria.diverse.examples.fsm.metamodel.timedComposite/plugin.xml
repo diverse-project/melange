@@ -10,7 +10,7 @@
       <!-- @generated fsm -->
       <package
             uri="http://timedcompositefsm/"
-            class="fsm.FsmPackage"
+            class="timedcompositefsm.fsm.FsmPackage"
             genModel="model/fsm.genmodel"/>
    </extension>
 
