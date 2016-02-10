@@ -168,7 +168,9 @@ class MetaclassAdapterInferrer
 				body = '''return adaptee.getDetails() ;'''
 			]
 		else {
-			jvmCls.members += mm.toField(ref.name, refType)
+			if (ref.many)
+				jvmCls.members += mm.toField(ref.name, refType)
+
 			jvmCls.members += mm.toMethod(ref.getterName, refType)[
 				annotations += Override.annotationRef
 
