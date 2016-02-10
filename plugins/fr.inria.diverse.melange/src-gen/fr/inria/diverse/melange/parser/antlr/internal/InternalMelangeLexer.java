@@ -132,15 +132,15 @@ public class InternalMelangeLexer extends Lexer {
         super(input,state);
 
     }
-    public String getGrammarFileName() { return "../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g"; }
+    public String getGrammarFileName() { return "InternalMelange.g"; }
 
     // $ANTLR start "T__13"
     public final void mT__13() throws RecognitionException {
         try {
             int _type = T__13;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:11:7: ( 'package' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:11:9: 'package'
+            // InternalMelange.g:11:7: ( 'package' )
+            // InternalMelange.g:11:9: 'package'
             {
             match("package"); 
 
@@ -160,8 +160,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__14;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:12:7: ( 'language' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:12:9: 'language'
+            // InternalMelange.g:12:7: ( 'language' )
+            // InternalMelange.g:12:9: 'language'
             {
             match("language"); 
 
@@ -181,8 +181,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__15;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:13:7: ( 'inherits' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:13:9: 'inherits'
+            // InternalMelange.g:13:7: ( 'inherits' )
+            // InternalMelange.g:13:9: 'inherits'
             {
             match("inherits"); 
 
@@ -202,8 +202,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__16;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:14:7: ( ',' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:14:9: ','
+            // InternalMelange.g:14:7: ( ',' )
+            // InternalMelange.g:14:9: ','
             {
             match(','); 
 
@@ -222,8 +222,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__17;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:15:7: ( 'implements' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:15:9: 'implements'
+            // InternalMelange.g:15:7: ( 'implements' )
+            // InternalMelange.g:15:9: 'implements'
             {
             match("implements"); 
 
@@ -243,8 +243,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__18;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:16:7: ( 'requires' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:16:9: 'requires'
+            // InternalMelange.g:16:7: ( 'requires' )
+            // InternalMelange.g:16:9: 'requires'
             {
             match("requires"); 
 
@@ -264,8 +264,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__19;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:17:7: ( '{' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:17:9: '{'
+            // InternalMelange.g:17:7: ( '{' )
+            // InternalMelange.g:17:9: '{'
             {
             match('{'); 
 
@@ -284,8 +284,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:18:7: ( 'resource' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:18:9: 'resource'
+            // InternalMelange.g:18:7: ( 'resource' )
+            // InternalMelange.g:18:9: 'resource'
             {
             match("resource"); 
 
@@ -305,8 +305,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:19:7: ( 'uri' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:19:9: 'uri'
+            // InternalMelange.g:19:7: ( 'uri' )
+            // InternalMelange.g:19:9: 'uri'
             {
             match("uri"); 
 
@@ -326,8 +326,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:20:7: ( 'setup' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:20:9: 'setup'
+            // InternalMelange.g:20:7: ( 'setup' )
+            // InternalMelange.g:20:9: 'setup'
             {
             match("setup"); 
 
@@ -347,8 +347,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:21:7: ( 'exactType' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:21:9: 'exactType'
+            // InternalMelange.g:21:7: ( 'exactType' )
+            // InternalMelange.g:21:9: 'exactType'
             {
             match("exactType"); 
 
@@ -368,8 +368,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:22:7: ( '}' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:22:9: '}'
+            // InternalMelange.g:22:7: ( '}' )
+            // InternalMelange.g:22:9: '}'
             {
             match('}'); 
 
@@ -388,8 +388,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:23:7: ( 'modeltype' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:23:9: 'modeltype'
+            // InternalMelange.g:23:7: ( 'modeltype' )
+            // InternalMelange.g:23:9: 'modeltype'
             {
             match("modeltype"); 
 
@@ -409,8 +409,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__26;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:24:7: ( 'syntax' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:24:9: 'syntax'
+            // InternalMelange.g:24:7: ( 'syntax' )
+            // InternalMelange.g:24:9: 'syntax'
             {
             match("syntax"); 
 
@@ -430,8 +430,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:25:7: ( '@Main' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:25:9: '@Main'
+            // InternalMelange.g:25:7: ( '@Main' )
+            // InternalMelange.g:25:9: '@Main'
             {
             match("@Main"); 
 
@@ -451,8 +451,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:26:7: ( 'transformation' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:26:9: 'transformation'
+            // InternalMelange.g:26:7: ( 'transformation' )
+            // InternalMelange.g:26:9: 'transformation'
             {
             match("transformation"); 
 
@@ -472,8 +472,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:27:7: ( '(' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:27:9: '('
+            // InternalMelange.g:27:7: ( '(' )
+            // InternalMelange.g:27:9: '('
             {
             match('('); 
 
@@ -492,8 +492,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:28:7: ( ')' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:28:9: ')'
+            // InternalMelange.g:28:7: ( ')' )
+            // InternalMelange.g:28:9: ')'
             {
             match(')'); 
 
@@ -512,8 +512,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__31;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:29:7: ( 'map' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:29:9: 'map'
+            // InternalMelange.g:29:7: ( 'map' )
+            // InternalMelange.g:29:9: 'map'
             {
             match("map"); 
 
@@ -533,8 +533,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:30:7: ( 'to' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:30:9: 'to'
+            // InternalMelange.g:30:7: ( 'to' )
+            // InternalMelange.g:30:9: 'to'
             {
             match("to"); 
 
@@ -554,8 +554,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:31:7: ( 'withGenmodel' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:31:9: 'withGenmodel'
+            // InternalMelange.g:31:7: ( 'withGenmodel' )
+            // InternalMelange.g:31:9: 'withGenmodel'
             {
             match("withGenmodel"); 
 
@@ -575,8 +575,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:32:7: ( 'renaming' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:32:9: 'renaming'
+            // InternalMelange.g:32:7: ( 'renaming' )
+            // InternalMelange.g:32:9: 'renaming'
             {
             match("renaming"); 
 
@@ -596,8 +596,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__35;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:33:7: ( 'merge' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:33:9: 'merge'
+            // InternalMelange.g:33:7: ( 'merge' )
+            // InternalMelange.g:33:9: 'merge'
             {
             match("merge"); 
 
@@ -617,8 +617,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:34:7: ( 'slice' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:34:9: 'slice'
+            // InternalMelange.g:34:7: ( 'slice' )
+            // InternalMelange.g:34:9: 'slice'
             {
             match("slice"); 
 
@@ -638,8 +638,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__37;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:35:7: ( 'on' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:35:9: 'on'
+            // InternalMelange.g:35:7: ( 'on' )
+            // InternalMelange.g:35:9: 'on'
             {
             match("on"); 
 
@@ -659,8 +659,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__38;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:36:7: ( '[' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:36:9: '['
+            // InternalMelange.g:36:7: ( '[' )
+            // InternalMelange.g:36:9: '['
             {
             match('['); 
 
@@ -679,8 +679,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__39;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:37:7: ( ']' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:37:9: ']'
+            // InternalMelange.g:37:7: ( ']' )
+            // InternalMelange.g:37:9: ']'
             {
             match(']'); 
 
@@ -699,8 +699,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__40;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:38:7: ( 'with' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:38:9: 'with'
+            // InternalMelange.g:38:7: ( 'with' )
+            // InternalMelange.g:38:9: 'with'
             {
             match("with"); 
 
@@ -720,8 +720,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__41;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:39:7: ( '=' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:39:9: '='
+            // InternalMelange.g:39:7: ( '=' )
+            // InternalMelange.g:39:9: '='
             {
             match('='); 
 
@@ -740,8 +740,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__42;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:40:7: ( '+=' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:40:9: '+='
+            // InternalMelange.g:40:7: ( '+=' )
+            // InternalMelange.g:40:9: '+='
             {
             match("+="); 
 
@@ -761,8 +761,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__43;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:41:7: ( '-=' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:41:9: '-='
+            // InternalMelange.g:41:7: ( '-=' )
+            // InternalMelange.g:41:9: '-='
             {
             match("-="); 
 
@@ -782,8 +782,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__44;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:42:7: ( '*=' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:42:9: '*='
+            // InternalMelange.g:42:7: ( '*=' )
+            // InternalMelange.g:42:9: '*='
             {
             match("*="); 
 
@@ -803,8 +803,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__45;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:43:7: ( '/=' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:43:9: '/='
+            // InternalMelange.g:43:7: ( '/=' )
+            // InternalMelange.g:43:9: '/='
             {
             match("/="); 
 
@@ -824,8 +824,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__46;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:44:7: ( '%=' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:44:9: '%='
+            // InternalMelange.g:44:7: ( '%=' )
+            // InternalMelange.g:44:9: '%='
             {
             match("%="); 
 
@@ -845,8 +845,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__47;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:45:7: ( '<' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:45:9: '<'
+            // InternalMelange.g:45:7: ( '<' )
+            // InternalMelange.g:45:9: '<'
             {
             match('<'); 
 
@@ -865,8 +865,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__48;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:46:7: ( '>' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:46:9: '>'
+            // InternalMelange.g:46:7: ( '>' )
+            // InternalMelange.g:46:9: '>'
             {
             match('>'); 
 
@@ -885,8 +885,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__49;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:47:7: ( '>=' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:47:9: '>='
+            // InternalMelange.g:47:7: ( '>=' )
+            // InternalMelange.g:47:9: '>='
             {
             match(">="); 
 
@@ -906,8 +906,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__50;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:48:7: ( '||' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:48:9: '||'
+            // InternalMelange.g:48:7: ( '||' )
+            // InternalMelange.g:48:9: '||'
             {
             match("||"); 
 
@@ -927,8 +927,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__51;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:49:7: ( '&&' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:49:9: '&&'
+            // InternalMelange.g:49:7: ( '&&' )
+            // InternalMelange.g:49:9: '&&'
             {
             match("&&"); 
 
@@ -948,8 +948,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__52;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:50:7: ( '==' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:50:9: '=='
+            // InternalMelange.g:50:7: ( '==' )
+            // InternalMelange.g:50:9: '=='
             {
             match("=="); 
 
@@ -969,8 +969,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__53;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:51:7: ( '!=' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:51:9: '!='
+            // InternalMelange.g:51:7: ( '!=' )
+            // InternalMelange.g:51:9: '!='
             {
             match("!="); 
 
@@ -990,8 +990,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__54;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:52:7: ( '===' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:52:9: '==='
+            // InternalMelange.g:52:7: ( '===' )
+            // InternalMelange.g:52:9: '==='
             {
             match("==="); 
 
@@ -1011,8 +1011,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__55;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:53:7: ( '!==' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:53:9: '!=='
+            // InternalMelange.g:53:7: ( '!==' )
+            // InternalMelange.g:53:9: '!=='
             {
             match("!=="); 
 
@@ -1032,8 +1032,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__56;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:54:7: ( 'instanceof' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:54:9: 'instanceof'
+            // InternalMelange.g:54:7: ( 'instanceof' )
+            // InternalMelange.g:54:9: 'instanceof'
             {
             match("instanceof"); 
 
@@ -1053,8 +1053,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__57;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:55:7: ( '->' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:55:9: '->'
+            // InternalMelange.g:55:7: ( '->' )
+            // InternalMelange.g:55:9: '->'
             {
             match("->"); 
 
@@ -1074,8 +1074,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__58;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:56:7: ( '..<' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:56:9: '..<'
+            // InternalMelange.g:56:7: ( '..<' )
+            // InternalMelange.g:56:9: '..<'
             {
             match("..<"); 
 
@@ -1095,8 +1095,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__59;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:57:7: ( '..' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:57:9: '..'
+            // InternalMelange.g:57:7: ( '..' )
+            // InternalMelange.g:57:9: '..'
             {
             match(".."); 
 
@@ -1116,8 +1116,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__60;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:58:7: ( '=>' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:58:9: '=>'
+            // InternalMelange.g:58:7: ( '=>' )
+            // InternalMelange.g:58:9: '=>'
             {
             match("=>"); 
 
@@ -1137,8 +1137,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__61;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:59:7: ( '<>' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:59:9: '<>'
+            // InternalMelange.g:59:7: ( '<>' )
+            // InternalMelange.g:59:9: '<>'
             {
             match("<>"); 
 
@@ -1158,8 +1158,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__62;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:60:7: ( '?:' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:60:9: '?:'
+            // InternalMelange.g:60:7: ( '?:' )
+            // InternalMelange.g:60:9: '?:'
             {
             match("?:"); 
 
@@ -1179,8 +1179,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__63;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:61:7: ( '+' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:61:9: '+'
+            // InternalMelange.g:61:7: ( '+' )
+            // InternalMelange.g:61:9: '+'
             {
             match('+'); 
 
@@ -1199,8 +1199,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__64;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:62:7: ( '-' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:62:9: '-'
+            // InternalMelange.g:62:7: ( '-' )
+            // InternalMelange.g:62:9: '-'
             {
             match('-'); 
 
@@ -1219,8 +1219,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__65;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:63:7: ( '*' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:63:9: '*'
+            // InternalMelange.g:63:7: ( '*' )
+            // InternalMelange.g:63:9: '*'
             {
             match('*'); 
 
@@ -1239,8 +1239,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__66;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:64:7: ( '**' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:64:9: '**'
+            // InternalMelange.g:64:7: ( '**' )
+            // InternalMelange.g:64:9: '**'
             {
             match("**"); 
 
@@ -1260,8 +1260,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__67;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:65:7: ( '/' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:65:9: '/'
+            // InternalMelange.g:65:7: ( '/' )
+            // InternalMelange.g:65:9: '/'
             {
             match('/'); 
 
@@ -1280,8 +1280,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__68;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:66:7: ( '%' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:66:9: '%'
+            // InternalMelange.g:66:7: ( '%' )
+            // InternalMelange.g:66:9: '%'
             {
             match('%'); 
 
@@ -1300,8 +1300,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__69;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:67:7: ( '!' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:67:9: '!'
+            // InternalMelange.g:67:7: ( '!' )
+            // InternalMelange.g:67:9: '!'
             {
             match('!'); 
 
@@ -1320,8 +1320,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__70;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:68:7: ( 'as' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:68:9: 'as'
+            // InternalMelange.g:68:7: ( 'as' )
+            // InternalMelange.g:68:9: 'as'
             {
             match("as"); 
 
@@ -1341,8 +1341,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__71;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:69:7: ( '++' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:69:9: '++'
+            // InternalMelange.g:69:7: ( '++' )
+            // InternalMelange.g:69:9: '++'
             {
             match("++"); 
 
@@ -1362,8 +1362,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__72;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:70:7: ( '--' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:70:9: '--'
+            // InternalMelange.g:70:7: ( '--' )
+            // InternalMelange.g:70:9: '--'
             {
             match("--"); 
 
@@ -1383,8 +1383,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__73;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:71:7: ( '.' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:71:9: '.'
+            // InternalMelange.g:71:7: ( '.' )
+            // InternalMelange.g:71:9: '.'
             {
             match('.'); 
 
@@ -1403,8 +1403,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__74;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:72:7: ( '::' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:72:9: '::'
+            // InternalMelange.g:72:7: ( '::' )
+            // InternalMelange.g:72:9: '::'
             {
             match("::"); 
 
@@ -1424,8 +1424,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__75;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:73:7: ( '?.' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:73:9: '?.'
+            // InternalMelange.g:73:7: ( '?.' )
+            // InternalMelange.g:73:9: '?.'
             {
             match("?."); 
 
@@ -1445,8 +1445,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__76;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:74:7: ( '#' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:74:9: '#'
+            // InternalMelange.g:74:7: ( '#' )
+            // InternalMelange.g:74:9: '#'
             {
             match('#'); 
 
@@ -1465,8 +1465,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__77;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:75:7: ( '|' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:75:9: '|'
+            // InternalMelange.g:75:7: ( '|' )
+            // InternalMelange.g:75:9: '|'
             {
             match('|'); 
 
@@ -1485,8 +1485,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__78;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:76:7: ( ';' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:76:9: ';'
+            // InternalMelange.g:76:7: ( ';' )
+            // InternalMelange.g:76:9: ';'
             {
             match(';'); 
 
@@ -1505,8 +1505,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__79;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:77:7: ( 'if' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:77:9: 'if'
+            // InternalMelange.g:77:7: ( 'if' )
+            // InternalMelange.g:77:9: 'if'
             {
             match("if"); 
 
@@ -1526,8 +1526,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__80;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:78:7: ( 'else' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:78:9: 'else'
+            // InternalMelange.g:78:7: ( 'else' )
+            // InternalMelange.g:78:9: 'else'
             {
             match("else"); 
 
@@ -1547,8 +1547,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__81;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:79:7: ( 'switch' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:79:9: 'switch'
+            // InternalMelange.g:79:7: ( 'switch' )
+            // InternalMelange.g:79:9: 'switch'
             {
             match("switch"); 
 
@@ -1568,8 +1568,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__82;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:80:7: ( ':' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:80:9: ':'
+            // InternalMelange.g:80:7: ( ':' )
+            // InternalMelange.g:80:9: ':'
             {
             match(':'); 
 
@@ -1588,8 +1588,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__83;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:81:7: ( 'default' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:81:9: 'default'
+            // InternalMelange.g:81:7: ( 'default' )
+            // InternalMelange.g:81:9: 'default'
             {
             match("default"); 
 
@@ -1609,8 +1609,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__84;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:82:7: ( 'case' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:82:9: 'case'
+            // InternalMelange.g:82:7: ( 'case' )
+            // InternalMelange.g:82:9: 'case'
             {
             match("case"); 
 
@@ -1630,8 +1630,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__85;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:83:7: ( 'for' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:83:9: 'for'
+            // InternalMelange.g:83:7: ( 'for' )
+            // InternalMelange.g:83:9: 'for'
             {
             match("for"); 
 
@@ -1651,8 +1651,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__86;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:84:7: ( 'while' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:84:9: 'while'
+            // InternalMelange.g:84:7: ( 'while' )
+            // InternalMelange.g:84:9: 'while'
             {
             match("while"); 
 
@@ -1672,8 +1672,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__87;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:85:7: ( 'do' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:85:9: 'do'
+            // InternalMelange.g:85:7: ( 'do' )
+            // InternalMelange.g:85:9: 'do'
             {
             match("do"); 
 
@@ -1693,8 +1693,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__88;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:86:7: ( 'var' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:86:9: 'var'
+            // InternalMelange.g:86:7: ( 'var' )
+            // InternalMelange.g:86:9: 'var'
             {
             match("var"); 
 
@@ -1714,8 +1714,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__89;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:87:7: ( 'val' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:87:9: 'val'
+            // InternalMelange.g:87:7: ( 'val' )
+            // InternalMelange.g:87:9: 'val'
             {
             match("val"); 
 
@@ -1735,8 +1735,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__90;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:88:7: ( 'extends' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:88:9: 'extends'
+            // InternalMelange.g:88:7: ( 'extends' )
+            // InternalMelange.g:88:9: 'extends'
             {
             match("extends"); 
 
@@ -1756,8 +1756,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__91;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:89:7: ( 'static' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:89:9: 'static'
+            // InternalMelange.g:89:7: ( 'static' )
+            // InternalMelange.g:89:9: 'static'
             {
             match("static"); 
 
@@ -1777,8 +1777,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__92;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:90:7: ( 'import' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:90:9: 'import'
+            // InternalMelange.g:90:7: ( 'import' )
+            // InternalMelange.g:90:9: 'import'
             {
             match("import"); 
 
@@ -1798,8 +1798,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__93;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:91:7: ( 'extension' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:91:9: 'extension'
+            // InternalMelange.g:91:7: ( 'extension' )
+            // InternalMelange.g:91:9: 'extension'
             {
             match("extension"); 
 
@@ -1819,8 +1819,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__94;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:92:7: ( 'super' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:92:9: 'super'
+            // InternalMelange.g:92:7: ( 'super' )
+            // InternalMelange.g:92:9: 'super'
             {
             match("super"); 
 
@@ -1840,8 +1840,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__95;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:93:7: ( 'new' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:93:9: 'new'
+            // InternalMelange.g:93:7: ( 'new' )
+            // InternalMelange.g:93:9: 'new'
             {
             match("new"); 
 
@@ -1861,8 +1861,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__96;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:94:7: ( 'false' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:94:9: 'false'
+            // InternalMelange.g:94:7: ( 'false' )
+            // InternalMelange.g:94:9: 'false'
             {
             match("false"); 
 
@@ -1882,8 +1882,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__97;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:95:7: ( 'true' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:95:9: 'true'
+            // InternalMelange.g:95:7: ( 'true' )
+            // InternalMelange.g:95:9: 'true'
             {
             match("true"); 
 
@@ -1903,8 +1903,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__98;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:96:7: ( 'null' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:96:9: 'null'
+            // InternalMelange.g:96:7: ( 'null' )
+            // InternalMelange.g:96:9: 'null'
             {
             match("null"); 
 
@@ -1924,8 +1924,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__99;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:97:7: ( 'typeof' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:97:9: 'typeof'
+            // InternalMelange.g:97:7: ( 'typeof' )
+            // InternalMelange.g:97:9: 'typeof'
             {
             match("typeof"); 
 
@@ -1945,8 +1945,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__100;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:98:8: ( 'throw' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:98:10: 'throw'
+            // InternalMelange.g:98:8: ( 'throw' )
+            // InternalMelange.g:98:10: 'throw'
             {
             match("throw"); 
 
@@ -1966,8 +1966,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__101;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:99:8: ( 'return' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:99:10: 'return'
+            // InternalMelange.g:99:8: ( 'return' )
+            // InternalMelange.g:99:10: 'return'
             {
             match("return"); 
 
@@ -1987,8 +1987,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__102;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:100:8: ( 'try' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:100:10: 'try'
+            // InternalMelange.g:100:8: ( 'try' )
+            // InternalMelange.g:100:10: 'try'
             {
             match("try"); 
 
@@ -2008,8 +2008,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__103;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:101:8: ( 'finally' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:101:10: 'finally'
+            // InternalMelange.g:101:8: ( 'finally' )
+            // InternalMelange.g:101:10: 'finally'
             {
             match("finally"); 
 
@@ -2029,8 +2029,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__104;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:102:8: ( 'synchronized' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:102:10: 'synchronized'
+            // InternalMelange.g:102:8: ( 'synchronized' )
+            // InternalMelange.g:102:10: 'synchronized'
             {
             match("synchronized"); 
 
@@ -2050,8 +2050,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__105;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:103:8: ( 'catch' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:103:10: 'catch'
+            // InternalMelange.g:103:8: ( 'catch' )
+            // InternalMelange.g:103:10: 'catch'
             {
             match("catch"); 
 
@@ -2071,8 +2071,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__106;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:104:8: ( '?' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:104:10: '?'
+            // InternalMelange.g:104:8: ( '?' )
+            // InternalMelange.g:104:10: '?'
             {
             match('?'); 
 
@@ -2091,8 +2091,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__107;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:105:8: ( '&' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:105:10: '&'
+            // InternalMelange.g:105:8: ( '&' )
+            // InternalMelange.g:105:10: '&'
             {
             match('&'); 
 
@@ -2111,8 +2111,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__108;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:106:8: ( 'Melange' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:106:10: 'Melange'
+            // InternalMelange.g:106:8: ( 'Melange' )
+            // InternalMelange.g:106:10: 'Melange'
             {
             match("Melange"); 
 
@@ -2132,8 +2132,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__109;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:107:8: ( 'EMF' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:107:10: 'EMF'
+            // InternalMelange.g:107:8: ( 'EMF' )
+            // InternalMelange.g:107:10: 'EMF'
             {
             match("EMF"); 
 
@@ -2153,8 +2153,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = T__110;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:108:8: ( 'Xtext' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:108:10: 'Xtext'
+            // InternalMelange.g:108:8: ( 'Xtext' )
+            // InternalMelange.g:108:10: 'Xtext'
             {
             match("Xtext"); 
 
@@ -2174,10 +2174,10 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = RULE_HEX;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7738:10: ( ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '_' )+ ( '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) ) )? )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7738:12: ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '_' )+ ( '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) ) )?
+            // InternalMelange.g:7738:10: ( ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '_' )+ ( '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) ) )? )
+            // InternalMelange.g:7738:12: ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '_' )+ ( '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) ) )?
             {
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7738:12: ( '0x' | '0X' )
+            // InternalMelange.g:7738:12: ( '0x' | '0X' )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -2205,7 +2205,7 @@ public class InternalMelangeLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7738:13: '0x'
+                    // InternalMelange.g:7738:13: '0x'
                     {
                     match("0x"); 
 
@@ -2213,7 +2213,7 @@ public class InternalMelangeLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7738:18: '0X'
+                    // InternalMelange.g:7738:18: '0X'
                     {
                     match("0X"); 
 
@@ -2223,7 +2223,7 @@ public class InternalMelangeLexer extends Lexer {
 
             }
 
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7738:24: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '_' )+
+            // InternalMelange.g:7738:24: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '_' )+
             int cnt2=0;
             loop2:
             do {
@@ -2237,7 +2237,7 @@ public class InternalMelangeLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:
+            	    // InternalMelange.g:
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='f') ) {
             	        input.consume();
@@ -2261,7 +2261,7 @@ public class InternalMelangeLexer extends Lexer {
                 cnt2++;
             } while (true);
 
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7738:58: ( '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) ) )?
+            // InternalMelange.g:7738:58: ( '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) ) )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -2270,10 +2270,10 @@ public class InternalMelangeLexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7738:59: '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) )
+                    // InternalMelange.g:7738:59: '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) )
                     {
                     match('#'); 
-                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7738:63: ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) )
+                    // InternalMelange.g:7738:63: ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) )
                     int alt3=2;
                     int LA3_0 = input.LA(1);
 
@@ -2291,7 +2291,7 @@ public class InternalMelangeLexer extends Lexer {
                     }
                     switch (alt3) {
                         case 1 :
-                            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7738:64: ( 'b' | 'B' ) ( 'i' | 'I' )
+                            // InternalMelange.g:7738:64: ( 'b' | 'B' ) ( 'i' | 'I' )
                             {
                             if ( input.LA(1)=='B'||input.LA(1)=='b' ) {
                                 input.consume();
@@ -2315,7 +2315,7 @@ public class InternalMelangeLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7738:84: ( 'l' | 'L' )
+                            // InternalMelange.g:7738:84: ( 'l' | 'L' )
                             {
                             if ( input.LA(1)=='L'||input.LA(1)=='l' ) {
                                 input.consume();
@@ -2354,11 +2354,11 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7740:10: ( '0' .. '9' ( '0' .. '9' | '_' )* )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7740:12: '0' .. '9' ( '0' .. '9' | '_' )*
+            // InternalMelange.g:7740:10: ( '0' .. '9' ( '0' .. '9' | '_' )* )
+            // InternalMelange.g:7740:12: '0' .. '9' ( '0' .. '9' | '_' )*
             {
             matchRange('0','9'); 
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7740:21: ( '0' .. '9' | '_' )*
+            // InternalMelange.g:7740:21: ( '0' .. '9' | '_' )*
             loop5:
             do {
                 int alt5=2;
@@ -2371,7 +2371,7 @@ public class InternalMelangeLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:
+            	    // InternalMelange.g:
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||input.LA(1)=='_' ) {
             	        input.consume();
@@ -2407,11 +2407,11 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = RULE_DECIMAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7742:14: ( RULE_INT ( ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT )? ( ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' ) | ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' ) )? )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7742:16: RULE_INT ( ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT )? ( ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' ) | ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' ) )?
+            // InternalMelange.g:7742:14: ( RULE_INT ( ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT )? ( ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' ) | ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' ) )? )
+            // InternalMelange.g:7742:16: RULE_INT ( ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT )? ( ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' ) | ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' ) )?
             {
             mRULE_INT(); 
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7742:25: ( ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT )?
+            // InternalMelange.g:7742:25: ( ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -2420,7 +2420,7 @@ public class InternalMelangeLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7742:26: ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT
+                    // InternalMelange.g:7742:26: ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT
                     {
                     if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                         input.consume();
@@ -2431,7 +2431,7 @@ public class InternalMelangeLexer extends Lexer {
                         recover(mse);
                         throw mse;}
 
-                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7742:36: ( '+' | '-' )?
+                    // InternalMelange.g:7742:36: ( '+' | '-' )?
                     int alt6=2;
                     int LA6_0 = input.LA(1);
 
@@ -2440,7 +2440,7 @@ public class InternalMelangeLexer extends Lexer {
                     }
                     switch (alt6) {
                         case 1 :
-                            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:
+                            // InternalMelange.g:
                             {
                             if ( input.LA(1)=='+'||input.LA(1)=='-' ) {
                                 input.consume();
@@ -2464,7 +2464,7 @@ public class InternalMelangeLexer extends Lexer {
 
             }
 
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7742:58: ( ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' ) | ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' ) )?
+            // InternalMelange.g:7742:58: ( ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' ) | ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' ) )?
             int alt8=3;
             int LA8_0 = input.LA(1);
 
@@ -2476,7 +2476,7 @@ public class InternalMelangeLexer extends Lexer {
             }
             switch (alt8) {
                 case 1 :
-                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7742:59: ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' )
+                    // InternalMelange.g:7742:59: ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' )
                     {
                     if ( input.LA(1)=='B'||input.LA(1)=='b' ) {
                         input.consume();
@@ -2500,7 +2500,7 @@ public class InternalMelangeLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7742:87: ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' )
+                    // InternalMelange.g:7742:87: ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' )
                     {
                     if ( input.LA(1)=='D'||input.LA(1)=='F'||input.LA(1)=='L'||input.LA(1)=='d'||input.LA(1)=='f'||input.LA(1)=='l' ) {
                         input.consume();
@@ -2533,10 +2533,10 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7744:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' | '0' .. '9' )* )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7744:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' | '0' .. '9' )*
+            // InternalMelange.g:7744:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' | '0' .. '9' )* )
+            // InternalMelange.g:7744:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' | '0' .. '9' )*
             {
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7744:11: ( '^' )?
+            // InternalMelange.g:7744:11: ( '^' )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -2545,7 +2545,7 @@ public class InternalMelangeLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7744:11: '^'
+                    // InternalMelange.g:7744:11: '^'
                     {
                     match('^'); 
 
@@ -2563,7 +2563,7 @@ public class InternalMelangeLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7744:44: ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' | '0' .. '9' )*
+            // InternalMelange.g:7744:44: ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' | '0' .. '9' )*
             loop10:
             do {
                 int alt10=2;
@@ -2576,7 +2576,7 @@ public class InternalMelangeLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:
+            	    // InternalMelange.g:
             	    {
             	    if ( input.LA(1)=='$'||(input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
             	        input.consume();
@@ -2612,10 +2612,10 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7746:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* ( '\"' )? | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' )? ) )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7746:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* ( '\"' )? | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' )? )
+            // InternalMelange.g:7746:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* ( '\"' )? | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' )? ) )
+            // InternalMelange.g:7746:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* ( '\"' )? | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' )? )
             {
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7746:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* ( '\"' )? | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' )? )
+            // InternalMelange.g:7746:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* ( '\"' )? | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' )? )
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -2633,10 +2633,10 @@ public class InternalMelangeLexer extends Lexer {
             }
             switch (alt15) {
                 case 1 :
-                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7746:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* ( '\"' )?
+                    // InternalMelange.g:7746:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* ( '\"' )?
                     {
                     match('\"'); 
-                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7746:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // InternalMelange.g:7746:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop11:
                     do {
                         int alt11=3;
@@ -2652,7 +2652,7 @@ public class InternalMelangeLexer extends Lexer {
 
                         switch (alt11) {
                     	case 1 :
-                    	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7746:21: '\\\\' .
+                    	    // InternalMelange.g:7746:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -2660,7 +2660,7 @@ public class InternalMelangeLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7746:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // InternalMelange.g:7746:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -2680,7 +2680,7 @@ public class InternalMelangeLexer extends Lexer {
                         }
                     } while (true);
 
-                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7746:44: ( '\"' )?
+                    // InternalMelange.g:7746:44: ( '\"' )?
                     int alt12=2;
                     int LA12_0 = input.LA(1);
 
@@ -2689,7 +2689,7 @@ public class InternalMelangeLexer extends Lexer {
                     }
                     switch (alt12) {
                         case 1 :
-                            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7746:44: '\"'
+                            // InternalMelange.g:7746:44: '\"'
                             {
                             match('\"'); 
 
@@ -2702,10 +2702,10 @@ public class InternalMelangeLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7746:49: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' )?
+                    // InternalMelange.g:7746:49: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' )?
                     {
                     match('\''); 
-                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7746:54: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // InternalMelange.g:7746:54: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop13:
                     do {
                         int alt13=3;
@@ -2721,7 +2721,7 @@ public class InternalMelangeLexer extends Lexer {
 
                         switch (alt13) {
                     	case 1 :
-                    	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7746:55: '\\\\' .
+                    	    // InternalMelange.g:7746:55: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -2729,7 +2729,7 @@ public class InternalMelangeLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7746:62: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // InternalMelange.g:7746:62: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -2749,7 +2749,7 @@ public class InternalMelangeLexer extends Lexer {
                         }
                     } while (true);
 
-                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7746:79: ( '\\'' )?
+                    // InternalMelange.g:7746:79: ( '\\'' )?
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
@@ -2758,7 +2758,7 @@ public class InternalMelangeLexer extends Lexer {
                     }
                     switch (alt14) {
                         case 1 :
-                            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7746:79: '\\''
+                            // InternalMelange.g:7746:79: '\\''
                             {
                             match('\''); 
 
@@ -2789,12 +2789,12 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7748:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7748:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // InternalMelange.g:7748:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // InternalMelange.g:7748:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7748:24: ( options {greedy=false; } : . )*
+            // InternalMelange.g:7748:24: ( options {greedy=false; } : . )*
             loop16:
             do {
                 int alt16=2;
@@ -2819,7 +2819,7 @@ public class InternalMelangeLexer extends Lexer {
 
                 switch (alt16) {
             	case 1 :
-            	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7748:52: .
+            	    // InternalMelange.g:7748:52: .
             	    {
             	    matchAny(); 
 
@@ -2849,12 +2849,12 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7750:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7750:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // InternalMelange.g:7750:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // InternalMelange.g:7750:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7750:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // InternalMelange.g:7750:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop17:
             do {
                 int alt17=2;
@@ -2867,7 +2867,7 @@ public class InternalMelangeLexer extends Lexer {
 
                 switch (alt17) {
             	case 1 :
-            	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7750:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // InternalMelange.g:7750:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2887,7 +2887,7 @@ public class InternalMelangeLexer extends Lexer {
                 }
             } while (true);
 
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7750:40: ( ( '\\r' )? '\\n' )?
+            // InternalMelange.g:7750:40: ( ( '\\r' )? '\\n' )?
             int alt19=2;
             int LA19_0 = input.LA(1);
 
@@ -2896,9 +2896,9 @@ public class InternalMelangeLexer extends Lexer {
             }
             switch (alt19) {
                 case 1 :
-                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7750:41: ( '\\r' )? '\\n'
+                    // InternalMelange.g:7750:41: ( '\\r' )? '\\n'
                     {
-                    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7750:41: ( '\\r' )?
+                    // InternalMelange.g:7750:41: ( '\\r' )?
                     int alt18=2;
                     int LA18_0 = input.LA(1);
 
@@ -2907,7 +2907,7 @@ public class InternalMelangeLexer extends Lexer {
                     }
                     switch (alt18) {
                         case 1 :
-                            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7750:41: '\\r'
+                            // InternalMelange.g:7750:41: '\\r'
                             {
                             match('\r'); 
 
@@ -2939,10 +2939,10 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7752:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7752:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalMelange.g:7752:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // InternalMelange.g:7752:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7752:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalMelange.g:7752:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt20=0;
             loop20:
             do {
@@ -2956,7 +2956,7 @@ public class InternalMelangeLexer extends Lexer {
 
                 switch (alt20) {
             	case 1 :
-            	    // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:
+            	    // InternalMelange.g:
             	    {
             	    if ( (input.LA(1)>='\t' && input.LA(1)<='\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
             	        input.consume();
@@ -2996,8 +2996,8 @@ public class InternalMelangeLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7754:16: ( . )
-            // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:7754:18: .
+            // InternalMelange.g:7754:16: ( . )
+            // InternalMelange.g:7754:18: .
             {
             matchAny(); 
 
@@ -3012,754 +3012,754 @@ public class InternalMelangeLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:8: ( T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | RULE_HEX | RULE_INT | RULE_DECIMAL | RULE_ID | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        // InternalMelange.g:1:8: ( T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | RULE_HEX | RULE_INT | RULE_DECIMAL | RULE_ID | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
         int alt21=107;
         alt21 = dfa21.predict(input);
         switch (alt21) {
             case 1 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:10: T__13
+                // InternalMelange.g:1:10: T__13
                 {
                 mT__13(); 
 
                 }
                 break;
             case 2 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:16: T__14
+                // InternalMelange.g:1:16: T__14
                 {
                 mT__14(); 
 
                 }
                 break;
             case 3 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:22: T__15
+                // InternalMelange.g:1:22: T__15
                 {
                 mT__15(); 
 
                 }
                 break;
             case 4 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:28: T__16
+                // InternalMelange.g:1:28: T__16
                 {
                 mT__16(); 
 
                 }
                 break;
             case 5 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:34: T__17
+                // InternalMelange.g:1:34: T__17
                 {
                 mT__17(); 
 
                 }
                 break;
             case 6 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:40: T__18
+                // InternalMelange.g:1:40: T__18
                 {
                 mT__18(); 
 
                 }
                 break;
             case 7 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:46: T__19
+                // InternalMelange.g:1:46: T__19
                 {
                 mT__19(); 
 
                 }
                 break;
             case 8 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:52: T__20
+                // InternalMelange.g:1:52: T__20
                 {
                 mT__20(); 
 
                 }
                 break;
             case 9 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:58: T__21
+                // InternalMelange.g:1:58: T__21
                 {
                 mT__21(); 
 
                 }
                 break;
             case 10 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:64: T__22
+                // InternalMelange.g:1:64: T__22
                 {
                 mT__22(); 
 
                 }
                 break;
             case 11 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:70: T__23
+                // InternalMelange.g:1:70: T__23
                 {
                 mT__23(); 
 
                 }
                 break;
             case 12 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:76: T__24
+                // InternalMelange.g:1:76: T__24
                 {
                 mT__24(); 
 
                 }
                 break;
             case 13 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:82: T__25
+                // InternalMelange.g:1:82: T__25
                 {
                 mT__25(); 
 
                 }
                 break;
             case 14 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:88: T__26
+                // InternalMelange.g:1:88: T__26
                 {
                 mT__26(); 
 
                 }
                 break;
             case 15 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:94: T__27
+                // InternalMelange.g:1:94: T__27
                 {
                 mT__27(); 
 
                 }
                 break;
             case 16 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:100: T__28
+                // InternalMelange.g:1:100: T__28
                 {
                 mT__28(); 
 
                 }
                 break;
             case 17 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:106: T__29
+                // InternalMelange.g:1:106: T__29
                 {
                 mT__29(); 
 
                 }
                 break;
             case 18 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:112: T__30
+                // InternalMelange.g:1:112: T__30
                 {
                 mT__30(); 
 
                 }
                 break;
             case 19 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:118: T__31
+                // InternalMelange.g:1:118: T__31
                 {
                 mT__31(); 
 
                 }
                 break;
             case 20 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:124: T__32
+                // InternalMelange.g:1:124: T__32
                 {
                 mT__32(); 
 
                 }
                 break;
             case 21 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:130: T__33
+                // InternalMelange.g:1:130: T__33
                 {
                 mT__33(); 
 
                 }
                 break;
             case 22 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:136: T__34
+                // InternalMelange.g:1:136: T__34
                 {
                 mT__34(); 
 
                 }
                 break;
             case 23 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:142: T__35
+                // InternalMelange.g:1:142: T__35
                 {
                 mT__35(); 
 
                 }
                 break;
             case 24 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:148: T__36
+                // InternalMelange.g:1:148: T__36
                 {
                 mT__36(); 
 
                 }
                 break;
             case 25 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:154: T__37
+                // InternalMelange.g:1:154: T__37
                 {
                 mT__37(); 
 
                 }
                 break;
             case 26 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:160: T__38
+                // InternalMelange.g:1:160: T__38
                 {
                 mT__38(); 
 
                 }
                 break;
             case 27 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:166: T__39
+                // InternalMelange.g:1:166: T__39
                 {
                 mT__39(); 
 
                 }
                 break;
             case 28 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:172: T__40
+                // InternalMelange.g:1:172: T__40
                 {
                 mT__40(); 
 
                 }
                 break;
             case 29 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:178: T__41
+                // InternalMelange.g:1:178: T__41
                 {
                 mT__41(); 
 
                 }
                 break;
             case 30 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:184: T__42
+                // InternalMelange.g:1:184: T__42
                 {
                 mT__42(); 
 
                 }
                 break;
             case 31 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:190: T__43
+                // InternalMelange.g:1:190: T__43
                 {
                 mT__43(); 
 
                 }
                 break;
             case 32 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:196: T__44
+                // InternalMelange.g:1:196: T__44
                 {
                 mT__44(); 
 
                 }
                 break;
             case 33 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:202: T__45
+                // InternalMelange.g:1:202: T__45
                 {
                 mT__45(); 
 
                 }
                 break;
             case 34 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:208: T__46
+                // InternalMelange.g:1:208: T__46
                 {
                 mT__46(); 
 
                 }
                 break;
             case 35 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:214: T__47
+                // InternalMelange.g:1:214: T__47
                 {
                 mT__47(); 
 
                 }
                 break;
             case 36 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:220: T__48
+                // InternalMelange.g:1:220: T__48
                 {
                 mT__48(); 
 
                 }
                 break;
             case 37 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:226: T__49
+                // InternalMelange.g:1:226: T__49
                 {
                 mT__49(); 
 
                 }
                 break;
             case 38 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:232: T__50
+                // InternalMelange.g:1:232: T__50
                 {
                 mT__50(); 
 
                 }
                 break;
             case 39 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:238: T__51
+                // InternalMelange.g:1:238: T__51
                 {
                 mT__51(); 
 
                 }
                 break;
             case 40 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:244: T__52
+                // InternalMelange.g:1:244: T__52
                 {
                 mT__52(); 
 
                 }
                 break;
             case 41 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:250: T__53
+                // InternalMelange.g:1:250: T__53
                 {
                 mT__53(); 
 
                 }
                 break;
             case 42 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:256: T__54
+                // InternalMelange.g:1:256: T__54
                 {
                 mT__54(); 
 
                 }
                 break;
             case 43 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:262: T__55
+                // InternalMelange.g:1:262: T__55
                 {
                 mT__55(); 
 
                 }
                 break;
             case 44 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:268: T__56
+                // InternalMelange.g:1:268: T__56
                 {
                 mT__56(); 
 
                 }
                 break;
             case 45 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:274: T__57
+                // InternalMelange.g:1:274: T__57
                 {
                 mT__57(); 
 
                 }
                 break;
             case 46 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:280: T__58
+                // InternalMelange.g:1:280: T__58
                 {
                 mT__58(); 
 
                 }
                 break;
             case 47 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:286: T__59
+                // InternalMelange.g:1:286: T__59
                 {
                 mT__59(); 
 
                 }
                 break;
             case 48 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:292: T__60
+                // InternalMelange.g:1:292: T__60
                 {
                 mT__60(); 
 
                 }
                 break;
             case 49 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:298: T__61
+                // InternalMelange.g:1:298: T__61
                 {
                 mT__61(); 
 
                 }
                 break;
             case 50 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:304: T__62
+                // InternalMelange.g:1:304: T__62
                 {
                 mT__62(); 
 
                 }
                 break;
             case 51 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:310: T__63
+                // InternalMelange.g:1:310: T__63
                 {
                 mT__63(); 
 
                 }
                 break;
             case 52 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:316: T__64
+                // InternalMelange.g:1:316: T__64
                 {
                 mT__64(); 
 
                 }
                 break;
             case 53 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:322: T__65
+                // InternalMelange.g:1:322: T__65
                 {
                 mT__65(); 
 
                 }
                 break;
             case 54 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:328: T__66
+                // InternalMelange.g:1:328: T__66
                 {
                 mT__66(); 
 
                 }
                 break;
             case 55 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:334: T__67
+                // InternalMelange.g:1:334: T__67
                 {
                 mT__67(); 
 
                 }
                 break;
             case 56 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:340: T__68
+                // InternalMelange.g:1:340: T__68
                 {
                 mT__68(); 
 
                 }
                 break;
             case 57 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:346: T__69
+                // InternalMelange.g:1:346: T__69
                 {
                 mT__69(); 
 
                 }
                 break;
             case 58 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:352: T__70
+                // InternalMelange.g:1:352: T__70
                 {
                 mT__70(); 
 
                 }
                 break;
             case 59 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:358: T__71
+                // InternalMelange.g:1:358: T__71
                 {
                 mT__71(); 
 
                 }
                 break;
             case 60 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:364: T__72
+                // InternalMelange.g:1:364: T__72
                 {
                 mT__72(); 
 
                 }
                 break;
             case 61 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:370: T__73
+                // InternalMelange.g:1:370: T__73
                 {
                 mT__73(); 
 
                 }
                 break;
             case 62 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:376: T__74
+                // InternalMelange.g:1:376: T__74
                 {
                 mT__74(); 
 
                 }
                 break;
             case 63 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:382: T__75
+                // InternalMelange.g:1:382: T__75
                 {
                 mT__75(); 
 
                 }
                 break;
             case 64 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:388: T__76
+                // InternalMelange.g:1:388: T__76
                 {
                 mT__76(); 
 
                 }
                 break;
             case 65 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:394: T__77
+                // InternalMelange.g:1:394: T__77
                 {
                 mT__77(); 
 
                 }
                 break;
             case 66 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:400: T__78
+                // InternalMelange.g:1:400: T__78
                 {
                 mT__78(); 
 
                 }
                 break;
             case 67 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:406: T__79
+                // InternalMelange.g:1:406: T__79
                 {
                 mT__79(); 
 
                 }
                 break;
             case 68 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:412: T__80
+                // InternalMelange.g:1:412: T__80
                 {
                 mT__80(); 
 
                 }
                 break;
             case 69 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:418: T__81
+                // InternalMelange.g:1:418: T__81
                 {
                 mT__81(); 
 
                 }
                 break;
             case 70 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:424: T__82
+                // InternalMelange.g:1:424: T__82
                 {
                 mT__82(); 
 
                 }
                 break;
             case 71 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:430: T__83
+                // InternalMelange.g:1:430: T__83
                 {
                 mT__83(); 
 
                 }
                 break;
             case 72 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:436: T__84
+                // InternalMelange.g:1:436: T__84
                 {
                 mT__84(); 
 
                 }
                 break;
             case 73 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:442: T__85
+                // InternalMelange.g:1:442: T__85
                 {
                 mT__85(); 
 
                 }
                 break;
             case 74 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:448: T__86
+                // InternalMelange.g:1:448: T__86
                 {
                 mT__86(); 
 
                 }
                 break;
             case 75 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:454: T__87
+                // InternalMelange.g:1:454: T__87
                 {
                 mT__87(); 
 
                 }
                 break;
             case 76 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:460: T__88
+                // InternalMelange.g:1:460: T__88
                 {
                 mT__88(); 
 
                 }
                 break;
             case 77 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:466: T__89
+                // InternalMelange.g:1:466: T__89
                 {
                 mT__89(); 
 
                 }
                 break;
             case 78 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:472: T__90
+                // InternalMelange.g:1:472: T__90
                 {
                 mT__90(); 
 
                 }
                 break;
             case 79 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:478: T__91
+                // InternalMelange.g:1:478: T__91
                 {
                 mT__91(); 
 
                 }
                 break;
             case 80 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:484: T__92
+                // InternalMelange.g:1:484: T__92
                 {
                 mT__92(); 
 
                 }
                 break;
             case 81 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:490: T__93
+                // InternalMelange.g:1:490: T__93
                 {
                 mT__93(); 
 
                 }
                 break;
             case 82 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:496: T__94
+                // InternalMelange.g:1:496: T__94
                 {
                 mT__94(); 
 
                 }
                 break;
             case 83 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:502: T__95
+                // InternalMelange.g:1:502: T__95
                 {
                 mT__95(); 
 
                 }
                 break;
             case 84 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:508: T__96
+                // InternalMelange.g:1:508: T__96
                 {
                 mT__96(); 
 
                 }
                 break;
             case 85 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:514: T__97
+                // InternalMelange.g:1:514: T__97
                 {
                 mT__97(); 
 
                 }
                 break;
             case 86 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:520: T__98
+                // InternalMelange.g:1:520: T__98
                 {
                 mT__98(); 
 
                 }
                 break;
             case 87 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:526: T__99
+                // InternalMelange.g:1:526: T__99
                 {
                 mT__99(); 
 
                 }
                 break;
             case 88 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:532: T__100
+                // InternalMelange.g:1:532: T__100
                 {
                 mT__100(); 
 
                 }
                 break;
             case 89 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:539: T__101
+                // InternalMelange.g:1:539: T__101
                 {
                 mT__101(); 
 
                 }
                 break;
             case 90 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:546: T__102
+                // InternalMelange.g:1:546: T__102
                 {
                 mT__102(); 
 
                 }
                 break;
             case 91 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:553: T__103
+                // InternalMelange.g:1:553: T__103
                 {
                 mT__103(); 
 
                 }
                 break;
             case 92 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:560: T__104
+                // InternalMelange.g:1:560: T__104
                 {
                 mT__104(); 
 
                 }
                 break;
             case 93 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:567: T__105
+                // InternalMelange.g:1:567: T__105
                 {
                 mT__105(); 
 
                 }
                 break;
             case 94 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:574: T__106
+                // InternalMelange.g:1:574: T__106
                 {
                 mT__106(); 
 
                 }
                 break;
             case 95 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:581: T__107
+                // InternalMelange.g:1:581: T__107
                 {
                 mT__107(); 
 
                 }
                 break;
             case 96 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:588: T__108
+                // InternalMelange.g:1:588: T__108
                 {
                 mT__108(); 
 
                 }
                 break;
             case 97 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:595: T__109
+                // InternalMelange.g:1:595: T__109
                 {
                 mT__109(); 
 
                 }
                 break;
             case 98 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:602: T__110
+                // InternalMelange.g:1:602: T__110
                 {
                 mT__110(); 
 
                 }
                 break;
             case 99 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:609: RULE_HEX
+                // InternalMelange.g:1:609: RULE_HEX
                 {
                 mRULE_HEX(); 
 
                 }
                 break;
             case 100 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:618: RULE_INT
+                // InternalMelange.g:1:618: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
             case 101 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:627: RULE_DECIMAL
+                // InternalMelange.g:1:627: RULE_DECIMAL
                 {
                 mRULE_DECIMAL(); 
 
                 }
                 break;
             case 102 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:640: RULE_ID
+                // InternalMelange.g:1:640: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
             case 103 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:648: RULE_STRING
+                // InternalMelange.g:1:648: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
             case 104 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:660: RULE_ML_COMMENT
+                // InternalMelange.g:1:660: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
             case 105 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:676: RULE_SL_COMMENT
+                // InternalMelange.g:1:676: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
             case 106 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:692: RULE_WS
+                // InternalMelange.g:1:692: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
             case 107 :
-                // ../fr.inria.diverse.melange/src-gen/fr/inria/diverse/melange/parser/antlr/internal/InternalMelange.g:1:700: RULE_ANY_OTHER
+                // InternalMelange.g:1:700: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
