@@ -4,17 +4,16 @@ import FSM.interfaces.Context
 
 import static extension finitestatemachines.composite.StateAspect.*
 
-class ForkThread extends Thread {
-	
-	finitestatemachinescomposite.State state
+class ForkThread extends Thread{
+	fsm.State state
 	Context context
-	
-	new (finitestatemachinescomposite.State _state, Context _context){
+
+	new(fsm.State _state, Context _context) {
 		state = _state
 		context = _context
 	}
-	
-	override run(){
+
+	override run() {
 		state.eval(context)
 	}
 }

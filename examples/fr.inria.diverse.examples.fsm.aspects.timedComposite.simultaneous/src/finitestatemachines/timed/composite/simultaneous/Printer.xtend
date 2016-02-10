@@ -19,13 +19,13 @@ import com.itextpdf.awt.DefaultFontMapper
 import java.awt.Graphics2D
 import java.awt.geom.Rectangle2D
 
-import finitestatemachinestimedcomposite.State
-import finitestatemachinestimedcomposite.StateMachine
-import finitestatemachinestimedcomposite.Fork
-import finitestatemachinestimedcomposite.Join
+import fsm.State
+import fsm.StateMachine
+import fsm.Fork
+import fsm.Join
 import java.util.List
 import java.util.ArrayList
-import finitestatemachinestimedcomposite.CompositeState
+import fsm.CompositeState
 
 class Printer {
 	

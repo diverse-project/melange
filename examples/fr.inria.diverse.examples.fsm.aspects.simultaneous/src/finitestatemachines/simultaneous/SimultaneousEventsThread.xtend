@@ -1,10 +1,10 @@
 package finitestatemachines.simultaneous
 
 import FSM.interfaces.Context
-import finitestatemachines.Fork
-import finitestatemachines.Join
-import finitestatemachines.StateMachine
-import finitestatemachines.Transition
+import fsm.Fork
+import fsm.Join
+import fsm.StateMachine
+import fsm.Transition
 import java.util.ArrayList
 import org.eclipse.emf.common.util.BasicEList
 import org.eclipse.emf.common.util.EList
@@ -23,7 +23,7 @@ class SimultaneousEventsThread extends Thread {
 	String event
 	StateMachine stateMachine
 	Context context
-	ArrayList<finitestatemachines.State> currentState
+	ArrayList<fsm.State> currentState
 	ArrayList<Transition> currentTransitions
 	
 	/**
@@ -34,7 +34,7 @@ class SimultaneousEventsThread extends Thread {
 		event = _event
 		stateMachine = _stateMachine
 		context = _context
-		currentState = new ArrayList<finitestatemachines.State>()
+		currentState = new ArrayList<fsm.State>()
 		currentTransitions = new ArrayList<Transition>()
 	}
 	
@@ -42,9 +42,9 @@ class SimultaneousEventsThread extends Thread {
 	 * Runs the thread!
 	 */
 	override run(){
-		var EList<finitestatemachines.State> attendedStates = new BasicEList<finitestatemachines.State>()
+		var EList<fsm.State> attendedStates = new BasicEList<fsm.State>()
 		
-		for(finitestatemachines.State _state : stateMachine.currentState){
+		for(fsm.State _state : stateMachine.currentState){
 			for(Transition transition : _state.outgoing){
 				if(transition.trigger != null && 
 					transition.trigger.expression.equals(event)){
@@ -53,7 +53,7 @@ class SimultaneousEventsThread extends Thread {
 			}
 		}
 		
-		for(finitestatemachines.State _state : currentState){
+		for(fsm.State _state : currentState){
 			for(Transition transition : _state.outgoing){
 				if(transition.trigger.expression.equals(event)){
 					attendedStates.add(_state)
@@ -105,10 +105,10 @@ class SimultaneousEventsThread extends Thread {
 		
 		// Join: If the current state is followed by a Join, we need to jump to it.
 		//		there are neither guards nor triggers in this kind of situation. 
-		var EList<finitestatemachines.State> toAdd = new BasicEList<finitestatemachines.State>()
-		var EList<finitestatemachines.State> toRemove = new BasicEList<finitestatemachines.State>()
+		var EList<fsm.State> toAdd = new BasicEList<fsm.State>()
+		var EList<fsm.State> toRemove = new BasicEList<fsm.State>()
 		
-		for(finitestatemachines.State _state : currentState){
+		for(fsm.State _state : currentState){
 			if(_state.outgoing.size() > 0 && _state.outgoing.get(0).target instanceof Join){
 				
 				if(!toAdd.contains(_state.outgoing.get(0).target) && 

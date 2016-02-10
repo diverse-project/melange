@@ -1,122 +1,65 @@
-package finitestatemachines
+package family
 
-import static extension fr.inria.diverse.melange.lib.MetamodelExtensions.*
-
-//modeltype IStateMachine{
-//	ecore "platform:/resource/fr.inria.diverse.examples.fsm.interfaces/models/ifsm.ecore"
-//}
-
-// Implementation 1: State machines that comply to the Run-To-Completion policy: UML and Rhapsody.
-language FiniteStateMachineRTC /**implements IStateMachine*/ {
-	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel/models/fsm.ecore"
-	exactType FiniteStateMachineRTCMT
-
+language FsmRtc {
+	syntax "platform:/resource/fr.inria.diverse.examples.fsm.metamodel/models/fsm.ecore"
 	with finitestatemachines.rtc.StateMachineAspect
 	with finitestatemachines.rtc.StateAspect
+	exactType FsmRtcMT
 } 
 
-// Implementation 2: State machines that accept simultaneous events: Classical statecharts.
-language FiniteStateMachineSimultaneous{
-	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel/models/fsm.ecore"
-	exactType FiniteStateMachineSimultaneousMT
-	
+language FsmSimultaneous {
+	syntax "platform:/resource/fr.inria.diverse.examples.fsm.metamodel/models/fsm.ecore"
 	with finitestatemachines.simultaneous.StateMachineAspect
 	with finitestatemachines.simultaneous.StateAspect
+	exactType FsmSimultaneousMT
 }
 
-language FiniteStateMachineTimed {
-	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.timed/model/fsm.ecore"
-	exactType FiniteStateMachineTimedMT
-	
+language FsmTimed {
+	syntax "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.timed/model/fsm.ecore"
 	with finitestatemachines.timed.StateMachineAspect
 	with finitestatemachines.timed.StateAspect
 	with finitestatemachines.timed.TransitionAspect
+	exactType FsmTimedMT
 }
 
-language FiniteStateMachineComposite{
-	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.composite/model/fsm.ecore"
-	exactType FiniteStateMachineCompositeMT
-	
+language FsmComposite {
+	syntax "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.composite/model/fsm.ecore"
 	with finitestatemachines.composite.StateMachineAspect
 	with finitestatemachines.composite.StateAspect
-	with finitestatemachines.composite.CompositeStateAspect
+//	with finitestatemachines.composite.CompositeStateAspect
+	exactType FsmCompositeMT
 }
 
-language FiniteStateMachineTimedComposite{
-	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.timedComposite/model/fsm.ecore"
-	exactType FiniteStateMachineTimedCompositeMT
-	
+language FsmTimedComposite {
+	syntax "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.timedComposite/model/fsm.ecore"
 	with finitestatemachines.timedcomposite.StateMachineAspect
 	with finitestatemachines.timedcomposite.StateAspect
-	with finitestatemachines.timedcomposite.CompositeStateAspect
+//	with finitestatemachines.timedcomposite.CompositeStateAspect
 	with finitestatemachines.timedcomposite.TransitionAspect
+	exactType FsmTimedCompositeMT
 }
 
-language FiniteStateMachineTimedSimultaneous{
-	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.timed/model/fsm.ecore"
-	exactType FiniteStateMachineTimedSimultaneousMT
-	
+language FsmTimedSimultaneous {
+	syntax "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.timed/model/fsm.ecore"
 	with finitestatemachines.timed.simultaneous.StateMachineAspect
 	with finitestatemachines.timed.simultaneous.StateAspect
 	with finitestatemachines.timed.simultaneous.TransitionAspect
+	exactType FsmTimedSimultaneousMT
 }
 
-language FiniteStateMachineCompositeSimultaneous{
-	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.composite/model/fsm.ecore"
-	exactType FiniteStateMachineCompositeSimultaneousMT
-	
+language FsmCompositeSimultaneous {
+	syntax "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.composite/model/fsm.ecore"
 	with finitestatemachines.composite.simultaneous.StateMachineAspect
 	with finitestatemachines.composite.simultaneous.StateAspect
-	with finitestatemachines.composite.simultaneous.CompositeStateAspect
+//	with finitestatemachines.composite.simultaneous.CompositeStateAspect
+	exactType FsmCompositeSimultaneousMT
 }
 
-language FiniteStateMachineTimedCompositeSimultaneous{
-	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.timedComposite/model/fsm.ecore"
-	exactType FiniteStateMachineTimedCompositeSimultaneousMT
-	
+language FsmTimedCompositeSimultaneous {
+	syntax "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.timedComposite/model/fsm.ecore"
 	with finitestatemachines.timed.composite.simultaneous.StateMachineAspect
 	with finitestatemachines.timed.composite.simultaneous.StateAspect
-	with finitestatemachines.timed.composite.simultaneous.CompositeStateAspect
+//	with finitestatemachines.timed.composite.simultaneous.CompositeStateAspect
 	with finitestatemachines.timed.composite.simultaneous.TransitionAspect
-}
-
-transformation execute(FiniteStateMachineRTCMT stateMachine, String input, String outputFile){
-	val root = stateMachine.contents.head as finitestatemachines.finitestatemachinertcmt.StateMachine
-	root.eval(new FSM.interfaces.Context(input), outputFile)
-}
-
-// Execution of the state machines.
-@Main
-transformation main(){
-	val simpleProgram = FiniteStateMachineRTC.load("input/dummie.xmi")
-	execute.call(simpleProgram, "{x;y;z,o;p;q}", "output/RTCdummie-output " + 
-		System.currentTimeMillis + ".pdf")
-
-	val simpleProgram2 = FiniteStateMachineSimultaneous.load("input/dummie.xmi")
-	execute.call(simpleProgram2, "{x;y;z,o;p;q}", "output/SIMULTdummie-output " + 
-		System.currentTimeMillis + ".pdf")
-
-	val simpleProgram3 = FiniteStateMachineTimed.load("input/timeddummie.xmi")
-	execute.call(simpleProgram3, "{x;y;z,o;p;q}", "output/RTCtimeddummie-output " + 
-		System.currentTimeMillis + ".pdf")
-		
-	val simpleProgram4 = FiniteStateMachineTimedSimultaneous.load("input/timeddummie.xmi")
-	execute.call(simpleProgram4, "{x;y;z,o;p;q}", "output/SIMULTtimeddummie-output " + 
-		System.currentTimeMillis + ".pdf")
-
-	val simpleProgram5 = FiniteStateMachineComposite.load("input/compositedummie.xmi")
-	execute.call(simpleProgram5, "{x;y;z,o;p;q}", "output/RTCcompositedummie-output " + 
-		System.currentTimeMillis + ".pdf")
-	
-	val simpleProgram6 = FiniteStateMachineCompositeSimultaneous.load("input/compositedummie.xmi")
-	execute.call(simpleProgram6, "{x;y;z,o;p;q}", "output/SIMULTcompositedummie-output " + 
-		System.currentTimeMillis + ".pdf")
-	
-	val simpleProgram7 = FiniteStateMachineTimedComposite.load("input/timedcompositedummie.xmi")
-	execute.call(simpleProgram7, "{x;y;z,o;p;q}", "output/RTCtimedcompositedummie-output " + 
-		System.currentTimeMillis + ".pdf")
-	
-	val simpleProgram8 = FiniteStateMachineTimedCompositeSimultaneous.load("input/timedcompositedummie.xmi")
-	execute.call(simpleProgram8, "{x;y;z,o;p;q}", "output/SIMULTtimedcompositedummie-output " + 
-		System.currentTimeMillis + ".pdf")
+	exactType FsmTimedCompositeSimultaneousMT
 }

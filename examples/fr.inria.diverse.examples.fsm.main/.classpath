@@ -4,5 +4,25 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="src" path="src-gen"/>
+	<classpathentry exported="true" kind="var" path="ECLIPSE_CORE_RUNTIME">
+		<attributes>
+			<attribute name="plugin_id" value="org.eclipse.core.runtime"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="var" path="ECLIPSE_CORE_RESOURCES">
+		<attributes>
+			<attribute name="plugin_id" value="org.eclipse.core.resources"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="var" path="EMF_COMMON">
+		<attributes>
+			<attribute name="plugin_id" value="org.eclipse.emf.common"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="var" path="EMF_ECORE">
+		<attributes>
+			<attribute name="plugin_id" value="org.eclipse.emf.ecore"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

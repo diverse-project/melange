@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.inria.diverse.examples.fsm.metamodel.composite/src" modelPluginID="fr.inria.diverse.examples.fsm.metamodel.composite" modelName="Fsm" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
   <foreignModel>fsm.ecore</foreignModel>
-  <genPackages prefix="Finitestatemachinescomposite" disposableProviderFactory="true">
+  <genPackages prefix="Fsm" disposableProviderFactory="true">
     <ecorePackage href="fsm.ecore#/"/>
     <genClasses>
       <ecoreClass href="fsm.ecore#//NamedElement"/>
@@ -29,7 +29,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true">
         <ecoreFeature xsi:type="ecore:EReference" href="fsm.ecore#//State/incoming"/>
       </genFeatures>
-      <genFeatures property="None" notify="false" createChild="false">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
         <ecoreFeature xsi:type="ecore:EReference" href="fsm.ecore#//State/stateMachine"/>
       </genFeatures>
       <genFeatures createChild="false">

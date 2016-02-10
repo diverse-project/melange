@@ -25,15 +25,6 @@ Require-Bundle: org.eclipse.xtend.lib;bundle-version="2.7.0";visibility:=private
  fr.inria.diverse.examples.fsm.aspects.timedComposite.rtc;bundle-version="1.0.0",
  fr.inria.diverse.examples.fsm.aspects.timed.simultaneous;bundle-version="1.0.0",
  fr.inria.diverse.examples.fsm.aspects.composite.simultaneous;bundle-version="1.0.0",
- fr.inria.diverse.examples.fsm.aspects.timedComposite.simultaneous;bundle-version="1.0.0",
- finitestatemachines.finitestatemachinecomposite.aspect,
- finitestatemachines.finitestatemachinecompositesimultaneous.aspect,
- finitestatemachines.finitestatemachinertc.aspect,
- finitestatemachines.finitestatemachinesimultaneous.aspect,
- finitestatemachines.finitestatemachinetimed.aspect,
- finitestatemachines.finitestatemachinetimedcomposite.aspect,
- finitestatemachines.finitestatemachinetimedsimultaneous.aspect,
- finitestatemachines.timed.finitestatemachinetimedcompositesimultaneous.aspect
+ fr.inria.diverse.examples.fsm.aspects.timedComposite.simultaneous;bundle-version="1.0.0"
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-

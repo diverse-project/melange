@@ -1,11 +1,11 @@
 package finitestatemachines.timed.composite.simultaneous
 
 import FSM.interfaces.Context
-import finitestatemachinestimedcomposite.CompositeState
-import finitestatemachinestimedcomposite.InitialState
-import finitestatemachinestimedcomposite.State
-import finitestatemachinestimedcomposite.StateMachine
-import finitestatemachinestimedcomposite.Transition
+import fsm.CompositeState
+import fsm.InitialState
+import fsm.State
+import fsm.StateMachine
+import fsm.Transition
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
 import java.util.ArrayList

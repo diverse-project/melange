@@ -28,18 +28,6 @@ Export-Package: FSM.interfaces,
    com.itextpdf.text.pdf.draw,
    com.itextpdf.awt.geom,
    com.itextpdf.text.pdf",
- ifinitestatemachines;uses:="org.eclipse.emf.ecore",
- ifinitestatemachines.impl;
-  uses:="org.eclipse.emf.ecore,
-   org.eclipse.emf.ecore.impl,
-   org.eclipse.emf.common.util,
-   ifinitestatemachines",
- ifinitestatemachines.util;
-  uses:="org.eclipse.emf.ecore,
-   org.eclipse.emf.common.notify,
-   org.eclipse.emf.common.notify.impl,
-   org.eclipse.emf.ecore.util,
-   ifinitestatemachines",
  org.jfree.chart;
   uses:="org.jfree.ui,
    org.jfree.chart.panel,

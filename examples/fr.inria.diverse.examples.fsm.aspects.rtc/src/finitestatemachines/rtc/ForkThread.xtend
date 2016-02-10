@@ -6,10 +6,10 @@ import static extension finitestatemachines.rtc.StateAspect.*
 
 class ForkThread extends Thread {
 	
-	finitestatemachines.State state
+	fsm.State state
 	Context context
 	
-	new (finitestatemachines.State _state, Context _context){
+	new (fsm.State _state, Context _context){
 		state = _state
 		context = _context
 	}
