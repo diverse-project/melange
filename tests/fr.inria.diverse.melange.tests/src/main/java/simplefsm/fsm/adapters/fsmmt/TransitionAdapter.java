@@ -35,11 +35,9 @@ public class TransitionAdapter extends EObjectAdapter<Transition> implements sim
     adaptee.setOutput(o) ;
   }
   
-  private State source;
-  
   @Override
   public State getSource() {
-    return adaptersFactory.createStateAdapter(adaptee.getSource(), eResource) ;
+    return (State) adaptersFactory.createAdapter(adaptee.getSource(), eResource) ;
   }
   
   @Override
@@ -49,11 +47,9 @@ public class TransitionAdapter extends EObjectAdapter<Transition> implements sim
     else adaptee.setSource(null) ;
   }
   
-  private State target;
-  
   @Override
   public State getTarget() {
-    return adaptersFactory.createStateAdapter(adaptee.getTarget(), eResource) ;
+    return (State) adaptersFactory.createAdapter(adaptee.getTarget(), eResource) ;
   }
   
   @Override
@@ -62,6 +58,10 @@ public class TransitionAdapter extends EObjectAdapter<Transition> implements sim
     	adaptee.setTarget(((simplefsm.fsm.adapters.fsmmt.StateAdapter) o).getAdaptee()) ;
     else adaptee.setTarget(null) ;
   }
+  
+  protected final static String INPUT_EDEFAULT = null;
+  
+  protected final static String OUTPUT_EDEFAULT = null;
   
   @Override
   public EClass eClass() {
@@ -85,42 +85,55 @@ public class TransitionAdapter extends EObjectAdapter<Transition> implements sim
   }
   
   @Override
+  public void eUnset(final int featureID) {
+    switch (featureID) {
+    	case simplefsm.fsmmt.fsm.FsmPackage.TRANSITION__SOURCE:
+    		setSource((simplefsm.fsmmt.fsm.State) null);
+    	case simplefsm.fsmmt.fsm.FsmPackage.TRANSITION__TARGET:
+    		setTarget((simplefsm.fsmmt.fsm.State) null);
+    	case simplefsm.fsmmt.fsm.FsmPackage.TRANSITION__INPUT:
+    		setInput(INPUT_EDEFAULT);
+    	case simplefsm.fsmmt.fsm.FsmPackage.TRANSITION__OUTPUT:
+    		setOutput(OUTPUT_EDEFAULT);
+    	return;
+    }
+    
+    super.eUnset(featureID);
+  }
+  
+  @Override
+  public boolean eIsSet(final int featureID) {
+    switch (featureID) {
+    	case simplefsm.fsmmt.fsm.FsmPackage.TRANSITION__SOURCE:
+    		return getSource() != null;
+    	case simplefsm.fsmmt.fsm.FsmPackage.TRANSITION__TARGET:
+    		return getTarget() != null;
+    	case simplefsm.fsmmt.fsm.FsmPackage.TRANSITION__INPUT:
+    		return getInput() != INPUT_EDEFAULT;
+    	case simplefsm.fsmmt.fsm.FsmPackage.TRANSITION__OUTPUT:
+    		return getOutput() != OUTPUT_EDEFAULT;
+    }
+    
+    return super.eIsSet(featureID);
+  }
+  
+  @Override
   public void eSet(final int featureID, final Object newValue) {
     switch (featureID) {
     	case simplefsm.fsmmt.fsm.FsmPackage.TRANSITION__SOURCE:
-    		setSource((State) newValue);
+    		setSource((simplefsm.fsmmt.fsm.State) newValue);
     		return;
     	case simplefsm.fsmmt.fsm.FsmPackage.TRANSITION__TARGET:
-    		setTarget((State) newValue);
+    		setTarget((simplefsm.fsmmt.fsm.State) newValue);
     		return;
     	case simplefsm.fsmmt.fsm.FsmPackage.TRANSITION__INPUT:
-    		setInput((String) newValue);
+    		setInput((java.lang.String) newValue);
     		return;
     	case simplefsm.fsmmt.fsm.FsmPackage.TRANSITION__OUTPUT:
-    		setOutput((String) newValue);
+    		setOutput((java.lang.String) newValue);
     		return;
     }
     
     super.eSet(featureID, newValue);
-  }
-  
-  @Override
-  public void eUnset(final int featureID) {
-    switch (featureID) {
-    	case simplefsm.fsmmt.fsm.FsmPackage.TRANSITION__SOURCE:
-    		setSource((State) null);
-    		return;
-    	case simplefsm.fsmmt.fsm.FsmPackage.TRANSITION__TARGET:
-    		setTarget((State) null);
-    		return;
-    	case simplefsm.fsmmt.fsm.FsmPackage.TRANSITION__INPUT:
-    		setInput((String) null);
-    		return;
-    	case simplefsm.fsmmt.fsm.FsmPackage.TRANSITION__OUTPUT:
-    		setOutput((String) null);
-    		return;
-    }
-    
-    super.eUnset(featureID);
   }
 }
