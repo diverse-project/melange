@@ -187,24 +187,17 @@ class MelangeValidator extends AbstractMelangeValidator
 			)
 	}
 
-	// FIXME: Only one package is checked there,
-	//        and mtPkg may be null
-	// TODO: This should be replaced by an algebra call.
-	//       -> ecore files must be loaded prior to this
 	@Check
 	def void checkImplements(Language l) {
-		val mmPkg = modelUtils.loadPkg(l.syntax.ecoreUri)
-
 		l.^implements
-		.forEach[mt |
-			val mtPkg = modelUtils.loadPkg(mt.ecoreUri)
-
+		.forEach[mt, i |
 			if (!matchingHelper.match(
-				Collections.singletonList(mmPkg), Collections.singletonList(mtPkg), null
+				l.syntax.pkgs, mt.pkgs, l.mappings.findFirst[to == mt]
 			))
 				error(
 					'''«l.name» doesn't match the interface «mt.name»''',
 					MelangePackage.Literals.LANGUAGE__IMPLEMENTS,
+					i,
 					MelangeValidationConstants.METAMODEL_IMPLEMENTS_ERROR
 				)
 		]
