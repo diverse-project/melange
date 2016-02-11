@@ -195,7 +195,7 @@ public interface FsmPackage extends EPackage {
 	int STATE__INCOMING = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>State Machine</b></em>' reference.
+	 * The feature id for the '<em><b>State Machine</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -286,7 +286,7 @@ public interface FsmPackage extends EPackage {
 	int FINAL_STATE__INCOMING = STATE__INCOMING;
 
 	/**
-	 * The feature id for the '<em><b>State Machine</b></em>' reference.
+	 * The feature id for the '<em><b>State Machine</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -377,7 +377,7 @@ public interface FsmPackage extends EPackage {
 	int INITIAL_STATE__INCOMING = STATE__INCOMING;
 
 	/**
-	 * The feature id for the '<em><b>State Machine</b></em>' reference.
+	 * The feature id for the '<em><b>State Machine</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -732,7 +732,7 @@ public interface FsmPackage extends EPackage {
 	int PSEUDOSTATE__INCOMING = STATE__INCOMING;
 
 	/**
-	 * The feature id for the '<em><b>State Machine</b></em>' reference.
+	 * The feature id for the '<em><b>State Machine</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -823,7 +823,7 @@ public interface FsmPackage extends EPackage {
 	int FORK__INCOMING = PSEUDOSTATE__INCOMING;
 
 	/**
-	 * The feature id for the '<em><b>State Machine</b></em>' reference.
+	 * The feature id for the '<em><b>State Machine</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -914,7 +914,7 @@ public interface FsmPackage extends EPackage {
 	int JOIN__INCOMING = PSEUDOSTATE__INCOMING;
 
 	/**
-	 * The feature id for the '<em><b>State Machine</b></em>' reference.
+	 * The feature id for the '<em><b>State Machine</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1005,7 +1005,7 @@ public interface FsmPackage extends EPackage {
 	int COMPOSITE_STATE__INCOMING = STATE__INCOMING;
 
 	/**
-	 * The feature id for the '<em><b>State Machine</b></em>' reference.
+	 * The feature id for the '<em><b>State Machine</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1243,7 +1243,7 @@ public interface FsmPackage extends EPackage {
 	int CHOICE__INCOMING = PSEUDOSTATE__INCOMING;
 
 	/**
-	 * The feature id for the '<em><b>State Machine</b></em>' reference.
+	 * The feature id for the '<em><b>State Machine</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1431,10 +1431,10 @@ public interface FsmPackage extends EPackage {
 	EReference getState_Incoming();
 
 	/**
-	 * Returns the meta object for the reference '{@link compositefsm.fsm.State#getStateMachine <em>State Machine</em>}'.
+	 * Returns the meta object for the container reference '{@link compositefsm.fsm.State#getStateMachine <em>State Machine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>State Machine</em>'.
+	 * @return the meta object for the container reference '<em>State Machine</em>'.
 	 * @see compositefsm.fsm.State#getStateMachine()
 	 * @see #getState()
 	 * @generated
@@ -1914,7 +1914,7 @@ public interface FsmPackage extends EPackage {
 		EReference STATE__INCOMING = eINSTANCE.getState_Incoming();
 
 		/**
-		 * The meta object literal for the '<em><b>State Machine</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>State Machine</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

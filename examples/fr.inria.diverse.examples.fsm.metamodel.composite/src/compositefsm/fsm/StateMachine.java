@@ -26,6 +26,7 @@ public interface StateMachine extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>States</b></em>' containment reference list.
 	 * The list contents are of type {@link compositefsm.fsm.State}.
+	 * It is bidirectional and its opposite is '{@link compositefsm.fsm.State#getStateMachine <em>State Machine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>States</em>' containment reference list isn't clear,
@@ -34,7 +35,8 @@ public interface StateMachine extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>States</em>' containment reference list.
 	 * @see compositefsm.fsm.FsmPackage#getStateMachine_States()
-	 * @model containment="true"
+	 * @see compositefsm.fsm.State#getStateMachine
+	 * @model opposite="stateMachine" containment="true"
 	 * @generated
 	 */
 	EList<State> getStates();

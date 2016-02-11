@@ -63,26 +63,28 @@ public interface State extends NamedElement {
 	EList<Transition> getIncoming();
 
 	/**
-	 * Returns the value of the '<em><b>State Machine</b></em>' reference.
+	 * Returns the value of the '<em><b>State Machine</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link compositefsm.fsm.StateMachine#getStates <em>States</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>State Machine</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>State Machine</em>' reference.
+	 * @return the value of the '<em>State Machine</em>' container reference.
 	 * @see #setStateMachine(StateMachine)
 	 * @see compositefsm.fsm.FsmPackage#getState_StateMachine()
-	 * @model
+	 * @see compositefsm.fsm.StateMachine#getStates
+	 * @model opposite="states" transient="false"
 	 * @generated
 	 */
 	StateMachine getStateMachine();
 
 	/**
-	 * Sets the value of the '{@link compositefsm.fsm.State#getStateMachine <em>State Machine</em>}' reference.
+	 * Sets the value of the '{@link compositefsm.fsm.State#getStateMachine <em>State Machine</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>State Machine</em>' reference.
+	 * @param value the new value of the '<em>State Machine</em>' container reference.
 	 * @see #getStateMachine()
 	 * @generated
 	 */

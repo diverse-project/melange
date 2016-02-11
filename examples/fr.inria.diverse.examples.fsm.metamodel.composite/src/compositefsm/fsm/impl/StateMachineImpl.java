@@ -93,7 +93,7 @@ public class StateMachineImpl extends NamedElementImpl implements StateMachine {
 	 */
 	public EList<State> getStates() {
 		if (states == null) {
-			states = new EObjectContainmentEList<State>(State.class, this, FsmPackage.STATE_MACHINE__STATES);
+			states = new EObjectContainmentWithInverseEList<State>(State.class, this, FsmPackage.STATE_MACHINE__STATES, FsmPackage.STATE__STATE_MACHINE);
 		}
 		return states;
 	}
@@ -131,6 +131,8 @@ public class StateMachineImpl extends NamedElementImpl implements StateMachine {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case FsmPackage.STATE_MACHINE__STATES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getStates()).basicAdd(otherEnd, msgs);
 			case FsmPackage.STATE_MACHINE__TRANSITIONS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTransitions()).basicAdd(otherEnd, msgs);
 		}

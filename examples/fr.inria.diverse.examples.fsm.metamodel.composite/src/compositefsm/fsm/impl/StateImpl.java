@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -61,16 +62,6 @@ public class StateImpl extends NamedElementImpl implements State {
 	 * @ordered
 	 */
 	protected EList<Transition> incoming;
-
-	/**
-	 * The cached value of the '{@link #getStateMachine() <em>State Machine</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStateMachine()
-	 * @generated
-	 * @ordered
-	 */
-	protected StateMachine stateMachine;
 
 	/**
 	 * The default value of the '{@link #getInitialTime() <em>Initial Time</em>}' attribute.
@@ -171,15 +162,8 @@ public class StateImpl extends NamedElementImpl implements State {
 	 * @generated
 	 */
 	public StateMachine getStateMachine() {
-		if (stateMachine != null && stateMachine.eIsProxy()) {
-			InternalEObject oldStateMachine = (InternalEObject)stateMachine;
-			stateMachine = (StateMachine)eResolveProxy(oldStateMachine);
-			if (stateMachine != oldStateMachine) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FsmPackage.STATE__STATE_MACHINE, oldStateMachine, stateMachine));
-			}
-		}
-		return stateMachine;
+		if (eContainerFeatureID() != FsmPackage.STATE__STATE_MACHINE) return null;
+		return (StateMachine)eInternalContainer();
 	}
 
 	/**
@@ -187,8 +171,9 @@ public class StateImpl extends NamedElementImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StateMachine basicGetStateMachine() {
-		return stateMachine;
+	public NotificationChain basicSetStateMachine(StateMachine newStateMachine, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newStateMachine, FsmPackage.STATE__STATE_MACHINE, msgs);
+		return msgs;
 	}
 
 	/**
@@ -197,10 +182,19 @@ public class StateImpl extends NamedElementImpl implements State {
 	 * @generated
 	 */
 	public void setStateMachine(StateMachine newStateMachine) {
-		StateMachine oldStateMachine = stateMachine;
-		stateMachine = newStateMachine;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FsmPackage.STATE__STATE_MACHINE, oldStateMachine, stateMachine));
+		if (newStateMachine != eInternalContainer() || (eContainerFeatureID() != FsmPackage.STATE__STATE_MACHINE && newStateMachine != null)) {
+			if (EcoreUtil.isAncestor(this, newStateMachine))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newStateMachine != null)
+				msgs = ((InternalEObject)newStateMachine).eInverseAdd(this, FsmPackage.STATE_MACHINE__STATES, StateMachine.class, msgs);
+			msgs = basicSetStateMachine(newStateMachine, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FsmPackage.STATE__STATE_MACHINE, newStateMachine, newStateMachine));
 	}
 
 	/**
@@ -296,6 +290,10 @@ public class StateImpl extends NamedElementImpl implements State {
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOutgoing()).basicAdd(otherEnd, msgs);
 			case FsmPackage.STATE__INCOMING:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getIncoming()).basicAdd(otherEnd, msgs);
+			case FsmPackage.STATE__STATE_MACHINE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetStateMachine((StateMachine)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -312,8 +310,24 @@ public class StateImpl extends NamedElementImpl implements State {
 				return ((InternalEList<?>)getOutgoing()).basicRemove(otherEnd, msgs);
 			case FsmPackage.STATE__INCOMING:
 				return ((InternalEList<?>)getIncoming()).basicRemove(otherEnd, msgs);
+			case FsmPackage.STATE__STATE_MACHINE:
+				return basicSetStateMachine(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case FsmPackage.STATE__STATE_MACHINE:
+				return eInternalContainer().eInverseRemove(this, FsmPackage.STATE_MACHINE__STATES, StateMachine.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -329,8 +343,7 @@ public class StateImpl extends NamedElementImpl implements State {
 			case FsmPackage.STATE__INCOMING:
 				return getIncoming();
 			case FsmPackage.STATE__STATE_MACHINE:
-				if (resolve) return getStateMachine();
-				return basicGetStateMachine();
+				return getStateMachine();
 			case FsmPackage.STATE__INITIAL_TIME:
 				return getInitialTime();
 			case FsmPackage.STATE__FINAL_TIME:
@@ -418,7 +431,7 @@ public class StateImpl extends NamedElementImpl implements State {
 			case FsmPackage.STATE__INCOMING:
 				return incoming != null && !incoming.isEmpty();
 			case FsmPackage.STATE__STATE_MACHINE:
-				return stateMachine != null;
+				return getStateMachine() != null;
 			case FsmPackage.STATE__INITIAL_TIME:
 				return initialTime != INITIAL_TIME_EDEFAULT;
 			case FsmPackage.STATE__FINAL_TIME:
