@@ -72,6 +72,12 @@ class MetamodelExtensions
 			it.initialize(pkgs.map[it as EPackage])
 			genPackages.forEach[gp |
 				gp.basePackage = mm.owningLanguage.fullyQualifiedName.toLowerCase.toString
+				if(!mm.owningLanguage.fileExtension.nullOrEmpty){
+					gp.fileExtensions = mm.owningLanguage.fileExtension 
+				}
+				else{
+					gp.fileExtensions = mm.owningLanguage.name.toLowerCase.toString
+				}
 			]
 		]
 

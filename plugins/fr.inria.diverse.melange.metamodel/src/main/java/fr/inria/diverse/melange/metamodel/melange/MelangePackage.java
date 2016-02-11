@@ -1231,13 +1231,49 @@ public interface MelangePackage extends EPackage {
 	int LANGUAGE__SEMANTICS = NAMED_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
+	 * The feature id for the '<em><b>Xtext</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANGUAGE__XTEXT = NAMED_ELEMENT_FEATURE_COUNT + 12;
+
+	/**
+	 * The feature id for the '<em><b>Sirius</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANGUAGE__SIRIUS = NAMED_ELEMENT_FEATURE_COUNT + 13;
+
+	/**
+	 * The feature id for the '<em><b>Ecl</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANGUAGE__ECL = NAMED_ELEMENT_FEATURE_COUNT + 14;
+
+	/**
+	 * The feature id for the '<em><b>File Extension</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANGUAGE__FILE_EXTENSION = NAMED_ELEMENT_FEATURE_COUNT + 15;
+
+	/**
 	 * The number of structural features of the '<em>Language</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 12;
+	int LANGUAGE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 16;
 
 	/**
 	 * The number of operations of the '<em>Language</em>' class.
@@ -2065,6 +2101,50 @@ public interface MelangePackage extends EPackage {
 	EReference getLanguage_Semantics();
 
 	/**
+	 * Returns the meta object for the attribute list '{@link fr.inria.diverse.melange.metamodel.melange.Language#getXtext <em>Xtext</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Xtext</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Language#getXtext()
+	 * @see #getLanguage()
+	 * @generated
+	 */
+	EAttribute getLanguage_Xtext();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link fr.inria.diverse.melange.metamodel.melange.Language#getSirius <em>Sirius</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Sirius</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Language#getSirius()
+	 * @see #getLanguage()
+	 * @generated
+	 */
+	EAttribute getLanguage_Sirius();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link fr.inria.diverse.melange.metamodel.melange.Language#getEcl <em>Ecl</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Ecl</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Language#getEcl()
+	 * @see #getLanguage()
+	 * @generated
+	 */
+	EAttribute getLanguage_Ecl();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.Language#getFileExtension <em>File Extension</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>File Extension</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Language#getFileExtension()
+	 * @see #getLanguage()
+	 * @generated
+	 */
+	EAttribute getLanguage_FileExtension();
+
+	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.Weave <em>Weave</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2749,6 +2829,38 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EReference LANGUAGE__SEMANTICS = eINSTANCE.getLanguage_Semantics();
+
+		/**
+		 * The meta object literal for the '<em><b>Xtext</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LANGUAGE__XTEXT = eINSTANCE.getLanguage_Xtext();
+
+		/**
+		 * The meta object literal for the '<em><b>Sirius</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LANGUAGE__SIRIUS = eINSTANCE.getLanguage_Sirius();
+
+		/**
+		 * The meta object literal for the '<em><b>Ecl</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LANGUAGE__ECL = eINSTANCE.getLanguage_Ecl();
+
+		/**
+		 * The meta object literal for the '<em><b>File Extension</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LANGUAGE__FILE_EXTENSION = eINSTANCE.getLanguage_FileExtension();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.WeaveImpl <em>Weave</em>}' class.

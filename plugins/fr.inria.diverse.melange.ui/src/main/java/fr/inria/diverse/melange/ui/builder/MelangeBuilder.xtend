@@ -70,7 +70,7 @@ class MelangeBuilder
 
 			val ecoreUri = mt.inferredEcoreUri
 			log.debug('''Serializing Ecore interface description for «mt.name» in «ecoreUri»''')
-			mt.createEcore(ecoreUri, mt.uri)
+			mt.createEcore(ecoreUri, mt.uri, false)
 			val gmUri = ecoreUri.substring(0, ecoreUri.lastIndexOf(".")) + ".genmodel"
 			val gm = mt.createGenmodel(ecoreUri, gmUri)
 			gm.generateModelTypeCode

@@ -496,16 +496,22 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
+	 *         <unknown> 
 	 *         (
-	 *             name=ValidID 
-	 *             (resourceType=ResourceType (resourceUri=STRING | xtextSetupRef=JvmTypeReference)?)? 
-	 *             (operators+=Inherit operators+=Inherit*)? 
-	 *             (implements+=[ModelType|QualifiedName] implements+=[ModelType|QualifiedName]*)? 
-	 *             (requires+=[ModelType|QualifiedName] requires+=[ModelType|QualifiedName]*)?
-	 *         ) | 
-	 *         operators+=Operator | 
-	 *         (exactTypeName=ValidID exactTypeUri=STRING?)
-	 *     )+
+	 *             (
+	 *                 name=ValidID 
+	 *                 (operators+=Inherit operators+=Inherit*)? 
+	 *                 (implements+=[ModelType|QualifiedName] implements+=[ModelType|QualifiedName]*)? 
+	 *                 (requires+=[ModelType|QualifiedName] requires+=[ModelType|QualifiedName]*)?
+	 *             ) | 
+	 *             (xtext+=STRING xtext+=STRING*) | 
+	 *             (sirius+=STRING sirius+=STRING*) | 
+	 *             (ecl+=STRING ecl+=STRING*) | 
+	 *             fileExtension=STRING | 
+	 *             operators+=Operator | 
+	 *             (exactTypeName=ValidID exactTypeUri=STRING?)
+	 *         )+
+	 *     )
 	 */
 	protected void sequence_Language(ISerializationContext context, Language semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -1,11 +1,13 @@
 package fr.inria.diverse.melange.processors
 
+import com.google.common.collect.ListMultimap
 import fr.inria.diverse.melange.ast.ASTHelper
 import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
+import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import javax.inject.Inject
 import org.apache.log4j.Logger
@@ -15,6 +17,9 @@ import org.eclipse.pde.internal.core.plugin.WorkspacePluginModel
 import org.eclipse.pde.internal.core.project.PDEProject
 import org.eclipse.xtext.documentation.IEObjectDocumentationProvider
 import org.eclipse.xtext.naming.IQualifiedNameProvider
+import com.google.common.collect.ListMultimap
+import com.google.common.collect.ArrayListMultimap
+import fr.inria.diverse.melange.utils.PluginXmlChanger
 
 /**
  * For each model type, create a new fr.inria.diverse.melange.modeltype
@@ -45,6 +50,10 @@ class ExtensionPointProcessor extends DispatchMelangeProcessor
 
 		if (project !== null && !preLinkingPhase) {
 			val pluginXml = PDEProject::getPluginXml(project)
+			
+			val changer = new PluginXmlChanger
+			changer.load(pluginXml.location.toString)
+			
 			val pluginModel = PDECore::getDefault.modelManager.findModel(project)
 			val fModel = new WorkspacePluginModel(pluginXml, false)
 			val pluginBase = fModel.pluginBase
@@ -66,36 +75,29 @@ class ExtensionPointProcessor extends DispatchMelangeProcessor
 				val languages = root.languages.filter[isComplete]
 
 				if (modelTypes.size > 0 && modeltypeExtensionPoint !== null) {
-					val newExtension = fModel.factory.createExtension => [
-						point = modeltypeExtensionPoint.id
-					]
+					
+					changer.deleteExtensions(MODELTYPE_EXTENSION_POINT)
+					val extensionTag = changer.addExtension(MODELTYPE_EXTENSION_POINT)
 
 					modelTypes.forEach[mt |
 						try {
 							val fqn = mt.fullyQualifiedName.toString
 							val doc = documentationProvider.getDocumentation(mt)
-							val modeltypeElement = fModel.factory.createElement(newExtension) => [
-								name = "modeltype"
-								setAttribute("id", fqn)
-								setAttribute("uri", mt.uri)
-
-								if (doc !== null && !doc.empty)
-									setAttribute("description", doc)
-							]
-
+							
+							val modelTypeTag = changer.addChild(extensionTag,"modeltype")
+							changer.addAttribute(modelTypeTag, "id", fqn)
+							changer.addAttribute(modelTypeTag, "uri", mt.uri)
+							if (doc !== null && !doc.empty){
+								changer.addAttribute(modelTypeTag, "description", doc)
+							}
+							
 							// Register subtypings
 							mt.subtypingRelations.forEach[superMt |
-								modeltypeElement.add(fModel.factory.createElement(modeltypeElement) => [
-									name = "subtyping"
-									setAttribute("modeltypeId", superMt.superType.fullyQualifiedName.toString)									
-								])
+								val subtypingTag = changer.addChild(modelTypeTag,"subtyping")
+								changer.addAttribute(subtypingTag, "modeltypeId", superMt.superType.fullyQualifiedName.toString)
 							]
-
-							newExtension.add(modeltypeElement)
-							if (!newExtension.isInTheModel) {
-								fModel.extensions.add(newExtension)
-								log.debug('''Registered new modeltype contribution <«fqn», «mt.uri»> in plugin.xml''')
-							}
+							
+							log.debug('''Registered new modeltype contribution <«fqn», «mt.uri»> in plugin.xml''')
 						} catch (CoreException e) {
 							log.debug('''Failed to register new model type contribution''', e)
 						}
@@ -103,38 +105,39 @@ class ExtensionPointProcessor extends DispatchMelangeProcessor
 				}
 
 				if (languages.size > 0 && languageExtensionPoint !== null) {
-					val newExtension = fModel.factory.createExtension => [
-						point = languageExtensionPoint.id
-					]
+					
+					changer.deleteExtensions(LANGUAGE_EXTENSION_POINT)
+					val extensionTag = changer.addExtension(LANGUAGE_EXTENSION_POINT)
 
 					languages.forEach[l |
 						try {
 							val fqn = l.fullyQualifiedName.toString
 							val doc = documentationProvider.getDocumentation(l)
-							val languageElement = fModel.factory.createElement(newExtension) => [
-								name = "language"
-								setAttribute("id", fqn)
-								setAttribute("exactType", l.exactType.fullyQualifiedName.toString)
-								setAttribute("uri", l.syntax.pkgs.head.nsURI)
-
-								if (doc !== null && !doc.empty)
-									setAttribute("description", doc)	
-							]
-
+							
+							val languageTag = changer.addChild(extensionTag,"language")
+							changer.addAttribute(languageTag, "id", fqn)
+							changer.addAttribute(languageTag, "exactType", l.exactType.fullyQualifiedName.toString)
+							changer.addAttribute(languageTag, "uri", l.syntax.pkgs.head.nsURI)
+							if (doc !== null && !doc.empty){
+								changer.addAttribute(languageTag, "description", doc)
+							}
+							changer.addAttribute(languageTag, "entryPoints", 
+									l.entryPoints
+									.map[
+										val args = parameters.map[it.parameterType.type.qualifiedName].join(',')
+										declaringType.qualifiedName+"."+simpleName+"("+args+")"
+									]
+									.join(';')
+								)
+							changer.addAttribute(languageTag, "aspects", l.serializedAspects)
+							
 							// Register adapters
 							l.implements.forEach[mt |
-								languageElement.add(fModel.factory.createElement(languageElement) => [
-									name = "adapter"
-									setAttribute("modeltypeId", mt.fullyQualifiedName.toString)
-									setAttribute("class", l.syntax.adapterNameFor(mt))
-								])
+								val adapterTag = changer.addChild(languageTag,"adapter")
+								changer.addAttribute(adapterTag, "modeltypeId", mt.fullyQualifiedName.toString)
+								changer.addAttribute(adapterTag, "class", l.syntax.adapterNameFor(mt))
 							]
-
-							newExtension.add(languageElement)
-							if (!newExtension.isInTheModel) {
-								fModel.extensions.add(newExtension)
-								log.debug('''Registered new language contribution <«fqn»> in plugin.xml''')
-							}
+							log.debug('''Registered new language contribution <«fqn»> in plugin.xml''')
 						} catch (CoreException e) {
 							log.debug('''Failed to register language contribution''', e)
 						}
@@ -142,7 +145,27 @@ class ExtensionPointProcessor extends DispatchMelangeProcessor
 				}
 			}
 
-			fModel.save
+			changer.save(2)
 		}
+	}
+	
+	/**
+	 * Return all Aspects following this template:<br>
+	 * aspectizedClass:aspect,aspect,...,aspect;...;aspectizedClass:aspect,aspect,...,aspect
+	 */
+	def private String serializedAspects(Language lang){
+		val mapping = ArrayListMultimap.create
+		lang.semantics.forEach[asp |
+			val aspName = asp.aspectTypeRef.qualifiedName 
+			val targetName = asp.aspectedClass.name
+			mapping.put(targetName,aspName)
+		]
+		
+		return mapping.keySet
+					.map[target|
+						val aspects = mapping.get(target).join(",")
+						target+":"+aspects
+					]
+					.join(";")
 	}
 }

@@ -487,19 +487,221 @@ ruleLanguage returns [EObject current=null]
 					{ 
 	 				  getUnorderedGroupHelper().select(grammarAccess.getLanguageAccess().getUnorderedGroup(), 1);
 	 				}
+					({true}?=>(	otherlv_22='xtext' 
+    {
+    	newLeafNode(otherlv_22, grammarAccess.getLanguageAccess().getXtextKeyword_1_0());
+    }
+(
+(
+		lv_xtext_23_0=RULE_STRING
+		{
+			newLeafNode(lv_xtext_23_0, grammarAccess.getLanguageAccess().getXtextSTRINGTerminalRuleCall_1_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getLanguageRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"xtext",
+        		lv_xtext_23_0, 
+        		"org.eclipse.xtext.xbase.Xtype.STRING");
+	    }
+
+)
+)(	otherlv_24=',' 
+    {
+    	newLeafNode(otherlv_24, grammarAccess.getLanguageAccess().getCommaKeyword_1_2_0());
+    }
+(
+(
+		lv_xtext_25_0=RULE_STRING
+		{
+			newLeafNode(lv_xtext_25_0, grammarAccess.getLanguageAccess().getXtextSTRINGTerminalRuleCall_1_2_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getLanguageRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"xtext",
+        		lv_xtext_25_0, 
+        		"org.eclipse.xtext.xbase.Xtype.STRING");
+	    }
+
+)
+))*))
+					{ 
+	 				  getUnorderedGroupHelper().returnFromSelection(grammarAccess.getLanguageAccess().getUnorderedGroup());
+	 				}
+ 				)
+			)  |
+
+			( 
+				{getUnorderedGroupHelper().canSelect(grammarAccess.getLanguageAccess().getUnorderedGroup(), 2)}?=>(
+					{ 
+	 				  getUnorderedGroupHelper().select(grammarAccess.getLanguageAccess().getUnorderedGroup(), 2);
+	 				}
+					({true}?=>(	otherlv_26='sirius' 
+    {
+    	newLeafNode(otherlv_26, grammarAccess.getLanguageAccess().getSiriusKeyword_2_0());
+    }
+(
+(
+		lv_sirius_27_0=RULE_STRING
+		{
+			newLeafNode(lv_sirius_27_0, grammarAccess.getLanguageAccess().getSiriusSTRINGTerminalRuleCall_2_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getLanguageRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"sirius",
+        		lv_sirius_27_0, 
+        		"org.eclipse.xtext.xbase.Xtype.STRING");
+	    }
+
+)
+)(	otherlv_28=',' 
+    {
+    	newLeafNode(otherlv_28, grammarAccess.getLanguageAccess().getCommaKeyword_2_2_0());
+    }
+(
+(
+		lv_sirius_29_0=RULE_STRING
+		{
+			newLeafNode(lv_sirius_29_0, grammarAccess.getLanguageAccess().getSiriusSTRINGTerminalRuleCall_2_2_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getLanguageRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"sirius",
+        		lv_sirius_29_0, 
+        		"org.eclipse.xtext.xbase.Xtype.STRING");
+	    }
+
+)
+))*))
+					{ 
+	 				  getUnorderedGroupHelper().returnFromSelection(grammarAccess.getLanguageAccess().getUnorderedGroup());
+	 				}
+ 				)
+			)  |
+
+			( 
+				{getUnorderedGroupHelper().canSelect(grammarAccess.getLanguageAccess().getUnorderedGroup(), 3)}?=>(
+					{ 
+	 				  getUnorderedGroupHelper().select(grammarAccess.getLanguageAccess().getUnorderedGroup(), 3);
+	 				}
+					({true}?=>(	otherlv_30='ecl' 
+    {
+    	newLeafNode(otherlv_30, grammarAccess.getLanguageAccess().getEclKeyword_3_0());
+    }
+(
+(
+		lv_ecl_31_0=RULE_STRING
+		{
+			newLeafNode(lv_ecl_31_0, grammarAccess.getLanguageAccess().getEclSTRINGTerminalRuleCall_3_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getLanguageRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"ecl",
+        		lv_ecl_31_0, 
+        		"org.eclipse.xtext.xbase.Xtype.STRING");
+	    }
+
+)
+)(	otherlv_32=',' 
+    {
+    	newLeafNode(otherlv_32, grammarAccess.getLanguageAccess().getCommaKeyword_3_2_0());
+    }
+(
+(
+		lv_ecl_33_0=RULE_STRING
+		{
+			newLeafNode(lv_ecl_33_0, grammarAccess.getLanguageAccess().getEclSTRINGTerminalRuleCall_3_2_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getLanguageRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"ecl",
+        		lv_ecl_33_0, 
+        		"org.eclipse.xtext.xbase.Xtype.STRING");
+	    }
+
+)
+))*))
+					{ 
+	 				  getUnorderedGroupHelper().returnFromSelection(grammarAccess.getLanguageAccess().getUnorderedGroup());
+	 				}
+ 				)
+			)  |
+
+			( 
+				{getUnorderedGroupHelper().canSelect(grammarAccess.getLanguageAccess().getUnorderedGroup(), 4)}?=>(
+					{ 
+	 				  getUnorderedGroupHelper().select(grammarAccess.getLanguageAccess().getUnorderedGroup(), 4);
+	 				}
+					({true}?=>(	otherlv_34='fileExtension' 
+    {
+    	newLeafNode(otherlv_34, grammarAccess.getLanguageAccess().getFileExtensionKeyword_4_0());
+    }
+(
+(
+		lv_fileExtension_35_0=RULE_STRING
+		{
+			newLeafNode(lv_fileExtension_35_0, grammarAccess.getLanguageAccess().getFileExtensionSTRINGTerminalRuleCall_4_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getLanguageRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"fileExtension",
+        		lv_fileExtension_35_0, 
+        		"org.eclipse.xtext.xbase.Xtype.STRING");
+	    }
+
+)
+)))
+					{ 
+	 				  getUnorderedGroupHelper().returnFromSelection(grammarAccess.getLanguageAccess().getUnorderedGroup());
+	 				}
+ 				)
+			)  |
+
+			( 
+				{getUnorderedGroupHelper().canSelect(grammarAccess.getLanguageAccess().getUnorderedGroup(), 5)}?=>(
+					{ 
+	 				  getUnorderedGroupHelper().select(grammarAccess.getLanguageAccess().getUnorderedGroup(), 5);
+	 				}
 					({true}?=>(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getLanguageAccess().getOperatorsOperatorParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getLanguageAccess().getOperatorsOperatorParserRuleCall_5_0()); 
 	    }
-		lv_operators_22_0=ruleOperator		{
+		lv_operators_36_0=ruleOperator		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getLanguageRule());
 	        }
        		add(
        			$current, 
        			"operators",
-        		lv_operators_22_0, 
+        		lv_operators_36_0, 
         		"fr.inria.diverse.melange.Melange.Operator");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -513,42 +715,42 @@ ruleLanguage returns [EObject current=null]
 			)  |
 
 			( 
-				{getUnorderedGroupHelper().canSelect(grammarAccess.getLanguageAccess().getUnorderedGroup(), 2)}?=>(
+				{getUnorderedGroupHelper().canSelect(grammarAccess.getLanguageAccess().getUnorderedGroup(), 6)}?=>(
 					{ 
-	 				  getUnorderedGroupHelper().select(grammarAccess.getLanguageAccess().getUnorderedGroup(), 2);
+	 				  getUnorderedGroupHelper().select(grammarAccess.getLanguageAccess().getUnorderedGroup(), 6);
 	 				}
-					({true}?=>((	otherlv_23='exactType' 
+					({true}?=>((	otherlv_37='exactType' 
     {
-    	newLeafNode(otherlv_23, grammarAccess.getLanguageAccess().getExactTypeKeyword_2_0_0());
+    	newLeafNode(otherlv_37, grammarAccess.getLanguageAccess().getExactTypeKeyword_6_0_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getLanguageAccess().getExactTypeNameValidIDParserRuleCall_2_0_1_0()); 
+	        newCompositeNode(grammarAccess.getLanguageAccess().getExactTypeNameValidIDParserRuleCall_6_0_1_0()); 
 	    }
-		lv_exactTypeName_24_0=ruleValidID		{
+		lv_exactTypeName_38_0=ruleValidID		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getLanguageRule());
 	        }
        		set(
        			$current, 
        			"exactTypeName",
-        		lv_exactTypeName_24_0, 
+        		lv_exactTypeName_38_0, 
         		"org.eclipse.xtext.xbase.Xtype.ValidID");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
 )(((	'uri' 
-)=>	otherlv_25='uri' 
+)=>	otherlv_39='uri' 
     {
-    	newLeafNode(otherlv_25, grammarAccess.getLanguageAccess().getUriKeyword_2_0_2_0());
+    	newLeafNode(otherlv_39, grammarAccess.getLanguageAccess().getUriKeyword_6_0_2_0());
     }
 )(
 (
-		lv_exactTypeUri_26_0=RULE_STRING
+		lv_exactTypeUri_40_0=RULE_STRING
 		{
-			newLeafNode(lv_exactTypeUri_26_0, grammarAccess.getLanguageAccess().getExactTypeUriSTRINGTerminalRuleCall_2_0_2_1_0()); 
+			newLeafNode(lv_exactTypeUri_40_0, grammarAccess.getLanguageAccess().getExactTypeUriSTRINGTerminalRuleCall_6_0_2_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -557,14 +759,14 @@ ruleLanguage returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"exactTypeUri",
-        		lv_exactTypeUri_26_0, 
+        		lv_exactTypeUri_40_0, 
         		"org.eclipse.xtext.xbase.Xtype.STRING");
 	    }
 
 )
-))?)	otherlv_27='}' 
+))?)	otherlv_41='}' 
     {
-    	newLeafNode(otherlv_27, grammarAccess.getLanguageAccess().getRightCurlyBracketKeyword_2_1());
+    	newLeafNode(otherlv_41, grammarAccess.getLanguageAccess().getRightCurlyBracketKeyword_6_1());
     }
 ))
 					{ 

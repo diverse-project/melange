@@ -376,7 +376,7 @@ public class NewMelangeProjectWizardPage extends WizardPage {
 	}
 	
 	
-	protected void updateNameProject (String nameProject) {
+	public void updateNameProject (String nameProject) {
 		this.context.projectName = nameProject;
 	}
 	

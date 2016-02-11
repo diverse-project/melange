@@ -178,6 +178,7 @@ class MetaclassAdapterInferrer
 					«IF mm.owningLanguage.hasAdapterFor(superType, ref.EReferenceType)»
 						«IF ref.many»
 							if («ref.name» == null)
+<<<<<<< HEAD
 								«ref.name» = «EListAdapter.canonicalName».newInstance(adaptee.«mmRef.getterName»(), adaptersFactory) ;
 							return «ref.name»;
 						«ELSE»
@@ -621,6 +622,20 @@ class MetaclassAdapterInferrer
 
 	private def boolean isValidReturnType(JvmTypeReference ref) {
 		return ref.type !== null && ref.type.simpleName != "void" && ref.type.simpleName != "null"
+	}
+
+	private def JvmTypeReference wrapperIfPrimitiveType(JvmTypeReference ref) {
+		return
+			switch (ref.simpleName) {
+				case "int": Integer.typeRef
+				case "float": Float.typeRef
+				case "boolean": Boolean.typeRef
+				case "double": Double.typeRef
+				case "short": Short.typeRef
+				case "byte": Byte.typeRef
+				case "char": Character.typeRef
+				default: ref
+			}
 	}
 
 	private def Iterable<Aspect> sortByOverridingPriority(Iterable<Aspect> aspects) {

@@ -13,6 +13,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getOperators <em>Operators</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getExactType <em>Exact Type</em>}</li>
@@ -26,8 +27,11 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getXtextSetupRef <em>Xtext Setup Ref</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getMappings <em>Mappings</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getSemantics <em>Semantics</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getXtext <em>Xtext</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getSirius <em>Sirius</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getEcl <em>Ecl</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getFileExtension <em>File Extension</em>}</li>
  * </ul>
- * </p>
  *
  * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getLanguage()
  * @model
@@ -309,5 +313,79 @@ public interface Language extends NamedElement {
 	 * @generated
 	 */
 	EList<Aspect> getSemantics();
+
+	/**
+	 * Returns the value of the '<em><b>Xtext</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Xtext</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Xtext</em>' attribute list.
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getLanguage_Xtext()
+	 * @model
+	 * @generated
+	 */
+	EList<String> getXtext();
+
+	/**
+	 * Returns the value of the '<em><b>Sirius</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Sirius</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sirius</em>' attribute list.
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getLanguage_Sirius()
+	 * @model
+	 * @generated
+	 */
+	EList<String> getSirius();
+
+	/**
+	 * Returns the value of the '<em><b>Ecl</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Ecl</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Ecl</em>' attribute list.
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getLanguage_Ecl()
+	 * @model
+	 * @generated
+	 */
+	EList<String> getEcl();
+
+	/**
+	 * Returns the value of the '<em><b>File Extension</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>File Extension</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>File Extension</em>' attribute.
+	 * @see #setFileExtension(String)
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getLanguage_FileExtension()
+	 * @model
+	 * @generated
+	 */
+	String getFileExtension();
+
+	/**
+	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.Language#getFileExtension <em>File Extension</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>File Extension</em>' attribute.
+	 * @see #getFileExtension()
+	 * @generated
+	 */
+	void setFileExtension(String value);
 
 } // Language

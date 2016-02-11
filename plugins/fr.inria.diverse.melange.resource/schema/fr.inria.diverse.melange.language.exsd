@@ -83,6 +83,21 @@
                </appinfo>
             </annotation>
          </attribute>
+         <attribute name="entryPoints" type="string">
+            <annotation>
+               <documentation>
+                  Entry points of this languages.
+It is a list of methods separated by semicolon
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="aspects" type="string">
+            <annotation>
+               <documentation>
+                  List of key:value separated by semicolon where key is a Metaclass and value is a list of Aspects separated by comma.
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

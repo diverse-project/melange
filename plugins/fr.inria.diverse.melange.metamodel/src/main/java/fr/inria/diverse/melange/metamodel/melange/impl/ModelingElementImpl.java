@@ -20,11 +20,11 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelingElementImpl#getEcoreUri <em>Ecore Uri</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelingElementImpl#getGenmodelUris <em>Genmodel Uris</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

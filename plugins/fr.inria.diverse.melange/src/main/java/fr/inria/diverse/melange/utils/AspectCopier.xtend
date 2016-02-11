@@ -134,12 +134,12 @@ class AspectCopier
 		}
 
 		// FIXME: ad-hoc
-		relocators += new SimpleRelocator(
-			"ActivitydiagramFactory",
-			"Iot2Factory",
-			null,
-			#[]
-		)
+//		relocators += new SimpleRelocator(
+//			"ActivitydiagramFactory",
+//			"Iot2Factory",
+//			null,
+//			#[]
+//		)
 		shadeRequest.inputFolders = sourceFolders.toList.reverseView.toSet
 		shadeRequest.outputFolder = new File(targetAspectFolder)
 		shadeRequest.filters = #[filter as Filter]
