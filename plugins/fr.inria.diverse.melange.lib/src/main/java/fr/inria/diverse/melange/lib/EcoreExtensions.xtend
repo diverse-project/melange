@@ -30,6 +30,18 @@ class EcoreExtensions
 {
 	@Inject ModelUtils modelUtils
 
+	def boolean isContainedBy(EObject children, EObject parent) {
+		var iter = children.eContainer
+
+		while (iter !== null) {
+			if (iter == parent)
+				return true
+			iter = iter.eContainer
+		}
+
+		return false
+	}
+
 	def boolean emfEquals(EObject o1, EObject o2) {
 		return EcoreUtil.equals(o1, o2)
 	}
