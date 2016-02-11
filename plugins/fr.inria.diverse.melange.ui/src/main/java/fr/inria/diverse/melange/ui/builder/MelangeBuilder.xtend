@@ -44,7 +44,6 @@ class MelangeBuilder
 
 	def void generateAll(Resource res, IProject project, IProgressMonitor monitor) {
 		monitor.beginTask("Generating all artifacts", 700)
-		cleanAll(res, project, new SubProgressMonitor(monitor, 40))
 		generateInterfaces(res, project, new SubProgressMonitor(monitor, 50))
 		generateLanguages(res, project, new SubProgressMonitor(monitor, 300))
 		generateAdapters(res, project, new SubProgressMonitor(monitor, 300))
