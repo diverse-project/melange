@@ -10,6 +10,7 @@ import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.ModelUtils
 import fr.inria.diverse.melange.metamodel.melange.Inheritance
+import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelingElement
@@ -128,7 +129,11 @@ class EPackageProvider
 	}
 
 	def String getFqn(ModelingElement m) {
-		return m.fullyQualifiedName?.toString
+		return
+			if (m instanceof Metamodel)
+				(m.eContainer as Language).fullyQualifiedName.toString
+			else if (m instanceof ModelType)
+				m.fullyQualifiedName.toString
 	}
 
 	private def String toPlatformURI(String uri) {
