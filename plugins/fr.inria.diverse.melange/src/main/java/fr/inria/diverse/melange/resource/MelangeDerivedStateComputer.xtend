@@ -6,6 +6,7 @@ import fr.inria.diverse.melange.jvmmodel.MelangeTypesBuilder
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.Transformation
 import fr.inria.diverse.melange.processors.ExactTypeInferrer
+import fr.inria.diverse.melange.processors.ExtensionPointProcessor
 import fr.inria.diverse.melange.processors.LanguageProcessor
 import fr.inria.diverse.melange.processors.MelangeProcessor
 import fr.inria.diverse.melange.processors.TypingInferrer
@@ -19,7 +20,6 @@ import org.eclipse.xtext.util.internal.Stopwatches
 import org.eclipse.xtext.xbase.jvmmodel.JvmModelAssociator
 
 import static org.eclipse.xtext.util.internal.Stopwatches.*
-import fr.inria.diverse.melange.processors.ExtensionPointProcessor
 
 /**
  * This class merge aspects into the base model of the metamodel,
@@ -87,23 +87,27 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 		val root = resource.contents.head as ModelTypingSpace
 
 		if (root !== null) {
-			processors.forEach[p |
-				val pTask = Stopwatches.forTask(p.class.simpleName)
-				pTask.start
-				p.preProcess(root, preLinkingPhase)
-				pTask.stop
-			]
+			try {
+				processors.forEach[p |
+					val pTask = Stopwatches.forTask(p.class.simpleName)
+					pTask.start
+					p.preProcess(root, preLinkingPhase)
+					pTask.stop
+				]
 
-			// Setting context for non-inferrer helper classes
-			builder.setContext(resource.resourceSet)
-			helper.setContext(resource.resourceSet)
+				// Setting context for non-inferrer helper classes
+				builder.setContext(resource.resourceSet)
+				helper.setContext(resource.resourceSet)
 
-			task.stop
-			// Avoid computing al the derived state when unnecessary
-			if (root.containsTransformations)
-				super.installDerivedState(resource, preLinkingPhase)
-			else
-				super.installDerivedState(resource, true)
+				task.stop
+				// Avoid computing al the derived state when unnecessary
+				if (root.containsTransformations)
+					super.installDerivedState(resource, preLinkingPhase)
+				else
+					super.installDerivedState(resource, true)
+			} catch (Exception e) {
+				log.error("Fatal exception", e)
+			}
 		}
 	}
 
