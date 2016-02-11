@@ -1,6 +1,7 @@
 package simpleaspects
 
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
+import fr.inria.diverse.k3.al.annotationprocessor.Main
 
 import timedfsm.FSM
 import timedfsm.State
@@ -15,6 +16,7 @@ class TimedFsmAspect
 {
 	public State current
 
+	@Main
 	def void execute(String input) {
 		if (_self.current == null)
 			_self.current = _self.initialState

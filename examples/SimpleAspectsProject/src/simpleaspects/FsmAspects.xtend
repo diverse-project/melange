@@ -5,6 +5,7 @@ import fsm.State
 import fsm.Transition
 
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
+import fr.inria.diverse.k3.al.annotationprocessor.Main
 
 import static extension simpleaspects.ExecutableFsmAspect.*
 import static extension simpleaspects.ExecutableStateAspect.*
@@ -15,6 +16,7 @@ class ExecutableFsmAspect
 {
 	public State current
 
+	@Main
 	def void execute(String input) {
 		if (_self.current == null)
 			_self.current = _self.initialState

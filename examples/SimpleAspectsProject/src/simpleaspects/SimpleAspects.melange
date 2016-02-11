@@ -15,20 +15,3 @@ language TimedFsm {
 	with simpleaspects.TimedTransitionAspect
 	exactType TimedFsmMT
 }
-
-transformation execute(FsmMT m) {
-	val root = m.contents.head as simpleaspects.fsmmt.FSM
-
-	print("Output: ")
-	root.execute("adcdce")
-	println
-}
-
-@Main
-transformation main() {
-	val m1 =      Fsm.load("input/Simple.fsm")
-	val m2 = TimedFsm.load("input/Simple.timedfsm")
-
-	execute.call(m1)
-	execute.call(m2)
-}
