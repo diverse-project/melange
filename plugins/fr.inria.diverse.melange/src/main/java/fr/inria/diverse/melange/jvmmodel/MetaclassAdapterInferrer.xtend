@@ -178,7 +178,7 @@ class MetaclassAdapterInferrer
 					«IF mm.owningLanguage.hasAdapterFor(superType, ref.EReferenceType)»
 						«IF ref.many»
 							if («ref.name» == null)
-								«ref.name» = «EListAdapter».newInstance(adaptee.«mmRef.getterName»(), adaptersFactory) ;
+								«ref.name» = «EListAdapter.canonicalName».newInstance(adaptee.«mmRef.getterName»(), adaptersFactory) ;
 							return «ref.name»;
 						«ELSE»
 							return («refType.type») adaptersFactory.createAdapter(adaptee.«mmRef.getterName»(), eResource) ;
@@ -246,7 +246,7 @@ class MetaclassAdapterInferrer
 			paramsList.append('''«FOR p : op.EParameters SEPARATOR ","»
 				«IF p.EType instanceof EClass && mm.owningLanguage.hasAdapterFor(superType, p.EType)»
 					«IF p.many»
-						((«EListAdapter») «p.name»).getAdaptee()
+						((«EListAdapter.canonicalName») «p.name»).getAdaptee()
 					«ELSE»
 						((«mm.adapterNameFor(superType, p.EType as EClass)») «p.name»).getAdaptee()
 					«ENDIF»
@@ -270,7 +270,7 @@ class MetaclassAdapterInferrer
 			m.body = '''
 				«IF op.EType instanceof EClass && mm.owningLanguage.hasAdapterFor(superType, op.EType)»
 					«IF op.many»
-						return «EListAdapter».newInstance(adaptee.«opName»(«paramsList»), adaptersFactory) ;
+						return «EListAdapter.canonicalName».newInstance(adaptee.«opName»(«paramsList»), adaptersFactory) ;
 					«ELSE»
 						return («superType.typeRef(op, #[jvmCls]).type») adaptersFactory.createAdapter(adaptee.«opName»(«paramsList»), eResource) ;
 					«ENDIF»
@@ -360,7 +360,7 @@ class MetaclassAdapterInferrer
 				«IF mm.owningLanguage.hasAdapterFor(superType, p.parameterType.simpleName)»
 					, ((«mm.adapterNameFor(superType, p.parameterType.simpleName)») «p.name»).getAdaptee()
 				«ELSEIF p.parameterType.isCollection && mm.owningLanguage.hasAdapterFor(superType, realTypeP)»
-					, ((«EListAdapter») «p.name»).getAdaptee()
+					, ((«EListAdapter.canonicalName») «p.name»).getAdaptee()
 				«ELSE»
 					, «p.name»
 				«ENDIF»
@@ -408,7 +408,7 @@ class MetaclassAdapterInferrer
 					«IF retType.isValidReturnType»
 						«IF mm.owningLanguage.hasAdapterFor(superType, realType)»
 							«IF op.returnType.isCollection»
-								return «EListAdapter».newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), adaptersFactory) ;
+								return «EListAdapter.canonicalName».newInstance(«asp.qualifiedName».«op.simpleName»(«paramsList»), adaptersFactory) ;
 							«ELSE»
 								return («retType.type») adaptersFactory.createAdapter(«asp.qualifiedName».«op.simpleName»(«paramsList»), eResource) ;
 							«ENDIF»
