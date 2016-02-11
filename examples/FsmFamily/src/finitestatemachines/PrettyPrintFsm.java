@@ -8,15 +8,26 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
-import semantics.common.Context;
 import family.StandaloneSetup;
 import family.flatfsmmt.fsm.StateMachine;
 
-public class ExecuteFsm {
-	public static void execute(StateMachine fsm, String input, String output) {
-		Context c = new Context(input);
-		// Dynamic dispatch on the appropriate eval() implementation
-		fsm.eval(c, output);
+public class PrettyPrintFsm {
+	public static void prettyPrint(StateMachine fsm) {
+		System.out.println("Printing " + fsm.getName());
+
+		fsm.getStates().forEach(s -> {
+			System.out.println("State " + s.getName());
+
+			s.getIncoming().forEach(t ->
+				System.out.println(
+					"\tIncoming "+ t.getName()
+					+ " from " + t.getSource().getName()));
+			s.getOutgoing().forEach(t ->
+				System.out.println("\tOutgoing " + t.getName()
+				+ " to " + t.getTarget().getName()));
+		});
+
+		System.out.println();
 	}
 
 	public static void main(String[] args) {
@@ -29,12 +40,11 @@ public class ExecuteFsm {
 		models.add("melange:/file/input/compositedummie.xmi?mt=family.FlatFsmMT");
 		models.add("melange:/file/input/timedcompositedummie.xmi?mt=family.FlatFsmMT");
 
-		int i = 0;
 		for (String uri : models) {
 			Resource res = rs.getResource(URI.createURI(uri), true);
 			StateMachine root = (StateMachine) res.getContents().get(0);
-			// Polymorphic invokation of execute()
-			execute(root, "{x;y;z,o;p;q}", "output-" + ++i + ".pdf");
+			// Polymorphic invokation of prettyPrint()
+			prettyPrint(root);
 		}
 	}
 }

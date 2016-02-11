@@ -4,7 +4,7 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:fsm="http://fsm/"
-    xsi:schemaLocation="http://fsm/ ../../fr.inria.diverse.examples.fsm.metamodel/models/fsm.ecore"
+    xsi:schemaLocation="http://fsm/ ../../fr.inria.diverse.examples.fsm.metamodel/model/fsm.ecore"
     name="Dummie">
   <states xsi:type="fsm:InitialState"
       name="Init"
