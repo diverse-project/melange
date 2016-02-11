@@ -178,7 +178,6 @@ class MetaclassAdapterInferrer
 					«IF mm.owningLanguage.hasAdapterFor(superType, ref.EReferenceType)»
 						«IF ref.many»
 							if («ref.name» == null)
-<<<<<<< HEAD
 								«ref.name» = «EListAdapter.canonicalName».newInstance(adaptee.«mmRef.getterName»(), adaptersFactory) ;
 							return «ref.name»;
 						«ELSE»
