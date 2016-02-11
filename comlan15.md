@@ -6,3 +6,5 @@ title: COMLAN'15 Companion Webpage
 
 Coming soon.
 
+![FsmFamily Workbench](images/fsmfamily.png)
+
