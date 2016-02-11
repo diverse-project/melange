@@ -1,5 +1,10 @@
 package semantics.timed
 
+import fr.inria.diverse.k3.al.annotationprocessor.Aspect
+import fr.inria.diverse.k3.al.annotationprocessor.Main
+import java.util.ArrayList
+import org.eclipse.emf.common.util.BasicEList
+import org.eclipse.emf.common.util.EList
 import semantics.common.Context
 import timedfsm.fsm.Fork
 import timedfsm.fsm.InitialState
@@ -7,10 +12,6 @@ import timedfsm.fsm.Join
 import timedfsm.fsm.State
 import timedfsm.fsm.StateMachine
 import timedfsm.fsm.Transition
-import fr.inria.diverse.k3.al.annotationprocessor.Aspect
-import java.util.ArrayList
-import org.eclipse.emf.common.util.BasicEList
-import org.eclipse.emf.common.util.EList
 
 import static extension semantics.timed.StateAspect.*
 import static extension semantics.timed.TransitionAspect.*
@@ -31,7 +32,7 @@ class StateMachineAspect {
 	/**
 	 * Evaluates the input and sequentially executes the steps in the state machine. 
 	 */
-	 
+	@Main
 	def public void eval (Context context, String filePath) {
 		println("\nExecuting the state machine. Please wait for the results...\n")
 		println(" ... executing input ...\n")

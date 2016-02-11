@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <plugin>
-   
-
+  
 <extension point="fr.inria.diverse.melange.modeltype">
     <modeltype id="family.FlatFsmMT" uri="http://flatfsmmt/"/>
     <modeltype id="family.FlatFsmSimultaneousMT" uri="http://flatfsmsimultaneousmt/">
@@ -15,12 +14,8 @@
       <subtyping modeltypeId="family.FlatFsmSimultaneousMT"/>
       <subtyping modeltypeId="family.TimedFsmMT"/>
     </modeltype>
-    <modeltype id="family.CompositeFsmMT" uri="http://compositefsmmt/">
-      <subtyping modeltypeId="family.FlatFsmMT"/>
-    </modeltype>
+    <modeltype id="family.CompositeFsmMT" uri="http://compositefsmmt/"/>
     <modeltype id="family.CompositeFsmSimultaneousMT" uri="http://compositefsmsimultaneousmt/">
-      <subtyping modeltypeId="family.FlatFsmMT"/>
-      <subtyping modeltypeId="family.FlatFsmSimultaneousMT"/>
       <subtyping modeltypeId="family.CompositeFsmMT"/>
     </modeltype>
     <modeltype id="family.TimedCompositeFsmMT" uri="http://timedcompositefsmmt/">
@@ -36,39 +31,36 @@
     </modeltype>
   </extension>
   <extension point="fr.inria.diverse.melange.language">
-    <language aspects="StateMachine:semantics.flat.StateMachineAspect;State:semantics.flat.StateAspect" entryPoints="" exactType="family.FlatFsmMT" id="family.FlatFsm" uri="http://fsm/">
+    <language aspects="StateMachine:semantics.flat.StateMachineAspect;State:semantics.flat.StateAspect" entryPoints="semantics.flat.StateMachineAspect.eval(flatfsm.fsm.StateMachine,semantics.common.Context,java.lang.String)" exactType="family.FlatFsmMT" id="family.FlatFsm" uri="http://fsm/">
       <adapter class="family.flatfsm.adapters.flatfsmmt.FlatFsmAdapter" modeltypeId="family.FlatFsmMT"/>
     </language>
-    <language aspects="StateMachine:semantics.flat.simultaneous.StateMachineAspect;State:semantics.flat.simultaneous.StateAspect" entryPoints="" exactType="family.FlatFsmSimultaneousMT" id="family.FlatFsmSimultaneous" uri="http://fsm/">
+    <language aspects="StateMachine:semantics.flat.simultaneous.StateMachineAspect;State:semantics.flat.simultaneous.StateAspect" entryPoints="semantics.flat.simultaneous.StateMachineAspect.eval(flatfsm.fsm.StateMachine,semantics.common.Context,java.lang.String)" exactType="family.FlatFsmSimultaneousMT" id="family.FlatFsmSimultaneous" uri="http://fsm/">
       <adapter class="family.flatfsmsimultaneous.adapters.flatfsmmt.FlatFsmSimultaneousAdapter" modeltypeId="family.FlatFsmMT"/>
       <adapter class="family.flatfsmsimultaneous.adapters.flatfsmsimultaneousmt.FlatFsmSimultaneousAdapter" modeltypeId="family.FlatFsmSimultaneousMT"/>
     </language>
-    <language aspects="StateMachine:semantics.timed.StateMachineAspect;State:semantics.timed.StateAspect;Transition:semantics.timed.TransitionAspect" entryPoints="" exactType="family.TimedFsmMT" id="family.TimedFsm" uri="http://timedfsm/">
+    <language aspects="StateMachine:semantics.timed.StateMachineAspect;State:semantics.timed.StateAspect;Transition:semantics.timed.TransitionAspect" entryPoints="semantics.timed.StateMachineAspect.eval(timedfsm.fsm.StateMachine,semantics.common.Context,java.lang.String)" exactType="family.TimedFsmMT" id="family.TimedFsm" uri="http://timedfsm/">
       <adapter class="family.timedfsm.adapters.flatfsmmt.TimedFsmAdapter" modeltypeId="family.FlatFsmMT"/>
       <adapter class="family.timedfsm.adapters.timedfsmmt.TimedFsmAdapter" modeltypeId="family.TimedFsmMT"/>
     </language>
-    <language aspects="StateMachine:semantics.timed.simultaneous.StateMachineAspect;State:semantics.timed.simultaneous.StateAspect;Transition:semantics.timed.simultaneous.TransitionAspect" entryPoints="" exactType="family.TimedFsmSimultaneousMT" id="family.TimedFsmSimultaneous" uri="http://timedfsm/">
+    <language aspects="StateMachine:semantics.timed.simultaneous.StateMachineAspect;State:semantics.timed.simultaneous.StateAspect;Transition:semantics.timed.simultaneous.TransitionAspect" entryPoints="semantics.timed.simultaneous.StateMachineAspect.eval(timedfsm.fsm.StateMachine,semantics.common.Context,java.lang.String)" exactType="family.TimedFsmSimultaneousMT" id="family.TimedFsmSimultaneous" uri="http://timedfsm/">
       <adapter class="family.timedfsmsimultaneous.adapters.flatfsmmt.TimedFsmSimultaneousAdapter" modeltypeId="family.FlatFsmMT"/>
       <adapter class="family.timedfsmsimultaneous.adapters.flatfsmsimultaneousmt.TimedFsmSimultaneousAdapter" modeltypeId="family.FlatFsmSimultaneousMT"/>
       <adapter class="family.timedfsmsimultaneous.adapters.timedfsmmt.TimedFsmSimultaneousAdapter" modeltypeId="family.TimedFsmMT"/>
       <adapter class="family.timedfsmsimultaneous.adapters.timedfsmsimultaneousmt.TimedFsmSimultaneousAdapter" modeltypeId="family.TimedFsmSimultaneousMT"/>
     </language>
-    <language aspects="StateMachine:semantics.composite.StateMachineAspect;State:semantics.composite.StateAspect" entryPoints="" exactType="family.CompositeFsmMT" id="family.CompositeFsm" uri="http://compositefsm/">
-      <adapter class="family.compositefsm.adapters.flatfsmmt.CompositeFsmAdapter" modeltypeId="family.FlatFsmMT"/>
+    <language aspects="StateMachine:semantics.composite.StateMachineAspect;State:semantics.composite.StateAspect" entryPoints="semantics.composite.StateMachineAspect.eval(compositefsm.fsm.StateMachine,semantics.common.Context,java.lang.String)" exactType="family.CompositeFsmMT" id="family.CompositeFsm" uri="http://compositefsm/">
       <adapter class="family.compositefsm.adapters.compositefsmmt.CompositeFsmAdapter" modeltypeId="family.CompositeFsmMT"/>
     </language>
-    <language aspects="StateMachine:semantics.composite.simultaneous.StateMachineAspect;State:semantics.composite.simultaneous.StateAspect" entryPoints="" exactType="family.CompositeFsmSimultaneousMT" id="family.CompositeFsmSimultaneous" uri="http://compositefsm/">
-      <adapter class="family.compositefsmsimultaneous.adapters.flatfsmmt.CompositeFsmSimultaneousAdapter" modeltypeId="family.FlatFsmMT"/>
-      <adapter class="family.compositefsmsimultaneous.adapters.flatfsmsimultaneousmt.CompositeFsmSimultaneousAdapter" modeltypeId="family.FlatFsmSimultaneousMT"/>
+    <language aspects="StateMachine:semantics.composite.simultaneous.StateMachineAspect;State:semantics.composite.simultaneous.StateAspect" entryPoints="semantics.composite.simultaneous.StateMachineAspect.eval(compositefsm.fsm.StateMachine,semantics.common.Context,java.lang.String)" exactType="family.CompositeFsmSimultaneousMT" id="family.CompositeFsmSimultaneous" uri="http://compositefsm/">
       <adapter class="family.compositefsmsimultaneous.adapters.compositefsmmt.CompositeFsmSimultaneousAdapter" modeltypeId="family.CompositeFsmMT"/>
       <adapter class="family.compositefsmsimultaneous.adapters.compositefsmsimultaneousmt.CompositeFsmSimultaneousAdapter" modeltypeId="family.CompositeFsmSimultaneousMT"/>
     </language>
-    <language aspects="StateMachine:semantics.timedcomposite.StateMachineAspect;State:semantics.timedcomposite.StateAspect;Transition:semantics.timedcomposite.TransitionAspect" entryPoints="" exactType="family.TimedCompositeFsmMT" id="family.TimedCompositeFsm" uri="http://timedcompositefsm/">
+    <language aspects="StateMachine:semantics.timedcomposite.StateMachineAspect;State:semantics.timedcomposite.StateAspect;Transition:semantics.timedcomposite.TransitionAspect" entryPoints="semantics.timedcomposite.StateMachineAspect.eval(timedcompositefsm.fsm.StateMachine,semantics.common.Context,java.lang.String)" exactType="family.TimedCompositeFsmMT" id="family.TimedCompositeFsm" uri="http://timedcompositefsm/">
       <adapter class="family.timedcompositefsm.adapters.flatfsmmt.TimedCompositeFsmAdapter" modeltypeId="family.FlatFsmMT"/>
       <adapter class="family.timedcompositefsm.adapters.timedfsmmt.TimedCompositeFsmAdapter" modeltypeId="family.TimedFsmMT"/>
       <adapter class="family.timedcompositefsm.adapters.timedcompositefsmmt.TimedCompositeFsmAdapter" modeltypeId="family.TimedCompositeFsmMT"/>
     </language>
-    <language aspects="StateMachine:semantics.timedcomposite.simultaneous.StateMachineAspect;State:semantics.timedcomposite.simultaneous.StateAspect;Transition:semantics.timedcomposite.simultaneous.TransitionAspect" entryPoints="" exactType="family.TimedCompositeFsmSimultaneousMT" id="family.TimedCompositeFsmSimultaneous" uri="http://timedcompositefsm/">
+    <language aspects="StateMachine:semantics.timedcomposite.simultaneous.StateMachineAspect;State:semantics.timedcomposite.simultaneous.StateAspect;Transition:semantics.timedcomposite.simultaneous.TransitionAspect" entryPoints="semantics.timedcomposite.simultaneous.StateMachineAspect.eval(timedcompositefsm.fsm.StateMachine,semantics.common.Context,java.lang.String)" exactType="family.TimedCompositeFsmSimultaneousMT" id="family.TimedCompositeFsmSimultaneous" uri="http://timedcompositefsm/">
       <adapter class="family.timedcompositefsmsimultaneous.adapters.flatfsmmt.TimedCompositeFsmSimultaneousAdapter" modeltypeId="family.FlatFsmMT"/>
       <adapter class="family.timedcompositefsmsimultaneous.adapters.flatfsmsimultaneousmt.TimedCompositeFsmSimultaneousAdapter" modeltypeId="family.FlatFsmSimultaneousMT"/>
       <adapter class="family.timedcompositefsmsimultaneous.adapters.timedfsmmt.TimedCompositeFsmSimultaneousAdapter" modeltypeId="family.TimedFsmMT"/>

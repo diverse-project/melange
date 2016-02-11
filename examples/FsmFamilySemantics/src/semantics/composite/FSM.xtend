@@ -8,6 +8,7 @@ import compositefsm.fsm.State
 import compositefsm.fsm.StateMachine
 import compositefsm.fsm.Transition
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
+import fr.inria.diverse.k3.al.annotationprocessor.Main
 import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
 import java.util.ArrayList
 import org.eclipse.emf.common.util.BasicEList
@@ -32,7 +33,8 @@ class StateMachineAspect {
 	/**
 	 * Evaluates the input and sequentially executes the steps in the state machine. 
 	 */
-	 
+
+	@Main
 	def public void eval (Context context, String filePath) {
 		println("\nExecuting the state machine. Please wait for the results...\n")
 		println(" ... executing input ...\n")

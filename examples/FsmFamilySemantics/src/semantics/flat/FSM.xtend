@@ -1,6 +1,5 @@
 package semantics.flat
 
-import semantics.common.Context
 import flatfsm.fsm.Fork
 import flatfsm.fsm.InitialState
 import flatfsm.fsm.Join
@@ -8,9 +7,11 @@ import flatfsm.fsm.State
 import flatfsm.fsm.StateMachine
 import flatfsm.fsm.Transition
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
+import fr.inria.diverse.k3.al.annotationprocessor.Main
 import java.util.ArrayList
 import org.eclipse.emf.common.util.BasicEList
 import org.eclipse.emf.common.util.EList
+import semantics.common.Context
 
 import static extension semantics.flat.StateAspect.*
 
@@ -30,7 +31,7 @@ class StateMachineAspect {
 	/**
 	 * Evaluates the input and sequentially executes the steps in the state machine. 
 	 */
-	 
+	@Main
 	def public void eval (Context context, String filePath) {
 		println("\nExecuting the state machine. Please wait for the results...\n")
 		println(" ... executing input ...\n")
