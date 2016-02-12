@@ -437,12 +437,12 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	 *         (operators+=Inherit operators+=Inherit*)? 
 	 *         (implements+=[ModelType|QualifiedName] implements+=[ModelType|QualifiedName]*)? 
 	 *         (requires+=[ModelType|QualifiedName] requires+=[ModelType|QualifiedName]*)? 
+	 *         operators+=Operator* 
 	 *         (resourceType=ResourceType (resourceUri=STRING | xtextSetupRef=JvmTypeReference)?)? 
 	 *         (xtext+=STRING xtext+=STRING*)? 
 	 *         (sirius+=STRING sirius+=STRING*)? 
 	 *         (ecl+=STRING ecl+=STRING*)? 
 	 *         fileExtension=STRING? 
-	 *         operators+=Operator* 
 	 *         exactTypeName=ValidID 
 	 *         exactTypeUri=STRING?
 	 *     )

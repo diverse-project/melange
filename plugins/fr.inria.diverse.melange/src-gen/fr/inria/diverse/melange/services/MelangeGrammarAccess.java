@@ -141,49 +141,49 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cRequiresModelTypeCrossReference_0_4_2_1_0 = (CrossReference)cRequiresAssignment_0_4_2_1.eContents().get(0);
 		private final RuleCall cRequiresModelTypeQualifiedNameParserRuleCall_0_4_2_1_0_1 = (RuleCall)cRequiresModelTypeCrossReference_0_4_2_1_0.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_0_5 = (Keyword)cGroup_0.eContents().get(5);
-		private final Group cGroup_0_6 = (Group)cGroup_0.eContents().get(6);
-		private final Keyword cResourceKeyword_0_6_0 = (Keyword)cGroup_0_6.eContents().get(0);
-		private final Assignment cResourceTypeAssignment_0_6_1 = (Assignment)cGroup_0_6.eContents().get(1);
-		private final RuleCall cResourceTypeResourceTypeEnumRuleCall_0_6_1_0 = (RuleCall)cResourceTypeAssignment_0_6_1.eContents().get(0);
-		private final Alternatives cAlternatives_0_6_2 = (Alternatives)cGroup_0_6.eContents().get(2);
-		private final Group cGroup_0_6_2_0 = (Group)cAlternatives_0_6_2.eContents().get(0);
-		private final Keyword cUriKeyword_0_6_2_0_0 = (Keyword)cGroup_0_6_2_0.eContents().get(0);
-		private final Assignment cResourceUriAssignment_0_6_2_0_1 = (Assignment)cGroup_0_6_2_0.eContents().get(1);
-		private final RuleCall cResourceUriSTRINGTerminalRuleCall_0_6_2_0_1_0 = (RuleCall)cResourceUriAssignment_0_6_2_0_1.eContents().get(0);
-		private final Group cGroup_0_6_2_1 = (Group)cAlternatives_0_6_2.eContents().get(1);
-		private final Keyword cSetupKeyword_0_6_2_1_0 = (Keyword)cGroup_0_6_2_1.eContents().get(0);
-		private final Assignment cXtextSetupRefAssignment_0_6_2_1_1 = (Assignment)cGroup_0_6_2_1.eContents().get(1);
-		private final RuleCall cXtextSetupRefJvmTypeReferenceParserRuleCall_0_6_2_1_1_0 = (RuleCall)cXtextSetupRefAssignment_0_6_2_1_1.eContents().get(0);
+		private final Assignment cOperatorsAssignment_0_6 = (Assignment)cGroup_0.eContents().get(6);
+		private final RuleCall cOperatorsOperatorParserRuleCall_0_6_0 = (RuleCall)cOperatorsAssignment_0_6.eContents().get(0);
 		private final Group cGroup_1 = (Group)cUnorderedGroup.eContents().get(1);
-		private final Keyword cXtextKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cXtextAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cXtextSTRINGTerminalRuleCall_1_1_0 = (RuleCall)cXtextAssignment_1_1.eContents().get(0);
-		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
-		private final Keyword cCommaKeyword_1_2_0 = (Keyword)cGroup_1_2.eContents().get(0);
-		private final Assignment cXtextAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
-		private final RuleCall cXtextSTRINGTerminalRuleCall_1_2_1_0 = (RuleCall)cXtextAssignment_1_2_1.eContents().get(0);
+		private final Keyword cResourceKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cResourceTypeAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cResourceTypeResourceTypeEnumRuleCall_1_1_0 = (RuleCall)cResourceTypeAssignment_1_1.eContents().get(0);
+		private final Alternatives cAlternatives_1_2 = (Alternatives)cGroup_1.eContents().get(2);
+		private final Group cGroup_1_2_0 = (Group)cAlternatives_1_2.eContents().get(0);
+		private final Keyword cUriKeyword_1_2_0_0 = (Keyword)cGroup_1_2_0.eContents().get(0);
+		private final Assignment cResourceUriAssignment_1_2_0_1 = (Assignment)cGroup_1_2_0.eContents().get(1);
+		private final RuleCall cResourceUriSTRINGTerminalRuleCall_1_2_0_1_0 = (RuleCall)cResourceUriAssignment_1_2_0_1.eContents().get(0);
+		private final Group cGroup_1_2_1 = (Group)cAlternatives_1_2.eContents().get(1);
+		private final Keyword cSetupKeyword_1_2_1_0 = (Keyword)cGroup_1_2_1.eContents().get(0);
+		private final Assignment cXtextSetupRefAssignment_1_2_1_1 = (Assignment)cGroup_1_2_1.eContents().get(1);
+		private final RuleCall cXtextSetupRefJvmTypeReferenceParserRuleCall_1_2_1_1_0 = (RuleCall)cXtextSetupRefAssignment_1_2_1_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cUnorderedGroup.eContents().get(2);
-		private final Keyword cSiriusKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cSiriusAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cSiriusSTRINGTerminalRuleCall_2_1_0 = (RuleCall)cSiriusAssignment_2_1.eContents().get(0);
+		private final Keyword cXtextKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cXtextAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cXtextSTRINGTerminalRuleCall_2_1_0 = (RuleCall)cXtextAssignment_2_1.eContents().get(0);
 		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
 		private final Keyword cCommaKeyword_2_2_0 = (Keyword)cGroup_2_2.eContents().get(0);
-		private final Assignment cSiriusAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
-		private final RuleCall cSiriusSTRINGTerminalRuleCall_2_2_1_0 = (RuleCall)cSiriusAssignment_2_2_1.eContents().get(0);
+		private final Assignment cXtextAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
+		private final RuleCall cXtextSTRINGTerminalRuleCall_2_2_1_0 = (RuleCall)cXtextAssignment_2_2_1.eContents().get(0);
 		private final Group cGroup_3 = (Group)cUnorderedGroup.eContents().get(3);
-		private final Keyword cEclKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cEclAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cEclSTRINGTerminalRuleCall_3_1_0 = (RuleCall)cEclAssignment_3_1.eContents().get(0);
+		private final Keyword cSiriusKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cSiriusAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cSiriusSTRINGTerminalRuleCall_3_1_0 = (RuleCall)cSiriusAssignment_3_1.eContents().get(0);
 		private final Group cGroup_3_2 = (Group)cGroup_3.eContents().get(2);
 		private final Keyword cCommaKeyword_3_2_0 = (Keyword)cGroup_3_2.eContents().get(0);
-		private final Assignment cEclAssignment_3_2_1 = (Assignment)cGroup_3_2.eContents().get(1);
-		private final RuleCall cEclSTRINGTerminalRuleCall_3_2_1_0 = (RuleCall)cEclAssignment_3_2_1.eContents().get(0);
+		private final Assignment cSiriusAssignment_3_2_1 = (Assignment)cGroup_3_2.eContents().get(1);
+		private final RuleCall cSiriusSTRINGTerminalRuleCall_3_2_1_0 = (RuleCall)cSiriusAssignment_3_2_1.eContents().get(0);
 		private final Group cGroup_4 = (Group)cUnorderedGroup.eContents().get(4);
-		private final Keyword cFileExtensionKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Assignment cFileExtensionAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cFileExtensionSTRINGTerminalRuleCall_4_1_0 = (RuleCall)cFileExtensionAssignment_4_1.eContents().get(0);
-		private final Assignment cOperatorsAssignment_5 = (Assignment)cUnorderedGroup.eContents().get(5);
-		private final RuleCall cOperatorsOperatorParserRuleCall_5_0 = (RuleCall)cOperatorsAssignment_5.eContents().get(0);
+		private final Keyword cEclKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cEclAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cEclSTRINGTerminalRuleCall_4_1_0 = (RuleCall)cEclAssignment_4_1.eContents().get(0);
+		private final Group cGroup_4_2 = (Group)cGroup_4.eContents().get(2);
+		private final Keyword cCommaKeyword_4_2_0 = (Keyword)cGroup_4_2.eContents().get(0);
+		private final Assignment cEclAssignment_4_2_1 = (Assignment)cGroup_4_2.eContents().get(1);
+		private final RuleCall cEclSTRINGTerminalRuleCall_4_2_1_0 = (RuleCall)cEclAssignment_4_2_1.eContents().get(0);
+		private final Group cGroup_5 = (Group)cUnorderedGroup.eContents().get(5);
+		private final Keyword cFileExtensionKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cFileExtensionAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cFileExtensionSTRINGTerminalRuleCall_5_1_0 = (RuleCall)cFileExtensionAssignment_5_1.eContents().get(0);
 		private final Group cGroup_6 = (Group)cUnorderedGroup.eContents().get(6);
 		private final Group cGroup_6_0 = (Group)cGroup_6.eContents().get(0);
 		private final Keyword cExactTypeKeyword_6_0_0 = (Keyword)cGroup_6_0.eContents().get(0);
@@ -198,26 +198,25 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		//Language:
 		//	"language" name=ValidID ("inherits" operators+=Inherit ("," operators+=Inherit)*)? ("implements"
 		//	implements+=[ModelType|QualifiedName] ("," implements+=[ModelType|QualifiedName])*)? ("requires"
-		//	requires+=[ModelType|QualifiedName] ("," requires+=[ModelType|QualifiedName])*)? "{" ("resource"
-		//	resourceType=ResourceType ("uri" resourceUri=STRING | "setup" xtextSetupRef=JvmTypeReference)?)? & ("xtext"
-		//	xtext+=STRING ("," xtext+=STRING)*)? & ("sirius" sirius+=STRING ("," sirius+=STRING)*)? & ("ecl" ecl+=STRING (","
-		//	ecl+=STRING)*)? & ("fileExtension" fileExtension=STRING)? & operators+=Operator* & ("exactType" exactTypeName=ValidID
-		//	("uri" exactTypeUri=STRING)?) "}";
+		//	requires+=[ModelType|QualifiedName] ("," requires+=[ModelType|QualifiedName])*)? "{" operators+=Operator* &
+		//	("resource" resourceType=ResourceType ("uri" resourceUri=STRING | "setup" xtextSetupRef=JvmTypeReference)?)? &
+		//	("xtext" xtext+=STRING ("," xtext+=STRING)*)? & ("sirius" sirius+=STRING ("," sirius+=STRING)*)? & ("ecl" ecl+=STRING
+		//	("," ecl+=STRING)*)? & ("fileExtension" fileExtension=STRING)? & ("exactType" exactTypeName=ValidID ("uri"
+		//	exactTypeUri=STRING)?) "}";
 		@Override public ParserRule getRule() { return rule; }
 
 		//"language" name=ValidID ("inherits" operators+=Inherit ("," operators+=Inherit)*)? ("implements"
 		//implements+=[ModelType|QualifiedName] ("," implements+=[ModelType|QualifiedName])*)? ("requires"
-		//requires+=[ModelType|QualifiedName] ("," requires+=[ModelType|QualifiedName])*)? "{" ("resource"
+		//requires+=[ModelType|QualifiedName] ("," requires+=[ModelType|QualifiedName])*)? "{" operators+=Operator* & ("resource"
 		//resourceType=ResourceType ("uri" resourceUri=STRING | "setup" xtextSetupRef=JvmTypeReference)?)? & ("xtext"
 		//xtext+=STRING ("," xtext+=STRING)*)? & ("sirius" sirius+=STRING ("," sirius+=STRING)*)? & ("ecl" ecl+=STRING (","
-		//ecl+=STRING)*)? & ("fileExtension" fileExtension=STRING)? & operators+=Operator* & ("exactType" exactTypeName=ValidID
-		//("uri" exactTypeUri=STRING)?) "}"
+		//ecl+=STRING)*)? & ("fileExtension" fileExtension=STRING)? & ("exactType" exactTypeName=ValidID ("uri"
+		//exactTypeUri=STRING)?) "}"
 		public UnorderedGroup getUnorderedGroup() { return cUnorderedGroup; }
 
 		//"language" name=ValidID ("inherits" operators+=Inherit ("," operators+=Inherit)*)? ("implements"
 		//implements+=[ModelType|QualifiedName] ("," implements+=[ModelType|QualifiedName])*)? ("requires"
-		//requires+=[ModelType|QualifiedName] ("," requires+=[ModelType|QualifiedName])*)? "{" ("resource"
-		//resourceType=ResourceType ("uri" resourceUri=STRING | "setup" xtextSetupRef=JvmTypeReference)?)?
+		//requires+=[ModelType|QualifiedName] ("," requires+=[ModelType|QualifiedName])*)? "{" operators+=Operator*
 		public Group getGroup_0() { return cGroup_0; }
 
 		//"language"
@@ -316,134 +315,134 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_0_5() { return cLeftCurlyBracketKeyword_0_5; }
 
+		//operators+=Operator*
+		public Assignment getOperatorsAssignment_0_6() { return cOperatorsAssignment_0_6; }
+
+		//Operator
+		public RuleCall getOperatorsOperatorParserRuleCall_0_6_0() { return cOperatorsOperatorParserRuleCall_0_6_0; }
+
 		//("resource" resourceType=ResourceType ("uri" resourceUri=STRING | "setup" xtextSetupRef=JvmTypeReference)?)?
-		public Group getGroup_0_6() { return cGroup_0_6; }
-
-		//"resource"
-		public Keyword getResourceKeyword_0_6_0() { return cResourceKeyword_0_6_0; }
-
-		//resourceType=ResourceType
-		public Assignment getResourceTypeAssignment_0_6_1() { return cResourceTypeAssignment_0_6_1; }
-
-		//ResourceType
-		public RuleCall getResourceTypeResourceTypeEnumRuleCall_0_6_1_0() { return cResourceTypeResourceTypeEnumRuleCall_0_6_1_0; }
-
-		//(=> "uri" resourceUri=STRING | "setup" xtextSetupRef=JvmTypeReference)?
-		public Alternatives getAlternatives_0_6_2() { return cAlternatives_0_6_2; }
-
-		//=> "uri" resourceUri=STRING
-		public Group getGroup_0_6_2_0() { return cGroup_0_6_2_0; }
-
-		//=> "uri"
-		public Keyword getUriKeyword_0_6_2_0_0() { return cUriKeyword_0_6_2_0_0; }
-
-		//resourceUri=STRING
-		public Assignment getResourceUriAssignment_0_6_2_0_1() { return cResourceUriAssignment_0_6_2_0_1; }
-
-		//STRING
-		public RuleCall getResourceUriSTRINGTerminalRuleCall_0_6_2_0_1_0() { return cResourceUriSTRINGTerminalRuleCall_0_6_2_0_1_0; }
-
-		//"setup" xtextSetupRef=JvmTypeReference
-		public Group getGroup_0_6_2_1() { return cGroup_0_6_2_1; }
-
-		//"setup"
-		public Keyword getSetupKeyword_0_6_2_1_0() { return cSetupKeyword_0_6_2_1_0; }
-
-		//xtextSetupRef=JvmTypeReference
-		public Assignment getXtextSetupRefAssignment_0_6_2_1_1() { return cXtextSetupRefAssignment_0_6_2_1_1; }
-
-		//JvmTypeReference
-		public RuleCall getXtextSetupRefJvmTypeReferenceParserRuleCall_0_6_2_1_1_0() { return cXtextSetupRefJvmTypeReferenceParserRuleCall_0_6_2_1_1_0; }
-
-		//("xtext" xtext+=STRING ("," xtext+=STRING)*)?
 		public Group getGroup_1() { return cGroup_1; }
 
-		//"xtext"
-		public Keyword getXtextKeyword_1_0() { return cXtextKeyword_1_0; }
+		//"resource"
+		public Keyword getResourceKeyword_1_0() { return cResourceKeyword_1_0; }
 
-		//xtext+=STRING
-		public Assignment getXtextAssignment_1_1() { return cXtextAssignment_1_1; }
+		//resourceType=ResourceType
+		public Assignment getResourceTypeAssignment_1_1() { return cResourceTypeAssignment_1_1; }
+
+		//ResourceType
+		public RuleCall getResourceTypeResourceTypeEnumRuleCall_1_1_0() { return cResourceTypeResourceTypeEnumRuleCall_1_1_0; }
+
+		//(=> "uri" resourceUri=STRING | "setup" xtextSetupRef=JvmTypeReference)?
+		public Alternatives getAlternatives_1_2() { return cAlternatives_1_2; }
+
+		//=> "uri" resourceUri=STRING
+		public Group getGroup_1_2_0() { return cGroup_1_2_0; }
+
+		//=> "uri"
+		public Keyword getUriKeyword_1_2_0_0() { return cUriKeyword_1_2_0_0; }
+
+		//resourceUri=STRING
+		public Assignment getResourceUriAssignment_1_2_0_1() { return cResourceUriAssignment_1_2_0_1; }
 
 		//STRING
-		public RuleCall getXtextSTRINGTerminalRuleCall_1_1_0() { return cXtextSTRINGTerminalRuleCall_1_1_0; }
+		public RuleCall getResourceUriSTRINGTerminalRuleCall_1_2_0_1_0() { return cResourceUriSTRINGTerminalRuleCall_1_2_0_1_0; }
 
-		//("," xtext+=STRING)*
-		public Group getGroup_1_2() { return cGroup_1_2; }
+		//"setup" xtextSetupRef=JvmTypeReference
+		public Group getGroup_1_2_1() { return cGroup_1_2_1; }
 
-		//","
-		public Keyword getCommaKeyword_1_2_0() { return cCommaKeyword_1_2_0; }
+		//"setup"
+		public Keyword getSetupKeyword_1_2_1_0() { return cSetupKeyword_1_2_1_0; }
 
-		//xtext+=STRING
-		public Assignment getXtextAssignment_1_2_1() { return cXtextAssignment_1_2_1; }
+		//xtextSetupRef=JvmTypeReference
+		public Assignment getXtextSetupRefAssignment_1_2_1_1() { return cXtextSetupRefAssignment_1_2_1_1; }
 
-		//STRING
-		public RuleCall getXtextSTRINGTerminalRuleCall_1_2_1_0() { return cXtextSTRINGTerminalRuleCall_1_2_1_0; }
+		//JvmTypeReference
+		public RuleCall getXtextSetupRefJvmTypeReferenceParserRuleCall_1_2_1_1_0() { return cXtextSetupRefJvmTypeReferenceParserRuleCall_1_2_1_1_0; }
 
-		//("sirius" sirius+=STRING ("," sirius+=STRING)*)?
+		//("xtext" xtext+=STRING ("," xtext+=STRING)*)?
 		public Group getGroup_2() { return cGroup_2; }
 
-		//"sirius"
-		public Keyword getSiriusKeyword_2_0() { return cSiriusKeyword_2_0; }
+		//"xtext"
+		public Keyword getXtextKeyword_2_0() { return cXtextKeyword_2_0; }
 
-		//sirius+=STRING
-		public Assignment getSiriusAssignment_2_1() { return cSiriusAssignment_2_1; }
+		//xtext+=STRING
+		public Assignment getXtextAssignment_2_1() { return cXtextAssignment_2_1; }
 
 		//STRING
-		public RuleCall getSiriusSTRINGTerminalRuleCall_2_1_0() { return cSiriusSTRINGTerminalRuleCall_2_1_0; }
+		public RuleCall getXtextSTRINGTerminalRuleCall_2_1_0() { return cXtextSTRINGTerminalRuleCall_2_1_0; }
 
-		//("," sirius+=STRING)*
+		//("," xtext+=STRING)*
 		public Group getGroup_2_2() { return cGroup_2_2; }
 
 		//","
 		public Keyword getCommaKeyword_2_2_0() { return cCommaKeyword_2_2_0; }
 
-		//sirius+=STRING
-		public Assignment getSiriusAssignment_2_2_1() { return cSiriusAssignment_2_2_1; }
+		//xtext+=STRING
+		public Assignment getXtextAssignment_2_2_1() { return cXtextAssignment_2_2_1; }
 
 		//STRING
-		public RuleCall getSiriusSTRINGTerminalRuleCall_2_2_1_0() { return cSiriusSTRINGTerminalRuleCall_2_2_1_0; }
+		public RuleCall getXtextSTRINGTerminalRuleCall_2_2_1_0() { return cXtextSTRINGTerminalRuleCall_2_2_1_0; }
 
-		//("ecl" ecl+=STRING ("," ecl+=STRING)*)?
+		//("sirius" sirius+=STRING ("," sirius+=STRING)*)?
 		public Group getGroup_3() { return cGroup_3; }
 
-		//"ecl"
-		public Keyword getEclKeyword_3_0() { return cEclKeyword_3_0; }
+		//"sirius"
+		public Keyword getSiriusKeyword_3_0() { return cSiriusKeyword_3_0; }
 
-		//ecl+=STRING
-		public Assignment getEclAssignment_3_1() { return cEclAssignment_3_1; }
+		//sirius+=STRING
+		public Assignment getSiriusAssignment_3_1() { return cSiriusAssignment_3_1; }
 
 		//STRING
-		public RuleCall getEclSTRINGTerminalRuleCall_3_1_0() { return cEclSTRINGTerminalRuleCall_3_1_0; }
+		public RuleCall getSiriusSTRINGTerminalRuleCall_3_1_0() { return cSiriusSTRINGTerminalRuleCall_3_1_0; }
 
-		//("," ecl+=STRING)*
+		//("," sirius+=STRING)*
 		public Group getGroup_3_2() { return cGroup_3_2; }
 
 		//","
 		public Keyword getCommaKeyword_3_2_0() { return cCommaKeyword_3_2_0; }
 
-		//ecl+=STRING
-		public Assignment getEclAssignment_3_2_1() { return cEclAssignment_3_2_1; }
+		//sirius+=STRING
+		public Assignment getSiriusAssignment_3_2_1() { return cSiriusAssignment_3_2_1; }
 
 		//STRING
-		public RuleCall getEclSTRINGTerminalRuleCall_3_2_1_0() { return cEclSTRINGTerminalRuleCall_3_2_1_0; }
+		public RuleCall getSiriusSTRINGTerminalRuleCall_3_2_1_0() { return cSiriusSTRINGTerminalRuleCall_3_2_1_0; }
 
-		//("fileExtension" fileExtension=STRING)?
+		//("ecl" ecl+=STRING ("," ecl+=STRING)*)?
 		public Group getGroup_4() { return cGroup_4; }
 
-		//"fileExtension"
-		public Keyword getFileExtensionKeyword_4_0() { return cFileExtensionKeyword_4_0; }
+		//"ecl"
+		public Keyword getEclKeyword_4_0() { return cEclKeyword_4_0; }
 
-		//fileExtension=STRING
-		public Assignment getFileExtensionAssignment_4_1() { return cFileExtensionAssignment_4_1; }
+		//ecl+=STRING
+		public Assignment getEclAssignment_4_1() { return cEclAssignment_4_1; }
 
 		//STRING
-		public RuleCall getFileExtensionSTRINGTerminalRuleCall_4_1_0() { return cFileExtensionSTRINGTerminalRuleCall_4_1_0; }
+		public RuleCall getEclSTRINGTerminalRuleCall_4_1_0() { return cEclSTRINGTerminalRuleCall_4_1_0; }
 
-		//operators+=Operator*
-		public Assignment getOperatorsAssignment_5() { return cOperatorsAssignment_5; }
+		//("," ecl+=STRING)*
+		public Group getGroup_4_2() { return cGroup_4_2; }
 
-		//Operator
-		public RuleCall getOperatorsOperatorParserRuleCall_5_0() { return cOperatorsOperatorParserRuleCall_5_0; }
+		//","
+		public Keyword getCommaKeyword_4_2_0() { return cCommaKeyword_4_2_0; }
+
+		//ecl+=STRING
+		public Assignment getEclAssignment_4_2_1() { return cEclAssignment_4_2_1; }
+
+		//STRING
+		public RuleCall getEclSTRINGTerminalRuleCall_4_2_1_0() { return cEclSTRINGTerminalRuleCall_4_2_1_0; }
+
+		//("fileExtension" fileExtension=STRING)?
+		public Group getGroup_5() { return cGroup_5; }
+
+		//"fileExtension"
+		public Keyword getFileExtensionKeyword_5_0() { return cFileExtensionKeyword_5_0; }
+
+		//fileExtension=STRING
+		public Assignment getFileExtensionAssignment_5_1() { return cFileExtensionAssignment_5_1; }
+
+		//STRING
+		public RuleCall getFileExtensionSTRINGTerminalRuleCall_5_1_0() { return cFileExtensionSTRINGTerminalRuleCall_5_1_0; }
 
 		//("exactType" exactTypeName=ValidID ("uri" exactTypeUri=STRING)?) "}"
 		public Group getGroup_6() { return cGroup_6; }
@@ -1352,11 +1351,11 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	//Language:
 	//	"language" name=ValidID ("inherits" operators+=Inherit ("," operators+=Inherit)*)? ("implements"
 	//	implements+=[ModelType|QualifiedName] ("," implements+=[ModelType|QualifiedName])*)? ("requires"
-	//	requires+=[ModelType|QualifiedName] ("," requires+=[ModelType|QualifiedName])*)? "{" ("resource"
-	//	resourceType=ResourceType ("uri" resourceUri=STRING | "setup" xtextSetupRef=JvmTypeReference)?)? & ("xtext"
-	//	xtext+=STRING ("," xtext+=STRING)*)? & ("sirius" sirius+=STRING ("," sirius+=STRING)*)? & ("ecl" ecl+=STRING (","
-	//	ecl+=STRING)*)? & ("fileExtension" fileExtension=STRING)? & operators+=Operator* & ("exactType" exactTypeName=ValidID
-	//	("uri" exactTypeUri=STRING)?) "}";
+	//	requires+=[ModelType|QualifiedName] ("," requires+=[ModelType|QualifiedName])*)? "{" operators+=Operator* &
+	//	("resource" resourceType=ResourceType ("uri" resourceUri=STRING | "setup" xtextSetupRef=JvmTypeReference)?)? &
+	//	("xtext" xtext+=STRING ("," xtext+=STRING)*)? & ("sirius" sirius+=STRING ("," sirius+=STRING)*)? & ("ecl" ecl+=STRING
+	//	("," ecl+=STRING)*)? & ("fileExtension" fileExtension=STRING)? & ("exactType" exactTypeName=ValidID ("uri"
+	//	exactTypeUri=STRING)?) "}";
 	public LanguageElements getLanguageAccess() {
 		return pLanguage;
 	}
