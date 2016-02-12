@@ -26,7 +26,9 @@ class MelangeProposalProvider extends AbstractMelangeProposalProvider
 				val realProp = e.createExecutableExtension("class");
 				if (realProp instanceof IProposal) {
 					val proposal = createCompletionProposal("\"platform/resource/project/file.ecore\"", realProp.displayText, null, context)
-					acceptor.accept(new DecoratorCompletionProposal(proposal,realProp))
+					if(proposal !== null){
+						acceptor.accept(new DecoratorCompletionProposal(proposal,realProp))
+					}
 				}
 			}
 		} catch (CoreException ex) {
@@ -47,7 +49,9 @@ class MelangeProposalProvider extends AbstractMelangeProposalProvider
 				val realProp = e.createExecutableExtension("class");
 				if (realProp instanceof IProposal) {
 					val proposal = createCompletionProposal("with qualified.class.name", realProp.displayText, null, context)
-					acceptor.accept(new DecoratorCompletionProposal(proposal,realProp))
+					if(proposal !== null){
+						acceptor.accept(new DecoratorCompletionProposal(proposal,realProp))
+					}
 				}
 			}
 		} catch (CoreException ex) {
@@ -56,7 +60,6 @@ class MelangeProposalProvider extends AbstractMelangeProposalProvider
 	}
 	
 	override completeLanguage_Ecl(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		println("WIZARD!")
 		super.completeLanguage_Ecl(model, assignment, context, acceptor)
 		
 		val IConfigurationElement[] config = Platform.getExtensionRegistry(). getConfigurationElementsFor(CONTENTASSIST_ECL_ID);
@@ -65,7 +68,9 @@ class MelangeProposalProvider extends AbstractMelangeProposalProvider
 				val realProp = e.createExecutableExtension("class");
 				if (realProp instanceof IProposal) {
 					val proposal = createCompletionProposal("\"/project/file.ecl\"", realProp.displayText, null, context)
-					acceptor.accept(new DecoratorCompletionProposal(proposal,realProp))
+					if(proposal !== null){
+						acceptor.accept(new DecoratorCompletionProposal(proposal,realProp))
+					}
 				}
 			}
 		} catch (CoreException ex) {
