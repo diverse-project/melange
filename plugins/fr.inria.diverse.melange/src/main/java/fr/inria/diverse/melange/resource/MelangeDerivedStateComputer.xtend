@@ -45,14 +45,12 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 		WildcardAspectResolver r,
 		LanguageProcessor l,
 		ExactTypeInferrer e,
-		TypingInferrer t,
-		ExtensionPointProcessor p
+		TypingInferrer t
 	) {
 		processors += r
 		processors += l
 		processors += e
 		processors += t
-		processors += p
 	}
 
 	override discardDerivedState(DerivedStateAwareResource resource) {

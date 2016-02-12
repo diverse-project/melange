@@ -8,6 +8,7 @@ import org.eclipse.core.runtime.Status
 import org.eclipse.ui.plugin.AbstractUIPlugin
 import org.eclipse.xtext.ui.editor.hyperlinking.IHyperlinkHelper
 import org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage
+import fr.inria.diverse.melange.ui.editor.MelangeDocumentProvider
 
 class MelangeUiModule extends AbstractMelangeUiModule
 {
@@ -32,5 +33,9 @@ class MelangeUiModule extends AbstractMelangeUiModule
 				e
 			)
 		)
+	}
+	
+	override Class<? extends org.eclipse.xtext.ui.editor.model.XtextDocumentProvider> bindXtextDocumentProvider() {
+		return typeof(MelangeDocumentProvider)
 	}
 }
