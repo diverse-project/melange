@@ -12,6 +12,8 @@ import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
 import org.eclipse.core.resources.IProject
 import org.eclipse.core.resources.ResourcesPlugin
+import fr.inria.diverse.melange.metamodel.melange.Language
+import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 
 class MelangeProposalProvider extends AbstractMelangeProposalProvider
 {
@@ -49,6 +51,14 @@ class MelangeProposalProvider extends AbstractMelangeProposalProvider
 			for (IConfigurationElement e : config) {
 				val realProp = e.createExecutableExtension("class");
 				if (realProp instanceof IProposal) {
+					if(model instanceof Language){
+						val lang = model as Language
+						val root = lang.eContainer as ModelTypingSpace
+						realProp.configureProposal(root.name,lang.name)
+					}
+					else{
+						realProp.configureProposal("packageName","languageName")
+					}
 					val proposal = createCompletionProposal("", realProp.displayText, null, context)
 					if(proposal !== null){
 						acceptor.accept(new DecoratorCompletionProposal(proposal,realProp,getProject(model)))

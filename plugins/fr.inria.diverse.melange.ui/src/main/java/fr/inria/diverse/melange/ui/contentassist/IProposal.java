@@ -19,4 +19,6 @@ public interface IProposal {
 	 * Add dependencies to make valid this proposal 
 	 */
 	public void configureProject(IProject project);
+	
+	public void configureProposal(String packageName, String languageName);
 }
