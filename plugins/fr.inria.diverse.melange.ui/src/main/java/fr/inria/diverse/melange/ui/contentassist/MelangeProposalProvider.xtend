@@ -52,12 +52,7 @@ class MelangeProposalProvider extends AbstractMelangeProposalProvider
 				val realProp = e.createExecutableExtension("class");
 				if (realProp instanceof IProposal) {
 					if(model instanceof Language){
-						val lang = model as Language
-						val root = lang.eContainer as ModelTypingSpace
-						realProp.configureProposal(root.name,lang.name)
-					}
-					else{
-						realProp.configureProposal("packageName","languageName")
+						realProp.configureProposal(model)
 					}
 					val proposal = createCompletionProposal("", realProp.displayText, null, context)
 					if(proposal !== null){

@@ -1,6 +1,7 @@
 package fr.inria.diverse.melange.ui.contentassist;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.emf.ecore.EObject;
 
 public interface IProposal {
 	
@@ -20,5 +21,5 @@ public interface IProposal {
 	 */
 	public void configureProject(IProject project);
 	
-	public void configureProposal(String packageName, String languageName);
+	public void configureProposal(EObject context);
 }
