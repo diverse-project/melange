@@ -16,7 +16,7 @@ import org.eclipse.core.resources.ResourcesPlugin
 class MelangeProposalProvider extends AbstractMelangeProposalProvider
 {
 	private static final String CONTENTASSIST_SYNTAX_ID = "fr.inria.diverse.melange.ui.contentassist_syntax"
-	private static final String CONTENTASSIST_WITH_ID = "fr.inria.diverse.melange.ui.contentassist_with"
+	private static final String CONTENTASSIST_OPERATOR_ID = "fr.inria.diverse.melange.ui.contentassist_operator"
 	private static final String CONTENTASSIST_ECL_ID = "fr.inria.diverse.melange.ui.contentassist_ecl"
 	
 	override completeImport_EcoreUri(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
@@ -44,12 +44,12 @@ class MelangeProposalProvider extends AbstractMelangeProposalProvider
 	override completeLanguage_Operators(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		super.completeLanguage_Operators(model, assignment, context, acceptor)
 		
-		val IConfigurationElement[] config = Platform.getExtensionRegistry(). getConfigurationElementsFor(CONTENTASSIST_WITH_ID);
+		val IConfigurationElement[] config = Platform.getExtensionRegistry(). getConfigurationElementsFor(CONTENTASSIST_OPERATOR_ID);
 		try {
 			for (IConfigurationElement e : config) {
 				val realProp = e.createExecutableExtension("class");
 				if (realProp instanceof IProposal) {
-					val proposal = createCompletionProposal("with qualified.class.name", realProp.displayText, null, context)
+					val proposal = createCompletionProposal("", realProp.displayText, null, context)
 					if(proposal !== null){
 						acceptor.accept(new DecoratorCompletionProposal(proposal,realProp,getProject(model)))
 					}

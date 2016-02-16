@@ -3,7 +3,7 @@
 <schema targetNamespace="fr.inria.diverse.melange.ui" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="fr.inria.diverse.melange.ui" id="contentassist_with" name="contentassist_with"/>
+         <meta.schema plugin="fr.inria.diverse.melange.ui" id="contentassist_operator" name="contentassist_operator"/>
       </appInfo>
       <documentation>
          [Enter description of this extension point.]
