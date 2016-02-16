@@ -156,9 +156,10 @@ class ExtensionPointProcessor extends DispatchMelangeProcessor
 	def private String serializedAspects(Language lang){
 		val mapping = ArrayListMultimap.create
 		lang.semantics.forEach[asp |
-			val aspName = asp.aspectTypeRef.qualifiedName 
-			val targetName = asp.aspectedClass.name
-			mapping.put(targetName,aspName)
+			val aspName = asp.aspectTypeRef?.qualifiedName 
+			val targetName = asp.aspectedClass?.name
+			if(aspName !== null && targetName !== null)
+				mapping.put(targetName,aspName)
 		]
 		
 		return mapping.keySet
