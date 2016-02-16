@@ -17,11 +17,16 @@ class MelangeDocumentProvider extends XbaseDocumentProvider{
 		super.doSaveDocument(monitor, element, document, overwrite)
 		
 		//Post save process
-		val xtextDoc = document as XtextDocument
-		xtextDoc.readOnly([res |
-			val root = res.contents.head as ModelTypingSpace
-			extensionProcessor.preProcess(root, false)
-			return null
-		])
+		try{
+			val xtextDoc = document as XtextDocument
+			xtextDoc.readOnly([res |
+				val root = res.contents.head as ModelTypingSpace
+				extensionProcessor.preProcess(root, false)
+				return null
+			])
+		}
+		catch(Exception e){
+			println(e)
+		}
 	}
 }
