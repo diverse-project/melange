@@ -109,7 +109,7 @@ class LanguageBuilder extends AbstractBuilder {
 		ecoreMerger.merge(base, merged)
 
 		return ecoreMerger.conflicts.map[
-			new BuilderError(message, context)
+			new BuilderError(it.toString, context)
 		]
 	}
 
