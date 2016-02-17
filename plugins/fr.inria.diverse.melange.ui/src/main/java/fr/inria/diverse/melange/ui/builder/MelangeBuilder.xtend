@@ -135,8 +135,12 @@ class MelangeBuilder
 	def void generatePluginXml(Resource res, IProject project, IProgressMonitor monitor) {
 		monitor.beginTask("Generating new plugin.xml", 1)
 		monitor.subTask("Generating new plugin.xml")
-		val root = res.contents.head as ModelTypingSpace
-		extensionProcessor.preProcess(root, false)
+		try{
+			val root = res.contents.head as ModelTypingSpace
+			extensionProcessor.preProcess(root, false)
+		} catch (Exception e) {
+			log.error("Fatal exception", e)
+		}
 		monitor.worked(1)
 	}
 
