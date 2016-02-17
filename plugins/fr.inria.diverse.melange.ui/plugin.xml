@@ -2,6 +2,9 @@
 <?eclipse version="3.0"?>
 
 <plugin>
+   <extension-point id="contentassist_syntax" name="Content assist for Syntax operator" schema="schema/contentassist_syntax.exsd"/>
+   <extension-point id="contentassist_operator" name="Content assist for operators" schema="schema/contentassist_operator.exsd"/>
+   <extension-point id="contentassist_ecl" name="Content assist for ECL" schema="schema/contentassist_ecl.exsd"/>
 
     <extension
             point="org.eclipse.ui.editors">
