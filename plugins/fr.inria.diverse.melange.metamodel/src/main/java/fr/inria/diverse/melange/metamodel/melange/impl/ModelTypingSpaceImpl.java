@@ -30,12 +30,12 @@ import org.eclipse.xtext.xtype.XImportSection;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypingSpaceImpl#getElements <em>Elements</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypingSpaceImpl#getImports <em>Imports</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypingSpaceImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="finitestatemachinescomposite" nsURI="http://fr.inria.diverse.examples.fsm.composite" nsPrefix="finitestatemachinescomposite">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="fsm" nsURI="http://compositefsm/" nsPrefix="fsm">
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StateMachine" eSuperTypes="//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="states" upperBound="-1" eType="//State" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="states" upperBound="-1" eType="//State" containment="true" eOpposite="//State/stateMachine"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transitions" upperBound="-1" eType="//Transition" containment="true" eOpposite="//Transition/stateMachine"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1" eType="//Variable" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="State" eSuperTypes="//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="outgoing" upperBound="-1" eType="//Transition" eOpposite="//Transition/source"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incoming" upperBound="-1" eType="//Transition" eOpposite="//Transition/target"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="stateMachine" eType="//StateMachine"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stateMachine" eType="//StateMachine" eOpposite="//StateMachine/states"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="initialTime">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eStructuralFeatures>

@@ -1,11 +1,14 @@
 package fr.inria.diverse.melange.utils
 
+import com.google.inject.Inject
+import fr.inria.diverse.melange.lib.EcoreExtensions
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.diagnostics.Severity
 import org.eclipse.xtext.validation.EObjectDiagnosticImpl
 
 class ErrorHelper
 {
+	@Inject extension EcoreExtensions
 	static final String DEFAULT_PROBLEM_CODE = "MelangeProblemCode"
 
 	def void addError(EObject eo, String message) {
@@ -40,5 +43,16 @@ class ErrorHelper
 			-1,
 			null
 		))	
+	}
+
+	/**
+	 * Checks whether {@link o} or one of its children
+	 * has an error marker produced by the validator
+	 */
+	def boolean isInError(EObject o) {
+		return
+			o.eResource.errors.filter(EObjectDiagnosticImpl).exists[
+				problematicObject.isContainedBy(o)
+			]
 	}
 }

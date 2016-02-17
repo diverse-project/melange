@@ -7,7 +7,6 @@ import fr.inria.diverse.melange.utils.EPackageProvider
 import java.io.IOException
 import java.util.List
 import org.eclipse.emf.codegen.ecore.genmodel.GenJDKLevel
-import org.eclipse.emf.codegen.ecore.genmodel.GenModel
 import org.eclipse.emf.codegen.ecore.genmodel.GenModelFactory
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EClass
@@ -24,10 +23,6 @@ class MetamodelExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension IQualifiedNameProvider
 	@Inject EPackageProvider provider
-
-	def List<GenModel> getGenmodels(Metamodel mm) {
-		return provider.getGenModels(mm)
-	}
 
 	def boolean getIsComplete(Metamodel mm) {
 		return !mm.pkgs.filterNull.empty && !mm.genmodels.filterNull.empty

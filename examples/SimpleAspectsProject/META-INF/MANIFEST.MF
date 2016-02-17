@@ -3,9 +3,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: SimpleAspectsProject
 Bundle-SymbolicName: SimpleAspectsProject;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Export-Package: simpleaspects,
- simpleaspects.fsm.adapters.fsmmt,
- simpleaspects.fsmmt
 Require-Bundle: fr.inria.diverse.melange.examples.metamodels.fsm;bundle-version="0.1.0",
  fr.inria.diverse.melange.lib;bundle-version="0.1.0",
  org.eclipse.emf.ecore.xmi;bundle-version="2.10.2",

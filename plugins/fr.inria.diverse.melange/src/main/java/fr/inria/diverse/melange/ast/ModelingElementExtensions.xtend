@@ -7,6 +7,8 @@ import fr.inria.diverse.melange.metamodel.melange.ModelingElement
 import fr.inria.diverse.melange.utils.EPackageProvider
 import java.io.IOException
 import java.util.List
+import org.eclipse.emf.codegen.ecore.genmodel.GenClass
+import org.eclipse.emf.codegen.ecore.genmodel.GenModel
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
@@ -25,6 +27,19 @@ class ModelingElementExtensions
 
 	def List<EPackage> getPkgs(ModelingElement m) {
 		return registry.getPackages(m)
+	}
+
+	def List<GenModel> getGenmodels(ModelingElement m) {
+		return registry.getGenModels(m)
+	}
+
+	def GenClass getGenClassFor(ModelingElement m, EClass cls) {
+		return
+			m.genmodels
+			.map[allGenPkgs]
+			.flatten
+			.findFirst[getEcorePackage.name == cls.EPackage.name]
+			.genClasses.findFirst[name == cls.name]
 	}
 
 	/**

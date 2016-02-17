@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link simplefsm.timedfsmmt.timedfsm.Transition#getSource <em>Source</em>}</li>
  *   <li>{@link simplefsm.timedfsmmt.timedfsm.Transition#getTarget <em>Target</em>}</li>
@@ -18,7 +19,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link simplefsm.timedfsmmt.timedfsm.Transition#getOutput <em>Output</em>}</li>
  *   <li>{@link simplefsm.timedfsmmt.timedfsm.Transition#getTime <em>Time</em>}</li>
  * </ul>
- * </p>
  *
  * @see simplefsm.timedfsmmt.timedfsm.TimedfsmPackage#getTransition()
  * @model

@@ -9,23 +9,3 @@ language TimedFsm {
 	syntax "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.timedfsm/model/TimedFSM.ecore"
 	exactType TimedFsmMT
 }
-
-transformation execute(FsmMT m) {
-	val root = m.contents.head as simplefsm.fsmmt.FSM
-
-	root.ownedState.forEach[
-		println("State " + name)
-		outgoingTransition.forEach[
-			println("\tTransition " + input)
-		]
-	]
-}
-
-@Main
-transformation main() {
-	val m1 = Fsm.load("input/Simple.fsm")
-	val m2 = TimedFsm.load("input/Simple.timedfsm")
-
-	execute.call(m1)
-	execute.call(m2)
-}

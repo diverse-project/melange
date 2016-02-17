@@ -13,13 +13,13 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link simplefsm.fsmmt.fsm.State#getOwningFSM <em>Owning FSM</em>}</li>
  *   <li>{@link simplefsm.fsmmt.fsm.State#getName <em>Name</em>}</li>
  *   <li>{@link simplefsm.fsmmt.fsm.State#getOutgoingTransition <em>Outgoing Transition</em>}</li>
  *   <li>{@link simplefsm.fsmmt.fsm.State#getIncomingTransition <em>Incoming Transition</em>}</li>
  * </ul>
- * </p>
  *
  * @see simplefsm.fsmmt.fsm.FsmPackage#getState()
  * @model

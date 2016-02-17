@@ -1,0 +1,61 @@
+package family
+
+language FlatFsm {
+	syntax "platform:/resource/fr.inria.diverse.examples.fsm.metamodel/model/fsm.ecore"
+	with semantics.flat.StateMachineAspect
+	with semantics.flat.StateAspect
+	exactType FlatFsmMT
+}
+
+language FlatFsmSimultaneous {
+	syntax "platform:/resource/fr.inria.diverse.examples.fsm.metamodel/model/fsm.ecore"
+	with semantics.flat.simultaneous.StateMachineAspect
+	with semantics.flat.simultaneous.StateAspect
+	exactType FlatFsmSimultaneousMT
+}
+
+language TimedFsm {
+	syntax "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.timed/model/fsm.ecore"
+	with semantics.timed.StateMachineAspect
+	with semantics.timed.StateAspect
+	with semantics.timed.TransitionAspect
+	exactType TimedFsmMT
+}
+
+language TimedFsmSimultaneous {
+	syntax "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.timed/model/fsm.ecore"
+	with semantics.timed.simultaneous.StateMachineAspect
+	with semantics.timed.simultaneous.StateAspect
+	with semantics.timed.simultaneous.TransitionAspect
+	exactType TimedFsmSimultaneousMT
+}
+
+language CompositeFsm {
+	syntax "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.composite/model/fsm.ecore"
+	with semantics.composite.StateMachineAspect
+	with semantics.composite.StateAspect
+	exactType CompositeFsmMT
+}
+
+language CompositeFsmSimultaneous {
+	syntax "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.composite/model/fsm.ecore"
+	with semantics.composite.simultaneous.StateMachineAspect
+	with semantics.composite.simultaneous.StateAspect
+	exactType CompositeFsmSimultaneousMT
+}
+
+language TimedCompositeFsm {
+	syntax "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.timedComposite/model/fsm.ecore"
+	with semantics.timedcomposite.StateMachineAspect
+	with semantics.timedcomposite.StateAspect
+	with semantics.timedcomposite.TransitionAspect
+	exactType TimedCompositeFsmMT
+}
+
+language TimedCompositeFsmSimultaneous {
+	syntax "platform:/resource/fr.inria.diverse.examples.fsm.metamodel.timedComposite/model/fsm.ecore"
+	with semantics.timedcomposite.simultaneous.StateMachineAspect
+	with semantics.timedcomposite.simultaneous.StateAspect
+	with semantics.timedcomposite.simultaneous.TransitionAspect
+	exactType TimedCompositeFsmSimultaneousMT
+}

@@ -1,27 +1,27 @@
 package mapping
 
 language SimpleFsm {
-	ecore "platform:/resource/fr.inria.diverse.examples.fsm.metamodel/models/fsm.ecore"
+	syntax "platform:/resource/fr.inria.diverse.examples.fsm.metamodel/model/fsm.ecore"
 	exactType SimpleFsmMT
 }
 
 language OtherFsm {
-	ecore "platform:/resource/otherfsm/model/otherfsm.ecore"
+	syntax "platform:/resource/otherfsm/model/otherfsm.ecore"
 	exactType OtherFsmMT
 }
 
-map "foo" OtherFsm to SimpleFsmMT {
+map OtherFsm to SimpleFsmMT {
 	"State2" to "State" {
-		"initialTime2" : "initialTime"
-		"stateMachine2" : "stateMachine"
+		"initialTime2" to "initialTime"
+		"stateMachine2" to "stateMachine"
 	}
 	"Trigger2" to "Trigger" {}
 	"StateMachine" to "StateMachine" {
-		"transitions2" : "transitions"
-		"states2" : "states"
+		"transitions2" to "transitions"
+		"states2" to "states"
 	}
 	"Transition2" to "Transition" {
-		"finalTime2" : "finalTime"
+		"finalTime2" to "finalTime"
 	}
 	"Join2" to "Join" {}
 }

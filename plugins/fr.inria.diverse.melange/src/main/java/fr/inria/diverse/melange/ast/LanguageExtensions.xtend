@@ -2,40 +2,39 @@ package fr.inria.diverse.melange.ast
 
 import com.google.inject.Inject
 import fr.inria.diverse.melange.algebra.ModelTypeAlgebra
+import fr.inria.diverse.melange.builder.ModelTypingSpaceBuilder
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.Import
 import fr.inria.diverse.melange.metamodel.melange.Inheritance
 import fr.inria.diverse.melange.metamodel.melange.Language
+import fr.inria.diverse.melange.metamodel.melange.LanguageOperator
 import fr.inria.diverse.melange.metamodel.melange.MelangeFactory
 import fr.inria.diverse.melange.metamodel.melange.Merge
 import fr.inria.diverse.melange.metamodel.melange.ModelType
+import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.PackageBinding
 import fr.inria.diverse.melange.metamodel.melange.Slice
+import fr.inria.diverse.melange.metamodel.melange.Weave
 import fr.inria.diverse.melange.utils.AspectCopier
 import fr.inria.diverse.melange.utils.AspectRenamer
+import fr.inria.diverse.melange.utils.RenamingRuleManager
 import java.util.List
 import java.util.Set
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
+import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.xtext.common.types.JvmDeclaredType
+import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmTypeReference
+import org.eclipse.xtext.common.types.JvmUnknownTypeReference
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.naming.QualifiedName
+import org.eclipse.xtext.validation.EObjectDiagnosticImpl
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
-import fr.inria.diverse.melange.utils.RenamingRuleManager
-import fr.inria.diverse.melange.metamodel.melange.Weave
-import org.eclipse.emf.common.util.URI
-import java.util.ArrayList
-import org.eclipse.xtext.common.types.JvmDeclaredType
-import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
-import fr.inria.diverse.melange.metamodel.melange.LanguageOperator
-import org.eclipse.xtext.common.types.JvmUnknownTypeReference
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
-import org.eclipse.emf.ecore.util.EcoreUtil
-import fr.inria.diverse.melange.builder.ModelTypingSpaceBuilder
-import org.eclipse.xtext.common.types.JvmOperation
 
 class LanguageExtensions
 {
@@ -55,6 +54,18 @@ class LanguageExtensions
 	@Inject JvmTypeReferenceBuilder.Factory builderFactory
 	@Inject ModelTypingSpaceBuilder modelTypingSpaceBuilder
 
+	def boolean isInError(Language l) {
+		val langs = newArrayList
+		langs += l
+		langs += l.allDependencies
+
+		return langs.exists[lang |
+			lang.eResource.errors.filter(EObjectDiagnosticImpl).exists[
+				problematicObject.isContainedBy(lang)
+			]
+		]
+	}
+
 	def List<Language> getSuperLanguages(Language l) {
 		return l.operators.filter(Inheritance).map[targetLanguage].toList
 	}
@@ -66,10 +77,10 @@ class LanguageExtensions
 		return ret
 	}
 	
-	def Set<Language> getAllDependences(Language l) {
+	def Set<Language> getAllDependencies(Language l) {
 		val ret = newHashSet
 		ret += l.operators.filter(LanguageOperator).map[targetLanguage]
-		ret += l.operators.filter(LanguageOperator).map[targetLanguage.allDependences].flatten
+		ret += l.operators.filter(LanguageOperator).map[targetLanguage.allDependencies].flatten
 		return ret
 	}
 

@@ -2,6 +2,8 @@
  */
 package fr.inria.diverse.melange.metamodel.melange;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -10,10 +12,11 @@ package fr.inria.diverse.melange.metamodel.melange;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.ModelingElement#getEcoreUri <em>Ecore Uri</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.ModelingElement#getGenmodelUris <em>Genmodel Uris</em>}</li>
  * </ul>
- * </p>
  *
  * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getModelingElement()
  * @model abstract="true"
@@ -45,5 +48,21 @@ public interface ModelingElement extends Element {
 	 * @generated
 	 */
 	void setEcoreUri(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Genmodel Uris</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Genmodel Uris</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Genmodel Uris</em>' attribute list.
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getModelingElement_GenmodelUris()
+	 * @model
+	 * @generated
+	 */
+	EList<String> getGenmodelUris();
 
 } // ModelingElement

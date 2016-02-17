@@ -1,6 +1,5 @@
 package simplefsm.timedfsm.adapters.fsmmt;
 
-import fr.inria.diverse.melange.adapters.EListAdapter;
 import fr.inria.diverse.melange.adapters.EObjectAdapter;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
@@ -29,11 +28,9 @@ public class StateAdapter extends EObjectAdapter<State> implements simplefsm.fsm
     adaptee.setName(o) ;
   }
   
-  private FSM owningFSM;
-  
   @Override
   public FSM getOwningFSM() {
-    return adaptersFactory.createFSMAdapter(adaptee.getOwningFSM(), eResource) ;
+    return (FSM) adaptersFactory.createAdapter(adaptee.getOwningFSM(), eResource) ;
   }
   
   @Override
@@ -48,7 +45,7 @@ public class StateAdapter extends EObjectAdapter<State> implements simplefsm.fsm
   @Override
   public EList<Transition> getOutgoingTransition() {
     if (outgoingTransition == null)
-    	outgoingTransition = EListAdapter.newInstance(adaptee.getOutgoingTransition(), adaptersFactory) ;
+    	outgoingTransition = fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.getOutgoingTransition(), adaptersFactory) ;
     return outgoingTransition;
   }
   
@@ -57,9 +54,11 @@ public class StateAdapter extends EObjectAdapter<State> implements simplefsm.fsm
   @Override
   public EList<Transition> getIncomingTransition() {
     if (incomingTransition == null)
-    	incomingTransition = EListAdapter.newInstance(adaptee.getIncomingTransition(), adaptersFactory) ;
+    	incomingTransition = fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.getIncomingTransition(), adaptersFactory) ;
     return incomingTransition;
   }
+  
+  protected final static String NAME_EDEFAULT = null;
   
   @Override
   public EClass eClass() {
@@ -83,44 +82,57 @@ public class StateAdapter extends EObjectAdapter<State> implements simplefsm.fsm
   }
   
   @Override
+  public void eUnset(final int featureID) {
+    switch (featureID) {
+    	case simplefsm.fsmmt.fsm.FsmPackage.STATE__OWNING_FSM:
+    		setOwningFSM((simplefsm.fsmmt.fsm.FSM) null);
+    	case simplefsm.fsmmt.fsm.FsmPackage.STATE__NAME:
+    		setName(NAME_EDEFAULT);
+    	case simplefsm.fsmmt.fsm.FsmPackage.STATE__OUTGOING_TRANSITION:
+    		getOutgoingTransition().clear();
+    	case simplefsm.fsmmt.fsm.FsmPackage.STATE__INCOMING_TRANSITION:
+    		getIncomingTransition().clear();
+    	return;
+    }
+    
+    super.eUnset(featureID);
+  }
+  
+  @Override
+  public boolean eIsSet(final int featureID) {
+    switch (featureID) {
+    	case simplefsm.fsmmt.fsm.FsmPackage.STATE__OWNING_FSM:
+    		return getOwningFSM() != null;
+    	case simplefsm.fsmmt.fsm.FsmPackage.STATE__NAME:
+    		return getName() != NAME_EDEFAULT;
+    	case simplefsm.fsmmt.fsm.FsmPackage.STATE__OUTGOING_TRANSITION:
+    		return getOutgoingTransition() != null && !getOutgoingTransition().isEmpty();
+    	case simplefsm.fsmmt.fsm.FsmPackage.STATE__INCOMING_TRANSITION:
+    		return getIncomingTransition() != null && !getIncomingTransition().isEmpty();
+    }
+    
+    return super.eIsSet(featureID);
+  }
+  
+  @Override
   public void eSet(final int featureID, final Object newValue) {
     switch (featureID) {
     	case simplefsm.fsmmt.fsm.FsmPackage.STATE__OWNING_FSM:
-    		setOwningFSM((FSM) newValue);
+    		setOwningFSM((simplefsm.fsmmt.fsm.FSM) newValue);
     		return;
     	case simplefsm.fsmmt.fsm.FsmPackage.STATE__NAME:
-    		setName((String) newValue);
+    		setName((java.lang.String) newValue);
     		return;
     	case simplefsm.fsmmt.fsm.FsmPackage.STATE__OUTGOING_TRANSITION:
     		getOutgoingTransition().clear();
-    		getOutgoingTransition().addAll((Collection<? extends Transition>) newValue);
+    		getOutgoingTransition().addAll((Collection) newValue);
     		return;
     	case simplefsm.fsmmt.fsm.FsmPackage.STATE__INCOMING_TRANSITION:
     		getIncomingTransition().clear();
-    		getIncomingTransition().addAll((Collection<? extends Transition>) newValue);
+    		getIncomingTransition().addAll((Collection) newValue);
     		return;
     }
     
     super.eSet(featureID, newValue);
-  }
-  
-  @Override
-  public void eUnset(final int featureID) {
-    switch (featureID) {
-    	case simplefsm.fsmmt.fsm.FsmPackage.STATE__OWNING_FSM:
-    		setOwningFSM((FSM) null);
-    		return;
-    	case simplefsm.fsmmt.fsm.FsmPackage.STATE__NAME:
-    		setName((String) null);
-    		return;
-    	case simplefsm.fsmmt.fsm.FsmPackage.STATE__OUTGOING_TRANSITION:
-    		getOutgoingTransition().clear();
-    		return;
-    	case simplefsm.fsmmt.fsm.FsmPackage.STATE__INCOMING_TRANSITION:
-    		getIncomingTransition().clear();
-    		return;
-    }
-    
-    super.eUnset(featureID);
   }
 }

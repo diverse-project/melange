@@ -44,7 +44,6 @@ class MelangeBuilder
 
 	def void generateAll(Resource res, IProject project, IProgressMonitor monitor) {
 		monitor.beginTask("Generating all artifacts", 700)
-		cleanAll(res, project, new SubProgressMonitor(monitor, 40))
 		generateInterfaces(res, project, new SubProgressMonitor(monitor, 50))
 		generateLanguages(res, project, new SubProgressMonitor(monitor, 300))
 		generateAdapters(res, project, new SubProgressMonitor(monitor, 300))
@@ -63,12 +62,12 @@ class MelangeBuilder
 				throw new OperationCanceledException
 
 			monitor.subTask("Generating interface for " + mt.name)
-			val ecoreUri = '''platform:/resource/«project.name»/model-gen/«mt.name».ecore'''
 
 			log.debug('''Registering new EPackage for «mt.name» in EMF registry''')
 			if (!EPackage.Registry.INSTANCE.containsKey(mt.pkgs.head.nsURI))
 				EPackage.Registry.INSTANCE.put(mt.pkgs.head.nsURI, mt.pkgs.head)
 
+			val ecoreUri = mt.inferredEcoreUri
 			log.debug('''Serializing Ecore interface description for «mt.name» in «ecoreUri»''')
 			mt.createEcore(ecoreUri, mt.uri, false)
 			val gmUri = ecoreUri.substring(0, ecoreUri.lastIndexOf(".")) + ".genmodel"

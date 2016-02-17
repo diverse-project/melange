@@ -21,7 +21,6 @@
     <genClasses image="false" ecoreClass="Melange.ecore#//Element"/>
     <genClasses ecoreClass="Melange.ecore#//Metamodel">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Melange.ecore#//Metamodel/owningLanguage"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Metamodel/genmodelUris"/>
     </genClasses>
     <genClasses ecoreClass="Melange.ecore#//ModelType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//ModelType/subtypingRelations"/>
@@ -48,6 +47,7 @@
     </genClasses>
     <genClasses image="false" ecoreClass="Melange.ecore#//ModelingElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//ModelingElement/ecoreUri"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//ModelingElement/genmodelUris"/>
     </genClasses>
     <genClasses ecoreClass="Melange.ecore#//Mapping">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Mapping/rules"/>
@@ -99,6 +99,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Language/xtextSetupRef"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Language/mappings"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Language/semantics"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/xtext"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/sirius"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/ecl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/fileExtension"/>
     </genClasses>
     <genClasses ecoreClass="Melange.ecore#//Weave">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Weave/aspectTypeRef"/>

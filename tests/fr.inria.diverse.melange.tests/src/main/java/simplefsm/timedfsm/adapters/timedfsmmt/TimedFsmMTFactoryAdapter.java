@@ -1,5 +1,6 @@
 package simplefsm.timedfsm.adapters.timedfsmmt;
 
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import simplefsm.timedfsm.adapters.timedfsmmt.TimedFsmMTAdaptersFactory;
 import simplefsm.timedfsmmt.timedfsm.FSM;
@@ -27,6 +28,11 @@ public class TimedFsmMTFactoryAdapter extends EFactoryImpl implements TimedfsmFa
   @Override
   public Transition createTransition() {
     return adaptersFactory.createTransitionAdapter(timedfsmAdaptee.createTransition(), null) ;
+  }
+  
+  @Override
+  public EPackage getEPackage() {
+    return getTimedfsmPackage();
   }
   
   public TimedfsmPackage getTimedfsmPackage() {

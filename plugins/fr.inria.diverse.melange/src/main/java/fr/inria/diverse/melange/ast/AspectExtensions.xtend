@@ -16,7 +16,7 @@ class AspectExtensions {
 	@Inject extension IQualifiedNameConverter
 	@Inject extension NamingHelper
 	static Logger log = Logger.getLogger(MetamodelExtensions)
-	@Inject extension MetamodelExtensions
+	@Inject extension ModelingElementExtensions
 
 	def boolean getIsComplete(Aspect asp) {
 		return

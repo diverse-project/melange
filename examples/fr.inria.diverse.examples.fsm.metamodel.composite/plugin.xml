@@ -9,8 +9,8 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated fsm -->
       <package
-            uri="http://fr.inria.diverse.examples.fsm.composite"
-            class="finitestatemachinescomposite.FinitestatemachinescompositePackage"
+            uri="http://compositefsm/"
+            class="compositefsm.fsm.FsmPackage"
             genModel="model/fsm.genmodel"/>
    </extension>
 

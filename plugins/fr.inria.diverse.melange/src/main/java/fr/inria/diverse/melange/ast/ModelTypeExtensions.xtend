@@ -31,8 +31,14 @@ class ModelTypeExtensions
 	@Inject extension ModelingElementExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension IQualifiedNameProvider
+	@Inject extension EclipseProjectHelper
 	@Inject ModelTypeAlgebra algebra
 	@Inject EclipseProjectHelper helper
+
+	def String getInferredEcoreUri(ModelType mt) {
+		val project = mt.eResource.project
+		return '''platform:/resource/«project.name»/model-gen/«mt.name».ecore'''
+	}
 
 	def GenModel createGenmodel(ModelType mt, String ecoreUri, String gmUri) {
 		val resSet = new ResourceSetImpl

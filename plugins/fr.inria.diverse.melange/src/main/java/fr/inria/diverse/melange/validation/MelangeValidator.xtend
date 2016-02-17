@@ -1,46 +1,27 @@
 package fr.inria.diverse.melange.validation
 
-import com.google.common.collect.ArrayListMultimap
-import com.google.common.collect.ListMultimap
-import com.google.common.collect.Multimap
 import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
-import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.MatchingHelper
 import fr.inria.diverse.melange.lib.ModelUtils
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.Import
 import fr.inria.diverse.melange.metamodel.melange.Inheritance
 import fr.inria.diverse.melange.metamodel.melange.Language
+import fr.inria.diverse.melange.metamodel.melange.LanguageOperator
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage
-import fr.inria.diverse.melange.metamodel.melange.Merge
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.NamedElement
-import fr.inria.diverse.melange.metamodel.melange.Operator
 import fr.inria.diverse.melange.metamodel.melange.ResourceType
 import fr.inria.diverse.melange.metamodel.melange.Slice
 import fr.inria.diverse.melange.metamodel.melange.Weave
-import fr.inria.diverse.melange.utils.AspectToEcore
-import java.util.ArrayList
-import java.util.Collections
-import java.util.List
-import org.eclipse.emf.ecore.EClass
-import org.eclipse.emf.ecore.EDataType
-import org.eclipse.emf.ecore.EOperation
 import org.eclipse.xtext.common.types.JvmDeclaredType
-import org.eclipse.xtext.common.types.JvmField
-import org.eclipse.xtext.common.types.JvmGenericType
-import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.validation.Check
-import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
-import org.eclipse.xtext.validation.EObjectDiagnosticImpl
-import org.eclipse.emf.ecore.EObject
-import fr.inria.diverse.melange.metamodel.melange.LanguageOperator
 
 class MelangeValidator extends AbstractMelangeValidator
 {
@@ -51,13 +32,10 @@ class MelangeValidator extends AbstractMelangeValidator
 	@Inject extension NamingHelper
 	@Inject ModelUtils modelUtils
 	@Inject MatchingHelper matchingHelper
-	@Inject extension EcoreExtensions
-	@Inject extension AspectToEcore
-	@Inject JvmTypeReferenceBuilder.Factory builderFactory
 
 	@Check
 	def void checkElementsAreNamed(NamedElement e) {
-		if (e.name === null || e.name.length == 0)
+		if (e.name.nullOrEmpty)
 			error(
 				"All elements must be named",
 				MelangePackage.Literals.NAMED_ELEMENT__NAME,
@@ -73,7 +51,6 @@ class MelangeValidator extends AbstractMelangeValidator
 
 		if ((root as ModelTypingSpace).elements.filter(NamedElement).exists[e_ |
 			   e_ != e
-			//&& e_.eClass == e.eClass
 			&& e_.name == e.name
 		])
 			error(
@@ -85,7 +62,7 @@ class MelangeValidator extends AbstractMelangeValidator
 
 	@Check
 	def void checkNameIsValid(Language l) {
-		if (l.name === null || l.name.empty || !Character.isUpperCase(l.name.charAt(0)))
+		if (l.name.nullOrEmpty || !Character.isUpperCase(l.name.charAt(0)))
 			error(
 				"Language name should start with an uppercase",
 				MelangePackage.Literals.NAMED_ELEMENT__NAME,
@@ -95,7 +72,7 @@ class MelangeValidator extends AbstractMelangeValidator
 
 	@Check
 	def void checkNameIsValid(ModelType mt) {
-		if (mt.name === null || mt.name.empty || !Character.isUpperCase(mt.name.charAt(0)))
+		if (mt.name.nullOrEmpty || !Character.isUpperCase(mt.name.charAt(0)))
 			error(
 				"Model type name should start with an uppercase",
 				MelangePackage.Literals.NAMED_ELEMENT__NAME,
@@ -187,24 +164,16 @@ class MelangeValidator extends AbstractMelangeValidator
 			)
 	}
 
-	// FIXME: Only one package is checked there,
-	//        and mtPkg may be null
-	// TODO: This should be replaced by an algebra call.
-	//       -> ecore files must be loaded prior to this
 	@Check
 	def void checkImplements(Language l) {
-		val mmPkg = modelUtils.loadPkg(l.syntax.ecoreUri)
-
 		l.^implements
-		.forEach[mt |
-			val mtPkg = modelUtils.loadPkg(mt.ecoreUri)
-
+		.forEach[mt, i |
 			if (!matchingHelper.match(
-				Collections.singletonList(mmPkg), Collections.singletonList(mtPkg), null
+				l.syntax.pkgs, mt.pkgs, l.mappings.findFirst[to == mt]
 			))
 				error(
 					'''«l.name» doesn't match the interface «mt.name»''',
-					MelangePackage.Literals.LANGUAGE__IMPLEMENTS,
+					MelangePackage.Literals.NAMED_ELEMENT__NAME,
 					MelangeValidationConstants.METAMODEL_IMPLEMENTS_ERROR
 				)
 		]
@@ -310,376 +279,11 @@ class MelangeValidator extends AbstractMelangeValidator
 			)
 	}
 	
-//	@Check
-//	def void checkPropertiesOverriding(Aspect asp){
-//		val aspectName = asp.aspectTypeRef.qualifiedName
-//		val aspectedClass = asp.aspectTypeRef.aspectAnnotationValue
-//		
-//		val language = asp.eContainer as Language 
-//		val typeRefBuilder = builderFactory.create(language.eResource.resourceSet)
-//		
-//		val ref = typeRefBuilder.typeRef(aspectName+aspectedClass+"AspectProperties")
-//		val aspectProperties = ref.type as JvmGenericType
-//		
-//		aspectProperties.members.filter(JvmField).forEach[field |
-//			val fieldName = field.simpleName
-//			val fieldType = field.type.type
-//			
-//			language.operators.forEach[operator | 
-//				
-//				val superClass = operator.findClass(aspectedClass)
-//				if(superClass !== null){
-//					val superField = superClass.EAllAttributes.findFirst[name == fieldName]
-//					if(superField !== null){
-//						val superFieldType = superField.EType
-//						
-//						if(fieldType.simpleName != superFieldType.name){
-//							error(
-//								"Aspect \'"+aspectName+"\' has an attribute \'"+fieldName+"\' typed "+fieldType.simpleName+" but in \'"+operator.language.name+"\' it is typed "+superFieldType.name,
-//								MelangePackage.Literals.ASPECT__ASPECT_TYPE_REF,
-//								MelangeValidationConstants.MERGE_ATTRIBUTE_OVERRIDING
-//							)
-//						}
-//					}
-//					
-//					val superRef = superClass.EAllReferences.findFirst[name == fieldName]
-//					if(superRef !== null){
-//						val superFieldType = superRef.EType
-//						
-//						if(fieldType.simpleName != superFieldType.name){
-//							error(
-//								"Aspect \'"+aspectName+"\' has a reference \'"+fieldName+"\' typed "+fieldType.simpleName+" but in \'"+operator.language.name+"\' it is typed "+superFieldType.name,
-//								MelangePackage.Literals.ASPECT__ASPECT_TYPE_REF,
-//								MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING
-//							)
-//						}
-//					}
-//				}
-//			]
-//		]
-//	}
-//	
-//	@Check
-//	def void checkOperationOverriding(Aspect asp){
-//		val language = asp.eContainer as Language
-//		val aspectName = asp.aspectTypeRef.qualifiedName
-//		val aspectedClass = asp.aspectTypeRef.aspectAnnotationValue
-//		
-//		val aspectClass = asp.aspectTypeRef.type as JvmGenericType
-//		aspectClass.members.filter(JvmOperation).forEach[method |
-//			val methodType = method.returnType.type
-//			
-//			language.operators.forEach[operator | 
-//				
-//				val superClass = operator.findClass(aspectedClass)
-//				if(superClass !== null){
-//					superClass.EAllOperations.forEach[operation |
-//						val operationType = operation.EType
-//						val opTypeName = if(operationType === null){
-//								"Void"
-//							}
-//							else{
-//								operationType.name
-//							}
-//						val metTypeName = if(methodType === null){
-//								"Void"
-//							}
-//							else{
-//								methodType.simpleName
-//							}
-//						if(method.isMatching(operation) && !metTypeName.isMatching(opTypeName)){
-//							error(
-//								"Aspect \'"+aspectName+"\' has an operation \'"+method.simpleName+"\' typed "+metTypeName+" but in \'"+operator.language.name+"\' it is typed "+opTypeName,
-//								MelangePackage.Literals.ASPECT__ASPECT_TYPE_REF,
-//								MelangeValidationConstants.MERGE_OPERATION_OVERRIDING
-//							)
-//						}
-//					]
-//				}
-//			]
-//		]
-//	}
-//	
-//	@Check
-//	def void checkStructuralOverriding(Language lang){
-//		val operators = lang.operators
-//		val candidateClasses = findMergedClasses(operators)
-//		candidateClasses.keys.forEach[className |
-//			val candidates = candidateClasses.get(className)
-//			
-//			//Compare an element with its following
-//			for(var int i = 0; i < candidates.size; i++){
-//				val first = candidates.get(i)
-//				for(var int j = i+1; j < candidates.size; j++){
-//					val second = candidates.get(j)
-//					checkConflict(first,second)
-//				}
-//			}
-//		]
-//	}
-//	
-//	/**
-//	 * Return the Language referenced if {@link operator} is an Inheritance, Merge or Slice.
-//	 * Return null otherwise. 
-//	 */
-//	private def Language getLanguage(Operator operator){
-//		if(operator instanceof Inheritance){
-//			return (operator as Inheritance).targetLanguage
-//		}
-//		else if(operator instanceof Merge){
-//			return (operator as Merge).targetLanguage
-//		}
-//		else if(operator instanceof Slice){
-//			return (operator as Slice).targetLanguage
-//		}
-//		return null
-//	}
-//	
-//	/**
-//	 * Return depending on the type of {@link operator}: <br>
-//	 * - the name of the Language <br>
-//	 * - the name of the Aspect <br>
-//	 * - the uri of the Ecore <br>
-//	 * 
-//	 * Return <Unknown source> by default
-//	 */
-//	private def String getSource(Operator operator){
-//		switch operator{
-//			Inheritance : (operator as Inheritance).targetLanguage.name
-//			Merge       : operator.targetLanguage.name
-//			Slice       : operator.targetLanguage.name
-//			Weave       : operator.aspectTypeRef.qualifiedName
-//			Import      : operator.ecoreUri
-//			default     : "<Unknown source>"
-//		}
-//	}
-//	
-//	/**
-//	 * Return depending on the type of {@link operator}: <br>
-//	 * - Language <br>
-//	 * - Aspect <br>
-//	 * - Ecore <br>
-//	 * 
-//	 * Return <Unknown type> by default
-//	 */
-//	private def String getSourceType(Operator operator){
-//		switch operator{
-//			Inheritance : "Language"
-//			Merge       : "Language"
-//			Slice       : "Language"
-//			Weave       : "Aspect"
-//			Import      : "Ecore"
-//			default     : "<Unknown type>"
-//		}
-//	}
-//	
-//	/**
-//	 * Return all classes from the result of the Operator
-//	 */
-//	private def List<EClass> getAllClasses(Operator operator){
-//		switch operator{
-//			Inheritance : operator.targetLanguage.syntax.allClasses.toList
-//			Merge       : operator.targetLanguage.syntax.allClasses.toList
-//			Slice       : operator.targetLanguage.syntax.allClasses.toList //FIXME: Slice result may be smaller than the ref Language
-//			Weave       : operator.owningLanguage.semantics.findFirst[aspectTypeRef.qualifiedName == operator.aspectTypeRef.qualifiedName]
-//			               ?.ecoreFragment.getAllClasses
-//			Import      : modelUtils.loadPkg(operator.ecoreUri).getAllClasses
-//			default     : new ArrayList
-//		}
-//	}
-//	
-//	/**
-//	 * Find {@link className} in the result of {@link op}.
-//	 * Return null if not found or if {@link op} is not a Merge,Slice or Inheritance
-//	 */
-//	private def EClass findClass(Operator op, String className){
-//		val superLang = getLanguage(op) //FIXME: Slice result may be smaller than the ref Language
-//		if(superLang != null){
-//			return superLang.syntax.findClass(className)
-//		}
-//		return null
-//	}
-//	
-//	/**
-//	 * Return true if {@link method} and {@link operation} have the same name and their arguments'
-//	 * type are the same.
-//	 * 
-//	 * @param method method from a K3 Aspect
-//	 */
-//	private def boolean isMatching(JvmOperation method, EOperation operation){
-//		if(method.simpleName == operation.name){
-//			val methodParams = method.parameters
-//			val operationParams = operation.EParameters
-//			if((methodParams.size -1) == operationParams.size){ //drop the first argument who is the caller in k3 aspects
-//				for(var int i = 1; i < methodParams.size; i++){
-//					val methodParamType = methodParams.get(i).actualType.simpleName
-//					val operationParamType = 
-//						if(operationParams.get(i-1).EType instanceof EDataType){
-//							val type = operationParams.get(i-1).EType.name
-//							switch type {
-//								case "EBoolean" : "boolean"
-//								case "EString" : "String"
-//								case "EByte" : "byte"
-//								case "EDouble" : "double"
-//								case "EFloat" : "float"
-//								case "EInteger" : "Integer"
-//								case "EInt" : "int"
-//								case "ELong" : "long"
-//								case "EShort" : "short"
-//								default : type
-//							} 
-//						}
-//						else{
-//							operationParams.get(i-1).EType.name
-//						}
-//					if(methodParamType != operationParamType){
-//						return false
-//					}
-//				}
-//				return true
-//			}
-//		}
-//		return false
-//	}
-//	
-//	/**
-//	 * Return true if {@link op1} and {@link op2} have the same name and their arguments'
-//	 * type are the same.
-//	 */
-//	private def boolean isMatching(EOperation op1, EOperation op2){
-//		if(op1.name == op2.name){
-//			val opParams1 = op1.EParameters
-//			val opParams2 = op2.EParameters
-//			if(opParams1.size == opParams2.size){
-//				for(var int i = 0; i < opParams1.size; i++){
-//					val opParamType1 = opParams1.get(i).EType.name
-//					val opParamType2 = opParams2.get(i).EType.name
-//					if(opParamType1 != opParamType2){
-//						return false
-//					}
-//				}
-//				return true
-//			}
-//		}
-//		return false
-//	}
-//	
-//	/**
-//	 * Return true if both type are equals, taking in account 
-//	 * Java/EMF Data type conversion
-//	 */
-//	private def boolean isMatching(String type1, String type2){
-//		return type1.toJavaType == type2.toJavaType
-//	}
-//	
-//	/**
-//	 * Convert EMF data type to Java type
-//	 */
-//	private def String toJavaType(String type){
-//		return
-//			switch type {
-//				case "EBoolean" : "boolean"
-//				case "EString" : "String"
-//				case "EByte" : "byte"
-//				case "EDouble" : "double"
-//				case "EFloat" : "float"
-//				case "EInteger" : "Integer"
-//				case "EInt" : "int"
-//				case "ELong" : "long"
-//				case "EShort" : "short"
-//				case "Void" : "void"
-//				default : type
-//			} 
-//	}
-//	
-//	/**
-//	 * Return classes from results of {@link operators} which have to be merged 
-//	 * (i.e classes with the same name).
-//	 * 
-//	 * Classes are associated with their containing Operator
-//	 */
-//	private def Multimap<String,Pair<EClass,Operator>> findMergedClasses(List<Operator> operators){
-//		val ListMultimap<String,Pair<EClass,Operator>> res = ArrayListMultimap.create
-//		
-//		val ListMultimap<String,Pair<EClass,Operator>> sortByName = ArrayListMultimap.create
-//		operators.forEach[op |
-//			op.allClasses.forEach[clazz|
-//				sortByName.put(clazz.name, clazz->op)
-//			]
-//		]
-//		
-//		sortByName.keys.toSet.forEach[className |
-//			val list = sortByName.get(className)
-//			if(list.size > 1){
-//				res.putAll(className,list)
-//			}
-//		]
-//		
-//		return res
-//	}
-//	
-//	private def void checkConflict(Pair<EClass,Operator> first, Pair<EClass,Operator> second){
-//		val op1 = first.value
-//		val op2 = second.value
-//		
-//		first.key.EAllAttributes.forEach[firstField |
-//			val fieldName = firstField.name
-//			val secondField = second.key.EAllAttributes.findFirst[name == fieldName]
-//			if(secondField !== null){
-//				if(!firstField.EType.name.isMatching(secondField.EType.name)){
-//					error(
-//						op1.sourceType+" \'"+op1.source+"\' has an attribute \'"+fieldName+"\' typed "+firstField.EType.name+" but in \'"+op2.source+"\' it is "+secondField.EType.name,
-//						MelangePackage.Literals.LANGUAGE__OPERATORS,
-//						MelangeValidationConstants.MERGE_ATTRIBUTE_OVERRIDING
-//					)
-//				}
-//			}
-//		]
-//		
-//		first.key.EAllReferences.forEach[firstField |
-//			val fieldName = firstField.name
-//			val secondField = second.key.EAllReferences.findFirst[name == fieldName]
-//			if(secondField !== null){
-//				if(!firstField.EType.name.isMatching(secondField.EType.name)){
-//					error(
-//						op1.sourceType+" \'"+op1.source+"\' has a reference \'"+fieldName+"\' typed "+firstField.EType.name+" but in \'"+op2.source+"\' it is "+secondField.EType.name,
-//						MelangePackage.Literals.LANGUAGE__OPERATORS,
-//						MelangeValidationConstants.MERGE_REFERENCE_OVERRIDING
-//					)
-//				}
-//			}
-//		]
-//		
-//		first.key.EAllOperations.forEach[firstOp |
-//			val secondOp = second.key.EAllOperations.findFirst[it.isMatching(firstOp)]
-//			if(secondOp !== null){
-//				val firstTypeName = if(firstOp.EType === null){
-//								"Void"
-//							}
-//							else{
-//								firstOp.EType.name
-//							}
-//				val secondTypeName = if(secondOp.EType === null){
-//								"Void"
-//							}
-//							else{
-//								secondOp.EType.name
-//							}
-//				if(!firstTypeName.isMatching(secondTypeName)){
-//					error(
-//						op1.sourceType+" \'"+op1.source+"\' has an operation \'"+firstOp.name+"\' typed "+firstTypeName+" but in \'"+op2.source+"\' it is "+secondTypeName,
-//						MelangePackage.Literals.LANGUAGE__OPERATORS,
-//						MelangeValidationConstants.MERGE_OPERATION_OVERRIDING
-//					)
-//				}
-//			}
-//		]
-//	}
-
 	@Check
-	def checkMerge(LanguageOperator op){
+	def void checkOperators(LanguageOperator op){
 		val targetLang = op.targetLanguage
-		if(targetLang.isInError){
+
+		if(targetLang.isInError) {
 			error(
 				"Language \'"+targetLang.name+"\' has errors in its definition",
 				MelangePackage.Literals.LANGUAGE_OPERATOR__TARGET_LANGUAGE,
@@ -687,38 +291,9 @@ class MelangeValidator extends AbstractMelangeValidator
 			)
 		}
 	}
-	
-	def boolean isInside(EObject o, Language l){
-		var parent = o.eContainer
-		while(parent !== null){
-			if(parent == l){
-				return true
-			}
-			parent = parent.eContainer
-		}
-		return false
-	}
-	
-	/**
-	 * Return true if @l or one of its dependencies is in error
-	 */
-	def boolean isInError(Language l){
-		val langs = newArrayList
-		langs += l
-		langs += l.allDependences
-		
-		return langs.exists[lang |
-				val resource = lang.eResource
-				resource.errors.exists[error|
-					if(error instanceof EObjectDiagnosticImpl){
-						error.problematicObject.isInside(lang)
-					}
-				]
-			]
-	}
-	
+
 	@Check
-	def checkEntryPoints(Language lang){
+	def void checkEntryPoints(Language lang){
 		val entries = lang.entryPoints
 		if(entries.isEmpty && lang.ecl.isEmpty && !lang.semantics.isEmpty){
 			warning(

@@ -1,6 +1,5 @@
 package simplefsm.timedfsm.adapters.timedfsmmt;
 
-import fr.inria.diverse.melange.adapters.EListAdapter;
 import fr.inria.diverse.melange.adapters.EObjectAdapter;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
@@ -23,15 +22,13 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements simplefsm.timedfs
   @Override
   public EList<State> getOwnedState() {
     if (ownedState == null)
-    	ownedState = EListAdapter.newInstance(adaptee.getOwnedState(), adaptersFactory) ;
+    	ownedState = fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.getOwnedState(), adaptersFactory) ;
     return ownedState;
   }
   
-  private State initialState;
-  
   @Override
   public State getInitialState() {
-    return adaptersFactory.createStateAdapter(adaptee.getInitialState(), eResource) ;
+    return (State) adaptersFactory.createAdapter(adaptee.getInitialState(), eResource) ;
   }
   
   @Override
@@ -46,7 +43,7 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements simplefsm.timedfs
   @Override
   public EList<State> getFinalState() {
     if (finalState == null)
-    	finalState = EListAdapter.newInstance(adaptee.getFinalState(), adaptersFactory) ;
+    	finalState = fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.getFinalState(), adaptersFactory) ;
     return finalState;
   }
   
@@ -70,38 +67,50 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements simplefsm.timedfs
   }
   
   @Override
-  public void eSet(final int featureID, final Object newValue) {
-    switch (featureID) {
-    	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.FSM__OWNED_STATE:
-    		getOwnedState().clear();
-    		getOwnedState().addAll((Collection<? extends State>) newValue);
-    		return;
-    	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.FSM__INITIAL_STATE:
-    		setInitialState((State) newValue);
-    		return;
-    	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.FSM__FINAL_STATE:
-    		getFinalState().clear();
-    		getFinalState().addAll((Collection<? extends State>) newValue);
-    		return;
-    }
-    
-    super.eSet(featureID, newValue);
-  }
-  
-  @Override
   public void eUnset(final int featureID) {
     switch (featureID) {
     	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.FSM__OWNED_STATE:
     		getOwnedState().clear();
-    		return;
     	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.FSM__INITIAL_STATE:
-    		setInitialState((State) null);
-    		return;
+    		setInitialState((simplefsm.timedfsmmt.timedfsm.State) null);
     	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.FSM__FINAL_STATE:
     		getFinalState().clear();
-    		return;
+    	return;
     }
     
     super.eUnset(featureID);
+  }
+  
+  @Override
+  public boolean eIsSet(final int featureID) {
+    switch (featureID) {
+    	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.FSM__OWNED_STATE:
+    		return getOwnedState() != null && !getOwnedState().isEmpty();
+    	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.FSM__INITIAL_STATE:
+    		return getInitialState() != null;
+    	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.FSM__FINAL_STATE:
+    		return getFinalState() != null && !getFinalState().isEmpty();
+    }
+    
+    return super.eIsSet(featureID);
+  }
+  
+  @Override
+  public void eSet(final int featureID, final Object newValue) {
+    switch (featureID) {
+    	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.FSM__OWNED_STATE:
+    		getOwnedState().clear();
+    		getOwnedState().addAll((Collection) newValue);
+    		return;
+    	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.FSM__INITIAL_STATE:
+    		setInitialState((simplefsm.timedfsmmt.timedfsm.State) newValue);
+    		return;
+    	case simplefsm.timedfsmmt.timedfsm.TimedfsmPackage.FSM__FINAL_STATE:
+    		getFinalState().clear();
+    		getFinalState().addAll((Collection) newValue);
+    		return;
+    }
+    
+    super.eSet(featureID, newValue);
   }
 }

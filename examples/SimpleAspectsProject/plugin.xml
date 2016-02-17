@@ -1,44 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <plugin>
-
-   <extension
-         point="fr.inria.diverse.melange.modeltype">
-      <modeltype
-            uri="http://fsmmt/"
-            id="simpleaspects.FsmMT">
-      </modeltype>
-      <modeltype
-            uri="http://timedfsmmt/"
-            id="simpleaspects.TimedFsmMT">
-         <subtyping
-               modeltypeId="simpleaspects.FsmMT">
-         </subtyping>
-      </modeltype>
-   </extension>
-   <extension
-         point="fr.inria.diverse.melange.language">
-      <language
-            exactType="simpleaspects.FsmMT"
-            uri="http://fsm/"
-            id="simpleaspects.Fsm">
-         <adapter
-               class="simpleaspects.fsm.adapters.fsmmt.FsmAdapter"
-               modeltypeId="simpleaspects.FsmMT">
-         </adapter>
-      </language>
-      <language
-            exactType="simpleaspects.TimedFsmMT"
-            uri="http://timedfsm/"
-            id="simpleaspects.TimedFsm">
-         <adapter
-               class="simpleaspects.timedfsm.adapters.fsmmt.TimedFsmAdapter"
-               modeltypeId="simpleaspects.FsmMT">
-         </adapter>
-         <adapter
-               class="simpleaspects.timedfsm.adapters.timedfsmmt.TimedFsmAdapter"
-               modeltypeId="simpleaspects.TimedFsmMT">
-         </adapter>
-      </language>
-   </extension>
-
+  
+<extension point="fr.inria.diverse.melange.modeltype">
+    <modeltype id="simpleaspects.FsmMT" uri="http://fsmmt/"/>
+    <modeltype id="simpleaspects.TimedFsmMT" uri="http://timedfsmmt/">
+      <subtyping modeltypeId="simpleaspects.FsmMT"/>
+    </modeltype>
+  </extension>
+  <extension point="fr.inria.diverse.melange.language">
+    <language aspects="FSM:simpleaspects.ExecutableFsmAspect;State:simpleaspects.ExecutableStateAspect;Transition:simpleaspects.ExecutableTransitionAspect" entryPoints="simpleaspects.ExecutableFsmAspect.execute(fsm.FSM,java.lang.String)" exactType="simpleaspects.FsmMT" id="simpleaspects.Fsm" uri="http://fsm/">
+      <adapter class="simpleaspects.fsm.adapters.fsmmt.FsmAdapter" modeltypeId="simpleaspects.FsmMT"/>
+    </language>
+    <language aspects="FSM:simpleaspects.TimedFsmAspect;State:simpleaspects.TimedStateAspect;Transition:simpleaspects.TimedTransitionAspect" entryPoints="simpleaspects.TimedFsmAspect.execute(timedfsm.FSM,java.lang.String)" exactType="simpleaspects.TimedFsmMT" id="simpleaspects.TimedFsm" uri="http://timedfsm/">
+      <adapter class="simpleaspects.timedfsm.adapters.fsmmt.TimedFsmAdapter" modeltypeId="simpleaspects.FsmMT"/>
+      <adapter class="simpleaspects.timedfsm.adapters.timedfsmmt.TimedFsmAdapter" modeltypeId="simpleaspects.TimedFsmMT"/>
+    </language>
+  </extension>
 </plugin>

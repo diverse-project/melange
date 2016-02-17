@@ -11,13 +11,13 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link simplefsm.fsmmt.fsm.Transition#getSource <em>Source</em>}</li>
  *   <li>{@link simplefsm.fsmmt.fsm.Transition#getTarget <em>Target</em>}</li>
  *   <li>{@link simplefsm.fsmmt.fsm.Transition#getInput <em>Input</em>}</li>
  *   <li>{@link simplefsm.fsmmt.fsm.Transition#getOutput <em>Output</em>}</li>
  * </ul>
- * </p>
  *
  * @see simplefsm.fsmmt.fsm.FsmPackage#getTransition()
  * @model
