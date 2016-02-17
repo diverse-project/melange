@@ -26,7 +26,10 @@ class AspectExtensions {
 	}
 
 	def boolean hasAspectAnnotation(Aspect asp) {
-		return (asp.aspectTypeRef.type as JvmDeclaredType)?.aspectAnnotationValue !== null 
+		val t = (asp.aspectTypeRef.type as JvmDeclaredType)
+		// TODO: Remove hard-stringed dependency
+		val aspAnn = t?.annotations.findFirst[annotation?.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Aspect"]
+		return aspAnn !== null 
 	}
 
 	def String getAspectAnnotationValue(JvmTypeReference asp) {

@@ -228,6 +228,22 @@ class MelangeValidator extends AbstractMelangeValidator
 				MelangeValidationConstants.WEAVE_INVALID_TARGET
 			)
 	}
+	
+	@Check
+	def void checkFindAspectedClass(Aspect asp) {
+		
+		val clsName = asp.aspectTypeRef.aspectAnnotationValue
+		val lang = asp.eContainer as Language
+		val correspondingWeave = lang.operators.filter(Weave).findFirst[aspectTypeRef.simpleName == asp.aspectTypeRef.simpleName]
+
+		if (asp.hasAspectAnnotation && clsName === null && correspondingWeave !== null)
+			error(
+				'''Cannot find in the classpath the class targeted by «asp.aspectTypeRef.qualifiedName»''',
+				correspondingWeave,
+				MelangePackage.Literals.WEAVE__ASPECT_TYPE_REF,
+				MelangeValidationConstants.WEAVE_INVALID_TARGET
+			)
+	}
 
 	@Check
 	def void checkWildcardAspectImport(Weave w) {
