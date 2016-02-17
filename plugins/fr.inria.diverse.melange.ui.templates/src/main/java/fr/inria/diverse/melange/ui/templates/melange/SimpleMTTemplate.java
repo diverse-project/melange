@@ -194,9 +194,11 @@ public class SimpleMTTemplate extends MelangeTemplateSection {
 		// now also fix the project configuration
 		ManifestChanger manifestChanger;
 		try {
-			manifestChanger = new ManifestChanger(project.getFile("META-INF/MANIFEST.MF"));
-			manifestChanger.addPluginDependency(this.ecoreIFile.getProject().getName(), "0.0.0", false, true);
-			manifestChanger.commit();
+			if(this.ecoreIFile != null){
+				manifestChanger = new ManifestChanger(project.getFile("META-INF/MANIFEST.MF"));
+				manifestChanger.addPluginDependency(this.ecoreIFile.getProject().getName(), "0.0.0", false, true);
+				manifestChanger.commit();
+			}
 		} catch (IOException | BundleException e) {
 			Activator.logErrorMessage(e.getMessage(), e);
 		}
