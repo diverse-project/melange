@@ -232,9 +232,9 @@ class MelangeValidator extends AbstractMelangeValidator
 	@Check
 	def void checkFindAspectedClass(Aspect asp) {
 		
-		val clsName = asp.aspectTypeRef.aspectAnnotationValue
 		val lang = asp.eContainer as Language
 		val correspondingWeave = lang.operators.filter(Weave).findFirst[aspectTypeRef.simpleName == asp.aspectTypeRef.simpleName]
+		val clsName = correspondingWeave?.aspectTypeRef.aspectAnnotationValue
 
 		if (asp.hasAspectAnnotation && clsName === null && correspondingWeave !== null)
 			error(
