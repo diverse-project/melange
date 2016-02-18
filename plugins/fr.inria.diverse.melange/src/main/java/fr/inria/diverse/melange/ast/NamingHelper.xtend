@@ -38,11 +38,10 @@ class NamingHelper
 
 	def String getFqn(GenPackage gp) {
 		val segments = newArrayList
-
 		if (gp.basePackage !== null && gp.basePackage.length > 0)
 			segments += gp.basePackage
-		if (gp.prefix !== null && gp.prefix.length > 0)
-			segments += gp.prefix
+		if (gp.packageName !== null && gp.packageName.length > 0)
+			segments += gp.packageName
 		if (gp.interfacePackageSuffix !== null && gp.interfacePackageSuffix.length > 0)
 			segments += gp.interfacePackageSuffix
 
@@ -54,8 +53,8 @@ class NamingHelper
 
 		if (gp.basePackage !== null && gp.basePackage.length > 0)
 			segments += gp.basePackage
-		if (gp.prefix !== null && gp.prefix.length > 0)
-			segments += gp.prefix
+		if (gp.packageName !== null && gp.packageName.length > 0)
+			segments += gp.packageName
 		if (gp.interfacePackageSuffix !== null && gp.interfacePackageSuffix.length > 0)
 			segments += gp.interfacePackageSuffix
 
