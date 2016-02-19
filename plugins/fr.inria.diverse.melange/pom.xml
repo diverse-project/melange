@@ -26,6 +26,9 @@
 						</fileset>
 						<fileset>
 							<directory>${basedir}/src/main/xtend-gen</directory>
+	      					<excludes>
+								<exclude>.gitignore</exclude>
+	      					</excludes>
 						</fileset>
 						<!-- clean ui plugin as well -->
 						<fileset>
