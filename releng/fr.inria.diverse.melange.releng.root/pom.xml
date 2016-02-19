@@ -24,8 +24,10 @@
 		<kermeta.version>3.2.0-SNAPSHOT</kermeta.version>
 		<emf.version>2.11.0</emf.version>
 		<tycho.version>0.23.1</tycho.version>
+		<tycho-extras.version>0.23.1</tycho-extras.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<xtext.version>2.7.3</xtext.version>
+		<tycho.scmUrl>scm:git:https://github.com/diverse-project/melange.git</tycho.scmUrl>
 	</properties>
 
 	<build>
@@ -94,6 +96,30 @@
 							<version>${project.version}</version>
 						</artifact>
 					</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-packaging-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<dependencies>
+					<!-- <dependency>
+						<groupId>org.eclipse.tycho.extras</groupId>
+						<artifactId>tycho-buildtimestamp-jgit</artifactId>
+						<version>${tycho-extras.version}</version>
+					</dependency>-->
+					<dependency>
+       					<groupId>org.eclipse.tycho.extras</groupId>
+			        	<artifactId>tycho-sourceref-jgit</artifactId>
+			        	<version>${tycho-extras.version}</version>
+			      	</dependency>
+				</dependencies>
+				<configuration>
+					<!-- <strictBinIncludes>false</strictBinIncludes>
+					<format>'v'yyyyMMdd-HHmm</format>-->
+					<sourceReferences>
+       					<generate>true</generate>
+     					</sourceReferences>
 				</configuration>
 			</plugin>
 			<plugin>
