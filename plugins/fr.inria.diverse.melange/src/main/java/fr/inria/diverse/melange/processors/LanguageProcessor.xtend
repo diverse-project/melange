@@ -179,7 +179,12 @@ class LanguageProcessor extends DispatchMelangeProcessor{
 
 	def void initializeExactType(Language language) {
 		if (language.exactType !== null)
-			language.exactType.ecoreUri = language.exactType.inferredEcoreUri
+			try{
+				language.exactType.ecoreUri = language.exactType.inferredEcoreUri
+			}
+			catch(Exception e){
+				println(e)
+			}
 	}
 	
 	def void initializeSemantic(Language language) {
