@@ -37,30 +37,22 @@ class NamingHelper
 	}
 
 	def String getFqn(GenPackage gp) {
-		val segments = newArrayList
-		if (gp.basePackage !== null && gp.basePackage.length > 0)
-			segments += gp.basePackage
-		if (gp.packageName !== null && gp.packageName.length > 0)
-			segments += gp.packageName
-		if (gp.interfacePackageSuffix !== null && gp.interfacePackageSuffix.length > 0)
-			segments += gp.interfacePackageSuffix
-
-		return segments.map[toLowerCase].join(".")
+		return gp.getFqnFor("")
 	}
 
 	def String getFqnFor(GenPackage gp, String name) {
 		val segments = newArrayList
 
-		if (gp.basePackage !== null && gp.basePackage.length > 0)
+		if (!gp.basePackage.nullOrEmpty)
 			segments += gp.basePackage
-		if (gp.packageName !== null && gp.packageName.length > 0)
+		if (!gp.packageName.nullOrEmpty)
 			segments += gp.packageName
-		if (gp.interfacePackageSuffix !== null && gp.interfacePackageSuffix.length > 0)
+		if (!gp.interfacePackageSuffix.nullOrEmpty)
 			segments += gp.interfacePackageSuffix
 
 		segments += name
 
-		return QualifiedName::create(segments)./*normalize.*/toString
+		return QualifiedName::create(segments).toString
 	}
 
 	def String getPackageFqn(GenPackage gp) {
