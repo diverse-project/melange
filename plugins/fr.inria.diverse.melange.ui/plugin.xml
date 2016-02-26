@@ -791,24 +791,6 @@
       </command>
    </extension>
    <extension
-         point="org.eclipse.ui.menus">
-      <menuContribution
-            allPopups="false"
-            locationURI="popup:#TextEditorContext?after=additions">
-         <command
-               commandId="fr.inria.diverse.melange.GenerateAllFromEditor"
-               icon="icons/melange.png"
-               style="push">
-            <visibleWhen
-                  checkEnabled="false">
-               <reference
-                     definitionId="fr.inria.diverse.melange.Melange.Editor.opened">
-               </reference>
-            </visibleWhen>
-         </command>
-      </menuContribution>
-   </extension>
-   <extension
          point="org.eclipse.ui.commands">
       <command
             id="fr.inria.diverse.melange.GenerateAllFromEditor"
