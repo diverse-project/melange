@@ -60,7 +60,7 @@ class NamingHelper
 
 		segments += name
 
-		return QualifiedName::create(segments).normalize.toString
+		return QualifiedName::create(segments)./*normalize.*/toString
 	}
 
 	def String getPackageFqn(GenPackage gp) {
@@ -141,17 +141,16 @@ class NamingHelper
 	}
 
 	def String getPackageFqn(ModelType mt) {
-		return mt.fullyQualifiedName.append(mt.pkgs.head.name).append(mt.pkgs.head.name.toFirstUpper + "Package").normalize.toString
+		return mt.fullyQualifiedName.toLowerCase.append(mt.pkgs.head.name).append(mt.pkgs.head.name.toFirstUpper + "Package").toString
 	}
 
 	def String getFactoryName(ModelType mt) {
-//		return mt.fullyQualifiedName.toLowerCase.append(mt.name + "Factory").normalize.toString
-		return mt.fullyQualifiedName.append(mt.pkgs.head.name).append(mt.pkgs.head.name.toFirstUpper + "Factory").normalize.toString
+		return mt.fullyQualifiedName.toLowerCase.append(mt.pkgs.head.name).append(mt.pkgs.head.name.toFirstUpper + "Factory").toString
 	}
 
 	def String interfaceNameFor(ModelType mt, EClassifier cls) {
 //		return mt.fullyQualifiedName.toLowerCase.append(cls.name).normalize.toString
-		return mt.fullyQualifiedName.append(cls.EPackage.name).append(cls.name).normalize.toString
+		return mt.fullyQualifiedName.toLowerCase.append(cls.EPackage.name).append(cls.name).toString
 	}
 
 	def String adapterNameFor(Metamodel mm, ModelType mt, EClass cls) {
