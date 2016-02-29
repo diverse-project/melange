@@ -1,6 +1,7 @@
 package simpleaspects;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -14,6 +15,13 @@ public class Main {
 		System.out.println();
 	}
 
+	public static void reflexivePrettyPrint(EObject o) {
+		o.eClass().getEStructuralFeatures().forEach(f -> {
+			System.out.println(f.getName() + " = " + o.eGet(f));
+			o.eContents().forEach(c -> reflexivePrettyPrint(c));
+		});
+	}
+
 	public static void main(String[] args) {
 		StandaloneSetup.doSetup();
 		ResourceSet rs = new ResourceSetImpl();
@@ -24,5 +32,8 @@ public class Main {
 
 		execute((FSM) fsmRes.getContents().get(0));
 		execute((FSM) tfsmRes.getContents().get(0));
+		System.out.println();
+		reflexivePrettyPrint(fsmRes.getContents().get(0));
+		reflexivePrettyPrint(tfsmRes.getContents().get(0));
 	}
 }
