@@ -1,0 +1,25 @@
+modeltype FsmMT uses 'http://fsmmt/';
+modeltype Fsm   uses 'http://fsm/';
+
+transformation dummyInvert(in inFsm : FsmMT, out outFsm : Fsm);
+
+main() {
+	inFsm.rootObjects()[FsmMT::FSM] -> map mapFSM(); 
+}
+
+mapping FsmMT::FSM::mapFSM() : Fsm::FSM {
+	ownedState   := self.ownedState -> map mapState();
+	initialState := self.finalState -> first().map mapState();
+	finalState   := self.initialState.map mapState();
+}
+
+mapping FsmMT::State::mapState() : Fsm::State {
+	name := "Inverted" + self.name;
+	outgoingTransition := self.incomingTransition -> map mapTransition();
+}
+
+mapping FsmMT::Transition::mapTransition() : Fsm::Transition {
+	input  := "Inverted" + self.input;
+	output := "Inverted" + self.output;
+	target := self.source.map mapState();
+}

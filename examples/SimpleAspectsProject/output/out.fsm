@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fsm:FSM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fsm="http://fsm/" initialState="//@ownedState.2" finalState="//@ownedState.0">
+  <ownedState name="Inverted1" incomingTransition="//@ownedState.1/@outgoingTransition.0 //@ownedState.2/@outgoingTransition.0"/>
+  <ownedState name="Inverted2" incomingTransition="//@ownedState.2/@outgoingTransition.1 //@ownedState.3/@outgoingTransition.0">
+    <outgoingTransition target="//@ownedState.0" input="Inverteda" output="Inverted1"/>
+    <outgoingTransition target="//@ownedState.2" input="Invertedc" output="Inverted3"/>
+  </ownedState>
+  <ownedState name="Inverted3" incomingTransition="//@ownedState.1/@outgoingTransition.1">
+    <outgoingTransition target="//@ownedState.0" input="Invertedb" output="Inverted2"/>
+    <outgoingTransition target="//@ownedState.1" input="Invertedd" output="Inverted4"/>
+  </ownedState>
+  <ownedState name="Inverted4">
+    <outgoingTransition target="//@ownedState.1" input="Invertede" output="Inverted5"/>
+  </ownedState>
+</fsm:FSM>
