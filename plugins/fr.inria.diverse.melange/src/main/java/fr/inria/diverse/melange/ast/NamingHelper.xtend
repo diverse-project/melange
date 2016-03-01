@@ -49,8 +49,8 @@ class NamingHelper
 			segments += gp.packageName
 		if (!gp.interfacePackageSuffix.nullOrEmpty)
 			segments += gp.interfacePackageSuffix
-
-		segments += name
+		if (!name.nullOrEmpty)
+			segments += name
 
 		return QualifiedName::create(segments).toString
 	}
