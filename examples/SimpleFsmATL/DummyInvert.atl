@@ -1,0 +1,37 @@
+-- @nsURI Fsm=http://fsm/
+-- @nsURI FsmMT=http://fsmmt/
+
+module DummyInvert;
+create OUT : Fsm from IN : FsmMT;
+
+rule InvertFsm {
+	from
+		inputFsm : FsmMT!FSM
+	to
+		outputFsm : Fsm!FSM (
+			ownedState <- inputFsm.ownedState,
+			initialState <- inputFsm.finalState->first(),
+			finalState <- inputFsm.initialState
+		)
+}
+
+rule InvertStates {
+	from
+		inputState : FsmMT!State
+	to 
+		outputState : Fsm!State (
+			name <- 'Inverted' + inputState.name
+		)
+}
+
+rule InvertTransitions {
+	from
+		inputTrans : FsmMT!Transition
+	to
+		outputTrans : Fsm!Transition (
+			input <- 'Inverted' + inputTrans.input,
+			output <- 'Inverted' + inputTrans.output,
+			source <- inputTrans.target,
+			target <- inputTrans.source
+		)
+}
