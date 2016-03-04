@@ -5703,7 +5703,7 @@ rule__Language__Group_6__0__Impl
 :
 (
 { before(grammarAccess.getLanguageAccess().getGroup_6_0()); }
-(rule__Language__Group_6_0__0)
+(rule__Language__Group_6_0__0)?
 { after(grammarAccess.getLanguageAccess().getGroup_6_0()); }
 )
 

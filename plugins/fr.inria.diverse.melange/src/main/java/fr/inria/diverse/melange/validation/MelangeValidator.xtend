@@ -71,6 +71,16 @@ class MelangeValidator extends AbstractMelangeValidator
 	}
 
 	@Check
+	def void checkLanguageNameIsntAmbiguous(Language l) {
+		if (!l.name.nullOrEmpty && l.name.endsWith("MT"))
+			error(
+				"Language shouldn't end with 'MT' to avoid ambiguities with model type names",
+				MelangePackage.Literals.NAMED_ELEMENT__NAME,
+				MelangeValidationConstants.LANGUAGE_NAME_AMBIGUOUS
+			)
+	}
+
+	@Check
 	def void checkNameIsValid(ModelType mt) {
 		if (mt.name.nullOrEmpty || !Character.isUpperCase(mt.name.charAt(0)))
 			error(

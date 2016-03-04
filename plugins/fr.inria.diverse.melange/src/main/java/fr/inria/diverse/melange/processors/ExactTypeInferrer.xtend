@@ -20,7 +20,10 @@ class ExactTypeInferrer extends DispatchMelangeProcessor
 	def dispatch void preProcess(ModelTypingSpace root, boolean preLinkingPhase) {
 		inferredMTs = newArrayList
 
-		root.languages.filter[exactTypeName !== null].forEach[l |
+		root.languages.forEach[l |
+			if (l.exactTypeName === null)
+				l.exactTypeName = l.name + "MT"
+
 			val newMT = MelangeFactory.eINSTANCE.createModelType => [
 				name = l.exactTypeName
 			]

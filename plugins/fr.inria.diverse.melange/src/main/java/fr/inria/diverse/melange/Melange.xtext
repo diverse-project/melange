@@ -29,7 +29,7 @@ Language:
 		('sirius' sirius+=STRING (',' sirius+=STRING)* )? &
 		('ecl' ecl+=STRING (',' ecl+=STRING)* )? &
 		('fileExtension' fileExtension=STRING)? &
-		('exactType' exactTypeName = ValidID (=> 'uri' exactTypeUri = STRING)?)
+		('exactType' exactTypeName = ValidID (=> 'uri' exactTypeUri = STRING)?)?
 	'}'
 ;
 
