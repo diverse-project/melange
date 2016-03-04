@@ -592,6 +592,7 @@ class LanguageExtensions
 		val languages = root.elements.filter(Language)
 		languages.filter[isGeneratedByMelange].filter[!processed.contains(it)].forEach[lang |
 			lang.makeAllSemantic(processed)
+			lang.ensureUniqueAspects
 		]
 	}
 	
@@ -656,6 +657,20 @@ class LanguageExtensions
 				newAsp.tryUpdateAspect
 			]
 		]
+	}
+
+	/**
+	 * Ensure that a language doesn't contain multiple times the same aspect
+	 * (eg. in the case of multiple inheritance/overriding)
+	 */
+	private def void ensureUniqueAspects(Language language) {
+		val noDuplicates = newLinkedHashMap
+		language.semantics.forEach[asp |
+			noDuplicates.put(asp.aspectTypeRef.identifier, asp)
+		]
+
+		language.semantics.clear
+		language.semantics += noDuplicates.values
 	}
 	
 	/**
