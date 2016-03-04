@@ -89,6 +89,16 @@ class LanguageExtensions
 	}
 
 	/**
+	 * Checks whether the given language has a direct relation to its syntax
+	 * or inherits it from one of its dependencies
+	 */
+	def boolean hasSyntax(Language l) {
+		return
+			   !l.operators.filter(Import).empty
+			|| !l.operators.filter(LanguageOperator).empty
+	}
+
+	/**
 	 * Get all aspects defined on the language.
 	 * The priority order is: <br>
 	 * 1) Aspects explicitly defined in the definition of {@link l}, in top->bottom order <br>

@@ -83,15 +83,15 @@ class MelangeValidator extends AbstractMelangeValidator
 	@Check
 	def void checkEcoreIsSet(ModelType mt) {
 		if (mt.extracted === null) {
-			if (mt.ecoreUri === null || mt.ecoreUri.empty)
+			if (mt.ecoreUri.nullOrEmpty)
 				error(
-					"A valid Ecore file must be imported",
-					MelangePackage.Literals.MODELING_ELEMENT__ECORE_URI,
+					"Please specify the Ecore file defining the model type's syntax",
+					MelangePackage.Literals.NAMED_ELEMENT__NAME,
 					MelangeValidationConstants.MODELTYPE_ECORE_EMPTY
 				)
 			else if (mt.ecoreUri !== null && modelUtils.loadPkg(mt.ecoreUri) === null)
 				error(
-					"Couldn't load specified Ecore",
+					'''The Ecore file "«mt.ecoreUri»" couldn't be loaded''',
 					MelangePackage.Literals.MODELING_ELEMENT__ECORE_URI,
 					MelangeValidationConstants.MODELTYPE_ECORE_UNLOADABLE
 				)
@@ -100,16 +100,21 @@ class MelangeValidator extends AbstractMelangeValidator
 
 	@Check
 	def void checkEcoreIsSet(Language l) {
-		if (l.operators.filter(Import).filter[ecoreUri !== null].empty
-			&& l.operators.filter(Inheritance).forall[targetLanguage?.syntax.ecoreUri === null]
-			&& l.operators.empty
-			&& l.syntax?.ecoreUri === null
-		)
+		if (!l.hasSyntax)
 			error(
-				"A valid Ecore file must be imported",
-				l.syntax,
-				MelangePackage.Literals.MODELING_ELEMENT__ECORE_URI,
+				"Please specify the Ecore file defining the language's syntax",
+				MelangePackage.Literals.NAMED_ELEMENT__NAME,
 				MelangeValidationConstants.METAMODEL_ECORE_EMPTY
+			)
+	}
+
+	@Check
+	def void checkExactTypeIsSet(Language l) {
+		if (l.exactType === null)
+			error(
+				"Please specify the language's exact type name",
+				MelangePackage.Literals.NAMED_ELEMENT__NAME,
+				MelangeValidationConstants.LANGUAGE_EXACTTYPE_EMPTY
 			)
 	}
 
@@ -120,7 +125,7 @@ class MelangeValidator extends AbstractMelangeValidator
 
 			if (ecore === null)
 				error(
-					"Couldn't load specified Ecore",
+					'''The Ecore file "«i.ecoreUri»" couldn't be loaded''',
 					MelangePackage.Literals.IMPORT__ECORE_URI,
 					MelangeValidationConstants.IMPORT_INVALID_URI
 				)
@@ -129,16 +134,17 @@ class MelangeValidator extends AbstractMelangeValidator
 				val speculativeGenmodelPath = i.ecoreUri.substring(0, i.ecoreUri.lastIndexOf(".")) + ".genmodel"
 				if (modelUtils.loadGenmodel(speculativeGenmodelPath) === null)
 					error(
-						"A valid Genmodel file must be imported",
-						MelangePackage.Literals.IMPORT__GENMODEL_URIS,
+						'''No associated genmodel found at "«speculativeGenmodelPath»"''',
+						MelangePackage.Literals.IMPORT__ECORE_URI,
 						MelangeValidationConstants.IMPORT_INVALID_GENMODEL
 					)
 			} else {
-				i.genmodelUris.forEach[gmUri |
+				i.genmodelUris.forEach[gmUri, n |
 					if (modelUtils.loadGenmodel(gmUri) === null)
 						error(
-							"A valid Genmodel file must be imported",
+							'''Couldn't load the specified Genmodel "«gmUri»"''',
 							MelangePackage.Literals.IMPORT__GENMODEL_URIS,
+							n,
 							MelangeValidationConstants.IMPORT_INVALID_GENMODEL
 						)
 				]
@@ -277,8 +283,9 @@ class MelangeValidator extends AbstractMelangeValidator
 
 			if (invalidPkgs.size > 0)
 				error(
-					'''Unexpected error: cannot find a GenPackage for: «invalidPkgs.map[name].join(", ")»''',
-					MelangePackage.Literals.LANGUAGE__SYNTAX,
+					'''Unexpected error: cannot find a GenPackage for: «invalidPkgs.map[name].join(", ")».''' +
+					''' Please check whether the associated Genmodel is up to date.''',
+					MelangePackage.Literals.NAMED_ELEMENT__NAME,
 					MelangeValidationConstants.METAMODEL_NO_GENPACKAGE
 				)
 		}
