@@ -1,0 +1,9 @@
+package xcore
+
+language XcoreFsm {
+	syntax "/XcoreMetamodel/src/Fsm.xcore"
+}
+
+language EcoreFsm {
+	syntax "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.fsm/model/FSM.ecore"
+}
