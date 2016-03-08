@@ -33,6 +33,10 @@ class ModelingElementExtensions
 		return registry.getGenModels(m)
 	}
 
+	def boolean isXcore(ModelingElement m) {
+		return !m.ecoreUri.nullOrEmpty && m.ecoreUri.endsWith(".xcore")
+	}
+
 	def GenClass getGenClassFor(ModelingElement m, EClass cls) {
 		return
 			m.genmodels

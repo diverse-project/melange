@@ -6,6 +6,7 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
+import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.ModelUtils
@@ -26,6 +27,7 @@ class EPackageProvider
 	@Inject ModelUtils modelUtils
 	@Inject extension EcoreExtensions
 	@Inject extension ModelTypeExtensions
+	@Inject extension ModelingElementExtensions
 	@Inject extension LanguageExtensions
 	@Inject extension EclipseProjectHelper
 	@Inject extension IQualifiedNameProvider
@@ -91,22 +93,30 @@ class EPackageProvider
 
 	def List<GenModel> getGenModels(ModelingElement m) {
 		if (!genmodels.containsKey(m.fqn)) {
-			if (m.genmodelUris.size == 0 && m.ecoreUri !== null)
-				m.genmodelUris += m.ecoreUri.substring(0, m.ecoreUri.lastIndexOf(".")) + ".genmodel"
-			else if (m instanceof Metamodel) {
-				val project = m.eResource.project
-				if (m.owningLanguage.isGeneratedByMelange && project !== null)
-					if (project.getFile(m.owningLanguage.localGenmodelPath).exists)
-						m.genmodelUris += m.owningLanguage.localGenmodelUri
-					else if (project.getFile(m.owningLanguage.externalGenmodelPath).exists)
-						m.genmodelUris += m.owningLanguage.externalGenmodelUri
-			}
-			m.genmodelUris.forEach[
-				val gm = modelUtils.loadGenmodel(it.toPlatformURI)
+			// If it's an Xcore file, the genmodel can be found directly within it
+			if (m.isXcore) {
+				val gm = modelUtils.loadGenmodelFromXcore(m.ecoreUri.toPlatformURI)
 
 				if (gm !== null)
 					genmodels.put(m.fqn, gm)
-			]
+			} else {
+				if (m.genmodelUris.size == 0 && m.ecoreUri !== null)
+					m.genmodelUris += m.ecoreUri.substring(0, m.ecoreUri.lastIndexOf(".")) + ".genmodel"
+				else if (m instanceof Metamodel) {
+					val project = m.eResource.project
+					if (m.owningLanguage.isGeneratedByMelange && project !== null)
+						if (project.getFile(m.owningLanguage.localGenmodelPath).exists)
+							m.genmodelUris += m.owningLanguage.localGenmodelUri
+						else if (project.getFile(m.owningLanguage.externalGenmodelPath).exists)
+							m.genmodelUris += m.owningLanguage.externalGenmodelUri
+				}
+				m.genmodelUris.forEach[
+					val gm = modelUtils.loadGenmodel(it.toPlatformURI)
+
+					if (gm !== null)
+						genmodels.put(m.fqn, gm)
+				]
+			}
 		}
 
 		return genmodels.get(m.fqn)

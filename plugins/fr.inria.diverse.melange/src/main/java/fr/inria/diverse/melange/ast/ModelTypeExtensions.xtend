@@ -22,6 +22,8 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EPackage
+import org.eclipse.emf.ecore.EcorePackage
+import org.eclipse.emf.ecore.plugin.EcorePlugin
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 
@@ -42,8 +44,12 @@ class ModelTypeExtensions
 
 	def GenModel createGenmodel(ModelType mt, String ecoreUri, String gmUri) {
 		val resSet = new ResourceSetImpl
+		resSet.URIConverter.URIMap.putAll(EcorePlugin::computePlatformURIMap(true))
 		val pkgRes = resSet.getResource(URI::createURI(ecoreUri), true)
 		val pkgs = pkgRes.contents
+		val ecoreGmUri = EcorePlugin::getEPackageNsURIToGenModelLocationMap(true).get(EcorePackage.eNS_URI)
+		val ecoreGmRes = resSet.getResource(ecoreGmUri as URI, true)
+		val ecoreGm = ecoreGmRes.contents.head as GenModel
 
 		val genmodel = GenModelFactory.eINSTANCE.createGenModel => [
 			complianceLevel = GenJDKLevel.JDK70_LITERAL
@@ -54,6 +60,7 @@ class ModelTypeExtensions
 			genPackages.forEach[gp |
 				gp.basePackage = mt.fullyQualifiedName.toString.toLowerCase
 			]
+			usedGenPackages.add(ecoreGm.genPackages.head)
 		]
 
 		val res = resSet.createResource(URI::createURI(gmUri))

@@ -10,12 +10,12 @@ import fr.inria.diverse.melange.lib.MatchingHelper
 import fr.inria.diverse.melange.lib.ModelUtils
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.Import
-import fr.inria.diverse.melange.metamodel.melange.Inheritance
 import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.LanguageOperator
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
+import fr.inria.diverse.melange.metamodel.melange.ModelingElement
 import fr.inria.diverse.melange.metamodel.melange.NamedElement
 import fr.inria.diverse.melange.metamodel.melange.ResourceType
 import fr.inria.diverse.melange.metamodel.melange.Slice
@@ -131,6 +131,7 @@ class MelangeValidator extends AbstractMelangeValidator
 	@Check
 	def void checkImportIsValid(Import i) {
 		try {
+			val lang = i.eContainer as Language
 			val ecore = modelUtils.loadPkg(i.ecoreUri)
 
 			if (ecore === null)
@@ -140,24 +141,27 @@ class MelangeValidator extends AbstractMelangeValidator
 					MelangeValidationConstants.IMPORT_INVALID_URI
 				)
 
-			if (i.genmodelUris.empty) {
-				val speculativeGenmodelPath = i.ecoreUri.substring(0, i.ecoreUri.lastIndexOf(".")) + ".genmodel"
-				if (modelUtils.loadGenmodel(speculativeGenmodelPath) === null)
-					error(
-						'''No associated genmodel found at "«speculativeGenmodelPath»"''',
-						MelangePackage.Literals.IMPORT__ECORE_URI,
-						MelangeValidationConstants.IMPORT_INVALID_GENMODEL
-					)
-			} else {
-				i.genmodelUris.forEach[gmUri, n |
-					if (modelUtils.loadGenmodel(gmUri) === null)
+			// If its an Xcore file, the Genmodel is directly embedded within it
+			if (!lang.syntax.isXcore) {
+				if (i.genmodelUris.empty) {
+					val speculativeGenmodelPath = i.ecoreUri.substring(0, i.ecoreUri.lastIndexOf(".")) + ".genmodel"
+					if (modelUtils.loadGenmodel(speculativeGenmodelPath) === null)
 						error(
-							'''Couldn't load the specified Genmodel "«gmUri»"''',
-							MelangePackage.Literals.IMPORT__GENMODEL_URIS,
-							n,
+							'''No associated genmodel found at "«speculativeGenmodelPath»"''',
+							MelangePackage.Literals.IMPORT__ECORE_URI,
 							MelangeValidationConstants.IMPORT_INVALID_GENMODEL
 						)
-				]
+				} else {
+					i.genmodelUris.forEach[gmUri, n |
+						if (modelUtils.loadGenmodel(gmUri) === null)
+							error(
+								'''Couldn't load the specified Genmodel "«gmUri»"''',
+								MelangePackage.Literals.IMPORT__GENMODEL_URIS,
+								n,
+								MelangeValidationConstants.IMPORT_INVALID_GENMODEL
+							)
+					]
+				}
 			}
 		} catch (Exception e) {
 			error(
