@@ -161,31 +161,7 @@ class ModelTypeExtensions
 		return mt.ecoreUri !== null
 	}
 
-	def List<EPackage> getAllSubPkgs(ModelType mt) {
-		return mt.pkgs.head.allSubPkgs
-	}
-
 	def boolean isSubtypeOf(ModelType mt1, ModelType mt2) {
 		return matchingHelper.match(mt1.pkgs, mt2.pkgs, null)
-	}
-
-	def EClassifier findClassifier(ModelType mt, String clsName) {
-		return mt.allClassifiers.findFirst[name == clsName]
-	}
-
-	def EClass findClass(ModelType mt, String clsName) {
-		return mt.allClasses.findFirst[name == clsName]
-	}
-
-	def List<EClassifier> getAllClassifiers(ModelType mt) {
-		return mt.pkgs.map[EClassifiers].flatten.toList
-	}
-
-	def Iterable<EClass> getAllClasses(ModelType mt) {
-		return mt.allClassifiers.filter(EClass)
-	}
-
-	def Iterable<EEnum> getAllEnums(ModelType mt) {
-		return mt.allClassifiers.filter(EEnum)
 	}
 }

@@ -82,6 +82,14 @@ class ModelingElementExtensions
 		return m.pkgs.map[getAllClasses].flatten
 	}
 
+	def EClass findClass(ModelingElement m, String simpleName) {
+		return m.allClasses.findFirst[name == simpleName]
+	}
+
+	def EClassifier findClassifier(ModelingElement m, String simpleName) {
+		return m.allClassifiers.findFirst[name == simpleName]
+	}
+
 	/**
  	 * create the ecore for this ModelingElement
  	 * return the root package  
