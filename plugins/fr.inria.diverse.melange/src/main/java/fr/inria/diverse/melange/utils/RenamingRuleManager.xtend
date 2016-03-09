@@ -64,7 +64,7 @@ class RenamingRuleManager{
 	def void storeRenamedAspectProperties(List<Aspect> aspects){
 		
 		aspects.filter[hasAspectAnnotation].forEach[asp |
-			val targetClass = asp.aspectedClassFqName
+			val targetClass = asp.targetedClassFqn
 			
 			val type = asp.aspectTypeRef.type as JvmGenericType
 			type.members.filter(JvmOperation).forEach[op |

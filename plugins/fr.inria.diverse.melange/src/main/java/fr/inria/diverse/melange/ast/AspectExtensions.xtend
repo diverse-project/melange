@@ -16,65 +16,121 @@ class AspectExtensions {
 	@Inject extension NamingHelper
 	@Inject extension ModelingElementExtensions
 
-	def boolean getIsComplete(Aspect asp) {
+	static final String ASPECT_ANNOTATION_FQN =
+		"fr.inria.diverse.k3.al.annotationprocessor.Aspect"
+	static final String ASPECT_ANNOTATION_PARAMETER =
+		"className"
+
+	/**
+	 * Checks whether the given {@link Aspect} can be resolved and processed
+	 * as a JvmDeclaredType
+	 */
+	def boolean isValid(Aspect asp) {
 		return
 			asp.aspectTypeRef?.type !== null
 			&& asp.aspectTypeRef.type instanceof JvmDeclaredType
-//			&& asp.aspectAnnotationValue !== null
 	}
 
+	/**
+	 * Returns the underlying {@link JvmDeclaredType} corresponding to
+	 * the aspect or null if it cannot be determined
+	 */
+	def JvmDeclaredType asJvmType(Aspect asp) {
+		return
+			if (asp.isValid)
+				asp.aspectTypeRef.type as JvmDeclaredType
+	}
+
+	/**
+	 * Checks whether the given aspect has an @Aspect annotation
+	 */
 	def boolean hasAspectAnnotation(Aspect asp) {
-		val t = (asp.aspectTypeRef.type as JvmDeclaredType)
-		// TODO: Remove hard-stringed dependency
-		val aspAnn = t?.annotations.findFirst[annotation?.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Aspect"]
-		return aspAnn !== null 
+		return
+			if (asp.isValid)
+				asp.asJvmType.annotations.exists[
+					annotation.qualifiedName == ASPECT_ANNOTATION_FQN]
+			else
+				false
 	}
 
-	def String getAspectAnnotationValue(JvmTypeReference asp) {
-		if (!(asp.type instanceof JvmDeclaredType))
+	/**
+	 * Returns the fully qualified name of the class on which the aspect
+	 * pointed by the given {@link JvmTypeReference} is woven
+	 * (ie. the value of its 'className=' annotation parameter), or null
+	 * if it cannot be retrieved
+	 */
+	def String getAspectAnnotationValue(JvmTypeReference typeRef) {
+		if (typeRef?.type === null
+			|| !(typeRef.type instanceof JvmDeclaredType))
 			return null
-		return (asp.type as JvmDeclaredType)?.aspectAnnotationValue
-	}
-	
-	def String getAspectedClassFqName(Aspect asp) {
-		return (asp.aspectTypeRef.type as JvmDeclaredType)?.getAspectedClassFqName
-	}
 
-	def String getAspectAnnotationValue(JvmDeclaredType t) {
-		// TODO: Remove hard-stringed dependency
-		val aspAnn = t.annotations.findFirst[annotation?.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Aspect"]
-		val aspClassName = aspAnn?.values?.findFirst[valueName == "className"]
-		val aspVal = switch aspClassName {
-			JvmTypeAnnotationValue: aspClassName.values?.head?.simpleName
-			JvmCustomAnnotationValue: (aspClassName.values?.head as XAbstractFeatureCall)?.feature?.simpleName
-			default: null
-		}
-
-		// Xtext 2.8+
-		if (aspVal !== null && aspVal.matches("<implicit:.*?>")) {
-			return aspVal.substring(aspVal.lastIndexOf(".") + 1, aspVal.length - 1)
-		}
-
-		if (aspVal !== null && aspVal.contains("."))
-			return aspVal.substring(aspVal.lastIndexOf(".") + 1, aspVal.length)
-
-		return aspVal
-	}
-	
-	def String getAspectedClassFqName(JvmDeclaredType t){
-		val aspAnn = t.annotations.findFirst[annotation?.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Aspect"]
-		val aspClassName = aspAnn?.values?.findFirst[valueName == "className"]
-		val aspVal = switch aspClassName {
-			JvmTypeAnnotationValue: aspClassName.values?.head?.qualifiedName
-			JvmCustomAnnotationValue: (aspClassName.values?.head as XAbstractFeatureCall)?.feature?.qualifiedName
-			default: null
-		}
-		return aspVal
+		return
+			(typeRef.type as JvmDeclaredType)
+			.extractAspectAnnotationValue.toString
 	}
 
-	def String getAspectAnnotationValueType(JvmDeclaredType t) {
-		val aspAnn = t.annotations.findFirst[annotation?.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Aspect"]
-		val aspClassName = aspAnn?.values?.findFirst[valueName == "className"]
+	/**
+	 * Returns the fully qualified name of the class on which the aspect
+	 * is woven (ie. the value of its 'className=' annotation parameter),
+	 * or null if it cannot be retrieved
+	 */
+	def String getTargetedClassFqn(Aspect asp) {
+		return
+			if (asp.isValid)
+				asp.asJvmType.extractAspectAnnotationValue.toString
+	}
+
+	/**
+	 * Returns the simple name of the class on which the aspect
+	 * is woven (ie. the simple value of its 'className=' annotation parameter),
+	 * or null if it cannot be retrieved
+	 */
+	def String getTargetedClassName(Aspect asp) {
+		return
+			if (asp.isValid)
+				asp.asJvmType.extractAspectAnnotationValue.lastSegment.toString
+	}
+
+	/**
+	 * Returns the base package of the class on which the aspect pointed
+	 * by the {@code aspectTypeRef} reference points, or an empty fqn
+	 */
+	def QualifiedName getTargetedNamespace(JvmTypeReference aspectTypeRef) {
+		val aavt =
+			(aspectTypeRef.type as JvmDeclaredType)
+			.extractAspectAnnotationValue
+
+		return
+			if (aavt !== null)
+				aavt.skipLast(1)
+			else
+				QualifiedName::create
+	}
+
+	/**
+	 * Checks whether the aspect pointed by the {@code aspectTypeRef} reference
+	 * is defined over the namespace defined by the {@code mm} {@link Metamodel}
+	 */
+	def boolean isDefinedOver(JvmTypeReference aspectTypeRef, Metamodel mm) {
+		return mm.allGenPkgs.map[packageNamespace].exists[ns |
+			ns == aspectTypeRef.targetedNamespace.toString
+		]
+	}
+
+	/**
+	 * Checks whether the given {@code aspectTypeRef} aspect reference can be
+	 * copied for the metamodel {@code mm}
+	 */
+	def boolean canBeCopiedFor(JvmTypeReference aspectTypeRef, Metamodel mm) {
+		// FIXME: not implemented
+		return true
+	}
+
+	private def QualifiedName extractAspectAnnotationValue(JvmDeclaredType t) {
+		val aspAnn = t.annotations.findFirst[
+			annotation?.qualifiedName == ASPECT_ANNOTATION_FQN]
+		val aspClassName = aspAnn?.values?.findFirst[
+			valueName == ASPECT_ANNOTATION_PARAMETER]
 		val aspVal = switch aspClassName {
 			JvmTypeAnnotationValue: aspClassName.values?.head?.qualifiedName
 			JvmCustomAnnotationValue: {
@@ -83,29 +139,6 @@ class AspectExtensions {
 			}
 		}
 
-		return aspVal
-	}
-
-	def QualifiedName getTargetedNamespace(JvmTypeReference aspectTypeRef) {
-		val aavt = (aspectTypeRef.type as JvmDeclaredType).aspectAnnotationValueType
-		return
-			if (aavt !== null)
-				aavt.toQualifiedName.skipLast(1)
-			else
-				QualifiedName::create
-	}
-
-	def boolean isDefinedOver(JvmTypeReference aspectTypeRef, Metamodel mm) {
-		return mm.allGenPkgs.map[packageNamespace].exists[ns |
-			ns == aspectTypeRef.targetedNamespace.toString
-		]
-	}
-
-	// FIXME: We should check that the original mm is a super-type of mm
-	// Hard to find the metamodel declaration or the corresponding Ecore file
-	// in the workspace...
-	def boolean canBeCopiedFor(JvmTypeReference aspectTypeRef, Metamodel mm) {
-		// FIXME:
-		return true
+		return aspVal?.toQualifiedName
 	}
 }

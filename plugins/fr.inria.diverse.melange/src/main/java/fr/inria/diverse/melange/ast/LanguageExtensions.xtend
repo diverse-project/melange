@@ -84,7 +84,7 @@ class LanguageExtensions
 	}
 
 	def boolean getIsComplete(Language l) {
-		return l.name !== null && l.syntax !== null && l.syntax.isComplete && l.semantics.forall[isComplete]
+		return l.name !== null && l.syntax !== null && l.syntax.isComplete && l.semantics.forall[isValid]
 	}
 
 	/**
@@ -488,7 +488,7 @@ class LanguageExtensions
 		//Copy aspects files
 		val copiedAspect = newArrayList
 		aspects.forEach[asp |
-			if (asp.isComplete) {
+			if (asp.isValid) {
 				if (asp.aspectTypeRef.canBeCopiedFor(l.syntax)) {
 					
 					var className = asp.aspectedClass?.name
