@@ -4,8 +4,8 @@ import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.ASTHelper
 import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.ast.LanguageExtensions
-import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
+import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.builder.LanguageBuilder
 import fr.inria.diverse.melange.builder.ModelTypingSpaceBuilder
 import fr.inria.diverse.melange.metamodel.melange.Import
@@ -39,7 +39,7 @@ class LanguageProcessor extends DispatchMelangeProcessor{
 	@Inject EPackageProvider packageProvider
 	@Inject extension AspectExtensions
 	@Inject extension LanguageExtensions
-	@Inject extension MetamodelExtensions
+	@Inject extension ModelingElementExtensions
 	@Inject extension ModelTypeExtensions
 	@Inject JvmTypesBuilder typesBuilder
 	@Inject JvmTypeReferenceBuilder.Factory typeRefBuilderFactory
