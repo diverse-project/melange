@@ -19,7 +19,6 @@ class ASTHelper
 {
 	@Inject extension ModelingElementExtensions
 	@Inject extension LanguageExtensions
-	@Inject extension MetamodelExtensions
 	Logger logger = Logger.getLogger(ASTHelper)
 
 	def void saveAs(ModelTypingSpace root, String uri) {
