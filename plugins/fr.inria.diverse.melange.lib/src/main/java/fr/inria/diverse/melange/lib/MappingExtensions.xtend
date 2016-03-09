@@ -1,5 +1,6 @@
 package fr.inria.diverse.melange.lib
 
+import com.google.inject.Inject
 import fr.inria.diverse.melange.metamodel.melange.Mapping
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.ENamedElement
@@ -7,11 +8,13 @@ import org.eclipse.emf.ecore.EStructuralFeature
 
 class MappingExtensions
 {
+	@Inject extension EcoreExtensions
+
 	def boolean namesMatch(Mapping m, ENamedElement e1, ENamedElement e2) {
 		return
 			if (e1 === null || e2 === null)
 				false
-			else if (e1.name == e2.name)
+			else if (e1.uniqueId == e2.uniqueId)
 				true
 			else if (m !== null) {
 				if (e1 instanceof EClass && e2 instanceof EClass)
