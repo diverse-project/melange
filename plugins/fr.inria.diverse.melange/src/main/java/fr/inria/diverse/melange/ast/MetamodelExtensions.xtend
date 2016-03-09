@@ -28,14 +28,6 @@ class MetamodelExtensions
 		return !mm.pkgs.filterNull.empty && !mm.genmodels.filterNull.empty
 	}
 
-	def EClass findClass(Metamodel mm, String clsName) {
-		return mm.allClasses.filter(EClass).findFirst[name == clsName]
-	}
-
-	def EClassifier findClassifier(Metamodel mm, String clsName) {
-		return mm.allClassifiers.filter(EClassifier).findFirst[name == clsName]
-	}
-
 	def EClassifier findClassifierFor(Metamodel mm, String clsName) {
 		val cls = mm.findClass(clsName)
 		if (cls !== null)
