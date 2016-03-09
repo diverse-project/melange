@@ -42,7 +42,7 @@ class MelangePreferencesAccess {
 		return isUserLaunch
 	}
 
-	def boolean enableCodeGenerator(){
+	def void enableCodeGenerator(){
 		isUserLaunch = true
 	}
 	

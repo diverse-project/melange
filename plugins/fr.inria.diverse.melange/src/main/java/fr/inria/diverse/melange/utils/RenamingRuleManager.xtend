@@ -40,7 +40,7 @@ class RenamingRuleManager{
 	 * because the root is renamed by AspectCopier. 
 	 */
 	def void storeRenamingRules(List<PackageBinding> renamingRules, String newRootName){
-		if(renamingRules != null){
+		if(renamingRules !== null){
 			renamingRules.forEach[packRule |
 				val packFrom = packRule.from.renameRoot(newRootName)
 				val packTo = packRule.to.renameRoot(newRootName)
@@ -71,7 +71,7 @@ class RenamingRuleManager{
 				val name = op.simpleName
 				
 				val rule = propertiesRules.findFirst[rule | rule.key == targetClass+"."+name]
-				if(rule != null){
+				if(rule !== null){
 					propertiesAspectRules.put(type.simpleName, rule)
 				}
 			]
@@ -119,15 +119,15 @@ class RenamingRuleManager{
 		return propertiesAspectRules.get(aspectName)
 	}
 	
-	def getAllPackageRules(){
+	def List<Pair<String, String>> getAllPackageRules(){
 		return packageRules
 	}
 	
-	def getAllClassRules(){
+	def List<Pair<String, String>> getAllClassRules(){
 		return classRules
 	}
 	
-	def getAllPropertyRules(){
+	def List<Pair<String, String>> getAllPropertyRules(){
 		return propertiesRules
 	}
 	
@@ -150,7 +150,7 @@ class RenamingRuleManager{
 	 */
 	def String applyRootRenaming(String qualifiedName){
 		return 
-			if(originalRootName != null &&
+			if(originalRootName !== null &&
 				qualifiedName.indexOf(originalRootName) != -1 &&
 				qualifiedName.charAt(qualifiedName.indexOf(originalRootName) + originalRootName.length).toString == "."
 			){
@@ -165,7 +165,7 @@ class RenamingRuleManager{
 	
 	def void storeRootName(List<PackageBinding> renamingRules, String rootName){
 		val onePack = renamingRules.head?.from
-		if(onePack != null){
+		if(onePack !== null){
 			originalRootName = if(onePack.indexOf(".") != -1){
 				onePack.substring(0,onePack.indexOf("."))
 			}

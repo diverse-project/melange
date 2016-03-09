@@ -42,7 +42,6 @@ class LanguageExtensions
 	@Inject extension MetamodelExtensions
 	@Inject extension NamingHelper
 	@Inject extension AspectExtensions aspectExtension
-	@Inject extension ModelTypeExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension IQualifiedNameConverter
 	@Inject extension EclipseProjectHelper
@@ -412,9 +411,9 @@ class LanguageExtensions
 				var Language superlang = null
 				var List<PackageBinding> renamingRules = null
 				if (op instanceof Slice){
-					val targetLang = (op as Slice).targetLanguage
-					superlang = (op as Slice).owningLanguage
-					renamingRules = (op as Slice).mappingRules
+					val targetLang = op.targetLanguage
+					superlang = op.owningLanguage
+					renamingRules = op.mappingRules
 					
 					val opBuilders = modelTypingSpaceBuilder.findBuilder(superlang).subBuilders
 					val sliceBuilder = opBuilders.findFirst[source == op]
@@ -425,19 +424,19 @@ class LanguageExtensions
 					
 				} 
 				else if (op instanceof Merge){
-					aspects = (op as Merge).targetLanguage.semantics
-					superlang = (op as Merge).owningLanguage
-					renamingRules = (op as Merge).mappingRules
+					aspects = op.targetLanguage.semantics
+					superlang = op.owningLanguage
+					renamingRules = op.mappingRules
 				}
 				
-				if(aspects != null && superlang != null){
-					val orderedAspects = 
-						if(superlang.isGeneratedByMelange){
-							aspects
-						}
-						else{
-							aspects.reverseView
-						}
+				if(aspects !== null && superlang !== null){
+//					val orderedAspects = 
+//						if(superlang.isGeneratedByMelange){
+//							aspects
+//						}
+//						else{
+//							aspects.reverseView
+//						}
 					val rulesManager = new RenamingRuleManager(renamingRules, aspects, newRootName, aspectExtension)
 					copyAspects(l,aspects,#[rulesManager])
 				}
@@ -493,10 +492,9 @@ class LanguageExtensions
 				if (asp.aspectTypeRef.canBeCopiedFor(l.syntax)) {
 					
 					var className = asp.aspectedClass?.name
-					var classFqName = asp.aspectedClass?.fullyQualifiedName
 					val classNameTmp = className
 					val renaming = rulesManagers.map[getClassRule(classNameTmp?.toString)].filterNull.head
-					if(renaming != null) className = renaming.value.substring(renaming.value.lastIndexOf(".")+1)
+					if(renaming !== null) className = renaming.value.substring(renaming.value.lastIndexOf(".")+1)
 					
 					if(l.syntax.findClass(className) !== null || !asp.hasAspectAnnotation){
 						copiedAspect += asp
@@ -544,7 +542,7 @@ class LanguageExtensions
 		]
 	}
 	
-	def getAllRulesManagers(Language l){
+	def List<RenamingRuleManager> getAllRulesManagers(Language l){
 		val rulesManagers = newArrayList
 		l.operators.forEach[op |
 			var List<PackageBinding> renamingRules = null
@@ -635,7 +633,6 @@ class LanguageExtensions
 	 * Note: assume semantics from {@link language} dependencies are made.
 	 */
 	private def void makeAllSemantic(Language language) {
-		val typeRefBuilder = builderFactory.create(language.eResource.resourceSet)
 		//with
 		language.updateLocalAspects
 		

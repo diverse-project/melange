@@ -102,7 +102,7 @@ class ModelingElementExtensions
 		if (pkgUri !== null)
 			rootPkg.nsURI = pkgUri
 
-		val copy = EcoreUtil::copyAll(m.pkgs.filter[ESuperPackage == null].toList)
+		val copy = EcoreUtil::copyAll(m.pkgs.filter[ESuperPackage === null].toList)
 
 		if (m instanceof Metamodel) {
 			val toRemove = <EModelElement>newArrayList

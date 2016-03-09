@@ -5,8 +5,6 @@ import fr.inria.diverse.melange.adapters.EListAdapter
 import fr.inria.diverse.melange.adapters.EObjectAdapter
 import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.ast.LanguageExtensions
-import fr.inria.diverse.melange.ast.MetamodelExtensions
-import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
@@ -18,7 +16,6 @@ import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.utils.AspectToEcore
 import fr.inria.diverse.melange.utils.TypeReferencesHelper
 import java.util.Collection
-import org.eclipse.emf.codegen.ecore.genmodel.GenClass
 import org.eclipse.emf.common.util.EMap
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
@@ -46,10 +43,8 @@ class MetaclassAdapterInferrer
 	@Inject extension JvmModelInferrerHelper
 	@Inject extension JvmTypesBuilder
 	@Inject extension NamingHelper
-	@Inject extension ModelTypeExtensions
 	@Inject extension AspectExtensions
 	@Inject extension ModelingElementExtensions
-	@Inject extension MetamodelExtensions
 	@Inject extension LanguageExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension AspectToEcore
@@ -628,19 +623,19 @@ class MetaclassAdapterInferrer
 		return ref.type !== null && ref.type.simpleName != "void" && ref.type.simpleName != "null"
 	}
 
-	private def JvmTypeReference wrapperIfPrimitiveType(JvmTypeReference ref) {
-		return
-			switch (ref.simpleName) {
-				case "int": Integer.typeRef
-				case "float": Float.typeRef
-				case "boolean": Boolean.typeRef
-				case "double": Double.typeRef
-				case "short": Short.typeRef
-				case "byte": Byte.typeRef
-				case "char": Character.typeRef
-				default: ref
-			}
-	}
+//	private def JvmTypeReference wrapperIfPrimitiveType(JvmTypeReference ref) {
+//		return
+//			switch (ref.simpleName) {
+//				case "int": Integer.typeRef
+//				case "float": Float.typeRef
+//				case "boolean": Boolean.typeRef
+//				case "double": Double.typeRef
+//				case "short": Short.typeRef
+//				case "byte": Byte.typeRef
+//				case "char": Character.typeRef
+//				default: ref
+//			}
+//	}
 
 	private def Iterable<Aspect> sortByOverridingPriority(Iterable<Aspect> aspects) {
 		return aspects.sortWith[aspA, aspB |

@@ -3,7 +3,6 @@ package fr.inria.diverse.melange.jvmmodel
 import com.google.inject.Inject
 import fr.inria.diverse.melange.adapters.EListAdapter
 import fr.inria.diverse.melange.adapters.EObjectAdapter
-import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
@@ -28,7 +27,6 @@ class MetaclassMapperInferrer
 	@Inject extension NamingHelper
 	@Inject extension EcoreExtensions
 	@Inject extension MelangeTypesBuilder
-	@Inject extension ModelTypeExtensions
 	@Inject extension ModelingElementExtensions
 	@Inject extension JvmAnnotationReferenceBuilder.Factory jvmAnnotationReferenceBuilderFactory
 	
@@ -60,7 +58,7 @@ class MetaclassMapperInferrer
 
 			targetClass.EAllAttributes.forEach[targetAttr |
 				val propBinding = binding.properties.findFirst[propBinding | propBinding.to == targetAttr.name]
-				if(propBinding != null){
+				if(propBinding !== null){
 					val sourceAttr = sourceClass.EAllAttributes.findFirst[name == propBinding.from]
 					processAttribute(sourceAttr,targetAttr, targetMT, jvmCls)
 				}
@@ -70,7 +68,7 @@ class MetaclassMapperInferrer
 			]
 			targetClass.EAllReferences.forEach[targetRef |
 				val propBinding = binding.properties.findFirst[propBinding | propBinding.to == targetRef.name]
-				if(propBinding != null){
+				if(propBinding !== null){
 					val sourceRef = sourceClass.EAllReferences.findFirst[name == propBinding.from]
 					processReference(sourceRef,targetRef,sourceModel, targetMT, jvmCls)
 				}
@@ -92,7 +90,7 @@ class MetaclassMapperInferrer
 		jvmCls.members += targetMT.toMethod(targetAttr.getterName, attrType)[
 //			annotations += Override.annotationRef
 
-			if(sourceAttr == null){
+			if(sourceAttr === null){
 				body = '''
 					throw new UnsupportedOperationException("This attribute is not mapped");
 				'''
@@ -112,7 +110,7 @@ class MetaclassMapperInferrer
 //				annotations += Override.annotationRef
 				parameters += targetMT.toParameter("o", attrType)
 
-				if(sourceAttr == null){
+				if(sourceAttr === null){
 					body = '''
 						throw new UnsupportedOperationException("This attribute is not mapped");
 					'''
@@ -145,7 +143,7 @@ class MetaclassMapperInferrer
 			jvmCls.members += targetMT.toMethod(targetRef.getterName, refType)[
 //				annotations += Override.annotationRef
 
-				if(sourceRef == null){
+				if(sourceRef === null){
 					body = '''
 						throw new UnsupportedOperationException("This method is not mapped");
 					'''
@@ -166,7 +164,7 @@ class MetaclassMapperInferrer
 //				annotations += Override.annotationRef
 				parameters += targetMT.toParameter("o", refType)
 
-				if(sourceRef == null){
+				if(sourceRef === null){
 					body = '''
 						throw new UnsupportedOperationException("This method is not mapped");
 					'''

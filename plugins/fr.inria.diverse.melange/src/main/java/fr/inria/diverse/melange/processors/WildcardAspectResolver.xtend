@@ -4,8 +4,9 @@ import com.google.inject.Inject
 import fr.inria.diverse.melange.metamodel.melange.MelangeFactory
 import fr.inria.diverse.melange.metamodel.melange.Weave
 import java.util.List
-import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.core.runtime.CoreException
 import org.eclipse.jdt.core.IPackageFragment
+import org.eclipse.jdt.core.JavaModelException
 import org.eclipse.jdt.core.search.IJavaSearchConstants
 import org.eclipse.jdt.core.search.SearchEngine
 import org.eclipse.jdt.core.search.SearchMatch
@@ -37,12 +38,16 @@ class WildcardAspectResolver extends DispatchMelangeProcessor
 				if (match.element instanceof IPackageFragment) {
 					val pkg = match.element as IPackageFragment
 
-					matches +=
-						pkg.children
-						// No Context/Properties classes generated from  @Aspect
-						.filter[!elementName.endsWith("AspectContext.java")
-								&& !elementName.endsWith("AspectProperties.java")]
-						.map['''«pkg.elementName».«elementName.substring(0, elementName.length - 5)»''']
+					try {
+						matches +=
+							pkg.children
+							// No Context/Properties classes generated from  @Aspect
+							.filter[!elementName.endsWith("AspectContext.java")
+									&& !elementName.endsWith("AspectProperties.java")]
+							.map['''«pkg.elementName».«elementName.substring(0, elementName.length - 5)»''']
+					} catch (JavaModelException e) {
+						e.printStackTrace
+					}
 				}
 			}
 		}
@@ -54,13 +59,17 @@ class WildcardAspectResolver extends DispatchMelangeProcessor
 			SearchPattern.R_EXACT_MATCH//.bitwiseOr(SearchPattern.R_CASE_SENSITIVE)
 		)
 
-		engine.search(
-			pattern,
-			#[SearchEngine.defaultSearchParticipant],
-			SearchEngine.createWorkspaceScope,
-			requestor,
-			null
-		)
+		try {
+			engine.search(
+				pattern,
+				#[SearchEngine.defaultSearchParticipant],
+				SearchEngine.createWorkspaceScope,
+				requestor,
+				null
+			)
+		} catch (CoreException e) {
+			e.printStackTrace
+		}
 
 		return matches
 	}

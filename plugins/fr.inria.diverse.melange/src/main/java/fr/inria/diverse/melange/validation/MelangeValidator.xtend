@@ -3,7 +3,6 @@ package fr.inria.diverse.melange.validation
 import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.ast.LanguageExtensions
-import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.MatchingHelper
@@ -29,7 +28,6 @@ class MelangeValidator extends AbstractMelangeValidator
 {
 	@Inject extension AspectExtensions
 	@Inject extension LanguageExtensions
-	@Inject extension MetamodelExtensions
 	@Inject extension ModelingElementExtensions
 	@Inject extension EcoreExtensions
 	@Inject ModelUtils modelUtils

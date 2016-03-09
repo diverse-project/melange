@@ -118,7 +118,7 @@ class EcoreExtensions
 		val indexOf = clsName.indexOf(".")
 		if(indexOf == -1){
 			//Simple name
-			pkg.EClassifiers.filter(EClass).findFirst[name == clsName]
+			return pkg.EClassifiers.filter(EClass).findFirst[name == clsName]
 		}
 		else{
 			val withoutRoot = clsName.substring(indexOf+1)
