@@ -75,6 +75,25 @@ class ModelTypeExtensions
 		}
 	}
 
+	def GenModel createTransientGenmodel(ModelType mt) {
+		val resSet = new ResourceSetImpl
+		resSet.URIConverter.URIMap.putAll(EcorePlugin::computePlatformURIMap(true))
+		val ecoreGmUri = EcorePlugin::getEPackageNsURIToGenModelLocationMap(true).get(EcorePackage.eNS_URI)
+		val ecoreGmRes = resSet.getResource(ecoreGmUri, true)
+		val ecoreGm = ecoreGmRes.contents.head as GenModel
+
+		return GenModelFactory.eINSTANCE.createGenModel => [
+			complianceLevel = GenJDKLevel.JDK70_LITERAL
+			modelDirectory = helper.getProject(mt.eResource).getFolder("src-gen").fullPath.toString
+			modelName = mt.name
+			initialize(mt.pkgs)
+			genPackages.forEach[gp |
+				gp.basePackage = mt.fullyQualifiedName.toString.toLowerCase
+			]
+			usedGenPackages.add(ecoreGm.genPackages.head)
+		]
+	}
+
 	def void generateModelTypeCode(GenModel genModel) {
 		val gmUri = "http://www.eclipse.org/emf/2002/GenModel"
 

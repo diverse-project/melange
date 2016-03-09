@@ -43,7 +43,7 @@ class ModelTypeInferrer
 				^abstract = true
 			]
 
-			members += mt.toMethod("getFactory", mt.factoryName.typeRef)[
+			members += mt.toMethod("getFactory", mt.rootFactoryFqn.typeRef)[
 				^abstract = true
 			]
 

@@ -106,13 +106,11 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 						«IF l.resourceType == ResourceType.XTEXT && l.xtextSetupRef !== null»
 							«l.xtextSetupRef.qualifiedName».doSetup() ;
 						«ELSE»
-							«FOR gm : l.syntax.genmodels.filterNull»
-								«FOR gp : gm.genPackages.filterNull»
-									«EPackage.Registry».INSTANCE.put(
-										«gp.packageFqn».eNS_URI,
-										«gp.packageFqn».eINSTANCE
-									) ;
-								«ENDFOR»
+							«FOR gp : l.syntax.allGenPkgs»
+								«EPackage.Registry».INSTANCE.put(
+									«gp.qualifiedPackageInterfaceName».eNS_URI,
+									«gp.qualifiedPackageInterfaceName».eINSTANCE
+								) ;
 							«ENDFOR»
 						«ENDIF»
 					«ENDFOR»
@@ -132,7 +130,7 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 				body = '''
 					«FOR l : root.languages»
 						«LanguageDescriptor» «l.name.toFirstLower» = new «LanguageDescriptorImpl»(
-							"«l.fullyQualifiedName»", "«l.documentation?.replace("\"", "'")?.replace("\n", " ")»", "«l.syntax.packageUri»", "«l.exactType.fullyQualifiedName»"
+							"«l.fullyQualifiedName»", "«l.documentation?.replace("\"", "'")?.replace("\n", " ")»", "«l.syntax.rootPackageUri»", "«l.exactType.fullyQualifiedName»"
 						) ;
 						«FOR mt : l.^implements»
 							«l.name.toFirstLower».addAdapter("«mt.fullyQualifiedName»", «l.syntax.adapterNameFor(mt)».class) ;

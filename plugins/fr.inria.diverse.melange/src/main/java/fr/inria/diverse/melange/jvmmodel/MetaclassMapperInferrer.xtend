@@ -3,8 +3,8 @@ package fr.inria.diverse.melange.jvmmodel
 import com.google.inject.Inject
 import fr.inria.diverse.melange.adapters.EListAdapter
 import fr.inria.diverse.melange.adapters.EObjectAdapter
-import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
+import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.metamodel.melange.ClassBinding
@@ -29,7 +29,7 @@ class MetaclassMapperInferrer
 	@Inject extension EcoreExtensions
 	@Inject extension MelangeTypesBuilder
 	@Inject extension ModelTypeExtensions
-	@Inject extension MetamodelExtensions
+	@Inject extension ModelingElementExtensions
 	@Inject extension JvmAnnotationReferenceBuilder.Factory jvmAnnotationReferenceBuilderFactory
 	
 	extension JvmAnnotationReferenceBuilder jvmAnnotationReferenceBuilder
@@ -48,7 +48,7 @@ class MetaclassMapperInferrer
 		[jvmCls |
 			
 			jvmCls.superTypes += EObjectAdapter.typeRef(sourceModel.typeRef(sourceClass, #[jvmCls]))
-			jvmCls.superTypes += targetMT.interfaceNameFor(targetClass).typeRef
+			jvmCls.superTypes += targetMT.getFqnFor(targetClass).typeRef
 			
 			jvmCls.members += targetMT.toField("adaptersFactory", sourceModel.getMappersFactoryNameFor(targetMT).typeRef)
 

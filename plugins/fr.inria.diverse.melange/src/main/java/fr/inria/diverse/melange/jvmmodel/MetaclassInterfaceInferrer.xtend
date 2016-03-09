@@ -36,7 +36,7 @@ class MetaclassInterfaceInferrer
 		val task = Stopwatches.forTask("generate metaclass interfaces")
 		task.start
 
-		acceptor.accept(mt.toInterface(mt.interfaceNameFor(cls))[intf |
+		acceptor.accept(mt.toInterface(mt.getFqnFor(cls))[intf |
 			intf.superTypes += EObject.typeRef
 		])[intf |
 			cls.ETypeParameters.forEach[p |
@@ -44,7 +44,7 @@ class MetaclassInterfaceInferrer
 			]
 
 			cls.EGenericSuperTypes.forEach[sup |
-				intf.superTypes += mt.interfaceNameFor(sup.EClassifier as EClass).typeRef(
+				intf.superTypes += mt.getFqnFor(sup.EClassifier as EClass).typeRef(
 					sup.ETypeArguments.map[arg | mt.typeRef(arg, #[intf])]
 				)
 			]

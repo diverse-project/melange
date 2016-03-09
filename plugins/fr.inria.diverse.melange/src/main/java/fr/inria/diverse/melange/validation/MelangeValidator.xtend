@@ -5,7 +5,7 @@ import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
-import fr.inria.diverse.melange.ast.NamingHelper
+import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.MatchingHelper
 import fr.inria.diverse.melange.lib.ModelUtils
 import fr.inria.diverse.melange.metamodel.melange.Aspect
@@ -20,6 +20,8 @@ import fr.inria.diverse.melange.metamodel.melange.NamedElement
 import fr.inria.diverse.melange.metamodel.melange.ResourceType
 import fr.inria.diverse.melange.metamodel.melange.Slice
 import fr.inria.diverse.melange.metamodel.melange.Weave
+import org.eclipse.emf.ecore.EClassifier
+import org.eclipse.emf.ecore.EPackage
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.validation.Check
 
@@ -29,7 +31,7 @@ class MelangeValidator extends AbstractMelangeValidator
 	@Inject extension LanguageExtensions
 	@Inject extension MetamodelExtensions
 	@Inject extension ModelingElementExtensions
-	@Inject extension NamingHelper
+	@Inject extension EcoreExtensions
 	@Inject ModelUtils modelUtils
 	@Inject MatchingHelper matchingHelper
 
@@ -291,9 +293,9 @@ class MelangeValidator extends AbstractMelangeValidator
 	}
 
 	@Check
-	def void checkEveryPackageHasAGenPackage(Language l) {
+	def void checkEveryLanguagePackageHasACorrectGenPackage(Language l) {
 		if (!l.isGeneratedByMelange) {
-			val invalidPkgs = l.syntax.pkgs.filter[l.syntax.getGenPackageFor(it) === null]
+			val invalidPkgs = l.syntax.EPackagesWithoutGenPackage
 
 			if (invalidPkgs.size > 0)
 				error(
@@ -302,7 +304,50 @@ class MelangeValidator extends AbstractMelangeValidator
 					MelangePackage.Literals.NAMED_ELEMENT__NAME,
 					MelangeValidationConstants.METAMODEL_NO_GENPACKAGE
 				)
+			else {
+				val invalidCls = l.syntax.EClassifiersWithoutGenClassifier
+
+				if (invalidCls.size > 0)
+					error(
+						'''Unexpected error: cannot find a GenClassifier for: «invalidCls.map[name].join(", ")».''' +
+						''' Please check whether the associated Genmodel is up to date.''',
+						MelangePackage.Literals.NAMED_ELEMENT__NAME,
+						MelangeValidationConstants.METAMODEL_NO_GENPACKAGE
+					)
+			}
 		}
+	}
+
+	@Check
+	def void checkEveryModelTypePackageHasACorrectGenPackage(ModelType mt) {
+		val invalidPkgs = mt.EPackagesWithoutGenPackage
+
+		if (invalidPkgs.size > 0)
+			error(
+				'''Cannot find a GenPackage for: «invalidPkgs.map[name].join(", ")».''' +
+				''' Please check whether the associated Genmodel is up to date.''',
+				MelangePackage.Literals.NAMED_ELEMENT__NAME,
+				MelangeValidationConstants.METAMODEL_NO_GENPACKAGE
+			)
+		else {
+			val invalidCls = mt.EClassifiersWithoutGenClassifier
+
+			if (invalidCls.size > 0)
+				error(
+					'''Cannot find a GenClassifier for: «invalidCls.map[name].join(", ")».''' +
+					''' Please check whether the associated Genmodel is up to date.''',
+					MelangePackage.Literals.NAMED_ELEMENT__NAME,
+					MelangeValidationConstants.METAMODEL_NO_GENPACKAGE
+				)
+		}
+	}
+
+	private def Iterable<EPackage> getEPackagesWithoutGenPackage(ModelingElement m) {
+		return m.pkgs.filter[m.getGenPkgFor(it) === null]
+	}
+
+	private def Iterable<EClassifier> getEClassifiersWithoutGenClassifier(ModelingElement m) {
+		return	m.allClassifiers.filter[!isAspectSpecific && m.getGenClassifierFor(it) === null]
 	}
 
 	@Check

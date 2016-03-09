@@ -3,11 +3,12 @@ package fr.inria.diverse.melange.utils
 import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.ast.LanguageExtensions
-import fr.inria.diverse.melange.ast.MetamodelExtensions
+import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.Language
 import java.util.List
 import org.eclipse.core.resources.IProject
+import org.eclipse.core.resources.IResource
 import org.eclipse.core.resources.IWorkspace
 import org.eclipse.core.resources.IWorkspaceRoot
 import org.eclipse.core.resources.ResourcesPlugin
@@ -24,14 +25,13 @@ import org.eclipse.text.edits.TextEdit
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
-import org.eclipse.core.resources.IResource
 
 class AspectRenamer {
 	
 	@Inject extension IQualifiedNameConverter
 	@Inject extension AspectExtensions
 	@Inject extension LanguageExtensions
-	@Inject extension MetamodelExtensions
+	@Inject extension ModelingElementExtensions
 	@Inject extension IQualifiedNameProvider
 	@Inject JvmTypeReferenceBuilder.Factory builderFactory
 	

@@ -5,8 +5,8 @@ import fr.inria.diverse.melange.adapters.AdaptersFactory
 import fr.inria.diverse.melange.adapters.EObjectAdapter
 import fr.inria.diverse.melange.ast.ASTHelper
 import fr.inria.diverse.melange.ast.LanguageExtensions
-import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
+import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.IMetamodel
@@ -34,7 +34,7 @@ class LanguageInferrer
 	@Inject extension JvmTypesBuilder
 	@Inject extension IQualifiedNameProvider
 	@Inject extension NamingHelper
-	@Inject extension MetamodelExtensions
+	@Inject extension ModelingElementExtensions
 	@Inject extension ModelTypeExtensions
 	@Inject extension LanguageExtensions
 	@Inject extension EcoreExtensions

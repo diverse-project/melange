@@ -55,7 +55,7 @@ class LanguageAdapterInferrer
 
 		acceptor.accept(l.toClass(l.syntax.factoryAdapterNameFor(superType)))
 		[
-			superTypes += superType.factoryName.typeRef
+			superTypes += superType.rootFactoryFqn.typeRef
 			superTypes += EFactoryImpl.typeRef
 
 			members += l.toField("adaptersFactory", l.syntax.getAdaptersFactoryNameFor(superType).typeRef)[
@@ -93,13 +93,13 @@ class LanguageAdapterInferrer
 				annotations += Override.annotationRef
 
 				body = '''
-					return get«superType.packageName»();
+					return get«superType.rootPackageName»();
 				'''
 			]
 
-			members += l.toMethod("get" + superType.packageName, superType.packageFqn.typeRef)[
+			members += l.toMethod("get" + superType.rootPackageName, superType.rootPackageFqn.typeRef)[
 				body = '''
-					return «superType.packageFqn».eINSTANCE;
+					return «superType.rootPackageFqn».eINSTANCE;
 				'''
 			]
 		]
@@ -115,7 +115,7 @@ class LanguageAdapterInferrer
 				'''
 			]
 
-			members += l.toMethod("getFactory", superType.factoryName.typeRef)[
+			members += l.toMethod("getFactory", superType.rootFactoryFqn.typeRef)[
 				annotations += Override.annotationRef
 
 				body = '''

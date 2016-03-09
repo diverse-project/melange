@@ -40,9 +40,9 @@ class LanguageExtensions
 {
 	@Inject extension ModelingElementExtensions
 	@Inject extension MetamodelExtensions
+	@Inject extension NamingHelper
 	@Inject extension AspectExtensions aspectExtension
 	@Inject extension ModelTypeExtensions
-	@Inject extension NamingHelper
 	@Inject extension EcoreExtensions
 	@Inject extension IQualifiedNameConverter
 	@Inject extension EclipseProjectHelper
@@ -399,8 +399,7 @@ class LanguageExtensions
 	 * and update {@link l}'s semantic with new Aspects 
 	 */
 	def void createExternalAspects(Language l) {
-		val newRootName = l.syntax.packageFqn.toQualifiedName.skipLast(1).toString
-		
+		val newRootName = l.syntax.rootPackageNamespace
 		
 		//Copy sem
 		val withAspects = l.getLocalSemantics
@@ -467,7 +466,7 @@ class LanguageExtensions
 		}
 		
 		val typeRefBuilder = builderFactory.create(l.eResource.resourceSet)
-		val targetEmfNamespace = l.syntax.packageFqn.toQualifiedName.skipLast(1).toString
+		val targetEmfNamespace = l.syntax.rootPackageNamespace
 		val targetAspectNamespace = l.aspectTargetNamespace
 		val targetProjectName = l.externalRuntimeName
 		val sourceEmfNamespaces =
@@ -476,7 +475,7 @@ class LanguageExtensions
 //				#[aspects.filter[hasAspectAnnotation].head.aspectTypeRef.targetedNamespace.toString].toSet
 			}
 			else{
-				#[aspects.head.owningLanguage.syntax.packageFqn.toQualifiedName.skipLast(1).toString].toSet //prefixed root package
+				#[aspects.head.owningLanguage.syntax.rootPackageNamespace].toSet //prefixed root package
 			}
 		
 		
@@ -559,7 +558,7 @@ class LanguageExtensions
 				opLang = op.targetLanguage
 			}
 			if(renamingRules !== null){
-				val newRootName = opLang.syntax.packageFqn.toQualifiedName.skipLast(1).toString
+				val newRootName = opLang.syntax.rootPackageNamespace
 				rulesManagers += new RenamingRuleManager(renamingRules, #[], newRootName, aspectExtension)
 			}
 		]
@@ -580,7 +579,7 @@ class LanguageExtensions
 					newArrayList
 			].flatten
 
-		res += l.syntax.pkgs.map[pkg | l.syntax.getGenPackageFor(pkg)].filterNull.map[fqn]
+		res += l.syntax.allGenPkgs.map[packageNamespace]
 
 		return res
 	}

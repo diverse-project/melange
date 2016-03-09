@@ -8,10 +8,15 @@ import fr.inria.diverse.melange.utils.EPackageProvider
 import java.io.IOException
 import java.util.List
 import org.eclipse.emf.codegen.ecore.genmodel.GenClass
+import org.eclipse.emf.codegen.ecore.genmodel.GenClassifier
+import org.eclipse.emf.codegen.ecore.genmodel.GenDataType
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
+import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
+import org.eclipse.emf.ecore.EDataType
+import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EModelElement
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EReference
@@ -37,13 +42,44 @@ class ModelingElementExtensions
 		return !m.ecoreUri.nullOrEmpty && m.ecoreUri.endsWith(".xcore")
 	}
 
-	def GenClass getGenClassFor(ModelingElement m, EClass cls) {
+	def Iterable<GenPackage> getAllGenPkgs(ModelingElement m) {
+		return m.genmodels.map[allGenPkgs].flatten
+	}
+
+	def GenPackage getGenPkgFor(ModelingElement m, EPackage pkg) {
+		return m.allGenPkgs.findFirst[getEcorePackage.name == pkg.name]
+	}
+
+	def GenClassifier getGenClassifierFor(ModelingElement m, EClassifier cls) {
+		return m.getGenPkgFor(cls.EPackage).genClassifiers.findFirst[name == cls.name]
+	}
+
+	def GenClass getGenClsFor(ModelingElement m, EClass cls) {
+		return m.getGenPkgFor(cls.EPackage).genClasses.findFirst[name == cls.name]
+	}
+
+	def GenDataType getGenDataTypeFor(ModelingElement m, EDataType dt) {
 		return
-			m.genmodels
-			.map[allGenPkgs]
-			.flatten
-			.findFirst[getEcorePackage.name == cls.EPackage.name]
-			.genClasses.findFirst[name == cls.name]
+			if (dt instanceof EEnum)
+				m.getGenPkgFor(dt.EPackage).genEnums.findFirst[name == dt.name]
+			else
+				m.getGenPkgFor(dt.EPackage).genDataTypes.findFirst[name == dt.name]
+	}
+
+	def String getRootPackageUri(ModelingElement m) {
+		return m.allGenPkgs.head.getEcorePackage.nsURI
+	}
+
+	def List<EPackage> getAllSubPkgs(ModelingElement m) {
+		return m.pkgs.head.allSubPkgs
+	}
+
+	def Iterable<EClassifier> getAllClassifiers(ModelingElement m) {
+		return m.pkgs.map[getAllClassifiers].flatten
+	}
+
+	def Iterable<EClass> getAllClasses(ModelingElement m) {
+		return m.pkgs.map[getAllClasses].flatten
 	}
 
 	/**

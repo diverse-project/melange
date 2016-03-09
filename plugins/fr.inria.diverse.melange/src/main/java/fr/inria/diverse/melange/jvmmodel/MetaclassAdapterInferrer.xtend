@@ -18,6 +18,7 @@ import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.utils.AspectToEcore
 import fr.inria.diverse.melange.utils.TypeReferencesHelper
 import java.util.Collection
+import org.eclipse.emf.codegen.ecore.genmodel.GenClass
 import org.eclipse.emf.common.util.EMap
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
@@ -102,6 +103,10 @@ class MetaclassAdapterInferrer
 				'''
 			]
 
+			if (mm.getGenClassifierFor(cls) === null) {
+				throw new RuntimeException("No genCls for " + cls)
+			}
+
 			cls.EAllAttributes.filter[!isAspectSpecific].forEach[processAttribute(mmCls, mm, superType, mapping, jvmCls)]
 			cls.EAllReferences.filter[!isAspectSpecific].forEach[processReference(mmCls, mm, superType, mapping, jvmCls)]
 			cls.EAllOperations.sortByOverridingPriority.filter[!hasSuppressedVisibility && !isAspectSpecific].forEach[processOperation(mm, superType, jvmCls)]
@@ -139,7 +144,7 @@ class MetaclassAdapterInferrer
 
 				if (attr.EType instanceof EEnum)
 					body = '''
-						adaptee.«mmAttr.setterName»(«mm.getFqnFor(superType, attr.EType)».get(o.getValue())) ;
+						adaptee.«mmAttr.setterName»(«mm.getFqnFor(attr.EType)».get(o.getValue())) ;
 					'''
 				else
 					body = '''
@@ -251,7 +256,7 @@ class MetaclassAdapterInferrer
 						((«mm.adapterNameFor(superType, p.EType as EClass)») «p.name»).getAdaptee()
 					«ENDIF»
 				«ELSEIF p.EType instanceof EEnum»
-					«mm.getFqnFor(superType, p.EType)».get(«p.name».getValue())
+					«mm.getFqnFor(p.EType)».get(«p.name».getValue())
 				«ELSE»
 					«p.name»
 				«ENDIF»«ENDFOR»
@@ -424,7 +429,7 @@ class MetaclassAdapterInferrer
 	}
 
 	private def void processReflectiveLayer(EClass cls, Metamodel mm, ModelType superType, JvmGenericType jvmCls) {
-		val genCls = superType.getGenClassFor(cls)
+		val genCls = superType.getGenClsFor(cls)
 		val negativeOffsetCorrection =
 			if (genCls.hasOffsetCorrection) " - " + genCls.getOffsetCorrectionField(null)
 			else ""
@@ -433,7 +438,7 @@ class MetaclassAdapterInferrer
 			else ""
 
 		genCls.allGenFeatures
-		.filter[hasEDefault && !volatile]
+		.filter[hasEDefault && !volatile && !ecoreFeature.many]
 		.forEach[genFeature |
 			jvmCls.members += mm.toField(genFeature.EDefault, genFeature.getImportedType(genCls).typeRef)[
 				visibility = JvmVisibility::PROTECTED
@@ -447,7 +452,7 @@ class MetaclassAdapterInferrer
 			annotations += Override.annotationRef
 
 			body = '''
-				return «superType.packageFqn».eINSTANCE.get«cls.name»();
+				return «superType.rootPackageFqn».eINSTANCE.get«cls.name»();
 			'''
 		]
 

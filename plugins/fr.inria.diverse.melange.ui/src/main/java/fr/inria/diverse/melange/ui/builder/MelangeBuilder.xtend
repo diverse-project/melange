@@ -3,7 +3,6 @@ package fr.inria.diverse.melange.ui.builder
 import com.google.inject.Inject
 import com.google.inject.Provider
 import fr.inria.diverse.melange.ast.LanguageExtensions
-import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
@@ -36,7 +35,6 @@ class MelangeBuilder
 	@Inject EclipseProjectHelper eclipseHelper
 	@Inject ExtensionPointProcessor extensionProcessor
 	@Inject extension LanguageExtensions
-	@Inject extension MetamodelExtensions
 	@Inject extension ModelingElementExtensions
 	@Inject extension ModelTypeExtensions
 	@Inject extension EcoreExtensions
@@ -57,7 +55,7 @@ class MelangeBuilder
 
 		monitor.beginTask("Generating interfaces", 10 * nb)
 
-		mts.forEach[mt |
+		mts.filter[isExtracted].forEach[mt |
 			if (monitor.canceled)
 				throw new OperationCanceledException
 
