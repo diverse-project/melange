@@ -1,7 +1,6 @@
 package fr.inria.diverse.melange.processors
 
 import com.google.inject.Inject
-import fr.inria.diverse.melange.algebra.ModelTypeAlgebra
 import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.ast.MetamodelExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
