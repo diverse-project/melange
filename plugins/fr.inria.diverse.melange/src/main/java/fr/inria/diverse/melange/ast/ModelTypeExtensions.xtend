@@ -1,10 +1,10 @@
 package fr.inria.diverse.melange.ast
 
 import com.google.inject.Inject
-import fr.inria.diverse.melange.algebra.ModelTypeAlgebra
 import fr.inria.diverse.melange.codegen.ModelTypeGeneratorAdapterFactory
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
+import fr.inria.diverse.melange.lib.MatchingHelper
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import java.io.IOException
 import java.util.List
@@ -34,7 +34,7 @@ class ModelTypeExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension IQualifiedNameProvider
 	@Inject extension EclipseProjectHelper
-	@Inject ModelTypeAlgebra algebra
+	@Inject MatchingHelper matchingHelper
 	@Inject EclipseProjectHelper helper
 
 	def String getInferredEcoreUri(ModelType mt) {
@@ -166,7 +166,7 @@ class ModelTypeExtensions
 	}
 
 	def boolean isSubtypeOf(ModelType mt1, ModelType mt2) {
-		return algebra.isSubtypeOf(mt1, mt2)
+		return matchingHelper.match(mt1.pkgs, mt2.pkgs, null)
 	}
 
 	def EClassifier findClassifier(ModelType mt, String clsName) {

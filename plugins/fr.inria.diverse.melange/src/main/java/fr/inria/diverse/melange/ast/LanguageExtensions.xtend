@@ -1,10 +1,10 @@
 package fr.inria.diverse.melange.ast
 
 import com.google.inject.Inject
-import fr.inria.diverse.melange.algebra.ModelTypeAlgebra
 import fr.inria.diverse.melange.builder.ModelTypingSpaceBuilder
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
+import fr.inria.diverse.melange.lib.MatchingHelper
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.Import
 import fr.inria.diverse.melange.metamodel.melange.Inheritance
@@ -47,11 +47,11 @@ class LanguageExtensions
 	@Inject extension IQualifiedNameConverter
 	@Inject extension EclipseProjectHelper
 	@Inject extension IQualifiedNameProvider
-	@Inject ModelTypeAlgebra algebra
 	@Inject AspectCopier copier
 	@Inject AspectRenamer renamer
 	@Inject JvmTypesBuilder typesBuilder
 	@Inject JvmTypeReferenceBuilder.Factory builderFactory
+	@Inject MatchingHelper matchingHelper
 	@Inject ModelTypingSpaceBuilder modelTypingSpaceBuilder
 
 	def boolean isInError(Language l) {
@@ -209,8 +209,8 @@ class LanguageExtensions
 			]
 	}
 
-	def boolean isTypedBy(Language l, ModelType mt) {
-		return algebra.isTypedBy(l, mt)
+	def boolean doesImplement(Language l, ModelType mt) {
+		return matchingHelper.match(l.syntax.pkgs, mt.pkgs, l.mappings.findFirst[to == mt])
 	}
 
 	def boolean hasSuperLanguage(Language l) {

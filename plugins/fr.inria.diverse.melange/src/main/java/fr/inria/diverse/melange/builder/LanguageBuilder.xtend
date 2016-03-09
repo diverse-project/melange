@@ -2,7 +2,6 @@ package fr.inria.diverse.melange.builder
 
 import com.google.inject.Inject
 import com.google.inject.Injector
-import fr.inria.diverse.melange.algebra.EmfCompareAlgebra
 import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.EcoreMerger
@@ -21,7 +20,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 import fr.inria.diverse.melange.ast.LanguageExtensions
 
 class LanguageBuilder extends AbstractBuilder {
-	@Inject EmfCompareAlgebra algebra
 	@Inject ErrorHelper errorHelper
 	@Inject Injector injector
 	@Inject extension AspectExtensions
