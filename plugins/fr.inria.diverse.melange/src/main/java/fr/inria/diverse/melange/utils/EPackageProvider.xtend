@@ -115,6 +115,11 @@ class EPackageProvider
 
 					if (gm !== null)
 						genmodels.put(m.fqn, gm)
+					else if (m instanceof ModelType) {
+						if (m.isExtracted) {
+							genmodels.put(m.fqn, m.createTransientGenmodel)
+						}
+					}
 				]
 			}
 		}

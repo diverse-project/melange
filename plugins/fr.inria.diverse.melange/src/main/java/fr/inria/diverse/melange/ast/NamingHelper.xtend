@@ -5,27 +5,28 @@ import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
+import fr.inria.diverse.melange.metamodel.melange.ModelingElement
 import fr.inria.diverse.melange.metamodel.melange.Transformation
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EDataType
-import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.xtext.common.types.JvmOperation
+import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.naming.QualifiedName
 
 class NamingHelper
 {
 	@Inject extension ModelingElementExtensions
-	@Inject extension MetamodelExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension IQualifiedNameProvider
+	@Inject extension IQualifiedNameConverter
 
 	def String normalize(QualifiedName name) {
 		val res = new StringBuilder
@@ -36,77 +37,50 @@ class NamingHelper
 		return res.toString
 	}
 
-	def String getFqn(GenPackage gp) {
-		return gp.getFqnFor("")
+	def String getRootPackageNamespace(ModelingElement m) {
+		return m.allGenPkgs.head.packageNamespace
 	}
 
-	def String getFqnFor(GenPackage gp, String name) {
-		val segments = newArrayList
-
-		if (!gp.basePackage.nullOrEmpty)
-			segments += gp.basePackage
-		if (!gp.packageName.nullOrEmpty)
-			segments += gp.packageName
-		if (!gp.interfacePackageSuffix.nullOrEmpty)
-			segments += gp.interfacePackageSuffix
-		if (!name.nullOrEmpty)
-			segments += name
-
-		return QualifiedName::create(segments).toString
+	def String getRootPackageName(ModelingElement m) {
+		return m.allGenPkgs.head.packageInterfaceName
 	}
 
-	def String getPackageFqn(GenPackage gp) {
-		return gp.getFqnFor(gp.prefix + "Package")
+	def String getRootPackageFqn(ModelingElement m) {
+		return m.allGenPkgs.head.qualifiedPackageInterfaceName
 	}
 
-	def String getFactoryFqn(GenPackage gp) {
-		return gp.getFqnFor(gp.prefix + "Factory")
+	def String getPackageNamespace(GenPackage gp) {
+		return gp.qualifiedPackageInterfaceName.toQualifiedName.skipLast(1).toString
 	}
 
-	def String getPackageUri(GenPackage gp) {
-		return gp.getEcorePackage.nsURI
+	def String getRootFactoryFqn(ModelingElement m) {
+		return m.allGenPkgs.head.qualifiedFactoryInterfaceName
 	}
 
-	def GenPackage getGenPackageFor(Metamodel mm, EPackage pkg) {
+	def String getFactoryFqnFor(ModelingElement m, EPackage pkg) {
+		return m.getGenPkgFor(pkg).qualifiedFactoryInterfaceName
+	}
+
+	def String getFqnFor(ModelingElement m, EClassifier cls) {
 		return
-			mm.genmodels
-			.map[allGenPkgs]
-			.flatten
-			.findFirst[getEcorePackage.name == pkg.name]
+			switch (cls) {
+				EClass:    m.getGenClsFor(cls).qualifiedInterfaceName
+				EDataType: m.getGenDataTypeFor(cls).qualifiedInstanceClassName
+			}
 	}
 
-	def String getFqnFor(Metamodel mm, ModelType mt, EClassifier cls) {
-		val mapping = mm.owningLanguage.mappings.findFirst[to == mt]
-		val mappingName = mapping?.rules?.findFirst[to == cls.name]?.from
-		val realName = mappingName ?: cls.name
-
-		return
-			if (cls instanceof EClass || cls instanceof EEnum)
-				mm.getGenPackageFor(mm.pkgs.findFirst[EClassifiers.exists[name == realName]])
-				  .getFqnFor(realName)
-			else
-				cls.instanceClass?.name ?: cls.instanceClassName
-	}
-
-	def String getFqnFor(Metamodel mm, EClassifier cls) {
-		return mm.getFqnFor(null, cls)
-	}
-
-	def String getPackageFqn(Metamodel mm) {
-		return mm.genmodels.head.genPackages.head.packageFqn
-	}
-
-	def String getPackageUri(Metamodel mm) {
-		return mm.genmodels.head.genPackages.head.packageUri
-	}
-
-	def String getFactoryFqn(Metamodel mm) {
-		return mm.genmodels.head.genPackages.head.factoryFqn
-	}
-
-	def String getFactoryFqnFor(Metamodel mm, EPackage pkg) {
-		return	mm.getGenPackageFor(pkg).factoryFqn
-	}
+//	def String getFqnFor(Metamodel mm, ModelType mt, EClassifier cls) {
+//		val mapping = mm.owningLanguage.mappings.findFirst[to == mt]
+//		val mappingName = mapping?.rules?.findFirst[to == cls.name]?.from
+//		val realName = mappingName ?: cls.name
+//
+//		return
+//			if (cls instanceof EClass || cls instanceof EEnum)
+//				mm.getGenPackageFor(mm.pkgs.findFirst[EClassifiers.exists[name == realName]])
+//				  .getFqnFor(realName)
+//			else
+//				cls.instanceClass?.name ?: cls.instanceClassName
+//	}
 
 	def String getAdaptersFactoryNameFor(Metamodel mm, ModelType mt) {
 		return mm.owningLanguage.fullyQualifiedName.append("adapters").append(mt.fullyQualifiedName.lastSegment).toLowerCase.append(mt.name + "AdaptersFactory").normalize.toString
@@ -114,35 +88,6 @@ class NamingHelper
 	
 	def String getMappersFactoryNameFor(Metamodel sourceModel, ModelType targetMT) {
 		return sourceModel.owningLanguage.fullyQualifiedName.append("mappers").append(targetMT.fullyQualifiedName.lastSegment).toLowerCase.append(targetMT.name + "MappersFactory").normalize.toString
-	}
-
-	def String getFqnFor(ModelType mt, EClassifier cls) {
-		return
-			switch (cls) {
-				EClass:
-					mt.interfaceNameFor(cls)
-				EEnum:
-					mt.interfaceNameFor(cls)
-				EDataType:
-					cls.instanceClass.name ?: cls.instanceTypeName
-			}
-	}
-
-	def String getPackageName(ModelType mt) {
-		return mt.pkgs.head.name.toFirstUpper + "Package"
-	}
-
-	def String getPackageFqn(ModelType mt) {
-		return mt.fullyQualifiedName.toLowerCase.append(mt.pkgs.head.name).append(mt.pkgs.head.name.toFirstUpper + "Package").toString
-	}
-
-	def String getFactoryName(ModelType mt) {
-		return mt.fullyQualifiedName.toLowerCase.append(mt.pkgs.head.name).append(mt.pkgs.head.name.toFirstUpper + "Factory").toString
-	}
-
-	def String interfaceNameFor(ModelType mt, EClassifier cls) {
-//		return mt.fullyQualifiedName.toLowerCase.append(cls.name).normalize.toString
-		return mt.fullyQualifiedName.toLowerCase.append(cls.EPackage.name).append(cls.name).toString
 	}
 
 	def String adapterNameFor(Metamodel mm, ModelType mt, EClass cls) {

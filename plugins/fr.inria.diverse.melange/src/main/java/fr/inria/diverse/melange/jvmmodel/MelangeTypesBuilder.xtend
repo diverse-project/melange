@@ -90,11 +90,11 @@ class MelangeTypesBuilder
 					Object.typeRef
 				EClass:
 					if (!cls.ETypeParameters.empty)
-						ctx.interfaceNameFor(cls).typeRef(
+						ctx.getFqnFor(cls).typeRef(
 							cls.ETypeParameters.map[p | decl.createTypeParameterReference(p.name)]
 						)
 					else if (cls.abstractable)
-						ctx.interfaceNameFor(cls).typeRef
+						ctx.getFqnFor(cls).typeRef
 					else if (cls.instanceClass !== null)
 						cls.instanceClass.name.typeRef
 					else if (cls.instanceTypeName !== null)

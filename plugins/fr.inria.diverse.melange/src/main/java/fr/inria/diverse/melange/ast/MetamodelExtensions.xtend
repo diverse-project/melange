@@ -46,18 +46,6 @@ class MetamodelExtensions
 			return dt
 	}
 
-	def List<EPackage> getAllSubPkgs(Metamodel mm) {
-		return mm.pkgs.head.allSubPkgs
-	}
-
-	def Iterable<EClassifier> getAllClassifiers(Metamodel mm) {
-		return mm.pkgs.map[getAllClassifiers].flatten
-	}
-
-	def Iterable<EClass> getAllClasses(Metamodel mm) {
-		return mm.pkgs.map[getAllClasses].flatten
-	}
-
 	def void createGenmodel(Metamodel mm, String ecoreUri, String gmUri, String modelDirectory) {
 		val resSet = new ResourceSetImpl
 		val pkgRes = resSet.getResource(URI::createURI(ecoreUri), true)
