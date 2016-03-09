@@ -303,6 +303,7 @@ class EcoreExtensions
 			val newDt = EcoreFactory.eINSTANCE.createEDataType => [dt |
 				dt.name = name
 				dt.instanceTypeName = instanceTypeName
+				dt.EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
 			]
 
 			pkg.EClassifiers += newDt
@@ -322,6 +323,7 @@ class EcoreExtensions
 				e.ELiterals += literals.map[litValue | EcoreFactory.eINSTANCE.createEEnumLiteral => [lit |
 					lit.name = litValue
 				]]
+				e.EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
 			]
 
 			pkg.EClassifiers += newE
