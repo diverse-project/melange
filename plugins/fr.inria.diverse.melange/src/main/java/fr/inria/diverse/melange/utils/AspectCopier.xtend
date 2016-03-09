@@ -22,8 +22,6 @@ import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.util.internal.Stopwatches
 
-import static fr.inria.diverse.melange.utils.AspectCopier.*
-
 /**
  * This class create a new project for a Language and copies Aspects files
  * from Language dependencies

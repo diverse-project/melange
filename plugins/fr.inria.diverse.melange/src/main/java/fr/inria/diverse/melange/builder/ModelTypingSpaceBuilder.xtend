@@ -33,7 +33,7 @@ class ModelTypingSpaceBuilder {
 	 * Return the builder corresponding to {@link l}.
 	 * Return null if not found.
 	 */
-	def findBuilder(Language l){
+	def LanguageBuilder findBuilder(Language l){
 		return registry.get(l)
 	}
 }

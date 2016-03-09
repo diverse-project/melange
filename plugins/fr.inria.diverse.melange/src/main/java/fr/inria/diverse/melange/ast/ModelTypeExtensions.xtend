@@ -3,11 +3,9 @@ package fr.inria.diverse.melange.ast
 import com.google.inject.Inject
 import fr.inria.diverse.melange.codegen.ModelTypeGeneratorAdapterFactory
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
-import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.MatchingHelper
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import java.io.IOException
-import java.util.List
 import org.eclipse.emf.codegen.ecore.generator.Generator
 import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory
 import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory.Descriptor
@@ -18,9 +16,6 @@ import org.eclipse.emf.codegen.ecore.genmodel.generator.GenBaseGeneratorAdapter
 import org.eclipse.emf.common.util.Diagnostic
 import org.eclipse.emf.common.util.Monitor
 import org.eclipse.emf.common.util.URI
-import org.eclipse.emf.ecore.EClass
-import org.eclipse.emf.ecore.EClassifier
-import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EcorePackage
 import org.eclipse.emf.ecore.plugin.EcorePlugin
@@ -31,7 +26,6 @@ class ModelTypeExtensions
 {
 	@Inject extension LanguageExtensions
 	@Inject extension ModelingElementExtensions
-	@Inject extension EcoreExtensions
 	@Inject extension IQualifiedNameProvider
 	@Inject extension EclipseProjectHelper
 	@Inject MatchingHelper matchingHelper
@@ -48,7 +42,7 @@ class ModelTypeExtensions
 		val pkgRes = resSet.getResource(URI::createURI(ecoreUri), true)
 		val pkgs = pkgRes.contents
 		val ecoreGmUri = EcorePlugin::getEPackageNsURIToGenModelLocationMap(true).get(EcorePackage.eNS_URI)
-		val ecoreGmRes = resSet.getResource(ecoreGmUri as URI, true)
+		val ecoreGmRes = resSet.getResource(ecoreGmUri, true)
 		val ecoreGm = ecoreGmRes.contents.head as GenModel
 
 		val genmodel = GenModelFactory.eINSTANCE.createGenModel => [

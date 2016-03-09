@@ -6,6 +6,7 @@ import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
+import fr.inria.diverse.melange.builder.BuilderError
 import fr.inria.diverse.melange.builder.LanguageBuilder
 import fr.inria.diverse.melange.builder.ModelTypingSpaceBuilder
 import fr.inria.diverse.melange.metamodel.melange.Import
@@ -20,7 +21,6 @@ import java.util.List
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
-import org.eclipse.emf.ecore.EModelElement
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
@@ -73,8 +73,8 @@ class LanguageProcessor extends DispatchMelangeProcessor{
 		val language = langBuilder.source
 		var syntax = langBuilder.model
 
-		var List errors = new ArrayList //TODO: init with build errors if yet built
-		if(syntax == null){
+		var List<BuilderError> errors = new ArrayList //TODO: init with build errors if yet built
+		if(syntax === null){
 			langBuilder.build()
 			errors = langBuilder.errors//TODO: manage errors & model not built
 			syntax = langBuilder.model
@@ -146,20 +146,6 @@ class LanguageProcessor extends DispatchMelangeProcessor{
 		return rootPkg
 	}
 	
-	/**
-	 * Search in {@link rootPackage} for EClass named as in {@link classes}
-	 */
-	private def List<EModelElement> getClasses(EPackage rootPackage, List<String> classes){
-		//TODO: manage sub packages
-		val res = new ArrayList<EModelElement>()
-		
-		rootPackage.EClassifiers.filter(EClass).forEach[cl|
-			if(classes.contains(cl.name)) res.add(cl)
-		]
-		
-		return res
-	}
-
 	def void initializeSyntax(Language language) {
 		
 		language.syntax = MelangeFactory.eINSTANCE.createMetamodel

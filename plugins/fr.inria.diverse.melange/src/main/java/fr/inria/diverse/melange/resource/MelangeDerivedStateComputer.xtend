@@ -6,7 +6,6 @@ import fr.inria.diverse.melange.jvmmodel.MelangeTypesBuilder
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.Transformation
 import fr.inria.diverse.melange.processors.ExactTypeInferrer
-import fr.inria.diverse.melange.processors.ExtensionPointProcessor
 import fr.inria.diverse.melange.processors.LanguageProcessor
 import fr.inria.diverse.melange.processors.MelangeProcessor
 import fr.inria.diverse.melange.processors.TypingInferrer

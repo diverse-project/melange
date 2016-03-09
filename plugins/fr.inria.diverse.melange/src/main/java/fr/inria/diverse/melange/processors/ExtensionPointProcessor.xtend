@@ -1,6 +1,6 @@
 package fr.inria.diverse.melange.processors
 
-import com.google.common.collect.ListMultimap
+import com.google.common.collect.ArrayListMultimap
 import fr.inria.diverse.melange.ast.ASTHelper
 import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
@@ -9,6 +9,7 @@ import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
 import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
+import fr.inria.diverse.melange.utils.PluginXmlChanger
 import javax.inject.Inject
 import org.apache.log4j.Logger
 import org.eclipse.core.runtime.CoreException
@@ -17,9 +18,6 @@ import org.eclipse.pde.internal.core.plugin.WorkspacePluginModel
 import org.eclipse.pde.internal.core.project.PDEProject
 import org.eclipse.xtext.documentation.IEObjectDocumentationProvider
 import org.eclipse.xtext.naming.IQualifiedNameProvider
-import com.google.common.collect.ListMultimap
-import com.google.common.collect.ArrayListMultimap
-import fr.inria.diverse.melange.utils.PluginXmlChanger
 
 /**
  * For each model type, create a new fr.inria.diverse.melange.modeltype

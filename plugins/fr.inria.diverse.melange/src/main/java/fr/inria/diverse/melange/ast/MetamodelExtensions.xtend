@@ -3,13 +3,10 @@ package fr.inria.diverse.melange.ast
 import com.google.inject.Inject
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
-import fr.inria.diverse.melange.utils.EPackageProvider
 import java.io.IOException
-import java.util.List
 import org.eclipse.emf.codegen.ecore.genmodel.GenJDKLevel
 import org.eclipse.emf.codegen.ecore.genmodel.GenModelFactory
 import org.eclipse.emf.common.util.URI
-import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EcorePackage
@@ -22,7 +19,6 @@ class MetamodelExtensions
 	@Inject extension LanguageExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension IQualifiedNameProvider
-	@Inject EPackageProvider provider
 
 	def boolean getIsComplete(Metamodel mm) {
 		return !mm.pkgs.filterNull.empty && !mm.genmodels.filterNull.empty

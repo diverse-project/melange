@@ -1,10 +1,9 @@
 package fr.inria.diverse.melange.utils
 
 import com.google.inject.Inject
-import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.lib.EcoreExtensions
-import fr.inria.diverse.melange.metamodel.melange.Aspect
-import fr.inria.diverse.melange.metamodel.melange.Language
+import java.util.List
+import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EcoreFactory
 import org.eclipse.xtext.common.types.JvmDeclaredType
@@ -12,10 +11,6 @@ import org.eclipse.xtext.common.types.JvmEnumerationType
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
 import org.eclipse.xtext.common.types.JvmVisibility
-import org.eclipse.emf.ecore.EClass
-import org.eclipse.xtext.common.types.JvmType
-import org.eclipse.emf.ecore.util.EcoreUtil
-import java.util.List
 
 /**
  * This class creates an EPackage corresponding to an aspect.
@@ -25,7 +20,6 @@ class AspectToEcore
 {
 	@Inject extension EcoreExtensions
 	@Inject extension TypeReferencesHelper
-	@Inject extension ModelingElementExtensions
 	
 	/**
 	 * Try to infer the "modeling intention" of the aspect aspImport

@@ -63,25 +63,25 @@ class RenamerVisitor extends ASTVisitor{
 		}
 		else{ //Class import
 			val rule = rulesManager.allClassRules.findFirst[key == nodeName]
-			if(rule != null){
+			if(rule !== null){
 				newNodeName = rule.value
 			}
 			else{
 				val packageName = nodeName.qualifierPart
 				val newPackageName = packageName.getRenaming
-				if(newPackageName != null){
+				if(newPackageName !== null){
 					val className = nodeName.lastPart
 					newNodeName = newPackageName + "." + className
 				}
 			}
 		}
 		
-		if(newNodeName != null){
+		if(newNodeName !== null){
 			val newName = node.AST.toName(newNodeName)
 			newImportsNames.put(node,newName)	
 		}
 		
-		super.visit(node)
+		return super.visit(node)
 	}
 	
 	override visit(SimpleType node) {
@@ -89,7 +89,7 @@ class RenamerVisitor extends ASTVisitor{
 		val typeName = node.name
 		
 		val rule = typeName.getClassRule()
-		if(rule != null){
+		if(rule !== null){
 			
 			if(typeName instanceof SimpleName){
 				val toName = rule.value.lastPart
@@ -103,20 +103,19 @@ class RenamerVisitor extends ASTVisitor{
 		}
 		else{
 			if(typeName instanceof QualifiedName){
-				val root = node.root as CompilationUnit
 				val packagePart = typeName.toString.substring(0,typeName.toString.lastIndexOf("."))
 				val simpleName = typeName.toString.substring(typeName.toString.lastIndexOf(".")+1)
 				val renamedType = packagePart.renaming+"."+simpleName
 				val candidate = allClasses.findFirst[renamedType.endsWith(it.fqn)]
 				
-				if(candidate != null){
+				if(candidate !== null){
 					val newName = node.AST.toName(renamedType)
 					newSimpleTypesNames.put(node,newName)	
 				}
 			}
 		}
 		
-		super.visit(node)
+		return super.visit(node)
 	}
 	
 	override visit(MethodInvocation node) {
@@ -134,12 +133,12 @@ class RenamerVisitor extends ASTVisitor{
 		//Match invocator
 		val exp = node.expression
 		if(exp instanceof Name){
-			val invokerName = exp as Name
+			val invokerName = exp
 			
 			val aspectEntry = rulesManager.getRulesForAspect(invokerName.toString)
 			if(!aspectEntry.isNullOrEmpty){ //Aspect's method calls
 				val rule = aspectEntry.findFirst[rule | rule.key.lastPart == methodName.toString]
-				if(rule != null){
+				if(rule !== null){
 					val newName = rule.value.lastPart
 					newMethodNames.put(node,node.AST.newSimpleName(newName))
 				}
@@ -154,7 +153,7 @@ class RenamerVisitor extends ASTVisitor{
 													val clazz = rule.key.qualifierPart
 													return isImported(methodName.root as CompilationUnit,clazz)
 												]
-				if(importedRule != null){
+				if(importedRule !== null){
 					//Rename
 					val prefix = methodName.toString.substring(0,3) //'get' or 'set'
 					val newName = prefix + importedRule.value.lastPart.toFirstUpper
@@ -163,15 +162,13 @@ class RenamerVisitor extends ASTVisitor{
 			}
 		}
 		else if(exp instanceof CastExpression){
-			val type = (exp as CastExpression).type
-			val typeName = type.qualifiedType
 			//TODO
 		}
 		else{
 			//FIXME: should check other kind of expression
 		}
 
-		super.visit(node)
+		return super.visit(node)
 	}
 	
 	override visit(MethodDeclaration node) {
@@ -181,16 +178,16 @@ class RenamerVisitor extends ASTVisitor{
 		
 		val container = node.parent
 		if(container instanceof TypeDeclaration){
-			val clazz = container as TypeDeclaration
+			val clazz = container
 			val aspectAnnot = clazz.modifiers().filter(NormalAnnotation).findFirst[typeName.toString == "Aspect"]
-			if(aspectAnnot != null){
+			if(aspectAnnot !== null){
 				val aspectedClazz = (aspectAnnot.values.get(0) as MemberValuePair).value.toString.qualifierPart
 				val rule = candidateRules.findFirst[rule | 
 					val candidateClazz = rule.key.qualifierPart
 					candidateClazz.lastPart == aspectedClazz &&
 					isImported(node.root as CompilationUnit,candidateClazz)
 				]
-				if(rule != null){
+				if(rule !== null){
 					val newName = rule.value.lastPart
 					newMethodDeclNames.put(node, node.AST.newSimpleName(newName))
 				}
@@ -198,7 +195,7 @@ class RenamerVisitor extends ASTVisitor{
 		}
 //		boolean needRenaming = isProperty(MethodDeclaration method, )
 		
-		super.visit(node)
+		return super.visit(node)
 	}
 	
 	/**
@@ -240,7 +237,7 @@ class RenamerVisitor extends ASTVisitor{
 	 */
 	def String getType(Name variable, ASTNode container){
 		
-		if(container == null){
+		if(container === null){
 			
 			return null
 		}
@@ -251,56 +248,56 @@ class RenamerVisitor extends ASTVisitor{
 		else if(container instanceof Statement){
 			
 			if(container instanceof Block){
-				val block = container as Block 
+				val block = container
 				val varDef = block.statements.filter(VariableDeclarationStatement).findFirst[varDecl |
 						varDecl.fragments.exists[va | (va as VariableDeclarationFragment).name.toString == variable.toString]
 					]
-				if(varDef != null && varDef.startPosition < variable.startPosition){//check the varDef is before 
-					if(varDef != null){
+				if(varDef !== null && varDef.startPosition < variable.startPosition){//check the varDef is before 
+					if(varDef !== null){
 						val type = varDef.type
 						if(type instanceof NameQualifiedType){
-							return (type as NameQualifiedType).name.toString
+							return type.name.toString
 						}
 						else if(type instanceof QualifiedType){
-							return (type as QualifiedType).name.toString
+							return type.name.toString
 						}
 						else if(type instanceof SimpleType){
-							return (type as SimpleType).name.toString
+							return type.name.toString
 						}
 					}
 				}
 			}
 			else if(container instanceof EnhancedForStatement){
-				val forLoop = container as EnhancedForStatement
+				val forLoop = container
 				if(forLoop.parameter.name == variable){
 					val type = forLoop.parameter.type
 					if(type instanceof NameQualifiedType){
-						return (type as NameQualifiedType).name.toString
+						return type.name.toString
 					}
 					else if(type instanceof QualifiedType){
-						return (type as QualifiedType).name.toString
+						return type.name.toString
 					}
 					else if(type instanceof SimpleType){
-						return (type as SimpleType).name.toString
+						return type.name.toString
 					}
 				}
 				
 			}
 			else if(container instanceof ForStatement){
-				val forLoop = container as ForStatement
+				val forLoop = container
 				val initDecl = forLoop.initializers.filter(VariableDeclarationExpression).findFirst[varDecl |
 						varDecl.fragments.exists[va | (va as VariableDeclarationFragment).name.toString == variable.toString]
 					]
-				if(initDecl != null){
+				if(initDecl !== null){
 					val type = initDecl.type
 					if(type instanceof NameQualifiedType){
-						return (type as NameQualifiedType).name.toString
+						return type.name.toString
 					}
 					else if(type instanceof QualifiedType){
-						return (type as QualifiedType).name.toString
+						return type.name.toString
 					}
 					else if(type instanceof SimpleType){
-						return (type as SimpleType).name.toString
+						return type.name.toString
 					}
 				}
 				
@@ -328,20 +325,20 @@ class RenamerVisitor extends ASTVisitor{
 		}
 		else if(container instanceof MethodDeclaration){
 			
-			val method = container as MethodDeclaration
+			val method = container
 			
 			val param = method.parameters.findFirst[paramDecl |	(paramDecl as SingleVariableDeclaration).name.toString == variable.toString]
 			
-			if(param != null){
+			if(param !== null){
 				val type = (param as SingleVariableDeclaration).type
 				if(type instanceof NameQualifiedType){
-					return (type as NameQualifiedType).name.toString
+					return type.name.toString
 				}
 				else if(type instanceof QualifiedType){
-					return (type as QualifiedType).name.toString
+					return type.name.toString
 				}
 				else if(type instanceof SimpleType){
-					return (type as SimpleType).name.toString
+					return type.name.toString
 				}
 			}
 			
@@ -349,23 +346,23 @@ class RenamerVisitor extends ASTVisitor{
 		}
 		else if(container instanceof TypeDeclaration){
 			
-			val typeDef = container as TypeDeclaration
+			val typeDef = container
 			
 			val fieldDef = typeDef.fields.findFirst[fieldDecl | 
 					val fragments = fieldDecl.fragments
 					fragments.exists[field | (field as VariableDeclarationFragment).name.toString == variable.toString]
 				]
 				
-			if(fieldDef != null){
+			if(fieldDef !== null){
 				val type = fieldDef.type
 				if(type instanceof NameQualifiedType){
-					return (type as NameQualifiedType).name.toString
+					return type.name.toString
 				}
 				else if(type instanceof QualifiedType){
-					return (type as QualifiedType).name.toString
+					return type.name.toString
 				}
 				else if(type instanceof SimpleType){
-					return (type as SimpleType).name.toString
+					return type.name.toString
 				}
 			}
 			
@@ -400,7 +397,7 @@ class RenamerVisitor extends ASTVisitor{
 		val typeName = type.toString
 		
 		val rule = rulesManager.getClassRule(typeName)
-		if(rule != null){
+		if(rule !== null){
 			//typeName is qualified
 			return rule
 		}
@@ -417,9 +414,7 @@ class RenamerVisitor extends ASTVisitor{
 				//Check type's package is imported
 				else{
 					val candidatePackage = candidateRule.key.qualifierPart + ".*"
-					if(importDecl.exists[it.fullyQualifiedName == candidatePackage]){
-						true
-					}
+					return importDecl.exists[it.fullyQualifiedName == candidatePackage]
 				}
 			]
 		}
@@ -478,12 +473,12 @@ class RenamerVisitor extends ASTVisitor{
 	 */
 	def String getRenaming(String packageName){
 		val rule = rulesManager.allPackageRules.findFirst[key == packageName]
-		if(rule != null){
+		if(rule !== null){
 			return rule.value
 		}
 		else{
 			val longestRule = rulesManager.allPackageRules.filter[isSubpackage(key,packageName)].sortBy[key.length].last
-			if(longestRule != null){
+			if(longestRule !== null){
 				val prefix = longestRule.value
 				val sufix = packageName.substring(longestRule.key.length)
 				return prefix+sufix
@@ -500,7 +495,7 @@ class RenamerVisitor extends ASTVisitor{
 		
 		parts.add(clazz.name)
 		var current = clazz.EPackage
-		while(current != null){
+		while(current !== null){
 			parts.add(current.name)
 			current = current.ESuperPackage
 		}
