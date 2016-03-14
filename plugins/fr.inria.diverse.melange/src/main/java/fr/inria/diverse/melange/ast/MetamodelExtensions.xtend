@@ -10,6 +10,9 @@ import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 
+/**
+ * A collection of utilities around {@link Metamodel}s
+ */
 class MetamodelExtensions
 {
 	@Inject extension IQualifiedNameProvider
