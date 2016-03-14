@@ -29,11 +29,20 @@ import org.eclipse.jdt.core.JavaCore
 import org.eclipse.pde.internal.core.natures.PDE
 import org.eclipse.xtext.util.MergeableManifest
 
+/**
+ * A collection of utilities around Eclipse's APIs to manage the creation,
+ * maintenance, etc. of the Eclipse projects/MANIFEST/plugin.xml generated
+ * by Melange.
+ */
 class EclipseProjectHelper
 {
 	@Inject extension LanguageExtensions
 	Logger log = Logger.getLogger(EclipseProjectHelper)
 
+	/**
+	 * Returns the {@link IProject} containing the Melange file pointed by
+	 * the {@link Resource} {@code res}, or null if in a standalone context.
+	 */
 	def IProject getProject(Resource res) {
 		try {
 			return
@@ -45,34 +54,10 @@ class EclipseProjectHelper
 		}
 	}
 
-	def IProject createAspectsRuntimeProject(
-		IProject original,
-		String projectName,
-		String generatedPackage,
-		String emfRuntimeBundle
-	) {
-		val dependencies = Sets::newHashSet(original.dependencies)
-		dependencies += "org.eclipse.emf.ecore"
-		dependencies += "fr.inria.diverse.k3.al.annotationprocessor.plugin"
-		dependencies += emfRuntimeBundle
-
-		val project = createEclipseProject(
-			projectName,
-			#[JavaCore::NATURE_ID, PDE::PLUGIN_NATURE],
-			#[JavaCore::BUILDER_ID,	PDE::MANIFEST_BUILDER_ID, PDE::SCHEMA_BUILDER_ID],
-			#["src-gen"],
-			#[],
-			dependencies, // + copy dependency from originating project
-			#[generatedPackage],
-			#[],
-			new NullProgressMonitor
-		)
-
-		log.debug('''Runtime aspects project «project» created.''')
-
-		return project
-	}
-
+	/**
+	 * Returns the qualifiers of the bundles the {@link IProject} {@code project}
+	 * depends on, extracted from its MANIFEST.MF.
+	 */
 	def Iterable<String> getDependencies(IProject project) {
 		val manifestFile = project.getFile("META-INF/MANIFEST.MF")
 
@@ -94,6 +79,10 @@ class EclipseProjectHelper
 		}
 	}
 
+	/**
+	 * Updates the MANIFEST.MF of the {@link IProject} {@code project}
+	 * with the given list of {@code bundles}.
+	 */
 	def void addDependencies(IProject project, Iterable<String> bundles) {
 		val manifestFile = project.getFile("META-INF/MANIFEST.MF")
 
@@ -126,6 +115,10 @@ class EclipseProjectHelper
 		}
 	}
 
+	/**
+	 * Removes the set of {@code bundles} from the MANIFEST.MF of the
+	 * {@link IProject} {@code project}.
+	 */
 	def void removeDependencies(IProject project, Iterable<String> bundles) {
 		if (bundles.empty)
 			return;
@@ -165,6 +158,16 @@ class EclipseProjectHelper
 		}
 	}
 
+	/**
+	 * Creates a new Eclipse project named {@code projectName} for the
+	 * {@link Language} {@code l}.
+	 * <ul>
+	 *   <li>Natures: JAVA, PLUGIN</li>
+	 *   <li>Builders: JAVA, MANIFEST, SCHEMA</li>
+	 *   <li>Source folders: src/src-gen</li>
+	 *   <li>Dependencies: Ecore, K3, Xbase</li>
+	 * </ul>
+	 */
 	def IProject createEMFRuntimeProject(String projectName, Language l) {
 		try {
 			// FIXME: Everything's hardcoded...
@@ -175,7 +178,9 @@ class EclipseProjectHelper
 				#[JavaCore::BUILDER_ID,	PDE::MANIFEST_BUILDER_ID, PDE::SCHEMA_BUILDER_ID],
 				#["src", "src-gen"],
 				#[],
-				#["org.eclipse.emf.ecore", "fr.inria.diverse.k3.al.annotationprocessor.plugin", "org.eclipse.xtext.xbase.lib"],
+				#["org.eclipse.emf.ecore",
+				  "fr.inria.diverse.k3.al.annotationprocessor.plugin",
+				  "org.eclipse.xtext.xbase.lib"],
 //				#[basePkg, basePkg + ".impl", basePkg + ".util"],
 				if (l.hasExternalAspects) #[l.aspectsNamespace] else #[],
 				#[],
@@ -195,7 +200,10 @@ class EclipseProjectHelper
 		return null
 	}
 
-	def IProject createEclipseProject(
+	/**
+	 * Wololo, wololo wololo.
+	 */
+	private def IProject createEclipseProject(
 		String name,
 		Iterable<String> natures,
 		Iterable<String> builders,
@@ -360,5 +368,36 @@ class EclipseProjectHelper
 
 		monitor.worked(1)
 		return f
+	}
+
+	/**
+	 * @deprecated Use {@link #createEMFRuntimeProject} instead.
+	 */
+	def IProject createAspectsRuntimeProject(
+		IProject original,
+		String projectName,
+		String generatedPackage,
+		String emfRuntimeBundle
+	) {
+		val dependencies = Sets::newHashSet(original.dependencies)
+		dependencies += "org.eclipse.emf.ecore"
+		dependencies += "fr.inria.diverse.k3.al.annotationprocessor.plugin"
+		dependencies += emfRuntimeBundle
+
+		val project = createEclipseProject(
+			projectName,
+			#[JavaCore::NATURE_ID, PDE::PLUGIN_NATURE],
+			#[JavaCore::BUILDER_ID,	PDE::MANIFEST_BUILDER_ID, PDE::SCHEMA_BUILDER_ID],
+			#["src-gen"],
+			#[],
+			dependencies, // + copy dependency from originating project
+			#[generatedPackage],
+			#[],
+			new NullProgressMonitor
+		)
+
+		log.debug('''Runtime aspects project «project» created.''')
+
+		return project
 	}
 }
