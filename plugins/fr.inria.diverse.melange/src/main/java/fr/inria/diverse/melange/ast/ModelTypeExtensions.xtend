@@ -155,6 +155,7 @@ class ModelTypeExtensions
 	}
 
 	def boolean isSubtypeOf(ModelType mt1, ModelType mt2) {
-		return matchingHelper.match(mt1.pkgs, mt2.pkgs, null)
+		return matchingHelper.match(
+			mt1.pkgs.toList, mt2.pkgs.toList, null)
 	}
 }

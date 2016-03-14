@@ -189,7 +189,7 @@ class MelangeValidator extends AbstractMelangeValidator
 		l.^implements
 		.forEach[mt, i |
 			if (!matchingHelper.match(
-				l.syntax.pkgs, mt.pkgs, l.mappings.findFirst[to == mt]
+				l.syntax.pkgs.toList, mt.pkgs.toList, l.mappings.findFirst[to == mt]
 			))
 				error(
 					'''«l.name» doesn't match the interface «mt.name»''',
