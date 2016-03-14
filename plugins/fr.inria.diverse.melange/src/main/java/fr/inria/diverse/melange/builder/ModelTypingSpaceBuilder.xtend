@@ -5,11 +5,18 @@ import com.google.inject.Injector
 import fr.inria.diverse.melange.metamodel.melange.Language
 import java.util.Map
 import com.google.inject.Singleton
+import fr.inria.diverse.melange.experimental.CustomBuilder
+import java.util.List
 
 @Singleton
 class ModelTypingSpaceBuilder {
 	@Inject Injector injector
 	Map<Language, LanguageBuilder> registry = newHashMap
+	List<String> operatorRegistry = newArrayList
+	
+	new(){
+		operatorRegistry.add("slice2") //TODO:replace me by Eclipse's extension point
+	}
 
 	/**
 	 * Get a builder to construct a model for {@link l}.
@@ -35,5 +42,9 @@ class ModelTypingSpaceBuilder {
 	 */
 	def findBuilder(Language l){
 		return registry.get(l)
+	}
+	
+	def List<String> getOperatorRegistry(){
+		return operatorRegistry
 	}
 }

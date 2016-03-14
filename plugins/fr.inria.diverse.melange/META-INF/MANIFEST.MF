@@ -51,4 +51,5 @@ Export-Package: fr.inria.diverse.melange,
  fr.inria.diverse.melange.services,
  fr.inria.diverse.melange.typesystem,
  fr.inria.diverse.melange.utils,
- fr.inria.diverse.melange.validation
+ fr.inria.diverse.melange.validation,
+  fr.inria.diverse.melange.experimental

@@ -19,6 +19,9 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.util.EcoreUtil
 import fr.inria.diverse.melange.ast.LanguageExtensions
+import fr.inria.diverse.melange.metamodel.melange.CustomLanguageOperator
+import fr.inria.diverse.melange.experimental.CustomBuilder
+import fr.inria.diverse.melange.experimental.Slice2Builder
 
 class LanguageBuilder extends AbstractBuilder {
 	@Inject EmfCompareAlgebra algebra
@@ -123,9 +126,12 @@ class LanguageBuilder extends AbstractBuilder {
 				Slice: new SliceBuilder(op, root)
 				Import: new ImportBuilder(op)
 				Weave: new WeaveBuilder(op, model)
+				CustomLanguageOperator: createFromRegistry(op,root)
 			}
-			res.add(builder)
-			injector.injectMembers(builder)
+			if(builder !== null){
+				res.add(builder)
+				injector.injectMembers(builder)
+			}
 		]
 
 		return res
@@ -173,5 +179,16 @@ class LanguageBuilder extends AbstractBuilder {
 	 */
 	def List<OperatorBuilder<? extends Operator>> getSubBuilders(){
 		return builders
+	}
+	
+	def CustomBuilder createFromRegistry(CustomLanguageOperator op, ModelTypingSpaceBuilder root){
+		val registered = root.operatorRegistry
+		
+		val keyword = op.name
+		if(registered.contains(keyword)){
+			return new Slice2Builder(op,root) //TODO: instanciate from extension point's class
+		}
+		
+		return null
 	}
 }

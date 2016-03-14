@@ -82,7 +82,7 @@ PropertyMapping returns PropertyBinding:
 ;
 
 Operator returns Operator:
-	Import | Merge | Slice | Weave
+	Import | Merge | Slice | Weave | Custom
 ;
 
 Import returns Import:
@@ -104,6 +104,14 @@ Slice returns Slice:
 	('renaming' '{'
 		(mappingRules+=PackageMapping)*
 	'}')?
+;
+
+Custom returns CustomLanguageOperator:
+	name=ID targetLanguage = [Language | QualifiedName] (parameters=PARAMETERS)?
+;
+
+terminal PARAMETERS returns ecore::EString:
+	'[' -> ']'
 ;
 
 Inherit returns Inheritance:

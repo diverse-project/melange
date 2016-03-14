@@ -95,6 +95,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappingRules" upperBound="-1"
         eType="#//PackageBinding" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CustomLanguageOperator" eSuperTypes="#//LanguageOperator">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameters" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Slice" eSuperTypes="#//LanguageOperator">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="roots" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

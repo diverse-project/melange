@@ -9,6 +9,8 @@ import org.eclipse.ui.plugin.AbstractUIPlugin
 import org.eclipse.xtext.ui.editor.hyperlinking.IHyperlinkHelper
 import org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage
 import fr.inria.diverse.melange.ui.editor.MelangeDocumentProvider
+import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator
+import fr.inria.diverse.melange.ui.editor.MelangeHighlighting
 
 class MelangeUiModule extends AbstractMelangeUiModule
 {
@@ -37,5 +39,9 @@ class MelangeUiModule extends AbstractMelangeUiModule
 	
 	override Class<? extends org.eclipse.xtext.ui.editor.model.XtextDocumentProvider> bindXtextDocumentProvider() {
 		return typeof(MelangeDocumentProvider)
+	}
+	
+	override Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator(){
+		return typeof(MelangeHighlighting)
 	}
 }
