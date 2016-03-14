@@ -21,6 +21,10 @@ import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.naming.QualifiedName
 
+/**
+ * A collection of utilities around naming conventions in Melange
+ * (generated code, adapters, UML specificities, etc.)
+ */
 class NamingHelper
 {
 	@Inject extension ModelingElementExtensions
@@ -28,39 +32,76 @@ class NamingHelper
 	@Inject extension IQualifiedNameProvider
 	@Inject extension IQualifiedNameConverter
 
-	def String normalize(QualifiedName name) {
-		val res = new StringBuilder
-
-		res.append(name.skipLast(1).segments.map[toLowerCase].join("."))
-		res.append("." + name.lastSegment/*.toFirstUpper*/)
-
-		return res.toString
-	}
-
+	/**
+	 * Returns the namespace corresponding to the first {@link EPackage}
+	 * in the {@link ModelingElement} {@code m}.
+	 */
 	def String getRootPackageNamespace(ModelingElement m) {
-		return m.allGenPkgs.head.packageNamespace
+		return
+			m.allGenPkgs
+			.head
+			.packageNamespace
 	}
 
+	/**
+	 * Returns the (simple) name of the class generated for the first
+	 * {@link EPackage} of {@code m}.
+	 */
 	def String getRootPackageName(ModelingElement m) {
-		return m.allGenPkgs.head.packageInterfaceName
+		return
+			m.allGenPkgs
+			.head
+			.packageInterfaceName
 	}
 
+	/**
+	 * Returns the fully qualified name of the class generated for the first
+	 * {@link EPackage} of {@code m}.
+	 */
 	def String getRootPackageFqn(ModelingElement m) {
-		return m.allGenPkgs.head.qualifiedPackageInterfaceName
+		return
+			m.allGenPkgs
+			.head
+			.qualifiedPackageInterfaceName
 	}
 
+	/**
+	 * Returns the namespace corresponding to the {@link EPackage} pointed
+	 * by the {@link GenPackage} {@code gp}.
+	 */
 	def String getPackageNamespace(GenPackage gp) {
-		return gp.qualifiedPackageInterfaceName.toQualifiedName.skipLast(1).toString
+		return
+			gp.qualifiedPackageInterfaceName
+			.toQualifiedName
+			.skipLast(1)
+			.toString
 	}
 
+	/**
+	 * Returns the fully qualified name of the {@link EFactory} generated
+	 * for the first {@link EPackage} of {@code m}.
+	 */
 	def String getRootFactoryFqn(ModelingElement m) {
-		return m.allGenPkgs.head.qualifiedFactoryInterfaceName
+		return
+			m.allGenPkgs
+			.head
+			.qualifiedFactoryInterfaceName
 	}
 
+	/**
+	 * Returns the fully qualified name of the {@link EFactory} generated
+	 * for the {@link EPackage} {@code pkg}.
+	 */
 	def String getFactoryFqnFor(ModelingElement m, EPackage pkg) {
-		return m.getGenPkgFor(pkg).qualifiedFactoryInterfaceName
+		return
+			m.getGenPkgFor(pkg)
+			.qualifiedFactoryInterfaceName
 	}
 
+	/**
+	 * Returns the (Java) fully qualified name of the {@link EClassifier}
+	 * {@code cls}.
+	 */
 	def String getFqnFor(ModelingElement m, EClassifier cls) {
 		return
 			switch (cls) {
@@ -82,62 +123,193 @@ class NamingHelper
 //				cls.instanceClass?.name ?: cls.instanceClassName
 //	}
 
+	/**
+	 * Returns the fully qualified name of the generated factory that creates
+	 * adapters from the {@link Metamodel} {@code mm} to the {@link ModelType}
+	 * {@code mt}.
+	 */
 	def String getAdaptersFactoryNameFor(Metamodel mm, ModelType mt) {
-		return mm.owningLanguage.fullyQualifiedName.append("adapters").append(mt.fullyQualifiedName.lastSegment).toLowerCase.append(mt.name + "AdaptersFactory").normalize.toString
-	}
-	
-	def String getMappersFactoryNameFor(Metamodel sourceModel, ModelType targetMT) {
-		return sourceModel.owningLanguage.fullyQualifiedName.append("mappers").append(targetMT.fullyQualifiedName.lastSegment).toLowerCase.append(targetMT.name + "MappersFactory").normalize.toString
+		return
+			mm.owningLanguage
+			.fullyQualifiedName
+			.append("adapters")
+			.append(mt.fullyQualifiedName.lastSegment)
+			.toLowerCase
+			.append(mt.name + "AdaptersFactory")
+			.normalize
+			.toString
 	}
 
+	/**
+	 * @deprecated
+	 */
+	def String getMappersFactoryNameFor(Metamodel sourceModel, ModelType targetMT) {
+		return
+			sourceModel.owningLanguage
+			.fullyQualifiedName
+			.append("mappers")
+			.append(targetMT.fullyQualifiedName.lastSegment)
+			.toLowerCase
+			.append(targetMT.name + "MappersFactory")
+			.normalize
+			.toString
+	}
+
+	/**
+	 * Returns the fully qualified name of the adapter class generated between
+	 * {@code mm} and {@code mt} for the {@link EClass} {@code cls}.
+	 */
 	def String adapterNameFor(Metamodel mm, ModelType mt, EClass cls) {
 		return mm.adapterNameFor(mt, cls.name)
 	}
 
+	/**
+	 * Returns the fully qualified name of the adapter class generated between
+	 * {@code mm} and {@code mt} for the type named {@code name}.
+	 */
 	def String adapterNameFor(Metamodel mm, ModelType mt, String name) {
-		return mm.owningLanguage.fullyQualifiedName.append("adapters").append(mt.fullyQualifiedName.lastSegment).toLowerCase.append(name + "Adapter").normalize.toString
+		return
+			mm.owningLanguage
+			.fullyQualifiedName
+			.append("adapters")
+			.append(mt.fullyQualifiedName.lastSegment)
+			.toLowerCase
+			.append(name + "Adapter")
+			.normalize
+			.toString
 	}
 
+	/**
+	 * Returns the fully qualified name of the in-the-large adapter class
+	 * generated between {@code mm} and {@code mt}.
+	 */
 	def String adapterNameFor(Metamodel mm, ModelType mt) {
-		return mm.owningLanguage.fullyQualifiedName.append("adapters").append(mt.fullyQualifiedName.lastSegment).toLowerCase.append(mm.owningLanguage.name + "Adapter").normalize.toString
-	}
-	
-	def String mapperNameFor(Metamodel sourceModel, ModelType targetMT) {
-		return sourceModel.fullyQualifiedName.append("mappers").append(targetMT.fullyQualifiedName.lastSegment).toLowerCase.append(sourceModel.owningLanguage.name + "Adapter").normalize.toString
+		return
+			mm.owningLanguage
+			.fullyQualifiedName
+			.append("adapters")
+			.append(mt.fullyQualifiedName.lastSegment)
+			.toLowerCase
+			.append(mm.owningLanguage.name + "Adapter")
+			.normalize
+			.toString
 	}
 
+	/**
+	 * @deprecated
+	 */
+	def String mapperNameFor(Metamodel sourceModel, ModelType targetMT) {
+		return
+			sourceModel.fullyQualifiedName
+			.append("mappers")
+			.append(targetMT.fullyQualifiedName.lastSegment)
+			.toLowerCase
+			.append(sourceModel.owningLanguage.name + "Adapter")
+			.normalize
+			.toString
+	}
+
+	/**
+	 * @deprecated
+	 */
 	def String adapterNameFor(Metamodel mm, Metamodel superMM, EClass cls) {
-		return mm.owningLanguage.fullyQualifiedName.append("adapters").append(superMM.owningLanguage.name).toLowerCase.append(cls.name + "Adapter").normalize.toString
+		return
+			mm.owningLanguage
+			.fullyQualifiedName
+			.append("adapters")
+			.append(superMM.owningLanguage.name)
+			.toLowerCase
+			.append(cls.name + "Adapter")
+			.normalize
+			.toString
 	}
-	
-	def String mapperNameFor(Metamodel sourceModel, ModelType targetMT, EClass targetClass){
-		return sourceModel.owningLanguage.fullyQualifiedName.append("mappers").append(targetMT.fullyQualifiedName.lastSegment).toLowerCase.append(targetClass.name + "Mapper").normalize.toString
+
+	/**
+	 * @deprecated
+	 */
+	def String mapperNameFor(Metamodel sourceModel, ModelType targetMT, EClass targetClass) {
+		return
+			sourceModel.owningLanguage
+			.fullyQualifiedName
+			.append("mappers")
+			.append(targetMT.fullyQualifiedName.lastSegment)
+			.toLowerCase
+			.append(targetClass.name + "Mapper")
+			.normalize
+			.toString
 	}
-	
-	def String simpleMapperNameFor(Metamodel sourceModel, ModelType targetMT, EClass targetClass){
+
+	/**
+	 * @deprecated
+	 */
+	def String simpleMapperNameFor(Metamodel sourceModel, ModelType targetMT, EClass targetClass) {
 		return targetClass.name + "Mapper"
 	}
 
+	/**
+	 * Returns the (simple) name of the adapter class generated for the
+	 * {@link EClass} {@code cls} between {@code mm} and {@code mt}.
+	 */
 	def String simpleAdapterNameFor(Metamodel mm, ModelType mt, EClass cls) {
 		return mm.simpleAdapterNameFor(mt, cls.name)
 	}
 
+	/**
+	 * Returns the (simple) name of the adapter class generated for the
+	 * type named {@code name} between {@code mm} and {@code mt}.
+	 */
 	def String simpleAdapterNameFor(Metamodel mm, ModelType mt, String name) {
-		return mm.owningLanguage.fullyQualifiedName.append("adapters").append(mt.fullyQualifiedName.lastSegment).toLowerCase.append(name + "Adapter").lastSegment.toString
+		return
+			mm.adapterNameFor(mt, name)
+			.toQualifiedName
+			.lastSegment
+			.toString
 	}
 
+	/**
+	 * Returns the fully qualified name of the adapter class generated for the
+	 * {@link EFactory} between {@code mm} and {@code mt}.
+	 */
 	def String factoryAdapterNameFor(Metamodel mm, ModelType mt) {
-		return mm.owningLanguage.fullyQualifiedName.append("adapters").append(mt.fullyQualifiedName.lastSegment).toLowerCase.append(mt.name + "FactoryAdapter").normalize.toString
+		return
+			mm.owningLanguage
+			.fullyQualifiedName
+			.append("adapters")
+			.append(mt.fullyQualifiedName.lastSegment)
+			.toLowerCase
+			.append(mt.name + "FactoryAdapter")
+			.normalize
+			.toString
 	}
 
+	/**
+	 * Returns the name of the Java class generated for the {@link Transformation}
+	 * {@code t}.
+	 */
 	def String getClassName(Transformation t) {
-		return t.fullyQualifiedName.skipLast(1).toLowerCase.append(t.name).toString
+		return
+			t.fullyQualifiedName
+			.skipLast(1)
+			.toLowerCase
+			.append(t.name)
+			.toString
 	}
 
+	/**
+	 * Returns the name of the StandaloneSetup class generated for the project
+	 * defined by the {@link ModelTypingspace} {@code root}.
+	 */
 	def String getStandaloneSetupClassName(ModelTypingSpace root) {
-		return root.fullyQualifiedName + ".StandaloneSetup"
+		return
+			root.fullyQualifiedName
+			.append("StandaloneSetup")
+			.toString
 	}
 
+	/**
+	 * Returns the name of the Java getter associated to the
+	 * {@link EStructuralFeature} {@code f}.
+	 */
 	def String getGetterName(EStructuralFeature f) {
 		return
 			switch (f) {
@@ -153,6 +325,10 @@ class NamingHelper
 			}
 	}
 
+	/**
+	 * Returns the name of the Java getter associated to the
+	 * {@link JvmOperation} {@code op}.
+	 */
 	def String getGetterName(JvmOperation op) {
 		return
 			if (op.returnType.type.simpleName == "boolean")
@@ -161,6 +337,11 @@ class NamingHelper
 				'''get«op.simpleName.toFirstUpper»'''
 	}
 
+	/**
+	 * Returns the name of the Java getter associated to the
+	 * {@link EStructuralFeature} {@code f}, taking into account the
+	 * specialized naming conventions of UML.
+	 */
 	def String getUmlGetterName(EStructuralFeature f) {
 		return
 			switch (f) {
@@ -179,10 +360,19 @@ class NamingHelper
 			}
 	}
 
+	/**
+	 * Returns the name of the Java setter associated to the
+	 * {@link EStructuralFeature} {@code f}, taking into account the
+	 * specialized naming conventions of UML.
+	 */
 	def String getUmlSetterName(EStructuralFeature f) {
 		return '''set«f.formatUmlFeatureName.toFirstUpper»'''
 	}
 
+	/**
+	 * Returns the name of the Java setter associated to the
+	 * {@link EStructuralFeature} {@code f}.
+	 */
 	def String getSetterName(EStructuralFeature f) {
 		return
 			if (f.EContainingClass.EPackage.isUml)
@@ -191,10 +381,18 @@ class NamingHelper
 				'''set«f.name.toFirstUpper»'''
 	}
 
+	/**
+	 * Returns the name of the Java getter associated to the
+	 * {@link JvmOperation} {@code op}.
+	 */
 	def String getSetterName(JvmOperation op) {
 		return '''set«op.simpleName.toFirstUpper»'''
 	}
 
+	/**
+	 * Returns the name of the Java unsetter ({@code eUnset()}) associated to
+	 * the {@link EStructuralFeature} {@code f}.
+	 */
 	def String getUnsetterName(EStructuralFeature f) {
 		return
 			if (f.EContainingClass.EPackage.isUml)
@@ -203,6 +401,10 @@ class NamingHelper
 				'''unset«f.name.toFirstUpper»'''
 	}
 
+	/**
+	 * Returns the name of the Java unsetter check ({@code eIsSet()})
+	 * associated to the {@link EStructuralFeature} {@code f}.
+	 */
 	def String getUnsetterCheckName(EStructuralFeature f) {
 		return
 			if (f.EContainingClass.EPackage.isUml)
@@ -211,6 +413,10 @@ class NamingHelper
 				'''isSet«f.name.toFirstUpper»'''
 	}
 
+	/**
+	 * Returns the name of the Java operation corresponding to the
+	 * {@link EOperation} {@code op}, taking into account UML naming conventions.
+	 */
 	def String formatUmlOperationName(EOperation op) {
 		val opName = op.name.toCamelCase
 
@@ -221,6 +427,11 @@ class NamingHelper
 		return opName
 	}
 
+	/**
+	 * Returns the name of the Java operation corresponding to the
+	 * {@link EStructuralFeature} {@code f}, taking into account UML naming
+	 * conventions.
+	 */
 	def String formatUmlFeatureName(EStructuralFeature f) {
 		return
 			if (f.name == "class")
@@ -242,6 +453,9 @@ class NamingHelper
 				f.name
 	}
 
+	/**
+	 * Wololo, wololo wololo.
+	 */
 	def String toCamelCase(String s) {
 		val parts = s.split("_")
 		val res = new StringBuilder
@@ -249,6 +463,18 @@ class NamingHelper
 		parts.forEach[p, i |
 			res.append(if (i == 0) p else p.toFirstUpper)
 		]
+
+		return res.toString
+	}
+
+	/**
+	 * Wololo, wololo wololo.
+	 */
+	private def String normalize(QualifiedName name) {
+		val res = new StringBuilder
+
+		res.append(name.skipLast(1).segments.map[toLowerCase].join("."))
+		res.append("." + name.lastSegment/*.toFirstUpper*/)
 
 		return res.toString
 	}

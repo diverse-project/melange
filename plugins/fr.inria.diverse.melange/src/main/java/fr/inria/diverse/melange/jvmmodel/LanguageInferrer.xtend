@@ -56,7 +56,7 @@ class LanguageInferrer
 		val task = Stopwatches.forTask("generate metamodels")
 		task.start
 
-		acceptor.accept(l.toClass(l.fullyQualifiedName.normalize.toString))
+		acceptor.accept(l.toClass(l.fullyQualifiedName.toString))
 		[
 			superTypes += IMetamodel.typeRef
 
@@ -64,7 +64,7 @@ class LanguageInferrer
 			members += l.toGetter("resource", Resource.typeRef)
 			members += l.toSetter("resource", Resource.typeRef)
 
-			members += l.toMethod("load", l.fullyQualifiedName.normalize.toString.typeRef)[
+			members += l.toMethod("load", l.fullyQualifiedName.toString.typeRef)[
 				^static = true
 				parameters += l.toParameter("uri", String.typeRef)
 
