@@ -10,6 +10,13 @@ import org.eclipse.xtext.xbase.XExpression
 import org.eclipse.xtext.xbase.compiler.XbaseCompiler
 import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable
 
+/**
+ * Specializes the type system and the code generator of Xbase to emulate
+ * model-oriented object manipulation in the code of {@link XbaseTransformation}s.
+ * 
+ * @deprecated Shouldn't be used anymore as {@link XbaseTransformation}s will
+ * eventually disappear from Melange.
+ */
 class ModelOrientedXbaseCompiler extends XbaseCompiler
 {
 	@Inject extension IQualifiedNameProvider
