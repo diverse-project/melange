@@ -11,6 +11,10 @@ import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.xbase.XAbstractFeatureCall
 
+/**
+ * A collection of utilities around language {@link Aspect}s,
+ * and the associated {@link JvmTypeReference}s.
+ */
 class AspectExtensions {
 	@Inject extension IQualifiedNameConverter
 	@Inject extension NamingHelper
