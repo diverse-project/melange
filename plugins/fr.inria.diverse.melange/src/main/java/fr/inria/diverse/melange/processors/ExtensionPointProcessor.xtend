@@ -69,8 +69,8 @@ class ExtensionPointProcessor extends DispatchMelangeProcessor
 			fModel.load
 
 			if (pluginModel !== null && pluginBase !== null) {
-				val modelTypes = root.modelTypes.filter[isComplete]
-				val languages = root.languages.filter[isComplete]
+				val modelTypes = root.modelTypes.filter[isValid]
+				val languages = root.languages.filter[isValid]
 
 				if (modelTypes.size > 0 && modeltypeExtensionPoint !== null) {
 					

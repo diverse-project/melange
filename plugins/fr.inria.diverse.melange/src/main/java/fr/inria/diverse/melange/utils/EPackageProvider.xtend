@@ -44,16 +44,14 @@ class EPackageProvider
 			if (m instanceof Metamodel) {
 				val project = m.eResource.project
 				if (m.owningLanguage.isGeneratedByMelange && project !== null)
-					if (project.getFile(m.owningLanguage.localEcorePath).exists)
-						m.ecoreUri = m.owningLanguage.localEcoreUri
-					else if (project.getFile(m.owningLanguage.externalEcorePath).exists)
+					if (project.getFile(m.owningLanguage.externalEcorePath).exists)
 						m.ecoreUri = m.owningLanguage.externalEcoreUri
 			}
 
 			switch (m) {
 				ModelType case m.isExtracted:
 					packages.putAll(m.fqn, m.extracted.syntax.packages)
-				Metamodel case m.owningLanguage.hasSuperLanguage: {
+				Metamodel case !m.owningLanguage.superLanguages.empty: {
 					val pkgsCopy = m.owningLanguage.operators.filter(Inheritance).map[targetLanguage.syntax.packages.map[
 						val copy = EcoreUtil::copy(it)
 						copy.name = m.owningLanguage.name.toLowerCase
@@ -105,9 +103,7 @@ class EPackageProvider
 				else if (m instanceof Metamodel) {
 					val project = m.eResource.project
 					if (m.owningLanguage.isGeneratedByMelange && project !== null)
-						if (project.getFile(m.owningLanguage.localGenmodelPath).exists)
-							m.genmodelUris += m.owningLanguage.localGenmodelUri
-						else if (project.getFile(m.owningLanguage.externalGenmodelPath).exists)
+						if (project.getFile(m.owningLanguage.externalGenmodelPath).exists)
 							m.genmodelUris += m.owningLanguage.externalGenmodelUri
 				}
 				m.genmodelUris.forEach[
