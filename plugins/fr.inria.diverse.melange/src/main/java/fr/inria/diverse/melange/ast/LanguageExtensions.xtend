@@ -457,7 +457,7 @@ class LanguageExtensions
 		// (ie. Inheritance operator)
 		l.superLanguages.toList.reverseView.forEach[superLang |
 			val orderedAspects = 
-				if(superLang.isGeneratedByMelange)
+				if (superLang.isGeneratedByMelange)
 					superLang.semantics
 				else
 					superLang.semantics.reverseView
@@ -753,7 +753,7 @@ class LanguageExtensions
 	 * Return the set of {@link JvmOperation} tagged with @Main found
 	 * in {@code language}'s {@link Aspect}s.
 	 */
-	def Set<JvmOperation> getEntryPoints(Language language){
+	def Set<JvmOperation> getEntryPoints(Language language) {
 		return
 			language.allSemantics
 	        .map[aspectTypeRef.type]

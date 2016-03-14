@@ -1,59 +1,56 @@
 package fr.inria.diverse.melange.ast
 
 import com.google.inject.Inject
-import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import java.io.IOException
 import org.eclipse.emf.codegen.ecore.genmodel.GenJDKLevel
 import org.eclipse.emf.codegen.ecore.genmodel.GenModelFactory
 import org.eclipse.emf.common.util.URI
-import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EPackage
-import org.eclipse.emf.ecore.EcorePackage
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 class MetamodelExtensions
 {
-	@Inject extension ModelingElementExtensions
-	@Inject extension LanguageExtensions
-	@Inject extension EcoreExtensions
 	@Inject extension IQualifiedNameProvider
+	@Inject extension LanguageExtensions
+	@Inject extension ModelingElementExtensions
 
+	/**
+	 * Checks whether the given {@link Metamodel} {@code mm} is well-formed,
+	 * ie. it has at least one package and associated genmodel.
+	 */
 	def boolean isValid(Metamodel mm) {
-		return !mm.pkgs.filterNull.empty && !mm.genmodels.filterNull.empty
+		return
+			   !mm.pkgs.filterNull.empty
+			&& !mm.genmodels.filterNull.empty
 	}
 
-	def EClassifier findClassifierFor(Metamodel mm, String clsName) {
-		val cls = mm.findClass(clsName)
-		if (cls !== null)
-			return cls
-
-		val dt = EcorePackage.eINSTANCE.findClassifier("E" + clsName.toFirstUpper)
-		if (dt !== null)
-			return dt
-	}
-
-	def void createGenmodel(Metamodel mm, String ecoreUri, String gmUri, String modelDirectory) {
+	/**
+	 * Generates and serializes a {@link GenModel} at the location {@code gmUri}
+	 * for the {@link Metamodel} {@code mm} whose Ecore file is located at
+	 * {@code ecoreUri}, using {@code targetModelDirectory} as its model directory.
+	 */
+	def void createGenmodel(Metamodel mm, String ecoreUri,
+			String gmUri, String targetModelDirectory) {
 		val resSet = new ResourceSetImpl
 		val pkgRes = resSet.getResource(URI::createURI(ecoreUri), true)
-		val pkgs = pkgRes.contents
+		val pkgs = pkgRes.contents.map[it as EPackage]
 
 		val genmodel = GenModelFactory.eINSTANCE.createGenModel => [
-			it.complianceLevel = GenJDKLevel.JDK70_LITERAL
-			it.modelDirectory = modelDirectory.replaceFirst("platform:/resource", "").replaceFirst("..", "")
-			it.foreignModel += ecoreUri
-			it.modelName = mm.owningLanguage.name
-			it.modelPluginID = mm.owningLanguage.externalRuntimeName
-			it.initialize(pkgs.map[it as EPackage])
+			complianceLevel = GenJDKLevel.JDK70_LITERAL
+			modelDirectory = targetModelDirectory
+				.replaceFirst("platform:/resource", "").replaceFirst("..", "")
+			foreignModel += ecoreUri
+			modelName = mm.owningLanguage.name
+			modelPluginID = mm.owningLanguage.externalRuntimeName
+			initialize(pkgs)
 			genPackages.forEach[gp |
 				gp.basePackage = mm.owningLanguage.fullyQualifiedName.toLowerCase.toString
-				if(!mm.owningLanguage.fileExtension.nullOrEmpty){
+				if (!mm.owningLanguage.fileExtension.nullOrEmpty)
 					gp.fileExtensions = mm.owningLanguage.fileExtension 
-				}
-				else{
+				else
 					gp.fileExtensions = mm.owningLanguage.name.toLowerCase.toString
-				}
 			]
 		]
 
