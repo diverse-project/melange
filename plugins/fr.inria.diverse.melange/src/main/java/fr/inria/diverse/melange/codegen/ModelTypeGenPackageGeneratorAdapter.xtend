@@ -4,6 +4,14 @@ import java.util.List
 import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenPackageGeneratorAdapter
 
+/**
+ * A specialized {@link GenPackageGeneratorAdapter} that registers a specialized
+ * JavaJet template for generated {@link EFactory} used for the generation of
+ * {@link ModelType}s. Using this template, the generated factory will always
+ * throw an exception when trying to create a new model element (via
+ * {@code createX()} methods), as {@link ModelType} are inherently abstract
+ * and it does not make sense to call the factory methods on them.
+ */
 class ModelTypeGenPackageGeneratorAdapter extends GenPackageGeneratorAdapter {
 	new(GeneratorAdapterFactory generatorAdapterFactory) {
 		super(generatorAdapterFactory)
