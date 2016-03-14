@@ -20,7 +20,7 @@ class MetamodelExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension IQualifiedNameProvider
 
-	def boolean getIsComplete(Metamodel mm) {
+	def boolean isValid(Metamodel mm) {
 		return !mm.pkgs.filterNull.empty && !mm.genmodels.filterNull.empty
 	}
 

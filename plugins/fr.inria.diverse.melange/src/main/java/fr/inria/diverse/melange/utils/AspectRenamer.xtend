@@ -52,7 +52,7 @@ class AspectRenamer {
 		val k3Patterns = convertToPattern(aspects, rulesManagers)
 		
 		aspects.forEach[asp | 
-	    	val targetAspectNamespace = l.aspectTargetNamespace
+	    	val targetAspectNamespace = l.aspectsNamespace
 	    	val aspectNamespace = src_genFolder.getPackageFragment(targetAspectNamespace.toString)
 	    	
 			processRenaming(asp, aspectNamespace, rulesManagers, k3Patterns, allClasses)

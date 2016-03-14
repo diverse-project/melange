@@ -300,7 +300,7 @@ class MetaclassAdapterInferrer
 		aspect.aspectTypeRef =
 			if (!aspect.aspectTypeRef.isDefinedOver(mm))
 				typeRef(
-					'''«mm.owningLanguage.aspectTargetNamespace».«aspect.aspectTypeRef.simpleName»'''
+					'''«mm.owningLanguage.aspectsNamespace».«aspect.aspectTypeRef.simpleName»'''
 				)
 			else
 				oldRef

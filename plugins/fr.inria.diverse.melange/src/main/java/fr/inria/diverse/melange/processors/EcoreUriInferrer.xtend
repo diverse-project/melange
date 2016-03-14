@@ -17,9 +17,7 @@ class EcoreUriInferrer extends DispatchMelangeProcessor
 		val project = l.eResource.project
 
 		if (l.isGeneratedByMelange && project !== null)
-			if (project.getFile(l.localEcorePath).exists)
-				l.syntax.ecoreUri = l.localEcoreUri
-			else if (project.getFile(l.externalEcorePath).exists)
+			if (project.getFile(l.externalEcorePath).exists)
 				l.syntax.ecoreUri = l.externalEcoreUri
 	}
 }

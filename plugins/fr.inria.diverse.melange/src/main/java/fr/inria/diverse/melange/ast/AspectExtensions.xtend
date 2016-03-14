@@ -17,8 +17,9 @@ import org.eclipse.xtext.xbase.XAbstractFeatureCall
  */
 class AspectExtensions {
 	@Inject extension IQualifiedNameConverter
-	@Inject extension NamingHelper
+	@Inject extension LanguageExtensions
 	@Inject extension ModelingElementExtensions
+	@Inject extension NamingHelper
 
 	static final String ASPECT_ANNOTATION_FQN =
 		"fr.inria.diverse.k3.al.annotationprocessor.Aspect"
@@ -26,8 +27,8 @@ class AspectExtensions {
 		"className"
 
 	/**
-	 * Checks whether the given {@link Aspect} can be resolved and processed
-	 * as a JvmDeclaredType
+	 * Checks whether the given {@link Aspect} {@code asp} can be resolved
+	 * and processed as a JvmDeclaredType
 	 */
 	def boolean isValid(Aspect asp) {
 		return
@@ -37,7 +38,7 @@ class AspectExtensions {
 
 	/**
 	 * Returns the underlying {@link JvmDeclaredType} corresponding to
-	 * the aspect or null if it cannot be determined
+	 * the aspect {@code asp} or null if it cannot be determined
 	 */
 	def JvmDeclaredType asJvmType(Aspect asp) {
 		return
@@ -46,7 +47,7 @@ class AspectExtensions {
 	}
 
 	/**
-	 * Checks whether the given aspect has an @Aspect annotation
+	 * Checks whether the given aspect {@code asp} has an @Aspect annotation
 	 */
 	def boolean hasAspectAnnotation(Aspect asp) {
 		return
@@ -59,7 +60,7 @@ class AspectExtensions {
 
 	/**
 	 * Returns the fully qualified name of the class on which the aspect
-	 * pointed by the given {@link JvmTypeReference} is woven
+	 * pointed by the given {@link JvmTypeReference} {@code typeRef} is woven
 	 * (ie. the value of its 'className=' annotation parameter), or null
 	 * if it cannot be retrieved
 	 */
@@ -75,8 +76,8 @@ class AspectExtensions {
 
 	/**
 	 * Returns the fully qualified name of the class on which the aspect
-	 * is woven (ie. the value of its 'className=' annotation parameter),
-	 * or null if it cannot be retrieved
+	 * {@code asp} is woven (ie. the value of its 'className=' annotation
+	 * parameter), or null if it cannot be retrieved
 	 */
 	def String getTargetedClassFqn(Aspect asp) {
 		return
@@ -85,7 +86,7 @@ class AspectExtensions {
 	}
 
 	/**
-	 * Returns the simple name of the class on which the aspect
+	 * Returns the simple name of the class on which the aspect {@code asp}
 	 * is woven (ie. the simple value of its 'className=' annotation parameter),
 	 * or null if it cannot be retrieved
 	 */
@@ -96,8 +97,9 @@ class AspectExtensions {
 	}
 
 	/**
-	 * Returns the base package of the class on which the aspect pointed
-	 * by the {@code aspectTypeRef} reference points, or an empty fqn
+	 * Returns the qualified name of the base package of the class on which
+	 * the aspect pointed by the {@link JvmTypeReference} {@code aspectTypeRef}
+	 * reference points, or an empty {@link QualifiedName}
 	 */
 	def QualifiedName getTargetedNamespace(JvmTypeReference aspectTypeRef) {
 		val aavt =
@@ -123,13 +125,29 @@ class AspectExtensions {
 
 	/**
 	 * Checks whether the given {@code aspectTypeRef} aspect reference can be
-	 * copied for the metamodel {@code mm}
+	 * copied for the {@code mm} {@link Metamodel}
 	 */
 	def boolean canBeCopiedFor(JvmTypeReference aspectTypeRef, Metamodel mm) {
 		// FIXME: not implemented
 		return true
 	}
 
+	/**
+	 * Try update asp.aspectTypeRef to reference copied aspect
+	 */
+	def void tryUpdateAspect(Aspect asp) {
+		var language = asp.owningLanguage
+		val newRef = language.getCopiedAspectRefFor(asp.aspectTypeRef.simpleName)
+
+		if(newRef !== null)
+			asp.aspectTypeRef = newRef
+	}
+
+	/**
+	 * Parses the given {@link JvmDeclaredType} {@code t} to extract the value
+	 * of its {@code className} annotation parameter in the form of a
+	 * {@link QualifiedName}
+	 */
 	private def QualifiedName extractAspectAnnotationValue(JvmDeclaredType t) {
 		val aspAnn = t.annotations.findFirst[
 			annotation?.qualifiedName == ASPECT_ANNOTATION_FQN]

@@ -137,11 +137,11 @@ class ModelTypeExtensions
 		return userDefinedUri ?: '''http://«mt.name.toLowerCase»/'''
 	}
 
-	def boolean getIsComplete(ModelType mt) {
+	def boolean isValid(ModelType mt) {
 		return
 			mt.name !== null &&
 			if (mt.isExtracted)
-				mt.extracted.isComplete
+				mt.extracted.isValid
 			else
 				!mt.pkgs.filterNull.empty
 	}

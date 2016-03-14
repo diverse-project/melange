@@ -2,7 +2,6 @@ package fr.inria.diverse.melange.jvmmodel
 
 import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.ASTHelper
-import fr.inria.diverse.melange.ast.ASTProcessingException
 import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
@@ -54,7 +53,7 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 	 */
 	def dispatch void infer(ModelTypingSpace root, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
 			// Only run codegen if everything's ready
-			if (root.languages.exists[!isComplete || !runtimeHasBeenGenerated] || root.modelTypes.exists[!isComplete])
+			if (root.languages.exists[!isValid || !runtimeHasBeenGenerated] || root.modelTypes.exists[!isValid])
 				return;
 
 			try {
@@ -77,8 +76,6 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 	//			} else {
 	//				logger.error('''Inferrer cannot proceed: there are errors in the model.''')
 	//			}
-			} catch (ASTProcessingException e) {
-				logger.error('''ASTProcessingException: «e.message»''')
 			} catch (Exception e) {
 				logger.error('''Exception: «e.message»''', e)
 			}
