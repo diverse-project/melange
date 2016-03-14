@@ -4,6 +4,9 @@ import com.google.inject.Inject
 import fr.inria.diverse.melange.lib.ModelUtils
 import fr.inria.diverse.melange.metamodel.melange.Import
 
+/**
+ * Builder for the {@link Import} operator.
+ */
 class ImportBuilder extends OperatorBuilder<Import> {
 	@Inject ModelUtils modelUtils
 	@Inject extension RenamerHelper
@@ -12,10 +15,12 @@ class ImportBuilder extends OperatorBuilder<Import> {
 		super(source)
 	}
 
+	/**
+	 * Loads the {@link EPackage} associated to the {@link Import} operator
+	 * and apply the associated renaming rules.
+	 */
 	override make() {
-		val op = source
-		model = modelUtils.loadPkg(op.ecoreUri)
-		model.applyRenaming(op.mappingRules)
-		// TODO: manage load & renaming errors
+		model = modelUtils.loadPkg(source.ecoreUri)
+		model.applyRenaming(source.mappingRules)
 	}
 }
