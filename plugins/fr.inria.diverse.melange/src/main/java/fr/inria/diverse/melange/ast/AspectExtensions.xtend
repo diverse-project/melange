@@ -32,18 +32,8 @@ class AspectExtensions {
 	 */
 	def boolean isValid(Aspect asp) {
 		return
-			asp.aspectTypeRef?.type !== null
+			   asp.aspectTypeRef?.type !== null
 			&& asp.aspectTypeRef.type instanceof JvmDeclaredType
-	}
-
-	/**
-	 * Returns the underlying {@link JvmDeclaredType} corresponding to
-	 * the aspect {@code asp} or null if it cannot be determined
-	 */
-	def JvmDeclaredType asJvmType(Aspect asp) {
-		return
-			if (asp.isValid)
-				asp.aspectTypeRef.type as JvmDeclaredType
 	}
 
 	/**
@@ -70,8 +60,7 @@ class AspectExtensions {
 			return null
 
 		return
-			(typeRef.type as JvmDeclaredType)
-			.extractAspectAnnotationValue.toString
+			(typeRef.type as JvmDeclaredType).extractAspectAnnotationValue.toString
 	}
 
 	/**
@@ -83,34 +72,6 @@ class AspectExtensions {
 		return
 			if (asp.isValid)
 				asp.asJvmType.extractAspectAnnotationValue.toString
-	}
-
-	/**
-	 * Returns the simple name of the class on which the aspect {@code asp}
-	 * is woven (ie. the simple value of its 'className=' annotation parameter),
-	 * or null if it cannot be retrieved
-	 */
-	def String getTargetedClassName(Aspect asp) {
-		return
-			if (asp.isValid)
-				asp.asJvmType.extractAspectAnnotationValue.lastSegment.toString
-	}
-
-	/**
-	 * Returns the qualified name of the base package of the class on which
-	 * the aspect pointed by the {@link JvmTypeReference} {@code aspectTypeRef}
-	 * reference points, or an empty {@link QualifiedName}
-	 */
-	def QualifiedName getTargetedNamespace(JvmTypeReference aspectTypeRef) {
-		val aavt =
-			(aspectTypeRef.type as JvmDeclaredType)
-			.extractAspectAnnotationValue
-
-		return
-			if (aavt !== null)
-				aavt.skipLast(1)
-			else
-				QualifiedName::create
 	}
 
 	/**
@@ -133,14 +94,41 @@ class AspectExtensions {
 	}
 
 	/**
-	 * Try update asp.aspectTypeRef to reference copied aspect
+	 * Tries to replace the {@link JvmTypeReference} {@code asp} points to with
+	 * a new {@link JvmTypeReference} pointing to its new qualified name in
+	 * the runtime project of its containing language.
 	 */
 	def void tryUpdateAspect(Aspect asp) {
 		var language = asp.owningLanguage
 		val newRef = language.getCopiedAspectRefFor(asp.aspectTypeRef.simpleName)
 
-		if(newRef !== null)
+		if (newRef !== null)
 			asp.aspectTypeRef = newRef
+	}
+
+	/**
+	 * Returns the qualified name of the base package of the class on which
+	 * the aspect pointed by the {@link JvmTypeReference} {@code aspectTypeRef}
+	 * reference points, or an empty {@link QualifiedName}
+	 */
+	private def QualifiedName getTargetedNamespace(JvmTypeReference aspectTypeRef) {
+		val aavt = (aspectTypeRef.type as JvmDeclaredType).extractAspectAnnotationValue
+
+		return
+			if (aavt !== null)
+				aavt.skipLast(1)
+			else
+				QualifiedName::create
+	}
+
+	/**
+	 * Returns the underlying {@link JvmDeclaredType} corresponding to
+	 * the aspect {@code asp} or null if it cannot be determined
+	 */
+	private def JvmDeclaredType asJvmType(Aspect asp) {
+		return
+			if (asp.isValid)
+				asp.aspectTypeRef.type as JvmDeclaredType
 	}
 
 	/**
@@ -154,7 +142,8 @@ class AspectExtensions {
 		val aspClassName = aspAnn?.values?.findFirst[
 			valueName == ASPECT_ANNOTATION_PARAMETER]
 		val aspVal = switch aspClassName {
-			JvmTypeAnnotationValue: aspClassName.values?.head?.qualifiedName
+			JvmTypeAnnotationValue:
+				aspClassName.values?.head?.qualifiedName
 			JvmCustomAnnotationValue: {
 				val feature = aspClassName.values?.head as XAbstractFeatureCall
 				feature.feature.qualifiedName
