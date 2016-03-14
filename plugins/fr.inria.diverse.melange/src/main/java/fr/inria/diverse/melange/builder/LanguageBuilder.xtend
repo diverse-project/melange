@@ -3,32 +3,47 @@ package fr.inria.diverse.melange.builder
 import com.google.inject.Inject
 import com.google.inject.Injector
 import fr.inria.diverse.melange.ast.AspectExtensions
-import fr.inria.diverse.melange.lib.EcoreExtensions
+import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.lib.EcoreMerger
 import fr.inria.diverse.melange.metamodel.melange.Import
 import fr.inria.diverse.melange.metamodel.melange.Inheritance
 import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.Merge
+import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.Operator
 import fr.inria.diverse.melange.metamodel.melange.Slice
 import fr.inria.diverse.melange.metamodel.melange.Weave
 import fr.inria.diverse.melange.utils.ErrorHelper
 import java.util.List
-import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.util.EcoreUtil
-import fr.inria.diverse.melange.ast.LanguageExtensions
 
+/**
+ * General builder for a {@link Language}.
+ */
 class LanguageBuilder extends AbstractBuilder {
 	@Inject ErrorHelper errorHelper
 	@Inject Injector injector
 	@Inject extension AspectExtensions
-	@Inject extension EcoreExtensions
 	@Inject extension LanguageExtensions
 	@Inject EcoreMerger ecoreMerger
+	/**
+	 * The {@link ModelTypingSpaceBuilder} that builds the {@link ModelTypingSpace}
+	 * to which the {@link Language} belongs.
+	 */
 	ModelTypingSpaceBuilder root
+	/**
+	 * The {@link Language} being built by this builder.
+	 */
 	Language source
+	/**
+	 * Whether the language is currently being processed or not.
+	 */
 	boolean isBuilding = false
+	/**
+	 * The list of all {@link OperatorBuilder} being used to build this
+	 * {@link Language}.
+	 */
 	List<OperatorBuilder<? extends Operator>> builders
 
 	new(Language l, ModelTypingSpaceBuilder root) {
@@ -49,9 +64,8 @@ class LanguageBuilder extends AbstractBuilder {
 			errorHelper.addError(e.location, e.message)
 		]
 		
-		if(source.isGeneratedByMelange){
+		if(source.isGeneratedByMelange)
 			model.nsURI = source.externalPackageUri
-		}
 	}
 
 	override make() {
@@ -98,12 +112,14 @@ class LanguageBuilder extends AbstractBuilder {
 		}
 	}
 
-	/*
-	 * Add @merged into @base (-> both can be null)
+	/**
+	 * Merges the {@link EPackage} {@code merged} into the {@link EPackage}
+	 * {@code base}. Conflicts that may arise during the merge are returned as
+	 * {@link BuilderError}s.
+	 * 
+	 * @see EcoreMerger#merge 
 	 */
 	def List<BuilderError> merge(EPackage base, EPackage merged, Operator context) {
-		// TODO: Custom merge
-//		algebra.merge(merged, base)
 		ecoreMerger.merge(base, merged)
 
 		return ecoreMerger.conflicts.map[
@@ -111,6 +127,10 @@ class LanguageBuilder extends AbstractBuilder {
 		]
 	}
 
+	/**
+	 * Returns the list of {@link OperatorBuilder} used to build the different
+	 * {@link Operator} of {@code operators}.
+	 */
 	def List<OperatorBuilder<? extends Operator>> createBuilders(List<Operator> operators) {
 		val res = newArrayList
 
@@ -135,31 +155,6 @@ class LanguageBuilder extends AbstractBuilder {
 
 	def Language getSource() {
 		return source
-	}
-
-	/**
-	 * Search in builder for an EClass {@link simpleName}
-	 */
-	def EClass findClass(String simpleName) {
-		for (builder : builders) {
-			val pack = builder.model
-			val candidate = pack?.allClasses.findFirst[name == simpleName]
-			if(candidate !== null) return candidate
-		}
-		return null
-	}
-
-	def void debug() {
-		println(source.name)
-		builders.forEach [
-			println("	" + it)
-			it.model.allClasses.forEach [ cl |
-				println("	" + cl.name)
-				cl.EAllAttributes.forEach[println("		" + it.name + " : " + it.EType?.name)]
-				cl.EAllReferences.forEach[println("		" + it.name + " : " + it.EType?.name)]
-				cl.EAllOperations.forEach[println("		" + it.name + " : " + it.EType?.name)]
-			]
-		]
 	}
 
 	def WeaveBuilder findBuilder(Weave w) {

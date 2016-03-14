@@ -3,14 +3,22 @@ package fr.inria.diverse.melange.builder
 import java.util.List
 import org.eclipse.emf.ecore.EPackage
 
+/**
+ * Default implementation of {@link Builder}. An {@link EPackage} {@code model}
+ * is attached to the builder that correspond to what has been built.
+ * <br>
+ * Implementors must later implement the {@link Builder#make} method.
+ */
 abstract class AbstractBuilder implements Builder {
-	protected EPackage model
-	protected List<BuilderError> errors
-	
-	new(){
-		model = null
-		errors = newArrayList
-	}
+	/**
+	 * An {@link EPackage} containing the chunk of syntax generated from
+	 * this builder.
+	 */
+	protected EPackage model = null
+	/**
+	 * {@link BuilderError} collected during the build.
+	 */
+	protected List<BuilderError> errors = newArrayList
 
 	override preBuild() {
 		model = null

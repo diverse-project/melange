@@ -10,10 +10,17 @@ import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.xtext.common.types.JvmDeclaredType
 
+/**
+ * Builder for the {@link Weave} operator.
+ */
 class WeaveBuilder extends OperatorBuilder<Weave> {
 	@Inject extension AspectExtensions
 	@Inject extension AspectToEcore
 	@Inject extension EcoreExtensions
+	/**
+	 * The {@link EPackage} on which the aspect pointed by the current
+	 * {@link Weave} operator should be woven.
+	 */
 	EPackage baseModel
 
 	new(Weave op, EPackage baseModel) {
@@ -21,6 +28,10 @@ class WeaveBuilder extends OperatorBuilder<Weave> {
 		this.baseModel = baseModel
 	}
 
+	/**
+	 * Process the current {@link Weave} operator and build the fragment
+	 * of {@link EPackage} corresponding to it.
+	 */
 	override make() {
 		val aspRef = source.aspectTypeRef
 
