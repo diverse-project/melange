@@ -1,7 +1,7 @@
 package fr.inria.diverse.melange.utils
 
-import com.google.common.collect.ArrayListMultimap
-import com.google.common.collect.ListMultimap
+import com.google.common.collect.HashMultimap
+import com.google.common.collect.SetMultimap
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import fr.inria.diverse.melange.ast.LanguageExtensions
@@ -15,7 +15,7 @@ import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelingElement
-import java.util.List
+import java.util.Set
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.util.EcoreUtil
@@ -31,15 +31,15 @@ class EPackageProvider
 	@Inject extension LanguageExtensions
 	@Inject extension EclipseProjectHelper
 	@Inject extension IQualifiedNameProvider
-	private ListMultimap<String, EPackage> packages = ArrayListMultimap.create
-	private ListMultimap<String, GenModel> genmodels = ArrayListMultimap.create
+	private SetMultimap<String, EPackage> packages = HashMultimap.create
+	private SetMultimap<String, GenModel> genmodels = HashMultimap.create
 
 	def void reset() {
-		packages = ArrayListMultimap.create
-		genmodels = ArrayListMultimap.create
+		packages = HashMultimap.create
+		genmodels = HashMultimap.create
 	}
 
-	def List<EPackage> getPackages(ModelingElement m) {
+	def Set<EPackage> getPackages(ModelingElement m) {
 		if (!packages.containsKey(m.fqn)) {
 			if (m instanceof Metamodel) {
 				val project = m.eResource.project
@@ -89,7 +89,7 @@ class EPackageProvider
 		return packages.get(m.fqn)
 	}
 
-	def List<GenModel> getGenModels(ModelingElement m) {
+	def Set<GenModel> getGenModels(ModelingElement m) {
 		if (!genmodels.containsKey(m.fqn)) {
 			// If it's an Xcore file, the genmodel can be found directly within it
 			if (m.isXcore) {

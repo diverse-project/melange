@@ -244,7 +244,9 @@ class LanguageExtensions
 	def boolean doesImplement(Language l, ModelType mt) {
 		return
 			matchingHelper.match(
-				l.syntax.pkgs, mt.pkgs, l.mappings.findFirst[to == mt])
+				l.syntax.pkgs.toList,
+				mt.pkgs.toList,
+				l.mappings.findFirst[to == mt])
 	}
 
 	/**

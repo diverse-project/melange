@@ -7,6 +7,7 @@ import fr.inria.diverse.melange.metamodel.melange.ModelingElement
 import fr.inria.diverse.melange.utils.EPackageProvider
 import java.io.IOException
 import java.util.List
+import java.util.Set
 import org.eclipse.emf.codegen.ecore.genmodel.GenClass
 import org.eclipse.emf.codegen.ecore.genmodel.GenClassifier
 import org.eclipse.emf.codegen.ecore.genmodel.GenDataType
@@ -27,19 +28,21 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 
 class ModelingElementExtensions
 {
-	@Inject EPackageProvider registry
 	@Inject extension EcoreExtensions
+	@Inject EPackageProvider registry
 
-	def List<EPackage> getPkgs(ModelingElement m) {
+	def Set<EPackage> getPkgs(ModelingElement m) {
 		return registry.getPackages(m)
 	}
 
-	def List<GenModel> getGenmodels(ModelingElement m) {
+	def Set<GenModel> getGenmodels(ModelingElement m) {
 		return registry.getGenModels(m)
 	}
 
 	def boolean isXcore(ModelingElement m) {
-		return !m.ecoreUri.nullOrEmpty && m.ecoreUri.endsWith(".xcore")
+		return
+			   !m.ecoreUri.nullOrEmpty
+			&& m.ecoreUri.endsWith(".xcore")
 	}
 
 	def Iterable<GenPackage> getAllGenPkgs(ModelingElement m) {
