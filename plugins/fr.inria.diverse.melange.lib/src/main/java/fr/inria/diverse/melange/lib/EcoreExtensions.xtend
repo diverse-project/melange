@@ -181,8 +181,8 @@ class EcoreExtensions
 		return cls.name != "EObject" && cls.instanceClass === null && cls.instanceTypeName === null
 	}
 
-	def boolean isAspectSpecific(ENamedElement f) {
-		return f.EAnnotations.exists[source == "aspect"]
+	def boolean isAspectSpecific(EModelElement e) {
+		return e.EAnnotations.exists[source == "aspect"]
 	}
 
 	def boolean hasSuppressedVisibility(ENamedElement f) {

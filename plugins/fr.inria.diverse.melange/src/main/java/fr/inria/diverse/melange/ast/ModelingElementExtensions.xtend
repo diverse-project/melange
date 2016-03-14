@@ -6,7 +6,6 @@ import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelingElement
 import fr.inria.diverse.melange.utils.EPackageProvider
 import java.io.IOException
-import java.util.List
 import java.util.Set
 import org.eclipse.emf.codegen.ecore.genmodel.GenClass
 import org.eclipse.emf.codegen.ecore.genmodel.GenClassifier
@@ -26,78 +25,160 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
 
+/**
+ * A collection of utilities around {@link ModelingElement}s
+ */
 class ModelingElementExtensions
 {
 	@Inject extension EcoreExtensions
 	@Inject EPackageProvider registry
 
+	/**
+	 * Returns all the {@link EPackage}s defined in {@code m}.
+	 * 
+	 * @see EPackageProvider#getPackages
+	 */
 	def Set<EPackage> getPkgs(ModelingElement m) {
 		return registry.getPackages(m)
 	}
 
+	/**
+	 * Returns all the {@link GenModel}s used by {@code m}.
+	 * 
+	 * @see EPackageProvider#getGenModels
+	 */
 	def Set<GenModel> getGenmodels(ModelingElement m) {
 		return registry.getGenModels(m)
 	}
 
+	/**
+	 * Checks whether the Ecore pointed by the {@code ecoreUri} of {@code m}
+	 * is an Xcore file.
+	 */
 	def boolean isXcore(ModelingElement m) {
 		return
 			   !m.ecoreUri.nullOrEmpty
 			&& m.ecoreUri.endsWith(".xcore")
 	}
 
+	/**
+	 * Returns the set of all {@link GenPackage}s defined by the {@link GenModel}s
+	 * of the {@link ModelingElement} {@code m}.
+	 */
 	def Iterable<GenPackage> getAllGenPkgs(ModelingElement m) {
-		return m.genmodels.map[allGenPkgs].flatten
-	}
-
-	def GenPackage getGenPkgFor(ModelingElement m, EPackage pkg) {
-		return m.allGenPkgs.findFirst[getEcorePackage.name == pkg.name]
-	}
-
-	def GenClassifier getGenClassifierFor(ModelingElement m, EClassifier cls) {
-		return m.getGenPkgFor(cls.EPackage).genClassifiers.findFirst[name == cls.name]
-	}
-
-	def GenClass getGenClsFor(ModelingElement m, EClass cls) {
-		return m.getGenPkgFor(cls.EPackage).genClasses.findFirst[name == cls.name]
-	}
-
-	def GenDataType getGenDataTypeFor(ModelingElement m, EDataType dt) {
 		return
-			if (dt instanceof EEnum)
-				m.getGenPkgFor(dt.EPackage).genEnums.findFirst[name == dt.name]
-			else
-				m.getGenPkgFor(dt.EPackage).genDataTypes.findFirst[name == dt.name]
-	}
-
-	def String getRootPackageUri(ModelingElement m) {
-		return m.allGenPkgs.head.getEcorePackage.nsURI
-	}
-
-	def List<EPackage> getAllSubPkgs(ModelingElement m) {
-		return m.pkgs.head.allSubPkgs
-	}
-
-	def Iterable<EClassifier> getAllClassifiers(ModelingElement m) {
-		return m.pkgs.map[getAllClassifiers].flatten
-	}
-
-	def Iterable<EClass> getAllClasses(ModelingElement m) {
-		return m.pkgs.map[getAllClasses].flatten
-	}
-
-	def EClass findClass(ModelingElement m, String simpleName) {
-		return m.allClasses.findFirst[name == simpleName]
-	}
-
-	def EClassifier findClassifier(ModelingElement m, String simpleName) {
-		return m.allClassifiers.findFirst[name == simpleName]
+			m.genmodels
+			.map[allGenPkgs]
+			.flatten
 	}
 
 	/**
- 	 * create the ecore for this ModelingElement
- 	 * return the root package  
+	 * Returns the {@link GenPackage} corresponding to the {@link EPackage}
+	 * {@code pkg} in {@code m}.
+	 */
+	def GenPackage getGenPkgFor(ModelingElement m, EPackage pkg) {
+		return
+			m.allGenPkgs
+			.findFirst[getEcorePackage.name == pkg.name]
+	}
+
+	/**
+	 * Returns the {@link GenClassifier} corresponding to the {@link EClassifier}
+	 * {@code cls} in {@code m}.
+	 */
+	def GenClassifier getGenClassifierFor(ModelingElement m, EClassifier cls) {
+		return
+			m.getGenPkgFor(cls.EPackage)
+			.genClassifiers
+			.findFirst[name == cls.name]
+	}
+
+	/**
+	 * Returns the {@link GenClass} corresponding to the {@link EClass}
+	 * {@code cls} in {@code m}.
+	 */
+	def GenClass getGenClsFor(ModelingElement m, EClass cls) {
+		return
+			m.getGenPkgFor(cls.EPackage)
+			.genClasses
+			.findFirst[name == cls.name]
+	}
+
+	/**
+	 * Returns the {@link GenDataType} corresponding to the {@link EDataType}
+	 * {@code dt} in {@code m}.
+	 */
+	def GenDataType getGenDataTypeFor(ModelingElement m, EDataType dt) {
+		return
+			if (dt instanceof EEnum)
+				m.getGenPkgFor(dt.EPackage)
+				.genEnums
+				.findFirst[name == dt.name]
+			else // EDataType
+				m.getGenPkgFor(dt.EPackage)
+				.genDataTypes
+				.findFirst[name == dt.name]
+	}
+
+	/**
+	 * Returns the URI of the first {@link EPackage} defined by {@code m}.
+	 */
+	def String getRootPackageUri(ModelingElement m) {
+		return
+			m.allGenPkgs
+			.head
+			.getEcorePackage
+			.nsURI
+	}
+
+	/**
+	 * Returns all the {@link EClassifier}s defined by {@code m}.
+	 */
+	def Iterable<EClassifier> getAllClassifiers(ModelingElement m) {
+		return
+			m.pkgs
+			.map[allClassifiers]
+			.flatten
+	}
+
+	/**
+	 * Returns all the {@link EClass}es defined in {@code m}.
+	 */
+	def Iterable<EClass> getAllClasses(ModelingElement m) {
+		return
+			m.pkgs
+			.map[allClasses]
+			.flatten
+	}
+
+	/**
+	 * Returns the {@link EClass} in {@code m} with the name {@code simpleName}.
+	 */
+	def EClass findClass(ModelingElement m, String simpleName) {
+		return
+			m.allClasses
+			.findFirst[name == simpleName]
+	}
+
+	/**
+	 * Returns the {@link EClassifier} in {@code m} with the name {@code simpleName}.
+	 */
+	def EClassifier findClassifier(ModelingElement m, String simpleName) {
+		return
+			m.allClassifiers
+			.findFirst[name == simpleName]
+	}
+
+	/**
+ 	 * Creates the Ecore file corresponding to {@code m} at the location
+ 	 * {@code uri} using {@code pkgUri} as its nsURI
+ 	 * 
+ 	 * @param hideAspectElements whether the elements coming from aspects
+ 	 * (ie. annotated with 'aspect') should be hidden in the serialized Ecore
+ 	 * @return the serialized root {@link EPackage}
  	 */
-	def EPackage createEcore(ModelingElement m, String uri, String pkgUri, boolean hideAspectElements) {
+	def EPackage createEcore(ModelingElement m, String uri, String pkgUri,
+		boolean hideAspectElements) {
 		val resSet = new ResourceSetImpl
 		val res = resSet.createResource(URI::createURI(uri))
 		val rootPkg = m.pkgs.head
@@ -110,48 +191,61 @@ class ModelingElementExtensions
 		if (m instanceof Metamodel) {
 			val toRemove = <EModelElement>newArrayList
 			val i = copy.head.eAllContents
+
 			while (i.hasNext) {
 				val obj = i.next
-				
-				if(hideAspectElements){
+
+				if (hideAspectElements) {
 					if (obj instanceof EModelElement) {
-						if (obj.EAnnotations.exists[source == "aspect"]) {
+						if (obj.isAspectSpecific) {
 							if (obj instanceof EStructuralFeature)
-								if (!obj.EType.EAnnotations.exists[source == "aspect"]) {}
+								if (!obj.EType.isAspectSpecific) {}
 								else toRemove += obj
 							else
 								toRemove += obj
 						}
 					}
 				}
-				
+
+				// FIXME: wtf?
 				if (obj instanceof EStructuralFeature) {
 					if (obj.volatile) {
 						obj.volatile = false
 					}
 				}
 			}
+
 			toRemove.forEach[EcoreUtil::delete(it)]
 		}
 
-		// FIXME:
+		// FIXME: :/
 		copy.forEach[pkg |
 			pkg.replaceLocalEObjectReferencesToEcoreEObjectReferences
-			EcoreUtil.ExternalCrossReferencer.find(pkg).forEach[o, s |
-				s.forEach[ss |
-					if (ss.EStructuralFeature !== null && !ss.EStructuralFeature.derived && !ss.EStructuralFeature.many) {
-						if (o instanceof EClassifier) {
-							val corresponding = copy.map[EClassifiers].flatten.findFirst[name == o.name]
-							if (corresponding !== null)
-								ss.EObject.eSet(ss.EStructuralFeature, corresponding)
-						} else if (o instanceof EReference) {
-							if (o.EOpposite !== null) {
-								val correspondingCls = copy.map[EClassifiers].flatten.findFirst[name == o.EContainingClass.name] as EClass
-								val correspondingRef = correspondingCls.EReferences.findFirst[name == o.name]
+			EcoreUtil.ExternalCrossReferencer.find(pkg).forEach[obj, settings |
+				settings
+				.filter[
+					   EStructuralFeature !== null
+					&& !EStructuralFeature.derived
+					&& !EStructuralFeature.many
+				]
+				.forEach[ss |
+					if (obj instanceof EClassifier) {
+						val corresponding = copy.map[EClassifiers].flatten
+											.findFirst[name == obj.name]
 
-								if (correspondingRef !== null)
-									ss.EObject.eSet(ss.EStructuralFeature, correspondingRef)
-							}
+						if (corresponding !== null)
+							ss.EObject.eSet(ss.EStructuralFeature, corresponding)
+					} else if (obj instanceof EReference) {
+						if (obj.EOpposite !== null) {
+							val correspondingCls =
+								copy.map[EClassifiers].flatten
+								.findFirst[name == obj.EContainingClass.name] as EClass
+							val correspondingRef =
+								correspondingCls.EReferences
+								.findFirst[name == obj.name]
+
+							if (correspondingRef !== null)
+								ss.EObject.eSet(ss.EStructuralFeature, correspondingRef)
 						}
 					}
 				]
@@ -160,19 +254,14 @@ class ModelingElementExtensions
 
 		res.contents += copy
 
-//		new Job("Serializing Ecore") {
-//			override run(IProgressMonitor monitor) {
-				try {
-					val options = newHashMap
-					options.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER)
-					res.save(options)
-				} catch (IOException e) {
-					e.printStackTrace
-				}
-
-//				return Status.OK_STATUS
-//			}
-//		}.schedule
+		try {
+			val options = newHashMap
+			options.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED,
+				Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER)
+			res.save(options)
+		} catch (IOException e) {
+			e.printStackTrace
+		}
 
 		return rootPkg
 	}
