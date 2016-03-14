@@ -21,36 +21,53 @@ import org.eclipse.emf.ecore.EcorePackage
 import org.eclipse.emf.ecore.plugin.EcorePlugin
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.xtext.naming.IQualifiedNameProvider
+import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage
 
+/**
+ * A collection of utilities around {@link ModelType}s
+ */
 class ModelTypeExtensions
 {
+	@Inject extension EclipseProjectHelper
+	@Inject extension IQualifiedNameProvider
 	@Inject extension LanguageExtensions
 	@Inject extension ModelingElementExtensions
-	@Inject extension IQualifiedNameProvider
-	@Inject extension EclipseProjectHelper
 	@Inject MatchingHelper matchingHelper
 	@Inject EclipseProjectHelper helper
 
+	/**
+	 * Returns the URI of the serialized Ecore of the {@link ModelType}
+	 * {@code mt}.
+	 */
 	def String getInferredEcoreUri(ModelType mt) {
 		val project = mt.eResource.project
 		return '''platform:/resource/«project.name»/model-gen/«mt.name».ecore'''
 	}
 
+	/**
+	 * Creates and serializes the {@link GenModel} for {@code mt} at the
+	 * location {@code gmUri}, pointing to the Ecore file located at {@code ecoreUri}.
+	 */
 	def GenModel createGenmodel(ModelType mt, String ecoreUri, String gmUri) {
 		val resSet = new ResourceSetImpl
-		resSet.URIConverter.URIMap.putAll(EcorePlugin::computePlatformURIMap(true))
+		resSet.URIConverter.URIMap.putAll(
+			EcorePlugin::computePlatformURIMap(true))
+
 		val pkgRes = resSet.getResource(URI::createURI(ecoreUri), true)
-		val pkgs = pkgRes.contents
-		val ecoreGmUri = EcorePlugin::getEPackageNsURIToGenModelLocationMap(true).get(EcorePackage.eNS_URI)
+		val pkgs = pkgRes.contents.map[it as EPackage]
+		val ecoreGmUri =
+			EcorePlugin::getEPackageNsURIToGenModelLocationMap(true)
+			.get(EcorePackage.eNS_URI)
 		val ecoreGmRes = resSet.getResource(ecoreGmUri, true)
 		val ecoreGm = ecoreGmRes.contents.head as GenModel
 
 		val genmodel = GenModelFactory.eINSTANCE.createGenModel => [
 			complianceLevel = GenJDKLevel.JDK70_LITERAL
-			modelDirectory = helper.getProject(mt.eResource).getFolder("src-gen").fullPath.toString
+			modelDirectory = helper.getProject(mt.eResource)
+							.getFolder("src-gen").fullPath.toString
 			foreignModel += ecoreUri
 			modelName = mt.name
-			initialize(pkgs.map[it as EPackage])
+			initialize(pkgs)
 			genPackages.forEach[gp |
 				gp.basePackage = mt.fullyQualifiedName.toString.toLowerCase
 			]
@@ -69,6 +86,10 @@ class ModelTypeExtensions
 		}
 	}
 
+	/**
+	 * Creates an in-memory {@link GenModel} for {@code mt} to be used when the
+	 * serialized version created by {@link #createGenmodel} is not available yet.
+	 */
 	def GenModel createTransientGenmodel(ModelType mt) {
 		val resSet = new ResourceSetImpl
 		resSet.URIConverter.URIMap.putAll(EcorePlugin::computePlatformURIMap(true))
@@ -78,7 +99,8 @@ class ModelTypeExtensions
 
 		return GenModelFactory.eINSTANCE.createGenModel => [
 			complianceLevel = GenJDKLevel.JDK70_LITERAL
-			modelDirectory = helper.getProject(mt.eResource).getFolder("src-gen").fullPath.toString
+			modelDirectory = helper.getProject(mt.eResource)
+							.getFolder("src-gen").fullPath.toString
 			modelName = mt.name
 			initialize(mt.pkgs)
 			genPackages.forEach[gp |
@@ -88,8 +110,18 @@ class ModelTypeExtensions
 		]
 	}
 
+	/**
+	 * Generates the Java code corresponding to the {@link Genmodel}
+	 * {@code genModel}. This code generator uses a specialized generation
+	 * strategy: the code implementing the meta-classes' interfaces is not
+	 * generated (the .impl package).
+	 * <br>
+	 * Only the interfaces and the .util package are generated.
+	 * 
+	 * @see Generator#generate
+	 */
 	def void generateModelTypeCode(GenModel genModel) {
-		val gmUri = "http://www.eclipse.org/emf/2002/GenModel"
+		val gmUri = GenModelPackage.eNS_URI
 
 		genModel.reconcile
 		genModel.canGenerate = true
@@ -130,6 +162,11 @@ class ModelTypeExtensions
 		reg.addDescriptor(gmUri, old)
 	}
 
+	/**
+	 * Returns the URI of the {@link ModelType} {@code mt}.
+	 * May be automatically crafted by configuration or explicitly defined
+	 * by the user using the 'uri' keywork in the Melange file.
+	 */
 	def String getUri(ModelType mt) {
 		val userDefinedUri =
 			if (mt.isExtracted) mt.extracted.exactTypeUri
@@ -137,23 +174,34 @@ class ModelTypeExtensions
 		return userDefinedUri ?: '''http://«mt.name.toLowerCase»/'''
 	}
 
+	/**
+	 * Checks whether the {@link ModelType} {@code mt} is well-formed and can
+	 * be processed.
+	 */
 	def boolean isValid(ModelType mt) {
 		return
-			mt.name !== null &&
-			if (mt.isExtracted)
-				mt.extracted.isValid
-			else
-				!mt.pkgs.filterNull.empty
+				!mt.name.nullOrEmpty
+			&&
+				if (mt.isExtracted)
+					mt.extracted.isValid
+				else
+					!mt.pkgs.filterNull.empty
 	}
 
+	/**
+	 * Returns whether the {@link ModelType} {@code mt} is extracted from
+	 * a {@link Language} implementation or manually crafted.
+	 */
 	def boolean isExtracted(ModelType mt) {
 		return mt.extracted !== null
 	}
 
-	def boolean isImported(ModelType mt) {
-		return mt.ecoreUri !== null
-	}
-
+	/**
+	 * Checks whether the {@link ModelType} {@code mt1} is a subtype of the
+	 * {@link ModelType} {@code mt2}.
+	 * 
+	 * @see MatchingHelper#match
+	 */
 	def boolean isSubtypeOf(ModelType mt1, ModelType mt2) {
 		return matchingHelper.match(
 			mt1.pkgs.toList, mt2.pkgs.toList, null)
