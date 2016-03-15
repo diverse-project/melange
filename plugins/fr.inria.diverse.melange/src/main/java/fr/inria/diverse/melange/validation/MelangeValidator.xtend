@@ -46,8 +46,10 @@ class MelangeValidator extends AbstractMelangeValidator
 	@Check
 	def void checkNamesAreUnique(NamedElement e) {
 		val root =
-			if (e.eContainer instanceof ModelTypingSpace) e.eContainer
-			else if (e.eContainer.eContainer instanceof ModelTypingSpace) e.eContainer.eContainer
+			if (e.eContainer instanceof ModelTypingSpace)
+				e.eContainer
+			else if (e.eContainer.eContainer instanceof ModelTypingSpace)
+				e.eContainer.eContainer
 
 		if ((root as ModelTypingSpace).elements.filter(NamedElement).exists[e_ |
 			   e_ != e
@@ -74,7 +76,8 @@ class MelangeValidator extends AbstractMelangeValidator
 	def void checkLanguageNameIsntAmbiguous(Language l) {
 		if (!l.name.nullOrEmpty && l.name.endsWith("MT"))
 			error(
-				"Language shouldn't end with 'MT' to avoid ambiguities with model type names",
+				"Language shouldn't end with 'MT' to avoid ambiguities "
+				+ "with model type names",
 				MelangePackage.Literals.NAMED_ELEMENT__NAME,
 				MelangeValidationConstants.LANGUAGE_NAME_AMBIGUOUS
 			)
@@ -99,7 +102,9 @@ class MelangeValidator extends AbstractMelangeValidator
 					MelangePackage.Literals.NAMED_ELEMENT__NAME,
 					MelangeValidationConstants.MODELTYPE_ECORE_EMPTY
 				)
-			else if (mt.ecoreUri !== null && modelUtils.loadPkg(mt.ecoreUri) === null)
+			else if (
+				mt.ecoreUri !== null && modelUtils.loadPkg(mt.ecoreUri) === null
+			)
 				error(
 					'''The Ecore file "«mt.ecoreUri»" couldn't be loaded''',
 					MelangePackage.Literals.MODELING_ELEMENT__ECORE_URI,
@@ -144,7 +149,8 @@ class MelangeValidator extends AbstractMelangeValidator
 			// If its an Xcore file, the Genmodel is directly embedded within it
 			if (!lang.syntax.isXcore) {
 				if (i.genmodelUris.empty) {
-					val speculativeGenmodelPath = i.ecoreUri.substring(0, i.ecoreUri.lastIndexOf(".")) + ".genmodel"
+					val speculativeGenmodelPath = i.ecoreUri.substring(0,
+						i.ecoreUri.lastIndexOf(".")) + ".genmodel"
 					if (modelUtils.loadGenmodel(speculativeGenmodelPath) === null)
 						error(
 							'''No associated genmodel found at "«speculativeGenmodelPath»"''',
@@ -174,11 +180,14 @@ class MelangeValidator extends AbstractMelangeValidator
 
 	@Check
 	def void checkHasAnnotationProcessorDependency(Aspect asp) {
-		if (asp.aspectTypeRef?.type !== null && asp.aspectTypeRef.type instanceof JvmDeclaredType && 
-			(asp.aspectTypeRef.type as JvmDeclaredType).annotations.exists[annotation.eIsProxy]
-		)
+		if (
+			   asp.aspectTypeRef?.type !== null
+			&& asp.aspectTypeRef.type instanceof JvmDeclaredType
+			&& (asp.aspectTypeRef.type as JvmDeclaredType).annotations
+				.exists[annotation.eIsProxy])
 			error(
-				"Cannot find dependency to annotation processor. Please add k3.al.annotationprocessor",
+				"Cannot find dependency to annotation processor. "
+				+ "Please add k3.al.annotationprocessor",
 				MelangePackage.Literals.ASPECT__ASPECT_TYPE_REF,
 				MelangeValidationConstants.INVALID_ASPECT_IMPORT
 			)
@@ -189,7 +198,8 @@ class MelangeValidator extends AbstractMelangeValidator
 		l.^implements
 		.forEach[mt, i |
 			if (!matchingHelper.match(
-				l.syntax.pkgs.toList, mt.pkgs.toList, l.mappings.findFirst[to == mt]
+				l.syntax.pkgs.toList, mt.pkgs.toList,
+				l.mappings.findFirst[to == mt]
 			))
 				error(
 					'''«l.name» doesn't match the interface «mt.name»''',
@@ -237,9 +247,16 @@ class MelangeValidator extends AbstractMelangeValidator
 	def void checkAspectAnnotationIsValid(Aspect asp) {
 		val clsName = asp.aspectTypeRef.aspectAnnotationValue
 		val lang = asp.eContainer as Language
-		val correspondingWeave = lang.operators.filter(Weave).findFirst[aspectTypeRef.simpleName == asp.aspectTypeRef.simpleName]
+		val correspondingWeave =
+			lang.operators
+			.filter(Weave)
+			.findFirst[aspectTypeRef.simpleName == asp.aspectTypeRef.simpleName]
 
-		if (clsName !== null && correspondingWeave !== null && asp.aspectedClass === null)
+		if (
+			   clsName !== null
+			&& correspondingWeave !== null
+			&& asp.aspectedClass === null
+		)
 			error(
 				'''Cannot find target class «clsName»''',
 				correspondingWeave,
@@ -252,10 +269,17 @@ class MelangeValidator extends AbstractMelangeValidator
 	def void checkFindAspectedClass(Aspect asp) {
 		
 		val lang = asp.eContainer as Language
-		val correspondingWeave = lang.operators.filter(Weave).findFirst[aspectTypeRef.simpleName == asp.aspectTypeRef.simpleName]
+		val correspondingWeave =
+			lang.operators
+			.filter(Weave)
+			.findFirst[aspectTypeRef.simpleName == asp.aspectTypeRef.simpleName]
 		val clsName = correspondingWeave?.aspectTypeRef.aspectAnnotationValue
 
-		if (asp.hasAspectAnnotation && clsName === null && correspondingWeave !== null)
+		if (
+			   asp.hasAspectAnnotation
+			&& clsName === null
+			&& correspondingWeave !== null
+		)
 			error(
 				'''Cannot find in the classpath the class targeted by «asp.aspectTypeRef.qualifiedName»''',
 				correspondingWeave,
@@ -279,12 +303,17 @@ class MelangeValidator extends AbstractMelangeValidator
 
 	@Check
 	def void checkSliceCriteria(Slice s) {
-		val invalidRoots = s.roots.filter[clsName | s.targetLanguage.syntax.findClassifier(clsName) === null]
+		val invalidRoots =
+			s.roots
+			.filter[clsName |
+				s.targetLanguage.syntax.findClassifier(clsName) === null
+			]
 		val invalidRootsSize = invalidRoots.size
 
 		if (invalidRootsSize > 0)
 			error(
-				'''Invalid slicing criterion: cannot find class«IF invalidRootsSize > 1»es«ENDIF»: «invalidRoots.join(", ")»''',
+				'''Invalid slicing criterion: cannot find class«
+				»«IF invalidRootsSize > 1»es«ENDIF»: «invalidRoots.join(", ")»''',
 				MelangePackage.Literals.SLICE__ROOTS,
 				MelangeValidationConstants.SLICE_INVALID_ROOT
 			)
@@ -297,7 +326,8 @@ class MelangeValidator extends AbstractMelangeValidator
 
 			if (invalidPkgs.size > 0)
 				error(
-					'''Unexpected error: cannot find a GenPackage for: «invalidPkgs.map[name].join(", ")».''' +
+					'''Unexpected error: cannot find a GenPackage for: «
+					»«invalidPkgs.map[name].join(", ")».''' +
 					''' Please check whether the associated Genmodel is up to date.''',
 					MelangePackage.Literals.NAMED_ELEMENT__NAME,
 					MelangeValidationConstants.METAMODEL_NO_GENPACKAGE
@@ -307,7 +337,8 @@ class MelangeValidator extends AbstractMelangeValidator
 
 				if (invalidCls.size > 0)
 					error(
-						'''Unexpected error: cannot find a GenClassifier for: «invalidCls.map[name].join(", ")».''' +
+						'''Unexpected error: cannot find a GenClassifier for: «
+						»«invalidCls.map[name].join(", ")».''' +
 						''' Please check whether the associated Genmodel is up to date.''',
 						MelangePackage.Literals.NAMED_ELEMENT__NAME,
 						MelangeValidationConstants.METAMODEL_NO_GENPACKAGE
@@ -376,7 +407,9 @@ class MelangeValidator extends AbstractMelangeValidator
 		val entries = lang.entryPoints
 		if(entries.isEmpty && lang.ecl.isEmpty && !lang.semantics.isEmpty){
 			warning(
-				"Language "+lang.name+" doesn't define entry point. An Aspect's method should be tagged with @Main to be identified as an entry point for the execution.",
+				"Language " + lang.name + " doesn't define an entry point. An Aspect's "
+				+ "method should be tagged with @Main to be identified as an "
+				+ "entry point for the execution.",
 				MelangePackage.Literals.NAMED_ELEMENT__NAME,
 				MelangeValidationConstants.LANGUAGE_NO_MAIN
 			)
