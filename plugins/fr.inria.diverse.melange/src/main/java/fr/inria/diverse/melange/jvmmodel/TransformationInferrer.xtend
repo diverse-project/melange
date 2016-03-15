@@ -9,7 +9,7 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
 /**
- * This class manages the Java code generation for Transformation
+ * Compiles Melange's {@link Transformation}s
  */
 class TransformationInferrer
 {
@@ -17,13 +17,16 @@ class TransformationInferrer
 	@Inject extension NamingHelper
 
 	/**
-	 * Creates a Java class for {@link transfo}
-	 * 
-	 * @param transfo
-	 * @param acceptor
-	 * @param builder
+	 * Creates a Java class for the given {@code transfo} with a unique static
+	 * method "call" where the code of the transformation is compiled.
+	 * If the supplied {@link XbaseTransformation} is annotated with @Main,
+	 * also generates a {@code public static void main(String[] args)} method.
 	 */
-	def void generateTransformation(XbaseTransformation transfo, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
+	def void generateTransformation(
+		XbaseTransformation transfo,
+		IJvmDeclaredTypeAcceptor acceptor,
+		extension JvmTypeReferenceBuilder builder
+	) {
 		val task = Stopwatches.forTask("generate transformations")
 		task.start
 
@@ -45,7 +48,8 @@ class TransformationInferrer
 				members += transfo.toMethod("main", Void::TYPE.typeRef)[
 					^static = true
 
-					parameters += transfo.toParameter("args", String.typeRef.addArrayTypeDimension)
+					parameters += transfo.toParameter("args",
+						String.typeRef.addArrayTypeDimension)
 
 					// TODO: Remove hardcoded types in the following body code
 					body = '''

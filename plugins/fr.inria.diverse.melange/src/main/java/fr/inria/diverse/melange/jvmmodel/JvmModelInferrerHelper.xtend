@@ -15,6 +15,10 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmAnnotationReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
+/**
+ * A collection of utilities around JVM model generation
+ * to ease some common tasks.
+ */
 @Singleton
 class JvmModelInferrerHelper
 {
@@ -26,74 +30,111 @@ class JvmModelInferrerHelper
 	@Inject extension TypeReferencesHelper
 	@Inject extension NamingHelper
 
+	/**
+	 * Should be invoked first to inject the required dependencies as the
+	 * framework doesn't know anything about this class and won't inject
+	 * it automatically.
+	 */
 	def void setContext(ResourceSet rs) {
 		typeBuilder = typeBuilderFactory.create(rs)
 		annotationBuilder = annotationBuilderFactory.create(rs)
 	}
 
-	/*--- Getters / Setters  ---*/
-	def JvmOperation toGetterSignature(EObject o, EStructuralFeature f, JvmTypeReference type) {
+	/**
+	 * Returns the {@link JvmOperation} defining the getter signature
+	 * of the {@link EStructuralFeature} {@code f} whose type is {@code type}
+	 * in the context of {@code o}.
+	 */
+	def JvmOperation toGetterSignature(EObject o, EStructuralFeature f,
+			JvmTypeReference type) {
 		return o.toMethod(f.getterName, type)[
 			^abstract = true
 		]
 	}
 
-	def JvmOperation toSetterSignature(EObject o, EStructuralFeature f, JvmTypeReference type) {
+	/**
+	 * Returns the {@link JvmOperation} defining the setter signature
+	 * of the {@link EStructuralFeature} {@code f} whose type is {@code type}
+	 * in the context of {@code o}.
+	 */
+	def JvmOperation toSetterSignature(EObject o, EStructuralFeature f,
+			JvmTypeReference type) {
 		return o.toMethod(f.setterName, Void::TYPE.typeRef)[
 			^abstract = true
 			parameters += o.toParameter('''new«f.name.toFirstUpper»''', type)
 		]
 	}
 
+	/**
+	 * Returns the {@link JvmOperation} defining the unsetter ({@code eUnset()})
+	 * of the {@link EStructuralFeature} {@code f} in the context of {@code o}.
+	 */
 	def JvmOperation toUnsetter(EObject o, EStructuralFeature f) {
-		val s = o.toMethod(f.unsetterName, Void::TYPE.typeRef)[
-//			annotations += Override.annotationRef
+		return o.toMethod(f.unsetterName, Void::TYPE.typeRef)[
+			annotations += Override.annotationRef
 
 			body = '''
 				adaptee.«f.unsetterName»() ;
 			'''
 		]
-
-		return s
 	}
 
+	/**
+	 * Returns the {@link JvmOperation} defining the unsetter check
+	 * ({@code eIsSet()}) of the {@link EStructuralFeature} {@code f}
+	 * in the context of {@code o}.
+	 */
 	def JvmOperation toUnsetterCheck(EObject o, EStructuralFeature f) {
-		val s = o.toMethod(f.unsetterCheckName, Boolean::TYPE.typeRef)[
-//			annotations += Override.annotationRef
+		return o.toMethod(f.unsetterCheckName, Boolean::TYPE.typeRef)[
+			annotations += Override.annotationRef
 
 			body = '''
 				return adaptee.«f.unsetterCheckName»() ;
 			'''
 		]
-
-		return s
 	}
 
+	/**
+	 * Returns the {@link JvmOperation} defining the unsetter signature
+	 * ({@code eUnset()}) of the {@link EStructuralFeature} {@code f}
+	 * in the context of {@code o}.
+	 */
 	def JvmOperation toUnsetterSignature(EObject o, EStructuralFeature f) {
 		return o.toMethod(f.unsetterName, Void::TYPE.typeRef)[
 			^abstract = true
 		]
 	}
 
+	/**
+	 * Returns the {@link JvmOperation} defining the unsetter check signature
+	 * ({@code eIsSet()}) of the {@link EStructuralFeature} {@code f}
+	 * in the context of {@code o}.
+	 */
 	def JvmOperation toUnsetterCheckSignature(EObject o, EStructuralFeature f) {
 		return o.toMethod(f.unsetterCheckName, Boolean::TYPE.typeRef)[
 			^abstract = true
 		]
 	}
 
+	/**
+	 * Checks whether the {@link JvmOperation} {@code op1} overrides (in the
+	 * Java sense) the {@link JvmOperation} {@code op2}
+	 */
 	def boolean overrides(JvmOperation o1, JvmOperation o2) {
 		return
 			   o1.simpleName == o2.simpleName
-			&& ((o1.returnType === null && o2.returnType === null) || o2.returnType.isSubtypeOf(o1.returnType))
+			&& ((o1.returnType === null && o2.returnType === null)
+				|| o2.returnType.isSubtypeOf(o1.returnType))
 			&& parameterEquals(o1.parameters, o2.parameters)
 	}
 
-	def boolean parameterEquals(List<JvmFormalParameter> p1, List<JvmFormalParameter> p2) {
+	private def boolean parameterEquals(List<JvmFormalParameter> p1, List<JvmFormalParameter> p2) {
 		if (p1.size != p2.size)
 			return false
 
 		for (i : 0 ..< p1.size)
-			if (p1.get(i).parameterType.qualifiedName != p2.get(i).parameterType.qualifiedName)
+			if (p1.get(i).parameterType.qualifiedName !=
+				p2.get(i).parameterType.qualifiedName)
 				return false
 
 		return true

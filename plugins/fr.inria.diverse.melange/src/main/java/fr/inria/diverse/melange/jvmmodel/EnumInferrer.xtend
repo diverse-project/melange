@@ -13,6 +13,10 @@ import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
+/**
+ * @deprecated We now use EMF's generator for model types. This shouldn't be
+ * used anymore.
+ */
 class EnumInferrer
 {
 	@Inject extension JvmTypesBuilder
@@ -22,7 +26,12 @@ class EnumInferrer
 	 * Mimic the EMF generator for EEnum.
 	 * Clearly not a nice solution.
 	 */
-	def void generateEnum(ModelType mt, EEnum enu, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
+	def void generateEnum(
+		ModelType mt,
+		EEnum enu,
+		IJvmDeclaredTypeAcceptor acceptor,
+		extension JvmTypeReferenceBuilder builder
+	) {
 		acceptor.accept(mt.toEnumerationType(mt.getFqnFor(enu))[
 			superTypes += Enumerator.typeRef
 

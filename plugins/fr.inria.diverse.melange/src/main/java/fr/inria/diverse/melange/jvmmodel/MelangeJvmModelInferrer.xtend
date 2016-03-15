@@ -25,7 +25,8 @@ import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
 /**
- * This class manages Java source code generation for a Melange model
+ * Entry point for the generation of a JVM model from which Xtext will
+ * ultimately generate Java code.
  */
 class MelangeJvmModelInferrer extends AbstractModelInferrer
 {
@@ -39,51 +40,54 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 	@Inject extension JvmTypesBuilder
 	@Inject extension IQualifiedNameProvider
 	@Inject extension NamingHelper
-//	@Inject extension KomprenInferrer
 
-	private static final Logger logger = Logger.getLogger(MelangeJvmModelInferrer)
+	private static final Logger log = Logger.getLogger(MelangeJvmModelInferrer)
 
 	/**
-	 * Create Java source code for each Model types, Metamodels and Transformations
-	 * defined in {@link typingSpace}  
+	 * Generates all the Java code supporting languages, interfaces, and
+	 * adapters. {@code infer} is invoked right after the fully derived state
+	 * of the Melange model is computed by
+	 * {@link MelangeDerivedStateComputer#installDerivedState}. Essentially
+	 * delegates to the other inferrers.
 	 * 
-	 * @param root Melange model
-	 * @param acceptor
-	 * @param isPreIndexingPhase
+	 * @param root The Melange model for which we want to generate code
+	 * @param acceptor Automatically filled by Xtext
+	 * @param isPreIndexingPhase Automatically filled by Xtext
 	 */
-	def dispatch void infer(ModelTypingSpace root, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
+	def dispatch void infer(
+		ModelTypingSpace root,
+		IJvmDeclaredTypeAcceptor acceptor,
+		boolean isPreIndexingPhase
+	) {
 			// Only run codegen if everything's ready
-			if (root.languages.exists[!isValid || !runtimeHasBeenGenerated] || root.modelTypes.exists[!isValid])
+			if (root.languages.exists[!isValid || !runtimeHasBeenGenerated]
+				|| root.modelTypes.exists[!isValid])
 				return;
 
 			try {
-	//			if (Diagnostician.INSTANCE.validate(typingSpace).severity != Diagnostic.ERROR) {
-	
 				root.modelTypes.forEach[generateInterfaces(acceptor, _typeReferenceBuilder)]
 				
-				if (MelangePreferencesAccess.instance.generateAdaptersCode || (MelangePreferencesAccess.instance.isUserLaunch && !isPreIndexingPhase)) {
+				if (MelangePreferencesAccess.instance.generateAdaptersCode ||
+					(MelangePreferencesAccess.instance.isUserLaunch && !isPreIndexingPhase)) {
 					root.makeAllSemantics
 					root.languages.forEach[generateAdapters(root, acceptor, _typeReferenceBuilder)]
 					root.transformations.forEach[generateTransformation(acceptor, _typeReferenceBuilder)]
 					root.createStandaloneSetup(acceptor)
-	//				root.slicers.forEach[generateSlicer]
 	
-					//If user request the compilation, we generate code only once
-					//and turn off to avoid automatic build
+					// If the user explicitly requests the code generation,
+					// we generate code only once and turn off to avoid
+					// Eclipse automatic build
+					// ... actually, I don't think this is used by anyone anyway
 					MelangePreferencesAccess.instance.disableCodeGenerator()
-				} // else shhh...
-				
-	//			} else {
-	//				logger.error('''Inferrer cannot proceed: there are errors in the model.''')
-	//			}
+				}
 			} catch (Exception e) {
-				logger.error('''Exception: «e.message»''', e)
+				log.error("Error while generating", e)
 			}
 	}
 
 	/**
 	 * Creates a generic StandaloneSetup class meant to be used for
-	 * registering language, interfaces and adapters in a standalone context.
+	 * registering languages, interfaces and adapters in a standalone context.
 	 */
 	def void createStandaloneSetup(ModelTypingSpace root, IJvmDeclaredTypeAcceptor acceptor) {
 		acceptor.accept(root.toClass(root.standaloneSetupClassName))
@@ -91,9 +95,9 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 			members += root.toMethod("doSetup", Void::TYPE.typeRef)[
 				^static = true
 				body = '''
-					StandaloneSetup setup = new StandaloneSetup() ;
-					setup.doEMFRegistration() ;
-					setup.doAdaptersRegistration() ;
+					StandaloneSetup setup = new StandaloneSetup();
+					setup.doEMFRegistration();
+					setup.doAdaptersRegistration();
 				'''
 			]
 
@@ -101,13 +105,13 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 				body = '''
 					«FOR l : root.languages»
 						«IF l.resourceType == ResourceType.XTEXT && l.xtextSetupRef !== null»
-							«l.xtextSetupRef.qualifiedName».doSetup() ;
+							«l.xtextSetupRef.qualifiedName».doSetup();
 						«ELSE»
 							«FOR gp : l.syntax.allGenPkgs»
 								«EPackage.Registry».INSTANCE.put(
 									«gp.qualifiedPackageInterfaceName».eNS_URI,
 									«gp.qualifiedPackageInterfaceName».eINSTANCE
-								) ;
+								);
 							«ENDFOR»
 						«ENDIF»
 					«ENDFOR»
@@ -115,11 +119,11 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 					«Resource.Factory.Registry».INSTANCE.getExtensionToFactoryMap().put(
 						"*",
 						new «XMIResourceFactoryImpl»()
-					) ;
+					);
 					«Resource.Factory.Registry».INSTANCE.getProtocolToFactoryMap().put(
 						"melange",
 						new «MelangeResourceFactoryImpl»()
-					) ;
+					);
 				'''
 			]
 
@@ -128,26 +132,26 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 					«FOR l : root.languages»
 						«LanguageDescriptor» «l.name.toFirstLower» = new «LanguageDescriptorImpl»(
 							"«l.fullyQualifiedName»", "«l.documentation?.replace("\"", "'")?.replace("\n", " ")»", "«l.syntax.rootPackageUri»", "«l.exactType.fullyQualifiedName»"
-						) ;
+						);
 						«FOR mt : l.^implements»
-							«l.name.toFirstLower».addAdapter("«mt.fullyQualifiedName»", «l.syntax.adapterNameFor(mt)».class) ;
+							«l.name.toFirstLower».addAdapter("«mt.fullyQualifiedName»", «l.syntax.adapterNameFor(mt)».class);
 						«ENDFOR»
 						«MelangeRegistry».INSTANCE.getLanguageMap().put(
 							"«l.fullyQualifiedName»",
 							«l.name.toFirstLower»
-						) ;
+						);
 					«ENDFOR»
 					«FOR mt : root.modelTypes»
 						«ModelTypeDescriptor» «mt.name.toFirstLower» = new «ModelTypeDescriptorImpl»(
 							"«mt.fullyQualifiedName»", "«mt.documentation»", "«mt.uri»"
-						) ;
+						);
 						«FOR superMt : mt.subtypingRelations»
-							«mt.name.toFirstLower».addSuperType("«superMt.superType.fullyQualifiedName»") ;
+							«mt.name.toFirstLower».addSuperType("«superMt.superType.fullyQualifiedName»");
 						«ENDFOR»
 						«MelangeRegistry».INSTANCE.getModelTypeMap().put(
 							"«mt.fullyQualifiedName»",
 							«mt.name.toFirstLower»
-						) ;
+						);
 					«ENDFOR»
 				'''
 			]
