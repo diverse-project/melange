@@ -31,7 +31,8 @@ class MelangeLocalResourceValidator extends DerivedStateAwareResourceValidator
 			return;
 
 		if (resource.URI.fileExtension == "melange") {
-			val task = Stopwatches.forTask("MelangeLocalResourceValidator.validate("+resource.URI+")")
+			val task = Stopwatches.forTask(
+				"MelangeLocalResourceValidator.validate("+resource.URI+")")
 			task.start
 			validate(resource, resource.contents.head,
 					mode, monitor, acceptor)
@@ -48,7 +49,8 @@ class MelangeLocalResourceValidator extends DerivedStateAwareResourceValidator
 			val diagChain = new BasicDiagnostic
 			val context = newHashMap => [
 				put(CheckMode::KEY, mode)
-				put(ConcreteSyntaxEValidator::DISABLE_CONCRETE_SYNTAX_EVALIDATOR, Boolean::TRUE)
+				put(ConcreteSyntaxEValidator::DISABLE_CONCRETE_SYNTAX_EVALIDATOR,
+					Boolean::TRUE)
 				put(typeof(EValidator), validator)
 			]
 
