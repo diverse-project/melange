@@ -10,7 +10,11 @@ import java.util.Collection
 import com.google.inject.Singleton
 
 /**
- * This class store Model type hierarchy
+ * Stores the implementation relations between {@link Language}s and
+ * {@link ModelType}s and the subtyping relations between {@link ModelType}s
+ * to be used in the specialized Xbase type system and compiler.
+ * 
+ * @see MelangeSynonymTypesProvider
  */
 @Singleton
 class MelangeTypesRegistry
