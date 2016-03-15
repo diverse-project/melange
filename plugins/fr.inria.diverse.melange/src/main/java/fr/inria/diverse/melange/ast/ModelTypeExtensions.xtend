@@ -81,6 +81,7 @@ class ModelTypeExtensions
 		genModel.reconcile
 		genModel.canGenerate = true
 		genModel.validateModel = true
+		genModel.updateClasspath = false
 
 		val reg = GeneratorAdapterFactory.Descriptor.Registry.INSTANCE
 		val old = reg.getDescriptors(gmUri).head
