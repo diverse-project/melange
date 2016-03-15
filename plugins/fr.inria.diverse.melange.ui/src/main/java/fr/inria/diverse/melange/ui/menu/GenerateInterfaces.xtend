@@ -17,12 +17,10 @@ import org.eclipse.ui.handlers.HandlerUtil
 import org.eclipse.xtext.resource.DerivedStateAwareResource
 import org.eclipse.xtext.ui.resource.XtextResourceSetProvider
 
-import static fr.inria.diverse.melange.ui.menu.GenerateInterfaces.*
-
 class GenerateInterfaces extends AbstractHandler {
 	@Inject MelangeBuilder builder
 	@Inject XtextResourceSetProvider rsProvider
-	static final Logger log = Logger.getLogger(MelangeBuilder)
+	private static final Logger log = Logger.getLogger(MelangeBuilder)
 
 	override execute(ExecutionEvent event) throws ExecutionException {
 		val shell = HandlerUtil.getActiveWorkbenchWindow(event).shell

@@ -38,7 +38,7 @@ import org.eclipse.xtext.util.MergeableManifest
 class EclipseProjectHelper
 {
 	@Inject extension LanguageExtensions
-	Logger log = Logger.getLogger(EclipseProjectHelper)
+	private static final Logger log = Logger.getLogger(EclipseProjectHelper)
 
 	/**
 	 * Returns the {@link IProject} containing the Melange file pointed by
@@ -51,6 +51,7 @@ class EclipseProjectHelper
 					ResourcesPlugin.workspace.root.getFile(new Path(res.URI.toPlatformString(true))).project
 				else null
 		} catch (IllegalStateException e) {
+			log.info("Couldn't access platform", e)
 			return null
 		}
 	}
@@ -75,7 +76,7 @@ class EclipseProjectHelper
 				val bundles = Splitter.on(",").omitEmptyStrings.trimResults.split(attrs.getValue("Require-Bundle"))
 				return bundles.map[it.split(";").head]
 			} catch (Exception e) {
-				e.printStackTrace
+				log.error("Couldn't retrieve MANIFEST.MF dependencies", e)
 			} finally {
 				input.closeQuietly
 			}
@@ -113,7 +114,7 @@ class EclipseProjectHelper
 				manifestFile.setContents(input, true, true, null)
 				bundles.forEach[log.debug('''Dependendency «it» added to «project»''')]
 			} catch (Exception e) {
-				e.printStackTrace
+				log.error("Couldn't update MANIFEST.MF", e)
 			} finally {
 				input.closeQuietly
 				output.closeQuietly
@@ -128,7 +129,7 @@ class EclipseProjectHelper
 		try {
 			c.close
 		} catch (IOException e) {
-			e.printStackTrace
+			log.error("Couldn't close resource", e)
 		}
 	}
 
@@ -168,7 +169,7 @@ class EclipseProjectHelper
 				manifestFile.setContents(input, true, true, null)
 				bundles.forEach[log.debug('''Dependendency «it» removed from «project»''')]
 			} catch (Exception e) {
-				e.printStackTrace
+				log.error("Couldn't update MANIFEST.MF dependencies", e)
 			} finally {
 				input.closeQuietly
 				output.closeQuietly
@@ -211,7 +212,7 @@ class EclipseProjectHelper
 
 			return project
 		} catch (Exception e) {
-			e.printStackTrace
+			log.error("Unexpected exception while creating new runtime project", e)
 		}
 
 		return null
@@ -276,7 +277,7 @@ class EclipseProjectHelper
 
 					classpathEntries.add(0, JavaCore::newSourceEntry(container.fullPath))
 				} catch (CoreException e) {
-					e.printStackTrace
+					log.error("Couldn't update project classpath", e)
 				}
 			]
 		
@@ -294,7 +295,7 @@ class EclipseProjectHelper
 
 			return project
 		} catch (Exception e) {
-			e.printStackTrace
+			log.error("Unexpected exception while generating new project", e)
 		}
 
 		return null
@@ -377,14 +378,9 @@ class EclipseProjectHelper
 			else
 				f.create(stream, true, monitor)
 		} catch (Exception e) {
-			e.printStackTrace
+			log.error("Error while creating new IFile", e)
 		} finally {
-			try {
-				if (stream !== null)
-					stream.close
-			} catch (IOException e) {
-				e.printStackTrace
-			}
+			stream.closeQuietly
 		}
 
 		monitor.worked(1)

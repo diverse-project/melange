@@ -22,7 +22,7 @@ import static fr.inria.diverse.melange.ui.menu.CleanAll.*
 class CleanAll extends AbstractHandler {
 	@Inject XtextResourceSetProvider rsProvider
 	@Inject MelangeBuilder builder
-	static final Logger log = Logger.getLogger(MelangeBuilder)
+	private static final Logger log = Logger.getLogger(MelangeBuilder)
 
 	override execute(ExecutionEvent event) throws ExecutionException {
 		val shell = HandlerUtil.getActiveWorkbenchWindow(event).shell

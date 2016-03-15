@@ -32,7 +32,7 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 	List<MelangeProcessor> processors = newArrayList
 	@Inject EPackageProvider provider
 
-	static final Logger log = Logger.getLogger(MelangeDerivedStateComputer)
+	private static final Logger log = Logger.getLogger(MelangeDerivedStateComputer)
 
 	// FIXME: Because Guice's Multibinders aren't available,
 	//         quick & dirty solution
@@ -73,6 +73,8 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 		// In a test environment, automatic XMLNamespacePackage
 		// initialization may fail for no apparent reason
 		val testsBug = XMLNamespacePackage::eINSTANCE
+		// Just to avoid the unused warning
+		testsBug.hashCode
 
 		// Activate stop watches before anything happens
 		Stopwatches.enabled = true

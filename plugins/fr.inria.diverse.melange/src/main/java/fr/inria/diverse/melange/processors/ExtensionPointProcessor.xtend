@@ -37,7 +37,7 @@ class ExtensionPointProcessor extends DispatchMelangeProcessor
 	@Inject extension IQualifiedNameProvider
 	@Inject IEObjectDocumentationProvider documentationProvider
 
-	private static Logger log = Logger::getLogger(ExtensionPointProcessor)
+	private static final Logger log = Logger::getLogger(ExtensionPointProcessor)
 
 	private static final String MELANGE_RESOURCE_PLUGIN = "fr.inria.diverse.melange.resource"
 	private static final String LANGUAGE_EXTENSION_POINT = "fr.inria.diverse.melange.language"

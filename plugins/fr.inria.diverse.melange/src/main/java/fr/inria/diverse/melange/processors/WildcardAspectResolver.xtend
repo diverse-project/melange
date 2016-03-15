@@ -4,6 +4,7 @@ import com.google.inject.Inject
 import fr.inria.diverse.melange.metamodel.melange.MelangeFactory
 import fr.inria.diverse.melange.metamodel.melange.Weave
 import java.util.List
+import org.apache.log4j.Logger
 import org.eclipse.core.runtime.CoreException
 import org.eclipse.jdt.core.IPackageFragment
 import org.eclipse.jdt.core.JavaModelException
@@ -17,6 +18,7 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 class WildcardAspectResolver extends DispatchMelangeProcessor
 {
 	@Inject JvmTypeReferenceBuilder.Factory builderFactory
+	private static final Logger log = Logger.getLogger(WildcardAspectResolver)
 
 	def dispatch void preProcess(Weave w, boolean preLinkingPhase) {
 		val typeRefBuilder = builderFactory.create(w.eResource.resourceSet)
@@ -46,7 +48,7 @@ class WildcardAspectResolver extends DispatchMelangeProcessor
 									&& !elementName.endsWith("AspectProperties.java")]
 							.map['''«pkg.elementName».«elementName.substring(0, elementName.length - 5)»''']
 					} catch (JavaModelException e) {
-						e.printStackTrace
+						log.error(e)
 					}
 				}
 			}
@@ -68,7 +70,7 @@ class WildcardAspectResolver extends DispatchMelangeProcessor
 				null
 			)
 		} catch (CoreException e) {
-			e.printStackTrace
+			log.error(e)
 		}
 
 		return matches

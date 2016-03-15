@@ -41,7 +41,7 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 	@Inject extension NamingHelper
 //	@Inject extension KomprenInferrer
 
-	static final Logger logger = Logger.getLogger(MelangeJvmModelInferrer)
+	private static final Logger logger = Logger.getLogger(MelangeJvmModelInferrer)
 
 	/**
 	 * Create Java source code for each Model types, Metamodels and Transformations

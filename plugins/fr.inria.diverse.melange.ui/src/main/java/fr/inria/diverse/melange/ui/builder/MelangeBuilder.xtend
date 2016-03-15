@@ -38,7 +38,7 @@ class MelangeBuilder
 	@Inject extension ModelingElementExtensions
 	@Inject extension ModelTypeExtensions
 	@Inject extension EcoreExtensions
-	static final Logger log = Logger.getLogger(MelangeBuilder)
+	private static final Logger log = Logger.getLogger(MelangeBuilder)
 
 	def void generateAll(Resource res, IProject project, IProgressMonitor monitor) {
 		monitor.beginTask("Generating all artifacts", 700)
@@ -195,7 +195,7 @@ class MelangeBuilder
 				Job.jobManager.join(ResourcesPlugin::FAMILY_AUTO_BUILD,	null)
 				wasInterrupted = false
 			} catch (OperationCanceledException e) {
-				e.printStackTrace
+				log.error(e)
 			} catch (InterruptedException e) {
 				wasInterrupted = true
 			}
