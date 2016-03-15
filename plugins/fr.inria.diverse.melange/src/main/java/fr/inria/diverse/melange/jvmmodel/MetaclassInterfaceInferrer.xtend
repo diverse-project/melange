@@ -14,7 +14,8 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
 /**
- * This class manages creation of Java interface corresponding to Object type. 
+ * @deprecated Model types are now generated using EMF's Genmodels,
+ *               this shouldn't be used anymore
  */
 class MetaclassInterfaceInferrer
 {
@@ -25,14 +26,15 @@ class MetaclassInterfaceInferrer
 	@Inject extension MelangeTypesBuilder
 
 	/**
-	 * Creates an interface based on elements defined in {@link cls} and provide it to {@link acceptor}
-	 * 
-	 * @param mt Model type
-	 * @param cls Metaclass corresponding to an Object type in {@link mt}
-	 * @param acceptor 
-	 * @param builder
+	 * Creates an interface based on the elements defined in {@link cls}
+	 * and provides it to the current {@link acceptor}
 	 */
-	def void generateInterface(ModelType mt, EClass cls, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
+	def void generateInterface(
+		ModelType mt,
+		EClass cls,
+		IJvmDeclaredTypeAcceptor acceptor,
+		extension JvmTypeReferenceBuilder builder
+	) {
 		val task = Stopwatches.forTask("generate metaclass interfaces")
 		task.start
 
@@ -40,7 +42,10 @@ class MetaclassInterfaceInferrer
 			intf.superTypes += EObject.typeRef
 		])[intf |
 			cls.ETypeParameters.forEach[p |
-				intf.typeParameters += TypesFactory::eINSTANCE.createJvmTypeParameter => [name = p.name]
+				intf.typeParameters +=
+					TypesFactory::eINSTANCE.createJvmTypeParameter => [
+						name = p.name
+					]
 			]
 
 			cls.EGenericSuperTypes.forEach[sup |
@@ -67,8 +72,13 @@ class MetaclassInterfaceInferrer
 			cls.EReferences.forEach[ref |
 				val refType = mt.typeRef(ref, #[intf])
 
-				if (ref.isEMFMapDetails) // Special case: EMF Map$Entry
-					intf.members += mt.toMethod("getDetails", EMap.typeRef(String.typeRef, String.typeRef))[^abstract = true]
+				// Special case: EMF Map$Entry
+				// ... don't know how to generate for this one
+				if (ref.isEMFMapDetails)
+					intf.members += mt.toMethod("getDetails",
+						EMap.typeRef(String.typeRef, String.typeRef))[
+							^abstract = true
+						]
 				else
 					intf.members += mt.toGetterSignature(ref, refType)
 
@@ -83,15 +93,20 @@ class MetaclassInterfaceInferrer
 			]
 
 			cls.EOperations.filter[!hasSuppressedVisibility].forEach[op |
-				val opName = if (!cls.EPackage.isUml) op.name else op.formatUmlOperationName
+				val opName =
+					if (!cls.EPackage.isUml)
+						op.name
+					else
+						op.formatUmlOperationName
 
 				intf.members += mt.toMethod(opName, null)[m |
 					m.^abstract = true
 
 					op.ETypeParameters.forEach[t |
-						m.typeParameters += TypesFactory.eINSTANCE.createJvmTypeParameter => [tp |
-							tp.name = t.name
-						]
+						m.typeParameters +=
+							TypesFactory.eINSTANCE.createJvmTypeParameter => [tp |
+								tp.name = t.name
+							]
 					]
 
 					op.ETypeParameters.forEach[t |
@@ -100,19 +115,24 @@ class MetaclassInterfaceInferrer
 							val tp = m.typeParameters.findFirst[name == t.name]
 
 							if (b.EClassifier !== null) {
-								tp.constraints += TypesFactory.eINSTANCE.createJvmUpperBound => [
-									typeReference = mt.typeRef(b, #[m, intf])
-								]
+								tp.constraints +=
+									TypesFactory.eINSTANCE.createJvmUpperBound => [
+										typeReference = mt.typeRef(b, #[m, intf])
+									]
 							} else if (b.ETypeParameter !== null) {
-								tp.constraints += TypesFactory.eINSTANCE.createJvmUpperBound => [
-									typeReference = createTypeParameterReference(#[m, intf], b.ETypeParameter.name)
-								]
+								tp.constraints +=
+									TypesFactory.eINSTANCE.createJvmUpperBound => [
+										typeReference =
+											createTypeParameterReference(
+												#[m, intf], b.ETypeParameter.name)
+									]
 							}
 						]
 					]
 
 					op.EParameters.forEach[p |
-						m.parameters += mt.toParameter(p.name, mt.typeRef(p, #[m, intf]))
+						m.parameters += mt.toParameter(p.name,
+								mt.typeRef(p, #[m, intf]))
 					]
 
 					op.EExceptions.forEach[e |
@@ -129,11 +149,4 @@ class MetaclassInterfaceInferrer
 
 		task.stop
 	}
-
-//	def boolean +=(EList<JvmMember> members, JvmOperation m) {
-//		if (!members.filter(JvmOperation).exists[overrides(m)])
-//			members += (m as JvmMember)
-//
-//		return false
-//	}
 }

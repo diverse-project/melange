@@ -14,7 +14,7 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
 /**
- * This class manages generation of Java interfaces for a Model Type.
+ * Infers the Java code supporting the definition of {@link ModelType}s
  */
 class ModelTypeInferrer
 {
@@ -23,16 +23,17 @@ class ModelTypeInferrer
 	@Inject extension NamingHelper
 
 	/**
-	 * Creates:<br>
- 	 * - A Java interface for {@link mt}<br>
- 	 * - An abstract factory to create each Object type of {@link mt}<br>
- 	 * - Java interfaces for each Object type
- 	 * 
-	 * @param mt Model type
-	 * @param acceptor
-	 * @param builder
+	 * Currently only generates a Java class for a {@link ModelType}
+	 * implementing the IModelType interface and providing basic access
+	 * to the contents of the underlying model and the corresponding factory
+	 * 
+	 * @see IModelType
 	 */
-	def void generateInterfaces(ModelType mt, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
+	def void generateInterfaces(
+		ModelType mt,
+		IJvmDeclaredTypeAcceptor acceptor,
+		extension JvmTypeReferenceBuilder builder
+	) {
 		val task = Stopwatches.forTask("generate model types")
 		task.start
 
@@ -54,6 +55,8 @@ class ModelTypeInferrer
 			]
 		])
 
+		// Currently disabled as we use Genmodels for generating the code
+		// of the interfaces constituting a model type
 //		acceptor.accept(mt.toInterface(mt.factoryName)[
 //			superTypes += IFactory.typeRef
 //

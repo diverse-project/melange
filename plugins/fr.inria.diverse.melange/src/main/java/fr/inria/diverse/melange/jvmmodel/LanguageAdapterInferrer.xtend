@@ -1,7 +1,10 @@
 package fr.inria.diverse.melange.jvmmodel
 
 import com.google.inject.Inject
+import fr.inria.diverse.melange.adapters.AdaptersFactory
+import fr.inria.diverse.melange.adapters.EObjectAdapter
 import fr.inria.diverse.melange.adapters.ResourceAdapter
+import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
@@ -9,9 +12,12 @@ import fr.inria.diverse.melange.lib.MappingExtensions
 import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import java.io.IOException
+import java.util.WeakHashMap
 import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.impl.EFactoryImpl
+import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.common.types.TypesFactory
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.util.internal.Stopwatches
@@ -19,10 +25,16 @@ import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmAnnotationReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import fr.inria.diverse.melange.metamodel.melange.Mapping
 
 /**
- * This class manages the generation of the Java code  that bind a Metamodel 
- * to its Model type
+ * Generates the in-the-large artifacts between a {@link Language} and a
+ * {@link ModelType} it implements, and then delegates the generation of
+ * in-the-small adapters for each implemented meta-class to
+ * {@link MetaclassAdapterInferrer}.
+ * 
+ * @see NamingHelper#factoryAdapterNameFor
+ * @see NamingHelper#adapterNameFor
  */
 class LanguageAdapterInferrer
 {
@@ -33,91 +45,69 @@ class LanguageAdapterInferrer
 	@Inject extension MelangeTypesBuilder
 	@Inject extension ModelingElementExtensions
 	@Inject extension MappingExtensions
-	@Inject extension JvmAnnotationReferenceBuilder.Factory jvmAnnotationReferenceBuilderFactory
-	extension JvmAnnotationReferenceBuilder jvmAnnotationReferenceBuilder
+	@Inject extension MetaclassAdapterInferrer
+	@Inject extension LanguageExtensions
+	@Inject extension JvmAnnotationReferenceBuilder.Factory jvmAnnRefBuilderFact
+	extension JvmAnnotationReferenceBuilder jvmAnnRefBuilder
+	extension JvmTypeReferenceBuilder typeRefBuilder
+	IJvmDeclaredTypeAcceptor acceptor
+	Mapping mapping
 
 	/**
-	 * Creates a concrete factory for Object type of {@link superType} &
-	 * creates a Java class for {@link mm} which implements {@link superType}
-	 * 
-	 * @param mm
-	 * @param superType Model type implemented by {@link mm}
-	 * @param acceptor
-	 * @param builder
+	 * @see #generateLanguageAdapter
+	 * @see #generateFactoryAdapter
+	 * @see #generateAdaptersFactory
 	 */
-	def void generateAdapter(Language l, ModelType superType, IJvmDeclaredTypeAcceptor acceptor, extension JvmTypeReferenceBuilder builder) {
-		jvmAnnotationReferenceBuilder = jvmAnnotationReferenceBuilderFactory.create(l.eResource.resourceSet)
+	def void generateAdapter(
+		Language l,
+		ModelType superType,
+		IJvmDeclaredTypeAcceptor acc,
+		extension JvmTypeReferenceBuilder builder
+	) {
 		val task = Stopwatches.forTask("generate metamodel adapters")
 		task.start
-		val mapping = l.mappings.findFirst[to == superType]
 
-		acceptor.accept(l.toClass(l.syntax.factoryAdapterNameFor(superType)))
-		[
-			superTypes += superType.rootFactoryFqn.typeRef
-			superTypes += EFactoryImpl.typeRef
+		jvmAnnRefBuilder = jvmAnnRefBuilderFact.create(l.eResource.resourceSet)
+		acceptor = acc
+		typeRefBuilder = builder
+		mapping = l.mappings.findFirst[to == superType]
 
-			members += l.toField("adaptersFactory", l.syntax.getAdaptersFactoryNameFor(superType).typeRef)[
-				initializer = '''«l.syntax.getAdaptersFactoryNameFor(superType)».getInstance()'''
-			]
+		generateLanguageAdapter(l, superType)
+		generateFactoryAdapter(l, superType)
+		generateAdaptersFactory(l, superType)
 
-			l.syntax.pkgs.forEach[pkg |
-				members += l.toField(pkg.name + "Adaptee", l.syntax.getFactoryFqnFor(pkg).typeRef)[
-					initializer = '''«l.syntax.getFactoryFqnFor(pkg)».eINSTANCE'''
-				]
-			]
-
-			superType.allClasses.filter[instantiable].forEach[cls |
-				val newCreate = l.toMethod("create" + cls.name, null)[m |
-					m.annotations += Override.annotationRef
-
-					val associatedPkg = l.syntax.pkgs.findFirst[EClassifiers.exists[mapping.namesMatch(it, cls)]]
-					val associatedCls = mapping?.rules?.findFirst[to == cls.name]?.from ?: cls.name
-
-					cls.ETypeParameters.forEach[t |
-						m.typeParameters += TypesFactory.eINSTANCE.createJvmTypeParameter => [it.name = t.name]
-					]
-
-					// FIXME: Second parameter (Resource) shouldn't be null
-					m.body = '''
-							return adaptersFactory.create«l.syntax.simpleAdapterNameFor(superType, cls)»(«associatedPkg.name»Adaptee.create«associatedCls»(), null) ;
-						'''
-				]
-
-				newCreate.returnType = superType.typeRef(cls, #[newCreate])
-				members += newCreate
-			]
-
-			members += l.toMethod("getEPackage", EPackage.typeRef)[
-				annotations += Override.annotationRef
-
-				body = '''
-					return get«superType.rootPackageName»();
-				'''
-			]
-
-			members += l.toMethod("get" + superType.rootPackageName, superType.rootPackageFqn.typeRef)[
-				body = '''
-					return «superType.rootPackageFqn».eINSTANCE;
-				'''
-			]
+		// Delegate the generation of adapters for each meta-class
+		// to MetaclassAdapterInferrer
+		superType.allClasses.filter[abstractable].forEach[cls |
+			l.syntax.generateAdapter(superType, cls, acceptor, builder)
 		]
 
-		acceptor.accept(l.toClass(l.syntax.adapterNameFor(superType)))
+		task.stop
+	}
+
+	/**
+	 * Generates an adapter around a EMF#Resource for the {@code l -> mt} pair.
+	 * 
+	 * @see ResourceAdapter
+	 * @see NamingHelper#adapterNameFor
+	 */
+	private def void generateLanguageAdapter(Language l, ModelType mt) {
+		acceptor.accept(l.toClass(l.syntax.adapterNameFor(mt)))
 		[
 			superTypes += ResourceAdapter.typeRef
-			superTypes += superType.fullyQualifiedName.toString.typeRef
+			superTypes += mt.fullyQualifiedName.toString.typeRef
 
 			members += l.toConstructor[
 				body = '''
-					super(«l.syntax.getAdaptersFactoryNameFor(superType)».getInstance()) ;
+					super(«l.syntax.getAdaptersFactoryNameFor(mt)».getInstance());
 				'''
 			]
 
-			members += l.toMethod("getFactory", superType.rootFactoryFqn.typeRef)[
+			members += l.toMethod("getFactory", mt.rootFactoryFqn.typeRef)[
 				annotations += Override.annotationRef
 
 				body = '''
-						return new «l.syntax.factoryAdapterNameFor(superType)»() ;
+						return new «l.syntax.factoryAdapterNameFor(mt)»();
 					'''
 			]
 
@@ -133,7 +123,190 @@ class LanguageAdapterInferrer
 				exceptions += IOException.typeRef
 			]
 		]
+	}
 
-		task.stop
+	/**
+	 * Generates a factory adapter that implements the abstract factory of
+	 * {@code mt}, delegates elements creation to the factory of {@code l},
+	 * and encapsulate the newly created elements in the appropriate adapters.
+	 * 
+	 * @see NamingHelper#factoryAdapterNameFor
+	 * @see org.eclipse.emf.ecore.EFactory
+	 */
+	private def void generateFactoryAdapter(Language l, ModelType mt) {
+		acceptor.accept(l.toClass(l.syntax.factoryAdapterNameFor(mt)))
+		[
+			val adaptersFactoryFqn = l.syntax.getAdaptersFactoryNameFor(mt)
+
+			// Implement the factory of superType and the generic EFactory type
+			superTypes += mt.rootFactoryFqn.typeRef
+			superTypes += EFactoryImpl.typeRef
+
+			// Point to the generated factory of adapters
+			members += l.toField("adaptersFactory", adaptersFactoryFqn.typeRef)[
+				initializer = '''«adaptersFactoryFqn».getInstance()'''
+			]
+
+			// Point to each of the EFactory of l, as we will use them to
+			// delegate elements creation
+			l.syntax.pkgs.forEach[pkg |
+				val pkgFactoryFqn = l.syntax.getFactoryFqnFor(pkg)
+
+				members += l.toField('''«pkg.name»Adaptee''', pkgFactoryFqn.typeRef)[
+					initializer = '''«pkgFactoryFqn».eINSTANCE'''
+				]
+			]
+
+			// Generate a dedicated create$MetaclassName method for each
+			// meta-class of interest in mt
+			mt.allClasses.filter[instantiable].forEach[cls |
+				val newCreate = l.toMethod("create" + cls.name, null)[m |
+					m.annotations += Override.annotationRef
+
+					val associatedPkg =
+						l.syntax.pkgs
+						.findFirst[
+							EClassifiers.exists[mapping.namesMatch(it, cls)]
+						]
+					val associatedCls =
+						mapping?.rules
+						?.findFirst[to == cls.name]
+						?.from ?: cls.name
+
+					cls.ETypeParameters.forEach[t |
+						m.typeParameters +=
+							TypesFactory.eINSTANCE.createJvmTypeParameter => [
+								name = t.name
+							]
+					]
+
+					// FIXME: Second parameter (Resource) shouldn't be null
+					m.body = '''
+						return adaptersFactory.create«
+						»«l.syntax.simpleAdapterNameFor(mt, cls)»«
+						»(«associatedPkg.name»Adaptee.create«associatedCls»(), null);
+					'''
+				]
+
+				newCreate.returnType = mt.typeRef(cls, #[newCreate])
+				members += newCreate
+			]
+
+			// The getEPackage() method on the generated Language adapter should
+			// always point to the EPackage of the model type it implements, so
+			// that reflective calls only see what is available on the interface
+			members += l.toMethod("getEPackage", EPackage.typeRef)[
+				annotations += Override.annotationRef
+
+				body = '''
+					return get«mt.rootPackageName»();
+				'''
+			]
+
+			// Essentially the same thing as getEPackage()
+			members += l.toMethod("get" + mt.rootPackageName, mt.rootPackageFqn.typeRef)[
+				body = '''
+					return «mt.rootPackageFqn».eINSTANCE;
+				'''
+			]
+		]
+	}
+
+	/**
+	 * Generates a factory of adapters between {@code l} and {@code mt}.
+	 * 
+	 * @see NamingHelper#getAdaptersFactoryNameFor
+	 */
+	private def void generateAdaptersFactory(Language l, ModelType mt) {
+		val adapFactName = l.syntax.getAdaptersFactoryNameFor(mt)
+		acceptor.accept(l.toClass(adapFactName))
+		[
+			// Implements the AdaptersFactory interface
+			superTypes += AdaptersFactory.typeRef
+
+			// Dummy singleton pattern
+			members += l.toField("instance", adapFactName.typeRef)[
+				static = true
+			]
+
+			members += l.toMethod("getInstance", adapFactName.typeRef)[
+				static = true
+				body = '''
+					if (instance == null) {
+						instance = new «adapFactName»();
+					}
+					return instance;
+				'''
+			]
+
+			// Keep trace of the generated adapters in a WeakHashMap
+			// so that there is at most one adapter for each model element
+			// at any time
+			members += l.toField("register",
+				WeakHashMap.typeRef(EObject.typeRef,EObjectAdapter.typeRef))
+
+			members += l.toConstructor[
+				body = '''
+					register = new «WeakHashMap»();
+				'''
+			]
+
+			// Implementation of AdaptersFactory#createAdapter
+			// Delegates adapters creation to the dedicated create$AdapterName
+			// methods using a dispatch pattern following the inheritance
+			// hierarchy between meta-classes of the model type.
+			members += l.toMethod("createAdapter", EObjectAdapter.typeRef)[
+				parameters += l.toParameter("o", EObject.typeRef)
+				parameters += l.toParameter("res", Resource.typeRef)
+
+				val orderedCls =
+					mt.allClasses
+					.filter[
+						   l.hasAdapterFor(mt, it)
+						&& instantiable
+						&& abstractable
+					]
+					.sortByClassInheritance
+
+				body = '''
+					«FOR cls : orderedCls»
+					«val clsFqn = l.syntax.getFqnFor(cls)»
+					if (o instanceof «clsFqn»){
+						return create«cls.name»Adapter((«clsFqn») o, res);
+					}
+					«ENDFOR»
+
+					return null;
+				'''
+			]
+
+			// Generate dedicated adapter factory methods for each meta-class.
+			// First, try to retrieve the adapter from the WeakHashMap to avoid
+			// duplicates; otherwise create a new one and put it in the Map.
+			mt.allClasses.filter[abstractable].forEach[cls |
+				val adapName = l.syntax.adapterNameFor(mt, cls)
+				val mmCls = l.syntax.allClasses.findFirst[mapping.namesMatch(it, cls)]
+
+				members += l.toMethod('''create«cls.name»Adapter''', adapName.typeRef)[
+					parameters += l.toParameter("adaptee", l.syntax.getFqnFor(mmCls).typeRef)
+					parameters += l.toParameter("res", Resource.typeRef)
+
+					body = '''
+						if (adaptee == null)
+							return null;
+						«EObjectAdapter» adapter = register.get(adaptee);
+						if(adapter != null)
+							 return («adapName») adapter;
+						else {
+							adapter = new «adapName»();
+							adapter.setAdaptee(adaptee);
+							adapter.setResource(res);
+							register.put(adaptee, adapter);
+							return («adapName») adapter;
+						}
+					'''
+				]
+			]
+		]
 	}
 }

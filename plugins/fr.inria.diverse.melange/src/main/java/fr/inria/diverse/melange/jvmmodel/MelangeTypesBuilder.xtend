@@ -24,6 +24,11 @@ import org.eclipse.xtext.common.types.util.TypeReferences
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
+/**
+ * This class holds the generation of {@link JvmTypeReference} towards elements
+ * of a {@link Metamodel} or a {@link ModelType}. The various inferrers use it
+ * to harmonize the code generation.
+ */
 @Singleton
 class MelangeTypesBuilder
 {
@@ -35,11 +40,25 @@ class MelangeTypesBuilder
 	@Inject extension JvmTypeReferenceBuilder builder
 	@Inject extension JvmTypesBuilder
 
+	/**
+	 * Should be invoked first to inject the required dependencies as the
+	 * framework doesn't know anything about this class and won't inject
+	 * it automatically.
+	 */
 	def void setContext(ResourceSet rs) {
 		builder = builderFactory.create(rs)
 	}
 
-	def dispatch JvmTypeReference typeRef(ModelType ctx, ETypedElement f, Iterable<JvmTypeParameterDeclarator> decl) {
+	/**
+	 * @param ctx  The {@link ModelType} defining the group of types of interest
+	 * @param f    The feature for which a {@link JvmTypeReference} must be created
+	 * @param decl A list of type parameter declarators in case {@code f}
+	 *              depends on generic types
+	 * @return The {@link JvmTypeReference} to be used in the JVM model
+	 */
+	def dispatch JvmTypeReference typeRef(ModelType ctx, ETypedElement f,
+		Iterable<JvmTypeParameterDeclarator> decl
+	) {
 		val baseType =
 			switch (f) {
 				case f.EGenericType !== null:
@@ -52,10 +71,23 @@ class MelangeTypesBuilder
 					Object.typeRef
 			}
 
-		return if (f.many) EList.typeRef(baseType.cloneWithProxies) else baseType
+		return
+			if (f.many)
+				EList.typeRef(baseType.cloneWithProxies)
+			else
+				baseType
 	}
 
-	def dispatch JvmTypeReference typeRef(ModelType ctx, EGenericType t, Iterable<JvmTypeParameterDeclarator> decl) {
+	/**
+	 * @param ctx  The {@link ModelType} defining the group of types of interest
+	 * @param t    The {@link EGenericType} for which a type reference is requested
+	 * @param decl A list of type parameter declarators in case {@code t}
+	 *              depends on generic types
+	 * @return The {@link JvmTypeReference} to be used in the JVM model
+	 */
+	def dispatch JvmTypeReference typeRef(ModelType ctx, EGenericType t,
+		Iterable<JvmTypeParameterDeclarator> decl
+	) {
 		return
 			if (t.ETypeParameter !== null)
 				decl.createTypeParameterReference(t.ETypeParameter.name)
@@ -83,7 +115,17 @@ class MelangeTypesBuilder
 				Object.typeRef
 	}
 
-	def dispatch JvmTypeReference typeRef(ModelType ctx, EClassifier cls, Iterable<JvmTypeParameterDeclarator> decl) {
+	/**
+	 * @param ctx  The {@link ModelType} defining the group of types of interest
+	 * @param cls  The {@link EClassifier} for which a {@link JvmTypeReference}
+	 *              must be created
+	 * @param decl A list of type parameter declarators in case {@code cls}
+	 *              depends on generic types
+	 * @return The {@link JvmTypeReference} to be used in the JVM model
+	 */
+	def dispatch JvmTypeReference typeRef(ModelType ctx, EClassifier cls,
+		Iterable<JvmTypeParameterDeclarator> decl
+	) {
 		return
 			switch (cls) {
 				case null:
@@ -91,7 +133,9 @@ class MelangeTypesBuilder
 				EClass:
 					if (!cls.ETypeParameters.empty)
 						ctx.getFqnFor(cls).typeRef(
-							cls.ETypeParameters.map[p | decl.createTypeParameterReference(p.name)]
+							cls.ETypeParameters.map[p |
+								decl.createTypeParameterReference(p.name)
+							]
 						)
 					else if (cls.abstractable)
 						ctx.getFqnFor(cls).typeRef
@@ -113,7 +157,17 @@ class MelangeTypesBuilder
 			}
 	}
 
-	def dispatch JvmTypeReference typeRef(Metamodel ctx, EClassifier cls, Iterable<JvmTypeParameterDeclarator> decl) {
+	/**
+	 * @param ctx  The {@link Metamodel} defining the group of types of interest
+	 * @param cls  The {@link EClassifier} for which a {@link JvmTypeReference}
+	 *              must be created
+	 * @param decl A list of type parameter declarators in case {@code cls}
+	 *              depends on generic types
+	 * @return The {@link JvmTypeReference} to be used in the JVM model
+	 */
+	def dispatch JvmTypeReference typeRef(Metamodel ctx, EClassifier cls,
+		Iterable<JvmTypeParameterDeclarator> decl
+	) {
 		return
 			switch (cls) {
 				case null:
@@ -121,7 +175,9 @@ class MelangeTypesBuilder
 				EClass:
 					if (!cls.ETypeParameters.empty)
 						ctx.getFqnFor(cls).typeRef(
-							cls.ETypeParameters.map[p | decl.createTypeParameterReference(p.name)]
+							cls.ETypeParameters.map[p |
+								decl.createTypeParameterReference(p.name)
+							]
 						)
 					else if (cls.abstractable)
 						ctx.getFqnFor(cls).typeRef
@@ -169,9 +225,18 @@ class MelangeTypesBuilder
 			}
 	}
 
-	def JvmTypeReference createTypeParameterReference(JvmTypeParameterDeclarator[] lst, String find) {
+	/**
+	 * Returns a new {@link JvmParameterizedTypeReference} to the type parameter
+	 * named {@code find} in {@code lst}
+	 */
+	def JvmTypeReference createTypeParameterReference(
+		JvmTypeParameterDeclarator[] lst, String find) {
 		val findRef = lst.map[typeParameters].flatten.findFirst[name == find]
 
-		return if (findRef !== null) typeReferences.createTypeRef(findRef) else Object.typeRef
+		return
+			if (findRef !== null)
+				typeReferences.createTypeRef(findRef)
+			else
+				Object.typeRef
 	}
 }

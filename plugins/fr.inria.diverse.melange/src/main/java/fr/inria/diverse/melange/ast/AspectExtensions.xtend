@@ -122,6 +122,23 @@ class AspectExtensions {
 	}
 
 	/**
+	 * Sorts the {@code aspects} list by overriding priority, ie. if an aspect
+	 * A potentially overrides an aspect B, it will be earlier in the list.
+	 */
+	def Iterable<Aspect> sortByOverridingPriority(Iterable<Aspect> aspects) {
+		return aspects.sortWith[aspA, aspB |
+			val clsA = aspA.aspectedClass
+			val clsB = aspB.aspectedClass
+
+			if (clsA.EAllSuperTypes.contains(clsB))
+				return -1
+			else if (clsB.EAllSuperTypes.contains(clsA))
+				return 1
+			else return 0
+		]
+	}
+
+	/**
 	 * Returns the underlying {@link JvmDeclaredType} corresponding to
 	 * the aspect {@code asp} or null if it cannot be determined
 	 */
