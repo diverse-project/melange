@@ -64,6 +64,22 @@ class AspectExtensions {
 	}
 
 	/**
+	 * Returns the simple name of the class on which the aspect
+	 * pointed by the given {@link JvmTypeReference} {@code typeRef} is woven
+	 * (ie. the value of its 'className=' annotation parameter), or null
+	 * if it cannot be retrieved
+	 */
+	def String getSimpleAspectAnnotationValue(JvmTypeReference typeRef) {
+		if (typeRef?.type === null
+			|| !(typeRef.type instanceof JvmDeclaredType))
+			return null
+
+		return
+			(typeRef.type as JvmDeclaredType)
+			.extractAspectAnnotationValue.lastSegment.toString
+	}
+
+	/**
 	 * Returns the fully qualified name of the class on which the aspect
 	 * {@code asp} is woven (ie. the value of its 'className=' annotation
 	 * parameter), or null if it cannot be retrieved
