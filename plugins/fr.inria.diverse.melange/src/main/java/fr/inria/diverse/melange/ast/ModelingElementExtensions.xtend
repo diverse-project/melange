@@ -7,6 +7,7 @@ import fr.inria.diverse.melange.metamodel.melange.ModelingElement
 import fr.inria.diverse.melange.utils.EPackageProvider
 import java.io.IOException
 import java.util.Set
+import org.apache.log4j.Logger
 import org.eclipse.emf.codegen.ecore.genmodel.GenClass
 import org.eclipse.emf.codegen.ecore.genmodel.GenClassifier
 import org.eclipse.emf.codegen.ecore.genmodel.GenDataType
@@ -32,6 +33,8 @@ class ModelingElementExtensions
 {
 	@Inject extension EcoreExtensions
 	@Inject EPackageProvider registry
+
+	private static final Logger log = Logger.getLogger(ModelingElementExtensions)
 
 	/**
 	 * Returns all the {@link EPackage}s defined in {@code m}.
@@ -260,7 +263,7 @@ class ModelingElementExtensions
 				Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER)
 			res.save(options)
 		} catch (IOException e) {
-			e.printStackTrace
+			log.error("Error while serializing new Ecore for " + m, e)
 		}
 
 		return rootPkg

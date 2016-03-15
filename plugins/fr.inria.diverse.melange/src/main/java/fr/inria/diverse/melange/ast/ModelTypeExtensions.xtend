@@ -4,14 +4,17 @@ import com.google.inject.Inject
 import fr.inria.diverse.melange.codegen.ModelTypeGeneratorAdapterFactory
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
 import fr.inria.diverse.melange.lib.MatchingHelper
+import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import java.io.IOException
+import org.apache.log4j.Logger
 import org.eclipse.emf.codegen.ecore.generator.Generator
 import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory
 import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory.Descriptor
 import org.eclipse.emf.codegen.ecore.genmodel.GenJDKLevel
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
 import org.eclipse.emf.codegen.ecore.genmodel.GenModelFactory
+import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenBaseGeneratorAdapter
 import org.eclipse.emf.common.util.Diagnostic
 import org.eclipse.emf.common.util.Monitor
@@ -21,7 +24,6 @@ import org.eclipse.emf.ecore.EcorePackage
 import org.eclipse.emf.ecore.plugin.EcorePlugin
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.xtext.naming.IQualifiedNameProvider
-import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage
 
 /**
  * A collection of utilities around {@link ModelType}s
@@ -34,6 +36,8 @@ class ModelTypeExtensions
 	@Inject extension ModelingElementExtensions
 	@Inject MatchingHelper matchingHelper
 	@Inject EclipseProjectHelper helper
+
+	private static final Logger log = Logger.getLogger(ModelTypeExtensions)
 
 	/**
 	 * Returns the URI of the serialized Ecore of the {@link ModelType}
@@ -81,7 +85,7 @@ class ModelTypeExtensions
 			res.save(null)
 			return genmodel
 		} catch (IOException e) {
-			e.printStackTrace
+			log.error("Error while serializing new genmodel", e)
 			return null
 		}
 	}

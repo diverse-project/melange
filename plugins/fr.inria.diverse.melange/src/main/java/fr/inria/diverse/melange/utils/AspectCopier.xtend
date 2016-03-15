@@ -31,7 +31,7 @@ class AspectCopier
 	@Inject extension AspectExtensions
 	@Inject extension IQualifiedNameConverter
 	@Inject EclipseProjectHelper eclipseHelper
-	static Logger log = Logger.getLogger(AspectCopier)
+	private static final Logger log = Logger.getLogger(AspectCopier)
 
 	@Data
 	static class AspectCopierRequest {
@@ -71,29 +71,34 @@ class AspectCopier
 
 		// Visiting the workspace to gather source projects
 		val aspects2folders = newHashMap
-		ws.accept(new IResourceVisitor {
-			override visit(IResource resource) throws CoreException {
-				if (resource instanceof IFile) {
-					val firstMatch = request.aspectRefs.findFirst[ref|
-						val pattern = ref.identifier.replace(".", "/") + ".java"
-						resource.locationURI.path.endsWith(pattern)
-					]
-					if (firstMatch !== null){
-						val ressourcePath = resource.locationURI.path
-						if(ressourcePath.contains("/xtend-gen/")){
-							aspects2folders.put(firstMatch,new File(resource.project.locationURI.path + "/xtend-gen/"))
+		try {
+			ws.accept(new IResourceVisitor {
+				override visit(IResource resource) throws CoreException {
+					if (resource instanceof IFile) {
+						val firstMatch = request.aspectRefs.findFirst[ref|
+							val pattern = ref.identifier.replace(".", "/") + ".java"
+							resource.locationURI.path.endsWith(pattern)
+						]
+						if (firstMatch !== null){
+							val ressourcePath = resource.locationURI.path
+							if(ressourcePath.contains("/xtend-gen/")){
+								aspects2folders.put(firstMatch,new File(resource.project.locationURI.path + "/xtend-gen/"))
+							}
+							else if(ressourcePath.contains("/src-gen/")){
+								aspects2folders.put(firstMatch,new File(resource.project.locationURI.path + "/src-gen/"))
+							}
 						}
-						else if(ressourcePath.contains("/src-gen/")){
-							aspects2folders.put(firstMatch,new File(resource.project.locationURI.path + "/src-gen/"))
-						}
+	
+						return false
 					}
-
-					return false
+	
+					return true
 				}
+			})
+		} catch (CoreException e) {
+			log.error("Unexpected exception while visiting workspace", e)
+		}
 
-				return true
-			}
-		})
 		// Ordering source folders
 		request.aspectRefs.forEach[ref |
 			val File folder = aspects2folders.get(ref)

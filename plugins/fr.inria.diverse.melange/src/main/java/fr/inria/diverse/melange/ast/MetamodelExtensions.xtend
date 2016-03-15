@@ -3,7 +3,9 @@ package fr.inria.diverse.melange.ast
 import com.google.inject.Inject
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import java.io.IOException
+import org.apache.log4j.Logger
 import org.eclipse.emf.codegen.ecore.genmodel.GenJDKLevel
+import org.eclipse.emf.codegen.ecore.genmodel.GenModel
 import org.eclipse.emf.codegen.ecore.genmodel.GenModelFactory
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EPackage
@@ -18,6 +20,8 @@ class MetamodelExtensions
 	@Inject extension IQualifiedNameProvider
 	@Inject extension LanguageExtensions
 	@Inject extension ModelingElementExtensions
+
+	private static final Logger log = Logger.getLogger(MetamodelExtensions)
 
 	/**
 	 * Checks whether the given {@link Metamodel} {@code mm} is well-formed,
@@ -63,7 +67,7 @@ class MetamodelExtensions
 		try {
 			res.save(null)
 		} catch (IOException e) {
-			e.printStackTrace
+			log.error("Error while serializing new genmodel", e)
 		}
 	}
 }

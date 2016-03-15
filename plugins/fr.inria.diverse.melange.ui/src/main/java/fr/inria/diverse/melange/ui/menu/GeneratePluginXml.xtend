@@ -20,7 +20,7 @@ import org.eclipse.xtext.resource.DerivedStateAwareResource
 class GeneratePluginXml extends AbstractHandler {
 	@Inject MelangeBuilder builder
 	@Inject XtextResourceSetProvider rsProvider
-	static final Logger log = Logger.getLogger(MelangeBuilder)
+	private static final Logger log = Logger.getLogger(MelangeBuilder)
 	
 	override execute(ExecutionEvent event) throws ExecutionException {
 		val shell = HandlerUtil.getActiveWorkbenchWindow(event).shell
