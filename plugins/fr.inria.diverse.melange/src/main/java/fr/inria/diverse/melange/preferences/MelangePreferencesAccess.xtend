@@ -29,24 +29,28 @@ class MelangePreferencesAccess {
 	def boolean isGenerateAdaptersCode() {
 		return
 			if (preferencesService !== null)
-				preferencesService.getBoolean(PREFS_ID, MelangePreferencesConstants.GENERATE_ADAPTERS_CODE, true, null)
+				preferencesService.getBoolean(
+					PREFS_ID,
+					MelangePreferencesConstants.GENERATE_ADAPTERS_CODE,
+					true,
+					null)
 			else true
 	}
 	
 	
 	/**
 	 * Return true if the user request a full compilation.
-	 * Should return false if compilation process is automatically launched 
+	 * Should return false if the compilation process is automatically launched 
 	 */
-	def boolean isUserLaunch(){
+	def boolean isUserLaunch() {
 		return isUserLaunch
 	}
 
-	def void enableCodeGenerator(){
+	def void enableCodeGenerator() {
 		isUserLaunch = true
 	}
 	
-	def void disableCodeGenerator(){
+	def void disableCodeGenerator() {
 		isUserLaunch = false
 	}
 }
