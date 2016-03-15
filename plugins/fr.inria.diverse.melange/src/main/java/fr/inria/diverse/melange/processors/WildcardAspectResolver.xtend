@@ -15,6 +15,11 @@ import org.eclipse.jdt.core.search.SearchPattern
 import org.eclipse.jdt.core.search.SearchRequestor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
+/**
+ * Parses the wildcard imports of aspects ({@code with x.y.*}), retrieves
+ * the actual aspects hidden behind the wildcard and adds them to the appropriate
+ * {@link Language}.
+ */
 class WildcardAspectResolver extends DispatchMelangeProcessor
 {
 	@Inject JvmTypeReferenceBuilder.Factory builderFactory
@@ -22,11 +27,13 @@ class WildcardAspectResolver extends DispatchMelangeProcessor
 
 	def dispatch void preProcess(Weave w, boolean preLinkingPhase) {
 		val typeRefBuilder = builderFactory.create(w.eResource.resourceSet)
+
 		if (w.aspectWildcardImport !== null) {
 			resolveWildcardImport(w.aspectWildcardImport).forEach[typeRef |
-				w.owningLanguage.operators += MelangeFactory.eINSTANCE.createWeave => [
-					aspectTypeRef = typeRefBuilder.typeRef(typeRef)
-				]
+				w.owningLanguage.operators +=
+					MelangeFactory.eINSTANCE.createWeave => [
+						aspectTypeRef = typeRefBuilder.typeRef(typeRef)
+					]
 			]
 		}
 	}
@@ -43,10 +50,18 @@ class WildcardAspectResolver extends DispatchMelangeProcessor
 					try {
 						matches +=
 							pkg.children
-							// No Context/Properties classes generated from  @Aspect
-							.filter[!elementName.endsWith("AspectContext.java")
-									&& !elementName.endsWith("AspectProperties.java")]
-							.map['''«pkg.elementName».«elementName.substring(0, elementName.length - 5)»''']
+							// We don't want the Context/Properties from K3
+							.filter[
+								   !elementName.endsWith("AspectContext.java")
+								&& !elementName.endsWith("AspectProperties.java")
+							]
+							.map[
+								// Remove 'Aspect' suffix
+								val trimmedAspectName = elementName.substring(
+									0, elementName.length - 5)
+
+								'''«pkg.elementName».«trimmedAspectName»'''
+							]
 					} catch (JavaModelException e) {
 						log.error(e)
 					}
@@ -58,7 +73,8 @@ class WildcardAspectResolver extends DispatchMelangeProcessor
 			wildcardImport.substring(0, wildcardImport.length - 2),
 			IJavaSearchConstants.PACKAGE,
 			IJavaSearchConstants.DECLARATIONS,
-			SearchPattern.R_EXACT_MATCH//.bitwiseOr(SearchPattern.R_CASE_SENSITIVE)
+			SearchPattern.R_EXACT_MATCH
+			//.bitwiseOr(SearchPattern.R_CASE_SENSITIVE)
 		)
 
 		try {

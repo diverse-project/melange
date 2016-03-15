@@ -9,8 +9,9 @@ import java.util.List
 import org.eclipse.emf.ecore.util.EcoreUtil
 
 /**
- * This class creates new Model types corresponding to Exact types of each Metamodel
- * and add them in the Melange model
+ * For each {@link Language} in the current {@link Resource}, extract its
+ * exact {@link ModelType}. The new model type is named $LanguageName$MT, or
+ * can be explicitly specified by the user using the 'exactType' clause.
  */
 class ExactTypeInferrer extends DispatchMelangeProcessor
 {

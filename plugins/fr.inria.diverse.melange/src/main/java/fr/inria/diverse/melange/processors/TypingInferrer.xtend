@@ -10,7 +10,11 @@ import fr.inria.diverse.melange.typesystem.MelangeTypesRegistry
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 /**
- * This class computes and store the typing hierarchy of Model types
+ * Computes the subtyping hierarchy among {@link ModelType}s and the
+ * implementation relations between {@link Language}s and {@link ModelType}s.
+ * Populates the #implements and #subtypingRelations references accordingly.
+ * Also populates the {@link MelangeTypesRegistry} that is used in our
+ * specialized Xbase model-oriented type system and compiler.
  */
 class TypingInferrer extends DispatchMelangeProcessor
 {
@@ -24,25 +28,36 @@ class TypingInferrer extends DispatchMelangeProcessor
 		typesRegistry.clear
 
 		root.modelTypes
-		.filter[name !== null]
+		.filter[isValid]
 		.forEach[mt1 |
 			root.modelTypes
-			.filter[mt2 | mt2 != mt1 && !mt1.subtypingRelations.exists[superType.name == mt2.name] && mt1.isSubtypeOf(mt2)]
+			.filter[mt2 |
+				   mt2 != mt1
+				&& !mt1.subtypingRelations.exists[superType.name == mt2.name]
+				&& mt1.isSubtypeOf(mt2)
+			]
 			.forEach[mt2 |
-				mt1.subtypingRelations += MelangeFactory.eINSTANCE.createSubtyping => [
-					subType = mt1
-					superType = mt2
-				]
+				mt1.subtypingRelations +=
+					MelangeFactory.eINSTANCE.createSubtyping => [
+						subType = mt1
+						superType = mt2
+					]
 
-				typesRegistry.registerSubtyping(mt1.fullyQualifiedName.toString, mt2)
+				typesRegistry.registerSubtyping(
+					mt1.fullyQualifiedName.toString, mt2)
 			]
 
 			root.languages
-			.filter[l | l.name !== null && !l.^implements.exists[name == mt1.name] && l.doesImplement(mt1)]
+			.filter[l |
+				   l.isValid
+				&& !l.^implements.exists[name == mt1.name]
+				&& l.doesImplement(mt1)
+			]
 			.forEach[l |
 				l.^implements += mt1
 
-				typesRegistry.registerImplementation(l.fullyQualifiedName.toString, mt1)
+				typesRegistry.registerImplementation(
+					l.fullyQualifiedName.toString, mt1)
 			]
 		]
 	}
