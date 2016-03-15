@@ -9,6 +9,7 @@ import java.io.BufferedInputStream
 import java.io.BufferedOutputStream
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
+import java.io.Closeable
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
@@ -66,16 +67,20 @@ class EclipseProjectHelper
 			&& manifestFile.accessible
 		) {
 			var InputStream input = null
+
 			try {
 				input = manifestFile.contents
 				val manifest = new MergeableManifest(input)
 				val attrs = manifest.mainAttributes
 				val bundles = Splitter.on(",").omitEmptyStrings.trimResults.split(attrs.getValue("Require-Bundle"))
 				return bundles.map[it.split(";").head]
+			} catch (Exception e) {
+				e.printStackTrace
 			} finally {
-				if (input !== null)
-					input.close
+				input.closeQuietly
 			}
+
+			return newArrayList
 		}
 	}
 
@@ -91,11 +96,12 @@ class EclipseProjectHelper
 			&& manifestFile.accessible
 			&& !manifestFile.resourceAttributes.readOnly
 		) {
-			if (!manifestFile.isSynchronized(IResource.DEPTH_ZERO))
-				manifestFile.refreshLocal(IResource.DEPTH_ZERO, null)
 			var OutputStream output = null
 			var InputStream input = null
+
 			try {
+				if (!manifestFile.isSynchronized(IResource.DEPTH_ZERO))
+					manifestFile.refreshLocal(IResource.DEPTH_ZERO, null)
 				input = manifestFile.contents
 				val manifest = new MergeableManifest(input)
 				manifest.addRequiredBundles(Sets::newHashSet(bundles))
@@ -106,12 +112,23 @@ class EclipseProjectHelper
 				input = new BufferedInputStream(in)
 				manifestFile.setContents(input, true, true, null)
 				bundles.forEach[log.debug('''Dependendency «it» added to «project»''')]
+			} catch (Exception e) {
+				e.printStackTrace
 			} finally {
-				if (output !== null)
-					output.close
-				if (input !== null)
-					input.close
+				input.closeQuietly
+				output.closeQuietly
 			}
+		}
+	}
+
+	private def void closeQuietly(Closeable c) {
+		if (c === null)
+			return;
+
+		try {
+			c.close
+		} catch (IOException e) {
+			e.printStackTrace
 		}
 	}
 
@@ -130,11 +147,12 @@ class EclipseProjectHelper
 			&& manifestFile.accessible
 			&& !manifestFile.resourceAttributes.readOnly
 		) {
-			if (!manifestFile.isSynchronized(IResource.DEPTH_ZERO))
-				manifestFile.refreshLocal(IResource.DEPTH_ZERO, null)
 			var OutputStream output = null
 			var InputStream input = null
+
 			try {
+				if (!manifestFile.isSynchronized(IResource.DEPTH_ZERO))
+					manifestFile.refreshLocal(IResource.DEPTH_ZERO, null)
 				input = manifestFile.contents
 				val manifest = new MergeableManifest(input)
 				// FIXME: Quick & Dirty ;)
@@ -149,11 +167,11 @@ class EclipseProjectHelper
 				input = new BufferedInputStream(in)
 				manifestFile.setContents(input, true, true, null)
 				bundles.forEach[log.debug('''Dependendency «it» removed from «project»''')]
+			} catch (Exception e) {
+				e.printStackTrace
 			} finally {
-				if (output !== null)
-					output.close
-				if (input !== null)
-					input.close
+				input.closeQuietly
+				output.closeQuietly
 			}
 		}
 	}
@@ -171,7 +189,6 @@ class EclipseProjectHelper
 	def IProject createEMFRuntimeProject(String projectName, Language l) {
 		try {
 			// FIXME: Everything's hardcoded...
-			val basePkg = l.name.toLowerCase
 			val project = createEclipseProject(
 				projectName,
 				#[JavaCore::NATURE_ID, PDE::PLUGIN_NATURE],
@@ -253,10 +270,14 @@ class EclipseProjectHelper
 			srcFolders.forEach[src |
 				val container = project.getFolder(src)
 
-				if (!container.exists)
-					container.create(false, true, new SubProgressMonitor(monitor, 1))
+				try {
+					if (!container.exists)
+						container.create(false, true, new SubProgressMonitor(monitor, 1))
 
-				classpathEntries.add(0, JavaCore::newSourceEntry(container.fullPath))
+					classpathEntries.add(0, JavaCore::newSourceEntry(container.fullPath))
+				} catch (CoreException e) {
+					e.printStackTrace
+				}
 			]
 		
 			classpathEntries += JavaCore::newContainerEntry(new Path("org.eclipse.jdt.launching.JRE_CONTAINER"))
