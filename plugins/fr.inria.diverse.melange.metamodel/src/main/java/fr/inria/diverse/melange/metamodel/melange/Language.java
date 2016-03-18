@@ -13,7 +13,6 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getOperators <em>Operators</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getExactType <em>Exact Type</em>}</li>
@@ -31,7 +30,9 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getSirius <em>Sirius</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getEcl <em>Ecl</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getFileExtension <em>File Extension</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getXmof <em>Xmof</em>}</li>
  * </ul>
+ * </p>
  *
  * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getLanguage()
  * @model
@@ -387,5 +388,31 @@ public interface Language extends NamedElement {
 	 * @generated
 	 */
 	void setFileExtension(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Xmof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Xmof</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Xmof</em>' attribute.
+	 * @see #setXmof(String)
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getLanguage_Xmof()
+	 * @model
+	 * @generated
+	 */
+	String getXmof();
+
+	/**
+	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.Language#getXmof <em>Xmof</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Xmof</em>' attribute.
+	 * @see #getXmof()
+	 * @generated
+	 */
+	void setXmof(String value);
 
 } // Language

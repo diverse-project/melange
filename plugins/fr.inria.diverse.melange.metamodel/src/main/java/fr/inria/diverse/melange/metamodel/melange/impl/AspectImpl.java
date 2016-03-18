@@ -26,13 +26,13 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.AspectImpl#getAspectTypeRef <em>Aspect Type Ref</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.AspectImpl#getAspectedClass <em>Aspected Class</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.AspectImpl#getEcoreFragment <em>Ecore Fragment</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.AspectImpl#getOwningLanguage <em>Owning Language</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

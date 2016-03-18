@@ -29,13 +29,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypeImpl#getName <em>Name</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypeImpl#getSubtypingRelations <em>Subtyping Relations</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypeImpl#getExtracted <em>Extracted</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.ModelTypeImpl#getMtUri <em>Mt Uri</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

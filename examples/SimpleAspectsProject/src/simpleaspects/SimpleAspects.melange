@@ -15,3 +15,8 @@ language TimedFsm {
 	with simpleaspects.TimedTransitionAspect
 	exactType TimedFsmMT
 }
+
+language XmofFsm {
+	syntax "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.timedfsm/model/TimedFSM.ecore"
+	xmof "platform:/plugin/fr.inria.diverse.melange.examples.metamodels.timedfsm/model/TimedFSM.ecore"
+}

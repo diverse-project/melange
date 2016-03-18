@@ -37,7 +37,6 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getOperators <em>Operators</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getExactType <em>Exact Type</em>}</li>
@@ -55,7 +54,9 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getSirius <em>Sirius</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getEcl <em>Ecl</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getFileExtension <em>File Extension</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getXmof <em>Xmof</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
@@ -269,6 +270,26 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 	 * @ordered
 	 */
 	protected String fileExtension = FILE_EXTENSION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getXmof() <em>Xmof</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getXmof()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String XMOF_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getXmof() <em>Xmof</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getXmof()
+	 * @generated
+	 * @ordered
+	 */
+	protected String xmof = XMOF_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -641,6 +662,27 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getXmof() {
+		return xmof;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setXmof(String newXmof) {
+		String oldXmof = xmof;
+		xmof = newXmof;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.LANGUAGE__XMOF, oldXmof, xmof));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -728,6 +770,8 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 				return getEcl();
 			case MelangePackage.LANGUAGE__FILE_EXTENSION:
 				return getFileExtension();
+			case MelangePackage.LANGUAGE__XMOF:
+				return getXmof();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -797,6 +841,9 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 			case MelangePackage.LANGUAGE__FILE_EXTENSION:
 				setFileExtension((String)newValue);
 				return;
+			case MelangePackage.LANGUAGE__XMOF:
+				setXmof((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -857,6 +904,9 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 			case MelangePackage.LANGUAGE__FILE_EXTENSION:
 				setFileExtension(FILE_EXTENSION_EDEFAULT);
 				return;
+			case MelangePackage.LANGUAGE__XMOF:
+				setXmof(XMOF_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -901,6 +951,8 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 				return ecl != null && !ecl.isEmpty();
 			case MelangePackage.LANGUAGE__FILE_EXTENSION:
 				return FILE_EXTENSION_EDEFAULT == null ? fileExtension != null : !FILE_EXTENSION_EDEFAULT.equals(fileExtension);
+			case MelangePackage.LANGUAGE__XMOF:
+				return XMOF_EDEFAULT == null ? xmof != null : !XMOF_EDEFAULT.equals(xmof);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -931,6 +983,8 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 		result.append(ecl);
 		result.append(", fileExtension: ");
 		result.append(fileExtension);
+		result.append(", xmof: ");
+		result.append(xmof);
 		result.append(')');
 		return result.toString();
 	}

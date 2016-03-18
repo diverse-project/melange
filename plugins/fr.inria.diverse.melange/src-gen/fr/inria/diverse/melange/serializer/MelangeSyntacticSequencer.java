@@ -25,8 +25,8 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_EcoreModelType_RightCurlyBracketKeyword_1_1_a;
 	protected AbstractElementAlias match_EcoreModelType_RightCurlyBracketKeyword_1_1_p;
 	protected AbstractElementAlias match_Import___RenamingKeyword_3_0_LeftCurlyBracketKeyword_3_1_RightCurlyBracketKeyword_3_3__q;
-	protected AbstractElementAlias match_Language_RightCurlyBracketKeyword_6_1_a;
-	protected AbstractElementAlias match_Language_RightCurlyBracketKeyword_6_1_p;
+	protected AbstractElementAlias match_Language_RightCurlyBracketKeyword_7_1_a;
+	protected AbstractElementAlias match_Language_RightCurlyBracketKeyword_7_1_p;
 	protected AbstractElementAlias match_Merge___RenamingKeyword_2_0_LeftCurlyBracketKeyword_2_1_RightCurlyBracketKeyword_2_3__q;
 	protected AbstractElementAlias match_PackageMapping___LeftCurlyBracketKeyword_3_0_RightCurlyBracketKeyword_3_2__q;
 	protected AbstractElementAlias match_Slice___RenamingKeyword_7_0_LeftCurlyBracketKeyword_7_1_RightCurlyBracketKeyword_7_3__q;
@@ -44,8 +44,8 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_EcoreModelType_RightCurlyBracketKeyword_1_1_a = new TokenAlias(true, true, grammarAccess.getEcoreModelTypeAccess().getRightCurlyBracketKeyword_1_1());
 		match_EcoreModelType_RightCurlyBracketKeyword_1_1_p = new TokenAlias(true, false, grammarAccess.getEcoreModelTypeAccess().getRightCurlyBracketKeyword_1_1());
 		match_Import___RenamingKeyword_3_0_LeftCurlyBracketKeyword_3_1_RightCurlyBracketKeyword_3_3__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getImportAccess().getRenamingKeyword_3_0()), new TokenAlias(false, false, grammarAccess.getImportAccess().getLeftCurlyBracketKeyword_3_1()), new TokenAlias(false, false, grammarAccess.getImportAccess().getRightCurlyBracketKeyword_3_3()));
-		match_Language_RightCurlyBracketKeyword_6_1_a = new TokenAlias(true, true, grammarAccess.getLanguageAccess().getRightCurlyBracketKeyword_6_1());
-		match_Language_RightCurlyBracketKeyword_6_1_p = new TokenAlias(true, false, grammarAccess.getLanguageAccess().getRightCurlyBracketKeyword_6_1());
+		match_Language_RightCurlyBracketKeyword_7_1_a = new TokenAlias(true, true, grammarAccess.getLanguageAccess().getRightCurlyBracketKeyword_7_1());
+		match_Language_RightCurlyBracketKeyword_7_1_p = new TokenAlias(true, false, grammarAccess.getLanguageAccess().getRightCurlyBracketKeyword_7_1());
 		match_Merge___RenamingKeyword_2_0_LeftCurlyBracketKeyword_2_1_RightCurlyBracketKeyword_2_3__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getMergeAccess().getRenamingKeyword_2_0()), new TokenAlias(false, false, grammarAccess.getMergeAccess().getLeftCurlyBracketKeyword_2_1()), new TokenAlias(false, false, grammarAccess.getMergeAccess().getRightCurlyBracketKeyword_2_3()));
 		match_PackageMapping___LeftCurlyBracketKeyword_3_0_RightCurlyBracketKeyword_3_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getPackageMappingAccess().getLeftCurlyBracketKeyword_3_0()), new TokenAlias(false, false, grammarAccess.getPackageMappingAccess().getRightCurlyBracketKeyword_3_2()));
 		match_Slice___RenamingKeyword_7_0_LeftCurlyBracketKeyword_7_1_RightCurlyBracketKeyword_7_3__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getSliceAccess().getRenamingKeyword_7_0()), new TokenAlias(false, false, grammarAccess.getSliceAccess().getLeftCurlyBracketKeyword_7_1()), new TokenAlias(false, false, grammarAccess.getSliceAccess().getRightCurlyBracketKeyword_7_3()));
@@ -102,10 +102,10 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_EcoreModelType_RightCurlyBracketKeyword_1_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_Import___RenamingKeyword_3_0_LeftCurlyBracketKeyword_3_1_RightCurlyBracketKeyword_3_3__q.equals(syntax))
 				emit_Import___RenamingKeyword_3_0_LeftCurlyBracketKeyword_3_1_RightCurlyBracketKeyword_3_3__q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Language_RightCurlyBracketKeyword_6_1_a.equals(syntax))
-				emit_Language_RightCurlyBracketKeyword_6_1_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Language_RightCurlyBracketKeyword_6_1_p.equals(syntax))
-				emit_Language_RightCurlyBracketKeyword_6_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_Language_RightCurlyBracketKeyword_7_1_a.equals(syntax))
+				emit_Language_RightCurlyBracketKeyword_7_1_a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_Language_RightCurlyBracketKeyword_7_1_p.equals(syntax))
+				emit_Language_RightCurlyBracketKeyword_7_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_Merge___RenamingKeyword_2_0_LeftCurlyBracketKeyword_2_1_RightCurlyBracketKeyword_2_3__q.equals(syntax))
 				emit_Merge___RenamingKeyword_2_0_LeftCurlyBracketKeyword_2_1_RightCurlyBracketKeyword_2_3__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_PackageMapping___LeftCurlyBracketKeyword_3_0_RightCurlyBracketKeyword_3_2__q.equals(syntax))
@@ -191,6 +191,7 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'language' name=ValidID
 	 *     (rule start) (ambiguity) 'resource' resourceType=ResourceType
 	 *     (rule start) (ambiguity) 'sirius' sirius+=STRING
+	 *     (rule start) (ambiguity) 'xmof' xmof=STRING
 	 *     (rule start) (ambiguity) 'xtext' xtext+=STRING
 	 *     (rule start) (ambiguity) (rule start)
 	 *     ecl+=STRING (ambiguity) 'ecl' ecl+=STRING
@@ -199,6 +200,7 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ecl+=STRING (ambiguity) 'language' name=ValidID
 	 *     ecl+=STRING (ambiguity) 'resource' resourceType=ResourceType
 	 *     ecl+=STRING (ambiguity) 'sirius' sirius+=STRING
+	 *     ecl+=STRING (ambiguity) 'xmof' xmof=STRING
 	 *     ecl+=STRING (ambiguity) 'xtext' xtext+=STRING
 	 *     ecl+=STRING (ambiguity) (rule end)
 	 *     fileExtension=STRING (ambiguity) 'ecl' ecl+=STRING
@@ -207,6 +209,7 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     fileExtension=STRING (ambiguity) 'language' name=ValidID
 	 *     fileExtension=STRING (ambiguity) 'resource' resourceType=ResourceType
 	 *     fileExtension=STRING (ambiguity) 'sirius' sirius+=STRING
+	 *     fileExtension=STRING (ambiguity) 'xmof' xmof=STRING
 	 *     fileExtension=STRING (ambiguity) 'xtext' xtext+=STRING
 	 *     fileExtension=STRING (ambiguity) (rule end)
 	 *     implements+=[ModelType|QualifiedName] '{' (ambiguity) 'ecl' ecl+=STRING
@@ -215,6 +218,7 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     implements+=[ModelType|QualifiedName] '{' (ambiguity) 'language' name=ValidID
 	 *     implements+=[ModelType|QualifiedName] '{' (ambiguity) 'resource' resourceType=ResourceType
 	 *     implements+=[ModelType|QualifiedName] '{' (ambiguity) 'sirius' sirius+=STRING
+	 *     implements+=[ModelType|QualifiedName] '{' (ambiguity) 'xmof' xmof=STRING
 	 *     implements+=[ModelType|QualifiedName] '{' (ambiguity) 'xtext' xtext+=STRING
 	 *     implements+=[ModelType|QualifiedName] '{' (ambiguity) (rule end)
 	 *     name=ValidID '{' (ambiguity) 'ecl' ecl+=STRING
@@ -223,6 +227,7 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=ValidID '{' (ambiguity) 'language' name=ValidID
 	 *     name=ValidID '{' (ambiguity) 'resource' resourceType=ResourceType
 	 *     name=ValidID '{' (ambiguity) 'sirius' sirius+=STRING
+	 *     name=ValidID '{' (ambiguity) 'xmof' xmof=STRING
 	 *     name=ValidID '{' (ambiguity) 'xtext' xtext+=STRING
 	 *     name=ValidID '{' (ambiguity) (rule end)
 	 *     operators+=Inherit '{' (ambiguity) 'ecl' ecl+=STRING
@@ -231,6 +236,7 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     operators+=Inherit '{' (ambiguity) 'language' name=ValidID
 	 *     operators+=Inherit '{' (ambiguity) 'resource' resourceType=ResourceType
 	 *     operators+=Inherit '{' (ambiguity) 'sirius' sirius+=STRING
+	 *     operators+=Inherit '{' (ambiguity) 'xmof' xmof=STRING
 	 *     operators+=Inherit '{' (ambiguity) 'xtext' xtext+=STRING
 	 *     operators+=Inherit '{' (ambiguity) (rule end)
 	 *     operators+=Operator (ambiguity) 'ecl' ecl+=STRING
@@ -239,6 +245,7 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     operators+=Operator (ambiguity) 'language' name=ValidID
 	 *     operators+=Operator (ambiguity) 'resource' resourceType=ResourceType
 	 *     operators+=Operator (ambiguity) 'sirius' sirius+=STRING
+	 *     operators+=Operator (ambiguity) 'xmof' xmof=STRING
 	 *     operators+=Operator (ambiguity) 'xtext' xtext+=STRING
 	 *     operators+=Operator (ambiguity) (rule end)
 	 *     requires+=[ModelType|QualifiedName] '{' (ambiguity) 'ecl' ecl+=STRING
@@ -247,6 +254,7 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     requires+=[ModelType|QualifiedName] '{' (ambiguity) 'language' name=ValidID
 	 *     requires+=[ModelType|QualifiedName] '{' (ambiguity) 'resource' resourceType=ResourceType
 	 *     requires+=[ModelType|QualifiedName] '{' (ambiguity) 'sirius' sirius+=STRING
+	 *     requires+=[ModelType|QualifiedName] '{' (ambiguity) 'xmof' xmof=STRING
 	 *     requires+=[ModelType|QualifiedName] '{' (ambiguity) 'xtext' xtext+=STRING
 	 *     requires+=[ModelType|QualifiedName] '{' (ambiguity) (rule end)
 	 *     resourceType=ResourceType (ambiguity) 'ecl' ecl+=STRING
@@ -255,6 +263,7 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     resourceType=ResourceType (ambiguity) 'language' name=ValidID
 	 *     resourceType=ResourceType (ambiguity) 'resource' resourceType=ResourceType
 	 *     resourceType=ResourceType (ambiguity) 'sirius' sirius+=STRING
+	 *     resourceType=ResourceType (ambiguity) 'xmof' xmof=STRING
 	 *     resourceType=ResourceType (ambiguity) 'xtext' xtext+=STRING
 	 *     resourceType=ResourceType (ambiguity) (rule end)
 	 *     resourceUri=STRING (ambiguity) 'ecl' ecl+=STRING
@@ -263,6 +272,7 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     resourceUri=STRING (ambiguity) 'language' name=ValidID
 	 *     resourceUri=STRING (ambiguity) 'resource' resourceType=ResourceType
 	 *     resourceUri=STRING (ambiguity) 'sirius' sirius+=STRING
+	 *     resourceUri=STRING (ambiguity) 'xmof' xmof=STRING
 	 *     resourceUri=STRING (ambiguity) 'xtext' xtext+=STRING
 	 *     resourceUri=STRING (ambiguity) (rule end)
 	 *     sirius+=STRING (ambiguity) 'ecl' ecl+=STRING
@@ -271,14 +281,25 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     sirius+=STRING (ambiguity) 'language' name=ValidID
 	 *     sirius+=STRING (ambiguity) 'resource' resourceType=ResourceType
 	 *     sirius+=STRING (ambiguity) 'sirius' sirius+=STRING
+	 *     sirius+=STRING (ambiguity) 'xmof' xmof=STRING
 	 *     sirius+=STRING (ambiguity) 'xtext' xtext+=STRING
 	 *     sirius+=STRING (ambiguity) (rule end)
+	 *     xmof=STRING (ambiguity) 'ecl' ecl+=STRING
+	 *     xmof=STRING (ambiguity) 'exactType' exactTypeName=ValidID
+	 *     xmof=STRING (ambiguity) 'fileExtension' fileExtension=STRING
+	 *     xmof=STRING (ambiguity) 'language' name=ValidID
+	 *     xmof=STRING (ambiguity) 'resource' resourceType=ResourceType
+	 *     xmof=STRING (ambiguity) 'sirius' sirius+=STRING
+	 *     xmof=STRING (ambiguity) 'xmof' xmof=STRING
+	 *     xmof=STRING (ambiguity) 'xtext' xtext+=STRING
+	 *     xmof=STRING (ambiguity) (rule end)
 	 *     xtext+=STRING (ambiguity) 'ecl' ecl+=STRING
 	 *     xtext+=STRING (ambiguity) 'exactType' exactTypeName=ValidID
 	 *     xtext+=STRING (ambiguity) 'fileExtension' fileExtension=STRING
 	 *     xtext+=STRING (ambiguity) 'language' name=ValidID
 	 *     xtext+=STRING (ambiguity) 'resource' resourceType=ResourceType
 	 *     xtext+=STRING (ambiguity) 'sirius' sirius+=STRING
+	 *     xtext+=STRING (ambiguity) 'xmof' xmof=STRING
 	 *     xtext+=STRING (ambiguity) 'xtext' xtext+=STRING
 	 *     xtext+=STRING (ambiguity) (rule end)
 	 *     xtextSetupRef=JvmTypeReference (ambiguity) 'ecl' ecl+=STRING
@@ -287,10 +308,11 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     xtextSetupRef=JvmTypeReference (ambiguity) 'language' name=ValidID
 	 *     xtextSetupRef=JvmTypeReference (ambiguity) 'resource' resourceType=ResourceType
 	 *     xtextSetupRef=JvmTypeReference (ambiguity) 'sirius' sirius+=STRING
+	 *     xtextSetupRef=JvmTypeReference (ambiguity) 'xmof' xmof=STRING
 	 *     xtextSetupRef=JvmTypeReference (ambiguity) 'xtext' xtext+=STRING
 	 *     xtextSetupRef=JvmTypeReference (ambiguity) (rule end)
 	 */
-	protected void emit_Language_RightCurlyBracketKeyword_6_1_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Language_RightCurlyBracketKeyword_7_1_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -306,6 +328,7 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     exactTypeName=ValidID (ambiguity) 'language' name=ValidID
 	 *     exactTypeName=ValidID (ambiguity) 'resource' resourceType=ResourceType
 	 *     exactTypeName=ValidID (ambiguity) 'sirius' sirius+=STRING
+	 *     exactTypeName=ValidID (ambiguity) 'xmof' xmof=STRING
 	 *     exactTypeName=ValidID (ambiguity) 'xtext' xtext+=STRING
 	 *     exactTypeName=ValidID (ambiguity) (rule end)
 	 *     exactTypeUri=STRING (ambiguity) 'ecl' ecl+=STRING
@@ -314,10 +337,11 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     exactTypeUri=STRING (ambiguity) 'language' name=ValidID
 	 *     exactTypeUri=STRING (ambiguity) 'resource' resourceType=ResourceType
 	 *     exactTypeUri=STRING (ambiguity) 'sirius' sirius+=STRING
+	 *     exactTypeUri=STRING (ambiguity) 'xmof' xmof=STRING
 	 *     exactTypeUri=STRING (ambiguity) 'xtext' xtext+=STRING
 	 *     exactTypeUri=STRING (ambiguity) (rule end)
 	 */
-	protected void emit_Language_RightCurlyBracketKeyword_6_1_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Language_RightCurlyBracketKeyword_7_1_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

@@ -21,11 +21,11 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.WeaveImpl#getAspectTypeRef <em>Aspect Type Ref</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.WeaveImpl#getAspectWildcardImport <em>Aspect Wildcard Import</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

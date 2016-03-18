@@ -27,6 +27,7 @@ Language:
 		('xtext' xtext+=STRING (',' xtext+=STRING)* )? &
 		('sirius' sirius+=STRING (',' sirius+=STRING)* )? &
 		('ecl' ecl+=STRING (',' ecl+=STRING)* )? &
+		('xmof' xmof=STRING)? &
 		('fileExtension' fileExtension=STRING)? &
 		('exactType' exactTypeName = ValidID (=> 'uri' exactTypeUri = STRING)?)?
 	'}'
@@ -49,10 +50,6 @@ XbaseTransformation:
 	'(' (parameters += FullJvmFormalParameter (',' parameters += FullJvmFormalParameter)*)? ')'
 	body = XBlockExpression
 ;
-
-//KomprenSlicer:
-//	slicer = Slicer
-//;
 
 Mapping returns Mapping:
 	"map" from=[Language | QualifiedName] "to" to=[ModelType | QualifiedName] "{"

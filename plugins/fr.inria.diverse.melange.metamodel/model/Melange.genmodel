@@ -103,6 +103,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/sirius"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/ecl"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/fileExtension"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/xmof"/>
     </genClasses>
     <genClasses ecoreClass="Melange.ecore#//Weave">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Weave/aspectTypeRef"/>

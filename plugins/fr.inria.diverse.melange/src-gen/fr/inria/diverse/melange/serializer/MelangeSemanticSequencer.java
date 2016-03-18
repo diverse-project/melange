@@ -442,6 +442,7 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	 *         (xtext+=STRING xtext+=STRING*)? 
 	 *         (sirius+=STRING sirius+=STRING*)? 
 	 *         (ecl+=STRING ecl+=STRING*)? 
+	 *         xmof=STRING? 
 	 *         fileExtension=STRING? 
 	 *         (exactTypeName=ValidID exactTypeUri=STRING?)?
 	 *     )

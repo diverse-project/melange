@@ -15,12 +15,12 @@ import org.eclipse.xtext.xtype.XImportSection;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace#getElements <em>Elements</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace#getImports <em>Imports</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace#getName <em>Name</em>}</li>
  * </ul>
+ * </p>
  *
  * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getModelTypingSpace()
  * @model

@@ -1267,13 +1267,22 @@ public interface MelangePackage extends EPackage {
 	int LANGUAGE__FILE_EXTENSION = NAMED_ELEMENT_FEATURE_COUNT + 15;
 
 	/**
+	 * The feature id for the '<em><b>Xmof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANGUAGE__XMOF = NAMED_ELEMENT_FEATURE_COUNT + 16;
+
+	/**
 	 * The number of structural features of the '<em>Language</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 16;
+	int LANGUAGE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 17;
 
 	/**
 	 * The number of operations of the '<em>Language</em>' class.
@@ -2145,6 +2154,17 @@ public interface MelangePackage extends EPackage {
 	EAttribute getLanguage_FileExtension();
 
 	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.Language#getXmof <em>Xmof</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Xmof</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Language#getXmof()
+	 * @see #getLanguage()
+	 * @generated
+	 */
+	EAttribute getLanguage_Xmof();
+
+	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.Weave <em>Weave</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2861,6 +2881,14 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LANGUAGE__FILE_EXTENSION = eINSTANCE.getLanguage_FileExtension();
+
+		/**
+		 * The meta object literal for the '<em><b>Xmof</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LANGUAGE__XMOF = eINSTANCE.getLanguage_Xmof();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.WeaveImpl <em>Weave</em>}' class.
