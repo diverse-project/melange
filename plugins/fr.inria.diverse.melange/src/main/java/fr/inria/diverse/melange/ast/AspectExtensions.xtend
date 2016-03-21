@@ -60,7 +60,7 @@ class AspectExtensions {
 			return null
 
 		return
-			(typeRef.type as JvmDeclaredType).extractAspectAnnotationValue.toString
+			(typeRef.type as JvmDeclaredType).extractAspectAnnotationValue?.toString
 	}
 
 	/**
@@ -76,7 +76,7 @@ class AspectExtensions {
 
 		return
 			(typeRef.type as JvmDeclaredType)
-			.extractAspectAnnotationValue.lastSegment.toString
+			.extractAspectAnnotationValue?.lastSegment?.toString
 	}
 
 	/**
