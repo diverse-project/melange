@@ -1,8 +1,6 @@
 package fr.inria.diverse.melange.tests
 
 import com.google.inject.Inject
-import fr.inria.diverse.melange.algebra.EmfCompareAlgebra
-import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.EcoreMerger
 import fr.inria.diverse.melange.tests.common.MelangeTestHelper
 import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
@@ -17,7 +15,6 @@ import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EStructuralFeature
-import org.eclipse.emf.ecore.EcoreFactory
 import org.eclipse.emf.ecore.EcorePackage
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.ResourceSet
@@ -40,33 +37,14 @@ class EcoreMergerTest
 	ResourceSet rs = new ResourceSetImpl
 	EPackage receivingEcore
 	EPackage mergedEcore
-	val ecoreFactory = EcoreFactory.eINSTANCE
 	@Inject EcoreMerger merger
 	@Inject extension MelangeTestHelper
-	@Inject extension EcoreExtensions
-	@Inject EmfCompareAlgebra algebra
 
 	@Before
 	def void setUp() {
 		Resource.Factory.Registry.INSTANCE.extensionToFactoryMap.put("ecore", new EcoreResourceFactoryImpl)
 		receivingEcore = loadModel("tests-inputs/metamodels/Ecore.ecore")
 		mergedEcore = loadModel("tests-inputs/metamodels/Ecore2.ecore")
-	}
-
-	@Test
-	def void testPerf() {
-//		val startTime = System.nanoTime();    
-//		for (i : 1..10000) {
-//			merger.merge(receivingEcore, mergedEcore)
-//		}
-//		val estimatedTime = System.nanoTime() - startTime;
-//		println("result="+estimatedTime / 1000000f)
-//		val startTime2 = System.nanoTime();    
-//		for (i : 1..10000) {
-//			algebra.merge(receivingEcore, mergedEcore)
-//		}
-//		val estimatedTime2 = System.nanoTime() - startTime2;
-//		println("result2="+estimatedTime2 / 1000000f)
 	}
 
 	@Test
