@@ -4,6 +4,8 @@ import com.google.inject.Inject
 import java.util.Collection
 import java.util.List
 import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
+import org.eclipse.xtext.common.types.JvmType
 import org.eclipse.xtext.common.types.JvmTypeParameterDeclarator
 import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.xbase.typesystem.references.LightweightTypeReference
@@ -56,5 +58,10 @@ class TypeReferencesHelper
 					"java.util.ArrayList",
 					"org.eclipse.emf.common.util.EList"].contains(ref.type.qualifiedName)
 			else false
+	}
+
+	def JvmType getContainedElementsType(JvmTypeReference ref) {
+		if (ref.isList)
+			return (ref as JvmParameterizedTypeReference).arguments.head.type
 	}
 }

@@ -84,6 +84,18 @@ class EcoreExtensions
 			return 0
 		]
 	}
+
+	/**
+	 * Returns the top-{@link EPackage} containing {@code pkg}.
+	 */
+	def EPackage getRootPackage(EPackage pkg) {
+		var tmp = pkg
+
+		while (tmp.ESuperPackage !== null)
+			tmp = tmp.ESuperPackage
+
+		return tmp
+	}
 	
 	/**
 	 * Search a subPackage in @{link root} named {@link fqn}.
@@ -183,6 +195,12 @@ class EcoreExtensions
 
 	def boolean isAspectSpecific(EModelElement e) {
 		return e.EAnnotations.exists[source == "aspect"]
+	}
+
+	def void addAspectAnnotation(EModelElement e) {
+		e.EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [
+			source = "aspect"
+		]
 	}
 
 	def boolean hasSuppressedVisibility(ENamedElement f) {
@@ -303,7 +321,7 @@ class EcoreExtensions
 			val newDt = EcoreFactory.eINSTANCE.createEDataType => [dt |
 				dt.name = name
 				dt.instanceTypeName = instanceTypeName
-				dt.EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
+				dt.addAspectAnnotation
 			]
 
 			pkg.EClassifiers += newDt
@@ -323,7 +341,7 @@ class EcoreExtensions
 				e.ELiterals += literals.map[litValue | EcoreFactory.eINSTANCE.createEEnumLiteral => [lit |
 					lit.name = litValue
 				]]
-				e.EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
+				e.addAspectAnnotation
 			]
 
 			pkg.EClassifiers += newE

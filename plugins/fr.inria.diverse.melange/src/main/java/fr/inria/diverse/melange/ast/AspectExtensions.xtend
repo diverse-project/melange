@@ -21,9 +21,9 @@ class AspectExtensions {
 	@Inject extension ModelingElementExtensions
 	@Inject extension NamingHelper
 
-	static final String ASPECT_ANNOTATION_FQN =
+	public static final String ASPECT_ANNOTATION_FQN =
 		"fr.inria.diverse.k3.al.annotationprocessor.Aspect"
-	static final String ASPECT_ANNOTATION_PARAMETER =
+	public static final String ASPECT_ANNOTATION_PARAMETER =
 		"className"
 
 	/**
@@ -42,10 +42,19 @@ class AspectExtensions {
 	def boolean hasAspectAnnotation(Aspect asp) {
 		return
 			if (asp.isValid)
-				asp.asJvmType.annotations.exists[
-					annotation.qualifiedName == ASPECT_ANNOTATION_FQN]
+				asp.asJvmType.hasAspectAnnotation
 			else
 				false
+	}
+
+	/**
+	 * Checks whether the given JVM type {@code aspType} has an @Aspect annotation
+	 */
+	def boolean hasAspectAnnotation(JvmDeclaredType aspType) {
+		return
+			aspType.annotations.exists[
+				annotation.qualifiedName == ASPECT_ANNOTATION_FQN
+			]
 	}
 
 	/**

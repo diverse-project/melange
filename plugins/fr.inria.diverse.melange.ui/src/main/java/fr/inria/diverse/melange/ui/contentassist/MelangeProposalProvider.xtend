@@ -1,5 +1,6 @@
 package fr.inria.diverse.melange.ui.contentassist
 
+import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.metamodel.melange.Language
 import java.util.List
 import org.eclipse.core.resources.IProject
@@ -64,7 +65,7 @@ class MelangeProposalProvider extends AbstractMelangeProposalProvider
 	
 	override completeAspectTypeRef_AspectTypeRef(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		lastFoundAspects.clear
-		val SearchPattern pattern = SearchPattern.createPattern("fr.inria.diverse.k3.al.annotationprocessor.Aspect",IJavaSearchConstants.TYPE,IJavaSearchConstants.ANNOTATION_TYPE_REFERENCE,SearchPattern.R_PATTERN_MATCH)
+		val SearchPattern pattern = SearchPattern.createPattern(AspectExtensions::ASPECT_ANNOTATION_FQN,IJavaSearchConstants.TYPE,IJavaSearchConstants.ANNOTATION_TYPE_REFERENCE,SearchPattern.R_PATTERN_MATCH)
 		val IJavaSearchScope scope = SearchEngine.createWorkspaceScope()
 		val SearchRequestor requestor = new SearchRequestor{
 			override acceptSearchMatch(SearchMatch match) throws CoreException {

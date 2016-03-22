@@ -1,70 +1,102 @@
 package fr.inria.diverse.melange.utils
 
 import com.google.inject.Inject
+import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import java.util.List
 import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EcoreFactory
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmEnumerationType
 import org.eclipse.xtext.common.types.JvmOperation
-import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
 import org.eclipse.xtext.common.types.JvmVisibility
+import org.eclipse.xtext.common.types.JvmMember
 
 /**
- * This class creates an EPackage corresponding to an aspect.
+ * Infers the minimal Ecore file (an {@link EPackage}) corresponding to the
+ * "modeling intention" of a K3 aspect. For example, from the following aspect:
+ * 
+ * <code>
+ * \@Aspect(className = A)
+ * class AspectA {
+ *     public int foo
+ *     def void bar() {}
+ * }
+ * </code>
+ * 
+ * it will infer a new {@link EPackage} containing an {@link EClass} {@code A}
+ * with an {@link EAttribute} {@code foo} and an {@link EOperation} {@code foo}.
  */
 // FIXME: Duplicated code etc. this is so ugly
 class AspectToEcore
 {
+	@Inject extension AspectExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension TypeReferencesHelper
+
+	static final String CONTAINMENT_ANNOTATION_FQN =
+		"fr.inria.diverse.k3.al.annotationprocessor.Containment"
+	static final List<String> K3_PREFIXES =
+		#["_privk3", "super_"]
 	
 	/**
-	 * Try to infer the "modeling intention" of the aspect aspImport
-	 * and put its features into a newly created EPackage
+	 * Analyzes the aspect {@code aspect}, woven on the {@link EClass}
+	 * {@code baseCls} contained in the {@link EPackage} {@code basePkg}, and
+	 * returns the corresponding {@link EPackage} describing its modeling intention.
 	 */
-	def EPackage inferEcoreFragment(JvmDeclaredType aspect, EClass baseCls, EPackage basePkg) {
-		val hasAnnotation = aspect.annotations.exists[annotation.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Aspect"]
-
+	def EPackage inferEcoreFragment(
+		JvmDeclaredType aspect,
+		EClass baseCls,
+		EPackage basePkg
+	) {
+		// FIXME: should check aspPkg == basePkg?
 		val aspPkg = 
-			if(baseCls !== null){
-				baseCls.copyPackage //FIXME: should check aspPkg == basePkg ?
-			} 
-			else{
+			if(baseCls !== null)
+				baseCls.copyPackage 
+			else
 				EcoreFactory.eINSTANCE.createEPackage => [
 					name = basePkg.name
 					nsPrefix = basePkg.nsPrefix
 					nsURI = basePkg.nsURI
 				]
-			}
-			
-		//the top package
-		var tmpPack = aspPkg
-		while(tmpPack.ESuperPackage !== null){
-			tmpPack = tmpPack.ESuperPackage
-		}
-		val aspTopPkg = tmpPack 
-		
+		val aspTopPkg = aspPkg.rootPackage
+
+		// Create the new aspCls in which we will create aspect's features
 		val aspCls = EcoreFactory.eINSTANCE.createEClass => [cls |
-			cls.name = if (baseCls !== null) baseCls.name else aspect.simpleName
-			cls.^abstract = if (baseCls !== null) baseCls.^abstract else aspect.^abstract
-			cls.^interface = if (baseCls !== null) baseCls.^interface else false
+			cls.name =
+				if (baseCls !== null)
+					baseCls.name
+				else
+					aspect.simpleName
+			cls.^abstract =
+				if (baseCls !== null)
+					baseCls.^abstract
+				else
+					aspect.^abstract
+			cls.^interface =
+				if (baseCls !== null)
+					baseCls.^interface
+				else
+					false // No @Aspect on interface anyway
 
 			if (baseCls === null) {
-				cls.EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
+				// The aspect inserts a new meta-class, mark it
+				cls.addAspectAnnotation
 
-				if (aspect.extendedClass !== null && aspect.extendedClass.simpleName != "Object")
-					cls.ESuperTypes += aspTopPkg.getOrCreateClass(aspect.extendedClass.qualifiedName)
+				if (aspect.extendedClass !== null
+					&& aspect.extendedClass.simpleName != "Object")
+					// Also reflect its supertypes in the inferred EPackage
+					cls.ESuperTypes += aspTopPkg.getOrCreateClass(
+						aspect.extendedClass.qualifiedName)
 			}
 		]
 
 		aspPkg.EClassifiers += aspCls
 
-		/*
-		 * "aspects" without @Aspect may have declared fields
-		 */
+		// "aspects" without @Aspect may have declared fields,
+		// so we parse them too
 		aspect.declaredFields
 		.filter[
 			   visibility == JvmVisibility.PUBLIC
@@ -75,41 +107,49 @@ class AspectToEcore
 			val upperB = if (fieldType.isList) -1 else 1
 			val realType =
 				if (fieldType.isList)
-					(fieldType as JvmParameterizedTypeReference).arguments.head.type
+					fieldType.containedElementsType
 				else
 					fieldType.type
 
-			val find = if (realType.simpleName == aspCls.name) aspCls else basePkg.findClass(realType.simpleName)
-			if (find !== null) {
-				// Create EReference
-				aspCls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEReference => [
-					name = field.simpleName
-					EType = aspTopPkg.getOrCreateClass(find.toQualifiedName)
-					upperBound = upperB
-					containment = field.annotations.exists[annotation.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Containment"]
-					EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
-				]
-			} else {
-				aspCls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEAttribute => [
-					name = field.simpleName
-					EType =
-						if (realType instanceof JvmEnumerationType)
-							// FIXME: Ok for now, but we should also check literals values
-							aspTopPkg.getOrCreateEnum(realType.simpleName, realType.literals.map[simpleName])
-						else
-							aspTopPkg.getOrCreateDataType(realType.simpleName, realType.qualifiedName)
-					upperBound = upperB
-					EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
-				]
-			}
+			val find =
+				if (realType.simpleName == aspCls.name)
+					aspCls
+				else
+					basePkg.findClass(realType.simpleName)
+
+			// If we find a corresponding EClass, then it's a EReference
+			if (find !== null)
+				aspCls.EStructuralFeatures +=
+					EcoreFactory.eINSTANCE.createEReference => [
+						name = field.simpleName
+						EType = aspTopPkg.getOrCreateClass(find.toQualifiedName)
+						upperBound = upperB
+						containment = field.isContainment
+						addAspectAnnotation
+					]
+			// Otherwise, it's an EAttribute to an external type
+			else
+				aspCls.EStructuralFeatures +=
+					EcoreFactory.eINSTANCE.createEAttribute => [
+						name = field.simpleName
+						EType =
+							if (realType instanceof JvmEnumerationType)
+								// FIXME: Ok for now, but we should also check
+								//         literals values
+								aspTopPkg.getOrCreateEnum(realType.simpleName,
+									realType.literals.map[simpleName])
+							else
+								aspTopPkg.getOrCreateDataType(realType.simpleName,
+									realType.qualifiedName)
+						upperBound = upperB
+						addAspectAnnotation
+					]
 		]
 
+		// Parses all the interesting public operations in the aspect
 		aspect.declaredOperations
 		.filter[
-			// FIXME: Hard-coded strings
-			   !simpleName.startsWith("_privk3")
-			&& !simpleName.startsWith("super_")
-//			&& !annotations.exists[annotation.simpleName == "OverrideAspectMethod"]
+			!isK3Specific
 			&& visibility == JvmVisibility.PUBLIC
 		]
 		.forEach[op |
@@ -120,41 +160,54 @@ class AspectToEcore
 				val upperB = if (op.returnType.isList) -1 else 1
 				val realType =
 					if (op.returnType.isList)
-						(op.returnType as JvmParameterizedTypeReference).arguments.head.type
+						op.returnType.containedElementsType
 					else
 						op.returnType.type
 
-				val retCls = if (realType.simpleName == aspCls.name) aspCls else basePkg.findClass(realType.simpleName)
+				val retCls =
+					if (realType.simpleName == aspCls.name)
+						aspCls
+					else
+						basePkg.findClass(realType.simpleName)
 				if (!aspCls.EOperations.exists[name == op.simpleName]) {
-					aspCls.EOperations += EcoreFactory.eINSTANCE.createEOperation => [
-						name = op.simpleName
-						op.parameters.forEach[p, i |
-							// Skip first generic _self argument
-							// only if @Aspect annotation present
-							if (!hasAnnotation || i > 0) {
-								val pType = p.parameterType.type
-								val upperBP = if (p.parameterType.isList) -1 else 1
-								val realTypeP =
-									if (p.parameterType.isList)
-										(p.parameterType as JvmParameterizedTypeReference).arguments.head.type
-									else
-										pType
-
-								val attrCls = if (realTypeP.simpleName == aspCls.name) aspCls else basePkg.findClass(realTypeP.simpleName)
-								EParameters += EcoreFactory.eINSTANCE.createEParameter => [pp |
-									pp.name = p.simpleName
-									pp.upperBound = upperBP
-									pp.EType =
-										if (attrCls !== null)
-											aspTopPkg.getOrCreateClass(realTypeP.qualifiedName)
-										else if (realTypeP instanceof JvmEnumerationType)
-											// FIXME: Ok for now, but we should also check literals values
-											aspTopPkg.getOrCreateEnum(realTypeP.simpleName, realTypeP.literals.map[simpleName])
+					aspCls.EOperations +=
+						EcoreFactory.eINSTANCE.createEOperation => [
+							name = op.simpleName
+							op.parameters.forEach[p, i |
+								// Skip first generic _self argument
+								// only if @Aspect annotation present
+								if (!aspect.hasAspectAnnotation || i > 0) {
+									val pType = p.parameterType.type
+									val upperBP = if (p.parameterType.isList) -1 else 1
+									val realTypeP =
+										if (p.parameterType.isList)
+											p.parameterType.containedElementsType
 										else
-											aspTopPkg.getOrCreateDataType(realTypeP.simpleName, realTypeP.qualifiedName)
-								]
-							}
-						]
+											pType
+	
+									val attrCls =
+										if (realTypeP.simpleName == aspCls.name)
+											aspCls
+										else
+											basePkg.findClass(realTypeP.simpleName)
+
+									EParameters +=
+										EcoreFactory.eINSTANCE.createEParameter => [pp |
+											pp.name = p.simpleName
+											pp.upperBound = upperBP
+											pp.EType =
+												if (attrCls !== null)
+													aspTopPkg.getOrCreateClass(realTypeP.qualifiedName)
+												else if (realTypeP instanceof JvmEnumerationType)
+													// FIXME: Ok for now, but we should also check literals values
+													aspTopPkg.getOrCreateEnum(realTypeP.simpleName,
+														realTypeP.literals.map[simpleName])
+												else
+													aspTopPkg.getOrCreateDataType(realTypeP.simpleName,
+														realTypeP.qualifiedName)
+										]
+								}
+							]
 
 						if (op.returnType.simpleName != "void" && op.returnType.simpleName !== "null") {
 							upperBound = upperB
@@ -163,11 +216,13 @@ class AspectToEcore
 									aspTopPkg.getOrCreateClass(realType.qualifiedName)
 								else if (realType instanceof JvmEnumerationType)
 									// FIXME: Ok for now, but we should also check literals values
-									aspTopPkg.getOrCreateEnum(realType.simpleName, realType.literals.map[simpleName])
+									aspTopPkg.getOrCreateEnum(realType.simpleName,
+										realType.literals.map[simpleName])
 								else
-									aspTopPkg.getOrCreateDataType(realType.simpleName, realType.qualifiedName)
+									aspTopPkg.getOrCreateDataType(realType.simpleName,
+										realType.qualifiedName)
 						}
-						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
+						addAspectAnnotation
 					]
 				}
 			} else if (!aspCls.EStructuralFeatures.exists[name == featureName]) {
@@ -179,33 +234,40 @@ class AspectToEcore
 				val upperB = if (op.returnType.isList) -1 else 1
 				val realType =
 					if (op.returnType.isList)
-						(retType as JvmParameterizedTypeReference).arguments.head.type
+						retType.containedElementsType
 					else
 						retType.type
 
-				val find = if (realType.simpleName == aspCls.name) aspCls else basePkg.findClass(realType.simpleName)
-				if (find !== null) {
+				val find =
+					if (realType.simpleName == aspCls.name)
+						aspCls
+					else
+						basePkg.findClass(realType.simpleName)
+				if (find !== null)
 					// Create EReference
-					aspCls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEReference => [
-						name = featureName
-						EType = aspTopPkg.getOrCreateClass(find.toQualifiedName)
-						upperBound = upperB
-						containment = op.annotations.exists[annotation.qualifiedName == "fr.inria.diverse.k3.al.annotationprocessor.Containment"]
-						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
-					]
-				} else {
-					aspCls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEAttribute => [
-						name = featureName
-						EType =
-							if (realType instanceof JvmEnumerationType)
-								// FIXME: Ok for now, but we should also check literals values
-								aspTopPkg.getOrCreateEnum(realType.simpleName, realType.literals.map[simpleName])
-							else
-								aspTopPkg.getOrCreateDataType(realType.simpleName, realType.qualifiedName)
-						upperBound = upperB
-						EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [source = "aspect"]
-					]
-				}
+					aspCls.EStructuralFeatures +=
+						EcoreFactory.eINSTANCE.createEReference => [
+							name = featureName
+							EType = aspTopPkg.getOrCreateClass(find.toQualifiedName)
+							upperBound = upperB
+							containment = op.isContainment
+							addAspectAnnotation
+						]
+				else
+					aspCls.EStructuralFeatures +=
+						EcoreFactory.eINSTANCE.createEAttribute => [
+							name = featureName
+							EType =
+								if (realType instanceof JvmEnumerationType)
+									// FIXME: Ok for now, but we should also check literals values
+									aspTopPkg.getOrCreateEnum(realType.simpleName,
+										realType.literals.map[simpleName])
+								else
+									aspTopPkg.getOrCreateDataType(realType.simpleName,
+										realType.qualifiedName)
+							upperBound = upperB
+							addAspectAnnotation
+						]
 			}
 		]
 		
@@ -213,14 +275,17 @@ class AspectToEcore
 	}
 	
 	/**
-	 * If {@link op} is a getter or a setter return the name of the corresponding feature.
-	 * Otherwise return null
+	 * For the getter or setter {@code op} in {@code type}, infers the
+	 * corresponding feature name (eg. getXyz()/setXyz() associated to the
+	 * "xyz" feature).
 	 * 
-	 * @param type Aspect where {@link op} is defined
-	 * @param op Method defined in {@link type}
+	 * @param type The {@link JvmDeclaredType} of an aspect.
+	 * @param op   A {@link JvmOperation} of {@code type}.
+	 * @return the corresponding feature name, or null if it cannot be determined.
 	 */
 	def String findFeatureNameFor(JvmDeclaredType type, JvmOperation op) {
 		// @Aspect case 1
+		// ie. int getX() / void setX(int)
 		if (
 			(  op.simpleName.startsWith("get")
 			&& Character.isUpperCase(op.simpleName.charAt(3))
@@ -242,6 +307,7 @@ class AspectToEcore
 		)
 			return op.simpleName.substring(3, op.simpleName.length).toFirstLower
 		// @Aspect case 2
+		// eg. int x() / void x(int)
 		else if (
 			type.declaredOperations.exists[opp |
 				   opp !== op
@@ -262,7 +328,8 @@ class AspectToEcore
 			]
 		)
 			return op.simpleName
-		// No @Aspect
+		// No @Aspect (plain Java)
+		// we expect something in the line of getX() / setX()
 		else if (
 			(  op.simpleName.startsWith("get")
 			&& Character.isUpperCase(op.simpleName.charAt(3))
@@ -287,7 +354,24 @@ class AspectToEcore
 			return op.simpleName.substring(3, op.simpleName.length).toFirstLower
 		else return null
 	}
-	
+
+	/**
+	 * Checks whether the given field is annotated with @Containment
+	 */
+	private def boolean isContainment(JvmMember field) {
+		return
+			field.annotations.exists[
+				annotation.qualifiedName == CONTAINMENT_ANNOTATION_FQN
+			]
+	}
+
+	/**
+	 * Checks whether the given operation is some obscure K3 code or not
+	 */
+	private def boolean isK3Specific(JvmOperation op) {
+		return K3_PREFIXES.exists[p | op.simpleName.startsWith(p)]
+	}
+
 	/**
 	 * Create a copy of the hierachy of sub-packages containing {@link baseCls}
 	 * Return the deepest package

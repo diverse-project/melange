@@ -23,28 +23,55 @@ import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.util.internal.Stopwatches
 
 /**
- * This class create a new project for a Language and copies Aspects files
- * from Language dependencies
+ * Handles the copy of a {@link Language}'s aspects into its runtime
+ * project. Takes care of "type-group-copying" the set of aspects so
+ * that they target the appropriate meta-classes (ie. the ones that constitute
+ * the syntax of the generated project).
  */
 class AspectCopier
 {
 	@Inject extension AspectExtensions
 	@Inject extension IQualifiedNameConverter
 	@Inject EclipseProjectHelper eclipseHelper
+
 	private static final Logger log = Logger.getLogger(AspectCopier)
 
+	/**
+	 * A request for copying a (set of) aspect(s).
+	 */
 	@Data
 	static class AspectCopierRequest {
+		/**
+		 * The set of {@link JvmTypeReference}s pointing to the aspects we
+		 * want to copy.
+		 */
 		Set<JvmTypeReference> aspectRefs
+		/**
+		 * The list of fully qualified names of the different EMF namespaces
+		 * that compose the {@link Language}. If the language results from an
+		 * assembly, there may be many different namespaces.
+		 */
 		Set<String> sourceEmfNamespaces
+		/**
+		 * The target EMF namespace of the {@link Language}, ie. the package
+		 * in which the code of its abstract syntax is generated.
+		 */
 		String targetEmfNamespace
+		/**
+		 * The target namespace in which the set of aspects must be copied.
+		 */
 		String targetAspectNamespace
+		/**
+		 * The name of the target runtime project.
+		 */
 		String targetProjectName
 	}
 
 	/**
-	 * Copy all aspects following the rules of {@link request}
-	 * and returns the set of newly-created aspects' qualified names  
+	 * Copy {@code l}'s aspects into its runtime project following the rules
+	 * defined in {@code request}.
+	 * 
+	 * @return The set of newly-created aspects' fully qualified names.  
 	 */
 	def Set<String> copy(Language l, AspectCopierRequest request) {
 		val task = Stopwatches.forTask("copying aspects in new type group")
