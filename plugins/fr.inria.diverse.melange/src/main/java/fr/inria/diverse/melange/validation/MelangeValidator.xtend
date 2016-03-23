@@ -134,6 +134,18 @@ class MelangeValidator extends AbstractMelangeValidator
 	}
 
 	@Check
+	def void checkLanguageImplementsExactType(Language l) {
+		if (!matchingHelper.match(
+			l.syntax.pkgs.toList, l.exactType.pkgs.toList, null
+		))
+			error(
+				'''«l.name» doesn't match its exact type «l.exactType.name»''',
+				MelangePackage.Literals.NAMED_ELEMENT__NAME,
+				MelangeValidationConstants.METAMODEL_IMPLEMENTS_ERROR
+			)
+	}
+
+	@Check
 	def void checkImportIsValid(Import i) {
 		try {
 			val lang = i.eContainer as Language
