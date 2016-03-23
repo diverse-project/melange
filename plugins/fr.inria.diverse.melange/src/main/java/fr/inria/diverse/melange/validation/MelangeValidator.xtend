@@ -388,7 +388,13 @@ class MelangeValidator extends AbstractMelangeValidator
 	}
 
 	private def Iterable<EClassifier> getEClassifiersWithoutGenClassifier(ModelingElement m) {
-		return	m.allClassifiers.filter[!isAspectSpecific && m.getGenClassifierFor(it) === null]
+		return
+			m.allClassifiers
+			.filter[
+				   name != "EObject"
+				&& !isAspectSpecific
+				&& m.getGenClassifierFor(it) === null
+			]
 	}
 
 	@Check
