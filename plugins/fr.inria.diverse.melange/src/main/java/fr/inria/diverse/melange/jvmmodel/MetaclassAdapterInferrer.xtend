@@ -181,9 +181,11 @@ class MetaclassAdapterInferrer
 		]
 
 		// If needed, the corresponding setter: void setX(T)
-		if (attr.needsSetter) {
+		if (attr.needsSetterImplementation) {
 			jvmCls.members += mm.toMethod(attr.setterName, Void::TYPE.typeRef)[
-				annotations += Override.annotationRef
+				if (attr.needsSetterInterface)
+					annotations += Override.annotationRef
+
 				parameters += mm.toParameter("o", attrType)
 
 				if (attr.EType instanceof EEnum)
@@ -199,12 +201,12 @@ class MetaclassAdapterInferrer
 		}
 
 		// void unsetX()
-		if (attr.needsUnsetter)
-			jvmCls.members += mm.toUnsetter(attr)
+		if (attr.needsUnsetterImplementation)
+			jvmCls.members += mm.toUnsetter(attr, mm)
 
 		// boolean isSetX()
-		if (attr.needsUnsetterChecker)
-			jvmCls.members += mm.toUnsetterCheck(attr)
+		if (attr.needsUnsetterCheckerImplementation)
+			jvmCls.members += mm.toUnsetterCheck(attr, mm)
 	}
 
 	/**
@@ -263,9 +265,11 @@ class MetaclassAdapterInferrer
 		}
 
 		// void setX(T)
-		if (ref.needsSetter) {
+		if (ref.needsSetterImplementation) {
 			jvmCls.members += mm.toMethod(ref.setterName, Void::TYPE.typeRef)[
-				annotations += Override.annotationRef
+				if (ref.needsSetterInterface)
+					annotations += Override.annotationRef
+
 				parameters += mm.toParameter("o", refType)
 
 				body = '''
@@ -277,12 +281,12 @@ class MetaclassAdapterInferrer
 		}
 
 		// void unsetX()
-		if (ref.needsUnsetter)
-			jvmCls.members += mm.toUnsetter(ref)
+		if (ref.needsUnsetterImplementation)
+			jvmCls.members += mm.toUnsetter(ref, mm)
 
 		// boolean isSetX()
-		if (ref.needsUnsetterChecker)
-			jvmCls.members += mm.toUnsetterCheck(ref)
+		if (ref.needsUnsetterCheckerImplementation)
+			jvmCls.members += mm.toUnsetterCheck(ref, mm)
 	}
 
 	/**
@@ -527,7 +531,7 @@ class MetaclassAdapterInferrer
 		if ((correspondingFeature !== null
 			|| correspondingCls.EAllOperations.exists[name == opName])
 			&&
-			(!isSetter || correspondingFeature.needsSetter)) {
+			(!isSetter || correspondingFeature.needsSetterInterface)) {
 			jvmCls.members += mm.toMethod(opName, retType)[
 				annotations += Override.annotationRef
 
@@ -601,7 +605,7 @@ class MetaclassAdapterInferrer
 		// For each feature in the class for which a EDefault is needed,
 		// generate the static instance field holding its default value
 		genCls.allGenFeatures
-		.filter[hasEDefault && !volatile && !ecoreFeature.many]
+		.filter[hasEDefault && !ecoreFeature.many]
 		.forEach[genFeature |
 			jvmCls.members += mm.toField(genFeature.EDefault,
 				genFeature.getImportedType(genCls).typeRef)[
@@ -659,32 +663,33 @@ class MetaclassAdapterInferrer
 
 			// Same thing for eUnset(), we only implement the
 			// eUnset(int) version
-			jvmCls.members += mm.toMethod("eUnset", Void::TYPE.typeRef)[
-				annotations += Override.annotationRef
+			if (!genCls.allGenFeatures.filter[unsettable].empty)
+				jvmCls.members += mm.toMethod("eUnset", Void::TYPE.typeRef)[
+					annotations += Override.annotationRef
+	
+					parameters += mm.toParameter("featureID", Integer::TYPE.typeRef)
+	
+					body = '''
+						switch (featureID«negativeOffsetCorrection») {
+							«FOR genFeature : genCls.allGenFeatures.filter[unsettable]»
+							case «genCls.getQualifiedFeatureID(genFeature)»:
+								«IF genFeature.listType && !genFeature.unsettable»
+									«genFeature.getAccessor»().clear();
+								«ELSEIF genFeature.unsettable»
+									unset«genFeature.accessorName»();
+								«ELSEIF !genFeature.hasEDefault»
+									set«genFeature.accessorName»«
+									»((«genFeature.getImportedType(genCls)») null);
+								«ELSE»
+									set«genFeature.accessorName»(«genFeature.EDefault»);
+								«ENDIF»
+							«ENDFOR»
+							return;
+						}
 
-				parameters += mm.toParameter("featureID", Integer::TYPE.typeRef)
-
-				body = '''
-					switch (featureID«negativeOffsetCorrection») {
-						«FOR genFeature : genCls.allGenFeatures»
-						case «genCls.getQualifiedFeatureID(genFeature)»:
-							«IF genFeature.listType && ! genFeature.unsettable»
-								«genFeature.getAccessor»().clear();
-							«ELSEIF genFeature.unsettable»
-								unset«genFeature.accessorName»();
-							«ELSEIF !genFeature.hasEDefault»
-								set«genFeature.accessorName»«
-								»((«genFeature.getImportedType(genCls)») null);
-							«ELSE»
-								set«genFeature.accessorName»(«genFeature.EDefault»);
-							«ENDIF»
-						«ENDFOR»
-						return;
-					}
-
-					super.eUnset(featureID);
-				'''
-			]
+						super.eUnset(featureID);
+					'''
+				]
 
 			// Same thing for eIsSet(), we only implement the
 			// eIsSet(int) version

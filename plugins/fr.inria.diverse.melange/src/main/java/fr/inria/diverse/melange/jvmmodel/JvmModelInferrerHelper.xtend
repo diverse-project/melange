@@ -2,7 +2,10 @@ package fr.inria.diverse.melange.jvmmodel
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
+import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.ast.NamingHelper
+import fr.inria.diverse.melange.lib.EcoreExtensions
+import fr.inria.diverse.melange.metamodel.melange.ModelingElement
 import fr.inria.diverse.melange.utils.TypeReferencesHelper
 import java.util.List
 import org.eclipse.emf.ecore.EObject
@@ -29,6 +32,8 @@ class JvmModelInferrerHelper
 	@Inject extension JvmTypesBuilder
 	@Inject extension TypeReferencesHelper
 	@Inject extension NamingHelper
+	@Inject extension ModelingElementExtensions
+	@Inject extension EcoreExtensions
 
 	/**
 	 * Should be invoked first to inject the required dependencies as the
@@ -69,12 +74,19 @@ class JvmModelInferrerHelper
 	 * Returns the {@link JvmOperation} defining the unsetter ({@code eUnset()})
 	 * of the {@link EStructuralFeature} {@code f} in the context of {@code o}.
 	 */
-	def JvmOperation toUnsetter(EObject o, EStructuralFeature f) {
+	def JvmOperation toUnsetter(EObject o, EStructuralFeature f, ModelingElement m) {
+		val genCls = m.getGenClsFor(f.EContainingClass)
+
 		return o.toMethod(f.unsetterName, Void::TYPE.typeRef)[
-			annotations += Override.annotationRef
+			if (f.needsUnsetterInterface)
+				annotations += Override.annotationRef
 
 			body = '''
-				adaptee.«f.unsetterName»() ;
+				«IF f.needsUnsetterInterface»
+					adaptee.«f.unsetterName»() ;
+				«ELSE»
+					((«genCls.qualifiedClassName») adaptee).«f.unsetterName»() ;
+				«ENDIF»
 			'''
 		]
 	}
@@ -84,12 +96,19 @@ class JvmModelInferrerHelper
 	 * ({@code eIsSet()}) of the {@link EStructuralFeature} {@code f}
 	 * in the context of {@code o}.
 	 */
-	def JvmOperation toUnsetterCheck(EObject o, EStructuralFeature f) {
+	def JvmOperation toUnsetterCheck(EObject o, EStructuralFeature f, ModelingElement m) {
+		val genCls = m.getGenClsFor(f.EContainingClass)
+
 		return o.toMethod(f.unsetterCheckName, Boolean::TYPE.typeRef)[
-			annotations += Override.annotationRef
+			if (f.needsUnsetterInterface)
+				annotations += Override.annotationRef
 
 			body = '''
-				return adaptee.«f.unsetterCheckName»() ;
+				«IF f.needsUnsetterInterface»
+					return adaptee.«f.unsetterCheckName»() ;
+				«ELSE»
+					return ((«genCls.qualifiedClassName») adaptee).«f.unsetterCheckName»() ;
+				«ENDIF»
 			'''
 		]
 	}

@@ -148,7 +148,7 @@ class MetaclassMapperInferrer
 				'''
 		]
 
-		if (targetAttr.needsSetter)
+		if (targetAttr.needsSetterImplementation)
 			jvmCls.members += targetMT.toMethod(targetAttr.setterName,
 				Void::TYPE.typeRef)[
 //				annotations += Override.annotationRef
@@ -215,7 +215,7 @@ class MetaclassMapperInferrer
 				}
 			]
 
-		if (targetRef.needsSetter)
+		if (targetRef.needsSetterImplementation)
 			jvmCls.members += targetMT.toMethod(targetRef.setterName, Void::TYPE.typeRef)[
 //				annotations += Override.annotationRef
 				parameters += targetMT.toParameter("o", refType)

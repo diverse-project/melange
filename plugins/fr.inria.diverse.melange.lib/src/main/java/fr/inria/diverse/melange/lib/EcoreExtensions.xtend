@@ -96,6 +96,12 @@ class EcoreExtensions
 
 		return tmp
 	}
+
+	def boolean isEcore(EModelElement m) {
+		return
+			m !== null
+			&& m.isContainedBy(EcorePackage::eINSTANCE)
+	}
 	
 	/**
 	 * Search a subPackage in @{link root} named {@link fqn}.
@@ -207,16 +213,24 @@ class EcoreExtensions
 		return f.getGenmodelAnnotationValue("suppressedVisibility") == "true"
 	}
 
-	def boolean needsUnsetter(EStructuralFeature f) {
+	def boolean needsUnsetterInterface(EStructuralFeature f) {
 		return
 			   f.unsettable
 			&& f.getGenmodelAnnotationValue("suppressedUnsetVisibility") != "true"
 	}
 
-	def boolean needsUnsetterChecker(EStructuralFeature f) {
+	def boolean needsUnsetterImplementation(EStructuralFeature f) {
+		return f.unsettable
+	}
+
+	def boolean needsUnsetterCheckerInterface(EStructuralFeature f) {
 		return
 			   f.unsettable
 			&& f.getGenmodelAnnotationValue("suppressedIsSetVisibility") != "true"
+	}
+
+	def boolean needsUnsetterCheckerImplementation(EStructuralFeature f) {
+		return f.unsettable
 	}
 
 	def String getGenmodelAnnotationValue(EModelElement e, String key) {
@@ -468,7 +482,12 @@ class EcoreExtensions
 		]
 	}
 
-	def boolean needsSetter(EStructuralFeature attr) {
+	def boolean needsSetterInterface(EStructuralFeature attr) {
+		// TODO: Checks against EMF generation
+		return attr.changeable && !attr.many
+	}
+
+	def boolean needsSetterImplementation(EStructuralFeature attr) {
 		// TODO: Checks against EMF generation
 		return attr.changeable && !attr.many
 	}

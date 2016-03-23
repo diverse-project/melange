@@ -59,13 +59,13 @@ class MetaclassInterfaceInferrer
 
 				intf.members += mt.toGetterSignature(attr, attrType)
 
-				if (attr.needsSetter)
+				if (attr.needsSetterInterface)
 					intf.members += mt.toSetterSignature(attr, attrType)
 
-				if (attr.needsUnsetter)
+				if (attr.needsUnsetterInterface)
 					intf.members += mt.toUnsetterSignature(attr)
 
-				if (attr.needsUnsetterChecker)
+				if (attr.needsUnsetterCheckerInterface)
 					intf.members += mt.toUnsetterCheckSignature(attr)
 			]
 
@@ -82,13 +82,13 @@ class MetaclassInterfaceInferrer
 				else
 					intf.members += mt.toGetterSignature(ref, refType)
 
-				if (ref.needsSetter)
+				if (ref.needsSetterInterface)
 					intf.members += mt.toSetterSignature(ref, refType)
 
-				if (ref.needsUnsetter)
+				if (ref.needsUnsetterInterface)
 					intf.members += mt.toUnsetterSignature(ref)
 
-				if (ref.needsUnsetterChecker)
+				if (ref.needsUnsetterCheckerInterface)
 					intf.members += mt.toUnsetterCheckSignature(ref)
 			]
 
