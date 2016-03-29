@@ -28,6 +28,10 @@ abstract class CustomBuilder extends LanguageOperatorBuilder<CustomLanguageOpera
 	
 	def String getKeyword()
 	
+	def AbstractParser getParser(){
+		return parser;
+	}
+	
 }
 
 class Slice2Builder extends CustomBuilder {

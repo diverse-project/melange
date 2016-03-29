@@ -11,6 +11,8 @@ import org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage
 import fr.inria.diverse.melange.ui.editor.MelangeDocumentProvider
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator
 import fr.inria.diverse.melange.ui.editor.MelangeHighlighting
+import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration
+import fr.inria.diverse.melange.ui.editor.HighlightingConfiguration
 
 class MelangeUiModule extends AbstractMelangeUiModule
 {
@@ -43,5 +45,9 @@ class MelangeUiModule extends AbstractMelangeUiModule
 	
 	override Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator(){
 		return typeof(MelangeHighlighting)
+	}
+	
+	override Class<? extends IHighlightingConfiguration> bindIHighlightingConfiguration(){
+		return typeof(HighlightingConfiguration)
 	}
 }

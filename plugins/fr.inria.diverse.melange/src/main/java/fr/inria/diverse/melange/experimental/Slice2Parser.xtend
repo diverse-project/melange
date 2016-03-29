@@ -71,9 +71,9 @@ class Slice2Parser extends AbstractParser{
 			card1 = true
 		}
 		
-		val startClasses = rawText.indexOf("{")
-		val endClasses = rawText.indexOf("}")
-		val classes = rawText.substring(startClasses,endClasses).split(",")
+		val startClasses = rawText.indexOf("<")
+		val endClasses = rawText.indexOf(">")
+		val classes = rawText.substring(startClasses+1,endClasses).split(",")
 		roots.addAll(classes)
 	}
 	
