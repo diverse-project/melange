@@ -9,7 +9,7 @@ class StateAspect1 {
 	def String bar()'''bar1'''
 }
 
-@Aspect(className = timedfsm.State)
+@Aspect(className = timedfsm.fsm.State)
 class StateAspect2 {
 	public String foo = "foo2"
 

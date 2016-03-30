@@ -14,12 +14,12 @@ import org.eclipse.emf.ecore.util.Diagnostician
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.junit.Before
 import org.junit.Test
-import simplefsm.StandaloneSetup
-import simplefsm.fsm.adapters.fsmmt.FSMAdapter
-import simplefsm.fsm.adapters.fsmmt.StateAdapter
-import simplefsm.fsm.adapters.fsmmt.TransitionAdapter
-import simplefsm.fsmmt.fsm.FSM
-import simplefsm.fsmmt.fsm.FsmPackage
+import simplefsmtest.StandaloneSetup
+import simplefsmtest.fsm.adapters.fsmmt.FSMAdapter
+import simplefsmtest.fsm.adapters.fsmmt.StateAdapter
+import simplefsmtest.fsm.adapters.fsmmt.TransitionAdapter
+import simplefsmtest.fsmmt.fsm.FSM
+import simplefsmtest.fsmmt.fsm.FsmPackage
 
 import static org.junit.Assert.*
 
@@ -41,7 +41,7 @@ class ResourceTest
 		StandaloneSetup::doSetup
 		res = rs.getResource(
 			URI::createURI(
-			"melange:/file/tests-inputs/models/Simple.fsm?mt=simplefsm.FsmMT")
+			"melange:/file/tests-inputs/models/Simple.fsm?mt=simplefsmtest.FsmMT")
 			, true)
 		wRes = (res as MelangeResourceImpl).wrappedResource
 		wRs = wRes.resourceSet
@@ -65,33 +65,33 @@ class ResourceTest
 
 	@Test
 	def void testExactTypeLoad1() {
-		val res = loadResource("melange:/file/tests-inputs/models/Simple.fsm?mt=simplefsm.FsmMT")
+		val res = loadResource("melange:/file/tests-inputs/models/Simple.fsm?mt=simplefsmtest.FsmMT")
 		assertIsValid(res)
 		assertIsFsmMT(res)
 	}
 
 	@Test
 	def void testExactTypeLoad2() {
-		val res = loadResource("melange:/file/tests-inputs/models/Simple.timedfsm?mt=simplefsm.TimedFsmMT")
+		val res = loadResource("melange:/file/tests-inputs/models/Simple.timedfsm?mt=simplefsmtest.TimedFsmMT")
 		assertIsValid(res)
 		assertIsTimedFsmMT(res)
 	}
 
 	@Test
 	def void testUpcastLoad() {
-		val res = loadResource("melange:/file/tests-inputs/models/Simple.timedfsm?mt=simplefsm.FsmMT")
+		val res = loadResource("melange:/file/tests-inputs/models/Simple.timedfsm?mt=simplefsmtest.FsmMT")
 		assertIsValid(res)
 		assertIsFsmMT(res)
 	}
 
 	@Test(expected = MelangeResourceException)
 	def void testForbiddenCastLoad() {
-		loadResource("melange:/file/tests-inputs/models/Simple.fsm?mt=simplefsm.TimedFsmMT").contents
+		loadResource("melange:/file/tests-inputs/models/Simple.fsm?mt=simplefsmtest.TimedFsmMT").contents
 	}
 
 	@Test
 	def void testDownTranstypingLoad() {
-		val res = loadResource("melange:/file/tests-inputs/models/Simple.fsm?lang=simplefsm.TimedFsm")
+		val res = loadResource("melange:/file/tests-inputs/models/Simple.fsm?lang=simplefsmtest.TimedFsm")
 		assertIsValid(res)
 		assertIsTimedFsm(res)
 	}
@@ -317,7 +317,7 @@ class ResourceTest
 	private def assertIsFsmMT(Resource res) {
 		assertTrue(
 			'''«res.URI» content isn't typed by FsmMT types''',
-			res.allContents.forall[class.interfaces.exists[package.name == "simplefsm.fsmmt.fsm"]]
+			res.allContents.forall[class.interfaces.exists[package.name == "simplefsmtest.fsmmt.fsm"]]
 		)
 	}
 
@@ -331,7 +331,7 @@ class ResourceTest
 	private def assertIsTimedFsmMT(Resource res) {
 		assertTrue(
 			'''«res» content isn't typed by TimedFsmMT types''',
-			res.allContents.forall[class.interfaces.exists[package.name == "simplefsm.timedfsmmt.timedfsm"]]
+			res.allContents.forall[class.interfaces.exists[package.name == "simplefsmtest.timedfsmmt.fsm"]]
 		)
 	}
 }

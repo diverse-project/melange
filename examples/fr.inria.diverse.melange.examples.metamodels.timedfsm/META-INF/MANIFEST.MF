@@ -7,9 +7,9 @@ Bundle-ClassPath: .
 Bundle-Vendor: DIVERSE
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: timedfsm,
- timedfsm.impl,
- timedfsm.util
+Export-Package: timedfsm.fsm,
+ timedfsm.fsm.impl,
+ timedfsm.fsm.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy

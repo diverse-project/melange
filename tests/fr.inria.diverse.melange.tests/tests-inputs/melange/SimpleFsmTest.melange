@@ -10,8 +10,8 @@ language TimedFsm {
 	exactType TimedFsmMT
 }
 
-transformation simplefsmtest.fsmmt.FSM getRoot(FsmMT fsm) {
-	return fsm.contents.head as simplefsmtest.fsmmt.FSM
+transformation simplefsmtest.fsmmt.fsm.FSM getRoot(FsmMT fsm) {
+	return fsm.contents.head as simplefsmtest.fsmmt.fsm.FSM
 }
 
 transformation FsmMT loadFsm()  { return      Fsm.load("tests-inputs/models/Simple.fsm") }

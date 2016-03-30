@@ -28,7 +28,7 @@ import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
 import org.junit.Test
 import org.junit.runner.RunWith
-import timedfsm.TimedfsmPackage
+import timedfsm.fsm.TimedfsmPackage
 
 import static org.junit.Assert.*
 
@@ -245,7 +245,7 @@ class AspectsTest
 			// Consider moving these runtime dependencies somewhere else
 			setJavaCompilerClassPath(
 				typeof(FSM),
-				typeof(timedfsm.FSM),
+				typeof(timedfsm.fsm.FSM),
 				StateAspect1,
 				MelangeRegistry,
 				IModelType,

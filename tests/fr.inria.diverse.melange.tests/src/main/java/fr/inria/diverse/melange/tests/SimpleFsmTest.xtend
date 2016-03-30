@@ -108,7 +108,7 @@ class SimpleFsmTest
 			// Consider moving these runtime dependencies somewhere else
 			setJavaCompilerClassPath(
 				typeof(FSM),
-				timedfsm.FSM,
+				timedfsm.fsm.FSM,
 				IModelType,
 				GenericAdapter,
 				EListAdapter,

@@ -21,15 +21,15 @@ class DozerLoaderTest
 	@Before
 	def void setUp() {
 		loader = new DozerLoader
-		loader.initialize(fsm.FsmPackage.eINSTANCE, timedfsm.TimedfsmPackage.eINSTANCE)
+		loader.initialize(fsm.FsmPackage.eINSTANCE, timedfsm.fsm.TimedfsmPackage.eINSTANCE)
 	}
 
 	@Test
 	def void testRegistration() {
 		assertTrue(EPackage$Registry.INSTANCE.containsKey(fsm.FsmPackage.eNS_URI))
-		assertTrue(EPackage$Registry.INSTANCE.containsKey(timedfsm.TimedfsmPackage.eNS_URI))
+		assertTrue(EPackage$Registry.INSTANCE.containsKey(timedfsm.fsm.TimedfsmPackage.eNS_URI))
 		assertTrue(Resource$Factory$Registry.INSTANCE.extensionToFactoryMap.containsKey(fsm.FsmPackage.eNS_PREFIX))
-		assertTrue(Resource$Factory$Registry.INSTANCE.extensionToFactoryMap.containsKey(timedfsm.TimedfsmPackage.eNS_PREFIX))
+		assertTrue(Resource$Factory$Registry.INSTANCE.extensionToFactoryMap.containsKey(timedfsm.fsm.TimedfsmPackage.eNS_PREFIX))
 	}
 
 	@Test
@@ -71,14 +71,14 @@ class DozerLoaderTest
 		assertNotNull(res)
 
 		// We loaded a Fsm-conforming model and now we expect a Tfsm-conforming one
-		assertTrue(res.contents.head instanceof timedfsm.FSM)
-		val root = res.contents.head as timedfsm.FSM
+		assertTrue(res.contents.head instanceof timedfsm.fsm.FSM)
+		val root = res.contents.head as timedfsm.fsm.FSM
 
 		// Checking type correctness
 		assertEquals(4, root.ownedState.size)
 		assertEquals(5, root.ownedState.map[outgoingTransition].flatten.size)
-		assertEquals(4, root.ownedState.filter(timedfsm.State).size)
-		assertEquals(5, root.ownedState.map[outgoingTransition].flatten.filter(timedfsm.Transition).size)
+		assertEquals(4, root.ownedState.filter(timedfsm.fsm.State).size)
+		assertEquals(5, root.ownedState.map[outgoingTransition].flatten.filter(timedfsm.fsm.Transition).size)
 
 		val s1 = root.ownedState.findFirst[name == "1"]
 		val s2 = root.ownedState.findFirst[name == "2"]
