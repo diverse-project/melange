@@ -192,6 +192,16 @@ class ModelTypeExtensions
 				else
 					!mt.pkgs.filterNull.empty
 	}
+	
+	def boolean isComparable(ModelType mt) {
+		return
+				!mt.name.nullOrEmpty
+			&&
+				if (mt.isExtracted)
+					mt.extracted.isTypable
+				else
+					!mt.pkgs.filterNull.empty
+	}
 
 	/**
 	 * Returns whether the {@link ModelType} {@code mt} is extracted from

@@ -124,6 +124,18 @@ class LanguageExtensions
 			&& l.syntax.isValid
 			&& l.semantics.forall[isValid]
 	}
+	
+	/**
+	 * Checks whether the given {@link Language} {@code l} is correctly defined
+	 * and can be typed
+	 */
+	def boolean isTypable(Language l) {
+		return
+			   !l.name.nullOrEmpty
+			&& l.syntax !== null
+			&& !l.syntax.pkgs.filterNull.empty
+			&& l.semantics.forall[isValid]
+	}
 
 	/**
 	 * Checks whether the given {@link Language} {@code l} has a valid syntax

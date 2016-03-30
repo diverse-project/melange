@@ -28,7 +28,7 @@ class TypingInferrer extends DispatchMelangeProcessor
 		typesRegistry.clear
 
 		root.modelTypes
-		.filter[isValid]
+		.filter[isComparable]
 		.forEach[mt1 |
 			root.modelTypes
 			.filter[mt2 |
@@ -49,7 +49,7 @@ class TypingInferrer extends DispatchMelangeProcessor
 
 			root.languages
 			.filter[l |
-				   l.isValid
+				   l.isTypable
 				&& !l.^implements.exists[name == mt1.name]
 				&& l.doesImplement(mt1)
 			]
