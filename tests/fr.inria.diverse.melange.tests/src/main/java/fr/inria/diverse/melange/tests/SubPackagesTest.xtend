@@ -35,7 +35,19 @@ class SubPackagesTest
 		val fsa = new InMemoryFileSystemAccess
 		generator.doGenerate(root.eResource, fsa)
 
-		assertEquals(fsa.textFiles.size, 28)
+		assertEquals(expectedNumberOfFiles, fsa.textFiles.size)
+	}
+	
+	def int expectedNumberOfFiles(){
+		// Main package
+		1 		// StandaloneSetup
+		+ 5 	// Number of transfo
+		+ 1 	// Number of Language
+		+ 1 	// Number of ModelTypes
+		
+		// SubPackagesTest.adapters.SubPackagesTestMT package
+		+ 3		// LanguageAdapter, MTFactory & AdapterFactory
+		+ 8		// Adapters (for each class in MT) 
 	}
 
 	@Test

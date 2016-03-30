@@ -99,7 +99,27 @@ class SimpleFsmTest
 		val fsa = new InMemoryFileSystemAccess
 		generator.doGenerate(root.eResource, fsa)
 
-		assertEquals(fsa.textFiles.size, 35)
+		assertEquals(expectedNumberOfFiles, fsa.textFiles.size)
+	}
+	
+	def int expectedNumberOfFiles(){
+		// Main package
+		1 		// StandaloneSetup
+		+ 4 	// Number of transfo
+		+ 2 	// Number of Language
+		+ 2 	// Number of ModelTypes
+		
+		//Fsm.adapters.FsmMT
+		+ 3		// LanguageAdapter, MTFactory & AdapterFactory
+		+ 3		// Adapters (for each class in MT) 
+		
+		//TimedFsm.adapters.TimedFsmMT
+		+ 3		// LanguageAdapter, MTFactory & AdapterFactory
+		+ 3		// Adapters (for each class in MT) 
+		
+		//TimedFsm.adapters.FsmMT
+		+ 3		// LanguageAdapter, MTFactory & AdapterFactory
+		+ 3		// Adapters (for each class in MT) 
 	}
 
 	@Test
