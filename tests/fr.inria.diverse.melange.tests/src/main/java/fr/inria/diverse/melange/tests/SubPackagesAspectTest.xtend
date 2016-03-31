@@ -27,7 +27,7 @@ class SubPackagesAspectTest
 	def void testStructure(){
 		assertEquals(2, root.elements.size)
 		
-		val toppkg = lang.syntax.pkgs.head
+		val toppkg = lang.syntax.pkgs.findFirst[name == "toppkg"]
 		assertNotNull(toppkg)
 		assertEquals(2, toppkg.EClassifiers.size)
 		assertEquals(2, toppkg.ESubpackages.size)

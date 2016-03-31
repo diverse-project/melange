@@ -125,7 +125,7 @@ class OperatorMappingTest
 	def void testStructurePackage(){
 		
 		//Get packages
-		val toppkg = packagesLang.syntax.pkgs.head
+		val toppkg = packagesLang.syntax.pkgs.findFirst[name == "toppkg"]
 		val subpkg1 = toppkg.ESubpackages.get(0)
 		val subpkg2 = toppkg.ESubpackages.get(1)
 		val subpkg3 = subpkg2.ESubpackages.get(0)
@@ -160,7 +160,7 @@ class OperatorMappingTest
 	def void testMergePackage1(){
 		
 		//Get packages
-		val toppkg = subPackTest0.syntax.pkgs.head
+		val toppkg = subPackTest0.syntax.pkgs.findFirst[name == "toppkg"]
 		val subpkg1 = toppkg.ESubpackages.get(0)
 		val subpkg2 = subpkg1.ESubpackages.get(0)
 		val subpkg3 = subpkg2.ESubpackages.get(0)
@@ -195,7 +195,7 @@ class OperatorMappingTest
 	def void testMergePackage2(){
 		
 		//Get packages
-		val toppkg = subPackTest1.syntax.pkgs.head
+		val toppkg = subPackTest1.syntax.pkgs.findFirst[name == "toppkg"]
 		val subpkg2 = toppkg.ESubpackages.get(0)
 		val subpkg3 = subpkg2.ESubpackages.get(0)
 		
@@ -226,7 +226,7 @@ class OperatorMappingTest
 	def void testMergePackage3(){
 		
 		//Get packages
-		val toppkg = subPackTest2.syntax.pkgs.head
+		val toppkg = subPackTest2.syntax.pkgs.findFirst[name == "toppkg"]
 		val subpkg1 = toppkg.ESubpackages.get(0)
 		
 		//Check numbers of elements
@@ -254,7 +254,7 @@ class OperatorMappingTest
 	def void testOwnPackage1(){
 		
 		//Get packages
-		val toppkg    = subPackTest3.syntax.pkgs.head
+		val toppkg    = subPackTest3.syntax.pkgs.findFirst[name == "toppkg"]
 		val newsubpkg = toppkg.ESubpackages.get(0)
 		val subpkg1   = newsubpkg.ESubpackages.findFirst[name == "subpkg1"]
 		val subpkg2   = newsubpkg.ESubpackages.findFirst[name == "subpkg2"]
@@ -293,7 +293,7 @@ class OperatorMappingTest
 	def void testOwnPackage2(){
 		
 		//Get packages
-		val toppkg    = subPackTest4.syntax.pkgs.head
+		val toppkg    = subPackTest4.syntax.pkgs.findFirst[name == "toppkg"]
 		val subpkg1   = toppkg.ESubpackages.findFirst[name == "subpkg1"]
 		val subpkg2   = toppkg.ESubpackages.findFirst[name == "subpkg2"]
 		val subpkg3   = subpkg2.ESubpackages.get(0)
@@ -332,7 +332,7 @@ class OperatorMappingTest
 	def void testOwnPackage3(){
 		
 		//Get packages
-		val toppkg    = subPackTest4b.syntax.pkgs.head
+		val toppkg    = subPackTest4b.syntax.pkgs.findFirst[name == "toppkg"]
 		val subpkg1   = toppkg.ESubpackages.findFirst[name == "subpkg1"]
 		val subpkg2   = toppkg.ESubpackages.findFirst[name == "subpkg2"]
 		val newsubpkg = subpkg2.ESubpackages.get(0)
@@ -372,7 +372,7 @@ class OperatorMappingTest
 	def void testSwitchPackage1(){
 		
 		//Get packages
-		val toppkg = subPackTest5.syntax.pkgs.head
+		val toppkg = subPackTest5.syntax.pkgs.findFirst[name == "toppkg"]
 		val subpkg1 = toppkg.ESubpackages.get(0)
 		val subpkg2 = subpkg1.ESubpackages.get(0)
 		val subpkg3 = subpkg2.ESubpackages.get(0)
@@ -407,7 +407,7 @@ class OperatorMappingTest
 	def void testSwitchPackage2(){
 		
 		//Get packages
-		val toppkg = subPackTest6.syntax.pkgs.head
+		val toppkg = subPackTest6.syntax.pkgs.findFirst[name == "toppkg"]
 		val subpkg1 = toppkg.ESubpackages.findFirst[name == "subpkg1"]
 		val subpkg2 = toppkg.ESubpackages.findFirst[name == "subpkg2"]
 		val subpkg3 = subpkg2.ESubpackages.get(0)
@@ -443,7 +443,7 @@ class OperatorMappingTest
 	def void testNewPackage1(){
 		
 		//Get packages
-		val toppkg     = subPackTest7.syntax.pkgs.head
+		val toppkg     = subPackTest7.syntax.pkgs.findFirst[name == "toppkg"]
 		val newsubpack = toppkg.ESubpackages.findFirst[name == "newsubpack"]
 		val subpkg1    = newsubpack.ESubpackages.get(0)
 		val subpkg2    = toppkg.ESubpackages.findFirst[name == "subpkg2"]
@@ -483,7 +483,7 @@ class OperatorMappingTest
 	def void testNewPackage2(){
 		
 		//Get packages
-		val newroot = subPackTest8.syntax.pkgs.head
+		val newroot = subPackTest8.syntax.pkgs.findFirst[name == "newroot"]
 		val subpkg1 = newroot.ESubpackages.get(0)
 		val subpkg2 = subpkg1.ESubpackages.get(0)
 		val subpkg3 = subpkg2.ESubpackages.get(0)
@@ -519,7 +519,7 @@ class OperatorMappingTest
 	def void testNewPackage3(){
 		
 		//Get packages
-		val newroot     = subPackTest9.syntax.pkgs.head
+		val newroot     = subPackTest9.syntax.pkgs.findFirst[name == "newroot"]
 		val newsubpack  = newroot.ESubpackages.get(0)
 		val newsubpack2 = newsubpack.ESubpackages.findFirst[name == "newsubpack2"]
 		val subpkg2     = newsubpack.ESubpackages.findFirst[name == "subpkg2"]

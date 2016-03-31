@@ -46,7 +46,7 @@ class InheritanceOverridingTest
 		assertImplements(a, zmt)
 		assertFalse(a.hasExternalAspects)
 		assertEquals(0, a.superLanguages.size)
-		assertFalse(a.superLanguages.empty)
+		assertTrue(a.superLanguages.empty)
 		assertEquals(2, a.operators.size)
 	}
 
