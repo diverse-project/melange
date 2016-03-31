@@ -111,9 +111,11 @@ class RenamerHelper {
 
 			if (sourcePkg != targetPack) {
 				val classes = newArrayList
+				classes.addAll(sourcePkg.EClassifiers)
 				movedClasses.put(sourcePkg, targetPack, classes)
 
 				val subPackages = newArrayList
+				subPackages.addAll(sourcePkg.ESubpackages)
 				subPackages.removeAll(targetedPackages)
 				subPackages.removeAll(renamedPackages)
 				movedPackages.put(sourcePkg, targetPack, subPackages)
