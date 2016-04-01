@@ -108,15 +108,18 @@ class EPackageProvider
 				}
 				m.genmodelUris.forEach[
 					val gm = modelUtils.loadGenmodel(it.toPlatformURI)
-
 					if (gm !== null)
 						genmodels.put(m.fqn, gm)
-					else if (m instanceof ModelType) {
+				]
+				
+				//Create transient gemodel by default for exactTypes
+				if (!genmodels.containsKey(m.fqn)) {
+					if (m instanceof ModelType) {
 						if (m.isExtracted) {
 							genmodels.put(m.fqn, m.createTransientGenmodel)
 						}
 					}
-				]
+				}
 			}
 		}
 
