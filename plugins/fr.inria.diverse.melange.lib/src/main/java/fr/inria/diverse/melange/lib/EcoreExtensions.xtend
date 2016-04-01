@@ -534,10 +534,14 @@ class EcoreExtensions
 		val replacement =
 			if (find !== null)
 				find
-			else
-				EcoreFactory.eINSTANCE.createEClass => [
+			else{
+				val newCls =EcoreFactory.eINSTANCE.createEClass => [
 					name = dtName
 				]
+				if(dt.isAspectSpecific)
+					newCls.addAspectAnnotation
+				newCls
+			}
 		EcoreUtil.UsageCrossReferencer::find(dt, pkg).forEach[setting |
 			val attr = setting.EObject
 			if (attr instanceof EAttribute) {
