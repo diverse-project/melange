@@ -280,6 +280,7 @@ class EcoreExtensions
 				val newCls = EcoreFactory.eINSTANCE.createEClass => [cls |
 					cls.name = fqn
 				]
+				newCls.addAspectAnnotation
 				aspPkg.EClassifiers += newCls
 				return newCls
 			}
@@ -289,6 +290,7 @@ class EcoreExtensions
 					val newCls = EcoreFactory.eINSTANCE.createEClass => [cls |
 						cls.name = segments.last
 					]
+					newCls.addAspectAnnotation
 					aspPkg.EClassifiers += newCls
 					return newCls
 				}
@@ -308,6 +310,7 @@ class EcoreExtensions
 					val newCls = EcoreFactory.eINSTANCE.createEClass => [cls |
 						cls.name = segments.last
 					]
+					newCls.addAspectAnnotation
 					last.EClassifiers += newCls
 					return newCls
 				}
