@@ -99,6 +99,16 @@ class NamingHelper
 	}
 
 	/**
+	 * Returns the (Java) fully qualified name of the {@link EPackage}
+	 * {@code pkg}.
+	 */
+	def String getFqnFor(ModelingElement m, EPackage pkg) {
+		return
+			m.getGenPkgFor(pkg)
+			.qualifiedPackageInterfaceName
+	}
+
+	/**
 	 * Returns the (Java) fully qualified name of the {@link EClassifier}
 	 * {@code cls}.
 	 */

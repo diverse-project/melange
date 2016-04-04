@@ -623,7 +623,7 @@ class MetaclassAdapterInferrer
 			annotations += Override.annotationRef
 
 			body = '''
-				return «superType.rootPackageFqn».eINSTANCE.get«cls.name»();
+				return «superType.getFqnFor(cls.EPackage)».eINSTANCE.get«cls.name»();
 			'''
 		]
 
