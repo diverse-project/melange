@@ -142,6 +142,7 @@ class ModelingElementExtensions
 			m.pkgs
 			.map[allClassifiers]
 			.flatten
+			.toSet
 	}
 
 	/**
@@ -152,6 +153,7 @@ class ModelingElementExtensions
 			m.pkgs
 			.map[allClasses]
 			.flatten
+			.toSet
 	}
 
 	/**
