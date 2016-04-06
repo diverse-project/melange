@@ -154,7 +154,7 @@ class AspectCopier
 				return
 				!request.aspectRefs.exists[aspRef |
 					val prefix = aspRef.identifier.replaceAll("\\.", "/")
-					val targetCls = aspRef.aspectAnnotationValue
+					val targetCls = aspRef.simpleAspectAnnotationValue
 
 					classFile.endsWith('''«prefix».java''')
 					|| classFile.endsWith('''«prefix»«targetCls»AspectContext.java''')
