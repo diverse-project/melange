@@ -215,7 +215,7 @@ class LanguageExtensions
 				// Direct reference imports
 				if (w.aspectWildcardImport === null) {
 					l.semantics.filter[asp |
-						asp.aspectTypeRef.identifier == w.aspectTypeRef.identifier
+						asp.aspectTypeRef.simpleName == w.aspectTypeRef.simpleName
 					]
 				}
 				// Wildcard imports
