@@ -20,6 +20,8 @@ import org.eclipse.emf.common.util.URI
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import fr.inria.diverse.melange.lib.EcoreExtensions
+import org.eclipse.emf.ecore.EPackage
 
 /**
  * Builds {@link Language}s by merging the various parts declared in each
@@ -35,6 +37,7 @@ class LanguageProcessor extends DispatchMelangeProcessor
 	@Inject extension LanguageExtensions
 	@Inject extension ModelingElementExtensions
 	@Inject extension ModelTypeExtensions
+	@Inject extension EcoreExtensions
 	@Inject ModelTypingSpaceBuilder builder
 	@Inject JvmTypesBuilder typesBuilder
 	@Inject JvmTypeReferenceBuilder.Factory typeRefBuilderFactory
@@ -78,6 +81,10 @@ class LanguageProcessor extends DispatchMelangeProcessor
 			// TODO: manage errors & model not built
 			errors += builder.errors
 			syntax = builder.model
+		}
+		
+		if(language.isGeneratedByMelange){
+				language.initializeNsUri(syntax)
 		}
 
 		// FIXME: I don't understand what's going on here
@@ -153,6 +160,24 @@ class LanguageProcessor extends DispatchMelangeProcessor
 					aspectedClass = language.syntax.findClass(className)
 				ecoreFragment = builder.getBuilder(language).findBuilder(w)?.model
 			]
+		]
+	}
+	
+	/**
+	 * Initializes the NsURI of {@link syntax} and all its sub packages.
+	 * The URI of the {@link language} is used as the base for theses NsURI
+	 */
+	def void initializeNsUri(Language language, EPackage syntax){
+		val languageUri = language.externalPackageUri
+		syntax.nsURI = languageUri
+		syntax.allSubPkgs.forEach[pkg|
+			val suffix = 
+				pkg
+				.uniqueId
+				.split("\\.")
+				.drop(1)
+				.join("/")
+			pkg.nsURI = languageUri + suffix + "/"	
 		]
 	}
 }
