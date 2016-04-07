@@ -560,4 +560,24 @@ class EcoreExtensions
 		else
 			EcoreUtil::replace(dt, replacement)
 	}
+	
+	/**
+	 * Initializes the NsURI of {@link syntax} and all its sub packages.
+	 * The URI of the {@link language} is used as the base for theses NsURI
+	 */
+	def void initializeNsUri(EPackage syntax, String nsUriBase){
+		val base = 
+			if(nsUriBase.endsWith("/")) nsUriBase
+			else nsUriBase + "/"
+		syntax.nsURI = base
+		syntax.allSubPkgs.forEach[pkg|
+			val suffix = 
+				pkg
+				.uniqueId
+				.split("\\.")
+				.drop(1)
+				.join("/")
+			pkg.nsURI = base + suffix + "/"	
+		]
+	}
 }

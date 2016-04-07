@@ -84,7 +84,7 @@ class LanguageProcessor extends DispatchMelangeProcessor
 		}
 		
 		if(language.isGeneratedByMelange){
-				language.initializeNsUri(syntax)
+				syntax.initializeNsUri(language.externalPackageUri)
 		}
 
 		// FIXME: I don't understand what's going on here
@@ -160,24 +160,6 @@ class LanguageProcessor extends DispatchMelangeProcessor
 					aspectedClass = language.syntax.findClass(className)
 				ecoreFragment = builder.getBuilder(language).findBuilder(w)?.model
 			]
-		]
-	}
-	
-	/**
-	 * Initializes the NsURI of {@link syntax} and all its sub packages.
-	 * The URI of the {@link language} is used as the base for theses NsURI
-	 */
-	def void initializeNsUri(Language language, EPackage syntax){
-		val languageUri = language.externalPackageUri
-		syntax.nsURI = languageUri
-		syntax.allSubPkgs.forEach[pkg|
-			val suffix = 
-				pkg
-				.uniqueId
-				.split("\\.")
-				.drop(1)
-				.join("/")
-			pkg.nsURI = languageUri + suffix + "/"	
 		]
 	}
 }

@@ -188,8 +188,9 @@ class ModelingElementExtensions
 		val res = resSet.createResource(URI::createURI(uri))
 		val rootPkg = m.pkgs.filter[ESuperPackage === null].head
 
-		if (pkgUri !== null)
-			rootPkg.nsURI = pkgUri
+		if (pkgUri !== null){
+			rootPkg.initializeNsUri(pkgUri)
+		}
 
 		val copy = EcoreUtil::copyAll(m.pkgs.filter[ESuperPackage === null].toList)
 
