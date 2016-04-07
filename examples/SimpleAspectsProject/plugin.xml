@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <plugin>
-  
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package class="simpleaspects.fsmmt.fsm.FsmPackage" genModel="model-gen/FsmMT.genmodel" uri="http://fsmmt/"/>
   </extension>
-  <extension point="fr.inria.diverse.melange.modeltype">
+  
+<extension point="fr.inria.diverse.melange.modeltype">
     <modeltype id="simpleaspects.FsmMT" uri="http://fsmmt/"/>
     <modeltype id="simpleaspects.TimedFsmMT" uri="http://timedfsmmt/">
       <subtyping modeltypeId="simpleaspects.FsmMT"/>
     </modeltype>
   </extension>
   <extension point="fr.inria.diverse.melange.language">
-    <language aspects="FSM:simpleaspects.ExecutableFsmAspect;State:simpleaspects.ExecutableStateAspect;Transition:simpleaspects.ExecutableTransitionAspect" entryPoints="simpleaspects.ExecutableFsmAspect.execute(fsm.FSM,java.lang.String)" exactType="simpleaspects.FsmMT" id="simpleaspects.Fsm" uri="http://fsm/">
+    <language aspects="FSM:simpleaspects.ExecutableFsmAspect;State:simpleaspects.ExecutableStateAspect;Transition:simpleaspects.ExecutableTransitionAspect" entryPoints="simpleaspects.ExecutableFsmAspect.execute(fsm.FSM,java.lang.String)" exactType="simpleaspects.FsmMT" id="simpleaspects.Fsm" uri="http://fsmmt/">
       <adapter class="simpleaspects.fsm.adapters.fsmmt.FsmAdapter" modeltypeId="simpleaspects.FsmMT"/>
     </language>
-    <language aspects="FSM:simpleaspects.TimedFsmAspect;State:simpleaspects.TimedStateAspect;Transition:simpleaspects.TimedTransitionAspect" entryPoints="simpleaspects.TimedFsmAspect.execute(timedfsm.FSM,java.lang.String)" exactType="simpleaspects.TimedFsmMT" id="simpleaspects.TimedFsm" uri="http://timedfsm/">
+    <language aspects="FSM:simpleaspects.TimedFsmAspect;State:simpleaspects.TimedStateAspect;Transition:simpleaspects.TimedTransitionAspect" entryPoints="simpleaspects.TimedFsmAspect.execute(timedfsm.fsm.FSM,java.lang.String)" exactType="simpleaspects.TimedFsmMT" id="simpleaspects.TimedFsm" uri="http://timedfsmmt/">
       <adapter class="simpleaspects.timedfsm.adapters.fsmmt.TimedFsmAdapter" modeltypeId="simpleaspects.FsmMT"/>
       <adapter class="simpleaspects.timedfsm.adapters.timedfsmmt.TimedFsmAdapter" modeltypeId="simpleaspects.TimedFsmMT"/>
     </language>

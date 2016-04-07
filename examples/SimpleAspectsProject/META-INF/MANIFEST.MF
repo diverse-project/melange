@@ -17,3 +17,4 @@ Require-Bundle: fr.inria.diverse.melange.examples.metamodels.fsm;bundle-version=
  org.eclipse.m2m.atl.core;bundle-version="3.6.0",
  org.eclipse.m2m.atl.core.emf;bundle-version="3.6.0",
  org.eclipse.m2m.atl.engine.emfvm.launch;bundle-version="3.6.0"
+

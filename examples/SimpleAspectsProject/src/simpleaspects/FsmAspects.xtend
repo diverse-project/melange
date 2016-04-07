@@ -1,11 +1,11 @@
 package simpleaspects
 
+import fr.inria.diverse.k3.al.annotationprocessor.Aspect
+import fr.inria.diverse.k3.al.annotationprocessor.Main
+import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
 import fsm.FSM
 import fsm.State
 import fsm.Transition
-
-import fr.inria.diverse.k3.al.annotationprocessor.Aspect
-import fr.inria.diverse.k3.al.annotationprocessor.Main
 
 import static extension simpleaspects.ExecutableFsmAspect.*
 import static extension simpleaspects.ExecutableStateAspect.*
@@ -18,21 +18,11 @@ class ExecutableFsmAspect
 
 	@Main
 	def void execute(String input) {
-		if (_self.current == null)
+		if (_self.current === null)
 			_self.current = _self.initialState
 
-		for (i : 0 ..< input.length) {
-			try
-			{
-				_self.current.step(input.charAt(i))
-			} catch (NoFireableTransition e) {
-				println("No fireable transition in " + _self.current.name + " for input " + input.charAt(i))
-				return
-			} catch (NonDeterminism e) {
-				println("Non-determinism in " + _self.current.name + " for input " + input.charAt(i))
-				return
-			}
-		}
+		for (i : 0 ..< input.length)
+			_self.current.step(input.charAt(i))
 	}
 }
 
@@ -40,14 +30,12 @@ class ExecutableFsmAspect
 class ExecutableStateAspect
 {
 	def void step(char c) {
-		val validTrans = _self.outgoingTransition.filter[input.equals(String.valueOf(c))]
-		
-		if (validTrans.empty)
-			throw new NoFireableTransition
-		if (validTrans.size > 1)
-			throw new NonDeterminism
+		val validTrans =
+			_self.outgoingTransition
+			.filter[input.equals(String.valueOf(c))]
 
-		validTrans.head.fire
+		if (validTrans.size > 0)
+			validTrans.head.fire
 	}
 }
 
@@ -60,6 +48,19 @@ class ExecutableTransitionAspect
 	}
 }
 
-abstract class FsmException extends Exception {}
-class NoFireableTransition extends FsmException {}
-class NonDeterminism extends FsmException {}
+@Aspect(className = Transition)
+class InheritanceTransitionAspect extends ExecutableTransitionAspect
+{
+	public int time
+
+	@OverrideAspectMethod
+	override void fire() {
+		if (_self.timeIsOk) {
+			super_fire(_self)
+		}
+	}
+
+	def boolean timeIsOk() {
+		return _self.time > 0
+	}
+}
