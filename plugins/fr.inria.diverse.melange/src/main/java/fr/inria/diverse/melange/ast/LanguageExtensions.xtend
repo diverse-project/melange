@@ -682,8 +682,7 @@ class LanguageExtensions
 		.filter[it instanceof Merge || it instanceof Slice]
 		.forEach[op |
 			op.targetLanguage.orderedAspects.forEach[asp |
-				// TODO: Take renaming into account
-				val localAspectedClass = language.syntax.findClass(asp.aspectedClass?.name)
+				val localAspectedClass = findClassWithMapping(asp,op)
 				val newAsp = MelangeFactory.eINSTANCE.createAspect => [
 					aspectedClass = localAspectedClass
 					aspectTypeRef = typesBuilder.cloneWithProxies(asp.aspectTypeRef)
@@ -776,5 +775,49 @@ class LanguageExtensions
 	        .flatten
 	        .filter[annotations.exists[annotation.qualifiedName == ASPECT_MAIN_ANNOTATION]]
 	        .toSet
+	}
+	
+	/**
+	 * Search in {@link op}.owningLanguage for the class on which {@link asp}
+	 * is weaved, taking in account the mapping
+	 * 
+	 * @param asp An aspect from op.targetLanguage
+	 * @param op A Merge or Slice operator
+	 */
+	def EClass findClassWithMapping(Aspect asp, LanguageOperator op){
+		
+		val classFqName = asp.aspectedClass?.fullyQualifiedName
+		var className = asp.aspectedClass?.name
+
+		val ruleManager = createRenamingManager(op)
+		if(ruleManager !== null){
+			val renaming = ruleManager.getClassRule(classFqName.toString)
+			if (renaming !== null)
+				className = renaming.value.substring(
+					renaming.value.lastIndexOf(".") + 1)
+		}
+		
+		return 
+			op
+			.owningLanguage
+			.syntax
+			.findClass(className)
+	}
+	
+	/**
+	 * Return null if {@link op} has no mapping
+	 */
+	def RenamingRuleManager createRenamingManager(LanguageOperator op){
+		val newRootName = op.owningLanguage.syntax.rootPackageNamespace
+		val rules = 
+			if(op instanceof Merge)
+				op.mappingRules
+			else if(op instanceof Slice)
+				op.mappingRules
+				
+		if(rules.isNullOrEmpty)
+			return null
+		else
+			return new RenamingRuleManager(rules,	#[], newRootName, aspectExtension)
 	}
 }
