@@ -84,7 +84,7 @@ class LanguageProcessor extends DispatchMelangeProcessor
 		}
 		
 		if(language.isGeneratedByMelange){
-				syntax.initializeNsUri(language.externalPackageUri)
+				syntax.initializeNsUriWith(language.externalPackageUri)
 		}
 
 		// FIXME: I don't understand what's going on here

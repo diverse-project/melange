@@ -189,7 +189,7 @@ class ModelingElementExtensions
 		val rootPkg = m.pkgs.filter[ESuperPackage === null].head
 
 		if (pkgUri !== null){
-			rootPkg.initializeNsUri(pkgUri)
+			rootPkg.initializeNsUriWith(pkgUri)
 		}
 
 		val copy = EcoreUtil::copyAll(m.pkgs.filter[ESuperPackage === null].toList)
