@@ -520,9 +520,9 @@ class LanguageExtensions
 		.filter[isValid && aspectTypeRef.canBeCopiedFor(l.syntax)]
 		.forEach[asp |
 			var className = asp.aspectedClass?.name
-			val classNameTmp = className
+			val classFqName = asp.aspectedClass?.fullyQualifiedName
 			val renaming = ruleManagers
-				.map[getClassRule(classNameTmp?.toString)].filterNull.head
+				.map[getClassRule(classFqName?.toString)].filterNull.head
 
 			if (renaming !== null)
 				className = renaming.value.substring(
