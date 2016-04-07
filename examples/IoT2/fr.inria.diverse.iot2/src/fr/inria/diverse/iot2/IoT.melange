@@ -7,13 +7,13 @@ language Idl4Emf {
 
 language ActivityDiagram {
 	syntax "platform:/resource/org.xtext.activitydiagram.model/model/activitydiagram.ecore"
-	with org.xtext.activitydiagram.semantics.*
+	with org.^xtext.activitydiagram.semantics.*
 	exactType ActivityDiagramMT
 }
 
 language Lua {
 	syntax "platform:/resource/org.xtext.lua/model/generated/Lua.ecore"
-	with org.xtext.lua.semantics.*
+	with org.^xtext.lua.semantics.*
 	exactType LuaMT
 }
 

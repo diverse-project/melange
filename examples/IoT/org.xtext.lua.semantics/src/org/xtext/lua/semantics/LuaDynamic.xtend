@@ -1,13 +1,14 @@
 package org.xtext.lua.semantics
 
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
+import fr.inria.diverse.k3.al.annotationprocessor.Main
 import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
 import java.util.ArrayList
 import java.util.HashMap
 import java.util.Map
 import java.util.Scanner
 import java.util.Stack
-import org.eclipse.xtend.lib.annotations.Accessors
+import java.util.concurrent.ThreadLocalRandom
 import org.xtext.lua.lua.Block
 import org.xtext.lua.lua.Chunk
 import org.xtext.lua.lua.Expression
@@ -69,10 +70,9 @@ import org.xtext.lua.lua.Statement_Repeat
 import org.xtext.lua.lua.Statement_While
 
 import static extension org.xtext.lua.semantics.BlockAspect.*
-import static extension org.xtext.lua.semantics.LuaExpressionAspect.*
 import static extension org.xtext.lua.semantics.LastStatementAspect.*
+import static extension org.xtext.lua.semantics.LuaExpressionAspect.*
 import static extension org.xtext.lua.semantics.StatementAspect.*
-import java.util.concurrent.ThreadLocalRandom
 
 class Environment {
 	Environment parent
@@ -145,6 +145,7 @@ class ChunkAspect {
 
 @Aspect(className=Block)
 class BlockAspect extends ChunkAspect {
+	@Main
 	@OverrideAspectMethod
 	def void execute(Environment c) {
 		_self.statements.forEach [ s |

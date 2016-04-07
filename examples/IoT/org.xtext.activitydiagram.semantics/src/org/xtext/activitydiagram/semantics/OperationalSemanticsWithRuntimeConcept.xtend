@@ -29,6 +29,8 @@ import activitydiagram.OpaqueAction
 import activitydiagram.Value
 import activitydiagram.Variable
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
+import fr.inria.diverse.k3.al.annotationprocessor.Containment
+import fr.inria.diverse.k3.al.annotationprocessor.Main
 import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
 import fr.inria.diverse.k3.al.annotationprocessor.ReplaceAspectMethod
 import java.io.BufferedWriter
@@ -40,8 +42,8 @@ import java.util.ArrayList
 import java.util.List
 
 import static extension org.xtext.activitydiagram.semantics.ActivityEdgeAspect.*
-import static extension org.xtext.activitydiagram.semantics.ActivityNodeAspect.*
 import static extension org.xtext.activitydiagram.semantics.ActivityExpressionAspect.*
+import static extension org.xtext.activitydiagram.semantics.ActivityNodeAspect.*
 import static extension org.xtext.activitydiagram.semantics.VariableAspect.*
 
 class Offer {
@@ -123,6 +125,7 @@ class ActivityAspect extends NamedElementAspect {
 
 	Trace trace
 
+	@Main
 	@ReplaceAspectMethod
 	def void main(List<InputValue> value) {
 		var c = new Context
@@ -314,6 +317,7 @@ class ControlFlowAspect extends ActivityEdgeAspect {
 
 @Aspect(className=OpaqueAction)
 class OpaqueActionAspect extends ActivityNodeAspect {
+	@Containment
 	public List<Expression> expressions
 
 	@OverrideAspectMethod
