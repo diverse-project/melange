@@ -186,7 +186,7 @@ class ModelingElementExtensions
 		boolean hideAspectElements) {
 		val resSet = new ResourceSetImpl
 		val res = resSet.createResource(URI::createURI(uri))
-		val rootPkg = m.pkgs.head
+		val rootPkg = m.pkgs.filter[ESuperPackage === null].head
 
 		if (pkgUri !== null)
 			rootPkg.nsURI = pkgUri
