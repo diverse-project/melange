@@ -503,7 +503,7 @@ class MetaclassAdapterInferrer
 			// Build the comma-separated list of operation arguments
 			paramsList.append('''
 				«IF mm.owningLanguage.hasAdapterFor(superType, p.parameterType.simpleName)»
-					, ((«mm.adapterNameFor(superType, p.parameterType.simpleName)»)«
+					, ((«mm.adapterNameFor(superType, superType.findClass(p.parameterType.simpleName))»)«
 					» «p.name»).getAdaptee()
 				«ELSEIF p.parameterType.isCollection
 					&& mm.owningLanguage.hasAdapterFor(superType, realTypeP)»

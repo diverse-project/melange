@@ -170,7 +170,7 @@ class NamingHelper
 	 * {@code mm} and {@code mt} for the {@link EClass} {@code cls}.
 	 */
 	def String adapterNameFor(Metamodel mm, ModelType mt, EClass cls) {
-		return mm.adapterNameFor(mt, cls.name)
+		return mm.adapterNameFor(mt, cls.fullyQualifiedName.toString)
 	}
 
 	/**
@@ -280,14 +280,15 @@ class NamingHelper
 	 * Returns the fully qualified name of the adapter class generated for the
 	 * {@link EFactory} between {@code mm} and {@code mt}.
 	 */
-	def String factoryAdapterNameFor(Metamodel mm, ModelType mt) {
+	def String factoryAdapterNameFor(GenPackage pkg, Metamodel mm, ModelType mt) {
 		return
 			mm.owningLanguage
 			.fullyQualifiedName
 			.append("adapters")
 			.append(mt.fullyQualifiedName.lastSegment)
+			.append(pkg.getEcorePackage.fullyQualifiedName)
 			.toLowerCase
-			.append(mt.name + "FactoryAdapter")
+			.append(pkg.factoryInterfaceName + "Adapter")
 			.normalize
 			.toString
 	}

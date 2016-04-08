@@ -1,6 +1,7 @@
 package fr.inria.diverse.melange.lib
 
 import java.io.IOException
+import java.util.Set
 import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.ecore.EFactory
 import org.eclipse.emf.ecore.EObject
@@ -15,7 +16,7 @@ interface IMetamodel
 interface IModelType
 {
 	def EList<EObject> getContents()
-	def EFactory getFactory()
+	def Set<EFactory> getFactories()
 	def void save(String uri) throws IOException
 }
 

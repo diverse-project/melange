@@ -12,6 +12,7 @@ import org.eclipse.xtext.util.internal.Stopwatches
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import fr.inria.diverse.melange.ast.ModelingElementExtensions
 
 /**
  * Infers the Java code supporting the definition of {@link ModelType}s
@@ -21,6 +22,7 @@ class ModelTypeInferrer
 	@Inject extension JvmTypesBuilder
 	@Inject extension IQualifiedNameProvider
 	@Inject extension NamingHelper
+	@Inject extension ModelingElementExtensions
 
 	/**
 	 * Currently only generates a Java class for a {@link ModelType}
@@ -44,8 +46,10 @@ class ModelTypeInferrer
 				^abstract = true
 			]
 
-			members += mt.toMethod("getFactory", mt.rootFactoryFqn.typeRef)[
-				^abstract = true
+			mt.allGenPkgs.forEach[genPkg|
+				members += mt.toMethod("get"+genPkg.factoryName, genPkg.qualifiedFactoryInterfaceName.typeRef)[
+					^abstract = true
+				]
 			]
 
 			members += mt.toMethod("save", Void::TYPE.typeRef)[

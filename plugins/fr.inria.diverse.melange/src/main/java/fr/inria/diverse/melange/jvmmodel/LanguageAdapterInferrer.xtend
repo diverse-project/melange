@@ -10,10 +10,15 @@ import fr.inria.diverse.melange.ast.NamingHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.MappingExtensions
 import fr.inria.diverse.melange.metamodel.melange.Language
+import fr.inria.diverse.melange.metamodel.melange.Mapping
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import java.io.IOException
+import java.util.Set
 import java.util.WeakHashMap
+import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
 import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EFactory
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.impl.EFactoryImpl
@@ -25,7 +30,6 @@ import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmAnnotationReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
-import fr.inria.diverse.melange.metamodel.melange.Mapping
 
 /**
  * Generates the in-the-large artifacts between a {@link Language} and a
@@ -73,7 +77,7 @@ class LanguageAdapterInferrer
 		mapping = l.mappings.findFirst[to == superType]
 
 		generateLanguageAdapter(l, superType)
-		generateFactoryAdapter(l, superType)
+		generateFactoryAdapters(l, superType)
 		generateAdaptersFactory(l, superType)
 
 		// Delegate the generation of adapters for each meta-class
@@ -103,11 +107,25 @@ class LanguageAdapterInferrer
 				'''
 			]
 
-			members += l.toMethod("getFactory", mt.rootFactoryFqn.typeRef)[
+			mt.allGenPkgs.forEach[genPkg|
+				members += l.toMethod("get"+genPkg.factoryName, genPkg.qualifiedFactoryInterfaceName.typeRef)[
+					annotations += Override.annotationRef
+	
+					body = '''
+							return new «genPkg.factoryAdapterNameFor(l.syntax,mt)»();
+						'''
+				]
+			]
+			
+			members += l.toMethod("getFactories", Set.typeRef)[
 				annotations += Override.annotationRef
 
 				body = '''
-						return new «l.syntax.factoryAdapterNameFor(mt)»();
+						java.util.Set<org.eclipse.emf.ecore.EFactory> res = new java.util.HashSet<org.eclipse.emf.ecore.EFactory>();
+						«FOR genPkg : mt.allGenPkgs»
+							res.add(get«genPkg.factoryName»());
+						«ENDFOR»
+						return res;
 					'''
 			]
 
@@ -125,21 +143,27 @@ class LanguageAdapterInferrer
 		]
 	}
 
+	private def void generateFactoryAdapters(Language l, ModelType mt) {
+		mt.allGenPkgs.forEach[genPkg|
+			genPkg.generateFactoryAdapter(l,mt)
+		]
+	}
+
 	/**
 	 * Generates a factory adapter that implements the abstract factory of
 	 * {@code mt}, delegates elements creation to the factory of {@code l},
 	 * and encapsulate the newly created elements in the appropriate adapters.
 	 * 
 	 * @see NamingHelper#factoryAdapterNameFor
-	 * @see org.eclipse.emf.ecore.EFactory
+	 * @see EFactory
 	 */
-	private def void generateFactoryAdapter(Language l, ModelType mt) {
-		acceptor.accept(l.toClass(l.syntax.factoryAdapterNameFor(mt)))
+	private def void generateFactoryAdapter(GenPackage genPkg, Language l, ModelType mt) {
+		acceptor.accept(l.toClass(genPkg.factoryAdapterNameFor(l.syntax,mt)))
 		[
 			val adaptersFactoryFqn = l.syntax.getAdaptersFactoryNameFor(mt)
 
 			// Implement the factory of superType and the generic EFactory type
-			superTypes += mt.rootFactoryFqn.typeRef
+			superTypes += genPkg.qualifiedFactoryInterfaceName.typeRef
 			superTypes += EFactoryImpl.typeRef
 
 			// Point to the generated factory of adapters
@@ -149,17 +173,18 @@ class LanguageAdapterInferrer
 
 			// Point to each of the EFactory of l, as we will use them to
 			// delegate elements creation
-			l.syntax.pkgs.forEach[pkg |
-				val pkgFactoryFqn = l.syntax.getFactoryFqnFor(pkg)
-
-				members += l.toField('''«pkg.name»Adaptee''', pkgFactoryFqn.typeRef)[
+			val pkgFactoryFqn = l.syntax.getFactoryFqnFor(genPkg.getEcorePackage)
+			members += l.toField('''«genPkg.getEcorePackage.name»Adaptee''', pkgFactoryFqn.typeRef)[
 					initializer = '''«pkgFactoryFqn».eINSTANCE'''
 				]
-			]
 
 			// Generate a dedicated create$MetaclassName method for each
-			// meta-class of interest in mt
-			mt.allClasses.filter[instantiable].forEach[cls |
+			// meta-class of interest in mt's current package
+			genPkg.getEcorePackage
+			.EClassifiers
+			.filter(EClass)
+			.filter[instantiable]
+			.forEach[cls|
 				val newCreate = l.toMethod("create" + cls.name, null)[m |
 					m.annotations += Override.annotationRef
 
@@ -199,14 +224,14 @@ class LanguageAdapterInferrer
 				annotations += Override.annotationRef
 
 				body = '''
-					return get«mt.rootPackageName»();
+					return get«genPkg.packageInterfaceName»();
 				'''
 			]
 
 			// Essentially the same thing as getEPackage()
-			members += l.toMethod("get" + mt.rootPackageName, mt.rootPackageFqn.typeRef)[
+			members += l.toMethod("get" + genPkg.packageInterfaceName, genPkg.qualifiedPackageInterfaceName.typeRef)[
 				body = '''
-					return «mt.rootPackageFqn».eINSTANCE;
+					return «genPkg.qualifiedPackageInterfaceName».eINSTANCE;
 				'''
 			]
 		]
