@@ -8,9 +8,9 @@ import fsm.Transition;
 import java.util.WeakHashMap;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import simplefsmtest.fsm.adapters.fsmmt.FSMAdapter;
-import simplefsmtest.fsm.adapters.fsmmt.StateAdapter;
-import simplefsmtest.fsm.adapters.fsmmt.TransitionAdapter;
+import simplefsmtest.fsm.adapters.fsmmt.fsm.FSMAdapter;
+import simplefsmtest.fsm.adapters.fsmmt.fsm.StateAdapter;
+import simplefsmtest.fsm.adapters.fsmmt.fsm.TransitionAdapter;
 
 @SuppressWarnings("all")
 public class FsmMTAdaptersFactory implements AdaptersFactory {
@@ -48,13 +48,13 @@ public class FsmMTAdaptersFactory implements AdaptersFactory {
     	return null;
     EObjectAdapter adapter = register.get(adaptee);
     if(adapter != null)
-    	 return (simplefsmtest.fsm.adapters.fsmmt.FSMAdapter) adapter;
+    	 return (simplefsmtest.fsm.adapters.fsmmt.fsm.FSMAdapter) adapter;
     else {
-    	adapter = new simplefsmtest.fsm.adapters.fsmmt.FSMAdapter();
+    	adapter = new simplefsmtest.fsm.adapters.fsmmt.fsm.FSMAdapter();
     	adapter.setAdaptee(adaptee);
     	adapter.setResource(res);
     	register.put(adaptee, adapter);
-    	return (simplefsmtest.fsm.adapters.fsmmt.FSMAdapter) adapter;
+    	return (simplefsmtest.fsm.adapters.fsmmt.fsm.FSMAdapter) adapter;
     }
   }
   
@@ -63,13 +63,13 @@ public class FsmMTAdaptersFactory implements AdaptersFactory {
     	return null;
     EObjectAdapter adapter = register.get(adaptee);
     if(adapter != null)
-    	 return (simplefsmtest.fsm.adapters.fsmmt.StateAdapter) adapter;
+    	 return (simplefsmtest.fsm.adapters.fsmmt.fsm.StateAdapter) adapter;
     else {
-    	adapter = new simplefsmtest.fsm.adapters.fsmmt.StateAdapter();
+    	adapter = new simplefsmtest.fsm.adapters.fsmmt.fsm.StateAdapter();
     	adapter.setAdaptee(adaptee);
     	adapter.setResource(res);
     	register.put(adaptee, adapter);
-    	return (simplefsmtest.fsm.adapters.fsmmt.StateAdapter) adapter;
+    	return (simplefsmtest.fsm.adapters.fsmmt.fsm.StateAdapter) adapter;
     }
   }
   
@@ -78,13 +78,13 @@ public class FsmMTAdaptersFactory implements AdaptersFactory {
     	return null;
     EObjectAdapter adapter = register.get(adaptee);
     if(adapter != null)
-    	 return (simplefsmtest.fsm.adapters.fsmmt.TransitionAdapter) adapter;
+    	 return (simplefsmtest.fsm.adapters.fsmmt.fsm.TransitionAdapter) adapter;
     else {
-    	adapter = new simplefsmtest.fsm.adapters.fsmmt.TransitionAdapter();
+    	adapter = new simplefsmtest.fsm.adapters.fsmmt.fsm.TransitionAdapter();
     	adapter.setAdaptee(adaptee);
     	adapter.setResource(res);
     	register.put(adaptee, adapter);
-    	return (simplefsmtest.fsm.adapters.fsmmt.TransitionAdapter) adapter;
+    	return (simplefsmtest.fsm.adapters.fsmmt.fsm.TransitionAdapter) adapter;
     }
   }
 }

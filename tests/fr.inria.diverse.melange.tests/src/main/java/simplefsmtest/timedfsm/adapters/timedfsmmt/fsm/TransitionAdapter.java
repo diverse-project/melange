@@ -1,10 +1,10 @@
-package simplefsmtest.timedfsm.adapters.timedfsmmt;
+package simplefsmtest.timedfsm.adapters.timedfsmmt.fsm;
 
 import fr.inria.diverse.melange.adapters.EObjectAdapter;
+import fsm.Transition;
 import org.eclipse.emf.ecore.EClass;
 import simplefsmtest.timedfsm.adapters.timedfsmmt.TimedFsmMTAdaptersFactory;
 import simplefsmtest.timedfsmmt.fsm.State;
-import timedfsm.fsm.Transition;
 
 @SuppressWarnings("all")
 public class TransitionAdapter extends EObjectAdapter<Transition> implements simplefsmtest.timedfsmmt.fsm.Transition {
@@ -53,7 +53,7 @@ public class TransitionAdapter extends EObjectAdapter<Transition> implements sim
   @Override
   public void setSource(final State o) {
     if (o != null)
-    	adaptee.setSource(((simplefsmtest.timedfsm.adapters.timedfsmmt.StateAdapter) o).getAdaptee());
+    	adaptee.setSource(((simplefsmtest.timedfsm.adapters.timedfsmmt.fsm.StateAdapter) o).getAdaptee());
     else adaptee.setSource(null);
   }
   
@@ -65,7 +65,7 @@ public class TransitionAdapter extends EObjectAdapter<Transition> implements sim
   @Override
   public void setTarget(final State o) {
     if (o != null)
-    	adaptee.setTarget(((simplefsmtest.timedfsm.adapters.timedfsmmt.StateAdapter) o).getAdaptee());
+    	adaptee.setTarget(((simplefsmtest.timedfsm.adapters.timedfsmmt.fsm.StateAdapter) o).getAdaptee());
     else adaptee.setTarget(null);
   }
   

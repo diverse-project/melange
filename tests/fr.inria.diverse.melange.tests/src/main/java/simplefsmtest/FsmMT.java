@@ -10,7 +10,7 @@ import simplefsmtest.fsmmt.fsm.FsmFactory;
 public interface FsmMT extends IModelType {
   public abstract EList<EObject> getContents();
   
-  public abstract FsmFactory getFactory();
+  public abstract FsmFactory getFsmFactory();
   
   public abstract void save(final String uri) throws IOException;
 }

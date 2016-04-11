@@ -1,21 +1,21 @@
-package simplefsmtest.fsm.adapters.fsmmt;
+package simplefsmtest.timedfsm.adapters.fsmmt.fsm;
 
 import fr.inria.diverse.melange.adapters.EObjectAdapter;
 import fsm.State;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import simplefsmtest.fsm.adapters.fsmmt.FsmMTAdaptersFactory;
 import simplefsmtest.fsmmt.fsm.FSM;
 import simplefsmtest.fsmmt.fsm.Transition;
+import simplefsmtest.timedfsm.adapters.fsmmt.FsmMTAdaptersFactory;
 
 @SuppressWarnings("all")
 public class StateAdapter extends EObjectAdapter<State> implements simplefsmtest.fsmmt.fsm.State {
   private FsmMTAdaptersFactory adaptersFactory;
   
   public StateAdapter() {
-    super(simplefsmtest.fsm.adapters.fsmmt.FsmMTAdaptersFactory.getInstance());
-    adaptersFactory = simplefsmtest.fsm.adapters.fsmmt.FsmMTAdaptersFactory.getInstance();
+    super(simplefsmtest.timedfsm.adapters.fsmmt.FsmMTAdaptersFactory.getInstance());
+    adaptersFactory = simplefsmtest.timedfsm.adapters.fsmmt.FsmMTAdaptersFactory.getInstance();
   }
   
   @Override
@@ -36,7 +36,7 @@ public class StateAdapter extends EObjectAdapter<State> implements simplefsmtest
   @Override
   public void setOwningFSM(final FSM o) {
     if (o != null)
-    	adaptee.setOwningFSM(((simplefsmtest.fsm.adapters.fsmmt.FSMAdapter) o).getAdaptee());
+    	adaptee.setOwningFSM(((simplefsmtest.timedfsm.adapters.fsmmt.fsm.FSMAdapter) o).getAdaptee());
     else adaptee.setOwningFSM(null);
   }
   

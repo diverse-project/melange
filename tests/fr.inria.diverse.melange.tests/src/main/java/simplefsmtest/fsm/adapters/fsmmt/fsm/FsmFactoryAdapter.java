@@ -1,20 +1,19 @@
-package simplefsmtest.timedfsm.adapters.fsmmt;
+package simplefsmtest.fsm.adapters.fsmmt.fsm;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+import simplefsmtest.fsm.adapters.fsmmt.FsmMTAdaptersFactory;
 import simplefsmtest.fsmmt.fsm.FSM;
 import simplefsmtest.fsmmt.fsm.FsmFactory;
 import simplefsmtest.fsmmt.fsm.FsmPackage;
 import simplefsmtest.fsmmt.fsm.State;
 import simplefsmtest.fsmmt.fsm.Transition;
-import simplefsmtest.timedfsm.adapters.fsmmt.FsmMTAdaptersFactory;
-import timedfsm.fsm.TimedfsmFactory;
 
 @SuppressWarnings("all")
-public class FsmMTFactoryAdapter extends EFactoryImpl implements FsmFactory {
-  private FsmMTAdaptersFactory adaptersFactory = simplefsmtest.timedfsm.adapters.fsmmt.FsmMTAdaptersFactory.getInstance();
+public class FsmFactoryAdapter extends EFactoryImpl implements FsmFactory {
+  private FsmMTAdaptersFactory adaptersFactory = simplefsmtest.fsm.adapters.fsmmt.FsmMTAdaptersFactory.getInstance();
   
-  private TimedfsmFactory fsmAdaptee = timedfsm.fsm.TimedfsmFactory.eINSTANCE;
+  private fsm.FsmFactory fsmAdaptee = fsm.FsmFactory.eINSTANCE;
   
   @Override
   public FSM createFSM() {

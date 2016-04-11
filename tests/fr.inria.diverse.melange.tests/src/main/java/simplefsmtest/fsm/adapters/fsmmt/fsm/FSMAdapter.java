@@ -1,20 +1,20 @@
-package simplefsmtest.timedfsm.adapters.timedfsmmt;
+package simplefsmtest.fsm.adapters.fsmmt.fsm;
 
 import fr.inria.diverse.melange.adapters.EObjectAdapter;
+import fsm.FSM;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import simplefsmtest.timedfsm.adapters.timedfsmmt.TimedFsmMTAdaptersFactory;
-import simplefsmtest.timedfsmmt.fsm.State;
-import timedfsm.fsm.FSM;
+import simplefsmtest.fsm.adapters.fsmmt.FsmMTAdaptersFactory;
+import simplefsmtest.fsmmt.fsm.State;
 
 @SuppressWarnings("all")
-public class FSMAdapter extends EObjectAdapter<FSM> implements simplefsmtest.timedfsmmt.fsm.FSM {
-  private TimedFsmMTAdaptersFactory adaptersFactory;
+public class FSMAdapter extends EObjectAdapter<FSM> implements simplefsmtest.fsmmt.fsm.FSM {
+  private FsmMTAdaptersFactory adaptersFactory;
   
   public FSMAdapter() {
-    super(simplefsmtest.timedfsm.adapters.timedfsmmt.TimedFsmMTAdaptersFactory.getInstance());
-    adaptersFactory = simplefsmtest.timedfsm.adapters.timedfsmmt.TimedFsmMTAdaptersFactory.getInstance();
+    super(simplefsmtest.fsm.adapters.fsmmt.FsmMTAdaptersFactory.getInstance());
+    adaptersFactory = simplefsmtest.fsm.adapters.fsmmt.FsmMTAdaptersFactory.getInstance();
   }
   
   private EList<State> ownedState;
@@ -34,7 +34,7 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements simplefsmtest.tim
   @Override
   public void setInitialState(final State o) {
     if (o != null)
-    	adaptee.setInitialState(((simplefsmtest.timedfsm.adapters.timedfsmmt.StateAdapter) o).getAdaptee());
+    	adaptee.setInitialState(((simplefsmtest.fsm.adapters.fsmmt.fsm.StateAdapter) o).getAdaptee());
     else adaptee.setInitialState(null);
   }
   
@@ -49,17 +49,17 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements simplefsmtest.tim
   
   @Override
   public EClass eClass() {
-    return simplefsmtest.timedfsmmt.fsm.FsmPackage.eINSTANCE.getFSM();
+    return simplefsmtest.fsmmt.fsm.FsmPackage.eINSTANCE.getFSM();
   }
   
   @Override
   public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
     switch (featureID) {
-    	case simplefsmtest.timedfsmmt.fsm.FsmPackage.FSM__OWNED_STATE:
+    	case simplefsmtest.fsmmt.fsm.FsmPackage.FSM__OWNED_STATE:
     		return getOwnedState();
-    	case simplefsmtest.timedfsmmt.fsm.FsmPackage.FSM__INITIAL_STATE:
+    	case simplefsmtest.fsmmt.fsm.FsmPackage.FSM__INITIAL_STATE:
     		return getInitialState();
-    	case simplefsmtest.timedfsmmt.fsm.FsmPackage.FSM__FINAL_STATE:
+    	case simplefsmtest.fsmmt.fsm.FsmPackage.FSM__FINAL_STATE:
     		return getFinalState();
     }
     
@@ -69,11 +69,11 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements simplefsmtest.tim
   @Override
   public boolean eIsSet(final int featureID) {
     switch (featureID) {
-    	case simplefsmtest.timedfsmmt.fsm.FsmPackage.FSM__OWNED_STATE:
+    	case simplefsmtest.fsmmt.fsm.FsmPackage.FSM__OWNED_STATE:
     		return getOwnedState() != null && !getOwnedState().isEmpty();
-    	case simplefsmtest.timedfsmmt.fsm.FsmPackage.FSM__INITIAL_STATE:
+    	case simplefsmtest.fsmmt.fsm.FsmPackage.FSM__INITIAL_STATE:
     		return getInitialState() != null;
-    	case simplefsmtest.timedfsmmt.fsm.FsmPackage.FSM__FINAL_STATE:
+    	case simplefsmtest.fsmmt.fsm.FsmPackage.FSM__FINAL_STATE:
     		return getFinalState() != null && !getFinalState().isEmpty();
     }
     
@@ -83,16 +83,16 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements simplefsmtest.tim
   @Override
   public void eSet(final int featureID, final Object newValue) {
     switch (featureID) {
-    	case simplefsmtest.timedfsmmt.fsm.FsmPackage.FSM__OWNED_STATE:
+    	case simplefsmtest.fsmmt.fsm.FsmPackage.FSM__OWNED_STATE:
     		getOwnedState().clear();
     		getOwnedState().addAll((Collection) newValue);
     		return;
-    	case simplefsmtest.timedfsmmt.fsm.FsmPackage.FSM__INITIAL_STATE:
+    	case simplefsmtest.fsmmt.fsm.FsmPackage.FSM__INITIAL_STATE:
     		setInitialState(
-    		(simplefsmtest.timedfsmmt.fsm.State)
+    		(simplefsmtest.fsmmt.fsm.State)
     		 newValue);
     		return;
-    	case simplefsmtest.timedfsmmt.fsm.FsmPackage.FSM__FINAL_STATE:
+    	case simplefsmtest.fsmmt.fsm.FsmPackage.FSM__FINAL_STATE:
     		getFinalState().clear();
     		getFinalState().addAll((Collection) newValue);
     		return;

@@ -2,6 +2,7 @@ package simplefsmtest.timedfsm.adapters.fsmmt;
 
 import fr.inria.diverse.melange.adapters.ResourceAdapter;
 import java.io.IOException;
+import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 import simplefsmtest.FsmMT;
 import simplefsmtest.fsmmt.fsm.FsmFactory;
@@ -13,8 +14,15 @@ public class TimedFsmAdapter extends ResourceAdapter implements FsmMT {
   }
   
   @Override
-  public FsmFactory getFactory() {
-    return new simplefsmtest.timedfsm.adapters.fsmmt.FsmMTFactoryAdapter();
+  public FsmFactory getFsmFactory() {
+    return new simplefsmtest.timedfsm.adapters.fsmmt.fsm.FsmFactoryAdapter();
+  }
+  
+  @Override
+  public Set getFactories() {
+    java.util.Set<org.eclipse.emf.ecore.EFactory> res = new java.util.HashSet<org.eclipse.emf.ecore.EFactory>();
+    res.add(getFsmFactory());
+    return res;
   }
   
   @Override
