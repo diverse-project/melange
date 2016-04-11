@@ -15,9 +15,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 import org.junit.Before
 import org.junit.Test
 import simplefsmtest.StandaloneSetup
-import simplefsmtest.fsm.adapters.fsmmt.FSMAdapter
-import simplefsmtest.fsm.adapters.fsmmt.StateAdapter
-import simplefsmtest.fsm.adapters.fsmmt.TransitionAdapter
+import simplefsmtest.fsm.adapters.fsmmt.fsm.FSMAdapter
+import simplefsmtest.fsm.adapters.fsmmt.fsm.StateAdapter
+import simplefsmtest.fsm.adapters.fsmmt.fsm.TransitionAdapter
 import simplefsmtest.fsmmt.fsm.FSM
 import simplefsmtest.fsmmt.fsm.FsmPackage
 
