@@ -2,15 +2,15 @@ package simplefsmtest.timedfsm.adapters.timedfsmmt;
 
 import fr.inria.diverse.melange.adapters.AdaptersFactory;
 import fr.inria.diverse.melange.adapters.EObjectAdapter;
-import fsm.FSM;
-import fsm.State;
-import fsm.Transition;
 import java.util.WeakHashMap;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import simplefsmtest.timedfsm.adapters.timedfsmmt.fsm.FSMAdapter;
 import simplefsmtest.timedfsm.adapters.timedfsmmt.fsm.StateAdapter;
 import simplefsmtest.timedfsm.adapters.timedfsmmt.fsm.TransitionAdapter;
+import timedfsm.fsm.FSM;
+import timedfsm.fsm.State;
+import timedfsm.fsm.Transition;
 
 @SuppressWarnings("all")
 public class TimedFsmMTAdaptersFactory implements AdaptersFactory {
@@ -30,14 +30,14 @@ public class TimedFsmMTAdaptersFactory implements AdaptersFactory {
   }
   
   public EObjectAdapter createAdapter(final EObject o, final Resource res) {
-    if (o instanceof fsm.FSM){
-    	return createFSMAdapter((fsm.FSM) o, res);
+    if (o instanceof timedfsm.fsm.FSM){
+    	return createFSMAdapter((timedfsm.fsm.FSM) o, res);
     }
-    if (o instanceof fsm.State){
-    	return createStateAdapter((fsm.State) o, res);
+    if (o instanceof timedfsm.fsm.State){
+    	return createStateAdapter((timedfsm.fsm.State) o, res);
     }
-    if (o instanceof fsm.Transition){
-    	return createTransitionAdapter((fsm.Transition) o, res);
+    if (o instanceof timedfsm.fsm.Transition){
+    	return createTransitionAdapter((timedfsm.fsm.Transition) o, res);
     }
     
     return null;

@@ -1,13 +1,13 @@
 package simplefsmtest.timedfsm.adapters.timedfsmmt.fsm;
 
 import fr.inria.diverse.melange.adapters.EObjectAdapter;
-import fsm.State;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import simplefsmtest.timedfsm.adapters.timedfsmmt.TimedFsmMTAdaptersFactory;
 import simplefsmtest.timedfsmmt.fsm.FSM;
 import simplefsmtest.timedfsmmt.fsm.Transition;
+import timedfsm.fsm.State;
 
 @SuppressWarnings("all")
 public class StateAdapter extends EObjectAdapter<State> implements simplefsmtest.timedfsmmt.fsm.State {

@@ -21,8 +21,8 @@ public class StandaloneSetup {
     	fsm.FsmPackage.eINSTANCE
     );
     EPackage.Registry.INSTANCE.put(
-    	fsm.FsmPackage.eNS_URI,
-    	fsm.FsmPackage.eINSTANCE
+    	timedfsm.fsm.TimedfsmPackage.eNS_URI,
+    	timedfsm.fsm.TimedfsmPackage.eINSTANCE
     );
     
     Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(

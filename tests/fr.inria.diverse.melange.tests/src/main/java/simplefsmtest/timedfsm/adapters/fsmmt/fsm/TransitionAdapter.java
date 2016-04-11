@@ -1,10 +1,10 @@
 package simplefsmtest.timedfsm.adapters.fsmmt.fsm;
 
 import fr.inria.diverse.melange.adapters.EObjectAdapter;
-import fsm.Transition;
 import org.eclipse.emf.ecore.EClass;
 import simplefsmtest.fsmmt.fsm.State;
 import simplefsmtest.timedfsm.adapters.fsmmt.FsmMTAdaptersFactory;
+import timedfsm.fsm.Transition;
 
 @SuppressWarnings("all")
 public class TransitionAdapter extends EObjectAdapter<Transition> implements simplefsmtest.fsmmt.fsm.Transition {

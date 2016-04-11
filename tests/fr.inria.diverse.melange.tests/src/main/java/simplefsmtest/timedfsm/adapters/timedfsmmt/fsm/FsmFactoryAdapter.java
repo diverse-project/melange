@@ -8,12 +8,13 @@ import simplefsmtest.timedfsmmt.fsm.FsmFactory;
 import simplefsmtest.timedfsmmt.fsm.FsmPackage;
 import simplefsmtest.timedfsmmt.fsm.State;
 import simplefsmtest.timedfsmmt.fsm.Transition;
+import timedfsm.fsm.TimedfsmFactory;
 
 @SuppressWarnings("all")
 public class FsmFactoryAdapter extends EFactoryImpl implements FsmFactory {
   private TimedFsmMTAdaptersFactory adaptersFactory = simplefsmtest.timedfsm.adapters.timedfsmmt.TimedFsmMTAdaptersFactory.getInstance();
   
-  private fsm.FsmFactory fsmAdaptee = fsm.FsmFactory.eINSTANCE;
+  private TimedfsmFactory fsmAdaptee = timedfsm.fsm.TimedfsmFactory.eINSTANCE;
   
   @Override
   public FSM createFSM() {
