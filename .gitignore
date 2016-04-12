@@ -5,4 +5,4 @@ xtend-gen/
 bin/
 .antlr-generator*.jar
 target/
-
+*._trace
