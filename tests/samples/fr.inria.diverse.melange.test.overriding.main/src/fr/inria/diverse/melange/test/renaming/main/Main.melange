@@ -47,7 +47,7 @@ language L4 {
 }
 
 transformation execute(L0mt m) {
-	val root = m.contents.head as fr.inria.diverse.melange.test.overridding.l0mt.A
+	val root = m.contents.head as fr.inria.diverse.melange.test.overridding.l0mt.root.A
 	println(root.whoIAm)
 }
 

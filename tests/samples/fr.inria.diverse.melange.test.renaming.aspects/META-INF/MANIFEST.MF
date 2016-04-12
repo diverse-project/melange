@@ -1,5 +1,5 @@
 Bundle-SymbolicName: fr.inria.diverse.melange.test.renaming.aspects; singleton:=true
-Export-Package: fr.inria.diverse.melange.test.renaming.aspects
+Export-Package: fr.inria.diverse.melange.testrenaming.aspects
 Bundle-Name: fr.inria.diverse.melange.test.renaming.aspects
 Bundle-Version: 1.0.0
 Bundle-ClassPath: .
