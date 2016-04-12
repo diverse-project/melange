@@ -77,20 +77,28 @@ public class SimpleFsmProject extends AbstractXtextTests
 
 		val expected = '''
 			State 1
-				Transition a
-				Transition b
+				Out a/1
+				Out b/2
 			State 2
-				Transition d
-				Transition e
+				In a/1
+				In c/3
+				Out d/4
+				Out e/5
 			State 3
-				Transition c
+				In b/2
+				In d/4
+				Out c/3
 			State 4
+				In e/5
+			
 			State 1
-				Transition a
+				Out a/1
 			State 2
+				In a/1
+
 		'''
 
-		val mainTransfoOutput = helper.runMainClass(melangeFsm, "simplefsm.main")
+		val mainTransfoOutput = helper.runMainClass(melangeFsm, "simplefsm.Main")
 		assertEquals(expected, mainTransfoOutput)
 	}
 	
@@ -102,20 +110,16 @@ public class SimpleFsmProject extends AbstractXtextTests
 
 		val treeRoot = topElement.children.head
 		assertEquals("simplefsm", treeRoot.text.toString)
-		assertEquals(6, treeRoot.children.size)
+		assertEquals(4, treeRoot.children.size)
 
 		val fsmLang = treeRoot.children.get(0)
 		val timedFsmLang = treeRoot.children.get(1)
-		val execute = treeRoot.children.get(2)
-		val main = treeRoot.children.get(3)
-		val fsmMT = treeRoot.children.get(4)
-		val tfsmMT = treeRoot.children.get(5)
+		val fsmMT = treeRoot.children.get(2)
+		val tfsmMT = treeRoot.children.get(3)
 
 		//Check top elements
 		assertEquals("Fsm \u25C1 FsmMT", fsmLang.text.toString)
 		assertEquals("TimedFsm \u25C1 FsmMT, TimedFsmMT", timedFsmLang.text.toString)
-		assertEquals("execute", execute.text.toString)
-		assertEquals("main", main.text.toString)
 		assertEquals("FsmMT", fsmMT.text.toString)
 		assertEquals("TimedFsmMT \u25C1 FsmMT", tfsmMT.text.toString)
 
