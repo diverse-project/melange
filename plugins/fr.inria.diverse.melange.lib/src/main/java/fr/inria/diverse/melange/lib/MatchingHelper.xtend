@@ -152,6 +152,9 @@ class MatchingHelper
 				) || (
 					   opA.EType instanceof EClass
 					&& (opA.EType as EClass).EAllSuperTypes.contains(opB.EType)
+				) || (
+					   opA.EType.EPackage.nsURI == "http://www.eclipse.org/emf/2002/Ecore"
+					&& opA.EType == opB.EType
 				)
 		&&  opA.EParameters.internalMatch(opB.EParameters, nesting + 1)
 		&&  opA.EExceptions.forall[excA |
