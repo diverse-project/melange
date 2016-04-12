@@ -46,7 +46,10 @@ class ModelTypeInferrer
 				^abstract = true
 			]
 
-			mt.allGenPkgs.forEach[genPkg|
+			val excluded = mt.genmodels.map[usedGenPackages].flatten.toList
+			mt.allGenPkgs
+			.filter[genPkg|!excluded.contains(genPkg)]
+			.forEach[genPkg|
 				members += mt.toMethod("get"+genPkg.factoryName, genPkg.qualifiedFactoryInterfaceName.typeRef)[
 					^abstract = true
 				]

@@ -107,7 +107,10 @@ class LanguageAdapterInferrer
 				'''
 			]
 
-			mt.allGenPkgs.forEach[genPkg|
+			val excluded = mt.genmodels.map[usedGenPackages].flatten.toList
+			mt.allGenPkgs
+			.filter[genPkg|!excluded.contains(genPkg)]
+			.forEach[genPkg|
 				members += l.toMethod("get"+genPkg.factoryName, genPkg.qualifiedFactoryInterfaceName.typeRef)[
 					annotations += Override.annotationRef
 	
@@ -122,7 +125,7 @@ class LanguageAdapterInferrer
 
 				body = '''
 						java.util.Set<org.eclipse.emf.ecore.EFactory> res = new java.util.HashSet<org.eclipse.emf.ecore.EFactory>();
-						«FOR genPkg : mt.allGenPkgs»
+						«FOR genPkg : mt.allGenPkgs.filter[genPkg|!excluded.contains(genPkg)]»
 							res.add(get«genPkg.factoryName»());
 						«ENDFOR»
 						return res;
@@ -144,7 +147,10 @@ class LanguageAdapterInferrer
 	}
 
 	private def void generateFactoryAdapters(Language l, ModelType mt) {
-		mt.allGenPkgs.forEach[genPkg|
+		val excluded = mt.genmodels.map[usedGenPackages].flatten.toList
+		mt.allGenPkgs
+		.filter[genPkg|!excluded.contains(genPkg)]
+		.forEach[genPkg|
 			genPkg.generateFactoryAdapter(l,mt)
 		]
 	}
