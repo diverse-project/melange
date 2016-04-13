@@ -23,14 +23,14 @@ language IncompatibleFsm {
 }
 
 transformation String callFoo(FsmMT m) {
-	val root = m.contents.head as aspectstest.fsmmt.FSM
+	val root = m.contents.head as aspectstest.fsmmt.fsm.FSM
 	val s = root.ownedState.head
 
 	return s.foo
 }
 
 transformation String callBar(FsmMT m) {
-	val root = m.contents.head as aspectstest.fsmmt.FSM
+	val root = m.contents.head as aspectstest.fsmmt.fsm.FSM
 	val s = root.ownedState.head
 	
 	return s.bar
