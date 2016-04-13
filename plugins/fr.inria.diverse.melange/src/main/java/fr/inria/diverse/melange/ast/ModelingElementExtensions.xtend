@@ -68,11 +68,12 @@ class ModelingElementExtensions
 	 * Returns the set of all {@link GenPackage}s defined by the {@link GenModel}s
 	 * of the {@link ModelingElement} {@code m}.
 	 */
-	def Iterable<GenPackage> getAllGenPkgs(ModelingElement m) {
+	def Set<GenPackage> getAllGenPkgs(ModelingElement m) {
 		return
 			m.genmodels
 			.map[allGenPkgs]
 			.flatten
+			.toSet
 	}
 
 	/**
