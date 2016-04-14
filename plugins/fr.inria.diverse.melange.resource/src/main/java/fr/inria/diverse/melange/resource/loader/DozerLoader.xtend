@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 
 import static extension fr.inria.diverse.melange.resource.loader.EcoreHelper.*
+import org.eclipse.emf.ecore.EClassifier
 
 class DozerLoader implements ExtensionsAwareLoader
 {
@@ -53,7 +54,7 @@ class DozerLoader implements ExtensionsAwareLoader
 		// in the newly created resource
 		mapper.addMapping(builder)
 		res.contents.forEach[o |
-			newRes.contents += mapper.map(o, pkgBase.EClassifiers.findFirst[name == o.eClass.name].implementationClass) as EObject
+			newRes.contents += mapper.map(o, pkgBase.eAllContents.filter(EClassifier).findFirst[name == o.eClass.name].implementationClass) as EObject
 		]
 
 		return newRes
@@ -73,7 +74,7 @@ class DozerLoader implements ExtensionsAwareLoader
 
 		mapper.addMapping(builder)
 		res.contents.forEach[o |
-			newRes.contents += mapper.map(o, pkgExtended.EClassifiers.findFirst[name == o.eClass.name].implementationClass) as EObject
+			newRes.contents += mapper.map(o, pkgExtended.eAllContents.filter(EClassifier).findFirst[name == o.eClass.name].implementationClass) as EObject
 		]
 
 		return newRes
@@ -113,7 +114,7 @@ class DozerLoader implements ExtensionsAwareLoader
 
 		mapper.addMapping(builder)
 		baseResource.getContents().forEach[o |
-			extendedResource.getContents() += mapper.map(o, expectedPackage.EClassifiers.findFirst[name == o.eClass.name].implementationClass) as EObject
+			extendedResource.getContents() += mapper.map(o, expectedPackage.eAllContents.filter(EClassifier).findFirst[name == o.eClass.name].implementationClass) as EObject
 		]
 		//extendedResource.contents.addAll(baseResource.contents)
 		return extendedResource
@@ -158,7 +159,7 @@ class ExtendedToBaseBuilder extends BeanMappingBuilder
 		BeanContainer.getInstance.classLoader = classLoader
 
 		pkgBase.EClassifiers.filter(EClass).forEach[cls |
-			val extendedCls = pkgExtended.EClassifiers.filter(EClass).findFirst[name == cls.name]
+			val extendedCls = pkgExtended.eAllContents.filter(EClass).findFirst[name == cls.name]
 			val baseImpl = cls.implementationClass
 			val extendedImpl = extendedCls.implementationClass
 			classLoader.updateContext(baseImpl, extendedImpl)
@@ -200,7 +201,7 @@ class BaseToExtendedBuilder extends BeanMappingBuilder
 		BeanContainer.getInstance.classLoader = classLoader
 		
 		pkgBase.EClassifiers.filter(EClass).forEach[cls |
-			val extendedCls = pkgExtended.EClassifiers.filter(EClass).findFirst[name == cls.name]
+			val extendedCls = pkgExtended.eAllContents.filter(EClass).findFirst[name == cls.name]
 
 			val baseImpl = cls.implementationClass
 			val extendedImpl = extendedCls.implementationClass
@@ -217,7 +218,7 @@ class BaseToExtendedBuilder extends BeanMappingBuilder
 			.filter[many]
 			.forEach[ref |
 				val baseRefImpl = ref.EReferenceType.implementationClass
-				val extendedRefImpl = pkgExtended.EClassifiers.filter(EClass).findFirst[name == ref.EReferenceType.name].implementationClass
+				val extendedRefImpl = pkgExtended.eAllContents.filter(EClass).findFirst[name == ref.EReferenceType.name].implementationClass
 
 				map.fields(
 					ref.name,
