@@ -187,12 +187,15 @@ class EcoreExtensions
 		if(!qualifiedClsName.contains("."))
 			return null
 		
-		// Remove first packages corresponding to the prefix from the GenModel
 		val rootName = rootPkg.name
-		val rootNamePos = qualifiedClsName.indexOf(rootName)
+		if(qualifiedClsName.startsWith(rootName+"."))
+			return rootPkg.allClasses.findFirst[getUniqueId == qualifiedClsName]
+		
+		// Remove first packages corresponding to the prefix from the GenModel
+		val rootNamePos = qualifiedClsName.indexOf("."+rootName+".")
 		if(rootNamePos == -1)
 			return null
-		val fullEClassName = qualifiedClsName.substring(rootNamePos)
+		val fullEClassName = qualifiedClsName.substring(rootNamePos+1)
 		
 		return rootPkg.allClasses.findFirst[getUniqueId == fullEClassName]
 	}
