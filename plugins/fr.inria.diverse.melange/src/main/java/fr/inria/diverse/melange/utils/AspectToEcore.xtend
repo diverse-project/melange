@@ -115,7 +115,7 @@ class AspectToEcore
 				if (realType.simpleName == aspCls.name)
 					aspCls
 				else
-					basePkg.findClass(realType.simpleName)
+					basePkg.findClass(realType.qualifiedName)
 
 			// If we find a corresponding EClass, then it's a EReference
 			if (find !== null)
@@ -168,7 +168,7 @@ class AspectToEcore
 					if (realType.simpleName == aspCls.name)
 						aspCls
 					else
-						basePkg.findClass(realType.simpleName)
+						basePkg.findClass(realType.qualifiedName)
 				if (!aspCls.EOperations.exists[name == op.simpleName]) {
 					aspCls.EOperations +=
 						EcoreFactory.eINSTANCE.createEOperation => [
@@ -189,7 +189,7 @@ class AspectToEcore
 										if (realTypeP.simpleName == aspCls.name)
 											aspCls
 										else
-											basePkg.findClass(realTypeP.simpleName)
+											basePkg.findClass(realTypeP.qualifiedName)
 
 									EParameters +=
 										EcoreFactory.eINSTANCE.createEParameter => [pp |
@@ -242,7 +242,7 @@ class AspectToEcore
 					if (realType.simpleName == aspCls.name)
 						aspCls
 					else
-						basePkg.findClass(realType.simpleName)
+						basePkg.findClass(realType.qualifiedName)
 				if (find !== null)
 					// Create EReference
 					aspCls.EStructuralFeatures +=

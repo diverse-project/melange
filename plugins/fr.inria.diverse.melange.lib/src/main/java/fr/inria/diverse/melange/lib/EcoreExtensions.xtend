@@ -160,7 +160,32 @@ class EcoreExtensions
 	}
 
 	def EClass findClass(EPackage pkg, String clsName) {
+		
+		if(clsName.contains(".")){
+			return findQualifiedClass(pkg,clsName)
+		}
+		
 		return pkg.allClasses.findFirst[name == clsName]
+	}
+
+	/**
+	 * Search in {@link rootPkg} for an EClass named {@link qualifiedClsName}.
+	 * The prefix packages are ignored. We consider only the part of {@link qualifiedClsName}
+	 * starting with rootPkg.getName()
+	 */
+	def EClass findQualifiedClass(EPackage rootPkg, String qualifiedClsName) {
+		
+		if(!qualifiedClsName.contains("."))
+			return null
+		
+		// Remove first packages corresponding to the prefix from the GenModel
+		val rootName = rootPkg.name
+		val rootNamePos = qualifiedClsName.indexOf(rootName)
+		if(rootNamePos == -1)
+			return null
+		val fullEClassName = qualifiedClsName.substring(rootNamePos)
+		
+		return rootPkg.allClasses.findFirst[getUniqueId == fullEClassName]
 	}
 
 	def EClassifier findClassifier(EPackage pkg, String clsName) {
@@ -528,7 +553,7 @@ class EcoreExtensions
 	 * Replaces a datatype with a new EClass and update the pointing references
 	 */
 	def void replaceDataTypeWithEClass(EPackage pkg, EDataType dt) {
-		val dtName = dt.name
+		val dtName = dt.uniqueId
 		val find = pkg.findClass(dtName)
 
 		val replacement =
@@ -536,7 +561,7 @@ class EcoreExtensions
 				find
 			else{
 				val newCls =EcoreFactory.eINSTANCE.createEClass => [
-					name = dtName
+					name = dt.name
 				]
 				if(dt.isAspectSpecific)
 					newCls.addAspectAnnotation
