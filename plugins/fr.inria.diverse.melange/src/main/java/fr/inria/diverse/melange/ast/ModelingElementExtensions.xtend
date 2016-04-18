@@ -158,12 +158,21 @@ class ModelingElementExtensions
 	}
 
 	/**
-	 * Returns the {@link EClass} in {@code m} with the name {@code simpleName}.
+	 * Returns the {@link EClass} in {@code m} with the name {@code clsName}.
+	 * {@code clsName} can be simple or qualified.
+	 * 
+	 * Return null if not found
+	 * 
+	 * @see EcoreExtensions.findClass(EPackage pkg, String clsName)
 	 */
-	def EClass findClass(ModelingElement m, String simpleName) {
-		return
-			m.allClasses
-			.findFirst[name == simpleName]
+	def EClass findClass(ModelingElement m, String clsName) {
+		
+		return 
+			m.pkgs
+			.filter[ESuperPackage == null]
+			.map[findClass(clsName)]
+			.filterNull
+			.head
 	}
 
 	/**

@@ -159,6 +159,15 @@ class EcoreExtensions
 		}
 	}
 
+	/**
+	 * Search in {@link pkg} for an EClass named {@link clsName}.
+	 * The search is also performed in subpackages if {@link clsName}
+	 * is a qualified named.
+	 *
+	 * Return null if not found
+	 * 
+	 * @see findQualifiedClass(EPackage rootPkg, String qualifiedClsName)
+	 */
 	def EClass findClass(EPackage pkg, String clsName) {
 		
 		if(clsName.contains(".")){
