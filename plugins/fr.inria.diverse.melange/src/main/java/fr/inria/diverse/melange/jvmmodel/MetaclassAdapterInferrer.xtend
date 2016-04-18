@@ -34,6 +34,7 @@ import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmAnnotationReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 /**
  * Generates a Java adapter for a given {@link EClass} in a pair (MM, MT)
@@ -53,6 +54,7 @@ class MetaclassAdapterInferrer
 	@Inject extension TypeReferencesHelper
 	@Inject extension JvmAnnotationReferenceBuilder.Factory jvmAnnRefBuilderFact
 	@Inject extension MappingExtensions
+	@Inject extension IQualifiedNameProvider
 	extension JvmAnnotationReferenceBuilder jvmAnnRefBuilder
 	extension JvmTypeReferenceBuilder typeRefBuilder
 
@@ -466,9 +468,9 @@ class MetaclassAdapterInferrer
 		val realType =
 			if (op.returnType.isCollection)
 				(op.returnType as JvmParameterizedTypeReference)
-				.arguments.head.type.simpleName
+				.arguments.head.type.qualifiedName
 			else
-				op.returnType.simpleName
+				op.returnType.qualifiedName
 		val mtCls =
 			if (op.returnType.isCollection)
 				superType.findClass(realType)
@@ -496,14 +498,14 @@ class MetaclassAdapterInferrer
 			val realTypeP =
 				if (p.parameterType.isCollection)
 					(p.parameterType as JvmParameterizedTypeReference)
-					.arguments.head.type.simpleName
+					.arguments.head.type.qualifiedName
 				else
-					p.parameterType.simpleName
+					p.parameterType.qualifiedName
 
 			// Build the comma-separated list of operation arguments
 			paramsList.append('''
-				«IF mm.owningLanguage.hasAdapterFor(superType, p.parameterType.simpleName)»
-					, ((«mm.adapterNameFor(superType, superType.findClass(p.parameterType.simpleName))»)«
+				«IF mm.owningLanguage.hasAdapterFor(superType, p.parameterType.qualifiedName)»
+					, ((«mm.adapterNameFor(superType, superType.findClass(p.parameterType.qualifiedName))»)«
 					» «p.name»).getAdaptee()
 				«ELSEIF p.parameterType.isCollection
 					&& mm.owningLanguage.hasAdapterFor(superType, realTypeP)»
@@ -521,7 +523,7 @@ class MetaclassAdapterInferrer
 				op.getterName
 			else
 				op.setterName
-		val correspondingCls = superType.findClass(aspect.aspectedClass.name)
+		val correspondingCls = superType.findClass(aspect.aspectedClass?.fullyQualifiedName.toString)
 
 		// If the super type doesn't expose this method, we don't need to generate it
 		val correspondingFeature =

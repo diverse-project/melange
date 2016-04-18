@@ -268,7 +268,7 @@ class LanguageExtensions
 	 * is common to {@code l} and {@code mt}.
 	 */
 	def boolean hasAdapterFor(Language l, ModelType mt, EClassifier cls) {
-		return l.hasAdapterFor(mt, cls.name)
+		return l.hasAdapterFor(mt, cls.uniqueId)
 	}
 
 	/**
@@ -276,14 +276,17 @@ class LanguageExtensions
 	 * for the {@link EClassifier} whose name is {@code find} towards the
 	 * {@link ModelType} {@code mt}, ie. whether {@code l} implements {@code mt}
 	 * and {@code find} is common to {@code l} and {@code mt}.
+	 * 
+	 * @param find
+	 * 		Simple or qualified EClass name
 	 */
 	def boolean hasAdapterFor(Language l, ModelType mt, String find) {
-		val syntaxFind = l.syntax.allClasses.findFirst[name == find]
+		val syntaxFind = l.syntax.findClass(find)
 
 		return
 			   l.^implements.exists[name == mt.name]
 			&& syntaxFind !== null
-			&& mt.allClasses.exists[name == find]
+			&& mt.findClass(find) !== null
 			&& syntaxFind.abstractable
 	}
 
@@ -519,14 +522,13 @@ class LanguageExtensions
 		aspects
 		.filter[isValid && aspectTypeRef.canBeCopiedFor(l.syntax)]
 		.forEach[asp |
-			var className = asp.aspectedClass?.name
-			val classFqName = asp.aspectedClass?.fullyQualifiedName
+			val classFqName = asp.aspectedClass?.fullyQualifiedName.toString
 			val renaming = ruleManagers
-				.map[getClassRule(classFqName?.toString)].filterNull.head
+				.map[getClassRule(classFqName)].filterNull.head
 
+			var className = classFqName
 			if (renaming !== null)
-				className = renaming.value.substring(
-					renaming.value.lastIndexOf(".") + 1)
+				className = renaming.value
 			
 			if (l.syntax.findClass(className) !== null
 				|| !asp.hasAspectAnnotation) {
@@ -553,14 +555,13 @@ class LanguageExtensions
 		// Update the current semantics
 		val newAspects = newArrayList
 		copiedAspect.forEach[asp |
-			val targetClass = asp.aspectedClass?.name
 			val targetFqName = asp.aspectedClass?.fullyQualifiedName?.toString
 	    	val rule = ruleManagers.map[getClassRule(targetFqName)].filterNull.head
 	    	val newClass = 
 	    		if (rule !== null)
-		    		rule.value.toQualifiedName.lastSegment
+		    		rule.value
 	    		else
-	    			targetClass
+	    			targetFqName
 
 	    	val aspName = asp.aspectTypeRef.simpleName
 	    	val eClazz = l.syntax.findClass(newClass)
@@ -697,7 +698,7 @@ class LanguageExtensions
 		// Inheritance operator
 		language.superLanguages.toList.reverseView.forEach[superLang |
 			superLang.orderedAspects.forEach[asp |
-				val localAspectedClass = language.syntax.findClass(asp.aspectedClass?.name)
+				val localAspectedClass = language.syntax.findClass(asp.aspectedClass?.fullyQualifiedName.toString)
 				val newAsp =  MelangeFactory.eINSTANCE.createAspect => [
 					aspectedClass = localAspectedClass
 					aspectTypeRef = typesBuilder.cloneWithProxies(asp.aspectTypeRef)
@@ -786,22 +787,20 @@ class LanguageExtensions
 	 */
 	def EClass findClassWithMapping(Aspect asp, LanguageOperator op){
 		
-		val classFqName = asp.aspectedClass?.fullyQualifiedName
-		var className = asp.aspectedClass?.name
+		var classFqName = asp.aspectedClass?.fullyQualifiedName.toString
 
 		val ruleManager = createRenamingManager(op)
 		if(ruleManager !== null){
-			val renaming = ruleManager.getClassRule(classFqName.toString)
+			val renaming = ruleManager.getClassRule(classFqName)
 			if (renaming !== null)
-				className = renaming.value.substring(
-					renaming.value.lastIndexOf(".") + 1)
+				classFqName = renaming.value
 		}
 		
 		return 
 			op
 			.owningLanguage
 			.syntax
-			.findClass(className)
+			.findClass(classFqName)
 	}
 	
 	/**
