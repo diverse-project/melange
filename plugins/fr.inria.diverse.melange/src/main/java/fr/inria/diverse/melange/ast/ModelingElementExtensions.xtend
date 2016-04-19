@@ -176,12 +176,20 @@ class ModelingElementExtensions
 	}
 
 	/**
-	 * Returns the {@link EClassifier} in {@code m} with the name {@code simpleName}.
+	 * Returns the {@link EClassifier} in {@code m} with the name {@code clsName}.
+	 * {@code clsName} can be simple or qualified.
+	 * 
+	 * Return null if not found
+	 * 
+	 * @see EcoreExtensions.findClassifier(EPackage pkg, String clsName)
 	 */
-	def EClassifier findClassifier(ModelingElement m, String simpleName) {
+	def EClassifier findClassifier(ModelingElement m, String clsName) {
 		return
-			m.allClassifiers
-			.findFirst[name == simpleName]
+			m.pkgs
+			.filter[ESuperPackage == null]
+			.map[findClassifier(clsName)]
+			.filterNull
+			.head
 	}
 
 	/**

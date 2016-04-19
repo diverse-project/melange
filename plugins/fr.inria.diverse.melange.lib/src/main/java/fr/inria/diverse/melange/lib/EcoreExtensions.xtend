@@ -200,8 +200,44 @@ class EcoreExtensions
 		return rootPkg.allClasses.findFirst[getUniqueId == fullEClassName]
 	}
 
+	/**
+	 * Search in {@link pkg} for an EClassifier named {@link clsName}.
+	 * The search is also performed in subpackages if {@link clsName}
+	 * is a qualified named.
+	 *
+	 * Return null if not found
+	 * 
+	 * @see findQualifiedClass(EPackage rootPkg, String qualifiedClsName)
+	 */
 	def EClassifier findClassifier(EPackage pkg, String clsName) {
+		
+		if(clsName.contains(".")){
+			return findQualifiedClassifier(pkg,clsName)
+		}
+		
 		return pkg.EClassifiers.findFirst[name == clsName]
+	}
+	
+	/**
+	 * Similar to findQualifiedClass(EPackage rootPkg, String qualifiedClsName)
+	 * but for Classifiers
+	 */
+	def EClassifier findQualifiedClassifier(EPackage rootPkg, String qualifiedClsName) {
+		
+		if(!qualifiedClsName.contains("."))
+			return null
+		
+		val rootName = rootPkg.name
+		if(qualifiedClsName.startsWith(rootName+"."))
+			return rootPkg.allClassifiers.findFirst[getUniqueId == qualifiedClsName]
+		
+		// Remove first packages corresponding to the prefix from the GenModel
+		val rootNamePos = qualifiedClsName.indexOf("."+rootName+".")
+		if(rootNamePos == -1)
+			return null
+		val fullEClassName = qualifiedClsName.substring(rootNamePos+1)
+		
+		return rootPkg.allClassifiers.findFirst[getUniqueId == fullEClassName]
 	}
 
 	def List<EClassifier> getAllClassifiers(List<EPackage> pkgs) {
