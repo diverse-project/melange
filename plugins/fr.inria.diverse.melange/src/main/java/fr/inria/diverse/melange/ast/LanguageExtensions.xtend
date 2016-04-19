@@ -235,14 +235,13 @@ class LanguageExtensions
 	 * one of its super-classes.
 	 */
 	def Set<Aspect> findAspectsOn(Language l, EClass cls) {
-		// FIXME: Uses simple names instead of FQN comparison
 		return
 			l.allSemantics
 			.filter[asp |
 				!asp.aspectedClass?.name.nullOrEmpty
 				&& (
-				   asp.aspectedClass?.name == cls.name
-				|| cls.EAllSuperTypes.exists[asp.aspectedClass?.name == name]
+				   asp.aspectedClass?.fullyQualifiedName == cls.fullyQualifiedName
+				|| cls.EAllSuperTypes.exists[asp.aspectedClass?.fullyQualifiedName == fullyQualifiedName]
 				)
 			].toSet
 	}
