@@ -314,6 +314,13 @@ class PackageMergeMerger implements EcoreMerger {
 		val copy = EcoreUtil::copy(merged)
 		receiving += copy
 
+		if(copy instanceof EClassifier)
+			if(copy.EPackage == null){
+				val packageFqName = (merged as EClassifier).EPackage.uniqueId
+				val container = context.rootPackage.getOrCreate(packageFqName)
+				container.EClassifiers += (copy as EClassifier)
+			}
+
 		val newAnn = EcoreFactory.eINSTANCE.createEAnnotation => [
 			source = ORIGIN_ANNOTATION_SOURCE
 			references += merged
@@ -332,8 +339,31 @@ class PackageMergeMerger implements EcoreMerger {
 
 			if (match !== null)
 				match.doMerge(m)
-			else
-				deepCopy(context, ref, rcv, m)
+			else{
+				if(m instanceof EClassifier){
+					val root = context.rootPackage
+					val clsFqName = m.uniqueId
+					val candidate = root.findClassifier(clsFqName)
+					if(candidate !== null){
+						rcv += candidate as T
+						val newAnn = EcoreFactory.eINSTANCE.createEAnnotation => [
+							source = ORIGIN_ANNOTATION_SOURCE
+							references += candidate
+							references += ref
+						]
+				
+						if (ref.containment)
+							candidate.EAnnotations += newAnn
+						else
+							context.EAnnotations += newAnn
+					}
+					else
+						deepCopy(context, ref, rcv, m)
+				}
+				else{
+					deepCopy(context, ref, rcv, m)
+				}
+			}
 		]
 	}
 
@@ -363,5 +393,46 @@ class PackageMergeMerger implements EcoreMerger {
 
 	override List<Conflict> getConflicts() {
 		return conflicts
+	}
+	
+	/**
+	 * Return the root EPackage containing {@link element}. <br>
+	 * Return null if {@link element} isn't into an EPackage
+	 */
+	private def EPackage getRootPackage(ENamedElement element){
+		switch element {
+			case element.eContainer != null :
+				getRootPackage(element.eContainer as ENamedElement)
+			EPackage :
+				element as EPackage
+			default :
+				null
+		}
+	}
+	
+	/**
+	 * Return null if {@link qualifiedPkgName} is not equal to {@link root}'s name
+	 * or if the first segment is not {@link root}'s name.
+	 */
+	private def EPackage getOrCreate(EPackage root, String qualifiedPkgName){
+		if(root.name == qualifiedPkgName)
+			return root
+		else if(qualifiedPkgName.startsWith(root.name+".") && !qualifiedPkgName.endsWith(".")){
+			val nameWithoutRoot = qualifiedPkgName.substring(root.name.length)
+			val segments = nameWithoutRoot.split(".")
+			var subPkg = root.ESubpackages.findFirst[name == segments.get(0)]
+			if(subPkg === null){
+				subPkg = EcoreFactory.eINSTANCE.createEPackage
+				subPkg.name = segments.get(0)
+				subPkg.nsPrefix = segments.get(0)
+				subPkg.nsURI = root.nsURI + segments.get(0) + "/"
+			}
+			if(segments.size == 1)
+				return subPkg
+			else
+				getOrCreate(subPkg,nameWithoutRoot)
+		}
+		else
+			return null
 	}
 }
