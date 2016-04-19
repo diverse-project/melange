@@ -112,7 +112,7 @@ class AspectToEcore
 					fieldType.type
 
 			val find =
-				if (realType.simpleName == aspCls.name)
+				if (realType.qualifiedName == aspCls.uniqueId)
 					aspCls
 				else
 					basePkg.findClass(realType.qualifiedName)
@@ -165,7 +165,7 @@ class AspectToEcore
 						op.returnType.type
 
 				val retCls =
-					if (realType.simpleName == aspCls.name)
+					if (realType.qualifiedName == aspCls.uniqueId)
 						aspCls
 					else
 						basePkg.findClass(realType.qualifiedName)
@@ -186,7 +186,7 @@ class AspectToEcore
 											pType
 	
 									val attrCls =
-										if (realTypeP.simpleName == aspCls.name)
+										if (realTypeP.qualifiedName == aspCls.uniqueId)
 											aspCls
 										else
 											basePkg.findClass(realTypeP.qualifiedName)
@@ -239,7 +239,7 @@ class AspectToEcore
 						retType.type
 
 				val find =
-					if (realType.simpleName == aspCls.name)
+					if (realType.qualifiedName == aspCls.uniqueId)
 						aspCls
 					else
 						basePkg.findClass(realType.qualifiedName)
