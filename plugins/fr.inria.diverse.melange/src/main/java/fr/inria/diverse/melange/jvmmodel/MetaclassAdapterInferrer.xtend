@@ -253,7 +253,7 @@ class MetaclassAdapterInferrer
 							if («ref.name» == null)
 								«ref.name» = «EListAdapter.canonicalName»«
 								».newInstance(adaptee.«mmRef.getterName»(),«
-								» adaptersFactory);
+								» adaptersFactory, eResource);
 							return «ref.name»;
 						«ELSE»
 							return («refType.type») adaptersFactory.createAdapter«
@@ -389,7 +389,7 @@ class MetaclassAdapterInferrer
 					&& mm.owningLanguage.hasAdapterFor(superType, op.EType)»
 					«IF op.many»
 						return «EListAdapter.canonicalName».newInstance«
-						»(adaptee.«opName»(«paramsList»), adaptersFactory);
+						»(adaptee.«opName»(«paramsList»), adaptersFactory, eResource);
 					«ELSE»
 						return («superType.typeRef(op, #[jvmCls]).type») «
 						»adaptersFactory.createAdapter(«
@@ -565,7 +565,7 @@ class MetaclassAdapterInferrer
 							«IF op.returnType.isCollection»
 								return «EListAdapter.canonicalName».«
 								»newInstance(«asp.qualifiedName».«
-								»«op.simpleName»(«paramsList»), adaptersFactory);
+								»«op.simpleName»(«paramsList»), adaptersFactory, eResource);
 							«ELSE»
 								return («retType.type») adaptersFactory.«
 								»createAdapter(«asp.qualifiedName».«
