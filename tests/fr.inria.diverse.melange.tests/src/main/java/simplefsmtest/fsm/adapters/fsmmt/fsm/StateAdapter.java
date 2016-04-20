@@ -45,7 +45,7 @@ public class StateAdapter extends EObjectAdapter<State> implements simplefsmtest
   @Override
   public EList<Transition> getOutgoingTransition() {
     if (outgoingTransition == null)
-    	outgoingTransition = fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.getOutgoingTransition(), adaptersFactory);
+    	outgoingTransition = fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.getOutgoingTransition(), adaptersFactory, eResource);
     return outgoingTransition;
   }
   
@@ -54,7 +54,7 @@ public class StateAdapter extends EObjectAdapter<State> implements simplefsmtest
   @Override
   public EList<Transition> getIncomingTransition() {
     if (incomingTransition == null)
-    	incomingTransition = fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.getIncomingTransition(), adaptersFactory);
+    	incomingTransition = fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.getIncomingTransition(), adaptersFactory, eResource);
     return incomingTransition;
   }
   

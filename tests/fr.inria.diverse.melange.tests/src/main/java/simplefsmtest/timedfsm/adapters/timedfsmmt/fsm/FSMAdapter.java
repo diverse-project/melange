@@ -22,7 +22,7 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements simplefsmtest.tim
   @Override
   public EList<State> getOwnedState() {
     if (ownedState == null)
-    	ownedState = fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.getOwnedState(), adaptersFactory);
+    	ownedState = fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.getOwnedState(), adaptersFactory, eResource);
     return ownedState;
   }
   
@@ -43,7 +43,7 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements simplefsmtest.tim
   @Override
   public EList<State> getFinalState() {
     if (finalState == null)
-    	finalState = fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.getFinalState(), adaptersFactory);
+    	finalState = fr.inria.diverse.melange.adapters.EListAdapter.newInstance(adaptee.getFinalState(), adaptersFactory, eResource);
     return finalState;
   }
   
