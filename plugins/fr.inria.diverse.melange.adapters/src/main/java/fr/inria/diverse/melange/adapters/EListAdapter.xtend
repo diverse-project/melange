@@ -70,7 +70,7 @@ class EListAdapter<E extends EObject, F extends EObject> implements GenericAdapt
 	}
 
 	override iterator() {
-		return Iterators.transform(adaptee.iterator, new IteratorTranslator<F, E>(adaptersFactory))
+		return Iterators.transform(adaptee.iterator, new IteratorTranslator<F, E>(adaptersFactory,eResource))
 	}
 
 	override lastIndexOf(Object o) {
@@ -79,13 +79,13 @@ class EListAdapter<E extends EObject, F extends EObject> implements GenericAdapt
 
 	override listIterator() {
 		return new ListIteratorWrapper(
-			Iterators.transform(adaptee.listIterator, new IteratorTranslator<F, E>(adaptersFactory))
+			Iterators.transform(adaptee.listIterator, new IteratorTranslator<F, E>(adaptersFactory,eResource))
 		)
 	}
 
 	override listIterator(int index) {
 		return new ListIteratorWrapper(
-			Iterators.transform(adaptee.listIterator(index), new IteratorTranslator<F, E>(adaptersFactory))
+			Iterators.transform(adaptee.listIterator(index), new IteratorTranslator<F, E>(adaptersFactory,eResource))
 		)
 	}
 
