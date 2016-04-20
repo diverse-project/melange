@@ -234,7 +234,9 @@ class ResourceTest
 
 	@Test
 	def void testSimpleSave() {
-		EcoreUtil::delete(root.ownedState.head.outgoingTransition.head)
+		val transition = root.ownedState.head.outgoingTransition.head
+		transition.target.incomingTransition.remove(transition)
+		EcoreUtil::delete(transition)
 		res.URI = URI::createURI("output/Simple.fsm")
 		res.save(null)
 	}
@@ -324,7 +326,7 @@ class ResourceTest
 	private def assertIsTimedFsm(Resource res) {
 		assertTrue(
 			'''«res» content isn't typed by TimedFsm types''',
-			res.allContents.forall[class.interfaces.exists[package.name == "timedfsm"]]
+			res.allContents.forall[class.interfaces.exists[package.name == "timedfsm.fsm"]]
 		)
 	}
 
