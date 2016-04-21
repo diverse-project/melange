@@ -25,6 +25,8 @@ import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
+import fr.inria.diverse.melange.metamodel.melange.Import
+import fr.inria.diverse.melange.lib.ModelUtils
 
 /**
  * A collection of utilities around {@link ModelingElement}s
@@ -33,6 +35,7 @@ class ModelingElementExtensions
 {
 	@Inject extension EcoreExtensions
 	@Inject EPackageProvider registry
+	@Inject ModelUtils modelUtils
 
 	private static final Logger log = Logger.getLogger(ModelingElementExtensions)
 
@@ -53,6 +56,21 @@ class ModelingElementExtensions
 	def Set<GenModel> getGenmodels(ModelingElement m) {
 		return registry.getGenModels(m)
 	}
+	
+	/**
+	 * Returns all the {@link GenModel}s used by {@code withOperator}.
+	 */
+	def Set<GenModel> getGenmodels(Import withOperator) {
+		
+		//TODO: refactor with EPackageProvider
+		val genmodelUris = newHashSet 
+		genmodelUris += withOperator.genmodelUris
+		if (withOperator.genmodelUris.size == 0 && withOperator.ecoreUri !== null)
+			genmodelUris += withOperator.ecoreUri.substring(0, withOperator.ecoreUri.lastIndexOf(".")) + ".genmodel"
+		
+		return
+			genmodelUris.map[modelUtils.loadGenmodel(it)].toSet
+	}
 
 	/**
 	 * Checks whether the Ecore pointed by the {@code ecoreUri} of {@code m}
@@ -71,6 +89,18 @@ class ModelingElementExtensions
 	def Set<GenPackage> getAllGenPkgs(ModelingElement m) {
 		return
 			m.genmodels
+			.map[allGenPkgs]
+			.flatten
+			.toSet
+	}
+	
+	/**
+	 * Returns the set of all {@link GenPackage}s defined by the {@link GenModel}s
+	 * of the {@link Import} {@code withOperator}.
+	 */
+	def Set<GenPackage> getAllGenPkgs(Import withOperator) {
+		return
+			withOperator.genmodels
 			.map[allGenPkgs]
 			.flatten
 			.toSet

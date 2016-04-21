@@ -601,6 +601,11 @@ class LanguageExtensions
 	def Set<String> collectTargetedPackages(Language l) {
 		val res = newHashSet
 
+		res += l.operators.filter(Import)
+			.map[allGenPkgs]
+			.flatten
+			.filter[getEcorePackage.ESuperPackage === null]
+			.map[packageNamespace]
 		res += l.syntax.allGenPkgs.filter[getEcorePackage.ESuperPackage === null].map[packageNamespace]
 		res += l.allDependencies.map[
 				syntax.allGenPkgs.filter[getEcorePackage.ESuperPackage === null].map[packageNamespace]
