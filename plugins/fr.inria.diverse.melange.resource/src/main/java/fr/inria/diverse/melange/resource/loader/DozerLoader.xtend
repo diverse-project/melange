@@ -17,6 +17,11 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 
 import static extension fr.inria.diverse.melange.resource.loader.EcoreHelper.*
 import org.eclipse.emf.ecore.EClassifier
+import com.google.common.collect.SetMultimap
+import com.google.common.collect.HashMultimap
+import java.util.List
+import java.util.ArrayList
+import java.util.Set
 
 class DozerLoader implements ExtensionsAwareLoader
 {
@@ -200,6 +205,8 @@ class BaseToExtendedBuilder extends BeanMappingBuilder
 		val classLoader = new OsgiDozerClassLoader
 		BeanContainer.getInstance.classLoader = classLoader
 		
+		val subClassesRegister = computeSubTypes(pkgBase.EClassifiers.filter(EClass).toList)
+		
 		pkgBase.EClassifiers.filter(EClass).forEach[cls |
 			val extendedCls = pkgExtended.eAllContents.filter(EClass).findFirst[name == cls.name]
 
@@ -217,19 +224,49 @@ class BaseToExtendedBuilder extends BeanMappingBuilder
 			cls.EReferences
 			.filter[many]
 			.forEach[ref |
-				val baseRefImpl = ref.EReferenceType.implementationClass
-				val extendedRefImpl = pkgExtended.eAllContents.filter(EClass).findFirst[name == ref.EReferenceType.name].implementationClass
+				val Set<EClass> baseCandidates = subClassesRegister.get(ref.EReferenceType)
+				
+				val baseRefImpls = new ArrayList<Class>()
+				baseRefImpls.add(ref.EReferenceType.implementationClass)
+				baseRefImpls.addAll(baseCandidates.map[implementationClass])
+				
+				val extendedRefImpls = new ArrayList<Class>()
+				extendedRefImpls.add(pkgExtended.eAllContents.filter(EClass).findFirst[name == ref.EReferenceType.name].implementationClass)
+				extendedRefImpls.addAll(
+					baseCandidates.map[cdt|
+						pkgExtended
+						.eAllContents
+						.filter(EClass)
+						.findFirst[name == cdt.name]
+						.implementationClass
+					]
+				)
 
 				map.fields(
 					ref.name,
 					ref.name,
-					FieldsMappingOptions.hintA(baseRefImpl),
-					FieldsMappingOptions.hintB(extendedRefImpl)
+					FieldsMappingOptions.hintA(baseRefImpls),
+					FieldsMappingOptions.hintB(extendedRefImpls)
 				)
 			]
 		]
 	}
-	
+
+	/**
+	 * Return a map of EClasses associated to their Subtypes
+	 */
+	def SetMultimap computeSubTypes(List<EClass> classes){
+		val SetMultimap<EClass, EClass> res = HashMultimap.create
+		
+		classes.forEach[cls|
+			val subclasses = classes.filter[cls2|
+				cls2 !== cls && cls.isSuperTypeOf(cls2)
+			]
+			res.putAll(cls,subclasses)
+		]
+		
+		return res
+	}	
 }
 
 public class OsgiDozerClassLoader implements DozerClassLoader {
