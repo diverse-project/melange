@@ -23,15 +23,15 @@ class MelangeResourceImpl implements Resource.Internal
 	new(URI uri) {
 		// FIXME: Retrieve the currently-used one
 		val rs = new ResourceSetImpl
-		val query = uri.query.split("=")
+		val query = uri.query
+		val SEPARATOR = "&|;"
+		val pairs = query.split(SEPARATOR)
+		
+		expectedMt = pairs.findFirst[startsWith("mt=")]?.substring(3)
+		expectedLang = pairs.findFirst[startsWith("lang=")]?.substring(5)
 
 		melangeUri = uri
 		wrappedResource = rs.getResource(MelangeResourceUtils.melangeToFallbackURI(uri), true) as Resource.Internal
-
-		if (query.head == "mt")
-			expectedMt = query.get(1)
-		else if (query.head == "lang")
-			expectedLang = query.get(1)
 	}
 
 	def Resource getWrappedResource() {
@@ -40,21 +40,22 @@ class MelangeResourceImpl implements Resource.Internal
 
 	override getContents() throws RuntimeException {
 		val objs = wrappedResource.getContents()
-		if (objs.empty)
+		if (objs.empty || (expectedMt == null && expectedLang == null))
 			return objs
+		
+		// 1 - Convert Language to Language 
+		var Resource resource = wrappedResource
+		if (expectedLang !== null) {
+			resource = resource.adaptResourceToLang(expectedLang)
+		}
 			
-		val actualLanguage = wrappedResource.language
-
+		// 2 - Adapt Language to ModelType
 		if (expectedMt !== null) {
-			adapter = wrappedResource.adaptResourceToMT(expectedMt)
-			return adapter.contents
+			resource = resource.adaptResourceToMT(expectedMt)
+			adapter = resource
 		}
-		else if (expectedLang !== null) {
-			val resource = wrappedResource.adaptResourceToLang(expectedLang)
-			return resource.contents
-		}
-		else
-			return objs
+		
+		return resource.contents
 	}
 
 	override getAllContents() {
