@@ -521,7 +521,7 @@ class LanguageExtensions
 		aspects
 		.filter[isValid && aspectTypeRef.canBeCopiedFor(l.syntax)]
 		.forEach[asp |
-			val classFqName = asp.aspectedClass?.fullyQualifiedName.toString
+			val classFqName = asp.aspectedClass?.fullyQualifiedName?.toString
 			val renaming = ruleManagers
 				.map[getClassRule(classFqName)].filterNull.head
 

@@ -170,6 +170,9 @@ class EcoreExtensions
 	 */
 	def EClass findClass(EPackage pkg, String clsName) {
 		
+		if(clsName == null)
+			return null
+		
 		if(clsName.contains(".")){
 			return findQualifiedClass(pkg,clsName)
 		}
@@ -184,7 +187,7 @@ class EcoreExtensions
 	 */
 	def EClass findQualifiedClass(EPackage rootPkg, String qualifiedClsName) {
 		
-		if(!qualifiedClsName.contains("."))
+		if(qualifiedClsName == null || !qualifiedClsName.contains("."))
 			return null
 		
 		val rootName = rootPkg.name
@@ -224,7 +227,7 @@ class EcoreExtensions
 	 */
 	def EClassifier findQualifiedClassifier(EPackage rootPkg, String qualifiedClsName) {
 		
-		if(!qualifiedClsName.contains("."))
+		if(qualifiedClsName == null || !qualifiedClsName.contains("."))
 			return null
 		
 		val rootName = rootPkg.name
