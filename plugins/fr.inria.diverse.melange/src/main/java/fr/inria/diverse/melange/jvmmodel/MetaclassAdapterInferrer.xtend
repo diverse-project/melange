@@ -240,8 +240,9 @@ class MetaclassAdapterInferrer
 		else {
 			// If this is a many reference, we keep a pointer to it in a local
 			// field to avoid recreating a new EListAdapter everytime it is accessed
+			val refFieldName = ref.name +"_"
 			if (ref.many)
-				jvmCls.members += mm.toField(ref.name, refType)
+				jvmCls.members += mm.toField(refFieldName, refType)
 
 			// T getX()
 			jvmCls.members += mm.toMethod(ref.getterName, refType)[
@@ -250,11 +251,11 @@ class MetaclassAdapterInferrer
 				body = '''
 					«IF mm.owningLanguage.hasAdapterFor(superType, ref.EReferenceType)»
 						«IF ref.many»
-							if («ref.name» == null)
-								«ref.name» = «EListAdapter.canonicalName»«
+							if («refFieldName» == null)
+								«refFieldName» = «EListAdapter.canonicalName»«
 								».newInstance(adaptee.«mmRef.getterName»(),«
 								» adaptersFactory, eResource);
-							return «ref.name»;
+							return «refFieldName»;
 						«ELSE»
 							return («refType.type») adaptersFactory.createAdapter«
 							»(adaptee.«mmRef.getterName»(), eResource);
