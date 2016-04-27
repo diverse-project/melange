@@ -624,9 +624,14 @@ class MetaclassAdapterInferrer
 		// provided by the interface, not the one of the underlying meta-class
 		jvmCls.members += mm.toMethod("eClass", EClass.typeRef)[
 			annotations += Override.annotationRef
-
+			
+			val safeName = 
+				if(cls.name.equals("Class"))
+					cls.name+"_"
+				else
+					cls.name
 			body = '''
-				return «superType.getFqnFor(cls.EPackage)».eINSTANCE.get«cls.name»();
+				return «superType.getFqnFor(cls.EPackage)».eINSTANCE.get«safeName»();
 			'''
 		]
 
