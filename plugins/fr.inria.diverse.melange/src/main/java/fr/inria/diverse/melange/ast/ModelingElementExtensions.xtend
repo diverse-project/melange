@@ -34,6 +34,7 @@ import fr.inria.diverse.melange.lib.ModelUtils
 class ModelingElementExtensions
 {
 	@Inject extension EcoreExtensions
+	@Inject extension LanguageExtensions
 	@Inject EPackageProvider registry
 	@Inject ModelUtils modelUtils
 
@@ -305,6 +306,19 @@ class ModelingElementExtensions
 				]
 			]
 		]
+		
+		if(m instanceof Metamodel){
+			if(m.owningLanguage.generatedByMelange){
+				val classes = copy.map[allClasses].flatten.toSet
+				classes
+					.map[EOperations]
+					.flatten
+					.forEach[op |
+						op.getEAnnotation("http://www.eclipse.org/emf/2002/GenModel")
+						?.details.removeKey("body")
+					]
+			}
+		}
 
 		res.contents += copy
 
