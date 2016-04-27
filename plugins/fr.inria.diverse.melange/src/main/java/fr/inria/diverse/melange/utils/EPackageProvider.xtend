@@ -127,10 +127,10 @@ class EPackageProvider
 			val pkgs = newArrayList
 
 			pkgs += root
-			pkgs += root.referencedPkgs.filter[!pkgs.exists[p | nsURI == p.nsURI]]
+			pkgs += root.referencedPkgs.filter[!pkgs.exists[p | uniqueId == p.uniqueId]]
 
 			packages.putAll(modElem.fqn, pkgs)
-			packages.putAll(modElem.fqn, pkgs.map[allSubPkgs].flatten.filter[!pkgs.exists[p | nsURI == p.nsURI]])
+			packages.putAll(modElem.fqn, pkgs.map[allSubPkgs].flatten.filter[!pkgs.exists[p | uniqueId == p.uniqueId]])
 //			pkgs.forEach[ESubpackages.clear]
 		}
 	}
