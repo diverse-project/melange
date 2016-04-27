@@ -224,20 +224,20 @@ class ModelingElementExtensions
 
 	/**
  	 * Creates the Ecore file corresponding to {@code m} at the location
- 	 * {@code uri} using {@code pkgUri} as its nsURI
+ 	 * {@code uri} using {@code baseUri} as beginning for its EPackages nsURI
  	 * 
  	 * @param hideAspectElements whether the elements coming from aspects
  	 * (ie. annotated with 'aspect') should be hidden in the serialized Ecore
  	 * @return the serialized root {@link EPackage}
  	 */
-	def EPackage createEcore(ModelingElement m, String uri, String pkgUri,
+	def EPackage createEcore(ModelingElement m, String uri, String baseUri,
 		boolean hideAspectElements) {
 		val resSet = new ResourceSetImpl
 		val res = resSet.createResource(URI::createURI(uri))
-		val rootPkg = m.pkgs.filter[ESuperPackage === null].head
+		val rootPkgs = m.pkgs.filter[ESuperPackage === null]
 
-		if (pkgUri !== null){
-			rootPkg.initializeNsUriWith(pkgUri)
+		if (baseUri !== null){
+			rootPkgs.forEach[initializeNsUriWith(baseUri)]
 		}
 
 		val copy = EcoreUtil::copyAll(m.pkgs.filter[ESuperPackage === null].toList)
@@ -317,6 +317,6 @@ class ModelingElementExtensions
 			log.error("Error while serializing new Ecore for " + m, e)
 		}
 
-		return rootPkg
+		return rootPkgs.head
 	}
 }

@@ -645,14 +645,12 @@ class EcoreExtensions
 		val base = 
 			if(nsUriBase.endsWith("/")) nsUriBase
 			else nsUriBase + "/"
-		syntax.nsURI = base
+		syntax.nsURI = 
+			base
+			+ syntax.uniqueId.replace('.','/')
+			+ "/"
 		syntax.allSubPkgs.forEach[pkg|
-			val suffix = 
-				pkg
-				.uniqueId
-				.split("\\.")
-				.drop(1)
-				.join("/")
+			val suffix = pkg.uniqueId.replace('.','/')
 			pkg.nsURI = base + suffix + "/"	
 		]
 	}
