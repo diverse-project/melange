@@ -64,8 +64,8 @@ class EcoreMergerTest
 	def void testNotMatchingPackage() {
 		mergedEcore.name = "namesNotMatching"
 		val resulting = merger.merge(
-			newArrayList(Collections.singletonList(receivingEcore)),
-			newArrayList(Collections.singletonList(mergedEcore))
+			newHashSet(Collections.singletonList(receivingEcore)),
+			newHashSet(Collections.singletonList(mergedEcore))
 		)
 
 		assertNotNull(resulting)

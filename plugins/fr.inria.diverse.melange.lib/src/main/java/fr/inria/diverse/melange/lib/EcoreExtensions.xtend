@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.EcoreFactory
 import org.eclipse.emf.ecore.EcorePackage
 import org.eclipse.emf.ecore.util.EcoreUtil
+import java.util.Set
 
 class EcoreExtensions
 {
@@ -158,6 +159,10 @@ class EcoreExtensions
 			}
 		}
 	}
+	
+	def EClass findClass(Set<EPackage> pkgs, String clsName) {
+		return pkgs.map[findClass(it,clsName)].head
+	}
 
 	/**
 	 * Search in {@link pkg} for an EClass named {@link clsName}.
@@ -203,6 +208,10 @@ class EcoreExtensions
 		return rootPkg.allClasses.findFirst[getUniqueId == fullEClassName]
 	}
 
+	def EClassifier findClassifier(Set<EPackage> pkgs, String clsName) {
+		return pkgs.map[findClassifier(it,clsName)].head
+	}
+	
 	/**
 	 * Search in {@link pkg} for an EClassifier named {@link clsName}.
 	 * The search is also performed in subpackages if {@link clsName}
@@ -603,9 +612,9 @@ class EcoreExtensions
 	/**
 	 * Replaces a datatype with a new EClass and update the pointing references
 	 */
-	def void replaceDataTypeWithEClass(EPackage pkg, EDataType dt) {
+	def void replaceDataTypeWithEClass(Set<EPackage> pkgs, EDataType dt) {
 		val dtName = dt.uniqueId
-		val find = pkg.findClass(dtName)
+		val find = pkgs.findClass(dtName)
 
 		val replacement =
 			if (find !== null)
@@ -618,7 +627,7 @@ class EcoreExtensions
 					newCls.addAspectAnnotation
 				newCls
 			}
-		EcoreUtil.UsageCrossReferencer::find(dt, pkg).forEach[setting |
+		EcoreUtil.UsageCrossReferencer::find(dt, pkgs).forEach[setting |
 			val attr = setting.EObject
 			if (attr instanceof EAttribute) {
 				val featureReplacement = EcoreFactory.eINSTANCE.createEReference => [ref |

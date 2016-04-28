@@ -12,13 +12,13 @@ class InheritanceBuilder extends LanguageOperatorBuilder<Inheritance> {
 	}
 
 	/**
-	 * Points {@code AbstractBuilder#model} to the {@link EPackage} derived
+	 * Points {@code AbstractBuilder#model} to the set of {@link EPackage} derived
 	 * from the build of the {@link Language} pointed by the {@link Inheritance}
 	 * operator.
 	 */
 	override make() {
 		if (targetModel !== null) {
-			model = EcoreUtil::copy(targetModel)
+			model = EcoreUtil::copyAll(targetModel).toSet
 		}
 	}
 }

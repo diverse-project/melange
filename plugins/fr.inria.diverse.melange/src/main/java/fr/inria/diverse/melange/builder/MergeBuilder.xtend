@@ -15,13 +15,13 @@ class MergeBuilder extends LanguageOperatorBuilder<Merge> {
 	}
 
 	/**
-	 * Copy the {@link EPackage} built from the {@link Language} pointed by
+	 * Copy the set of {@link EPackage} built from the {@link Language} pointed by
 	 * the current {@link Merge} operator and apply the associated renaming rules.
 	 */
 	override make() {
 		if (targetModel !== null) {
-			model = EcoreUtil::copy(targetModel)
-			model.applyRenaming(source.mappingRules)
+			model = EcoreUtil::copyAll(targetModel).toSet
+			model.forEach[applyRenaming(source.mappingRules)]
 		}
 	}
 }

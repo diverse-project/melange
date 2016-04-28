@@ -440,7 +440,7 @@ class LanguageExtensions
 				val opBuilders =
 					modelTypingSpaceBuilder.findBuilder(superlang).subBuilders
 				val sliceBuilder = opBuilders.findFirst[source == op]
-				val sliceClasses = sliceBuilder.model.allClasses
+				val sliceClasses = sliceBuilder.model.map[allClasses].flatten
 
 				aspects =
 					targetLang.semantics

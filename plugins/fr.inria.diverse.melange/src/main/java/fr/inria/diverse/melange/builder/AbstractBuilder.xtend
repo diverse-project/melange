@@ -2,6 +2,7 @@ package fr.inria.diverse.melange.builder
 
 import java.util.List
 import org.eclipse.emf.ecore.EPackage
+import java.util.Set
 
 /**
  * Default implementation of {@link Builder}. An {@link EPackage} {@code model}
@@ -11,10 +12,10 @@ import org.eclipse.emf.ecore.EPackage
  */
 abstract class AbstractBuilder implements Builder {
 	/**
-	 * An {@link EPackage} containing the chunk of syntax generated from
-	 * this builder.
+	 * A set of {@link EPackage} containing the chunk of syntax generated
+	 * from this builder. Each {@link EPackage} is a root of the chunk.
 	 */
-	protected EPackage model = null
+	protected Set<EPackage> model = null
 	/**
 	 * {@link BuilderError} collected during the build.
 	 */
@@ -28,7 +29,7 @@ abstract class AbstractBuilder implements Builder {
 	override postBuild() {
 	}
 
-	def EPackage getModel() {
+	def Set<EPackage> getModel() {
 		return model
 	}
 

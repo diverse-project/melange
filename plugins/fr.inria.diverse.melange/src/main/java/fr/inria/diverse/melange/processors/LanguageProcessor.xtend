@@ -84,7 +84,7 @@ class LanguageProcessor extends DispatchMelangeProcessor
 		}
 		
 		if(language.isGeneratedByMelange){
-				syntax.initializeNsUriWith(language.externalPackageUri)
+				syntax.forEach[initializeNsUriWith(language.externalPackageUri)]
 		}
 
 		// FIXME: I don't understand what's going on here
@@ -97,9 +97,9 @@ class LanguageProcessor extends DispatchMelangeProcessor
 				rs.resources.remove(res)
 
 			res = rs.createResource(URI::createURI(language.name+"RootPackage"))
-			res?.contents?.add(syntax)
+			res?.contents?.addAll(syntax)
 
-			packageProvider.registerPackages(language.syntax, syntax)
+			syntax.forEach[packageProvider.registerPackages(language.syntax, it)]
 		}
 	} 
 
@@ -158,7 +158,7 @@ class LanguageProcessor extends DispatchMelangeProcessor
 				val classFqName = aspectTypeRef.aspectAnnotationValue
 				if (classFqName !== null)
 					aspectedClass = language.syntax.findClass(classFqName)
-				ecoreFragment = builder.getBuilder(language).findBuilder(w)?.model
+				ecoreFragment = builder.getBuilder(language).findBuilder(w)?.model.head
 			]
 		]
 	}

@@ -13,6 +13,7 @@ import org.eclipse.xtext.common.types.JvmEnumerationType
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmVisibility
 import org.eclipse.xtext.common.types.JvmMember
+import java.util.Set
 
 /**
  * Infers the minimal Ecore file (an {@link EPackage}) corresponding to the
@@ -49,7 +50,7 @@ class AspectToEcore
 	def EPackage inferEcoreFragment(
 		JvmDeclaredType aspect,
 		EClass baseCls,
-		EPackage basePkg
+		Set<EPackage> basePkgs
 	) {
 		// FIXME: should check aspPkg == basePkg?
 		val aspPkg = 
@@ -57,9 +58,9 @@ class AspectToEcore
 				baseCls.copyPackage 
 			else
 				EcoreFactory.eINSTANCE.createEPackage => [
-					name = basePkg.name
-					nsPrefix = basePkg.nsPrefix
-					nsURI = basePkg.nsURI
+					name = basePkgs.head.name
+					nsPrefix = basePkgs.head.nsPrefix
+					nsURI = basePkgs.head.nsURI
 				]
 		val aspTopPkg = aspPkg.rootPackage
 
@@ -115,7 +116,7 @@ class AspectToEcore
 				if (realType.qualifiedName == aspCls.uniqueId)
 					aspCls
 				else
-					basePkg.findClass(realType.qualifiedName)
+					basePkgs.findClass(realType.qualifiedName)
 
 			// If we find a corresponding EClass, then it's a EReference
 			if (find !== null)
@@ -168,7 +169,7 @@ class AspectToEcore
 					if (realType.qualifiedName == aspCls.uniqueId)
 						aspCls
 					else
-						basePkg.findClass(realType.qualifiedName)
+						basePkgs.findClass(realType.qualifiedName)
 				if (!aspCls.EOperations.exists[name == op.simpleName]) {
 					aspCls.EOperations +=
 						EcoreFactory.eINSTANCE.createEOperation => [
@@ -189,7 +190,7 @@ class AspectToEcore
 										if (realTypeP.qualifiedName == aspCls.uniqueId)
 											aspCls
 										else
-											basePkg.findClass(realTypeP.qualifiedName)
+											basePkgs.findClass(realTypeP.qualifiedName)
 
 									EParameters +=
 										EcoreFactory.eINSTANCE.createEParameter => [pp |
@@ -242,7 +243,7 @@ class AspectToEcore
 					if (realType.qualifiedName == aspCls.uniqueId)
 						aspCls
 					else
-						basePkg.findClass(realType.qualifiedName)
+						basePkgs.findClass(realType.qualifiedName)
 				if (find !== null)
 					// Create EReference
 					aspCls.EStructuralFeatures +=

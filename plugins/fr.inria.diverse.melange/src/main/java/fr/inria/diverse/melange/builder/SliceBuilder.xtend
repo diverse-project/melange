@@ -21,20 +21,20 @@ class SliceBuilder extends LanguageOperatorBuilder<Slice> {
 	}
 
 	/**
-	 * Copy the {@link EPackage} built from the {@link Language} pointed by
+	 * Copy the set of {@link EPackage} built from the {@link Language} pointed by
 	 * the current {@link Slice} operator, slice it according to the slicing
 	 * criterion and apply the renaming rules.
 	 */
 	override make() {
 		if (targetModel !== null) {
-			val sliceBase = EcoreUtil::copy(targetModel)
-			val roots = getClasses(sliceBase, source.roots)
-			val slicer = new StrictEcore(roots, sliceBase, false, "ecore", false, true)
+			val sliceBase = EcoreUtil::copyAll(targetModel).toSet
+			val roots = sliceBase.map[getClasses(it, source.roots)].flatten.toList
+			val slicer = new StrictEcore(roots, sliceBase.head, false, "ecore", false, true)
 
 			slicer.slice
 
-			model = slicer.getclonedElts.filter(EPackage).filter[eContainer === null].head
-			model.applyRenaming(source.mappingRules)
+			model = slicer.getclonedElts.filter(EPackage).filter[eContainer === null].toSet
+			model.forEach[applyRenaming(source.mappingRules)]
 		}
 	}
 

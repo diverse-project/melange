@@ -17,6 +17,7 @@ import fr.inria.diverse.melange.utils.ErrorHelper
 import java.util.List
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.util.EcoreUtil
+import java.util.Set
 
 /**
  * General builder for a {@link Language}.
@@ -65,7 +66,7 @@ class LanguageBuilder extends AbstractBuilder {
 		]
 		
 		if(source.isGeneratedByMelange)
-			model.nsURI = source.externalPackageUri
+			model.forEach[nsURI = source.externalPackageUri+name+"/"]
 	}
 
 	override make() {
@@ -94,7 +95,7 @@ class LanguageBuilder extends AbstractBuilder {
 			errors.addAll(builder.errors)
 		]
 
-		model = EcoreUtil::copy(builders.head.model)
+		model = EcoreUtil::copyAll(builders.head.model).toSet
 		builders.drop(1).forEach[builder |
 			errors.addAll(model.merge(builder.model, builder.source))
 		]
@@ -113,13 +114,13 @@ class LanguageBuilder extends AbstractBuilder {
 	}
 
 	/**
-	 * Merges the {@link EPackage} {@code merged} into the {@link EPackage}
+	 * Merges the {@link EPackage}s {@code merged} into the {@link EPackage}s
 	 * {@code base}. Conflicts that may arise during the merge are returned as
 	 * {@link BuilderError}s.
 	 * 
 	 * @see EcoreMerger#merge 
 	 */
-	def List<BuilderError> merge(EPackage base, EPackage merged, Operator context) {
+	def List<BuilderError> merge(Set<EPackage> base, Set<EPackage> merged, Operator context) {
 		ecoreMerger.merge(base, merged)
 
 		return ecoreMerger.conflicts.map[
