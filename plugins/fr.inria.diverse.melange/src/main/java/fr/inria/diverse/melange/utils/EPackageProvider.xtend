@@ -54,9 +54,9 @@ class EPackageProvider
 				Metamodel case !m.owningLanguage.superLanguages.empty: {
 					val pkgsCopy = m.owningLanguage.operators.filter(Inheritance).map[targetLanguage.syntax.packages.map[
 						val copy = EcoreUtil::copy(it)
-						copy.name = m.owningLanguage.name.toLowerCase
-						copy.nsPrefix = copy.name
-						copy.nsURI = '''http://«copy.name»'''
+						copy.name = it.name
+						copy.nsPrefix = it.name
+						copy.nsURI = '''«m.owningLanguage.externalPackageUri»«it.uniqueId.replace('.','/')»/'''
 						return copy
 					]].flatten
 
