@@ -20,6 +20,9 @@ import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.naming.QualifiedName
+import java.util.List
+import com.google.common.collect.SetMultimap
+import com.google.common.collect.HashMultimap
 
 /**
  * A collection of utilities around naming conventions in Melange
@@ -41,6 +44,19 @@ class NamingHelper
 			m.allGenPkgs
 			.head
 			.packageNamespace
+	}
+	
+	/**
+	 * Return the list of packages from {@link m} associated with their java qualified name
+	 */
+	def SetMultimap<String,String> getRootPackageNamespaces(ModelingElement m){
+		val SetMultimap<String, String> res = HashMultimap.create
+		m.allGenPkgs.forEach[
+			val syntaxPackage = getEcorePackage.uniqueId
+			val javaPackage = packageNamespace
+			res.put(syntaxPackage,javaPackage)
+		]
+		return res
 	}
 
 	/**

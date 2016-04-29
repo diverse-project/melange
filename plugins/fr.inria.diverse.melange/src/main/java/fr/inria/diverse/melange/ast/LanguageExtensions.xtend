@@ -35,6 +35,8 @@ import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.validation.EObjectDiagnosticImpl
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import com.google.common.collect.HashMultimap
+import com.google.common.collect.SetMultimap
 
 /**
  * A collection of utilities around {@link Language}s
@@ -493,7 +495,7 @@ class LanguageExtensions
 			return
 
 		val typeRefBuilder = builderFactory.create(l.eResource.resourceSet)
-		val targetEmfNamespace = l.syntax.rootPackageNamespace
+		val targetEmfNamespaces = l.syntax.rootPackageNamespaces
 		val targetAspectNamespace = l.aspectsNamespace
 		val targetProjectName = l.externalRuntimeName
 		val sourceEmfNamespaces =
@@ -503,7 +505,7 @@ class LanguageExtensions
 //				#[aspects.filter[hasAspectAnnotation].head.aspectTypeRef.targetedNamespace.toString].toSet
 			// Prefixed root package
 			else
-				#[aspects.head.owningLanguage.syntax.rootPackageNamespace].toSet
+				aspects.head.owningLanguage.syntax.rootPackageNamespaces
 
 		// Exclude local aspects
 		val externalAsp = newArrayList
@@ -538,7 +540,7 @@ class LanguageExtensions
 				val request = new AspectCopier.AspectCopierRequest(
 					asp4Request,
 					sourceEmfNamespaces,
-					targetEmfNamespace,
+					targetEmfNamespaces,
 					targetAspectNamespace,
 					targetProjectName
 				)
@@ -598,18 +600,26 @@ class LanguageExtensions
 	 * {@code l} (ie. all the EMF namespaces generated from its syntax or the
 	 * syntax of one of its dependencies).
 	 */
-	def Set<String> collectTargetedPackages(Language l) {
-		val res = newHashSet
+	def SetMultimap<String,String> collectTargetedPackages(Language l) {
+		// Collection of syntaxPackageName -> javaPackageName*
+		val SetMultimap<String, String> res = HashMultimap.create
 
-		res += l.operators.filter(Import)
+		l.operators.filter(Import)
 			.map[allGenPkgs]
 			.flatten
 			.filter[getEcorePackage.ESuperPackage === null]
-			.map[packageNamespace]
-		res += l.syntax.allGenPkgs.filter[getEcorePackage.ESuperPackage === null].map[packageNamespace]
-		res += l.allDependencies.map[
-				syntax.allGenPkgs.filter[getEcorePackage.ESuperPackage === null].map[packageNamespace]
-			].flatten
+			.forEach[
+				res.put(it.getEcorePackage.uniqueId,packageNamespace)
+				
+			]
+		l.syntax.allGenPkgs.filter[getEcorePackage.ESuperPackage === null]
+			.forEach[
+				res.put(it.getEcorePackage.uniqueId,packageNamespace)
+			]
+		l.allDependencies.map[syntax.allGenPkgs.filter[getEcorePackage.ESuperPackage === null]]
+			.flatten.forEach[
+				res.put(it.getEcorePackage.uniqueId,packageNamespace)
+			]
 
 		return res
 	}
