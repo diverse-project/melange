@@ -1,5 +1,6 @@
 package fr.inria.diverse.melange.utils
 
+import com.google.common.collect.SetMultimap
 import fr.inria.diverse.commons.asm.shade.DirectoryShader
 import fr.inria.diverse.commons.asm.shade.ShadeRequest
 import fr.inria.diverse.commons.asm.shade.filter.Filter
@@ -21,6 +22,8 @@ import org.eclipse.xtend.lib.annotations.Data
 import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.util.internal.Stopwatches
+
+import static fr.inria.diverse.melange.utils.AspectCopier.*
 
 /**
  * Handles the copy of a {@link Language}'s aspects into its runtime
@@ -51,12 +54,12 @@ class AspectCopier
 		 * that compose the {@link Language}. If the language results from an
 		 * assembly, there may be many different namespaces.
 		 */
-		Set<String> sourceEmfNamespaces
+		SetMultimap<String,String> sourceEmfNamespaces
 		/**
 		 * The target EMF namespace of the {@link Language}, ie. the package
 		 * in which the code of its abstract syntax is generated.
 		 */
-		String targetEmfNamespace
+		SetMultimap<String,String> targetEmfNamespace
 		/**
 		 * The target namespace in which the set of aspects must be copied.
 		 */
@@ -139,8 +142,14 @@ class AspectCopier
 			resultFqn += '''«request.targetAspectNamespace».«aspRef.simpleName»'''
 		]
 
-		request.sourceEmfNamespaces.forEach[fqn |
-			relocators += new SimpleRelocator(fqn, request.targetEmfNamespace, null, #[])
+		request.sourceEmfNamespaces.keySet.forEach[pkgName |
+			val sourcePkgFqns = request.sourceEmfNamespaces.get(pkgName)
+			val targetPkgFqn = request.targetEmfNamespace.get(pkgName).head
+			if(targetPkgFqn !== null){
+				sourcePkgFqns.forEach[ sourcePkgFqn |
+					relocators += new SimpleRelocator(sourcePkgFqn, targetPkgFqn, null, #[])
+				]
+			}
 		]
 
 		sourceAspectNamespaces.forEach[fqn |

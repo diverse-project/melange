@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.xtext.common.types.JvmDeclaredType
+import java.util.Set
 
 /**
  * Builder for the {@link Weave} operator.
@@ -18,12 +19,12 @@ class WeaveBuilder extends OperatorBuilder<Weave> {
 	@Inject extension AspectToEcore
 	@Inject extension EcoreExtensions
 	/**
-	 * The {@link EPackage} on which the aspect pointed by the current
+	 * The {@link EPackage}s on which the aspect pointed by the current
 	 * {@link Weave} operator should be woven.
 	 */
-	EPackage baseModel
+	Set<EPackage> baseModel
 
-	new(Weave op, EPackage baseModel) {
+	new(Weave op, Set<EPackage> baseModel) {
 		super(op)
 		this.baseModel = baseModel
 	}
@@ -40,7 +41,7 @@ class WeaveBuilder extends OperatorBuilder<Weave> {
 
 			val baseClass = if (className !== null) baseModel.findClass(className)
 			val aspect = aspRef.type as JvmDeclaredType
-			model = aspect.inferEcoreFragment(baseClass, baseModel)
+			model = newHashSet(aspect.inferEcoreFragment(baseClass, baseModel))
 
 			alignInferredClassifiers(baseModel, model)
 		}
@@ -52,16 +53,16 @@ class WeaveBuilder extends OperatorBuilder<Weave> {
 	 * Thus, we need to align the inferred types, classes taking priority
 	 * over datatypes.
 	 */
-	private def void alignInferredClassifiers(EPackage base, EPackage fragment) {
-		val find = fragment.EClassifiers.filter(EDataType).findFirst[dt |
-			fragment.EClassifiers.filter(EClass).exists[cls | cls.name == dt.name]
+	private def void alignInferredClassifiers(Set<EPackage> base, Set<EPackage> fragment) {
+		val find = fragment.map[EClassifiers].flatten.filter(EDataType).findFirst[dt |
+			fragment.map[EClassifiers].flatten.filter(EClass).exists[cls | cls.name == dt.name]
 		]
 
 		if (find !== null)
 			replaceDataTypeWithEClass(fragment, find)
 
-		fragment.EClassifiers.forEach[cls1 |
-			val cls2 = base.EClassifiers.findFirst[cls2 | cls2.name == cls1.name && cls2.eClass !== cls1.eClass]
+		fragment.map[EClassifiers].flatten.forEach[cls1 |
+			val cls2 = base.map[EClassifiers].flatten.findFirst[cls2 | cls2.name == cls1.name && cls2.eClass !== cls1.eClass]
 			if (cls2 !== null) {
 				if (cls2 instanceof EClass) {
 					if (cls1 instanceof EDataType)

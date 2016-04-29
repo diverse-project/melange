@@ -26,6 +26,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain
 import org.eclipse.emf.transaction.util.TransactionUtil
 import org.eclipse.emf.transaction.RecordingCommand
 import org.eclipse.emf.ecore.resource.ResourceSet
+import java.util.Set
 
 /**
  * Builds {@link Language}s by merging the various parts declared in each
@@ -68,12 +69,12 @@ class LanguageProcessor extends DispatchMelangeProcessor
 		]
 	}
 
-	private def void loadLanguageWithSyntax(ResourceSet rs, Language language, EPackage syntax) {
+	private def void loadLanguageWithSyntax(ResourceSet rs, Language language, Set<EPackage> syntax) {
 		var res = rs.getResource(URI::createURI(language.name + "RootPackage"), false)
 		if (res !== null)
 			rs.resources.remove(res)
 		res = rs.createResource(URI::createURI(language.name + "RootPackage"))
-		res?.contents?.add(syntax)
+		res?.contents?.addAll(syntax)
 	}
 
 	/**
@@ -95,8 +96,8 @@ class LanguageProcessor extends DispatchMelangeProcessor
 			syntax = builder.model
 		}
 
-		if (language.isGeneratedByMelange) {
-			syntax.initializeNsUriWith(language.externalPackageUri)
+		if(language.isGeneratedByMelange){
+				syntax.forEach[initializeNsUriWith(language.externalPackageUri)]
 		}
 
 		// FIXME: I don't understand what's going on here
@@ -116,7 +117,7 @@ class LanguageProcessor extends DispatchMelangeProcessor
 			else {
 				loadLanguageWithSyntax(rs, language, syntax)
 			}
-			packageProvider.registerPackages(language.syntax, syntax)
+			syntax.forEach[packageProvider.registerPackages(language.syntax, it)]
 		}
 	}
 
@@ -175,7 +176,7 @@ class LanguageProcessor extends DispatchMelangeProcessor
 				val classFqName = aspectTypeRef.aspectAnnotationValue
 				if (classFqName !== null)
 					aspectedClass = language.syntax.findClass(classFqName)
-				ecoreFragment = builder.getBuilder(language).findBuilder(w)?.model
+				ecoreFragment = builder.getBuilder(language).findBuilder(w)?.model.head
 			]
 		]
 	}

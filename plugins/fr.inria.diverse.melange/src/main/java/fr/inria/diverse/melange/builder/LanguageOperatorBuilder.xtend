@@ -2,6 +2,7 @@ package fr.inria.diverse.melange.builder
 
 import fr.inria.diverse.melange.metamodel.melange.LanguageOperator
 import org.eclipse.emf.ecore.EPackage
+import java.util.Set
 
 /**
  * A specialized {@link OperatorBuilder} dedicated to {@link LanguageOperator}s,
@@ -9,10 +10,10 @@ import org.eclipse.emf.ecore.EPackage
  */
 abstract class LanguageOperatorBuilder<T extends LanguageOperator> extends OperatorBuilder<T> {
 	/**
-	 * The {@link EPackage} built from the {@link Language} pointed by the
-	 * current {@link LanguageOperator}.
+	 * The set of {@link EPackage} built from the {@link Language}
+	 * pointed by the current {@link LanguageOperator}.
 	 */
-	protected EPackage targetModel
+	protected Set<EPackage> targetModel
 	/**
 	 * The {@link ModelTypingSpaceBuilder} used to build the {@link ModelTypingSpace}
 	 * to which the current {@link LanguageOperator} belongs.

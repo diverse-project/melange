@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EcorePackage
 import org.eclipse.emf.ecore.util.Diagnostician
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtend.lib.annotations.Data
+import java.util.Set
 
 @ImplementedBy(PackageMergeMerger)
 interface EcoreMerger {
@@ -29,7 +30,7 @@ interface EcoreMerger {
 	 * Note: assuming that receiving and merged are valid wrt Ecore
 	 */
 	def EPackage merge(EPackage receiving, EPackage merged)
-	def List<EPackage> merge(List<EPackage> receiving, List<EPackage> merged)
+	def Set<EPackage> merge(Set<EPackage> receiving, Set<EPackage> merged)
 	def List<Conflict> getConflicts()
 
 	@Data
@@ -91,7 +92,7 @@ class PackageMergeMerger implements EcoreMerger {
 			return null
 		}
 
-		resulting.updateReferences
+		newHashSet(resulting).updateReferences
 
 		val isValid =
 			if (validate) validateAndProduceConflicts(resulting)
@@ -141,17 +142,17 @@ class PackageMergeMerger implements EcoreMerger {
 		return true
 	}
 
-	def void updateReferences(EPackage pkg) {
-		EcoreUtil.ExternalCrossReferencer.find(pkg).forEach[o, s |
+	def void updateReferences(Set<EPackage> pkgs) {
+		EcoreUtil.ExternalCrossReferencer.find(pkgs).forEach[o, s |
 			s.forEach[ss |
 				if (ss.EStructuralFeature !== null && !ss.EStructuralFeature.derived && !ss.EStructuralFeature.many) {
 					if (o instanceof EClassifier) {
-						val corresponding = pkg.findClassifier(o.uniqueId)
+						val corresponding = pkgs.findClassifier(o.uniqueId)
 						if (corresponding !== null)
 							ss.EObject.eSet(ss.EStructuralFeature, corresponding)
 					} else if (o instanceof EReference) {
 						if (o.EOpposite !== null) {
-							val correspondingCls = pkg.findClassifier(o.EContainingClass.uniqueId) as EClass
+							val correspondingCls = pkgs.findClassifier(o.EContainingClass.uniqueId) as EClass
 							val correspondingRef = correspondingCls?.EReferences?.findFirst[name == o.name]
 
 							if (correspondingRef !== null)
@@ -163,7 +164,7 @@ class PackageMergeMerger implements EcoreMerger {
 		]
 	}
 
-	override merge(List<EPackage> receiving, List<EPackage> merged) {
+	override merge(Set<EPackage> receiving, Set<EPackage> merged) {
 		merged.forEach[mergedPkg |
 			val correspondingPkg = receiving.findFirst[doMatch(mergedPkg)]
 
@@ -172,6 +173,8 @@ class PackageMergeMerger implements EcoreMerger {
 			else
 				receiving += EcoreUtil::copy(mergedPkg)
 		]
+
+		receiving.updateReferences
 
 		return receiving
 	}

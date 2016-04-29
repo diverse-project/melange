@@ -315,7 +315,7 @@ class ModelingElementExtensions
 					.flatten
 					.forEach[op |
 						op.getEAnnotation("http://www.eclipse.org/emf/2002/GenModel")
-						?.details.removeKey("body")
+						?.details?.removeKey("body")
 					]
 			}
 		}
