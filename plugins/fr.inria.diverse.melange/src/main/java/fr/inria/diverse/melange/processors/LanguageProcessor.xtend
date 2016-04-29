@@ -22,6 +22,11 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import org.eclipse.emf.ecore.EPackage
+import org.eclipse.emf.transaction.TransactionalEditingDomain
+import org.eclipse.emf.transaction.util.TransactionUtil
+import org.eclipse.emf.transaction.RecordingCommand
+import org.eclipse.emf.ecore.resource.ResourceSet
+import java.util.Set
 
 /**
  * Builds {@link Language}s by merging the various parts declared in each
@@ -64,6 +69,14 @@ class LanguageProcessor extends DispatchMelangeProcessor
 		]
 	}
 
+	private def void loadLanguageWithSyntax(ResourceSet rs, Language language, Set<EPackage> syntax) {
+		var res = rs.getResource(URI::createURI(language.name + "RootPackage"), false)
+		if (res !== null)
+			rs.resources.remove(res)
+		res = rs.createResource(URI::createURI(language.name + "RootPackage"))
+		res?.contents?.addAll(syntax)
+	}
+
 	/**
 	 * Uses the supplied {@link LanguageBuilder} {@code builder} to build
 	 * the currently processed language, and registers it if no errors
@@ -73,7 +86,7 @@ class LanguageProcessor extends DispatchMelangeProcessor
 		val language = builder.source
 		var syntax = builder.model
 
-		 // TODO: init with build errors if already built
+		// TODO: init with build errors if already built
 		val errors = newArrayList
 		// If not built yet
 		if (syntax === null) {
@@ -82,7 +95,7 @@ class LanguageProcessor extends DispatchMelangeProcessor
 			errors += builder.errors
 			syntax = builder.model
 		}
-		
+
 		if(language.isGeneratedByMelange){
 				syntax.forEach[initializeNsUriWith(language.externalPackageUri)]
 		}
@@ -90,18 +103,23 @@ class LanguageProcessor extends DispatchMelangeProcessor
 		// FIXME: I don't understand what's going on here
 		if (errors.empty) {
 			val rs = language.eResource.resourceSet
-			var res = rs.getResource(
-				URI::createURI(language.name+"RootPackage"), false)
-
-			if (res !== null)
-				rs.resources.remove(res)
-
-			res = rs.createResource(URI::createURI(language.name+"RootPackage"))
-			res?.contents?.addAll(syntax)
-
+			val TransactionalEditingDomain ed = TransactionUtil.getEditingDomain(rs);
+			// If the resource set has an editing domain, we need a transactioon
+			if (ed != null && ed.commandStack != null) {
+				val syntax_val = syntax
+				val RecordingCommand command = new RecordingCommand(ed) {
+					override protected doExecute() {
+						loadLanguageWithSyntax(rs, language, syntax_val)
+					}
+				}
+				ed.commandStack.execute(command)
+			} // Else, we do not need a transactioon
+			else {
+				loadLanguageWithSyntax(rs, language, syntax)
+			}
 			syntax.forEach[packageProvider.registerPackages(language.syntax, it)]
 		}
-	} 
+	}
 
 	/**
 	 * Initialize the syntax of the {@link Language} {@code language} by
