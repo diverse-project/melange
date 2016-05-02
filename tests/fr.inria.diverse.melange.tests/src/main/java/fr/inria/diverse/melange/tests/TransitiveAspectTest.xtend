@@ -23,7 +23,7 @@ import org.junit.Ignore
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
-@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/TransitiveAspectTest.melange", withValidation = false)
+@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/TransitiveAspectTest.melange", withValidation = false, ignoreSelfImplement=#["Lang","SubLang","MergeLang","MergeOverrideLang","SliceOverrideLang","DoubleMergeLang","DoubleSliceLang","MergeSliceLang","SliceMergeLang","SliceMergeLang","AspectedLang"])
 class TransitiveAspectTest
 {
 	@Inject extension ModelingElementExtensions

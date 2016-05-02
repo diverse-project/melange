@@ -21,7 +21,7 @@ import org.junit.Ignore
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
-@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/AspectOverridingTest.melange", withValidation = false)
+@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/AspectOverridingTest.melange", withValidation = false, ignoreSelfImplement = #["InheritsOverriding","MergeOverriding","SliceOverriding"])
 class AspectOverridingTest
 {
 	@Inject MatchingHelper helper

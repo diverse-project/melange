@@ -19,6 +19,7 @@ public annotation XtextTest
 	Class<?> rootType
 	String   inputFile
 	boolean withValidation = true
+	String[] ignoreSelfImplement = #[]
 }
 
 class XtextTestProcessor extends AbstractClassProcessor
@@ -26,6 +27,7 @@ class XtextTestProcessor extends AbstractClassProcessor
 	private TypeReference rootType
 	private String inputFile
 	private boolean withValidation
+	private String[] ignoreSelfImplement
 
 	override void doTransform(MutableClassDeclaration cls, extension TransformationContext ctx) {
 		val ann = cls.annotations.findFirst[annotationTypeDeclaration == XtextTest.newTypeReference.type]
@@ -38,6 +40,7 @@ class XtextTestProcessor extends AbstractClassProcessor
 		rootType = ann.getClassValue("rootType")
 		inputFile = ann.getStringValue("inputFile")
 		withValidation = ann.getBooleanValue("withValidation")
+		ignoreSelfImplement = ann.getStringArrayValue("ignoreSelfImplement")
 
 		cls.generateFields(ctx)
 		cls.generateSetupMethod(ctx)
@@ -95,11 +98,14 @@ class XtextTestProcessor extends AbstractClassProcessor
 		cls.addMethod("testSelfImplement")[
 			primarySourceElement = cls
 			addAnnotation(findTypeGlobally("org.junit.Test").newAnnotationReference)
+			val languages = ignoreSelfImplement.map["\""+it+"\""].join(",")
 			body = '''
+				java.util.List<String> ignored = java.util.Arrays.asList(«languages»);
 				for(fr.inria.diverse.melange.metamodel.melange.Element e : root.getElements()){
 					if(e instanceof fr.inria.diverse.melange.metamodel.melange.Language){
 						fr.inria.diverse.melange.metamodel.melange.Language l = (fr.inria.diverse.melange.metamodel.melange.Language) e;
-						org.junit.Assert.assertTrue(l.getName()+" doesn't implement itself",l.getImplements().contains(l.getExactType()));
+						if(!ignored.contains(l.getName()))
+							org.junit.Assert.assertTrue(l.getName()+" doesn't implement itself",l.getImplements().contains(l.getExactType()));
 					}
 				}
 			'''

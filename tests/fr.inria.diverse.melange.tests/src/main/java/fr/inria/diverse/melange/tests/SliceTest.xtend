@@ -28,7 +28,7 @@ import org.junit.Ignore
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
-@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/SliceTest.melange", withValidation = false)
+@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/SliceTest.melange", withValidation = false, ignoreSelfImplement=#["IncompatibleSliceLang"])
 class SliceTest
 {
 	@Inject MatchingHelper helper

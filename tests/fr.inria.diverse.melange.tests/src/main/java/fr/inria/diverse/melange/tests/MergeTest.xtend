@@ -25,7 +25,7 @@ import org.junit.Ignore
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
-@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/MergeTest.melange", withValidation = false)
+@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/MergeTest.melange", withValidation = false, ignoreSelfImplement = #["IncompatibleMergeLang"])
 class MergeTest
 {
 	@Inject MatchingHelper helper
