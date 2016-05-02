@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EcorePackage
 import org.eclipse.emf.ecore.plugin.EcorePlugin
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.xtext.naming.IQualifiedNameProvider
+import org.eclipse.emf.ecore.resource.Resource
 
 /**
  * A collection of utilities around {@link ModelType}s
@@ -98,19 +99,22 @@ class ModelTypeExtensions
 		val resSet = new ResourceSetImpl
 		resSet.URIConverter.URIMap.putAll(EcorePlugin::computePlatformURIMap(true))
 		val ecoreGmUri = EcorePlugin::getEPackageNsURIToGenModelLocationMap(true).get(EcorePackage.eNS_URI)
-		val ecoreGmRes = resSet.getResource(ecoreGmUri, true)
-		val ecoreGm = ecoreGmRes.contents.head as GenModel
+		var Resource ecoreGmRes = null
+		if(ecoreGmUri !== null)
+			ecoreGmRes = resSet.getResource(ecoreGmUri, true)
+		val ecoreGm = ecoreGmRes?.contents?.head as GenModel
 
 		return GenModelFactory.eINSTANCE.createGenModel => [
 			complianceLevel = GenJDKLevel.JDK70_LITERAL
 			modelDirectory = helper.getProject(mt.eResource)
-							.getFolder("src-gen").fullPath.toString
+							?.getFolder("src-gen")?.fullPath?.toString
 			modelName = mt.name
 			initialize(mt.pkgs)
 			genPackages.forEach[gp |
 				gp.basePackage = mt.fullyQualifiedName.toString.toLowerCase
 			]
-			usedGenPackages.add(ecoreGm.genPackages.head)
+			if(ecoreGm !== null)
+				usedGenPackages.add(ecoreGm.genPackages.head)
 		]
 	}
 
