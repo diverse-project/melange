@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="testmerge" nsURI="http://org.melange.test/" nsPrefix="testmerge">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="testmerge" nsURI="http://org.melange.test/" nsPrefix="testmerge">
   <eClassifiers xsi:type="ecore:EClass" name="D">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="toC" eType="#//C" eOpposite="#//C/toD"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="emfDataType" lowerBound="1"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toC" eType="//C" eOpposite="//C/toD"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="emfDataType" lowerBound="1" upperBound="-1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="C">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="toD" eType="#//D" eOpposite="#//D/toC"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataType" eType="#//CustomDataType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="toE" lowerBound="1" upperBound="42"
-        eType="#//E" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="toF" upperBound="-1" eType="#//F"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toD" eType="//D" eOpposite="//D/toC"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataType" eType="//CustomDataType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toE" lowerBound="1" upperBound="42" eType="//E" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toF" upperBound="-1" eType="//F"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="CustomDataType" instanceClassName="java.lang.Object"/>
   <eClassifiers xsi:type="ecore:EClass" name="E"/>
