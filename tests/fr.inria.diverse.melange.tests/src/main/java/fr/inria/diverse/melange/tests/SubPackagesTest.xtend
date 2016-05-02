@@ -46,7 +46,8 @@ class SubPackagesTest
 		+ 1 	// Number of ModelTypes
 		
 		// SubPackagesTest.adapters.SubPackagesTestMT package
-		+ 3		// LanguageAdapter, MTFactory & AdapterFactory
+		+ 2		// LanguageAdapter, MTFactory
+		+ 4		// AdapterFactory (one by package)
 		+ 8		// Adapters (for each class in MT) 
 	}
 
