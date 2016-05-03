@@ -2,6 +2,7 @@ package fr.inria.diverse.melange.utils
 
 import com.google.common.collect.HashMultimap
 import com.google.common.collect.SetMultimap
+import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.PackageBinding
@@ -19,13 +20,9 @@ class RenamingRuleManager{
 	val List<Pair<String,String>> propertiesRules = newArrayList
 	val SetMultimap<String,Pair<String,String>> propertiesAspectRules = HashMultimap.create
 	
-	var String originalRootName
-	var String newRootName
-	
-	new(List<PackageBinding> renamingRules, List<Aspect> aspects, String newRootName, AspectExtensions aspectExtension){
+	new(List<PackageBinding> renamingRules, List<Aspect> aspects,AspectExtensions aspectExtension){
 		this.aspectExtension = aspectExtension
-		storeRootName(renamingRules, newRootName)
-		storeRenamingRules(renamingRules,newRootName)
+		storeRenamingRules(renamingRules)
 		storeRenamedAspectProperties(aspects)
 	}
 	
@@ -35,20 +32,15 @@ class RenamingRuleManager{
 	 * - Class renaming <br>
 	 * - Property renaming
 	 * 
-	 * @param newRootName Name of the renamed root package with its genmodel prefix. This
-	 * parameter is needed to take in account the namespace of the generated Language and
-	 * because the root is renamed by AspectCopier. 
 	 */
-	def void storeRenamingRules(List<PackageBinding> renamingRules, String newRootName){
+	def void storeRenamingRules(List<PackageBinding> renamingRules){
 		if(renamingRules !== null){
 			renamingRules.forEach[packRule |
-				val packFrom = packRule.from.renameRoot(newRootName)
-				val packTo = packRule.to.renameRoot(newRootName)
-				packageRules += packFrom -> packTo
+				packageRules += packRule.from -> packRule.to
 				packRule.classes.forEach[classRule |
-					classRules += packFrom+"."+classRule.from -> packTo+"."+classRule.to
+					classRules += packRule.from+"."+classRule.from -> packRule.to+"."+classRule.to
 					classRule.properties.forEach[propRule|
-						propertiesRules += packFrom+"."+classRule.from+"."+propRule.from -> packTo+"."+classRule.to+"."+propRule.to
+						propertiesRules += packRule.from+"."+classRule.from+"."+propRule.from -> packRule.to+"."+classRule.to+"."+propRule.to
 					]
 				]
 			]
@@ -85,8 +77,7 @@ class RenamingRuleManager{
 	 * @return sourcePackage -> targetPackage
 	 */
 	def Pair<String,String> getPackageRule(String packageName){
-		val packName = packageName.applyRootRenaming
-		return packageRules.findFirst[key == packName]
+		return packageRules.findFirst[key == packageName]
 	}
 	
 	/**
@@ -96,8 +87,7 @@ class RenamingRuleManager{
 	 * @return sourcePackage.sourceClass -> targetPackage.targetClass
 	 */
 	def Pair<String,String> getClassRule(String qualifiedClassName){
-		val className = qualifiedClassName?.applyRootRenaming
-		return classRules.findFirst[key == className]
+		return classRules.findFirst[key == qualifiedClassName]
 	} 
 	
 	/**
@@ -107,8 +97,7 @@ class RenamingRuleManager{
 	 * @return sourcePackage.sourceClass.sourceProperty -> targetPackage.targetClass.targetProperty
 	 */
 	def Pair<String,String> getPropertyRule(String qualifiedPropertyName){
-		val propertyName = qualifiedPropertyName.applyRootRenaming
-		return propertiesRules.findFirst[key == propertyName]
+		return propertiesRules.findFirst[key == qualifiedPropertyName]
 	}
 	
 	/**
@@ -129,50 +118,5 @@ class RenamingRuleManager{
 	
 	def List<Pair<String, String>> getAllPropertyRules(){
 		return propertiesRules
-	}
-	
-	/**
-	 * Replace the first segment of {@link pack} with {@link renamedRootPack}
-	 */
-	def String renameRoot(String pack, String renamedRootPack){
-		val rootEndIndex = pack.indexOf(".")
-		if(rootEndIndex != -1){
-			return renamedRootPack + pack.substring(rootEndIndex)
-		}
-		else{
-			return renamedRootPack
-		}
-	}
-	
-	/**
-	 * Replace the begin of {@link qualifiedName} with the new root name
-	 * if it start with the old root name.
-	 */
-	def String applyRootRenaming(String qualifiedName){
-		return 
-			if(originalRootName !== null &&
-				qualifiedName.indexOf(originalRootName) != -1 &&
-				qualifiedName.charAt(qualifiedName.indexOf(originalRootName) + originalRootName.length).toString == "."
-			){
-				//prefix.originalRootName.postfix
-				val postfix = qualifiedName.substring(qualifiedName.indexOf(originalRootName) + originalRootName.length)
-				newRootName+postfix
-			}
-			else{
-				qualifiedName
-			}
-	}
-	
-	def void storeRootName(List<PackageBinding> renamingRules, String rootName){
-		val onePack = renamingRules.head?.from
-		if(onePack !== null){
-			originalRootName = if(onePack.indexOf(".") != -1){
-				onePack.substring(0,onePack.indexOf("."))
-			}
-			else{
-				onePack
-			}
-		}
-		newRootName = rootName
 	}
 }

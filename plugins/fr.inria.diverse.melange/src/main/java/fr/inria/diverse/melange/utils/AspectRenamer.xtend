@@ -92,14 +92,14 @@ class AspectRenamer {
 		
 		if(asp.hasAspectAnnotation){
 			val targetClass = asp.aspectedClass.name
-	    	val targetFqName = asp.aspectedClass.fullyQualifiedName.toString
+	    	val targetFqName = asp.targetedClassFqn
 	    	val rule = rulesManagers.map[getClassRule(targetFqName)].filterNull.head
 	    	val newClass = 
 	    		if(rule !== null){
 		    		rule.value.toQualifiedName.lastSegment
 	    		}
 	    		else{
-	    			targetClass
+	    			targetClass.toQualifiedName.lastSegment
 	    		}
 			
 			val fileName2 = aspName+targetClass+"AspectContext.java"
@@ -178,7 +178,7 @@ class AspectRenamer {
 	private def List<Pair<String,String>> convertToPattern(List<Aspect> aspects, List<RenamingRuleManager> rulesManagers){
 		val res = newArrayList
 		aspects.filter[hasAspectAnnotation].forEach[asp|
-    		val targetFqName = asp.aspectedClass.fullyQualifiedName.toString
+    		val targetFqName = asp.targetedClassFqn
     		val aspName = asp.aspectTypeRef.simpleName
     		val rule = rulesManagers.map[getClassRule(targetFqName)].filterNull.head
     		if(rule !== null){
