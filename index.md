@@ -22,5 +22,5 @@ Melange is bundled as a set of Eclipse plug-ins. Please refer to the [installati
 ## Features
 
 * __Executable metamodeling.__ Melange is tightly integrated with [K3](), a meta-language that leverages aspect-oriented modeling to weave operational semantics in metamodel definitions.
-* __Language extension__ Using high-level operators (e.g. inheritance, merge), language definitions can be manipulated, extended or restrained to create new DSLs.
-* __Model polymorphism__ Melange's type system supports model polymorphism and substitutability, and the definition of generic transformations that can be applied on models originating from different DSLs.
+* __Language composition__ Using high-level operators (e.g. inheritance, merge, slice), language definitions can be manipulated, extended, or customized to create new DSLs.
+* __Language Interoperability__ Melange's type system supports model polymorphism and substitutability, and the definition of generic transformations that can be applied on models originating from different DSLs.
