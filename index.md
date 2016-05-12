@@ -5,6 +5,8 @@ tagline: Integrate your DSLs!
 ---
 {% include JB/setup %}
 
+(A whole new website and documentation will be available soon. Stay tuned!)
+
 ![Melange workbench](../images/melange.png)
 
 Melange is a language and platform for assembling and integrating multiple domain-specific languages (DSL).
