@@ -161,7 +161,7 @@ class EcoreExtensions
 	}
 	
 	def EClass findClass(Set<EPackage> pkgs, String clsName) {
-		return pkgs.map[findClass(it,clsName)].head
+		return pkgs.map[findClass(it,clsName)].filterNull.head
 	}
 
 	/**
@@ -209,7 +209,7 @@ class EcoreExtensions
 	}
 
 	def EClassifier findClassifier(Set<EPackage> pkgs, String clsName) {
-		return pkgs.map[findClassifier(it,clsName)].head
+		return pkgs.map[findClassifier(it,clsName)].filterNull.head
 	}
 	
 	/**

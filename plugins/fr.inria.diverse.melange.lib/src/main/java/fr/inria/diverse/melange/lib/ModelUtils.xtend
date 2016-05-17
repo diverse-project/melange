@@ -9,9 +9,12 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
+import com.google.inject.Inject
 
 class ModelUtils
 {
+	@Inject extension EcoreExtensions
+	
 	def EPackage loadPkg(String path) {
 		return loadAllPkgs(path)?.head
 	}
@@ -26,9 +29,22 @@ class ModelUtils
 			val rs = new ResourceSetImpl
 			rs.URIConverter.URIMap.putAll(EcorePlugin::computePlatformURIMap(true))
 			val uri = URI.createURI(path)
-			val pkg = rs.getResource(uri, true)
+			val resource = rs.getResource(uri, true)
 
-			return pkg.contents.filter(EPackage)
+			
+			val pkgs = newArrayList
+			pkgs += resource.contents.filter(EPackage)
+			
+			//Add EPackages from cross-references
+			val refPkgs = newArrayList
+			refPkgs += pkgs.map[referencedPkgs].flatten
+			refPkgs.forEach[refPkg|
+				if(!pkgs.exists[p | refPkg.uniqueId == p.uniqueId])
+					pkgs.add(refPkg)
+			]
+
+			return pkgs
+			
 		} catch (Exception e) {
 			// ...
 		}
