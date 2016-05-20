@@ -72,7 +72,7 @@ class AspectsTest
 		assertEquals(test.name,     "test")
 		assertTrue(test.main)
 	}
-
+	
 	@Test
 	def void testAspectsImportFsm() {
 		val fsmAspect = fsm.semantics.head
@@ -93,6 +93,26 @@ class AspectsTest
 		assertEquals(tfsmAspect.aspectedClass.name, TimedfsmPackage.eINSTANCE.getState.name)
 		assertNotNull(tfsmAspect.aspectTypeRef)
 		assertEquals(tfsmAspect.aspectTypeRef.type.simpleName, "StateAspect2")
+	}
+	
+	@Test
+	def void testTfsmAspectStructure() {
+		val tfsmAspect = tfsm.semantics.head
+		
+		assertNotNull(tfsmAspect.ecoreFragment)
+		assertEquals("fsm",tfsmAspect.ecoreFragment.name)
+		assertEquals(0,tfsmAspect.ecoreFragment.ESubpackages.size)
+		assertEquals(1,tfsmAspect.ecoreFragment.EClassifiers.size)
+		assertTrue(tfsmAspect.ecoreFragment.EClassifiers.head instanceof EClass)
+		
+		val state = tfsmAspect.ecoreFragment.EClassifiers.head as EClass
+		assertEquals("State",state.name)
+		assertEquals(1,state.EAttributes.size)
+		assertEquals("foo",state.EAllAttributes.head.name)
+		assertEquals(0,state.EAllReferences.size)
+		assertEquals(2,state.EAllOperations.size)
+		assertNotNull(state.EAllOperations.findFirst[name == "bar"])
+		assertNotNull(state.EAllOperations.findFirst[name == "barbar"])
 	}
 
 	@Test

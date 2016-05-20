@@ -14,6 +14,8 @@ class StateAspect2 {
 	public String foo = "foo2"
 
 	def String bar()'''bar2'''
+	
+	def timedfsm.fsm.State barbar(timedfsm.fsm.State arg){ null }
 }
 
 // No "bar" => not a subtype
