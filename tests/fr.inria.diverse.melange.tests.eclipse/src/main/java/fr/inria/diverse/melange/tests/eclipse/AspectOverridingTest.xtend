@@ -57,18 +57,19 @@ public class AspectOverridingTest extends AbstractXtextTests
 	}
 
 	@Test
-	def void test1GeneratedLanguages() {
+	def void test1GeneratedModelTypes() {
+		helper.generateInterfaces(MELANGE_FILE)
+		IResourcesSetupUtil::waitForAutoBuild
+		helper.assertNoMarkers
+	}
+	
+	@Test
+	def void test2GeneratedLanguages() {
 		helper.generateLanguages(MELANGE_FILE)
 		IResourcesSetupUtil::waitForAutoBuild
 		helper.assertNoMarkers
 	}
 
-	@Test
-	def void test2GeneratedModelTypes() {
-		helper.generateInterfaces(MELANGE_FILE)
-		IResourcesSetupUtil::waitForAutoBuild
-		helper.assertNoMarkers
-	}
 
 	@Test
 	def void test3GeneratedAdaptersCompile() {
