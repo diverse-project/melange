@@ -55,6 +55,7 @@ import org.eclipse.xtext.ui.editor.outline.impl.OutlinePage
 import org.eclipse.xtext.ui.editor.utils.EditorUtils
 import org.eclipse.xtext.ui.resource.XtextResourceSetProvider
 import org.junit.Assert
+import org.eclipse.swt.widgets.Display
 
 class WorkspaceTestHelper {
 	static final String MELANGE_CMD_GENERATE_ALL        = "fr.inria.diverse.melange.GenerateAll"
@@ -68,8 +69,12 @@ class WorkspaceTestHelper {
 	@Inject XtextResourceSetProvider rsProvider
 
 	def void init() {
-		PlatformUI::workbench.showPerspective(JavaUI.ID_PERSPECTIVE, PlatformUI.workbench.activeWorkbenchWindow)
-		closeWelcomePage
+		Display.^default.syncExec(new Runnable(){
+				override run() {
+					PlatformUI::workbench.showPerspective(JavaUI.ID_PERSPECTIVE, PlatformUI.workbench.activeWorkbenchWindow)
+					closeWelcomePage
+				}
+			})
 	}
 
 	def IProject getProject(String projectName) {
