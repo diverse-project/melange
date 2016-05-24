@@ -27,6 +27,23 @@
 					<product>org.eclipse.platform.ide</product>
 				</configuration>
 			</plugin>
+			
+			<plugin>
+			   <groupId>org.eclipse.tycho</groupId>
+				   <artifactId>target-platform-configuration</artifactId>
+				   <version>${tycho.version}</version>
+				   <configuration>
+				      <dependency-resolution>
+				         <extraRequirements>
+				            <requirement>
+				               <type>eclipse-feature</type>
+				               <id>org.eclipse.rcp</id>
+				               <versionRange>0.0.0</versionRange>
+				            </requirement>
+				         </extraRequirements>
+				      </dependency-resolution>
+				   </configuration>
+				</plugin>
 		</plugins>
 	</build>
 
