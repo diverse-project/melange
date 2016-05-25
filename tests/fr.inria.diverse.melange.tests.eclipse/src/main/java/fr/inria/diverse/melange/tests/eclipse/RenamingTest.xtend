@@ -36,6 +36,7 @@ public class RenamingTest extends AbstractXtextTests
 	@Test
 	def void testNoErrorsInWorkspace() {
 		helper.generateLanguages(MELANGE_FILE)
+		IResourcesSetupUtil::waitForAutoBuild
 		helper.assertNoMarkers
 		
 		helper.assertProjectExists(PROJECT_1)
