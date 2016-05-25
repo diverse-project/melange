@@ -19,7 +19,7 @@ import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 @RunWith(XtextRunner)
 @InjectWith(MelangeUiInjectorProvider)
 @FixMethodOrder(MethodSorters::NAME_ASCENDING)
-public class SimpleFsmProject extends AbstractXtextTests
+public class SimpleFsmProjectTest extends AbstractXtextTests
 {
 	IProject melangeFsm
 	@Inject WorkspaceTestHelper helper
