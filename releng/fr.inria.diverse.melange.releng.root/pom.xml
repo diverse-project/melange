@@ -89,20 +89,20 @@
 				<artifactId>target-platform-configuration</artifactId>
 				<version>${tycho.version}</version>
 				<configuration>
-<!--					<dependency-resolution>
+					<dependency-resolution>
 			         <extraRequirements>
-			            <requirement>
+<!--			            <requirement>
 			               <type>eclipse-feature</type>
 			               <id>org.eclipse.rcp</id>
 			               <versionRange>0.0.0</versionRange>
-			            </requirement>
+			            </requirement>-->
 			            <requirement>
 			               <type>eclipse-plugin</type>
 			               <id>org.eclipse.osgi.compatibility.state</id>
 			               <versionRange>0.0.0</versionRange>
 			            </requirement>
 			         </extraRequirements>
-			      </dependency-resolution>-->
+			      </dependency-resolution>
 					<target>
 						<artifact>
 							<groupId>fr.inria.diverse.melange</groupId>
