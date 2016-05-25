@@ -498,14 +498,20 @@ class LanguageExtensions
 		val targetEmfNamespaces = l.syntax.rootPackageNamespaces
 		val targetAspectNamespace = l.aspectsNamespace
 		val targetProjectName = l.externalRuntimeName
-		val sourceEmfNamespaces =
+		val SetMultimap<String, String> sourceEmfNamespaces = HashMultimap.create
+		val rawEmfNamespaces =
 			// Aspects coming from the Weave operator ('with' keyword)
 			if (l == aspects.filter[hasAspectAnnotation].head?.owningLanguage)
 				l.collectTargetedPackages
-//				#[aspects.filter[hasAspectAnnotation].head.aspectTypeRef.targetedNamespace.toString].toSet
 			// Prefixed root package
 			else
 				aspects.head.owningLanguage.syntax.rootPackageNamespaces
+		// rename source packages to map with target packages
+		rawEmfNamespaces.keySet.forEach[pkg|
+			val rule = ruleManagers.head?.sourceBinding?.findFirst[from == pkg]
+			if(rule !== null)
+				sourceEmfNamespaces.putAll(rule.to,rawEmfNamespaces.get(pkg))
+		]
 
 		// Exclude local aspects
 		val externalAsp = newArrayList

@@ -14,6 +14,7 @@ class RenamingRuleManager{
 	
 	extension AspectExtensions aspectExtension
 	
+	var List<PackageBinding> sourceBinding  
 	val List<Pair<String,String>> classRules = newArrayList
 	val List<Pair<String,String>> packageRules = newArrayList
 	val List<Pair<String,String>> propertiesRules = newArrayList
@@ -41,6 +42,7 @@ class RenamingRuleManager{
 	 */
 	def void storeRenamingRules(List<PackageBinding> renamingRules, String newRootName){
 		if(renamingRules !== null){
+			sourceBinding = renamingRules
 			renamingRules.forEach[packRule |
 				val packFrom = packRule.from.renameRoot(newRootName)
 				val packTo = packRule.to.renameRoot(newRootName)
@@ -150,7 +152,10 @@ class RenamingRuleManager{
 	 */
 	def String applyRootRenaming(String qualifiedName){
 		return 
-			if(originalRootName !== null &&
+			if(originalRootName !== null && qualifiedName == originalRootName){
+				newRootName
+			}
+			else if(originalRootName !== null &&
 				qualifiedName.indexOf(originalRootName) != -1 &&
 				qualifiedName.charAt(qualifiedName.indexOf(originalRootName) + originalRootName.length).toString == "."
 			){
@@ -174,5 +179,9 @@ class RenamingRuleManager{
 			}
 		}
 		newRootName = rootName
+	}
+	
+	def getSourceBinding(){
+		return sourceBinding
 	}
 }

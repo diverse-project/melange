@@ -52,9 +52,11 @@ class NamingHelper
 	def SetMultimap<String,String> getRootPackageNamespaces(ModelingElement m){
 		val SetMultimap<String, String> res = HashMultimap.create
 		m.allGenPkgs.forEach[
-			val syntaxPackage = getEcorePackage.uniqueId
-			val javaPackage = packageNamespace
-			res.put(syntaxPackage,javaPackage)
+			if(getEcorePackage.ESuperPackage === null){
+				val syntaxPackage = getEcorePackage.uniqueId
+				val javaPackage = packageNamespace
+				res.put(syntaxPackage,javaPackage)
+			}
 		]
 		return res
 	}
