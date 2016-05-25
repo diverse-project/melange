@@ -16,10 +16,10 @@ public class RenamingTest extends AbstractXtextTests
 {
 	@Inject WorkspaceTestHelper helper
 	static final String MELANGE_FILE =
-		"fr.inria.diverse.melange.test.renaming.main/src/fr/inria/diverse/melange/test/renaming/main/Main.melange"
+		"fr.inria.diverse.melange.test.renaming.main/src/fr/inria/diverse/melange/testrenaming/main/Main.melange"
 		
-	static final String PROJECT_1 = "fr.inria.diverse.melange.test.renaming.main.testlanguagerenamed"
-	static final String PROJECT_2 = "fr.inria.diverse.melange.test.renaming.main.testreverserenamed"
+	static final String PROJECT_1 = "fr.inria.diverse.melange.testrenaming.main.testlanguagerenamed"
+	static final String PROJECT_2 = "fr.inria.diverse.melange.testrenaming.main.testreverserenamed"
 	
 	override void setUp() throws Exception {
 		super.setUp
