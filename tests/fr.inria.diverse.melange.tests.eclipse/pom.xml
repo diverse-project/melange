@@ -24,7 +24,6 @@
 					<argLine>-Xmx2048m</argLine>
 					<useUIHarness>true</useUIHarness>
 					<useUIThread>true</useUIThread>
-					<product>org.eclipse.platform.ide</product>
 				</configuration>
 			</plugin>
 		</plugins>

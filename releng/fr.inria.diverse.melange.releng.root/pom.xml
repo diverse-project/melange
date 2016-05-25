@@ -89,7 +89,7 @@
 				<artifactId>target-platform-configuration</artifactId>
 				<version>${tycho.version}</version>
 				<configuration>
-					<dependency-resolution>
+<!--					<dependency-resolution>
 			         <extraRequirements>
 			            <requirement>
 			               <type>eclipse-feature</type>
@@ -102,7 +102,7 @@
 			               <versionRange>0.0.0</versionRange>
 			            </requirement>
 			         </extraRequirements>
-			      </dependency-resolution>
+			      </dependency-resolution>-->
 					<target>
 						<artifact>
 							<groupId>fr.inria.diverse.melange</groupId>
