@@ -91,16 +91,16 @@
 				<configuration>
 					<dependency-resolution>
 			         <extraRequirements>
-<!--			            <requirement>
+			            <requirement>
 			               <type>eclipse-feature</type>
 			               <id>org.eclipse.rcp</id>
 			               <versionRange>0.0.0</versionRange>
-			            </requirement>-->
-			            <requirement>
+			            </requirement>
+<!--			            <requirement>
 			               <type>eclipse-plugin</type>
 			               <id>org.eclipse.osgi.compatibility.state</id>
 			               <versionRange>0.0.0</versionRange>
-			            </requirement>
+			            </requirement>-->
 			         </extraRequirements>
 			      </dependency-resolution>
 					<target>
