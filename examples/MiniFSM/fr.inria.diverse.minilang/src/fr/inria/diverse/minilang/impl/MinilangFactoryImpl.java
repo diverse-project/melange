@@ -4,7 +4,7 @@ package fr.inria.diverse.minilang.impl;
 
 import fr.inria.diverse.minilang.And;
 import fr.inria.diverse.minilang.Block;
-import fr.inria.diverse.minilang.BooleanAssignemnt;
+import fr.inria.diverse.minilang.BooleanAssignment;
 import fr.inria.diverse.minilang.BooleanExpression;
 import fr.inria.diverse.minilang.BooleanOperation;
 import fr.inria.diverse.minilang.BooleanVariableRef;
@@ -13,7 +13,7 @@ import fr.inria.diverse.minilang.Equal;
 import fr.inria.diverse.minilang.Greater;
 import fr.inria.diverse.minilang.GreaterOrEqual;
 import fr.inria.diverse.minilang.If;
-import fr.inria.diverse.minilang.IntAssignement;
+import fr.inria.diverse.minilang.IntAssignment;
 import fr.inria.diverse.minilang.IntComparison;
 import fr.inria.diverse.minilang.IntExpression;
 import fr.inria.diverse.minilang.IntOperation;
@@ -31,8 +31,8 @@ import fr.inria.diverse.minilang.PrintStr;
 import fr.inria.diverse.minilang.PrintVar;
 import fr.inria.diverse.minilang.Statement;
 import fr.inria.diverse.minilang.VariableRef;
-
 import fr.inria.diverse.minilang.While;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -108,8 +108,8 @@ public class MinilangFactoryImpl extends EFactoryImpl implements MinilangFactory
 			case MinilangPackage.INT_VARIABLE_REF: return createIntVariableRef();
 			case MinilangPackage.VARIABLE_REF: return createVariableRef();
 			case MinilangPackage.STATEMENT: return createStatement();
-			case MinilangPackage.BOOLEAN_ASSIGNEMNT: return createBooleanAssignemnt();
-			case MinilangPackage.INT_ASSIGNEMENT: return createIntAssignement();
+			case MinilangPackage.BOOLEAN_ASSIGNMENT: return createBooleanAssignment();
+			case MinilangPackage.INT_ASSIGNMENT: return createIntAssignment();
 			case MinilangPackage.PRINT_VAR: return createPrintVar();
 			case MinilangPackage.PRINT_STR: return createPrintStr();
 			case MinilangPackage.BLOCK: return createBlock();
@@ -355,9 +355,9 @@ public class MinilangFactoryImpl extends EFactoryImpl implements MinilangFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BooleanAssignemnt createBooleanAssignemnt() {
-		BooleanAssignemntImpl booleanAssignemnt = new BooleanAssignemntImpl();
-		return booleanAssignemnt;
+	public BooleanAssignment createBooleanAssignment() {
+		BooleanAssignmentImpl booleanAssignment = new BooleanAssignmentImpl();
+		return booleanAssignment;
 	}
 
 	/**
@@ -365,9 +365,9 @@ public class MinilangFactoryImpl extends EFactoryImpl implements MinilangFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IntAssignement createIntAssignement() {
-		IntAssignementImpl intAssignement = new IntAssignementImpl();
-		return intAssignement;
+	public IntAssignment createIntAssignment() {
+		IntAssignmentImpl intAssignment = new IntAssignmentImpl();
+		return intAssignment;
 	}
 
 	/**

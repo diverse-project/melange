@@ -4,7 +4,7 @@ package fr.inria.diverse.minilang.impl;
 
 import fr.inria.diverse.minilang.And;
 import fr.inria.diverse.minilang.Block;
-import fr.inria.diverse.minilang.BooleanAssignemnt;
+import fr.inria.diverse.minilang.BooleanAssignment;
 import fr.inria.diverse.minilang.BooleanExpression;
 import fr.inria.diverse.minilang.BooleanOperation;
 import fr.inria.diverse.minilang.BooleanVariableRef;
@@ -13,7 +13,7 @@ import fr.inria.diverse.minilang.Equal;
 import fr.inria.diverse.minilang.Greater;
 import fr.inria.diverse.minilang.GreaterOrEqual;
 import fr.inria.diverse.minilang.If;
-import fr.inria.diverse.minilang.IntAssignement;
+import fr.inria.diverse.minilang.IntAssignment;
 import fr.inria.diverse.minilang.IntComparison;
 import fr.inria.diverse.minilang.IntExpression;
 import fr.inria.diverse.minilang.IntOperation;
@@ -31,8 +31,8 @@ import fr.inria.diverse.minilang.PrintStr;
 import fr.inria.diverse.minilang.PrintVar;
 import fr.inria.diverse.minilang.Statement;
 import fr.inria.diverse.minilang.VariableRef;
-
 import fr.inria.diverse.minilang.While;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -213,14 +213,14 @@ public class MinilangPackageImpl extends EPackageImpl implements MinilangPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass booleanAssignemntEClass = null;
+	private EClass booleanAssignmentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass intAssignementEClass = null;
+	private EClass intAssignmentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -620,8 +620,8 @@ public class MinilangPackageImpl extends EPackageImpl implements MinilangPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getBooleanAssignemnt() {
-		return booleanAssignemntEClass;
+	public EClass getBooleanAssignment() {
+		return booleanAssignmentEClass;
 	}
 
 	/**
@@ -629,8 +629,8 @@ public class MinilangPackageImpl extends EPackageImpl implements MinilangPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBooleanAssignemnt_Variable() {
-		return (EReference)booleanAssignemntEClass.getEStructuralFeatures().get(0);
+	public EReference getBooleanAssignment_Variable() {
+		return (EReference)booleanAssignmentEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -638,8 +638,8 @@ public class MinilangPackageImpl extends EPackageImpl implements MinilangPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBooleanAssignemnt_Value() {
-		return (EReference)booleanAssignemntEClass.getEStructuralFeatures().get(1);
+	public EReference getBooleanAssignment_Value() {
+		return (EReference)booleanAssignmentEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -647,8 +647,8 @@ public class MinilangPackageImpl extends EPackageImpl implements MinilangPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getIntAssignement() {
-		return intAssignementEClass;
+	public EClass getIntAssignment() {
+		return intAssignmentEClass;
 	}
 
 	/**
@@ -656,8 +656,8 @@ public class MinilangPackageImpl extends EPackageImpl implements MinilangPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIntAssignement_Variable() {
-		return (EReference)intAssignementEClass.getEStructuralFeatures().get(0);
+	public EReference getIntAssignment_Variable() {
+		return (EReference)intAssignmentEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -665,8 +665,8 @@ public class MinilangPackageImpl extends EPackageImpl implements MinilangPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIntAssignement_Value() {
-		return (EReference)intAssignementEClass.getEStructuralFeatures().get(1);
+	public EReference getIntAssignment_Value() {
+		return (EReference)intAssignmentEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -870,13 +870,13 @@ public class MinilangPackageImpl extends EPackageImpl implements MinilangPackage
 
 		statementEClass = createEClass(STATEMENT);
 
-		booleanAssignemntEClass = createEClass(BOOLEAN_ASSIGNEMNT);
-		createEReference(booleanAssignemntEClass, BOOLEAN_ASSIGNEMNT__VARIABLE);
-		createEReference(booleanAssignemntEClass, BOOLEAN_ASSIGNEMNT__VALUE);
+		booleanAssignmentEClass = createEClass(BOOLEAN_ASSIGNMENT);
+		createEReference(booleanAssignmentEClass, BOOLEAN_ASSIGNMENT__VARIABLE);
+		createEReference(booleanAssignmentEClass, BOOLEAN_ASSIGNMENT__VALUE);
 
-		intAssignementEClass = createEClass(INT_ASSIGNEMENT);
-		createEReference(intAssignementEClass, INT_ASSIGNEMENT__VARIABLE);
-		createEReference(intAssignementEClass, INT_ASSIGNEMENT__VALUE);
+		intAssignmentEClass = createEClass(INT_ASSIGNMENT);
+		createEReference(intAssignmentEClass, INT_ASSIGNMENT__VARIABLE);
+		createEReference(intAssignmentEClass, INT_ASSIGNMENT__VALUE);
 
 		printVarEClass = createEClass(PRINT_VAR);
 		createEReference(printVarEClass, PRINT_VAR__VALUE);
@@ -946,8 +946,8 @@ public class MinilangPackageImpl extends EPackageImpl implements MinilangPackage
 		booleanVariableRefEClass.getESuperTypes().add(this.getBooleanExpression());
 		intVariableRefEClass.getESuperTypes().add(this.getVariableRef());
 		intVariableRefEClass.getESuperTypes().add(this.getIntExpression());
-		booleanAssignemntEClass.getESuperTypes().add(this.getStatement());
-		intAssignementEClass.getESuperTypes().add(this.getStatement());
+		booleanAssignmentEClass.getESuperTypes().add(this.getStatement());
+		intAssignmentEClass.getESuperTypes().add(this.getStatement());
 		printVarEClass.getESuperTypes().add(this.getStatement());
 		printStrEClass.getESuperTypes().add(this.getStatement());
 
@@ -1008,13 +1008,13 @@ public class MinilangPackageImpl extends EPackageImpl implements MinilangPackage
 
 		initEClass(statementEClass, Statement.class, "Statement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(booleanAssignemntEClass, BooleanAssignemnt.class, "BooleanAssignemnt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBooleanAssignemnt_Variable(), this.getBooleanVariableRef(), null, "variable", null, 1, 1, BooleanAssignemnt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBooleanAssignemnt_Value(), this.getBooleanExpression(), null, "value", null, 1, 1, BooleanAssignemnt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(booleanAssignmentEClass, BooleanAssignment.class, "BooleanAssignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBooleanAssignment_Variable(), this.getBooleanVariableRef(), null, "variable", null, 1, 1, BooleanAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBooleanAssignment_Value(), this.getBooleanExpression(), null, "value", null, 1, 1, BooleanAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(intAssignementEClass, IntAssignement.class, "IntAssignement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getIntAssignement_Variable(), this.getIntVariableRef(), null, "variable", null, 1, 1, IntAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIntAssignement_Value(), this.getIntExpression(), null, "value", null, 1, 1, IntAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(intAssignmentEClass, IntAssignment.class, "IntAssignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getIntAssignment_Variable(), this.getIntVariableRef(), null, "variable", null, 1, 1, IntAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIntAssignment_Value(), this.getIntExpression(), null, "value", null, 1, 1, IntAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(printVarEClass, PrintVar.class, "PrintVar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPrintVar_Value(), this.getVariableRef(), null, "value", null, 1, 1, PrintVar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

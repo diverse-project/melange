@@ -229,22 +229,22 @@ public interface MinilangFactory extends EFactory {
 	Statement createStatement();
 
 	/**
-	 * Returns a new object of class '<em>Boolean Assignemnt</em>'.
+	 * Returns a new object of class '<em>Boolean Assignment</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Boolean Assignemnt</em>'.
+	 * @return a new object of class '<em>Boolean Assignment</em>'.
 	 * @generated
 	 */
-	BooleanAssignemnt createBooleanAssignemnt();
+	BooleanAssignment createBooleanAssignment();
 
 	/**
-	 * Returns a new object of class '<em>Int Assignement</em>'.
+	 * Returns a new object of class '<em>Int Assignment</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Int Assignement</em>'.
+	 * @return a new object of class '<em>Int Assignment</em>'.
 	 * @generated
 	 */
-	IntAssignement createIntAssignement();
+	IntAssignment createIntAssignment();
 
 	/**
 	 * Returns a new object of class '<em>Print Var</em>'.

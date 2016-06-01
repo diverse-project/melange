@@ -46,11 +46,11 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Statement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BooleanAssignemnt" eSuperTypes="//Statement">
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanAssignment" eSuperTypes="//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1" eType="//BooleanVariableRef" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="//BooleanExpression" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IntAssignement" eSuperTypes="//Statement">
+  <eClassifiers xsi:type="ecore:EClass" name="IntAssignment" eSuperTypes="//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1" eType="//IntVariableRef" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="//IntExpression" containment="true"/>
   </eClassifiers>

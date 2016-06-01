@@ -4,7 +4,7 @@ package fr.inria.diverse.minilang.util;
 
 import fr.inria.diverse.minilang.And;
 import fr.inria.diverse.minilang.Block;
-import fr.inria.diverse.minilang.BooleanAssignemnt;
+import fr.inria.diverse.minilang.BooleanAssignment;
 import fr.inria.diverse.minilang.BooleanExpression;
 import fr.inria.diverse.minilang.BooleanOperation;
 import fr.inria.diverse.minilang.BooleanVariableRef;
@@ -13,7 +13,7 @@ import fr.inria.diverse.minilang.Equal;
 import fr.inria.diverse.minilang.Greater;
 import fr.inria.diverse.minilang.GreaterOrEqual;
 import fr.inria.diverse.minilang.If;
-import fr.inria.diverse.minilang.IntAssignement;
+import fr.inria.diverse.minilang.IntAssignment;
 import fr.inria.diverse.minilang.IntComparison;
 import fr.inria.diverse.minilang.IntExpression;
 import fr.inria.diverse.minilang.IntOperation;
@@ -30,8 +30,8 @@ import fr.inria.diverse.minilang.PrintStr;
 import fr.inria.diverse.minilang.PrintVar;
 import fr.inria.diverse.minilang.Statement;
 import fr.inria.diverse.minilang.VariableRef;
-
 import fr.inria.diverse.minilang.While;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -264,17 +264,17 @@ public class MinilangSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MinilangPackage.BOOLEAN_ASSIGNEMNT: {
-				BooleanAssignemnt booleanAssignemnt = (BooleanAssignemnt)theEObject;
-				T result = caseBooleanAssignemnt(booleanAssignemnt);
-				if (result == null) result = caseStatement(booleanAssignemnt);
+			case MinilangPackage.BOOLEAN_ASSIGNMENT: {
+				BooleanAssignment booleanAssignment = (BooleanAssignment)theEObject;
+				T result = caseBooleanAssignment(booleanAssignment);
+				if (result == null) result = caseStatement(booleanAssignment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MinilangPackage.INT_ASSIGNEMENT: {
-				IntAssignement intAssignement = (IntAssignement)theEObject;
-				T result = caseIntAssignement(intAssignement);
-				if (result == null) result = caseStatement(intAssignement);
+			case MinilangPackage.INT_ASSIGNMENT: {
+				IntAssignment intAssignment = (IntAssignment)theEObject;
+				T result = caseIntAssignment(intAssignment);
+				if (result == null) result = caseStatement(intAssignment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -660,32 +660,32 @@ public class MinilangSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Boolean Assignemnt</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Boolean Assignment</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Boolean Assignemnt</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Boolean Assignment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBooleanAssignemnt(BooleanAssignemnt object) {
+	public T caseBooleanAssignment(BooleanAssignment object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Int Assignement</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Int Assignment</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Int Assignement</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Int Assignment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIntAssignement(IntAssignement object) {
+	public T caseIntAssignment(IntAssignment object) {
 		return null;
 	}
 

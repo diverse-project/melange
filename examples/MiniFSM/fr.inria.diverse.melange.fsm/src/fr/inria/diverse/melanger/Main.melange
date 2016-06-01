@@ -9,53 +9,70 @@ language MiniLang{
 }
 
 language MelangedLang inherits MiniFsm{
+	/**
+	 * Import Context and rename Integer & Boolean to avoid merging
+	 */
 	syntax "platform:/resource/fr.inria.diverse.minilang.interpreter/model/Context.ecore" renaming {
 		"interpreter" to "minifsm" {
 			"Integer" to "IntegerVar"
 			"Boolean" to "BooleanVar"
 			}
 		}
+		
+	/*
+	 * Import MiniLang without If & While since we have MiniFSM for the control flow
+	 */
 	slice MiniLang on ['Plus','Minus','Multiply','Divide','Less','LessOrEqual',
 		'Greater','GreaterOrEqual','Equal','Not','Or','And','IntVariableRef',
-		'BooleanVariableRef', 'Integer', 'Boolean'] renaming{
+		'BooleanVariableRef', 'Integer', 'Boolean',
+		'BooleanAssignment', 'IntAssignment', 'Block'] renaming{
 			"minilang" to "minifsm"
 		}
 	
+	/*
+	 * MiniFSM behavior
+	 */
 	with minifsm.aspects.FinalStateAspect
 	with minifsm.aspects.TransitionAspect
 	with minifsm.aspects.ConditionAspect
 	with minifsm.aspects.StateAspect
 	with minifsm.aspects.FSMAspect
 		
-//	with minilang.aspects.IntegerAspect
-//	with minilang.aspects.IntVariableRefAspect
-//	with minilang.aspects.LessAspect
-//	with minilang.aspects.IntExpressionAspect
-//	with minilang.aspects.VariableRefAspect
-//	with minilang.aspects.IntAssignementAspect
+	/*
+	 * MiniLang behavior
+	 */
+	with minilang.aspects.IntegerAspect
+	with minilang.aspects.IntVariableRefAspect
+	with minilang.aspects.LessAspect
+	with minilang.aspects.IntExpressionAspect
+	with minilang.aspects.VariableRefAspect
+	with minilang.aspects.IntAssignmentAspect
+	with minilang.aspects.BooleanExpressionAspect
+	with minilang.aspects.BooleanVariableRefAspect
+	with minilang.aspects.BlockAspect
+	with minilang.aspects.PlusAspect
+	with minilang.aspects.BooleanAssignmentAspect
+	with minilang.aspects.IntOperationAspect
+	with minilang.aspects.EqualAspect
+	with minilang.aspects.IntComparisonAspect
+	with minilang.aspects.GreaterAspect
+	with minilang.aspects.BooleanAspect
+	with minilang.aspects.StatementAspect
+	with minilang.aspects.MinusAspect
+	with minilang.aspects.NotAspect
+	with minilang.aspects.DivideAspect
+	with minilang.aspects.MultiplyAspect
+	with minilang.aspects.LessOrEqualAspect
+	with minilang.aspects.GreaterOrEqualAspect
 //	with minilang.aspects.IfAspect
-//	with minilang.aspects.BooleanExpressionAspect
-//	with minilang.aspects.BooleanVariableRefAspect
-//	with minilang.aspects.BlockAspect
-//	with minilang.aspects.PlusAspect
-//	with minilang.aspects.BooleanAssignemntAspect
-//	with minilang.aspects.IntOperationAspect
-//	with minilang.aspects.EqualAspect
-//	with minilang.aspects.IntComparisonAspect
-//	with minilang.aspects.GreaterAspect
-//	with minilang.aspects.BooleanAspect
-//	with minilang.aspects.StatementAspect
-//	with minilang.aspects.MinusAspect
-//	with minilang.aspects.NotAspect
-//	with minilang.aspects.DivideAspect
-//	with minilang.aspects.MultiplyAspect
-//	with minilang.aspects.LessOrEqualAspect
-//	with minilang.aspects.GreaterOrEqualAspect
 //	with minilang.aspects.WhileAspect
-//	with minilang.aspects.AndAspect
-//	with minilang.aspects.OrAspect
-//	with minilang.aspects.BooleanOperationAspect
+	with minilang.aspects.AndAspect
+	with minilang.aspects.OrAspect
+	with minilang.aspects.BooleanOperationAspect
  
+ 	/*
+ 	 * Glue between MiniLang & MiniFSM and tweak behavior
+ 	 */
  	with fr.inria.diverse.melanger.FSMAspect
  	with fr.inria.diverse.melanger.StateAspect
  	with fr.inria.diverse.melanger.TransitionAspect

@@ -103,21 +103,21 @@
       <ecoreClass href="minilang.ecore#//Statement"/>
     </genClasses>
     <genClasses>
-      <ecoreClass href="minilang.ecore#//BooleanAssignemnt"/>
+      <ecoreClass href="minilang.ecore#//BooleanAssignment"/>
       <genFeatures property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="minilang.ecore#//BooleanAssignemnt/variable"/>
+        <ecoreFeature xsi:type="ecore:EReference" href="minilang.ecore#//BooleanAssignment/variable"/>
       </genFeatures>
       <genFeatures property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="minilang.ecore#//BooleanAssignemnt/value"/>
+        <ecoreFeature xsi:type="ecore:EReference" href="minilang.ecore#//BooleanAssignment/value"/>
       </genFeatures>
     </genClasses>
     <genClasses>
-      <ecoreClass href="minilang.ecore#//IntAssignement"/>
+      <ecoreClass href="minilang.ecore#//IntAssignment"/>
       <genFeatures property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="minilang.ecore#//IntAssignement/variable"/>
+        <ecoreFeature xsi:type="ecore:EReference" href="minilang.ecore#//IntAssignment/variable"/>
       </genFeatures>
       <genFeatures property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="minilang.ecore#//IntAssignement/value"/>
+        <ecoreFeature xsi:type="ecore:EReference" href="minilang.ecore#//IntAssignment/value"/>
       </genFeatures>
     </genClasses>
     <genClasses>

@@ -1007,14 +1007,14 @@ public interface MinilangPackage extends EPackage {
 	int STATEMENT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link fr.inria.diverse.minilang.impl.BooleanAssignemntImpl <em>Boolean Assignemnt</em>}' class.
+	 * The meta object id for the '{@link fr.inria.diverse.minilang.impl.BooleanAssignmentImpl <em>Boolean Assignment</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see fr.inria.diverse.minilang.impl.BooleanAssignemntImpl
-	 * @see fr.inria.diverse.minilang.impl.MinilangPackageImpl#getBooleanAssignemnt()
+	 * @see fr.inria.diverse.minilang.impl.BooleanAssignmentImpl
+	 * @see fr.inria.diverse.minilang.impl.MinilangPackageImpl#getBooleanAssignment()
 	 * @generated
 	 */
-	int BOOLEAN_ASSIGNEMNT = 23;
+	int BOOLEAN_ASSIGNMENT = 23;
 
 	/**
 	 * The feature id for the '<em><b>Variable</b></em>' containment reference.
@@ -1023,7 +1023,7 @@ public interface MinilangPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_ASSIGNEMNT__VARIABLE = STATEMENT_FEATURE_COUNT + 0;
+	int BOOLEAN_ASSIGNMENT__VARIABLE = STATEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -1032,35 +1032,35 @@ public interface MinilangPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_ASSIGNEMNT__VALUE = STATEMENT_FEATURE_COUNT + 1;
+	int BOOLEAN_ASSIGNMENT__VALUE = STATEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Boolean Assignemnt</em>' class.
+	 * The number of structural features of the '<em>Boolean Assignment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_ASSIGNEMNT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
+	int BOOLEAN_ASSIGNMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of operations of the '<em>Boolean Assignemnt</em>' class.
+	 * The number of operations of the '<em>Boolean Assignment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_ASSIGNEMNT_OPERATION_COUNT = STATEMENT_OPERATION_COUNT + 0;
+	int BOOLEAN_ASSIGNMENT_OPERATION_COUNT = STATEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link fr.inria.diverse.minilang.impl.IntAssignementImpl <em>Int Assignement</em>}' class.
+	 * The meta object id for the '{@link fr.inria.diverse.minilang.impl.IntAssignmentImpl <em>Int Assignment</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see fr.inria.diverse.minilang.impl.IntAssignementImpl
-	 * @see fr.inria.diverse.minilang.impl.MinilangPackageImpl#getIntAssignement()
+	 * @see fr.inria.diverse.minilang.impl.IntAssignmentImpl
+	 * @see fr.inria.diverse.minilang.impl.MinilangPackageImpl#getIntAssignment()
 	 * @generated
 	 */
-	int INT_ASSIGNEMENT = 24;
+	int INT_ASSIGNMENT = 24;
 
 	/**
 	 * The feature id for the '<em><b>Variable</b></em>' containment reference.
@@ -1069,7 +1069,7 @@ public interface MinilangPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INT_ASSIGNEMENT__VARIABLE = STATEMENT_FEATURE_COUNT + 0;
+	int INT_ASSIGNMENT__VARIABLE = STATEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -1078,25 +1078,25 @@ public interface MinilangPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INT_ASSIGNEMENT__VALUE = STATEMENT_FEATURE_COUNT + 1;
+	int INT_ASSIGNMENT__VALUE = STATEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Int Assignement</em>' class.
+	 * The number of structural features of the '<em>Int Assignment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INT_ASSIGNEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
+	int INT_ASSIGNMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of operations of the '<em>Int Assignement</em>' class.
+	 * The number of operations of the '<em>Int Assignment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INT_ASSIGNEMENT_OPERATION_COUNT = STATEMENT_OPERATION_COUNT + 0;
+	int INT_ASSIGNMENT_OPERATION_COUNT = STATEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link fr.inria.diverse.minilang.impl.PrintVarImpl <em>Print Var</em>}' class.
@@ -1208,7 +1208,6 @@ public interface MinilangPackage extends EPackage {
 	 * @ordered
 	 */
 	int BLOCK_OPERATION_COUNT = 0;
-
 
 	/**
 	 * The meta object id for the '{@link fr.inria.diverse.minilang.impl.IfImpl <em>If</em>}' class.
@@ -1653,68 +1652,68 @@ public interface MinilangPackage extends EPackage {
 	EClass getStatement();
 
 	/**
-	 * Returns the meta object for class '{@link fr.inria.diverse.minilang.BooleanAssignemnt <em>Boolean Assignemnt</em>}'.
+	 * Returns the meta object for class '{@link fr.inria.diverse.minilang.BooleanAssignment <em>Boolean Assignment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Boolean Assignemnt</em>'.
-	 * @see fr.inria.diverse.minilang.BooleanAssignemnt
+	 * @return the meta object for class '<em>Boolean Assignment</em>'.
+	 * @see fr.inria.diverse.minilang.BooleanAssignment
 	 * @generated
 	 */
-	EClass getBooleanAssignemnt();
+	EClass getBooleanAssignment();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.minilang.BooleanAssignemnt#getVariable <em>Variable</em>}'.
+	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.minilang.BooleanAssignment#getVariable <em>Variable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Variable</em>'.
-	 * @see fr.inria.diverse.minilang.BooleanAssignemnt#getVariable()
-	 * @see #getBooleanAssignemnt()
+	 * @see fr.inria.diverse.minilang.BooleanAssignment#getVariable()
+	 * @see #getBooleanAssignment()
 	 * @generated
 	 */
-	EReference getBooleanAssignemnt_Variable();
+	EReference getBooleanAssignment_Variable();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.minilang.BooleanAssignemnt#getValue <em>Value</em>}'.
+	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.minilang.BooleanAssignment#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Value</em>'.
-	 * @see fr.inria.diverse.minilang.BooleanAssignemnt#getValue()
-	 * @see #getBooleanAssignemnt()
+	 * @see fr.inria.diverse.minilang.BooleanAssignment#getValue()
+	 * @see #getBooleanAssignment()
 	 * @generated
 	 */
-	EReference getBooleanAssignemnt_Value();
+	EReference getBooleanAssignment_Value();
 
 	/**
-	 * Returns the meta object for class '{@link fr.inria.diverse.minilang.IntAssignement <em>Int Assignement</em>}'.
+	 * Returns the meta object for class '{@link fr.inria.diverse.minilang.IntAssignment <em>Int Assignment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Int Assignement</em>'.
-	 * @see fr.inria.diverse.minilang.IntAssignement
+	 * @return the meta object for class '<em>Int Assignment</em>'.
+	 * @see fr.inria.diverse.minilang.IntAssignment
 	 * @generated
 	 */
-	EClass getIntAssignement();
+	EClass getIntAssignment();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.minilang.IntAssignement#getVariable <em>Variable</em>}'.
+	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.minilang.IntAssignment#getVariable <em>Variable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Variable</em>'.
-	 * @see fr.inria.diverse.minilang.IntAssignement#getVariable()
-	 * @see #getIntAssignement()
+	 * @see fr.inria.diverse.minilang.IntAssignment#getVariable()
+	 * @see #getIntAssignment()
 	 * @generated
 	 */
-	EReference getIntAssignement_Variable();
+	EReference getIntAssignment_Variable();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.minilang.IntAssignement#getValue <em>Value</em>}'.
+	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.minilang.IntAssignment#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Value</em>'.
-	 * @see fr.inria.diverse.minilang.IntAssignement#getValue()
-	 * @see #getIntAssignement()
+	 * @see fr.inria.diverse.minilang.IntAssignment#getValue()
+	 * @see #getIntAssignment()
 	 * @generated
 	 */
-	EReference getIntAssignement_Value();
+	EReference getIntAssignment_Value();
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.minilang.PrintVar <em>Print Var</em>}'.
@@ -2188,14 +2187,14 @@ public interface MinilangPackage extends EPackage {
 		EClass STATEMENT = eINSTANCE.getStatement();
 
 		/**
-		 * The meta object literal for the '{@link fr.inria.diverse.minilang.impl.BooleanAssignemntImpl <em>Boolean Assignemnt</em>}' class.
+		 * The meta object literal for the '{@link fr.inria.diverse.minilang.impl.BooleanAssignmentImpl <em>Boolean Assignment</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see fr.inria.diverse.minilang.impl.BooleanAssignemntImpl
-		 * @see fr.inria.diverse.minilang.impl.MinilangPackageImpl#getBooleanAssignemnt()
+		 * @see fr.inria.diverse.minilang.impl.BooleanAssignmentImpl
+		 * @see fr.inria.diverse.minilang.impl.MinilangPackageImpl#getBooleanAssignment()
 		 * @generated
 		 */
-		EClass BOOLEAN_ASSIGNEMNT = eINSTANCE.getBooleanAssignemnt();
+		EClass BOOLEAN_ASSIGNMENT = eINSTANCE.getBooleanAssignment();
 
 		/**
 		 * The meta object literal for the '<em><b>Variable</b></em>' containment reference feature.
@@ -2203,7 +2202,7 @@ public interface MinilangPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BOOLEAN_ASSIGNEMNT__VARIABLE = eINSTANCE.getBooleanAssignemnt_Variable();
+		EReference BOOLEAN_ASSIGNMENT__VARIABLE = eINSTANCE.getBooleanAssignment_Variable();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
@@ -2211,17 +2210,17 @@ public interface MinilangPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BOOLEAN_ASSIGNEMNT__VALUE = eINSTANCE.getBooleanAssignemnt_Value();
+		EReference BOOLEAN_ASSIGNMENT__VALUE = eINSTANCE.getBooleanAssignment_Value();
 
 		/**
-		 * The meta object literal for the '{@link fr.inria.diverse.minilang.impl.IntAssignementImpl <em>Int Assignement</em>}' class.
+		 * The meta object literal for the '{@link fr.inria.diverse.minilang.impl.IntAssignmentImpl <em>Int Assignment</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see fr.inria.diverse.minilang.impl.IntAssignementImpl
-		 * @see fr.inria.diverse.minilang.impl.MinilangPackageImpl#getIntAssignement()
+		 * @see fr.inria.diverse.minilang.impl.IntAssignmentImpl
+		 * @see fr.inria.diverse.minilang.impl.MinilangPackageImpl#getIntAssignment()
 		 * @generated
 		 */
-		EClass INT_ASSIGNEMENT = eINSTANCE.getIntAssignement();
+		EClass INT_ASSIGNMENT = eINSTANCE.getIntAssignment();
 
 		/**
 		 * The meta object literal for the '<em><b>Variable</b></em>' containment reference feature.
@@ -2229,7 +2228,7 @@ public interface MinilangPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INT_ASSIGNEMENT__VARIABLE = eINSTANCE.getIntAssignement_Variable();
+		EReference INT_ASSIGNMENT__VARIABLE = eINSTANCE.getIntAssignment_Variable();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
@@ -2237,7 +2236,7 @@ public interface MinilangPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INT_ASSIGNEMENT__VALUE = eINSTANCE.getIntAssignement_Value();
+		EReference INT_ASSIGNMENT__VALUE = eINSTANCE.getIntAssignment_Value();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.minilang.impl.PrintVarImpl <em>Print Var</em>}' class.

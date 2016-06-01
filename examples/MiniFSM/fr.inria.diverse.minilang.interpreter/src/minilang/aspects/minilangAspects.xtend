@@ -24,8 +24,8 @@ import fr.inria.diverse.minilang.BooleanVariableRef
 import fr.inria.diverse.minilang.IntVariableRef
 import fr.inria.diverse.minilang.VariableRef
 import fr.inria.diverse.minilang.Statement
-import fr.inria.diverse.minilang.BooleanAssignemnt
-import fr.inria.diverse.minilang.IntAssignement
+import fr.inria.diverse.minilang.BooleanAssignment
+import fr.inria.diverse.minilang.IntAssignment
 import fr.inria.diverse.minilang.Block
 
 import static extension minilang.aspects.IntExpressionAspect.*
@@ -51,8 +51,8 @@ import static extension minilang.aspects.BooleanVariableRefAspect.*
 import static extension minilang.aspects.IntVariableRefAspect.*
 import static extension minilang.aspects.VariableRefAspect.*
 import static extension minilang.aspects.StatementAspect.*
-import static extension minilang.aspects.BooleanAssignemntAspect.*
-import static extension minilang.aspects.IntAssignementAspect.*
+import static extension minilang.aspects.BooleanAssignmentAspect.*
+import static extension minilang.aspects.IntAssignmentAspect.*
 import static extension minilang.aspects.BlockAspect.*
 import fr.inria.diverse.interpreter.Context
 import fr.inria.diverse.minilang.If
@@ -220,8 +220,8 @@ class StatementAspect {
 	}
 }
 
-@Aspect(className=BooleanAssignemnt)
-class BooleanAssignemntAspect extends StatementAspect {
+@Aspect(className=BooleanAssignment)
+class BooleanAssignmentAspect extends StatementAspect {
 	def void execute(Context ctx){
 		val variable = ctx.variables
 			.filter(fr.inria.diverse.interpreter.Boolean)
@@ -231,8 +231,8 @@ class BooleanAssignemntAspect extends StatementAspect {
 	}
 }
 
-@Aspect(className=IntAssignement)
-class IntAssignementAspect extends StatementAspect {
+@Aspect(className=IntAssignment)
+class IntAssignmentAspect extends StatementAspect {
 	def void execute(Context ctx){
 		val variable = ctx.variables
 			.filter(fr.inria.diverse.interpreter.Integer)

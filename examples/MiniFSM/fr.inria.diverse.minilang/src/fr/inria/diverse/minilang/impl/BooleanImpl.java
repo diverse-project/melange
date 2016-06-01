@@ -5,6 +5,7 @@ package fr.inria.diverse.minilang.impl;
 import fr.inria.diverse.minilang.MinilangPackage;
 
 import java.lang.Boolean;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;

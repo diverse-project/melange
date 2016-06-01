@@ -2,9 +2,9 @@
  */
 package fr.inria.diverse.minilang.impl;
 
-import fr.inria.diverse.minilang.BooleanAssignemnt;
-import fr.inria.diverse.minilang.BooleanExpression;
-import fr.inria.diverse.minilang.BooleanVariableRef;
+import fr.inria.diverse.minilang.IntAssignment;
+import fr.inria.diverse.minilang.IntExpression;
+import fr.inria.diverse.minilang.IntVariableRef;
 import fr.inria.diverse.minilang.MinilangPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -17,19 +17,19 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Boolean Assignemnt</b></em>'.
+ * An implementation of the model object '<em><b>Int Assignment</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link fr.inria.diverse.minilang.impl.BooleanAssignemntImpl#getVariable <em>Variable</em>}</li>
- *   <li>{@link fr.inria.diverse.minilang.impl.BooleanAssignemntImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link fr.inria.diverse.minilang.impl.IntAssignmentImpl#getVariable <em>Variable</em>}</li>
+ *   <li>{@link fr.inria.diverse.minilang.impl.IntAssignmentImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class BooleanAssignemntImpl extends StatementImpl implements BooleanAssignemnt {
+public class IntAssignmentImpl extends StatementImpl implements IntAssignment {
 	/**
 	 * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -38,7 +38,7 @@ public class BooleanAssignemntImpl extends StatementImpl implements BooleanAssig
 	 * @generated
 	 * @ordered
 	 */
-	protected BooleanVariableRef variable;
+	protected IntVariableRef variable;
 
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
@@ -48,14 +48,14 @@ public class BooleanAssignemntImpl extends StatementImpl implements BooleanAssig
 	 * @generated
 	 * @ordered
 	 */
-	protected BooleanExpression value;
+	protected IntExpression value;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BooleanAssignemntImpl() {
+	protected IntAssignmentImpl() {
 		super();
 	}
 
@@ -66,7 +66,7 @@ public class BooleanAssignemntImpl extends StatementImpl implements BooleanAssig
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MinilangPackage.Literals.BOOLEAN_ASSIGNEMNT;
+		return MinilangPackage.Literals.INT_ASSIGNMENT;
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class BooleanAssignemntImpl extends StatementImpl implements BooleanAssig
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BooleanVariableRef getVariable() {
+	public IntVariableRef getVariable() {
 		return variable;
 	}
 
@@ -83,11 +83,11 @@ public class BooleanAssignemntImpl extends StatementImpl implements BooleanAssig
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetVariable(BooleanVariableRef newVariable, NotificationChain msgs) {
-		BooleanVariableRef oldVariable = variable;
+	public NotificationChain basicSetVariable(IntVariableRef newVariable, NotificationChain msgs) {
+		IntVariableRef oldVariable = variable;
 		variable = newVariable;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MinilangPackage.BOOLEAN_ASSIGNEMNT__VARIABLE, oldVariable, newVariable);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MinilangPackage.INT_ASSIGNMENT__VARIABLE, oldVariable, newVariable);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -98,18 +98,18 @@ public class BooleanAssignemntImpl extends StatementImpl implements BooleanAssig
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVariable(BooleanVariableRef newVariable) {
+	public void setVariable(IntVariableRef newVariable) {
 		if (newVariable != variable) {
 			NotificationChain msgs = null;
 			if (variable != null)
-				msgs = ((InternalEObject)variable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MinilangPackage.BOOLEAN_ASSIGNEMNT__VARIABLE, null, msgs);
+				msgs = ((InternalEObject)variable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MinilangPackage.INT_ASSIGNMENT__VARIABLE, null, msgs);
 			if (newVariable != null)
-				msgs = ((InternalEObject)newVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MinilangPackage.BOOLEAN_ASSIGNEMNT__VARIABLE, null, msgs);
+				msgs = ((InternalEObject)newVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MinilangPackage.INT_ASSIGNMENT__VARIABLE, null, msgs);
 			msgs = basicSetVariable(newVariable, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MinilangPackage.BOOLEAN_ASSIGNEMNT__VARIABLE, newVariable, newVariable));
+			eNotify(new ENotificationImpl(this, Notification.SET, MinilangPackage.INT_ASSIGNMENT__VARIABLE, newVariable, newVariable));
 	}
 
 	/**
@@ -117,7 +117,7 @@ public class BooleanAssignemntImpl extends StatementImpl implements BooleanAssig
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BooleanExpression getValue() {
+	public IntExpression getValue() {
 		return value;
 	}
 
@@ -126,11 +126,11 @@ public class BooleanAssignemntImpl extends StatementImpl implements BooleanAssig
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetValue(BooleanExpression newValue, NotificationChain msgs) {
-		BooleanExpression oldValue = value;
+	public NotificationChain basicSetValue(IntExpression newValue, NotificationChain msgs) {
+		IntExpression oldValue = value;
 		value = newValue;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MinilangPackage.BOOLEAN_ASSIGNEMNT__VALUE, oldValue, newValue);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MinilangPackage.INT_ASSIGNMENT__VALUE, oldValue, newValue);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -141,18 +141,18 @@ public class BooleanAssignemntImpl extends StatementImpl implements BooleanAssig
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValue(BooleanExpression newValue) {
+	public void setValue(IntExpression newValue) {
 		if (newValue != value) {
 			NotificationChain msgs = null;
 			if (value != null)
-				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MinilangPackage.BOOLEAN_ASSIGNEMNT__VALUE, null, msgs);
+				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MinilangPackage.INT_ASSIGNMENT__VALUE, null, msgs);
 			if (newValue != null)
-				msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MinilangPackage.BOOLEAN_ASSIGNEMNT__VALUE, null, msgs);
+				msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MinilangPackage.INT_ASSIGNMENT__VALUE, null, msgs);
 			msgs = basicSetValue(newValue, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MinilangPackage.BOOLEAN_ASSIGNEMNT__VALUE, newValue, newValue));
+			eNotify(new ENotificationImpl(this, Notification.SET, MinilangPackage.INT_ASSIGNMENT__VALUE, newValue, newValue));
 	}
 
 	/**
@@ -163,9 +163,9 @@ public class BooleanAssignemntImpl extends StatementImpl implements BooleanAssig
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MinilangPackage.BOOLEAN_ASSIGNEMNT__VARIABLE:
+			case MinilangPackage.INT_ASSIGNMENT__VARIABLE:
 				return basicSetVariable(null, msgs);
-			case MinilangPackage.BOOLEAN_ASSIGNEMNT__VALUE:
+			case MinilangPackage.INT_ASSIGNMENT__VALUE:
 				return basicSetValue(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -179,9 +179,9 @@ public class BooleanAssignemntImpl extends StatementImpl implements BooleanAssig
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MinilangPackage.BOOLEAN_ASSIGNEMNT__VARIABLE:
+			case MinilangPackage.INT_ASSIGNMENT__VARIABLE:
 				return getVariable();
-			case MinilangPackage.BOOLEAN_ASSIGNEMNT__VALUE:
+			case MinilangPackage.INT_ASSIGNMENT__VALUE:
 				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -195,11 +195,11 @@ public class BooleanAssignemntImpl extends StatementImpl implements BooleanAssig
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MinilangPackage.BOOLEAN_ASSIGNEMNT__VARIABLE:
-				setVariable((BooleanVariableRef)newValue);
+			case MinilangPackage.INT_ASSIGNMENT__VARIABLE:
+				setVariable((IntVariableRef)newValue);
 				return;
-			case MinilangPackage.BOOLEAN_ASSIGNEMNT__VALUE:
-				setValue((BooleanExpression)newValue);
+			case MinilangPackage.INT_ASSIGNMENT__VALUE:
+				setValue((IntExpression)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -213,11 +213,11 @@ public class BooleanAssignemntImpl extends StatementImpl implements BooleanAssig
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MinilangPackage.BOOLEAN_ASSIGNEMNT__VARIABLE:
-				setVariable((BooleanVariableRef)null);
+			case MinilangPackage.INT_ASSIGNMENT__VARIABLE:
+				setVariable((IntVariableRef)null);
 				return;
-			case MinilangPackage.BOOLEAN_ASSIGNEMNT__VALUE:
-				setValue((BooleanExpression)null);
+			case MinilangPackage.INT_ASSIGNMENT__VALUE:
+				setValue((IntExpression)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -231,12 +231,12 @@ public class BooleanAssignemntImpl extends StatementImpl implements BooleanAssig
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MinilangPackage.BOOLEAN_ASSIGNEMNT__VARIABLE:
+			case MinilangPackage.INT_ASSIGNMENT__VARIABLE:
 				return variable != null;
-			case MinilangPackage.BOOLEAN_ASSIGNEMNT__VALUE:
+			case MinilangPackage.INT_ASSIGNMENT__VALUE:
 				return value != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //BooleanAssignemntImpl
+} //IntAssignmentImpl

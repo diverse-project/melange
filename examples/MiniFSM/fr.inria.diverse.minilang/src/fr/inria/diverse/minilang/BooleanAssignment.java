@@ -1,26 +1,26 @@
 /**
  */
-package fr.inria.diverse.melanger.minilangmt.minilang;
+package fr.inria.diverse.minilang;
 
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Boolean Assignemnt</b></em>'.
+ * A representation of the model object '<em><b>Boolean Assignment</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link fr.inria.diverse.melanger.minilangmt.minilang.BooleanAssignemnt#getVariable <em>Variable</em>}</li>
- *   <li>{@link fr.inria.diverse.melanger.minilangmt.minilang.BooleanAssignemnt#getValue <em>Value</em>}</li>
+ *   <li>{@link fr.inria.diverse.minilang.BooleanAssignment#getVariable <em>Variable</em>}</li>
+ *   <li>{@link fr.inria.diverse.minilang.BooleanAssignment#getValue <em>Value</em>}</li>
  * </ul>
  *
- * @see fr.inria.diverse.melanger.minilangmt.minilang.MinilangPackage#getBooleanAssignemnt()
+ * @see fr.inria.diverse.minilang.MinilangPackage#getBooleanAssignment()
  * @model
  * @generated
  */
-public interface BooleanAssignemnt extends Statement {
+public interface BooleanAssignment extends Statement {
 	/**
 	 * Returns the value of the '<em><b>Variable</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -31,14 +31,14 @@ public interface BooleanAssignemnt extends Statement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Variable</em>' containment reference.
 	 * @see #setVariable(BooleanVariableRef)
-	 * @see fr.inria.diverse.melanger.minilangmt.minilang.MinilangPackage#getBooleanAssignemnt_Variable()
+	 * @see fr.inria.diverse.minilang.MinilangPackage#getBooleanAssignment_Variable()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	BooleanVariableRef getVariable();
 
 	/**
-	 * Sets the value of the '{@link fr.inria.diverse.melanger.minilangmt.minilang.BooleanAssignemnt#getVariable <em>Variable</em>}' containment reference.
+	 * Sets the value of the '{@link fr.inria.diverse.minilang.BooleanAssignment#getVariable <em>Variable</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Variable</em>' containment reference.
@@ -57,14 +57,14 @@ public interface BooleanAssignemnt extends Statement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value</em>' containment reference.
 	 * @see #setValue(BooleanExpression)
-	 * @see fr.inria.diverse.melanger.minilangmt.minilang.MinilangPackage#getBooleanAssignemnt_Value()
+	 * @see fr.inria.diverse.minilang.MinilangPackage#getBooleanAssignment_Value()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	BooleanExpression getValue();
 
 	/**
-	 * Sets the value of the '{@link fr.inria.diverse.melanger.minilangmt.minilang.BooleanAssignemnt#getValue <em>Value</em>}' containment reference.
+	 * Sets the value of the '{@link fr.inria.diverse.minilang.BooleanAssignment#getValue <em>Value</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Value</em>' containment reference.
@@ -73,4 +73,4 @@ public interface BooleanAssignemnt extends Statement {
 	 */
 	void setValue(BooleanExpression value);
 
-} // BooleanAssignemnt
+} // BooleanAssignment

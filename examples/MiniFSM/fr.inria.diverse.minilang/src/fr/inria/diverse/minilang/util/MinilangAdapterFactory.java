@@ -4,7 +4,7 @@ package fr.inria.diverse.minilang.util;
 
 import fr.inria.diverse.minilang.And;
 import fr.inria.diverse.minilang.Block;
-import fr.inria.diverse.minilang.BooleanAssignemnt;
+import fr.inria.diverse.minilang.BooleanAssignment;
 import fr.inria.diverse.minilang.BooleanExpression;
 import fr.inria.diverse.minilang.BooleanOperation;
 import fr.inria.diverse.minilang.BooleanVariableRef;
@@ -13,7 +13,7 @@ import fr.inria.diverse.minilang.Equal;
 import fr.inria.diverse.minilang.Greater;
 import fr.inria.diverse.minilang.GreaterOrEqual;
 import fr.inria.diverse.minilang.If;
-import fr.inria.diverse.minilang.IntAssignement;
+import fr.inria.diverse.minilang.IntAssignment;
 import fr.inria.diverse.minilang.IntComparison;
 import fr.inria.diverse.minilang.IntExpression;
 import fr.inria.diverse.minilang.IntOperation;
@@ -30,8 +30,8 @@ import fr.inria.diverse.minilang.PrintStr;
 import fr.inria.diverse.minilang.PrintVar;
 import fr.inria.diverse.minilang.Statement;
 import fr.inria.diverse.minilang.VariableRef;
-
 import fr.inria.diverse.minilang.While;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 
@@ -188,12 +188,12 @@ public class MinilangAdapterFactory extends AdapterFactoryImpl {
 				return createStatementAdapter();
 			}
 			@Override
-			public Adapter caseBooleanAssignemnt(BooleanAssignemnt object) {
-				return createBooleanAssignemntAdapter();
+			public Adapter caseBooleanAssignment(BooleanAssignment object) {
+				return createBooleanAssignmentAdapter();
 			}
 			@Override
-			public Adapter caseIntAssignement(IntAssignement object) {
-				return createIntAssignementAdapter();
+			public Adapter caseIntAssignment(IntAssignment object) {
+				return createIntAssignmentAdapter();
 			}
 			@Override
 			public Adapter casePrintVar(PrintVar object) {
@@ -558,30 +558,30 @@ public class MinilangAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.minilang.BooleanAssignemnt <em>Boolean Assignemnt</em>}'.
+	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.minilang.BooleanAssignment <em>Boolean Assignment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see fr.inria.diverse.minilang.BooleanAssignemnt
+	 * @see fr.inria.diverse.minilang.BooleanAssignment
 	 * @generated
 	 */
-	public Adapter createBooleanAssignemntAdapter() {
+	public Adapter createBooleanAssignmentAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.minilang.IntAssignement <em>Int Assignement</em>}'.
+	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.minilang.IntAssignment <em>Int Assignment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see fr.inria.diverse.minilang.IntAssignement
+	 * @see fr.inria.diverse.minilang.IntAssignment
 	 * @generated
 	 */
-	public Adapter createIntAssignementAdapter() {
+	public Adapter createIntAssignmentAdapter() {
 		return null;
 	}
 

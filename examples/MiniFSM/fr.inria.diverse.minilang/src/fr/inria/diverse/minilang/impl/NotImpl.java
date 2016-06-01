@@ -37,6 +37,7 @@ public class NotImpl extends BooleanExpressionImpl implements Not {
 	 * @ordered
 	 */
 	protected BooleanExpression expression;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
