@@ -174,8 +174,14 @@ class LanguageProcessor extends DispatchMelangeProcessor
 			MelangeFactory.eINSTANCE.createAspect => [
 				aspectTypeRef = typesBuilder.cloneWithProxies(w.aspectTypeRef)
 				val classFqName = aspectTypeRef.aspectAnnotationValue
-				if (classFqName !== null)
+				if (classFqName !== null){
 					aspectedClass = language.syntax.findClass(classFqName)
+					if(aspectedClass === null){ //try renaming
+						val renamings = language.collectMappings
+						val newName = classFqName.rename(renamings)
+						aspectedClass = language.syntax.findClass(newName)
+					}
+				}
 				ecoreFragment = builder.getBuilder(language).findBuilder(w)?.model.head
 			]
 		]

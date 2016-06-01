@@ -37,6 +37,7 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import com.google.common.collect.HashMultimap
 import com.google.common.collect.SetMultimap
+import fr.inria.diverse.melange.metamodel.melange.Mapping
 
 /**
  * A collection of utilities around {@link Language}s
@@ -838,5 +839,35 @@ class LanguageExtensions
 			return null
 		else
 			return new RenamingRuleManager(rules,	#[], newRootName, aspectExtension)
+	}
+	
+	/**
+	 * Returns mappings from syntax, merge & slice operators
+	 */
+	def List<PackageBinding> collectMappings(Language l){
+		val res = newArrayList
+		res.addAll(l.operators.filter(Import).map[mappingRules].flatten)
+		res.addAll(l.operators.filter(Merge).map[mappingRules].flatten)
+		res.addAll(l.operators.filter(Slice).map[mappingRules].flatten)
+		return res
+	}
+	
+	def String rename(String qualifiedClsName,  List<PackageBinding> rules){
+		if(qualifiedClsName == null || !qualifiedClsName.contains("."))
+			return qualifiedClsName
+			
+		val pkgName = qualifiedClsName.substring(0,qualifiedClsName.lastIndexOf("."))
+		val simpleName = qualifiedClsName.substring(qualifiedClsName.lastIndexOf(".")+1)
+		
+		val candidateRules = rules.filter[pkgName.endsWith(from)]
+		val res = candidateRules.findFirst[classes.exists[from == simpleName]]
+		if(res !== null){
+			return res.to + "." + res.classes.findFirst[from == simpleName].to
+		}
+		else if(!candidateRules.isEmpty){
+			return candidateRules.head.to + "." + simpleName
+		}
+		
+		return qualifiedClsName
 	}
 }
