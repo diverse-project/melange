@@ -1,11 +1,8 @@
 /**
  */
-package fr.inria.diverse.interpreter.impl;
+package fr.inria.diverse.context.minilang.impl;
 
-import fr.inria.diverse.interpreter.Context;
-import fr.inria.diverse.interpreter.InterpreterFactory;
-import fr.inria.diverse.interpreter.InterpreterPackage;
-import fr.inria.diverse.interpreter.Variable;
+import fr.inria.diverse.context.minilang.*;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -21,24 +18,24 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class InterpreterFactoryImpl extends EFactoryImpl implements InterpreterFactory {
+public class MinilangFactoryImpl extends EFactoryImpl implements MinilangFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static InterpreterFactory init() {
+	public static MinilangFactory init() {
 		try {
-			InterpreterFactory theInterpreterFactory = (InterpreterFactory)EPackage.Registry.INSTANCE.getEFactory(InterpreterPackage.eNS_URI);
-			if (theInterpreterFactory != null) {
-				return theInterpreterFactory;
+			MinilangFactory theMinilangFactory = (MinilangFactory)EPackage.Registry.INSTANCE.getEFactory(MinilangPackage.eNS_URI);
+			if (theMinilangFactory != null) {
+				return theMinilangFactory;
 			}
 		}
 		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
-		return new InterpreterFactoryImpl();
+		return new MinilangFactoryImpl();
 	}
 
 	/**
@@ -47,7 +44,7 @@ public class InterpreterFactoryImpl extends EFactoryImpl implements InterpreterF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InterpreterFactoryImpl() {
+	public MinilangFactoryImpl() {
 		super();
 	}
 
@@ -59,10 +56,10 @@ public class InterpreterFactoryImpl extends EFactoryImpl implements InterpreterF
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case InterpreterPackage.CONTEXT: return createContext();
-			case InterpreterPackage.VARIABLE: return createVariable();
-			case InterpreterPackage.INTEGER: return createInteger();
-			case InterpreterPackage.BOOLEAN: return createBoolean();
+			case MinilangPackage.CONTEXT: return createContext();
+			case MinilangPackage.VARIABLE: return createVariable();
+			case MinilangPackage.INTEGER_VAR: return createIntegerVar();
+			case MinilangPackage.BOOLEAN_VAR: return createBooleanVar();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -93,9 +90,9 @@ public class InterpreterFactoryImpl extends EFactoryImpl implements InterpreterF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public fr.inria.diverse.interpreter.Integer createInteger() {
-		IntegerImpl integer = new IntegerImpl();
-		return integer;
+	public IntegerVar createIntegerVar() {
+		IntegerVarImpl integerVar = new IntegerVarImpl();
+		return integerVar;
 	}
 
 	/**
@@ -103,9 +100,9 @@ public class InterpreterFactoryImpl extends EFactoryImpl implements InterpreterF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public fr.inria.diverse.interpreter.Boolean createBoolean() {
-		BooleanImpl boolean_ = new BooleanImpl();
-		return boolean_;
+	public BooleanVar createBooleanVar() {
+		BooleanVarImpl booleanVar = new BooleanVarImpl();
+		return booleanVar;
 	}
 
 	/**
@@ -113,8 +110,8 @@ public class InterpreterFactoryImpl extends EFactoryImpl implements InterpreterF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InterpreterPackage getInterpreterPackage() {
-		return (InterpreterPackage)getEPackage();
+	public MinilangPackage getMinilangPackage() {
+		return (MinilangPackage)getEPackage();
 	}
 
 	/**
@@ -124,8 +121,8 @@ public class InterpreterFactoryImpl extends EFactoryImpl implements InterpreterF
 	 * @generated
 	 */
 	@Deprecated
-	public static InterpreterPackage getPackage() {
-		return InterpreterPackage.eINSTANCE;
+	public static MinilangPackage getPackage() {
+		return MinilangPackage.eINSTANCE;
 	}
 
-} //InterpreterFactoryImpl
+} //MinilangFactoryImpl

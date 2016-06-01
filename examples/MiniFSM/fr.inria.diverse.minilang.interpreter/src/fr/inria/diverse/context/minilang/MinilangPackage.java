@@ -1,6 +1,6 @@
 /**
  */
-package fr.inria.diverse.interpreter;
+package fr.inria.diverse.context.minilang;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -19,18 +19,18 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see fr.inria.diverse.interpreter.InterpreterFactory
+ * @see fr.inria.diverse.context.minilang.MinilangFactory
  * @model kind="package"
  * @generated
  */
-public interface InterpreterPackage extends EPackage {
+public interface MinilangPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "interpreter";
+	String eNAME = "minilang";
 
 	/**
 	 * The package namespace URI.
@@ -38,7 +38,7 @@ public interface InterpreterPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://minilang/interpreter/";
+	String eNS_URI = "http://minilang/context/";
 
 	/**
 	 * The package namespace name.
@@ -46,7 +46,7 @@ public interface InterpreterPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "interpreter";
+	String eNS_PREFIX = "minilang";
 
 	/**
 	 * The singleton instance of the package.
@@ -54,14 +54,14 @@ public interface InterpreterPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	InterpreterPackage eINSTANCE = fr.inria.diverse.interpreter.impl.InterpreterPackageImpl.init();
+	MinilangPackage eINSTANCE = fr.inria.diverse.context.minilang.impl.MinilangPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link fr.inria.diverse.interpreter.impl.ContextImpl <em>Context</em>}' class.
+	 * The meta object id for the '{@link fr.inria.diverse.context.minilang.impl.ContextImpl <em>Context</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see fr.inria.diverse.interpreter.impl.ContextImpl
-	 * @see fr.inria.diverse.interpreter.impl.InterpreterPackageImpl#getContext()
+	 * @see fr.inria.diverse.context.minilang.impl.ContextImpl
+	 * @see fr.inria.diverse.context.minilang.impl.MinilangPackageImpl#getContext()
 	 * @generated
 	 */
 	int CONTEXT = 0;
@@ -94,11 +94,11 @@ public interface InterpreterPackage extends EPackage {
 	int CONTEXT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link fr.inria.diverse.interpreter.impl.VariableImpl <em>Variable</em>}' class.
+	 * The meta object id for the '{@link fr.inria.diverse.context.minilang.impl.VariableImpl <em>Variable</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see fr.inria.diverse.interpreter.impl.VariableImpl
-	 * @see fr.inria.diverse.interpreter.impl.InterpreterPackageImpl#getVariable()
+	 * @see fr.inria.diverse.context.minilang.impl.VariableImpl
+	 * @see fr.inria.diverse.context.minilang.impl.MinilangPackageImpl#getVariable()
 	 * @generated
 	 */
 	int VARIABLE = 1;
@@ -131,14 +131,14 @@ public interface InterpreterPackage extends EPackage {
 	int VARIABLE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link fr.inria.diverse.interpreter.impl.IntegerImpl <em>Integer</em>}' class.
+	 * The meta object id for the '{@link fr.inria.diverse.context.minilang.impl.IntegerVarImpl <em>Integer Var</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see fr.inria.diverse.interpreter.impl.IntegerImpl
-	 * @see fr.inria.diverse.interpreter.impl.InterpreterPackageImpl#getInteger()
+	 * @see fr.inria.diverse.context.minilang.impl.IntegerVarImpl
+	 * @see fr.inria.diverse.context.minilang.impl.MinilangPackageImpl#getIntegerVar()
 	 * @generated
 	 */
-	int INTEGER = 2;
+	int INTEGER_VAR = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -147,7 +147,7 @@ public interface InterpreterPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTEGER__NAME = VARIABLE__NAME;
+	int INTEGER_VAR__NAME = VARIABLE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -156,35 +156,35 @@ public interface InterpreterPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTEGER__VALUE = VARIABLE_FEATURE_COUNT + 0;
+	int INTEGER_VAR__VALUE = VARIABLE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Integer</em>' class.
+	 * The number of structural features of the '<em>Integer Var</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTEGER_FEATURE_COUNT = VARIABLE_FEATURE_COUNT + 1;
+	int INTEGER_VAR_FEATURE_COUNT = VARIABLE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Integer</em>' class.
+	 * The number of operations of the '<em>Integer Var</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTEGER_OPERATION_COUNT = VARIABLE_OPERATION_COUNT + 0;
+	int INTEGER_VAR_OPERATION_COUNT = VARIABLE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link fr.inria.diverse.interpreter.impl.BooleanImpl <em>Boolean</em>}' class.
+	 * The meta object id for the '{@link fr.inria.diverse.context.minilang.impl.BooleanVarImpl <em>Boolean Var</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see fr.inria.diverse.interpreter.impl.BooleanImpl
-	 * @see fr.inria.diverse.interpreter.impl.InterpreterPackageImpl#getBoolean()
+	 * @see fr.inria.diverse.context.minilang.impl.BooleanVarImpl
+	 * @see fr.inria.diverse.context.minilang.impl.MinilangPackageImpl#getBooleanVar()
 	 * @generated
 	 */
-	int BOOLEAN = 3;
+	int BOOLEAN_VAR = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -193,7 +193,7 @@ public interface InterpreterPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN__NAME = VARIABLE__NAME;
+	int BOOLEAN_VAR__NAME = VARIABLE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -202,110 +202,110 @@ public interface InterpreterPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN__VALUE = VARIABLE_FEATURE_COUNT + 0;
+	int BOOLEAN_VAR__VALUE = VARIABLE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Boolean</em>' class.
+	 * The number of structural features of the '<em>Boolean Var</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_FEATURE_COUNT = VARIABLE_FEATURE_COUNT + 1;
+	int BOOLEAN_VAR_FEATURE_COUNT = VARIABLE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Boolean</em>' class.
+	 * The number of operations of the '<em>Boolean Var</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_OPERATION_COUNT = VARIABLE_OPERATION_COUNT + 0;
+	int BOOLEAN_VAR_OPERATION_COUNT = VARIABLE_OPERATION_COUNT + 0;
 
 
 	/**
-	 * Returns the meta object for class '{@link fr.inria.diverse.interpreter.Context <em>Context</em>}'.
+	 * Returns the meta object for class '{@link fr.inria.diverse.context.minilang.Context <em>Context</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Context</em>'.
-	 * @see fr.inria.diverse.interpreter.Context
+	 * @see fr.inria.diverse.context.minilang.Context
 	 * @generated
 	 */
 	EClass getContext();
 
 	/**
-	 * Returns the meta object for the reference list '{@link fr.inria.diverse.interpreter.Context#getVariables <em>Variables</em>}'.
+	 * Returns the meta object for the reference list '{@link fr.inria.diverse.context.minilang.Context#getVariables <em>Variables</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Variables</em>'.
-	 * @see fr.inria.diverse.interpreter.Context#getVariables()
+	 * @see fr.inria.diverse.context.minilang.Context#getVariables()
 	 * @see #getContext()
 	 * @generated
 	 */
 	EReference getContext_Variables();
 
 	/**
-	 * Returns the meta object for class '{@link fr.inria.diverse.interpreter.Variable <em>Variable</em>}'.
+	 * Returns the meta object for class '{@link fr.inria.diverse.context.minilang.Variable <em>Variable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Variable</em>'.
-	 * @see fr.inria.diverse.interpreter.Variable
+	 * @see fr.inria.diverse.context.minilang.Variable
 	 * @generated
 	 */
 	EClass getVariable();
 
 	/**
-	 * Returns the meta object for the attribute '{@link fr.inria.diverse.interpreter.Variable#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.context.minilang.Variable#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see fr.inria.diverse.interpreter.Variable#getName()
+	 * @see fr.inria.diverse.context.minilang.Variable#getName()
 	 * @see #getVariable()
 	 * @generated
 	 */
 	EAttribute getVariable_Name();
 
 	/**
-	 * Returns the meta object for class '{@link fr.inria.diverse.interpreter.Integer <em>Integer</em>}'.
+	 * Returns the meta object for class '{@link fr.inria.diverse.context.minilang.IntegerVar <em>Integer Var</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Integer</em>'.
-	 * @see fr.inria.diverse.interpreter.Integer
+	 * @return the meta object for class '<em>Integer Var</em>'.
+	 * @see fr.inria.diverse.context.minilang.IntegerVar
 	 * @generated
 	 */
-	EClass getInteger();
+	EClass getIntegerVar();
 
 	/**
-	 * Returns the meta object for the attribute '{@link fr.inria.diverse.interpreter.Integer#getValue <em>Value</em>}'.
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.context.minilang.IntegerVar#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see fr.inria.diverse.interpreter.Integer#getValue()
-	 * @see #getInteger()
+	 * @see fr.inria.diverse.context.minilang.IntegerVar#getValue()
+	 * @see #getIntegerVar()
 	 * @generated
 	 */
-	EAttribute getInteger_Value();
+	EAttribute getIntegerVar_Value();
 
 	/**
-	 * Returns the meta object for class '{@link fr.inria.diverse.interpreter.Boolean <em>Boolean</em>}'.
+	 * Returns the meta object for class '{@link fr.inria.diverse.context.minilang.BooleanVar <em>Boolean Var</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Boolean</em>'.
-	 * @see fr.inria.diverse.interpreter.Boolean
+	 * @return the meta object for class '<em>Boolean Var</em>'.
+	 * @see fr.inria.diverse.context.minilang.BooleanVar
 	 * @generated
 	 */
-	EClass getBoolean();
+	EClass getBooleanVar();
 
 	/**
-	 * Returns the meta object for the attribute '{@link fr.inria.diverse.interpreter.Boolean#isValue <em>Value</em>}'.
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.context.minilang.BooleanVar#isValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see fr.inria.diverse.interpreter.Boolean#isValue()
-	 * @see #getBoolean()
+	 * @see fr.inria.diverse.context.minilang.BooleanVar#isValue()
+	 * @see #getBooleanVar()
 	 * @generated
 	 */
-	EAttribute getBoolean_Value();
+	EAttribute getBooleanVar_Value();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -314,7 +314,7 @@ public interface InterpreterPackage extends EPackage {
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
-	InterpreterFactory getInterpreterFactory();
+	MinilangFactory getMinilangFactory();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -331,11 +331,11 @@ public interface InterpreterPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link fr.inria.diverse.interpreter.impl.ContextImpl <em>Context</em>}' class.
+		 * The meta object literal for the '{@link fr.inria.diverse.context.minilang.impl.ContextImpl <em>Context</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see fr.inria.diverse.interpreter.impl.ContextImpl
-		 * @see fr.inria.diverse.interpreter.impl.InterpreterPackageImpl#getContext()
+		 * @see fr.inria.diverse.context.minilang.impl.ContextImpl
+		 * @see fr.inria.diverse.context.minilang.impl.MinilangPackageImpl#getContext()
 		 * @generated
 		 */
 		EClass CONTEXT = eINSTANCE.getContext();
@@ -349,11 +349,11 @@ public interface InterpreterPackage extends EPackage {
 		EReference CONTEXT__VARIABLES = eINSTANCE.getContext_Variables();
 
 		/**
-		 * The meta object literal for the '{@link fr.inria.diverse.interpreter.impl.VariableImpl <em>Variable</em>}' class.
+		 * The meta object literal for the '{@link fr.inria.diverse.context.minilang.impl.VariableImpl <em>Variable</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see fr.inria.diverse.interpreter.impl.VariableImpl
-		 * @see fr.inria.diverse.interpreter.impl.InterpreterPackageImpl#getVariable()
+		 * @see fr.inria.diverse.context.minilang.impl.VariableImpl
+		 * @see fr.inria.diverse.context.minilang.impl.MinilangPackageImpl#getVariable()
 		 * @generated
 		 */
 		EClass VARIABLE = eINSTANCE.getVariable();
@@ -367,14 +367,14 @@ public interface InterpreterPackage extends EPackage {
 		EAttribute VARIABLE__NAME = eINSTANCE.getVariable_Name();
 
 		/**
-		 * The meta object literal for the '{@link fr.inria.diverse.interpreter.impl.IntegerImpl <em>Integer</em>}' class.
+		 * The meta object literal for the '{@link fr.inria.diverse.context.minilang.impl.IntegerVarImpl <em>Integer Var</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see fr.inria.diverse.interpreter.impl.IntegerImpl
-		 * @see fr.inria.diverse.interpreter.impl.InterpreterPackageImpl#getInteger()
+		 * @see fr.inria.diverse.context.minilang.impl.IntegerVarImpl
+		 * @see fr.inria.diverse.context.minilang.impl.MinilangPackageImpl#getIntegerVar()
 		 * @generated
 		 */
-		EClass INTEGER = eINSTANCE.getInteger();
+		EClass INTEGER_VAR = eINSTANCE.getIntegerVar();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
@@ -382,17 +382,17 @@ public interface InterpreterPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INTEGER__VALUE = eINSTANCE.getInteger_Value();
+		EAttribute INTEGER_VAR__VALUE = eINSTANCE.getIntegerVar_Value();
 
 		/**
-		 * The meta object literal for the '{@link fr.inria.diverse.interpreter.impl.BooleanImpl <em>Boolean</em>}' class.
+		 * The meta object literal for the '{@link fr.inria.diverse.context.minilang.impl.BooleanVarImpl <em>Boolean Var</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see fr.inria.diverse.interpreter.impl.BooleanImpl
-		 * @see fr.inria.diverse.interpreter.impl.InterpreterPackageImpl#getBoolean()
+		 * @see fr.inria.diverse.context.minilang.impl.BooleanVarImpl
+		 * @see fr.inria.diverse.context.minilang.impl.MinilangPackageImpl#getBooleanVar()
 		 * @generated
 		 */
-		EClass BOOLEAN = eINSTANCE.getBoolean();
+		EClass BOOLEAN_VAR = eINSTANCE.getBooleanVar();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
@@ -400,8 +400,8 @@ public interface InterpreterPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute BOOLEAN__VALUE = eINSTANCE.getBoolean_Value();
+		EAttribute BOOLEAN_VAR__VALUE = eINSTANCE.getBooleanVar_Value();
 
 	}
 
-} //InterpreterPackage
+} //MinilangPackage

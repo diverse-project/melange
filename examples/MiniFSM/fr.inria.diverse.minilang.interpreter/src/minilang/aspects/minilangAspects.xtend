@@ -54,9 +54,11 @@ import static extension minilang.aspects.StatementAspect.*
 import static extension minilang.aspects.BooleanAssignmentAspect.*
 import static extension minilang.aspects.IntAssignmentAspect.*
 import static extension minilang.aspects.BlockAspect.*
-import fr.inria.diverse.interpreter.Context
+import fr.inria.diverse.context.minilang.Context
 import fr.inria.diverse.minilang.If
 import fr.inria.diverse.minilang.While
+import fr.inria.diverse.context.minilang.BooleanVar
+import fr.inria.diverse.context.minilang.IntegerVar
 
 @Aspect(className=IntExpression)
 class IntExpressionAspect {
@@ -186,7 +188,7 @@ class BooleanOperationAspect extends BooleanExpressionAspect {
 class BooleanVariableRefAspect extends VariableRefAspect {
 	def boolean eval(Context ctx){
 		val variable = ctx.variables
-			.filter(fr.inria.diverse.interpreter.Boolean)
+			.filter(BooleanVar)
 			.findFirst[name == _self.name]
 		if(variable !== null)
 			return variable.value
@@ -199,7 +201,7 @@ class BooleanVariableRefAspect extends VariableRefAspect {
 class IntVariableRefAspect extends VariableRefAspect {
 	def int eval(Context ctx){
 		val variable = ctx.variables
-			.filter(fr.inria.diverse.interpreter.Integer)
+			.filter(IntegerVar)
 			.findFirst[name == _self.name]
 		if(variable !== null)
 			return variable.value
@@ -224,7 +226,7 @@ class StatementAspect {
 class BooleanAssignmentAspect extends StatementAspect {
 	def void execute(Context ctx){
 		val variable = ctx.variables
-			.filter(fr.inria.diverse.interpreter.Boolean)
+			.filter(BooleanVar)
 			.findFirst[name == _self.variable.name]
 		if(variable !== null)
 			variable.value = _self.value.eval(ctx)
@@ -235,7 +237,7 @@ class BooleanAssignmentAspect extends StatementAspect {
 class IntAssignmentAspect extends StatementAspect {
 	def void execute(Context ctx){
 		val variable = ctx.variables
-			.filter(fr.inria.diverse.interpreter.Integer)
+			.filter(IntegerVar)
 			.findFirst[name == _self.variable.name]
 		if(variable !== null)
 			variable.value = _self.value.eval(ctx)

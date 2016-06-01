@@ -1,6 +1,6 @@
 /**
  */
-package fr.inria.diverse.interpreter;
+package fr.inria.diverse.context.minilang;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -13,10 +13,10 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link fr.inria.diverse.interpreter.Variable#getName <em>Name</em>}</li>
+ *   <li>{@link fr.inria.diverse.context.minilang.Variable#getName <em>Name</em>}</li>
  * </ul>
  *
- * @see fr.inria.diverse.interpreter.InterpreterPackage#getVariable()
+ * @see fr.inria.diverse.context.minilang.MinilangPackage#getVariable()
  * @model
  * @generated
  */
@@ -31,14 +31,14 @@ public interface Variable extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see fr.inria.diverse.interpreter.InterpreterPackage#getVariable_Name()
+	 * @see fr.inria.diverse.context.minilang.MinilangPackage#getVariable_Name()
 	 * @model
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link fr.inria.diverse.interpreter.Variable#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link fr.inria.diverse.context.minilang.Variable#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.

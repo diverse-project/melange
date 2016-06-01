@@ -2,45 +2,18 @@ package fr.inria.diverse.melanger
 
 language MiniFsm{
 	syntax "platform:/resource/fr.inria.diverse.minifsm/model/minifsm.ecore"
-}
 
-language MiniLang{
-	syntax "platform:/resource/fr.inria.diverse.minilang/model/minilang.ecore"
-}
-
-language MelangedLang inherits MiniFsm{
-	/**
-	 * Import Context and rename Integer & Boolean to avoid merging
-	 */
-	syntax "platform:/resource/fr.inria.diverse.minilang.interpreter/model/Context.ecore" renaming {
-		"interpreter" to "minifsm" {
-			"Integer" to "IntegerVar"
-			"Boolean" to "BooleanVar"
-			}
-		}
-		
-	/*
-	 * Import MiniLang without If & While since we have MiniFSM for the control flow
-	 */
-	slice MiniLang on ['Plus','Minus','Multiply','Divide','Less','LessOrEqual',
-		'Greater','GreaterOrEqual','Equal','Not','Or','And','IntVariableRef',
-		'BooleanVariableRef', 'Integer', 'Boolean',
-		'BooleanAssignment', 'IntAssignment', 'Block'] renaming{
-			"minilang" to "minifsm"
-		}
-	
-	/*
-	 * MiniFSM behavior
-	 */
 	with minifsm.aspects.FinalStateAspect
 	with minifsm.aspects.TransitionAspect
 	with minifsm.aspects.ConditionAspect
 	with minifsm.aspects.StateAspect
 	with minifsm.aspects.FSMAspect
-		
-	/*
-	 * MiniLang behavior
-	 */
+}
+
+language MiniLang{
+	syntax "platform:/resource/fr.inria.diverse.minilang/model/minilang.ecore"
+	syntax "platform:/resource/fr.inria.diverse.minilang.interpreter/model/Context.ecore"
+	
 	with minilang.aspects.IntegerAspect
 	with minilang.aspects.IntVariableRefAspect
 	with minilang.aspects.LessAspect
@@ -64,11 +37,24 @@ language MelangedLang inherits MiniFsm{
 	with minilang.aspects.MultiplyAspect
 	with minilang.aspects.LessOrEqualAspect
 	with minilang.aspects.GreaterOrEqualAspect
-//	with minilang.aspects.IfAspect
-//	with minilang.aspects.WhileAspect
 	with minilang.aspects.AndAspect
 	with minilang.aspects.OrAspect
 	with minilang.aspects.BooleanOperationAspect
+	with minilang.aspects.IfAspect
+	with minilang.aspects.WhileAspect
+}
+
+language MelangedLang inherits MiniFsm{
+
+	/*
+	 * Import MiniLang without If & While since we have MiniFSM for the control flow
+	 */
+	slice MiniLang on ['Plus','Minus','Multiply','Divide','Less','LessOrEqual',
+		'Greater','GreaterOrEqual','Equal','Not','Or','And','IntVariableRef',
+		'BooleanVariableRef', 'Integer', 'Boolean',
+		'BooleanAssignment', 'IntAssignment', 'Block'] renaming{
+			"minilang" to "minifsm"
+		}
  
  	/*
  	 * Glue between MiniLang & MiniFSM and tweak behavior

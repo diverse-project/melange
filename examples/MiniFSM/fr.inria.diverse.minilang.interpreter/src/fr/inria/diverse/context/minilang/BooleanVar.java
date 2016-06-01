@@ -1,25 +1,25 @@
 /**
  */
-package fr.inria.diverse.interpreter;
+package fr.inria.diverse.context.minilang;
 
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Integer</b></em>'.
+ * A representation of the model object '<em><b>Boolean Var</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link fr.inria.diverse.interpreter.Integer#getValue <em>Value</em>}</li>
+ *   <li>{@link fr.inria.diverse.context.minilang.BooleanVar#isValue <em>Value</em>}</li>
  * </ul>
  *
- * @see fr.inria.diverse.interpreter.InterpreterPackage#getInteger()
+ * @see fr.inria.diverse.context.minilang.MinilangPackage#getBooleanVar()
  * @model
  * @generated
  */
-public interface Integer extends Variable {
+public interface BooleanVar extends Variable {
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -29,21 +29,21 @@ public interface Integer extends Variable {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value</em>' attribute.
-	 * @see #setValue(int)
-	 * @see fr.inria.diverse.interpreter.InterpreterPackage#getInteger_Value()
+	 * @see #setValue(boolean)
+	 * @see fr.inria.diverse.context.minilang.MinilangPackage#getBooleanVar_Value()
 	 * @model
 	 * @generated
 	 */
-	int getValue();
+	boolean isValue();
 
 	/**
-	 * Sets the value of the '{@link fr.inria.diverse.interpreter.Integer#getValue <em>Value</em>}' attribute.
+	 * Sets the value of the '{@link fr.inria.diverse.context.minilang.BooleanVar#isValue <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Value</em>' attribute.
-	 * @see #getValue()
+	 * @see #isValue()
 	 * @generated
 	 */
-	void setValue(int value);
+	void setValue(boolean value);
 
-} // Integer
+} // BooleanVar

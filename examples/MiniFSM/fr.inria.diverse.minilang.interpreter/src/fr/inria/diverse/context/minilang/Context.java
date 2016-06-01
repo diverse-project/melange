@@ -1,6 +1,6 @@
 /**
  */
-package fr.inria.diverse.interpreter;
+package fr.inria.diverse.context.minilang;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -15,17 +15,17 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link fr.inria.diverse.interpreter.Context#getVariables <em>Variables</em>}</li>
+ *   <li>{@link fr.inria.diverse.context.minilang.Context#getVariables <em>Variables</em>}</li>
  * </ul>
  *
- * @see fr.inria.diverse.interpreter.InterpreterPackage#getContext()
+ * @see fr.inria.diverse.context.minilang.MinilangPackage#getContext()
  * @model
  * @generated
  */
 public interface Context extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Variables</b></em>' reference list.
-	 * The list contents are of type {@link fr.inria.diverse.interpreter.Variable}.
+	 * The list contents are of type {@link fr.inria.diverse.context.minilang.Variable}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Variables</em>' reference list isn't clear,
@@ -33,7 +33,7 @@ public interface Context extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Variables</em>' reference list.
-	 * @see fr.inria.diverse.interpreter.InterpreterPackage#getContext_Variables()
+	 * @see fr.inria.diverse.context.minilang.MinilangPackage#getContext_Variables()
 	 * @model
 	 * @generated
 	 */

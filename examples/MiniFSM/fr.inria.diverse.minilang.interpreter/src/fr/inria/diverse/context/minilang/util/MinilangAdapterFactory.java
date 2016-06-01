@@ -1,10 +1,8 @@
 /**
  */
-package fr.inria.diverse.interpreter.util;
+package fr.inria.diverse.context.minilang.util;
 
-import fr.inria.diverse.interpreter.Context;
-import fr.inria.diverse.interpreter.InterpreterPackage;
-import fr.inria.diverse.interpreter.Variable;
+import fr.inria.diverse.context.minilang.*;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -18,17 +16,17 @@ import org.eclipse.emf.ecore.EObject;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see fr.inria.diverse.interpreter.InterpreterPackage
+ * @see fr.inria.diverse.context.minilang.MinilangPackage
  * @generated
  */
-public class InterpreterAdapterFactory extends AdapterFactoryImpl {
+public class MinilangAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static InterpreterPackage modelPackage;
+	protected static MinilangPackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -36,9 +34,9 @@ public class InterpreterAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InterpreterAdapterFactory() {
+	public MinilangAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = InterpreterPackage.eINSTANCE;
+			modelPackage = MinilangPackage.eINSTANCE;
 		}
 	}
 
@@ -67,8 +65,8 @@ public class InterpreterAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InterpreterSwitch<Adapter> modelSwitch =
-		new InterpreterSwitch<Adapter>() {
+	protected MinilangSwitch<Adapter> modelSwitch =
+		new MinilangSwitch<Adapter>() {
 			@Override
 			public Adapter caseContext(Context object) {
 				return createContextAdapter();
@@ -78,12 +76,12 @@ public class InterpreterAdapterFactory extends AdapterFactoryImpl {
 				return createVariableAdapter();
 			}
 			@Override
-			public Adapter caseInteger(fr.inria.diverse.interpreter.Integer object) {
-				return createIntegerAdapter();
+			public Adapter caseIntegerVar(IntegerVar object) {
+				return createIntegerVarAdapter();
 			}
 			@Override
-			public Adapter caseBoolean(fr.inria.diverse.interpreter.Boolean object) {
-				return createBooleanAdapter();
+			public Adapter caseBooleanVar(BooleanVar object) {
+				return createBooleanVarAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -106,13 +104,13 @@ public class InterpreterAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.interpreter.Context <em>Context</em>}'.
+	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.context.minilang.Context <em>Context</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see fr.inria.diverse.interpreter.Context
+	 * @see fr.inria.diverse.context.minilang.Context
 	 * @generated
 	 */
 	public Adapter createContextAdapter() {
@@ -120,13 +118,13 @@ public class InterpreterAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.interpreter.Variable <em>Variable</em>}'.
+	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.context.minilang.Variable <em>Variable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see fr.inria.diverse.interpreter.Variable
+	 * @see fr.inria.diverse.context.minilang.Variable
 	 * @generated
 	 */
 	public Adapter createVariableAdapter() {
@@ -134,30 +132,30 @@ public class InterpreterAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.interpreter.Integer <em>Integer</em>}'.
+	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.context.minilang.IntegerVar <em>Integer Var</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see fr.inria.diverse.interpreter.Integer
+	 * @see fr.inria.diverse.context.minilang.IntegerVar
 	 * @generated
 	 */
-	public Adapter createIntegerAdapter() {
+	public Adapter createIntegerVarAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.interpreter.Boolean <em>Boolean</em>}'.
+	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.context.minilang.BooleanVar <em>Boolean Var</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see fr.inria.diverse.interpreter.Boolean
+	 * @see fr.inria.diverse.context.minilang.BooleanVar
 	 * @generated
 	 */
-	public Adapter createBooleanAdapter() {
+	public Adapter createBooleanVarAdapter() {
 		return null;
 	}
 
@@ -173,4 +171,4 @@ public class InterpreterAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //InterpreterAdapterFactory
+} //MinilangAdapterFactory

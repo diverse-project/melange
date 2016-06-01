@@ -1,10 +1,9 @@
 /**
  */
-package fr.inria.diverse.interpreter.impl;
+package fr.inria.diverse.context.minilang.impl;
 
-import fr.inria.diverse.interpreter.InterpreterPackage;
-
-import java.lang.Integer;
+import fr.inria.diverse.context.minilang.IntegerVar;
+import fr.inria.diverse.context.minilang.MinilangPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -14,18 +13,18 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Integer</b></em>'.
+ * An implementation of the model object '<em><b>Integer Var</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link fr.inria.diverse.interpreter.impl.IntegerImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link fr.inria.diverse.context.minilang.impl.IntegerVarImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class IntegerImpl extends VariableImpl implements fr.inria.diverse.interpreter.Integer {
+public class IntegerVarImpl extends VariableImpl implements IntegerVar {
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -51,7 +50,7 @@ public class IntegerImpl extends VariableImpl implements fr.inria.diverse.interp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IntegerImpl() {
+	protected IntegerVarImpl() {
 		super();
 	}
 
@@ -62,7 +61,7 @@ public class IntegerImpl extends VariableImpl implements fr.inria.diverse.interp
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return InterpreterPackage.Literals.INTEGER;
+		return MinilangPackage.Literals.INTEGER_VAR;
 	}
 
 	/**
@@ -83,7 +82,7 @@ public class IntegerImpl extends VariableImpl implements fr.inria.diverse.interp
 		int oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, InterpreterPackage.INTEGER__VALUE, oldValue, value));
+			eNotify(new ENotificationImpl(this, Notification.SET, MinilangPackage.INTEGER_VAR__VALUE, oldValue, value));
 	}
 
 	/**
@@ -94,7 +93,7 @@ public class IntegerImpl extends VariableImpl implements fr.inria.diverse.interp
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case InterpreterPackage.INTEGER__VALUE:
+			case MinilangPackage.INTEGER_VAR__VALUE:
 				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -108,7 +107,7 @@ public class IntegerImpl extends VariableImpl implements fr.inria.diverse.interp
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case InterpreterPackage.INTEGER__VALUE:
+			case MinilangPackage.INTEGER_VAR__VALUE:
 				setValue((Integer)newValue);
 				return;
 		}
@@ -123,7 +122,7 @@ public class IntegerImpl extends VariableImpl implements fr.inria.diverse.interp
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case InterpreterPackage.INTEGER__VALUE:
+			case MinilangPackage.INTEGER_VAR__VALUE:
 				setValue(VALUE_EDEFAULT);
 				return;
 		}
@@ -138,7 +137,7 @@ public class IntegerImpl extends VariableImpl implements fr.inria.diverse.interp
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case InterpreterPackage.INTEGER__VALUE:
+			case MinilangPackage.INTEGER_VAR__VALUE:
 				return value != VALUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -160,4 +159,4 @@ public class IntegerImpl extends VariableImpl implements fr.inria.diverse.interp
 		return result.toString();
 	}
 
-} //IntegerImpl
+} //IntegerVarImpl

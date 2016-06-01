@@ -4,7 +4,7 @@ import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import fr.inria.diverse.minifsm.FSM
 import fr.inria.diverse.minifsm.State
 import fr.inria.diverse.minifsm.Transition
-import fr.inria.diverse.interpreter.Context
+import fr.inria.diverse.context.minilang.Context
 import fr.inria.diverse.minilang.Block
 import fr.inria.diverse.minilang.BooleanExpression
 

@@ -1,10 +1,10 @@
 /**
  */
-package fr.inria.diverse.interpreter.impl;
+package fr.inria.diverse.context.minilang.impl;
 
-import fr.inria.diverse.interpreter.Context;
-import fr.inria.diverse.interpreter.InterpreterPackage;
-import fr.inria.diverse.interpreter.Variable;
+import fr.inria.diverse.context.minilang.Context;
+import fr.inria.diverse.context.minilang.MinilangPackage;
+import fr.inria.diverse.context.minilang.Variable;
 
 import java.util.Collection;
 
@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link fr.inria.diverse.interpreter.impl.ContextImpl#getVariables <em>Variables</em>}</li>
+ *   <li>{@link fr.inria.diverse.context.minilang.impl.ContextImpl#getVariables <em>Variables</em>}</li>
  * </ul>
  *
  * @generated
@@ -56,7 +56,7 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return InterpreterPackage.Literals.CONTEXT;
+		return MinilangPackage.Literals.CONTEXT;
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 	 */
 	public EList<Variable> getVariables() {
 		if (variables == null) {
-			variables = new EObjectResolvingEList<Variable>(Variable.class, this, InterpreterPackage.CONTEXT__VARIABLES);
+			variables = new EObjectResolvingEList<Variable>(Variable.class, this, MinilangPackage.CONTEXT__VARIABLES);
 		}
 		return variables;
 	}
@@ -79,7 +79,7 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case InterpreterPackage.CONTEXT__VARIABLES:
+			case MinilangPackage.CONTEXT__VARIABLES:
 				return getVariables();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -94,7 +94,7 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case InterpreterPackage.CONTEXT__VARIABLES:
+			case MinilangPackage.CONTEXT__VARIABLES:
 				getVariables().clear();
 				getVariables().addAll((Collection<? extends Variable>)newValue);
 				return;
@@ -110,7 +110,7 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case InterpreterPackage.CONTEXT__VARIABLES:
+			case MinilangPackage.CONTEXT__VARIABLES:
 				getVariables().clear();
 				return;
 		}
@@ -125,7 +125,7 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case InterpreterPackage.CONTEXT__VARIABLES:
+			case MinilangPackage.CONTEXT__VARIABLES:
 				return variables != null && !variables.isEmpty();
 		}
 		return super.eIsSet(featureID);

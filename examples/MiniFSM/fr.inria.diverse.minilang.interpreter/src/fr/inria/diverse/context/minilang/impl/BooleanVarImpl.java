@@ -1,57 +1,56 @@
 /**
  */
-package fr.inria.diverse.interpreter.impl;
+package fr.inria.diverse.context.minilang.impl;
 
-import fr.inria.diverse.interpreter.InterpreterPackage;
-import fr.inria.diverse.interpreter.Variable;
+import fr.inria.diverse.context.minilang.BooleanVar;
+import fr.inria.diverse.context.minilang.MinilangPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Variable</b></em>'.
+ * An implementation of the model object '<em><b>Boolean Var</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link fr.inria.diverse.interpreter.impl.VariableImpl#getName <em>Name</em>}</li>
+ *   <li>{@link fr.inria.diverse.context.minilang.impl.BooleanVarImpl#isValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class VariableImpl extends MinimalEObjectImpl.Container implements Variable {
+public class BooleanVarImpl extends VariableImpl implements BooleanVar {
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The default value of the '{@link #isValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #isValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
+	protected static final boolean VALUE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The cached value of the '{@link #isValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #isValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected String name = NAME_EDEFAULT;
+	protected boolean value = VALUE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected VariableImpl() {
+	protected BooleanVarImpl() {
 		super();
 	}
 
@@ -62,7 +61,7 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return InterpreterPackage.Literals.VARIABLE;
+		return MinilangPackage.Literals.BOOLEAN_VAR;
 	}
 
 	/**
@@ -70,8 +69,8 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
-		return name;
+	public boolean isValue() {
+		return value;
 	}
 
 	/**
@@ -79,11 +78,11 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
+	public void setValue(boolean newValue) {
+		boolean oldValue = value;
+		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, InterpreterPackage.VARIABLE__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, MinilangPackage.BOOLEAN_VAR__VALUE, oldValue, value));
 	}
 
 	/**
@@ -94,8 +93,8 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case InterpreterPackage.VARIABLE__NAME:
-				return getName();
+			case MinilangPackage.BOOLEAN_VAR__VALUE:
+				return isValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -108,8 +107,8 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case InterpreterPackage.VARIABLE__NAME:
-				setName((String)newValue);
+			case MinilangPackage.BOOLEAN_VAR__VALUE:
+				setValue((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -123,8 +122,8 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case InterpreterPackage.VARIABLE__NAME:
-				setName(NAME_EDEFAULT);
+			case MinilangPackage.BOOLEAN_VAR__VALUE:
+				setValue(VALUE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -138,8 +137,8 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case InterpreterPackage.VARIABLE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case MinilangPackage.BOOLEAN_VAR__VALUE:
+				return value != VALUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -154,10 +153,10 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
+		result.append(" (value: ");
+		result.append(value);
 		result.append(')');
 		return result.toString();
 	}
 
-} //VariableImpl
+} //BooleanVarImpl

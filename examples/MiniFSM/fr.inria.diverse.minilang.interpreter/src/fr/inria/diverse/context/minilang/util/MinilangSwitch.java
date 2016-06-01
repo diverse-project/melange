@@ -1,10 +1,8 @@
 /**
  */
-package fr.inria.diverse.interpreter.util;
+package fr.inria.diverse.context.minilang.util;
 
-import fr.inria.diverse.interpreter.Context;
-import fr.inria.diverse.interpreter.InterpreterPackage;
-import fr.inria.diverse.interpreter.Variable;
+import fr.inria.diverse.context.minilang.*;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -21,17 +19,17 @@ import org.eclipse.emf.ecore.util.Switch;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see fr.inria.diverse.interpreter.InterpreterPackage
+ * @see fr.inria.diverse.context.minilang.MinilangPackage
  * @generated
  */
-public class InterpreterSwitch<T> extends Switch<T> {
+public class MinilangSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static InterpreterPackage modelPackage;
+	protected static MinilangPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -39,9 +37,9 @@ public class InterpreterSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InterpreterSwitch() {
+	public MinilangSwitch() {
 		if (modelPackage == null) {
-			modelPackage = InterpreterPackage.eINSTANCE;
+			modelPackage = MinilangPackage.eINSTANCE;
 		}
 	}
 
@@ -68,29 +66,29 @@ public class InterpreterSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case InterpreterPackage.CONTEXT: {
+			case MinilangPackage.CONTEXT: {
 				Context context = (Context)theEObject;
 				T result = caseContext(context);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case InterpreterPackage.VARIABLE: {
+			case MinilangPackage.VARIABLE: {
 				Variable variable = (Variable)theEObject;
 				T result = caseVariable(variable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case InterpreterPackage.INTEGER: {
-				fr.inria.diverse.interpreter.Integer integer = (fr.inria.diverse.interpreter.Integer)theEObject;
-				T result = caseInteger(integer);
-				if (result == null) result = caseVariable(integer);
+			case MinilangPackage.INTEGER_VAR: {
+				IntegerVar integerVar = (IntegerVar)theEObject;
+				T result = caseIntegerVar(integerVar);
+				if (result == null) result = caseVariable(integerVar);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case InterpreterPackage.BOOLEAN: {
-				fr.inria.diverse.interpreter.Boolean boolean_ = (fr.inria.diverse.interpreter.Boolean)theEObject;
-				T result = caseBoolean(boolean_);
-				if (result == null) result = caseVariable(boolean_);
+			case MinilangPackage.BOOLEAN_VAR: {
+				BooleanVar booleanVar = (BooleanVar)theEObject;
+				T result = caseBooleanVar(booleanVar);
+				if (result == null) result = caseVariable(booleanVar);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -129,32 +127,32 @@ public class InterpreterSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Integer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Integer Var</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Integer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Integer Var</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseInteger(fr.inria.diverse.interpreter.Integer object) {
+	public T caseIntegerVar(IntegerVar object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Boolean</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Boolean Var</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Boolean</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Boolean Var</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBoolean(fr.inria.diverse.interpreter.Boolean object) {
+	public T caseBooleanVar(BooleanVar object) {
 		return null;
 	}
 
@@ -174,4 +172,4 @@ public class InterpreterSwitch<T> extends Switch<T> {
 		return null;
 	}
 
-} //InterpreterSwitch
+} //MinilangSwitch

@@ -1,11 +1,13 @@
 /**
  */
-package fr.inria.diverse.interpreter.impl;
+package fr.inria.diverse.context.minilang.impl;
 
-import fr.inria.diverse.interpreter.Context;
-import fr.inria.diverse.interpreter.InterpreterFactory;
-import fr.inria.diverse.interpreter.InterpreterPackage;
-import fr.inria.diverse.interpreter.Variable;
+import fr.inria.diverse.context.minilang.BooleanVar;
+import fr.inria.diverse.context.minilang.Context;
+import fr.inria.diverse.context.minilang.IntegerVar;
+import fr.inria.diverse.context.minilang.MinilangFactory;
+import fr.inria.diverse.context.minilang.MinilangPackage;
+import fr.inria.diverse.context.minilang.Variable;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -20,7 +22,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * <!-- end-user-doc -->
  * @generated
  */
-public class InterpreterPackageImpl extends EPackageImpl implements InterpreterPackage {
+public class MinilangPackageImpl extends EPackageImpl implements MinilangPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -40,14 +42,14 @@ public class InterpreterPackageImpl extends EPackageImpl implements InterpreterP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass integerEClass = null;
+	private EClass integerVarEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass booleanEClass = null;
+	private EClass booleanVarEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -60,12 +62,12 @@ public class InterpreterPackageImpl extends EPackageImpl implements InterpreterP
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see fr.inria.diverse.interpreter.InterpreterPackage#eNS_URI
+	 * @see fr.inria.diverse.context.minilang.MinilangPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private InterpreterPackageImpl() {
-		super(eNS_URI, InterpreterFactory.eINSTANCE);
+	private MinilangPackageImpl() {
+		super(eNS_URI, MinilangFactory.eINSTANCE);
 	}
 
 	/**
@@ -78,7 +80,7 @@ public class InterpreterPackageImpl extends EPackageImpl implements InterpreterP
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link InterpreterPackage#eINSTANCE} when that field is accessed.
+	 * <p>This method is used to initialize {@link MinilangPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -87,27 +89,27 @@ public class InterpreterPackageImpl extends EPackageImpl implements InterpreterP
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static InterpreterPackage init() {
-		if (isInited) return (InterpreterPackage)EPackage.Registry.INSTANCE.getEPackage(InterpreterPackage.eNS_URI);
+	public static MinilangPackage init() {
+		if (isInited) return (MinilangPackage)EPackage.Registry.INSTANCE.getEPackage(MinilangPackage.eNS_URI);
 
 		// Obtain or create and register package
-		InterpreterPackageImpl theInterpreterPackage = (InterpreterPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof InterpreterPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new InterpreterPackageImpl());
+		MinilangPackageImpl theMinilangPackage = (MinilangPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof MinilangPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new MinilangPackageImpl());
 
 		isInited = true;
 
 		// Create package meta-data objects
-		theInterpreterPackage.createPackageContents();
+		theMinilangPackage.createPackageContents();
 
 		// Initialize created meta-data
-		theInterpreterPackage.initializePackageContents();
+		theMinilangPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
-		theInterpreterPackage.freeze();
+		theMinilangPackage.freeze();
 
   
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(InterpreterPackage.eNS_URI, theInterpreterPackage);
-		return theInterpreterPackage;
+		EPackage.Registry.INSTANCE.put(MinilangPackage.eNS_URI, theMinilangPackage);
+		return theMinilangPackage;
 	}
 
 	/**
@@ -151,8 +153,8 @@ public class InterpreterPackageImpl extends EPackageImpl implements InterpreterP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getInteger() {
-		return integerEClass;
+	public EClass getIntegerVar() {
+		return integerVarEClass;
 	}
 
 	/**
@@ -160,8 +162,8 @@ public class InterpreterPackageImpl extends EPackageImpl implements InterpreterP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getInteger_Value() {
-		return (EAttribute)integerEClass.getEStructuralFeatures().get(0);
+	public EAttribute getIntegerVar_Value() {
+		return (EAttribute)integerVarEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -169,8 +171,8 @@ public class InterpreterPackageImpl extends EPackageImpl implements InterpreterP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getBoolean() {
-		return booleanEClass;
+	public EClass getBooleanVar() {
+		return booleanVarEClass;
 	}
 
 	/**
@@ -178,8 +180,8 @@ public class InterpreterPackageImpl extends EPackageImpl implements InterpreterP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBoolean_Value() {
-		return (EAttribute)booleanEClass.getEStructuralFeatures().get(0);
+	public EAttribute getBooleanVar_Value() {
+		return (EAttribute)booleanVarEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -187,8 +189,8 @@ public class InterpreterPackageImpl extends EPackageImpl implements InterpreterP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InterpreterFactory getInterpreterFactory() {
-		return (InterpreterFactory)getEFactoryInstance();
+	public MinilangFactory getMinilangFactory() {
+		return (MinilangFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -216,11 +218,11 @@ public class InterpreterPackageImpl extends EPackageImpl implements InterpreterP
 		variableEClass = createEClass(VARIABLE);
 		createEAttribute(variableEClass, VARIABLE__NAME);
 
-		integerEClass = createEClass(INTEGER);
-		createEAttribute(integerEClass, INTEGER__VALUE);
+		integerVarEClass = createEClass(INTEGER_VAR);
+		createEAttribute(integerVarEClass, INTEGER_VAR__VALUE);
 
-		booleanEClass = createEClass(BOOLEAN);
-		createEAttribute(booleanEClass, BOOLEAN__VALUE);
+		booleanVarEClass = createEClass(BOOLEAN_VAR);
+		createEAttribute(booleanVarEClass, BOOLEAN_VAR__VALUE);
 	}
 
 	/**
@@ -251,8 +253,8 @@ public class InterpreterPackageImpl extends EPackageImpl implements InterpreterP
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		integerEClass.getESuperTypes().add(this.getVariable());
-		booleanEClass.getESuperTypes().add(this.getVariable());
+		integerVarEClass.getESuperTypes().add(this.getVariable());
+		booleanVarEClass.getESuperTypes().add(this.getVariable());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(contextEClass, Context.class, "Context", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -261,14 +263,14 @@ public class InterpreterPackageImpl extends EPackageImpl implements InterpreterP
 		initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getVariable_Name(), ecorePackage.getEString(), "name", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(integerEClass, fr.inria.diverse.interpreter.Integer.class, "Integer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getInteger_Value(), ecorePackage.getEInt(), "value", null, 0, 1, fr.inria.diverse.interpreter.Integer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(integerVarEClass, IntegerVar.class, "IntegerVar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIntegerVar_Value(), ecorePackage.getEInt(), "value", null, 0, 1, IntegerVar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(booleanEClass, fr.inria.diverse.interpreter.Boolean.class, "Boolean", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getBoolean_Value(), ecorePackage.getEBoolean(), "value", null, 0, 1, fr.inria.diverse.interpreter.Boolean.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(booleanVarEClass, BooleanVar.class, "BooleanVar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBooleanVar_Value(), ecorePackage.getEBoolean(), "value", null, 0, 1, BooleanVar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
 	}
 
-} //InterpreterPackageImpl
+} //MinilangPackageImpl
