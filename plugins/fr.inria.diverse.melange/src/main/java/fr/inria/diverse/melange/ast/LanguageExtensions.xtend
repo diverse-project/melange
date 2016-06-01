@@ -510,8 +510,12 @@ class LanguageExtensions
 		// rename source packages to map with target packages
 		rawEmfNamespaces.keySet.forEach[pkg|
 			val rule = ruleManagers.head?.sourceBinding?.findFirst[from == pkg]
-			if(rule !== null)
+			if(rule !== null){
 				sourceEmfNamespaces.putAll(rule.to,rawEmfNamespaces.get(pkg))
+			}
+			else{
+				sourceEmfNamespaces.putAll(pkg,rawEmfNamespaces.get(pkg))
+			}
 		]
 
 		// Exclude local aspects
@@ -537,6 +541,14 @@ class LanguageExtensions
 			var className = classFqName
 			if (renaming !== null)
 				className = renaming.value
+			else{
+				val pkg = classFqName.substring(0,classFqName.indexOf("."))
+				val simpleName = classFqName.substring(classFqName.indexOf(".")+1)
+				val pkgRenaming = ruleManagers.map[sourceBinding.findFirst[from == pkg]].filterNull.head
+				if(pkgRenaming !== null)
+					className = pkgRenaming.to +"."+ simpleName 
+			}
+			
 			
 			if (l.syntax.findClass(className) !== null
 				|| !asp.hasAspectAnnotation) {
@@ -568,8 +580,15 @@ class LanguageExtensions
 	    	val newClass = 
 	    		if (rule !== null)
 		    		rule.value
-	    		else
-	    			targetFqName
+		    	else{
+					val pkg = targetFqName.substring(0,targetFqName.indexOf("."))
+					val simpleName = targetFqName.substring(targetFqName.indexOf(".")+1)
+					val pkgRenaming = ruleManagers.map[sourceBinding.findFirst[from == pkg]].filterNull.head
+					if(pkgRenaming !== null)
+						pkgRenaming.to +"."+ simpleName
+					else
+	    				targetFqName
+				}
 
 	    	val aspName = asp.aspectTypeRef.simpleName
 	    	val eClazz = l.syntax.findClass(newClass)
