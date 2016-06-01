@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="minifsm" nsURI="http://minifsm/" nsPrefix="minifsm">
+  <eClassifiers xsi:type="ecore:EClass" name="FSM">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="states" upperBound="-1" eType="//State" containment="true" eOpposite="//State/fsm"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transitions" upperBound="-1" eType="//Transition" containment="true" eOpposite="//Transition/fsm"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initialState" lowerBound="1" eType="//State"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="State">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fsm" lowerBound="1" eType="//FSM" eOpposite="//FSM/states"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FinalState" eSuperTypes="//State"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Transition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="input" lowerBound="1" eType="//State"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="output" lowerBound="1" eType="//State"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="//Condition" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fsm" lowerBound="1" eType="//FSM" eOpposite="//FSM/transitions"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Condition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="language">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+</ecore:EPackage>

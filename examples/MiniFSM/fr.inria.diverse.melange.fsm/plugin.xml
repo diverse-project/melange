@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.4"?><plugin>
+  
+<extension point="fr.inria.diverse.melange.modeltype">
+    <modeltype id="fr.inria.diverse.melanger.MiniFsmMT" uri="http://minifsmmt/"/>
+    <modeltype id="fr.inria.diverse.melanger.MiniLangMT" uri="http://minilangmt/"/>
+  </extension>
+  <extension point="fr.inria.diverse.melange.language">
+    <language aspects="" entryPoints="" exactType="fr.inria.diverse.melanger.MiniFsmMT" id="fr.inria.diverse.melanger.MiniFsm" uri="http://minifsm/">
+      <adapter class="fr.inria.diverse.melanger.minifsm.adapters.minifsmmt.MiniFsmAdapter" modeltypeId="fr.inria.diverse.melanger.MiniFsmMT"/>
+    </language>
+    <language aspects="" entryPoints="" exactType="fr.inria.diverse.melanger.MiniLangMT" id="fr.inria.diverse.melanger.MiniLang" uri="http://minilang/">
+      <adapter class="fr.inria.diverse.melanger.minilang.adapters.minilangmt.MiniLangAdapter" modeltypeId="fr.inria.diverse.melanger.MiniLangMT"/>
+    </language>
+  </extension>
+</plugin>

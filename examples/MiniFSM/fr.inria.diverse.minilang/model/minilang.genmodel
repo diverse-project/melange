@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="ASCII"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.inria.diverse.minilang/src" modelPluginID="fr.inria.diverse.minilang" modelName="Minilang" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>minilang.ecore</foreignModel>
+  <genPackages prefix="Minilang" basePackage="fr.inria.diverse" disposableProviderFactory="true">
+    <ecorePackage href="minilang.ecore#/"/>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//IntExpression"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//Integer"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="minilang.ecore#//Integer/value"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//Boolean"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="minilang.ecore#//Boolean/value"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//IntOperation"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="minilang.ecore#//IntOperation/right"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="minilang.ecore#//IntOperation/left"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//Equal"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//Greater"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//GreaterOrEqual"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//Less"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//LessOrEqual"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//Not"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="minilang.ecore#//Not/expression"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//Or"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//And"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//Plus"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//Minus"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//Multiply"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//Divide"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//IntComparison"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="minilang.ecore#//IntComparison/right"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="minilang.ecore#//IntComparison/left"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//BooleanExpression"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//BooleanOperation"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="minilang.ecore#//BooleanOperation/left"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="minilang.ecore#//BooleanOperation/right"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//BooleanVariableRef"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//IntVariableRef"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//VariableRef"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="minilang.ecore#//VariableRef/name"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//Statement"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//BooleanAssignemnt"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="minilang.ecore#//BooleanAssignemnt/variable"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="minilang.ecore#//BooleanAssignemnt/value"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//IntAssignement"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="minilang.ecore#//IntAssignement/variable"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="minilang.ecore#//IntAssignement/value"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//PrintVar"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="minilang.ecore#//PrintVar/value"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//PrintStr"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="minilang.ecore#//PrintStr/value"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//Block"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="minilang.ecore#//Block/statement"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//If"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="minilang.ecore#//If/condition"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="minilang.ecore#//If/then"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="minilang.ecore#//If/else"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="minilang.ecore#//While"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="minilang.ecore#//While/condition"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="minilang.ecore#//While/body"/>
+      </genFeatures>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
