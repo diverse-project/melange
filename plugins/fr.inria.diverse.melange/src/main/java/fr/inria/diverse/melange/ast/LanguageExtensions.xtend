@@ -424,7 +424,7 @@ class LanguageExtensions
 
 		// Copy the local semantics of the language and remove previous pointers
 		val withAspects = l.localSemantics
-		l.copyAspects(withAspects.reverseView, #[]/*l.getAllRulesManagers*/)
+		l.copyAspects(withAspects.reverseView, l.getAllRulesManagers)
 		l.semantics.removeAll(withAspects)
 
 		// Same thing for the aspects inherited from the language's dependencies
@@ -500,13 +500,14 @@ class LanguageExtensions
 		val targetAspectNamespace = l.aspectsNamespace
 		val targetProjectName = l.externalRuntimeName
 		val SetMultimap<String, String> sourceEmfNamespaces = HashMultimap.create
-		val rawEmfNamespaces =
-			// Aspects coming from the Weave operator ('with' keyword)
-			if (l == aspects.filter[hasAspectAnnotation].head?.owningLanguage)
-				l.collectTargetedPackages
-			// Prefixed root package
-			else
-				aspects.head.owningLanguage.syntax.rootPackageNamespaces
+		val rawEmfNamespaces = aspects.filter[hasAspectAnnotation].head?.owningLanguage.collectTargetedPackages
+//		val rawEmfNamespaces =
+//			// Aspects coming from the Weave operator ('with' keyword)
+//			if (l == aspects.filter[hasAspectAnnotation].head?.owningLanguage)
+//				l.collectTargetedPackages
+//			// Prefixed root package
+//			else
+//				aspects.head.owningLanguage.syntax.rootPackageNamespaces
 		// rename source packages to map with target packages
 		rawEmfNamespaces.keySet.forEach[pkg|
 			val rule = ruleManagers.head?.sourceBinding?.findFirst[from == pkg]
@@ -642,10 +643,11 @@ class LanguageExtensions
 			.forEach[
 				res.put(it.getEcorePackage.uniqueId,packageNamespace)
 			]
-		l.allDependencies.map[syntax.allGenPkgs.filter[getEcorePackage.ESuperPackage === null]]
-			.flatten.forEach[
-				res.put(it.getEcorePackage.uniqueId,packageNamespace)
-			]
+		l.allDependencies.map[collectTargetedPackages].forEach[res.putAll(it)]
+//		l.allDependencies.map[syntax.allGenPkgs.filter[getEcorePackage.ESuperPackage === null]]
+//			.flatten.forEach[
+//				res.put(it.getEcorePackage.uniqueId,packageNamespace)
+//			]
 
 		return res
 	}
