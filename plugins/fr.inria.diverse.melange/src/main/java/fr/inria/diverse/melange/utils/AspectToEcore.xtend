@@ -268,6 +268,8 @@ class AspectToEcore
 										realType.qualifiedName)
 							upperBound = upperB
 							addAspectAnnotation
+							if(op.isContainment)
+								addContainmentAnnotation
 						]
 			}
 		]

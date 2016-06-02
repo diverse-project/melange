@@ -293,6 +293,16 @@ class EcoreExtensions
 			source = "aspect"
 		]
 	}
+	
+	def void addContainmentAnnotation(EModelElement e) {
+		e.EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [
+			source = "containment"
+		]
+	}
+	
+	def boolean hasContainmentAnnotation(EModelElement e) {
+		return e.EAnnotations.exists[source == "containment"]
+	}
 
 	def boolean hasSuppressedVisibility(ENamedElement f) {
 		return f.getGenmodelAnnotationValue("suppressedVisibility") == "true"
@@ -638,6 +648,8 @@ class EcoreExtensions
 				]
 				if(attr.isAspectSpecific)
 					featureReplacement.addAspectAnnotation
+				if(attr.hasContainmentAnnotation)
+					featureReplacement.containment = true
 				EcoreUtil::replace(attr, featureReplacement)
 			}
 		]
