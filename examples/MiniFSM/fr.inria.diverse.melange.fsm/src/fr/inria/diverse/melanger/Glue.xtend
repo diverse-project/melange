@@ -8,33 +8,39 @@ import fr.inria.diverse.context.minilang.Context
 import fr.inria.diverse.minilang.Block
 import fr.inria.diverse.minilang.BooleanExpression
 
-import static extension fr.inria.diverse.melanger.FSMAspect.*
+import static extension fr.inria.diverse.melanger.FSMGlue.*
 import static extension minilang.aspects.BlockAspect.*
 import static extension minilang.aspects.StatementAspect.*
 import static extension minilang.aspects.BooleanExpressionAspect.*
+import minifsm.aspects.FSMAspect
+import minifsm.aspects.StateAspect
+import minifsm.aspects.TransitionAspect
+import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
 
 @Aspect(className=FSM)
-class FSMAspect {
+class FSMGlue extends FSMAspect{
 	public var Context context
 }
 
 @Aspect(className=State)
-class StateAspect {
+class StateGlue extends StateAspect{
 	
 	public var Block block
 	
-	def void execute(){
+	@OverrideAspectMethod
+	override void execute(){
 		println("Exec "+_self.name)
 		_self.block.statement.forEach[execute(_self.fsm.context)]
 	}
 }
 
 @Aspect(className=Transition)
-class TransitionAspect {
+class TransitionGlue extends TransitionAspect{
 	
 	public var BooleanExpression expression
 	
-	def boolean isActivated(){
+	@OverrideAspectMethod
+	override boolean isActivated(){
 		return _self.expression.eval(_self.fsm.context)
 	}
 }
