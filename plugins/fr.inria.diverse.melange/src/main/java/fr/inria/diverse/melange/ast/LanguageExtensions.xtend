@@ -828,13 +828,14 @@ class LanguageExtensions
 	def EClass findClassWithMapping(Aspect asp, LanguageOperator op){
 		
 		var classFqName = asp.aspectedClass?.fullyQualifiedName.toString
-
-		val ruleManager = createRenamingManager(op)
-		if(ruleManager !== null){
-			val renaming = ruleManager.getClassRule(classFqName)
-			if (renaming !== null)
-				classFqName = renaming.value
-		}
+		
+		val rules = 
+			if(op instanceof Merge)
+				op.mappingRules
+			else if(op instanceof Slice)
+				op.mappingRules
+		if(!rules.isNullOrEmpty)
+			classFqName = classFqName.rename(rules)
 		
 		return 
 			op

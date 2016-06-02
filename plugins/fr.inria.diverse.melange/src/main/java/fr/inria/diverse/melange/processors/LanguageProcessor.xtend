@@ -182,7 +182,7 @@ class LanguageProcessor extends DispatchMelangeProcessor
 						aspectedClass = language.syntax.findClass(newName)
 					}
 				}
-				ecoreFragment = builder.getBuilder(language).findBuilder(w)?.model.head
+				ecoreFragment = builder.getBuilder(language).findBuilder(w)?.model?.head
 			]
 		]
 	}
