@@ -636,6 +636,8 @@ class EcoreExtensions
 					ref.upperBound = attr.upperBound
 					ref.EType = replacement
 				]
+				if(attr.isAspectSpecific)
+					featureReplacement.addAspectAnnotation
 				EcoreUtil::replace(attr, featureReplacement)
 			}
 		]
