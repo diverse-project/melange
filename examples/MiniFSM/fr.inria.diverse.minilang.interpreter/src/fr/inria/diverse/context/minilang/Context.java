@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Context extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Variables</b></em>' reference list.
+	 * Returns the value of the '<em><b>Variables</b></em>' containment reference list.
 	 * The list contents are of type {@link fr.inria.diverse.context.minilang.Variable}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -32,9 +32,9 @@ public interface Context extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Variables</em>' reference list.
+	 * @return the value of the '<em>Variables</em>' containment reference list.
 	 * @see fr.inria.diverse.context.minilang.MinilangPackage#getContext_Variables()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Variable> getVariables();

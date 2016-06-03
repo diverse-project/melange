@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="ASCII"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.inria.diverse.melange.fsm/src-gen" modelName="MelangedLangMT" complianceLevel="7.0" copyrightFields="false">
+  <foreignModel>platform:/resource/fr.inria.diverse.melange.fsm/model-gen/MelangedLangMT.ecore</foreignModel>
+  <genPackages prefix="Minifsm" basePackage="fr.inria.diverse.melanger.melangedlangmt" disposableProviderFactory="true">
+    <ecorePackage href="MelangedLangMT.ecore#/"/>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//FSM"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="MelangedLangMT.ecore#//FSM/states"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="MelangedLangMT.ecore#//FSM/transitions"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="MelangedLangMT.ecore#//FSM/initialState"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="MelangedLangMT.ecore#//FSM/currentState"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="MelangedLangMT.ecore#//FSM/context"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//FSM/execute"/>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//State"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="MelangedLangMT.ecore#//State/name"/>
+      </genFeatures>
+      <genFeatures property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="MelangedLangMT.ecore#//State/fsm"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="MelangedLangMT.ecore#//State/block"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//State/execute"/>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//FinalState"/>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//FinalState/execute"/>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//Transition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="MelangedLangMT.ecore#//Transition/input"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="MelangedLangMT.ecore#//Transition/output"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="MelangedLangMT.ecore#//Transition/condition"/>
+      </genFeatures>
+      <genFeatures property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="MelangedLangMT.ecore#//Transition/fsm"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="MelangedLangMT.ecore#//Transition/expression"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//Transition/isActivated"/>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//Condition"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="MelangedLangMT.ecore#//Condition/expression"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="MelangedLangMT.ecore#//Condition/language"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//Integer"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="MelangedLangMT.ecore#//Integer/value"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//Integer/eval"/>
+        <genParameters>
+          <ecoreParameter href="MelangedLangMT.ecore#//Integer/eval/ctx"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//IntExpression"/>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//IntExpression/eval"/>
+        <genParameters>
+          <ecoreParameter href="MelangedLangMT.ecore#//IntExpression/eval/ctx"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//Context"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="MelangedLangMT.ecore#//Context/variables"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//Variable"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="MelangedLangMT.ecore#//Variable/name"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//Boolean"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="MelangedLangMT.ecore#//Boolean/value"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//Boolean/eval"/>
+        <genParameters>
+          <ecoreParameter href="MelangedLangMT.ecore#//Boolean/eval/ctx"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//BooleanExpression"/>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//BooleanExpression/eval"/>
+        <genParameters>
+          <ecoreParameter href="MelangedLangMT.ecore#//BooleanExpression/eval/ctx"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//Equal"/>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//Equal/eval"/>
+        <genParameters>
+          <ecoreParameter href="MelangedLangMT.ecore#//Equal/eval/ctx"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//IntComparison"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="MelangedLangMT.ecore#//IntComparison/right"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="MelangedLangMT.ecore#//IntComparison/left"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//Greater"/>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//Greater/eval"/>
+        <genParameters>
+          <ecoreParameter href="MelangedLangMT.ecore#//Greater/eval/ctx"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//GreaterOrEqual"/>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//GreaterOrEqual/eval"/>
+        <genParameters>
+          <ecoreParameter href="MelangedLangMT.ecore#//GreaterOrEqual/eval/ctx"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//Less"/>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//Less/eval"/>
+        <genParameters>
+          <ecoreParameter href="MelangedLangMT.ecore#//Less/eval/ctx"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//LessOrEqual"/>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//LessOrEqual/eval"/>
+        <genParameters>
+          <ecoreParameter href="MelangedLangMT.ecore#//LessOrEqual/eval/ctx"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//Not"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="MelangedLangMT.ecore#//Not/expression"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//Not/eval"/>
+        <genParameters>
+          <ecoreParameter href="MelangedLangMT.ecore#//Not/eval/ctx"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//Or"/>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//Or/eval"/>
+        <genParameters>
+          <ecoreParameter href="MelangedLangMT.ecore#//Or/eval/ctx"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//BooleanOperation"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="MelangedLangMT.ecore#//BooleanOperation/left"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="MelangedLangMT.ecore#//BooleanOperation/right"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//And"/>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//And/eval"/>
+        <genParameters>
+          <ecoreParameter href="MelangedLangMT.ecore#//And/eval/ctx"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//Plus"/>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//Plus/eval"/>
+        <genParameters>
+          <ecoreParameter href="MelangedLangMT.ecore#//Plus/eval/ctx"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//IntOperation"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="MelangedLangMT.ecore#//IntOperation/right"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="MelangedLangMT.ecore#//IntOperation/left"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//Minus"/>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//Minus/eval"/>
+        <genParameters>
+          <ecoreParameter href="MelangedLangMT.ecore#//Minus/eval/ctx"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//Multiply"/>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//Multiply/eval"/>
+        <genParameters>
+          <ecoreParameter href="MelangedLangMT.ecore#//Multiply/eval/ctx"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//Divide"/>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//Divide/eval"/>
+        <genParameters>
+          <ecoreParameter href="MelangedLangMT.ecore#//Divide/eval/ctx"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//BooleanVariableRef"/>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//BooleanVariableRef/eval"/>
+        <genParameters>
+          <ecoreParameter href="MelangedLangMT.ecore#//BooleanVariableRef/eval/ctx"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//VariableRef"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="MelangedLangMT.ecore#//VariableRef/name"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//IntVariableRef"/>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//IntVariableRef/eval"/>
+        <genParameters>
+          <ecoreParameter href="MelangedLangMT.ecore#//IntVariableRef/eval/ctx"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//BooleanAssignment"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="MelangedLangMT.ecore#//BooleanAssignment/variable"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="MelangedLangMT.ecore#//BooleanAssignment/value"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//BooleanAssignment/execute"/>
+        <genParameters>
+          <ecoreParameter href="MelangedLangMT.ecore#//BooleanAssignment/execute/ctx"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//Statement"/>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//Statement/execute"/>
+        <genParameters>
+          <ecoreParameter href="MelangedLangMT.ecore#//Statement/execute/ctx"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//IntAssignment"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="MelangedLangMT.ecore#//IntAssignment/variable"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="MelangedLangMT.ecore#//IntAssignment/value"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//IntAssignment/execute"/>
+        <genParameters>
+          <ecoreParameter href="MelangedLangMT.ecore#//IntAssignment/execute/ctx"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//PrintVar"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="MelangedLangMT.ecore#//PrintVar/value"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//PrintVar/execute"/>
+        <genParameters>
+          <ecoreParameter href="MelangedLangMT.ecore#//PrintVar/execute/ctx"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//PrintStr"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="MelangedLangMT.ecore#//PrintStr/value"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//PrintStr/execute"/>
+        <genParameters>
+          <ecoreParameter href="MelangedLangMT.ecore#//PrintStr/execute/ctx"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//Block"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="MelangedLangMT.ecore#//Block/statement"/>
+      </genFeatures>
+      <genOperations>
+        <ecoreOperation href="MelangedLangMT.ecore#//Block/execute"/>
+        <genParameters>
+          <ecoreParameter href="MelangedLangMT.ecore#//Block/execute/ctx"/>
+        </genParameters>
+      </genOperations>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//IntegerVar"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="MelangedLangMT.ecore#//IntegerVar/value"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="MelangedLangMT.ecore#//BooleanVar"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="MelangedLangMT.ecore#//BooleanVar/value"/>
+      </genFeatures>
+    </genClasses>
+  </genPackages>
+  <usedGenPackages href="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"/>
+</genmodel:GenModel>

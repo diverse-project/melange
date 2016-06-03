@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="minilang" nsURI="http://miniactionlangmt/minilang/" nsPrefix="minilang">
+  <eClassifiers xsi:type="ecore:EClass" name="IntExpression">
+    <eOperations name="eval">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eParameters name="ctx" eType="//Context"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Integer" eSuperTypes="//IntExpression">
+    <eOperations name="eval">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eParameters name="ctx" eType="//Context"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Boolean" eSuperTypes="//BooleanExpression">
+    <eOperations name="eval">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="ctx" eType="//Context"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntOperation" eSuperTypes="//IntExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" lowerBound="1" eType="//IntExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="//IntExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Equal" eSuperTypes="//IntComparison">
+    <eOperations name="eval">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="ctx" eType="//Context"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Greater" eSuperTypes="//IntComparison">
+    <eOperations name="eval">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="ctx" eType="//Context"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GreaterOrEqual" eSuperTypes="//IntComparison">
+    <eOperations name="eval">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="ctx" eType="//Context"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Less" eSuperTypes="//IntComparison">
+    <eOperations name="eval">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="ctx" eType="//Context"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LessOrEqual" eSuperTypes="//IntComparison">
+    <eOperations name="eval">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="ctx" eType="//Context"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Not" eSuperTypes="//BooleanExpression">
+    <eOperations name="eval">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="ctx" eType="//Context"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="1" eType="//BooleanExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Or" eSuperTypes="//BooleanOperation">
+    <eOperations name="eval">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="ctx" eType="//Context"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="And" eSuperTypes="//BooleanOperation">
+    <eOperations name="eval">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="ctx" eType="//Context"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Plus" eSuperTypes="//IntOperation">
+    <eOperations name="eval">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eParameters name="ctx" eType="//Context"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Minus" eSuperTypes="//IntOperation">
+    <eOperations name="eval">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eParameters name="ctx" eType="//Context"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Multiply" eSuperTypes="//IntOperation">
+    <eOperations name="eval">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eParameters name="ctx" eType="//Context"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Divide" eSuperTypes="//IntOperation">
+    <eOperations name="eval">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eParameters name="ctx" eType="//Context"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntComparison" eSuperTypes="//BooleanExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" lowerBound="1" eType="//IntExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="//IntExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanExpression">
+    <eOperations name="eval">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="ctx" eType="//Context"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanOperation" eSuperTypes="//BooleanExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="//BooleanExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" lowerBound="1" eType="//BooleanExpression"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanVariableRef" eSuperTypes="//VariableRef //BooleanExpression">
+    <eOperations name="eval">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="ctx" eType="//Context"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntVariableRef" eSuperTypes="//VariableRef //IntExpression">
+    <eOperations name="eval">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eParameters name="ctx" eType="//Context"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableRef">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Statement">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="ctx" eType="//Context"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanAssignment" eSuperTypes="//Statement">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="ctx" eType="//Context"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1" eType="//BooleanVariableRef" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="//BooleanExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntAssignment" eSuperTypes="//Statement">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="ctx" eType="//Context"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1" eType="//IntVariableRef" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="//IntExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrintVar" eSuperTypes="//Statement">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="ctx" eType="//Context"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="//VariableRef" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrintStr" eSuperTypes="//Statement">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="ctx" eType="//Context"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Block">
+    <eOperations name="execute">
+      <eAnnotations source="aspect"/>
+      <eParameters name="ctx" eType="//Context"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statement" upperBound="-1" eType="//Statement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="If">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" lowerBound="1" eType="//BooleanExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="then" lowerBound="1" eType="//Block" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="else" eType="//Block" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="While">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" lowerBound="1" eType="//BooleanExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" lowerBound="1" eType="//Block"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Context">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1" eType="//Variable" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Variable">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntegerVar" eSuperTypes="//Variable">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanVar" eSuperTypes="//Variable">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+</ecore:EPackage>

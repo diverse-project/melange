@@ -1109,7 +1109,7 @@ public interface MinilangPackage extends EPackage {
 	int PRINT_VAR = 25;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' reference.
+	 * The feature id for the '<em><b>Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1726,10 +1726,10 @@ public interface MinilangPackage extends EPackage {
 	EClass getPrintVar();
 
 	/**
-	 * Returns the meta object for the reference '{@link fr.inria.diverse.minilang.PrintVar#getValue <em>Value</em>}'.
+	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.minilang.PrintVar#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Value</em>'.
+	 * @return the meta object for the containment reference '<em>Value</em>'.
 	 * @see fr.inria.diverse.minilang.PrintVar#getValue()
 	 * @see #getPrintVar()
 	 * @generated
@@ -2249,7 +2249,7 @@ public interface MinilangPackage extends EPackage {
 		EClass PRINT_VAR = eINSTANCE.getPrintVar();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

@@ -8,6 +8,7 @@ import fr.inria.diverse.minilang.VariableRef;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -28,7 +29,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class PrintVarImpl extends StatementImpl implements PrintVar {
 	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' reference.
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getValue()
@@ -62,14 +63,6 @@ public class PrintVarImpl extends StatementImpl implements PrintVar {
 	 * @generated
 	 */
 	public VariableRef getValue() {
-		if (value != null && value.eIsProxy()) {
-			InternalEObject oldValue = (InternalEObject)value;
-			value = (VariableRef)eResolveProxy(oldValue);
-			if (value != oldValue) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MinilangPackage.PRINT_VAR__VALUE, oldValue, value));
-			}
-		}
 		return value;
 	}
 
@@ -78,8 +71,14 @@ public class PrintVarImpl extends StatementImpl implements PrintVar {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VariableRef basicGetValue() {
-		return value;
+	public NotificationChain basicSetValue(VariableRef newValue, NotificationChain msgs) {
+		VariableRef oldValue = value;
+		value = newValue;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MinilangPackage.PRINT_VAR__VALUE, oldValue, newValue);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -88,10 +87,31 @@ public class PrintVarImpl extends StatementImpl implements PrintVar {
 	 * @generated
 	 */
 	public void setValue(VariableRef newValue) {
-		VariableRef oldValue = value;
-		value = newValue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MinilangPackage.PRINT_VAR__VALUE, oldValue, value));
+		if (newValue != value) {
+			NotificationChain msgs = null;
+			if (value != null)
+				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MinilangPackage.PRINT_VAR__VALUE, null, msgs);
+			if (newValue != null)
+				msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MinilangPackage.PRINT_VAR__VALUE, null, msgs);
+			msgs = basicSetValue(newValue, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MinilangPackage.PRINT_VAR__VALUE, newValue, newValue));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MinilangPackage.PRINT_VAR__VALUE:
+				return basicSetValue(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -103,8 +123,7 @@ public class PrintVarImpl extends StatementImpl implements PrintVar {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MinilangPackage.PRINT_VAR__VALUE:
-				if (resolve) return getValue();
-				return basicGetValue();
+				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

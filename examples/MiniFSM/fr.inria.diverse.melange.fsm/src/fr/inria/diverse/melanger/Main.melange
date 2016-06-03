@@ -40,6 +40,8 @@ language MiniActionLang{
 	with minilang.aspects.AndAspect
 	with minilang.aspects.OrAspect
 	with minilang.aspects.BooleanOperationAspect
+	with minilang.aspects.PrintVarAspect
+	with minilang.aspects.PrintStrAspect
 }
 
 language MelangedLang inherits MiniFsm{
@@ -50,7 +52,7 @@ language MelangedLang inherits MiniFsm{
 	slice MiniActionLang on ['Plus','Minus','Multiply','Divide','Less','LessOrEqual',
 		'Greater','GreaterOrEqual','Equal','Not','Or','And','IntVariableRef',
 		'BooleanVariableRef', 'Integer', 'Boolean',
-		'BooleanAssignment', 'IntAssignment', 'Block',
+		'BooleanAssignment', 'IntAssignment', 'Block', 'PrintVar', 'PrintStr',
 		'Context','BooleanVar','IntegerVar'] renaming{
 			"minilang" to "minifsm"
 		}

@@ -9,6 +9,8 @@ import fr.inria.diverse.minilang.Block
 import fr.inria.diverse.minilang.BooleanExpression
 
 import static extension fr.inria.diverse.melanger.FSMGlue.*
+import static extension fr.inria.diverse.melanger.StateGlue.*
+import static extension fr.inria.diverse.melanger.TransitionGlue.*
 import static extension minilang.aspects.BlockAspect.*
 import static extension minilang.aspects.StatementAspect.*
 import static extension minilang.aspects.BooleanExpressionAspect.*
@@ -16,15 +18,33 @@ import minifsm.aspects.FSMAspect
 import minifsm.aspects.StateAspect
 import minifsm.aspects.TransitionAspect
 import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
+import fr.inria.diverse.k3.al.annotationprocessor.Containment
+import fr.inria.diverse.melanger.melangedlang.minifsm.FinalState
 
 @Aspect(className=FSM)
 class FSMGlue extends FSMAspect{
+	@Containment
 	public var Context context
+	
+	override void execute(){
+		println("Start")
+		_self.currentState = _self.initialState
+		while(_self.currentState !== null){
+			_self.currentState.execute
+			if(_self.currentState instanceof FinalState)
+				_self.currentState = null
+			else{
+				val candidate = _self.transitions.findFirst[input === _self.currentState && isActivated]
+				_self.currentState = candidate?.output
+			}
+		}
+	}
 }
 
 @Aspect(className=State)
 class StateGlue extends StateAspect{
 	
+	@Containment
 	public var Block block
 	
 	@OverrideAspectMethod
@@ -37,6 +57,7 @@ class StateGlue extends StateAspect{
 @Aspect(className=Transition)
 class TransitionGlue extends TransitionAspect{
 	
+	@Containment
 	public var BooleanExpression expression
 	
 	@OverrideAspectMethod

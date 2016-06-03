@@ -67,7 +67,7 @@ public interface MinilangPackage extends EPackage {
 	int CONTEXT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Variables</b></em>' reference list.
+	 * The feature id for the '<em><b>Variables</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -234,10 +234,10 @@ public interface MinilangPackage extends EPackage {
 	EClass getContext();
 
 	/**
-	 * Returns the meta object for the reference list '{@link fr.inria.diverse.context.minilang.Context#getVariables <em>Variables</em>}'.
+	 * Returns the meta object for the containment reference list '{@link fr.inria.diverse.context.minilang.Context#getVariables <em>Variables</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Variables</em>'.
+	 * @return the meta object for the containment reference list '<em>Variables</em>'.
 	 * @see fr.inria.diverse.context.minilang.Context#getVariables()
 	 * @see #getContext()
 	 * @generated
@@ -341,7 +341,7 @@ public interface MinilangPackage extends EPackage {
 		EClass CONTEXT = eINSTANCE.getContext();
 
 		/**
-		 * The meta object literal for the '<em><b>Variables</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Variables</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

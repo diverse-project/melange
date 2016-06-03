@@ -16,7 +16,7 @@ import static extension minifsm.aspects.ConditionAspect.*
 @Aspect(className=FSM)
 class FSMAspect {
 	
-	var State currentState
+	public var State currentState
 	
 	def void execute(){
 		println("Start")

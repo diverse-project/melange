@@ -59,6 +59,9 @@ import fr.inria.diverse.minilang.If
 import fr.inria.diverse.minilang.While
 import fr.inria.diverse.context.minilang.BooleanVar
 import fr.inria.diverse.context.minilang.IntegerVar
+import fr.inria.diverse.minilang.PrintStr
+import fr.inria.diverse.minilang.PrintVar
+import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
 
 @Aspect(className=IntExpression)
 class IntExpressionAspect {
@@ -184,8 +187,8 @@ class BooleanExpressionAspect {
 class BooleanOperationAspect extends BooleanExpressionAspect {
 }
 
-@Aspect(className=BooleanVariableRef)
-class BooleanVariableRefAspect extends VariableRefAspect {
+@Aspect(className=BooleanVariableRef )
+class BooleanVariableRefAspect extends BooleanExpressionAspect {
 	def boolean eval(Context ctx){
 		val variable = ctx.variables
 			.filter(BooleanVar)
@@ -198,7 +201,7 @@ class BooleanVariableRefAspect extends VariableRefAspect {
 }
 
 @Aspect(className=IntVariableRef)
-class IntVariableRefAspect extends VariableRefAspect {
+class IntVariableRefAspect extends IntExpressionAspect {
 	def int eval(Context ctx){
 		val variable = ctx.variables
 			.filter(IntegerVar)
@@ -270,6 +273,25 @@ class WhileAspect {
 		
 		while(_self.condition.eval(ctx)){
 			_self.body.execute(ctx)
+		}
+	}
+}
+
+@Aspect(className=PrintStr)
+class PrintStrAspect extends StatementAspect{
+	def void execute(Context ctx){
+		println(_self.value)
+	}
+}
+
+@Aspect(className=PrintVar)
+class PrintVarAspect extends StatementAspect{
+	def void execute(Context ctx){
+		val variable = ctx.variables.findFirst[name == _self.value.name]
+		switch (variable) {
+			IntegerVar: println(variable.value)
+			BooleanVar: println(variable.value)
+			default: println(_self.value.name + "is undefined")
 		}
 	}
 }
