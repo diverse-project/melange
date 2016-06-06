@@ -5,22 +5,29 @@ import fr.inria.diverse.minifsm.FSM
 import fr.inria.diverse.minifsm.State
 import fr.inria.diverse.minifsm.FinalState
 import fr.inria.diverse.minifsm.Transition
-import fr.inria.diverse.minifsm.Condition
 
 import static extension minifsm.aspects.FSMAspect.*
 import static extension minifsm.aspects.StateAspect.*
 import static extension minifsm.aspects.FinalStateAspect.*
 import static extension minifsm.aspects.TransitionAspect.*
-import static extension minifsm.aspects.ConditionAspect.*
+import org.eclipse.emf.common.util.EList
+import java.util.Iterator
 
 @Aspect(className=FSM)
 class FSMAspect {
 	
 	public var State currentState
+	public var String currentEvent
+	public var Iterator<String> events
 	
-	def void execute(){
+	def void execute(EList<String> events){
 		println("Start")
+		
+		_self.events = events.iterator
+		if(_self.events.hasNext)
+			_self.currentEvent = _self.events.next
 		_self.currentState = _self.initialState
+		
 		while(_self.currentState !== null){
 			_self.currentState.execute
 			if(_self.currentState instanceof FinalState)
@@ -50,15 +57,8 @@ class FinalStateAspect extends StateAspect {
 @Aspect(className=Transition)
 class TransitionAspect {
 	def boolean isActivated(){
-		//Should eval _self.condition here
-		return true
+		return _self.event === null || _self.fsm.currentEvent == _self.event
 	}
 }
-
-@Aspect(className=Condition)
-class ConditionAspect {
-
-}
-
 
 

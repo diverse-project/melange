@@ -20,15 +20,21 @@ import minifsm.aspects.TransitionAspect
 import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
 import fr.inria.diverse.k3.al.annotationprocessor.Containment
 import fr.inria.diverse.melanger.melangedlang.minifsm.FinalState
+import org.eclipse.emf.common.util.EList
 
 @Aspect(className=FSM)
 class FSMGlue extends FSMAspect{
 	@Containment
 	public var Context context
 	
-	override void execute(){
+	override void execute(EList<String> events){
 		println("Start")
+		
+		_self.events = events.iterator
+		if(_self.events.hasNext)
+			_self.currentEvent = _self.events.next
 		_self.currentState = _self.initialState
+		
 		while(_self.currentState !== null){
 			_self.currentState.execute
 			if(_self.currentState instanceof FinalState)

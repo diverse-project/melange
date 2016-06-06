@@ -5,7 +5,6 @@ language MiniFsm{
 
 	with minifsm.aspects.FinalStateAspect
 	with minifsm.aspects.TransitionAspect
-	with minifsm.aspects.ConditionAspect
 	with minifsm.aspects.StateAspect
 	with minifsm.aspects.FSMAspect
 }
