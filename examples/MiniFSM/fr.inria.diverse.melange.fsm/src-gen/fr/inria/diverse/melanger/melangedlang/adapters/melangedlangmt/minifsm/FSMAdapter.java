@@ -61,8 +61,20 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements fr.inria.diverse.
   }
   
   @Override
-  public void execute() {
-    fr.inria.diverse.melanger.melangedlang.aspects.FSMGlue.execute(adaptee);
+  public void execute(final org.eclipse.emf.common.util.EList<java.lang.String> events) {
+    fr.inria.diverse.melanger.melangedlang.aspects.FSMGlue.execute(adaptee, events
+    );
+  }
+  
+  @Override
+  public String getCurrentEvent() {
+    return fr.inria.diverse.melanger.melangedlang.aspects.FSMAspect.currentEvent(adaptee);
+  }
+  
+  @Override
+  public void setCurrentEvent(final String currentEvent) {
+    fr.inria.diverse.melanger.melangedlang.aspects.FSMAspect.currentEvent(adaptee, currentEvent
+    );
   }
   
   @Override
@@ -75,6 +87,8 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements fr.inria.diverse.
     fr.inria.diverse.melanger.melangedlang.aspects.FSMAspect.currentState(adaptee, ((fr.inria.diverse.melanger.melangedlang.adapters.melangedlangmt.minifsm.StateAdapter) currentState).getAdaptee()
     );
   }
+  
+  protected final static String CURRENT_EVENT_EDEFAULT = null;
   
   @Override
   public EClass eClass() {
@@ -92,6 +106,8 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements fr.inria.diverse.
     		return getInitialState();
     	case fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage.FSM__CURRENT_STATE:
     		return getCurrentState();
+    	case fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage.FSM__CURRENT_EVENT:
+    		return getCurrentEvent();
     	case fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage.FSM__CONTEXT:
     		return getContext();
     }
@@ -110,6 +126,8 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements fr.inria.diverse.
     		return getInitialState() != null;
     	case fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage.FSM__CURRENT_STATE:
     		return getCurrentState() != null;
+    	case fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage.FSM__CURRENT_EVENT:
+    		return getCurrentEvent() != CURRENT_EVENT_EDEFAULT;
     	case fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage.FSM__CONTEXT:
     		return getContext() != null;
     }
@@ -136,6 +154,11 @@ public class FSMAdapter extends EObjectAdapter<FSM> implements fr.inria.diverse.
     	case fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage.FSM__CURRENT_STATE:
     		setCurrentState(
     		(fr.inria.diverse.melanger.melangedlangmt.minifsm.State)
+    		 newValue);
+    		return;
+    	case fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage.FSM__CURRENT_EVENT:
+    		setCurrentEvent(
+    		(java.lang.String)
     		 newValue);
     		return;
     	case fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage.FSM__CONTEXT:

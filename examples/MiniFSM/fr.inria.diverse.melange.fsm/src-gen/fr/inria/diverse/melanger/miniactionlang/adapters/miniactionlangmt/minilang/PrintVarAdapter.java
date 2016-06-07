@@ -4,7 +4,6 @@ import fr.inria.diverse.melange.adapters.EObjectAdapter;
 import fr.inria.diverse.melanger.miniactionlang.adapters.miniactionlangmt.MiniActionLangMTAdaptersFactory;
 import fr.inria.diverse.melanger.miniactionlang.minilang.PrintVar;
 import fr.inria.diverse.melanger.miniactionlangmt.minilang.Context;
-import fr.inria.diverse.melanger.miniactionlangmt.minilang.VariableRef;
 import org.eclipse.emf.ecore.EClass;
 
 @SuppressWarnings("all")
@@ -17,15 +16,13 @@ public class PrintVarAdapter extends EObjectAdapter<PrintVar> implements fr.inri
   }
   
   @Override
-  public VariableRef getValue() {
-    return (VariableRef) adaptersFactory.createAdapter(adaptee.getValue(), eResource);
+  public String getValue() {
+    return adaptee.getValue();
   }
   
   @Override
-  public void setValue(final VariableRef o) {
-    if (o != null)
-    	adaptee.setValue(((fr.inria.diverse.melanger.miniactionlang.adapters.miniactionlangmt.minilang.VariableRefAdapter) o).getAdaptee());
-    else adaptee.setValue(null);
+  public void setValue(final String o) {
+    adaptee.setValue(o);
   }
   
   @Override
@@ -33,6 +30,8 @@ public class PrintVarAdapter extends EObjectAdapter<PrintVar> implements fr.inri
     fr.inria.diverse.melanger.miniactionlang.aspects.PrintVarAspect.execute(adaptee, ((fr.inria.diverse.melanger.miniactionlang.adapters.miniactionlangmt.minilang.ContextAdapter) ctx).getAdaptee()
     );
   }
+  
+  protected final static String VALUE_EDEFAULT = null;
   
   @Override
   public EClass eClass() {
@@ -53,7 +52,7 @@ public class PrintVarAdapter extends EObjectAdapter<PrintVar> implements fr.inri
   public boolean eIsSet(final int featureID) {
     switch (featureID) {
     	case fr.inria.diverse.melanger.miniactionlangmt.minilang.MinilangPackage.PRINT_VAR__VALUE:
-    		return getValue() != null;
+    		return getValue() != VALUE_EDEFAULT;
     }
     
     return super.eIsSet(featureID);
@@ -64,7 +63,7 @@ public class PrintVarAdapter extends EObjectAdapter<PrintVar> implements fr.inri
     switch (featureID) {
     	case fr.inria.diverse.melanger.miniactionlangmt.minilang.MinilangPackage.PRINT_VAR__VALUE:
     		setValue(
-    		(fr.inria.diverse.melanger.miniactionlangmt.minilang.VariableRef)
+    		(java.lang.String)
     		 newValue);
     		return;
     }

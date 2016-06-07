@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.FSM#getTransitions <em>Transitions</em>}</li>
  *   <li>{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.FSM#getInitialState <em>Initial State</em>}</li>
  *   <li>{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.FSM#getCurrentState <em>Current State</em>}</li>
+ *   <li>{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.FSM#getCurrentEvent <em>Current Event</em>}</li>
  *   <li>{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.FSM#getContext <em>Context</em>}</li>
  * </ul>
  *
@@ -116,6 +117,32 @@ public interface FSM extends EObject {
 	void setCurrentState(State value);
 
 	/**
+	 * Returns the value of the '<em><b>Current Event</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Current Event</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Current Event</em>' attribute.
+	 * @see #setCurrentEvent(String)
+	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage#getFSM_CurrentEvent()
+	 * @model
+	 * @generated
+	 */
+	String getCurrentEvent();
+
+	/**
+	 * Sets the value of the '{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.FSM#getCurrentEvent <em>Current Event</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Current Event</em>' attribute.
+	 * @see #getCurrentEvent()
+	 * @generated
+	 */
+	void setCurrentEvent(String value);
+
+	/**
 	 * Returns the value of the '<em><b>Context</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -144,9 +171,9 @@ public interface FSM extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model
+	 * @model eventsMany="true"
 	 * @generated
 	 */
-	void execute();
+	void execute(EList<String> events);
 
 } // FSM

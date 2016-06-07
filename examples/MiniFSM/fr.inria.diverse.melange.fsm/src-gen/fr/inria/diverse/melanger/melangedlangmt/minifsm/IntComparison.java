@@ -17,7 +17,7 @@ package fr.inria.diverse.melanger.melangedlangmt.minifsm;
  * </ul>
  *
  * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage#getIntComparison()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface IntComparison extends BooleanExpression {

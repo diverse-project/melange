@@ -10,7 +10,6 @@ import fr.inria.diverse.melanger.melangedlang.adapters.melangedlangmt.minifsm.Bo
 import fr.inria.diverse.melanger.melangedlang.adapters.melangedlangmt.minifsm.BooleanOperationAdapter;
 import fr.inria.diverse.melanger.melangedlang.adapters.melangedlangmt.minifsm.BooleanVarAdapter;
 import fr.inria.diverse.melanger.melangedlang.adapters.melangedlangmt.minifsm.BooleanVariableRefAdapter;
-import fr.inria.diverse.melanger.melangedlang.adapters.melangedlangmt.minifsm.ConditionAdapter;
 import fr.inria.diverse.melanger.melangedlang.adapters.melangedlangmt.minifsm.ContextAdapter;
 import fr.inria.diverse.melanger.melangedlang.adapters.melangedlangmt.minifsm.DivideAdapter;
 import fr.inria.diverse.melanger.melangedlang.adapters.melangedlangmt.minifsm.EqualAdapter;
@@ -46,7 +45,6 @@ import fr.inria.diverse.melanger.melangedlang.minifsm.BooleanExpression;
 import fr.inria.diverse.melanger.melangedlang.minifsm.BooleanOperation;
 import fr.inria.diverse.melanger.melangedlang.minifsm.BooleanVar;
 import fr.inria.diverse.melanger.melangedlang.minifsm.BooleanVariableRef;
-import fr.inria.diverse.melanger.melangedlang.minifsm.Condition;
 import fr.inria.diverse.melanger.melangedlang.minifsm.Context;
 import fr.inria.diverse.melanger.melangedlang.minifsm.Divide;
 import fr.inria.diverse.melanger.melangedlang.minifsm.Equal;
@@ -108,9 +106,6 @@ public class MelangedLangMTAdaptersFactory implements AdaptersFactory {
     if (o instanceof fr.inria.diverse.melanger.melangedlang.minifsm.Transition){
     	return createTransitionAdapter((fr.inria.diverse.melanger.melangedlang.minifsm.Transition) o, res);
     }
-    if (o instanceof fr.inria.diverse.melanger.melangedlang.minifsm.Condition){
-    	return createConditionAdapter((fr.inria.diverse.melanger.melangedlang.minifsm.Condition) o, res);
-    }
     if (o instanceof fr.inria.diverse.melanger.melangedlang.minifsm.Integer){
     	return createIntegerAdapter((fr.inria.diverse.melanger.melangedlang.minifsm.Integer) o, res);
     }
@@ -140,9 +135,6 @@ public class MelangedLangMTAdaptersFactory implements AdaptersFactory {
     }
     if (o instanceof fr.inria.diverse.melanger.melangedlang.minifsm.LessOrEqual){
     	return createLessOrEqualAdapter((fr.inria.diverse.melanger.melangedlang.minifsm.LessOrEqual) o, res);
-    }
-    if (o instanceof fr.inria.diverse.melanger.melangedlang.minifsm.IntComparison){
-    	return createIntComparisonAdapter((fr.inria.diverse.melanger.melangedlang.minifsm.IntComparison) o, res);
     }
     if (o instanceof fr.inria.diverse.melanger.melangedlang.minifsm.Not){
     	return createNotAdapter((fr.inria.diverse.melanger.melangedlang.minifsm.Not) o, res);
@@ -268,21 +260,6 @@ public class MelangedLangMTAdaptersFactory implements AdaptersFactory {
     	adapter.setResource(res);
     	register.put(adaptee, adapter);
     	return (fr.inria.diverse.melanger.melangedlang.adapters.melangedlangmt.minifsm.TransitionAdapter) adapter;
-    }
-  }
-  
-  public ConditionAdapter createConditionAdapter(final Condition adaptee, final Resource res) {
-    if (adaptee == null)
-    	return null;
-    EObjectAdapter adapter = register.get(adaptee);
-    if(adapter != null)
-    	 return (fr.inria.diverse.melanger.melangedlang.adapters.melangedlangmt.minifsm.ConditionAdapter) adapter;
-    else {
-    	adapter = new fr.inria.diverse.melanger.melangedlang.adapters.melangedlangmt.minifsm.ConditionAdapter();
-    	adapter.setAdaptee(adaptee);
-    	adapter.setResource(res);
-    	register.put(adaptee, adapter);
-    	return (fr.inria.diverse.melanger.melangedlang.adapters.melangedlangmt.minifsm.ConditionAdapter) adapter;
     }
   }
   

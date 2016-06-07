@@ -102,13 +102,22 @@ public interface MinifsmPackage extends EPackage {
 	int FSM__CURRENT_STATE = 3;
 
 	/**
+	 * The feature id for the '<em><b>Current Event</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FSM__CURRENT_EVENT = 4;
+
+	/**
 	 * The feature id for the '<em><b>Context</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FSM__CONTEXT = 4;
+	int FSM__CONTEXT = 5;
 
 	/**
 	 * The number of structural features of the '<em>FSM</em>' class.
@@ -117,7 +126,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FSM_FEATURE_COUNT = 5;
+	int FSM_FEATURE_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.StateImpl <em>State</em>}' class.
@@ -240,22 +249,22 @@ public interface MinifsmPackage extends EPackage {
 	int TRANSITION__OUTPUT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION__CONDITION = 2;
-
-	/**
 	 * The feature id for the '<em><b>Fsm</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__FSM = 3;
+	int TRANSITION__FSM = 2;
+
+	/**
+	 * The feature id for the '<em><b>Event</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSITION__EVENT = 3;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -276,43 +285,6 @@ public interface MinifsmPackage extends EPackage {
 	int TRANSITION_FEATURE_COUNT = 5;
 
 	/**
-	 * The meta object id for the '{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.ConditionImpl <em>Condition</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.ConditionImpl
-	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getCondition()
-	 * @generated
-	 */
-	int CONDITION = 4;
-
-	/**
-	 * The feature id for the '<em><b>Expression</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITION__EXPRESSION = 0;
-
-	/**
-	 * The feature id for the '<em><b>Language</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITION__LANGUAGE = 1;
-
-	/**
-	 * The number of structural features of the '<em>Condition</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITION_FEATURE_COUNT = 2;
-
-	/**
 	 * The meta object id for the '{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.IntExpressionImpl <em>Int Expression</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -320,7 +292,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getIntExpression()
 	 * @generated
 	 */
-	int INT_EXPRESSION = 6;
+	int INT_EXPRESSION = 5;
 
 	/**
 	 * The number of structural features of the '<em>Int Expression</em>' class.
@@ -339,7 +311,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getInteger()
 	 * @generated
 	 */
-	int INTEGER = 5;
+	int INTEGER = 4;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -367,7 +339,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getContext()
 	 * @generated
 	 */
-	int CONTEXT = 7;
+	int CONTEXT = 6;
 
 	/**
 	 * The feature id for the '<em><b>Variables</b></em>' containment reference list.
@@ -395,7 +367,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getVariable()
 	 * @generated
 	 */
-	int VARIABLE = 8;
+	int VARIABLE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -423,7 +395,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getBooleanExpression()
 	 * @generated
 	 */
-	int BOOLEAN_EXPRESSION = 10;
+	int BOOLEAN_EXPRESSION = 9;
 
 	/**
 	 * The number of structural features of the '<em>Boolean Expression</em>' class.
@@ -442,7 +414,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getBoolean()
 	 * @generated
 	 */
-	int BOOLEAN = 9;
+	int BOOLEAN = 8;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -470,7 +442,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getIntComparison()
 	 * @generated
 	 */
-	int INT_COMPARISON = 12;
+	int INT_COMPARISON = 11;
 
 	/**
 	 * The feature id for the '<em><b>Right</b></em>' containment reference.
@@ -507,7 +479,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getEqual()
 	 * @generated
 	 */
-	int EQUAL = 11;
+	int EQUAL = 10;
 
 	/**
 	 * The feature id for the '<em><b>Right</b></em>' containment reference.
@@ -544,7 +516,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getGreater()
 	 * @generated
 	 */
-	int GREATER = 13;
+	int GREATER = 12;
 
 	/**
 	 * The feature id for the '<em><b>Right</b></em>' containment reference.
@@ -581,7 +553,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getGreaterOrEqual()
 	 * @generated
 	 */
-	int GREATER_OR_EQUAL = 14;
+	int GREATER_OR_EQUAL = 13;
 
 	/**
 	 * The feature id for the '<em><b>Right</b></em>' containment reference.
@@ -618,7 +590,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getLess()
 	 * @generated
 	 */
-	int LESS = 15;
+	int LESS = 14;
 
 	/**
 	 * The feature id for the '<em><b>Right</b></em>' containment reference.
@@ -655,7 +627,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getLessOrEqual()
 	 * @generated
 	 */
-	int LESS_OR_EQUAL = 16;
+	int LESS_OR_EQUAL = 15;
 
 	/**
 	 * The feature id for the '<em><b>Right</b></em>' containment reference.
@@ -692,7 +664,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getNot()
 	 * @generated
 	 */
-	int NOT = 17;
+	int NOT = 16;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -720,7 +692,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getBooleanOperation()
 	 * @generated
 	 */
-	int BOOLEAN_OPERATION = 19;
+	int BOOLEAN_OPERATION = 18;
 
 	/**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -732,7 +704,7 @@ public interface MinifsmPackage extends EPackage {
 	int BOOLEAN_OPERATION__LEFT = BOOLEAN_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Right</b></em>' reference.
+	 * The feature id for the '<em><b>Right</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -757,7 +729,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getOr()
 	 * @generated
 	 */
-	int OR = 18;
+	int OR = 17;
 
 	/**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -769,7 +741,7 @@ public interface MinifsmPackage extends EPackage {
 	int OR__LEFT = BOOLEAN_OPERATION__LEFT;
 
 	/**
-	 * The feature id for the '<em><b>Right</b></em>' reference.
+	 * The feature id for the '<em><b>Right</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -794,7 +766,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getAnd()
 	 * @generated
 	 */
-	int AND = 20;
+	int AND = 19;
 
 	/**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -806,7 +778,7 @@ public interface MinifsmPackage extends EPackage {
 	int AND__LEFT = BOOLEAN_OPERATION__LEFT;
 
 	/**
-	 * The feature id for the '<em><b>Right</b></em>' reference.
+	 * The feature id for the '<em><b>Right</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -831,7 +803,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getIntOperation()
 	 * @generated
 	 */
-	int INT_OPERATION = 22;
+	int INT_OPERATION = 21;
 
 	/**
 	 * The feature id for the '<em><b>Right</b></em>' containment reference.
@@ -868,7 +840,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getPlus()
 	 * @generated
 	 */
-	int PLUS = 21;
+	int PLUS = 20;
 
 	/**
 	 * The feature id for the '<em><b>Right</b></em>' containment reference.
@@ -905,7 +877,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getMinus()
 	 * @generated
 	 */
-	int MINUS = 23;
+	int MINUS = 22;
 
 	/**
 	 * The feature id for the '<em><b>Right</b></em>' containment reference.
@@ -942,7 +914,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getMultiply()
 	 * @generated
 	 */
-	int MULTIPLY = 24;
+	int MULTIPLY = 23;
 
 	/**
 	 * The feature id for the '<em><b>Right</b></em>' containment reference.
@@ -979,7 +951,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getDivide()
 	 * @generated
 	 */
-	int DIVIDE = 25;
+	int DIVIDE = 24;
 
 	/**
 	 * The feature id for the '<em><b>Right</b></em>' containment reference.
@@ -1016,7 +988,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getVariableRef()
 	 * @generated
 	 */
-	int VARIABLE_REF = 27;
+	int VARIABLE_REF = 26;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1044,7 +1016,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getBooleanVariableRef()
 	 * @generated
 	 */
-	int BOOLEAN_VARIABLE_REF = 26;
+	int BOOLEAN_VARIABLE_REF = 25;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1072,7 +1044,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getIntVariableRef()
 	 * @generated
 	 */
-	int INT_VARIABLE_REF = 28;
+	int INT_VARIABLE_REF = 27;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1100,7 +1072,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getStatement()
 	 * @generated
 	 */
-	int STATEMENT = 30;
+	int STATEMENT = 29;
 
 	/**
 	 * The number of structural features of the '<em>Statement</em>' class.
@@ -1119,7 +1091,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getBooleanAssignment()
 	 * @generated
 	 */
-	int BOOLEAN_ASSIGNMENT = 29;
+	int BOOLEAN_ASSIGNMENT = 28;
 
 	/**
 	 * The feature id for the '<em><b>Variable</b></em>' containment reference.
@@ -1156,7 +1128,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getIntAssignment()
 	 * @generated
 	 */
-	int INT_ASSIGNMENT = 31;
+	int INT_ASSIGNMENT = 30;
 
 	/**
 	 * The feature id for the '<em><b>Variable</b></em>' containment reference.
@@ -1193,10 +1165,10 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getPrintVar()
 	 * @generated
 	 */
-	int PRINT_VAR = 32;
+	int PRINT_VAR = 31;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1221,7 +1193,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getPrintStr()
 	 * @generated
 	 */
-	int PRINT_STR = 33;
+	int PRINT_STR = 32;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1249,7 +1221,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getBlock()
 	 * @generated
 	 */
-	int BLOCK = 34;
+	int BLOCK = 33;
 
 	/**
 	 * The feature id for the '<em><b>Statement</b></em>' containment reference list.
@@ -1277,7 +1249,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getIntegerVar()
 	 * @generated
 	 */
-	int INTEGER_VAR = 35;
+	int INTEGER_VAR = 34;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1314,7 +1286,7 @@ public interface MinifsmPackage extends EPackage {
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getBooleanVar()
 	 * @generated
 	 */
-	int BOOLEAN_VAR = 36;
+	int BOOLEAN_VAR = 35;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1397,6 +1369,17 @@ public interface MinifsmPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFSM_CurrentState();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.FSM#getCurrentEvent <em>Current Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Current Event</em>'.
+	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.FSM#getCurrentEvent()
+	 * @see #getFSM()
+	 * @generated
+	 */
+	EAttribute getFSM_CurrentEvent();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.FSM#getContext <em>Context</em>}'.
@@ -1495,17 +1478,6 @@ public interface MinifsmPackage extends EPackage {
 	EReference getTransition_Output();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.Transition#getCondition <em>Condition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Condition</em>'.
-	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.Transition#getCondition()
-	 * @see #getTransition()
-	 * @generated
-	 */
-	EReference getTransition_Condition();
-
-	/**
 	 * Returns the meta object for the container reference '{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.Transition#getFsm <em>Fsm</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1517,6 +1489,17 @@ public interface MinifsmPackage extends EPackage {
 	EReference getTransition_Fsm();
 
 	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.Transition#getEvent <em>Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Event</em>'.
+	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.Transition#getEvent()
+	 * @see #getTransition()
+	 * @generated
+	 */
+	EAttribute getTransition_Event();
+
+	/**
 	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.Transition#getExpression <em>Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1526,38 +1509,6 @@ public interface MinifsmPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTransition_Expression();
-
-	/**
-	 * Returns the meta object for class '{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.Condition <em>Condition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Condition</em>'.
-	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.Condition
-	 * @generated
-	 */
-	EClass getCondition();
-
-	/**
-	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.Condition#getExpression <em>Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Expression</em>'.
-	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.Condition#getExpression()
-	 * @see #getCondition()
-	 * @generated
-	 */
-	EAttribute getCondition_Expression();
-
-	/**
-	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.Condition#getLanguage <em>Language</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Language</em>'.
-	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.Condition#getLanguage()
-	 * @see #getCondition()
-	 * @generated
-	 */
-	EAttribute getCondition_Language();
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.Integer <em>Integer</em>}'.
@@ -1798,10 +1749,10 @@ public interface MinifsmPackage extends EPackage {
 	EReference getBooleanOperation_Left();
 
 	/**
-	 * Returns the meta object for the reference '{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.BooleanOperation#getRight <em>Right</em>}'.
+	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.BooleanOperation#getRight <em>Right</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Right</em>'.
+	 * @return the meta object for the containment reference '<em>Right</em>'.
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.BooleanOperation#getRight()
 	 * @see #getBooleanOperation()
 	 * @generated
@@ -2016,15 +1967,15 @@ public interface MinifsmPackage extends EPackage {
 	EClass getPrintVar();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.PrintVar#getValue <em>Value</em>}'.
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.PrintVar#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Value</em>'.
+	 * @return the meta object for the attribute '<em>Value</em>'.
 	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.PrintVar#getValue()
 	 * @see #getPrintVar()
 	 * @generated
 	 */
-	EReference getPrintVar_Value();
+	EAttribute getPrintVar_Value();
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.PrintStr <em>Print Str</em>}'.
@@ -2175,6 +2126,14 @@ public interface MinifsmPackage extends EPackage {
 		EReference FSM__CURRENT_STATE = eINSTANCE.getFSM_CurrentState();
 
 		/**
+		 * The meta object literal for the '<em><b>Current Event</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FSM__CURRENT_EVENT = eINSTANCE.getFSM_CurrentEvent();
+
+		/**
 		 * The meta object literal for the '<em><b>Context</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2253,14 +2212,6 @@ public interface MinifsmPackage extends EPackage {
 		EReference TRANSITION__OUTPUT = eINSTANCE.getTransition_Output();
 
 		/**
-		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TRANSITION__CONDITION = eINSTANCE.getTransition_Condition();
-
-		/**
 		 * The meta object literal for the '<em><b>Fsm</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2269,38 +2220,20 @@ public interface MinifsmPackage extends EPackage {
 		EReference TRANSITION__FSM = eINSTANCE.getTransition_Fsm();
 
 		/**
+		 * The meta object literal for the '<em><b>Event</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRANSITION__EVENT = eINSTANCE.getTransition_Event();
+
+		/**
 		 * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference TRANSITION__EXPRESSION = eINSTANCE.getTransition_Expression();
-
-		/**
-		 * The meta object literal for the '{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.ConditionImpl <em>Condition</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.ConditionImpl
-		 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.MinifsmPackageImpl#getCondition()
-		 * @generated
-		 */
-		EClass CONDITION = eINSTANCE.getCondition();
-
-		/**
-		 * The meta object literal for the '<em><b>Expression</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CONDITION__EXPRESSION = eINSTANCE.getCondition_Expression();
-
-		/**
-		 * The meta object literal for the '<em><b>Language</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CONDITION__LANGUAGE = eINSTANCE.getCondition_Language();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.IntegerImpl <em>Integer</em>}' class.
@@ -2517,7 +2450,7 @@ public interface MinifsmPackage extends EPackage {
 		EReference BOOLEAN_OPERATION__LEFT = eINSTANCE.getBooleanOperation_Left();
 
 		/**
-		 * The meta object literal for the '<em><b>Right</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -2711,12 +2644,12 @@ public interface MinifsmPackage extends EPackage {
 		EClass PRINT_VAR = eINSTANCE.getPrintVar();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PRINT_VAR__VALUE = eINSTANCE.getPrintVar_Value();
+		EAttribute PRINT_VAR__VALUE = eINSTANCE.getPrintVar_Value();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.impl.PrintStrImpl <em>Print Str</em>}' class.

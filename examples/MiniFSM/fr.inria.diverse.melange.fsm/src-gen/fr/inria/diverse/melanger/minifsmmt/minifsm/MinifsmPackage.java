@@ -102,13 +102,22 @@ public interface MinifsmPackage extends EPackage {
 	int FSM__CURRENT_STATE = 3;
 
 	/**
+	 * The feature id for the '<em><b>Current Event</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FSM__CURRENT_EVENT = 4;
+
+	/**
 	 * The number of structural features of the '<em>FSM</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FSM_FEATURE_COUNT = 4;
+	int FSM_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link fr.inria.diverse.melanger.minifsmmt.minifsm.impl.StateImpl <em>State</em>}' class.
@@ -213,22 +222,22 @@ public interface MinifsmPackage extends EPackage {
 	int TRANSITION__OUTPUT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION__CONDITION = 2;
-
-	/**
 	 * The feature id for the '<em><b>Fsm</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__FSM = 3;
+	int TRANSITION__FSM = 2;
+
+	/**
+	 * The feature id for the '<em><b>Event</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSITION__EVENT = 3;
 
 	/**
 	 * The number of structural features of the '<em>Transition</em>' class.
@@ -238,43 +247,6 @@ public interface MinifsmPackage extends EPackage {
 	 * @ordered
 	 */
 	int TRANSITION_FEATURE_COUNT = 4;
-
-	/**
-	 * The meta object id for the '{@link fr.inria.diverse.melanger.minifsmmt.minifsm.impl.ConditionImpl <em>Condition</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see fr.inria.diverse.melanger.minifsmmt.minifsm.impl.ConditionImpl
-	 * @see fr.inria.diverse.melanger.minifsmmt.minifsm.impl.MinifsmPackageImpl#getCondition()
-	 * @generated
-	 */
-	int CONDITION = 4;
-
-	/**
-	 * The feature id for the '<em><b>Expression</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITION__EXPRESSION = 0;
-
-	/**
-	 * The feature id for the '<em><b>Language</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITION__LANGUAGE = 1;
-
-	/**
-	 * The number of structural features of the '<em>Condition</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITION_FEATURE_COUNT = 2;
 
 
 	/**
@@ -330,6 +302,17 @@ public interface MinifsmPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFSM_CurrentState();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melanger.minifsmmt.minifsm.FSM#getCurrentEvent <em>Current Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Current Event</em>'.
+	 * @see fr.inria.diverse.melanger.minifsmmt.minifsm.FSM#getCurrentEvent()
+	 * @see #getFSM()
+	 * @generated
+	 */
+	EAttribute getFSM_CurrentEvent();
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melanger.minifsmmt.minifsm.State <em>State</em>}'.
@@ -406,17 +389,6 @@ public interface MinifsmPackage extends EPackage {
 	EReference getTransition_Output();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.melanger.minifsmmt.minifsm.Transition#getCondition <em>Condition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Condition</em>'.
-	 * @see fr.inria.diverse.melanger.minifsmmt.minifsm.Transition#getCondition()
-	 * @see #getTransition()
-	 * @generated
-	 */
-	EReference getTransition_Condition();
-
-	/**
 	 * Returns the meta object for the container reference '{@link fr.inria.diverse.melanger.minifsmmt.minifsm.Transition#getFsm <em>Fsm</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -428,36 +400,15 @@ public interface MinifsmPackage extends EPackage {
 	EReference getTransition_Fsm();
 
 	/**
-	 * Returns the meta object for class '{@link fr.inria.diverse.melanger.minifsmmt.minifsm.Condition <em>Condition</em>}'.
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melanger.minifsmmt.minifsm.Transition#getEvent <em>Event</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Condition</em>'.
-	 * @see fr.inria.diverse.melanger.minifsmmt.minifsm.Condition
+	 * @return the meta object for the attribute '<em>Event</em>'.
+	 * @see fr.inria.diverse.melanger.minifsmmt.minifsm.Transition#getEvent()
+	 * @see #getTransition()
 	 * @generated
 	 */
-	EClass getCondition();
-
-	/**
-	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melanger.minifsmmt.minifsm.Condition#getExpression <em>Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Expression</em>'.
-	 * @see fr.inria.diverse.melanger.minifsmmt.minifsm.Condition#getExpression()
-	 * @see #getCondition()
-	 * @generated
-	 */
-	EAttribute getCondition_Expression();
-
-	/**
-	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melanger.minifsmmt.minifsm.Condition#getLanguage <em>Language</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Language</em>'.
-	 * @see fr.inria.diverse.melanger.minifsmmt.minifsm.Condition#getLanguage()
-	 * @see #getCondition()
-	 * @generated
-	 */
-	EAttribute getCondition_Language();
+	EAttribute getTransition_Event();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -524,6 +475,14 @@ public interface MinifsmPackage extends EPackage {
 		EReference FSM__CURRENT_STATE = eINSTANCE.getFSM_CurrentState();
 
 		/**
+		 * The meta object literal for the '<em><b>Current Event</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FSM__CURRENT_EVENT = eINSTANCE.getFSM_CurrentEvent();
+
+		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melanger.minifsmmt.minifsm.impl.StateImpl <em>State</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -586,14 +545,6 @@ public interface MinifsmPackage extends EPackage {
 		EReference TRANSITION__OUTPUT = eINSTANCE.getTransition_Output();
 
 		/**
-		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TRANSITION__CONDITION = eINSTANCE.getTransition_Condition();
-
-		/**
 		 * The meta object literal for the '<em><b>Fsm</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -602,30 +553,12 @@ public interface MinifsmPackage extends EPackage {
 		EReference TRANSITION__FSM = eINSTANCE.getTransition_Fsm();
 
 		/**
-		 * The meta object literal for the '{@link fr.inria.diverse.melanger.minifsmmt.minifsm.impl.ConditionImpl <em>Condition</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see fr.inria.diverse.melanger.minifsmmt.minifsm.impl.ConditionImpl
-		 * @see fr.inria.diverse.melanger.minifsmmt.minifsm.impl.MinifsmPackageImpl#getCondition()
-		 * @generated
-		 */
-		EClass CONDITION = eINSTANCE.getCondition();
-
-		/**
-		 * The meta object literal for the '<em><b>Expression</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Event</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CONDITION__EXPRESSION = eINSTANCE.getCondition_Expression();
-
-		/**
-		 * The meta object literal for the '<em><b>Language</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CONDITION__LANGUAGE = eINSTANCE.getCondition_Language();
+		EAttribute TRANSITION__EVENT = eINSTANCE.getTransition_Event();
 
 	}
 

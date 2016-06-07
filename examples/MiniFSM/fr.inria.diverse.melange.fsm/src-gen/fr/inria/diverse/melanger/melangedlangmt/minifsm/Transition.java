@@ -15,8 +15,8 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.Transition#getInput <em>Input</em>}</li>
  *   <li>{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.Transition#getOutput <em>Output</em>}</li>
- *   <li>{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.Transition#getCondition <em>Condition</em>}</li>
  *   <li>{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.Transition#getFsm <em>Fsm</em>}</li>
+ *   <li>{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.Transition#getEvent <em>Event</em>}</li>
  *   <li>{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.Transition#getExpression <em>Expression</em>}</li>
  * </ul>
  *
@@ -78,32 +78,6 @@ public interface Transition extends EObject {
 	void setOutput(State value);
 
 	/**
-	 * Returns the value of the '<em><b>Condition</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Condition</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Condition</em>' containment reference.
-	 * @see #setCondition(Condition)
-	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage#getTransition_Condition()
-	 * @model containment="true"
-	 * @generated
-	 */
-	Condition getCondition();
-
-	/**
-	 * Sets the value of the '{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.Transition#getCondition <em>Condition</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Condition</em>' containment reference.
-	 * @see #getCondition()
-	 * @generated
-	 */
-	void setCondition(Condition value);
-
-	/**
 	 * Returns the value of the '<em><b>Fsm</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.FSM#getTransitions <em>Transitions</em>}'.
 	 * <!-- begin-user-doc -->
@@ -130,6 +104,32 @@ public interface Transition extends EObject {
 	 * @generated
 	 */
 	void setFsm(FSM value);
+
+	/**
+	 * Returns the value of the '<em><b>Event</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Event</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Event</em>' attribute.
+	 * @see #setEvent(String)
+	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage#getTransition_Event()
+	 * @model
+	 * @generated
+	 */
+	String getEvent();
+
+	/**
+	 * Sets the value of the '{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.Transition#getEvent <em>Event</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Event</em>' attribute.
+	 * @see #getEvent()
+	 * @generated
+	 */
+	void setEvent(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Expression</b></em>' containment reference.

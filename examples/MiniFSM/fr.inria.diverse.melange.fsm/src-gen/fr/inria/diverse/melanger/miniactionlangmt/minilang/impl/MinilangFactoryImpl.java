@@ -16,7 +16,6 @@ import fr.inria.diverse.melanger.miniactionlangmt.minilang.Greater;
 import fr.inria.diverse.melanger.miniactionlangmt.minilang.GreaterOrEqual;
 import fr.inria.diverse.melanger.miniactionlangmt.minilang.If;
 import fr.inria.diverse.melanger.miniactionlangmt.minilang.IntAssignment;
-import fr.inria.diverse.melanger.miniactionlangmt.minilang.IntComparison;
 import fr.inria.diverse.melanger.miniactionlangmt.minilang.IntExpression;
 import fr.inria.diverse.melanger.miniactionlangmt.minilang.IntOperation;
 import fr.inria.diverse.melanger.miniactionlangmt.minilang.IntVariableRef;
@@ -105,7 +104,6 @@ public class MinilangFactoryImpl extends EFactoryImpl implements MinilangFactory
 			case MinilangPackage.MINUS: return createMinus();
 			case MinilangPackage.MULTIPLY: return createMultiply();
 			case MinilangPackage.DIVIDE: return createDivide();
-			case MinilangPackage.INT_COMPARISON: return createIntComparison();
 			case MinilangPackage.BOOLEAN_EXPRESSION: return createBooleanExpression();
 			case MinilangPackage.BOOLEAN_OPERATION: return createBooleanOperation();
 			case MinilangPackage.BOOLEAN_VARIABLE_REF: return createBooleanVariableRef();
@@ -269,15 +267,6 @@ public class MinilangFactoryImpl extends EFactoryImpl implements MinilangFactory
 	 * @generated
 	 */
 	public Divide createDivide() {
-		throw new UnsupportedOperationException("Cannot invoke element creation on a model type");
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IntComparison createIntComparison() {
 		throw new UnsupportedOperationException("Cannot invoke element creation on a model type");
 	}
 

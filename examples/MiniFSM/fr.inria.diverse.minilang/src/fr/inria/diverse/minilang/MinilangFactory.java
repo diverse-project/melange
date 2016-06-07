@@ -166,15 +166,6 @@ public interface MinilangFactory extends EFactory {
 	Divide createDivide();
 
 	/**
-	 * Returns a new object of class '<em>Int Comparison</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Int Comparison</em>'.
-	 * @generated
-	 */
-	IntComparison createIntComparison();
-
-	/**
 	 * Returns a new object of class '<em>Boolean Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

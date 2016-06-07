@@ -9,7 +9,6 @@ import fr.inria.diverse.melanger.melangedlangmt.minifsm.BooleanExpression;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.BooleanOperation;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.BooleanVar;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.BooleanVariableRef;
-import fr.inria.diverse.melanger.melangedlangmt.minifsm.Condition;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.Context;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.Divide;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.Equal;
@@ -82,13 +81,6 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 	 * @generated
 	 */
 	private EClass transitionEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass conditionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -428,8 +420,17 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getFSM_CurrentEvent() {
+		return (EAttribute)fsmEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getFSM_Context() {
-		return (EReference)fsmEClass.getEStructuralFeatures().get(4);
+		return (EReference)fsmEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -509,7 +510,7 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransition_Condition() {
+	public EReference getTransition_Fsm() {
 		return (EReference)transitionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -518,8 +519,8 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransition_Fsm() {
-		return (EReference)transitionEClass.getEStructuralFeatures().get(3);
+	public EAttribute getTransition_Event() {
+		return (EAttribute)transitionEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -529,33 +530,6 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 	 */
 	public EReference getTransition_Expression() {
 		return (EReference)transitionEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getCondition() {
-		return conditionEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getCondition_Expression() {
-		return (EAttribute)conditionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getCondition_Language() {
-		return (EAttribute)conditionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -959,8 +933,8 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPrintVar_Value() {
-		return (EReference)printVarEClass.getEStructuralFeatures().get(0);
+	public EAttribute getPrintVar_Value() {
+		return (EAttribute)printVarEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1068,6 +1042,7 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 		createEReference(fsmEClass, FSM__TRANSITIONS);
 		createEReference(fsmEClass, FSM__INITIAL_STATE);
 		createEReference(fsmEClass, FSM__CURRENT_STATE);
+		createEAttribute(fsmEClass, FSM__CURRENT_EVENT);
 		createEReference(fsmEClass, FSM__CONTEXT);
 
 		stateEClass = createEClass(STATE);
@@ -1080,13 +1055,9 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 		transitionEClass = createEClass(TRANSITION);
 		createEReference(transitionEClass, TRANSITION__INPUT);
 		createEReference(transitionEClass, TRANSITION__OUTPUT);
-		createEReference(transitionEClass, TRANSITION__CONDITION);
 		createEReference(transitionEClass, TRANSITION__FSM);
+		createEAttribute(transitionEClass, TRANSITION__EVENT);
 		createEReference(transitionEClass, TRANSITION__EXPRESSION);
-
-		conditionEClass = createEClass(CONDITION);
-		createEAttribute(conditionEClass, CONDITION__EXPRESSION);
-		createEAttribute(conditionEClass, CONDITION__LANGUAGE);
 
 		integerEClass = createEClass(INTEGER);
 		createEAttribute(integerEClass, INTEGER__VALUE);
@@ -1159,7 +1130,7 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 		createEReference(intAssignmentEClass, INT_ASSIGNMENT__VALUE);
 
 		printVarEClass = createEClass(PRINT_VAR);
-		createEReference(printVarEClass, PRINT_VAR__VALUE);
+		createEAttribute(printVarEClass, PRINT_VAR__VALUE);
 
 		printStrEClass = createEClass(PRINT_STR);
 		createEAttribute(printStrEClass, PRINT_STR__VALUE);
@@ -1237,9 +1208,11 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 		initEReference(getFSM_Transitions(), this.getTransition(), this.getTransition_Fsm(), "transitions", null, 0, -1, fr.inria.diverse.melanger.melangedlangmt.minifsm.FSM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFSM_InitialState(), this.getState(), null, "initialState", null, 1, 1, fr.inria.diverse.melanger.melangedlangmt.minifsm.FSM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFSM_CurrentState(), this.getState(), null, "currentState", null, 0, 1, fr.inria.diverse.melanger.melangedlangmt.minifsm.FSM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFSM_CurrentEvent(), ecorePackage.getEString(), "currentEvent", null, 0, 1, fr.inria.diverse.melanger.melangedlangmt.minifsm.FSM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFSM_Context(), this.getContext(), null, "context", null, 0, 1, fr.inria.diverse.melanger.melangedlangmt.minifsm.FSM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(fsmEClass, null, "execute", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(fsmEClass, null, "execute", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "events", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getState_Name(), ecorePackage.getEString(), "name", null, 1, 1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1255,20 +1228,16 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 		initEClass(transitionEClass, Transition.class, "Transition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTransition_Input(), this.getState(), null, "input", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransition_Output(), this.getState(), null, "output", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTransition_Condition(), this.getCondition(), null, "condition", null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransition_Fsm(), this.getFSM(), this.getFSM_Transitions(), "fsm", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTransition_Event(), ecorePackage.getEString(), "event", null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransition_Expression(), this.getBooleanExpression(), null, "expression", null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(transitionEClass, ecorePackage.getEBoolean(), "isActivated", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(conditionEClass, Condition.class, "Condition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getCondition_Expression(), ecorePackage.getEString(), "expression", null, 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCondition_Language(), ecorePackage.getEString(), "language", null, 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(integerEClass, fr.inria.diverse.melanger.melangedlangmt.minifsm.Integer.class, "Integer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getInteger_Value(), ecorePackage.getEInt(), "value", null, 1, 1, fr.inria.diverse.melanger.melangedlangmt.minifsm.Integer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = addEOperation(integerEClass, ecorePackage.getEInt(), "eval", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(integerEClass, ecorePackage.getEInt(), "eval", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getContext(), "ctx", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(intExpressionEClass, IntExpression.class, "IntExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1298,7 +1267,7 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 		op = addEOperation(equalEClass, ecorePackage.getEBoolean(), "eval", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getContext(), "ctx", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(intComparisonEClass, IntComparison.class, "IntComparison", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(intComparisonEClass, IntComparison.class, "IntComparison", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getIntComparison_Right(), this.getIntExpression(), null, "right", null, 1, 1, IntComparison.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIntComparison_Left(), this.getIntExpression(), null, "left", null, 1, 1, IntComparison.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1335,7 +1304,7 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 
 		initEClass(booleanOperationEClass, BooleanOperation.class, "BooleanOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBooleanOperation_Left(), this.getBooleanExpression(), null, "left", null, 1, 1, BooleanOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBooleanOperation_Right(), this.getBooleanExpression(), null, "right", null, 1, 1, BooleanOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBooleanOperation_Right(), this.getBooleanExpression(), null, "right", null, 1, 1, BooleanOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(andEClass, And.class, "And", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1399,7 +1368,7 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 		addEParameter(op, this.getContext(), "ctx", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(printVarEClass, PrintVar.class, "PrintVar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPrintVar_Value(), this.getVariableRef(), null, "value", null, 0, 1, PrintVar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPrintVar_Value(), ecorePackage.getEString(), "value", null, 1, 1, PrintVar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(printVarEClass, null, "execute", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getContext(), "ctx", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1445,6 +1414,11 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 		   });	
 		addAnnotation
 		  (getFSM_CurrentState(), 
+		   source, 
+		   new String[] {
+		   });	
+		addAnnotation
+		  (getFSM_CurrentEvent(), 
 		   source, 
 		   new String[] {
 		   });	

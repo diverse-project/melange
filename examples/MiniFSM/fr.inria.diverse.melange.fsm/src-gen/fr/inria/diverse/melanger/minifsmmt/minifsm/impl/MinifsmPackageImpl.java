@@ -2,7 +2,6 @@
  */
 package fr.inria.diverse.melanger.minifsmmt.minifsm.impl;
 
-import fr.inria.diverse.melanger.minifsmmt.minifsm.Condition;
 import fr.inria.diverse.melanger.minifsmmt.minifsm.FinalState;
 import fr.inria.diverse.melanger.minifsmmt.minifsm.MinifsmFactory;
 import fr.inria.diverse.melanger.minifsmmt.minifsm.MinifsmPackage;
@@ -11,6 +10,7 @@ import fr.inria.diverse.melanger.minifsmmt.minifsm.Transition;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -51,13 +51,6 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 	 * @generated
 	 */
 	private EClass transitionEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass conditionEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -173,6 +166,15 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getFSM_CurrentEvent() {
+		return (EAttribute)fsmEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getState() {
 		return stateEClass;
 	}
@@ -236,7 +238,7 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransition_Condition() {
+	public EReference getTransition_Fsm() {
 		return (EReference)transitionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -245,35 +247,8 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransition_Fsm() {
-		return (EReference)transitionEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getCondition() {
-		return conditionEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getCondition_Expression() {
-		return (EAttribute)conditionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getCondition_Language() {
-		return (EAttribute)conditionEClass.getEStructuralFeatures().get(1);
+	public EAttribute getTransition_Event() {
+		return (EAttribute)transitionEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -309,6 +284,7 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 		createEReference(fsmEClass, FSM__TRANSITIONS);
 		createEReference(fsmEClass, FSM__INITIAL_STATE);
 		createEReference(fsmEClass, FSM__CURRENT_STATE);
+		createEAttribute(fsmEClass, FSM__CURRENT_EVENT);
 
 		stateEClass = createEClass(STATE);
 		createEAttribute(stateEClass, STATE__NAME);
@@ -319,12 +295,8 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 		transitionEClass = createEClass(TRANSITION);
 		createEReference(transitionEClass, TRANSITION__INPUT);
 		createEReference(transitionEClass, TRANSITION__OUTPUT);
-		createEReference(transitionEClass, TRANSITION__CONDITION);
 		createEReference(transitionEClass, TRANSITION__FSM);
-
-		conditionEClass = createEClass(CONDITION);
-		createEAttribute(conditionEClass, CONDITION__EXPRESSION);
-		createEAttribute(conditionEClass, CONDITION__LANGUAGE);
+		createEAttribute(transitionEClass, TRANSITION__EVENT);
 	}
 
 	/**
@@ -363,8 +335,10 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 		initEReference(getFSM_Transitions(), this.getTransition(), this.getTransition_Fsm(), "transitions", null, 0, -1, fr.inria.diverse.melanger.minifsmmt.minifsm.FSM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFSM_InitialState(), this.getState(), null, "initialState", null, 1, 1, fr.inria.diverse.melanger.minifsmmt.minifsm.FSM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFSM_CurrentState(), this.getState(), null, "currentState", null, 0, 1, fr.inria.diverse.melanger.minifsmmt.minifsm.FSM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFSM_CurrentEvent(), ecorePackage.getEString(), "currentEvent", null, 0, 1, fr.inria.diverse.melanger.minifsmmt.minifsm.FSM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(fsmEClass, null, "execute", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(fsmEClass, null, "execute", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "events", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getState_Name(), ecorePackage.getEString(), "name", null, 1, 1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -379,14 +353,10 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 		initEClass(transitionEClass, Transition.class, "Transition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTransition_Input(), this.getState(), null, "input", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransition_Output(), this.getState(), null, "output", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTransition_Condition(), this.getCondition(), null, "condition", null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransition_Fsm(), this.getFSM(), this.getFSM_Transitions(), "fsm", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTransition_Event(), ecorePackage.getEString(), "event", null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(transitionEClass, ecorePackage.getEBoolean(), "isActivated", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(conditionEClass, Condition.class, "Condition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getCondition_Expression(), ecorePackage.getEString(), "expression", null, 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCondition_Language(), ecorePackage.getEString(), "language", null, 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -411,6 +381,11 @@ public class MinifsmPackageImpl extends EPackageImpl implements MinifsmPackage {
 		   });	
 		addAnnotation
 		  (getFSM_CurrentState(), 
+		   source, 
+		   new String[] {
+		   });	
+		addAnnotation
+		  (getFSM_CurrentEvent(), 
 		   source, 
 		   new String[] {
 		   });	

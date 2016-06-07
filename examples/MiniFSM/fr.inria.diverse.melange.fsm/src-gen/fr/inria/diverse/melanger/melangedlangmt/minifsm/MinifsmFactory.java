@@ -58,15 +58,6 @@ public interface MinifsmFactory extends EFactory {
 	Transition createTransition();
 
 	/**
-	 * Returns a new object of class '<em>Condition</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Condition</em>'.
-	 * @generated
-	 */
-	Condition createCondition();
-
-	/**
 	 * Returns a new object of class '<em>Integer</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -128,15 +119,6 @@ public interface MinifsmFactory extends EFactory {
 	 * @generated
 	 */
 	Equal createEqual();
-
-	/**
-	 * Returns a new object of class '<em>Int Comparison</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Int Comparison</em>'.
-	 * @generated
-	 */
-	IntComparison createIntComparison();
 
 	/**
 	 * Returns a new object of class '<em>Greater</em>'.

@@ -720,8 +720,8 @@ public class MinilangPackageImpl extends EPackageImpl implements MinilangPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPrintVar_Value() {
-		return (EReference)printVarEClass.getEStructuralFeatures().get(0);
+	public EAttribute getPrintVar_Value() {
+		return (EAttribute)printVarEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -988,7 +988,7 @@ public class MinilangPackageImpl extends EPackageImpl implements MinilangPackage
 		createEReference(intAssignmentEClass, INT_ASSIGNMENT__VALUE);
 
 		printVarEClass = createEClass(PRINT_VAR);
-		createEReference(printVarEClass, PRINT_VAR__VALUE);
+		createEAttribute(printVarEClass, PRINT_VAR__VALUE);
 
 		printStrEClass = createEClass(PRINT_STR);
 		createEAttribute(printStrEClass, PRINT_STR__VALUE);
@@ -1157,7 +1157,7 @@ public class MinilangPackageImpl extends EPackageImpl implements MinilangPackage
 		op = addEOperation(divideEClass, ecorePackage.getEInt(), "eval", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getContext(), "ctx", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(intComparisonEClass, IntComparison.class, "IntComparison", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(intComparisonEClass, IntComparison.class, "IntComparison", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getIntComparison_Right(), this.getIntExpression(), null, "right", null, 1, 1, IntComparison.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIntComparison_Left(), this.getIntExpression(), null, "left", null, 1, 1, IntComparison.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1168,7 +1168,7 @@ public class MinilangPackageImpl extends EPackageImpl implements MinilangPackage
 
 		initEClass(booleanOperationEClass, BooleanOperation.class, "BooleanOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBooleanOperation_Left(), this.getBooleanExpression(), null, "left", null, 1, 1, BooleanOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBooleanOperation_Right(), this.getBooleanExpression(), null, "right", null, 1, 1, BooleanOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBooleanOperation_Right(), this.getBooleanExpression(), null, "right", null, 1, 1, BooleanOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(booleanVariableRefEClass, BooleanVariableRef.class, "BooleanVariableRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1203,7 +1203,7 @@ public class MinilangPackageImpl extends EPackageImpl implements MinilangPackage
 		addEParameter(op, this.getContext(), "ctx", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(printVarEClass, PrintVar.class, "PrintVar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPrintVar_Value(), this.getVariableRef(), null, "value", null, 0, 1, PrintVar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPrintVar_Value(), ecorePackage.getEString(), "value", null, 1, 1, PrintVar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(printVarEClass, null, "execute", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getContext(), "ctx", 0, 1, IS_UNIQUE, IS_ORDERED);

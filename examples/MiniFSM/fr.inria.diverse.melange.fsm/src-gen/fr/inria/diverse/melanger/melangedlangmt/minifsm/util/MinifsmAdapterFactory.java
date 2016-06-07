@@ -9,7 +9,6 @@ import fr.inria.diverse.melanger.melangedlangmt.minifsm.BooleanExpression;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.BooleanOperation;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.BooleanVar;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.BooleanVariableRef;
-import fr.inria.diverse.melanger.melangedlangmt.minifsm.Condition;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.Context;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.Divide;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.Equal;
@@ -117,10 +116,6 @@ public class MinifsmAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseTransition(Transition object) {
 				return createTransitionAdapter();
-			}
-			@Override
-			public Adapter caseCondition(Condition object) {
-				return createConditionAdapter();
 			}
 			@Override
 			public Adapter caseInteger(fr.inria.diverse.melanger.melangedlangmt.minifsm.Integer object) {
@@ -323,20 +318,6 @@ public class MinifsmAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTransitionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link fr.inria.diverse.melanger.melangedlangmt.minifsm.Condition <em>Condition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see fr.inria.diverse.melanger.melangedlangmt.minifsm.Condition
-	 * @generated
-	 */
-	public Adapter createConditionAdapter() {
 		return null;
 	}
 

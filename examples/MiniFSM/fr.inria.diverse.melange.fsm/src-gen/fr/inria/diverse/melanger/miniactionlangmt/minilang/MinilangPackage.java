@@ -456,7 +456,7 @@ public interface MinilangPackage extends EPackage {
 	int BOOLEAN_OPERATION__LEFT = BOOLEAN_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Right</b></em>' reference.
+	 * The feature id for the '<em><b>Right</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -493,7 +493,7 @@ public interface MinilangPackage extends EPackage {
 	int OR__LEFT = BOOLEAN_OPERATION__LEFT;
 
 	/**
-	 * The feature id for the '<em><b>Right</b></em>' reference.
+	 * The feature id for the '<em><b>Right</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -530,7 +530,7 @@ public interface MinilangPackage extends EPackage {
 	int AND__LEFT = BOOLEAN_OPERATION__LEFT;
 
 	/**
-	 * The feature id for the '<em><b>Right</b></em>' reference.
+	 * The feature id for the '<em><b>Right</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -883,7 +883,7 @@ public interface MinilangPackage extends EPackage {
 	int PRINT_VAR = 25;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1449,10 +1449,10 @@ public interface MinilangPackage extends EPackage {
 	EReference getBooleanOperation_Left();
 
 	/**
-	 * Returns the meta object for the reference '{@link fr.inria.diverse.melanger.miniactionlangmt.minilang.BooleanOperation#getRight <em>Right</em>}'.
+	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.melanger.miniactionlangmt.minilang.BooleanOperation#getRight <em>Right</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Right</em>'.
+	 * @return the meta object for the containment reference '<em>Right</em>'.
 	 * @see fr.inria.diverse.melanger.miniactionlangmt.minilang.BooleanOperation#getRight()
 	 * @see #getBooleanOperation()
 	 * @generated
@@ -1585,15 +1585,15 @@ public interface MinilangPackage extends EPackage {
 	EClass getPrintVar();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link fr.inria.diverse.melanger.miniactionlangmt.minilang.PrintVar#getValue <em>Value</em>}'.
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melanger.miniactionlangmt.minilang.PrintVar#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Value</em>'.
+	 * @return the meta object for the attribute '<em>Value</em>'.
 	 * @see fr.inria.diverse.melanger.miniactionlangmt.minilang.PrintVar#getValue()
 	 * @see #getPrintVar()
 	 * @generated
 	 */
-	EReference getPrintVar_Value();
+	EAttribute getPrintVar_Value();
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melanger.miniactionlangmt.minilang.PrintStr <em>Print Str</em>}'.
@@ -2073,7 +2073,7 @@ public interface MinilangPackage extends EPackage {
 		EReference BOOLEAN_OPERATION__LEFT = eINSTANCE.getBooleanOperation_Left();
 
 		/**
-		 * The meta object literal for the '<em><b>Right</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -2191,12 +2191,12 @@ public interface MinilangPackage extends EPackage {
 		EClass PRINT_VAR = eINSTANCE.getPrintVar();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PRINT_VAR__VALUE = eINSTANCE.getPrintVar_Value();
+		EAttribute PRINT_VAR__VALUE = eINSTANCE.getPrintVar_Value();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melanger.miniactionlangmt.minilang.impl.PrintStrImpl <em>Print Str</em>}' class.

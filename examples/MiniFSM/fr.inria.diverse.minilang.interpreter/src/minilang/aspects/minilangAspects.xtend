@@ -287,11 +287,11 @@ class PrintStrAspect extends StatementAspect{
 @Aspect(className=PrintVar)
 class PrintVarAspect extends StatementAspect{
 	def void execute(Context ctx){
-		val variable = ctx.variables.findFirst[name == _self.value.name]
+		val variable = ctx.variables.findFirst[name == _self.value]
 		switch (variable) {
 			IntegerVar: println(variable.value)
 			BooleanVar: println(variable.value)
-			default: println(_self.value.name + "is undefined")
+			default: println(_self.value + "is undefined")
 		}
 	}
 }

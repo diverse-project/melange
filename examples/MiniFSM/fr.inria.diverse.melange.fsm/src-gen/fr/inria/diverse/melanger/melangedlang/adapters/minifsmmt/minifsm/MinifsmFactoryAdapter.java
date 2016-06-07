@@ -1,7 +1,6 @@
 package fr.inria.diverse.melanger.melangedlang.adapters.minifsmmt.minifsm;
 
 import fr.inria.diverse.melanger.melangedlang.adapters.minifsmmt.MiniFsmMTAdaptersFactory;
-import fr.inria.diverse.melanger.minifsmmt.minifsm.Condition;
 import fr.inria.diverse.melanger.minifsmmt.minifsm.FSM;
 import fr.inria.diverse.melanger.minifsmmt.minifsm.FinalState;
 import fr.inria.diverse.melanger.minifsmmt.minifsm.MinifsmFactory;
@@ -35,11 +34,6 @@ public class MinifsmFactoryAdapter extends EFactoryImpl implements MinifsmFactor
   @Override
   public Transition createTransition() {
     return adaptersFactory.createTransitionAdapter(minifsmAdaptee.createTransition(), null);
-  }
-  
-  @Override
-  public Condition createCondition() {
-    return adaptersFactory.createConditionAdapter(minifsmAdaptee.createCondition(), null);
   }
   
   @Override

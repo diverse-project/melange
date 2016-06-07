@@ -17,7 +17,7 @@ package fr.inria.diverse.minilang;
  * </ul>
  *
  * @see fr.inria.diverse.minilang.MinilangPackage#getIntComparison()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface IntComparison extends BooleanExpression {

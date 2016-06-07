@@ -9,7 +9,6 @@ import fr.inria.diverse.melanger.melangedlangmt.minifsm.BooleanExpression;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.BooleanOperation;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.BooleanVar;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.BooleanVariableRef;
-import fr.inria.diverse.melanger.melangedlangmt.minifsm.Condition;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.Context;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.Divide;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.Equal;
@@ -18,7 +17,6 @@ import fr.inria.diverse.melanger.melangedlangmt.minifsm.FinalState;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.Greater;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.GreaterOrEqual;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.IntAssignment;
-import fr.inria.diverse.melanger.melangedlangmt.minifsm.IntComparison;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.IntExpression;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.IntOperation;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.IntVariableRef;
@@ -96,7 +94,6 @@ public class MinifsmFactoryImpl extends EFactoryImpl implements MinifsmFactory {
 			case MinifsmPackage.STATE: return createState();
 			case MinifsmPackage.FINAL_STATE: return createFinalState();
 			case MinifsmPackage.TRANSITION: return createTransition();
-			case MinifsmPackage.CONDITION: return createCondition();
 			case MinifsmPackage.INTEGER: return createInteger();
 			case MinifsmPackage.INT_EXPRESSION: return createIntExpression();
 			case MinifsmPackage.CONTEXT: return createContext();
@@ -104,7 +101,6 @@ public class MinifsmFactoryImpl extends EFactoryImpl implements MinifsmFactory {
 			case MinifsmPackage.BOOLEAN: return createBoolean();
 			case MinifsmPackage.BOOLEAN_EXPRESSION: return createBooleanExpression();
 			case MinifsmPackage.EQUAL: return createEqual();
-			case MinifsmPackage.INT_COMPARISON: return createIntComparison();
 			case MinifsmPackage.GREATER: return createGreater();
 			case MinifsmPackage.GREATER_OR_EQUAL: return createGreaterOrEqual();
 			case MinifsmPackage.LESS: return createLess();
@@ -175,15 +171,6 @@ public class MinifsmFactoryImpl extends EFactoryImpl implements MinifsmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Condition createCondition() {
-		throw new UnsupportedOperationException("Cannot invoke element creation on a model type");
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public fr.inria.diverse.melanger.melangedlangmt.minifsm.Integer createInteger() {
 		throw new UnsupportedOperationException("Cannot invoke element creation on a model type");
 	}
@@ -239,15 +226,6 @@ public class MinifsmFactoryImpl extends EFactoryImpl implements MinifsmFactory {
 	 * @generated
 	 */
 	public Equal createEqual() {
-		throw new UnsupportedOperationException("Cannot invoke element creation on a model type");
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IntComparison createIntComparison() {
 		throw new UnsupportedOperationException("Cannot invoke element creation on a model type");
 	}
 

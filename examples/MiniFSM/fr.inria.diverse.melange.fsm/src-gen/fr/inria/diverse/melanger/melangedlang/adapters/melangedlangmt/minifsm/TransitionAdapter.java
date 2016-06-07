@@ -4,7 +4,6 @@ import fr.inria.diverse.melange.adapters.EObjectAdapter;
 import fr.inria.diverse.melanger.melangedlang.adapters.melangedlangmt.MelangedLangMTAdaptersFactory;
 import fr.inria.diverse.melanger.melangedlang.minifsm.Transition;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.BooleanExpression;
-import fr.inria.diverse.melanger.melangedlangmt.minifsm.Condition;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.FSM;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.State;
 import org.eclipse.emf.ecore.EClass;
@@ -16,6 +15,16 @@ public class TransitionAdapter extends EObjectAdapter<Transition> implements fr.
   public TransitionAdapter() {
     super(fr.inria.diverse.melanger.melangedlang.adapters.melangedlangmt.MelangedLangMTAdaptersFactory.getInstance());
     adaptersFactory = fr.inria.diverse.melanger.melangedlang.adapters.melangedlangmt.MelangedLangMTAdaptersFactory.getInstance();
+  }
+  
+  @Override
+  public String getEvent() {
+    return adaptee.getEvent();
+  }
+  
+  @Override
+  public void setEvent(final String o) {
+    adaptee.setEvent(o);
   }
   
   @Override
@@ -40,18 +49,6 @@ public class TransitionAdapter extends EObjectAdapter<Transition> implements fr.
     if (o != null)
     	adaptee.setOutput(((fr.inria.diverse.melanger.melangedlang.adapters.melangedlangmt.minifsm.StateAdapter) o).getAdaptee());
     else adaptee.setOutput(null);
-  }
-  
-  @Override
-  public Condition getCondition() {
-    return (Condition) adaptersFactory.createAdapter(adaptee.getCondition(), eResource);
-  }
-  
-  @Override
-  public void setCondition(final Condition o) {
-    if (o != null)
-    	adaptee.setCondition(((fr.inria.diverse.melanger.melangedlang.adapters.melangedlangmt.minifsm.ConditionAdapter) o).getAdaptee());
-    else adaptee.setCondition(null);
   }
   
   @Override
@@ -82,6 +79,8 @@ public class TransitionAdapter extends EObjectAdapter<Transition> implements fr.
     return fr.inria.diverse.melanger.melangedlang.aspects.TransitionGlue.isActivated(adaptee);
   }
   
+  protected final static String EVENT_EDEFAULT = null;
+  
   @Override
   public EClass eClass() {
     return fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage.eINSTANCE.getTransition();
@@ -94,10 +93,10 @@ public class TransitionAdapter extends EObjectAdapter<Transition> implements fr.
     		return getInput();
     	case fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage.TRANSITION__OUTPUT:
     		return getOutput();
-    	case fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage.TRANSITION__CONDITION:
-    		return getCondition();
     	case fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage.TRANSITION__FSM:
     		return getFsm();
+    	case fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage.TRANSITION__EVENT:
+    		return getEvent();
     	case fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage.TRANSITION__EXPRESSION:
     		return getExpression();
     }
@@ -112,10 +111,10 @@ public class TransitionAdapter extends EObjectAdapter<Transition> implements fr.
     		return getInput() != null;
     	case fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage.TRANSITION__OUTPUT:
     		return getOutput() != null;
-    	case fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage.TRANSITION__CONDITION:
-    		return getCondition() != null;
     	case fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage.TRANSITION__FSM:
     		return getFsm() != null;
+    	case fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage.TRANSITION__EVENT:
+    		return getEvent() != EVENT_EDEFAULT;
     	case fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage.TRANSITION__EXPRESSION:
     		return getExpression() != null;
     }
@@ -136,14 +135,14 @@ public class TransitionAdapter extends EObjectAdapter<Transition> implements fr.
     		(fr.inria.diverse.melanger.melangedlangmt.minifsm.State)
     		 newValue);
     		return;
-    	case fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage.TRANSITION__CONDITION:
-    		setCondition(
-    		(fr.inria.diverse.melanger.melangedlangmt.minifsm.Condition)
-    		 newValue);
-    		return;
     	case fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage.TRANSITION__FSM:
     		setFsm(
     		(fr.inria.diverse.melanger.melangedlangmt.minifsm.FSM)
+    		 newValue);
+    		return;
+    	case fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage.TRANSITION__EVENT:
+    		setEvent(
+    		(java.lang.String)
     		 newValue);
     		return;
     	case fr.inria.diverse.melanger.melangedlangmt.minifsm.MinifsmPackage.TRANSITION__EXPRESSION:

@@ -17,8 +17,14 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true">
         <ecoreFeature xsi:type="ecore:EReference" href="MiniFsmMT.ecore#//FSM/currentState"/>
       </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="MiniFsmMT.ecore#//FSM/currentEvent"/>
+      </genFeatures>
       <genOperations>
         <ecoreOperation href="MiniFsmMT.ecore#//FSM/execute"/>
+        <genParameters>
+          <ecoreParameter href="MiniFsmMT.ecore#//FSM/execute/events"/>
+        </genParameters>
       </genOperations>
     </genClasses>
     <genClasses>
@@ -47,24 +53,15 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true">
         <ecoreFeature xsi:type="ecore:EReference" href="MiniFsmMT.ecore#//Transition/output"/>
       </genFeatures>
-      <genFeatures property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="MiniFsmMT.ecore#//Transition/condition"/>
-      </genFeatures>
       <genFeatures property="None" notify="false" createChild="false">
         <ecoreFeature xsi:type="ecore:EReference" href="MiniFsmMT.ecore#//Transition/fsm"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="MiniFsmMT.ecore#//Transition/event"/>
       </genFeatures>
       <genOperations>
         <ecoreOperation href="MiniFsmMT.ecore#//Transition/isActivated"/>
       </genOperations>
-    </genClasses>
-    <genClasses>
-      <ecoreClass href="MiniFsmMT.ecore#//Condition"/>
-      <genFeatures createChild="false">
-        <ecoreFeature xsi:type="ecore:EAttribute" href="MiniFsmMT.ecore#//Condition/expression"/>
-      </genFeatures>
-      <genFeatures createChild="false">
-        <ecoreFeature xsi:type="ecore:EAttribute" href="MiniFsmMT.ecore#//Condition/language"/>
-      </genFeatures>
     </genClasses>
   </genPackages>
   <usedGenPackages href="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"/>

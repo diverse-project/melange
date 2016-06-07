@@ -2,12 +2,10 @@ package fr.inria.diverse.melanger.minifsm.adapters.minifsmmt;
 
 import fr.inria.diverse.melange.adapters.AdaptersFactory;
 import fr.inria.diverse.melange.adapters.EObjectAdapter;
-import fr.inria.diverse.melanger.minifsm.adapters.minifsmmt.minifsm.ConditionAdapter;
 import fr.inria.diverse.melanger.minifsm.adapters.minifsmmt.minifsm.FSMAdapter;
 import fr.inria.diverse.melanger.minifsm.adapters.minifsmmt.minifsm.FinalStateAdapter;
 import fr.inria.diverse.melanger.minifsm.adapters.minifsmmt.minifsm.StateAdapter;
 import fr.inria.diverse.melanger.minifsm.adapters.minifsmmt.minifsm.TransitionAdapter;
-import fr.inria.diverse.minifsm.Condition;
 import fr.inria.diverse.minifsm.FSM;
 import fr.inria.diverse.minifsm.FinalState;
 import fr.inria.diverse.minifsm.State;
@@ -45,9 +43,6 @@ public class MiniFsmMTAdaptersFactory implements AdaptersFactory {
     }
     if (o instanceof fr.inria.diverse.minifsm.Transition){
     	return createTransitionAdapter((fr.inria.diverse.minifsm.Transition) o, res);
-    }
-    if (o instanceof fr.inria.diverse.minifsm.Condition){
-    	return createConditionAdapter((fr.inria.diverse.minifsm.Condition) o, res);
     }
     
     return null;
@@ -110,21 +105,6 @@ public class MiniFsmMTAdaptersFactory implements AdaptersFactory {
     	adapter.setResource(res);
     	register.put(adaptee, adapter);
     	return (fr.inria.diverse.melanger.minifsm.adapters.minifsmmt.minifsm.TransitionAdapter) adapter;
-    }
-  }
-  
-  public ConditionAdapter createConditionAdapter(final Condition adaptee, final Resource res) {
-    if (adaptee == null)
-    	return null;
-    EObjectAdapter adapter = register.get(adaptee);
-    if(adapter != null)
-    	 return (fr.inria.diverse.melanger.minifsm.adapters.minifsmmt.minifsm.ConditionAdapter) adapter;
-    else {
-    	adapter = new fr.inria.diverse.melanger.minifsm.adapters.minifsmmt.minifsm.ConditionAdapter();
-    	adapter.setAdaptee(adaptee);
-    	adapter.setResource(res);
-    	register.put(adaptee, adapter);
-    	return (fr.inria.diverse.melanger.minifsm.adapters.minifsmmt.minifsm.ConditionAdapter) adapter;
     }
   }
 }

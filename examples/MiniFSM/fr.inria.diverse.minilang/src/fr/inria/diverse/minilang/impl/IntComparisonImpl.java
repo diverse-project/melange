@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class IntComparisonImpl extends BooleanExpressionImpl implements IntComparison {
+public abstract class IntComparisonImpl extends BooleanExpressionImpl implements IntComparison {
 	/**
 	 * The cached value of the '{@link #getRight() <em>Right</em>}' containment reference.
 	 * <!-- begin-user-doc -->

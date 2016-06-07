@@ -40,7 +40,7 @@ public class BooleanOperationImpl extends BooleanExpressionImpl implements Boole
 	protected BooleanExpression left;
 
 	/**
-	 * The cached value of the '{@link #getRight() <em>Right</em>}' reference.
+	 * The cached value of the '{@link #getRight() <em>Right</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getRight()
@@ -117,14 +117,6 @@ public class BooleanOperationImpl extends BooleanExpressionImpl implements Boole
 	 * @generated
 	 */
 	public BooleanExpression getRight() {
-		if (right != null && right.eIsProxy()) {
-			InternalEObject oldRight = (InternalEObject)right;
-			right = (BooleanExpression)eResolveProxy(oldRight);
-			if (right != oldRight) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MinilangPackage.BOOLEAN_OPERATION__RIGHT, oldRight, right));
-			}
-		}
 		return right;
 	}
 
@@ -133,8 +125,14 @@ public class BooleanOperationImpl extends BooleanExpressionImpl implements Boole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BooleanExpression basicGetRight() {
-		return right;
+	public NotificationChain basicSetRight(BooleanExpression newRight, NotificationChain msgs) {
+		BooleanExpression oldRight = right;
+		right = newRight;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MinilangPackage.BOOLEAN_OPERATION__RIGHT, oldRight, newRight);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -143,10 +141,17 @@ public class BooleanOperationImpl extends BooleanExpressionImpl implements Boole
 	 * @generated
 	 */
 	public void setRight(BooleanExpression newRight) {
-		BooleanExpression oldRight = right;
-		right = newRight;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MinilangPackage.BOOLEAN_OPERATION__RIGHT, oldRight, right));
+		if (newRight != right) {
+			NotificationChain msgs = null;
+			if (right != null)
+				msgs = ((InternalEObject)right).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MinilangPackage.BOOLEAN_OPERATION__RIGHT, null, msgs);
+			if (newRight != null)
+				msgs = ((InternalEObject)newRight).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MinilangPackage.BOOLEAN_OPERATION__RIGHT, null, msgs);
+			msgs = basicSetRight(newRight, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MinilangPackage.BOOLEAN_OPERATION__RIGHT, newRight, newRight));
 	}
 
 	/**
@@ -159,6 +164,8 @@ public class BooleanOperationImpl extends BooleanExpressionImpl implements Boole
 		switch (featureID) {
 			case MinilangPackage.BOOLEAN_OPERATION__LEFT:
 				return basicSetLeft(null, msgs);
+			case MinilangPackage.BOOLEAN_OPERATION__RIGHT:
+				return basicSetRight(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -174,8 +181,7 @@ public class BooleanOperationImpl extends BooleanExpressionImpl implements Boole
 			case MinilangPackage.BOOLEAN_OPERATION__LEFT:
 				return getLeft();
 			case MinilangPackage.BOOLEAN_OPERATION__RIGHT:
-				if (resolve) return getRight();
-				return basicGetRight();
+				return getRight();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

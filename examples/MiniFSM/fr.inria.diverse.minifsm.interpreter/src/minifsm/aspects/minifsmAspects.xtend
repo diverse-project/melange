@@ -18,14 +18,13 @@ class FSMAspect {
 	
 	public var State currentState
 	public var String currentEvent
-	public var Iterator<String> events
 	
 	def void execute(EList<String> events){
 		println("Start")
 		
-		_self.events = events.iterator
-		if(_self.events.hasNext)
-			_self.currentEvent = _self.events.next
+		val eventIt = events.iterator
+		if(eventIt.hasNext)
+			_self.currentEvent = eventIt.next
 		_self.currentState = _self.initialState
 		
 		while(_self.currentState !== null){

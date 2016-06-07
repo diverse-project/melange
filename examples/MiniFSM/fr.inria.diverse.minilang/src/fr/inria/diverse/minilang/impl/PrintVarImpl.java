@@ -4,14 +4,8 @@ package fr.inria.diverse.minilang.impl;
 
 import fr.inria.diverse.minilang.MinilangPackage;
 import fr.inria.diverse.minilang.PrintVar;
-import fr.inria.diverse.minilang.VariableRef;
-
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -29,14 +23,23 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class PrintVarImpl extends StatementImpl implements PrintVar {
 	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected VariableRef value;
+	protected static final String VALUE_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected String value = VALUE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -62,7 +65,7 @@ public class PrintVarImpl extends StatementImpl implements PrintVar {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VariableRef getValue() {
+	public String getValue() {
 		return value;
 	}
 
@@ -71,47 +74,11 @@ public class PrintVarImpl extends StatementImpl implements PrintVar {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetValue(VariableRef newValue, NotificationChain msgs) {
-		VariableRef oldValue = value;
+	public void setValue(String newValue) {
+		String oldValue = value;
 		value = newValue;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MinilangPackage.PRINT_VAR__VALUE, oldValue, newValue);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setValue(VariableRef newValue) {
-		if (newValue != value) {
-			NotificationChain msgs = null;
-			if (value != null)
-				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MinilangPackage.PRINT_VAR__VALUE, null, msgs);
-			if (newValue != null)
-				msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MinilangPackage.PRINT_VAR__VALUE, null, msgs);
-			msgs = basicSetValue(newValue, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MinilangPackage.PRINT_VAR__VALUE, newValue, newValue));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MinilangPackage.PRINT_VAR__VALUE:
-				return basicSetValue(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MinilangPackage.PRINT_VAR__VALUE, oldValue, value));
 	}
 
 	/**
@@ -137,7 +104,7 @@ public class PrintVarImpl extends StatementImpl implements PrintVar {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MinilangPackage.PRINT_VAR__VALUE:
-				setValue((VariableRef)newValue);
+				setValue((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -152,7 +119,7 @@ public class PrintVarImpl extends StatementImpl implements PrintVar {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MinilangPackage.PRINT_VAR__VALUE:
-				setValue((VariableRef)null);
+				setValue(VALUE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -167,9 +134,25 @@ public class PrintVarImpl extends StatementImpl implements PrintVar {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case MinilangPackage.PRINT_VAR__VALUE:
-				return value != null;
+				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (value: ");
+		result.append(value);
+		result.append(')');
+		return result.toString();
 	}
 
 } //PrintVarImpl

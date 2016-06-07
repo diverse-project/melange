@@ -9,7 +9,6 @@ import fr.inria.diverse.melanger.melangedlangmt.minifsm.BooleanExpression;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.BooleanOperation;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.BooleanVar;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.BooleanVariableRef;
-import fr.inria.diverse.melanger.melangedlangmt.minifsm.Condition;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.Context;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.Divide;
 import fr.inria.diverse.melanger.melangedlangmt.minifsm.Equal;
@@ -123,12 +122,6 @@ public class MinifsmSwitch<T> extends Switch<T> {
 			case MinifsmPackage.TRANSITION: {
 				Transition transition = (Transition)theEObject;
 				T result = caseTransition(transition);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MinifsmPackage.CONDITION: {
-				Condition condition = (Condition)theEObject;
-				T result = caseCondition(condition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -423,21 +416,6 @@ public class MinifsmSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTransition(Transition object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Condition</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Condition</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCondition(Condition object) {
 		return null;
 	}
 

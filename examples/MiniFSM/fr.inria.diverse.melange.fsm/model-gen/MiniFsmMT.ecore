@@ -3,12 +3,19 @@
   <eClassifiers xsi:type="ecore:EClass" name="FSM">
     <eOperations name="execute">
       <eAnnotations source="aspect"/>
+      <eParameters name="events" upperBound="-1">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eParameters>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="states" upperBound="-1" eType="//State" containment="true" eOpposite="//State/fsm"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transitions" upperBound="-1" eType="//Transition" containment="true" eOpposite="//Transition/fsm"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="initialState" lowerBound="1" eType="//State"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="currentState" eType="//State">
       <eAnnotations source="aspect"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="currentEvent">
+      <eAnnotations source="aspect"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="State">
@@ -32,14 +39,8 @@
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="input" lowerBound="1" eType="//State"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="output" lowerBound="1" eType="//State"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="//Condition" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fsm" lowerBound="1" eType="//FSM" eOpposite="//FSM/transitions"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Condition">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression">
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="language">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="event">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
   </eClassifiers>

@@ -138,9 +138,6 @@ public class MiniActionLangMTAdaptersFactory implements AdaptersFactory {
     if (o instanceof fr.inria.diverse.melanger.miniactionlang.minilang.Divide){
     	return createDivideAdapter((fr.inria.diverse.melanger.miniactionlang.minilang.Divide) o, res);
     }
-    if (o instanceof fr.inria.diverse.melanger.miniactionlang.minilang.IntComparison){
-    	return createIntComparisonAdapter((fr.inria.diverse.melanger.miniactionlang.minilang.IntComparison) o, res);
-    }
     if (o instanceof fr.inria.diverse.melanger.miniactionlang.minilang.BooleanOperation){
     	return createBooleanOperationAdapter((fr.inria.diverse.melanger.miniactionlang.minilang.BooleanOperation) o, res);
     }

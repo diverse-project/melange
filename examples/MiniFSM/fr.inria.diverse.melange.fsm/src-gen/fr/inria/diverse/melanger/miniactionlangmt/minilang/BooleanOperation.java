@@ -48,26 +48,26 @@ public interface BooleanOperation extends BooleanExpression {
 	void setLeft(BooleanExpression value);
 
 	/**
-	 * Returns the value of the '<em><b>Right</b></em>' reference.
+	 * Returns the value of the '<em><b>Right</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Right</em>' reference isn't clear,
+	 * If the meaning of the '<em>Right</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Right</em>' reference.
+	 * @return the value of the '<em>Right</em>' containment reference.
 	 * @see #setRight(BooleanExpression)
 	 * @see fr.inria.diverse.melanger.miniactionlangmt.minilang.MinilangPackage#getBooleanOperation_Right()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	BooleanExpression getRight();
 
 	/**
-	 * Sets the value of the '{@link fr.inria.diverse.melanger.miniactionlangmt.minilang.BooleanOperation#getRight <em>Right</em>}' reference.
+	 * Sets the value of the '{@link fr.inria.diverse.melanger.miniactionlangmt.minilang.BooleanOperation#getRight <em>Right</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Right</em>' reference.
+	 * @param value the new value of the '<em>Right</em>' containment reference.
 	 * @see #getRight()
 	 * @generated
 	 */

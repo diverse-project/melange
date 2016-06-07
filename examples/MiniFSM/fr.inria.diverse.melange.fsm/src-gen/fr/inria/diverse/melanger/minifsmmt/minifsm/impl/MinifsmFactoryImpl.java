@@ -60,7 +60,6 @@ public class MinifsmFactoryImpl extends EFactoryImpl implements MinifsmFactory {
 			case MinifsmPackage.STATE: return createState();
 			case MinifsmPackage.FINAL_STATE: return createFinalState();
 			case MinifsmPackage.TRANSITION: return createTransition();
-			case MinifsmPackage.CONDITION: return createCondition();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -99,15 +98,6 @@ public class MinifsmFactoryImpl extends EFactoryImpl implements MinifsmFactory {
 	 * @generated
 	 */
 	public Transition createTransition() {
-		throw new UnsupportedOperationException("Cannot invoke element creation on a model type");
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Condition createCondition() {
 		throw new UnsupportedOperationException("Cannot invoke element creation on a model type");
 	}
 

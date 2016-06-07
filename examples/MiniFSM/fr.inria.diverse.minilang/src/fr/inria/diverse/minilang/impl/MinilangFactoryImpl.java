@@ -14,7 +14,6 @@ import fr.inria.diverse.minilang.Greater;
 import fr.inria.diverse.minilang.GreaterOrEqual;
 import fr.inria.diverse.minilang.If;
 import fr.inria.diverse.minilang.IntAssignment;
-import fr.inria.diverse.minilang.IntComparison;
 import fr.inria.diverse.minilang.IntExpression;
 import fr.inria.diverse.minilang.IntOperation;
 import fr.inria.diverse.minilang.IntVariableRef;
@@ -101,7 +100,6 @@ public class MinilangFactoryImpl extends EFactoryImpl implements MinilangFactory
 			case MinilangPackage.MINUS: return createMinus();
 			case MinilangPackage.MULTIPLY: return createMultiply();
 			case MinilangPackage.DIVIDE: return createDivide();
-			case MinilangPackage.INT_COMPARISON: return createIntComparison();
 			case MinilangPackage.BOOLEAN_EXPRESSION: return createBooleanExpression();
 			case MinilangPackage.BOOLEAN_OPERATION: return createBooleanOperation();
 			case MinilangPackage.BOOLEAN_VARIABLE_REF: return createBooleanVariableRef();
@@ -278,16 +276,6 @@ public class MinilangFactoryImpl extends EFactoryImpl implements MinilangFactory
 	public Divide createDivide() {
 		DivideImpl divide = new DivideImpl();
 		return divide;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IntComparison createIntComparison() {
-		IntComparisonImpl intComparison = new IntComparisonImpl();
-		return intComparison;
 	}
 
 	/**
