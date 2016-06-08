@@ -19,7 +19,7 @@ import minifsm.aspects.StateAspect
 import minifsm.aspects.TransitionAspect
 import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
 import fr.inria.diverse.k3.al.annotationprocessor.Containment
-import fr.inria.diverse.melanger.melangedlang.minifsm.FinalState
+import fr.inria.diverse.minifsm.FinalState
 import org.eclipse.emf.common.util.EList
 
 @Aspect(className=FSM)
