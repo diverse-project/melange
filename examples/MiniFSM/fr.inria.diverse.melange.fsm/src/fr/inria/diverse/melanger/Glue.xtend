@@ -55,8 +55,7 @@ class StateGlue extends StateAspect{
 	
 	@OverrideAspectMethod
 	override void execute(){
-		println("Exec "+_self.name)
-		_self.block.statement.forEach[execute(_self.fsm.context)]
+		_self.block?.statement?.forEach[execute(_self.fsm.context)]
 	}
 }
 
@@ -68,6 +67,6 @@ class TransitionGlue extends TransitionAspect{
 	
 	@OverrideAspectMethod
 	override boolean isActivated(){
-		return _self.expression.eval(_self.fsm.context)
+		return _self.expression == null || _self.expression.eval(_self.fsm.context)
 	}
 }

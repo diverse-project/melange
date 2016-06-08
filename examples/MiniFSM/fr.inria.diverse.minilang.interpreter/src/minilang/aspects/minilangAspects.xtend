@@ -280,7 +280,7 @@ class WhileAspect {
 @Aspect(className=PrintStr)
 class PrintStrAspect extends StatementAspect{
 	def void execute(Context ctx){
-		println(_self.value)
+		print(_self.value)
 	}
 }
 
@@ -289,8 +289,8 @@ class PrintVarAspect extends StatementAspect{
 	def void execute(Context ctx){
 		val variable = ctx.variables.findFirst[name == _self.value]
 		switch (variable) {
-			IntegerVar: println(variable.value)
-			BooleanVar: println(variable.value)
+			IntegerVar: print(variable.value)
+			BooleanVar: print(variable.value)
 			default: println(_self.value + "is undefined")
 		}
 	}
