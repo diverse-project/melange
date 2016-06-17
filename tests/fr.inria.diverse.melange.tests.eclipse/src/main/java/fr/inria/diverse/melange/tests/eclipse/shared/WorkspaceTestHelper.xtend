@@ -56,6 +56,21 @@ import org.eclipse.xtext.ui.editor.utils.EditorUtils
 import org.eclipse.xtext.ui.resource.XtextResourceSetProvider
 import org.junit.Assert
 import org.eclipse.swt.widgets.Display
+import org.eclipse.pde.core.target.ITargetPlatformService
+import org.eclipse.pde.core.target.ITargetDefinition
+import org.eclipse.core.runtime.Platform
+import java.util.List
+import org.eclipse.pde.core.target.ITargetLocation
+import java.util.ArrayList
+import java.util.Set
+import java.io.File
+import java.util.HashSet
+import org.eclipse.osgi.internal.framework.EquinoxBundle
+import org.eclipse.osgi.storage.BundleInfo.Generation
+import org.eclipse.core.runtime.jobs.Job
+import org.eclipse.pde.core.target.LoadTargetDefinitionJob
+import org.eclipse.pde.internal.core.target.TargetPlatformService
+import org.osgi.framework.Bundle
 
 class WorkspaceTestHelper {
 	static final String MELANGE_CMD_GENERATE_ALL        = "fr.inria.diverse.melange.GenerateAll"
@@ -441,4 +456,41 @@ class WorkspaceTestHelper {
 			println(str)
 	     ]
 	}
+	
+	/**
+	 * Sets a target platform in the test platform to get workspace builds OK
+	 * with PDE
+	 * 
+	 * @throws Exception
+	 */
+	def void setTargetPlatform() throws Exception {
+		val ITargetPlatformService tpService = TargetPlatformService.getDefault();
+		val ITargetDefinition targetDef = tpService.newTarget();
+		targetDef.setName("Tycho platform");
+		val Bundle[] bundles = Platform.getBundle("org.eclipse.core.runtime").getBundleContext().getBundles();
+		val List<ITargetLocation> bundleContainers = new ArrayList<ITargetLocation>();
+		val Set<File> dirs = new HashSet<File>();
+		for (Bundle bundle : bundles) {
+			val EquinoxBundle bundleImpl = bundle as EquinoxBundle;
+			val Generation generation = bundleImpl.getModule().getCurrentRevision().getRevisionInfo() as Generation;
+			val File file = generation.getBundleFile().getBaseFile();
+			val File folder = file.getParentFile();
+			if (!dirs.contains(folder)) {
+				dirs.add(folder);
+				bundleContainers.add(tpService.newDirectoryLocation(folder.getAbsolutePath()));
+			}
+		}
+		val ITargetLocation[] bundleContainersArray = bundleContainers
+		targetDef.setTargetLocations(bundleContainersArray);
+		targetDef.setArch(Platform.getOSArch());
+		targetDef.setOS(Platform.getOS());
+		targetDef.setWS(Platform.getWS());
+		targetDef.setNL(Platform.getNL());
+		// targetDef.setJREContainer()
+		tpService.saveTargetDefinition(targetDef);
+
+		val Job job = new LoadTargetDefinitionJob(targetDef);
+		job.schedule();
+		job.join();
+	}	
 }
