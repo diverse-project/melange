@@ -29,12 +29,13 @@ public class SimpleFsmProjectTest extends AbstractXtextTests
 
 	@Before
 	override setUp() {
+		helper.setTargetPlatform
 		// We don't want to regenerate everything for each test
 		if (!helper.projectExists(PROJECT_NAME)) {
 			super.setUp
 			helper.init
 			IResourcesSetupUtil::cleanWorkspace
-			melangeFsm = helper.deployMelangeProject(PROJECT_NAME,
+			melangeFsm = helper.deployMelangeProject("SimpleFsmProject",
 				"tests-inputs/SimpleFsmProject.zip")
 			IResourcesSetupUtil::waitForAutoBuild
 			helper.openEditor(MELANGE_FILE)
@@ -46,6 +47,7 @@ public class SimpleFsmProjectTest extends AbstractXtextTests
 	@After
 	override tearDown() {
 		// Nope
+//		helper.debug()
 	}
 
 	@Test
@@ -134,5 +136,4 @@ public class SimpleFsmProjectTest extends AbstractXtextTests
 		helper.assertMatch("tests-inputs/modelTypes/TimedFsmMT.ecore", tfsmSyntax)
 		helper.assertMatch("tests-inputs/modelTypes/TimedFsmMT.ecore", tfsmMTSyntax)
 	}
-	
 }
