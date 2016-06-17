@@ -419,4 +419,26 @@ class WorkspaceTestHelper {
 		res.installDerivedState(false)
 		return res.contents.head as ModelTypingSpace
 	}
+	
+	def void debug(){
+		ResourcesPlugin::workspace.root.projects.forEach[project |
+	         println("Error markers: " + project.name)
+	         project.findMarkers(IMarker::PROBLEM, true, IResource::DEPTH_INFINITE).forEach[ marker |
+	             println("   Resource: " + marker.resource.name)
+	             println("   Location: " + marker.getAttribute(IMarker::LOCATION))
+	             println("   Message: " + marker.getAttribute(IMarker::MESSAGE) + "\n")
+	         ]
+	         
+	         println("\n")
+	         
+	         println("Classpath: " + project.name)
+		       val jProject = JavaCore.create(project)
+		       val cp = new StringBuffer
+		       jProject.getResolvedClasspath(false).forEach[entry|
+		           cp.append(" "+entry.path.toString+"\n")
+	       	]
+			val str = cp.toString
+			println(str)
+	     ]
+	}
 }
