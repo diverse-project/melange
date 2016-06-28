@@ -25,6 +25,7 @@ import org.eclipse.xtext.builder.EclipseResourceFileSystemAccess2
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.OutputConfigurationProvider
 import org.eclipse.xtext.resource.DerivedStateAwareResource
+import fr.inria.diverse.melange.utils.AspectOverrider
 
 class MelangeBuilder
 {
@@ -38,6 +39,7 @@ class MelangeBuilder
 	@Inject extension ModelingElementExtensions
 	@Inject extension ModelTypeExtensions
 	@Inject extension EcoreExtensions
+	@Inject extension AspectOverrider
 	private static final Logger log = Logger.getLogger(MelangeBuilder)
 
 	def void generateAll(Resource res, IProject project, IProgressMonitor monitor) {
@@ -102,6 +104,7 @@ class MelangeBuilder
 			monitor.worked(40)
 			sub.subTask("Copying aspects for " + l.name)
 			l.createExternalAspects
+			l.generateAspectJ
 			monitor.worked(40)
 			sub.subTask("Updating dependencies for " + l.name)
 			eclipseHelper.addDependencies(project, #[l.externalRuntimeName])

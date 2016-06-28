@@ -29,6 +29,8 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.jdt.core.JavaCore
 import org.eclipse.pde.internal.core.natures.PDE
 import org.eclipse.xtext.util.MergeableManifest
+import org.eclipse.core.resources.IProjectDescription
+import org.eclipse.core.resources.ICommand
 
 /**
  * A collection of utilities around Eclipse's APIs to manage the creation,
@@ -416,5 +418,33 @@ class EclipseProjectHelper
 		log.debug('''Runtime aspects project «project» created.''')
 
 		return project
+	}
+	
+	def void addNature(IProject project, String natureID) {
+		try {
+			val IProjectDescription desc = project.getDescription();
+			val natures = desc.getNatureIds();
+			val newNatures = newArrayList(natureID)
+			newNatures.addAll(natures)
+			desc.setNatureIds(newNatures);
+			project.setDescription(desc, new NullProgressMonitor());
+		} catch (CoreException e) {
+		    e.printStackTrace();
+		}
+	}
+	
+	def void addBuilder(IProject project, String builderID) {
+		try {
+			val IProjectDescription projectDescription = project.getDescription();
+			val ICommand[] buildSpec = projectDescription.getBuildSpec();
+			val ICommand command = projectDescription.newCommand();
+			command.setBuilderName(builderID);
+			val newBuildSpect = newArrayList(command)
+			newBuildSpect.addAll(buildSpec)
+			projectDescription.setBuildSpec(newBuildSpect);
+			project.setDescription( projectDescription, new NullProgressMonitor() );
+		} catch (CoreException e) {
+		    e.printStackTrace();
+		}
 	}
 }
