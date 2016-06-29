@@ -540,15 +540,16 @@ class LanguageExtensions
 				.map[getClassRule(classFqName)].filterNull.head
 
 			var className = classFqName
-			if (renaming !== null)
-				className = renaming.value
-			else{
-				val pkg = classFqName.substring(0,classFqName.indexOf("."))
-				val simpleName = classFqName.substring(classFqName.indexOf(".")+1)
-				val pkgRenaming = ruleManagers.map[sourceBinding.findFirst[from == pkg]].filterNull.head
-				if(pkgRenaming !== null)
-					className = pkgRenaming.to +"."+ simpleName 
-			}
+			if(asp.hasAspectAnnotation)
+				if (renaming !== null)
+					className = renaming.value
+				else{
+					val pkg = classFqName.substring(0,classFqName.indexOf("."))
+					val simpleName = classFqName.substring(classFqName.indexOf(".")+1)
+					val pkgRenaming = ruleManagers.map[sourceBinding.findFirst[from == pkg]].filterNull.head
+					if(pkgRenaming !== null)
+						className = pkgRenaming.to +"."+ simpleName 
+				}
 			
 			
 			if (l.syntax.findClass(className) !== null
