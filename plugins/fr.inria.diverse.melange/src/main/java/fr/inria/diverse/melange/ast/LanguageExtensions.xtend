@@ -579,17 +579,17 @@ class LanguageExtensions
 		copiedAspect.forEach[asp |
 			val targetFqName = asp.aspectedClass?.fullyQualifiedName?.toString
 	    	val rule = ruleManagers.map[getClassRule(targetFqName)].filterNull.head
-	    	val newClass = 
+	    	
+	    	var newClass = targetFqName
+	    	if(asp.hasAspectAnnotation)
 	    		if (rule !== null)
-		    		rule.value
+		    		newClass = rule.value
 		    	else{
 					val pkg = targetFqName.substring(0,targetFqName.indexOf("."))
 					val simpleName = targetFqName.substring(targetFqName.indexOf(".")+1)
 					val pkgRenaming = ruleManagers.map[sourceBinding.findFirst[from == pkg]].filterNull.head
 					if(pkgRenaming !== null)
-						pkgRenaming.to +"."+ simpleName
-					else
-	    				targetFqName
+						newClass =pkgRenaming.to +"."+ simpleName
 				}
 
 	    	val aspName = asp.aspectTypeRef.simpleName
