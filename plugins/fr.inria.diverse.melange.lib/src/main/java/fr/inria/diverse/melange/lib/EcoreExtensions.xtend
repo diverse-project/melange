@@ -199,13 +199,7 @@ class EcoreExtensions
 		if(qualifiedClsName.startsWith(rootName+"."))
 			return rootPkg.allClasses.findFirst[getUniqueId == qualifiedClsName]
 		
-		// Remove first packages corresponding to the prefix from the GenModel
-		val rootNamePos = qualifiedClsName.indexOf("."+rootName+".")
-		if(rootNamePos == -1)
-			return null
-		val fullEClassName = qualifiedClsName.substring(rootNamePos+1)
-		
-		return rootPkg.allClasses.findFirst[getUniqueId == fullEClassName]
+		return rootPkg.allClasses.findFirst[qualifiedClsName.endsWith(getUniqueId)]
 	}
 
 	def EClassifier findClassifier(Set<EPackage> pkgs, String clsName) {
@@ -243,13 +237,7 @@ class EcoreExtensions
 		if(qualifiedClsName.startsWith(rootName+"."))
 			return rootPkg.allClassifiers.findFirst[getUniqueId == qualifiedClsName]
 		
-		// Remove first packages corresponding to the prefix from the GenModel
-		val rootNamePos = qualifiedClsName.indexOf("."+rootName+".")
-		if(rootNamePos == -1)
-			return null
-		val fullEClassName = qualifiedClsName.substring(rootNamePos+1)
-		
-		return rootPkg.allClassifiers.findFirst[getUniqueId == fullEClassName]
+		return rootPkg.allClassifiers.findFirst[qualifiedClsName.endsWith(getUniqueId)]
 	}
 
 	def List<EClassifier> getAllClassifiers(List<EPackage> pkgs) {
