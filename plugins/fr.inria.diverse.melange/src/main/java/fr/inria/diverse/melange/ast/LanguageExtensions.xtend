@@ -830,7 +830,7 @@ class LanguageExtensions
 	 */
 	def EClass findClassWithMapping(Aspect asp, LanguageOperator op){
 		
-		var classFqName = asp.aspectedClass?.fullyQualifiedName.toString
+		var classFqName = asp.aspectedClass?.fullyQualifiedName?.toString
 		
 		val rules = 
 			if(op instanceof Merge)
