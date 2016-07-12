@@ -22,15 +22,19 @@ public class RenamingTest extends AbstractXtextTests
 	static final String PROJECT_2 = "fr.inria.diverse.melange.testrenaming.main.testreverserenamed"
 	
 	override void setUp() throws Exception {
-		super.setUp
-		helper.init
-		IResourcesSetupUtil::cleanWorkspace
-		
-		helper.deployMelangeProject("fr.inria.diverse.melange.test.renaming.aspects", "tests-inputs/fr.inria.diverse.melange.test.renaming.aspects.zip")
-		helper.deployMelangeProject("fr.inria.diverse.melange.test.renaming.model", "tests-inputs/fr.inria.diverse.melange.test.renaming.model.zip")
-		helper.deployMelangeProject("fr.inria.diverse.melange.test.renaming.main", "tests-inputs/fr.inria.diverse.melange.test.renaming.main.zip")
-		
-		IResourcesSetupUtil::waitForAutoBuild
+		helper.setTargetPlatform
+		if (!helper.projectExists("fr.inria.diverse.melange.test.renaming.main")) {
+			super.setUp
+			helper.init
+			IResourcesSetupUtil::cleanWorkspace
+			
+			helper.deployMelangeProject("fr.inria.diverse.melange.test.renaming.aspects", "tests-inputs/fr.inria.diverse.melange.test.renaming.aspects.zip")
+			helper.deployMelangeProject("fr.inria.diverse.melange.test.renaming.model", "tests-inputs/fr.inria.diverse.melange.test.renaming.model.zip")
+			helper.deployMelangeProject("fr.inria.diverse.melange.test.renaming.main", "tests-inputs/fr.inria.diverse.melange.test.renaming.main.zip")
+	
+			IResourcesSetupUtil::waitForAutoBuild
+			helper.openEditor(MELANGE_FILE)
+		}
 	}
 
 	@Test
