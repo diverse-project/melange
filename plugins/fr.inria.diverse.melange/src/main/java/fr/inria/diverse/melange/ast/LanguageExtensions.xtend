@@ -38,6 +38,7 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import com.google.common.collect.HashMultimap
 import com.google.common.collect.SetMultimap
 import fr.inria.diverse.melange.metamodel.melange.Mapping
+import fr.inria.diverse.melange.processors.LanguageProcessor
 
 /**
  * A collection of utilities around {@link Language}s
@@ -53,6 +54,7 @@ class LanguageExtensions
 	@Inject extension IQualifiedNameConverter
 	@Inject extension EclipseProjectHelper
 	@Inject extension IQualifiedNameProvider
+	@Inject extension LanguageProcessor
 	@Inject AspectCopier copier
 	@Inject AspectRenamer renamer
 	@Inject JvmTypesBuilder typesBuilder
@@ -421,6 +423,7 @@ class LanguageExtensions
 	// TODO: Many obscure things here, please simplify/explain :)
 	def void createExternalAspects(Language l) {
 		val newRootName = l.syntax.rootPackageNamespace
+		l.initializeSemantic
 
 		// Copy the local semantics of the language and remove previous pointers
 		val withAspects = l.localSemantics
@@ -448,7 +451,7 @@ class LanguageExtensions
 				aspects =
 					targetLang.semantics
 					.filter[asp |
-						sliceClasses.exists[name == asp.aspectedClass.name]
+						sliceClasses.exists[name == asp.aspectedClass?.name]
 					].toList
 			}
 
@@ -725,7 +728,20 @@ class LanguageExtensions
 		.filter(LanguageOperator)
 		.filter[it instanceof Merge || it instanceof Slice]
 		.forEach[op |
-			op.targetLanguage.orderedAspects.forEach[asp |
+			var aspects = op.targetLanguage.orderedAspects
+			if(op instanceof Slice){
+				val opBuilders = modelTypingSpaceBuilder.findBuilder(language).subBuilders
+				val sliceBuilder = opBuilders.findFirst[source == op]
+				val sliceClasses = 
+					if(sliceBuilder !== null)
+						sliceBuilder.model.map[allClasses].flatten
+					else newArrayList
+				aspects = 
+					aspects.filter[asp |
+						sliceClasses.exists[name == asp.aspectedClass?.name]
+					].toList
+			}
+			aspects.forEach[asp |
 				val localAspectedClass = findClassWithMapping(asp,op)
 				val newAsp = MelangeFactory.eINSTANCE.createAspect => [
 					aspectedClass = localAspectedClass

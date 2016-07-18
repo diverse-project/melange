@@ -160,15 +160,17 @@ class AspectCopier
 			override canFilter(File jar) { return true }
 			override finished() {}
 			override isFiltered(String classFile) {
-				return
-				!request.aspectRefs.exists[aspRef |
+				val aspRef = request.aspectRefs.head
+				if(aspRef !== null){
 					val prefix = aspRef.identifier.replaceAll("\\.", "/")
 					val targetCls = aspRef.simpleAspectAnnotationValue
-
-					classFile.endsWith('''«prefix».java''')
-					|| classFile.endsWith('''«prefix»«targetCls»AspectContext.java''')
-					|| classFile.endsWith('''«prefix»«targetCls»AspectProperties.java''')
-				]
+					return 
+						!( classFile.endsWith('''«prefix».java''')
+						|| classFile.endsWith('''«prefix»«targetCls»AspectContext.java''')
+						|| classFile.endsWith('''«prefix»«targetCls»AspectProperties.java'''))
+				}
+				else
+					return true
 			}
 		}
 
