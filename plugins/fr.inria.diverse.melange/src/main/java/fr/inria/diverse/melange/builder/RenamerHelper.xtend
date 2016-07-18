@@ -34,10 +34,10 @@ class RenamerHelper {
 						.substring(packageRule.from.indexOf(".") + 1))
 
 			packageRule.classes.forEach[classRule |
-				sourcePkg.EClassifiers
-				.filter(EClass)
-				.filter[name == classRule.from]
-				.forEach[cls |
+				sourcePkg?.EClassifiers
+				?.filter(EClass)
+				?.filter[name == classRule.from]
+				?.forEach[cls |
 					// Change name for properties
 					classRule.properties.forEach[propertyRule |
 						val EStructuralFeature target =
@@ -109,7 +109,7 @@ class RenamerHelper {
 					modelRoot.findSubPackage(packageRule.to
 						.substring(packageRule.to.indexOf(".") + 1))
 
-			if (sourcePkg != targetPack) {
+			if (sourcePkg !== null && sourcePkg != targetPack) {
 				val classes = newArrayList
 				classes.addAll(sourcePkg.EClassifiers)
 				movedClasses.put(sourcePkg, targetPack, classes)
