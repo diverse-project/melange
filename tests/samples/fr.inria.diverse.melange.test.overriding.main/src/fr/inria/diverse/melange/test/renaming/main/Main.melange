@@ -20,6 +20,12 @@ language L1 {
 	exactType L1mt
 }
 
+language L4 {
+	syntax "platform:/resource/fr.inria.diverse.melange.test.overriding.model/model/model.ecore"
+	with Asp4
+	exactType L4mt
+}
+
 language L2 inherits L0,L1{
 	with Asp2
 	exactType L2mt
@@ -38,12 +44,6 @@ language L3 inherits L2{
 language L3b inherits L2{
 	merge L4
 	exactType L3bmt
-}
-
-language L4 {
-	syntax "platform:/resource/fr.inria.diverse.melange.test.overriding.model/model/model.ecore"
-	with Asp4
-	exactType L4mt
 }
 
 transformation execute(L0mt m) {
