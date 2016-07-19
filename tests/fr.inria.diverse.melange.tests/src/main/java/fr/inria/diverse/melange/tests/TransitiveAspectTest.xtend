@@ -139,7 +139,7 @@ class TransitiveAspectTest
 	@Test
 	def void testMergeSliceOverride(){
 		assertNotNull(operationTest_MergeSliceLang)
-		assertNotNull(multipleSuperTest_MergeSliceLang)
+		assertNotNull(getAttributesTest_MergeSliceLang)
 		
 		assertError((mergeSliceLang.operators.get(0) as Merge).targetLanguage,
 					MelangePackage.eINSTANCE.languageOperator,
@@ -152,7 +152,7 @@ class TransitiveAspectTest
 					"Language \'SubLang\' has errors in its definition"
 		)
 		assertNotNull(operationTest_MergeSliceLang.EReferences.exists[name == "addedReference"])
-		assertEquals(multipleSuperTest_MergeSliceLang, operationTest_MergeSliceLang.EReferences.findFirst[name == "addedReference"].EType)
+		assertEquals(getAttributesTest_MergeSliceLang, operationTest_MergeSliceLang.EReferences.findFirst[name == "addedReference"].EType)
 	}
 	
 	@Test
@@ -270,7 +270,7 @@ class TransitiveAspectTest
 	def EClass getReferencesTest_SliceOverrideLang()  {return sliceOverrideLang.syntax.pkgs.get(0).EClassifiers.findFirst[name == "ReferencesTest"] as EClass}
 	def EClass getMultipleSuperTest_DoubleMergeLang() {return doubleMergeLang.syntax.pkgs.get(0).EClassifiers.findFirst[name == "MultipleSuperTest"] as EClass}
 	def EClass getMultipleSuperTest_DoubleSliceLang() {return doubleSliceLang.syntax.pkgs.get(0).EClassifiers.findFirst[name == "MultipleSuperTest"] as EClass}
-	def EClass getMultipleSuperTest_MergeSliceLang()  {return mergeSliceLang.syntax.pkgs.get(0).EClassifiers.findFirst[name == "MultipleSuperTest"] as EClass}
+	def EClass getAttributesTest_MergeSliceLang()  {return mergeSliceLang.syntax.pkgs.get(0).EClassifiers.findFirst[name == "AttributesTest"] as EClass}
 	def EClass getMultipleSuperTest_SliceMergeLang()  {return sliceMergeLang.syntax.pkgs.get(0).EClassifiers.findFirst[name == "MultipleSuperTest"] as EClass}
 	def EClass getReferencesTest_AspectOverrideLang() {return aspectOverrideLang.syntax.pkgs.get(0).EClassifiers.findFirst[name == "ReferencesTest"] as EClass}
 	
