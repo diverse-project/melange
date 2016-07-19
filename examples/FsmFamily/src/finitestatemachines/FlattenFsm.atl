@@ -1,0 +1,118 @@
+-- Directly adapted from http://docatlanmod.emn.fr/Models_2012/ATLstates.atl
+
+-- @path FlatFsm=/fr.inria.diverse.examples.fsm.metamodel/model/fsm.ecore
+-- @path CompositeFsmMT=/FsmFamily/model-gen/CompositeFsmMT.ecore
+module FlattenFsm;
+
+create OUT : FlatFsm from IN : CompositeFsmMT;
+
+rule SM2SM { 
+    from sm1 : CompositeFsmMT!StateMachine
+    to sm2 : FlatFsm!StateMachine
+}
+
+rule State2State {
+    from rs1 : CompositeFsmMT!State (
+    	not rs1.oclIsTypeOf(CompositeFsmMT!InitialState) and
+		not rs1.oclIsTypeOf(CompositeFsmMT!CompositeState) and
+		not rs1.oclIsTypeOf(CompositeFsmMT!FinalState)
+	)
+    to rs2 : FlatFsm!State (
+    	name <- rs1.name,
+		stateMachine <- rs1.stateMachine
+	)
+}
+
+-- Initial states of composite states become regular states in the flattened SM
+rule Initial2State {
+    from is1 : CompositeFsmMT!InitialState (
+    	not is1.parentState.oclIsUndefined()
+	)
+    to is2 : FlatFsm!State (
+    	stateMachine <- is1.stateMachine,
+		name <- is1.name
+	)
+}
+
+-- Initial states are still initial states in the flattened SM
+rule Initial2Initial {
+    from is1 : CompositeFsmMT!InitialState (
+    	is1.parentState.oclIsUndefined()
+	)
+    to is2 : FlatFsm!InitialState (
+    	stateMachine <- is1.stateMachine,
+		name <- is1.name
+	)
+}
+
+-- Final states of composite states become regular states in the flattened SM
+rule Final2State {
+    from fs1 : CompositeFsmMT!FinalState (
+    	not fs1.parentState.oclIsUndefined()
+	)
+    to fs2 : FlatFsm!State (
+    	stateMachine <- fs1.stateMachine, name <- fs1.name
+	)
+}
+
+-- Final states are still final states in the flattened SM
+rule Final2Final {
+    from fs1 : CompositeFsmMT!FinalState (
+    	fs1.parentState.oclIsUndefined()
+	)
+    to fs2 : FlatFsm!FinalState (
+    	stateMachine <- fs1.stateMachine, name <- fs1.name
+	)
+}
+
+-- Transitions between two non-composite states are mapped one-to-one
+rule T2TA {
+    from t1 : CompositeFsmMT!Transition (
+    	not t1.source.oclIsTypeOf(CompositeFsmMT!CompositeState) and
+		not t1.target.oclIsTypeOf(CompositeFsmMT!CompositeState)
+	)
+    to t2 : FlatFsm!Transition (
+    	name <- t1.name,
+		stateMachine <- t1.stateMachine,
+		source <- t1.source,
+		target <- t1.target
+	)
+}
+
+-- This rule resolves a transition originating from a composite state 
+rule T2TB {
+    from t1 : CompositeFsmMT!Transition,
+         src : CompositeFsmMT!CompositeState, 
+         trg : CompositeFsmMT!State,
+         c : CompositeFsmMT!State (
+         	t1.source = src and
+			t1.target = trg and
+			c.parentState = src and
+			not trg.oclIsTypeOf(CompositeFsmMT!CompositeState)
+		)
+    to t2 : FlatFsm!Transition (
+    	name <- t1.name,
+		stateMachine <- t1.stateMachine,
+		source <- c,
+		target <- trg
+	)
+}
+
+-- This rule resolves a transition ending in a composite state 
+rule T2TC {
+    from t1 : CompositeFsmMT!Transition,
+         src : CompositeFsmMT!State, 
+         trg : CompositeFsmMT!CompositeState,
+         c : CompositeFsmMT!InitialState (
+         	t1.source = src and
+			t1.target = trg and
+			c.parentState = trg and
+			not src.oclIsTypeOf(CompositeFsmMT!CompositeState)
+		)
+    to   t2 : FlatFsm!Transition (
+    	name <- t1.name,
+		stateMachine <- t1.stateMachine,
+		source <- src,
+		target <- c
+	)
+}
