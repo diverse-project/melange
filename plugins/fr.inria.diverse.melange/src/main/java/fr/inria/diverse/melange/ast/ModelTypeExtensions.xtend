@@ -46,6 +46,12 @@ class ModelTypeExtensions
 	 */
 	def String getInferredEcoreUri(ModelType mt) {
 		val project = mt.eResource.project
+		
+		if(project === null){
+			println("Can't initialize exactType for " + mt.extracted.name + " (Eclipse environment required)")
+			return null
+		}
+		
 		return '''platform:/resource/«project.name»/model-gen/«mt.name».ecore'''
 	}
 
