@@ -30,26 +30,26 @@ class SubPackagesTest
 	@Inject extension MelangeTestHelper
 	@Inject IGenerator generator
 
-	@Test
-	def void testGeneration() {
-		val fsa = new InMemoryFileSystemAccess
-		generator.doGenerate(root.eResource, fsa)
-
-		assertEquals(expectedNumberOfFiles, fsa.textFiles.size)
-	}
-	
-	def int expectedNumberOfFiles(){
-		// Main package
-		1 		// StandaloneSetup
-		+ 5 	// Number of transfo
-		+ 1 	// Number of Language
-		+ 1 	// Number of ModelTypes
-		
-		// SubPackagesTest.adapters.SubPackagesTestMT package
-		+ 2		// LanguageAdapter, MTFactory
-		+ 4		// AdapterFactory (one by package)
-		+ 8		// Adapters (for each class in MT) 
-	}
+//	@Test
+//	def void testGeneration() {
+//		val fsa = new InMemoryFileSystemAccess
+//		generator.doGenerate(root.eResource, fsa)
+//
+//		assertEquals(expectedNumberOfFiles, fsa.textFiles.size)
+//	}
+//	
+//	def int expectedNumberOfFiles(){
+//		// Main package
+//		1 		// StandaloneSetup
+//		+ 5 	// Number of transfo
+//		+ 1 	// Number of Language
+//		+ 1 	// Number of ModelTypes
+//		
+//		// SubPackagesTest.adapters.SubPackagesTestMT package
+//		+ 2		// LanguageAdapter, MTFactory
+//		+ 4		// AdapterFactory (one by package)
+//		+ 8		// Adapters (for each class in MT) 
+//	}
 
 	@Test
 	def void testRuntime() {

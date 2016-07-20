@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.4"?><plugin>
+  
+<extension point="fr.inria.diverse.melange.modeltype">
+    <modeltype id="fr.inria.diverse.melange.test.subpackages.SubPackagesTestMT" uri="http://subpackagestestmt/"/>
+  </extension>
+  <extension point="fr.inria.diverse.melange.language">
+    <language aspects="" entryPoints="" exactType="fr.inria.diverse.melange.test.subpackages.SubPackagesTestMT" id="fr.inria.diverse.melange.test.subpackages.SubPackagesTest" uri="http://subpackagestest/toppkg/">
+      <adapter class="fr.inria.diverse.melange.test.subpackages.subpackagestest.adapters.subpackagestestmt.SubPackagesTestAdapter" modeltypeId="fr.inria.diverse.melange.test.subpackages.SubPackagesTestMT"/>
+    </language>
+  </extension>
+</plugin>
