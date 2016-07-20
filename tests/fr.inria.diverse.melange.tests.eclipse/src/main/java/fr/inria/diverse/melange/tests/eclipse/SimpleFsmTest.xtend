@@ -24,6 +24,9 @@ import org.eclipse.xtext.junit4.ui.util.JavaProjectSetupUtil
 import org.eclipse.xtext.ui.XtextProjectHelper
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.junit.Before
+import com.google.inject.Inject
+import fr.inria.diverse.melange.tests.eclipse.shared.WorkspaceTestHelper
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeUiInjectorProvider)
@@ -33,23 +36,33 @@ public class SimpleFsmTest extends AbstractXtextTests
 	IJavaProject aspectsFsm
 
 	static final String MELANGE_PROJECT   = "FsmMelange"
+	static final String MELANGE_FILE      =  MELANGE_PROJECT + "/src/melangefsm/Fsm.melange"
 	static final String ASPECTS_PROJECT   = "FsmAspects"
 	static final String LAUNCHCONFIG_NAME = "RunFsmMelange"
 	static final String OUTPUT_FILE       = "output.txt"
 
+	@Inject WorkspaceTestHelper helper
+	
+	@Before
 	override void setUp() throws Exception {
-		super.setUp
-
-		createAspectsProject
-		createMelangeProject
-		createTestFiles
-		createRunOutputFile
-
-		IResourcesSetupUtil::waitForAutoBuild
+		// We don't want to regenerate everything for each test
+		if (!helper.projectExists(MELANGE_PROJECT)) {
+			helper.setTargetPlatform
+			super.setUp
+	
+			createAspectsProject
+			createMelangeProject
+			createTestFiles
+			createRunOutputFile
+			IResourcesSetupUtil::waitForAutoBuild
+			helper.openEditor(MELANGE_FILE)
+		}
 	}
 
 	@Test
 	def void testNoProblemsInWorkspace() {
+		helper.generateAll(MELANGE_FILE)
+		
 		aspectsFsm.project.findMarkers(IMarker::PROBLEM, true, IResource::DEPTH_INFINITE).forEach[
 			println('''Found marker «getAttribute(IMarker::MESSAGE)» («getAttribute(IMarker::SEVERITY)»)''')
 			assertFalse(
@@ -70,6 +83,7 @@ public class SimpleFsmTest extends AbstractXtextTests
 	@Test
 	@OnlyIfUI
 	def testRunningMelangeTransformationProducesExpectedOutput() {
+//		melangeFsm = JavaProjectSetupUtil::createJavaProject(MELANGE_PROJECT)
 		val manager = DebugPlugin::getDefault.launchManager
 		val type = manager.getLaunchConfigurationType(IJavaLaunchConfigurationConstants::ID_JAVA_APPLICATION)
 		val newLaunchConfig = type.newInstance(melangeFsm.project, LAUNCHCONFIG_NAME)
@@ -157,7 +171,7 @@ public class SimpleFsmTest extends AbstractXtextTests
 	}
 
 	def private void createTestFiles() throws Exception {
-		IResourcesSetupUtil::createFile(MELANGE_PROJECT + "/src/melangefsm/Fsm.melange", '''
+		IResourcesSetupUtil::createFile(MELANGE_FILE, '''
 		package melangefsm
 
 		language Fsm {
@@ -169,7 +183,7 @@ public class SimpleFsmTest extends AbstractXtextTests
 		}
 
 		transformation foo(FsmMT m) {
-			val root = m.contents.head as melangefsm.fsmmt.FSM
+			val root = m.contents.head as melangefsm.fsmmt.fsm.FSM
 			print("Output: ")
 			root.execute("adcdc")
 			println
