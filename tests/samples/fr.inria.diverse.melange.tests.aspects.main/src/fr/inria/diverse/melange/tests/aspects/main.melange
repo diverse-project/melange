@@ -1,0 +1,43 @@
+package fr.inria.diverse.melange.tests.aspects
+
+import fr.inria.diverse.melange.tests.aspects.aspect.StateAspect1
+import fr.inria.diverse.melange.tests.aspects.aspect.StateAspect2
+import fr.inria.diverse.melange.tests.aspects.aspect.StateAspect3
+
+language Fsm {
+	syntax "platform:/resource/fr.inria.diverse.melange.tests.aspects.model/model/FSM.ecore"
+	with StateAspect1
+	exactType FsmMT
+}
+
+language TimedFsm {
+	syntax "platform:/resource/fr.inria.diverse.melange.tests.aspects.model/model/TimedFSM.ecore"
+	with StateAspect2
+	exactType TimedFsmMT
+}
+
+language IncompatibleFsm {
+	syntax "platform:/resource/fr.inria.diverse.melange.tests.aspects.model/model/FSM.ecore" withGenmodel "platform:/resource/fr.inria.diverse.melange.tests.aspects.model/model/FSM.genmodel"
+	with StateAspect3
+	exactType IncompatibleFsmMT
+}
+
+transformation String callFoo(FsmMT m) {
+	val root = m.contents.head as fr.inria.diverse.melange.tests.aspects.fsmmt.fsm.FSM
+	val s = root.ownedState.head
+
+	return s.foo
+}
+
+transformation String callBar(FsmMT m) {
+	val root = m.contents.head as fr.inria.diverse.melange.tests.aspects.fsmmt.fsm.FSM
+	val s = root.ownedState.head
+	
+	return s.bar
+}
+
+transformation FsmMT loadFsm()  { return      Fsm.load("tests-inputs/models/Simple.fsm") }
+transformation FsmMT loadTfsm() { return TimedFsm.load("tests-inputs/models/Simple.timedfsm") }
+
+@Main
+transformation test() {}

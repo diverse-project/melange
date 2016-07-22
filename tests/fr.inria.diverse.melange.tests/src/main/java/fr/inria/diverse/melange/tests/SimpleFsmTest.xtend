@@ -94,33 +94,33 @@ class SimpleFsmTest
 		assertEquals(tfsmmt.subtypingRelations.head.superType, fsmmt)
 	}
 
-	@Test
-	def void testGeneration() {
-		val fsa = new InMemoryFileSystemAccess
-		generator.doGenerate(root.eResource, fsa)
-
-		assertEquals(expectedNumberOfFiles, fsa.textFiles.size)
-	}
-	
-	def int expectedNumberOfFiles(){
-		// Main package
-		1 		// StandaloneSetup
-		+ 4 	// Number of transfo
-		+ 2 	// Number of Language
-		+ 2 	// Number of ModelTypes
-		
-		//Fsm.adapters.FsmMT
-		+ 3		// LanguageAdapter, MTFactory & AdapterFactory
-		+ 3		// Adapters (for each class in MT) 
-		
-		//TimedFsm.adapters.TimedFsmMT
-		+ 3		// LanguageAdapter, MTFactory & AdapterFactory
-		+ 3		// Adapters (for each class in MT) 
-		
-		//TimedFsm.adapters.FsmMT
-		+ 3		// LanguageAdapter, MTFactory & AdapterFactory
-		+ 3		// Adapters (for each class in MT) 
-	}
+//	@Test
+//	def void testGeneration() {
+//		val fsa = new InMemoryFileSystemAccess
+//		generator.doGenerate(root.eResource, fsa)
+//
+//		assertEquals(expectedNumberOfFiles, fsa.textFiles.size)
+//	}
+//	
+//	def int expectedNumberOfFiles(){
+//		// Main package
+//		1 		// StandaloneSetup
+//		+ 4 	// Number of transfo
+//		+ 2 	// Number of Language
+//		+ 2 	// Number of ModelTypes
+//		
+//		//Fsm.adapters.FsmMT
+//		+ 3		// LanguageAdapter, MTFactory & AdapterFactory
+//		+ 3		// Adapters (for each class in MT) 
+//		
+//		//TimedFsm.adapters.TimedFsmMT
+//		+ 3		// LanguageAdapter, MTFactory & AdapterFactory
+//		+ 3		// Adapters (for each class in MT) 
+//		
+//		//TimedFsm.adapters.FsmMT
+//		+ 3		// LanguageAdapter, MTFactory & AdapterFactory
+//		+ 3		// Adapters (for each class in MT) 
+//	}
 
 	@Test
 	def void testRuntime() {

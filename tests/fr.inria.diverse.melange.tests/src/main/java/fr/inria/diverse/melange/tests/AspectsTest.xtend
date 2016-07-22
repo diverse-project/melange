@@ -251,13 +251,13 @@ class AspectsTest
 		assertEquals(ifsmMt.subtypingRelations.size, 0)
 	}
 
-	@Test
-	def void testGeneration() {
-		val fsa = new InMemoryFileSystemAccess
-		generator.doGenerate(root.eResource, fsa)
-
-		assertEquals(fsa.textFiles.size, 48)
-	}
+//	@Test
+//	def void testGeneration() {
+//		val fsa = new InMemoryFileSystemAccess
+//		generator.doGenerate(root.eResource, fsa)
+//
+//		assertEquals(fsa.textFiles.size, 48)
+//	}
 
 	@Test
 	def void testDynamicBinding() {

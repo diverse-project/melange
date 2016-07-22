@@ -1,0 +1,22 @@
+package fr.inria.diverse.melange.tests.simplefsm
+
+language Fsm {
+	syntax "platform:/resource/fr.inria.diverse.melange.tests.aspects.model/model/FSM.ecore"
+	exactType FsmMT
+}
+
+language TimedFsm {
+	syntax "platform:/resource/fr.inria.diverse.melange.tests.aspects.model/model/TimedFSM.ecore"
+	exactType TimedFsmMT
+}
+
+transformation fr.inria.diverse.melange.tests.simplefsm.fsmmt.fsm.FSM getRoot(FsmMT fsm) {
+	return fsm.contents.head as fr.inria.diverse.melange.tests.simplefsm.fsmmt.fsm.FSM
+}
+
+transformation FsmMT loadFsm()  { return      Fsm.load("models/Simple.fsm") }
+transformation FsmMT loadTFsm() { return TimedFsm.load("models/Simple.fsm") }
+
+@Main
+transformation test() {}
+

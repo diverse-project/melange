@@ -1,18 +1,18 @@
 package fr.inria.diverse.melange.tests.eclipse
 
-import org.eclipse.xtext.junit4.AbstractXtextTests
-import org.junit.runner.RunWith
-import org.eclipse.xtext.junit4.XtextRunner
-import org.eclipse.xtext.junit4.InjectWith
-import fr.inria.diverse.melange.MelangeUiInjectorProvider
-import org.junit.FixMethodOrder
-import org.junit.runners.MethodSorters
 import com.google.inject.Inject
+import fr.inria.diverse.melange.MelangeUiInjectorProvider
 import fr.inria.diverse.melange.tests.eclipse.shared.WorkspaceTestHelper
-import org.junit.Before
-import org.junit.After
-import org.eclipse.xtext.junit4.ui.util.IResourcesSetupUtil
 import org.eclipse.core.resources.IProject
+import org.eclipse.xtext.junit4.AbstractXtextTests
+import org.eclipse.xtext.junit4.InjectWith
+import org.eclipse.xtext.junit4.XtextRunner
+import org.eclipse.xtext.junit4.ui.util.IResourcesSetupUtil
+import org.junit.After
+import org.junit.Before
+import org.junit.FixMethodOrder
+import org.junit.runner.RunWith
+import org.junit.runners.MethodSorters
 import org.junit.Test
 
 @RunWith(XtextRunner)
