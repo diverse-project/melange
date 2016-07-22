@@ -1,0 +1,1729 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mlt title="Anonymous Submission" version="6.2.0" root="/home/fcoulon" producer="main bin" LC_NUMERIC="en_GB.utf8">
+ <profile width="1920" frame_rate_den="1" height="1200" display_aspect_num="1920" display_aspect_den="1200" frame_rate_num="60" colorspace="709" sample_aspect_den="1" description="1920x1200 60.00fps" progressive="1" sample_aspect_num="1"/>
+ <producer id="1" title="Anonymous Submission" out="3420" in="0">
+  <property name="length">00:00:57:01</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/rushes/Part4/Screencast from 19-07-16 13:42:52.webm</property>
+  <property name="audio_index">-1</property>
+  <property name="video_index">0</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">video</property>
+  <property name="meta.media.0.stream.frame_rate">-nan</property>
+  <property name="meta.media.0.stream.sample_aspect_ratio">1</property>
+  <property name="meta.media.0.codec.width">1920</property>
+  <property name="meta.media.0.codec.height">1200</property>
+  <property name="meta.media.0.codec.rotate">0</property>
+  <property name="meta.media.0.codec.frame_rate">1000</property>
+  <property name="meta.media.0.codec.pix_fmt">yuv420p</property>
+  <property name="meta.media.0.codec.sample_aspect_ratio">0</property>
+  <property name="meta.media.0.codec.colorspace">709</property>
+  <property name="meta.media.0.codec.name">vp9</property>
+  <property name="meta.media.0.codec.long_name">Google VP9</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.title.markup">Video</property>
+  <property name="meta.attr.encoder.markup">GStreamer matroskamux version 1.8.1</property>
+  <property name="meta.attr.creation_time.markup">2016-07-19 11:42:55</property>
+  <property name="seekable">1</property>
+  <property name="meta.media.sample_aspect_num">1</property>
+  <property name="meta.media.sample_aspect_den">1</property>
+  <property name="aspect_ratio">1</property>
+  <property name="kdenlive:file_size">1691833</property>
+  <property name="kdenlive:file_hash">1d4845aa30df8b4ce390c397f70bde32</property>
+  <property name="global_feed">1</property>
+  <property name="meta.media.frame_rate_num">1000</property>
+  <property name="meta.media.frame_rate_den">1</property>
+  <property name="meta.media.colorspace">709</property>
+  <property name="meta.media.color_trc">2</property>
+  <property name="meta.media.width">1920</property>
+  <property name="meta.media.height">1200</property>
+  <property name="meta.media.top_field_first">0</property>
+  <property name="meta.media.progressive">1</property>
+ </producer>
+ <producer id="2" out="7872" in="0">
+  <property name="length">00:02:11:13</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/rushes/Part4/Screencast from 19-07-16 13:59:48.webm</property>
+  <property name="audio_index">-1</property>
+  <property name="video_index">0</property>
+  <property name="mute_on_pause">1</property>
+  <property name="mlt_service">avformat-novalidate</property>
+  <property name="meta.media.nb_streams">1</property>
+  <property name="meta.media.0.stream.type">video</property>
+  <property name="meta.media.0.stream.frame_rate">-nan</property>
+  <property name="meta.media.0.stream.sample_aspect_ratio">1</property>
+  <property name="meta.media.0.codec.width">1920</property>
+  <property name="meta.media.0.codec.height">1200</property>
+  <property name="meta.media.0.codec.rotate">0</property>
+  <property name="meta.media.0.codec.frame_rate">1000</property>
+  <property name="meta.media.0.codec.pix_fmt">yuv420p</property>
+  <property name="meta.media.0.codec.sample_aspect_ratio">0</property>
+  <property name="meta.media.0.codec.colorspace">709</property>
+  <property name="meta.media.0.codec.name">vp9</property>
+  <property name="meta.media.0.codec.long_name">Google VP9</property>
+  <property name="meta.media.0.codec.bit_rate">0</property>
+  <property name="meta.attr.0.stream.language.markup">eng</property>
+  <property name="meta.attr.0.stream.title.markup">Video</property>
+  <property name="meta.attr.encoder.markup">GStreamer matroskamux version 1.8.1</property>
+  <property name="meta.attr.creation_time.markup">2016-07-19 11:59:51</property>
+  <property name="seekable">1</property>
+  <property name="meta.media.sample_aspect_num">1</property>
+  <property name="meta.media.sample_aspect_den">1</property>
+  <property name="aspect_ratio">1</property>
+  <property name="meta.media.frame_rate_num">1000</property>
+  <property name="meta.media.frame_rate_den">1</property>
+  <property name="meta.media.colorspace">709</property>
+  <property name="meta.media.color_trc">2</property>
+  <property name="meta.media.width">1920</property>
+  <property name="meta.media.height">1200</property>
+  <property name="meta.media.top_field_first">0</property>
+  <property name="meta.media.progressive">1</property>
+  <property name="kdenlive:file_size">4111236</property>
+  <property name="kdenlive:file_hash">56998be1c7d7f90212a1921db4911d25</property>
+ </producer>
+ <producer id="3" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/opening.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">1920</property>
+  <property name="meta.media.height">1200</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">5341</property>
+  <property name="kdenlive:file_hash">d4fd15facf63fdd68acb5922788698c5</property>
+ </producer>
+ <producer id="4" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/end.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">1920</property>
+  <property name="meta.media.height">1200</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">4559</property>
+  <property name="kdenlive:file_hash">0a07241864e7f85f9ed77dfe58eaaf00</property>
+ </producer>
+ <producer id="5" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/1.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">449</property>
+  <property name="meta.media.height">80</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6461</property>
+  <property name="kdenlive:file_hash">33aa0a375e0b0b8cda2f2360ba581d9c</property>
+ </producer>
+ <producer id="6" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/2.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">569</property>
+  <property name="meta.media.height">59</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6201</property>
+  <property name="kdenlive:file_hash">42cfff48cd5fdc3773f09a30ef2f6547</property>
+ </producer>
+ <producer id="7" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/3.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">483</property>
+  <property name="meta.media.height">60</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6195</property>
+  <property name="kdenlive:file_hash">c869099dac5118ac0368aed5be8b2cf2</property>
+ </producer>
+ <producer id="8" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/4.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">622</property>
+  <property name="meta.media.height">59</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6207</property>
+  <property name="kdenlive:file_hash">1efb9ca6032697a64b390580b9aa8aff</property>
+ </producer>
+ <producer id="9" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/5.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">477</property>
+  <property name="meta.media.height">60</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6196</property>
+  <property name="kdenlive:file_hash">f4da3048e82bc589517673035247b028</property>
+ </producer>
+ <producer id="10" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/6.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">509</property>
+  <property name="meta.media.height">60</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6197</property>
+  <property name="kdenlive:file_hash">20bf725edd3378a3ebefdfac026ad073</property>
+ </producer>
+ <producer id="11" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/7.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">396</property>
+  <property name="meta.media.height">80</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6466</property>
+  <property name="kdenlive:file_hash">6f6049141d01591315fad254e9fa9f65</property>
+ </producer>
+ <producer id="12" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/8.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">417</property>
+  <property name="meta.media.height">57</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6262</property>
+  <property name="kdenlive:file_hash">3cb419835c1b184937e5eb36a41babe7</property>
+ </producer>
+ <producer id="13" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/9.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">471</property>
+  <property name="meta.media.height">78</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6565</property>
+  <property name="kdenlive:file_hash">9856942804bcc565398ab689600f4665</property>
+ </producer>
+ <producer id="14" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/10.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">438</property>
+  <property name="meta.media.height">88</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6582</property>
+  <property name="kdenlive:file_hash">5af4efb82bba43794473c58a9a505535</property>
+ </producer>
+ <producer id="15" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/11a.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">548</property>
+  <property name="meta.media.height">61</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6273</property>
+  <property name="kdenlive:file_hash">950b4548179ca01fbc1845584d848120</property>
+ </producer>
+ <producer id="16" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/11b.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">389</property>
+  <property name="meta.media.height">81</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6580</property>
+  <property name="kdenlive:file_hash">b2e60db83dd2b7d809fcbd2471355f6a</property>
+ </producer>
+ <producer id="17" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/11c.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">411</property>
+  <property name="meta.media.height">83</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6576</property>
+  <property name="kdenlive:file_hash">965ef1f94c46ccf97716fea8a99a1e51</property>
+ </producer>
+ <producer id="18" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/11d.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">593</property>
+  <property name="meta.media.height">83</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6588</property>
+  <property name="kdenlive:file_hash">70e0bad3e6fd569023a0c422c279aeef</property>
+ </producer>
+ <producer id="19" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/12.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">309</property>
+  <property name="meta.media.height">57</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6253</property>
+  <property name="kdenlive:file_hash">4f64677d1d298894eef6c3a1fa8327c7</property>
+ </producer>
+ <producer id="20" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/13.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">452</property>
+  <property name="meta.media.height">120</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6909</property>
+  <property name="kdenlive:file_hash">7d6dcc0fe921778d230dd380289a1823</property>
+ </producer>
+ <producer id="21" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/14.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">433</property>
+  <property name="meta.media.height">82</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6567</property>
+  <property name="kdenlive:file_hash">494114803c73accb72e1aa2d54c7ffbb</property>
+ </producer>
+ <producer id="22" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/15.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">398</property>
+  <property name="meta.media.height">85</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6576</property>
+  <property name="kdenlive:file_hash">2d461a3773a61db75ebee565c91b588c</property>
+ </producer>
+ <producer id="23" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/16.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">342</property>
+  <property name="meta.media.height">86</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6568</property>
+  <property name="kdenlive:file_hash">253fa53ec9448fd86e9700e45b47c337</property>
+ </producer>
+ <producer id="24" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/17.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">553</property>
+  <property name="meta.media.height">62</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6272</property>
+  <property name="kdenlive:file_hash">7be0f0b8bfea77400babeabe74e4d3da</property>
+ </producer>
+ <producer id="25" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/18.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">388</property>
+  <property name="meta.media.height">63</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6259</property>
+  <property name="kdenlive:file_hash">d4c9c03aebcb02a5764fdde3739d8df3</property>
+ </producer>
+ <producer id="26" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/19.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">576</property>
+  <property name="meta.media.height">62</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6272</property>
+  <property name="kdenlive:file_hash">c0f3477c2b032927774ab40baac81bb1</property>
+ </producer>
+ <producer id="27" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/20.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">448</property>
+  <property name="meta.media.height">112</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6907</property>
+  <property name="kdenlive:file_hash">404b7f43e77951a395a8e4c18a4078c9</property>
+ </producer>
+ <producer id="28" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/21.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">493</property>
+  <property name="meta.media.height">181</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">7517</property>
+  <property name="kdenlive:file_hash">5afeebe1db195d521594f591622af77e</property>
+ </producer>
+ <producer id="29" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/22.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">190</property>
+  <property name="meta.media.height">63</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6242</property>
+  <property name="kdenlive:file_hash">f3200753ad8e94f51f7f892cfe8eaaa9</property>
+ </producer>
+ <producer id="30" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/23.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">205</property>
+  <property name="meta.media.height">63</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6243</property>
+  <property name="kdenlive:file_hash">5cb82d347c90e189b572f7ef86ca0e7f</property>
+ </producer>
+ <producer id="31" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/24.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">235</property>
+  <property name="meta.media.height">64</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6247</property>
+  <property name="kdenlive:file_hash">7511884a4136fc0415cebd1cad080a41</property>
+ </producer>
+ <producer id="32" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/25.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">199</property>
+  <property name="meta.media.height">64</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6244</property>
+  <property name="kdenlive:file_hash">848d9365527e81ac337f70ddf01a0097</property>
+ </producer>
+ <producer id="33" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/26.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">471</property>
+  <property name="meta.media.height">84</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6566</property>
+  <property name="kdenlive:file_hash">f0e4ef83b99f39ee72c60ed39b1df193</property>
+ </producer>
+ <producer id="34" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/27.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">269</property>
+  <property name="meta.media.height">66</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6249</property>
+  <property name="kdenlive:file_hash">3dc0a0eb53ae9539b239f4fef465ca6f</property>
+ </producer>
+ <producer id="35" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/28.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">446</property>
+  <property name="meta.media.height">64</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6265</property>
+  <property name="kdenlive:file_hash">3ee50c8f981ba261f7ac84089065fb9b</property>
+ </producer>
+ <producer id="36" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/29.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">229</property>
+  <property name="meta.media.height">66</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6249</property>
+  <property name="kdenlive:file_hash">82aeb9e7c1a5fb21e9cde25ed4cdb11b</property>
+ </producer>
+ <producer id="37" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/30.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">468</property>
+  <property name="meta.media.height">64</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6265</property>
+  <property name="kdenlive:file_hash">b7b31896f881ee45cb5664512c7e0ca3</property>
+ </producer>
+ <producer id="38" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/31.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">413</property>
+  <property name="meta.media.height">64</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6274</property>
+  <property name="kdenlive:file_hash">bb9791ddf1b4f5f066e76ab6237766f1</property>
+ </producer>
+ <producer id="39" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/32.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">376</property>
+  <property name="meta.media.height">65</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6257</property>
+  <property name="kdenlive:file_hash">5c5b4763ca0dbb9435dc211a05d52f53</property>
+ </producer>
+ <producer id="40" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/33.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">394</property>
+  <property name="meta.media.height">83</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6573</property>
+  <property name="kdenlive:file_hash">89465f2bb8167f92f07d99a0f35dd498</property>
+ </producer>
+ <producer id="41" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/34.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">519</property>
+  <property name="meta.media.height">61</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6269</property>
+  <property name="kdenlive:file_hash">ee25ee9507f1374d46c72b20775de966</property>
+ </producer>
+ <producer id="42" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/35.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">286</property>
+  <property name="meta.media.height">64</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6251</property>
+  <property name="kdenlive:file_hash">0af51a2ff61e298929b1849fd29bb4d1</property>
+ </producer>
+ <producer id="43" out="299" in="0">
+  <property name="length">00:00:05:00</property>
+  <property name="eof">pause</property>
+  <property name="resource">melange/screencast/script4/36.svg</property>
+  <property name="ttl">25</property>
+  <property name="aspect_ratio">1</property>
+  <property name="progressive">1</property>
+  <property name="seekable">1</property>
+  <property name="loop">1</property>
+  <property name="meta.media.width">358</property>
+  <property name="meta.media.height">61</property>
+  <property name="mlt_service">pixbuf</property>
+  <property name="kdenlive:file_size">6257</property>
+  <property name="kdenlive:file_hash">4dc50c5368acb3330a4e17a055f44ecd</property>
+ </producer>
+ <playlist id="main bin">
+  <property name="kdenlive:docproperties.documentid">1469100127088</property>
+  <property name="kdenlive:docproperties.enableproxy">0</property>
+  <property name="kdenlive:docproperties.generateimageproxy">0</property>
+  <property name="kdenlive:docproperties.generateproxy">0</property>
+  <property name="kdenlive:docproperties.kdenliveversion">16.04.2</property>
+  <property name="kdenlive:docproperties.position">4065</property>
+  <property name="kdenlive:docproperties.profile">.local/share/kdenlive/profiles/customprofile0</property>
+  <property name="kdenlive:docproperties.projectfolder">melange/screencast/video/part4</property>
+  <property name="kdenlive:docproperties.proxyextension">mpg</property>
+  <property name="kdenlive:docproperties.proxyimageminsize">2000</property>
+  <property name="kdenlive:docproperties.proxyminsize">1000</property>
+  <property name="kdenlive:docproperties.proxyparams">-s 640x480 -g 5 -qscale 6 -ab 128k -vcodec mpeg2video -acodec mp2</property>
+  <property name="kdenlive:docproperties.version">0.94</property>
+  <property name="kdenlive:docproperties.verticalzoom">1</property>
+  <property name="kdenlive:docproperties.zonein">0</property>
+  <property name="kdenlive:docproperties.zoneout">100</property>
+  <property name="kdenlive:docproperties.zoom">6</property>
+  <property name="kdenlive:documentnotes"/>
+  <property name="kdenlive:docproperties.renderaudioquality">64</property>
+  <property name="kdenlive:docproperties.rendercategory">Generic (HD for web, mobile devices...)</property>
+  <property name="kdenlive:docproperties.renderendguide">-1</property>
+  <property name="kdenlive:docproperties.renderexportaudio">0</property>
+  <property name="kdenlive:docproperties.renderguide">0</property>
+  <property name="kdenlive:docproperties.renderplay">0</property>
+  <property name="kdenlive:docproperties.renderprofile">MP4 - the dominating format (H264/AAC)</property>
+  <property name="kdenlive:docproperties.renderquality">23</property>
+  <property name="kdenlive:docproperties.renderratio">1</property>
+  <property name="kdenlive:docproperties.renderrescale">0</property>
+  <property name="kdenlive:docproperties.renderrescaleheight">200</property>
+  <property name="kdenlive:docproperties.renderrescalewidth">320</property>
+  <property name="kdenlive:docproperties.renderscanning">0</property>
+  <property name="kdenlive:docproperties.renderspeed">2</property>
+  <property name="kdenlive:docproperties.renderstartguide">-1</property>
+  <property name="kdenlive:docproperties.rendertcoverlay">0</property>
+  <property name="kdenlive:docproperties.rendertctype">0</property>
+  <property name="kdenlive:docproperties.rendertwopass">0</property>
+  <property name="kdenlive:docproperties.renderurl">melange/screencast/video/part4/untitled.mp4</property>
+  <property name="kdenlive:docproperties.renderzone">0</property>
+  <property name="xml_retain">1</property>
+  <entry out="3420" producer="1" in="0"/>
+  <entry out="7872" producer="2" in="0"/>
+  <entry out="299" producer="3" in="0"/>
+  <entry out="299" producer="4" in="0"/>
+  <entry out="299" producer="5" in="0"/>
+  <entry out="299" producer="6" in="0"/>
+  <entry out="299" producer="7" in="0"/>
+  <entry out="299" producer="8" in="0"/>
+  <entry out="299" producer="9" in="0"/>
+  <entry out="299" producer="10" in="0"/>
+  <entry out="299" producer="11" in="0"/>
+  <entry out="299" producer="12" in="0"/>
+  <entry out="299" producer="13" in="0"/>
+  <entry out="299" producer="14" in="0"/>
+  <entry out="299" producer="15" in="0"/>
+  <entry out="299" producer="16" in="0"/>
+  <entry out="299" producer="17" in="0"/>
+  <entry out="299" producer="18" in="0"/>
+  <entry out="299" producer="19" in="0"/>
+  <entry out="299" producer="20" in="0"/>
+  <entry out="299" producer="21" in="0"/>
+  <entry out="299" producer="22" in="0"/>
+  <entry out="299" producer="23" in="0"/>
+  <entry out="299" producer="24" in="0"/>
+  <entry out="299" producer="25" in="0"/>
+  <entry out="299" producer="26" in="0"/>
+  <entry out="299" producer="27" in="0"/>
+  <entry out="299" producer="28" in="0"/>
+  <entry out="299" producer="29" in="0"/>
+  <entry out="299" producer="30" in="0"/>
+  <entry out="299" producer="31" in="0"/>
+  <entry out="299" producer="32" in="0"/>
+  <entry out="299" producer="33" in="0"/>
+  <entry out="299" producer="34" in="0"/>
+  <entry out="299" producer="35" in="0"/>
+  <entry out="299" producer="36" in="0"/>
+  <entry out="299" producer="37" in="0"/>
+  <entry out="299" producer="38" in="0"/>
+  <entry out="299" producer="39" in="0"/>
+  <entry out="299" producer="40" in="0"/>
+  <entry out="299" producer="41" in="0"/>
+  <entry out="299" producer="42" in="0"/>
+  <entry out="299" producer="43" in="0"/>
+ </playlist>
+ <producer id="black" out="500" in="0">
+  <property name="length">15000</property>
+  <property name="eof">pause</property>
+  <property name="resource">black</property>
+  <property name="aspect_ratio">0</property>
+  <property name="mlt_service">colour</property>
+  <property name="set.test_audio">0</property>
+ </producer>
+ <playlist id="black_track">
+  <entry out="11893" producer="black" in="0"/>
+ </playlist>
+ <playlist id="playlist1">
+  <property name="kdenlive:track_name">Audio 2</property>
+  <property name="kdenlive:audio_track">1</property>
+ </playlist>
+ <playlist id="playlist2">
+  <property name="kdenlive:track_name">Audio 1</property>
+  <property name="kdenlive:audio_track">1</property>
+ </playlist>
+ <playlist id="playlist3">
+  <property name="kdenlive:track_name">Video 1</property>
+  <blank length="300"/>
+  <entry out="7872" producer="2" in="0"/>
+  <entry out="3420" producer="1" in="0"/>
+ </playlist>
+ <playlist id="playlist4">
+  <property name="kdenlive:track_name">Video 2</property>
+  <property name="kdenlive:locked_track">0</property>
+  <property name="kdenlive:composite">1</property>
+  <entry out="299" producer="3" in="0"/>
+  <entry out="271" producer="5" in="0"/>
+  <blank length="774"/>
+  <entry out="91" producer="6" in="0"/>
+  <blank length="19"/>
+  <entry out="72" producer="7" in="0"/>
+  <blank length="51"/>
+  <entry out="299" producer="8" in="0"/>
+  <blank length="92"/>
+  <entry out="98" producer="9" in="0"/>
+  <blank length="50"/>
+  <entry out="299" producer="10" in="0"/>
+  <blank length="170"/>
+  <entry out="78" producer="11" in="0"/>
+  <entry out="209" producer="12" in="0"/>
+  <entry out="131" producer="13" in="0"/>
+  <entry out="181" producer="14" in="0"/>
+  <blank length="64"/>
+  <entry out="237" producer="15" in="0"/>
+  <blank length="13"/>
+  <entry out="116" producer="16" in="0"/>
+  <entry out="102" producer="17" in="0"/>
+  <entry out="150" producer="18" in="0"/>
+  <blank length="397"/>
+  <entry out="299" producer="19" in="0"/>
+  <entry out="299" producer="20" in="0"/>
+  <blank length="575"/>
+  <entry out="184" producer="21" in="0"/>
+  <blank length="52"/>
+  <entry out="165" producer="22" in="0"/>
+  <blank length="38"/>
+  <entry out="299" producer="23" in="90"/>
+  <blank length="356"/>
+  <entry out="299" producer="24" in="0"/>
+  <blank length="1413"/>
+  <entry out="157" producer="25" in="0"/>
+  <entry out="299" producer="26" in="0"/>
+  <entry out="299" producer="27" in="0"/>
+  <blank length="286"/>
+  <entry out="80" producer="28" in="0"/>
+  <blank length="15"/>
+  <entry out="144" producer="29" in="0"/>
+  <blank length="39"/>
+  <entry out="142" producer="31" in="0"/>
+  <blank length="79"/>
+  <entry out="138" producer="33" in="0"/>
+  <blank length="249"/>
+  <entry out="63" producer="34" in="0"/>
+  <entry out="75" producer="35" in="0"/>
+  <entry out="69" producer="36" in="0"/>
+  <entry out="124" producer="37" in="0"/>
+  <entry out="120" producer="39" in="0"/>
+  <entry out="84" producer="41" in="10"/>
+  <entry out="93" producer="42" in="12"/>
+  <blank length="75"/>
+  <entry out="117" producer="43" in="0"/>
+  <blank length="681"/>
+  <entry out="299" producer="4" in="0"/>
+ </playlist>
+ <playlist id="playlist5">
+  <property name="kdenlive:track_name">Video 3</property>
+  <property name="kdenlive:locked_track">0</property>
+  <property name="kdenlive:composite">1</property>
+  <blank length="9359"/>
+  <entry out="98" producer="30" in="0"/>
+  <blank length="91"/>
+  <entry out="90" producer="32" in="0"/>
+  <blank length="722"/>
+  <entry out="98" producer="38" in="19"/>
+  <blank length="56"/>
+  <entry out="84" producer="40" in="20"/>
+ </playlist>
+ <tractor id="maintractor" title="Anonymous Submission" global_feed="1" out="11893" in="0">
+  <track producer="black_track"/>
+  <track producer="playlist1" hide="video"/>
+  <track producer="playlist2" hide="video"/>
+  <track producer="playlist3"/>
+  <track producer="playlist4"/>
+  <track producer="playlist5"/>
+  <transition id="transition0">
+   <property name="a_track">0</property>
+   <property name="b_track">1</property>
+   <property name="mlt_service">mix</property>
+   <property name="always_active">1</property>
+   <property name="combine">1</property>
+   <property name="internal_added">237</property>
+  </transition>
+  <transition id="transition1">
+   <property name="a_track">0</property>
+   <property name="b_track">2</property>
+   <property name="mlt_service">mix</property>
+   <property name="always_active">1</property>
+   <property name="combine">1</property>
+   <property name="internal_added">237</property>
+  </transition>
+  <transition id="transition2">
+   <property name="a_track">0</property>
+   <property name="b_track">3</property>
+   <property name="mlt_service">mix</property>
+   <property name="always_active">1</property>
+   <property name="combine">1</property>
+   <property name="internal_added">237</property>
+  </transition>
+  <transition id="transition3">
+   <property name="a_track">0</property>
+   <property name="b_track">4</property>
+   <property name="mlt_service">mix</property>
+   <property name="always_active">1</property>
+   <property name="combine">1</property>
+   <property name="internal_added">237</property>
+  </transition>
+  <transition id="transition5">
+   <property name="a_track">0</property>
+   <property name="b_track">5</property>
+   <property name="mlt_service">mix</property>
+   <property name="always_active">1</property>
+   <property name="combine">1</property>
+   <property name="internal_added">237</property>
+  </transition>
+  <transition id="transition9" out="571" in="300">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">276/253:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition10" out="1437" in="1346">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">319/561:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition11" out="1529" in="1457">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">273/628:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition12" out="1880" in="1581">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">209/778:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition13" out="2071" in="1973">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">185/628:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition14" out="2421" in="2122">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">137/611:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition15" out="2670" in="2592">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">279/244:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition16" out="2880" in="2671">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">299/542:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition17" out="3012" in="2881">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">455/713:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition18" out="3194" in="3013">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">527/492:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition19" out="3626" in="3510">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">600/200:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition20" out="3496" in="3259">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">272/577:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition21" out="3729" in="3627">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">750/250:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition22" out="3880" in="3730">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">750/250:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition23" out="6103" in="5894">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">300/480:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition24" out="6759" in="6460">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">309/352:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition25" out="4877" in="4578">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">0/0:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition26" out="5637" in="5453">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">655/123:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition27" out="4577" in="4278">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">0/0:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition28" out="5855" in="5690">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">303/480:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition29" out="8630" in="8331">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">0/0:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition30" out="8930" in="8631">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">0/0:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition31" out="8330" in="8173">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">698/566:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition32" out="10637" in="10563">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">200/590:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition33" out="9639" in="9497">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">170/540:384x240:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition34" out="10719" in="10638">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">200/720:384x240:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition35" out="10441" in="10317">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">346/402:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition36" out="10912" in="10795">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">1000/540:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition37" out="9297" in="9217">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">138/362:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition38" out="9857" in="9719">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">770/790:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition39" out="10562" in="10442">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">1000/492:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition40" out="10170" in="10107">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">117/152:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition41" out="9457" in="9313">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">164/171:384x240:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition42" out="10246" in="10171">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">789/262:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition43" out="10316" in="10247">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">0</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">350/288:384x240:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition7" out="9457" in="9359">
+   <property name="a_track">3</property>
+   <property name="b_track">5</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">1</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">180/276:384x240:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition6" out="9639" in="9549">
+   <property name="a_track">3</property>
+   <property name="b_track">5</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">1</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">800/535:326x204:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition4" out="10441" in="10362">
+   <property name="a_track">3</property>
+   <property name="b_track">5</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">1</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">800/492:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition8" out="10562" in="10498">
+   <property name="a_track">3</property>
+   <property name="b_track">5</property>
+   <property name="start">0/0:100%x100%</property>
+   <property name="factory">loader</property>
+   <property name="aligned">1</property>
+   <property name="progressive">1</property>
+   <property name="mlt_service">composite</property>
+   <property name="automatic">1</property>
+   <property name="kdenlive_id">composite</property>
+   <property name="force_track">1</property>
+   <property name="deinterlace">0</property>
+   <property name="distort">0</property>
+   <property name="fill">1</property>
+   <property name="geometry">1400/370:480x300:100</property>
+   <property name="luma_invert">0</property>
+   <property name="operator">over</property>
+   <property name="softness">0</property>
+   <property name="luma"/>
+  </transition>
+  <transition id="transition44">
+   <property name="a_track">3</property>
+   <property name="b_track">4</property>
+   <property name="version">0.9</property>
+   <property name="mlt_service">frei0r.cairoblend</property>
+   <property name="internal_added">237</property>
+  </transition>
+  <transition id="transition45">
+   <property name="a_track">3</property>
+   <property name="b_track">5</property>
+   <property name="version">0.9</property>
+   <property name="mlt_service">frei0r.cairoblend</property>
+   <property name="internal_added">237</property>
+  </transition>
+ </tractor>
+</mlt>
