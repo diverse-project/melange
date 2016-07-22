@@ -29,7 +29,7 @@ import static org.junit.Assert.*
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
-@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/SimpleFsmTest.melange")
+@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/SimpleFsmTest.melange", withValidation = false)
 class SimpleFsmTest
 {
 	@Inject extension MelangeTestHelper

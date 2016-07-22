@@ -24,7 +24,7 @@ import static org.junit.Assert.*
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
-@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/SubPackagesTest.melange")
+@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/SubPackagesTest.melange", withValidation = false)
 class SubPackagesTest
 {
 	@Inject extension MelangeTestHelper

@@ -34,7 +34,7 @@ import static org.junit.Assert.*
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
-@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/AspectsTest.melange", withValidation = true)
+@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/AspectsTest.melange", withValidation = false)
 class AspectsTest
 {
 	@Inject extension ModelingElementExtensions

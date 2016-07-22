@@ -105,4 +105,9 @@ public class EcoreTest extends AbstractXtextTests
 		helper.assertFileExists('''«BASE_PKG»/«ADAPTER_PKG»/ecore/ETypedElementAdapter.java''')
 		helper.assertFileExists('''«BASE_PKG»/«ADAPTER_PKG»/ecore/ETypeParameterAdapter.java''')
 	}
+	
+	@Test
+	def void test2Parsing() {
+		helper.assertNoMarkers(MELANGE_FILE)
+	}
 }

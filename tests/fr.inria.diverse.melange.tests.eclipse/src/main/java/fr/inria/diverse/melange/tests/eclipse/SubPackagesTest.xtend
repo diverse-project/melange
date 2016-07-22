@@ -98,4 +98,9 @@ public class SubPackagesTest extends AbstractXtextTests
 		helper.assertFileExists('''«BASE_PKG»/«ADAPTER_PKG»/toppkg/subpkg2/subpkg3/Subpkg3Class1Adapter.java''')
 		helper.assertFileExists('''«BASE_PKG»/«ADAPTER_PKG»/toppkg/subpkg2/subpkg3/Subpkg3Class2Adapter.java''')
 	}
+	
+	@Test
+	def void test2Parsing() {
+		helper.assertNoMarkers(MELANGE_FILE)
+	}
 }

@@ -28,7 +28,7 @@ import static org.junit.Assert.*
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
-@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/EcoreTest.melange")
+@XtextTest(rootType = ModelTypingSpace, inputFile = "tests-inputs/melange/EcoreTest.melange", withValidation = false)
 class EcoreTest
 {
 	@Inject extension LanguageExtensions

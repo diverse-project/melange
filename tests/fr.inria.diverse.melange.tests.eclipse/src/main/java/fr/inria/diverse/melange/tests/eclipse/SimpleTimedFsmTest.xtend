@@ -107,4 +107,9 @@ public class SimpleTimedFsmTest extends AbstractXtextTests
 		helper.assertFileExists('''«BASE_PKG»/«ADAPTER_PKG3»/fsm/StateAdapter.java''')
 		helper.assertFileExists('''«BASE_PKG»/«ADAPTER_PKG3»/fsm/TransitionAdapter.java''')
 	}
+	
+	@Test
+	def void test2Parsing() {
+		helper.assertNoMarkers(MELANGE_FILE)
+	}
 }

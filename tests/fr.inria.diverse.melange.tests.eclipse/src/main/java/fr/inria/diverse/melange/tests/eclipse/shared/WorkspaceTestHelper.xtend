@@ -168,6 +168,17 @@ class WorkspaceTestHelper {
 			]
 		]
 	}
+	
+	def void assertNoMarkers(String filename) {
+		val mlgFile = ResourcesPlugin::workspace.root.getFile(new Path(filename))
+		mlgFile.findMarkers(IMarker::PROBLEM, true, IResource::DEPTH_INFINITE).forEach[
+				println('''Found marker «getAttribute(IMarker::MESSAGE)» («getAttribute(IMarker::SEVERITY)»)''')
+				Assert.assertFalse(
+					"Unexpected marker: " + getAttribute(IMarker::MESSAGE),
+					getAttribute(IMarker::SEVERITY) == IMarker::SEVERITY_ERROR
+				)
+			]
+	}
 
 	def XtextEditor openEditor(String melangeFile) {
 		try {

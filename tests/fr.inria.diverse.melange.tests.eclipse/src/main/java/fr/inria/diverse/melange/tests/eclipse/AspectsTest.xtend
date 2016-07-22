@@ -121,4 +121,9 @@ public class AspectsTest extends AbstractXtextTests
 		helper.assertFileExists('''«BASE_PKG»/«ADAPTER_PKG4»/fsm/StateAdapter.java''')
 		helper.assertFileExists('''«BASE_PKG»/«ADAPTER_PKG4»/fsm/TransitionAdapter.java''')
 	}
+	
+	@Test
+	def void test2Parsing() {
+		helper.assertNoMarkers(MELANGE_FILE)
+	}
 }
