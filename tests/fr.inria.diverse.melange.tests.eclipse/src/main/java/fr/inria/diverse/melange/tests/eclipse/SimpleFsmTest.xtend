@@ -27,6 +27,8 @@ import org.junit.runner.RunWith
 import org.junit.Before
 import com.google.inject.Inject
 import fr.inria.diverse.melange.tests.eclipse.shared.WorkspaceTestHelper
+import org.junit.After
+import org.eclipse.jdt.internal.core.JavaProject
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeUiInjectorProvider)
@@ -56,7 +58,15 @@ public class SimpleFsmTest extends AbstractXtextTests
 			createRunOutputFile
 			IResourcesSetupUtil::waitForAutoBuild
 			helper.openEditor(MELANGE_FILE)
+		} else {
+			val project = helper.getProject(MELANGE_PROJECT)
+			melangeFsm = JavaCore.create(project)
 		}
+	}
+	
+	@After
+	override tearDown() {
+		// Nope
 	}
 
 	@Test
@@ -83,24 +93,9 @@ public class SimpleFsmTest extends AbstractXtextTests
 	@Test
 	@OnlyIfUI
 	def testRunningMelangeTransformationProducesExpectedOutput() {
-//		melangeFsm = JavaProjectSetupUtil::createJavaProject(MELANGE_PROJECT)
-		val manager = DebugPlugin::getDefault.launchManager
-		val type = manager.getLaunchConfigurationType(IJavaLaunchConfigurationConstants::ID_JAVA_APPLICATION)
-		val newLaunchConfig = type.newInstance(melangeFsm.project, LAUNCHCONFIG_NAME)
-		newLaunchConfig.setAttribute(IJavaLaunchConfigurationConstants::ATTR_PROJECT_NAME, MELANGE_PROJECT)
-		newLaunchConfig.setAttribute(IJavaLaunchConfigurationConstants::ATTR_MAIN_TYPE_NAME, "melangefsm.main")
-		newLaunchConfig.setAttribute(IDebugUIConstants::ATTR_CAPTURE_IN_FILE, '''${workspace_loc:/«MELANGE_PROJECT»/«OUTPUT_FILE»}''')
-		newLaunchConfig.doSave
-		newLaunchConfig.launch(ILaunchManager::RUN_MODE, null)
-
-		Job::getJobManager.join(ResourcesPlugin::FAMILY_AUTO_BUILD, null)
-
-		val outputFile = melangeFsm.project.getFile(OUTPUT_FILE)
-		outputFile.refreshLocal(IResource::DEPTH_ONE, null)
-		val outputContent = CharStreams::toString(CharStreams::newReaderSupplier([outputFile.contents], Charsets::UTF_8))
-
-		assertEquals(outputContent, '''Output: 14343
-		'''.toString)
+		val outputContent = helper.runMainClass(melangeFsm.project, "melangefsm.main")
+		assertEquals('''Output: 14343
+		'''.toString, outputContent)
 	}
 
 	def private void createMelangeProject() throws Exception {
@@ -230,6 +225,10 @@ public class SimpleFsmTest extends AbstractXtextTests
 					}
 				}
 			}
+			
+			abstract static class FsmException extends Exception {}
+			static class NoFireableTransition extends FsmException {}
+			static class NonDeterminism extends FsmException {}
 		}
 
 		@Aspect(className = State)
@@ -239,9 +238,9 @@ public class SimpleFsmTest extends AbstractXtextTests
 				val validTrans = _self.outgoingTransition.filter[input.equals(String.valueOf(c))]
 
 				if (validTrans.empty)
-					throw new NoFireableTransition
+					throw new ExecutableFsmAspect.NoFireableTransition
 				if (validTrans.size > 1)
-					throw new NonDeterminism
+					throw new ExecutableFsmAspect.NonDeterminism
 
 				validTrans.head.fire
 			}
@@ -262,7 +261,7 @@ public class SimpleFsmTest extends AbstractXtextTests
 		''')
 		IResourcesSetupUtil::createFile(MELANGE_PROJECT + "/input/Simple.fsm", '''
 		<?xml version="1.0" encoding="UTF-8"?>
-		<fsm:FSM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fsm="http://fsm/" initialState="//@ownedState.0" finalState="//@ownedState.2 //@ownedState.3">
+		<fsm:FSM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fsm="http://fsm/fsm/" initialState="//@ownedState.0" finalState="//@ownedState.2 //@ownedState.3">
 		  <ownedState name="1">
 		    <outgoingTransition target="//@ownedState.1" input="a" output="1"/>
 		    <outgoingTransition target="//@ownedState.2" input="b" output="2"/>
