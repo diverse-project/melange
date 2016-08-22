@@ -326,9 +326,16 @@ class WorkspaceTestHelper {
 		if (!outputFile.exists)
 			outputFile.create(new ByteArrayInputStream("".bytes), true, null)
 
-		newLaunchConfig.launch(ILaunchManager::RUN_MODE, null)
-
-		Job::getJobManager.join(ResourcesPlugin::FAMILY_AUTO_BUILD, null)
+		val launch = newLaunchConfig.launch(ILaunchManager::RUN_MODE, null)
+		
+		val long TIMEOUT = 1000 * 60 * 5 // 5 minutes
+		val long startTime = System.currentTimeMillis();
+		while (!launch.isTerminated && System.currentTimeMillis() < (startTime + TIMEOUT)) {
+		    try {
+		        Thread.sleep(50);
+		    } catch (InterruptedException e) {
+		    }
+		}
 
 		outputFile.refreshLocal(IResource::DEPTH_ONE, null)
 
