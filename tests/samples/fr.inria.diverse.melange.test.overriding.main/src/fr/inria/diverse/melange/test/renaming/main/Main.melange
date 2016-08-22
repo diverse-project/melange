@@ -54,12 +54,12 @@ transformation execute(L0mt m) {
 @Main
 transformation main() {
 	val m0  = L0.load("inputs/testModel_L0.root")
-	val m1  = L1.load("inputs/testModel_L0.root")
+	val m1  = L1.load("inputs/testModel_L1.root")
 	val m2  = L2.load("inputs/testModel_L2.root")
 	val m2b = L2b.load("inputs/testModel_L2b.root")
 	val m3  = L3.load("inputs/testModel_L3.root")
 	val m3b = L3b.load("inputs/testModel_L3b.root")
-	val m4  = L4.load("inputs/testModel_L0.root")
+	val m4  = L4.load("inputs/testModel_L4.root")
 
 	execute.call(m0.toL0mt)
 	execute.call(m1.toL0mt)
