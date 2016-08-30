@@ -10,7 +10,7 @@ ModelTypingSpace:
 ;
 
 Element:
-	Language | EcoreModelType | TransformationDecl | Mapping
+	 Language | (=> 'external' ExternalLanguage) | EcoreModelType | TransformationDecl | Mapping
 ;
 
 TransformationDecl returns Transformation:
@@ -28,6 +28,16 @@ Language:
 		('sirius' sirius+=STRING (',' sirius+=STRING)* )? &
 		('ecl' ecl+=STRING (',' ecl+=STRING)* )? &
 		('fileExtension' fileExtension=STRING)? &
+		('exactType' exactTypeName = ValidID (=> 'uri' exactTypeUri = STRING)?)?
+	'}'
+;
+
+ExternalLanguage:
+	'language' name = ValidID 
+	('implements' implements += [ModelType | QualifiedName] (',' implements += [ModelType | QualifiedName])*)?
+	'{'
+		(operators += ExternalImport)* &
+//		('resource' resourceType = ResourceType (=> 'uri' resourceUri = STRING | 'setup' xtextSetupRef = JvmTypeReference)?)? &
 		('exactType' exactTypeName = ValidID (=> 'uri' exactTypeUri = STRING)?)?
 	'}'
 ;
@@ -85,6 +95,10 @@ Import returns Import:
 	('renaming' '{'
 		(mappingRules+=PackageMapping)*
 	'}')?
+;
+
+ExternalImport returns Import:
+	'syntax' ecoreUri = STRING ('withGenmodel' (genmodelUris += STRING (',' genmodelUris += STRING)*))?
 ;
 
 Merge returns Merge:

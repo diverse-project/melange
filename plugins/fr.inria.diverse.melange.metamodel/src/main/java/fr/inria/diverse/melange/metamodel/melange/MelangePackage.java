@@ -1340,6 +1340,187 @@ public interface MelangePackage extends EPackage {
 	int WEAVE_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.ExternalLanguageImpl <em>External Language</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.ExternalLanguageImpl
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getExternalLanguage()
+	 * @generated
+	 */
+	int EXTERNAL_LANGUAGE = 22;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_LANGUAGE__NAME = LANGUAGE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Operators</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_LANGUAGE__OPERATORS = LANGUAGE__OPERATORS;
+
+	/**
+	 * The feature id for the '<em><b>Exact Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_LANGUAGE__EXACT_TYPE = LANGUAGE__EXACT_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Implements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_LANGUAGE__IMPLEMENTS = LANGUAGE__IMPLEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Requires</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_LANGUAGE__REQUIRES = LANGUAGE__REQUIRES;
+
+	/**
+	 * The feature id for the '<em><b>Syntax</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_LANGUAGE__SYNTAX = LANGUAGE__SYNTAX;
+
+	/**
+	 * The feature id for the '<em><b>Exact Type Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_LANGUAGE__EXACT_TYPE_NAME = LANGUAGE__EXACT_TYPE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Exact Type Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_LANGUAGE__EXACT_TYPE_URI = LANGUAGE__EXACT_TYPE_URI;
+
+	/**
+	 * The feature id for the '<em><b>Resource Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_LANGUAGE__RESOURCE_TYPE = LANGUAGE__RESOURCE_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Resource Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_LANGUAGE__RESOURCE_URI = LANGUAGE__RESOURCE_URI;
+
+	/**
+	 * The feature id for the '<em><b>Xtext Setup Ref</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_LANGUAGE__XTEXT_SETUP_REF = LANGUAGE__XTEXT_SETUP_REF;
+
+	/**
+	 * The feature id for the '<em><b>Mappings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_LANGUAGE__MAPPINGS = LANGUAGE__MAPPINGS;
+
+	/**
+	 * The feature id for the '<em><b>Semantics</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_LANGUAGE__SEMANTICS = LANGUAGE__SEMANTICS;
+
+	/**
+	 * The feature id for the '<em><b>Xtext</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_LANGUAGE__XTEXT = LANGUAGE__XTEXT;
+
+	/**
+	 * The feature id for the '<em><b>Sirius</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_LANGUAGE__SIRIUS = LANGUAGE__SIRIUS;
+
+	/**
+	 * The feature id for the '<em><b>Ecl</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_LANGUAGE__ECL = LANGUAGE__ECL;
+
+	/**
+	 * The feature id for the '<em><b>File Extension</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_LANGUAGE__FILE_EXTENSION = LANGUAGE__FILE_EXTENSION;
+
+	/**
+	 * The number of structural features of the '<em>External Language</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_LANGUAGE_FEATURE_COUNT = LANGUAGE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>External Language</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_LANGUAGE_OPERATION_COUNT = LANGUAGE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.ResourceType <em>Resource Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1347,7 +1528,7 @@ public interface MelangePackage extends EPackage {
 	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getResourceType()
 	 * @generated
 	 */
-	int RESOURCE_TYPE = 22;
+	int RESOURCE_TYPE = 23;
 
 
 	/**
@@ -2198,6 +2379,16 @@ public interface MelangePackage extends EPackage {
 	EAttribute getNamedElement_Name();
 
 	/**
+	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.ExternalLanguage <em>External Language</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>External Language</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.ExternalLanguage
+	 * @generated
+	 */
+	EClass getExternalLanguage();
+
+	/**
 	 * Returns the meta object for enum '{@link fr.inria.diverse.melange.metamodel.melange.ResourceType <em>Resource Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2905,6 +3096,16 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute NAMED_ELEMENT__NAME = eINSTANCE.getNamedElement_Name();
+
+		/**
+		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.ExternalLanguageImpl <em>External Language</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.inria.diverse.melange.metamodel.melange.impl.ExternalLanguageImpl
+		 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getExternalLanguage()
+		 * @generated
+		 */
+		EClass EXTERNAL_LANGUAGE = eINSTANCE.getExternalLanguage();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.ResourceType <em>Resource Type</em>}' enum.

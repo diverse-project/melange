@@ -24,6 +24,8 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_ClassMapping___LeftCurlyBracketKeyword_3_0_RightCurlyBracketKeyword_3_2__q;
 	protected AbstractElementAlias match_EcoreModelType_RightCurlyBracketKeyword_1_1_a;
 	protected AbstractElementAlias match_EcoreModelType_RightCurlyBracketKeyword_1_1_p;
+	protected AbstractElementAlias match_ExternalLanguage_RightCurlyBracketKeyword_1_1_a;
+	protected AbstractElementAlias match_ExternalLanguage_RightCurlyBracketKeyword_1_1_p;
 	protected AbstractElementAlias match_Import___RenamingKeyword_3_0_LeftCurlyBracketKeyword_3_1_RightCurlyBracketKeyword_3_3__q;
 	protected AbstractElementAlias match_Language_RightCurlyBracketKeyword_6_1_a;
 	protected AbstractElementAlias match_Language_RightCurlyBracketKeyword_6_1_p;
@@ -43,6 +45,8 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_ClassMapping___LeftCurlyBracketKeyword_3_0_RightCurlyBracketKeyword_3_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getClassMappingAccess().getLeftCurlyBracketKeyword_3_0()), new TokenAlias(false, false, grammarAccess.getClassMappingAccess().getRightCurlyBracketKeyword_3_2()));
 		match_EcoreModelType_RightCurlyBracketKeyword_1_1_a = new TokenAlias(true, true, grammarAccess.getEcoreModelTypeAccess().getRightCurlyBracketKeyword_1_1());
 		match_EcoreModelType_RightCurlyBracketKeyword_1_1_p = new TokenAlias(true, false, grammarAccess.getEcoreModelTypeAccess().getRightCurlyBracketKeyword_1_1());
+		match_ExternalLanguage_RightCurlyBracketKeyword_1_1_a = new TokenAlias(true, true, grammarAccess.getExternalLanguageAccess().getRightCurlyBracketKeyword_1_1());
+		match_ExternalLanguage_RightCurlyBracketKeyword_1_1_p = new TokenAlias(true, false, grammarAccess.getExternalLanguageAccess().getRightCurlyBracketKeyword_1_1());
 		match_Import___RenamingKeyword_3_0_LeftCurlyBracketKeyword_3_1_RightCurlyBracketKeyword_3_3__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getImportAccess().getRenamingKeyword_3_0()), new TokenAlias(false, false, grammarAccess.getImportAccess().getLeftCurlyBracketKeyword_3_1()), new TokenAlias(false, false, grammarAccess.getImportAccess().getRightCurlyBracketKeyword_3_3()));
 		match_Language_RightCurlyBracketKeyword_6_1_a = new TokenAlias(true, true, grammarAccess.getLanguageAccess().getRightCurlyBracketKeyword_6_1());
 		match_Language_RightCurlyBracketKeyword_6_1_p = new TokenAlias(true, false, grammarAccess.getLanguageAccess().getRightCurlyBracketKeyword_6_1());
@@ -59,9 +63,9 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if(ruleCall.getRule() == grammarAccess.getArrayBracketsRule())
+		if (ruleCall.getRule() == grammarAccess.getArrayBracketsRule())
 			return getArrayBracketsToken(semanticObject, ruleCall, node);
-		else if(ruleCall.getRule() == grammarAccess.getOpSingleAssignRule())
+		else if (ruleCall.getRule() == grammarAccess.getOpSingleAssignRule())
 			return getOpSingleAssignToken(semanticObject, ruleCall, node);
 		return "";
 	}
@@ -94,35 +98,39 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if(match_ClassMapping___LeftCurlyBracketKeyword_3_0_RightCurlyBracketKeyword_3_2__q.equals(syntax))
+			if (match_ClassMapping___LeftCurlyBracketKeyword_3_0_RightCurlyBracketKeyword_3_2__q.equals(syntax))
 				emit_ClassMapping___LeftCurlyBracketKeyword_3_0_RightCurlyBracketKeyword_3_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_EcoreModelType_RightCurlyBracketKeyword_1_1_a.equals(syntax))
+			else if (match_EcoreModelType_RightCurlyBracketKeyword_1_1_a.equals(syntax))
 				emit_EcoreModelType_RightCurlyBracketKeyword_1_1_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_EcoreModelType_RightCurlyBracketKeyword_1_1_p.equals(syntax))
+			else if (match_EcoreModelType_RightCurlyBracketKeyword_1_1_p.equals(syntax))
 				emit_EcoreModelType_RightCurlyBracketKeyword_1_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Import___RenamingKeyword_3_0_LeftCurlyBracketKeyword_3_1_RightCurlyBracketKeyword_3_3__q.equals(syntax))
+			else if (match_ExternalLanguage_RightCurlyBracketKeyword_1_1_a.equals(syntax))
+				emit_ExternalLanguage_RightCurlyBracketKeyword_1_1_a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_ExternalLanguage_RightCurlyBracketKeyword_1_1_p.equals(syntax))
+				emit_ExternalLanguage_RightCurlyBracketKeyword_1_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Import___RenamingKeyword_3_0_LeftCurlyBracketKeyword_3_1_RightCurlyBracketKeyword_3_3__q.equals(syntax))
 				emit_Import___RenamingKeyword_3_0_LeftCurlyBracketKeyword_3_1_RightCurlyBracketKeyword_3_3__q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Language_RightCurlyBracketKeyword_6_1_a.equals(syntax))
+			else if (match_Language_RightCurlyBracketKeyword_6_1_a.equals(syntax))
 				emit_Language_RightCurlyBracketKeyword_6_1_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Language_RightCurlyBracketKeyword_6_1_p.equals(syntax))
+			else if (match_Language_RightCurlyBracketKeyword_6_1_p.equals(syntax))
 				emit_Language_RightCurlyBracketKeyword_6_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Merge___RenamingKeyword_2_0_LeftCurlyBracketKeyword_2_1_RightCurlyBracketKeyword_2_3__q.equals(syntax))
+			else if (match_Merge___RenamingKeyword_2_0_LeftCurlyBracketKeyword_2_1_RightCurlyBracketKeyword_2_3__q.equals(syntax))
 				emit_Merge___RenamingKeyword_2_0_LeftCurlyBracketKeyword_2_1_RightCurlyBracketKeyword_2_3__q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_PackageMapping___LeftCurlyBracketKeyword_3_0_RightCurlyBracketKeyword_3_2__q.equals(syntax))
+			else if (match_PackageMapping___LeftCurlyBracketKeyword_3_0_RightCurlyBracketKeyword_3_2__q.equals(syntax))
 				emit_PackageMapping___LeftCurlyBracketKeyword_3_0_RightCurlyBracketKeyword_3_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Slice___RenamingKeyword_7_0_LeftCurlyBracketKeyword_7_1_RightCurlyBracketKeyword_7_3__q.equals(syntax))
+			else if (match_Slice___RenamingKeyword_7_0_LeftCurlyBracketKeyword_7_1_RightCurlyBracketKeyword_7_3__q.equals(syntax))
 				emit_Slice___RenamingKeyword_7_0_LeftCurlyBracketKeyword_7_1_RightCurlyBracketKeyword_7_3__q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_XBlockExpression_SemicolonKeyword_2_1_q.equals(syntax))
+			else if (match_XBlockExpression_SemicolonKeyword_2_1_q.equals(syntax))
 				emit_XBlockExpression_SemicolonKeyword_2_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_XExpressionInClosure_SemicolonKeyword_1_1_q.equals(syntax))
+			else if (match_XExpressionInClosure_SemicolonKeyword_1_1_q.equals(syntax))
 				emit_XExpressionInClosure_SemicolonKeyword_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_XFunctionTypeRef___LeftParenthesisKeyword_0_0_RightParenthesisKeyword_0_2__q.equals(syntax))
+			else if (match_XFunctionTypeRef___LeftParenthesisKeyword_0_0_RightParenthesisKeyword_0_2__q.equals(syntax))
 				emit_XFunctionTypeRef___LeftParenthesisKeyword_0_0_RightParenthesisKeyword_0_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_XImportDeclaration_SemicolonKeyword_2_q.equals(syntax))
+			else if (match_XImportDeclaration_SemicolonKeyword_2_q.equals(syntax))
 				emit_XImportDeclaration_SemicolonKeyword_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_XParenthesizedExpression_LeftParenthesisKeyword_0_a.equals(syntax))
+			else if (match_XParenthesizedExpression_LeftParenthesisKeyword_0_a.equals(syntax))
 				emit_XParenthesizedExpression_LeftParenthesisKeyword_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_XParenthesizedExpression_LeftParenthesisKeyword_0_p.equals(syntax))
+			else if (match_XParenthesizedExpression_LeftParenthesisKeyword_0_p.equals(syntax))
 				emit_XParenthesizedExpression_LeftParenthesisKeyword_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
@@ -165,6 +173,47 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     mtUri=STRING (ambiguity) (rule end)
 	 */
 	protected void emit_EcoreModelType_RightCurlyBracketKeyword_1_1_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     '}'*
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'external' (ambiguity) 'exactType' exactTypeName=ValidID
+	 *     (rule start) 'external' (ambiguity) 'language' name=ValidID
+	 *     (rule start) (ambiguity) 'exactType' exactTypeName=ValidID
+	 *     (rule start) (ambiguity) 'language' name=ValidID
+	 *     implements+=[ModelType|QualifiedName] '{' (ambiguity) 'exactType' exactTypeName=ValidID
+	 *     implements+=[ModelType|QualifiedName] '{' (ambiguity) 'language' name=ValidID
+	 *     implements+=[ModelType|QualifiedName] '{' (ambiguity) (rule end)
+	 *     name=ValidID '{' (ambiguity) 'exactType' exactTypeName=ValidID
+	 *     name=ValidID '{' (ambiguity) 'language' name=ValidID
+	 *     name=ValidID '{' (ambiguity) (rule end)
+	 *     operators+=ExternalImport (ambiguity) 'exactType' exactTypeName=ValidID
+	 *     operators+=ExternalImport (ambiguity) 'language' name=ValidID
+	 *     operators+=ExternalImport (ambiguity) (rule end)
+	 */
+	protected void emit_ExternalLanguage_RightCurlyBracketKeyword_1_1_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     '}'+
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'external' (ambiguity) (rule start)
+	 *     (rule start) (ambiguity) (rule start)
+	 *     exactTypeName=ValidID (ambiguity) 'exactType' exactTypeName=ValidID
+	 *     exactTypeName=ValidID (ambiguity) 'language' name=ValidID
+	 *     exactTypeName=ValidID (ambiguity) (rule end)
+	 *     exactTypeUri=STRING (ambiguity) 'exactType' exactTypeName=ValidID
+	 *     exactTypeUri=STRING (ambiguity) 'language' name=ValidID
+	 *     exactTypeUri=STRING (ambiguity) (rule end)
+	 */
+	protected void emit_ExternalLanguage_RightCurlyBracketKeyword_1_1_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

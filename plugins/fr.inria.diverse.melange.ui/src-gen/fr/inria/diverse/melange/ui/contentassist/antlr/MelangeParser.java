@@ -83,6 +83,7 @@ public class MelangeParser extends AbstractContentAssistParser {
 					put(grammarAccess.getResourceTypeAccess().getAlternatives(), "rule__ResourceType__Alternatives");
 					put(grammarAccess.getModelTypingSpaceAccess().getGroup(), "rule__ModelTypingSpace__Group__0");
 					put(grammarAccess.getModelTypingSpaceAccess().getGroup_0(), "rule__ModelTypingSpace__Group_0__0");
+					put(grammarAccess.getElementAccess().getGroup_1(), "rule__Element__Group_1__0");
 					put(grammarAccess.getLanguageAccess().getGroup_0(), "rule__Language__Group_0__0");
 					put(grammarAccess.getLanguageAccess().getGroup_0_2(), "rule__Language__Group_0_2__0");
 					put(grammarAccess.getLanguageAccess().getGroup_0_2_2(), "rule__Language__Group_0_2_2__0");
@@ -103,6 +104,12 @@ public class MelangeParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLanguageAccess().getGroup_6(), "rule__Language__Group_6__0");
 					put(grammarAccess.getLanguageAccess().getGroup_6_0(), "rule__Language__Group_6_0__0");
 					put(grammarAccess.getLanguageAccess().getGroup_6_0_2(), "rule__Language__Group_6_0_2__0");
+					put(grammarAccess.getExternalLanguageAccess().getGroup_0(), "rule__ExternalLanguage__Group_0__0");
+					put(grammarAccess.getExternalLanguageAccess().getGroup_0_2(), "rule__ExternalLanguage__Group_0_2__0");
+					put(grammarAccess.getExternalLanguageAccess().getGroup_0_2_2(), "rule__ExternalLanguage__Group_0_2_2__0");
+					put(grammarAccess.getExternalLanguageAccess().getGroup_1(), "rule__ExternalLanguage__Group_1__0");
+					put(grammarAccess.getExternalLanguageAccess().getGroup_1_0(), "rule__ExternalLanguage__Group_1_0__0");
+					put(grammarAccess.getExternalLanguageAccess().getGroup_1_0_2(), "rule__ExternalLanguage__Group_1_0_2__0");
 					put(grammarAccess.getEcoreModelTypeAccess().getGroup_0(), "rule__EcoreModelType__Group_0__0");
 					put(grammarAccess.getEcoreModelTypeAccess().getGroup_1(), "rule__EcoreModelType__Group_1__0");
 					put(grammarAccess.getEcoreModelTypeAccess().getGroup_1_0(), "rule__EcoreModelType__Group_1_0__0");
@@ -120,6 +127,10 @@ public class MelangeParser extends AbstractContentAssistParser {
 					put(grammarAccess.getImportAccess().getGroup_2_1(), "rule__Import__Group_2_1__0");
 					put(grammarAccess.getImportAccess().getGroup_2_1_1(), "rule__Import__Group_2_1_1__0");
 					put(grammarAccess.getImportAccess().getGroup_3(), "rule__Import__Group_3__0");
+					put(grammarAccess.getExternalImportAccess().getGroup(), "rule__ExternalImport__Group__0");
+					put(grammarAccess.getExternalImportAccess().getGroup_2(), "rule__ExternalImport__Group_2__0");
+					put(grammarAccess.getExternalImportAccess().getGroup_2_1(), "rule__ExternalImport__Group_2_1__0");
+					put(grammarAccess.getExternalImportAccess().getGroup_2_1_1(), "rule__ExternalImport__Group_2_1_1__0");
 					put(grammarAccess.getMergeAccess().getGroup(), "rule__Merge__Group__0");
 					put(grammarAccess.getMergeAccess().getGroup_2(), "rule__Merge__Group_2__0");
 					put(grammarAccess.getSliceAccess().getGroup(), "rule__Slice__Group__0");
@@ -329,6 +340,12 @@ public class MelangeParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLanguageAccess().getFileExtensionAssignment_5_1(), "rule__Language__FileExtensionAssignment_5_1");
 					put(grammarAccess.getLanguageAccess().getExactTypeNameAssignment_6_0_1(), "rule__Language__ExactTypeNameAssignment_6_0_1");
 					put(grammarAccess.getLanguageAccess().getExactTypeUriAssignment_6_0_2_1(), "rule__Language__ExactTypeUriAssignment_6_0_2_1");
+					put(grammarAccess.getExternalLanguageAccess().getNameAssignment_0_1(), "rule__ExternalLanguage__NameAssignment_0_1");
+					put(grammarAccess.getExternalLanguageAccess().getImplementsAssignment_0_2_1(), "rule__ExternalLanguage__ImplementsAssignment_0_2_1");
+					put(grammarAccess.getExternalLanguageAccess().getImplementsAssignment_0_2_2_1(), "rule__ExternalLanguage__ImplementsAssignment_0_2_2_1");
+					put(grammarAccess.getExternalLanguageAccess().getOperatorsAssignment_0_4(), "rule__ExternalLanguage__OperatorsAssignment_0_4");
+					put(grammarAccess.getExternalLanguageAccess().getExactTypeNameAssignment_1_0_1(), "rule__ExternalLanguage__ExactTypeNameAssignment_1_0_1");
+					put(grammarAccess.getExternalLanguageAccess().getExactTypeUriAssignment_1_0_2_1(), "rule__ExternalLanguage__ExactTypeUriAssignment_1_0_2_1");
 					put(grammarAccess.getEcoreModelTypeAccess().getNameAssignment_0_1(), "rule__EcoreModelType__NameAssignment_0_1");
 					put(grammarAccess.getEcoreModelTypeAccess().getEcoreUriAssignment_0_4(), "rule__EcoreModelType__EcoreUriAssignment_0_4");
 					put(grammarAccess.getEcoreModelTypeAccess().getMtUriAssignment_1_0_1(), "rule__EcoreModelType__MtUriAssignment_1_0_1");
@@ -353,6 +370,9 @@ public class MelangeParser extends AbstractContentAssistParser {
 					put(grammarAccess.getImportAccess().getGenmodelUrisAssignment_2_1_0(), "rule__Import__GenmodelUrisAssignment_2_1_0");
 					put(grammarAccess.getImportAccess().getGenmodelUrisAssignment_2_1_1_1(), "rule__Import__GenmodelUrisAssignment_2_1_1_1");
 					put(grammarAccess.getImportAccess().getMappingRulesAssignment_3_2(), "rule__Import__MappingRulesAssignment_3_2");
+					put(grammarAccess.getExternalImportAccess().getEcoreUriAssignment_1(), "rule__ExternalImport__EcoreUriAssignment_1");
+					put(grammarAccess.getExternalImportAccess().getGenmodelUrisAssignment_2_1_0(), "rule__ExternalImport__GenmodelUrisAssignment_2_1_0");
+					put(grammarAccess.getExternalImportAccess().getGenmodelUrisAssignment_2_1_1_1(), "rule__ExternalImport__GenmodelUrisAssignment_2_1_1_1");
 					put(grammarAccess.getMergeAccess().getTargetLanguageAssignment_1(), "rule__Merge__TargetLanguageAssignment_1");
 					put(grammarAccess.getMergeAccess().getMappingRulesAssignment_2_2(), "rule__Merge__MappingRulesAssignment_2_2");
 					put(grammarAccess.getSliceAccess().getTargetLanguageAssignment_1(), "rule__Slice__TargetLanguageAssignment_1");
@@ -507,6 +527,7 @@ public class MelangeParser extends AbstractContentAssistParser {
 					put(grammarAccess.getXImportDeclarationAccess().getImportedTypeAssignment_1_1(), "rule__XImportDeclaration__ImportedTypeAssignment_1_1");
 					put(grammarAccess.getXImportDeclarationAccess().getImportedNamespaceAssignment_1_2(), "rule__XImportDeclaration__ImportedNamespaceAssignment_1_2");
 					put(grammarAccess.getLanguageAccess().getUnorderedGroup(), "rule__Language__UnorderedGroup");
+					put(grammarAccess.getExternalLanguageAccess().getUnorderedGroup(), "rule__ExternalLanguage__UnorderedGroup");
 					put(grammarAccess.getEcoreModelTypeAccess().getUnorderedGroup(), "rule__EcoreModelType__UnorderedGroup");
 				}
 			};
