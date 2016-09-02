@@ -18,6 +18,7 @@ import org.eclipse.pde.internal.core.plugin.WorkspacePluginModel
 import org.eclipse.pde.internal.core.project.PDEProject
 import org.eclipse.xtext.documentation.IEObjectDocumentationProvider
 import org.eclipse.xtext.naming.IQualifiedNameProvider
+import fr.inria.diverse.melange.metamodel.melange.ExternalLanguage
 
 /**
  * For each {@link ModelType}, creates the corresponding
@@ -179,7 +180,9 @@ class ExtensionPointProcessor extends DispatchMelangeProcessor
 							)
 
 							// Register adapters
-							l.implements.forEach[mt |
+							l.implements
+							.filter[mt | !(l instanceof ExternalLanguage && l.exactType == mt)]
+							.forEach[mt |
 								val adapterTag = changer.addChild(languageTag,
 									"adapter")
 

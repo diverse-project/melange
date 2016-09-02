@@ -27,6 +27,7 @@ import org.eclipse.emf.transaction.util.TransactionUtil
 import org.eclipse.emf.transaction.RecordingCommand
 import org.eclipse.emf.ecore.resource.ResourceSet
 import java.util.Set
+import fr.inria.diverse.melange.metamodel.melange.ExternalLanguage
 
 /**
  * Builds {@link Language}s by merging the various parts declared in each
@@ -148,7 +149,9 @@ class LanguageProcessor extends DispatchMelangeProcessor
 	 * {@code language}.
 	 */
 	def void initializeExactType(Language language) {
-		if (language.exactType !== null)
+		if(language instanceof ExternalLanguage)
+			language.exactType.ecoreUri = language.operators.filter(Import).head?.ecoreUri
+		else if (language.exactType !== null)
 			language.exactType.ecoreUri = language.exactType.inferredEcoreUri
 	}
 

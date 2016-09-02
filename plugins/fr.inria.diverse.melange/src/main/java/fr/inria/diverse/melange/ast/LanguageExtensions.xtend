@@ -381,8 +381,6 @@ class LanguageExtensions
 	 */
 	def boolean isGeneratedByMelange(Language l) {		
 		return !(l instanceof ExternalLanguage)
-//			   l.operators.filter(Import).size > 1
-//			|| !l.operators.filter(LanguageOperator).empty
 	}
 
 	/**
@@ -391,7 +389,7 @@ class LanguageExtensions
 	 * files and Java code.
 	 */
 	def boolean getRuntimeHasBeenGenerated(Language l) {
-//		if (l.isGeneratedByMelange) {
+		if (l.isGeneratedByMelange) {
 			val segments = newArrayList
 			val gp = l.syntax.genmodels.head?.genPackages?.head
 			val project = l.eResource.project
@@ -412,8 +410,8 @@ class LanguageExtensions
 			)
 				return true
 			else return false
-//		} else
-//			return true
+		} else
+			return true
 	}
 
 	/**

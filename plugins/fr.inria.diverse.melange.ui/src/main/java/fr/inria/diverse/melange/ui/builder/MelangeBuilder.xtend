@@ -57,7 +57,7 @@ class MelangeBuilder
 
 		monitor.beginTask("Generating interfaces", 10 * nb)
 
-		mts.filter[isExtracted].forEach[mt |
+		mts.filter[isExtracted && !isExternal].forEach[mt |
 			if (monitor.canceled)
 				throw new OperationCanceledException
 
