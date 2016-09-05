@@ -102,8 +102,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/xtext"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/sirius"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/ecl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/xmof"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/fileExtension"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/external"/>
     </genClasses>
     <genClasses ecoreClass="Melange.ecore#//Weave">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Weave/aspectTypeRef"/>
@@ -112,5 +112,6 @@
     <genClasses image="false" ecoreClass="Melange.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//NamedElement/name"/>
     </genClasses>
+    <genClasses ecoreClass="Melange.ecore#//ExternalLanguage"/>
   </genPackages>
 </genmodel:GenModel>

@@ -1258,13 +1258,22 @@ public interface MelangePackage extends EPackage {
 	int LANGUAGE__ECL = NAMED_ELEMENT_FEATURE_COUNT + 14;
 
 	/**
+	 * The feature id for the '<em><b>Xmof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANGUAGE__XMOF = NAMED_ELEMENT_FEATURE_COUNT + 15;
+
+	/**
 	 * The feature id for the '<em><b>File Extension</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__FILE_EXTENSION = NAMED_ELEMENT_FEATURE_COUNT + 15;
+	int LANGUAGE__FILE_EXTENSION = NAMED_ELEMENT_FEATURE_COUNT + 16;
 
 	/**
 	 * The number of structural features of the '<em>Language</em>' class.
@@ -1273,7 +1282,7 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 16;
+	int LANGUAGE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 17;
 
 	/**
 	 * The number of operations of the '<em>Language</em>' class.
@@ -1492,6 +1501,15 @@ public interface MelangePackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTERNAL_LANGUAGE__ECL = LANGUAGE__ECL;
+
+	/**
+	 * The feature id for the '<em><b>Xmof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_LANGUAGE__XMOF = LANGUAGE__XMOF;
 
 	/**
 	 * The feature id for the '<em><b>File Extension</b></em>' attribute.
@@ -2315,6 +2333,17 @@ public interface MelangePackage extends EPackage {
 	EAttribute getLanguage_Ecl();
 
 	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.Language#getXmof <em>Xmof</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Xmof</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Language#getXmof()
+	 * @see #getLanguage()
+	 * @generated
+	 */
+	EAttribute getLanguage_Xmof();
+
+	/**
 	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.Language#getFileExtension <em>File Extension</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3044,6 +3073,14 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LANGUAGE__ECL = eINSTANCE.getLanguage_Ecl();
+
+		/**
+		 * The meta object literal for the '<em><b>Xmof</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LANGUAGE__XMOF = eINSTANCE.getLanguage_Xmof();
 
 		/**
 		 * The meta object literal for the '<em><b>File Extension</b></em>' attribute feature.

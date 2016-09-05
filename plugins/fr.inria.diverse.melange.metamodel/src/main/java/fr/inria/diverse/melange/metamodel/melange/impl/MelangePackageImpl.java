@@ -947,8 +947,17 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLanguage_FileExtension() {
+	public EAttribute getLanguage_Xmof() {
 		return (EAttribute)languageEClass.getEStructuralFeatures().get(15);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLanguage_FileExtension() {
+		return (EAttribute)languageEClass.getEStructuralFeatures().get(16);
 	}
 
 	/**
@@ -1134,6 +1143,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		createEAttribute(languageEClass, LANGUAGE__XTEXT);
 		createEAttribute(languageEClass, LANGUAGE__SIRIUS);
 		createEAttribute(languageEClass, LANGUAGE__ECL);
+		createEAttribute(languageEClass, LANGUAGE__XMOF);
 		createEAttribute(languageEClass, LANGUAGE__FILE_EXTENSION);
 
 		weaveEClass = createEClass(WEAVE);
@@ -1293,6 +1303,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		initEAttribute(getLanguage_Xtext(), ecorePackage.getEString(), "xtext", null, 0, -1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLanguage_Sirius(), ecorePackage.getEString(), "sirius", null, 0, -1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLanguage_Ecl(), ecorePackage.getEString(), "ecl", null, 0, -1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLanguage_Xmof(), ecorePackage.getEString(), "xmof", null, 0, 1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLanguage_FileExtension(), ecorePackage.getEString(), "fileExtension", null, 0, 1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(weaveEClass, Weave.class, "Weave", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -27,6 +27,7 @@ Language:
 		('xtext' xtext+=STRING (',' xtext+=STRING)* )? &
 		('sirius' sirius+=STRING (',' sirius+=STRING)* )? &
 		('ecl' ecl+=STRING (',' ecl+=STRING)* )? &
+		('xmof' xmof=STRING)? &
 		('fileExtension' fileExtension=STRING)? &
 		('exactType' exactTypeName = ValidID (=> 'uri' exactTypeUri = STRING)?)?
 	'}'

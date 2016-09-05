@@ -536,12 +536,12 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         fileExtension=STRING? 
-	 *         (resourceType=ResourceType (resourceUri=STRING | xtextSetupRef=JvmTypeReference)?)? 
+	 *         (xmof=STRING | fileExtension=STRING)? 
 	 *         (xtext+=STRING xtext+=STRING*)? 
 	 *         (sirius+=STRING sirius+=STRING*)? 
 	 *         (ecl+=STRING ecl+=STRING*)? 
 	 *         (exactTypeName=ValidID exactTypeUri=STRING?)? 
+	 *         (resourceType=ResourceType (resourceUri=STRING | xtextSetupRef=JvmTypeReference)?)? 
 	 *         (
 	 *             name=ValidID 
 	 *             (operators+=Inherit operators+=Inherit*)? 
