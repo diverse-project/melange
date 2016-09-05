@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: fr.inria.diverse.singingmachine
 Bundle-SymbolicName: fr.inria.diverse.singingmachine; singleton:=true
-Bundle-Version: 0.1.0.qualifier
+Bundle-Version: 0.2.0.qualifier
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.xtext,
  org.eclipse.core.runtime,

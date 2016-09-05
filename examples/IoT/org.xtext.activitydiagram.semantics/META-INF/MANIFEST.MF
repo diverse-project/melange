@@ -1,7 +1,7 @@
 Bundle-SymbolicName: org.xtext.activitydiagram.semantics;singleton:=true
 Export-Package: org.xtext.activitydiagram.semantics
 Bundle-Name: %pluginName
-Bundle-Version: 0.1.0.qualifier
+Bundle-Version: 0.2.0.qualifier
 Bundle-ClassPath: .
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
