@@ -4,4 +4,5 @@ Tried in Kdenlive to change the Profile to HD 1080p 25 fps in the Project Settin
 It screws up the project :/
 
 Workaround in command line:
-ffmpeg -i untitled.mp4 -r 25 -vf scale=-1:1080 output.mp4
+ffmpeg -i untitled.mp4 -r 25 -vf scale=1920:1080 output2.mp4
+
