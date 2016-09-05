@@ -241,6 +241,17 @@ class WorkspaceTestHelper {
 			ws.root.getProject(project).exists
 		)
 	}
+	
+	/**
+	 * Check if {@link project} doesn't exist
+	 */
+	def void assertProjectDoesntExists(String project){
+		val ws = ResourcesPlugin::workspace
+		Assert.assertFalse(
+			"Can find project " + project,
+			ws.root.getProject(project).exists
+		)
+	}
 
 	private def void invokeMelangeCommand(String commandId, String melangeFile) {
 		val ws = ResourcesPlugin::workspace

@@ -1,0 +1,12 @@
+package fr.inria.diverse.melange.tests.extern.main
+
+import fr.inria.diverse.melange.tests.aspects.aspect.StateAspect1
+
+external language Fsm {
+	syntax "platform:/resource/fr.inria.diverse.melange.tests.aspects.model/model/FSM.ecore"
+	exactType FsmMT
+}
+
+language Xfsm inherits Fsm {
+	with StateAspect1
+}
