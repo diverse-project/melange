@@ -1,6 +1,10 @@
 package fr.inria.diverse.melange.tests.eclipse
 
+import com.google.inject.Inject
 import fr.inria.diverse.melange.MelangeUiInjectorProvider
+import fr.inria.diverse.melange.tests.eclipse.shared.WorkspaceTestHelper
+import org.eclipse.core.resources.IProject
+import org.eclipse.jdt.core.JavaCore
 import org.eclipse.xtext.junit4.AbstractXtextTests
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
@@ -8,12 +12,9 @@ import org.eclipse.xtext.junit4.ui.util.IResourcesSetupUtil
 import org.junit.After
 import org.junit.Before
 import org.junit.FixMethodOrder
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.MethodSorters
-import com.google.inject.Inject
-import org.eclipse.core.resources.IProject
-import fr.inria.diverse.melange.tests.eclipse.shared.WorkspaceTestHelper
-import org.junit.Test
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeUiInjectorProvider)
@@ -125,5 +126,36 @@ public class AspectsTest extends AbstractXtextTests
 	@Test
 	def void test2Parsing() {
 		helper.assertNoMarkers(MELANGE_FILE)
+	}
+	
+	@Test
+	def void test3DynamicBinding() {
+		val javaProject = JavaCore.create(melangeProject)
+		val classLoader = helper.createClassLoader(javaProject)
+		
+		//Load classes
+		val StandaloneSetup = classLoader.loadClass("fr.inria.diverse.melange.tests.aspects.StandaloneSetup")
+		val loadFsm = classLoader.loadClass("fr.inria.diverse.melange.tests.aspects.loadFsm")
+		val loadTfsm = classLoader.loadClass("fr.inria.diverse.melange.tests.aspects.loadTfsm")
+		val callFoo = classLoader.loadClass("fr.inria.diverse.melange.tests.aspects.callFoo")
+		val callBar = classLoader.loadClass("fr.inria.diverse.melange.tests.aspects.callBar")
+		val FsmMT = classLoader.loadClass("fr.inria.diverse.melange.tests.aspects.FsmMT")
+		
+		
+		//Call methods
+		StandaloneSetup.getMethod("doSetup", null)?.invoke(null, null)
+		
+		val fsm = loadFsm.getMethod("call", null)?.invoke(null, null)
+		val tfsm = loadTfsm.getMethod("call", null)?.invoke(null, null)
+		
+		val call1 = callFoo.getMethod("call", #[FsmMT])?.invoke(null, #[fsm])
+		val call2 = callFoo.getMethod("call", #[FsmMT])?.invoke(null, #[tfsm])
+		val call3 = callBar.getMethod("call", #[FsmMT])?.invoke(null, #[fsm])
+		val call4 = callBar.getMethod("call", #[FsmMT])?.invoke(null, #[tfsm])
+		
+		assertEquals("foo1",call1)
+		assertEquals("foo2",call2)
+		assertEquals("bar1",call3)
+		assertEquals("bar2",call4)
 	}
 }

@@ -36,8 +36,8 @@ transformation String callBar(FsmMT m) {
 	return s.bar
 }
 
-transformation FsmMT loadFsm()  { return      Fsm.load("tests-inputs/models/Simple.fsm") }
-transformation FsmMT loadTfsm() { return TimedFsm.load("tests-inputs/models/Simple.timedfsm") }
+transformation FsmMT loadFsm()  { return      Fsm.load("platform:/resource/fr.inria.diverse.melange.tests.aspects.main/models/Simple.fsm") }
+transformation FsmMT loadTfsm() { return TimedFsm.load("platform:/resource/fr.inria.diverse.melange.tests.aspects.main/models/Simple.timedfsm") }
 
 @Main
 transformation test() {}
