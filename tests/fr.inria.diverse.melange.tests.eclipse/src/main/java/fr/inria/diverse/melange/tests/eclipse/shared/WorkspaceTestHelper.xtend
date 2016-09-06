@@ -71,6 +71,10 @@ import org.eclipse.core.runtime.jobs.Job
 import org.eclipse.pde.core.target.LoadTargetDefinitionJob
 import org.eclipse.pde.internal.core.target.TargetPlatformService
 import org.osgi.framework.Bundle
+import org.eclipse.jdt.core.IJavaProject
+import org.eclipse.jdt.launching.JavaRuntime
+import java.net.URL
+import java.net.URLClassLoader
 
 class WorkspaceTestHelper {
 	static final String MELANGE_CMD_GENERATE_ALL        = "fr.inria.diverse.melange.GenerateAll"
@@ -521,5 +525,18 @@ class WorkspaceTestHelper {
 		val Job job = new LoadTargetDefinitionJob(targetDef);
 		job.schedule();
 		job.join();
+	}
+	
+	def ClassLoader createClassLoader(IJavaProject project) {
+		val classPathEntries = JavaRuntime.computeDefaultRuntimeClassPath(project);
+		val urlList = new ArrayList<URL>();
+		for (var i = 0; i < classPathEntries.length; i++) {
+		 val entry = classPathEntries.get(i);
+		 val path = new Path(entry);
+		 val url = path.toFile().toURI().toURL();
+		 urlList.add(url);
+		}
+		val parentClassLoader = project.getClass().getClassLoader();
+		return new URLClassLoader(urlList, parentClassLoader);
 	}	
 }
