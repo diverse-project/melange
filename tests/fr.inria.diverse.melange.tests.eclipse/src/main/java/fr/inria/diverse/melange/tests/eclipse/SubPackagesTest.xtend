@@ -14,6 +14,7 @@ import org.junit.FixMethodOrder
 import org.junit.runner.RunWith
 import org.junit.runners.MethodSorters
 import org.junit.Test
+import org.eclipse.jdt.core.JavaCore
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeUiInjectorProvider)
@@ -102,5 +103,35 @@ public class SubPackagesTest extends AbstractXtextTests
 	@Test
 	def void test2Parsing() {
 		helper.assertNoMarkers(MELANGE_FILE)
+	}
+	
+	@Test
+	def void test3Runtime() {
+		val javaProject = JavaCore.create(melangeProject)
+		val classLoader = helper.createClassLoader(javaProject)
+		
+		//Load classes
+		val StandaloneSetup = classLoader.loadClass("fr.inria.diverse.melange.test.subpackages.StandaloneSetup")
+		val loadTopPkg = classLoader.loadClass("fr.inria.diverse.melange.test.subpackages.loadTopPkg")
+		val loadSubPkg2 = classLoader.loadClass("fr.inria.diverse.melange.test.subpackages.loadSubPkg2")
+		val loadSubPkg3 = classLoader.loadClass("fr.inria.diverse.melange.test.subpackages.loadSubPkg3")
+		val adapterName = classLoader.loadClass("fr.inria.diverse.melange.test.subpackages.adapterName")
+		val SubPackagesTestMT = classLoader.loadClass("fr.inria.diverse.melange.test.subpackages.SubPackagesTestMT")
+		
+		
+		//Call methods
+		StandaloneSetup.getMethod("doSetup", null)?.invoke(null, null)
+		
+		val m1 = loadTopPkg.getMethod("call", null)?.invoke(null, null)
+		val m2 = loadSubPkg2.getMethod("call", null)?.invoke(null, null)
+		val m3 = loadSubPkg3.getMethod("call", null)?.invoke(null, null)
+		
+		val call1 = adapterName.getMethod("call", #[SubPackagesTestMT])?.invoke(null, #[m1]) as String
+		val call2 = adapterName.getMethod("call", #[SubPackagesTestMT])?.invoke(null, #[m2]) as String
+		val call3 = adapterName.getMethod("call", #[SubPackagesTestMT])?.invoke(null, #[m3]) as String 
+		
+		assertTrue(call1.contains("TopClass1Adapter"))
+		assertTrue(call2.contains("Subpkg2Class1Adapter"))
+		assertTrue(call3.contains("Subpkg3Class1Adapter"))
 	}
 }

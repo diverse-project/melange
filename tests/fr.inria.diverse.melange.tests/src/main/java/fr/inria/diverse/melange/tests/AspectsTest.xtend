@@ -259,42 +259,42 @@ class AspectsTest
 //		assertEquals(fsa.textFiles.size, 48)
 //	}
 
-	@Test
-	def void testDynamicBinding() {
-		try {
-			// Consider moving these runtime dependencies somewhere else
-			setJavaCompilerClassPath(
-				typeof(FSM),
-				typeof(timedfsm.fsm.FSM),
-				StateAspect1,
-				MelangeRegistry,
-				IModelType,
-				GenericAdapter,
-				EListAdapter,
-				Resource,
-				EObject,
-				EList,
-				Exceptions,
-				XMIResourceFactoryImpl
-			)
-			inputSequence.compile[
-				initialize("aspectstest.test")
-
-				val fsm = invokeTransfo("aspectstest.loadFsm")
-				val tfsm = invokeTransfo("aspectstest.loadTfsm")
-				assertNotNull(fsm)
-				assertNotNull(tfsm)
-
-				assertEquals(invokeTransfo("aspectstest.callFoo", #["aspectstest.FsmMT"], #[fsm]),  "foo1")
-				assertEquals(invokeTransfo("aspectstest.callFoo", #["aspectstest.FsmMT"], #[tfsm]), "foo2")
-				assertEquals(invokeTransfo("aspectstest.callBar", #["aspectstest.FsmMT"], #[fsm]),  "bar1")
-				assertEquals(invokeTransfo("aspectstest.callBar", #["aspectstest.FsmMT"], #[tfsm]), "bar2")
-			]
-		} catch (Exception e) {
-			e.printStackTrace
-			fail(e.message)
-		}
-	}
+//	@Test
+//	def void testDynamicBinding() {
+//		try {
+//			// Consider moving these runtime dependencies somewhere else
+//			setJavaCompilerClassPath(
+//				typeof(FSM),
+//				typeof(timedfsm.fsm.FSM),
+//				StateAspect1,
+//				MelangeRegistry,
+//				IModelType,
+//				GenericAdapter,
+//				EListAdapter,
+//				Resource,
+//				EObject,
+//				EList,
+//				Exceptions,
+//				XMIResourceFactoryImpl
+//			)
+//			inputSequence.compile[
+//				initialize("aspectstest.test")
+//
+//				val fsm = invokeTransfo("aspectstest.loadFsm")
+//				val tfsm = invokeTransfo("aspectstest.loadTfsm")
+//				assertNotNull(fsm)
+//				assertNotNull(tfsm)
+//
+//				assertEquals(invokeTransfo("aspectstest.callFoo", #["aspectstest.FsmMT"], #[fsm]),  "foo1")
+//				assertEquals(invokeTransfo("aspectstest.callFoo", #["aspectstest.FsmMT"], #[tfsm]), "foo2")
+//				assertEquals(invokeTransfo("aspectstest.callBar", #["aspectstest.FsmMT"], #[fsm]),  "bar1")
+//				assertEquals(invokeTransfo("aspectstest.callBar", #["aspectstest.FsmMT"], #[tfsm]), "bar2")
+//			]
+//		} catch (Exception e) {
+//			e.printStackTrace
+//			fail(e.message)
+//		}
+//	}
 
 	def Language getFsm()                { return root.elements.get(0) as Language }
 	def Language getTfsm()               { return root.elements.get(1) as Language }

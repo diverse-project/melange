@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toppkg:TopClass1 xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:toppkg="http://toppkg">
+<toppkg:TopClass1 xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:toppkg="http://subpackagestest/toppkg/">
   <myTopClass2/>
   <mySubPkg1Class1/>
   <mySubpkg2Class1>
