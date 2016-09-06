@@ -14,6 +14,7 @@ import org.junit.FixMethodOrder
 import org.junit.runner.RunWith
 import org.junit.runners.MethodSorters
 import org.junit.Test
+import org.eclipse.jdt.core.JavaCore
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeUiInjectorProvider)
@@ -111,5 +112,26 @@ public class SimpleTimedFsmTest extends AbstractXtextTests
 	@Test
 	def void test2Parsing() {
 		helper.assertNoMarkers(MELANGE_FILE)
+	}
+	
+	@Test
+	def void test3Runtime() {
+		val javaProject = JavaCore.create(melangeProject)
+		val classLoader = helper.createClassLoader(javaProject)
+		
+		//Load classes
+		val StandaloneSetup = classLoader.loadClass("fr.inria.diverse.melange.tests.simplefsm.StandaloneSetup")
+		val loadFsm = classLoader.loadClass("fr.inria.diverse.melange.tests.simplefsm.loadFsm")
+		val loadTfsm = classLoader.loadClass("fr.inria.diverse.melange.tests.simplefsm.loadTFsm")
+		
+		
+		//Call methods
+		StandaloneSetup.getMethod("doSetup", null)?.invoke(null, null)
+		
+		val fsm = loadFsm.getMethod("call", null)?.invoke(null, null)
+		val tfsm = loadTfsm.getMethod("call", null)?.invoke(null, null)
+		
+		assertNotNull(fsm)
+		assertNotNull(tfsm)
 	}
 }

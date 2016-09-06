@@ -122,34 +122,34 @@ class SimpleFsmTest
 //		+ 3		// Adapters (for each class in MT) 
 //	}
 
-	@Test
-	def void testRuntime() {
-		try {
-			// Consider moving these runtime dependencies somewhere else
-			setJavaCompilerClassPath(
-				typeof(FSM),
-				timedfsm.fsm.FSM,
-				IModelType,
-				GenericAdapter,
-				EListAdapter,
-				MelangeRegistry,
-				Resource,
-				EObject,
-				EList,
-				Exceptions,
-				XMIResourceFactoryImpl
-			)
-			inputSequence.compile[
-				initialize("simplefsmtest.test")
-
-				assertNotNull(invokeTransfo("simplefsmtest.loadFsm"))
-				assertNotNull(invokeTransfo("simplefsmtest.loadTFsm"))
-			]
-		} catch (Exception e) {
-			e.printStackTrace
-			fail(e.message)
-		}
-	}
+//	@Test
+//	def void testRuntime() {
+//		try {
+//			// Consider moving these runtime dependencies somewhere else
+//			setJavaCompilerClassPath(
+//				typeof(FSM),
+//				timedfsm.fsm.FSM,
+//				IModelType,
+//				GenericAdapter,
+//				EListAdapter,
+//				MelangeRegistry,
+//				Resource,
+//				EObject,
+//				EList,
+//				Exceptions,
+//				XMIResourceFactoryImpl
+//			)
+//			inputSequence.compile[
+//				initialize("simplefsmtest.test")
+//
+//				assertNotNull(invokeTransfo("simplefsmtest.loadFsm"))
+//				assertNotNull(invokeTransfo("simplefsmtest.loadTFsm"))
+//			]
+//		} catch (Exception e) {
+//			e.printStackTrace
+//			fail(e.message)
+//		}
+//	}
 
 	def Language getFsm()           { return root.elements.get(0) as Language }
 	def Language getTfsm()          { return root.elements.get(1) as Language }

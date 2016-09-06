@@ -14,8 +14,8 @@ transformation fr.inria.diverse.melange.tests.simplefsm.fsmmt.fsm.FSM getRoot(Fs
 	return fsm.contents.head as fr.inria.diverse.melange.tests.simplefsm.fsmmt.fsm.FSM
 }
 
-transformation FsmMT loadFsm()  { return      Fsm.load("models/Simple.fsm") }
-transformation FsmMT loadTFsm() { return TimedFsm.load("models/Simple.fsm") }
+transformation FsmMT loadFsm()  { return      Fsm.load("platform:/resource/fr.inria.diverse.melange.tests.simplefsm.main/models/Simple.fsm") }
+transformation FsmMT loadTFsm() { return TimedFsm.load("platform:/resource/fr.inria.diverse.melange.tests.simplefsm.main/models/SimpleTimed.fsm") }
 
 @Main
 transformation test() {}
