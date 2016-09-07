@@ -18,7 +18,19 @@ Export-Package: toppkg,
  toppkg.subpkg2.subpkg3.impl,
  toppkg.subpkg2.subpkg3.util,
  toppkg.subpkg2.util,
- toppkg.util
+ toppkg.util,
+ extended.toppkg,
+ extended.toppkg.impl,
+ extended.toppkg.subpkg1,
+ extended.toppkg.subpkg1.impl,
+ extended.toppkg.subpkg1.util,
+ extended.toppkg.subpkg2,
+ extended.toppkg.subpkg2.impl,
+ extended.toppkg.subpkg2.subpkg3,
+ extended.toppkg.subpkg2.subpkg3.impl,
+ extended.toppkg.subpkg2.subpkg3.util,
+ extended.toppkg.subpkg2.util,
+ extended.toppkg.util
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore
+ org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy

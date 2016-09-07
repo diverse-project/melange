@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ASCII"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.inria.diverse.melange.tests/src" modelPluginID="fr.inria.diverse.melange.tests" modelName="PackagesTest2" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>PackagesTest2.ecore</foreignModel>
+  <genPackages prefix="Toppkg" basePackage="extended" disposableProviderFactory="true">
+    <ecorePackage href="PackagesTest2.ecore#/"/>
+    <genClasses>
+      <ecoreClass href="PackagesTest2.ecore#//TopClass1"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="PackagesTest2.ecore#//TopClass1/myTopClass2"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="PackagesTest2.ecore#//TopClass1/mySubPkg1Class1"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="PackagesTest2.ecore#//TopClass1/mySubpkg2Class1"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="PackagesTest2.ecore#//TopClass2"/>
+      <genFeatures property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="PackagesTest2.ecore#//TopClass2/myTopClass1"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="PackagesTest2.ecore#//ClassA"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="PackagesTest2.ecore#//ClassA/toClassA"/>
+      </genFeatures>
+    </genClasses>
+    <nestedGenPackages prefix="Subpkg1" disposableProviderFactory="true">
+      <ecorePackage href="PackagesTest2.ecore#//subpkg1"/>
+      <genClasses>
+        <ecoreClass href="PackagesTest2.ecore#//subpkg1/Subpkg1Class1"/>
+        <genFeatures property="None" children="true" createChild="true">
+          <ecoreFeature xsi:type="ecore:EReference" href="PackagesTest2.ecore#//subpkg1/Subpkg1Class1/mySubpkg1Class2"/>
+        </genFeatures>
+      </genClasses>
+      <genClasses>
+        <ecoreClass href="PackagesTest2.ecore#//subpkg1/Subpkg1Class2"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Subpkg2" disposableProviderFactory="true">
+      <ecorePackage href="PackagesTest2.ecore#//subpkg2"/>
+      <genClasses>
+        <ecoreClass href="PackagesTest2.ecore#//subpkg2/Subpkg2Class1"/>
+        <genFeatures property="None" children="true" createChild="true">
+          <ecoreFeature xsi:type="ecore:EReference" href="PackagesTest2.ecore#//subpkg2/Subpkg2Class1/mySubpkg2Class2"/>
+        </genFeatures>
+      </genClasses>
+      <genClasses>
+        <ecoreClass href="PackagesTest2.ecore#//subpkg2/Subpkg2Class2"/>
+        <genFeatures property="None" children="true" createChild="true">
+          <ecoreFeature xsi:type="ecore:EReference" href="PackagesTest2.ecore#//subpkg2/Subpkg2Class2/mySubpkg3Class1"/>
+        </genFeatures>
+      </genClasses>
+      <nestedGenPackages prefix="Subpkg3" disposableProviderFactory="true">
+        <ecorePackage href="PackagesTest2.ecore#//subpkg2/subpkg3"/>
+        <genClasses>
+          <ecoreClass href="PackagesTest2.ecore#//subpkg2/subpkg3/Subpkg3Class1"/>
+          <genFeatures property="None" children="true" createChild="true">
+            <ecoreFeature xsi:type="ecore:EReference" href="PackagesTest2.ecore#//subpkg2/subpkg3/Subpkg3Class1/mySubpkg3Class2"/>
+          </genFeatures>
+        </genClasses>
+        <genClasses>
+          <ecoreClass href="PackagesTest2.ecore#//subpkg2/subpkg3/Subpkg3Class2"/>
+        </genClasses>
+        <genClasses>
+          <ecoreClass href="PackagesTest2.ecore#//subpkg2/subpkg3/ClassA"/>
+        </genClasses>
+      </nestedGenPackages>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

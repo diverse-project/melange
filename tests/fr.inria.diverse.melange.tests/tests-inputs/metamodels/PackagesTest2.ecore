@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="toppkg" nsURI="http://toppkg" nsPrefix="toppkg">
+  <eClassifiers xsi:type="ecore:EClass" name="TopClass1">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="myTopClass2" upperBound="-1" eType="//TopClass2" containment="true" eOpposite="//TopClass2/myTopClass1"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mySubPkg1Class1" upperBound="-1" eType="//subpkg1/Subpkg1Class1" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mySubpkg2Class1" upperBound="-1" eType="//subpkg2/Subpkg2Class1" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TopClass2">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="myTopClass1" eType="//TopClass1" eOpposite="//TopClass1/myTopClass2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassA">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toClassA" eType="//subpkg2/subpkg3/ClassA"/>
+  </eClassifiers>
+  <eSubpackages name="subpkg1" nsURI="http://subpkg1" nsPrefix="subpkg1">
+    <eClassifiers xsi:type="ecore:EClass" name="Subpkg1Class1">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="mySubpkg1Class2" upperBound="-1" eType="//subpkg1/Subpkg1Class2" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Subpkg1Class2"/>
+  </eSubpackages>
+  <eSubpackages name="subpkg2" nsURI="http://subpkg2" nsPrefix="subpkg2">
+    <eClassifiers xsi:type="ecore:EClass" name="Subpkg2Class1">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="mySubpkg2Class2" upperBound="-1" eType="//subpkg2/Subpkg2Class2" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Subpkg2Class2">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="mySubpkg3Class1" upperBound="-1" eType="//subpkg2/subpkg3/Subpkg3Class1" containment="true"/>
+    </eClassifiers>
+    <eSubpackages name="subpkg3" nsURI="http://subpkg3" nsPrefix="subpkg3">
+      <eClassifiers xsi:type="ecore:EClass" name="Subpkg3Class1">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="mySubpkg3Class2" upperBound="-1" eType="//subpkg2/subpkg3/Subpkg3Class2" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="Subpkg3Class2"/>
+      <eClassifiers xsi:type="ecore:EClass" name="ClassA"/>
+    </eSubpackages>
+  </eSubpackages>
+</ecore:EPackage>
