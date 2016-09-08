@@ -123,7 +123,8 @@ class EPackageProvider
 	 * Register {@link root} and its sub EPackages as packages of {@link modElem} 
 	 */
 	def void registerPackages(ModelingElement modElem, EPackage root) {
-		if (!packages.keySet.contains(modElem.fqn) && root !== null) {
+		val collider = packages.get(modElem.fqn)?.findFirst[uniqueId == root.uniqueId]
+		if (collider === null && root !== null) {
 			val pkgs = newArrayList
 
 			pkgs += root
