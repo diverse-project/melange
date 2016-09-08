@@ -19,6 +19,10 @@ class ModelUtils
 		return loadAllPkgs(path)?.head
 	}
 
+	/**
+	 * Load root EPackages from the model at {@link path}, including
+	 * those from cross referenced resources.
+	 */
 	def Iterable<EPackage> loadAllPkgs(String path) {
 		try {
 			if (!EPackage.Registry.INSTANCE.containsKey(EcorePackage.eNS_URI))
@@ -35,14 +39,15 @@ class ModelUtils
 			val pkgs = newArrayList
 			pkgs += resource.contents.filter(EPackage)
 			
-			//Add EPackages from cross-references
+			//Add root EPackages from cross-references
 			val refPkgs = newArrayList
 			refPkgs += pkgs.map[referencedPkgs].flatten
-			refPkgs.forEach[refPkg|
+			val refRoots = refPkgs.map[it.eResource.contents.filter(EPackage)].flatten
+			refRoots.forEach[refPkg|
 				if(!pkgs.exists[p | refPkg.uniqueId == p.uniqueId])
 					pkgs.add(refPkg)
 			]
-
+			
 			return pkgs
 			
 		} catch (Exception e) {
