@@ -38,4 +38,20 @@
             genModel="model/PackagesTest.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated OneClass -->
+      <package
+            uri="http://oneclass"
+            class="root.RootPackage"
+            genModel="model/OneClass.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated CrossRef -->
+      <package
+            uri="http://rootpkg"
+            class="rootpkg.RootpkgPackage"
+            genModel="model/CrossRef.genmodel"/>
+   </extension>
+
 </plugin>

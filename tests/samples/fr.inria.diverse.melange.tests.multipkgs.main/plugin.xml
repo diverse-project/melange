@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.4"?><plugin>
+  <extension point="fr.inria.diverse.melange.modeltype">
+    <modeltype id="fr.inria.diverse.melange.tests.multipkgs.main.MyLanguageMT" uri="http://mylanguagemt/">
+      <subtyping modeltypeId="fr.inria.diverse.melange.tests.multipkgs.main.MultiRootLangMT"/>
+    </modeltype>
+    <modeltype id="fr.inria.diverse.melange.tests.multipkgs.main.XRootLangMT" uri="http://xrootlangmt/">
+      <subtyping modeltypeId="fr.inria.diverse.melange.tests.multipkgs.main.MyLanguageMT"/>
+      <subtyping modeltypeId="fr.inria.diverse.melange.tests.multipkgs.main.MultiRootLangMT"/>
+    </modeltype>
+    <modeltype id="fr.inria.diverse.melange.tests.multipkgs.main.MultiRootLangMT" uri="http://multirootlangmt/">
+      <subtyping modeltypeId="fr.inria.diverse.melange.tests.multipkgs.main.MyLanguageMT"/>
+    </modeltype>
+    <modeltype id="fr.inria.diverse.melange.tests.multipkgs.main.CrossRefLangMT" uri="http://crossreflangmt/"/>
+  </extension>
+  <extension point="fr.inria.diverse.melange.language">
+    <language aspects="" entryPoints="" exactType="fr.inria.diverse.melange.tests.multipkgs.main.MyLanguageMT" id="fr.inria.diverse.melange.tests.multipkgs.main.RootLang" uri="http://rootlang/toppkg/subpkg2/">
+      <adapter class="fr.inria.diverse.melange.tests.multipkgs.main.rootlang.adapters.mylanguagemt.RootLangAdapter" modeltypeId="fr.inria.diverse.melange.tests.multipkgs.main.MyLanguageMT"/>
+      <adapter class="fr.inria.diverse.melange.tests.multipkgs.main.rootlang.adapters.multirootlangmt.RootLangAdapter" modeltypeId="fr.inria.diverse.melange.tests.multipkgs.main.MultiRootLangMT"/>
+    </language>
+    <language aspects="Subpkg2Class1:fr.inria.diverse.melange.tests.multipkgs.main.xrootlang.aspects.Subpkg2Class1Aspect;Subpkg2Class2:fr.inria.diverse.melange.tests.multipkgs.main.xrootlang.aspects.Subpkg2Class2Aspect;TopClass2:fr.inria.diverse.melange.tests.multipkgs.main.xrootlang.aspects.TopClass2Aspect;TopClass1:fr.inria.diverse.melange.tests.multipkgs.main.xrootlang.aspects.TopClass1Aspect;Subpkg1Class1:fr.inria.diverse.melange.tests.multipkgs.main.xrootlang.aspects.Subpkg1Class1Aspect;ClassA:fr.inria.diverse.melange.tests.multipkgs.main.xrootlang.aspects.TopClassAAspect,fr.inria.diverse.melange.tests.multipkgs.main.xrootlang.aspects.SubClassAAspect;Subpkg1Class2:fr.inria.diverse.melange.tests.multipkgs.main.xrootlang.aspects.Subpkg1Class2Aspect;Subpkg3Class2:fr.inria.diverse.melange.tests.multipkgs.main.xrootlang.aspects.Subpkg3Class2Aspect;Subpkg3Class1:fr.inria.diverse.melange.tests.multipkgs.main.xrootlang.aspects.Subpkg3Class1Aspect" entryPoints="" exactType="fr.inria.diverse.melange.tests.multipkgs.main.XRootLangMT" id="fr.inria.diverse.melange.tests.multipkgs.main.XRootLang" uri="http://xrootlang/toppkg/subpkg2/">
+      <adapter class="fr.inria.diverse.melange.tests.multipkgs.main.xrootlang.adapters.mylanguagemt.XRootLangAdapter" modeltypeId="fr.inria.diverse.melange.tests.multipkgs.main.MyLanguageMT"/>
+      <adapter class="fr.inria.diverse.melange.tests.multipkgs.main.xrootlang.adapters.xrootlangmt.XRootLangAdapter" modeltypeId="fr.inria.diverse.melange.tests.multipkgs.main.XRootLangMT"/>
+      <adapter class="fr.inria.diverse.melange.tests.multipkgs.main.xrootlang.adapters.multirootlangmt.XRootLangAdapter" modeltypeId="fr.inria.diverse.melange.tests.multipkgs.main.MultiRootLangMT"/>
+    </language>
+    <language aspects="" entryPoints="" exactType="fr.inria.diverse.melange.tests.multipkgs.main.MultiRootLangMT" id="fr.inria.diverse.melange.tests.multipkgs.main.MultiRootLang" uri="http://multirootlang/toppkg/subpkg2/subpkg3/">
+      <adapter class="fr.inria.diverse.melange.tests.multipkgs.main.multirootlang.adapters.mylanguagemt.MultiRootLangAdapter" modeltypeId="fr.inria.diverse.melange.tests.multipkgs.main.MyLanguageMT"/>
+      <adapter class="fr.inria.diverse.melange.tests.multipkgs.main.multirootlang.adapters.multirootlangmt.MultiRootLangAdapter" modeltypeId="fr.inria.diverse.melange.tests.multipkgs.main.MultiRootLangMT"/>
+    </language>
+    <language aspects="" entryPoints="" exactType="fr.inria.diverse.melange.tests.multipkgs.main.CrossRefLangMT" id="fr.inria.diverse.melange.tests.multipkgs.main.CrossRefLang" uri="http://crossreflang/rootpkg/">
+      <adapter class="fr.inria.diverse.melange.tests.multipkgs.main.crossreflang.adapters.crossreflangmt.CrossRefLangAdapter" modeltypeId="fr.inria.diverse.melange.tests.multipkgs.main.CrossRefLangMT"/>
+    </language>
+  </extension>
+</plugin>
