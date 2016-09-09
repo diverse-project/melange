@@ -27,6 +27,7 @@ import org.eclipse.emf.transaction.util.TransactionUtil
 import org.eclipse.emf.transaction.RecordingCommand
 import org.eclipse.emf.ecore.resource.ResourceSet
 import java.util.Set
+import fr.inria.diverse.melange.metamodel.melange.ExternalLanguage
 
 /**
  * Builds {@link Language}s by merging the various parts declared in each
@@ -148,13 +149,10 @@ class LanguageProcessor extends DispatchMelangeProcessor
 	 * {@code language}.
 	 */
 	def void initializeExactType(Language language) {
-		if (language.exactType !== null)
-			try {
-				language.exactType.ecoreUri = language.exactType.inferredEcoreUri
-			}
-			catch(Exception e) {
-				println(e)
-			}
+		if(language instanceof ExternalLanguage)
+			language.exactType.ecoreUri = language.operators.filter(Import).head?.ecoreUri
+		else if (language.exactType !== null)
+			language.exactType.ecoreUri = language.exactType.inferredEcoreUri
 	}
 
 	/**
@@ -174,9 +172,15 @@ class LanguageProcessor extends DispatchMelangeProcessor
 			MelangeFactory.eINSTANCE.createAspect => [
 				aspectTypeRef = typesBuilder.cloneWithProxies(w.aspectTypeRef)
 				val classFqName = aspectTypeRef.aspectAnnotationValue
-				if (classFqName !== null)
+				if (classFqName !== null){
 					aspectedClass = language.syntax.findClass(classFqName)
-				ecoreFragment = builder.getBuilder(language).findBuilder(w)?.model.head
+					if(aspectedClass === null){ //try renaming
+						val renamings = language.collectMappings
+						val newName = classFqName.rename(renamings)
+						aspectedClass = language.syntax.findClass(newName)
+					}
+				}
+				ecoreFragment = builder.getBuilder(language).findBuilder(w)?.model?.head
 			]
 		]
 	}

@@ -121,7 +121,8 @@ class LanguageBuilder extends AbstractBuilder {
 	 * @see EcoreMerger#merge 
 	 */
 	def List<BuilderError> merge(Set<EPackage> base, Set<EPackage> merged, Operator context) {
-		ecoreMerger.merge(base, merged)
+		if(merged !== null)
+			ecoreMerger.merge(base, merged)
 
 		return ecoreMerger.conflicts.map[
 			new BuilderError(it.toString, context)

@@ -21,16 +21,7 @@ class MelangeFilesTemplates
 				syntax «ecoreUri»
 				exactType «mmName»MT
 			}
-
-			transformation foo(«mmName»MT m) {
-				val root = m.contents.head
-				println(root)
-			}
-
-			@Main
-			transformation main() {
-				println("Hello, SLE!")
-			}
+			
 		'''
 	}
 

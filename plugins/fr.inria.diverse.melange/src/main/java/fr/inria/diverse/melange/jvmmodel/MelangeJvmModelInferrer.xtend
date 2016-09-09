@@ -23,6 +23,7 @@ import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import fr.inria.diverse.melange.metamodel.melange.ExternalLanguage
 
 /**
  * Entry point for the generation of a JVM model from which Xtext will
@@ -134,7 +135,9 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 							"«l.fullyQualifiedName»", "«l.documentation?.replace("\"", "'")?.replace("\n", " ")»", "«l.syntax.rootPackageUri»", "«l.exactType.fullyQualifiedName»"
 						);
 						«FOR mt : l.^implements»
-							«l.name.toFirstLower».addAdapter("«mt.fullyQualifiedName»", «l.syntax.adapterNameFor(mt)».class);
+							«IF !(l instanceof ExternalLanguage && l.exactType == mt)»
+								«l.name.toFirstLower».addAdapter("«mt.fullyQualifiedName»", «l.syntax.adapterNameFor(mt)».class);
+							«ENDIF»
 						«ENDFOR»
 						«MelangeRegistry».INSTANCE.getLanguageMap().put(
 							"«l.fullyQualifiedName»",

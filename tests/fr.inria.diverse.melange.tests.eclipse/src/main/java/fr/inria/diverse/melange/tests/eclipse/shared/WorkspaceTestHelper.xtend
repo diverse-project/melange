@@ -55,6 +55,26 @@ import org.eclipse.xtext.ui.editor.outline.impl.OutlinePage
 import org.eclipse.xtext.ui.editor.utils.EditorUtils
 import org.eclipse.xtext.ui.resource.XtextResourceSetProvider
 import org.junit.Assert
+import org.eclipse.swt.widgets.Display
+import org.eclipse.pde.core.target.ITargetPlatformService
+import org.eclipse.pde.core.target.ITargetDefinition
+import org.eclipse.core.runtime.Platform
+import java.util.List
+import org.eclipse.pde.core.target.ITargetLocation
+import java.util.ArrayList
+import java.util.Set
+import java.io.File
+import java.util.HashSet
+import org.eclipse.osgi.internal.framework.EquinoxBundle
+import org.eclipse.osgi.storage.BundleInfo.Generation
+import org.eclipse.core.runtime.jobs.Job
+import org.eclipse.pde.core.target.LoadTargetDefinitionJob
+import org.eclipse.pde.internal.core.target.TargetPlatformService
+import org.osgi.framework.Bundle
+import org.eclipse.jdt.core.IJavaProject
+import org.eclipse.jdt.launching.JavaRuntime
+import java.net.URL
+import java.net.URLClassLoader
 
 class WorkspaceTestHelper {
 	static final String MELANGE_CMD_GENERATE_ALL        = "fr.inria.diverse.melange.GenerateAll"
@@ -68,8 +88,12 @@ class WorkspaceTestHelper {
 	@Inject XtextResourceSetProvider rsProvider
 
 	def void init() {
-		PlatformUI::workbench.showPerspective(JavaUI.ID_PERSPECTIVE, PlatformUI.workbench.activeWorkbenchWindow)
-		closeWelcomePage
+		Display.^default.syncExec(new Runnable(){
+				override run() {
+					PlatformUI::workbench.showPerspective(JavaUI.ID_PERSPECTIVE, PlatformUI.workbench.activeWorkbenchWindow)
+					closeWelcomePage
+				}
+			})
 	}
 
 	def IProject getProject(String projectName) {
@@ -148,6 +172,17 @@ class WorkspaceTestHelper {
 			]
 		]
 	}
+	
+	def void assertNoMarkers(String filename) {
+		val mlgFile = ResourcesPlugin::workspace.root.getFile(new Path(filename))
+		mlgFile.findMarkers(IMarker::PROBLEM, true, IResource::DEPTH_INFINITE).forEach[
+				println('''Found marker «getAttribute(IMarker::MESSAGE)» («getAttribute(IMarker::SEVERITY)»)''')
+				Assert.assertFalse(
+					"Unexpected marker: " + getAttribute(IMarker::MESSAGE),
+					getAttribute(IMarker::SEVERITY) == IMarker::SEVERITY_ERROR
+				)
+			]
+	}
 
 	def XtextEditor openEditor(String melangeFile) {
 		try {
@@ -207,6 +242,17 @@ class WorkspaceTestHelper {
 		val ws = ResourcesPlugin::workspace
 		Assert.assertTrue(
 			"Cannot find project " + project,
+			ws.root.getProject(project).exists
+		)
+	}
+	
+	/**
+	 * Check if {@link project} doesn't exist
+	 */
+	def void assertProjectDoesntExists(String project){
+		val ws = ResourcesPlugin::workspace
+		Assert.assertFalse(
+			"Can find project " + project,
 			ws.root.getProject(project).exists
 		)
 	}
@@ -295,9 +341,16 @@ class WorkspaceTestHelper {
 		if (!outputFile.exists)
 			outputFile.create(new ByteArrayInputStream("".bytes), true, null)
 
-		newLaunchConfig.launch(ILaunchManager::RUN_MODE, null)
-
-		Job::getJobManager.join(ResourcesPlugin::FAMILY_AUTO_BUILD, null)
+		val launch = newLaunchConfig.launch(ILaunchManager::RUN_MODE, null)
+		
+		val long TIMEOUT = 1000 * 60 * 5 // 5 minutes
+		val long startTime = System.currentTimeMillis();
+		while (!launch.isTerminated && System.currentTimeMillis() < (startTime + TIMEOUT)) {
+		    try {
+		        Thread.sleep(50);
+		    } catch (InterruptedException e) {
+		    }
+		}
 
 		outputFile.refreshLocal(IResource::DEPTH_ONE, null)
 
@@ -414,4 +467,76 @@ class WorkspaceTestHelper {
 		res.installDerivedState(false)
 		return res.contents.head as ModelTypingSpace
 	}
+	
+	def void debug(){
+		ResourcesPlugin::workspace.root.projects.forEach[project |
+	         println("Error markers: " + project.name)
+	         project.findMarkers(IMarker::PROBLEM, true, IResource::DEPTH_INFINITE).forEach[ marker |
+	             println("   Resource: " + marker.resource.name)
+	             println("   Location: " + marker.getAttribute(IMarker::LOCATION))
+	             println("   Message: " + marker.getAttribute(IMarker::MESSAGE) + "\n")
+	         ]
+	         
+	         println("\n")
+	         
+	         println("Classpath: " + project.name)
+		       val jProject = JavaCore.create(project)
+		       val cp = new StringBuffer
+		       jProject.getResolvedClasspath(false).forEach[entry|
+		           cp.append(" "+entry.path.toString+"\n")
+	       	]
+			val str = cp.toString
+			println(str)
+	     ]
+	}
+	
+	/**
+	 * Sets a target platform in the test platform to get workspace builds OK
+	 * with PDE
+	 * 
+	 * @throws Exception
+	 */
+	def void setTargetPlatform() throws Exception {
+		val ITargetPlatformService tpService = TargetPlatformService.getDefault();
+		val ITargetDefinition targetDef = tpService.newTarget();
+		targetDef.setName("Tycho platform");
+		val Bundle[] bundles = Platform.getBundle("org.eclipse.core.runtime").getBundleContext().getBundles();
+		val List<ITargetLocation> bundleContainers = new ArrayList<ITargetLocation>();
+		val Set<File> dirs = new HashSet<File>();
+		for (Bundle bundle : bundles) {
+			val EquinoxBundle bundleImpl = bundle as EquinoxBundle;
+			val Generation generation = bundleImpl.getModule().getCurrentRevision().getRevisionInfo() as Generation;
+			val File file = generation.getBundleFile().getBaseFile();
+			val File folder = file.getParentFile();
+			if (!dirs.contains(folder)) {
+				dirs.add(folder);
+				bundleContainers.add(tpService.newDirectoryLocation(folder.getAbsolutePath()));
+			}
+		}
+		val ITargetLocation[] bundleContainersArray = bundleContainers
+		targetDef.setTargetLocations(bundleContainersArray);
+		targetDef.setArch(Platform.getOSArch());
+		targetDef.setOS(Platform.getOS());
+		targetDef.setWS(Platform.getWS());
+		targetDef.setNL(Platform.getNL());
+		// targetDef.setJREContainer()
+		tpService.saveTargetDefinition(targetDef);
+
+		val Job job = new LoadTargetDefinitionJob(targetDef);
+		job.schedule();
+		job.join();
+	}
+	
+	def ClassLoader createClassLoader(IJavaProject project) {
+		val classPathEntries = JavaRuntime.computeDefaultRuntimeClassPath(project);
+		val urlList = new ArrayList<URL>();
+		for (var i = 0; i < classPathEntries.length; i++) {
+		 val entry = classPathEntries.get(i);
+		 val path = new Path(entry);
+		 val url = path.toFile().toURI().toURL();
+		 urlList.add(url);
+		}
+		val parentClassLoader = project.getClass().getClassLoader();
+		return new URLClassLoader(urlList, parentClassLoader);
+	}	
 }

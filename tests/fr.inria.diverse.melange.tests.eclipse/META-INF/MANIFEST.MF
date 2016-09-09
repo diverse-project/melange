@@ -2,23 +2,23 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Melange Eclipse Tests
 Bundle-SymbolicName: fr.inria.diverse.melange.tests.eclipse;singleton:=true
-Bundle-Version: 0.1.0.qualifier
+Bundle-Version: 0.2.0.qualifier
 Bundle-ActivationPolicy: lazy
 Require-Bundle: fr.inria.diverse.melange.ui,
  org.eclipse.xtext.junit4;bundle-version="[2.7.0,2.10.0)",
  org.eclipse.xtext.generator;bundle-version="[2.7.0,2.10.0)",
  org.eclipse.xtext.xbase.junit;bundle-version="[2.7.0,2.10.0)",
  fr.inria.diverse.melange.metamodel;bundle-version="0.1.0",
- org.eclipse.jdt.core;bundle-version="3.9.2",
  fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version="[3.1.0,3.3.0)",
  fr.inria.diverse.melange.tests;bundle-version="0.1.0",
- org.eclipse.jdt.launching;bundle-version="3.7.101",
- org.eclipse.debug.ui;bundle-version="3.10.1",
- org.eclipse.ui.ide;bundle-version="3.10.2",
  fr.inria.diverse.melange.tools.xtext.testing;bundle-version="0.1.0",
- org.eclipse.e4.ui.workbench;bundle-version="1.2.2",
- org.eclipse.core.expressions;bundle-version="3.4.600",
- org.eclipse.jdt.ui;bundle-version="3.10.2",
+ org.eclipse.jdt.core,
+ org.eclipse.jdt.launching,
+ org.eclipse.debug.ui,
+ org.eclipse.ui.ide,
+ org.eclipse.e4.ui.workbench,
+ org.eclipse.core.expressions,
+ org.eclipse.jdt.ui,
  org.junit;bundle-version="4.11.0",
  org.eclipse.emf.compare;bundle-version="3.1.0"
 Import-Package: org.hamcrest.core,

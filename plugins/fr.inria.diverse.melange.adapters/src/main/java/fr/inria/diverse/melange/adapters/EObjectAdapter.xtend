@@ -65,6 +65,10 @@ abstract class EObjectAdapter<E extends EObject> extends EObjectImpl implements 
 			}
 	}
 
+	override eAdapters() {
+		return adaptee.eAdapters
+	}
+
 	override toString() {
 		return '''Adap<«class.name»>@«Integer::toHexString(hashCode)»(«adaptee»)'''
 	}

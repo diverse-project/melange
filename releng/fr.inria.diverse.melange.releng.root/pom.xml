@@ -6,7 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fr.inria.diverse.melange</groupId>
 	<artifactId>fr.inria.diverse.melange.releng.root</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>0.2.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Melange Root Build Manager</name>
 	
@@ -26,7 +26,7 @@
 		<tycho.version>0.23.1</tycho.version>
 		<tycho-extras.version>0.23.1</tycho-extras.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<xtext.version>2.7.3</xtext.version>
+		<xtext.version>2.9.1</xtext.version>
 		<tycho.scmUrl>scm:git:https://github.com/diverse-project/melange.git</tycho.scmUrl>
 	</properties>
 
@@ -89,6 +89,20 @@
 				<artifactId>target-platform-configuration</artifactId>
 				<version>${tycho.version}</version>
 				<configuration>
+					<dependency-resolution>
+			         <extraRequirements>
+			            <requirement>
+			               <type>eclipse-feature</type>
+			               <id>org.eclipse.rcp</id>
+			               <versionRange>0.0.0</versionRange>
+			            </requirement>
+							<requirement>
+                        <type>eclipse-feature</type>
+                        <id>org.eclipse.xtext.sdk</id>
+                        <versionRange>0.0.0</versionRange>
+                     </requirement>
+			         </extraRequirements>
+			      </dependency-resolution>
 					<target>
 						<artifact>
 							<groupId>fr.inria.diverse.melange</groupId>

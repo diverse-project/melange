@@ -19,7 +19,7 @@ import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 @RunWith(XtextRunner)
 @InjectWith(MelangeUiInjectorProvider)
 @FixMethodOrder(MethodSorters::NAME_ASCENDING)
-public class SimpleFsmProject extends AbstractXtextTests
+public class SimpleFsmProjectTest extends AbstractXtextTests
 {
 	IProject melangeFsm
 	@Inject WorkspaceTestHelper helper
@@ -29,12 +29,13 @@ public class SimpleFsmProject extends AbstractXtextTests
 
 	@Before
 	override setUp() {
+		helper.setTargetPlatform
 		// We don't want to regenerate everything for each test
 		if (!helper.projectExists(PROJECT_NAME)) {
 			super.setUp
 			helper.init
 			IResourcesSetupUtil::cleanWorkspace
-			melangeFsm = helper.deployMelangeProject(PROJECT_NAME,
+			melangeFsm = helper.deployMelangeProject("SimpleFsmProject",
 				"tests-inputs/SimpleFsmProject.zip")
 			IResourcesSetupUtil::waitForAutoBuild
 			helper.openEditor(MELANGE_FILE)
@@ -46,6 +47,7 @@ public class SimpleFsmProject extends AbstractXtextTests
 	@After
 	override tearDown() {
 		// Nope
+//		helper.debug()
 	}
 
 	@Test
@@ -134,5 +136,4 @@ public class SimpleFsmProject extends AbstractXtextTests
 		helper.assertMatch("tests-inputs/modelTypes/TimedFsmMT.ecore", tfsmSyntax)
 		helper.assertMatch("tests-inputs/modelTypes/TimedFsmMT.ecore", tfsmMTSyntax)
 	}
-	
 }

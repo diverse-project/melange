@@ -198,7 +198,7 @@ class AspectToEcore
 											pp.upperBound = upperBP
 											pp.EType =
 												if (attrCls !== null)
-													aspTopPkg.getOrCreateClass(realTypeP.qualifiedName)
+													aspTopPkg.getOrCreateClass(attrCls.uniqueId)
 												else if (realTypeP instanceof JvmEnumerationType)
 													// FIXME: Ok for now, but we should also check literals values
 													aspTopPkg.getOrCreateEnum(realTypeP.simpleName,
@@ -214,7 +214,7 @@ class AspectToEcore
 							upperBound = upperB
 							EType =
 								if (retCls !== null)
-									aspTopPkg.getOrCreateClass(realType.qualifiedName)
+									aspTopPkg.getOrCreateClass(retCls.uniqueId)
 								else if (realType instanceof JvmEnumerationType)
 									// FIXME: Ok for now, but we should also check literals values
 									aspTopPkg.getOrCreateEnum(realType.simpleName,
@@ -268,6 +268,8 @@ class AspectToEcore
 										realType.qualifiedName)
 							upperBound = upperB
 							addAspectAnnotation
+							if(op.isContainment)
+								addContainmentAnnotation
 						]
 			}
 		]

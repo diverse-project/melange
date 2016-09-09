@@ -22,11 +22,22 @@ import com.google.common.collect.HashMultimap
 import java.util.List
 import java.util.ArrayList
 import java.util.Set
+import fr.inria.diverse.melange.resource.Activator
 
 class DozerLoader implements ExtensionsAwareLoader
 {
 	private EPackage pkgBase
 	private EPackage pkgExtended
+	
+	private DozerBeanMapper currentMapper 
+	
+	var MappingDirection currentMapperDirection = MappingDirection.NO_SET
+	var EPackage currentRequestedBase
+	var EPackage currentRequestedExtended
+	
+	enum MappingDirection {
+		NO_SET, BASE_TO_EXTENDED, EXTENTED_TO_BASE
+	}
 
 	override initialize(EPackage base, EPackage extended) {
 		pkgBase = base
@@ -41,8 +52,6 @@ class DozerLoader implements ExtensionsAwareLoader
 	}
 
 	override loadExtendedAsBase(String uri, boolean loadOnDemand) throws PackageCompatibilityException {
-		val mapper = new DozerBeanMapper
-		val builder = new ExtendedToBaseBuilder(pkgBase, pkgExtended)
 		val rs = new ResourceSetImpl
 		val res = loadModel(uri, loadOnDemand) // Just propagate thrown exceptions if any
 		val newRes = rs.createResource(URI::createURI(uri))
@@ -57,7 +66,7 @@ class DozerLoader implements ExtensionsAwareLoader
 
 		// Use Dozer to map a new graph of instances
 		// in the newly created resource
-		mapper.addMapping(builder)
+		val mapper = getMapper(MappingDirection.EXTENTED_TO_BASE, pkgBase, pkgExtended)
 		res.contents.forEach[o |
 			newRes.contents += mapper.map(o, pkgBase.eAllContents.filter(EClassifier).findFirst[name == o.eClass.name].implementationClass) as EObject
 		]
@@ -66,8 +75,7 @@ class DozerLoader implements ExtensionsAwareLoader
 	}
 
 	override loadBaseAsExtended(String uri, boolean loadOnDemand) throws PackageCompatibilityException {
-		val mapper = new DozerBeanMapper
-		val builder = new BaseToExtendedBuilder(pkgBase, pkgExtended)
+		
 		val rs = new ResourceSetImpl
 		val res = loadModel(uri, loadOnDemand) // Just propagate thrown exceptions if any
 		val newRes = rs.createResource(URI::createURI(uri))
@@ -77,7 +85,7 @@ class DozerLoader implements ExtensionsAwareLoader
 		if (root.eClass.EPackage != pkgBase)
 			throw new PackageCompatibilityException('''«uri» doesn't conform to the base metamodel''')
 
-		mapper.addMapping(builder)
+		val mapper = getMapper(MappingDirection.BASE_TO_EXTENDED, pkgBase, pkgExtended)		
 		res.contents.forEach[o |
 			newRes.contents += mapper.map(o, pkgExtended.eAllContents.filter(EClassifier).findFirst[name == o.eClass.name].implementationClass) as EObject
 		]
@@ -111,13 +119,11 @@ class DozerLoader implements ExtensionsAwareLoader
 		val resourceSet = new ResourceSetImpl
 
 		val basePackage = baseResource.contents.head.eClass.EPackage
-		val mapper = new DozerBeanMapper
-		val builder = new BaseToExtendedBuilder(basePackage, expectedPackage)
-
+		
 		val extendedURI = URI.createURI("modelAsExtended")
 		val extendedResource = resourceSet.createResource(extendedURI)
 
-		mapper.addMapping(builder)
+		val mapper = getMapper(MappingDirection.BASE_TO_EXTENDED, basePackage, pkgExtended)		
 		baseResource.getContents().forEach[o |
 			extendedResource.getContents() += mapper.map(o, expectedPackage.eAllContents.filter(EClassifier).findFirst[name == o.eClass.name].implementationClass) as EObject
 		]
@@ -147,6 +153,36 @@ class DozerLoader implements ExtensionsAwareLoader
 			.map[EcoreUtil::copy(it)] // sigh
 			.forEach[EcoreUtil::delete(it)]
 	}
+	
+	
+	/**
+	 * do not create a dozer mapper for every call, use a cache 
+	 * Invalidate the mapper if the base and extended packages changes or if the mapping direction changes
+	 */
+	private def DozerBeanMapper getMapper(MappingDirection requestedDirection, EPackage requestedBase, EPackage requestedExtented){
+		if(currentMapperDirection == requestedDirection && 
+			currentRequestedBase == requestedBase && 
+			currentRequestedExtended == requestedExtented)
+		{
+			return currentMapper
+		} else {
+			// create a new mapper with the required mapping
+			currentMapper = new DozerBeanMapper
+			currentMapperDirection =  requestedDirection
+			currentRequestedBase = requestedBase
+			currentRequestedExtended = requestedExtented
+			switch requestedDirection{
+				case MappingDirection.BASE_TO_EXTENDED :
+					currentMapper.addMapping(new BaseToExtendedBuilder(requestedBase, requestedExtented))
+				case MappingDirection.EXTENTED_TO_BASE :
+					currentMapper.addMapping(new ExtendedToBaseBuilder(requestedBase, requestedExtented))
+				default: {
+					}
+				
+			}
+			return currentMapper
+		}
+	}
 }
 
 class ExtendedToBaseBuilder extends BeanMappingBuilder
@@ -161,6 +197,7 @@ class ExtendedToBaseBuilder extends BeanMappingBuilder
 
 	override protected configure() {
 		val classLoader = new OsgiDozerClassLoader
+		//val  classLoader = Activator.context.class.getClassLoader()
 		BeanContainer.getInstance.classLoader = classLoader
 
 		pkgBase.EClassifiers.filter(EClass).forEach[cls |

@@ -161,7 +161,7 @@ class EcoreExtensions
 	}
 	
 	def EClass findClass(Set<EPackage> pkgs, String clsName) {
-		return pkgs.map[findClass(it,clsName)].head
+		return pkgs.map[findClass(it,clsName)].filterNull.head
 	}
 
 	/**
@@ -199,17 +199,11 @@ class EcoreExtensions
 		if(qualifiedClsName.startsWith(rootName+"."))
 			return rootPkg.allClasses.findFirst[getUniqueId == qualifiedClsName]
 		
-		// Remove first packages corresponding to the prefix from the GenModel
-		val rootNamePos = qualifiedClsName.indexOf("."+rootName+".")
-		if(rootNamePos == -1)
-			return null
-		val fullEClassName = qualifiedClsName.substring(rootNamePos+1)
-		
-		return rootPkg.allClasses.findFirst[getUniqueId == fullEClassName]
+		return rootPkg.allClasses.findFirst[qualifiedClsName.endsWith(getUniqueId)]
 	}
 
 	def EClassifier findClassifier(Set<EPackage> pkgs, String clsName) {
-		return pkgs.map[findClassifier(it,clsName)].head
+		return pkgs.map[findClassifier(it,clsName)].filterNull.head
 	}
 	
 	/**
@@ -243,13 +237,7 @@ class EcoreExtensions
 		if(qualifiedClsName.startsWith(rootName+"."))
 			return rootPkg.allClassifiers.findFirst[getUniqueId == qualifiedClsName]
 		
-		// Remove first packages corresponding to the prefix from the GenModel
-		val rootNamePos = qualifiedClsName.indexOf("."+rootName+".")
-		if(rootNamePos == -1)
-			return null
-		val fullEClassName = qualifiedClsName.substring(rootNamePos+1)
-		
-		return rootPkg.allClassifiers.findFirst[getUniqueId == fullEClassName]
+		return rootPkg.allClassifiers.findFirst[qualifiedClsName.endsWith(getUniqueId)]
 	}
 
 	def List<EClassifier> getAllClassifiers(List<EPackage> pkgs) {
@@ -292,6 +280,16 @@ class EcoreExtensions
 		e.EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [
 			source = "aspect"
 		]
+	}
+	
+	def void addContainmentAnnotation(EModelElement e) {
+		e.EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [
+			source = "containment"
+		]
+	}
+	
+	def boolean hasContainmentAnnotation(EModelElement e) {
+		return e.EAnnotations.exists[source == "containment"]
 	}
 
 	def boolean hasSuppressedVisibility(ENamedElement f) {
@@ -636,6 +634,10 @@ class EcoreExtensions
 					ref.upperBound = attr.upperBound
 					ref.EType = replacement
 				]
+				if(attr.isAspectSpecific)
+					featureReplacement.addAspectAnnotation
+				if(attr.hasContainmentAnnotation)
+					featureReplacement.containment = true
 				EcoreUtil::replace(attr, featureReplacement)
 			}
 		]

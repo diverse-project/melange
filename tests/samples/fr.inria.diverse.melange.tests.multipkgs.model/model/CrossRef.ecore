@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="rootpkg" nsURI="http://rootpkg" nsPrefix="rootpkg">
+  <eClassifiers xsi:type="ecore:EClass" name="NewClass">
+    <eSuperTypes href="OneClass.ecore#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toSubpkg2Class1">
+      <eType xsi:type="ecore:EClass" href="PackagesTest.ecore#//subpkg2/Subpkg2Class1"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+</ecore:EPackage>

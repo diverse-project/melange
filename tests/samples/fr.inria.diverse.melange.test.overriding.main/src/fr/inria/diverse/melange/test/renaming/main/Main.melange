@@ -20,6 +20,12 @@ language L1 {
 	exactType L1mt
 }
 
+language L4 {
+	syntax "platform:/resource/fr.inria.diverse.melange.test.overriding.model/model/model.ecore"
+	with Asp4
+	exactType L4mt
+}
+
 language L2 inherits L0,L1{
 	with Asp2
 	exactType L2mt
@@ -40,12 +46,6 @@ language L3b inherits L2{
 	exactType L3bmt
 }
 
-language L4 {
-	syntax "platform:/resource/fr.inria.diverse.melange.test.overriding.model/model/model.ecore"
-	with Asp4
-	exactType L4mt
-}
-
 transformation execute(L0mt m) {
 	val root = m.contents.head as fr.inria.diverse.melange.test.overridding.l0mt.root.A
 	println(root.whoIAm)
@@ -54,12 +54,12 @@ transformation execute(L0mt m) {
 @Main
 transformation main() {
 	val m0  = L0.load("inputs/testModel_L0.root")
-	val m1  = L1.load("inputs/testModel_L0.root")
+	val m1  = L1.load("inputs/testModel_L1.root")
 	val m2  = L2.load("inputs/testModel_L2.root")
 	val m2b = L2b.load("inputs/testModel_L2b.root")
 	val m3  = L3.load("inputs/testModel_L3.root")
 	val m3b = L3b.load("inputs/testModel_L3b.root")
-	val m4  = L4.load("inputs/testModel_L0.root")
+	val m4  = L4.load("inputs/testModel_L4.root")
 
 	execute.call(m0.toL0mt)
 	execute.call(m1.toL0mt)

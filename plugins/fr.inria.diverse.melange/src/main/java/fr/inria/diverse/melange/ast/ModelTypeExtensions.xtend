@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.emf.ecore.resource.Resource
+import fr.inria.diverse.melange.metamodel.melange.ExternalLanguage
 
 /**
  * A collection of utilities around {@link ModelType}s
@@ -46,6 +47,12 @@ class ModelTypeExtensions
 	 */
 	def String getInferredEcoreUri(ModelType mt) {
 		val project = mt.eResource.project
+		
+		if(project === null){
+			println("Can't initialize exactType for " + mt.extracted.name + " (Eclipse environment required)")
+			return null
+		}
+		
 		return '''platform:/resource/«project.name»/model-gen/«mt.name».ecore'''
 	}
 
@@ -213,6 +220,14 @@ class ModelTypeExtensions
 	 */
 	def boolean isExtracted(ModelType mt) {
 		return mt.extracted !== null
+	}
+	
+	/**
+	 * Return true if the {@link ModelType} {@code mt} is extracted from
+	 * an external {@link Language}
+	 */
+	def boolean isExternal(ModelType mt) {
+		return mt.isExtracted && mt.extracted instanceof ExternalLanguage
 	}
 
 	/**

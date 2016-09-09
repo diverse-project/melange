@@ -21,20 +21,25 @@ public class SlicingTest extends AbstractXtextTests
 	static final String PROJECT_1 = "fr.inria.diverse.test.slicing.main.slicebaselang"
 	
 	override void setUp() throws Exception {
-		super.setUp
-		helper.init
-		IResourcesSetupUtil::cleanWorkspace
-		
-		helper.deployMelangeProject("fr.inria.diverse.melange.test.slicing.aspects", "tests-inputs/fr.inria.diverse.melange.test.slicing.aspects.zip")
-		helper.deployMelangeProject("fr.inria.diverse.melange.test.slicing.model", "tests-inputs/fr.inria.diverse.melange.test.slicing.model.zip")
-		helper.deployMelangeProject("fr.inria.diverse.melange.test.slicing.main", "tests-inputs/fr.inria.diverse.melange.test.slicing.main.zip")
-		
-		IResourcesSetupUtil::waitForAutoBuild
+		helper.setTargetPlatform
+		if (!helper.projectExists("fr.inria.diverse.melange.test.slicing.main")) {
+			super.setUp
+			helper.init
+			IResourcesSetupUtil::cleanWorkspace
+			
+			helper.deployMelangeProject("fr.inria.diverse.melange.test.slicing.aspects", "tests-inputs/fr.inria.diverse.melange.test.slicing.aspects.zip")
+			helper.deployMelangeProject("fr.inria.diverse.melange.test.slicing.model", "tests-inputs/fr.inria.diverse.melange.test.slicing.model.zip")
+			helper.deployMelangeProject("fr.inria.diverse.melange.test.slicing.main", "tests-inputs/fr.inria.diverse.melange.test.slicing.main.zip")
+			
+			IResourcesSetupUtil::waitForAutoBuild
+			helper.openEditor(MELANGE_FILE)
+		}
 	}
 
 	@Test
 	def void testNoErrorsInWorkspace() {
 		helper.generateLanguages(MELANGE_FILE)
+		IResourcesSetupUtil::waitForAutoBuild
 		helper.assertNoMarkers
 		
 		helper.assertProjectExists(PROJECT_1)

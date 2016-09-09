@@ -5,13 +5,17 @@ import fr.inria.diverse.melange.resource.MelangeRegistry
 import fr.inria.diverse.melange.resource.MelangeResourceException
 import fr.inria.diverse.melange.resource.MelangeResourceImpl
 import fr.inria.diverse.melange.tests.common.MelangeTestHelper
+import org.eclipse.emf.common.notify.Notification
+import org.eclipse.emf.common.notify.impl.AdapterImpl
 import org.eclipse.emf.common.util.Diagnostic
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.Diagnostician
+import org.eclipse.emf.ecore.util.EContentAdapter
 import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.emf.ecore.xmi.XMIResource
 import org.junit.Before
 import org.junit.Test
 import simplefsmtest.StandaloneSetup
@@ -124,6 +128,65 @@ class ResourceTest
 	@Test
 	def void testEListContainsEObject() {
 		assertTrue(root.ownedState.contains(root.ownedState.head))
+	}
+
+	@Test
+	def void testNotifyEObject1() {
+		val notifiers = newArrayList
+		val adap = new AdapterImpl {
+			override notifyChanged(Notification notif) {
+				notifiers += notif.notifier
+			}
+		}
+		root.eAdapters += adap
+		root.ownedState.clear
+
+		assertEquals(1, notifiers.size)
+		assertTrue(notifiers.head instanceof fsm.FSM)
+	}
+
+	@Test
+	def void testNotifyEObject2() {
+		val notifiers = newArrayList
+		val adap = new EContentAdapter {
+			override notifyChanged(Notification notif) {
+				notifiers += notif.notifier
+			}
+		}
+		root.eAdapters += adap
+		root.ownedState.clear
+
+		assertEquals(5, notifiers.size)
+	}
+
+	@Test
+	def void testNotifyResource1() {
+		val notifiers = newArrayList
+		val adap = new AdapterImpl {
+			override notifyChanged(Notification notif) {
+				notifiers += notif.notifier
+			}
+		}
+		root.eResource.eAdapters += adap
+		root.eResource.URI = URI.createURI("changed")
+
+		assertEquals(1, notifiers.size)
+		assertTrue(notifiers.head instanceof XMIResource)
+	}
+
+	@Test
+	def void testNotifyResource2() {
+		val notifiers = newArrayList
+		val adap = new EContentAdapter {
+			override notifyChanged(Notification notif) {
+				notifiers += notif.notifier
+			}
+		}
+		root.eResource.eAdapters += adap
+		root.eResource.URI = URI.createURI("changed")
+
+		assertEquals(1, notifiers.size)
+		assertTrue(notifiers.head instanceof XMIResource)
 	}
 
 	@Test

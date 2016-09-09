@@ -1,0 +1,17 @@
+package fr.inria.diverse.melange.test.subpackages
+
+language SubPackagesTest {
+	syntax "platform:/resource/fr.inria.diverse.melange.test.subpackages.main/metamodel/PackagesTest.ecore"
+	exactType SubPackagesTestMT
+}
+
+transformation String adapterName(SubPackagesTestMT m) {
+	return m.contents.head.toString
+}
+
+transformation SubPackagesTestMT loadTopPkg()  { return SubPackagesTest.load("platform:/resource/fr.inria.diverse.melange.test.subpackages.main/models/Simple.toppkg") }
+transformation SubPackagesTestMT loadSubPkg2() { return SubPackagesTest.load("platform:/resource/fr.inria.diverse.melange.test.subpackages.main/models/Simple.subpkg2") }
+transformation SubPackagesTestMT loadSubPkg3() { return SubPackagesTest.load("platform:/resource/fr.inria.diverse.melange.test.subpackages.main/models/Simple.subpkg3") }
+
+@Main
+transformation test() {}

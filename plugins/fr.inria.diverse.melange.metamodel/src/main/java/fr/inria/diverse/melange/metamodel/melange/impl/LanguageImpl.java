@@ -54,6 +54,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getXtext <em>Xtext</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getSirius <em>Sirius</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getEcl <em>Ecl</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getXmof <em>Xmof</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getFileExtension <em>File Extension</em>}</li>
  * </ul>
  *
@@ -249,6 +250,26 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 	 * @ordered
 	 */
 	protected EList<String> ecl;
+
+	/**
+	 * The default value of the '{@link #getXmof() <em>Xmof</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getXmof()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String XMOF_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getXmof() <em>Xmof</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getXmof()
+	 * @generated
+	 * @ordered
+	 */
+	protected String xmof = XMOF_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getFileExtension() <em>File Extension</em>}' attribute.
@@ -620,6 +641,27 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getXmof() {
+		return xmof;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setXmof(String newXmof) {
+		String oldXmof = xmof;
+		xmof = newXmof;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.LANGUAGE__XMOF, oldXmof, xmof));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getFileExtension() {
 		return fileExtension;
 	}
@@ -726,6 +768,8 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 				return getSirius();
 			case MelangePackage.LANGUAGE__ECL:
 				return getEcl();
+			case MelangePackage.LANGUAGE__XMOF:
+				return getXmof();
 			case MelangePackage.LANGUAGE__FILE_EXTENSION:
 				return getFileExtension();
 		}
@@ -794,6 +838,9 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 				getEcl().clear();
 				getEcl().addAll((Collection<? extends String>)newValue);
 				return;
+			case MelangePackage.LANGUAGE__XMOF:
+				setXmof((String)newValue);
+				return;
 			case MelangePackage.LANGUAGE__FILE_EXTENSION:
 				setFileExtension((String)newValue);
 				return;
@@ -854,6 +901,9 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 			case MelangePackage.LANGUAGE__ECL:
 				getEcl().clear();
 				return;
+			case MelangePackage.LANGUAGE__XMOF:
+				setXmof(XMOF_EDEFAULT);
+				return;
 			case MelangePackage.LANGUAGE__FILE_EXTENSION:
 				setFileExtension(FILE_EXTENSION_EDEFAULT);
 				return;
@@ -899,6 +949,8 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 				return sirius != null && !sirius.isEmpty();
 			case MelangePackage.LANGUAGE__ECL:
 				return ecl != null && !ecl.isEmpty();
+			case MelangePackage.LANGUAGE__XMOF:
+				return XMOF_EDEFAULT == null ? xmof != null : !XMOF_EDEFAULT.equals(xmof);
 			case MelangePackage.LANGUAGE__FILE_EXTENSION:
 				return FILE_EXTENSION_EDEFAULT == null ? fileExtension != null : !FILE_EXTENSION_EDEFAULT.equals(fileExtension);
 		}
@@ -929,6 +981,8 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 		result.append(sirius);
 		result.append(", ecl: ");
 		result.append(ecl);
+		result.append(", xmof: ");
+		result.append(xmof);
 		result.append(", fileExtension: ");
 		result.append(fileExtension);
 		result.append(')');

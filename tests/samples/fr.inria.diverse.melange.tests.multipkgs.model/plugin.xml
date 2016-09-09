@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated PackagesTest -->
+      <package
+            uri="http://toppkg"
+            class="toppkg.ToppkgPackage"
+            genModel="model/PackagesTest.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated PackagesTest -->
+      <package
+            uri="http://subpkg1"
+            class="toppkg.subpkg1.Subpkg1Package"
+            genModel="model/PackagesTest.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated PackagesTest -->
+      <package
+            uri="http://subpkg2"
+            class="toppkg.subpkg2.Subpkg2Package"
+            genModel="model/PackagesTest.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated PackagesTest -->
+      <package
+            uri="http://subpkg3"
+            class="toppkg.subpkg2.subpkg3.Subpkg3Package"
+            genModel="model/PackagesTest.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated OneClass -->
+      <package
+            uri="http://oneclass"
+            class="root.RootPackage"
+            genModel="model/OneClass.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated CrossRef -->
+      <package
+            uri="http://rootpkg"
+            class="rootpkg.RootpkgPackage"
+            genModel="model/CrossRef.genmodel"/>
+   </extension>
+
+</plugin>

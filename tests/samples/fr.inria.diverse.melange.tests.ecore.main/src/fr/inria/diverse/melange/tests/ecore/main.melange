@@ -1,0 +1,16 @@
+package fr.inria.diverse.melange.tests.ecore
+
+language Ecore {
+	syntax "platform:/resource/fr.inria.diverse.melange.tests.ecore.main/metamodel/Ecore.ecore"
+	exactType EcoreMT
+}
+
+transformation int testListClassifiersCount(EcoreMT m) {
+	val root = m.contents.head as fr.inria.diverse.melange.tests.ecore.ecoremt.ecore.EPackage
+	return root.EClassifiers.size
+}
+
+transformation EcoreMT loadEcore() { return Ecore.load("models/FSM.ecore") }
+
+@Main
+transformation test() {}

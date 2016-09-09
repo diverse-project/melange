@@ -222,6 +222,15 @@ public class MelangeSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MelangePackage.EXTERNAL_LANGUAGE: {
+				ExternalLanguage externalLanguage = (ExternalLanguage)theEObject;
+				T result = caseExternalLanguage(externalLanguage);
+				if (result == null) result = caseLanguage(externalLanguage);
+				if (result == null) result = caseNamedElement(externalLanguage);
+				if (result == null) result = caseElement(externalLanguage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -553,6 +562,21 @@ public class MelangeSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNamedElement(NamedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>External Language</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>External Language</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExternalLanguage(ExternalLanguage object) {
 		return null;
 	}
 

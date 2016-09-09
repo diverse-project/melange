@@ -15,6 +15,7 @@ class RenamingRuleManager{
 	
 	extension AspectExtensions aspectExtension
 	
+	var List<PackageBinding> sourceBinding  
 	val List<Pair<String,String>> classRules = newArrayList
 	val List<Pair<String,String>> packageRules = newArrayList
 	val List<Pair<String,String>> propertiesRules = newArrayList
@@ -35,6 +36,7 @@ class RenamingRuleManager{
 	 */
 	def void storeRenamingRules(List<PackageBinding> renamingRules){
 		if(renamingRules !== null){
+			sourceBinding = renamingRules
 			renamingRules.forEach[packRule |
 				packageRules += packRule.from -> packRule.to
 				packRule.classes.forEach[classRule |

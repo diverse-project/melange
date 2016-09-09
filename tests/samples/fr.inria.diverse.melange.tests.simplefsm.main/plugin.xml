@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.4"?><plugin>
+  <extension point="fr.inria.diverse.melange.modeltype">
+    <modeltype id="fr.inria.diverse.melange.tests.simplefsm.FsmMT" uri="http://fsmmt/"/>
+    <modeltype id="fr.inria.diverse.melange.tests.simplefsm.TimedFsmMT" uri="http://timedfsmmt/">
+      <subtyping modeltypeId="fr.inria.diverse.melange.tests.simplefsm.FsmMT"/>
+    </modeltype>
+  </extension>
+  <extension point="fr.inria.diverse.melange.language">
+    <language aspects="" entryPoints="" exactType="fr.inria.diverse.melange.tests.simplefsm.FsmMT" id="fr.inria.diverse.melange.tests.simplefsm.Fsm" uri="http://fsm/fsm/">
+      <adapter class="fr.inria.diverse.melange.tests.simplefsm.fsm.adapters.fsmmt.FsmAdapter" modeltypeId="fr.inria.diverse.melange.tests.simplefsm.FsmMT"/>
+    </language>
+    <language aspects="" entryPoints="" exactType="fr.inria.diverse.melange.tests.simplefsm.TimedFsmMT" id="fr.inria.diverse.melange.tests.simplefsm.TimedFsm" uri="http://timedfsm/fsm/">
+      <adapter class="fr.inria.diverse.melange.tests.simplefsm.timedfsm.adapters.fsmmt.TimedFsmAdapter" modeltypeId="fr.inria.diverse.melange.tests.simplefsm.FsmMT"/>
+      <adapter class="fr.inria.diverse.melange.tests.simplefsm.timedfsm.adapters.timedfsmmt.TimedFsmAdapter" modeltypeId="fr.inria.diverse.melange.tests.simplefsm.TimedFsmMT"/>
+    </language>
+  </extension>
+</plugin>

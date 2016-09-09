@@ -1,0 +1,19 @@
+package fr.inria.diverse.melange.tests.multipkgs.main
+
+language RootLang {
+	syntax "tests-inputs/metamodels/PackagesTest2.ecore"
+}
+
+language XRootLang inherits RootLang {
+	with fr.inria.diverse.melange.tests.multipkgs.aspects.TopClassAAspect
+	with fr.inria.diverse.melange.tests.multipkgs.aspects.SubClassAAspect
+}
+
+language MultiRootLang {
+	syntax "tests-inputs/metamodels/PackagesTest2.ecore"
+	syntax "tests-inputs/metamodels/OneClass.ecore"
+}
+
+language CrossRefLang {
+	syntax "tests-inputs/metamodels/CrossRef.ecore"
+}

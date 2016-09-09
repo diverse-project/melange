@@ -15,6 +15,7 @@ import org.eclipse.xtext.util.internal.Stopwatches
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import fr.inria.diverse.melange.metamodel.melange.ExternalLanguage
 
 /**
  * Generates the Java runtime support for each {@link Language}.
@@ -69,7 +70,9 @@ class LanguageInferrer
 			// For each implemented model type, generate a to$MTName() method
 			// that encapsulates the current resource in the appropriate
 			// adapter for MT
-			l.^implements.forEach[mt |
+			l.^implements
+			.filter[mt | !(l instanceof ExternalLanguage && l.exactType == mt)]
+			.forEach[mt |
 				val mtFqn = mt.fullyQualifiedName.toString
 				val adapName = l.syntax.adapterNameFor(mt)
 
@@ -104,7 +107,10 @@ class LanguageInferrer
 		// Delegates the generation of Java adapters to LanguageAdapterInferrer
 		// for each implemented model type
 		l.^implements.forEach[mt |
-			l.generateAdapter(mt, acceptor, builder)
+			// We don't adapt ExternalLanguage.syntax to ExternalLanguage.exactType
+			// because they are the same
+			if(!(l instanceof ExternalLanguage && l.exactType == mt))
+				l.generateAdapter(mt, acceptor, builder)
 		]
 
 		task.stop

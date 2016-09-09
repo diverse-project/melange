@@ -4,17 +4,3 @@ language $metamodelName$ {
 	syntax "platform:/resource/$ecoreFilePath$"
 	exactType $metamodelName$MT
 }
-
-
-transformation foo($metamodelName$MT model) {
-	val root = model.contents.head
-
-	print("root: " + root)
-}
-
-@Main
-transformation main() {
-	val m1 = $metamodelName$.load("input/Simple.xmi")
-	
-	foo.call(m1)
-}

@@ -165,6 +165,9 @@ class PackageMergeMerger implements EcoreMerger {
 	}
 
 	override merge(Set<EPackage> receiving, Set<EPackage> merged) {
+		conflicts = newArrayList
+		val allConflicts = newHashSet
+		
 		merged.forEach[mergedPkg |
 			val correspondingPkg = receiving.findFirst[doMatch(mergedPkg)]
 
@@ -172,9 +175,12 @@ class PackageMergeMerger implements EcoreMerger {
 				merge(correspondingPkg, mergedPkg)
 			else
 				receiving += EcoreUtil::copy(mergedPkg)
+				
+			allConflicts.addAll(getConflicts())
 		]
-
+ 
 		receiving.updateReferences
+		conflicts = allConflicts.toList
 
 		return receiving
 	}

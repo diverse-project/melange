@@ -23,6 +23,8 @@ import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.validation.Check
+import fr.inria.diverse.melange.metamodel.melange.Operator
+import fr.inria.diverse.melange.metamodel.melange.ExternalLanguage
 
 class MelangeValidator extends AbstractMelangeValidator
 {
@@ -146,6 +148,18 @@ class MelangeValidator extends AbstractMelangeValidator
 	}
 
 	@Check
+	def void checkLanguageOperatorIsAllowed(LanguageOperator o) {
+		val lang = o.eContainer as Language
+		if (lang instanceof ExternalLanguage){
+			error(
+				'''Language operator «o.eClass.name» is no allowed in external languages (ie.legacy)''',
+				MelangePackage.Literals.LANGUAGE_OPERATOR__TARGET_LANGUAGE,
+				MelangeValidationConstants.LANGUAGEOPERATOR_INVALID
+			)
+		}
+	}
+	
+	@Check
 	def void checkImportIsValid(Import i) {
 		try {
 			val lang = i.eContainer as Language
@@ -259,6 +273,13 @@ class MelangeValidator extends AbstractMelangeValidator
 	def void checkAspectAnnotationIsValid(Aspect asp) {
 		val clsName = asp.aspectTypeRef.aspectAnnotationValue
 		val lang = asp.eContainer as Language
+		if (lang instanceof ExternalLanguage){
+			error(
+				'''aspect weaving is not allowed in external languages (ie.legacy)''',
+				MelangePackage.Literals.WEAVE__ASPECT_TYPE_REF,
+				MelangeValidationConstants.LANGUAGEOPERATOR_INVALID
+			)
+		}
 		val correspondingWeave =
 			lang.operators
 			.filter(Weave)

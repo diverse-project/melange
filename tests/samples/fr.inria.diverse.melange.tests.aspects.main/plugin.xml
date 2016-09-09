@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.4"?><plugin>
+  <extension point="fr.inria.diverse.melange.modeltype">
+    <modeltype id="fr.inria.diverse.melange.tests.aspects.FsmMT" uri="http://fsmmt/"/>
+    <modeltype id="fr.inria.diverse.melange.tests.aspects.TimedFsmMT" uri="http://timedfsmmt/">
+      <subtyping modeltypeId="fr.inria.diverse.melange.tests.aspects.FsmMT"/>
+    </modeltype>
+    <modeltype id="fr.inria.diverse.melange.tests.aspects.IncompatibleFsmMT" uri="http://incompatiblefsmmt/"/>
+  </extension>
+  <extension point="fr.inria.diverse.melange.language">
+    <language aspects="State:fr.inria.diverse.melange.tests.aspects.fsm.aspects.StateAspect1" entryPoints="" exactType="fr.inria.diverse.melange.tests.aspects.FsmMT" id="fr.inria.diverse.melange.tests.aspects.Fsm" uri="http://fsm/fsm/">
+      <adapter class="fr.inria.diverse.melange.tests.aspects.fsm.adapters.fsmmt.FsmAdapter" modeltypeId="fr.inria.diverse.melange.tests.aspects.FsmMT"/>
+    </language>
+    <language aspects="State:fr.inria.diverse.melange.tests.aspects.timedfsm.aspects.StateAspect2" entryPoints="" exactType="fr.inria.diverse.melange.tests.aspects.TimedFsmMT" id="fr.inria.diverse.melange.tests.aspects.TimedFsm" uri="http://timedfsm/fsm/">
+      <adapter class="fr.inria.diverse.melange.tests.aspects.timedfsm.adapters.fsmmt.TimedFsmAdapter" modeltypeId="fr.inria.diverse.melange.tests.aspects.FsmMT"/>
+      <adapter class="fr.inria.diverse.melange.tests.aspects.timedfsm.adapters.timedfsmmt.TimedFsmAdapter" modeltypeId="fr.inria.diverse.melange.tests.aspects.TimedFsmMT"/>
+    </language>
+    <language aspects="State:fr.inria.diverse.melange.tests.aspects.incompatiblefsm.aspects.StateAspect3" entryPoints="" exactType="fr.inria.diverse.melange.tests.aspects.IncompatibleFsmMT" id="fr.inria.diverse.melange.tests.aspects.IncompatibleFsm" uri="http://incompatiblefsm/fsm/">
+      <adapter class="fr.inria.diverse.melange.tests.aspects.incompatiblefsm.adapters.incompatiblefsmmt.IncompatibleFsmAdapter" modeltypeId="fr.inria.diverse.melange.tests.aspects.IncompatibleFsmMT"/>
+    </language>
+  </extension>
+</plugin>

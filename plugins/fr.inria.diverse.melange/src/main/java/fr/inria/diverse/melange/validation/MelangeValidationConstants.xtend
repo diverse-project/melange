@@ -76,4 +76,6 @@ class MelangeValidationConstants
 		"LANGUAGE_NO_MAIN"
 	public static final String MODELTYPE_NAME_INVALID =
 		"MODELTYPE_NAME_INVALID"
+	public static final String LANGUAGEOPERATOR_INVALID =
+		"LANGUAGEOPERATOR_INVALID"		
 }

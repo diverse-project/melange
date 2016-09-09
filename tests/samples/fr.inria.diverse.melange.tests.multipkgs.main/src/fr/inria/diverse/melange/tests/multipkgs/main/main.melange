@@ -1,0 +1,27 @@
+package fr.inria.diverse.melange.tests.multipkgs.main
+
+language RootLang {
+	syntax "platform:/resource/fr.inria.diverse.melange.tests.multipkgs.model/model/PackagesTest.ecore"
+}
+
+language XRootLang inherits RootLang {
+	with fr.inria.diverse.melange.tests.multipkgs.aspects.TopClassAAspect
+	with fr.inria.diverse.melange.tests.multipkgs.aspects.TopClass1Aspect
+	with fr.inria.diverse.melange.tests.multipkgs.aspects.TopClass2Aspect
+	with fr.inria.diverse.melange.tests.multipkgs.aspects.Subpkg1Class1Aspect
+	with fr.inria.diverse.melange.tests.multipkgs.aspects.Subpkg1Class2Aspect
+	with fr.inria.diverse.melange.tests.multipkgs.aspects.Subpkg2Class1Aspect
+	with fr.inria.diverse.melange.tests.multipkgs.aspects.Subpkg2Class2Aspect
+	with fr.inria.diverse.melange.tests.multipkgs.aspects.Subpkg3Class1Aspect
+	with fr.inria.diverse.melange.tests.multipkgs.aspects.Subpkg3Class2Aspect
+	with fr.inria.diverse.melange.tests.multipkgs.aspects.SubClassAAspect
+}
+
+language MultiRootLang {
+	syntax "platform:/resource/fr.inria.diverse.melange.tests.multipkgs.model/model/PackagesTest.ecore"
+	syntax "platform:/resource/fr.inria.diverse.melange.tests.multipkgs.model/model/OneClass.ecore"
+}
+
+language CrossRefLang {
+	syntax "platform:/resource/fr.inria.diverse.melange.tests.multipkgs.model/model/CrossRef.ecore"
+}

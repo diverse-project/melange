@@ -120,7 +120,10 @@ public class SimpleMTTemplate extends MelangeTemplateSection {
 					SimpleMTTemplate.this.ecoreIFile = files[0];
 					//txtPathEcore.setText(files[i].getFullPath().toOSString());
 					SimpleMTTemplate.this.ecoreProjectPath = files[0].getProject().getFullPath().toString();
-					return files[0].getFullPath().toString();
+					String ecorePath = files[0].getFullPath().toString();
+					if(ecorePath.charAt(0) == '/')
+						ecorePath = ecorePath.substring(1);
+					return ecorePath;
 				}
 
 				return null;

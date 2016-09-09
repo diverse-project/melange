@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.4"?><plugin>
+  
+<extension point="fr.inria.diverse.melange.modeltype">
+    <modeltype id="fr.inria.diverse.melange.tests.extern.main.FsmMT" uri="http://fsmmt/"/>
+    <modeltype id="fr.inria.diverse.melange.tests.extern.main.XfsmMT" uri="http://xfsmmt/">
+      <subtyping modeltypeId="fr.inria.diverse.melange.tests.extern.main.FsmMT"/>
+    </modeltype>
+  </extension>
+  <extension point="fr.inria.diverse.melange.language">
+    <language aspects="" entryPoints="" exactType="fr.inria.diverse.melange.tests.extern.main.FsmMT" id="fr.inria.diverse.melange.tests.extern.main.Fsm" uri="http://fsm/"/>
+    <language aspects="State:fr.inria.diverse.melange.tests.extern.main.xfsm.aspects.StateAspect1" entryPoints="" exactType="fr.inria.diverse.melange.tests.extern.main.XfsmMT" id="fr.inria.diverse.melange.tests.extern.main.Xfsm" uri="http://xfsm/fsm/">
+      <adapter class="fr.inria.diverse.melange.tests.extern.main.xfsm.adapters.fsmmt.XfsmAdapter" modeltypeId="fr.inria.diverse.melange.tests.extern.main.FsmMT"/>
+      <adapter class="fr.inria.diverse.melange.tests.extern.main.xfsm.adapters.xfsmmt.XfsmAdapter" modeltypeId="fr.inria.diverse.melange.tests.extern.main.XfsmMT"/>
+    </language>
+  </extension>
+</plugin>

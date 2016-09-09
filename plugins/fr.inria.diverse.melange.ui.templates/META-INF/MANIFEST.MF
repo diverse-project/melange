@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Templates
 Bundle-SymbolicName: fr.inria.diverse.melange.ui.templates;singleton:=true
-Bundle-Version: 0.1.0.qualifier
+Bundle-Version: 0.2.0.qualifier
 Bundle-Activator: fr.inria.diverse.melange.ui.templates.Activator
 Require-Bundle: org.eclipse.core.runtime,
  fr.inria.diverse.melange.ui,
