@@ -423,7 +423,7 @@ class LanguageExtensions
 	 * {@code l}'s semantics with the newly generated aspects. 
 	 */
 	def void createExternalAspects(Language l) {
-		copier2.copyAspect(l,l,new Stack)
+		copier2.copyAspect(l,l,new Stack,null)
 	}
 
 	/**
