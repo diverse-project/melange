@@ -490,7 +490,7 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         (exactTypeName=ValidID exactTypeUri=STRING?)? 
-	 *         (name=ValidID (implements+=[ModelType|QualifiedName] implements+=[ModelType|QualifiedName]*)? operators+=ExternalImport*)?
+	 *         (name=ValidID (implements+=[ModelType|QualifiedName] implements+=[ModelType|QualifiedName]*)? operators+=ExternalImport)?
 	 *     )+
 	 */
 	protected void sequence_ExternalLanguage(ISerializationContext context, ExternalLanguage semanticObject) {

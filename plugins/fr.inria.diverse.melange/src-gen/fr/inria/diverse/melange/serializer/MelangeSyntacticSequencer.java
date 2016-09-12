@@ -185,12 +185,6 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) 'external' (ambiguity) 'language' name=ValidID
 	 *     (rule start) (ambiguity) 'exactType' exactTypeName=ValidID
 	 *     (rule start) (ambiguity) 'language' name=ValidID
-	 *     implements+=[ModelType|QualifiedName] '{' (ambiguity) 'exactType' exactTypeName=ValidID
-	 *     implements+=[ModelType|QualifiedName] '{' (ambiguity) 'language' name=ValidID
-	 *     implements+=[ModelType|QualifiedName] '{' (ambiguity) (rule end)
-	 *     name=ValidID '{' (ambiguity) 'exactType' exactTypeName=ValidID
-	 *     name=ValidID '{' (ambiguity) 'language' name=ValidID
-	 *     name=ValidID '{' (ambiguity) (rule end)
 	 *     operators+=ExternalImport (ambiguity) 'exactType' exactTypeName=ValidID
 	 *     operators+=ExternalImport (ambiguity) 'language' name=ValidID
 	 *     operators+=ExternalImport (ambiguity) (rule end)

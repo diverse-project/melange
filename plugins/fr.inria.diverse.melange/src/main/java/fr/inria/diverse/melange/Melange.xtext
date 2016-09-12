@@ -37,7 +37,7 @@ ExternalLanguage:
 	'language' name = ValidID 
 	('implements' implements += [ModelType | QualifiedName] (',' implements += [ModelType | QualifiedName])*)?
 	'{'
-		(operators += ExternalImport)* &
+		operators += ExternalImport &
 //		('resource' resourceType = ResourceType (=> 'uri' resourceUri = STRING | 'setup' xtextSetupRef = JvmTypeReference)?)? &
 		('exactType' exactTypeName = ValidID (=> 'uri' exactTypeUri = STRING)?)?
 	'}'

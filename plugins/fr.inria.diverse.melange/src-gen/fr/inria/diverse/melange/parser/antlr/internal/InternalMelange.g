@@ -949,7 +949,7 @@ ruleExternalLanguage returns [EObject current=null]
 	    }
 
 )
-)*))
+)))
 					{ 
 	 				  getUnorderedGroupHelper().returnFromSelection(grammarAccess.getExternalLanguageAccess().getUnorderedGroup());
 	 				}
