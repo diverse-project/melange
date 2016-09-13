@@ -1,4 +1,4 @@
-package fr.inria.diverse.melange.tests.extern.main
+package fr.inria.diverse.melange.tests.extern.aspects.main
 
 import fr.inria.diverse.melange.tests.aspects.aspect.StateAspect1
 import fr.inria.diverse.melange.tests.aspects.aspect.StateAspect2
