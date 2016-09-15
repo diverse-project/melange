@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.4"?><plugin>
+  
+<extension point="fr.inria.diverse.melange.modeltype">
+    <modeltype id="fr.inria.diverse.melange.tests.dispatch.main.L1MT" uri="http://l1mt/">
+      <subtyping modeltypeId="fr.inria.diverse.melange.tests.dispatch.main.L2MT"/>
+    </modeltype>
+    <modeltype id="fr.inria.diverse.melange.tests.dispatch.main.L2MT" uri="http://l2mt/">
+      <subtyping modeltypeId="fr.inria.diverse.melange.tests.dispatch.main.L1MT"/>
+    </modeltype>
+    <modeltype id="fr.inria.diverse.melange.tests.dispatch.main.L3MT" uri="http://l3mt/">
+      <subtyping modeltypeId="fr.inria.diverse.melange.tests.dispatch.main.L1MT"/>
+      <subtyping modeltypeId="fr.inria.diverse.melange.tests.dispatch.main.L2MT"/>
+    </modeltype>
+    <modeltype id="fr.inria.diverse.melange.tests.dispatch.main.L4MT" uri="http://l4mt/">
+      <subtyping modeltypeId="fr.inria.diverse.melange.tests.dispatch.main.L1MT"/>
+      <subtyping modeltypeId="fr.inria.diverse.melange.tests.dispatch.main.L2MT"/>
+    </modeltype>
+  </extension>
+  <extension point="fr.inria.diverse.melange.language">
+    <language aspects="A:fr.inria.diverse.melange.tests.dispatch.main.l1.aspects.AAspect;B:fr.inria.diverse.melange.tests.dispatch.main.l1.aspects.BAspect;C:fr.inria.diverse.melange.tests.dispatch.main.l1.aspects.CAspect" entryPoints="" exactType="fr.inria.diverse.melange.tests.dispatch.main.L1MT" id="fr.inria.diverse.melange.tests.dispatch.main.L1" uri="http://l1/dispatchroot/">
+      <adapter class="fr.inria.diverse.melange.tests.dispatch.main.l1.adapters.l1mt.L1Adapter" modeltypeId="fr.inria.diverse.melange.tests.dispatch.main.L1MT"/>
+      <adapter class="fr.inria.diverse.melange.tests.dispatch.main.l1.adapters.l2mt.L1Adapter" modeltypeId="fr.inria.diverse.melange.tests.dispatch.main.L2MT"/>
+    </language>
+    <language aspects="A:fr.inria.diverse.melange.tests.dispatch.main.l2.aspects.L2_AAspect,fr.inria.diverse.melange.tests.dispatch.main.l2.aspects.AAspect;B:fr.inria.diverse.melange.tests.dispatch.main.l2.aspects.BAspect;C:fr.inria.diverse.melange.tests.dispatch.main.l2.aspects.CAspect" entryPoints="" exactType="fr.inria.diverse.melange.tests.dispatch.main.L2MT" id="fr.inria.diverse.melange.tests.dispatch.main.L2" uri="http://l2/dispatchroot/">
+      <adapter class="fr.inria.diverse.melange.tests.dispatch.main.l2.adapters.l1mt.L2Adapter" modeltypeId="fr.inria.diverse.melange.tests.dispatch.main.L1MT"/>
+      <adapter class="fr.inria.diverse.melange.tests.dispatch.main.l2.adapters.l2mt.L2Adapter" modeltypeId="fr.inria.diverse.melange.tests.dispatch.main.L2MT"/>
+    </language>
+    <language aspects="A:fr.inria.diverse.melange.tests.dispatch.main.l3.aspects.L3_A2Aspect,fr.inria.diverse.melange.tests.dispatch.main.l3.aspects.AAspect;B:fr.inria.diverse.melange.tests.dispatch.main.l3.aspects.L3_BAspect,fr.inria.diverse.melange.tests.dispatch.main.l3.aspects.BAspect;C:fr.inria.diverse.melange.tests.dispatch.main.l3.aspects.L3_CAspect,fr.inria.diverse.melange.tests.dispatch.main.l3.aspects.CAspect" entryPoints="" exactType="fr.inria.diverse.melange.tests.dispatch.main.L3MT" id="fr.inria.diverse.melange.tests.dispatch.main.L3" uri="http://l3/dispatchroot/">
+      <adapter class="fr.inria.diverse.melange.tests.dispatch.main.l3.adapters.l1mt.L3Adapter" modeltypeId="fr.inria.diverse.melange.tests.dispatch.main.L1MT"/>
+      <adapter class="fr.inria.diverse.melange.tests.dispatch.main.l3.adapters.l2mt.L3Adapter" modeltypeId="fr.inria.diverse.melange.tests.dispatch.main.L2MT"/>
+      <adapter class="fr.inria.diverse.melange.tests.dispatch.main.l3.adapters.l3mt.L3Adapter" modeltypeId="fr.inria.diverse.melange.tests.dispatch.main.L3MT"/>
+    </language>
+    <language aspects="A:fr.inria.diverse.melange.tests.dispatch.main.l4.aspects.AAspect;B:fr.inria.diverse.melange.tests.dispatch.main.l4.aspects.BAspect;C:fr.inria.diverse.melange.tests.dispatch.main.l4.aspects.CAspect;SubB:fr.inria.diverse.melange.tests.dispatch.main.l4.aspects.SubBAspect" entryPoints="" exactType="fr.inria.diverse.melange.tests.dispatch.main.L4MT" id="fr.inria.diverse.melange.tests.dispatch.main.L4" uri="http://l4/dispatchroot/">
+      <adapter class="fr.inria.diverse.melange.tests.dispatch.main.l4.adapters.l1mt.L4Adapter" modeltypeId="fr.inria.diverse.melange.tests.dispatch.main.L1MT"/>
+      <adapter class="fr.inria.diverse.melange.tests.dispatch.main.l4.adapters.l2mt.L4Adapter" modeltypeId="fr.inria.diverse.melange.tests.dispatch.main.L2MT"/>
+      <adapter class="fr.inria.diverse.melange.tests.dispatch.main.l4.adapters.l4mt.L4Adapter" modeltypeId="fr.inria.diverse.melange.tests.dispatch.main.L4MT"/>
+    </language>
+  </extension>
+</plugin>
