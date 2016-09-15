@@ -506,8 +506,7 @@ class MetaclassAdapterInferrer
 			// Build the comma-separated list of operation arguments
 			paramsList.append('''
 				«IF mm.owningLanguage.hasAdapterFor(superType, p.parameterType.qualifiedName)»
-					, ((«mm.adapterNameFor(superType, superType.findClass(p.parameterType.qualifiedName))»)«
-					» «p.name»).getAdaptee()
+					, («p.parameterType.qualifiedName»)((EObjectAdapter)«p.name»).getAdaptee()
 				«ELSEIF p.parameterType.isCollection
 					&& mm.owningLanguage.hasAdapterFor(superType, realTypeP)»
 					, ((«EListAdapter.canonicalName») «p.name»).getAdaptee()
