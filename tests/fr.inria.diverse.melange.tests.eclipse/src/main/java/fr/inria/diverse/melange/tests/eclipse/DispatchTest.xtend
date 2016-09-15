@@ -82,7 +82,7 @@ public class DispatchTest extends AbstractXtextTests
 			L3 - B.foo()
 			L3 - C.bar() calling : L1 - A.foo()
 			L3 - A2.bar()
-			L3 - C.bar() calling : L2 - B.foo()
+			L3 - C.bar() calling : L3 - B.foo()
 			L3 - A2.bar()
 			Test L4:
 			L1 - A.foo()
