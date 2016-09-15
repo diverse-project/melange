@@ -2,16 +2,12 @@ package fr.inria.diverse.melange.tests.eclipse
 
 import com.google.inject.Inject
 import fr.inria.diverse.melange.MelangeUiInjectorProvider
-import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.tests.eclipse.shared.WorkspaceTestHelper
 import org.eclipse.core.resources.IProject
-import org.eclipse.emf.ecore.EClass
-import org.eclipse.emf.ecore.EPackage
 import org.eclipse.xtext.junit4.AbstractXtextTests
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
 import org.eclipse.xtext.junit4.ui.util.IResourcesSetupUtil
-import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 import org.junit.After
 import org.junit.Before
 import org.junit.FixMethodOrder
@@ -32,6 +28,7 @@ public class DispatchTest extends AbstractXtextTests
 
 	@Before
 	override setUp() {
+		helper.setTargetPlatform
 		// We don't want to regenerate everything for each test
 		if (!helper.projectExists(PROJECT_NAME)) {
 			super.setUp
@@ -74,18 +71,18 @@ public class DispatchTest extends AbstractXtextTests
 			L1 - A.foo()
 			L1 - B.foo()
 			L1 - C.bar() calling : L1 - A.foo()
-			L1 - C.bar() calling : L1 - 2.foo()
+			L1 - C.bar() calling : L1 - B.foo()
 			Test L2:
 			L2 - A.foo()
 			L1 - B.foo()
 			L1 - C.bar() calling : L2 - A.foo()
-			L1 - C.bar() calling : L1 - 2.foo()
+			L1 - C.bar() calling : L1 - B.foo()
 			Test L3:
 			L1 - A.foo()
 			L3 - B.foo()
 			L3 - C.bar() calling : L1 - A.foo()
 			L3 - A2.bar()
-			L3 - C.bar() calling : L2 - 2.foo()
+			L3 - C.bar() calling : L2 - B.foo()
 			L3 - A2.bar()
 			Test L4:
 			L1 - A.foo()
