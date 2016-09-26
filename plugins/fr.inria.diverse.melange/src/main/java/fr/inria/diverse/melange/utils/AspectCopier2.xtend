@@ -3,11 +3,10 @@ package fr.inria.diverse.melange.utils
 import com.google.common.collect.HashMultimap
 import com.google.common.collect.SetMultimap
 import com.google.inject.Inject
-import com.google.inject.Injector
 import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
-import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
+import fr.inria.diverse.melange.builder.ModelTypingSpaceBuilder
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.ModelUtils
 import fr.inria.diverse.melange.metamodel.melange.Import
@@ -21,34 +20,38 @@ import fr.inria.diverse.melange.metamodel.melange.Slice
 import java.util.List
 import java.util.Stack
 import org.eclipse.core.resources.IFile
+import org.eclipse.core.resources.IFolder
 import org.eclipse.core.resources.IResource
 import org.eclipse.core.resources.IResourceVisitor
+import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.core.runtime.CoreException
+import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.naming.IQualifiedNameProvider
-import org.eclipse.core.resources.ResourcesPlugin
-import org.eclipse.core.resources.IProject
-import org.eclipse.core.resources.IFolder
-import org.eclipse.emf.ecore.EClass
-import fr.inria.diverse.melange.builder.ModelTypingSpaceBuilder
 
-class AspectCopier2{
+class AspectCopier2 {
 	
 	@Inject ModelUtils modelUtils
 	@Inject AspectRenamer renamer
-	@Inject EclipseProjectHelper eclipseHelper
 	@Inject extension EcoreExtensions
 	@Inject extension IQualifiedNameProvider
 	@Inject extension ModelingElementExtensions
 	@Inject extension LanguageExtensions
 	@Inject extension AspectExtensions aspectExtension
 	@Inject ModelTypingSpaceBuilder modelTypingSpaceBuilder
-	@Inject Injector injector
 	
-	def SetMultimap<String,String> copyAspect(Language l, Language targetLang, Stack<List<PackageBinding>> stack, List<EClass> sliceClasses){
+	/**
+	 * Copy all aspects from {@link sourceLang} into the Eclipse
+	 * project of {@link targetLang}
+	 */
+	def SetMultimap<String,String> copyAspect(Language sourceLang, Language targetLang) {
+		copyAspect(sourceLang,targetLang,new Stack,null)
+	}
+	
+	private def SetMultimap<String,String> copyAspect(Language l, Language targetLang, Stack<List<PackageBinding>> stack, List<EClass> sliceClasses) {
 		// Map package.uniqueId to emfFqn
-		val SetMultimap<String,String> mappings = HashMultimap.create
+		val SetMultimap<String,String> realPkgNames = HashMultimap.create
 	
 		/*
 		 * 1. Copy aspects from dependencies
@@ -57,7 +60,7 @@ class AspectCopier2{
 			if(depLang instanceof Inheritance){
 				val deepMapping = copyAspect(depLang.targetLanguage,targetLang,stack,sliceClasses)
 				//Store possible package renaming from depLang
-				mappings.putAll(deepMapping)
+				realPkgNames.putAll(deepMapping)
 			}
 			else if(depLang instanceof Slice){
 				stack.push(depLang.mappingRules)
@@ -72,7 +75,7 @@ class AspectCopier2{
 				deepMapping.keySet.forEach[pkgName|
 					val emfPkgs = deepMapping.get(pkgName)
 					val newPkgName = pkgName.renameWith(depLang.mappingRules)
-					mappings.putAll(newPkgName,emfPkgs)
+					realPkgNames.putAll(newPkgName,emfPkgs)
 				]
 			}
 			else if(depLang instanceof Merge){
@@ -83,7 +86,7 @@ class AspectCopier2{
 				deepMapping.keySet.forEach[pkgName|
 					val emfPkgs = deepMapping.get(pkgName)
 					val newPkgName = pkgName.renameWith(depLang.mappingRules)
-					mappings.putAll(newPkgName,emfPkgs)
+					realPkgNames.putAll(newPkgName,emfPkgs)
 				]
 			}
 		]
@@ -91,22 +94,25 @@ class AspectCopier2{
 		/*
 		 * 2. Compute possible package renaming
 		 */
-		mappings.putAll(l.mappingFromSyntax)
-		mappings.putAll(l.mappingFromLanguageOp)
+		realPkgNames.putAll(l.mappingFromSyntax)
+		realPkgNames.putAll(l.mappingFromLanguageOp)
 	
 		/*
 		 * 3. Copy aspects from 'with'
 		 */
-		copyLocalAspects(l,targetLang,mappings,stack,sliceClasses)
+		copyLocalAspects(l,targetLang,realPkgNames,stack,sliceClasses)
 	
 		
-		return mappings
+		return realPkgNames
 	}
 	
 	/**
-	 * Get package renaming from 'with' operators
+	 * Get package renaming from 'with' operators.
+	 * 
+	 * Return the associations of EPackage with generated Java Class
+	 * (use full qualified names)
 	 */
-	def mappingFromSyntax(Language sourceLang){
+	private def SetMultimap<String,String> mappingFromSyntax(Language sourceLang) {
 		val res = HashMultimap.create
 		sourceLang.operators.filter(Import).forEach[ecore |
 			//TODO: use EPackageProvider
@@ -125,9 +131,12 @@ class AspectCopier2{
 	}
 
 	/**
-	 * Get package renaming from 'merge', 'slice' and 'inherits' operators
+	 * Get package renaming from 'merge', 'slice' and 'inherits' operators.
+	 * 
+	 * Return the associations of EPackage with generated Java Class
+	 * (use full qualified names)
 	 */
-	def mappingFromLanguageOp(Language sourceLanguage){
+	private def SetMultimap<String,String> mappingFromLanguageOp(Language sourceLanguage) {
 		val res = HashMultimap.create
 		sourceLanguage.operators.filter(LanguageOperator).forEach[
 			res.putAll(mappingFromLanguageOp)
@@ -136,9 +145,12 @@ class AspectCopier2{
 	}
 
 	/**
-	 * Get package renaming from {@link op}
+	 * Get package renaming from {@link op}.
+	 * 
+	 * Return the associations of EPackage with generated Java Class
+	 * (use full qualified names)
 	 */
-	def mappingFromLanguageOp(LanguageOperator op){
+	private def SetMultimap<String,String> mappingFromLanguageOp(LanguageOperator op) {
 		//TODO: get also namespaces from op's Import
 		val res = HashMultimap.create
 			op.owningLanguage.syntax.pkgs.forEach[pkg|
@@ -160,7 +172,11 @@ class AspectCopier2{
 		return res
 	}
 	
-	def String renameWith(String pkgFqn, List<PackageBinding> rules){
+	/**
+	 * Return the new name for the EPackage {@link pkFng}.
+	 * If nothing match in {@link rules}, return {@link pkFng}.
+	 */
+	private def String renameWith(String pkgFqn, List<PackageBinding> rules) {
 		val firstMatch = rules.findFirst[from == pkgFqn]
 		if(firstMatch !== null)
 			return firstMatch.to
@@ -170,7 +186,7 @@ class AspectCopier2{
 	/**
 	 * Copy aspects declared in {@link currentLang} into the project of {@link targetLang} 
 	 */
-	def void copyLocalAspects(Language currentLang, Language targetLang, SetMultimap<String,String> mapping, Stack<List<PackageBinding>> stack, List<EClass> sliceClasses){
+	private def void copyLocalAspects(Language currentLang, Language targetLang, SetMultimap<String,String> realPkgNames, Stack<List<PackageBinding>> stack, List<EClass> sliceClasses) {
 		
 		val localAspSliced = 
 			if(sliceClasses !== null)
@@ -228,8 +244,8 @@ class AspectCopier2{
 		val toAdd = newArrayList
 		
 		// a. Renaming rules: add prefix to 'from'
-		mapping.keySet.forEach[pkgName|
-			val possibleEmfNames = mapping.get(pkgName)
+		realPkgNames.keySet.forEach[pkgName|
+			val possibleEmfNames = realPkgNames.get(pkgName)
 			val firstMatch = finalRenaming.findFirst[from == pkgName]
 			if(firstMatch !== null){
 				possibleEmfNames.forEach[emfName |
@@ -261,13 +277,13 @@ class AspectCopier2{
 		renamer.processRenaming(localAspSliced, targetLang, newArrayList(renamingManager))
 	}
 	
-	def getContextFqn(JvmTypeReference aspRef){
+	private def String getContextFqn(JvmTypeReference aspRef) {
 		val prefix = aspRef.identifier.replaceAll("\\.", "/")
 		val targetCls = aspRef.simpleAspectAnnotationValue
 		return '''«prefix»«targetCls»AspectContext'''
 	}
 
-	def getPropertiesFqn(JvmTypeReference aspRef){
+	private def String getPropertiesFqn(JvmTypeReference aspRef) {
 		val prefix = aspRef.identifier.replaceAll("\\.", "/")
 		val targetCls = aspRef.simpleAspectAnnotationValue
 		return '''«prefix»«targetCls»AspectProperties'''
@@ -277,7 +293,7 @@ class AspectCopier2{
 	 * Merge sequentially all stages of the {@link stack} to get the
 	 * final transitive renaming
 	 */
-	def List<PackageBinding> flatten(Stack<List<PackageBinding>> stack){
+	private def List<PackageBinding> flatten(Stack<List<PackageBinding>> stack) {
 		val res = newArrayList
 		stack.reverseView.forEach[rules |
 			res.apply(rules)
@@ -288,7 +304,7 @@ class AspectCopier2{
 	/**
 	 * Merge {@link newRules} in {@link base} to have a transitive renaming
 	 */
-	def void apply(List<PackageBinding> base, List<PackageBinding> newRules){
+	private def void apply(List<PackageBinding> base, List<PackageBinding> newRules) {
 		newRules.forEach[newRule|
 			//Rename pkgs
 			val toRename = base.filter[to.startsWith(newRule.from)]
@@ -332,7 +348,7 @@ class AspectCopier2{
 		]
 	}
 	
-	def void createFolder(IFolder folder){
+	private def void createFolder(IFolder folder) {
 		val parent = folder.parent
 		if(parent instanceof IFolder)
 			createFolder(parent)
@@ -346,7 +362,7 @@ class AspectCopier2{
 	 * l1 is in the post mapping space
 	 * l2 is in the pre mapping space 
 	 */
-	def List<EClass> intersection(List<EClass> l1, List<EClass> l2){
+	private def List<EClass> intersection(List<EClass> l1, List<EClass> l2) {
 		if(l1 === null) return l2
 		
 		val res = newArrayList
@@ -363,7 +379,7 @@ class AspectCopier2{
 	/**
 	 * Return classes from {@link origin} corresponding to {@link classes} through {@link mapping}
 	 */
-	def List<EClass> reverseRenaming(List<EClass> classes, Language origin, List<PackageBinding> mapping){
+	private def List<EClass> reverseRenaming(List<EClass> classes, Language origin, List<PackageBinding> mapping) {
 		val res = newArrayList
 		val originPool = origin.syntax.allClasses
 		
