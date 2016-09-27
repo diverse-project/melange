@@ -482,12 +482,12 @@ class MetaclassAdapterInferrer
 				typeRef(Void.TYPE)
 			else if (mtCls !== null)
 				if (op.returnType.isCollection)
-					op.returnType.type.typeRef(
+					"org.eclipse.emf.common.util.EList".typeRef(
 						superType.typeRef(mtCls, #[jvmCls]))
 				else
 					superType.typeRef(mtCls, #[jvmCls])
 			else if (op.returnType.isCollection)
-				op.returnType.type.typeRef(
+				"org.eclipse.emf.common.util.EList".typeRef(
 					(op.returnType as JvmParameterizedTypeReference)
 					.arguments.head.qualifiedName.typeRef)
 			else

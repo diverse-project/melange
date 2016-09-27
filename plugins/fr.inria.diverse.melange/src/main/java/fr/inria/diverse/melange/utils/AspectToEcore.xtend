@@ -127,6 +127,7 @@ class AspectToEcore
 						upperBound = upperB
 						containment = field.isContainment
 						addAspectAnnotation
+						unique = fieldType.isUnique
 					]
 			// Otherwise, it's an EAttribute to an external type
 			else
@@ -144,6 +145,7 @@ class AspectToEcore
 									realType.qualifiedName)
 						upperBound = upperB
 						addAspectAnnotation
+						unique = fieldType.isUnique
 					]
 		]
 
@@ -253,6 +255,7 @@ class AspectToEcore
 							upperBound = upperB
 							containment = op.isContainment
 							addAspectAnnotation
+							unique = op.returnType.isUnique
 						]
 				else
 					aspCls.EStructuralFeatures +=
@@ -270,6 +273,7 @@ class AspectToEcore
 							addAspectAnnotation
 							if(op.isContainment)
 								addContainmentAnnotation
+							unique = op.returnType.isUnique
 						]
 			}
 		]
