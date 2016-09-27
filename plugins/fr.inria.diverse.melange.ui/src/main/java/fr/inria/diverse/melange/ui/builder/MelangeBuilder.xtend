@@ -105,6 +105,7 @@ class MelangeBuilder
 			sub.subTask("Copying aspects for " + l.name)
 			l.createExternalAspects
 			l.generateAspectJ
+			l.addRequireBundleForAspects
 			monitor.worked(40)
 			sub.subTask("Updating dependencies for " + l.name)
 			eclipseHelper.addDependencies(project, #[l.externalRuntimeName])
