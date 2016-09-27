@@ -346,7 +346,7 @@ class LanguageExtensions
 	 * The returned URI is of the form {@code http://$languageNameInLowerCase/}.
 	 */
 	def String getExternalPackageUri(Language l) {
-		return '''http://«l.name.toLowerCase»/'''
+		return '''http://«l.fullyQualifiedName.toLowerCase»/'''
 	}
 
 	def String getExternalEcorePath(Language l) {

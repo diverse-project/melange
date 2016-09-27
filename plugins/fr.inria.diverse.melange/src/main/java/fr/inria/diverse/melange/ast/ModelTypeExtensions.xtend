@@ -187,7 +187,7 @@ class ModelTypeExtensions
 		val userDefinedUri =
 			if (mt.isExtracted) mt.extracted.exactTypeUri
 			else mt.mtUri
-		return userDefinedUri ?: '''http://«mt.name.toLowerCase»/'''
+		return userDefinedUri ?: '''http://«mt.fullyQualifiedName.toLowerCase»/'''
 	}
 
 	/**
