@@ -465,7 +465,7 @@ class MetaclassAdapterInferrer
 	) {
 		val asp = aspect.aspectTypeRef.type as JvmDeclaredType
 		val paramsList = new StringBuilder
-		val featureName = asp.findFeatureNameFor(op)
+		val featureName = asp.findFeatureNameFor(op, typeRefBuilder)
 		val realType =
 			if (op.returnType.isCollection)
 				(op.returnType as JvmParameterizedTypeReference)
