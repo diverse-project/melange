@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="fsm" nsURI="http://dependencybetweenruntimeconcepts/fsm/" nsPrefix="fsm">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="fsm" nsURI="http://aspecttoecoretest.dependencybetweenruntimeconcepts/fsm/" nsPrefix="fsm">
   <eClassifiers xsi:type="ecore:EClass" name="FSM">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedState" upperBound="-1" eType="//State" containment="true" eOpposite="//State/owningFSM"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="initialState" lowerBound="1" eType="//State"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="finalState" lowerBound="1" upperBound="-1" eType="//State"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RuntimeConcept2">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bar">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bar" unique="false">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="myFoos" upperBound="-1" eType="//RuntimeConcept1"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="myFoos" unique="false" upperBound="-1" eType="//RuntimeConcept1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="State">
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningFSM" lowerBound="1" eType="//FSM" eOpposite="//FSM/ownedState"/>
@@ -30,9 +30,9 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RuntimeConcept1">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="foo">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="foo" unique="false">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="myState" eType="//State"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="myState" unique="false" eType="//State"/>
   </eClassifiers>
 </ecore:EPackage>

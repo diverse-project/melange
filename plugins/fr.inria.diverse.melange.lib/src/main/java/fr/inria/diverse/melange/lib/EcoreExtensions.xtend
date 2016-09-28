@@ -633,6 +633,7 @@ class EcoreExtensions
 					ref.lowerBound = attr.lowerBound
 					ref.upperBound = attr.upperBound
 					ref.EType = replacement
+					ref.unique = attr.unique
 				]
 				if(attr.isAspectSpecific)
 					featureReplacement.addAspectAnnotation

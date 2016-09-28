@@ -72,7 +72,7 @@ class InheritanceOverridingTest
 
 		assertNotNull(amt)
 		assertEquals("AMT", amt.name)
-		assertEquals("http://amt/", amt.uri)
+		assertEquals("http://inheritanceoverriding.amt/", amt.uri)
 		assertEquals(1, amt.pkgs.size)
 		assertEquals(3, amt.pkgs.head.EClassifiers.size)
 		assertEObjectExists(amt, "fsm/FSM/#i1[EInt]")
