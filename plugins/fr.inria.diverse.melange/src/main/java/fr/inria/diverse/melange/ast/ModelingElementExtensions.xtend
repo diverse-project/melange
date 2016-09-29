@@ -114,7 +114,7 @@ class ModelingElementExtensions
 	def GenPackage getGenPkgFor(ModelingElement m, EPackage pkg) {
 		return
 			m.allGenPkgs
-			.findFirst[getEcorePackage.name == pkg.name]
+			.findFirst[getEcorePackage.uniqueId == pkg.uniqueId]
 	}
 
 	/**
