@@ -106,9 +106,15 @@ public class AttributesTest extends AbstractXtextTests
 		
 		val a_toA = a.EAllReferences.findFirst[name == "toA"]
 		assertNotNull(a_toA)
-		assertFalse(a_toA.isUnique)
+		assertTrue(a_toA.isUnique)
 		assertEquals(0,a_toA.lowerBound)
 		assertEquals(-1,a_toA.upperBound)
+		
+		val a_toB = a.EAllReferences.findFirst[name == "toB"]
+		assertNotNull(a_toB)
+		assertFalse(a_toB.isUnique)
+		assertEquals(0,a_toB.lowerBound)
+		assertEquals(-1,a_toB.upperBound)
 		
 		val b_toA = b.EAllReferences.findFirst[name == "toA"]
 		assertNotNull(b_toA)

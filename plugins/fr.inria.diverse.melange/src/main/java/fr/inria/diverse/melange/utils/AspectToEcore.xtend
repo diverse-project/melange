@@ -43,6 +43,8 @@ class AspectToEcore
 
 	static final String CONTAINMENT_ANNOTATION_FQN =
 		"fr.inria.diverse.k3.al.annotationprocessor.Containment"
+	static final String UNIQUE_ANNOTATION_FQN =
+		"fr.inria.diverse.k3.al.annotationprocessor.Unique"
 	static final List<String> K3_PREFIXES =
 		#["_privk3", "super_"]
 	public static final String PROP_NAME = "AspectProperties"
@@ -134,7 +136,7 @@ class AspectToEcore
 						upperBound = upperB
 						containment = field.isContainment
 						addAspectAnnotation
-						unique = fieldType.isUnique
+						unique = field.isUnique
 					]
 			// Otherwise, it's an EAttribute to an external type
 			else
@@ -152,7 +154,7 @@ class AspectToEcore
 									realType.qualifiedName)
 						upperBound = upperB
 						addAspectAnnotation
-						unique = fieldType.isUnique
+						unique = field.isUnique
 					]
 		]
 
@@ -262,7 +264,7 @@ class AspectToEcore
 							upperBound = upperB
 							containment = op.isContainment
 							addAspectAnnotation
-							unique = op.returnType.isUnique
+							unique = op.isUnique
 						]
 				else
 					aspCls.EStructuralFeatures +=
@@ -280,7 +282,7 @@ class AspectToEcore
 							addAspectAnnotation
 							if(op.isContainment)
 								addContainmentAnnotation
-							unique = op.returnType.isUnique
+							unique = op.isUnique
 						]
 			}
 		]
@@ -378,6 +380,17 @@ class AspectToEcore
 		return
 			field.annotations.exists[
 				annotation.qualifiedName == CONTAINMENT_ANNOTATION_FQN
+			]
+	}
+	
+	/**
+	 * Checks whether the given field is annotated with @Unique or @Containment
+	 */
+	private def boolean isUnique(JvmMember field) {
+		return
+			field.isContainment
+			|| field.annotations.exists[
+				annotation.qualifiedName == UNIQUE_ANNOTATION_FQN
 			]
 	}
 

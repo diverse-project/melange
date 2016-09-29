@@ -56,17 +56,8 @@ class TypeReferencesHelper
 				&& #[
 					"java.util.List",
 					"java.util.ArrayList",
-					"org.eclipse.emf.common.util.EList",
-					"org.eclipse.emf.common.util.BasicEList",
-					"org.eclipse.emf.common.util.UniqueEList"].contains(ref.type.qualifiedName)
+					"org.eclipse.emf.common.util.EList"].contains(ref.type.qualifiedName)
 			else false
-	}
-	
-	def boolean isUnique(JvmTypeReference ref) {
-		if (ref !== null)
-			"org.eclipse.emf.common.util.UniqueEList".equals(ref.type.qualifiedName)
-		else
-			false
 	}
 	
 	def JvmType getContainedElementsType(JvmTypeReference ref) {
