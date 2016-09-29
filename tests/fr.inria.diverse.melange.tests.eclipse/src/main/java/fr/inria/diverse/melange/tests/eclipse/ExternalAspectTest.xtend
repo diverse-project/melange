@@ -14,12 +14,17 @@ import org.junit.FixMethodOrder
 import org.junit.runner.RunWith
 import org.junit.runners.MethodSorters
 import org.junit.Test
+import org.junit.Rule
+import org.junit.rules.Timeout
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeUiInjectorProvider)
 @FixMethodOrder(MethodSorters::NAME_ASCENDING)
 public class ExternalAspectTest extends AbstractXtextTests
 {
+	@Rule
+    public Timeout globalTimeout = Timeout.seconds(120);
+    
 	@Inject WorkspaceTestHelper helper
 	IProject melangeProject
 	static final String PROJECT_NAME = "fr.inria.diverse.melange.tests.extern.aspects.main"

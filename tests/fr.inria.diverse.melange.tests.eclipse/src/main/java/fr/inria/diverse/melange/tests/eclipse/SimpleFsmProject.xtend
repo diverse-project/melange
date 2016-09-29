@@ -15,12 +15,17 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.MethodSorters
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
+import org.junit.rules.Timeout
+import org.junit.Rule
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeUiInjectorProvider)
 @FixMethodOrder(MethodSorters::NAME_ASCENDING)
 public class SimpleFsmProjectTest extends AbstractXtextTests
 {
+	@Rule
+    public Timeout globalTimeout = Timeout.seconds(120);
+    
 	IProject melangeFsm
 	@Inject WorkspaceTestHelper helper
 	static final String PROJECT_NAME = "SimpleFsmProject"

@@ -22,12 +22,17 @@ import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.Language
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EClass
+import org.junit.rules.Timeout
+import org.junit.Rule
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeUiInjectorProvider)
 @FixMethodOrder(MethodSorters::NAME_ASCENDING)
 public class AspectOverridingTest extends AbstractXtextTests
 {
+	@Rule
+    public Timeout globalTimeout = Timeout.seconds(120);
+    
 	IProject melangeProject
 	@Inject WorkspaceTestHelper helper
 	static final String PROJECT_NAME = "fr.inria.diverse.melange.test.overriding.main"
