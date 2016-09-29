@@ -14,17 +14,12 @@ import org.junit.FixMethodOrder
 import org.junit.runner.RunWith
 import org.junit.runners.MethodSorters
 import org.junit.Test
-import org.junit.rules.Timeout
-import org.junit.Rule
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeUiInjectorProvider)
 @FixMethodOrder(MethodSorters::NAME_ASCENDING)
 public class EcoreTest extends AbstractXtextTests
 {
-	@Rule
-    public Timeout globalTimeout = Timeout.seconds(120);
-    
 	@Inject WorkspaceTestHelper helper
 	IProject melangeProject
 	static final String PROJECT_NAME = "fr.inria.diverse.melange.tests.ecore.main"

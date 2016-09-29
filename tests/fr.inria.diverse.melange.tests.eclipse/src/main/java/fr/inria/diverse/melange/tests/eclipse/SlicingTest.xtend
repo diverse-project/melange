@@ -9,16 +9,11 @@ import org.eclipse.xtext.junit4.XtextRunner
 import org.eclipse.xtext.junit4.ui.util.IResourcesSetupUtil
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.junit.rules.Timeout
-import org.junit.Rule
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeUiInjectorProvider)
 public class SlicingTest extends AbstractXtextTests
 {
-	@Rule
-    public Timeout globalTimeout = Timeout.seconds(120);
-	
 	@Inject WorkspaceTestHelper helper
 	static final String MELANGE_FILE =
 		"fr.inria.diverse.melange.test.slicing.main/src/fr/inria/diverse/melange/test/slicing/main/main.melange"

@@ -29,16 +29,11 @@ import com.google.inject.Inject
 import fr.inria.diverse.melange.tests.eclipse.shared.WorkspaceTestHelper
 import org.junit.After
 import org.eclipse.jdt.internal.core.JavaProject
-import org.junit.rules.Timeout
-import org.junit.Rule
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeUiInjectorProvider)
 public class SimpleFsmTest extends AbstractXtextTests
 {
-	@Rule
-    public Timeout globalTimeout = Timeout.seconds(120);
-    
 	IJavaProject melangeFsm
 	IJavaProject aspectsFsm
 

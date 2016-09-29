@@ -21,16 +21,12 @@ import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EClass
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
-import org.junit.rules.Timeout
-import org.junit.Rule
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeUiInjectorProvider)
 @FixMethodOrder(MethodSorters::NAME_ASCENDING)
 public class MultiPackagesTest extends AbstractXtextTests
 {
-	@Rule
-    public Timeout globalTimeout = Timeout.seconds(120);
 	
 	IProject melangeProject
 	@Inject WorkspaceTestHelper helper
