@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.4"?><plugin>
+  
+<extension point="fr.inria.diverse.melange.modeltype">
+    <modeltype id="fr.inria.diverse.melange.tests.attributes.main.TestLanguageMT" uri="http://fr.inria.diverse.melange.tests.attributes.main.testlanguagemt/"/>
+  </extension>
+  <extension point="fr.inria.diverse.melange.language">
+    <language aspects="A:fr.inria.diverse.melange.tests.attributes.main.testlanguage.aspects.AAspect;B:fr.inria.diverse.melange.tests.attributes.main.testlanguage.aspects.BAspect;Token:fr.inria.diverse.melange.tests.attributes.main.testlanguage.aspects.TokenAspect" entryPoints="" exactType="fr.inria.diverse.melange.tests.attributes.main.TestLanguageMT" id="fr.inria.diverse.melange.tests.attributes.main.TestLanguage" uri="http://fr.inria.diverse.melange.tests.attributes.main.testlanguage/rootpkg/">
+      <adapter class="fr.inria.diverse.melange.tests.attributes.main.testlanguage.adapters.testlanguagemt.TestLanguageAdapter" modeltypeId="fr.inria.diverse.melange.tests.attributes.main.TestLanguageMT"/>
+    </language>
+  </extension>
+</plugin>
