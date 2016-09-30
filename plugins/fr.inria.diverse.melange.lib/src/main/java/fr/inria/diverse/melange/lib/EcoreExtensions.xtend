@@ -288,6 +288,13 @@ class EcoreExtensions
 		]
 	}
 	
+	def void addOppositeAnnotation(EModelElement e,String ref) {
+		e.EAnnotations += EcoreFactory.eINSTANCE.createEAnnotation => [
+			source = "opposite"
+			details.put("value",ref)
+		]
+	}
+	
 	def boolean hasContainmentAnnotation(EModelElement e) {
 		return e.EAnnotations.exists[source == "containment"]
 	}

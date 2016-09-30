@@ -17,6 +17,8 @@ import java.util.Set
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.common.types.JvmGenericType
 import org.eclipse.xtext.common.types.JvmField
+import org.eclipse.xtext.common.types.JvmCustomAnnotationValue
+import org.eclipse.xtext.xbase.XStringLiteral
 
 /**
  * Infers the minimal Ecore file (an {@link EPackage}) corresponding to the
@@ -45,6 +47,8 @@ class AspectToEcore
 		"fr.inria.diverse.k3.al.annotationprocessor.Containment"
 	static final String UNIQUE_ANNOTATION_FQN =
 		"fr.inria.diverse.k3.al.annotationprocessor.Unique"
+	static final String OPPOSITE_ANNOTATION_FQN =
+		"fr.inria.diverse.k3.al.annotationprocessor.Opposite"
 	static final List<String> K3_PREFIXES =
 		#["_privk3", "super_"]
 	public static final String PROP_NAME = "AspectProperties"
@@ -249,7 +253,7 @@ class AspectToEcore
 						retType.containedElementsType
 					else
 						retType.type
-
+						
 				val find =
 					if (realType.qualifiedName == aspCls.uniqueId)
 						aspCls
@@ -265,6 +269,9 @@ class AspectToEcore
 							containment = op.isContainment
 							addAspectAnnotation
 							unique = op.isUnique
+							if(op.isOpposite){
+								addOppositeAnnotation(op.getOppositeValue)
+							}
 						]
 				else
 					aspCls.EStructuralFeatures +=
@@ -384,14 +391,40 @@ class AspectToEcore
 	}
 	
 	/**
-	 * Checks whether the given field is annotated with @Unique or @Containment
+	 * Checks whether the given field is annotated with @Unique or @Containment or @Opposite
 	 */
 	private def boolean isUnique(JvmMember field) {
 		return
 			field.isContainment
+			|| field.isOpposite
 			|| field.annotations.exists[
 				annotation.qualifiedName == UNIQUE_ANNOTATION_FQN
 			]
+	}
+	
+	/**
+	 * Checks whether the given field is annotated with @Opposite
+	 */
+	private def boolean isOpposite(JvmMember field) {
+		return
+			field.isContainment
+			|| field.annotations.exists[
+				annotation.qualifiedName == OPPOSITE_ANNOTATION_FQN
+			]
+	}
+	
+	/**
+	 * Return the 'value' parameter of the annotation @Opposite
+	 * or null if none
+	 */
+	private def String getOppositeValue(JvmMember field) {
+		val annot = field.annotations.findFirst[annotation.qualifiedName == OPPOSITE_ANNOTATION_FQN]
+		val annotVal = annot?.values?.findFirst[valueName=="value"]
+		if(annotVal instanceof JvmCustomAnnotationValue){
+			val opRef = (annotVal as JvmCustomAnnotationValue).values.head as XStringLiteral
+			return opRef?.value
+		}
+		null
 	}
 
 	/**
