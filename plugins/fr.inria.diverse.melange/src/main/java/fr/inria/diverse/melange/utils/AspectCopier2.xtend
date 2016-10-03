@@ -305,11 +305,16 @@ class AspectCopier2 {
 	 * Merge {@link newRules} in {@link base} to have a transitive renaming
 	 */
 	private def void apply(List<PackageBinding> base, List<PackageBinding> newRules) {
-		newRules.forEach[newRule|
+		newRules
+		.sortBy[from.length].reverseView // look long names first
+		.forEach[newRule|
 			//Rename pkgs
-			val toRename = base.filter[to.startsWith(newRule.from)]
+			val toRename = base.filter[
+	             to == newRule.from
+	             || to.startsWith(newRule.from+".")
+	         ]
 			toRename.forEach[ baseRule |
-				baseRule.to.replaceFirst(newRule.from,newRule.to)
+				baseRule.to = baseRule.to.replaceFirst(newRule.from,newRule.to)
 			]
 			
 			//Update pkg content
@@ -318,10 +323,10 @@ class AspectCopier2 {
 				newRule.classes.forEach[newCls|
 					val clsRename = toUpdate.classes.findFirst[to == newCls.from]
 					if(clsRename !== null){
-						//Rename classe
+						//Rename class
 						clsRename.to = newCls.to
 						
-						//Update classe content
+						//Update class content
 						newCls.properties.forEach[newProp|
 							val propRename = clsRename.properties.findFirst[to == newProp.from]
 							if(propRename !== null){
@@ -335,7 +340,7 @@ class AspectCopier2 {
 						]
 					}
 					else{
-						//Add classe
+						//Add class
 						toUpdate.classes.add(newCls)
 					}
 				]
