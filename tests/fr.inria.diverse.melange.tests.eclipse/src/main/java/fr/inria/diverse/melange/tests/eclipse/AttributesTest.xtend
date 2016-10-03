@@ -114,7 +114,7 @@ public class AttributesTest extends AbstractXtextTests
 		assertNotNull(a_toB)
 		assertTrue(a_toB.isUnique)
 		assertEquals(0,a_toB.lowerBound)
-		assertEquals(-1,a_toB.upperBound)
+		assertEquals(1,a_toB.upperBound)
 		
 		val b_toA = b.EAllReferences.findFirst[name == "toA"]
 		assertNotNull(b_toA)
@@ -122,6 +122,12 @@ public class AttributesTest extends AbstractXtextTests
 		assertTrue(b_toA.isContainment)
 		assertEquals(0,b_toA.lowerBound)
 		assertEquals(-1,b_toA.upperBound)
+		
+		val b_toB = b.EAllReferences.findFirst[name == "toB"]
+		assertNotNull(b_toB)
+		assertFalse(b_toB.isUnique)
+		assertEquals(0,b_toB.lowerBound)
+		assertEquals(-1,b_toB.upperBound)
 		
 		val token_myName = token.EAllAttributes.findFirst[name == "myName"]
 		assertNotNull(token_myName)
