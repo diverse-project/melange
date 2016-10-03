@@ -926,8 +926,19 @@ class LanguageExtensions
 	private def Set<String> collectAspectDependencies(Language l) {
 		val scope = l.allDependencies
 		scope.add(l)
-		val originalAspects = scope.map[operators].flatten.filter(Weave).map[aspectTypeRef].toSet
-		val originalEcores = scope.map[operators].flatten.filter(Import).map[ecoreUri].toSet
+		val originalAspects = scope
+			.map[operators]
+			.flatten
+			.filter(Weave)
+			.filter[aspectWildcardImport === null]
+			.map[aspectTypeRef]
+			.toSet
+		val originalEcores = scope
+			.map[operators]
+			.flatten
+			.filter(Import)
+			.map[ecoreUri]
+			.toSet
 		
 		val ecoreProjects = originalEcores
 			.map[ecoreURI |
