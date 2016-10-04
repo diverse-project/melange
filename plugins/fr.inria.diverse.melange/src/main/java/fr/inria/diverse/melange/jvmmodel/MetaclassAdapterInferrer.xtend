@@ -465,7 +465,7 @@ class MetaclassAdapterInferrer
 	) {
 		val asp = aspect.aspectTypeRef.type as JvmDeclaredType
 		val paramsList = new StringBuilder
-		val featureName = asp.findFeatureNameFor(op)
+		val featureName = asp.findFeatureNameFor(op, typeRefBuilder)
 		val realType =
 			if (op.returnType.isCollection)
 				(op.returnType as JvmParameterizedTypeReference)
@@ -482,12 +482,12 @@ class MetaclassAdapterInferrer
 				typeRef(Void.TYPE)
 			else if (mtCls !== null)
 				if (op.returnType.isCollection)
-					op.returnType.type.typeRef(
+					"org.eclipse.emf.common.util.EList".typeRef(
 						superType.typeRef(mtCls, #[jvmCls]))
 				else
 					superType.typeRef(mtCls, #[jvmCls])
 			else if (op.returnType.isCollection)
-				op.returnType.type.typeRef(
+				"org.eclipse.emf.common.util.EList".typeRef(
 					(op.returnType as JvmParameterizedTypeReference)
 					.arguments.head.qualifiedName.typeRef)
 			else
@@ -506,8 +506,7 @@ class MetaclassAdapterInferrer
 			// Build the comma-separated list of operation arguments
 			paramsList.append('''
 				«IF mm.owningLanguage.hasAdapterFor(superType, p.parameterType.qualifiedName)»
-					, ((«mm.adapterNameFor(superType, superType.findClass(p.parameterType.qualifiedName))»)«
-					» «p.name»).getAdaptee()
+					, («p.parameterType.qualifiedName»)((EObjectAdapter)«p.name»).getAdaptee()
 				«ELSEIF p.parameterType.isCollection
 					&& mm.owningLanguage.hasAdapterFor(superType, realTypeP)»
 					, ((«EListAdapter.canonicalName») «p.name»).getAdaptee()

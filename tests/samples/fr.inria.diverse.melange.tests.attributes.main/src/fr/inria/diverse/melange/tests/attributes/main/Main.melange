@@ -1,0 +1,12 @@
+package fr.inria.diverse.melange.tests.attributes.main
+
+language TestLanguage {
+	syntax "platform:/resource/fr.inria.diverse.melange.tests.attributes.model/model/model.ecore"
+	syntax "platform:/resource/fr.inria.diverse.melange.tests.attributes.model/model/model2.ecore" renaming {
+		"rootpkg2" to "rootpkg" {}
+	}
+	
+	with fr.inria.diverse.melange.tests.attributes.aspects.AAspect
+	with fr.inria.diverse.melange.tests.attributes.aspects.BAspect
+	with fr.inria.diverse.melange.tests.attributes.aspects.TokenAspect
+}

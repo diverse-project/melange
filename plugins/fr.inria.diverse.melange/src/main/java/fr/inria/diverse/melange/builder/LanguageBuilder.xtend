@@ -18,6 +18,8 @@ import java.util.List
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.util.EcoreUtil
 import java.util.Set
+import fr.inria.diverse.melange.lib.EcoreExtensions
+import org.eclipse.emf.ecore.EClass
 
 /**
  * General builder for a {@link Language}.
@@ -27,6 +29,7 @@ class LanguageBuilder extends AbstractBuilder {
 	@Inject Injector injector
 	@Inject extension AspectExtensions
 	@Inject extension LanguageExtensions
+	@Inject extension EcoreExtensions
 	@Inject EcoreMerger ecoreMerger
 	/**
 	 * The {@link ModelTypingSpaceBuilder} that builds the {@link ModelTypingSpace}
@@ -67,6 +70,8 @@ class LanguageBuilder extends AbstractBuilder {
 		
 		if(source.isGeneratedByMelange)
 			model.forEach[nsURI = source.externalPackageUri+name+"/"]
+		
+		bindOppositeReferences
 	}
 
 	override make() {
@@ -168,5 +173,30 @@ class LanguageBuilder extends AbstractBuilder {
 	 */
 	def List<OperatorBuilder<? extends Operator>> getSubBuilders(){
 		return builders
+	}
+	
+	private def bindOppositeReferences() {
+		val allClasses = model.map[allClasses]
+			.flatten
+			.toSet
+		
+		val allOpposites = allClasses
+			.map[EAllReferences]
+			.flatten
+			.filter[EAnnotations.exists[it.source == "opposite"]]
+			
+		allOpposites.forEach[ref |
+			val annot = ref.EAnnotations.findFirst[it.source == "opposite"]
+			val opRefName = annot.details.get("value")
+			if(ref.EType instanceof EClass){
+				val opRef = (ref.EType as EClass).EAllReferences.findFirst[name == opRefName]
+				//TODO: should check opRef is tagged @Opposite
+				if(opRef !== null && opRef.EOpposite == null){
+					ref.EOpposite = opRef
+					opRef.EOpposite = ref
+				}
+			}
+			ref.EAnnotations.remove(annot)
+		]
 	}
 }

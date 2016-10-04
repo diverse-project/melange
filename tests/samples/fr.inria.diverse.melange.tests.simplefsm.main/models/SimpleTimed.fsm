@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fsm:FSM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fsm="http://timedfsm/fsm/" initialState="//@ownedState.0" finalState="//@ownedState.2 //@ownedState.3">
+<fsm:FSM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fsm="http://fr.inria.diverse.melange.tests.simplefsm.timedfsm/fsm/" initialState="//@ownedState.0" finalState="//@ownedState.2 //@ownedState.3">
   <ownedState name="1">
     <outgoingTransition target="//@ownedState.1" input="a" output="1"/>
     <outgoingTransition target="//@ownedState.2" input="b" output="2"/>

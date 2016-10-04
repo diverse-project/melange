@@ -70,8 +70,8 @@ class EcoreMergerTest
 
 		assertNotNull(resulting)
 		assertEquals(2, resulting.size)
-		val a = resulting.get(0)
-		val b = resulting.get(1)
+		val a = resulting.findFirst[name == "ecore"]
+		val b = resulting.findFirst[name == "namesNotMatching"]
 		assertIsValid(a)
 		assertIsValid(b)
 		assertPkgEquals(a, receivingEcore)

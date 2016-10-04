@@ -37,8 +37,14 @@ ExternalLanguage:
 	'language' name = ValidID 
 	('implements' implements += [ModelType | QualifiedName] (',' implements += [ModelType | QualifiedName])*)?
 	'{'
-		(operators += ExternalImport)* &
+		operators += ExternalImport &
+		(operators += Weave)* &
 //		('resource' resourceType = ResourceType (=> 'uri' resourceUri = STRING | 'setup' xtextSetupRef = JvmTypeReference)?)? &
+		('xtext' xtext+=STRING (',' xtext+=STRING)* )? &
+		('sirius' sirius+=STRING (',' sirius+=STRING)* )? &
+		('ecl' ecl+=STRING (',' ecl+=STRING)* )? &
+		('xmof' xmof=STRING)? &
+		('fileExtension' fileExtension=STRING)? &
 		('exactType' exactTypeName = ValidID (=> 'uri' exactTypeUri = STRING)?)?
 	'}'
 ;

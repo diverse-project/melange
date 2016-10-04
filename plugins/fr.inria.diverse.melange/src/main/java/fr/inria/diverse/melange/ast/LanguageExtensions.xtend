@@ -42,6 +42,18 @@ import java.util.Stack
 import fr.inria.diverse.melange.metamodel.melange.Mapping
 import fr.inria.diverse.melange.processors.LanguageProcessor
 import fr.inria.diverse.melange.metamodel.melange.ExternalLanguage
+import org.eclipse.core.resources.ResourcesPlugin
+import org.eclipse.core.resources.IResourceVisitor
+import org.eclipse.core.resources.IResource
+import org.eclipse.core.runtime.CoreException
+import org.eclipse.core.resources.IFile
+import java.util.HashMap
+import org.eclipse.core.resources.IProject
+import java.util.HashSet
+import org.eclipse.emf.common.util.URI
+import org.eclipse.core.runtime.Path
+import org.eclipse.core.runtime.IPath
+import org.apache.log4j.Logger
 
 /**
  * A collection of utilities around {@link Language}s
@@ -65,6 +77,8 @@ class LanguageExtensions
 	@Inject JvmTypeReferenceBuilder.Factory builderFactory
 	@Inject MatchingHelper matchingHelper
 	@Inject ModelTypingSpaceBuilder modelTypingSpaceBuilder
+	@Inject EclipseProjectHelper eclipseHelper
+	private static final Logger log = Logger.getLogger(LanguageExtensions)
 
 	static final String ASPECT_MAIN_ANNOTATION =
 		"fr.inria.diverse.k3.al.annotationprocessor.Main"
@@ -335,7 +349,7 @@ class LanguageExtensions
 	 * The returned URI is of the form {@code http://$languageNameInLowerCase/}.
 	 */
 	def String getExternalPackageUri(Language l) {
-		return '''http://«l.name.toLowerCase»/'''
+		return '''http://«l.fullyQualifiedName.toLowerCase»/'''
 	}
 
 	def String getExternalEcorePath(Language l) {
@@ -708,5 +722,71 @@ class LanguageExtensions
 		}
 		
 		return qualifiedClsName
+	}
+	
+	private def Set<String> collectAspectDependencies(Language l) {
+		val scope = l.allDependencies
+		scope.add(l)
+		val originalAspects = scope
+			.map[operators]
+			.flatten
+			.filter(Weave)
+			.filter[aspectWildcardImport === null]
+			.map[aspectTypeRef]
+			.toSet
+		val originalEcores = scope
+			.map[operators]
+			.flatten
+			.filter(Import)
+			.map[ecoreUri]
+			.toSet
+		
+		val ecoreProjects = originalEcores
+			.map[ecoreURI |
+				val URI uri = org.eclipse.emf.common.util.URI.createURI(ecoreURI);
+				val String filePath = uri.toPlatformString(true);
+				val IPath path = new Path(filePath);
+				ResourcesPlugin.getWorkspace().getRoot().getFile(path);
+			]
+			.map[project]
+			.toSet
+		
+		val k3Projects = new HashSet<IProject>
+		val ws = ResourcesPlugin.workspace.root
+		try {
+			ws.accept(new IResourceVisitor {
+				override visit(IResource resource) throws CoreException {
+					if (resource instanceof IFile) {
+						val firstMatch = originalAspects.findFirst[ref|
+							val pattern = ref.identifier.replace(".", "/") + ".java"
+							resource.locationURI.path.endsWith(pattern)
+						]
+						if (firstMatch !== null){
+							k3Projects.add(resource.project)
+						}
+	
+						return false
+					}
+	
+					return true
+				}
+			})
+		} catch (CoreException e) {
+			log.error("Unexpected exception while visiting workspace", e)
+		}
+		
+		val allRequiredBundles = k3Projects.map[dependencies].flatten.toSet
+		allRequiredBundles.removeAll(ecoreProjects.map[name])
+		
+		return allRequiredBundles
+	}
+	
+	/**
+	 * Collect required bundles from Aspect's projects (Ecore bundles excluded)
+	 * and add them to the runtime project of {@link l}.
+	 */
+	def void addRequireBundleForAspects(Language l) {
+		val project = ResourcesPlugin.workspace.root.getProject(l.externalRuntimeName)
+		eclipseHelper.addDependencies(project, l.collectAspectDependencies)
 	}
 }

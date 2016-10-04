@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Dispatch -->
+      <package
+            uri="http://dispatchroot/"
+            class="dispatchroot.DispatchrootPackage"
+            genModel="model/Dispatch.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Extension -->
+      <package
+            uri="http://dispatchroot/extension"
+            class="extension.dispatchroot.DispatchrootPackage"
+            genModel="model/Extension.genmodel"/>
+   </extension>
+
+</plugin>

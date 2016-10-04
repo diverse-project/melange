@@ -225,11 +225,11 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 
 		//'language' name=ValidID ('inherits' operators+=Inherit ("," operators+=Inherit)*)? ('implements'
 		//implements+=[ModelType|QualifiedName] (',' implements+=[ModelType|QualifiedName])*)? ('requires'
-		//requires+=[ModelType|QualifiedName] (',' requires+=[ModelType|QualifiedName])*)? '{' operators+=Operator* & ('resource'
-		//resourceType=ResourceType (=> 'uri' resourceUri=STRING | 'setup' xtextSetupRef=JvmTypeReference)?)? & ('xtext'
-		//xtext+=STRING (',' xtext+=STRING)*)? & ('sirius' sirius+=STRING (',' sirius+=STRING)*)? & ('ecl' ecl+=STRING (','
-		//ecl+=STRING)*)? & ('xmof' xmof=STRING)? & ('fileExtension' fileExtension=STRING)? & ('exactType' exactTypeName=ValidID
-		//(=> 'uri' exactTypeUri=STRING)?)? '}'
+		//requires+=[ModelType|QualifiedName] (',' requires+=[ModelType|QualifiedName])*)? '{' operators+=Operator* &
+		//('resource' resourceType=ResourceType (=> 'uri' resourceUri=STRING | 'setup' xtextSetupRef=JvmTypeReference)?)? &
+		//('xtext' xtext+=STRING (',' xtext+=STRING)*)? & ('sirius' sirius+=STRING (',' sirius+=STRING)*)? & ('ecl' ecl+=STRING
+		//(',' ecl+=STRING)*)? & ('xmof' xmof=STRING)? & ('fileExtension' fileExtension=STRING)? & ('exactType'
+		//exactTypeName=ValidID (=> 'uri' exactTypeUri=STRING)?)? '}'
 		public UnorderedGroup getUnorderedGroup() { return cUnorderedGroup; }
 
 		//'language' name=ValidID ('inherits' operators+=Inherit ("," operators+=Inherit)*)? ('implements'
@@ -525,32 +525,70 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftCurlyBracketKeyword_0_3 = (Keyword)cGroup_0.eContents().get(3);
 		private final Assignment cOperatorsAssignment_0_4 = (Assignment)cGroup_0.eContents().get(4);
 		private final RuleCall cOperatorsExternalImportParserRuleCall_0_4_0 = (RuleCall)cOperatorsAssignment_0_4.eContents().get(0);
-		private final Group cGroup_1 = (Group)cUnorderedGroup.eContents().get(1);
-		private final Group cGroup_1_0 = (Group)cGroup_1.eContents().get(0);
-		private final Keyword cExactTypeKeyword_1_0_0 = (Keyword)cGroup_1_0.eContents().get(0);
-		private final Assignment cExactTypeNameAssignment_1_0_1 = (Assignment)cGroup_1_0.eContents().get(1);
-		private final RuleCall cExactTypeNameValidIDParserRuleCall_1_0_1_0 = (RuleCall)cExactTypeNameAssignment_1_0_1.eContents().get(0);
-		private final Group cGroup_1_0_2 = (Group)cGroup_1_0.eContents().get(2);
-		private final Keyword cUriKeyword_1_0_2_0 = (Keyword)cGroup_1_0_2.eContents().get(0);
-		private final Assignment cExactTypeUriAssignment_1_0_2_1 = (Assignment)cGroup_1_0_2.eContents().get(1);
-		private final RuleCall cExactTypeUriSTRINGTerminalRuleCall_1_0_2_1_0 = (RuleCall)cExactTypeUriAssignment_1_0_2_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Assignment cOperatorsAssignment_1 = (Assignment)cUnorderedGroup.eContents().get(1);
+		private final RuleCall cOperatorsWeaveParserRuleCall_1_0 = (RuleCall)cOperatorsAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cUnorderedGroup.eContents().get(2);
+		private final Keyword cXtextKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cXtextAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cXtextSTRINGTerminalRuleCall_2_1_0 = (RuleCall)cXtextAssignment_2_1.eContents().get(0);
+		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
+		private final Keyword cCommaKeyword_2_2_0 = (Keyword)cGroup_2_2.eContents().get(0);
+		private final Assignment cXtextAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
+		private final RuleCall cXtextSTRINGTerminalRuleCall_2_2_1_0 = (RuleCall)cXtextAssignment_2_2_1.eContents().get(0);
+		private final Group cGroup_3 = (Group)cUnorderedGroup.eContents().get(3);
+		private final Keyword cSiriusKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cSiriusAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cSiriusSTRINGTerminalRuleCall_3_1_0 = (RuleCall)cSiriusAssignment_3_1.eContents().get(0);
+		private final Group cGroup_3_2 = (Group)cGroup_3.eContents().get(2);
+		private final Keyword cCommaKeyword_3_2_0 = (Keyword)cGroup_3_2.eContents().get(0);
+		private final Assignment cSiriusAssignment_3_2_1 = (Assignment)cGroup_3_2.eContents().get(1);
+		private final RuleCall cSiriusSTRINGTerminalRuleCall_3_2_1_0 = (RuleCall)cSiriusAssignment_3_2_1.eContents().get(0);
+		private final Group cGroup_4 = (Group)cUnorderedGroup.eContents().get(4);
+		private final Keyword cEclKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cEclAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cEclSTRINGTerminalRuleCall_4_1_0 = (RuleCall)cEclAssignment_4_1.eContents().get(0);
+		private final Group cGroup_4_2 = (Group)cGroup_4.eContents().get(2);
+		private final Keyword cCommaKeyword_4_2_0 = (Keyword)cGroup_4_2.eContents().get(0);
+		private final Assignment cEclAssignment_4_2_1 = (Assignment)cGroup_4_2.eContents().get(1);
+		private final RuleCall cEclSTRINGTerminalRuleCall_4_2_1_0 = (RuleCall)cEclAssignment_4_2_1.eContents().get(0);
+		private final Group cGroup_5 = (Group)cUnorderedGroup.eContents().get(5);
+		private final Keyword cXmofKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cXmofAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cXmofSTRINGTerminalRuleCall_5_1_0 = (RuleCall)cXmofAssignment_5_1.eContents().get(0);
+		private final Group cGroup_6 = (Group)cUnorderedGroup.eContents().get(6);
+		private final Keyword cFileExtensionKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Assignment cFileExtensionAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cFileExtensionSTRINGTerminalRuleCall_6_1_0 = (RuleCall)cFileExtensionAssignment_6_1.eContents().get(0);
+		private final Group cGroup_7 = (Group)cUnorderedGroup.eContents().get(7);
+		private final Group cGroup_7_0 = (Group)cGroup_7.eContents().get(0);
+		private final Keyword cExactTypeKeyword_7_0_0 = (Keyword)cGroup_7_0.eContents().get(0);
+		private final Assignment cExactTypeNameAssignment_7_0_1 = (Assignment)cGroup_7_0.eContents().get(1);
+		private final RuleCall cExactTypeNameValidIDParserRuleCall_7_0_1_0 = (RuleCall)cExactTypeNameAssignment_7_0_1.eContents().get(0);
+		private final Group cGroup_7_0_2 = (Group)cGroup_7_0.eContents().get(2);
+		private final Keyword cUriKeyword_7_0_2_0 = (Keyword)cGroup_7_0_2.eContents().get(0);
+		private final Assignment cExactTypeUriAssignment_7_0_2_1 = (Assignment)cGroup_7_0_2.eContents().get(1);
+		private final RuleCall cExactTypeUriSTRINGTerminalRuleCall_7_0_2_1_0 = (RuleCall)cExactTypeUriAssignment_7_0_2_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_7_1 = (Keyword)cGroup_7.eContents().get(1);
 		
 		//ExternalLanguage:
 		//	'language' name=ValidID ('implements' implements+=[ModelType|QualifiedName] (','
 		//	implements+=[ModelType|QualifiedName])*)?
 		//	'{'
-		//	operators+=ExternalImport* & ('exactType' exactTypeName=ValidID (=> 'uri' exactTypeUri=STRING)?)?
+		//	operators+=ExternalImport & operators+=Weave* & ('xtext' xtext+=STRING (',' xtext+=STRING)*)? & ('sirius'
+		//	sirius+=STRING (',' sirius+=STRING)*)? & ('ecl' ecl+=STRING (',' ecl+=STRING)*)? & ('xmof' xmof=STRING)? &
+		//	('fileExtension' fileExtension=STRING)? & ('exactType' exactTypeName=ValidID (=> 'uri' exactTypeUri=STRING)?)?
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 
 		//'language' name=ValidID ('implements' implements+=[ModelType|QualifiedName] (','
-		//implements+=[ModelType|QualifiedName])*)? '{' operators+=ExternalImport* & ('exactType' exactTypeName=ValidID (=> 'uri'
+		//implements+=[ModelType|QualifiedName])*)? '{' operators+=ExternalImport & operators+=Weave* & ('xtext' xtext+=STRING
+		//(',' xtext+=STRING)*)? & ('sirius' sirius+=STRING (',' sirius+=STRING)*)? & ('ecl' ecl+=STRING (',' ecl+=STRING)*)? &
+		//('xmof' xmof=STRING)? & ('fileExtension' fileExtension=STRING)? & ('exactType' exactTypeName=ValidID (=> 'uri'
 		//exactTypeUri=STRING)?)? '}'
 		public UnorderedGroup getUnorderedGroup() { return cUnorderedGroup; }
 
 		//'language' name=ValidID ('implements' implements+=[ModelType|QualifiedName] (','
-		//implements+=[ModelType|QualifiedName])*)? '{' operators+=ExternalImport*
+		//implements+=[ModelType|QualifiedName])*)? '{' operators+=ExternalImport
 		public Group getGroup_0() { return cGroup_0; }
 
 		//'language'
@@ -595,41 +633,143 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_0_3() { return cLeftCurlyBracketKeyword_0_3; }
 
-		//operators+=ExternalImport*
+		//operators+=ExternalImport
 		public Assignment getOperatorsAssignment_0_4() { return cOperatorsAssignment_0_4; }
 
 		//ExternalImport
 		public RuleCall getOperatorsExternalImportParserRuleCall_0_4_0() { return cOperatorsExternalImportParserRuleCall_0_4_0; }
 
-		//('exactType' exactTypeName=ValidID (=> 'uri' exactTypeUri=STRING)?)? '}'
-		public Group getGroup_1() { return cGroup_1; }
+		//operators+=Weave*
+		public Assignment getOperatorsAssignment_1() { return cOperatorsAssignment_1; }
 
-		//('exactType' exactTypeName=ValidID (=> 'uri' exactTypeUri=STRING)?)?
-		public Group getGroup_1_0() { return cGroup_1_0; }
+		//Weave
+		public RuleCall getOperatorsWeaveParserRuleCall_1_0() { return cOperatorsWeaveParserRuleCall_1_0; }
 
-		//'exactType'
-		public Keyword getExactTypeKeyword_1_0_0() { return cExactTypeKeyword_1_0_0; }
+		//('xtext' xtext+=STRING (',' xtext+=STRING)*)?
+		public Group getGroup_2() { return cGroup_2; }
 
-		//exactTypeName=ValidID
-		public Assignment getExactTypeNameAssignment_1_0_1() { return cExactTypeNameAssignment_1_0_1; }
+		//'xtext'
+		public Keyword getXtextKeyword_2_0() { return cXtextKeyword_2_0; }
 
-		//ValidID
-		public RuleCall getExactTypeNameValidIDParserRuleCall_1_0_1_0() { return cExactTypeNameValidIDParserRuleCall_1_0_1_0; }
-
-		//(=> 'uri' exactTypeUri=STRING)?
-		public Group getGroup_1_0_2() { return cGroup_1_0_2; }
-
-		//=> 'uri'
-		public Keyword getUriKeyword_1_0_2_0() { return cUriKeyword_1_0_2_0; }
-
-		//exactTypeUri=STRING
-		public Assignment getExactTypeUriAssignment_1_0_2_1() { return cExactTypeUriAssignment_1_0_2_1; }
+		//xtext+=STRING
+		public Assignment getXtextAssignment_2_1() { return cXtextAssignment_2_1; }
 
 		//STRING
-		public RuleCall getExactTypeUriSTRINGTerminalRuleCall_1_0_2_1_0() { return cExactTypeUriSTRINGTerminalRuleCall_1_0_2_1_0; }
+		public RuleCall getXtextSTRINGTerminalRuleCall_2_1_0() { return cXtextSTRINGTerminalRuleCall_2_1_0; }
+
+		//(',' xtext+=STRING)*
+		public Group getGroup_2_2() { return cGroup_2_2; }
+
+		//','
+		public Keyword getCommaKeyword_2_2_0() { return cCommaKeyword_2_2_0; }
+
+		//xtext+=STRING
+		public Assignment getXtextAssignment_2_2_1() { return cXtextAssignment_2_2_1; }
+
+		//STRING
+		public RuleCall getXtextSTRINGTerminalRuleCall_2_2_1_0() { return cXtextSTRINGTerminalRuleCall_2_2_1_0; }
+
+		//('sirius' sirius+=STRING (',' sirius+=STRING)*)?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//'sirius'
+		public Keyword getSiriusKeyword_3_0() { return cSiriusKeyword_3_0; }
+
+		//sirius+=STRING
+		public Assignment getSiriusAssignment_3_1() { return cSiriusAssignment_3_1; }
+
+		//STRING
+		public RuleCall getSiriusSTRINGTerminalRuleCall_3_1_0() { return cSiriusSTRINGTerminalRuleCall_3_1_0; }
+
+		//(',' sirius+=STRING)*
+		public Group getGroup_3_2() { return cGroup_3_2; }
+
+		//','
+		public Keyword getCommaKeyword_3_2_0() { return cCommaKeyword_3_2_0; }
+
+		//sirius+=STRING
+		public Assignment getSiriusAssignment_3_2_1() { return cSiriusAssignment_3_2_1; }
+
+		//STRING
+		public RuleCall getSiriusSTRINGTerminalRuleCall_3_2_1_0() { return cSiriusSTRINGTerminalRuleCall_3_2_1_0; }
+
+		//('ecl' ecl+=STRING (',' ecl+=STRING)*)?
+		public Group getGroup_4() { return cGroup_4; }
+
+		//'ecl'
+		public Keyword getEclKeyword_4_0() { return cEclKeyword_4_0; }
+
+		//ecl+=STRING
+		public Assignment getEclAssignment_4_1() { return cEclAssignment_4_1; }
+
+		//STRING
+		public RuleCall getEclSTRINGTerminalRuleCall_4_1_0() { return cEclSTRINGTerminalRuleCall_4_1_0; }
+
+		//(',' ecl+=STRING)*
+		public Group getGroup_4_2() { return cGroup_4_2; }
+
+		//','
+		public Keyword getCommaKeyword_4_2_0() { return cCommaKeyword_4_2_0; }
+
+		//ecl+=STRING
+		public Assignment getEclAssignment_4_2_1() { return cEclAssignment_4_2_1; }
+
+		//STRING
+		public RuleCall getEclSTRINGTerminalRuleCall_4_2_1_0() { return cEclSTRINGTerminalRuleCall_4_2_1_0; }
+
+		//('xmof' xmof=STRING)?
+		public Group getGroup_5() { return cGroup_5; }
+
+		//'xmof'
+		public Keyword getXmofKeyword_5_0() { return cXmofKeyword_5_0; }
+
+		//xmof=STRING
+		public Assignment getXmofAssignment_5_1() { return cXmofAssignment_5_1; }
+
+		//STRING
+		public RuleCall getXmofSTRINGTerminalRuleCall_5_1_0() { return cXmofSTRINGTerminalRuleCall_5_1_0; }
+
+		//('fileExtension' fileExtension=STRING)?
+		public Group getGroup_6() { return cGroup_6; }
+
+		//'fileExtension'
+		public Keyword getFileExtensionKeyword_6_0() { return cFileExtensionKeyword_6_0; }
+
+		//fileExtension=STRING
+		public Assignment getFileExtensionAssignment_6_1() { return cFileExtensionAssignment_6_1; }
+
+		//STRING
+		public RuleCall getFileExtensionSTRINGTerminalRuleCall_6_1_0() { return cFileExtensionSTRINGTerminalRuleCall_6_1_0; }
+
+		//('exactType' exactTypeName=ValidID (=> 'uri' exactTypeUri=STRING)?)? '}'
+		public Group getGroup_7() { return cGroup_7; }
+
+		//('exactType' exactTypeName=ValidID (=> 'uri' exactTypeUri=STRING)?)?
+		public Group getGroup_7_0() { return cGroup_7_0; }
+
+		//'exactType'
+		public Keyword getExactTypeKeyword_7_0_0() { return cExactTypeKeyword_7_0_0; }
+
+		//exactTypeName=ValidID
+		public Assignment getExactTypeNameAssignment_7_0_1() { return cExactTypeNameAssignment_7_0_1; }
+
+		//ValidID
+		public RuleCall getExactTypeNameValidIDParserRuleCall_7_0_1_0() { return cExactTypeNameValidIDParserRuleCall_7_0_1_0; }
+
+		//(=> 'uri' exactTypeUri=STRING)?
+		public Group getGroup_7_0_2() { return cGroup_7_0_2; }
+
+		//=> 'uri'
+		public Keyword getUriKeyword_7_0_2_0() { return cUriKeyword_7_0_2_0; }
+
+		//exactTypeUri=STRING
+		public Assignment getExactTypeUriAssignment_7_0_2_1() { return cExactTypeUriAssignment_7_0_2_1; }
+
+		//STRING
+		public RuleCall getExactTypeUriSTRINGTerminalRuleCall_7_0_2_1_0() { return cExactTypeUriSTRINGTerminalRuleCall_7_0_2_1_0; }
 
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_1_1() { return cRightCurlyBracketKeyword_1_1; }
+		public Keyword getRightCurlyBracketKeyword_7_1() { return cRightCurlyBracketKeyword_7_1; }
 	}
 
 	public class EcoreModelTypeElements extends AbstractParserRuleElementFinder {
@@ -1583,7 +1723,9 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	//	'language' name=ValidID ('implements' implements+=[ModelType|QualifiedName] (','
 	//	implements+=[ModelType|QualifiedName])*)?
 	//	'{'
-	//	operators+=ExternalImport* & ('exactType' exactTypeName=ValidID (=> 'uri' exactTypeUri=STRING)?)?
+	//	operators+=ExternalImport & operators+=Weave* & ('xtext' xtext+=STRING (',' xtext+=STRING)*)? & ('sirius'
+	//	sirius+=STRING (',' sirius+=STRING)*)? & ('ecl' ecl+=STRING (',' ecl+=STRING)*)? & ('xmof' xmof=STRING)? &
+	//	('fileExtension' fileExtension=STRING)? & ('exactType' exactTypeName=ValidID (=> 'uri' exactTypeUri=STRING)?)?
 	//	'}';
 	public ExternalLanguageElements getExternalLanguageAccess() {
 		return pExternalLanguage;
@@ -1806,9 +1948,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//OpMultiAssign:
-	//	'+=' | '-=' | '*=' | '/=' | '%=' |
-	//	'<' '<' '=' |
-	//	'>' '>'? '>=';
+	//	'+=' | '-=' | '*=' | '/=' | '%=' | '<' '<' '=' | '>' '>'? '>=';
 	public XbaseGrammarAccess.OpMultiAssignElements getOpMultiAssignAccess() {
 		return gaXbase.getOpMultiAssignAccess();
 	}
@@ -1881,8 +2021,8 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XRelationalExpression XExpression:
-	//	XOtherOperatorExpression (=> ({XInstanceOfExpression.expression=current} 'instanceof') type=JvmTypeReference |
-	//	=> ({XBinaryOperation.leftOperand=current} feature=[types::JvmIdentifiableElement|OpCompare])
+	//	XOtherOperatorExpression (=> ({XInstanceOfExpression.expression=current} 'instanceof') type=JvmTypeReference | =>
+	//	({XBinaryOperation.leftOperand=current} feature=[types::JvmIdentifiableElement|OpCompare])
 	//	rightOperand=XOtherOperatorExpression)*
 	public XbaseGrammarAccess.XRelationalExpressionElements getXRelationalExpressionAccess() {
 		return gaXbase.getXRelationalExpressionAccess();
@@ -1914,13 +2054,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//OpOther:
-	//	'->'
-	//	| '..<'
-	//	| '>' '..'
-	//	| '..'
-	//	| '=>'
-	//	| '>' (=> ('>' '>') | '>') | '<' (=> ('<' '<') | '<' | '=>') | '<>'
-	//	| '?:';
+	//	'->' | '..<' | '>' '..' | '..' | '=>' | '>' (=> ('>' '>') | '>') | '<' (=> ('<' '<') | '<' | '=>') | '<>' | '?:';
 	public XbaseGrammarAccess.OpOtherElements getOpOtherAccess() {
 		return gaXbase.getOpOtherAccess();
 	}
@@ -1972,8 +2106,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XUnaryOperation XExpression:
-	//	{XUnaryOperation} feature=[types::JvmIdentifiableElement|OpUnary] operand=XUnaryOperation
-	//	| XCastedExpression
+	//	{XUnaryOperation} feature=[types::JvmIdentifiableElement|OpUnary] operand=XUnaryOperation | XCastedExpression
 	public XbaseGrammarAccess.XUnaryOperationElements getXUnaryOperationAccess() {
 		return gaXbase.getXUnaryOperationAccess();
 	}
@@ -2024,13 +2157,11 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 
 	//XMemberFeatureCall XExpression:
 	//	XPrimaryExpression (=> ({XAssignment.assignable=current} ('.' | explicitStatic?="::")
-	//	feature=[types::JvmIdentifiableElement|FeatureCallID] OpSingleAssign) value=XAssignment
-	//	| => ({XMemberFeatureCall.memberCallTarget=current} ("." | nullSafe?="?." | explicitStatic?="::")) ('<'
+	//	feature=[types::JvmIdentifiableElement|FeatureCallID] OpSingleAssign) value=XAssignment | =>
+	//	({XMemberFeatureCall.memberCallTarget=current} ("." | nullSafe?="?." | explicitStatic?="::")) ('<'
 	//	typeArguments+=JvmArgumentTypeReference (',' typeArguments+=JvmArgumentTypeReference)* '>')?
 	//	feature=[types::JvmIdentifiableElement|IdOrSuper] (=> explicitOperationCall?='(' (memberCallArguments+=XShortClosure
-	//	| memberCallArguments+=XExpression (',' memberCallArguments+=XExpression)*)?
-	//	')')?
-	//	memberCallArguments+=XClosure?)*
+	//	| memberCallArguments+=XExpression (',' memberCallArguments+=XExpression)*)? ')')? memberCallArguments+=XClosure?)*
 	public XbaseGrammarAccess.XMemberFeatureCallElements getXMemberFeatureCallAccess() {
 		return gaXbase.getXMemberFeatureCallAccess();
 	}
@@ -2092,12 +2223,8 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XClosure XExpression:
-	//	=> ({XClosure}
-	//	'[')
-	//	=> ((declaredFormalParameters+=JvmFormalParameter (',' declaredFormalParameters+=JvmFormalParameter)*)?
-	//	explicitSyntax?='|')?
-	//	expression=XExpressionInClosure
-	//	']'
+	//	=> ({XClosure} '[') => ((declaredFormalParameters+=JvmFormalParameter (','
+	//	declaredFormalParameters+=JvmFormalParameter)*)? explicitSyntax?='|')? expression=XExpressionInClosure ']'
 	public XbaseGrammarAccess.XClosureElements getXClosureAccess() {
 		return gaXbase.getXClosureAccess();
 	}
@@ -2138,9 +2265,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XIfExpression XExpression:
-	//	{XIfExpression}
-	//	'if' '(' if=XExpression ')'
-	//	then=XExpression (=> 'else' else=XExpression)?
+	//	{XIfExpression} 'if' '(' if=XExpression ')' then=XExpression (=> 'else' else=XExpression)?
 	public XbaseGrammarAccess.XIfExpressionElements getXIfExpressionAccess() {
 		return gaXbase.getXIfExpressionAccess();
 	}
@@ -2150,11 +2275,9 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XSwitchExpression XExpression:
-	//	{XSwitchExpression}
-	//	'switch' (=> ('(' declaredParam=JvmFormalParameter ':') switch=XExpression ')'
-	//	| => (declaredParam=JvmFormalParameter ':')? switch=XExpression) '{'
-	//	cases+=XCasePart* ('default' ':' default=XExpression)?
-	//	'}'
+	//	{XSwitchExpression} 'switch' (=> ('(' declaredParam=JvmFormalParameter ':') switch=XExpression ')' | =>
+	//	(declaredParam=JvmFormalParameter ':')? switch=XExpression) '{' cases+=XCasePart* ('default' ':'
+	//	default=XExpression)? '}'
 	public XbaseGrammarAccess.XSwitchExpressionElements getXSwitchExpressionAccess() {
 		return gaXbase.getXSwitchExpressionAccess();
 	}
@@ -2174,8 +2297,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XForLoopExpression XExpression:
-	//	=> ({XForLoopExpression}
-	//	'for' '(' declaredParam=JvmFormalParameter ':') forExpression=XExpression ')'
+	//	=> ({XForLoopExpression} 'for' '(' declaredParam=JvmFormalParameter ':') forExpression=XExpression ')'
 	//	eachExpression=XExpression
 	public XbaseGrammarAccess.XForLoopExpressionElements getXForLoopExpressionAccess() {
 		return gaXbase.getXForLoopExpressionAccess();
@@ -2186,10 +2308,9 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XBasicForLoopExpression XExpression:
-	//	{XBasicForLoopExpression}
-	//	'for' '(' (initExpressions+=XExpressionOrVarDeclaration (',' initExpressions+=XExpressionOrVarDeclaration)*)? ';'
-	//	expression=XExpression? ';' (updateExpressions+=XExpression (',' updateExpressions+=XExpression)*)? ')'
-	//	eachExpression=XExpression
+	//	{XBasicForLoopExpression} 'for' '(' (initExpressions+=XExpressionOrVarDeclaration (','
+	//	initExpressions+=XExpressionOrVarDeclaration)*)? ';' expression=XExpression? ';' (updateExpressions+=XExpression (','
+	//	updateExpressions+=XExpression)*)? ')' eachExpression=XExpression
 	public XbaseGrammarAccess.XBasicForLoopExpressionElements getXBasicForLoopExpressionAccess() {
 		return gaXbase.getXBasicForLoopExpressionAccess();
 	}
@@ -2199,9 +2320,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XWhileExpression XExpression:
-	//	{XWhileExpression}
-	//	'while' '(' predicate=XExpression ')'
-	//	body=XExpression
+	//	{XWhileExpression} 'while' '(' predicate=XExpression ')' body=XExpression
 	public XbaseGrammarAccess.XWhileExpressionElements getXWhileExpressionAccess() {
 		return gaXbase.getXWhileExpressionAccess();
 	}
@@ -2211,10 +2330,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XDoWhileExpression XExpression:
-	//	{XDoWhileExpression}
-	//	'do'
-	//	body=XExpression
-	//	'while' '(' predicate=XExpression ')'
+	//	{XDoWhileExpression} 'do' body=XExpression 'while' '(' predicate=XExpression ')'
 	public XbaseGrammarAccess.XDoWhileExpressionElements getXDoWhileExpressionAccess() {
 		return gaXbase.getXDoWhileExpressionAccess();
 	}
@@ -2224,9 +2340,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XBlockExpression XExpression:
-	//	{XBlockExpression}
-	//	'{' (expressions+=XExpressionOrVarDeclaration ';'?)*
-	//	'}'
+	//	{XBlockExpression} '{' (expressions+=XExpressionOrVarDeclaration ';'?)* '}'
 	public XbaseGrammarAccess.XBlockExpressionElements getXBlockExpressionAccess() {
 		return gaXbase.getXBlockExpressionAccess();
 	}
@@ -2279,9 +2393,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	//XFeatureCall XExpression:
 	//	{XFeatureCall} ('<' typeArguments+=JvmArgumentTypeReference (',' typeArguments+=JvmArgumentTypeReference)* '>')?
 	//	feature=[types::JvmIdentifiableElement|IdOrSuper] (=> explicitOperationCall?='(' (featureCallArguments+=XShortClosure
-	//	| featureCallArguments+=XExpression (',' featureCallArguments+=XExpression)*)?
-	//	')')?
-	//	featureCallArguments+=XClosure?
+	//	| featureCallArguments+=XExpression (',' featureCallArguments+=XExpression)*)? ')')? featureCallArguments+=XClosure?
 	public XbaseGrammarAccess.XFeatureCallElements getXFeatureCallAccess() {
 		return gaXbase.getXFeatureCallAccess();
 	}
@@ -2311,11 +2423,9 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XConstructorCall XExpression:
-	//	{XConstructorCall}
-	//	'new' constructor=[types::JvmConstructor|QualifiedName] (=> '<' typeArguments+=JvmArgumentTypeReference (','
-	//	typeArguments+=JvmArgumentTypeReference)* '>')? (=> explicitConstructorCall?='(' (arguments+=XShortClosure
-	//	| arguments+=XExpression (',' arguments+=XExpression)*)?
-	//	')')?
+	//	{XConstructorCall} 'new' constructor=[types::JvmConstructor|QualifiedName] (=> '<'
+	//	typeArguments+=JvmArgumentTypeReference (',' typeArguments+=JvmArgumentTypeReference)* '>')? (=>
+	//	explicitConstructorCall?='(' (arguments+=XShortClosure | arguments+=XExpression (',' arguments+=XExpression)*)? ')')?
 	//	arguments+=XClosure?
 	public XbaseGrammarAccess.XConstructorCallElements getXConstructorCallAccess() {
 		return gaXbase.getXConstructorCallAccess();
@@ -2396,10 +2506,8 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XTryCatchFinallyExpression XExpression:
-	//	{XTryCatchFinallyExpression}
-	//	'try'
-	//	expression=XExpression (catchClauses+=XCatchClause+ (=> 'finally' finallyExpression=XExpression)?
-	//	| 'finally' finallyExpression=XExpression)
+	//	{XTryCatchFinallyExpression} 'try' expression=XExpression (catchClauses+=XCatchClause+ (=> 'finally'
+	//	finallyExpression=XExpression)? | 'finally' finallyExpression=XExpression)
 	public XbaseGrammarAccess.XTryCatchFinallyExpressionElements getXTryCatchFinallyExpressionAccess() {
 		return gaXbase.getXTryCatchFinallyExpressionAccess();
 	}
@@ -2409,8 +2517,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XSynchronizedExpression XExpression:
-	//	=> ({XSynchronizedExpression}
-	//	'synchronized' '(') param=XExpression ')' expression=XExpression
+	//	=> ({XSynchronizedExpression} 'synchronized' '(') param=XExpression ')' expression=XExpression
 	public XbaseGrammarAccess.XSynchronizedExpressionElements getXSynchronizedExpressionAccess() {
 		return gaXbase.getXSynchronizedExpressionAccess();
 	}
@@ -2452,7 +2559,8 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	/// **
 	// * Dummy rule, for "better" downwards compatibility, since GrammarAccess generates non-static inner classes, 
 	// * which makes downstream grammars break on classloading, when a rule is removed.
-	// * / StaticQualifier:
+	// * /
+	//StaticQualifier:
 	//	(ValidID '::')+;
 	public XbaseGrammarAccess.StaticQualifierElements getStaticQualifierAccess() {
 		return gaXbase.getStaticQualifierAccess();
@@ -2481,8 +2589,8 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//JvmTypeReference:
-	//	JvmParameterizedTypeReference => ({JvmGenericArrayTypeReference.componentType=current} ArrayBrackets)*
-	//	| XFunctionTypeRef;
+	//	JvmParameterizedTypeReference => ({JvmGenericArrayTypeReference.componentType=current} ArrayBrackets)* |
+	//	XFunctionTypeRef;
 	public XtypeGrammarAccess.JvmTypeReferenceElements getJvmTypeReferenceAccess() {
 		return gaXtype.getJvmTypeReferenceAccess();
 	}
@@ -2534,8 +2642,8 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//JvmWildcardTypeReference:
-	//	{JvmWildcardTypeReference} '?' (constraints+=JvmUpperBound constraints+=JvmUpperBoundAnded*
-	//	| constraints+=JvmLowerBound constraints+=JvmLowerBoundAnded*)?;
+	//	{JvmWildcardTypeReference} '?' (constraints+=JvmUpperBound constraints+=JvmUpperBoundAnded* |
+	//	constraints+=JvmLowerBound constraints+=JvmLowerBoundAnded*)?;
 	public XtypeGrammarAccess.JvmWildcardTypeReferenceElements getJvmWildcardTypeReferenceAccess() {
 		return gaXtype.getJvmWildcardTypeReferenceAccess();
 	}
@@ -2653,8 +2761,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal STRING:
-	//	'"' ('\\' . | !('\\' | '"'))* '"'? |
-	//	"'" ('\\' . | !('\\' | "'"))* "'"?;
+	//	'"' ('\\' . | !('\\' | '"'))* '"'? | "'" ('\\' . | !('\\' | "'"))* "'"?;
 	public TerminalRule getSTRINGRule() {
 		return gaXtype.getSTRINGRule();
 	} 

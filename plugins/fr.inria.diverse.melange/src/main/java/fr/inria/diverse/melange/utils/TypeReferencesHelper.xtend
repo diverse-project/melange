@@ -59,7 +59,7 @@ class TypeReferencesHelper
 					"org.eclipse.emf.common.util.EList"].contains(ref.type.qualifiedName)
 			else false
 	}
-
+	
 	def JvmType getContainedElementsType(JvmTypeReference ref) {
 		if (ref.isList)
 			return (ref as JvmParameterizedTypeReference).arguments.head.type

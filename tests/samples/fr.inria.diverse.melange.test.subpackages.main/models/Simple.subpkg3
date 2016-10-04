@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<subpkg3:Subpkg3Class1 xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:subpkg3="http://subpackagestest/toppkg/subpkg2/subpkg3/">
+<subpkg3:Subpkg3Class1 xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:subpkg3="http://fr.inria.diverse.melange.test.subpackages.subpackagestest/toppkg/subpkg2/subpkg3/">
   <mySubpkg3Class2/>
   <mySubpkg3Class2/>
 </subpkg3:Subpkg3Class1>

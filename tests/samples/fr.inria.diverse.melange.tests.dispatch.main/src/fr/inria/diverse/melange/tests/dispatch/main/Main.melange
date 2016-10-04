@@ -1,0 +1,24 @@
+package fr.inria.diverse.melange.tests.dispatch.main
+
+language L1 {
+	syntax "platform:/resource/fr.inria.diverse.melange.tests.dispatch.model/model/Dispatch.ecore"
+	
+	with dispatch.melange.l1.AAspect
+	with dispatch.melange.l1.BAspect
+	with dispatch.melange.l1.CAspect
+}
+
+language L2 inherits L1 {
+	with dispatch.melange.l2.L2_AAspect
+}
+
+language L3 inherits L1 {
+	with dispatch.melange.l3.L3_A2Aspect
+	with dispatch.melange.l3.L3_BAspect
+	with dispatch.melange.l3.L3_CAspect
+}
+
+language L4 inherits L1 {
+	syntax "platform:/resource/fr.inria.diverse.melange.tests.dispatch.model/model/Extension.ecore"
+	with dispatch.melange.l4.SubBAspect
+}

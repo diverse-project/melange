@@ -5,9 +5,9 @@
       <eParameters name="arg1" eType="//A"/>
       <eParameters name="arg2" eType="//C"/>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="a" eType="//A"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="b" upperBound="-1" eType="//B"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="c" eType="//C"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="a" unique="false" eType="//A"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="b" unique="false" upperBound="-1" eType="//B"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="c" unique="false" eType="//C"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="A" instanceClassName="fr.inria.diverse.melange.tests.aspects.fsm.A"/>
   <eClassifiers xsi:type="ecore:EEnum" name="C">

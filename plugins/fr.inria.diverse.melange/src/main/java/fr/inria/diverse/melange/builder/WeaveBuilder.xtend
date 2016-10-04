@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import java.util.Set
+import fr.inria.diverse.melange.ast.LanguageExtensions
 
 /**
  * Builder for the {@link Weave} operator.
@@ -18,6 +19,8 @@ class WeaveBuilder extends OperatorBuilder<Weave> {
 	@Inject extension AspectExtensions
 	@Inject extension AspectToEcore
 	@Inject extension EcoreExtensions
+	@Inject extension LanguageExtensions
+	
 	/**
 	 * The {@link EPackage}s on which the aspect pointed by the current
 	 * {@link Weave} operator should be woven.
@@ -37,9 +40,16 @@ class WeaveBuilder extends OperatorBuilder<Weave> {
 		val aspRef = source.aspectTypeRef
 
 		if (aspRef?.type instanceof JvmDeclaredType) {
-			val className = aspRef.getAspectAnnotationValue
+			val aspectedClass = aspRef.getAspectAnnotationValue
+			
+			var baseClass = if (aspectedClass !== null) baseModel.findClass(aspectedClass)
+			
+			if(baseClass === null && aspectedClass !== null){ //try renaming
+				val renamings = source.owningLanguage.collectMappings
+				val newName = aspectedClass.rename(renamings)
+				baseClass = baseModel.findClass(newName)
+			}
 
-			val baseClass = if (className !== null) baseModel.findClass(className)
 			val aspect = aspRef.type as JvmDeclaredType
 			model = newHashSet(aspect.inferEcoreFragment(baseClass, baseModel))
 

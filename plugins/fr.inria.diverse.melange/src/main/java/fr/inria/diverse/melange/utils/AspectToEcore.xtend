@@ -14,6 +14,11 @@ import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmVisibility
 import org.eclipse.xtext.common.types.JvmMember
 import java.util.Set
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
+import org.eclipse.xtext.common.types.JvmGenericType
+import org.eclipse.xtext.common.types.JvmField
+import org.eclipse.xtext.common.types.JvmCustomAnnotationValue
+import org.eclipse.xtext.xbase.XStringLiteral
 
 /**
  * Infers the minimal Ecore file (an {@link EPackage}) corresponding to the
@@ -36,11 +41,17 @@ class AspectToEcore
 	@Inject extension AspectExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension TypeReferencesHelper
+	@Inject JvmTypeReferenceBuilder.Factory typeRefBuilderFactory
 
 	static final String CONTAINMENT_ANNOTATION_FQN =
 		"fr.inria.diverse.k3.al.annotationprocessor.Containment"
+	static final String UNIQUE_ANNOTATION_FQN =
+		"fr.inria.diverse.k3.al.annotationprocessor.Unique"
+	static final String OPPOSITE_ANNOTATION_FQN =
+		"fr.inria.diverse.k3.al.annotationprocessor.Opposite"
 	static final List<String> K3_PREFIXES =
 		#["_privk3", "super_"]
+	public static final String PROP_NAME = "AspectProperties"
 	
 	/**
 	 * Analyzes the aspect {@code aspect}, woven on the {@link EClass}
@@ -52,6 +63,8 @@ class AspectToEcore
 		EClass baseCls,
 		Set<EPackage> basePkgs
 	) {
+		val typeRefBuilder = typeRefBuilderFactory.create(aspect.eResource.resourceSet)
+		
 		// FIXME: should check aspPkg == basePkg?
 		val aspPkg = 
 			if(baseCls !== null)
@@ -127,6 +140,7 @@ class AspectToEcore
 						upperBound = upperB
 						containment = field.isContainment
 						addAspectAnnotation
+						unique = field.isUnique
 					]
 			// Otherwise, it's an EAttribute to an external type
 			else
@@ -144,6 +158,7 @@ class AspectToEcore
 									realType.qualifiedName)
 						upperBound = upperB
 						addAspectAnnotation
+						unique = field.isUnique
 					]
 		]
 
@@ -154,7 +169,7 @@ class AspectToEcore
 			&& visibility == JvmVisibility.PUBLIC
 		]
 		.forEach[op |
-			val featureName = findFeatureNameFor(aspect, op)
+			val featureName = findFeatureNameFor(aspect, op, typeRefBuilder)
 
 			// If we can't infer a feature name, it's obviously really an operation
 			if (featureName === null) {
@@ -238,7 +253,7 @@ class AspectToEcore
 						retType.containedElementsType
 					else
 						retType.type
-
+						
 				val find =
 					if (realType.qualifiedName == aspCls.uniqueId)
 						aspCls
@@ -253,6 +268,10 @@ class AspectToEcore
 							upperBound = upperB
 							containment = op.isContainment
 							addAspectAnnotation
+							unique = op.isUnique
+							if(op.isOpposite){
+								addOppositeAnnotation(op.getOppositeValue)
+							}
 						]
 				else
 					aspCls.EStructuralFeatures +=
@@ -270,6 +289,7 @@ class AspectToEcore
 							addAspectAnnotation
 							if(op.isContainment)
 								addContainmentAnnotation
+							unique = op.isUnique
 						]
 			}
 		]
@@ -286,7 +306,7 @@ class AspectToEcore
 	 * @param op   A {@link JvmOperation} of {@code type}.
 	 * @return the corresponding feature name, or null if it cannot be determined.
 	 */
-	def String findFeatureNameFor(JvmDeclaredType type, JvmOperation op) {
+	def String findFeatureNameFor(JvmDeclaredType type, JvmOperation op, JvmTypeReferenceBuilder typeRefBuilder) {
 		// @Aspect case 1
 		// ie. int getX() / void setX(int)
 		if (
@@ -331,6 +351,8 @@ class AspectToEcore
 			]
 		)
 			return op.simpleName
+		else if(op.isGetter(typeRefBuilder))
+			return op.simpleName
 		// No @Aspect (plain Java)
 		// we expect something in the line of getX() / setX()
 		else if (
@@ -366,6 +388,43 @@ class AspectToEcore
 			field.annotations.exists[
 				annotation.qualifiedName == CONTAINMENT_ANNOTATION_FQN
 			]
+	}
+	
+	/**
+	 * Checks whether the given field is annotated with @Unique or @Containment or @Opposite
+	 */
+	private def boolean isUnique(JvmMember field) {
+		return
+			field.isContainment
+			|| field.isOpposite
+			|| field.annotations.exists[
+				annotation.qualifiedName == UNIQUE_ANNOTATION_FQN
+			]
+	}
+	
+	/**
+	 * Checks whether the given field is annotated with @Opposite
+	 */
+	private def boolean isOpposite(JvmMember field) {
+		return
+			field.isContainment
+			|| field.annotations.exists[
+				annotation.qualifiedName == OPPOSITE_ANNOTATION_FQN
+			]
+	}
+	
+	/**
+	 * Return the 'value' parameter of the annotation @Opposite
+	 * or null if none
+	 */
+	private def String getOppositeValue(JvmMember field) {
+		val annot = field.annotations.findFirst[annotation.qualifiedName == OPPOSITE_ANNOTATION_FQN]
+		val annotVal = annot?.values?.findFirst[valueName=="value"]
+		if(annotVal instanceof JvmCustomAnnotationValue){
+			val opRef = (annotVal as JvmCustomAnnotationValue).values.head as XStringLiteral
+			return opRef?.value
+		}
+		null
 	}
 
 	/**
@@ -414,5 +473,27 @@ class AspectToEcore
 		}
 		
 		return res.reverse.join(".")
+	}
+	
+	/**
+	 * Return true if {@link op} is an Aspect generated getter for final field 
+	 */
+	private def boolean isGetter(JvmOperation op, JvmTypeReferenceBuilder typeRefBuilder) {
+		try {
+			if( op.parameters.size == 1 ){
+				val eclass = op.parameters.get(0).parameterType.simpleName
+				val className = op.declaringType.qualifiedName
+				val aspectProperties = typeRefBuilder.typeRef(className + eclass + PROP_NAME)
+				val type = aspectProperties.type as JvmGenericType
+				
+				return type.members.filter(JvmField).exists[simpleName == op.simpleName && isFinal]
+			}
+		}
+		catch(Exception e){
+			//Do nothing :)
+			//TODO: log
+		}
+		
+		false
 	}
 }

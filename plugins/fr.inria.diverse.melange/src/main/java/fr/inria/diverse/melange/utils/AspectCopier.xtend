@@ -109,13 +109,14 @@ class AspectCopier
 							val pattern = ref.identifier.replace(".", "/") + ".java"
 							resource.locationURI.path.endsWith(pattern)
 						]
-						if (firstMatch !== null){
+						if (firstMatch !== null) {
 							val ressourcePath = resource.locationURI.path
-							if(ressourcePath.contains("/xtend-gen/")){
-								aspects2folders.put(firstMatch,new File(resource.project.locationURI.path + "/xtend-gen/"))
+							val projPath = resource.project.locationURI.path
+							if(ressourcePath.startsWith(projPath + "/xtend-gen/")) {
+								aspects2folders.put(firstMatch,new File(projPath + "/xtend-gen/"))
 							}
-							else if(ressourcePath.contains("/src-gen/")){
-								aspects2folders.put(firstMatch,new File(resource.project.locationURI.path + "/src-gen/"))
+							else if(ressourcePath.startsWith(projPath+"/src-gen/")) {
+								aspects2folders.put(firstMatch,new File(projPath + "/src-gen/"))
 							}
 						}
 	
@@ -196,6 +197,7 @@ class AspectCopier
 				eclipseHelper.addDependencies(project, #[targetProject.name])
 		} catch (Exception e) {
 			log.error("Unexpected error while copying aspects to runtime", e)
+			
 		} finally {
 			task.stop
 			log.debug("Done")
