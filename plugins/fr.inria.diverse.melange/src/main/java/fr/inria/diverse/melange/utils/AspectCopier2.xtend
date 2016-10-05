@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.naming.IQualifiedNameProvider
+import org.eclipse.xtext.common.types.JvmDeclaredType
 
 class AspectCopier2 {
 	
@@ -272,9 +273,17 @@ class AspectCopier2 {
 			rule.to = targetLang.fullyQualifiedName.toLowerCase + "." + rule.to
 		]
 		
-		// c. Apply renaming rules on copied aspects
+		// c. Get namespaces of aspects that may be used by local aspects
+		val sourceAspectNs = currentLang
+			.allDependencies
+			.map[semantics]
+			.flatten
+			.map[(aspectTypeRef.type as JvmDeclaredType).packageName]
+			.toSet
+		
+		// d. Apply renaming rules on copied aspects
 		val renamingManager = new RenamingRuleManager(finalRenaming,localAspSliced,aspectExtension)
-		renamer.processRenaming(localAspSliced, targetLang, newArrayList(renamingManager))
+		renamer.processRenaming(localAspSliced, targetLang, sourceAspectNs, newArrayList(renamingManager))
 	}
 	
 	private def String getContextFqn(JvmTypeReference aspRef) {
