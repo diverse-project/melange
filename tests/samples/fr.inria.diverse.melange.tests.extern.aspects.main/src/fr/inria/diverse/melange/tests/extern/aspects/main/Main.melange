@@ -1,17 +1,13 @@
 package fr.inria.diverse.melange.tests.extern.aspects.main
 
-import fr.inria.diverse.melange.tests.aspects.aspect.StateAspect1
-import fr.inria.diverse.melange.tests.aspects.aspect.StateAspect2
-import fr.inria.diverse.melange.tests.aspects.aspect.StateAspect3
 
 external language Fsm {
-	syntax "platform:/resource/fr.inria.diverse.melange.tests.aspects.model/model/FSM.ecore"
-	with StateAspect1
-	with StateAspect2
-	with StateAspect3
+	syntax "platform:/resource/fr.inria.diverse.melange.tests.extern.aspects.model/model/FSM.ecore"
+	
+	with fr.inria.diverse.melange.tests.aspects.aspect.StateAspect1
+	
 	exactType FsmMT
 }
 
 language Xfsm inherits Fsm {
-	with StateAspect1
 }

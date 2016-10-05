@@ -33,8 +33,8 @@ public class ExternalAspectTest extends AbstractXtextTests
 			helper.init
 			IResourcesSetupUtil::cleanWorkspace
 			
-			helper.deployMelangeProject("fr.inria.diverse.melange.tests.aspects.model","tests-inputs/fr.inria.diverse.melange.tests.aspects.model.zip")
-			helper.deployMelangeProject("fr.inria.diverse.melange.tests.aspects.aspect","tests-inputs/fr.inria.diverse.melange.tests.aspects.aspect.zip")
+			helper.deployMelangeProject("fr.inria.diverse.melange.tests.extern.aspects.model","tests-inputs/fr.inria.diverse.melange.tests.extern.aspects.model.zip")
+			helper.deployMelangeProject("fr.inria.diverse.melange.tests.extern.aspects.aspect","tests-inputs/fr.inria.diverse.melange.tests.extern.aspects.aspect.zip")
 			melangeProject = helper.deployMelangeProject(PROJECT_NAME,"tests-inputs/fr.inria.diverse.melange.tests.extern.aspects.main.zip")
 			
 			IResourcesSetupUtil::waitForAutoBuild
