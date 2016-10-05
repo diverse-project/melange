@@ -65,16 +65,16 @@ class AspectRenamer {
 		
 		val k3Patterns = convertToPattern(aspects, rulesManagers)
 		
-		val allAspectNamespaces = aspects
-			.map[(aspectTypeRef.type as JvmDeclaredType).packageName]
+		val allWeaveNamespaces = aspects
+			.map[(source.aspectTypeRef.type as JvmDeclaredType).packageName]
 			.toSet
-		allAspectNamespaces.addAll(sourceAspectNs)
+		allWeaveNamespaces.addAll(sourceAspectNs)
 	    val targetAspectNamespace = l.aspectsNamespace
 		
 		aspects.forEach[asp | 
 	    	val aspectNamespace = src_genFolder.getPackageFragment(targetAspectNamespace.toString)
 	    	
-			processRenaming(asp, aspectNamespace, rulesManagers, k3Patterns, allClasses, allAspectNamespaces, targetAspectNamespace)
+			processRenaming(asp, aspectNamespace, rulesManagers, k3Patterns, allClasses, allWeaveNamespaces, targetAspectNamespace)
 
 			try {
 				targetProject.refreshLocal(IResource.DEPTH_INFINITE, null)
@@ -89,7 +89,7 @@ class AspectRenamer {
 	 */
 	private def void processRenaming(Aspect asp, IPackageFragment aspectNamespace, List<RenamingRuleManager> rulesManagers, List<Pair<String,String>> k3Pattern, List<EClass> allClasses, Set<String> allAspectNamespaces, String targetAspectNamespace){
 		
-		val aspName = asp.aspectTypeRef.simpleName 
+		val aspName = asp.source.aspectTypeRef.simpleName 
 		
 		val fileName1 = aspName+".java"
 		val cu1 = aspectNamespace.getCompilationUnit(fileName1)
@@ -99,7 +99,7 @@ class AspectRenamer {
 		
 		if(asp.hasAspectAnnotation){
 			val targetClass = asp.aspectedClass.name
-	    	val targetFqName = asp.targetedClassFqn
+	    	val targetFqName = (asp.source.aspectTypeRef.type as JvmDeclaredType).extractAspectAnnotationValue.toString
 	    	val rule = rulesManagers.map[getClassRule(targetFqName)].filterNull.head
 	    	val newClass = 
 	    		if(rule !== null){

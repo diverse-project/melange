@@ -232,24 +232,9 @@ class LanguageExtensions
 	 */
 	def List<Aspect> getLocalSemantics(Language l) {
 		return
-			l.operators
-			.filter(Weave)
-			.map[w |
-				// Direct reference imports
-				if (w.aspectWildcardImport === null) {
-					l.semantics.filter[asp |
-						asp.aspectTypeRef.simpleName == w.aspectTypeRef.simpleName
-					]
-				}
-				// Wildcard imports
-				else {
-					val wildcardImportNS = w.aspectWildcardImport.substring(0,
-						w.aspectWildcardImport.length - 2)
-					l.semantics.filter[asp |
-						asp.aspectTypeRef.simpleName.startsWith(wildcardImportNS)
-					]
-				}
-			].flatten.toList
+			l.semantics.filter[asp |
+				asp.owningLanguage === asp.source.owningLanguage
+			].toList
 	}
 
 	/**

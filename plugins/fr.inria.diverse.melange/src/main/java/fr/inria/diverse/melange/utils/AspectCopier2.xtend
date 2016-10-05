@@ -191,14 +191,14 @@ class AspectCopier2 {
 		
 		val localAspSliced = 
 			if(sliceClasses !== null)
-				currentLang.semantics
+				currentLang.localSemantics
 				.filter[asp |
 					sliceClasses.exists[fullyQualifiedName == asp.aspectedClass?.fullyQualifiedName]
 				].toList
 			else
-				currentLang.semantics
+				currentLang.localSemantics
 			
-		val localAspRef = localAspSliced.map[aspectTypeRef]
+		val localWeaveRef = localAspSliced.map[source.aspectTypeRef]
 
 		/*
 		 * 1. Find files
@@ -208,7 +208,7 @@ class AspectCopier2 {
 		ws.accept(new IResourceVisitor {
 			override visit(IResource resource) throws CoreException {
 				if (resource instanceof IFile) {
-					val firstMatch = localAspRef.findFirst[ref|
+					val firstMatch = localWeaveRef.findFirst[ref|
 						val pattern1 = ref.identifier.replace(".", "/") + ".java"
 						val pattern2 = ref.contextFqn.replace(".", "/") + ".java"
 						val pattern3 = ref.propertiesFqn.replace(".", "/") + ".java"
@@ -276,9 +276,9 @@ class AspectCopier2 {
 		// c. Get namespaces of aspects that may be used by local aspects
 		val sourceAspectNs = currentLang
 			.allDependencies
-			.map[semantics]
+			.map[localSemantics]
 			.flatten
-			.map[(aspectTypeRef.type as JvmDeclaredType).packageName]
+			.map[(source.aspectTypeRef.type as JvmDeclaredType).packageName]
 			.toSet
 		
 		// d. Apply renaming rules on copied aspects
