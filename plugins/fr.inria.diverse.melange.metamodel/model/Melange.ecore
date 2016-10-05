@@ -31,6 +31,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningLanguage" lowerBound="1"
         eType="#//Language" eOpposite="#//Language/semantics"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Weave"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Inheritance" eSuperTypes="#//LanguageOperator"/>
   <eClassifiers xsi:type="ecore:EClass" name="Subtyping">

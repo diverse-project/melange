@@ -561,6 +561,7 @@ class LanguageExtensions
 					aspectedClass = localAspectedClass
 					aspectTypeRef = typesBuilder.cloneWithProxies(asp.aspectTypeRef)
 					ecoreFragment = EcoreUtil::copy(asp.ecoreFragment)
+					source = asp.source
 				]
 
 				language.semantics += newAsp
@@ -576,6 +577,7 @@ class LanguageExtensions
 					aspectedClass = localAspectedClass
 					aspectTypeRef = typesBuilder.cloneWithProxies(asp.aspectTypeRef)
 					ecoreFragment = EcoreUtil.copy(asp.ecoreFragment)
+					source = asp.source
 				]
 
 				language.semantics += newAsp

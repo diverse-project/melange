@@ -6,6 +6,7 @@ import fr.inria.diverse.melange.metamodel.melange.Aspect;
 import fr.inria.diverse.melange.metamodel.melange.Language;
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage;
 
+import fr.inria.diverse.melange.metamodel.melange.Weave;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -32,6 +33,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.AspectImpl#getAspectedClass <em>Aspected Class</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.AspectImpl#getEcoreFragment <em>Ecore Fragment</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.AspectImpl#getOwningLanguage <em>Owning Language</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.AspectImpl#getSource <em>Source</em>}</li>
  * </ul>
  *
  * @generated
@@ -66,6 +68,16 @@ public class AspectImpl extends MinimalEObjectImpl.Container implements Aspect {
 	 * @ordered
 	 */
 	protected EPackage ecoreFragment;
+
+	/**
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected Weave source;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -256,6 +268,44 @@ public class AspectImpl extends MinimalEObjectImpl.Container implements Aspect {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Weave getSource() {
+		if (source != null && source.eIsProxy()) {
+			InternalEObject oldSource = (InternalEObject)source;
+			source = (Weave)eResolveProxy(oldSource);
+			if (source != oldSource) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MelangePackage.ASPECT__SOURCE, oldSource, source));
+			}
+		}
+		return source;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Weave basicGetSource() {
+		return source;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSource(Weave newSource) {
+		Weave oldSource = source;
+		source = newSource;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MelangePackage.ASPECT__SOURCE, oldSource, source));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -316,6 +366,9 @@ public class AspectImpl extends MinimalEObjectImpl.Container implements Aspect {
 				return getEcoreFragment();
 			case MelangePackage.ASPECT__OWNING_LANGUAGE:
 				return getOwningLanguage();
+			case MelangePackage.ASPECT__SOURCE:
+				if (resolve) return getSource();
+				return basicGetSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -339,6 +392,9 @@ public class AspectImpl extends MinimalEObjectImpl.Container implements Aspect {
 				return;
 			case MelangePackage.ASPECT__OWNING_LANGUAGE:
 				setOwningLanguage((Language)newValue);
+				return;
+			case MelangePackage.ASPECT__SOURCE:
+				setSource((Weave)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -364,6 +420,9 @@ public class AspectImpl extends MinimalEObjectImpl.Container implements Aspect {
 			case MelangePackage.ASPECT__OWNING_LANGUAGE:
 				setOwningLanguage((Language)null);
 				return;
+			case MelangePackage.ASPECT__SOURCE:
+				setSource((Weave)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -384,6 +443,8 @@ public class AspectImpl extends MinimalEObjectImpl.Container implements Aspect {
 				return ecoreFragment != null;
 			case MelangePackage.ASPECT__OWNING_LANGUAGE:
 				return getOwningLanguage() != null;
+			case MelangePackage.ASPECT__SOURCE:
+				return source != null;
 		}
 		return super.eIsSet(featureID);
 	}
