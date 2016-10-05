@@ -273,13 +273,6 @@ class MelangeValidator extends AbstractMelangeValidator
 	def void checkAspectAnnotationIsValid(Aspect asp) {
 		val clsName = asp.aspectTypeRef.aspectAnnotationValue
 		val lang = asp.eContainer as Language
-		if (lang instanceof ExternalLanguage){
-			error(
-				'''aspect weaving is not allowed in external languages (ie.legacy)''',
-				MelangePackage.Literals.WEAVE__ASPECT_TYPE_REF,
-				MelangeValidationConstants.LANGUAGEOPERATOR_INVALID
-			)
-		}
 		val correspondingWeave =
 			lang.operators
 			.filter(Weave)
@@ -452,6 +445,25 @@ class MelangeValidator extends AbstractMelangeValidator
 				MelangePackage.Literals.NAMED_ELEMENT__NAME,
 				MelangeValidationConstants.LANGUAGE_NO_MAIN
 			)
+		}
+	}
+	
+	@Check
+	def void checkExternalAspect(Weave weave) {
+		val lang = weave.owningLanguage
+		val syntax = lang.syntax.pkgs
+		if(lang instanceof ExternalLanguage){
+			val correspondingAspect =
+				lang.semantics
+				.findFirst[aspectTypeRef.simpleName == weave.aspectTypeRef.simpleName]
+			if(!matchingHelper.match(syntax.toList, #[correspondingAspect.ecoreFragment], null)){
+				error(
+					'''Aspect in External Language must match aspected class. Check it doesn't introduce new features''',
+					weave,
+					MelangePackage.Literals.WEAVE__ASPECT_TYPE_REF,
+					MelangeValidationConstants.WEAVE_INVALID_TARGET
+				)
+			}
 		}
 	}
 }
