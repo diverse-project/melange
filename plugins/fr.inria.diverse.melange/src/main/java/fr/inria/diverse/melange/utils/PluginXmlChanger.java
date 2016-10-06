@@ -97,12 +97,13 @@ public class PluginXmlChanger {
 	
 	public List<Node> getExtensions(String point){
 		List<Node> res = new ArrayList<Node>();
-		
-		NodeList extensions = doc.getElementsByTagName("extension");
-		for(int i = 0; i < extensions.getLength(); i++){
-			Node node = extensions.item(i);
-			if(isMatching(node,point)){
-				res.add(node);
+		if(doc != null) {
+			NodeList extensions = doc.getElementsByTagName("extension");
+			for(int i = 0; i < extensions.getLength(); i++){
+				Node node = extensions.item(i);
+				if(isMatching(node,point)){
+					res.add(node);
+				}
 			}
 		}
 		
@@ -116,37 +117,48 @@ public class PluginXmlChanger {
 	}
 	
 	public void deleteExtensions(String point){
-		Node pluginTag = doc.getElementsByTagName("plugin").item(0);
-		
-		List<Node> toRemove = getExtensions(point);
-		for (Node node : toRemove) {
-			pluginTag.removeChild(node);
+		if(doc != null) {
+			Node pluginTag = doc.getElementsByTagName("plugin").item(0);
+			
+			List<Node> toRemove = getExtensions(point);
+			for (Node node : toRemove) {
+				pluginTag.removeChild(node);
+			}
 		}
 	}
 	
 	public Element addExtension(String point){
-		Node pluginTag = doc.getElementsByTagName("plugin").item(0);
-		
-		Element newExtension = doc.createElement("extension");
-		Attr attr = doc.createAttribute("point");
-		attr.setNodeValue(point);
-		newExtension.getAttributes().setNamedItem(attr);
-		
-		pluginTag.appendChild(newExtension);
-		
-		return newExtension;
+		if(doc != null) {
+			Node pluginTag = doc.getElementsByTagName("plugin").item(0);
+			
+			Element newExtension = doc.createElement("extension");
+			Attr attr = doc.createAttribute("point");
+			attr.setNodeValue(point);
+			newExtension.getAttributes().setNamedItem(attr);
+			
+			pluginTag.appendChild(newExtension);
+			
+			return newExtension;
+		}
+		return null;
 	}
 	
 	public Attr addAttribute(Element tag, String name, String value){
-		Attr attr = doc.createAttribute(name);
-		attr.setNodeValue(value);
-		tag.getAttributes().setNamedItem(attr);
-		return attr;
+		if(doc != null) {
+			Attr attr = doc.createAttribute(name);
+			attr.setNodeValue(value);
+			tag.getAttributes().setNamedItem(attr);
+			return attr;
+		}
+		return null;
 	}
 	
 	public Element addChild(Element tag, String name){
-		Element child = doc.createElement(name);
-		tag.appendChild(child);
-		return child;
+		if(doc != null) {
+			Element child = doc.createElement(name);
+			tag.appendChild(child);
+			return child;
+		}
+		return null;
 	}
 }
