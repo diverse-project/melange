@@ -25,6 +25,8 @@ import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.validation.Check
 import fr.inria.diverse.melange.metamodel.melange.Operator
 import fr.inria.diverse.melange.metamodel.melange.ExternalLanguage
+import fr.inria.diverse.melange.builder.ModelTypingSpaceBuilder
+import fr.inria.diverse.melange.builder.ImportBuilder
 
 class MelangeValidator extends AbstractMelangeValidator
 {
@@ -34,6 +36,7 @@ class MelangeValidator extends AbstractMelangeValidator
 	@Inject extension EcoreExtensions
 	@Inject ModelUtils modelUtils
 	@Inject MatchingHelper matchingHelper
+	@Inject ModelTypingSpaceBuilder builder
 
 	@Check
 	def void checkElementsAreNamed(NamedElement e) {
@@ -451,12 +454,12 @@ class MelangeValidator extends AbstractMelangeValidator
 	@Check
 	def void checkExternalAspect(Weave weave) {
 		val lang = weave.owningLanguage
-		val syntax = lang.syntax.pkgs
 		if(lang instanceof ExternalLanguage){
+			val importFragment = builder.getBuilder(lang).subBuilders.filter(ImportBuilder).head.model
 			val correspondingAspect =
 				lang.semantics
 				.findFirst[aspectTypeRef.simpleName == weave.aspectTypeRef.simpleName]
-			if(!matchingHelper.match(syntax.toList, #[correspondingAspect.ecoreFragment], null)){
+			if(!matchingHelper.match(importFragment.toList, #[correspondingAspect.ecoreFragment], null)){
 				error(
 					'''Aspect in External Language must match aspected class. Check it doesn't introduce new features''',
 					weave,
