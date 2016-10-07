@@ -178,7 +178,7 @@ class AspectExtensions {
 	 * of its {@code className} annotation parameter in the form of a
 	 * {@link QualifiedName}
 	 */
-	private def QualifiedName extractAspectAnnotationValue(JvmDeclaredType t) {
+	def QualifiedName extractAspectAnnotationValue(JvmDeclaredType t) {
 		val aspAnn = t.annotations.findFirst[
 			annotation?.qualifiedName == ASPECT_ANNOTATION_FQN]
 		val aspClassName = aspAnn?.values?.findFirst[

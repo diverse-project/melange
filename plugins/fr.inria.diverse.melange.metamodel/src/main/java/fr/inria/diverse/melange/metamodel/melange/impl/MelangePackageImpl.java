@@ -443,6 +443,15 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getAspect_Source() {
+		return (EReference)aspectEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getInheritance() {
 		return inheritanceEClass;
 	}
@@ -1073,6 +1082,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		createEReference(aspectEClass, ASPECT__ASPECTED_CLASS);
 		createEReference(aspectEClass, ASPECT__ECORE_FRAGMENT);
 		createEReference(aspectEClass, ASPECT__OWNING_LANGUAGE);
+		createEReference(aspectEClass, ASPECT__SOURCE);
 
 		inheritanceEClass = createEClass(INHERITANCE);
 
@@ -1233,6 +1243,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		initEReference(getAspect_AspectedClass(), theEcorePackage.getEClass(), null, "aspectedClass", null, 0, 1, Aspect.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getAspect_EcoreFragment(), theEcorePackage.getEPackage(), null, "ecoreFragment", null, 0, 1, Aspect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAspect_OwningLanguage(), this.getLanguage(), this.getLanguage_Semantics(), "owningLanguage", null, 1, 1, Aspect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAspect_Source(), this.getWeave(), null, "source", null, 0, 1, Aspect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(inheritanceEClass, Inheritance.class, "Inheritance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -21,6 +21,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Aspect#getAspectedClass <em>Aspected Class</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Aspect#getEcoreFragment <em>Ecore Fragment</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Aspect#getOwningLanguage <em>Owning Language</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Aspect#getSource <em>Source</em>}</li>
  * </ul>
  *
  * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getAspect()
@@ -133,5 +134,31 @@ public interface Aspect extends EObject {
 	 * @generated
 	 */
 	void setOwningLanguage(Language value);
+
+	/**
+	 * Returns the value of the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Source</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Source</em>' reference.
+	 * @see #setSource(Weave)
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getAspect_Source()
+	 * @model
+	 * @generated
+	 */
+	Weave getSource();
+
+	/**
+	 * Sets the value of the '{@link fr.inria.diverse.melange.metamodel.melange.Aspect#getSource <em>Source</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Source</em>' reference.
+	 * @see #getSource()
+	 * @generated
+	 */
+	void setSource(Weave value);
 
 } // Aspect
