@@ -41,9 +41,9 @@ public class AspectOverridingTest extends AbstractXtextTests
 			super.setUp
 			helper.init
 			IResourcesSetupUtil::cleanWorkspace
-			melangeProject = helper.deployMelangeProject(PROJECT_NAME,"tests-inputs/fr.inria.diverse.melange.test.overriding.main.zip")
-			helper.deployMelangeProject("fr.inria.diverse.melange.test.overriding.aspects","tests-inputs/fr.inria.diverse.melange.test.overriding.aspects.zip")
 			helper.deployMelangeProject("fr.inria.diverse.melange.test.overriding.model","tests-inputs/fr.inria.diverse.melange.test.overriding.model.zip")
+			helper.deployMelangeProject("fr.inria.diverse.melange.test.overriding.aspects","tests-inputs/fr.inria.diverse.melange.test.overriding.aspects.zip")
+			melangeProject = helper.deployMelangeProject(PROJECT_NAME,"tests-inputs/fr.inria.diverse.melange.test.overriding.main.zip")
 			IResourcesSetupUtil::waitForAutoBuild
 			helper.openEditor(MELANGE_FILE)
 		} else {
@@ -84,9 +84,9 @@ public class AspectOverridingTest extends AbstractXtextTests
 
 		val expected = '''
 			Asp0
-			Asp1b
+			Asp1a
 			Asp2
-			Asp1b
+			Asp1a
 			Asp3
 			Asp4
 			Asp4
@@ -208,7 +208,7 @@ public class AspectOverridingTest extends AbstractXtextTests
 		
 		assertEquals("root", root.text.toString)
 		assertEquals("A", clsA.text.toString)
-		assertEquals("whoIAm", op.text.toString)
+		assertEquals("whoIAm : EString", op.text.toString)
 	}
 	
 	private def void checkFragment(EPackage pkg){

@@ -43,9 +43,9 @@ public class MultiPackagesTest extends AbstractXtextTests
 			super.setUp
 			helper.init
 			IResourcesSetupUtil::cleanWorkspace
-			melangeProject = helper.deployMelangeProject(PROJECT_NAME,"tests-inputs/fr.inria.diverse.melange.tests.multipkgs.main.zip")
-			helper.deployMelangeProject("fr.inria.diverse.melange.tests.multipkgs.aspects","tests-inputs/fr.inria.diverse.melange.tests.multipkgs.aspects.zip")
 			helper.deployMelangeProject("fr.inria.diverse.melange.tests.multipkgs.model","tests-inputs/fr.inria.diverse.melange.tests.multipkgs.model.zip")
+			helper.deployMelangeProject("fr.inria.diverse.melange.tests.multipkgs.aspects","tests-inputs/fr.inria.diverse.melange.tests.multipkgs.aspects.zip")
+			melangeProject = helper.deployMelangeProject(PROJECT_NAME,"tests-inputs/fr.inria.diverse.melange.tests.multipkgs.main.zip")
 			IResourcesSetupUtil::waitForAutoBuild
 			helper.openEditor(MELANGE_FILE)
 		} else {
