@@ -129,7 +129,7 @@ class LanguageProcessor extends DispatchMelangeProcessor
 	 * of the new {@link Metamodel} are derived either from 'import' clauses
 	 * or from the external URIs where its Ecore and Genmodel will be generated.
 	 */
-	def void initializeSyntax(Language language) {
+	private def void initializeSyntax(Language language) {
 		language.syntax = MelangeFactory.eINSTANCE.createMetamodel
 
 		if (language.isGeneratedByMelange) {
@@ -149,7 +149,7 @@ class LanguageProcessor extends DispatchMelangeProcessor
 	 * Initializes the #ecoreUri of the exact {@link ModelType} of the supplied
 	 * {@code language}.
 	 */
-	def void initializeExactType(Language language) {
+	private def void initializeExactType(Language language) {
 		if(language instanceof ExternalLanguage)
 			language.exactType.ecoreUri = language.operators.filter(Import).head?.ecoreUri
 		else if (language.exactType !== null)
@@ -162,7 +162,7 @@ class LanguageProcessor extends DispatchMelangeProcessor
 	 * 'with' keyword. #ecoreFragment are also inferred here, based on the
 	 * result of the associated builders.
 	 */
-	def void initializeSemantic(Language language) {
+	private def void initializeSemantic(Language language) {
 		language.semantics.clear
 		language.semantics +=
 		language.operators
