@@ -131,6 +131,13 @@ public class SimpleFsmTest extends AbstractXtextTests
 						plugin.xml
 
 		''')
+		
+		IResourcesSetupUtil::createFile(MELANGE_PROJECT + "/plugin.xml", '''
+		<?xml version="1.0" encoding="UTF-8"?>
+		<?eclipse version="3.4"?>
+		<plugin>
+		</plugin>
+		''')
 	}
 
 	def private void createAspectsProject() throws Exception {
