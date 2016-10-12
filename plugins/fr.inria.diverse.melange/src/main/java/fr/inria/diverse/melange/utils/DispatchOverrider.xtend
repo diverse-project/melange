@@ -3,7 +3,6 @@ package fr.inria.diverse.melange.utils
 import com.google.common.collect.HashMultimap
 import com.google.common.collect.SetMultimap
 import com.google.inject.Inject
-import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.lib.EcoreExtensions
@@ -34,6 +33,7 @@ import org.eclipse.jdt.launching.JavaRuntime
 import org.eclipse.jface.text.Document
 import org.eclipse.text.edits.TextEdit
 import org.eclipse.xtext.naming.IQualifiedNameProvider
+import org.apache.log4j.Logger
 
 /**
  * This class recomputes the dispatch of Aspect's methods and rewrite
@@ -46,17 +46,34 @@ class DispatchOverrider {
 	@Inject extension EcoreExtensions
 	@Inject extension LanguageExtensions
 	
-	ModelTypingSpace mtSpace
-	IJavaProject project
-	ClassLoader loader
+	private static final Logger log = Logger.getLogger(DispatchOverrider)
 	
+	/**
+	 * Link Language to its Aspects' Java classes
+	 */
 	private SetMultimap<Language, Class<?>> aspectsByLang = HashMultimap.create
+	
+	/**
+	 * Link Aspect's Java class to aspected EClass
+	 */
 	private HashMap<Class<?>,EClass> aspected = new HashMap
+	
+	/**
+	 * Link Java class to JDT class
+	 */
 	private HashMap<Class<?>,IType> source = new HashMap
+	
+	/**
+	 * Link aspected EClass to containing Language
+	 */
 	private HashMap<EClass,Language> eClassToLanguage = new HashMap
+	
+	/**
+	 * Link EClass to all its subtyping EClasses
+	 */
 	private SetMultimap<EClass, EClass> subTypes = HashMultimap.create
 	
-	def overrideDispatch(ModelTypingSpace mtSpace, IJavaProject project) {
+	def overrideDispatch(ModelTypingSpace mtSpace, IJavaProject melangeProject) {
 		//clean before start
 		aspectsByLang = HashMultimap.create
 		aspected = new HashMap
@@ -66,10 +83,7 @@ class DispatchOverrider {
 		
 		mtSpace.makeAllSemantics
 		
-		this.mtSpace = mtSpace
-		this.project = project
-		
-		loader = createClassLoader(project)
+		val ClassLoader loader = createClassLoader(melangeProject)
 		
 		mtSpace.elements
 			.filter(Language)
@@ -89,7 +103,7 @@ class DispatchOverrider {
 				val aspects = new HashSet
 				lang.semantics
 					.forEach[asp |
-						val type = project.findType(asp.aspectTypeRef.type.qualifiedName)
+						val type = melangeProject.findType(asp.aspectTypeRef.type.qualifiedName)
 						val aspType = loader.loadClass(asp.aspectTypeRef.type.qualifiedName)
 						aspected.put(aspType,asp.aspectedClass)
 						source.put(aspType,type)
@@ -135,7 +149,7 @@ class DispatchOverrider {
 //			println(body)
 		]
 		
-		applyRenaming(aspect,bodies)
+		rewriteBodies(aspect,bodies)
 	}
 	
 	private def getDispatchMethods(Class<?> type){
@@ -185,15 +199,13 @@ class DispatchOverrider {
 	
 	/**
 	 * Sort types by
-	 * 1) aspected classe hierachy
+	 * 1) aspected class hierachy
 	 * 2) inheritance
 	 * 3) source Language 
 	 */
 	private def Iterable<Class<?>> sortByOverridingPriority(Iterable<Class<?>> types) {
 		if(types.isEmpty)
 			return types
-		val a = aspected.get(types.head)
-		val b = eClassToLanguage.get(a)
 		val originalOrder = eClassToLanguage.get(aspected.get(types.head)).semantics
 		
 		return types.sortWith[asp1, asp2 |
@@ -397,14 +409,6 @@ class DispatchOverrider {
 			«ENDIF»
 			'''
 	}
-		
-	private def String getAspectedClassName(Class<?> type){
-		val aspTag = type.declaredAnnotations.filter[annotationType.canonicalName == "fr.inria.diverse.k3.al.annotationprocessor.Aspect"].head
-		if(aspTag !== null)
-			(aspTag as Aspect).className.canonicalName
-		else
-			""
-	}
 	
 	private def String getAspectedSimpleName(Class<?> type){
 		val eClass = aspected.get(type)
@@ -459,7 +463,7 @@ class DispatchOverrider {
 	}
 	
 	
-	private def void applyRenaming(Class<?> aspect, HashMap<Method,String> bodies){
+	private def void rewriteBodies(Class<?> aspect, HashMap<Method,String> bodies){
 		try {
 			val sourceUnit = source.get(aspect).compilationUnit
 			// textual document
@@ -475,7 +479,7 @@ class DispatchOverrider {
 			// start record of the modifications
 			astRoot.recordModifications()
 
-			astRoot.accept(new MyVisitor(aspect,bodies))
+			astRoot.accept(new MethodBodyReplacer(aspect,bodies))
 			// computation of the text edits
 		   	val TextEdit edits = astRoot.rewrite(document, sourceUnit.getJavaProject().getOptions(true))
 
@@ -487,12 +491,14 @@ class DispatchOverrider {
 		   	sourceUnit.getBuffer().setContents(newSource)
 		   	sourceUnit.getBuffer().save(null,true)
 		} catch (Exception e) {
-			println(e)
-//			log.error("Couldn't apply renaming rules", e)
+			log.error("Couldn't apply rewriteBodies on "+aspect.name, e)
 		}
 	}
 	
-	static class MyVisitor extends ASTVisitor{
+	/**
+	 * This visitor replace body of recomputed dispatch methods
+	 */
+	static class MethodBodyReplacer extends ASTVisitor{
 		
 		Class<?> aspect
 		HashMap<Method,String> bodies
@@ -519,7 +525,7 @@ class DispatchOverrider {
 			super.visit(node)
 		}
 		
-		def String findBody(MethodDeclaration method){
+		private def String findBody(MethodDeclaration method){
 			val match = bodies.keySet
 				.filter[declaringClass == aspect]
 				.findFirst[isMatching(method)]
