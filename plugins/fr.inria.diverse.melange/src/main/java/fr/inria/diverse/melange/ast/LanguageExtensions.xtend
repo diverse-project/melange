@@ -459,7 +459,7 @@ class LanguageExtensions
 	 * that are not directly defined on its own syntax and must be copied.
 	 */
 	def boolean hasCopiedAspects(Language l) {
-		l.isGeneratedByMelange && l.semantics.size > 0
+		l.isGeneratedByMelange && l.allAspects.size > 0
 	}
 
 	/**
