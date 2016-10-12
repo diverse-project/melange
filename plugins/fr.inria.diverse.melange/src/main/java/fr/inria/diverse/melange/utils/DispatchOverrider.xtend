@@ -7,7 +7,6 @@ import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.metamodel.melange.Language
-import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import java.lang.reflect.Method
 import java.lang.reflect.Modifier
 import java.net.URL
@@ -73,7 +72,11 @@ class DispatchOverrider {
 	 */
 	private SetMultimap<EClass, EClass> subTypes = HashMultimap.create
 	
-	def overrideDispatch(ModelTypingSpace mtSpace, IJavaProject melangeProject) {
+	def overrideDispatch(Language lang, IJavaProject melangeProject) {
+		
+		if(!lang.isGeneratedByMelange)
+			return
+		
 		//clean before start
 		aspectsByLang = HashMultimap.create
 		aspected = new HashMap
@@ -81,37 +84,31 @@ class DispatchOverrider {
 		eClassToLanguage = new HashMap
 		subTypes = HashMultimap.create
 		
-		mtSpace.makeAllSemantics
-		
 		val ClassLoader loader = createClassLoader(melangeProject)
 		
-		mtSpace.elements
-			.filter(Language)
-			.filter[isGeneratedByMelange]
-			.forEach[lang |
-				
-				//DEBUG
-//				println(lang.name)
-//				println("------------")
-//				lang.syntax.allClasses.forEach[println(it)]
-//				println("************")
-//				lang.semantics.forEach[println(aspectedClass)]
-//				println
-				
-				
-				initSubClasses(lang)
-				val aspects = new HashSet
-				lang.semantics
-					.forEach[asp |
-						val type = melangeProject.findType(asp.aspectTypeRef.type.qualifiedName)
-						val aspType = loader.loadClass(asp.aspectTypeRef.type.qualifiedName)
-						aspected.put(aspType,asp.aspectedClass)
-						source.put(aspType,type)
-						aspects.add(aspType)
-					]
-				aspectsByLang.putAll(lang,aspects)
-				lang.processLanguage
+		//DEBUG
+//		println(lang.name)
+//		println("------------")
+//		lang.syntax.allClasses.forEach[println(it)]
+//		println("************")
+//		lang.semantics.forEach[println(aspectedClass)]
+//		println
+		
+		// 1. Init
+		initSubClasses(lang)
+		val aspects = new HashSet
+		lang.semantics
+			.forEach[asp |
+				val type = melangeProject.findType(asp.aspectTypeRef.type.qualifiedName)
+				val aspType = loader.loadClass(asp.aspectTypeRef.type.qualifiedName)
+				aspected.put(aspType,asp.aspectedClass)
+				source.put(aspType,type)
+				aspects.add(aspType)
 			]
+		aspectsByLang.putAll(lang,aspects)
+		
+		// 2. Rewrite dispatch
+		lang.processLanguage
 	}
 	
 

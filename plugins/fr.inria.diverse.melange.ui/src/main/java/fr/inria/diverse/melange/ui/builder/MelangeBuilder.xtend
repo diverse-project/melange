@@ -50,9 +50,6 @@ class MelangeBuilder
 		generateLanguages(res, project, new SubProgressMonitor(monitor, 300))
 		generateAdapters(res, project, new SubProgressMonitor(monitor, 300))
 		generatePluginXml(res, project, new SubProgressMonitor(monitor, 10))
-		
-		waitForAutoBuild
-		dispatchWriter.overrideDispatch(res.contents.head as ModelTypingSpace, JavaCore.create(project))
 	}
 
 	def void generateInterfaces(Resource res, IProject project, IProgressMonitor monitor) {
@@ -106,13 +103,17 @@ class MelangeBuilder
 			monitor.worked(5)
 			sub.subTask("Generating code")
 			l.syntax.genmodels.head.generateCode
-			monitor.worked(40)
+			monitor.worked(30)
 			sub.subTask("Copying aspects for " + l.name)
 			l.createExternalAspects
 			monitor.worked(40)
 			sub.subTask("Updating dependencies for " + l.name)
 			eclipseHelper.addDependencies(project, #[l.externalRuntimeName])
 			monitor.worked(5)
+			sub.subTask("Rewrite dispatch for " + l.name)
+			waitForAutoBuild
+			dispatchWriter.overrideDispatch(l, JavaCore.create(project))
+			monitor.worked(10)
 		]
 	}
 
