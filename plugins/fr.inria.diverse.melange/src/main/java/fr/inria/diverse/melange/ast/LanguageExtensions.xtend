@@ -185,11 +185,10 @@ class LanguageExtensions
 	 *   <li>From {@link Inheritance} relations, in the left->right order</li>
 	 * </ul>
 	 */
-	def List<JvmTypeReference> getAllAspects(Language l) {
+	def List<Aspect> getAllAspects(Language l) {
 		val res = newHashSet
 
-		res += l.operators.filter(Weave)
-				.filter[aspectWildcardImport === null].map[aspectTypeRef]
+		res += l.localSemantics
 		res +=
 			l.operators.map[op |
 				if (op instanceof Slice)
@@ -204,7 +203,7 @@ class LanguageExtensions
 
 		return res.toList
 	}
-
+	
 	/**
 	 * Makes no sense to me :) Comment that later on :/
 	 */
@@ -459,11 +458,8 @@ class LanguageExtensions
 	 * Checks whether the given {@link Language} {@code l} contains {@link Aspect}s
 	 * that are not directly defined on its own syntax and must be copied.
 	 */
-	def boolean hasExternalAspects(Language l) {
-		return
-			!l.allAspects
-			.filter[!isDefinedOver(l.syntax) && canBeCopiedFor(l.syntax)]
-			.empty
+	def boolean hasCopiedAspects(Language l) {
+		l.isGeneratedByMelange && l.semantics.size > 0
 	}
 
 	/**

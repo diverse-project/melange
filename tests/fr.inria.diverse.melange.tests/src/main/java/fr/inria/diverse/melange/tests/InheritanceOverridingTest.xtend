@@ -53,7 +53,7 @@ class InheritanceOverridingTest
 	def void testAspectsA() {
 		val a = root.l("A")
 		assertEquals(1, a.allAspects.size)
-		val a1 = a.allAspects.head
+		val a1 = a.allAspects.map[aspectTypeRef].head
 		assertEquals("inheritanceoverriding.A1", a1.identifier)
 	}
 
