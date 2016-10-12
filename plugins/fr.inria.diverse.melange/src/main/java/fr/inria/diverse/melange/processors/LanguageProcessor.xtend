@@ -52,8 +52,7 @@ class LanguageProcessor extends DispatchMelangeProcessor
 	def dispatch void preProcess(ModelTypingSpace root, boolean isPreLinkingPhase) {
 		typeRefBuilder = typeRefBuilderFactory.create(root.eResource.resourceSet)
 		
-		//FIXME: possible memory leak
-		//builder.reset
+		builder.resetFor(root)
 
 		// First, initialize the exactType and syntax of each language
 		root.languages.forEach[language |

@@ -66,6 +66,7 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 		DerivedStateAwareResource resource,
 		boolean preLinkingPhase
 	) {
+		log.debug('''installDerivedState() from [Thread «Thread.currentThread.id»]''')
 		val task = Stopwatches.forTask("installing derived state")
 		task.start
 
@@ -79,7 +80,7 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 		Stopwatches.enabled = true
 
 		// Reset EPackage provider registry
-		provider.reset
+		provider.resetFor(resource)
 
 		// Pre-inferring processors
 		val root = resource.contents.head as ModelTypingSpace

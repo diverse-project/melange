@@ -5,6 +5,7 @@ import com.google.inject.Injector
 import fr.inria.diverse.melange.metamodel.melange.Language
 import java.util.Map
 import com.google.inject.Singleton
+import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 
 /**
  * Wololo, wololo wololo.
@@ -30,8 +31,8 @@ class ModelTypingSpaceBuilder {
 		return res
 	}
 
-	def void reset() {
-		registry = newHashMap
+	def void resetFor(ModelTypingSpace root) {
+		root.elements.filter(Language).forEach[registry.remove(it)]
 	}
 
 	/**

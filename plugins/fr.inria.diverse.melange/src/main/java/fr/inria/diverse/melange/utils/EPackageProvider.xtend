@@ -20,6 +20,10 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenModel
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtext.naming.IQualifiedNameProvider
+import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
+import java.util.HashMap
+import java.util.Map
+import org.eclipse.emf.ecore.resource.Resource
 
 @Singleton
 class EPackageProvider
@@ -31,15 +35,13 @@ class EPackageProvider
 	@Inject extension LanguageExtensions
 	@Inject extension EclipseProjectHelper
 	@Inject extension IQualifiedNameProvider
-	private SetMultimap<String, EPackage> packages = HashMultimap.create
-	private SetMultimap<String, GenModel> genmodels = HashMultimap.create
+	
+	private Map<Resource,SetMultimap<String, EPackage>> dispatchPackages = new HashMap
+	private Map<Resource,SetMultimap<String, GenModel>> dispatchGenmodels = new HashMap
 
-	def void reset() {
-		packages = HashMultimap.create
-		genmodels = HashMultimap.create
-	}
 
 	def Set<EPackage> getPackages(ModelingElement m) {
+		val packages = getPackageRegistry(m.eResource)
 		if (!packages.containsKey(m.fqn)) {
 			if (m instanceof Metamodel) {
 				val project = m.eResource.project
@@ -83,6 +85,7 @@ class EPackageProvider
 	}
 
 	def Set<GenModel> getGenModels(ModelingElement m) {
+		val genmodels = getGenmodelRegistry(m.eResource)
 		if (!genmodels.containsKey(m.fqn)) {
 			// If it's an Xcore file, the genmodel can be found directly within it
 			if (m.isXcore) {
@@ -123,6 +126,8 @@ class EPackageProvider
 	 * Register {@link root} and its sub EPackages as packages of {@link modElem} 
 	 */
 	def void registerPackages(ModelingElement modElem, EPackage root) {
+		val packages = getPackageRegistry(modElem.eResource)
+		
 		val collider = packages.get(modElem.fqn)?.findFirst[uniqueId == root.uniqueId]
 		if (collider === null && root !== null) {
 			val pkgs = newArrayList
@@ -146,5 +151,28 @@ class EPackageProvider
 
 	private def String toPlatformURI(String uri) {
 		return '''«IF uri.startsWith("/")»platform:/resource«ENDIF»«uri»'''
+	}
+	
+	private def getPackageRegistry(Resource root) {
+		var res = dispatchPackages.get(root)
+		if(res == null){
+			res = HashMultimap.create
+			dispatchPackages.put(root,res)
+		}
+		return res
+	}
+	
+	private def getGenmodelRegistry(Resource root) {
+		var res = dispatchGenmodels.get(root)
+		if(res == null){
+			res = HashMultimap.create
+			dispatchGenmodels.put(root,res)
+		}
+		return res
+	}
+	
+	def void resetFor(Resource r) {
+		dispatchPackages.put(r,HashMultimap.create)
+		dispatchGenmodels.put(r,HashMultimap.create)
 	}
 }
