@@ -51,6 +51,7 @@ public class SimpleFsmTest extends AbstractXtextTests
 		if (!helper.projectExists(MELANGE_PROJECT)) {
 			helper.setTargetPlatform
 			super.setUp
+			IResourcesSetupUtil::cleanWorkspace
 	
 			createAspectsProject
 			createMelangeProject
@@ -93,6 +94,7 @@ public class SimpleFsmTest extends AbstractXtextTests
 	@Test
 	@OnlyIfUI
 	def testRunningMelangeTransformationProducesExpectedOutput() {
+		helper.assertNoMarkers
 		val outputContent = helper.runMainClass(melangeFsm.project, "melangefsm.main")
 		assertEquals('''Output: 14343
 		'''.toString, outputContent)
