@@ -25,6 +25,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 import static org.junit.Assert.*
+import org.junit.Ignore
 
 @RunWith(XtextRunner)
 @InjectWith(MelangeTestsInjectorProvider)
@@ -84,6 +85,7 @@ class EcoreTest
 //		assertEquals(fsa.textFiles.size, 46)
 //	}
 
+	@Ignore
 	@Test
 	def void testRuntime() {
 		try {
