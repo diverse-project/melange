@@ -33,6 +33,9 @@ import org.eclipse.jface.text.Document
 import org.eclipse.text.edits.TextEdit
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.apache.log4j.Logger
+import java.util.Stack
+import fr.inria.diverse.melange.metamodel.melange.Aspect
+import fr.inria.diverse.melange.metamodel.melange.PackageBinding
 
 /**
  * This class recomputes the dispatch of Aspect's methods and rewrite
@@ -72,6 +75,8 @@ class DispatchOverrider {
 	 */
 	private SetMultimap<EClass, EClass> subTypes = HashMultimap.create
 	
+	private List<Pair<Aspect,List<PackageBinding>>> sourceRenaming
+	
 	def overrideDispatch(Language lang, IJavaProject melangeProject) {
 		
 		if(!lang.isGeneratedByMelange)
@@ -83,6 +88,7 @@ class DispatchOverrider {
 		source = new HashMap
 		eClassToLanguage = new HashMap
 		subTypes = HashMultimap.create
+		sourceRenaming = newArrayList
 		
 		val ClassLoader loader = createClassLoader(melangeProject)
 		
@@ -345,7 +351,7 @@ class DispatchOverrider {
 				if (m.declaringClass == dt) {
 					
 					// if the method is local, call it
-					call = '''«dt.canonicalName».«PRIV_PREFIX+m.name»(_self_, «parameters.replaceFirst(SELF_VAR_NAME,
+					call = '''«dt.canonicalName».«PRIV_PREFIX+m.originalName»(_self_, «parameters.replaceFirst(SELF_VAR_NAME,
 				"(" + cls.javaFqn + ")"+SELF_VAR_NAME)»)'''
 				
 					if (isStep) 
@@ -373,7 +379,7 @@ class DispatchOverrider {
 		val hasReturn = method.hasReturnType
 		val resultVar = "result"
 					
-		var String call = '''«PRIV_PREFIX+method.name»(_self_, «parameters»)'''
+		var String call = '''«PRIV_PREFIX+method.originalName»(_self_, «parameters»)'''
 		
 		if (isStep)
 			call = surroundWithStepCommandExecution(className, method.name , call, hasReturn, resultVar)
@@ -427,6 +433,8 @@ class DispatchOverrider {
 			val subClasses = allClasses.filter[cls2| cls1.isSuperTypeOf(cls2)]
 			subTypes.putAll(cls1,subClasses)
 		]
+		
+		sourceRenaming = lang.getAllAspectsWithRenaming(new Stack)
 	}
 	
 	/**
@@ -542,6 +550,35 @@ class DispatchOverrider {
 						true
 				]		
 		}
+	}
+	
+	/**
+	 * If {@link m} is a getter to a renamed property, try to find the original name.
+	 * Return the same name otherwise
+	 */
+	private def String originalName(Method m) {
+		val aspType = m.declaringClass
+		val aspectedCls = aspected.get(aspType)
+		val lang = eClassToLanguage.get(aspectedCls)
+		val asp = lang.semantics.findFirst[aspectTypeRef.type.qualifiedName == aspType.name]
 		
+		val renaming = sourceRenaming
+		.findFirst[pair |
+			pair.key.source == asp.source
+		]?.value
+		
+		val candidateRule = renaming
+		?.filter[to == aspectedCls.EPackage.uniqueId]
+		?.map[classes]
+		?.flatten
+		?.filter[to == aspectedCls.name]
+		?.map[properties]
+		?.flatten
+		?.findFirst[to == m.name]
+		
+		if(candidateRule !== null)
+			return candidateRule.from
+		
+		return m.name
 	}
 }

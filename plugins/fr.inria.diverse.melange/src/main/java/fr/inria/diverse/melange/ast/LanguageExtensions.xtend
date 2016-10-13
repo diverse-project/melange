@@ -54,6 +54,7 @@ import org.eclipse.emf.common.util.URI
 import org.eclipse.core.runtime.Path
 import org.eclipse.core.runtime.IPath
 import org.apache.log4j.Logger
+import java.util.ArrayList
 
 /**
  * A collection of utilities around {@link Language}s
@@ -774,5 +775,34 @@ class LanguageExtensions
 	def void addRequireBundleForAspects(Language l) {
 		val project = ResourcesPlugin.workspace.root.getProject(l.externalRuntimeName)
 		eclipseHelper.addDependencies(project, l.collectAspectDependencies)
+	}
+	
+	/**
+	 * Return all local aspects extracted from {@link l}'s dependencies associated with renaming rules
+	 * from aspect.owningLanguage to {@link l}
+	 */
+	def List<Pair<Aspect,List<PackageBinding>>> getAllAspectsWithRenaming(Language l, Stack<List<PackageBinding>> stack) {
+		val res = new ArrayList<Pair<Aspect,List<PackageBinding>>>()
+
+		val renaming = AspectCopier2.flatten(stack)
+		l.localSemantics.forEach[asp| res.add(new Pair(asp,renaming))]
+		
+		l.operators.forEach[op |
+			if (op instanceof Slice){
+				stack.push(op.mappingRules)
+				res.addAll(op.targetLanguage.getAllAspectsWithRenaming(stack))
+				stack.pop
+				
+			}
+			else if (op instanceof Merge){
+				stack.push(op.mappingRules)
+				res.addAll(op.targetLanguage.getAllAspectsWithRenaming(stack))
+				stack.pop
+			}
+		]
+		res += l.operators.filter(Inheritance)
+				.map[targetLanguage.getAllAspectsWithRenaming(stack)].flatten
+
+		return res.toList
 	}
 }
