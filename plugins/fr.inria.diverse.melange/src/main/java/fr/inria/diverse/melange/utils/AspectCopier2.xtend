@@ -302,7 +302,7 @@ class AspectCopier2 {
 	 * Merge sequentially all stages of the {@link stack} to get the
 	 * final transitive renaming
 	 */
-	private def List<PackageBinding> flatten(Stack<List<PackageBinding>> stack) {
+	static def List<PackageBinding> flatten(Stack<List<PackageBinding>> stack) {
 		val res = newArrayList
 		stack.reverseView.forEach[rules |
 			res.apply(rules)
@@ -313,7 +313,7 @@ class AspectCopier2 {
 	/**
 	 * Merge {@link newRules} in {@link base} to have a transitive renaming
 	 */
-	private def void apply(List<PackageBinding> base, List<PackageBinding> newRules) {
+	static private def void apply(List<PackageBinding> base, List<PackageBinding> newRules) {
 		newRules
 		.sortBy[from.length].reverseView // look long names first
 		.forEach[newRule|
@@ -357,7 +357,7 @@ class AspectCopier2 {
 			
 			//Add new rules
 			if(toRename.isEmpty){
-				base.add(newRule)
+				base.add(EcoreUtil::copy(newRule))
 			}
 		]
 	}
