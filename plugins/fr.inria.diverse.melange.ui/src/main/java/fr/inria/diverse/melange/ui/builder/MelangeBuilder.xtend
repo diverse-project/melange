@@ -26,6 +26,8 @@ import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.OutputConfigurationProvider
 import org.eclipse.xtext.resource.DerivedStateAwareResource
 import fr.inria.diverse.melange.utils.AspectOverrider
+import org.eclipse.jdt.core.JavaCore
+import fr.inria.diverse.melange.utils.DispatchOverrider
 
 class MelangeBuilder
 {
@@ -39,7 +41,7 @@ class MelangeBuilder
 	@Inject extension ModelingElementExtensions
 	@Inject extension ModelTypeExtensions
 	@Inject extension EcoreExtensions
-	@Inject extension AspectOverrider
+	@Inject DispatchOverrider dispatchWriter
 	private static final Logger log = Logger.getLogger(MelangeBuilder)
 
 	def void generateAll(Resource res, IProject project, IProgressMonitor monitor) {
@@ -104,12 +106,20 @@ class MelangeBuilder
 			monitor.worked(40)
 			sub.subTask("Copying aspects for " + l.name)
 			l.createExternalAspects
-			l.generateAspectJ
-			l.addRequireBundleForAspects
 			monitor.worked(40)
 			sub.subTask("Updating dependencies for " + l.name)
 			eclipseHelper.addDependencies(project, #[l.externalRuntimeName])
 			monitor.worked(5)
+		]
+		
+		waitForAutoBuild
+		root.makeAllSemantics
+		val sub = new SubProgressMonitor(monitor, 10*nb)
+		sub.beginTask("Rewriting dispatch", 10*nb)
+		toGenerate.forEach[l |
+			sub.subTask("Rewrite dispatch for " + l.name)
+			dispatchWriter.overrideDispatch(l, JavaCore.create(project))
+			monitor.worked(10)
 		]
 	}
 
