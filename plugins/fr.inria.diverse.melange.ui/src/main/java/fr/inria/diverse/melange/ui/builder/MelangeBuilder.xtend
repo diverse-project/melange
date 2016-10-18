@@ -28,6 +28,7 @@ import org.eclipse.xtext.resource.DerivedStateAwareResource
 import fr.inria.diverse.melange.utils.AspectOverrider
 import org.eclipse.jdt.core.JavaCore
 import fr.inria.diverse.melange.utils.DispatchOverrider
+import org.eclipse.xtext.ui.resource.XtextResourceSetProvider
 
 class MelangeBuilder
 {
@@ -42,6 +43,7 @@ class MelangeBuilder
 	@Inject extension ModelTypeExtensions
 	@Inject extension EcoreExtensions
 	@Inject DispatchOverrider dispatchWriter
+	@Inject XtextResourceSetProvider rsProvider
 	private static final Logger log = Logger.getLogger(MelangeBuilder)
 
 	def void generateAll(Resource res, IProject project, IProgressMonitor monitor) {
@@ -109,10 +111,10 @@ class MelangeBuilder
 			monitor.worked(40)
 			sub.subTask("Updating dependencies for " + l.name)
 			eclipseHelper.addDependencies(project, #[l.externalRuntimeName])
+			waitForAutoBuild
 			monitor.worked(5)
 		]
 		
-		waitForAutoBuild
 		root.makeAllSemantics
 		val sub = new SubProgressMonitor(monitor, 10*nb)
 		sub.beginTask("Rewriting dispatch", 10*nb)
@@ -125,6 +127,9 @@ class MelangeBuilder
 
 	def void generateAdapters(Resource res, IProject project, IProgressMonitor monitor) {
 		monitor.beginTask("Generating adapters", 100)
+		
+		val rs = rsProvider.get(project)
+		val res2 = rs.getResource(res.URI, true) as DerivedStateAwareResource
 
 		val fsa = fileSystemAccessProvider.get => [f |
 			f.monitor = new SubProgressMonitor(monitor, 50)
@@ -135,12 +140,12 @@ class MelangeBuilder
 			fsa.outputConfigurations.put(name, it)
 		]
 
-		if (res instanceof DerivedStateAwareResource) {
+		if (res2 instanceof DerivedStateAwareResource) {
 			monitor.subTask("Inferring derived state")
-			computer.inferFullDerivedState(res)
+			computer.inferFullDerivedState(res2)
 			monitor.worked(50)
 			monitor.subTask("Generating code")
-			generator.doGenerate(res, fsa)
+			generator.doGenerate(res2, fsa)
 		}
 	}
 
