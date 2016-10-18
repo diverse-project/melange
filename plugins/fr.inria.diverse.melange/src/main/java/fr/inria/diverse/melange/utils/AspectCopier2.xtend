@@ -213,9 +213,12 @@ class AspectCopier2 {
 						val pattern2 = ref.contextFqn.replace(".", "/") + ".java"
 						val pattern3 = ref.propertiesFqn.replace(".", "/") + ".java"
 	
-						return resource.locationURI.path.endsWith(pattern1)
-							|| resource.locationURI.path.endsWith(pattern2)
-							|| resource.locationURI.path.endsWith(pattern3)
+						return resource.locationURI.path.endsWith("src-gen/"+pattern1)
+							|| resource.locationURI.path.endsWith("src-gen/"+pattern2)
+							|| resource.locationURI.path.endsWith("src-gen/"+pattern3)
+							|| resource.locationURI.path.endsWith("xtend-gen/"+pattern1)
+							|| resource.locationURI.path.endsWith("xtend-gen/"+pattern2)
+							|| resource.locationURI.path.endsWith("xtend-gen/"+pattern3)
 					]
 					if (firstMatch !== null){
 						toBeCopied.add(resource)
