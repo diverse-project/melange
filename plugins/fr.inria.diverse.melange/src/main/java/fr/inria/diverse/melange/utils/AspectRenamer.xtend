@@ -135,9 +135,16 @@ class AspectRenamer {
 	 */
 	private def void applyRenaming(ICompilationUnit sourceUnit, ASTVisitor renamer, List<Pair<String,String>> k3pattern, Set<String> allAspectNamespaces, String targetAspectNamespace){
 		try {
+			//Pre-process: rename aspects
+			var String newSource = sourceUnit.getSource()
+			newSource = newSource.replacePatterns(k3pattern)
+			newSource = newSource.replaceNamespace(allAspectNamespaces,targetAspectNamespace)
+			sourceUnit.getBuffer().setContents(newSource)
+		   	sourceUnit.getBuffer().save(null,true)
+			
 			// textual document
 			val String source = sourceUnit.getSource();
-			val Document document= new Document(source);
+			val Document document = new Document(source);
 
 			// get the AST
 			val ASTParser parser = ASTParser.newParser(AST.JLS8)
@@ -147,7 +154,6 @@ class AspectRenamer {
 
 			// start record of the modifications
 			astRoot.recordModifications()
-
 			astRoot.accept(renamer)
 
 			// computation of the text edits
@@ -155,12 +161,9 @@ class AspectRenamer {
 
 		   	// computation of the new source code
 		   	edits.apply(document);
-		   	var String newSource = document.get()
-			newSource = newSource.replacePatterns(k3pattern)
-			newSource = newSource.replaceNamespace(allAspectNamespaces,targetAspectNamespace)
 
 		   	// update of the compilation unit
-		   	sourceUnit.getBuffer().setContents(newSource)
+		   	sourceUnit.getBuffer().setContents(document.get)
 		   	sourceUnit.getBuffer().save(null,true)
 		} catch (Exception e) {
 			log.error("Couldn't apply renaming rules", e)
