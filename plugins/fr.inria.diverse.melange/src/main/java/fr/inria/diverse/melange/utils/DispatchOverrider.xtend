@@ -225,8 +225,12 @@ class DispatchOverrider {
 				else if(asp2.isAssignableFrom(asp1))
 					-1
 				else {
-					val index1 = originalOrder.indexOf(asp1)
-					val index2 = originalOrder.indexOf(asp2)
+					val aspect1 = originalOrder.findFirst[aspectTypeRef.type.fullyQualifiedName.toString == asp1.name]
+					val aspect2 = originalOrder.findFirst[aspectTypeRef.type.fullyQualifiedName.toString == asp2.name]
+					if(aspect1 === null || aspect2 === null)
+						return 0
+					val index1 = originalOrder.indexOf(aspect1)
+					val index2 = originalOrder.indexOf(aspect2)
 					if(index1 > index2)
 						1
 					else if(index2 > index1)
