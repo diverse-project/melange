@@ -61,5 +61,6 @@ language MelangedLang inherits MiniFsm{
  	 */
  	with fr.inria.diverse.melanger.FSMGlue
  	with fr.inria.diverse.melanger.StateGlue
+ 	with fr.inria.diverse.melanger.FinalStateGlue
  	with fr.inria.diverse.melanger.TransitionGlue
 }

@@ -29,7 +29,7 @@
   </states>
   <states xsi:type="minifsm:FinalState" name="lastVerse">
     <block>
-      <statement xsi:type="minifsm:PrintStr" value="No more bottles of beer on the wall, no more bottles of beer.&#xA;Go to the store and buy some more, 99 bottles of beer on the wall."/>
+      <statement xsi:type="minifsm:PrintStr" value="No more bottles of beer on the wall, no more bottles of beer.&#xA;Go to the store and buy some more, 99 bottles of beer on the wall.&#xA;&#xA;"/>
     </block>
   </states>
   <transitions input="//@states.0" output="//@states.1">
