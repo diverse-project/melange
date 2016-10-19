@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ASCII"?>
+<minifsm:FSM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:minifsm="http://fr.inria.diverse.melanger.melangedlang/minifsm/" initialState="//@states.0">
+  <states name="entry"/>
+  <states name="firstLine">
+    <block>
+      <statement xsi:type="minifsm:PrintVar" value="counter"/>
+      <statement xsi:type="minifsm:PrintStr" value=" bottles of beer on the wall, "/>
+      <statement xsi:type="minifsm:PrintVar" value="counter"/>
+      <statement xsi:type="minifsm:PrintStr" value=" bottles of beer.&#xA;Take one down and pass it around, "/>
+      <statement xsi:type="minifsm:IntAssignment">
+        <variable name="counter"/>
+        <value xsi:type="minifsm:Minus">
+          <right xsi:type="minifsm:Integer" value="1"/>
+          <left xsi:type="minifsm:IntVariableRef" name="counter"/>
+        </value>
+      </statement>
+    </block>
+  </states>
+  <states name="secondLine">
+    <block>
+      <statement xsi:type="minifsm:PrintVar" value="counter"/>
+      <statement xsi:type="minifsm:PrintStr" value=" bottles of beer on the wall.&#xA;&#xA;"/>
+    </block>
+  </states>
+  <states name="noMore">
+    <block>
+      <statement xsi:type="minifsm:PrintStr" value="no more bottles of beer on the wall.&#xA;&#xA;"/>
+    </block>
+  </states>
+  <states xsi:type="minifsm:FinalState" name="lastVerse">
+    <block>
+      <statement xsi:type="minifsm:PrintStr" value="No more bottles of beer on the wall, no more bottles of beer.&#xA;Go to the store and buy some more, 99 bottles of beer on the wall."/>
+    </block>
+  </states>
+  <transitions input="//@states.0" output="//@states.1">
+    <expression xsi:type="minifsm:Greater">
+      <right xsi:type="minifsm:Integer"/>
+      <left xsi:type="minifsm:IntVariableRef" name="counter"/>
+    </expression>
+  </transitions>
+  <transitions input="//@states.0" output="//@states.4">
+    <expression xsi:type="minifsm:Not">
+      <expression xsi:type="minifsm:Greater">
+        <right xsi:type="minifsm:Integer"/>
+        <left xsi:type="minifsm:IntVariableRef" name="counter"/>
+      </expression>
+    </expression>
+  </transitions>
+  <transitions input="//@states.1" output="//@states.2">
+    <expression xsi:type="minifsm:Greater">
+      <right xsi:type="minifsm:Integer"/>
+      <left xsi:type="minifsm:IntVariableRef" name="counter"/>
+    </expression>
+  </transitions>
+  <transitions input="//@states.1" output="//@states.3">
+    <expression xsi:type="minifsm:Equal">
+      <right xsi:type="minifsm:Integer"/>
+      <left xsi:type="minifsm:IntVariableRef" name="counter"/>
+    </expression>
+  </transitions>
+  <transitions input="//@states.2" output="//@states.0"/>
+  <transitions input="//@states.3" output="//@states.4"/>
+  <context>
+    <variables xsi:type="minifsm:IntegerVar" name="counter" value="99"/>
+  </context>
+</minifsm:FSM>
