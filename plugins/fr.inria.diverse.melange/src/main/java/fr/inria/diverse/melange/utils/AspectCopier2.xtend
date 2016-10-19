@@ -407,8 +407,10 @@ class AspectCopier2 {
 			val realClsName = 
 				if(clsRule !== null)
 					pkgRule.from +"." + clsRule.from
-				else
+				else if(pkgRule !== null)
 					pkgRule.from +"." + cls.name
+				else
+					cls.uniqueId
 			
 			val originCls = originPool.findFirst[originCls |
 				originCls.uniqueId == realClsName
