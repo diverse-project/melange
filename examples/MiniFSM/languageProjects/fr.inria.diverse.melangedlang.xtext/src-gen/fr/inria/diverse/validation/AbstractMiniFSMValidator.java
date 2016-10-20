@@ -13,7 +13,7 @@ public abstract class AbstractMiniFSMValidator extends AbstractDeclarativeValida
 	@Override
 	protected List<EPackage> getEPackages() {
 	    List<EPackage> result = new ArrayList<EPackage>();
-	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://melangedlang/minifsm/"));
+	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://fr.inria.diverse.melanger.melangedlang/minifsm/"));
 		return result;
 	}
 	
