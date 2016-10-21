@@ -346,7 +346,6 @@ class DispatchOverrider {
 			val resultVar = "result"
 			val StringBuilder sb = new StringBuilder
 			
-			
 			val dispatchOrder = aspected.get(m.declaringClass).getEAllSubTypes
 			for(cls : dispatchOrder){
 				val dt = cls.bestCandidate(declTypes)
@@ -455,14 +454,21 @@ class DispatchOverrider {
 	 * Returns ordered list of the subclasses of cls, including itself
 	 */
 	private def getEAllSubTypes(EClass cls) {
-		subTypes.get(cls)
-		.sortWith[clsA, clsB |
-			if (clsA.EAllSuperTypes.contains(clsB))
-				return -1
-			else if (clsB.EAllSuperTypes.contains(clsA))
-				return 1
-			else return 0
+		val set = subTypes.get(cls)
+		val res = new ArrayList<EClass>
+		
+		set.forEach[cls1 |
+			var insertionIndex = res.size
+			for(var i = res.size-1; i>=0; i--){
+				val cls2 = res.get(i)
+				if(cls2.isSuperTypeOf(cls1)){
+					insertionIndex = i
+				}
+			}
+			res.add(insertionIndex,cls1)
 		]
+		
+		return res
 	}
 	
 	private def String getJavaFqn(EClass cls){
