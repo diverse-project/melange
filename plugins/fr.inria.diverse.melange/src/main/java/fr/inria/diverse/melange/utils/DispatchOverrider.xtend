@@ -424,8 +424,8 @@ class DispatchOverrider {
 			""
 	}
 	
-	private def boolean isStep(Method m){
-		m.declaringClass.declaredAnnotations.exists[annotationType.canonicalName == "fr.inria.diverse.k3.al.annotationprocessor.Step"]
+	private def boolean isStep(Method m) {
+		m.declaredAnnotations.exists[annotationType.canonicalName == "fr.inria.diverse.k3.al.annotationprocessor.Step"]
 	}
 	
 	private def void initSubClasses(Language lang){
