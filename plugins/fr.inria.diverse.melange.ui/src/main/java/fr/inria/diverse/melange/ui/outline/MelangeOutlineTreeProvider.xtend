@@ -19,11 +19,22 @@ import fr.inria.diverse.melange.lib.EcoreExtensions
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EOperation
+import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
+import fr.inria.diverse.melange.ast.LanguageExtensions
+import fr.inria.diverse.melange.ast.ASTHelper
+import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode
+import org.eclipse.xtext.ui.IImageHelper
+import fr.inria.diverse.melange.metamodel.melange.Inheritance
 
 class MelangeOutlineTreeProvider extends DefaultOutlineTreeProvider
 {
 	@Inject extension ModelingElementExtensions
 	@Inject extension EcoreExtensions
+	@Inject extension LanguageExtensions
+	@Inject extension ASTHelper
+	
+	@Inject
+	private IImageHelper imageHelper;
 
 	def boolean _isLeaf(Transformation t) {
 		return true
@@ -114,4 +125,18 @@ class MelangeOutlineTreeProvider extends DefaultOutlineTreeProvider
     	return false
     }
 
+    def void _createChildren(IOutlineNode parentNode, ModelTypingSpace root) {
+    	super._createChildren(parentNode,root)
+    	val externalLangs = root
+			.languages
+			.map[allDependencies]
+			.flatten
+			.filter[it.eContainer !== root]
+			.toSet
+		externalLangs.forEach[lang |
+			val img = imageHelper.getImage("link.png")
+			val txt = '''«lang.name»«FOR t : lang.operators.filter(Inheritance).map[targetLanguage] BEFORE '\u25C0' SEPARATOR ', '»«t.name»«ENDFOR»«FOR t : lang.implements BEFORE ' \u25C1 ' SEPARATOR ', '»«t.name»«ENDFOR»'''.toString
+			createEObjectNode(parentNode, lang, img, txt, true)
+		]
+    }
 }
