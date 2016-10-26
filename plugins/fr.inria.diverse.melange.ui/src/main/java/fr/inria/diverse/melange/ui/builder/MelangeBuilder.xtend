@@ -79,6 +79,17 @@ class MelangeBuilder
 			val gmUri = ecoreUri.substring(0, ecoreUri.lastIndexOf(".")) + ".genmodel"
 			val gm = mt.createGenmodel(ecoreUri, gmUri)
 			gm.generateModelTypeCode
+			
+			val exportedPkg = newArrayList
+			gm.allGenPkgs
+			.filter[it.packageName != "ecore"]
+			.forEach[p |
+				exportedPkg.add(p.qualifiedPackageName.toString)
+				exportedPkg.add(p.qualifiedPackageName+".impl")
+				exportedPkg.add(p.qualifiedPackageName+".util")
+			]
+			eclipseHelper.addExportedPackages(project,exportedPkg)
+			
 			monitor.worked(10)
 		]
 	}
