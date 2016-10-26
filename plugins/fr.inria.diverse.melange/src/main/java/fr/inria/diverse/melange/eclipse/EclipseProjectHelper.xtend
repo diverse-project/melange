@@ -123,6 +123,43 @@ class EclipseProjectHelper
 			}
 		}
 	}
+	
+	/**
+	 * Updates the MANIFEST.MF of the {@link IProject} {@code project}
+	 * with the given list of {@code bundles}.
+	 */
+	def void addExportedPackages(IProject project, Iterable<String> packages) {
+		val manifestFile = project.getFile("META-INF/MANIFEST.MF")
+
+		if (manifestFile !== null
+			&& manifestFile.exists
+			&& manifestFile.accessible
+			&& !manifestFile.resourceAttributes.readOnly
+		) {
+			var OutputStream output = null
+			var InputStream input = null
+
+			try {
+				if (!manifestFile.isSynchronized(IResource.DEPTH_ZERO))
+					manifestFile.refreshLocal(IResource.DEPTH_ZERO, null)
+				input = manifestFile.contents
+				val manifest = new MergeableManifest(input)
+				manifest.addExportedPackages(Sets::newHashSet(packages))
+				val out = new ByteArrayOutputStream
+				output = new BufferedOutputStream(out)
+				manifest.write(output)
+				val in = new ByteArrayInputStream(out.toByteArray)
+				input = new BufferedInputStream(in)
+				manifestFile.setContents(input, true, true, null)
+				packages.forEach[log.debug('''Exported package «it» added to «project»''')]
+			} catch (Exception e) {
+				log.error("Couldn't update MANIFEST.MF", e)
+			} finally {
+				input.closeQuietly
+				output.closeQuietly
+			}
+		}
+	}
 
 	private def void closeQuietly(Closeable c) {
 		if (c === null)

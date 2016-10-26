@@ -146,6 +146,10 @@ class MelangeBuilder
 			monitor.worked(50)
 			monitor.subTask("Generating code")
 			generator.doGenerate(res2, fsa)
+			
+			val jProject = JavaCore.create(project)
+			val adapterPkgs = jProject.packageFragments.filter[elementName.contains(".adapters.")].map[elementName]
+			eclipseHelper.addExportedPackages(project,adapterPkgs)
 		}
 	}
 
