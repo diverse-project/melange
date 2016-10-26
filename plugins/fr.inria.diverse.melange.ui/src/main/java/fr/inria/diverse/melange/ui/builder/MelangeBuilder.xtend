@@ -29,6 +29,7 @@ import fr.inria.diverse.melange.utils.AspectOverrider
 import org.eclipse.jdt.core.JavaCore
 import fr.inria.diverse.melange.utils.DispatchOverrider
 import org.eclipse.xtext.ui.resource.XtextResourceSetProvider
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 class MelangeBuilder
 {
@@ -42,6 +43,7 @@ class MelangeBuilder
 	@Inject extension ModelingElementExtensions
 	@Inject extension ModelTypeExtensions
 	@Inject extension EcoreExtensions
+	@Inject extension IQualifiedNameProvider
 	@Inject DispatchOverrider dispatchWriter
 	@Inject XtextResourceSetProvider rsProvider
 	private static final Logger log = Logger.getLogger(MelangeBuilder)
@@ -147,9 +149,13 @@ class MelangeBuilder
 			monitor.subTask("Generating code")
 			generator.doGenerate(res2, fsa)
 			
-			val jProject = JavaCore.create(project)
-			val adapterPkgs = jProject.packageFragments.filter[elementName.contains(".adapters.")].map[elementName]
-			eclipseHelper.addExportedPackages(project,adapterPkgs)
+			val jProject     = JavaCore.create(project)
+			val adapterPkgs  = jProject.packageFragments.filter[elementName.contains(".adapters.")].map[elementName]
+			val mainPkg      = (res2.contents.head as ModelTypingSpace).fullyQualifiedName
+			val exportedPkgs = adapterPkgs.toSet
+			
+			exportedPkgs.add(mainPkg.toString)
+			eclipseHelper.addExportedPackages(project,exportedPkgs)
 		}
 	}
 
