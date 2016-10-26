@@ -85,9 +85,10 @@ class ModelTypeExtensions
 			]
 			usedGenPackages.add(ecoreGm.genPackages.head)
 		]
-
+		
 		val res = resSet.createResource(URI::createURI(gmUri))
 		res.contents += genmodel
+		genmodel.modelPluginID = res.project.name
 
 		try {
 			res.save(null)
@@ -141,7 +142,6 @@ class ModelTypeExtensions
 		genModel.reconcile
 		genModel.canGenerate = true
 		genModel.validateModel = true
-		genModel.updateClasspath = false
 
 		val reg = GeneratorAdapterFactory.Descriptor.Registry.INSTANCE
 		val old = reg.getDescriptors(gmUri).head
