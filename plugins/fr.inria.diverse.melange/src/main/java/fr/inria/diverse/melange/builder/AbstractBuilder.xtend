@@ -15,14 +15,14 @@ abstract class AbstractBuilder implements Builder {
 	 * A set of {@link EPackage} containing the chunk of syntax generated
 	 * from this builder. Each {@link EPackage} is a root of the chunk.
 	 */
-	protected Set<EPackage> model = null
+	protected Set<EPackage> model = newHashSet
 	/**
 	 * {@link BuilderError} collected during the build.
 	 */
 	protected List<BuilderError> errors = newArrayList
 
 	override preBuild() {
-		model = null
+		model = newHashSet
 		errors = newArrayList
 	}
 

@@ -19,7 +19,7 @@ class MergeBuilder extends LanguageOperatorBuilder<Merge> {
 	 * the current {@link Merge} operator and apply the associated renaming rules.
 	 */
 	override make() {
-		if (targetModel !== null) {
+		if (!targetModel.isEmpty) {
 			model = EcoreUtil::copyAll(targetModel).toSet
 			model.forEach[applyRenaming(source.mappingRules)]
 		}

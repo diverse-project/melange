@@ -17,7 +17,7 @@ class InheritanceBuilder extends LanguageOperatorBuilder<Inheritance> {
 	 * operator.
 	 */
 	override make() {
-		if (targetModel !== null) {
+		if (!targetModel.isEmpty) {
 			model = EcoreUtil::copyAll(targetModel).toSet
 		}
 	}
