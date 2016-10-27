@@ -94,7 +94,7 @@ class AspectRenamer {
 		val fileName1 = aspName+".java"
 		val cu1 = aspectNamespace.getCompilationUnit(fileName1)
 		rulesManagers.forEach[rulesManager|
-			applyRenaming(cu1, new RenamerVisitor(rulesManager,allClasses),k3Pattern,allAspectNamespaces,targetAspectNamespace)
+			applyRenaming(cu1, new RenamerVisitor(rulesManager,allClasses),k3Pattern,allAspectNamespaces,targetAspectNamespace,rulesManager)
 		]
 		
 		if(asp.hasAspectAnnotation){
@@ -116,8 +116,8 @@ class AspectRenamer {
 			val cu3 = aspectNamespace.getCompilationUnit(fileName3)
 			
 			rulesManagers.forEach[rulesManager|
-				applyRenaming(cu2, new RenamerVisitor(rulesManager,allClasses),k3Pattern,allAspectNamespaces,targetAspectNamespace)
-				applyRenaming(cu3, new RenamerVisitor(rulesManager,allClasses),k3Pattern,allAspectNamespaces,targetAspectNamespace)
+				applyRenaming(cu2, new RenamerVisitor(rulesManager,allClasses),k3Pattern,allAspectNamespaces,targetAspectNamespace,rulesManager)
+				applyRenaming(cu3, new RenamerVisitor(rulesManager,allClasses),k3Pattern,allAspectNamespaces,targetAspectNamespace,rulesManager)
 			]
 
 			try {
@@ -133,12 +133,13 @@ class AspectRenamer {
 	 * Visit {@link sourceUnit} with {@link renamer} and apply changes in
 	 * the corresponding textual file.
 	 */
-	private def void applyRenaming(ICompilationUnit sourceUnit, ASTVisitor renamer, List<Pair<String,String>> k3pattern, Set<String> allAspectNamespaces, String targetAspectNamespace){
+	private def void applyRenaming(ICompilationUnit sourceUnit, ASTVisitor renamer, List<Pair<String,String>> k3pattern, Set<String> allAspectNamespaces, String targetAspectNamespace,RenamingRuleManager rulesManager){
 		try {
-			//Pre-process: rename aspects
+			//Pre-process: rename aspects & Factories
 			var String newSource = sourceUnit.getSource()
 			newSource = newSource.replacePatterns(k3pattern)
 			newSource = newSource.replaceNamespace(allAspectNamespaces,targetAspectNamespace)
+			newSource = newSource.replaceFactories(rulesManager)
 			sourceUnit.getBuffer().setContents(newSource)
 		   	sourceUnit.getBuffer().save(null,true)
 			
@@ -191,6 +192,19 @@ class AspectRenamer {
 		allAspectNamespaces.forEach[sourceAspectNamespace |
 			newContent.replaceAll(sourceAspectNamespace,targetAspectNamespace)
 		]
+		return newContent.toString
+	}
+	
+	private def String replaceFactories(String fileContent, RenamingRuleManager ruleManager) {
+		val StringBuilder newContent = new StringBuilder(fileContent)
+		ruleManager.allPackageRules.forEach[rule |
+			val oldSimpleName = rule.key.substring(rule.key.lastIndexOf(".")+1)
+			val oldFactoryName = oldSimpleName.toFirstUpper+"Factory"
+			val newSimpleName = rule.value.substring(rule.value.lastIndexOf(".")+1)
+			val newFactoryName = newSimpleName.toFirstUpper+"Factory"
+			newContent.replaceAll(oldFactoryName,newFactoryName)
+		]
+		
 		return newContent.toString
 	}
 	
