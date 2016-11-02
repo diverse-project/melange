@@ -45,7 +45,7 @@ class MelangeResourceImpl implements Resource.Internal
 
 	/**
 	 * Return the content of the wrapped resource.
-	 * If expectedMt and/or expectedLang are setted, the EObjects are contained in an internal resource.
+	 * If expectedMt and/or expectedLang are set, the EObjects are contained in an internal resource.
 	 */
 	override getContents() throws RuntimeException {
 		if(contentResource === null)
