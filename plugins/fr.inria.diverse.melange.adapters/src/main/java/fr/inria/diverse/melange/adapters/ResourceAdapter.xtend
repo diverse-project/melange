@@ -48,7 +48,7 @@ abstract class ResourceAdapter extends ResourceImpl implements GenericAdapter<Re
 			override getChildren(Object object) {
 				return
 					if (object == ResourceAdapter.this)
-						ResourceAdapter.this.contents.iterator
+						ResourceAdapter.this.getContents.iterator
 					else
 						(object as EObject).eContents.iterator
 			}
