@@ -99,6 +99,7 @@ class MelangeResourceImpl implements Resource.Internal
 				return adapterCls.newInstance => [
 					adaptee = adaptedResource
 					parent = this
+					URI = org.eclipse.emf.common.util.URI.createURI("modelAsAdapted")
 				]
 			} catch (InstantiationException e) {
 				throw new MelangeResourceException('''Cannot instantiate adapter type «adapterCls»''', e)
