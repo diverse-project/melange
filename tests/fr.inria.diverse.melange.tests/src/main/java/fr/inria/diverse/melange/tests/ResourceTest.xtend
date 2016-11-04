@@ -99,6 +99,35 @@ class ResourceTest
 		assertIsValid(res)
 		assertIsTimedFsm(res)
 	}
+	
+	@Test
+	def void testDowncast() {
+		val res = loadResource("melange:/file/tests-inputs/models/Sample.fsm?lang=simplefsmtest.TimedFsm")
+		assertIsValid(res)
+		assertIsTimedFsm(res)
+		assertTrue(res instanceof MelangeResourceImpl)
+		
+		val realResource = res.contents.head.eResource
+		val wrappedResource = (res as MelangeResourceImpl).wrappedResource
+		
+		assertEquals(realResource.allContents.size,wrappedResource.allContents.size)
+		
+		// Compare same fragmentURIs in the two resources
+		wrappedResource.allContents.forEach[srcElem |
+			val fragmentURI = wrappedResource.getURIFragment(srcElem)
+			val destElem = realResource.getEObject(fragmentURI)
+			assertNotNull(destElem)
+			
+			// Try to compare names
+			val nameAttr = srcElem.eClass.EAllAttributes.findFirst[it.name == "name"]
+			if(nameAttr !== null){
+				val srcName = srcElem.eGet(nameAttr);
+				val nameAttr2 = destElem.eClass.EAllAttributes.findFirst[it.name == "name"]
+				val destName = destElem.eGet(nameAttr2);
+				assertEquals(srcName,destName)
+			}
+		]
+	}
 
 	@Test
 	def void testValidation() {
