@@ -23,6 +23,11 @@ import java.util.List
 import java.util.ArrayList
 import java.util.Set
 import fr.inria.diverse.melange.resource.Activator
+import org.dozer.DozerEventListener
+import org.dozer.event.DozerEvent
+import org.eclipse.emf.common.util.EList
+import java.util.HashMap
+import java.util.Map
 
 class DozerLoader implements ExtensionsAwareLoader
 {
@@ -180,6 +185,46 @@ class DozerLoader implements ExtensionsAwareLoader
 					}
 				
 			}
+			
+			val DozerEventListener listener = new DozerEventListener() {
+				/*
+				 * Store mapped objects
+				 */
+				Map<Object,Object> srcDestMapping = newHashMap
+				
+				override mappingFinished(DozerEvent event) {
+					//Nothing to do
+				}
+				
+				override mappingStarted(DozerEvent event) {
+					//Nothing to do
+				}
+				
+				/*
+				 * Reorder collections
+				 */
+				override postWritingDestinationValue(DozerEvent event) {
+					val srcVal = event.fieldMap.getSrcFieldValue(event.sourceObject)
+					val destVal = event.destinationValue
+					
+					if(srcVal instanceof EList && destVal instanceof EList){
+						val srcCol = srcVal as EList
+						val destCol = destVal as EList
+						srcCol.forEach[srcElement, index|
+							val destElement = srcDestMapping.get(srcElement)
+							if(destElement !== null)
+								destCol.move(index,destElement)
+						]
+					}
+				}
+				
+				override preWritingDestinationValue(DozerEvent event) {
+					val srcObj = event.sourceObject
+					val destObj = event.destinationObject
+					srcDestMapping.put(srcObj,destObj)
+				}
+			}
+			currentMapper.eventListeners = #[listener]
 			return currentMapper
 		}
 	}
