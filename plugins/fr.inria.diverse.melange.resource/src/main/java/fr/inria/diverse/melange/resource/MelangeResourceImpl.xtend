@@ -11,6 +11,10 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.xtend.lib.annotations.Delegate
 import fr.inria.diverse.melange.resource.MelangeRegistry.LanguageDescriptor
 
+/**
+ * This class wraps a resource and shift the types of the contained
+ * EObjects to get instances of a ModelType's classes
+ */
 class MelangeResourceImpl implements Resource.Internal
 {
 	@Delegate Resource.Internal wrappedResource
@@ -19,6 +23,7 @@ class MelangeResourceImpl implements Resource.Internal
 	String expectedLang
 	URI melangeUri
 	DozerLoader loader = new DozerLoader
+	Resource contentResource
 
 	new(URI uri) {
 		// FIXME: Retrieve the currently-used one
@@ -38,24 +43,14 @@ class MelangeResourceImpl implements Resource.Internal
 		return wrappedResource
 	}
 
+	/**
+	 * Return the content of the wrapped resource.
+	 * If expectedMt and/or expectedLang are set, the EObjects are contained in an internal resource.
+	 */
 	override getContents() throws RuntimeException {
-		val objs = wrappedResource.getContents()
-		if (objs.empty || (expectedMt == null && expectedLang == null))
-			return objs
-		
-		// 1 - Convert Language to Language 
-		var Resource resource = wrappedResource
-		if (expectedLang !== null) {
-			resource = resource.adaptResourceToLang(expectedLang)
-		}
-			
-		// 2 - Adapt Language to ModelType
-		if (expectedMt !== null) {
-			resource = resource.adaptResourceToMT(expectedMt)
-			adapter = resource
-		}
-		
-		return resource.contents
+		if(contentResource === null)
+			doAdapt()
+		return contentResource.contents
 	}
 
 	override getAllContents() {
@@ -99,6 +94,7 @@ class MelangeResourceImpl implements Resource.Internal
 				return adapterCls.newInstance => [
 					adaptee = adaptedResource
 					parent = this
+					URI = org.eclipse.emf.common.util.URI.createURI("modelAsAdapted")
 				]
 			} catch (InstantiationException e) {
 				throw new MelangeResourceException('''Cannot instantiate adapter type «adapterCls»''', e)
@@ -153,5 +149,64 @@ class MelangeResourceImpl implements Resource.Internal
 			throw new MelangeResourceException("Cannot find a registered language with URI " + actualPkgUri)
 			
 		return actualLanguage
+	}
+
+	/**
+	 * Create a ResourceAdapter for expectedMt or/and copy the wrapped resource for expectedLang
+	 */
+	private def void doAdapt() {
+		contentResource = wrappedResource
+		
+		if (!wrappedResource.getContents().empty && !(expectedMt == null && expectedLang == null)) {
+		
+			// 1 - Convert Language to Language
+			contentResource = wrappedResource
+			if (expectedLang !== null) {
+				contentResource = contentResource.adaptResourceToLang(expectedLang)
+			}
+				
+			// 2 - Adapt Language to ModelType
+			if (expectedMt !== null) {
+				contentResource = contentResource.adaptResourceToMT(expectedMt)
+				adapter = contentResource
+			}
+		
+		}
+		
+		this.resourceSet.resources.add(contentResource)
+	}
+
+	/**
+	 * Adapt EObjects of the wrapped resource to instances of
+	 * the ModelType's classes.<br>
+	 * {@link modelTypeID} can be null to remove the adaptation
+	 */
+	def void setExpectedMt(String modelTypeID) {
+		expectedMt = modelTypeID
+		doAdapt()
+	}
+
+	/**
+	 * Copy EObjects of the wrapped resource to get instances of
+	 * the Language's classes.<br>
+	 * {@link languageID} can be null to remove the adaptation
+	 */
+	def void setExpectedLang(String languageID) {
+		expectedLang = languageID
+		doAdapt()
+	}
+
+	/**
+	 * Return the ID of the ModelType or null if none
+	 */
+	def String getActualModelType() {
+		return expectedMt
+	}
+
+	/**
+	 * Return the ID of the Language or null if none 
+	 */
+	def String getActualLanguage() {
+		return expectedLang
 	}
 }

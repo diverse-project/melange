@@ -27,10 +27,21 @@ class TypingInferrer extends DispatchMelangeProcessor
 	def dispatch void preProcess(ModelTypingSpace root, boolean preLinkingPhase) {
 		typesRegistry.clear
 
-		root.modelTypes
+		val externalRoots = root
+			.languages
+			.map[allDependencies]
+			.flatten
+			.map[eContainer]
+			.filter(ModelTypingSpace)
+			.filter[it !== root]
+			.toSet
+		val allMts = externalRoots.map[modelTypes].flatten.toList
+		allMts.addAll(root.modelTypes)
+		
+		allMts
 		.filter[isComparable]
 		.forEach[mt1 |
-			root.modelTypes
+			allMts
 			.filter[mt2 |
 				   mt2 != mt1
 				&& !mt1.subtypingRelations.exists[superType.name == mt2.name]

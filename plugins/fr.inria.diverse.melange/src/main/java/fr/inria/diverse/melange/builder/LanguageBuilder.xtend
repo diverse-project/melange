@@ -113,7 +113,7 @@ class LanguageBuilder extends AbstractBuilder {
 		]
 		builders.addAll(weaveBuilders)
 
-		if (model === null) {
+		if (model === null || model.isEmpty) {
 			errors.add(new BuilderError("Can't build " + source.name, source))
 		}
 	}

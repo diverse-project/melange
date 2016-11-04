@@ -54,7 +54,7 @@ class ModelUtils
 			// ...
 		}
 
-		return null
+		return newArrayList
 	}
 
 	def GenModel loadGenmodel(String path) {

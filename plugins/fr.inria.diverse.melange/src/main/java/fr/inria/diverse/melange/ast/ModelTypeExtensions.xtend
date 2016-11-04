@@ -85,9 +85,10 @@ class ModelTypeExtensions
 			]
 			usedGenPackages.add(ecoreGm.genPackages.head)
 		]
-
+		
 		val res = resSet.createResource(URI::createURI(gmUri))
 		res.contents += genmodel
+		genmodel.modelPluginID = res.project.name
 
 		try {
 			res.save(null)

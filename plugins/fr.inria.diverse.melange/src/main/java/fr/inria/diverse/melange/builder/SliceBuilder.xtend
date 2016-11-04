@@ -26,7 +26,7 @@ class SliceBuilder extends LanguageOperatorBuilder<Slice> {
 	 * criterion and apply the renaming rules.
 	 */
 	override make() {
-		if (targetModel !== null) {
+		if (!targetModel.isEmpty) {
 			val sliceBase = EcoreUtil::copyAll(targetModel).toSet
 			val roots = sliceBase.map[getClasses(it, source.roots)].flatten.toList
 			val slicer = new StrictEcore(roots, sliceBase.head, false, "ecore", false, true)

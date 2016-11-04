@@ -92,7 +92,7 @@ class LanguageProcessor extends DispatchMelangeProcessor
 		// TODO: init with build errors if already built
 		val errors = newArrayList
 		// If not built yet
-		if (syntax === null) {
+		if (syntax.isEmpty) {
 			builder.build()
 			// TODO: manage errors & model not built
 			errors += builder.errors

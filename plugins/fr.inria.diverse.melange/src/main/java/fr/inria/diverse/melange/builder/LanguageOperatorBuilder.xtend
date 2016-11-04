@@ -23,6 +23,7 @@ abstract class LanguageOperatorBuilder<T extends LanguageOperator> extends Opera
 	new(T op, ModelTypingSpaceBuilder root) {
 		super(op)
 		this.root = root
+		targetModel = newHashSet
 	}
 
 	override preBuild() {
@@ -38,7 +39,7 @@ abstract class LanguageOperatorBuilder<T extends LanguageOperator> extends Opera
 			)
 
 		targetModel = langBuilder.model
-		if (targetModel === null && langBuilder.errors.empty) {
+		if (targetModel.isEmpty && langBuilder.errors.empty) {
 			langBuilder.build()
 
 			if (!langBuilder.errors.empty)
