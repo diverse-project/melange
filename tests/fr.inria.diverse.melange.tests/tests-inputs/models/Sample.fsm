@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fsm:FSM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fsm="http://fsm/" initialState="//@ownedState.3" finalState="//@ownedState.0 //@ownedState.6">
+  <ownedState name="One">
+    <outgoingTransition target="//@ownedState.1" input=""/>
+    <outgoingTransition target="//@ownedState.7" output=""/>
+  </ownedState>
+  <ownedState name="Two" incomingTransition="//@ownedState.0/@outgoingTransition.0 //@ownedState.8/@outgoingTransition.0">
+    <outgoingTransition target="//@ownedState.4"/>
+  </ownedState>
+  <ownedState name="Three" incomingTransition="//@ownedState.4/@outgoingTransition.0"/>
+  <ownedState name="Four" incomingTransition="//@ownedState.6/@outgoingTransition.0">
+    <outgoingTransition target="//@ownedState.5"/>
+  </ownedState>
+  <ownedState name="Five" incomingTransition="//@ownedState.1/@outgoingTransition.0">
+    <outgoingTransition target="//@ownedState.2"/>
+  </ownedState>
+  <ownedState name="Six" incomingTransition="//@ownedState.3/@outgoingTransition.0">
+    <outgoingTransition target="//@ownedState.6"/>
+  </ownedState>
+  <ownedState name="Seven" incomingTransition="//@ownedState.5/@outgoingTransition.0">
+    <outgoingTransition target="//@ownedState.3"/>
+  </ownedState>
+  <ownedState name="Eight" incomingTransition="//@ownedState.0/@outgoingTransition.1">
+    <outgoingTransition target="//@ownedState.8"/>
+  </ownedState>
+  <ownedState name="Nine" incomingTransition="//@ownedState.7/@outgoingTransition.0">
+    <outgoingTransition target="//@ownedState.1"/>
+  </ownedState>
+  <ownedState name="Ten"/>
+</fsm:FSM>
