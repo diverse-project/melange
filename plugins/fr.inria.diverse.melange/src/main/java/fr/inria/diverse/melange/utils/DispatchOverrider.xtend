@@ -138,7 +138,7 @@ class DispatchOverrider {
 	
 	private def void processLanguage(Language l) {
 		val hierarchy = l.hierachy
-		aspectsByLang.get(l).forEach[asp |
+		aspectsByLang.get(l).filter[isAspect].forEach[asp |
 			processAspect(asp, hierarchy)
 		]
 	}
@@ -425,6 +425,10 @@ class DispatchOverrider {
 			return eClass.name
 		else
 			""
+	}
+	
+	private def boolean isAspect(Class<?> cls) {
+		cls.declaredAnnotations.exists[annotationType.canonicalName == "fr.inria.diverse.k3.al.annotationprocessor.Aspect"]
 	}
 	
 	private def boolean isStep(Method m) {
