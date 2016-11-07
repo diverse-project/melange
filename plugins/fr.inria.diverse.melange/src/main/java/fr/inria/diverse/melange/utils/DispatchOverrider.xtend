@@ -77,12 +77,15 @@ class DispatchOverrider {
 	
 	private List<Pair<Aspect,List<PackageBinding>>> sourceRenaming
 	
+	private Language language
+	
 	def overrideDispatch(Language lang, IJavaProject melangeProject) {
 		
 		if(!lang.isGeneratedByMelange)
-			return
+			return;
 		
 		//clean before start
+		language = lang
 		aspectsByLang = HashMultimap.create
 		aspected = new HashMap
 		source = new HashMap
@@ -209,15 +212,15 @@ class DispatchOverrider {
 	private def Iterable<Class<?>> sortByOverridingPriority(Iterable<Class<?>> types) {
 		if(types.isEmpty)
 			return types
-		val originalOrder = eClassToLanguage.get(aspected.get(types.head)).semantics
+		val originalOrder = language.semantics
 		
 		return types.sortWith[asp1, asp2 |
 			val cls1 = aspected.get(asp1)
 			val cls2 = aspected.get(asp2)
 			
-			if(cls2.EAllSuperTypes.contains(cls1))
+			if(cls1 !== null && cls2 !== null && cls2.EAllSuperTypes.contains(cls1))
 				1
-			else if(cls1.EAllSuperTypes.contains(cls2))
+			else if(cls1 !== null && cls2 !== null && cls1.EAllSuperTypes.contains(cls2))
 				-1
 			else {
 				if(asp1.isAssignableFrom(asp2))
@@ -569,8 +572,9 @@ class DispatchOverrider {
 	private def String originalName(Method m) {
 		val aspType = m.declaringClass
 		val aspectedCls = aspected.get(aspType)
-		val lang = eClassToLanguage.get(aspectedCls)
-		val asp = lang.semantics.findFirst[aspectTypeRef.type.qualifiedName == aspType.name]
+		if(aspectedCls === null)
+			return m.name
+		val asp = language.semantics.findFirst[aspectTypeRef.type.qualifiedName == aspType.name]
 		
 		val renaming = sourceRenaming
 		.findFirst[pair |
