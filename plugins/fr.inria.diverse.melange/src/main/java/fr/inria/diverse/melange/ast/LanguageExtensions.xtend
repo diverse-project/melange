@@ -538,7 +538,7 @@ class LanguageExtensions
 					].toList
 			}
 			aspects.forEach[asp |
-				val localAspectedClass = language.syntax.findClass(findClassWithMapping(asp,op)?.fullyQualifiedName.toString)
+				val localAspectedClass = language.syntax.findClass(findClassWithMapping(asp,op)?.fullyQualifiedName?.toString)
 				val newAsp = MelangeFactory.eINSTANCE.createAspect => [
 					aspectedClass = localAspectedClass
 					aspectTypeRef = typesBuilder.cloneWithProxies(asp.aspectTypeRef)
@@ -554,7 +554,7 @@ class LanguageExtensions
 		// Inheritance operator
 		language.superLanguages.toList.reverseView.forEach[superLang |
 			superLang.orderedAspects.forEach[asp |
-				val localAspectedClass = language.syntax.findClass(asp.aspectedClass?.fullyQualifiedName.toString)
+				val localAspectedClass = language.syntax.findClass(asp.aspectedClass?.fullyQualifiedName?.toString)
 				val newAsp =  MelangeFactory.eINSTANCE.createAspect => [
 					aspectedClass = localAspectedClass
 					aspectTypeRef = typesBuilder.cloneWithProxies(asp.aspectTypeRef)
@@ -601,7 +601,7 @@ class LanguageExtensions
 	 */
 	private def void updateLocalAspects(Language language) {
 		language.localSemantics.reverseView.forEach[asp |
-			asp.aspectedClass = language.syntax.findClass(asp.aspectedClass?.fullyQualifiedName.toString)
+			asp.aspectedClass = language.syntax.findClass(asp.aspectedClass?.fullyQualifiedName?.toString)
 			asp.tryUpdateAspect
 		]
 	}
