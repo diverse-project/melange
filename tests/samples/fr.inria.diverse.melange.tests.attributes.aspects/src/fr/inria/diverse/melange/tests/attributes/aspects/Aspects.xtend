@@ -1,14 +1,14 @@
 package fr.inria.diverse.melange.tests.attributes.aspects
 
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
+import fr.inria.diverse.melange.annotation.Containment
+import fr.inria.diverse.melange.annotation.Opposite
+import fr.inria.diverse.melange.annotation.Unique
 
 import rootpkg.A
 import rootpkg.B
 import other.rootpkg2.Token
-import fr.inria.diverse.k3.al.annotationprocessor.Containment
 import org.eclipse.emf.common.util.EList
-import fr.inria.diverse.k3.al.annotationprocessor.Unique
-import fr.inria.diverse.k3.al.annotationprocessor.Opposite
 
 @Aspect(className=A)
 class AAspect {
