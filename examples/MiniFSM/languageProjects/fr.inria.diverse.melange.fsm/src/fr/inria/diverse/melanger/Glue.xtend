@@ -2,7 +2,7 @@ package fr.inria.diverse.melanger
 
 import fr.inria.diverse.context.minilang.Context
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
-import fr.inria.diverse.k3.al.annotationprocessor.Containment
+import fr.inria.diverse.melange.annotation.Containment
 import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
 import fr.inria.diverse.minifsm.FSM
 import fr.inria.diverse.minifsm.FinalState
