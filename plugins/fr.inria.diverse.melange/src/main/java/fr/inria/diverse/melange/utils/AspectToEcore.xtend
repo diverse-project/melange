@@ -44,11 +44,11 @@ class AspectToEcore
 	@Inject JvmTypeReferenceBuilder.Factory typeRefBuilderFactory
 
 	static final String CONTAINMENT_ANNOTATION_FQN =
-		"fr.inria.diverse.k3.al.annotationprocessor.Containment"
+		"fr.inria.diverse.melange.annotation.Containment"
 	static final String UNIQUE_ANNOTATION_FQN =
-		"fr.inria.diverse.k3.al.annotationprocessor.Unique"
+		"fr.inria.diverse.melange.annotation.Unique"
 	static final String OPPOSITE_ANNOTATION_FQN =
-		"fr.inria.diverse.k3.al.annotationprocessor.Opposite"
+		"fr.inria.diverse.melange.annotation.Opposite"
 	static final List<String> K3_PREFIXES =
 		#["_privk3", "super_"]
 	public static final String PROP_NAME = "AspectProperties"

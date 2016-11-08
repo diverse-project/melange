@@ -38,6 +38,7 @@ Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: fr.inria.diverse.melange,
+ fr.inria.diverse.melange.annotation,
  fr.inria.diverse.melange.ast,
  fr.inria.diverse.melange.compiler,
  fr.inria.diverse.melange.eclipse,
