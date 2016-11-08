@@ -237,6 +237,7 @@ class EclipseProjectHelper
 				#[],
 				#["org.eclipse.emf.ecore",
 				  "fr.inria.diverse.k3.al.annotationprocessor.plugin",
+				  "fr.inria.diverse.melange",
 				  "org.eclipse.xtext.xbase.lib"],
 //				#[basePkg, basePkg + ".impl", basePkg + ".util"],
 				if (l.hasCopiedAspects) #[l.aspectsNamespace] else #[],
