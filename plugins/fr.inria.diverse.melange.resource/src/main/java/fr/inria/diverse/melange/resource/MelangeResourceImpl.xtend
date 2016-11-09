@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.xtend.lib.annotations.Delegate
 import fr.inria.diverse.melange.resource.MelangeRegistry.LanguageDescriptor
+import org.eclipse.emf.common.notify.Notification
 
 /**
  * This class wraps a resource and shift the types of the contained
@@ -18,7 +19,6 @@ import fr.inria.diverse.melange.resource.MelangeRegistry.LanguageDescriptor
 class MelangeResourceImpl implements Resource.Internal
 {
 	@Delegate Resource.Internal wrappedResource
-	Resource adapter
 	String expectedMt
 	String expectedLang
 	URI melangeUri
@@ -67,7 +67,7 @@ class MelangeResourceImpl implements Resource.Internal
 	}
 
 	override getEObject(String uriFragment) {
-		return adapter.getEObject(uriFragment)
+		return contentResource.getEObject(uriFragment)
 	}
 
 	override getURIFragment(EObject o) {
@@ -160,7 +160,6 @@ class MelangeResourceImpl implements Resource.Internal
 		if (!wrappedResource.getContents().empty && !(expectedMt == null && expectedLang == null)) {
 		
 			// 1 - Convert Language to Language
-			contentResource = wrappedResource
 			if (expectedLang !== null) {
 				contentResource = contentResource.adaptResourceToLang(expectedLang)
 			}
@@ -168,7 +167,6 @@ class MelangeResourceImpl implements Resource.Internal
 			// 2 - Adapt Language to ModelType
 			if (expectedMt !== null) {
 				contentResource = contentResource.adaptResourceToMT(expectedMt)
-				adapter = contentResource
 			}
 		
 		}
@@ -208,5 +206,19 @@ class MelangeResourceImpl implements Resource.Internal
 	 */
 	def String getActualLanguage() {
 		return expectedLang
+	}
+	
+	override eAdapters() {
+		if(contentResource === null)
+			doAdapt()
+			
+		return contentResource.eAdapters
+	}
+	
+	override eNotify(Notification notification) {
+		if(contentResource === null)
+			doAdapt()
+			
+		contentResource.eNotify(notification)
 	}
 }
