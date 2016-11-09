@@ -26,7 +26,7 @@
 		<tycho.version>0.23.1</tycho.version>
 		<tycho-extras.version>0.23.1</tycho-extras.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<xtext.version>2.9.1</xtext.version>
+		<xtext.version>2.10.0</xtext.version>
 		<tycho.scmUrl>scm:git:https://github.com/diverse-project/melange.git</tycho.scmUrl>
 	</properties>
 
