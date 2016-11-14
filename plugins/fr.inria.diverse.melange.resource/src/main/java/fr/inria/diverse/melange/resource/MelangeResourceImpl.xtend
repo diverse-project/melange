@@ -16,7 +16,7 @@ import org.eclipse.emf.common.notify.Notification
  * This class wraps a resource and shift the types of the contained
  * EObjects to get instances of a ModelType's classes
  */
-class MelangeResourceImpl implements Resource.Internal
+class MelangeResourceImpl implements MelangeResource
 {
 	@Delegate Resource.Internal wrappedResource
 	String expectedMt
@@ -39,7 +39,7 @@ class MelangeResourceImpl implements Resource.Internal
 		wrappedResource = rs.getResource(MelangeResourceUtils.melangeToFallbackURI(uri), true) as Resource.Internal
 	}
 
-	def Resource getWrappedResource() {
+	override Resource getWrappedResource() {
 		return wrappedResource
 	}
 
@@ -174,37 +174,21 @@ class MelangeResourceImpl implements Resource.Internal
 		this.resourceSet.resources.add(contentResource)
 	}
 
-	/**
-	 * Adapt EObjects of the wrapped resource to instances of
-	 * the ModelType's classes.<br>
-	 * {@link modelTypeID} can be null to remove the adaptation
-	 */
-	def void setExpectedMt(String modelTypeID) {
+	override void cast(String modelTypeID) {
 		expectedMt = modelTypeID
 		doAdapt()
 	}
 
-	/**
-	 * Copy EObjects of the wrapped resource to get instances of
-	 * the Language's classes.<br>
-	 * {@link languageID} can be null to remove the adaptation
-	 */
-	def void setExpectedLang(String languageID) {
+	override void downcast(String languageID) {
 		expectedLang = languageID
 		doAdapt()
 	}
 
-	/**
-	 * Return the ID of the ModelType or null if none
-	 */
-	def String getActualModelType() {
+	override String getModelType() {
 		return expectedMt
 	}
 
-	/**
-	 * Return the ID of the Language or null if none 
-	 */
-	def String getActualLanguage() {
+	override String getLanguage() {
 		return expectedLang
 	}
 	
