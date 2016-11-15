@@ -30,10 +30,10 @@ class MelangeResourceImpl implements MelangeResource
 		val rs = new ResourceSetImpl
 		val query = uri.query
 		val SEPARATOR = "&|;"
-		val pairs = query.split(SEPARATOR)
+		val pairs = query?.split(SEPARATOR)
 		
-		expectedMt = pairs.findFirst[startsWith("mt=")]?.substring(3)
-		expectedLang = pairs.findFirst[startsWith("lang=")]?.substring(5)
+		expectedMt = pairs?.findFirst[startsWith("mt=")]?.substring(3)
+		expectedLang = pairs?.findFirst[startsWith("lang=")]?.substring(5)
 
 		melangeUri = uri
 		wrappedResource = rs.getResource(MelangeResourceUtils.melangeToFallbackURI(uri), true) as Resource.Internal

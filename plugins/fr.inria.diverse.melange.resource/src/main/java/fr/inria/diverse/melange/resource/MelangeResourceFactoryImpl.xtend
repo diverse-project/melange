@@ -13,20 +13,15 @@ class MelangeResourceFactoryImpl implements Resource.Factory
 		val query = uri.query
 		val SEPARATOR = "&|;"
 		val pairs = query?.split(SEPARATOR)
-		
 		val mtQry = pairs?.filter[startsWith("mt=")]
 		val langQry = pairs?.filter[startsWith("lang=")]
-		val isValidQry =
-			pairs !== null
-			&& (mtQry.size <= 1 && langQry.size <= 1) // no duplicate mt= or lang=
-			&& (mtQry.size + langQry.size >= 1) // at least one mt= or lang=
+		
+		if(mtQry !==  null && mtQry.size > 1)
+			throw new MelangeResourceException('''Melange resource accept only one \'mt=\''')
+		if(langQry !== null && langQry.size > 1)
+			throw new MelangeResourceException('''Melange resource accept only one \'lang=\''')
 
 		// Loading through a viewpoint / language
-		return
-			if (isValidQry)
-				new MelangeResourceImpl(uri)
-			// Nothing special: fallback to XMI resource creation
-			else
-				new XMIResourceImpl(MelangeResourceUtils.melangeToFallbackURI(uri))
+		return new MelangeResourceImpl(uri)
 	}
 }
