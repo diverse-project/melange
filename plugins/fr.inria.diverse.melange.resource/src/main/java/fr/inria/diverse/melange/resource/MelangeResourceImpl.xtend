@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.xtend.lib.annotations.Delegate
 import fr.inria.diverse.melange.resource.MelangeRegistry.LanguageDescriptor
 import org.eclipse.emf.common.notify.Notification
+import fr.inria.diverse.melange.resource.loader.ModelCopier
 
 /**
  * This class wraps a resource and shift the types of the contained
@@ -22,7 +23,7 @@ class MelangeResourceImpl implements MelangeResource
 	String expectedMt
 	String expectedLang
 	URI melangeUri
-	DozerLoader loader = new DozerLoader
+//	DozerLoader loader = new DozerLoader
 	Resource contentResource
 
 	new(URI uri) {
@@ -131,8 +132,12 @@ class MelangeResourceImpl implements MelangeResource
 			// Downcast
 			val actualPkg = EPackage.Registry.INSTANCE.getEPackage(actualLanguage.uri)
 			val expectedPkg = EPackage.Registry.INSTANCE.getEPackage(expectedLanguage.uri)
-			loader.initialize(actualPkg, expectedPkg)
-			return loader.loadBaseAsExtended(adaptedResource, expectedPkg)
+			
+			val copier = new ModelCopier(#[actualPkg].toSet,#[expectedPkg].toSet)
+			return copier.clone(adaptedResource)
+			
+//			loader.initialize(actualPkg, expectedPkg)
+//			return loader.loadBaseAsExtended(adaptedResource, expectedPkg)
 		}
 		else
 			// No typing hierarchy found

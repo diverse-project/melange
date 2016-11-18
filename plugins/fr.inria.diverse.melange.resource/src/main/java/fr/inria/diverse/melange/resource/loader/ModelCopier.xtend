@@ -14,23 +14,40 @@ import org.eclipse.emf.common.util.BasicEList
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.common.util.URI
 
+/**
+ * Helper to copy a model conform to a Metamodel into a model conform to another Metamodel.
+ * Use a name based mapping between Metaclasses
+ */
 class ModelCopier {
 
-
 	/**
-	 * Mapping between models elements
+	 * Mapping between source model and target model
 	 */
-	Map<EObject,EObject> modelsMapping = newHashMap
+	Map<EObject,EObject> modelsMapping
 	
+	/**
+	 * Source Metamodel
+	 */
 	Set<EPackage> sourceMM
+	
+	/**
+	 * Expected Metamodel
+	 */
 	Set<EPackage> targetMM
 
-	def void setMapping(Set<EPackage> from, Set<EPackage> to) {
-		sourceMM = from
-		targetMM = to
-		//TODO: mapping between metamodels
+	/**
+	 * @param baseMM Metamodel of copied Resource
+	 * @param expectedMM Metamodel of the copy
+	 */
+	new (Set<EPackage> baseMM, Set<EPackage> expectedMM) {
+		modelsMapping = newHashMap
+		sourceMM = baseMM
+		targetMM = expectedMM
 	}
 	
+	/**
+	 * Return a copy of {@link res} conform to the expected Metamodel
+	 */
 	def Resource clone(Resource res) {
 		
 		/*
@@ -60,7 +77,7 @@ class ModelCopier {
 		val extendedResource = (new ResourceSetImpl).createResource(extendedURI)
 		extendedResource.contents.addAll(res.contents.map[modelsMapping.get(it)].toList)
 		
-		//Add copy of elements from crossref
+		//Add copies of elements from crossref
 		extendedResource.contents.addAll(modelsMapping.values.filter[img |img.eResource === null])
 		
 		return extendedResource
@@ -76,7 +93,6 @@ class ModelCopier {
 			
 			val attVal = source.eGet(srcAtt)
 			copy.eSet(trgAtt,attVal)
-			//setting.set(attVal)
 		]
 		
 		return copy
@@ -106,14 +122,6 @@ class ModelCopier {
 	}
 	
 	private def EClass getTargetClass(EClass source) {
-		return targetMM.map[EClassifiers].flatten.filter(EClass).findFirst[name == source.name]
-	}
-	
-	private def EReference getTargetReference(EReference source) {
-		return null
-	}
-	
-	private def EAttribute getTargetReference(EAttribute source) {
-		return null
+		return targetMM.map[eAllContents.toList].flatten.filter(EClass).findFirst[name == source.name]
 	}
 }
