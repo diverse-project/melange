@@ -12,12 +12,14 @@ import org.eclipse.xtext.resource.XtextResource
 import org.eclipse.xtext.ui.editor.hyperlinking.IHyperlinkAcceptor
 import org.eclipse.xtext.util.ITextRegion
 import org.eclipse.xtext.xbase.ui.navigation.XbaseHyperLinkHelper
+import fr.inria.diverse.melange.metamodel.melange.ModelType
 
 class MelangeHyperlinkHelper extends XbaseHyperLinkHelper{
     
     override createHyperlinksByOffset(XtextResource resource, int offset, IHyperlinkAcceptor acceptor) {
         
         val element = getEObjectAtOffsetHelper.resolveElementAt(resource, offset)
+        
 
 		val root = resource.parseResult.rootNode
 		val cursor = NodeModelUtils.findLeafNodeAtOffset(root,offset)
@@ -55,11 +57,24 @@ class MelangeHyperlinkHelper extends XbaseHyperLinkHelper{
         		}
         	}
         }
+        else if(element instanceof ModelType) {
+        	val uriConverter = resource.resourceSet.URIConverter
+            val uri = URI.createURI(element.ecoreUri)
+        	val region = getTextRegion(element as ModelType, offset)
+            
+            val hyperlink = hyperlinkProvider.get() => [
+                hyperlinkRegion = new Region(region.offset, region.length)
+                URI = if (uri.isPlatformResource) uri else uriConverter.normalize(uri)
+                hyperlinkText = ("Open "+ (element as ModelType).name +" Ecore file")
+            ]
+            
+            acceptor.accept(hyperlink)
+        	
+        }
         else {
             super.createHyperlinksByOffset(resource, offset, acceptor)
         }
     }
-    
     
     def ITextRegion getTextRegion(Language lang,  int offset) {
         val List<INode> nodes = NodeModelUtils.findNodesForFeature(lang,
@@ -71,5 +86,18 @@ class MelangeHyperlinkHelper extends XbaseHyperLinkHelper{
             }
         }
         return null;
+    }
+    
+    def ITextRegion getTextRegion(ModelType mt, int offset) {
+    	val List<INode> nodes = NodeModelUtils.findNodesForFeature(mt,
+                MelangePackage.Literals.MODELING_ELEMENT__ECORE_URI);
+        for (INode node : nodes) {
+        	val ITextRegion textRegion = node.getTextRegion();
+        	if (textRegion.contains(offset)) {
+                return textRegion;
+            }
+        }
+        
+    	return null
     }
 }
