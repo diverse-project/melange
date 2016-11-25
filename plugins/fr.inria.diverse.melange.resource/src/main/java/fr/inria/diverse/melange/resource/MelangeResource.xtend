@@ -29,13 +29,13 @@ interface MelangeResource extends Resource.Internal {
 	 * 
 	 * @param modelTypeID can be null to remove the adaptation
 	 */
-	def void cast(String modelTypeID)
+	def void upcast(String modelTypeID)
 	
 	/**
 	 * Cast to a Language inheriting from the wrapped Resource's Language
 	 * 
 	 * @param languageID can be null to remove the adaptation
 	 */
-	def void downcast(String languageID)
+	def void extendAs(String languageID)
 	
 }

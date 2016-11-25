@@ -179,12 +179,12 @@ class MelangeResourceImpl implements MelangeResource
 		this.resourceSet.resources.add(contentResource)
 	}
 
-	override void cast(String modelTypeID) {
+	override void upcast(String modelTypeID) {
 		expectedMt = modelTypeID
 		doAdapt()
 	}
 
-	override void downcast(String languageID) {
+	override void extendAs(String languageID) {
 		expectedLang = languageID
 		doAdapt()
 	}
