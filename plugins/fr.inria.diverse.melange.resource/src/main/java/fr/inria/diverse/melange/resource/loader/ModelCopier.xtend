@@ -13,13 +13,16 @@ import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.common.util.BasicEList
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.common.util.URI
+import fr.inria.diverse.melange.lib.EcoreExtensions
 
 /**
  * Helper to copy a model conform to a Metamodel into a model conform to another Metamodel.
  * Use a name based mapping between Metaclasses
  */
 class ModelCopier {
-
+	
+	extension EcoreExtensions = new EcoreExtensions
+	
 	/**
 	 * Mapping between source model and target model
 	 */
@@ -122,6 +125,11 @@ class ModelCopier {
 	}
 	
 	private def EClass getTargetClass(EClass source) {
-		return targetMM.map[eAllContents.toList].flatten.filter(EClass).findFirst[name == source.name]
+		val allClasses = targetMM.map[eAllContents.toList]?.flatten?.filter(EClass)
+		val res = allClasses?.findFirst[uniqueId == source.uniqueId]
+		if(res !== null)
+			return res
+		else
+			return allClasses.findFirst[name == source.name]
 	}
 }
