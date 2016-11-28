@@ -42,7 +42,7 @@ class LanguageProcessor extends DispatchMelangeProcessor
 	@Inject extension AspectExtensions
 	@Inject extension LanguageExtensions
 	@Inject extension ModelingElementExtensions
-	@Inject extension ModelTypeExtensions
+	
 	@Inject extension EcoreExtensions
 	@Inject ModelTypingSpaceBuilder builder
 	@Inject JvmTypesBuilder typesBuilder
@@ -56,7 +56,6 @@ class LanguageProcessor extends DispatchMelangeProcessor
 
 		// First, initialize the exactType and syntax of each language
 		root.languages.forEach[language |
-			language.initializeExactType
 			language.initializeSyntax
 		]
 
@@ -144,17 +143,6 @@ class LanguageProcessor extends DispatchMelangeProcessor
 				language.syntax.genmodelUris += importClause.genmodelUris
 			}
 		}
-	}
-
-	/**
-	 * Initializes the #ecoreUri of the exact {@link ModelType} of the supplied
-	 * {@code language}.
-	 */
-	private def void initializeExactType(Language language) {
-		if(language instanceof ExternalLanguage)
-			language.exactType.ecoreUri = language.operators.filter(Import).head?.ecoreUri
-		else if (language.exactType !== null)
-			language.exactType.ecoreUri = language.exactType.inferredEcoreUri
 	}
 
 	/**
