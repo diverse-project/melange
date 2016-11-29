@@ -12,6 +12,8 @@ import org.eclipse.xtend.lib.annotations.Delegate
 import fr.inria.diverse.melange.resource.MelangeRegistry.LanguageDescriptor
 import org.eclipse.emf.common.notify.Notification
 import fr.inria.diverse.melange.resource.loader.ModelCopier
+import org.eclipse.emf.common.notify.impl.AdapterImpl
+import fr.inria.diverse.melange.adapters.ResourceAdapter
 
 /**
  * This class wraps a resource and shift the types of the contained
@@ -96,6 +98,17 @@ class MelangeResourceImpl implements MelangeResource
 					adaptee = adaptedResource
 					parent = this
 					URI = org.eclipse.emf.common.util.URI.createURI("modelAsAdapted")
+					
+					// Emf Adapters on the ResourceAdapter can catch
+					// Notifications from the adaptee 
+					val proxyAdapter = new AdapterImpl(){
+						public Resource notifiedRes
+						override notifyChanged(Notification msg) {
+							notifiedRes?.eAdapters?.forEach[notifyChanged(msg)]
+						}
+					}
+					proxyAdapter.notifiedRes = this
+					adaptee.eAdapters.add(proxyAdapter);
 				]
 			} catch (InstantiationException e) {
 				throw new MelangeResourceException('''Cannot instantiate adapter type «adapterCls»''', e)
