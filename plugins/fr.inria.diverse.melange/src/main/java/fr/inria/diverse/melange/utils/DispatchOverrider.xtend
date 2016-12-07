@@ -269,18 +269,18 @@ class DispatchOverrider {
 	}
 	
 	private def ClassLoader createClassLoader(IJavaProject project) {
-		val classPathEntries = JavaRuntime.computeDefaultRuntimeClassPath(project);
-		val urlList = new ArrayList<URL>();
+		val classPathEntries = JavaRuntime.computeDefaultRuntimeClassPath(project)
+		val urlList = new ArrayList<URL>()
 		for (var i = 0; i < classPathEntries.length; i++) {
-		 val entry = classPathEntries.get(i);
-		 val path = new Path(entry);
-		 val url = path.toFile().toURI().toURL();
-		 urlList.add(url);
+		 val entry = classPathEntries.get(i)
+		 val path = new Path(entry)
+		 val url = path.toFile().toURI().toURL()
+		 urlList.add(url)
 		}
-//		val parentClassLoader = project.getClass().getClassLoader();
+//		val parentClassLoader = project.getClass().getClassLoader()
 		val parentClassLoader = Thread.currentThread().getContextClassLoader()
-		return new URLClassLoader(urlList, parentClassLoader);
-	}	
+		return new URLClassLoader(urlList, parentClassLoader)
+	}
 	
 	
 	/**************************
@@ -411,6 +411,10 @@ class DispatchOverrider {
 			if (manager != null) {
 				manager.executeStep(_self,command,"«className»","«methodName»");
 			} else {
+				fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IEventManager eventManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.EventManagerRegistry.getInstance().findEventManager(_self);
+				if (eventManager != null) {
+					eventManager.manageEvents();
+				}
 				command.execute();
 			}
 			«IF hasReturn»
@@ -565,7 +569,7 @@ class DispatchOverrider {
 						param.simpleName == (m2.parameters.get(index) as SingleVariableDeclaration).type.toString
 					else
 						true
-				]		
+				]
 		}
 	}
 	

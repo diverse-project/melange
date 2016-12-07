@@ -30,6 +30,7 @@ import org.eclipse.jdt.core.JavaCore
 import fr.inria.diverse.melange.utils.DispatchOverrider
 import org.eclipse.xtext.ui.resource.XtextResourceSetProvider
 import org.eclipse.xtext.naming.IQualifiedNameProvider
+import fr.inria.diverse.melange.utils.EventManagerGenerator
 
 class MelangeBuilder
 {
@@ -45,6 +46,7 @@ class MelangeBuilder
 	@Inject extension EcoreExtensions
 	@Inject extension IQualifiedNameProvider
 	@Inject DispatchOverrider dispatchWriter
+	@Inject EventManagerGenerator eventManagerGenerator
 	@Inject XtextResourceSetProvider rsProvider
 	private static final Logger log = Logger.getLogger(MelangeBuilder)
 
@@ -135,8 +137,14 @@ class MelangeBuilder
 		toGenerate.forEach[l |
 			sub.subTask("Rewrite dispatch for " + l.name)
 			dispatchWriter.overrideDispatch(l, JavaCore.create(project))
-			monitor.worked(10)
+			monitor.worked(5)
+			
+			sub.subTask("Generating event manager for " + l.name)
+			eventManagerGenerator.generateEventManager(l, JavaCore.create(project), monitor)
+			monitor.worked(5)
 		]
+		
+		
 	}
 
 	def void generateAdapters(Resource res, IProject project, IProgressMonitor monitor) {
