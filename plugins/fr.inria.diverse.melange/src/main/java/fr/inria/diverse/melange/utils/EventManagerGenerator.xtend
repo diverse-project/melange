@@ -206,7 +206,7 @@ class EventManagerGenerator {
 							val AST blockAst = block.getAST();
 							val ASTParser parser = ASTParser.newParser(AST.JLS8)
 							parser.kind = ASTParser.K_STATEMENTS
-							val parserSource = "fr.inria.diverse.k3.al.annotationprocessor.stepmanager.EventManagerRegistry.getInstance().registerManager(new XPetrinetEventManager());"
+							val parserSource = '''fr.inria.diverse.k3.al.annotationprocessor.stepmanager.EventManagerRegistry.getInstance().registerManager(new «eventManagerClassName»());'''
 							parser.setSource(parserSource.toCharArray)
 							val registerInvocation = parser.createAST(null) as Statement
 							val ASTRewrite rewriteStatements = ASTRewrite.create(blockAst);
