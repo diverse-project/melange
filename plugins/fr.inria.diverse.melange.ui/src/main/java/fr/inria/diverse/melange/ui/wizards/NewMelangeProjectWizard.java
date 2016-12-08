@@ -168,6 +168,7 @@ public class NewMelangeProjectWizard extends AbstractNewProjectWizardWithTemplat
 			manifestChanger.addPluginDependency("org.eclipse.emf.ecore.xmi", "2.8.0", true, true);
 			manifestChanger.addPluginDependency("org.eclipse.emf.ecore", "2.8.0", true, true);
 			manifestChanger.addPluginDependency("org.eclipse.emf.common", "2.8.0", true, true);
+			manifestChanger.addPluginDependency("fr.inria.diverse.melange", "0.1.0", true, true);
 			manifestChanger.addPluginDependency("fr.inria.diverse.melange.lib", "0.1.0", true, true);
 			manifestChanger.addPluginDependency("fr.inria.diverse.melange.resource", "0.1.0", true, true);
 			manifestChanger.addPluginDependency("fr.inria.diverse.melange.adapters", "0.1.0", true, true);
