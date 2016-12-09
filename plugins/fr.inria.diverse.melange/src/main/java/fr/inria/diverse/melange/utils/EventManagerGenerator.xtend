@@ -421,11 +421,16 @@ class EventManagerGenerator {
 		val eventHandlerName = eventHandler.name
 		val eventHandlingClass = eventHandler.declaringClass.simpleName
 		val eventParameters = eventClass.eventHandlerParameters
+		val eventCondition = eventMethodToCondition.get(eventHandler)
 		return '''
 			private void handle«eventClassName»(«eventClassName» event) {
-				if («eventHandlingClass».«eventHandlerName»_PreCondition(«eventParameters»)) {
+				«IF eventCondition != null»
+				if («eventHandlingClass».«eventCondition.name»(«eventParameters»)) {
 					«eventHandlingClass».«eventHandlerName»(«eventParameters»);
 				}
+				«ELSE»
+				«eventHandlingClass».«eventHandlerName»(«eventParameters»);
+				«ENDIF»
 			}
 		'''
 	}
