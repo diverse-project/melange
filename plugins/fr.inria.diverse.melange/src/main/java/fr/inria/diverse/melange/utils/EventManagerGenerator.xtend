@@ -83,6 +83,8 @@ class EventManagerGenerator {
 	private EPackage ePackage
 
 	private String packageString
+	
+	private List<Method> initializeMethods
 
 	public def void generateEventManager(Language lang, IJavaProject melangeProject, IProgressMonitor m) {
 		if (!lang.isGeneratedByMelange)
@@ -97,6 +99,7 @@ class EventManagerGenerator {
 		eventMethods = newArrayList
 		eventMethodToCondition = newHashMap
 		eventToHandler = newHashMap
+		initializeMethods = newArrayList
 		projectName = language.externalRuntimeName
 		eventManagerClassName = '''«language.name»EventManager'''
 		aspectsPackageName = language.aspectsNamespace
@@ -114,13 +117,13 @@ class EventManagerGenerator {
 		]
 		aspectsByLang.putAll(lang, aspects)
 
-		// 2. Rewrite dispatch
 		lang.processLanguage(m)
 	}
 
 	private def void processLanguage(Language l, IProgressMonitor m) {
 		gatherEventMethods(l)
 		if (!eventToHandler.empty) {
+			initializeMethods.forEach[method|method.declaringClass.rewriteBody(method)]
 			ePackage = eventToHandler.keySet.filterNull.head.EPackage
 			val qNameSegments = new ArrayList(eventToHandler.keySet.filterNull.head.fullyQualifiedName.segments)
 			qNameSegments.remove(qNameSegments.size - 1)
@@ -162,9 +165,7 @@ class EventManagerGenerator {
 	}
 
 	private def void processAspect(Class<?> aspect) {
-		aspect.methods.filter[m|isInitialize(m)].forEach [ m |
-			aspect.rewriteBody(m)
-		]
+		initializeMethods.addAll(aspect.methods.filter[m|isInitialize(m)])
 		val aspectEvents = aspect.methods.filter[m|isEvent(m)]
 		aspect.methods.forEach [ condition |
 			val eventMethod = aspectEvents.findFirst [ n |
