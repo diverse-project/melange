@@ -209,8 +209,8 @@ class MelangeResourceImpl implements MelangeResource
 	 */
 	private def String getXmofURI(String languageID) {
 		val language = Platform.extensionRegistry
-			.getConfigurationElementsFor("fr.inria.diverse.melange.language")
-			.findFirst[c|
+			?.getConfigurationElementsFor("fr.inria.diverse.melange.language")
+			?.findFirst[c|
 				c.getAttribute("id") == languageID
 			]
 			
