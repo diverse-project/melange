@@ -37,6 +37,8 @@ class ModelCopier {
 	 * Expected Metamodel
 	 */
 	Set<EPackage> targetMM
+	
+	boolean isXmof = false
 
 	/**
 	 * @param baseMM Metamodel of copied Resource
@@ -46,6 +48,13 @@ class ModelCopier {
 		modelsMapping = newHashMap
 		sourceMM = baseMM
 		targetMM = expectedMM
+	}
+	
+	new (Set<EPackage> baseMM, Set<EPackage> expectedMM, boolean isXmof) {
+		modelsMapping = newHashMap
+		sourceMM = baseMM
+		targetMM = expectedMM
+		this.isXmof = isXmof
 	}
 	
 	/**
@@ -76,7 +85,7 @@ class ModelCopier {
 		/*
 		 * Step 4: create a new resource & fill it
 		 */
-		val extendedURI = URI.createURI("modelAsExtended") //TODO: find better URI
+		val extendedURI = URI.createURI(sourceMM.head.nsURI +"/as/"+ targetMM.head.nsURI)
 		val extendedResource = (new ResourceSetImpl).createResource(extendedURI)
 		extendedResource.contents.addAll(res.contents.map[modelsMapping.get(it)].toList)
 		
@@ -125,11 +134,12 @@ class ModelCopier {
 	}
 	
 	private def EClass getTargetClass(EClass source) {
+		val suffix = if(isXmof) "Configuration" else ""
 		val allClasses = targetMM.map[eAllContents.toList]?.flatten?.filter(EClass)
-		val res = allClasses?.findFirst[uniqueId == source.uniqueId]
+		val res = allClasses?.findFirst[uniqueId == source.uniqueId+suffix]
 		if(res !== null)
 			return res
 		else
-			return allClasses.findFirst[name == source.name]
+			return allClasses.findFirst[name == source.name+suffix]
 	}
 }

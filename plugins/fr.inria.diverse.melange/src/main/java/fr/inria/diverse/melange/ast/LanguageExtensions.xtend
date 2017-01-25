@@ -805,4 +805,8 @@ class LanguageExtensions
 
 		return res.toList
 	}
+	
+	def boolean isXmof(Language l){
+		return l instanceof ExternalLanguage && l.xmof !== null
+	}
 }

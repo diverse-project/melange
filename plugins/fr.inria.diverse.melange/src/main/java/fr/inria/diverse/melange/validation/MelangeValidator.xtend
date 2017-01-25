@@ -120,7 +120,7 @@ class MelangeValidator extends AbstractMelangeValidator
 
 	@Check
 	def void checkEcoreIsSet(Language l) {
-		if (!l.hasSyntax)
+		if (!l.hasSyntax && !l.isXmof)
 			error(
 				"Please specify the Ecore file defining the language's syntax",
 				MelangePackage.Literals.NAMED_ELEMENT__NAME,

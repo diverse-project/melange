@@ -14,6 +14,11 @@ import org.eclipse.emf.common.notify.Notification
 import fr.inria.diverse.melange.resource.loader.ModelCopier
 import org.eclipse.emf.common.notify.impl.AdapterImpl
 import fr.inria.diverse.melange.adapters.ResourceAdapter
+import org.eclipse.core.runtime.Platform
+import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
+import fr.inria.diverse.melange.metamodel.melange.Language
+import java.util.Set
+import java.util.HashSet
 
 /**
  * This class wraps a resource and shift the types of the contained
@@ -25,9 +30,8 @@ class MelangeResourceImpl implements MelangeResource
 	String expectedMt
 	String expectedLang
 	URI melangeUri
-//	DozerLoader loader = new DozerLoader
 	Resource contentResource
-
+	
 	new(URI uri) {
 		// FIXME: Retrieve the currently-used one
 		val rs = new ResourceSetImpl
@@ -134,8 +138,18 @@ class MelangeResourceImpl implements MelangeResource
 		val expectedMt = MelangeRegistry.INSTANCE.getModelTypeByIdentifier(expectedLanguage.exactType)
 
 		if (actualMt.identifier == expectedMt.identifier) {
-			// Nothing to do
-			return adaptedResource
+			val xmofURI = getXmofURI(language)
+			if(xmofURI !== null){
+				val actualPkg = EPackage.Registry.INSTANCE.getEPackage(actualLanguage.uri)
+				val expectedPkg = loadXmofMM(xmofURI)
+				
+				val copier = new ModelCopier(#[actualPkg].toSet,expectedPkg,true)
+				return copier.clone(adaptedResource)
+			}
+			else{
+				// Nothing to do
+				return adaptedResource
+			}
 		}
 		else if (actualMt.superTypes.contains(expectedMt.identifier)) {
 			// Upcast
@@ -143,18 +157,37 @@ class MelangeResourceImpl implements MelangeResource
 		}
 		else if (expectedMt.superTypes.contains(actualMt.identifier)) {
 			// Downcast
+			val xmofURI = getXmofURI(language)
 			val actualPkg = EPackage.Registry.INSTANCE.getEPackage(actualLanguage.uri)
-			val expectedPkg = EPackage.Registry.INSTANCE.getEPackage(expectedLanguage.uri)
+			val expectedPkg =
+				if(xmofURI !== null)
+					loadXmofMM(xmofURI)
+				else
+					#[EPackage.Registry.INSTANCE.getEPackage(expectedLanguage.uri)].toSet
 			
-			val copier = new ModelCopier(#[actualPkg].toSet,#[expectedPkg].toSet)
+			val copier = new ModelCopier(#[actualPkg].toSet,expectedPkg, xmofURI!==null)
 			return copier.clone(adaptedResource)
-			
-//			loader.initialize(actualPkg, expectedPkg)
-//			return loader.loadBaseAsExtended(adaptedResource, expectedPkg)
 		}
 		else
 			// No typing hierarchy found
 			throw new MelangeResourceException('''«actualMt.identifier» cannot be transtyped to «expectedMt.identifier»''')
+	}
+	
+	private def Set<EPackage> loadXmofMM(String targetXmofURI) {
+		val expectedPkg = new HashSet<EPackage>()
+		val uri = org.eclipse.emf.common.util.URI.createURI(targetXmofURI.replaceFirst("platform:/resource","platform:/plugin"), true)
+		val xmofRes = (new ResourceSetImpl).getResource(uri, true)
+		val expectedPkgCandidate = xmofRes.contents.filter(EPackage).toSet
+		expectedPkgCandidate.forEach[pkg |
+			val p = EPackage.Registry.INSTANCE.getEPackage(pkg.nsURI)
+			if(p === null){
+				EPackage.Registry.INSTANCE.put(pkg.nsURI,pkg)
+				expectedPkg.add(pkg)
+			}
+			else
+				expectedPkg.add(p)
+		]
+		return expectedPkg
 	}
 	
 	private def LanguageDescriptor getLanguage(Resource resource){
@@ -167,6 +200,38 @@ class MelangeResourceImpl implements MelangeResource
 			throw new MelangeResourceException("Cannot find a registered language with URI " + actualPkgUri)
 			
 		return actualLanguage
+	}
+	
+	/**
+	 * Return the xmofURI of {@link languageID} or null if we can't 
+	 * find a Melange file declaring a Language named {@link languageID}
+	 * with an xmofURI
+	 */
+	private def String getXmofURI(String languageID) {
+		val language = Platform.extensionRegistry
+			.getConfigurationElementsFor("fr.inria.diverse.melange.language")
+			.findFirst[c|
+				c.getAttribute("id") == languageID
+			]
+			
+		if(language !== null){
+			val melangeBundle = Platform.getBundle(language.contributor.name)
+			val urls = melangeBundle.findEntries("/","*.melange",true)
+			if(urls.hasMoreElements){
+				val melangeFilePath = urls.nextElement.file
+				urls.nextElement.file
+				val rs = new ResourceSetImpl
+				val uri = org.eclipse.emf.common.util.URI.createURI("platform:/plugin/"+language.contributor.name+"/"+melangeFilePath)  
+				val res = rs.getResource(uri, true) as Resource.Internal
+				val root = res.contents.head as ModelTypingSpace
+				val lang = root.elements.filter(Language).findFirst[languageID.endsWith("."+name)]
+				
+				if(lang !== null)
+					return lang.xmof
+			}
+		}
+		
+		return null
 	}
 
 	/**
