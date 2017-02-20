@@ -79,10 +79,18 @@ public class SimpleMTTemplate extends MelangeTemplateSection {
 	}
 
 	private void createOptions() {
-		addOption(KEY_PACKAGE_NAME, MelangeTemplateMessages.SimpleMTTemplate_packageName, (String) null, 0);
-		addOption(KEY_MELANGE_FILE_NAME, MelangeTemplateMessages.SimpleMTTemplate_melangeFileName, MELANGE_FILE_NAME, 0);
-		addOption(KEY_METAMODEL_NAME, MelangeTemplateMessages.SimpleMTTemplate_melangeMetamodelName, METAMODEL_NAME, 0);
-		TemplateOption ecoreLocationOption  = new AbstractStringWithButtonOption(this, KEY_ECOREFILE_PATH, MelangeTemplateMessages.SimpleMTTemplate_ecoreFileLocation) {
+		addOption(KEY_PACKAGE_NAME, MelangeTemplateMessages.SimpleMTTemplate_packageName,
+				MelangeTemplateMessages.SimpleMTTemplate_packageNameToolTip, 
+				(String) null, 0);
+		addOption(KEY_MELANGE_FILE_NAME, MelangeTemplateMessages.SimpleMTTemplate_melangeFileName, 
+				MelangeTemplateMessages.SimpleMTTemplate_melangeFileNameTooltip, 
+				MELANGE_FILE_NAME, 0);
+		addOption(KEY_METAMODEL_NAME, MelangeTemplateMessages.SimpleMTTemplate_melangeMetamodelName,
+				MelangeTemplateMessages.SimpleMTTemplate_melangeMetamodelNameToolTip, 
+				METAMODEL_NAME, 0);
+		TemplateOption ecoreLocationOption  = new AbstractStringWithButtonOption(this, KEY_ECOREFILE_PATH, 
+				MelangeTemplateMessages.SimpleMTTemplate_ecoreFileLocation,
+				MelangeTemplateMessages.SimpleMTTemplate_ecoreFileLocationTooltip) {
 			@Override
 			public String doSelectButton() {
 				final IWorkbenchWindow workbenchWindow = PlatformUI

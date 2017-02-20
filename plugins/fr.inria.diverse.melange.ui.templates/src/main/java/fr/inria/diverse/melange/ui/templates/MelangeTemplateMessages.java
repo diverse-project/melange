@@ -32,9 +32,13 @@ public class MelangeTemplateMessages extends NLS {
 	
 	// UserEcoreBasicMelange constants
 	public static String SimpleMTTemplate_packageName;
+	public static String SimpleMTTemplate_packageNameToolTip;
 	public static String SimpleMTTemplate_melangeFileName;
+	public static String SimpleMTTemplate_melangeFileNameTooltip;
 	public static String SimpleMTTemplate_melangeMetamodelName;
+	public static String SimpleMTTemplate_melangeMetamodelNameToolTip;
 	public static String SimpleMTTemplate_ecoreFileLocation;
+	public static String SimpleMTTemplate_ecoreFileLocationTooltip;
 	public static String SimpleMTTemplate_title;
 	public static String SimpleMTTemplate_desc;
 	public static String SimpleMTTemplate_wtitle;
