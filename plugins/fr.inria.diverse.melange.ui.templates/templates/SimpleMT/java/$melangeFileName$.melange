@@ -2,5 +2,4 @@ package $packageName$
 
 language $metamodelName$ {
 	syntax "platform:/resource/$ecoreFilePath$"
-	exactType $metamodelName$MT
 }
