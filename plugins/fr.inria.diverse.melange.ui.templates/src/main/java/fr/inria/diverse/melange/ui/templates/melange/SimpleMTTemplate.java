@@ -129,6 +129,7 @@ public class SimpleMTTemplate extends MelangeTemplateSection {
 				return null;
 			}
 		};
+		ecoreLocationOption.setRequired(false);
 		registerOption(ecoreLocationOption, (String) null, 0);
 	}
 
