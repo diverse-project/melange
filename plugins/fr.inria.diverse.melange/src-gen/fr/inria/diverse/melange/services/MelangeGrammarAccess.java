@@ -22,47 +22,43 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	public class ModelTypingSpaceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.inria.diverse.melange.Melange.ModelTypingSpace");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
-		private final Keyword cPackageKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
-		private final Assignment cNameAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
-		private final RuleCall cNameQualifiedNameParserRuleCall_0_1_0 = (RuleCall)cNameAssignment_0_1.eContents().get(0);
-		private final Assignment cImportsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cImportsXImportSectionParserRuleCall_1_0 = (RuleCall)cImportsAssignment_1.eContents().get(0);
-		private final Assignment cElementsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cElementsElementParserRuleCall_2_0 = (RuleCall)cElementsAssignment_2.eContents().get(0);
+		private final Keyword cPackageKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameQualifiedNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cImportsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cImportsXImportSectionParserRuleCall_2_0 = (RuleCall)cImportsAssignment_2.eContents().get(0);
+		private final Assignment cElementsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cElementsElementParserRuleCall_3_0 = (RuleCall)cElementsAssignment_3.eContents().get(0);
 		
 		//ModelTypingSpace:
-		//	('package' name=QualifiedName)?
+		//	'package' name=QualifiedName
 		//	imports=XImportSection?
 		//	elements+=Element*;
 		@Override public ParserRule getRule() { return rule; }
 
-		//('package' name=QualifiedName)? imports=XImportSection? elements+=Element*
+		//'package' name=QualifiedName imports=XImportSection? elements+=Element*
 		public Group getGroup() { return cGroup; }
 
-		//('package' name=QualifiedName)?
-		public Group getGroup_0() { return cGroup_0; }
-
 		//'package'
-		public Keyword getPackageKeyword_0_0() { return cPackageKeyword_0_0; }
+		public Keyword getPackageKeyword_0() { return cPackageKeyword_0; }
 
 		//name=QualifiedName
-		public Assignment getNameAssignment_0_1() { return cNameAssignment_0_1; }
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 
 		//QualifiedName
-		public RuleCall getNameQualifiedNameParserRuleCall_0_1_0() { return cNameQualifiedNameParserRuleCall_0_1_0; }
+		public RuleCall getNameQualifiedNameParserRuleCall_1_0() { return cNameQualifiedNameParserRuleCall_1_0; }
 
 		//imports=XImportSection?
-		public Assignment getImportsAssignment_1() { return cImportsAssignment_1; }
+		public Assignment getImportsAssignment_2() { return cImportsAssignment_2; }
 
 		//XImportSection
-		public RuleCall getImportsXImportSectionParserRuleCall_1_0() { return cImportsXImportSectionParserRuleCall_1_0; }
+		public RuleCall getImportsXImportSectionParserRuleCall_2_0() { return cImportsXImportSectionParserRuleCall_2_0; }
 
 		//elements+=Element*
-		public Assignment getElementsAssignment_2() { return cElementsAssignment_2; }
+		public Assignment getElementsAssignment_3() { return cElementsAssignment_3; }
 
 		//Element
-		public RuleCall getElementsElementParserRuleCall_2_0() { return cElementsElementParserRuleCall_2_0; }
+		public RuleCall getElementsElementParserRuleCall_3_0() { return cElementsElementParserRuleCall_3_0; }
 	}
 
 	public class ElementElements extends AbstractParserRuleElementFinder {
@@ -1670,7 +1666,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//ModelTypingSpace:
-	//	('package' name=QualifiedName)?
+	//	'package' name=QualifiedName
 	//	imports=XImportSection?
 	//	elements+=Element*;
 	public ModelTypingSpaceElements getModelTypingSpaceAccess() {

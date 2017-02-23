@@ -591,7 +591,7 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	 *     ModelTypingSpace returns ModelTypingSpace
 	 *
 	 * Constraint:
-	 *     ((name=QualifiedName? imports=XImportSection elements+=Element+) | (name=QualifiedName? elements+=Element+) | elements+=Element+)?
+	 *     (name=QualifiedName imports=XImportSection? elements+=Element*)
 	 */
 	protected void sequence_ModelTypingSpace(ISerializationContext context, ModelTypingSpace semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

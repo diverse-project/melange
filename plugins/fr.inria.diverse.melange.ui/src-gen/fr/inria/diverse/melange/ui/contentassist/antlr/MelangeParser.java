@@ -82,7 +82,6 @@ public class MelangeParser extends AbstractContentAssistParser {
 					put(grammarAccess.getXImportDeclarationAccess().getAlternatives_1_0_3(), "rule__XImportDeclaration__Alternatives_1_0_3");
 					put(grammarAccess.getResourceTypeAccess().getAlternatives(), "rule__ResourceType__Alternatives");
 					put(grammarAccess.getModelTypingSpaceAccess().getGroup(), "rule__ModelTypingSpace__Group__0");
-					put(grammarAccess.getModelTypingSpaceAccess().getGroup_0(), "rule__ModelTypingSpace__Group_0__0");
 					put(grammarAccess.getElementAccess().getGroup_1(), "rule__Element__Group_1__0");
 					put(grammarAccess.getLanguageAccess().getGroup_0(), "rule__Language__Group_0__0");
 					put(grammarAccess.getLanguageAccess().getGroup_0_2(), "rule__Language__Group_0_2__0");
@@ -326,9 +325,9 @@ public class MelangeParser extends AbstractContentAssistParser {
 					put(grammarAccess.getXImportDeclarationAccess().getGroup(), "rule__XImportDeclaration__Group__0");
 					put(grammarAccess.getXImportDeclarationAccess().getGroup_1_0(), "rule__XImportDeclaration__Group_1_0__0");
 					put(grammarAccess.getQualifiedNameInStaticImportAccess().getGroup(), "rule__QualifiedNameInStaticImport__Group__0");
-					put(grammarAccess.getModelTypingSpaceAccess().getNameAssignment_0_1(), "rule__ModelTypingSpace__NameAssignment_0_1");
-					put(grammarAccess.getModelTypingSpaceAccess().getImportsAssignment_1(), "rule__ModelTypingSpace__ImportsAssignment_1");
-					put(grammarAccess.getModelTypingSpaceAccess().getElementsAssignment_2(), "rule__ModelTypingSpace__ElementsAssignment_2");
+					put(grammarAccess.getModelTypingSpaceAccess().getNameAssignment_1(), "rule__ModelTypingSpace__NameAssignment_1");
+					put(grammarAccess.getModelTypingSpaceAccess().getImportsAssignment_2(), "rule__ModelTypingSpace__ImportsAssignment_2");
+					put(grammarAccess.getModelTypingSpaceAccess().getElementsAssignment_3(), "rule__ModelTypingSpace__ElementsAssignment_3");
 					put(grammarAccess.getLanguageAccess().getNameAssignment_0_1(), "rule__Language__NameAssignment_0_1");
 					put(grammarAccess.getLanguageAccess().getOperatorsAssignment_0_2_1(), "rule__Language__OperatorsAssignment_0_2_1");
 					put(grammarAccess.getLanguageAccess().getOperatorsAssignment_0_2_2_1(), "rule__Language__OperatorsAssignment_0_2_2_1");

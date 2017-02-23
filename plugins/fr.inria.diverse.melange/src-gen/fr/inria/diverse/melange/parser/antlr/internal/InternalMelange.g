@@ -78,14 +78,14 @@ ruleModelTypingSpace returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-((	otherlv_0='package' 
+(	otherlv_0='package' 
     {
-    	newLeafNode(otherlv_0, grammarAccess.getModelTypingSpaceAccess().getPackageKeyword_0_0());
+    	newLeafNode(otherlv_0, grammarAccess.getModelTypingSpaceAccess().getPackageKeyword_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getModelTypingSpaceAccess().getNameQualifiedNameParserRuleCall_0_1_0()); 
+	        newCompositeNode(grammarAccess.getModelTypingSpaceAccess().getNameQualifiedNameParserRuleCall_1_0()); 
 	    }
 		lv_name_1_0=ruleQualifiedName		{
 	        if ($current==null) {
@@ -100,10 +100,10 @@ ruleModelTypingSpace returns [EObject current=null]
 	    }
 
 )
-))?(
+)(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getModelTypingSpaceAccess().getImportsXImportSectionParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getModelTypingSpaceAccess().getImportsXImportSectionParserRuleCall_2_0()); 
 	    }
 		lv_imports_2_0=ruleXImportSection		{
 	        if ($current==null) {
@@ -121,7 +121,7 @@ ruleModelTypingSpace returns [EObject current=null]
 )?(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getModelTypingSpaceAccess().getElementsElementParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getModelTypingSpaceAccess().getElementsElementParserRuleCall_3_0()); 
 	    }
 		lv_elements_3_0=ruleElement		{
 	        if ($current==null) {

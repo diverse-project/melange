@@ -4164,9 +4164,11 @@ rule__ModelTypingSpace__Group__0__Impl
     }
 :
 (
-{ before(grammarAccess.getModelTypingSpaceAccess().getGroup_0()); }
-(rule__ModelTypingSpace__Group_0__0)?
-{ after(grammarAccess.getModelTypingSpaceAccess().getGroup_0()); }
+{ before(grammarAccess.getModelTypingSpaceAccess().getPackageKeyword_0()); }
+
+	'package' 
+
+{ after(grammarAccess.getModelTypingSpaceAccess().getPackageKeyword_0()); }
 )
 
 ;
@@ -4193,9 +4195,9 @@ rule__ModelTypingSpace__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getModelTypingSpaceAccess().getImportsAssignment_1()); }
-(rule__ModelTypingSpace__ImportsAssignment_1)?
-{ after(grammarAccess.getModelTypingSpaceAccess().getImportsAssignment_1()); }
+{ before(grammarAccess.getModelTypingSpaceAccess().getNameAssignment_1()); }
+(rule__ModelTypingSpace__NameAssignment_1)
+{ after(grammarAccess.getModelTypingSpaceAccess().getNameAssignment_1()); }
 )
 
 ;
@@ -4210,6 +4212,7 @@ rule__ModelTypingSpace__Group__2
     }
 :
 	rule__ModelTypingSpace__Group__2__Impl
+	rule__ModelTypingSpace__Group__3
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -4221,9 +4224,9 @@ rule__ModelTypingSpace__Group__2__Impl
     }
 :
 (
-{ before(grammarAccess.getModelTypingSpaceAccess().getElementsAssignment_2()); }
-(rule__ModelTypingSpace__ElementsAssignment_2)*
-{ after(grammarAccess.getModelTypingSpaceAccess().getElementsAssignment_2()); }
+{ before(grammarAccess.getModelTypingSpaceAccess().getImportsAssignment_2()); }
+(rule__ModelTypingSpace__ImportsAssignment_2)?
+{ after(grammarAccess.getModelTypingSpaceAccess().getImportsAssignment_2()); }
 )
 
 ;
@@ -4232,35 +4235,26 @@ finally {
 }
 
 
-
-
-
-
-
-
-rule__ModelTypingSpace__Group_0__0
+rule__ModelTypingSpace__Group__3
     @init {
 		int stackSize = keepStackSize();
     }
 :
-	rule__ModelTypingSpace__Group_0__0__Impl
-	rule__ModelTypingSpace__Group_0__1
+	rule__ModelTypingSpace__Group__3__Impl
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ModelTypingSpace__Group_0__0__Impl
+rule__ModelTypingSpace__Group__3__Impl
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getModelTypingSpaceAccess().getPackageKeyword_0_0()); }
-
-	'package' 
-
-{ after(grammarAccess.getModelTypingSpaceAccess().getPackageKeyword_0_0()); }
+{ before(grammarAccess.getModelTypingSpaceAccess().getElementsAssignment_3()); }
+(rule__ModelTypingSpace__ElementsAssignment_3)*
+{ after(grammarAccess.getModelTypingSpaceAccess().getElementsAssignment_3()); }
 )
 
 ;
@@ -4269,32 +4263,8 @@ finally {
 }
 
 
-rule__ModelTypingSpace__Group_0__1
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-	rule__ModelTypingSpace__Group_0__1__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
 
-rule__ModelTypingSpace__Group_0__1__Impl
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getModelTypingSpaceAccess().getNameAssignment_0_1()); }
-(rule__ModelTypingSpace__NameAssignment_0_1)
-{ after(grammarAccess.getModelTypingSpaceAccess().getNameAssignment_0_1()); }
-)
 
-;
-finally {
-	restoreStackSize(stackSize);
-}
 
 
 
@@ -24379,14 +24349,14 @@ finally {
 
 
 
-rule__ModelTypingSpace__NameAssignment_0_1
+rule__ModelTypingSpace__NameAssignment_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getModelTypingSpaceAccess().getNameQualifiedNameParserRuleCall_0_1_0()); }
-	ruleQualifiedName{ after(grammarAccess.getModelTypingSpaceAccess().getNameQualifiedNameParserRuleCall_0_1_0()); }
+{ before(grammarAccess.getModelTypingSpaceAccess().getNameQualifiedNameParserRuleCall_1_0()); }
+	ruleQualifiedName{ after(grammarAccess.getModelTypingSpaceAccess().getNameQualifiedNameParserRuleCall_1_0()); }
 )
 
 ;
@@ -24394,14 +24364,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ModelTypingSpace__ImportsAssignment_1
+rule__ModelTypingSpace__ImportsAssignment_2
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getModelTypingSpaceAccess().getImportsXImportSectionParserRuleCall_1_0()); }
-	ruleXImportSection{ after(grammarAccess.getModelTypingSpaceAccess().getImportsXImportSectionParserRuleCall_1_0()); }
+{ before(grammarAccess.getModelTypingSpaceAccess().getImportsXImportSectionParserRuleCall_2_0()); }
+	ruleXImportSection{ after(grammarAccess.getModelTypingSpaceAccess().getImportsXImportSectionParserRuleCall_2_0()); }
 )
 
 ;
@@ -24409,14 +24379,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ModelTypingSpace__ElementsAssignment_2
+rule__ModelTypingSpace__ElementsAssignment_3
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getModelTypingSpaceAccess().getElementsElementParserRuleCall_2_0()); }
-	ruleElement{ after(grammarAccess.getModelTypingSpaceAccess().getElementsElementParserRuleCall_2_0()); }
+{ before(grammarAccess.getModelTypingSpaceAccess().getElementsElementParserRuleCall_3_0()); }
+	ruleElement{ after(grammarAccess.getModelTypingSpaceAccess().getElementsElementParserRuleCall_3_0()); }
 )
 
 ;
