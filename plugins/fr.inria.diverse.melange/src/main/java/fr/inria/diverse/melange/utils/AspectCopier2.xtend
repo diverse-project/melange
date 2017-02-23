@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.common.types.JvmDeclaredType
+import java.util.Set
 
 class AspectCopier2 {
 	
@@ -203,7 +204,7 @@ class AspectCopier2 {
 		/*
 		 * 1. Find files
 		 */
-		val List<IFile> toBeCopied = newArrayList
+		val Set<IFile> toBeCopied = newHashSet
 		val ws = ResourcesPlugin.workspace.root
 		ws.accept(new IResourceVisitor {
 			override visit(IResource resource) throws CoreException {
