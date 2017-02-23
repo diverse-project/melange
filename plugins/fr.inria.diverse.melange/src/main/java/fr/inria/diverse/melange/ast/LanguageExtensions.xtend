@@ -732,9 +732,12 @@ class LanguageExtensions
 			.map[ecoreURI |
 				val URI uri = org.eclipse.emf.common.util.URI.createURI(ecoreURI);
 				val String filePath = uri.toPlatformString(true);
-				val IPath path = new Path(filePath);
-				ResourcesPlugin.getWorkspace().getRoot().getFile(path);
+				if(filePath !== null){
+					val IPath path = new Path(filePath);
+					ResourcesPlugin.getWorkspace().getRoot().getFile(path);
+				}
 			]
+			.filterNull
 			.map[project]
 			.toSet
 		
