@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Melange Adapters
 Bundle-SymbolicName: fr.inria.diverse.melange.adapters;singleton:=true
 Bundle-Version: 0.2.0.qualifier
-Bundle-Vendor: DIVERSE
+Bundle-Vendor: Inria DiverSE
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtend.lib,

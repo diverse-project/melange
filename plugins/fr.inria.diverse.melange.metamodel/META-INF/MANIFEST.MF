@@ -4,7 +4,7 @@ Bundle-Name: Melange Metamodel
 Bundle-SymbolicName: fr.inria.diverse.melange.metamodel;singleton:=true
 Bundle-Version: 0.2.0.qualifier
 Bundle-ClassPath: .
-Bundle-Vendor: DIVERSE
+Bundle-Vendor: Inria DiverSE
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: fr.inria.diverse.melange.metamodel.melange,

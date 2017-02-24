@@ -12,3 +12,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: fr.inria.diverse.melange.ui.templates,
  fr.inria.diverse.melange.ui.templates.melange
+Bundle-Vendor: Inria DiverSE

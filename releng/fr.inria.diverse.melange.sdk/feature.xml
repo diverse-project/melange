@@ -3,7 +3,7 @@
       id="fr.inria.diverse.melange.sdk"
       label="Melange SDK Feature"
       version="0.2.0.qualifier"
-      provider-name="DIVERSE">
+      provider-name="Inria DiverSE">
 
    <plugin
          id="fr.inria.diverse.melange"
