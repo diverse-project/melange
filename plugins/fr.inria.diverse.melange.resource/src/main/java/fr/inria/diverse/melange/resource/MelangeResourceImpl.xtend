@@ -239,7 +239,7 @@ class MelangeResourceImpl implements MelangeResource
 	 */
 	private def void doAdapt() {
 		contentResource = wrappedResource
-		
+		this.resourceSet.resources.add(wrappedResource)
 		if (!wrappedResource.getContents().empty && !(expectedMt == null && expectedLang == null)) {
 		
 			// 1 - Convert Language to Language
@@ -253,8 +253,9 @@ class MelangeResourceImpl implements MelangeResource
 			}
 		
 		}
-		
-		this.resourceSet.resources.add(contentResource)
+		if(!this.resourceSet.resources.contains(contentResource)){
+			this.resourceSet.resources.add(contentResource)		
+		}
 	}
 
 	override void upcast(String modelTypeID) {
