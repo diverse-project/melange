@@ -1,19 +1,19 @@
 package fr.inria.diverse.melange.resource.loader
 
-import java.util.Set
-import org.eclipse.emf.ecore.EPackage
-import org.eclipse.emf.ecore.EObject
-import java.util.Map
-import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.emf.ecore.EClass
-import org.eclipse.emf.ecore.EReference
-import org.eclipse.emf.ecore.util.EcoreUtil
-import org.eclipse.emf.ecore.EAttribute
-import org.eclipse.emf.common.util.EList
-import org.eclipse.emf.common.util.BasicEList
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.emf.common.util.URI
 import fr.inria.diverse.melange.lib.EcoreExtensions
+import java.util.Map
+import java.util.Set
+import org.eclipse.emf.common.util.BasicEList
+import org.eclipse.emf.common.util.EList
+import org.eclipse.emf.common.util.Enumerator
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EEnum
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EPackage
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.eclipse.emf.ecore.util.EcoreUtil
 
 /**
  * Helper to copy a model conform to a Metamodel into a model conform to another Metamodel.
@@ -104,7 +104,15 @@ class ModelCopier {
 			val trgAtt = trgClass.EAllAttributes.findFirst[name == srcAtt.name]
 			
 			val attVal = source.eGet(srcAtt)
-			copy.eSet(trgAtt,attVal)
+			
+			if(srcAtt.EType instanceof EEnum) {
+				val literal = (attVal as Enumerator).literal;
+				val copyAttVal = trgAtt.EType.EPackage.EFactoryInstance.createFromString((trgAtt.EType as EEnum),literal);
+				copy.eSet(trgAtt,copyAttVal)
+			}
+			else {
+				copy.eSet(trgAtt,attVal)
+			}
 		]
 		
 		return copy
