@@ -1,22 +1,23 @@
 package fr.inria.diverse.melange.tests
 
-import org.junit.Test
-import org.junit.Before
 import fr.inria.diverse.melange.resource.loader.ModelCopier
-import testcopy.TestcopyPackage
+import java.util.List
+import java.util.Set
+import org.eclipse.emf.common.util.Enumerator
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.emf.common.util.URI
-import testcopy.TestcopyFactory
+import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
+import org.junit.Before
+import org.junit.Test
 import testcopy.MyEnum
-import testcopy.SimpleReferences
-import testcopy.Attributes
+import testcopy.TestcopyFactory
+import testcopy.TestcopyPackage
 
 import static org.junit.Assert.*
-import org.eclipse.emf.ecore.EPackage
-import java.util.Set
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
-import testcopy.OppositesA
 
 class ModelCopierTest {
 	
@@ -24,11 +25,12 @@ class ModelCopierTest {
 	
 	@Before
 	def void setUp() {
+		
 		val Set<EPackage> src = newHashSet
 		src += TestcopyPackage.eINSTANCE
 		
 		val Set<EPackage> trg = newHashSet
-		trg += TestcopyPackage.eINSTANCE
+		trg += EcoreUtil.copy(TestcopyPackage.eINSTANCE as EPackage)
 		
 		copier = new ModelCopier(src,trg)
 	}
@@ -95,18 +97,25 @@ class ModelCopierTest {
 		val source = makeModel()
 		val copy = copier.clone(source)
 		
-		val simpleRefObj = copy.contents.get(0) as SimpleReferences
-		val attrObj1 = simpleRefObj.containmentRef.get(0) as Attributes
-		val attrObj2 = simpleRefObj.containmentRef.get(1) as Attributes
-		val attrObj3 = simpleRefObj.containmentRef.get(2) as Attributes
+		val simpleRefObj = copy.contents.get(0)
+		assertEquals("SimpleReferences", simpleRefObj.eClass.name)
 		
-		assertEquals(1,attrObj1.intAttribute)
-		assertEquals(2,attrObj2.intAttribute)
-		assertEquals(3,attrObj3.intAttribute)
+		val attrObj1 = simpleRefObj.getAsList("containmentRef").get(0) as EObject
+		val attrObj2 = simpleRefObj.getAsList("containmentRef").get(1) as EObject
+		val attrObj3 = simpleRefObj.getAsList("containmentRef").get(2) as EObject
 		
-		assertEquals(MyEnum.get("ITEM1"),attrObj1.enumAttibute)
-		assertEquals(MyEnum.get("ITEM2"),attrObj2.enumAttibute)
-		assertEquals(MyEnum.get("ITEM1"),attrObj3.enumAttibute)
+		assertEquals("Attributes", attrObj1.eClass.name)
+		assertEquals("Attributes", attrObj2.eClass.name)
+		assertEquals("Attributes", attrObj3.eClass.name)
+		
+		assertEquals(1,attrObj1.get("intAttribute"))
+		assertEquals(2,attrObj2.get("intAttribute"))
+		assertEquals(3,attrObj3.get("intAttribute"))
+		
+		assertEquals("ITEM1",(attrObj1.get("enumAttibute") as Enumerator).literal)
+		assertEquals("ITEM2",(attrObj2.get("enumAttibute") as Enumerator).literal)
+		assertEquals("ITEM1",(attrObj3.get("enumAttibute") as Enumerator).literal)
+		
 	}
 	
 	@Test
@@ -114,59 +123,78 @@ class ModelCopierTest {
 		val source = makeModel()
 		val copy = copier.clone(source)
 		
-		val eopObjA1 = copy.contents.get(1) as OppositesA
-		val eopObjA2 = copy.contents.get(2) as OppositesA
-		val eopObjA3 = copy.contents.get(3) as OppositesA
+		val eopObjA1 = copy.contents.get(1)
+		val eopObjA2 = copy.contents.get(2)
+		val eopObjA3 = copy.contents.get(3)
 		
-		assertEquals("A1", eopObjA1.name)
-		assertEquals("A2", eopObjA2.name)
-		assertEquals("A3", eopObjA3.name)
+		assertEquals("OppositesA", eopObjA1.eClass.name)
+		assertEquals("OppositesA", eopObjA2.eClass.name)
+		assertEquals("OppositesA", eopObjA3.eClass.name)
+		
+		assertEquals("A1", eopObjA1.get("name"))
+		assertEquals("A2", eopObjA2.get("name"))
+		assertEquals("A3", eopObjA3.get("name"))
 		
 		// oneToMany
-		val eopObjB1 = eopObjA1.oneToMany.get(0)
-		val eopObjB2 = eopObjA1.oneToMany.get(1)
-		val eopObjB3 = eopObjA1.oneToMany.get(2)
+		val eopObjB1 = eopObjA1.getAsList("oneToMany").get(0) as EObject
+		val eopObjB2 = eopObjA1.getAsList("oneToMany").get(1) as EObject
+		val eopObjB3 = eopObjA1.getAsList("oneToMany").get(2) as EObject
 		
-		assertEquals("B1", eopObjB1.name)
-		assertEquals("B2", eopObjB2.name)
-		assertEquals("B3", eopObjB3.name)
-		assertEquals(3,eopObjA1.oneToMany.size)
-		assertEquals(0,eopObjA2.oneToMany.size)
-		assertEquals(0,eopObjA3.oneToMany.size)
+		assertEquals("OppositesB", eopObjB1.eClass.name)
+		assertEquals("OppositesB", eopObjB2.eClass.name)
+		assertEquals("OppositesB", eopObjB3.eClass.name)
+		
+		assertEquals("B1", eopObjB1.get("name"))
+		assertEquals("B2", eopObjB2.get("name"))
+		assertEquals("B3", eopObjB3.get("name"))
+		
+		assertEquals(3,eopObjA1.getAsList("oneToMany").size)
+		assertEquals(0,eopObjA2.getAsList("oneToMany").size)
+		assertEquals(0,eopObjA3.getAsList("oneToMany").size)
 		
 		// toB
-		assertNull(eopObjA1.toB)
-		assertEquals(eopObjB2, eopObjA2.toB)
-		assertNull(eopObjA3.toB)
+		assertNull(eopObjA1.get("toB"))
+		assertEquals(eopObjB2, eopObjA2.get("toB"))
+		assertNull(eopObjA3.get("toB"))
 		
 		// manyToMany
-		assertEquals(1,eopObjA1.manyToMany.size)
-		assertEquals(3,eopObjA2.manyToMany.size)
-		assertEquals(0,eopObjA3.manyToMany.size)
+		assertEquals(1,eopObjA1.getAsList("manyToMany").size)
+		assertEquals(3,eopObjA2.getAsList("manyToMany").size)
+		assertEquals(0,eopObjA3.getAsList("manyToMany").size)
 		
-		assertEquals(eopObjB2,eopObjA1.manyToMany.get(0))
-		assertEquals(eopObjB1,eopObjA2.manyToMany.get(0))
-		assertEquals(eopObjB3,eopObjA2.manyToMany.get(1))
-		assertEquals(eopObjB2,eopObjA2.manyToMany.get(2))
+		assertEquals(eopObjB2,eopObjA1.getAsList("manyToMany").get(0))
+		assertEquals(eopObjB1,eopObjA2.getAsList("manyToMany").get(0))
+		assertEquals(eopObjB3,eopObjA2.getAsList("manyToMany").get(1))
+		assertEquals(eopObjB2,eopObjA2.getAsList("manyToMany").get(2))
 		
 		// toA
-		assertNull(eopObjB1.toA)
-		assertEquals(eopObjA2, eopObjB2.toA)
-		assertNull(eopObjB3.toA)
+		assertNull(eopObjB1.get("toA"))
+		assertEquals(eopObjA2, eopObjB2.get("toA"))
+		assertNull(eopObjB3.get("toA"))
 		
 		// manyToOne
-		assertEquals(eopObjA1,eopObjB1.manyToOne)
-		assertEquals(eopObjA1,eopObjB2.manyToOne)
-		assertEquals(eopObjA1,eopObjB3.manyToOne)
+		assertEquals(eopObjA1,eopObjB1.get("manyToOne"))
+		assertEquals(eopObjA1,eopObjB2.get("manyToOne"))
+		assertEquals(eopObjA1,eopObjB3.get("manyToOne"))
 		
 		// manyToMany
-		assertEquals(1,eopObjB1.manyToMany.size)
-		assertEquals(2,eopObjB2.manyToMany.size)
-		assertEquals(1,eopObjB3.manyToMany.size)
+		assertEquals(1,eopObjB1.getAsList("manyToMany").size)
+		assertEquals(2,eopObjB2.getAsList("manyToMany").size)
+		assertEquals(1,eopObjB3.getAsList("manyToMany").size)
 		
-		assertEquals(eopObjA2,eopObjB1.manyToMany.get(0))
-		assertEquals(eopObjA1,eopObjB2.manyToMany.get(0))
-		assertEquals(eopObjA2,eopObjB2.manyToMany.get(1))
-		assertEquals(eopObjA2,eopObjB3.manyToMany.get(0))
+		assertEquals(eopObjA2,eopObjB1.getAsList("manyToMany").get(0))
+		assertEquals(eopObjA1,eopObjB2.getAsList("manyToMany").get(0))
+		assertEquals(eopObjA2,eopObjB2.getAsList("manyToMany").get(1))
+		assertEquals(eopObjA2,eopObjB3.getAsList("manyToMany").get(0))
+	}
+	
+	def Object get(EObject caller, String feature) {
+		val feat = caller.eClass.getEStructuralFeature(feature);
+		return caller.eGet(feat)
+	}
+	
+	def List<?> getAsList(EObject caller, String feature) {
+		val feat = caller.eClass.getEStructuralFeature(feature);
+		return caller.eGet(feat) as List<?>
 	}
 }
