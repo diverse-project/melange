@@ -1,6 +1,7 @@
 package fr.inria.diverse.melange.resource.loader
 
 import fr.inria.diverse.melange.lib.EcoreExtensions
+import java.util.HashSet
 import java.util.Map
 import java.util.Set
 import org.eclipse.emf.common.util.BasicEList
@@ -11,12 +12,11 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EPackage
+import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
-import java.util.HashSet
-import org.eclipse.emf.ecore.EReference
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
+import org.eclipse.emf.ecore.xmi.XMLResource
 
 /**
  * Helper to copy a model conform to a Metamodel into a model conform to another Metamodel.
@@ -66,19 +66,36 @@ class ModelCopier {
 	def Resource clone(Resource res) {
 
 		/*
-		 * Step 1: resolve proxies
+		 * create a new resource & fill it
+		 */
+		val rs = new ResourceSetImpl
+		val extendedURI = URI.createURI(sourceMM.head.nsURI + "/as/" + targetMM.head.nsURI +
+			if (res.URI.fileExtension != null && res.URI.fileExtension != "")
+				"fakefile." + res.URI.fileExtension)
+		val extendedResource = rs.createResource(extendedURI)
+
+		/*
+		 * resolve proxies
 		 */
 		EcoreUtil.resolveAll(res)
 
 		/*
-		 * Step 2: copy EObjects & EAttributes values
+		 * copy EObjects & EAttributes values
 		 */
 		res.allContents.forEach [ obj |
 			val image = clone(obj)
 			modelsMapping.put(obj, image)
+			if (res instanceof XMLResource) {
+				if (extendedResource instanceof XMLResource) {
+					val objID = res.getID(obj)
+					if (objID != null && objID != "") {
+						extendedResource.setID(image, objID)
+					}
+				}
+			}
 		]
 		/*
-		 * Step 3: copy references values
+		 * copy references values
 		 */
 		res.allContents.forEach [ obj |
 			val image = modelsMapping.get(obj)
@@ -86,12 +103,8 @@ class ModelCopier {
 		]
 
 		/*
-		 * Step 4: create a new resource & fill it
+		 * fill new resource
 		 */
-		val rs = new ResourceSetImpl
-		rs.resourceFactoryRegistry.extensionToFactoryMap.put("*", new XMIResourceFactoryImpl)
-		val extendedURI = URI.createURI(sourceMM.head.nsURI + "/as/" + targetMM.head.nsURI)
-		val extendedResource = rs.createResource(extendedURI)
 		extendedResource.contents.addAll(res.contents.map[modelsMapping.get(it)].toList)
 
 		// Add copies of elements from crossref
@@ -106,17 +119,19 @@ class ModelCopier {
 
 		val copy = EcoreUtil.create(trgClass)
 		srcClass.EAllAttributes.forEach [ srcAtt |
-			val trgAtt = trgClass.EAllAttributes.findFirst[name == srcAtt.name]
+			if (srcAtt.changeable) {
+				val trgAtt = trgClass.EAllAttributes.findFirst[name == srcAtt.name]
 
-			val attVal = source.eGet(srcAtt)
+				val attVal = source.eGet(srcAtt)
 
-			if (srcAtt.EType instanceof EEnum) {
-				val literal = (attVal as Enumerator).literal;
-				val copyAttVal = trgAtt.EType.EPackage.EFactoryInstance.createFromString((trgAtt.EType as EEnum),
-					literal);
-				copy.eSet(trgAtt, copyAttVal)
-			} else {
-				copy.eSet(trgAtt, attVal)
+				if (srcAtt.EType instanceof EEnum) {
+					val literal = (attVal as Enumerator).literal;
+					val copyAttVal = trgAtt.EType.EPackage.EFactoryInstance.createFromString((trgAtt.EType as EEnum),
+						literal);
+					copy.eSet(trgAtt, copyAttVal)
+				} else {
+					copy.eSet(trgAtt, attVal)
+				}
 			}
 		]
 
@@ -136,25 +151,28 @@ class ModelCopier {
 
 		srcClass.EAllReferences.forEach [ srcRef |
 
-			val boolean opposite = srcRef.EOpposite != null
-			val boolean oppositeOneCollectionMax = opposite && (!srcRef.EOpposite.many || !srcRef.EOpposite.many)
-			val boolean oppositeBothCollectionsOneNotManaged = opposite && srcRef.many && srcRef.EOpposite.many &&
-				!managedReferences.contains(srcRef.EOpposite)
+			if (srcRef.changeable) {
 
-			// We copy the reference content if we are in one of these case:
-			// - it has no opposite
-			// - it has an opposite, but at max one of the references is a collection (hence no need to care about keeping order)
-			// - it has an opposite, and both references are collections, and the opposite one is not the one that will be copied (since we cannot copy both, to be sure to preserve order)
-			if (!opposite || oppositeOneCollectionMax || oppositeBothCollectionsOneNotManaged) {
-				managedReferences.add(srcRef)
-				val trgRef = trgClass.EAllReferences.findFirst[name == srcRef.name]
-				val refVal = source.eGet(srcRef)
-				if (refVal instanceof EList<?>) {
-					val copy = new BasicEList
-					copy.addAll(refVal.map[modelsMapping.get(it)])
-					target.eSet(trgRef, copy)
-				} else if (refVal instanceof EObject) {
-					target.eSet(trgRef, modelsMapping.get(refVal))
+				val boolean opposite = srcRef.EOpposite != null
+				val boolean oppositeOneCollectionMax = opposite && (!srcRef.EOpposite.many || !srcRef.EOpposite.many)
+				val boolean oppositeBothCollectionsOneNotManaged = opposite && srcRef.many && srcRef.EOpposite.many &&
+					!managedReferences.contains(srcRef.EOpposite)
+
+				// We copy the reference content if we are in one of these case:
+				// - it has no opposite
+				// - it has an opposite, but at max one of the references is a collection (hence no need to care about keeping order)
+				// - it has an opposite, and both references are collections, and the opposite one is not the one that will be copied (since we cannot copy both, to be sure to preserve order)
+				if (!opposite || oppositeOneCollectionMax || oppositeBothCollectionsOneNotManaged) {
+					managedReferences.add(srcRef)
+					val trgRef = trgClass.EAllReferences.findFirst[name == srcRef.name]
+					val refVal = source.eGet(srcRef)
+					if (refVal instanceof EList<?>) {
+						val copy = new BasicEList
+						copy.addAll(refVal.map[modelsMapping.get(it)])
+						target.eSet(trgRef, copy)
+					} else if (refVal instanceof EObject) {
+						target.eSet(trgRef, modelsMapping.get(refVal))
+					}
 				}
 			}
 		]
