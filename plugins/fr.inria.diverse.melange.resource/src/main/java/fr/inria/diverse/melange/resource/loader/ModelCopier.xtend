@@ -69,9 +69,7 @@ class ModelCopier {
 		 * create a new resource & fill it
 		 */
 		val rs = new ResourceSetImpl
-		val extendedURI = URI.createURI(sourceMM.head.nsURI + "/as/" + targetMM.head.nsURI +
-			if (res.URI.fileExtension != null && res.URI.fileExtension != "")
-				"fakefile." + res.URI.fileExtension)
+		val extendedURI = URI.createURI(sourceMM.head.nsURI + "/as/" + targetMM.head.nsURI + "/" + res.URI.toString)
 		val extendedResource = rs.createResource(extendedURI)
 
 		/*
@@ -168,10 +166,10 @@ class ModelCopier {
 					val refVal = source.eGet(srcRef)
 					if (refVal instanceof EList<?>) {
 						val copy = new BasicEList
-						copy.addAll(refVal.map[modelsMapping.get(it)])
+						copy.addAll(refVal.map[getTargetObject(it as EObject)])
 						target.eSet(trgRef, copy)
 					} else if (refVal instanceof EObject) {
-						target.eSet(trgRef, modelsMapping.get(refVal))
+						target.eSet(trgRef, getTargetObject(refVal))
 					}
 				}
 			}
@@ -186,5 +184,13 @@ class ModelCopier {
 			return res
 		else
 			return allClasses.findFirst[name == source.name + suffix]
+	}
+	
+	private def EObject getTargetObject(EObject source) {
+		if (modelsMapping.containsKey(source)) {
+			return modelsMapping.get(source)
+		} else {
+			return source
+		}
 	}
 }
