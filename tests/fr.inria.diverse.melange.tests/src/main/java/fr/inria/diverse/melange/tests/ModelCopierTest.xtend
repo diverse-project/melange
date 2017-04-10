@@ -18,6 +18,8 @@ import testcopy.TestcopyFactory
 import testcopy.TestcopyPackage
 
 import static org.junit.Assert.*
+import org.eclipse.emf.ecore.resource.ResourceSet
+import testcopy.Attributes
 
 class ModelCopierTest {
 	
@@ -35,9 +37,7 @@ class ModelCopierTest {
 		copier = new ModelCopier(src,trg)
 	}
 	
-	def Resource makeModel() {
-		val rs = new ResourceSetImpl
-		rs.resourceFactoryRegistry.extensionToFactoryMap.put("*", new XMIResourceFactoryImpl)
+	def Resource makeModel(ResourceSet rs) {
 		val res = rs.createResource(URI.createURI("test.copy.model"))
 		
 		val factory = TestcopyPackage.eINSTANCE.EFactoryInstance as TestcopyFactory
@@ -92,17 +92,38 @@ class ModelCopierTest {
 		return res
 	}
 	
-	@Test
-	def void testAttributes() {
-		val source = makeModel()
-		val copy = copier.clone(source)
+	def Resource makeEmptyModels(ResourceSet rs){
+		return rs.createResource(URI.createURI("test.copy.model0"))
+	}
+	
+	def Resource makeCrossRefModels(ResourceSet rs){
 		
-		val simpleRefObj = copy.contents.get(0)
+		val targetedRes = makeModel(rs)
+		
+		val res = rs.createResource(URI.createURI("test.copy.model2"))
+		
+		val factory = TestcopyPackage.eINSTANCE.EFactoryInstance as TestcopyFactory
+		
+		val simpleRefObj = factory.createSimpleReferences
+		simpleRefObj.simpleRef = targetedRes.allContents.filter(Attributes).head
+		
+		res.contents += simpleRefObj
+		
+		return res;
+	}
+	
+	def void checkAttributes(EObject simpleRefObj) {
+		
 		assertEquals("SimpleReferences", simpleRefObj.eClass.name)
 		
+		assertEquals(3,simpleRefObj.getAsList("containmentRef").size)
 		val attrObj1 = simpleRefObj.getAsList("containmentRef").get(0) as EObject
 		val attrObj2 = simpleRefObj.getAsList("containmentRef").get(1) as EObject
 		val attrObj3 = simpleRefObj.getAsList("containmentRef").get(2) as EObject
+		
+		val refObj2 = simpleRefObj.get("simpleRef")
+		assertNotNull(refObj2)
+		assertEquals(attrObj2,refObj2)
 		
 		assertEquals("Attributes", attrObj1.eClass.name)
 		assertEquals("Attributes", attrObj2.eClass.name)
@@ -118,14 +139,7 @@ class ModelCopierTest {
 		
 	}
 	
-	@Test
-	def void testEOpposite() {
-		val source = makeModel()
-		val copy = copier.clone(source)
-		
-		val eopObjA1 = copy.contents.get(1)
-		val eopObjA2 = copy.contents.get(2)
-		val eopObjA3 = copy.contents.get(3)
+	def void checkEOpposite(EObject eopObjA1, EObject eopObjA2, EObject eopObjA3) {
 		
 		assertEquals("OppositesA", eopObjA1.eClass.name)
 		assertEquals("OppositesA", eopObjA2.eClass.name)
@@ -186,6 +200,67 @@ class ModelCopierTest {
 		assertEquals(eopObjA1,eopObjB2.getAsList("manyToMany").get(0))
 		assertEquals(eopObjA2,eopObjB2.getAsList("manyToMany").get(1))
 		assertEquals(eopObjA2,eopObjB3.getAsList("manyToMany").get(0))
+	}
+	
+	@Test
+	def void testAttributes() {
+		val rs = new ResourceSetImpl
+		rs.resourceFactoryRegistry.extensionToFactoryMap.put("*", new XMIResourceFactoryImpl)
+		val source = makeModel(rs)
+		val copy = copier.clone(source)
+		
+		val simpleRefObj = copy.contents.get(0)
+		
+		checkAttributes(simpleRefObj)
+	}
+	
+	@Test
+	def void testEOpposite() {
+		val rs = new ResourceSetImpl
+		rs.resourceFactoryRegistry.extensionToFactoryMap.put("*", new XMIResourceFactoryImpl)
+		val source = makeModel(rs)
+		val copy = copier.clone(source)
+		
+		val eopObjA1 = copy.contents.get(1)
+		val eopObjA2 = copy.contents.get(2)
+		val eopObjA3 = copy.contents.get(3)
+		
+		checkEOpposite(eopObjA1,eopObjA2,eopObjA3)
+	}
+	
+	@Test
+	def testEmpty() {
+		val rs = new ResourceSetImpl
+		rs.resourceFactoryRegistry.extensionToFactoryMap.put("*", new XMIResourceFactoryImpl)
+		val source = makeEmptyModels(rs)
+		val copy = copier.clone(source)
+		
+		assertNotNull(copy)
+		assertTrue(copy.contents.isEmpty)
+	}
+	
+	@Test
+	def testCrossRef() {
+		val rs = new ResourceSetImpl
+		rs.resourceFactoryRegistry.extensionToFactoryMap.put("*", new XMIResourceFactoryImpl)
+		val source = makeCrossRefModels(rs)
+		
+		val copy = copier.clone(source)
+		assertNotNull(copy)
+		assertEquals(5,copy.contents.size) // size of the 2 models
+		
+		val simpleRefObj = copy.contents.get(0)
+		assertEquals("SimpleReferences", simpleRefObj.eClass.name)
+		
+		assertNotNull(simpleRefObj.get("simpleRef"))
+		val refAttrib = simpleRefObj.get("simpleRef") as EObject
+		
+		val eopObjA1 = copy.contents.filter[eClass.name == "OppositesA" && get("name") == "A1"].head
+		val eopObjA2 = copy.contents.filter[eClass.name == "OppositesA" && get("name") == "A2"].head
+		val eopObjA3 = copy.contents.filter[eClass.name == "OppositesA" && get("name") == "A3"].head
+		
+		checkAttributes(refAttrib.eContainer)
+		checkEOpposite(eopObjA1,eopObjA2,eopObjA3)
 	}
 	
 	def Object get(EObject caller, String feature) {
