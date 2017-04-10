@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.emf.ecore.xmi.XMLResource
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 
 /**
  * Helper to copy a model conform to a Metamodel into a model conform to another Metamodel.
@@ -69,6 +70,9 @@ class ModelCopier {
 		 * create a new resource & fill it
 		 */
 		val rs = new ResourceSetImpl
+		if(rs.resourceFactoryRegistry.extensionToFactoryMap.get("*") == null)
+			rs.resourceFactoryRegistry.extensionToFactoryMap.put("*", new XMIResourceFactoryImpl)
+			
 		val extendedURI = URI.createURI(sourceMM.head.nsURI + "/as/" + targetMM.head.nsURI + "/" + res.URI.toString)
 		val extendedResource = rs.createResource(extendedURI)
 
