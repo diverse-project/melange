@@ -80,11 +80,23 @@ class ModelCopier {
 		 * resolve proxies
 		 */
 		EcoreUtil.resolveAll(res)
+		
+		val crossrefRes =
+			res
+			.allContents
+			.map[eCrossReferences]
+			.toList
+			.flatten
+			.map[eResource]
+			.toSet
+
+		val allContents = res.allContents.toSet
+		allContents += crossrefRes.map[it.allContents.toList].flatten
 
 		/*
 		 * copy EObjects & EAttributes values
 		 */
-		res.allContents.forEach [ obj |
+		allContents.forEach [ obj |
 			val image = clone(obj)
 			modelsMapping.put(obj, image)
 			if (res instanceof XMLResource) {
@@ -96,10 +108,11 @@ class ModelCopier {
 				}
 			}
 		]
+		
 		/*
 		 * copy references values
 		 */
-		res.allContents.forEach [ obj |
+		allContents.forEach [ obj |
 			val image = modelsMapping.get(obj)
 			cloneReferences(obj, image)
 		]
@@ -110,7 +123,13 @@ class ModelCopier {
 		extendedResource.contents.addAll(res.contents.map[modelsMapping.get(it)].toList)
 
 		// Add copies of elements from crossref
-		extendedResource.contents.addAll(modelsMapping.values.filter[img|img.eResource === null])
+		val crossrefContainers = 
+			modelsMapping
+			.values
+			.map[img|EcoreUtil.getRootContainer(img,true) ?: img]
+			.toSet
+			.filter[img|img.eResource === null]
+		extendedResource.contents.addAll(crossrefContainers)
 
 		return extendedResource
 	}
