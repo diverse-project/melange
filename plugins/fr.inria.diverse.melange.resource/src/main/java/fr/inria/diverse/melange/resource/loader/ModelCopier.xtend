@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.emf.ecore.xmi.XMLResource
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
+import org.eclipse.emf.ecore.InternalEObject
 
 /**
  * Helper to copy a model conform to a Metamodel into a model conform to another Metamodel.
@@ -81,22 +82,10 @@ class ModelCopier {
 		 */
 		EcoreUtil.resolveAll(res)
 		
-		val crossrefRes =
-			res
-			.allContents
-			.map[eCrossReferences]
-			.toList
-			.flatten
-			.map[eResource]
-			.toSet
-
-		val allContents = res.allContents.toSet
-		allContents += crossrefRes.map[it.allContents.toList].flatten
-
 		/*
 		 * copy EObjects & EAttributes values
 		 */
-		allContents.forEach [ obj |
+		res.allContents.forEach [ obj |
 			val image = clone(obj)
 			modelsMapping.put(obj, image)
 			if (res instanceof XMLResource) {
@@ -112,7 +101,7 @@ class ModelCopier {
 		/*
 		 * copy references values
 		 */
-		allContents.forEach [ obj |
+		res.allContents.forEach [ obj |
 			val image = modelsMapping.get(obj)
 			cloneReferences(obj, image)
 		]
@@ -123,13 +112,7 @@ class ModelCopier {
 		extendedResource.contents.addAll(res.contents.map[modelsMapping.get(it)].toList)
 
 		// Add copies of elements from crossref
-		val crossrefContainers = 
-			modelsMapping
-			.values
-			.map[img|EcoreUtil.getRootContainer(img,true) ?: img]
-			.toSet
-			.filter[img|img.eResource === null]
-		extendedResource.contents.addAll(crossrefContainers)
+		extendedResource.contents.addAll(modelsMapping.values.filter[img|img.eResource === null])
 
 		return extendedResource
 	}
@@ -158,6 +141,19 @@ class ModelCopier {
 
 		return copy
 	}
+	
+	private def EObject cloneAsProxy(EObject source) {
+		val EClass srcClass = source.eClass
+		val EClass trgClass = getTargetClass(srcClass)
+
+		val copy = EcoreUtil.create(trgClass)
+		
+		val extendedURI = URI.createURI(sourceMM.head.nsURI + "/as/" + targetMM.head.nsURI + "/" + source.eResource.URI.toString)
+		val uri = extendedURI.appendFragment(source.eResource.getURIFragment(source))
+		(copy as InternalEObject).eSetProxyURI(uri)
+		
+		return copy
+	}
 
 	/**
 	 * Store references that have been copied at least once.
@@ -169,6 +165,7 @@ class ModelCopier {
 	private def void cloneReferences(EObject source, EObject target) {
 		val EClass srcClass = source.eClass
 		val EClass trgClass = getTargetClass(srcClass)
+		val sourceRes = source.eResource
 
 		srcClass.EAllReferences.forEach [ srcRef |
 
@@ -189,10 +186,10 @@ class ModelCopier {
 					val refVal = source.eGet(srcRef)
 					if (refVal instanceof EList<?>) {
 						val copy = new BasicEList
-						copy.addAll(refVal.map[getTargetObject(it as EObject)])
+						copy.addAll(refVal.map[getTargetObject(sourceRes,it as EObject)])
 						target.eSet(trgRef, copy)
 					} else if (refVal instanceof EObject) {
-						target.eSet(trgRef, getTargetObject(refVal))
+						target.eSet(trgRef, getTargetObject(sourceRes,refVal))
 					}
 				}
 			}
@@ -209,11 +206,13 @@ class ModelCopier {
 			return allClasses.findFirst[name == source.name + suffix]
 	}
 	
-	private def EObject getTargetObject(EObject source) {
-		if (modelsMapping.containsKey(source)) {
-			return modelsMapping.get(source)
+	private def EObject getTargetObject(Resource sourceRes, EObject refObj) {
+		if (refObj.eResource != sourceRes) {
+			return cloneAsProxy(refObj)
+		} else if (modelsMapping.containsKey(refObj)) {
+			return modelsMapping.get(refObj)
 		} else {
-			return source
+			return refObj
 		}
 	}
 }

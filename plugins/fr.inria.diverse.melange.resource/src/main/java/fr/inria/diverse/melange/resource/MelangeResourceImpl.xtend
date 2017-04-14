@@ -1,7 +1,6 @@
 package fr.inria.diverse.melange.resource
 
 import fr.inria.diverse.melange.adapters.EObjectAdapter
-import fr.inria.diverse.melange.resource.loader.DozerLoader
 import org.eclipse.emf.common.util.AbstractTreeIterator
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EObject
@@ -13,12 +12,12 @@ import fr.inria.diverse.melange.resource.MelangeRegistry.LanguageDescriptor
 import org.eclipse.emf.common.notify.Notification
 import fr.inria.diverse.melange.resource.loader.ModelCopier
 import org.eclipse.emf.common.notify.impl.AdapterImpl
-import fr.inria.diverse.melange.adapters.ResourceAdapter
 import org.eclipse.core.runtime.Platform
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.Language
 import java.util.Set
 import java.util.HashSet
+import org.eclipse.emf.ecore.util.EcoreUtil
 
 /**
  * This class wraps a resource and shift the types of the contained
@@ -144,7 +143,7 @@ class MelangeResourceImpl implements MelangeResource
 				val expectedPkg = loadXmofMM(xmofURI)
 				
 				val copier = new ModelCopier(#[actualPkg].toSet,expectedPkg,true)
-				return copier.clone(adaptedResource)
+				return copier.recursiveClone(adaptedResource)
 			}
 			else{
 				// Nothing to do
@@ -166,11 +165,41 @@ class MelangeResourceImpl implements MelangeResource
 					#[EPackage.Registry.INSTANCE.getEPackage(expectedLanguage.uri)].toSet
 			
 			val copier = new ModelCopier(#[actualPkg].toSet,expectedPkg, xmofURI!==null)
-			return copier.clone(adaptedResource)
+			return copier.recursiveClone(adaptedResource)
 		}
 		else
 			// No typing hierarchy found
 			throw new MelangeResourceException('''«actualMt.identifier» cannot be transtyped to «expectedMt.identifier»''')
+	}
+	
+	/**
+	 * Return a copy of {@link res}.
+	 * 
+	 * All Resources reachable from {@link res} are also copied and stored in the current ResourceSet
+	 * to be able to resolve CrossReferences later
+	 */
+	private def Resource recursiveClone(ModelCopier copier, Resource res) {
+		val allRes = new HashSet<Resource>()
+		collectRelatedResources(res,allRes)
+		allRes.remove(res)
+		allRes.forEach[r |
+			val copy = copier.clone(r)
+			addToResourceSet(copy)
+		]
+		
+		return copier.clone(res)
+	}
+	
+	protected def void collectRelatedResources(Resource res, Set<Resource> result) {
+		
+		if (!result.contains(res)) {
+			result.add(res);
+			val crossRefs = EcoreUtil.ExternalCrossReferencer.find(res);
+			for (entry : crossRefs.entrySet()) {
+				val proxyEObject = entry.getKey();
+				collectRelatedResources(proxyEObject.eResource(), result);
+			}
+		}
 	}
 	
 	private def Set<EPackage> loadXmofMM(String targetXmofURI) {
@@ -239,22 +268,29 @@ class MelangeResourceImpl implements MelangeResource
 	 */
 	private def void doAdapt() {
 		contentResource = wrappedResource
-		this.resourceSet.resources.add(wrappedResource)
+		addToResourceSet(contentResource)
+
 		if (!wrappedResource.getContents().empty && !(expectedMt == null && expectedLang == null)) {
 		
 			// 1 - Convert Language to Language
 			if (expectedLang !== null) {
 				contentResource = contentResource.adaptResourceToLang(expectedLang)
+				addToResourceSet(contentResource)
 			}
 				
 			// 2 - Adapt Language to ModelType
 			if (expectedMt !== null) {
 				contentResource = contentResource.adaptResourceToMT(expectedMt)
+				addToResourceSet(contentResource)
 			}
-		
 		}
-		if(!this.resourceSet.resources.contains(contentResource)){
-			this.resourceSet.resources.add(contentResource)		
+	}
+	
+	private def void addToResourceSet(Resource res) {
+		if(this.resourceSet != null && res != null) {
+			if(!this.resourceSet.resources.contains(res)) {
+				this.resourceSet.resources.add(res)
+			}
 		}
 	}
 
