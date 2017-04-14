@@ -243,21 +243,32 @@ class ModelCopierTest {
 	def testCrossRef() {
 		val rs = new ResourceSetImpl
 		rs.resourceFactoryRegistry.extensionToFactoryMap.put("*", new XMIResourceFactoryImpl)
-		val source = makeCrossRefModels(rs)
+		makeCrossRefModels(rs)
 		
-		val copy = copier.clone(source)
-		assertNotNull(copy)
-		assertEquals(5,copy.contents.size) // size of the 2 models
+		val model1 = rs.getResource(URI.createURI("test.copy.model"),false);
+		val model2 = rs.getResource(URI.createURI("test.copy.model2"),false);
 		
-		val simpleRefObj = copy.contents.get(0)
+		val copyModel1 = copier.clone(model1)
+		val copyModel2 = copier.clone(model2)
+		rs.resources.add(copyModel1)
+		rs.resources.add(copyModel2)
+		
+		assertNotNull(copyModel1)
+		assertNotNull(copyModel2)
+		assertEquals(4,copyModel1.contents.size)
+		assertEquals(1,copyModel2.contents.size)
+		
+		val simpleRefObj = copyModel2.contents.get(0)
 		assertEquals("SimpleReferences", simpleRefObj.eClass.name)
 		
 		assertNotNull(simpleRefObj.get("simpleRef"))
 		val refAttrib = simpleRefObj.get("simpleRef") as EObject
 		
-		val eopObjA1 = copy.contents.filter[eClass.name == "OppositesA" && get("name") == "A1"].head
-		val eopObjA2 = copy.contents.filter[eClass.name == "OppositesA" && get("name") == "A2"].head
-		val eopObjA3 = copy.contents.filter[eClass.name == "OppositesA" && get("name") == "A3"].head
+		assertEquals(copyModel1,refAttrib.eResource)
+		
+		val eopObjA1 = copyModel1.contents.filter[eClass.name == "OppositesA" && get("name") == "A1"].head
+		val eopObjA2 = copyModel1.contents.filter[eClass.name == "OppositesA" && get("name") == "A2"].head
+		val eopObjA3 = copyModel1.contents.filter[eClass.name == "OppositesA" && get("name") == "A3"].head
 		
 		checkAttributes(refAttrib.eContainer)
 		checkEOpposite(eopObjA1,eopObjA2,eopObjA3)
