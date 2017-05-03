@@ -109,24 +109,44 @@ class MelangeBuilder
 
 			val sub = new SubProgressMonitor(monitor, 100)
 			sub.beginTask("Generating runtime for " + l.name, 100)
-			sub.subTask("Creating new project for " + l.name)
-			eclipseHelper.createEMFRuntimeProject(l.externalRuntimeName, l)
-			monitor.worked(5)
-			sub.subTask("Serializing Ecore description for " + l.name)
-			l.createExternalEcore
-			monitor.worked(5)
-			sub.subTask("Serializing Genmodel for " + l.name)
-			l.createExternalGenmodel
-			monitor.worked(5)
-			sub.subTask("Generating code")
-			l.syntax.genmodels.head.generateCode
-			monitor.worked(40)
-			sub.subTask("Copying aspects for " + l.name)
-			l.createExternalAspects
-			l.addRequireBundleForAspects
-			monitor.worked(40)
-			sub.subTask("Updating dependencies for " + l.name)
-			eclipseHelper.addDependencies(project, #[l.externalRuntimeName])
+			if(l.externalRuntimeName != project.name){
+				sub.subTask("Creating new project for " + l.name)
+				eclipseHelper.createEMFRuntimeProject(l.externalRuntimeName, l)
+				monitor.worked(5)
+				sub.subTask("Serializing Ecore description for " + l.name)
+				l.createExternalEcore
+				monitor.worked(5)
+				sub.subTask("Serializing Genmodel for " + l.name)
+				l.createExternalGenmodel
+				monitor.worked(5)
+				sub.subTask("Generating code")
+				l.syntax.genmodels.head.generateCode
+				monitor.worked(40)
+				sub.subTask("Copying aspects for " + l.name)
+				l.createExternalAspects
+				l.addRequireBundleForAspects
+				monitor.worked(40)
+				sub.subTask("Updating dependencies for " + l.name)
+				eclipseHelper.addDependencies(project, #[l.externalRuntimeName])
+			} else {
+				// we will do almost the same work but in the current project 
+				sub.subTask("Creating new project for " + l.name)
+				eclipseHelper.createEMFRuntimeInMelangeProject(project, l, monitor)
+				monitor.worked(5)
+				sub.subTask("Serializing Ecore description for " + l.name)
+				l.createExternalEcore
+				monitor.worked(5)
+				sub.subTask("Serializing Genmodel for " + l.name)
+				l.createExternalGenmodel
+				monitor.worked(5)
+				sub.subTask("Generating code")
+				l.syntax.genmodels.head.generateCode
+				monitor.worked(40)
+				sub.subTask("Copying aspects for " + l.name)
+				l.createExternalAspects
+				l.addRequireBundleForAspects
+				monitor.worked(45)
+			}
 			waitForAutoBuild
 			monitor.worked(5)
 		]

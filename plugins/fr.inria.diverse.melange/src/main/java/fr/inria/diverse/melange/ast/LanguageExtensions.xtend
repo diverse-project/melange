@@ -338,23 +338,48 @@ class LanguageExtensions
 	}
 
 	def String getExternalEcorePath(Language l) {
-		return '''../«l.externalRuntimeName»/model/«l.name».ecore'''
+		val project = l.eResource.project
+		if(l.externalRuntimeName == project.name) {
+			return '''../«l.externalRuntimeName»/model-gen/«l.name».ecore'''
+		} else {
+			return '''../«l.externalRuntimeName»/model/«l.name».ecore'''
+		}
 	}
 
 	def String getExternalGenmodelPath(Language l) {
-		return '''../«l.externalRuntimeName»/model/«l.name».genmodel'''
+		val project = l.eResource.project
+		if(l.externalRuntimeName == project.name) {
+			return '''../«l.externalRuntimeName»/model-gen/«l.name».genmodel'''
+		} else {
+			return '''../«l.externalRuntimeName»/model/«l.name».genmodel'''
+		}
 	}
 
 	def String getExternalGenerationPath(Language l) {
-		return '''../«l.externalRuntimeName»/src/'''
+		val project = l.eResource.project
+		if(l.externalRuntimeName == project.name) {
+			return '''../«l.externalRuntimeName»/src-model-gen/'''
+		} else {
+			return '''../«l.externalRuntimeName»/src/'''
+		}
 	}
 
 	def String getExternalEcoreUri(Language l) {
-		return '''platform:/resource/«l.externalRuntimeName»/model/«l.name».ecore'''
+		val project = l.eResource.project
+		if(l.externalRuntimeName == project.name) {
+			return '''platform:/resource/«l.externalRuntimeName»/model-gen/«l.name».ecore'''
+		} else {
+			return '''platform:/resource/«l.externalRuntimeName»/model/«l.name».ecore'''			
+		}
 	}
 
 	def String getExternalGenmodelUri(Language l) {
-		return '''platform:/resource/«l.externalRuntimeName»/model/«l.name».genmodel'''
+		val project = l.eResource.project
+		if(l.externalRuntimeName == project.name) {
+			return '''platform:/resource/«l.externalRuntimeName»/model-gen/«l.name».genmodel'''
+		} else {
+			return '''platform:/resource/«l.externalRuntimeName»/model/«l.name».genmodel'''			
+		}
 	}
 
 	/**
