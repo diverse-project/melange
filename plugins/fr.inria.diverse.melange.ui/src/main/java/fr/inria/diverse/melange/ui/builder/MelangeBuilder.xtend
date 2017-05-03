@@ -12,25 +12,24 @@ import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.processors.ExtensionPointProcessor
 import fr.inria.diverse.melange.resource.MelangeDerivedStateComputer
+import fr.inria.diverse.melange.utils.DispatchOverrider
+import fr.inria.diverse.melange.utils.EventManagerGenerator
 import org.apache.log4j.Logger
 import org.eclipse.core.resources.IProject
 import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.core.runtime.OperationCanceledException
-import org.eclipse.core.runtime.SubProgressMonitor
+import org.eclipse.core.runtime.SubMonitor
 import org.eclipse.core.runtime.jobs.Job
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.jdt.core.JavaCore
 import org.eclipse.xtext.builder.EclipseResourceFileSystemAccess2
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.OutputConfigurationProvider
-import org.eclipse.xtext.resource.DerivedStateAwareResource
-import fr.inria.diverse.melange.utils.AspectOverrider
-import org.eclipse.jdt.core.JavaCore
-import fr.inria.diverse.melange.utils.DispatchOverrider
-import org.eclipse.xtext.ui.resource.XtextResourceSetProvider
 import org.eclipse.xtext.naming.IQualifiedNameProvider
-import fr.inria.diverse.melange.utils.EventManagerGenerator
+import org.eclipse.xtext.resource.DerivedStateAwareResource
+import org.eclipse.xtext.ui.resource.XtextResourceSetProvider
 
 class MelangeBuilder
 {
@@ -52,10 +51,11 @@ class MelangeBuilder
 
 	def void generateAll(Resource res, IProject project, IProgressMonitor monitor) {
 		monitor.beginTask("Generating all artifacts", 700)
-		generateInterfaces(res, project, new SubProgressMonitor(monitor, 50))
-		generateLanguages(res, project, new SubProgressMonitor(monitor, 300))
-		generateAdapters(res, project, new SubProgressMonitor(monitor, 300))
-		generatePluginXml(res, project, new SubProgressMonitor(monitor, 10))
+		val SubMonitor subMonitor = SubMonitor.convert(monitor, 700);
+		generateInterfaces(res, project, subMonitor.split(50))
+		generateLanguages(res, project, subMonitor.split(300))
+		generateAdapters(res, project, subMonitor.split(300))
+		generatePluginXml(res, project, subMonitor.split(10))
 	}
 
 	def void generateInterfaces(Resource res, IProject project, IProgressMonitor monitor) {
@@ -100,81 +100,83 @@ class MelangeBuilder
 		val root = res.contents.head as ModelTypingSpace
 		val toGenerate = root.elements.filter(Language).filter[generatedByMelange]
 		val nb = toGenerate.size
-
-		monitor.beginTask("Generating EMF runtime for languages", 100 * nb)
-
+		
+		val SubMonitor subMonitor = SubMonitor.convert(monitor,100 * nb + 10*nb)
+		subMonitor.beginTask("Generating EMF runtime for languages", 100 * nb + 10*nb)
+		
 		toGenerate.forEach[l |
 			if (monitor.canceled)
 				throw new OperationCanceledException
 
-			val sub = new SubProgressMonitor(monitor, 100)
+			val sub = subMonitor.split(100)
 			sub.beginTask("Generating runtime for " + l.name, 100)
 			if(l.externalRuntimeName != project.name){
 				sub.subTask("Creating new project for " + l.name)
 				eclipseHelper.createEMFRuntimeProject(l.externalRuntimeName, l)
-				monitor.worked(5)
+				subMonitor.worked(5)
 				sub.subTask("Serializing Ecore description for " + l.name)
 				l.createExternalEcore
-				monitor.worked(5)
+				subMonitor.worked(5)
 				sub.subTask("Serializing Genmodel for " + l.name)
 				l.createExternalGenmodel
-				monitor.worked(5)
+				subMonitor.worked(5)
 				sub.subTask("Generating code")
 				l.syntax.genmodels.head.generateCode
-				monitor.worked(40)
+				subMonitor.worked(40)
 				sub.subTask("Copying aspects for " + l.name)
 				l.createExternalAspects
 				l.addRequireBundleForAspects
-				monitor.worked(40)
+				subMonitor.worked(40)
 				sub.subTask("Updating dependencies for " + l.name)
 				eclipseHelper.addDependencies(project, #[l.externalRuntimeName])
 			} else {
 				// we will do almost the same work but in the current project 
 				sub.subTask("Creating new project for " + l.name)
 				eclipseHelper.createEMFRuntimeInMelangeProject(project, l, monitor)
-				monitor.worked(5)
+				subMonitor.worked(5)
 				sub.subTask("Serializing Ecore description for " + l.name)
 				l.createExternalEcore
-				monitor.worked(5)
+				subMonitor.worked(5)
 				sub.subTask("Serializing Genmodel for " + l.name)
 				l.createExternalGenmodel
-				monitor.worked(5)
+				subMonitor.worked(5)
 				sub.subTask("Generating code")
 				l.syntax.genmodels.head.generateCode
-				monitor.worked(40)
+				subMonitor.worked(40)
 				sub.subTask("Copying aspects for " + l.name)
 				l.createExternalAspects
 				l.addRequireBundleForAspects
-				monitor.worked(45)
+				subMonitor.worked(45)
 			}
 			waitForAutoBuild
-			monitor.worked(5)
+			subMonitor.worked(5)
 		]
 		
 		root.makeAllSemantics
-		val sub = new SubProgressMonitor(monitor, 10*nb)
+		val sub = subMonitor.split(10*nb)
 		sub.beginTask("Rewriting dispatch", 10*nb)
 		toGenerate.forEach[l |
 			sub.subTask("Rewrite dispatch for " + l.name)
 			dispatchWriter.overrideDispatch(l, JavaCore.create(project))
-			monitor.worked(5)
+			sub.worked(5)
 			
 			sub.subTask("Generating event manager for " + l.name)
 			eventManagerGenerator.generateEventManager(l, JavaCore.create(project), monitor)
-			monitor.worked(5)
+			sub.worked(5)
 		]
 		
 		
 	}
 
 	def void generateAdapters(Resource res, IProject project, IProgressMonitor monitor) {
-		monitor.beginTask("Generating adapters", 100)
+		val SubMonitor subMonitor = SubMonitor.convert(monitor, 100)
+		subMonitor.beginTask("Generating adapters", 100)
 		
 		val rs = rsProvider.get(project)
 		val res2 = rs.getResource(res.URI, true) as DerivedStateAwareResource
 
 		val fsa = fileSystemAccessProvider.get => [f |
-			f.monitor = new SubProgressMonitor(monitor, 50)
+			f.monitor = subMonitor.split(50)
 			f.project = project
 		]
 
@@ -183,10 +185,10 @@ class MelangeBuilder
 		]
 
 		if (res2 instanceof DerivedStateAwareResource) {
-			monitor.subTask("Inferring derived state")
+			subMonitor.subTask("Inferring derived state")
 			computer.inferFullDerivedState(res2)
-			monitor.worked(50)
-			monitor.subTask("Generating code")
+			subMonitor.worked(50)
+			subMonitor.subTask("Generating code")
 			generator.doGenerate(res2, fsa)
 			
 			val jProject     = JavaCore.create(project)
@@ -218,12 +220,13 @@ class MelangeBuilder
 	 */
 	def void cleanAll(Resource res, IProject project, IProgressMonitor monitor) {
 		monitor.beginTask("Cleaning old derived artifacts", 60)
+		val SubMonitor subMonitor = SubMonitor.convert(monitor, 60)
 		monitor.subTask("Cleaning generated interfaces")
-		cleanInterfaces(res, project, new SubProgressMonitor(monitor, 20))
+		cleanInterfaces(res, project, subMonitor.split(20))
 		monitor.subTask("Cleaning generated adapters")
-		cleanAdapters(res, project, new SubProgressMonitor(monitor, 20))
+		cleanAdapters(res, project, subMonitor.split(20))
 		monitor.subTask("Cleaning generated projects")		
-		cleanLanguages(res, project, new SubProgressMonitor(monitor, 20))
+		cleanLanguages(res, project, subMonitor.split(20))
 	}
 
 	def void cleanLanguages(Resource res, IProject project, IProgressMonitor monitor) {
