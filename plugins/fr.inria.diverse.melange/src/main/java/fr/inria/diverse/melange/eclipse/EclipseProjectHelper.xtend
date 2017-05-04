@@ -34,6 +34,7 @@ import org.eclipse.core.resources.ICommand
 import org.eclipse.core.runtime.SubMonitor
 import fr.inria.diverse.commons.eclipse.pde.classpath.ClasspathHelper
 import org.eclipse.jdt.core.IJavaProject
+import fr.inria.diverse.commons.eclipse.pde.classpath.BuildPropertiesHelper
 
 /**
  * A collection of utilities around Eclipse's APIs to manage the creation,
@@ -233,7 +234,6 @@ class EclipseProjectHelper
 	 */
 	def void createEMFRuntimeInMelangeProject(IProject project, Language l, IProgressMonitor monitor){
 		val SubMonitor subMonitor = SubMonitor.convert(monitor, 100);
-		val IJavaProject javaProject = project.getNature(JavaCore.NATURE_ID) as IJavaProject;
 		val srcModelGenFolder = project.getFolder("src-model-gen");
 		if(srcModelGenFolder.exists){
 			// remove previous version of this folder
@@ -241,7 +241,8 @@ class EclipseProjectHelper
 		}
 		srcModelGenFolder.create(false, true, subMonitor.split(50))
 		
-		ClasspathHelper.addEntry(project, JavaCore.newSourceEntry(javaProject.getPackageFragmentRoot(project.getFolder("src-model-gen")).getPath()), subMonitor.split(10));
+		ClasspathHelper.addSourceEntry(project,"src-model-gen", subMonitor.split(10))
+		BuildPropertiesHelper.addMainJarSourceEntry(project,"src-model-gen", subMonitor.split(10))
 	}
 
 	/**

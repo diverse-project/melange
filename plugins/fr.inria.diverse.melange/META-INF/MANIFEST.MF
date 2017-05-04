@@ -34,7 +34,7 @@ Require-Bundle: org.eclipse.xtext;bundle-version="[2.7.0,2.11.0)";visibility:=re
  fr.inria.diverse.melange.resource;bundle-version="0.1.0",
  org.eclipse.emf.transaction,
  fr.inria.diverse.k3.al.annotationprocessor.plugin,
- fr.inria.diverse.commons.eclipse.pde;bundle-version="1.0.1"
+ fr.inria.diverse.commons.eclipse.pde;bundle-version="1.0.2"
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

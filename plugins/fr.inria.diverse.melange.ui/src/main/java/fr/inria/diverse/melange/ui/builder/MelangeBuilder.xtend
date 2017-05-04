@@ -131,7 +131,7 @@ class MelangeBuilder
 				eclipseHelper.addDependencies(project, #[l.externalRuntimeName])
 			} else {
 				// we will do almost the same work but in the current project 
-				sub.subTask("Creating new project for " + l.name)
+				sub.subTask("Creating EMFRuntime in current project for " + l.name)
 				eclipseHelper.createEMFRuntimeInMelangeProject(project, l, monitor)
 				subMonitor.worked(5)
 				sub.subTask("Serializing Ecore description for " + l.name)
@@ -237,10 +237,17 @@ class MelangeBuilder
 		.filter(Language)
 		.filter[generatedByMelange]
 		.forEach[l |
+			// delete only if the runtime has been generated in a separate project			
 			val runtimeName = l.externalRuntimeName
-			val runtimeProject = project.workspace.root.getProject(runtimeName)
-			runtimeProject.delete(true, true, monitor)
-			danglingBundles += runtimeName
+			if(project.name == runtimeName){
+				// remove the folder containing the language runtime
+				val runtimeFolder = project.getFolder("src-model-gen/"+runtimeName)
+				runtimeFolder.delete(true, monitor)
+			} else {
+				val runtimeProject = project.workspace.root.getProject(runtimeName)
+				runtimeProject.delete(true, true, monitor)
+				danglingBundles += runtimeName			
+			}
 		]
 
 		eclipseHelper.removeDependencies(project, danglingBundles)
