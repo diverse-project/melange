@@ -30,6 +30,7 @@ import org.eclipse.xtext.generator.OutputConfigurationProvider
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.resource.DerivedStateAwareResource
 import org.eclipse.xtext.ui.resource.XtextResourceSetProvider
+import org.eclipse.core.resources.IResource
 
 class MelangeBuilder
 {
@@ -56,6 +57,8 @@ class MelangeBuilder
 		generateLanguages(res, project, subMonitor.split(300))
 		generateAdapters(res, project, subMonitor.split(300))
 		generatePluginXml(res, project, subMonitor.split(10))
+		
+		refreshProjects(res, project,  subMonitor.split(10))
 	}
 
 	def void generateInterfaces(Resource res, IProject project, IProgressMonitor monitor) {
@@ -148,6 +151,7 @@ class MelangeBuilder
 				l.addRequireBundleForAspects
 				subMonitor.worked(45)
 			}
+			refreshProjects(res, project,  subMonitor)
 			waitForAutoBuild
 			subMonitor.worked(5)
 		]
@@ -165,6 +169,7 @@ class MelangeBuilder
 			sub.worked(5)
 		]
 		
+		refreshProjects(res, project,  subMonitor)
 		
 	}
 
@@ -211,6 +216,24 @@ class MelangeBuilder
 			log.error("Fatal exception", e)
 		}
 		monitor.worked(1)
+	}
+	
+	/**
+	 * performs a IProject refresh for all projects where Melange generate stuff
+	 * Ie. the main project and the runtime language projects 
+	 */
+	def void refreshProjects(Resource res, IProject project, IProgressMonitor monitor) {
+		val root = res.contents.head as ModelTypingSpace
+
+		val languages = root.elements.filter(Language).filter[generatedByMelange]
+		val SubMonitor subMonitor = SubMonitor.convert(monitor, 1+languages.size)
+		
+		project.refreshLocal(IResource.DEPTH_INFINITE, subMonitor.split(1))
+		languages.forEach[l |
+			if(l.externalRuntimeName != project.name) {
+				project.workspace.root.getProject(l.externalRuntimeName).refreshLocal(IResource.DEPTH_INFINITE, subMonitor.split(1))			
+			}	 
+		]
 	}
 
 	/**
