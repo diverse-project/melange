@@ -9,6 +9,7 @@ class MelangeFilesTemplates
 			           xtend-gen/
 			bin.includes = plugin.xml,\
 			               META-INF/,\
+			               model-gen/,\
 			               .
 		'''
 	}
