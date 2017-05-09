@@ -173,7 +173,7 @@ public class NewMelangeProjectWizard extends AbstractNewProjectWizardWithTemplat
 			manifestChanger.addPluginDependency("fr.inria.diverse.melange.resource", "0.1.0", true, true);
 			manifestChanger.addPluginDependency("fr.inria.diverse.melange.adapters", "0.1.0", true, true);
 			manifestChanger.addPluginDependency("fr.inria.diverse.k3.al.annotationprocessor.plugin");
-			
+			manifestChanger.addAttributes("Bundle-ActivationPolicy", "lazy");
 			manifestChanger.commit();
 			createPlugInFile(project, monitor);
 			createBuildProperties(project, monitor);			
