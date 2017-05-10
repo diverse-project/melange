@@ -257,6 +257,119 @@ class EclipseProjectHelper
 
 		return null
 	}
+	
+	def IProject createEMFScenarioProject(String projectName, Language l) {
+		try {
+			// FIXME: Everything's hardcoded...
+			val project = createEclipseProject(
+				projectName,
+				#[JavaCore::NATURE_ID, PDE::PLUGIN_NATURE],
+				#[JavaCore::BUILDER_ID,	PDE::MANIFEST_BUILDER_ID, PDE::SCHEMA_BUILDER_ID],
+				#["src"],
+				#[],
+				#[l.externalRuntimeName],
+				#[],
+				#[],
+				new NullProgressMonitor
+			)
+
+			val modelFolder = project.getFolder("model")
+			modelFolder.create(false, true, null)
+
+			log.debug('''Scenario EMF project «project» created.''')
+
+			return project
+		} catch (Exception e) {
+			log.error("Unexpected exception while creating new scenario project", e)
+		}
+
+		return null
+	}
+	
+	def IProject createEMFPropertyProject(String projectName, Language l) {
+		try {
+			// FIXME: Everything's hardcoded...
+			val project = createEclipseProject(
+				projectName,
+				#[JavaCore::NATURE_ID, PDE::PLUGIN_NATURE],
+				#[JavaCore::BUILDER_ID,	PDE::MANIFEST_BUILDER_ID, PDE::SCHEMA_BUILDER_ID],
+				#["src"],
+				#[],
+				#[l.externalRuntimeName],
+				#[],
+				#[],
+				new NullProgressMonitor
+			)
+
+			val modelFolder = project.getFolder("model")
+			modelFolder.create(false, true, null)
+
+			log.debug('''Property EMF project «project» created.''')
+
+			return project
+		} catch (Exception e) {
+			log.error("Unexpected exception while creating new property project", e)
+		}
+
+		return null
+	}
+	
+	def IProject createEMFEventProject(String projectName, Language l) {
+		try {
+			// FIXME: Everything's hardcoded...
+			val project = createEclipseProject(
+				projectName,
+				#[JavaCore::NATURE_ID, PDE::PLUGIN_NATURE],
+				#[JavaCore::BUILDER_ID,	PDE::MANIFEST_BUILDER_ID, PDE::SCHEMA_BUILDER_ID],
+				#["src"],
+				#[],
+				#[],
+				#[],
+				#[],
+				new NullProgressMonitor
+			)
+
+			val modelFolder = project.getFolder("model")
+			modelFolder.create(false, true, null)
+
+			log.debug('''Event EMF project «project» created.''')
+
+			return project
+		} catch (Exception e) {
+			log.error("Unexpected exception while creating new event project", e)
+		}
+
+		return null
+	}
+	
+	def IProject createReactiveProject(String projectName, Language l) {
+		try {
+			// FIXME: Everything's hardcoded...
+			val project = createEclipseProject(
+				projectName,
+				#[JavaCore::NATURE_ID, PDE::PLUGIN_NATURE],
+				#[JavaCore::BUILDER_ID,	PDE::MANIFEST_BUILDER_ID, PDE::SCHEMA_BUILDER_ID],
+				#["src"],
+				#[],
+				#["fr.inria.diverse.event.commons.interpreter",
+					"fr.inria.diverse.trace.commons.model",
+					"org.gemoc.xdsmlframework.api",
+					l.externalRuntimeName + ".scenario"],
+//				#[basePkg, basePkg + ".impl", basePkg + ".util"],
+				#[projectName],
+				#[],
+				new NullProgressMonitor
+			)
+
+			log.debug('''Reactive interface EMF project «project» created.''')
+
+			return project
+		} catch (Exception e) {
+			log.error("Unexpected exception while creating new reactive interface project", e)
+		}
+
+		return null
+	}
 
 	/**
 	 * Wololo, wololo wololo.
@@ -360,7 +473,7 @@ class EclipseProjectHelper
 			«IF !exportedPackages.empty»
 			Export-Package: «FOR p : exportedPackages SEPARATOR ",\n  "»«p»«ENDFOR»
 			«ENDIF»
-			Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+			Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 
 		'''
 

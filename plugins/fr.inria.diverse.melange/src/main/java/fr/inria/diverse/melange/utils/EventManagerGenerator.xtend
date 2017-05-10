@@ -3,10 +3,9 @@ package fr.inria.diverse.melange.utils
 import com.google.common.collect.HashMultimap
 import com.google.common.collect.SetMultimap
 import com.google.inject.Inject
-import fr.inria.diverse.k3.al.annotationprocessor.InitializeModel
 import fr.inria.diverse.k3.al.annotationprocessor.Step
 import fr.inria.diverse.melange.ast.LanguageExtensions
-import fr.inria.diverse.melange.ast.ModelingElementExtensions
+import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.metamodel.melange.Language
 import java.lang.reflect.Method
 import java.net.URL
@@ -16,38 +15,27 @@ import java.util.HashMap
 import java.util.HashSet
 import java.util.List
 import java.util.Map
-import org.apache.log4j.Logger
+import java.util.Set
 import org.eclipse.core.resources.IFolder
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.core.runtime.Path
+import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EPackage
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.jdt.core.IJavaProject
 import org.eclipse.jdt.core.IType
-import org.eclipse.jdt.core.JavaModelException
-import org.eclipse.jdt.core.dom.AST
-import org.eclipse.jdt.core.dom.ASTParser
-import org.eclipse.jdt.core.dom.ASTVisitor
-import org.eclipse.jdt.core.dom.Block
-import org.eclipse.jdt.core.dom.CompilationUnit
-import org.eclipse.jdt.core.dom.MethodDeclaration
-import org.eclipse.jdt.core.dom.Statement
-import org.eclipse.jdt.core.dom.rewrite.ASTRewrite
-import org.eclipse.jdt.core.dom.rewrite.ListRewrite
 import org.eclipse.jdt.launching.JavaRuntime
-import org.eclipse.jface.text.Document
-import org.eclipse.text.edits.TextEdit
+import org.eclipse.pde.internal.core.project.PDEProject
 import org.eclipse.xtext.naming.IQualifiedNameProvider
-import org.eclipse.jdt.core.dom.SingleVariableDeclaration
-import java.lang.reflect.TypeVariable
 
 class EventManagerGenerator {
 
-	@Inject extension ModelingElementExtensions
+	@Inject extension EventExtensions
+	@Inject extension EcoreExtensions
 	@Inject extension IQualifiedNameProvider
 	@Inject extension LanguageExtensions
-
-	private static final Logger log = Logger.getLogger(EventManagerGenerator)
 
 	/**
 	 * Link Language to its Aspects' Java classes
@@ -64,45 +52,58 @@ class EventManagerGenerator {
 	 */
 	private HashMap<Class<?>, IType> source = new HashMap
 
-	private Map<EClass, Method> eventToHandler = new HashMap
+	private Map<EClass, Method> inputEventToHandler = new HashMap
+
+	private Map<EClass, Method> outputEventToHandler = new HashMap
 
 	private Language language
 
-	private List<Method> eventMethods
-
 	private Map<Method, Method> eventMethodToCondition
 
-	private IJavaProject project
+	private IJavaProject melangeProject
+
+	private IJavaProject targetProject
 
 	private String projectName
 
 	private String eventManagerClassName
 
-	private String aspectsPackageName
+	private String packageName
 
 	private EPackage ePackage
 
-	private String packageString
+	private String aspectsPackageString
+
+	private String scenarioPackageString
+
+	private String languagePackageString
 	
 	private List<Method> initializeMethods
+	
+	private Set<EClassifier> eventParameterTypes
+	
+	private Set<String> elementReferences
 
-	public def void generateEventManager(Language lang, IJavaProject melangeProject, IProgressMonitor m) {
+	public def void generateEventManager(Language lang, IJavaProject melangeProject, IJavaProject targetProject, IProgressMonitor m) {
 		if (!lang.isGeneratedByMelange)
 			return;
 
 		// clean before start
 		language = lang
-		project = melangeProject
+		this.melangeProject = melangeProject
+		this.targetProject = targetProject
 		aspectsByLang = HashMultimap.create
 		aspected = newHashMap
 		source = newHashMap
-		eventMethods = newArrayList
 		eventMethodToCondition = newHashMap
-		eventToHandler = newHashMap
+		inputEventToHandler = newHashMap
+		outputEventToHandler = newHashMap
 		initializeMethods = newArrayList
-		projectName = language.externalRuntimeName
+		eventParameterTypes = newHashSet
+		elementReferences = newHashSet
+		projectName = language.reactiveInterfaceName
 		eventManagerClassName = '''«language.name»EventManager'''
-		aspectsPackageName = language.aspectsNamespace
+		packageName = language.reactiveInterfaceName
 
 		val ClassLoader loader = createClassLoader(melangeProject)
 
@@ -116,28 +117,51 @@ class EventManagerGenerator {
 			aspects.add(aspType)
 		]
 		aspectsByLang.putAll(lang, aspects)
-
+		
+		// 2. Process
 		lang.processLanguage(m)
+		
+		// 3. Generate plugin.xml
+		val pluginXml = PDEProject::getPluginXml(targetProject.project)
+		val changer = new PluginXmlChanger
+		changer.load(pluginXml.location.toString)
+		
+		val extensionPoint = changer.addExtension("org.gemoc.gemoc_language_workbench.engine_addon")
+		val element = changer.addChild(extensionPoint, "Addon")
+		
+		changer.addAttribute(element, "Class", packageName + "." + eventManagerClassName)
+		changer.addAttribute(element, "Default", "false")
+		changer.addAttribute(element, "id", packageName)
+		changer.addAttribute(element, "Default", "false")
+		changer.addAttribute(element, "Name", language.name + " Event Manager")
+		changer.addAttribute(element, "ShortDescription", "Handles events for the " + language.name + " language")
+		changer.addAttribute(element, "AddonGroupId", "Sequential.AddonGroup")
+		
+		changer.save(2)
 	}
-
+	
 	private def void processLanguage(Language l, IProgressMonitor m) {
+		val resSet = new ResourceSetImpl
+		val res = resSet.getResource(URI.createURI(l.scenarioEcoreUri), true)
+		ePackage = res.contents.head as EPackage
 		gatherEventMethods(l)
-		if (!eventToHandler.empty) {
-			initializeMethods.forEach[method|method.declaringClass.rewriteBody(method)]
-			ePackage = eventToHandler.keySet.filterNull.head.EPackage
-			val qNameSegments = new ArrayList(eventToHandler.keySet.filterNull.head.fullyQualifiedName.segments)
+		if (!inputEventToHandler.empty || !outputEventToHandler.empty) {
+			val qNameSegments = new ArrayList(inputEventToHandler.keySet.filterNull.head.fullyQualifiedName.segments)
 			qNameSegments.remove(qNameSegments.size - 1)
-			packageString = projectName + "." + qNameSegments.reduce[p1, p2|p1 + "." + p2]
-			val sourceFolder = project.allPackageFragmentRoots.findFirst [ p |
+			scenarioPackageString = l.externalRuntimeName + ".scenario." + qNameSegments.join(".")
+			languagePackageString = l.externalRuntimeName
+			aspectsPackageString = l.aspectsNamespace + qNameSegments.join(".")
+			val sourceFolder = targetProject.allPackageFragmentRoots.findFirst [ p |
 				if (p.resource instanceof IFolder) {
 					val folder = p.resource as IFolder
 					val path = folder.fullPath.toString
-					return path == ("/" + projectName + "/src-gen")
+					return path == ("/" + projectName + "/src")
 				}
 				return false
 			]
-			sourceFolder.getPackageFragment(aspectsPackageName)?.createCompilationUnit(eventManagerClassName + ".java",
-				generateCode, true, m)
+			
+			sourceFolder.createPackageFragment(packageName, true, m)
+				.createCompilationUnit(eventManagerClassName + ".java", generateCode, true, m)
 		}
 	}
 
@@ -151,12 +175,7 @@ class EventManagerGenerator {
 		]
 	}
 
-	private def boolean isInitialize(Method m) {
-		val initializeAnnotation = m.getAnnotation(InitializeModel)
-		return initializeAnnotation != null
-	}
-
-	private def boolean isEvent(Method m) {
+	private def boolean isInputEvent(Method m) {
 		val stepAnnotation = m.getAnnotation(Step)
 		if (stepAnnotation != null) {
 			return stepAnnotation.eventTriggerable
@@ -164,132 +183,54 @@ class EventManagerGenerator {
 		return false
 	}
 
-	private def void processAspect(Class<?> aspect) {
-		initializeMethods.addAll(aspect.methods.filter[m|isInitialize(m)])
-		val aspectEvents = aspect.methods.filter[m|isEvent(m)]
-		aspect.methods.forEach [ condition |
-			val eventMethod = aspectEvents.findFirst [ n |
-				n.name + "_PreCondition" == condition.name
-			]
-			eventMethodToCondition.put(eventMethod, condition)
-		]
-		aspectEvents.forEach [ m |
-			val eventName = '''«aspected.get(aspect).name.toFirstUpper»«m.name.toFirstUpper»Event'''
-			val eventClass = language.syntax.findClassifier(eventName)
-			if (eventClass != null) {
-				eventToHandler.put(eventClass as EClass, m)
-			}
-		]
-		eventMethods += aspectEvents
+	private def boolean isOutputEvent(Method m) {
+		val stepAnnotation = m.getAnnotation(Step)
+		if (stepAnnotation != null) {
+			return stepAnnotation.outputEvent
+		}
+		return false
+	}
+	
+	private def String getConditionName(Method m) {
+		val stepAnnotation = m.getAnnotation(Step)
+		if (stepAnnotation != null) {
+			return stepAnnotation.precondition
+		}
+		return ""
 	}
 
-	private def void rewriteBody(Class<?> aspect, Method method) {
-		try {
-			val sourceUnit = source.get(aspect).compilationUnit
-			// textual document
-			val String source = sourceUnit.getSource();
-			val Document document = new Document(source);
-
-			// get the AST
-			val ASTParser parser = ASTParser.newParser(AST.JLS8)
-			parser.setSource(sourceUnit)
-			// parser.setResolveBindings(true) --not working
-			val astRoot = parser.createAST(null) as CompilationUnit
-
-			// start record of the modifications
-			astRoot.recordModifications()
-			val edits = new ArrayList<TextEdit>
-			astRoot.accept(
-				new ASTVisitor() {
-					override visit(MethodDeclaration node) {
-						if (node.matching) {
-							val Block block = node.getBody();
-							val AST blockAst = block.getAST();
-							val ASTParser parser = ASTParser.newParser(AST.JLS8)
-							parser.kind = ASTParser.K_STATEMENTS
-							val parserSource = '''fr.inria.diverse.k3.al.annotationprocessor.stepmanager.EventManagerRegistry.getInstance().registerManager(new «eventManagerClassName»());'''
-							parser.setSource(parserSource.toCharArray)
-							val registerInvocation = parser.createAST(null) as Statement
-							val ASTRewrite rewriteStatements = ASTRewrite.create(blockAst);
-							val ListRewrite listRewriteStatements = rewriteStatements.getListRewrite(block, Block.STATEMENTS_PROPERTY);
-							listRewriteStatements.insertAt((registerInvocation as Block).statements.head, 1, null);
-							try {
-								edits.add(rewriteStatements.rewriteAST());
-							} catch (JavaModelException e) {
-								throw e;
-							} catch (IllegalArgumentException e) {
-								throw e;
-							}
-						}
-						super.visit(node)
-					}
-					
-					private def String getSimpleName(String s) {
-						val i = s.lastIndexOf(".")
-						if (i != -1) {
-							s.substring(i + 1, s.length)
-						} else {
-							s
-						}
-					}
-					
-					private def String getBaseType(String s) {
-						val i = s.indexOf("<")
-						if (i != -1) {
-							s.substring(0, i)
-						} else {
-							s
-						}
-					}
-					
-					private def List<String> getTypeParameters(String s) {
-						val i = s.indexOf("<")
-						if (i != -1) {
-							s.substring(i + 1, s.length - 1).replace(" ", "").split(",")
-						} else {
-							emptyList
-						}
-					}
-					
-					private def String flattenType(String typeName) {
-						val baseType = typeName.baseType.simpleName
-						val typeParameters = typeName.typeParameters.map[s|s.flattenType].reduce[s1, s2|s1 + s2]
-						return '''«baseType»«IF typeParameters != null»«typeParameters»«ENDIF»'''
-					}
-					
-					private def boolean compareParameterizedTypes(String s1, String s2) {
-						s1.flattenType == s2.flattenType
-					}
-
-					private def boolean isMatching(MethodDeclaration m) {
-						val parameterTypes= method.parameters
-						method.name == m.name.toString && parameterTypes.length == m.parameters.length &&
-							parameterTypes.forall [ param |
-								val index = parameterTypes.indexOf(param)
-								val mParamType = (m.parameters.get(index) as SingleVariableDeclaration).type.toString
-								if (index !== 0) {
-									val TypeVariable<?>[] typeParameters = param.type.typeParameters
-									if (!typeParameters.empty) {
-										compareParameterizedTypes(mParamType, param.parameterizedType.typeName)
-									} else {
-										param.type.typeName == mParamType
-									}
-								} else {
-									true
-								}
-							]
-					}
-				})
-			// computation of the new source code
-			edits.forEach[e|e.apply(document)];
-			var String newSource = document.get()
-
-			// update of the compilation unit
-			sourceUnit.getBuffer().setContents(newSource)
-			sourceUnit.getBuffer().save(null, true)
-		} catch (Exception e) {
-			log.error("Couldn't apply rewriteBody on " + aspect.name, e)
-		}
+	private def void processAspect(Class<?> aspect) {
+		val aspectInputEventHandlers = aspect.methods.filter[m|isInputEvent(m)]
+		
+		aspectInputEventHandlers.forEach[e|
+			val conditionName = e.conditionName
+			if (conditionName != "") {
+				val conditionMethods = aspect.methods.filter[m|
+					m.name == conditionName
+				].toList
+				if (conditionMethods.size == 1) {
+					eventMethodToCondition.put(e, conditionMethods.get(0))
+				}
+			}
+		]
+		
+		aspectInputEventHandlers.forEach [ m |
+			val eventName = '''«aspected.get(aspect).name.toFirstUpper»«m.name.toFirstUpper»Event'''
+			val eventClass = ePackage.findClassifier(eventName)
+			if (eventClass != null) {
+				inputEventToHandler.put(eventClass as EClass, m)
+			}
+		]
+		
+		val aspectOutputEventHandlers = aspect.methods.filter[m|isOutputEvent(m)]
+		
+		aspectOutputEventHandlers.forEach [ m |
+			val eventName = '''«aspected.get(aspect).name.toFirstUpper»«m.name.toFirstUpper»Event'''
+			val eventClass = ePackage.findClassifier(eventName)
+			if (eventClass != null) {
+				outputEventToHandler.put(eventClass as EClass, m)
+			}
+		]
 	}
 
 	private def ClassLoader createClassLoader(IJavaProject project) {
@@ -306,88 +247,87 @@ class EventManagerGenerator {
 	}
 
 	private def String generateCode() {
+		val body = generateBody
+		
 		'''
-			package «aspectsPackageName»;
+			package «packageName»;
 			
 			«generateImports»
 			
-			public class «language.name»EventManager implements IEventManager {
+			public class «language.name»EventManager extends AbstractEventManager {
 			
-				«generateBody»
+				«body»
 			}
 		'''
 	}
 
 	private def String generateImports() {
 		'''
+			import java.util.Collections;
 			import java.util.HashSet;
 			import java.util.Set;
-			import java.util.Queue;
-			import java.util.concurrent.ConcurrentLinkedQueue;
 			
 			import org.eclipse.emf.ecore.EClass;
-			import org.eclipse.emf.ecore.EObject;
-			import «packageString».«ePackage.name.toFirstUpper»Package;
-			«FOR event : eventToHandler.keySet.filterNull»
-				import «packageString».«event.name»;
+			
+			import fr.inria.diverse.event.commons.interpreter.event.AbstractEventManager;
+			import fr.inria.diverse.event.commons.model.EventInstance;
+			import fr.inria.diverse.event.commons.model.scenario.ScenarioPackage;
+			«FOR handler : inputEventToHandler.values.filterNull.toSet»
+			import «handler.declaringClass.name»;
 			«ENDFOR»
-			import fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IEventManager;
+			import «scenarioPackageString».«ePackage.name.toFirstUpper»Package;
+			import «scenarioPackageString».«ePackage.name.toFirstUpper»Factory;
+			«FOR event : inputEventToHandler.keySet.filterNull»
+			import «scenarioPackageString».«event.name»;
+			«ENDFOR»
+			«FOR event : outputEventToHandler.keySet.filterNull»
+			import «scenarioPackageString».«event.name»;
+			«ENDFOR»
+			«FOR elementReference : elementReferences»
+			import «scenarioPackageString».«elementReference»;
+			«ENDFOR»
+			«FOR parameterType : eventParameterTypes»
+			import «languagePackageString».«parameterType.fullyQualifiedName»;
+			«ENDFOR»
 		'''
 	}
 
 	private def String generateBody() {
 		'''
-			private final Queue<EObject> eventQueue = new ConcurrentLinkedQueue<>();
-			
-			private boolean canManageEvents = true;
-			
-			@Override
-			public void sendEvent(Object event) {
-				if (event instanceof EObject) {
-					eventQueue.add((EObject) event);
-				}
-			}
-			
 			«generateCanSendEventMethod»
 			
 			«generateEventClassesGetter»
 			
-			@Override
-			public void manageEvents() {
-				if (canManageEvents) {
-					canManageEvents = false;
-					EObject event = eventQueue.poll();
-					while (event != null) {
-						dispatchEvent(event);
-						event = eventQueue.poll();
-					}
-					canManageEvents = true;
-				}
-			}
-			
 			«generateDispatch»
 			«generateEventHandlers»
 			«generateEventConditions»
+			
+			«generateEventBuilders»
 		'''
 	}
 
 	private def String generateCanSendEventMethod() {
 		'''
 			@Override
-			public boolean canSendEvent(Object event) {
-				«FOR entry : eventToHandler.entrySet SEPARATOR " else"»
-					«val eventClass = entry.key»
-					«val eventHandler = entry.value»
-					«val eventClassName = eventClass.name»
-					if (event instanceof «eventClassName») {
-						«val eventCondition = eventMethodToCondition.get(eventHandler)»
-						«IF eventCondition == null»
+			public boolean canSendEvent(Object input) {
+				if (scenarioManager == null) {
+					if (input instanceof EventInstance) {
+						final EventInstance event = (EventInstance) input;
+						«FOR entry : inputEventToHandler.entrySet SEPARATOR " else"»
+						«val eventClass = entry.key»
+						«val eventHandler = entry.value»
+						«val eventClassName = eventClass.name»
+						if (event.getOriginalEvent() instanceof «eventClassName») {
+							«val eventCondition = eventMethodToCondition.get(eventHandler)»
+							«IF eventCondition == null»
 							return true;
-						«ELSE»
-							return canSend«eventClassName»((«eventClassName») event);
-						«ENDIF»
+							«ELSE»
+							return canSend«eventClassName»(event);
+							«ENDIF»
+						}
+						«ENDFOR»
 					}
-				«ENDFOR»
+				}
 				return false;
 			}
 		'''
@@ -395,11 +335,12 @@ class EventManagerGenerator {
 
 	private def String generateDispatch() {
 		'''
-			private void dispatchEvent(EObject event) {
-				«FOR eventHandler : eventToHandler.entrySet SEPARATOR " else"»
+			@Override
+			protected void dispatchEvent(EventInstance event) {
+				«FOR eventHandler : inputEventToHandler.entrySet SEPARATOR " else"»
 					«val eventClassName = eventHandler.key.name»
-					if (event instanceof «eventClassName») {
-						handle«eventClassName»((«eventClassName») event);
+					if (event.getOriginalEvent() instanceof «eventClassName») {
+						handle«eventClassName»(event);
 					}
 				«ENDFOR»
 			}
@@ -408,7 +349,7 @@ class EventManagerGenerator {
 
 	private def String generateEventHandlers() {
 		'''
-			«FOR entry : eventToHandler.entrySet»
+			«FOR entry : inputEventToHandler.entrySet»
 				«val eventClass = entry.key»
 				«val eventHandler = entry.value»
 				
@@ -421,10 +362,12 @@ class EventManagerGenerator {
 		val eventClassName = eventClass.name
 		val eventHandlerName = eventHandler.name
 		val eventHandlingClass = eventHandler.declaringClass.simpleName
+		val eventParametersDeclaration = eventClass.eventHandlerParametersDeclaration
 		val eventParameters = eventClass.eventHandlerParameters
 		val eventCondition = eventMethodToCondition.get(eventHandler)
 		return '''
-			private void handle«eventClassName»(«eventClassName» event) {
+			private void handle«eventClassName»(EventInstance event) {
+				«eventParametersDeclaration»
 				«IF eventCondition != null»
 				if («eventHandlingClass».«eventCondition.name»(«eventParameters»)) {
 					«eventHandlingClass».«eventHandlerName»(«eventParameters»);
@@ -438,7 +381,7 @@ class EventManagerGenerator {
 
 	private def String generateEventConditions() {
 		'''
-			«FOR entry : eventToHandler.entrySet»
+			«FOR entry : inputEventToHandler.entrySet»
 				«val eventClass = entry.key»
 				«val eventCondition = eventMethodToCondition.get(entry.value)»
 				«IF eventCondition != null»
@@ -453,16 +396,53 @@ class EventManagerGenerator {
 		val eventClassName = eventClass.name
 		val eventHandlerName = eventCondition.name
 		val eventHandlingClass = eventCondition.declaringClass.simpleName
+		val eventParametersDeclaration = eventClass.eventHandlerParametersDeclaration
+		val eventParameters = eventClass.eventHandlerParameters
 		return '''
-			private boolean canSend«eventClassName»(«eventClassName» event) {
-				return «eventHandlingClass».«eventHandlerName»(«eventClass.eventHandlerParameters»);
+			private boolean canSend«eventClassName»(EventInstance event) {
+				«eventParametersDeclaration»
+				return «eventHandlingClass».«eventHandlerName»(«eventParameters»);
 			}
 		'''
 	}
 
+	private def void addType(EClassifier type) {
+		eventParameterTypes.add(type)
+	}
+	
+	private def String getEventHandlerParametersDeclaration(EClass eventClass) {
+		'''
+			«val targetType = eventClass.EGenericSuperTypes.head.ETypeArguments.head.EClassifier»
+			«addType(targetType)»
+			final «targetType.name» target = («targetType.name») event.getParameters().get(ScenarioPackage.Literals.EVENT__TARGET_PROVIDER);
+			«FOR i : 0..(eventClass.EStructuralFeatures.size - 1)»
+			«val f = eventClass.EStructuralFeatures.get(i)»
+			«val name = if (f.name.contains("Provider")) f.name.substring(0, f.name.indexOf("Provider")) else f.name»
+			«val parameterType =
+				if (f.EType instanceof EClass) {
+					val type = (f.EType as EClass).EGenericSuperTypes.head.ETypeArguments.head.EClassifier
+					addType(type)
+					type.name
+				}
+				else f.EType.instanceClass.simpleName»
+			final «parameterType» «name» = («parameterType») event.getParameters().get(event.getOriginalEvent().eClass().getEStructuralFeatures().get(«i»));
+			«ENDFOR»
+		'''
+	}
+
 	private def String getEventHandlerParameters(EClass eventClass) {
-		val parameters = eventClass.EReferences.map[p|p.EType]
-		'''«FOR p : parameters SEPARATOR ", "»event.get«p.name»()«ENDFOR»'''
+		val parameters = new ArrayList
+		val targetType = eventClass.EGenericSuperTypes.head.ETypeArguments.head.EClassifier
+		parameters += '''(«targetType.name») target'''
+		eventClass.EStructuralFeatures.forEach[f|
+			val name = if (f.name.contains("Provider")) f.name.substring(0, f.name.indexOf("Provider")) else f.name
+			val parameterType =
+				if (f.EType instanceof EClass)
+					(f.EType as EClass).EGenericSuperTypes.head.ETypeArguments.head.EClassifier.name
+				else f.EType.instanceClass.simpleName
+			parameters += '''(«parameterType») «name»'''
+		]
+		parameters.join(", ")
 	}
 
 	private def String generateEventClassesGetter() {
@@ -470,11 +450,36 @@ class EventManagerGenerator {
 			@Override
 			public Set<EClass> getEventClasses() {
 				final Set<EClass> eventClasses = new HashSet<>();
-				«FOR entry : eventToHandler.entrySet»
+				«FOR entry : inputEventToHandler.entrySet»
 					«val eventClass = entry.key as EClass»
 					eventClasses.add(«ePackage.name.toFirstUpper»Package.eINSTANCE.get«eventClass.name»());
 				«ENDFOR»
 				return eventClasses;
+			}
+		'''
+	}
+	
+	private def void addElementReference(String className) {
+		elementReferences.add(className)
+	}
+	
+	private def String generateEventBuilders() {
+		'''
+			@Override
+			protected EventInstance rebuildEvent(Object result, Object caller, String className, String methodName) {
+				«FOR entry : outputEventToHandler.entrySet SEPARATOR " else "»
+				«val targetTypeName = entry.getKey.EGenericSuperTypes.head.ETypeArguments.head.EClassifier.name»
+				if (className.equals("«targetTypeName»") && methodName.equals("«entry.getValue.name»")) {
+					final «entry.getKey.name» event = «ePackage.name.toFirstUpper»Factory.eINSTANCE.create«entry.getKey.name»();
+					event.setValue((String) result);
+					final «targetTypeName»Reference targetProvider = «ePackage.name.toFirstUpper»Factory.eINSTANCE.create«targetTypeName»Reference();
+					«addElementReference(targetTypeName + "Reference")»
+					targetProvider.setElement((«targetTypeName») caller);
+					event.setTargetProvider(targetProvider);
+					return new EventInstance(event, Collections.emptyMap());
+				}
+				«ENDFOR»
+				return null;
 			}
 		'''
 	}

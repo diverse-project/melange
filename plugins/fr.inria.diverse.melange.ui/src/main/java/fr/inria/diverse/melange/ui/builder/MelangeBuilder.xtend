@@ -12,6 +12,8 @@ import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.processors.ExtensionPointProcessor
 import fr.inria.diverse.melange.resource.MelangeDerivedStateComputer
+import fr.inria.diverse.melange.utils.DispatchOverrider
+import fr.inria.diverse.melange.utils.EventExtensions
 import org.apache.log4j.Logger
 import org.eclipse.core.resources.IProject
 import org.eclipse.core.resources.ResourcesPlugin
@@ -21,15 +23,13 @@ import org.eclipse.core.runtime.SubProgressMonitor
 import org.eclipse.core.runtime.jobs.Job
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.jdt.core.JavaCore
 import org.eclipse.xtext.builder.EclipseResourceFileSystemAccess2
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.OutputConfigurationProvider
-import org.eclipse.xtext.resource.DerivedStateAwareResource
-import fr.inria.diverse.melange.utils.AspectOverrider
-import org.eclipse.jdt.core.JavaCore
-import fr.inria.diverse.melange.utils.DispatchOverrider
-import org.eclipse.xtext.ui.resource.XtextResourceSetProvider
 import org.eclipse.xtext.naming.IQualifiedNameProvider
+import org.eclipse.xtext.resource.DerivedStateAwareResource
+import org.eclipse.xtext.ui.resource.XtextResourceSetProvider
 import fr.inria.diverse.melange.utils.EventManagerGenerator
 
 class MelangeBuilder
@@ -45,15 +45,17 @@ class MelangeBuilder
 	@Inject extension ModelTypeExtensions
 	@Inject extension EcoreExtensions
 	@Inject extension IQualifiedNameProvider
+	@Inject extension EventExtensions
+	@Inject extension EventManagerGenerator
 	@Inject DispatchOverrider dispatchWriter
-	@Inject EventManagerGenerator eventManagerGenerator
 	@Inject XtextResourceSetProvider rsProvider
 	private static final Logger log = Logger.getLogger(MelangeBuilder)
 
 	def void generateAll(Resource res, IProject project, IProgressMonitor monitor) {
-		monitor.beginTask("Generating all artifacts", 700)
+		monitor.beginTask("Generating all artifacts", 800)
 		generateInterfaces(res, project, new SubProgressMonitor(monitor, 50))
 		generateLanguages(res, project, new SubProgressMonitor(monitor, 300))
+		generateReactiveInterface(res, project, new SubProgressMonitor(monitor, 100))
 		generateAdapters(res, project, new SubProgressMonitor(monitor, 300))
 		generatePluginXml(res, project, new SubProgressMonitor(monitor, 10))
 	}
@@ -137,14 +139,39 @@ class MelangeBuilder
 		toGenerate.forEach[l |
 			sub.subTask("Rewrite dispatch for " + l.name)
 			dispatchWriter.overrideDispatch(l, JavaCore.create(project))
-			monitor.worked(5)
-			
-			sub.subTask("Generating event manager for " + l.name)
-			eventManagerGenerator.generateEventManager(l, JavaCore.create(project), monitor)
+			monitor.worked(10)
+		]
+	}
+	
+	def void generateReactiveInterface(Resource res, IProject project, IProgressMonitor monitor) {
+		val root = res.contents.head as ModelTypingSpace
+		val toGenerate = root.elements.filter(Language).filter[generatedByMelange]
+		val nb = toGenerate.size
+
+		monitor.beginTask("Generating reactive interface for languages", 15 * nb)
+
+		toGenerate.forEach[l |
+			val sub = new SubProgressMonitor(monitor, 15)
+			sub.beginTask("Generating reactive interface for " + l.name, 15)
+//			eclipseHelper.createEMFEventProject('''«l.externalRuntimeName».event''', l)
+			eclipseHelper.createEMFScenarioProject('''«l.externalRuntimeName».scenario''', l)
+			l.createEcore
+			l.createGenmodelAndGenerateCode
+//			l.createEventEcore
+//			monitor.worked(5)
+//			sub.subTask("Generating property metamodel for " + l.name)
+//			eclipseHelper.createEMFPropertyProject('''«l.externalRuntimeName».property''', l)
+//			l.createPropertyEcore
+//			l.createPropertyGenmodelAndGenerateCode
+//			monitor.worked(5)
+//			sub.subTask("Generating scenario metamodel for " + l.name)
+//			eclipseHelper.createEMFScenarioProject('''«l.externalRuntimeName».scenario''', l)
+//			l.createScenarioEcore
+//			l.createScenarioGenmodelAndGenerateCode
+			val p = eclipseHelper.createReactiveProject('''«l.externalRuntimeName».eventmanager''', l)
+			l.generateEventManager(JavaCore.create(project),JavaCore.create(p),monitor)
 			monitor.worked(5)
 		]
-		
-		
 	}
 
 	def void generateAdapters(Resource res, IProject project, IProgressMonitor monitor) {
@@ -178,7 +205,7 @@ class MelangeBuilder
 			eclipseHelper.addExportedPackages(project,exportedPkgs)
 		}
 	}
-
+	
 	def void generatePluginXml(Resource res, IProject project, IProgressMonitor monitor) {
 		monitor.beginTask("Generating new plugin.xml", 1)
 		monitor.subTask("Generating new plugin.xml")

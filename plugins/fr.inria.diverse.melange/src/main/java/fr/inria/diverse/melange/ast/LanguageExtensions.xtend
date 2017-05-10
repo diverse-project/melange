@@ -330,6 +330,14 @@ class LanguageExtensions
 	}
 
 	/**
+	 * Get the name of the project that will contain the reactive interface
+	 * the given {@link Language} {@code l} (Ecore, Genmodel, Java runtime, etc.)
+	 */
+	def String getReactiveInterfaceName(Language l) {
+		return '''«l.fullyQualifiedName.toLowerCase.toString».eventmanager'''
+	}
+
+	/**
 	 * Returns the URI of the {@link Language} {@code l} once it is generated.
 	 * The returned URI is of the form {@code http://$languageNameInLowerCase/}.
 	 */

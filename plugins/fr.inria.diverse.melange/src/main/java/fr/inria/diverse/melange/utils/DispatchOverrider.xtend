@@ -3,10 +3,13 @@ package fr.inria.diverse.melange.utils
 import com.google.common.collect.HashMultimap
 import com.google.common.collect.SetMultimap
 import com.google.inject.Inject
+import fr.inria.diverse.k3.al.annotationprocessor.Step
 import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.lib.EcoreExtensions
+import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.Language
+import fr.inria.diverse.melange.metamodel.melange.PackageBinding
 import java.lang.reflect.Method
 import java.lang.reflect.Modifier
 import java.net.URL
@@ -15,6 +18,8 @@ import java.util.ArrayList
 import java.util.HashMap
 import java.util.HashSet
 import java.util.List
+import java.util.Stack
+import org.apache.log4j.Logger
 import org.eclipse.core.runtime.Path
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.jdt.core.IJavaProject
@@ -32,10 +37,6 @@ import org.eclipse.jdt.launching.JavaRuntime
 import org.eclipse.jface.text.Document
 import org.eclipse.text.edits.TextEdit
 import org.eclipse.xtext.naming.IQualifiedNameProvider
-import org.apache.log4j.Logger
-import java.util.Stack
-import fr.inria.diverse.melange.metamodel.melange.Aspect
-import fr.inria.diverse.melange.metamodel.melange.PackageBinding
 
 /**
  * This class recomputes the dispatch of Aspect's methods and rewrite
@@ -147,7 +148,7 @@ class DispatchOverrider {
 	private def void processAspect(Class<?> aspect, SetMultimap<Class<?>, Class<?>> hierarchy) {
 		
 		val HashMap<Method,String> bodies = new HashMap
-		 
+		
 		aspect.getDispatchMethods.forEach[m |
 			val body = m.genCode(hierarchy)
 			bodies.put(m,body)
@@ -272,10 +273,10 @@ class DispatchOverrider {
 		val classPathEntries = JavaRuntime.computeDefaultRuntimeClassPath(project)
 		val urlList = new ArrayList<URL>()
 		for (var i = 0; i < classPathEntries.length; i++) {
-		 val entry = classPathEntries.get(i)
-		 val path = new Path(entry)
-		 val url = path.toFile().toURI().toURL()
-		 urlList.add(url)
+			val entry = classPathEntries.get(i)
+			val path = new Path(entry)
+			val url = path.toFile().toURI().toURL()
+			urlList.add(url)
 		}
 //		val parentClassLoader = project.getClass().getClassLoader()
 		val parentClassLoader = Thread.currentThread().getContextClassLoader()
@@ -299,7 +300,7 @@ class DispatchOverrider {
 		val className = clazz.getAspectedSimpleName
 //		val s = m.parameters.map[name].join(',')
 		val s = getParameterList(m)
-		val boolean isStep = m.isStep
+		val isStep = m.isStep
 		val ret = getReturnInstruction(m)
 		val call = new StringBuilder
 
@@ -361,7 +362,7 @@ class DispatchOverrider {
 				"(" + cls.javaFqn + ")"+SELF_VAR_NAME)»)'''
 				
 					if (isStep) 
-						call = surroundWithStepCommandExecution(className, m.name , call, hasReturn, resultVar)
+						call = surroundWithStepCommandExecution(className, m.name , call, hasReturn, resultVar, m.shouldWaitForEvents, m.isOutput)
 					 else if (hasReturn) 
 						call = '''«resultVar» = «call»'''
 						
@@ -381,21 +382,21 @@ class DispatchOverrider {
 			return sb.toString
 		}
 	
-	private def transformNormalStatement(Method method, String parameters, boolean isStep, String className) {
-		val hasReturn = method.hasReturnType
+	private def transformNormalStatement(Method m, String parameters, boolean isStep, String className) {
+		val hasReturn = m.hasReturnType
 		val resultVar = "result"
 					
-		var String call = '''«PRIV_PREFIX+method.originalName»(_self_, «parameters»)'''
+		var String call = '''«PRIV_PREFIX + m.originalName»(_self_, «parameters»)'''
 		
 		if (isStep)
-			call = surroundWithStepCommandExecution(className, method.name , call, hasReturn, resultVar)
+			call = surroundWithStepCommandExecution(className, m.name , call, hasReturn, resultVar, m.shouldWaitForEvents, m.isOutput)
 		else if (hasReturn)
 			call = '''«resultVar» = «call»'''
 		
 		return call + ";"
 	}
 	
-	private def String surroundWithStepCommandExecution(String className, String methodName, String code, boolean hasReturn, String resultVar) {
+	private def String surroundWithStepCommandExecution(String className, String methodName, String code, boolean hasReturn, String resultVar, boolean waitForEvents, boolean isOutput) {
 		return '''
 			fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
 				@Override
@@ -409,10 +410,23 @@ class DispatchOverrider {
 			};
 			fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager manager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
 			if (manager != null) {
-				manager.executeStep(_self,command,"«className»","«methodName»");
-			} else {
-				fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IEventManager eventManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.EventManagerRegistry.getInstance().findEventManager();
+				«IF waitForEvents»
+				fr.inria.diverse.event.commons.model.IEventManager eventManager = fr.inria.diverse.event.commons.model.EventManagerRegistry.getInstance().findEventManager();
 				if (eventManager != null) {
+					eventManager.waitForEvents();
+				}
+				«ENDIF»
+				«IF isOutput»
+				manager.executeStep(_self,command,"«className»","«methodName»", true);
+				«ELSE»
+				manager.executeStep(_self,command,"«className»","«methodName»");
+				«ENDIF»
+			} else {
+				fr.inria.diverse.event.commons.model.IEventManager eventManager = fr.inria.diverse.event.commons.model.EventManagerRegistry.getInstance().findEventManager();
+				if (eventManager != null) {
+					«IF waitForEvents»
+					eventManager.waitForEvents();
+					«ENDIF»
 					eventManager.manageEvents();
 				}
 				command.execute();
@@ -437,6 +451,16 @@ class DispatchOverrider {
 	
 	private def boolean isStep(Method m) {
 		m.declaredAnnotations.exists[annotationType.canonicalName == "fr.inria.diverse.k3.al.annotationprocessor.Step"]
+	}
+	
+	private def boolean shouldWaitForEvents(Method m) {
+		val a = m.getAnnotation(Step)
+		a != null && a.waitForEvents
+	}
+	
+	private def boolean isOutput(Method m) {
+		val a = m.getAnnotation(Step)
+		a != null && a.outputEvent
 	}
 	
 	private def void initSubClasses(Language lang){
