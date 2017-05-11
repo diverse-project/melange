@@ -339,7 +339,7 @@ class LanguageExtensions
 
 	def String getExternalEcorePath(Language l) {
 		val project = l.eResource.project
-		if(l.externalRuntimeName == project.name) {
+		if(project != null && l.externalRuntimeName == project.name) {
 			return '''../«l.externalRuntimeName»/model-gen/«l.name».ecore'''
 		} else {
 			return '''../«l.externalRuntimeName»/model/«l.name».ecore'''
@@ -348,7 +348,7 @@ class LanguageExtensions
 
 	def String getExternalGenmodelPath(Language l) {
 		val project = l.eResource.project
-		if(l.externalRuntimeName == project.name) {
+		if(project != null && l.externalRuntimeName == project.name) {
 			return '''../«l.externalRuntimeName»/model-gen/«l.name».genmodel'''
 		} else {
 			return '''../«l.externalRuntimeName»/model/«l.name».genmodel'''
@@ -357,7 +357,7 @@ class LanguageExtensions
 
 	def String getExternalGenerationPath(Language l) {
 		val project = l.eResource.project
-		if(l.externalRuntimeName == project.name) {
+		if(project != null && l.externalRuntimeName == project.name) {
 			return '''../«l.externalRuntimeName»/src-model-gen/'''
 		} else {
 			return '''../«l.externalRuntimeName»/src/'''
@@ -366,7 +366,7 @@ class LanguageExtensions
 
 	def String getExternalEcoreUri(Language l) {
 		val project = l.eResource.project
-		if(l.externalRuntimeName == project.name) {
+		if(project != null && l.externalRuntimeName == project.name) {
 			return '''platform:/resource/«l.externalRuntimeName»/model-gen/«l.name».ecore'''
 		} else {
 			return '''platform:/resource/«l.externalRuntimeName»/model/«l.name».ecore'''			
@@ -375,7 +375,7 @@ class LanguageExtensions
 
 	def String getExternalGenmodelUri(Language l) {
 		val project = l.eResource.project
-		if(l.externalRuntimeName == project.name) {
+		if(project != null && l.externalRuntimeName == project.name) {
 			return '''platform:/resource/«l.externalRuntimeName»/model-gen/«l.name».genmodel'''
 		} else {
 			return '''platform:/resource/«l.externalRuntimeName»/model/«l.name».genmodel'''			
