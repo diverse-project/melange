@@ -24,7 +24,7 @@ import java.nio.file.Paths
 @RunWith(XtextRunner)
 @InjectWith(MelangeUiInjectorProvider)
 @FixMethodOrder(MethodSorters::NAME_ASCENDING)
-public class AspectCopyInMelangeProjectMiniFsmTest1 extends AbstractXtextTests
+public class AspectCopyInMelangeProjectMiniFsmTest extends AbstractXtextTests
 {
 	@Inject WorkspaceTestHelper helper
 	IProject melangeProject
