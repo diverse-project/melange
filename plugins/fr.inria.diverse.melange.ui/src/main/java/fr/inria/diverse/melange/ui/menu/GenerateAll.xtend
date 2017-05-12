@@ -39,8 +39,9 @@ class GenerateAll extends AbstractHandler {
 			})
 		} catch (InvocationTargetException e) {
 			log.error("Error while generating", e)
+			throw e // forward  error in order to be able to test it
 		} catch (InterruptedException e) {
-			log.error("Error while generating", e)
+			log.error("Generation was interrupted", e)
 		}
 
 		return null

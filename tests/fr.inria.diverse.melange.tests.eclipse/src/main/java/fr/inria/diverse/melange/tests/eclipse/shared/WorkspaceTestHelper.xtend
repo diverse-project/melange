@@ -273,7 +273,8 @@ class WorkspaceTestHelper {
 			new StructuredSelection(mlgFile))
 
 		command.executeWithChecks(executionEvent)
-		IResourcesSetupUtil::waitForAutoBuild
+	
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 	}
 	
 	/**
