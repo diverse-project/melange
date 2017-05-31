@@ -153,21 +153,9 @@ class MelangeBuilder
 		toGenerate.forEach[l |
 			val sub = new SubProgressMonitor(monitor, 15)
 			sub.beginTask("Generating reactive interface for " + l.name, 15)
-//			eclipseHelper.createEMFEventProject('''«l.externalRuntimeName».event''', l)
 			eclipseHelper.createEMFScenarioProject('''«l.externalRuntimeName».scenario''', l)
 			l.createEcore
 			l.createGenmodelAndGenerateCode
-//			l.createEventEcore
-//			monitor.worked(5)
-//			sub.subTask("Generating property metamodel for " + l.name)
-//			eclipseHelper.createEMFPropertyProject('''«l.externalRuntimeName».property''', l)
-//			l.createPropertyEcore
-//			l.createPropertyGenmodelAndGenerateCode
-//			monitor.worked(5)
-//			sub.subTask("Generating scenario metamodel for " + l.name)
-//			eclipseHelper.createEMFScenarioProject('''«l.externalRuntimeName».scenario''', l)
-//			l.createScenarioEcore
-//			l.createScenarioGenmodelAndGenerateCode
 			val p = eclipseHelper.createReactiveProject('''«l.externalRuntimeName».eventmanager''', l)
 			l.generateEventManager(JavaCore.create(project),JavaCore.create(p),monitor)
 			monitor.worked(5)

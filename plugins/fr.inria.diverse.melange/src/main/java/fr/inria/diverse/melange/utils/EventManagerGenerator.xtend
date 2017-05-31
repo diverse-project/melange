@@ -310,23 +310,21 @@ class EventManagerGenerator {
 		'''
 			@Override
 			public boolean canSendEvent(Object input) {
-				if (scenarioManager == null) {
-					if (input instanceof EventInstance) {
-						final EventInstance event = (EventInstance) input;
-						«FOR entry : inputEventToHandler.entrySet SEPARATOR " else"»
-						«val eventClass = entry.key»
-						«val eventHandler = entry.value»
-						«val eventClassName = eventClass.name»
-						if (event.getOriginalEvent() instanceof «eventClassName») {
-							«val eventCondition = eventMethodToCondition.get(eventHandler)»
-							«IF eventCondition == null»
-							return true;
-							«ELSE»
-							return canSend«eventClassName»(event);
-							«ENDIF»
-						}
-						«ENDFOR»
+				if (input instanceof EventInstance) {
+					final EventInstance event = (EventInstance) input;
+					«FOR entry : inputEventToHandler.entrySet SEPARATOR " else"»
+					«val eventClass = entry.key»
+					«val eventHandler = entry.value»
+					«val eventClassName = eventClass.name»
+					if (event.getOriginalEvent() instanceof «eventClassName») {
+						«val eventCondition = eventMethodToCondition.get(eventHandler)»
+						«IF eventCondition == null»
+						return true;
+						«ELSE»
+						return canSend«eventClassName»(event);
+						«ENDIF»
 					}
+					«ENDFOR»
 				}
 				return false;
 			}
@@ -415,6 +413,7 @@ class EventManagerGenerator {
 			«val targetType = eventClass.EGenericSuperTypes.head.ETypeArguments.head.EClassifier»
 			«addType(targetType)»
 			final «targetType.name» target = («targetType.name») event.getParameters().get(ScenarioPackage.Literals.EVENT__TARGET_PROVIDER);
+			«IF !eventClass.EStructuralFeatures.empty»
 			«FOR i : 0..(eventClass.EStructuralFeatures.size - 1)»
 			«val f = eventClass.EStructuralFeatures.get(i)»
 			«val name = if (f.name.contains("Provider")) f.name.substring(0, f.name.indexOf("Provider")) else f.name»
@@ -427,6 +426,7 @@ class EventManagerGenerator {
 				else f.EType.instanceClass.simpleName»
 			final «parameterType» «name» = («parameterType») event.getParameters().get(event.getOriginalEvent().eClass().getEStructuralFeatures().get(«i»));
 			«ENDFOR»
+			«ENDIF»
 		'''
 	}
 

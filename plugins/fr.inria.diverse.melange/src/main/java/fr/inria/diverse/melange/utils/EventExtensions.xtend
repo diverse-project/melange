@@ -34,7 +34,6 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 import org.eclipse.xtext.common.types.JvmBooleanAnnotationValue
 import org.eclipse.xtext.common.types.JvmCustomAnnotationValue
@@ -45,6 +44,7 @@ import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmVisibility
 import org.eclipse.xtext.xbase.XBooleanLiteral
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
+import fr.inria.diverse.event.commons.model.arbiter.ArbiterPackage
 
 /**
  * Infers the minimal Ecore file (an {@link EPackage}) corresponding to the
@@ -74,29 +74,27 @@ class EventExtensions {
 
 	private static final Logger log = Logger.getLogger(EventExtensions)
 	
-	def String getEventGenerationPath(Language l) {
-		return '''../«l.externalRuntimeName».event/src/'''
-	}
+	var EClass eventSpecificClass
 	
-	def String getEventEcoreUri(Language l) {
-		return '''platform:/resource/«l.externalRuntimeName».event/model/«l.name»Events.ecore'''
-	}
-
-	def String getEventGenmodelUri(Language l) {
-		return '''platform:/resource/«l.externalRuntimeName».event/model/«l.name»Events.genmodel'''
-	}
+	var EClass propertySpecificClass
 	
-	def String getPropertyGenerationPath(Language l) {
-		return '''../«l.externalRuntimeName».property/src/'''
-	}
+	var EClass statePropertySpecificClass
 	
-	def String getPropertyEcoreUri(Language l) {
-		return '''platform:/resource/«l.externalRuntimeName».property/model/«l.name»Properties.ecore'''
-	}
-
-	def String getPropertyGenmodelUri(Language l) {
-		return '''platform:/resource/«l.externalRuntimeName».property/model/«l.name»Properties.genmodel'''
-	}
+	var EClass stepPropertySpecificClass
+	
+	var Map<EClass, EClass> rtToProp
+	
+	var Map<EClassifier, EClass> rtToProv
+	
+	var Map<EClassifier, EClass> rtToRef
+	
+	var Map<EClassifier, EClass> rtToQuery
+	
+	var Map<EClass, List<EClass>> propToFProps
+	
+	var EPackage pkg
+	
+	var Set<GenPackage> refGenPackages
 	
 	def String getScenarioGenerationPath(Language l) {
 		return '''../«l.externalRuntimeName».scenario/src/'''
@@ -108,137 +106,6 @@ class EventExtensions {
 
 	def String getScenarioGenmodelUri(Language l) {
 		return '''platform:/resource/«l.externalRuntimeName».scenario/model/«l.name»Scenario.genmodel'''
-	}
-	
-	var EClass eventSpecificClass
-	
-	var EClass propertySpecificClass
-	
-	def void createEventGenmodelAndGenerateCode(Language l) {
-		val resSet = new ResourceSetImpl
-		val pkgRes = resSet.getResource(URI::createURI(l.eventEcoreUri), true)
-		val pkgs = pkgRes.contents.map[it as EPackage]
-
-		val genmodel = GenModelFactory.eINSTANCE.createGenModel => [
-			complianceLevel = GenJDKLevel.JDK70_LITERAL
-			modelDirectory = l.eventGenerationPath
-				.replaceFirst("platform:/resource", "").replaceFirst("..", "")
-			foreignModel += #[l.externalEcoreUri
-			]
-			val propertyBaseURI = URI::createPlatformPluginURI("fr.inria.diverse.event.commons.model/model/property.genmodel", true)
-			usedGenPackages += (resSet.getResource(propertyBaseURI, true).contents.head as GenModel).genPackages
-			modelName = l.name + "events"
-			modelPluginID = l.externalRuntimeName + ".event"
-			initialize(pkgs)
-			genPackages.forEach[gp |
-				gp.basePackage = l.externalRuntimeName + ".event"
-				if (!l.fileExtension.nullOrEmpty) {
-					gp.fileExtensions = l.fileExtension + "e"
-				} else {
-					gp.fileExtensions = l.name.toLowerCase.toString + "e"
-				}
-			]
-		]
-		
-		val res = resSet.createResource(URI::createURI(l.eventGenmodelUri))
-		res.contents += genmodel
-		
-		fixedGenModels.clear
-		genmodel.fixUsedGenPackages(resSet)
-		
-		try {
-			res.save(null)
-		} catch (IOException e) {
-			log.error("Error while serializing new genmodel", e)
-		}
-		
-		pkgRes.unload
-		pkgRes.load(null)
-		
-		genmodel.generateCode
-	}
-	
-	def void createPropertyGenmodelAndGenerateCode(Language l) {
-		val resSet = new ResourceSetImpl
-		val pkgRes = resSet.getResource(URI::createURI(l.propertyEcoreUri), true)
-		val pkgs = pkgRes.contents.map[it as EPackage]
-
-		val genmodel = GenModelFactory.eINSTANCE.createGenModel => [
-			complianceLevel = GenJDKLevel.JDK70_LITERAL
-			modelDirectory = l.propertyGenerationPath
-				.replaceFirst("platform:/resource", "").replaceFirst("..", "")
-			foreignModel += l.externalEcoreUri
-			modelName = l.name + "properties"
-			modelPluginID = l.externalRuntimeName + ".property"
-			initialize(pkgs)
-			genPackages.forEach[gp |
-				gp.basePackage = l.externalRuntimeName + ".property"
-				if (!l.fileExtension.nullOrEmpty) {
-					gp.fileExtensions = l.fileExtension + "p"
-				} else {
-					gp.fileExtensions = l.name.toLowerCase.toString + "p"
-				}
-			]
-		]
-		
-		val res = resSet.createResource(URI::createURI(l.propertyGenmodelUri))
-		res.contents += genmodel
-		
-		fixedGenModels.clear
-		genmodel.fixUsedGenPackages(resSet)
-		
-		try {
-			res.save(null)
-		} catch (IOException e) {
-			log.error("Error while serializing new genmodel", e)
-		}
-		
-		pkgRes.unload
-		pkgRes.load(null)
-		EcoreUtil.resolveAll(resSet)
-		genmodel.generateCode
-	}
-	
-	def void createScenarioGenmodelAndGenerateCode(Language l) {
-		val resSet = new ResourceSetImpl
-		val pkgRes = resSet.getResource(URI::createURI(l.scenarioEcoreUri), true)
-		val pkgs = pkgRes.contents.map[it as EPackage]
-
-		val genmodel = GenModelFactory.eINSTANCE.createGenModel => [
-			complianceLevel = GenJDKLevel.JDK70_LITERAL
-			modelDirectory = l.scenarioGenerationPath
-				.replaceFirst("platform:/resource", "").replaceFirst("..", "")
-			foreignModel += l.externalEcoreUri
-			usedGenPackages += (resSet.getResource(URI::createPlatformPluginURI("fr.inria.diverse.event.commons.model/model/property.genmodel", true), true).contents.head as GenModel).genPackages
-			modelName = l.name + "scenario"
-			modelPluginID = l.externalRuntimeName + ".scenario"
-			initialize(pkgs)
-			genPackages.forEach[gp |
-				gp.basePackage = l.externalRuntimeName + ".scenario"
-				if (!l.fileExtension.nullOrEmpty) {
-					gp.fileExtensions = l.fileExtension + "s"
-				} else {
-					gp.fileExtensions = l.name.toLowerCase.toString + "s"
-				}
-			]
-		]
-		
-		val res = resSet.createResource(URI::createURI(l.scenarioGenmodelUri))
-		res.contents += genmodel
-		
-		fixedGenModels.clear
-		genmodel.fixUsedGenPackages(resSet)
-		
-		try {
-			res.save(null)
-		} catch (IOException e) {
-			log.error("Error while serializing new genmodel", e)
-		}
-		
-		pkgRes.unload
-		pkgRes.load(null)
-		
-		genmodel.generateCode
 	}
 	
 	def void createGenmodelAndGenerateCode(Language l) {
@@ -255,7 +122,7 @@ class EventExtensions {
 			modelName = l.name + "scenario"
 			modelPluginID = l.externalRuntimeName + ".scenario"
 			initialize(pkgs)
-			genPackages.forEach[gp |
+			genPackages.forEach[gp|
 				gp.basePackage = l.externalRuntimeName + ".scenario"
 				if (!l.fileExtension.nullOrEmpty) {
 					gp.fileExtensions = l.fileExtension + "s"
@@ -281,6 +148,267 @@ class EventExtensions {
 		pkgRes.load(null)
 		
 		genmodel.generateCode
+	}
+	
+	private var Set<EPackage> basePkgs
+	
+	def void createEcore(Language l) {
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+		val resourceSet = new ResourceSetImpl
+		val resource = resourceSet.getResource(URI.createURI(l.externalEcoreUri, true), true);
+		// Cleaning up
+		rtToProp = new HashMap
+		rtToProv = new HashMap
+		rtToRef = new HashMap
+		rtToQuery = new HashMap
+		propToFProps = new HashMap
+		basePkgs = resource.allContents.filter(EPackage).toSet
+		pkg = EcoreFactory.eINSTANCE.createEPackage
+		pkg.name = (l.name + "scenario").toLowerCase
+		pkg.nsPrefix = pkg.name
+		pkg.nsURI = l.externalPackageUri+"scenario/"
+		
+		val resSet = new ResourceSetImpl
+		val usedGenpkgRes = resSet.getResource(URI::createURI(l.externalGenmodelUri), true)
+		refGenPackages = (usedGenpkgRes.contents.head as GenModel).genPackages.toSet
+		
+		eventSpecificClass = EcoreFactory.eINSTANCE.createEClass => [c|
+			c.name = l.name + "Event"
+			c.abstract = true
+			val typeParameter = EcoreFactory.eINSTANCE.createETypeParameter => [
+				name = "T"
+			]
+			c.ETypeParameters += typeParameter
+			c.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = ScenarioPackage.Literals.EVENT
+				ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+					ETypeParameter = typeParameter
+				]
+			]
+		]
+		
+		pkg.EClassifiers += eventSpecificClass
+		
+		val allEOperations = resource.allContents.filter(EOperation).toSet
+		val allStepEOperations = new HashSet
+		
+		l.allAspects.forEach[a|
+			val t = a.aspectTypeRef.type
+			if (t instanceof JvmDeclaredType) {
+				val aspect = t as JvmDeclaredType
+				val typeRefBuilder = typeRefBuilderFactory.create(aspect.eResource.resourceSet)
+				// Parses all the interesting public operations in the aspect
+				aspect.declaredOperations
+				.filter[!isK3Specific && visibility == JvmVisibility.PUBLIC]
+				.forEach[op |
+					val featureName = findFeatureNameFor(aspect, op, typeRefBuilder)
+					// If we can't infer a feature name, it's obviously really an operation
+					if (featureName === null) {
+						if (isStep(op)) {
+							val eOperation = allEOperations.findFirst[
+								it.name == op.simpleName && it.EContainingClass.name == a.aspectedClass.name
+							]
+							if (eOperation != null) {
+								allStepEOperations.add(eOperation)
+							}
+							// If it's an event handler, we create a new metaclass for this event
+							if (isInputEvent(op)) {
+								val eventName = a.aspectedClass.name.toFirstUpper + op.simpleName.toFirstUpper + "Event"
+								op.generateInputEvent(eventName)
+							} else if (isOutputEvent(op)) {
+								val eventName = a.aspectedClass.name.toFirstUpper + op.simpleName.toFirstUpper + "Event"
+								op.generateOutputEvent(eventName)
+							}
+						}
+					}
+				]
+			}
+		]
+		
+		propertySpecificClass = EcoreFactory.eINSTANCE.createEClass => [
+			name = l.name + "Property"
+			abstract = true
+			ESuperTypes += PropertyPackage.Literals.PROPERTY
+		]
+		
+		statePropertySpecificClass = EcoreFactory.eINSTANCE.createEClass => [
+			name = l.name + "StateProperty"
+			abstract = true
+			val typeParameter = EcoreFactory.eINSTANCE.createETypeParameter => [
+				name = "T"
+			]
+			ETypeParameters += typeParameter
+			EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = PropertyPackage.Literals.STATE_PROPERTY
+				ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+					ETypeParameter = typeParameter
+				]
+			]
+			ESuperTypes += propertySpecificClass
+		]
+		
+		stepPropertySpecificClass = EcoreFactory.eINSTANCE.createEClass => [
+			name = l.name + "StepProperty"
+			abstract = true
+			ESuperTypes += PropertyPackage.Literals.STEP_PROPERTY
+			ESuperTypes += propertySpecificClass
+		]
+		
+		allStepEOperations.forEach[op|
+			val stepPropertyClass = EcoreFactory.eINSTANCE.createEClass
+			pkg.EClassifiers += stepPropertyClass
+			stepPropertyClass.name = op.EContainingClass.name + op.name.toFirstUpper + "Property"
+			stepPropertyClass.ESuperTypes += stepPropertySpecificClass
+			val getOperationEOperation = EcoreFactory.eINSTANCE.createEOperation
+			val getOperationAnnotation = EcoreFactory.eINSTANCE.createEAnnotation
+			getOperationEOperation.EAnnotations.add(getOperationAnnotation)
+			getOperationEOperation.name = "getOperation"
+			getOperationEOperation.lowerBound = 0
+			getOperationEOperation.upperBound = 1
+			getOperationEOperation.EType = EcorePackage.Literals.EOPERATION
+			getOperationAnnotation.source = GenModelPackage.eNS_URI
+			getOperationAnnotation.details.put("body", op.stringOperationLiteral)
+			stepPropertyClass.EOperations += getOperationEOperation
+		]
+		
+		pkg.EClassifiers += statePropertySpecificClass
+		pkg.EClassifiers += stepPropertySpecificClass
+		pkg.EClassifiers += propertySpecificClass
+		
+		l.runtimeRootPackage.allClasses.forEach[processRuntimeClass]
+		
+		val scenarioClass = EcoreFactory.eINSTANCE.createEClass
+		val scenarioElementClass = EcoreFactory.eINSTANCE.createEClass
+		val eventOccurrenceClass = EcoreFactory.eINSTANCE.createEClass
+		val scenarioFSMClass = EcoreFactory.eINSTANCE.createEClass
+		val scenarioFSMStateClass = EcoreFactory.eINSTANCE.createEClass
+		val scenarioFSMTransitionClass = EcoreFactory.eINSTANCE.createEClass
+		pkg.EClassifiers += scenarioClass
+		pkg.EClassifiers += scenarioElementClass
+		pkg.EClassifiers += eventOccurrenceClass
+		pkg.EClassifiers += scenarioFSMClass
+		pkg.EClassifiers += scenarioFSMStateClass
+		pkg.EClassifiers += scenarioFSMTransitionClass
+		scenarioClass.name = l.name + "Scenario"
+		scenarioElementClass.name = l.name + "ScenarioElement"
+		eventOccurrenceClass.name = l.name + "EventOccurrence"
+		scenarioFSMClass.name = l.name + "ScenarioFSM"
+		scenarioFSMStateClass.name = l.name + "ScenarioFSMState"
+		scenarioFSMTransitionClass.name = l.name + "ScenarioFSMTransition"
+		scenarioElementClass.abstract = true
+		val scenarioGenericType = EcoreFactory.eINSTANCE.createEGenericType => [
+			EClassifier = ScenarioPackage.Literals.SCENARIO
+			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = scenarioElementClass
+			]
+		]
+		scenarioClass.EGenericSuperTypes += scenarioGenericType
+		val scenarioElementGenericType = EcoreFactory.eINSTANCE.createEGenericType => [
+			EClassifier = ScenarioPackage.Literals.SCENARIO_ELEMENT
+			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = propertySpecificClass
+			]
+		]
+		scenarioElementClass.EGenericSuperTypes += scenarioElementGenericType
+		val eventTypeArgument = EcoreFactory.eINSTANCE.createEGenericType => [
+			EClassifier = eventSpecificClass
+			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType
+		]
+		val propertyTypeArgument = EcoreFactory.eINSTANCE.createEGenericType => [
+			EClassifier = propertySpecificClass
+		]
+		eventOccurrenceClass.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
+			EClassifier = ScenarioPackage.Literals.EVENT_OCCURRENCE
+			ETypeArguments += eventTypeArgument
+			ETypeArguments += propertyTypeArgument
+		]
+		eventOccurrenceClass.ESuperTypes += scenarioElementClass
+		
+		scenarioFSMClass.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
+			EClassifier = ScenarioPackage.Literals.SCENARIO_FSM
+			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = propertySpecificClass
+			]
+			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = eventSpecificClass
+				ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType
+			]
+			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = scenarioFSMStateClass
+			]
+			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = scenarioFSMTransitionClass
+			]
+		]
+		scenarioFSMClass.ESuperTypes += scenarioElementClass
+		
+		scenarioFSMStateClass.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
+			EClassifier = ScenarioPackage.Literals.SCENARIO_FSM_STATE
+			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = eventSpecificClass
+				ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType
+			]
+			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = scenarioFSMTransitionClass
+			]
+		]
+		
+		scenarioFSMTransitionClass.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
+			EClassifier = ScenarioPackage.Literals.SCENARIO_FSM_TRANSITION
+			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = propertySpecificClass
+			]
+			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = scenarioFSMStateClass
+			]
+		]
+		
+		val arbiterClass = EcoreFactory.eINSTANCE.createEClass
+		val arbiterStateClass = EcoreFactory.eINSTANCE.createEClass
+		val arbiterTransitionClass = EcoreFactory.eINSTANCE.createEClass
+		pkg.EClassifiers += arbiterClass
+		pkg.EClassifiers += arbiterStateClass
+		pkg.EClassifiers += arbiterTransitionClass
+		arbiterClass.name = l.name + "Arbiter"
+		arbiterStateClass.name = l.name + "ArbiterState"
+		arbiterTransitionClass.name = l.name + "ArbiterTransition"
+		
+		arbiterClass.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
+			EClassifier = ArbiterPackage.Literals.ARBITER
+			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = propertySpecificClass
+			]
+			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = arbiterStateClass
+			]
+			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = arbiterTransitionClass
+			]
+		]
+		
+		arbiterStateClass.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
+			EClassifier = ArbiterPackage.Literals.STATE
+			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = propertySpecificClass
+			]
+			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = arbiterTransitionClass
+			]
+		]
+		
+		arbiterTransitionClass.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
+			EClassifier = ArbiterPackage.Literals.TRANSITION
+			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = propertySpecificClass
+			]
+			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = arbiterStateClass
+			]
+		]
+		
+		val res = resSet.createResource(URI.createPlatformResourceURI(l.externalRuntimeName+".scenario/model/"+l.name+"Scenario.ecore", true))
+		res.contents += pkg
+		res.save(null)
 	}
 	
 	def private void generateInputEvent(JvmOperation op, String eventName) {
@@ -380,122 +508,6 @@ class EventExtensions {
 		]
 	}
 	
-	private var Set<EPackage> basePkgs
-	
-	def void createEcore(Language l) {
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
-		val resourceSet = new ResourceSetImpl
-		val resource = resourceSet.getResource(URI.createURI(l.externalEcoreUri, true), true);
-		// Cleaning up
-		rtToProp = new HashMap
-		rtToProv = new HashMap
-		rtToRef = new HashMap
-		rtToQuery = new HashMap
-		propToFProps = new HashMap
-		basePkgs = resource.allContents.filter(EPackage).toSet
-		pkg = EcoreFactory.eINSTANCE.createEPackage
-		pkg.name = (l.name + "scenario").toLowerCase
-		pkg.nsPrefix = pkg.name
-		pkg.nsURI = l.externalPackageUri+"scenario/"
-		
-		eventSpecificClass = EcoreFactory.eINSTANCE.createEClass => [c|
-			c.name = l.name + "Event"
-			c.abstract = true
-			val typeParameter = EcoreFactory.eINSTANCE.createETypeParameter => [
-				name = "T"
-			]
-			c.ETypeParameters += typeParameter
-			c.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
-				EClassifier = ScenarioPackage.Literals.EVENT
-				ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
-					ETypeParameter = typeParameter
-				]
-			]
-		]
-		
-		pkg.EClassifiers += eventSpecificClass
-		
-		l.allAspects.forEach[a|
-			val t = a.aspectTypeRef.type
-			if (t instanceof JvmDeclaredType) {
-				val aspect = t as JvmDeclaredType
-				val typeRefBuilder = typeRefBuilderFactory.create(aspect.eResource.resourceSet)
-				// Parses all the interesting public operations in the aspect
-				aspect.declaredOperations
-				.filter[!isK3Specific && visibility == JvmVisibility.PUBLIC]
-				.forEach[op |
-					val featureName = findFeatureNameFor(aspect, op, typeRefBuilder)
-					// If we can't infer a feature name, it's obviously really an operation
-					if (featureName === null) {
-						// If it's an event handler, we create a new metaclass for this event
-						if (isInputEvent(op)) {
-							val eventName = a.aspectedClass.name.toFirstUpper + op.simpleName.toFirstUpper + "Event"
-							op.generateInputEvent(eventName)
-						} else if (isOutputEvent(op)) {
-							val eventName = a.aspectedClass.name.toFirstUpper + op.simpleName.toFirstUpper + "Event"
-							op.generateOutputEvent(eventName)
-						}
-					}
-				]
-			}
-		]
-		
-		val resSet = new ResourceSetImpl
-		val usedGenpkgRes = resSet.getResource(URI::createURI(l.externalGenmodelUri), true)
-		refGenPackages = (usedGenpkgRes.contents.head as GenModel).genPackages.toSet
-		
-		propertySpecificClass = EcoreFactory.eINSTANCE.createEClass => [
-			name = l.name + "Property"
-			abstract = true
-			val typeParameter = EcoreFactory.eINSTANCE.createETypeParameter => [
-				name = "T"
-			]
-			ETypeParameters += typeParameter
-			EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
-				EClassifier = PropertyPackage.Literals.STATE_PROPERTY
-				ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
-					ETypeParameter = typeParameter
-				]
-			]
-		]
-		
-		pkg.EClassifiers += propertySpecificClass
-		
-		l.runtimeRootPackage.allClasses.forEach[processRuntimeClass]
-		
-		val scenarioClass = EcoreFactory.eINSTANCE.createEClass
-		val triggerClass = EcoreFactory.eINSTANCE.createEClass
-		pkg.EClassifiers += scenarioClass
-		pkg.EClassifiers += triggerClass
-		scenarioClass.name = l.name + "Scenario"
-		triggerClass.name = l.name + "Stage"
-		val eventTypeArgument = EcoreFactory.eINSTANCE.createEGenericType => [
-			EClassifier = eventSpecificClass
-			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType
-		]
-		val propertyTypeArgument = EcoreFactory.eINSTANCE.createEGenericType => [
-			EClassifier = propertySpecificClass
-			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType
-		]
-		val triggerGenericType = EcoreFactory.eINSTANCE.createEGenericType => [
-			EClassifier = ScenarioPackage.Literals.STAGE
-			ETypeArguments += eventTypeArgument
-			ETypeArguments += propertyTypeArgument
-		]
-		triggerClass.EGenericSuperTypes += triggerGenericType
-		val scenarioGenericType = EcoreFactory.eINSTANCE.createEGenericType => [
-			EClassifier = ScenarioPackage.Literals.SCENARIO
-			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
-				EClassifier = triggerClass
-			]
-		]
-		scenarioClass.EGenericSuperTypes += scenarioGenericType
-		
-		val res = resSet.createResource(URI.createPlatformResourceURI(l.externalRuntimeName+".scenario/model/"+l.name+"Scenario.ecore", true))
-		res.contents += pkg
-		res.save(null)
-	}
-	
 	def private EClass getElementProviderClass(EClassifier c) {
 		rtToProv.computeIfAbsent(c, [cls|
 			val prov = EcoreFactory.eINSTANCE.createEClass => [
@@ -557,165 +569,6 @@ class EventExtensions {
 		])
 	}
 	
-	def void createEventEcore(Language l) {
-		val classes = new HashSet
-		val runtimeURI = l.externalEcoreUri
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
-		val resourceSet = new ResourceSetImpl
-		val resource = resourceSet.getResource(URI.createURI(runtimeURI, true), true);
-		val basePkgs = resource.allContents.filter(EPackage).toSet
-		l.allAspects.forEach[a|
-			val t = a.aspectTypeRef.type
-			if (t instanceof JvmDeclaredType) {
-				val aspect = t as JvmDeclaredType
-				val typeRefBuilder = typeRefBuilderFactory.create(aspect.eResource.resourceSet)
-				// Parses all the interesting public operations in the aspect
-				aspect.declaredOperations
-				.filter[!isK3Specific && visibility == JvmVisibility.PUBLIC]
-				.forEach[op |
-					val featureName = findFeatureNameFor(aspect, op, typeRefBuilder)
-					// If we can't infer a feature name, it's obviously really an operation
-					if (featureName === null) {
-						// If it's an event handler, we create a new metaclass for this event
-						if (isInputEvent(op)) {
-							val eventName = a.aspectedClass.name.toFirstUpper + op.simpleName.toFirstUpper + "Event"
-							
-							val evtCls = EcoreFactory.eINSTANCE.createEClass => [cls |
-								cls.name = eventName
-								cls.^abstract = false
-								cls.^interface = false
-								// Creating the generic super type of the property and binding it
-								val genericType = EcoreFactory.eINSTANCE.createEGenericType
-								val typeArgument = EcoreFactory.eINSTANCE.createEGenericType
-								val targetTypeName = op.parameters.head.parameterType.type.simpleName
-								typeArgument.EClassifier = basePkgs.findFirst[pkg|
-									pkg.getEClassifier(targetTypeName) != null
-								]?.getEClassifier(targetTypeName)
-								genericType.ETypeArguments += typeArgument
-								cls.EGenericSuperTypes += genericType
-								
-								op.parameters.tail.forEach[p|
-									val parameterTypeName = p.parameterType.type.simpleName
-									if (parameterTypeName == "String" || parameterTypeName == "Integer" || parameterTypeName == "Boolean") {
-										cls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEAttribute => [
-												name = p.name.toFirstLower
-												lowerBound = 0
-												upperBound = 1
-												EType = switch (parameterTypeName) {
-													case "String": EcorePackage.Literals.ESTRING
-													case "Integer": EcorePackage.Literals.EINT
-													case "Boolean": EcorePackage.Literals.EBOOLEAN
-												}
-											]
-									} else {
-										val parameterClassifier = basePkgs.findFirst[pkg|
-											pkg.getEClassifier(parameterTypeName) != null
-										]?.getEClassifier(parameterTypeName)
-										if (parameterClassifier != null) {
-											cls.EStructuralFeatures += EcoreFactory.eINSTANCE.createEReference => [
-												name = p.name.toFirstLower
-												lowerBound = 0
-												upperBound = 1
-												EType = parameterClassifier
-											]
-										}
-									}
-								]
-							]
-							classes.add(evtCls)
-						}
-					}
-				]
-			}
-		]
-		
-		eventSpecificClass = EcoreFactory.eINSTANCE.createEClass => [cls |
-			cls.name = l.name + "Event"
-			cls.^abstract = true
-			cls.^interface = false
-			val typeParameter = EcoreFactory.eINSTANCE.createETypeParameter => [p|
-				p.name = "T"
-			]
-			val typeArgument = EcoreFactory.eINSTANCE.createEGenericType => [a|
-				a.ETypeParameter = typeParameter
-			]
-			val genericType = EcoreFactory.eINSTANCE.createEGenericType => [t|
-				t.EClassifier = ScenarioPackage.Literals.EVENT
-				t.ETypeArguments += typeArgument
-			]
-			cls.ETypeParameters += typeParameter
-			cls.EGenericSuperTypes += genericType
-		]
-		
-		classes.forEach[c|
-			c.EGenericSuperTypes.head.EClassifier = eventSpecificClass
-		]
-		classes += eventSpecificClass
-		
-		
-		val resSet = new ResourceSetImpl
-		val res = resSet.createResource(URI.createPlatformResourceURI(l.externalRuntimeName+".event/model/"+l.name+"Events.ecore", true))
-		val pkg = EcoreFactory.eINSTANCE.createEPackage
-		pkg.name = (l.name + "events").toLowerCase
-		pkg.nsPrefix = pkg.name
-		pkg.nsURI = l.externalPackageUri+"event/"
-		pkg.EClassifiers.addAll(classes)
-		res.contents.add(pkg)
-		res.save(null)
-	}
-	
-	var Map<EClass, EClass> rtToProp
-	
-	var Map<EClassifier, EClass> rtToProv
-	
-	var Map<EClassifier, EClass> rtToRef
-	
-	var Map<EClassifier, EClass> rtToQuery
-	
-	var Map<EClass, List<EClass>> propToFProps
-	
-	var EPackage pkg
-	
-	var Set<GenPackage> refGenPackages
-	
-	def void createPropertyEcore(Language l) {
-		// Cleaning up
-		rtToProp = new HashMap
-		propToFProps = new HashMap
-		pkg = EcoreFactory.eINSTANCE.createEPackage
-		pkg.name = (l.name + "properties").toLowerCase
-		pkg.nsPrefix = pkg.name
-		pkg.nsURI = l.externalPackageUri+"property/"
-		
-		val resSet = new ResourceSetImpl
-		val usedGenpkgRes = resSet.getResource(URI::createURI(l.externalGenmodelUri), true)
-		refGenPackages = (usedGenpkgRes.contents.head as GenModel).genPackages.toSet
-		
-		propertySpecificClass = EcoreFactory.eINSTANCE.createEClass => [
-			name = l.name + "Property"
-			abstract = true
-			val typeParameter = EcoreFactory.eINSTANCE.createETypeParameter => [
-				name = "T"
-			]
-			ETypeParameters += typeParameter
-			EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
-				EClassifier = PropertyPackage.Literals.STATE_PROPERTY
-				ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
-					ETypeParameter = typeParameter
-				]
-			]
-		]
-		pkg.EClassifiers += propertySpecificClass
-		
-		l.runtimeRootPackage.allClasses.forEach[c|
-			c.processRuntimeClass
-		]
-		
-		val res = resSet.createResource(URI.createPlatformResourceURI(l.externalRuntimeName+".property/model/"+l.name+"Properties.ecore", true))
-		res.contents += pkg
-		res.save(null)
-	}
-	
 	private def void processRuntimeClass(EClass runtimeClass) {
 		// Creating the abstract property associated to the runtime class
 		if (!rtToProp.containsKey(runtimeClass)) {
@@ -734,7 +587,7 @@ class EventExtensions {
 			classProperty.ETypeParameters += typeParameter
 			if (runtimeClass.ESuperTypes.empty) {
 				classProperty.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
-					EClassifier = propertySpecificClass
+					EClassifier = statePropertySpecificClass
 					ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
 						ETypeParameter = typeParameter
 					]
@@ -947,55 +800,30 @@ class EventExtensions {
 			containingClass.name.camelToUnderscores.toUpperCase + "__" + f.name.camelToUnderscores.toUpperCase;
 	}
 	
+	private def String stringOperationLiteral(EOperation op) {
+		val EClass containingClass = op.EContainingClass
+		val EPackage p = containingClass.EPackage
+		val GenPackage gp = getGenPackage(p, refGenPackages)
+		return
+				'''
+					java.util.Iterator<EOperation> it = «getJavaFQN(p, refGenPackages)».«gp.prefix»Package.Literals.«containingClass.name.camelToUnderscores.toUpperCase».getEOperations().iterator();
+					EOperation result = null;
+					while (it.hasNext() && result == null) {
+						EOperation op = it.next();
+						if (op.getName().equals("«op.name»")) {
+							result = op;
+						}
+					}
+					return result;
+				'''
+	}
+	
 	private def EPackage getRuntimeRootPackage(Language l) {
 		val runtimeURI = l.externalEcoreUri
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 		val resourceSet = new ResourceSetImpl
 		val resource = resourceSet.getResource(URI.createURI(runtimeURI, true), true);
 		return (resource.allContents.findFirst[o|o instanceof EPackage] as EPackage).rootPackage
-	}
-	
-	def void createScenarioEcore(Language l) {
-		// Cleaning up
-		rtToProp = new HashMap
-		propToFProps = new HashMap
-		pkg = EcoreFactory.eINSTANCE.createEPackage
-		pkg.name = (l.name + "scenario").toLowerCase
-		pkg.nsPrefix = pkg.name
-		pkg.nsURI = l.externalPackageUri+"scenario/"
-		
-		val scenarioClass = EcoreFactory.eINSTANCE.createEClass
-		val triggerClass = EcoreFactory.eINSTANCE.createEClass
-		pkg.EClassifiers += scenarioClass
-		pkg.EClassifiers += triggerClass
-		scenarioClass.name = l.name + "Scenario"
-		triggerClass.name = l.name + "Stage"
-		val eventTypeArgument = EcoreFactory.eINSTANCE.createEGenericType => [
-			EClassifier = eventSpecificClass
-			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType
-		]
-		val propertyTypeArgument = EcoreFactory.eINSTANCE.createEGenericType => [
-			EClassifier = propertySpecificClass
-			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType
-		]
-		val triggerGenericType = EcoreFactory.eINSTANCE.createEGenericType => [
-			EClassifier = ScenarioPackage.Literals.STAGE
-			ETypeArguments += eventTypeArgument
-			ETypeArguments += propertyTypeArgument
-		]
-		triggerClass.EGenericSuperTypes += triggerGenericType
-		val scenarioGenericType = EcoreFactory.eINSTANCE.createEGenericType => [
-			EClassifier = ScenarioPackage.Literals.SCENARIO
-			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
-				EClassifier = triggerClass
-			]
-		]
-		scenarioClass.EGenericSuperTypes += scenarioGenericType
-		
-		val resSet = new ResourceSetImpl
-		val res = resSet.createResource(URI.createPlatformResourceURI(l.externalRuntimeName+".scenario/model/"+l.name+"Scenario.ecore", true))
-		res.contents += pkg
-		res.save(null)
 	}
 	
 	/**
@@ -1082,7 +910,15 @@ class EventExtensions {
 	}
 	
 	/**
-	 * Checks whether the given operation is an event or not
+	 * Checks whether the given operation is a step or not
+	 */
+	private def boolean isStep(JvmOperation operation) {
+		val stepAnnotation = operation.annotations.findFirst[a|a.annotation.qualifiedName == STEP_ANNOTATION_FQN]
+		return stepAnnotation != null
+	}
+	
+	/**
+	 * Checks whether the given operation is an input event or not
 	 */
 	private def boolean isInputEvent(JvmOperation operation) {
 		var result = false
@@ -1100,7 +936,7 @@ class EventExtensions {
 	}
 	
 	/**
-	 * Checks whether the given operation is an event or not
+	 * Checks whether the given operation is an output event or not
 	 */
 	private def boolean isOutputEvent(JvmOperation operation) {
 		var result = false
