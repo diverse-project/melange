@@ -59,7 +59,7 @@ class RenamerVisitor extends ASTVisitor{
 		
 		if(nodeName.endsWith(".*")){ //Package import
 			val importedPackage = nodeName.substring(0, nodeName.length - 2);
-			newNodeName = importedPackage.getRenaming + ".*"
+			newNodeName = importedPackage.getDirectRenaming + ".*"
 		}
 		else{ //Class import
 			val rule = rulesManager.allClassRules.findFirst[key == nodeName]
@@ -68,7 +68,7 @@ class RenamerVisitor extends ASTVisitor{
 			}
 			else{
 				val packageName = nodeName.qualifierPart
-				val newPackageName = packageName.getRenaming
+				val newPackageName = packageName.getDirectRenaming
 				if(newPackageName !== null){
 					val className = nodeName.lastPart
 					newNodeName = newPackageName + "." + className
@@ -465,6 +465,19 @@ class RenamerVisitor extends ASTVisitor{
 			subpack.charAt(pack.length).toString == '.'
 	}
 	
+	/**
+	 * Return the renamed package name if their exist a rule for {@link packageName}
+	 * will NOT apply for a super package.
+	 * 
+	 * Return null if not renamed.
+	 */
+	def String getDirectRenaming(String packageName){
+		val rule = rulesManager.allPackageRules.findFirst[key == packageName]
+		if(rule !== null){
+			return rule.value
+		}
+		return null
+	}
 	/**
 	 * Return the renamed package name if their exist a rule for {@link packageName}
 	 * or for a super package.

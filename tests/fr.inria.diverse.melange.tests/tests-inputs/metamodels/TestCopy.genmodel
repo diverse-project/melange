@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.inria.diverse.melange.tests/src/main/java"
+    modelPluginID="fr.inria.diverse.melange.tests" modelName="TestCopy" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>TestCopy.ecore</foreignModel>
+  <genPackages prefix="Testcopy" disposableProviderFactory="true" ecorePackage="TestCopy.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="TestCopy.ecore#//MyEnum">
+      <genEnumLiterals ecoreEnumLiteral="TestCopy.ecore#//MyEnum/ITEM1"/>
+      <genEnumLiterals ecoreEnumLiteral="TestCopy.ecore#//MyEnum/ITEM2"/>
+    </genEnums>
+    <genClasses ecoreClass="TestCopy.ecore#//Attributes">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestCopy.ecore#//Attributes/intAttribute"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestCopy.ecore#//Attributes/enumAttibute"/>
+    </genClasses>
+    <genClasses ecoreClass="TestCopy.ecore#//SimpleReferences">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TestCopy.ecore#//SimpleReferences/simpleRef"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TestCopy.ecore#//SimpleReferences/containmentRef"/>
+    </genClasses>
+    <genClasses ecoreClass="TestCopy.ecore#//OppositesA">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TestCopy.ecore#//OppositesA/toB"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestCopy.ecore#//OppositesA/oneToMany"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TestCopy.ecore#//OppositesA/manyToMany"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestCopy.ecore#//OppositesA/name"/>
+    </genClasses>
+    <genClasses ecoreClass="TestCopy.ecore#//OppositesB">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TestCopy.ecore#//OppositesB/toA"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TestCopy.ecore#//OppositesB/manyToOne"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TestCopy.ecore#//OppositesB/manyToMany"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestCopy.ecore#//OppositesB/name"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

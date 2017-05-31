@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="testcopy" nsURI="http://testcopy" nsPrefix="testcopy">
+  <eClassifiers xsi:type="ecore:EClass" name="Attributes">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="intAttribute">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="enumAttibute" eType="//MyEnum" defaultValueLiteral="ITEM1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SimpleReferences">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="simpleRef" eType="//Attributes"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containmentRef" upperBound="-1" eType="//Attributes" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OppositesA">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toB" eType="//OppositesB" eOpposite="//OppositesB/toA"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="oneToMany" upperBound="-1" eType="//OppositesB" containment="true" eOpposite="//OppositesB/manyToOne"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="manyToMany" upperBound="-1" eType="//OppositesB" eOpposite="//OppositesB/manyToMany"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OppositesB">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toA" eType="//OppositesA" eOpposite="//OppositesA/toB"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="manyToOne" eType="//OppositesA" eOpposite="//OppositesA/oneToMany"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="manyToMany" upperBound="-1" eType="//OppositesA" eOpposite="//OppositesA/manyToMany"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="MyEnum">
+    <eLiterals name="ITEM1"/>
+    <eLiterals name="ITEM2" value="1"/>
+  </eClassifiers>
+</ecore:EPackage>

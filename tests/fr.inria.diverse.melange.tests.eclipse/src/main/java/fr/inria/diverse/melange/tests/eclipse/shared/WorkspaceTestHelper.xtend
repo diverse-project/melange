@@ -163,12 +163,13 @@ class WorkspaceTestHelper {
 
 	def void assertNoMarkers() {
 		ResourcesPlugin::workspace.root.projects.forEach[project |
-			project.findMarkers(IMarker::PROBLEM, true, IResource::DEPTH_INFINITE).forEach[
-				println('''Found marker «getAttribute(IMarker::MESSAGE)» («getAttribute(IMarker::SEVERITY)»)''')
+			project.findMarkers(IMarker::PROBLEM, true, IResource::DEPTH_INFINITE).forEach[m|
+				println('''Found marker «m.getAttribute(IMarker::MESSAGE)» («m.getAttribute(IMarker::SEVERITY)»)''')
 				Assert.assertFalse(
-					"Unexpected marker: " + getAttribute(IMarker::MESSAGE),
-					getAttribute(IMarker::SEVERITY) == IMarker::SEVERITY_ERROR
+					"Unexpected marker: " + m.getAttribute(IMarker::MESSAGE) + " on "+m.resource.fullPath,
+					m.getAttribute(IMarker::SEVERITY) == IMarker::SEVERITY_ERROR
 				)
+				
 			]
 		]
 	}
@@ -178,7 +179,7 @@ class WorkspaceTestHelper {
 		mlgFile.findMarkers(IMarker::PROBLEM, true, IResource::DEPTH_INFINITE).forEach[
 				println('''Found marker «getAttribute(IMarker::MESSAGE)» («getAttribute(IMarker::SEVERITY)»)''')
 				Assert.assertFalse(
-					"Unexpected marker: " + getAttribute(IMarker::MESSAGE),
+					"Unexpected marker: " + getAttribute(IMarker::MESSAGE) + " on file "+filename,
 					getAttribute(IMarker::SEVERITY) == IMarker::SEVERITY_ERROR
 				)
 			]
@@ -272,7 +273,8 @@ class WorkspaceTestHelper {
 			new StructuredSelection(mlgFile))
 
 		command.executeWithChecks(executionEvent)
-		IResourcesSetupUtil::waitForAutoBuild
+	
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 	}
 	
 	/**

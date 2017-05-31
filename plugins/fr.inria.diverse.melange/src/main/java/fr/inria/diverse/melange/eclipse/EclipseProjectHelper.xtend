@@ -31,6 +31,10 @@ import org.eclipse.pde.internal.core.natures.PDE
 import org.eclipse.xtext.util.MergeableManifest
 import org.eclipse.core.resources.IProjectDescription
 import org.eclipse.core.resources.ICommand
+import org.eclipse.core.runtime.SubMonitor
+import fr.inria.diverse.commons.eclipse.pde.classpath.ClasspathHelper
+import org.eclipse.jdt.core.IJavaProject
+import fr.inria.diverse.commons.eclipse.pde.classpath.BuildPropertiesHelper
 
 /**
  * A collection of utilities around Eclipse's APIs to manage the creation,
@@ -214,6 +218,31 @@ class EclipseProjectHelper
 				output.closeQuietly
 			}
 		}
+	}
+
+	/**
+	 * add the {@link Language} {@code l} in the given Melange project. 
+	 * It will update it instead of creating a new one as does {@link #createEMFRuntimeProject}
+	 * 
+	 * In order to be able to clean the project, the ecore is generated in model-gen
+	 * and the java code for the ecore is generated in src-model-gen
+	 * 
+	 * Additions to the usual Melange:
+	 * <ul>
+	 *   <li>Source folders: src-model-gen</li>
+	 * </ul>
+	 */
+	def void createEMFRuntimeInMelangeProject(IProject project, Language l, IProgressMonitor monitor){
+		val SubMonitor subMonitor = SubMonitor.convert(monitor, 100);
+		val srcModelGenFolder = project.getFolder("src-model-gen");
+		if(srcModelGenFolder.exists){
+			// remove previous version of this folder
+			srcModelGenFolder.delete(true, true, subMonitor.split(10))
+		}
+		srcModelGenFolder.create(false, true, subMonitor.split(50))
+		
+		ClasspathHelper.addSourceEntry(project,"src-model-gen", subMonitor.split(10))
+		BuildPropertiesHelper.addMainJarSourceEntry(project,"src-model-gen", subMonitor.split(10))
 	}
 
 	/**

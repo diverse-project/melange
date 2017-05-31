@@ -26,6 +26,7 @@ import simplefsmtest.fsmmt.fsm.FSM
 import simplefsmtest.fsmmt.fsm.FsmPackage
 
 import static org.junit.Assert.*
+import java.util.List
 
 class ResourceTest
 {
@@ -365,7 +366,8 @@ class ResourceTest
 		val containingFeature = s1.eContainingFeature
 
 		assertEquals(FsmPackage::eINSTANCE.FSM_OwnedState, containingFeature)
-		assertEquals(container, s1.eGet(containingFeature))
+		assertTrue(container.eGet(containingFeature) instanceof List)
+		assertTrue((container.eGet(containingFeature) as List).contains(s1))
 		assertNull(container.eContainingFeature)
 	}
 
@@ -376,7 +378,8 @@ class ResourceTest
 		val containmentFeature = s1.eContainmentFeature
 
 		assertEquals(FsmPackage::eINSTANCE.FSM_OwnedState, containmentFeature)
-		assertEquals(container, s1.eGet(containmentFeature))
+		assertTrue(container.eGet(containmentFeature) instanceof List)
+		assertTrue((container.eGet(containmentFeature) as List).contains(s1))
 	}
 
 	@Test

@@ -12,7 +12,7 @@
 <repository location="https://ci.inria.fr/k3al/job/k3.eclipse/lastSuccessfulBuild/artifact/k3.eclipse/fr.inria.diverse.k3.p2updatesite/target/site/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
-<unit id="org.eclipse.emf.compare.source.feature.group" version="3.1.0.201506080833"/>
+<unit id="org.eclipse.emf.compare.source.feature.group" version="0.0.0"/>
 <repository location="http://download.eclipse.org/modeling/emf/compare/updates/releases/latest"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
