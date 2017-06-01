@@ -35,7 +35,6 @@ Require-Bundle: org.eclipse.xtext;bundle-version="[2.7.0,2.11.0)";visibility:=re
  org.eclipse.emf.transaction,
  fr.inria.diverse.k3.al.annotationprocessor.plugin,
  fr.inria.diverse.event.commons.model;bundle-version="2.3.0",
- fr.inria.diverse.trace.plugin.generator;bundle-version="2.3.0",
  fr.inria.diverse.commons.eclipse.pde;bundle-version="1.0.2"
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib

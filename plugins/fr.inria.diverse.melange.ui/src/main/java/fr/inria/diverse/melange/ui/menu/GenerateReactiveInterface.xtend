@@ -17,7 +17,7 @@ import org.eclipse.ui.handlers.HandlerUtil
 import org.eclipse.xtext.resource.DerivedStateAwareResource
 import org.eclipse.xtext.ui.resource.XtextResourceSetProvider
 
-class GenerateReactiveInterfaces extends AbstractHandler {
+class GenerateReactiveInterface extends AbstractHandler {
 	@Inject MelangeBuilder builder
 	@Inject XtextResourceSetProvider rsProvider
 	private static final Logger log = Logger.getLogger(MelangeBuilder)
@@ -34,13 +34,14 @@ class GenerateReactiveInterfaces extends AbstractHandler {
 					val rs = rsProvider.get(project)
 					val res = rs.getResource(URI::createPlatformResourceURI(resource.fullPath.toString, true), true) as DerivedStateAwareResource
 
-					builder.generateInterfaces(res, project, monitor)
+					builder.generateReactiveInterface(res, project, monitor)
 				}
 			})
 		} catch (InvocationTargetException e) {
 			log.error("Error while generating", e)
+			throw e // forward  error in order to be able to test it
 		} catch (InterruptedException e) {
-			log.error("Error while generating", e)
+			log.error("Generation was interrupted", e)
 		}
 
 		return null

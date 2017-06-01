@@ -44,7 +44,6 @@ import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmVisibility
 import org.eclipse.xtext.xbase.XBooleanLiteral
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
-import fr.inria.diverse.event.commons.model.arbiter.ArbiterPackage
 
 /**
  * Infers the minimal Ecore file (an {@link EPackage}) corresponding to the
@@ -250,26 +249,20 @@ class EventExtensions {
 		stepPropertySpecificClass = EcoreFactory.eINSTANCE.createEClass => [
 			name = l.name + "StepProperty"
 			abstract = true
-			ESuperTypes += PropertyPackage.Literals.STEP_PROPERTY
+			val typeParameter = EcoreFactory.eINSTANCE.createETypeParameter => [
+				name = "T"
+			]
+			ETypeParameters += typeParameter
+			EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = PropertyPackage.Literals.STEP_PROPERTY
+				ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+					ETypeParameter = typeParameter
+				]
+			]
 			ESuperTypes += propertySpecificClass
 		]
 		
-		allStepEOperations.forEach[op|
-			val stepPropertyClass = EcoreFactory.eINSTANCE.createEClass
-			pkg.EClassifiers += stepPropertyClass
-			stepPropertyClass.name = op.EContainingClass.name + op.name.toFirstUpper + "Property"
-			stepPropertyClass.ESuperTypes += stepPropertySpecificClass
-			val getOperationEOperation = EcoreFactory.eINSTANCE.createEOperation
-			val getOperationAnnotation = EcoreFactory.eINSTANCE.createEAnnotation
-			getOperationEOperation.EAnnotations.add(getOperationAnnotation)
-			getOperationEOperation.name = "getOperation"
-			getOperationEOperation.lowerBound = 0
-			getOperationEOperation.upperBound = 1
-			getOperationEOperation.EType = EcorePackage.Literals.EOPERATION
-			getOperationAnnotation.source = GenModelPackage.eNS_URI
-			getOperationAnnotation.details.put("body", op.stringOperationLiteral)
-			stepPropertyClass.EOperations += getOperationEOperation
-		]
+		allStepEOperations.forEach[op|op.generateStepProperty]
 		
 		pkg.EClassifiers += statePropertySpecificClass
 		pkg.EClassifiers += stepPropertySpecificClass
@@ -374,7 +367,7 @@ class EventExtensions {
 		arbiterTransitionClass.name = l.name + "ArbiterTransition"
 		
 		arbiterClass.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
-			EClassifier = ArbiterPackage.Literals.ARBITER
+			EClassifier = ScenarioPackage.Literals.ARBITER
 			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
 				EClassifier = propertySpecificClass
 			]
@@ -387,7 +380,7 @@ class EventExtensions {
 		]
 		
 		arbiterStateClass.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
-			EClassifier = ArbiterPackage.Literals.STATE
+			EClassifier = ScenarioPackage.Literals.ARBITER_STATE
 			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
 				EClassifier = propertySpecificClass
 			]
@@ -397,7 +390,7 @@ class EventExtensions {
 		]
 		
 		arbiterTransitionClass.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
-			EClassifier = ArbiterPackage.Literals.TRANSITION
+			EClassifier = ScenarioPackage.Literals.ARBITER_TRANSITION
 			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
 				EClassifier = propertySpecificClass
 			]
@@ -409,6 +402,36 @@ class EventExtensions {
 		val res = resSet.createResource(URI.createPlatformResourceURI(l.externalRuntimeName+".scenario/model/"+l.name+"Scenario.ecore", true))
 		res.contents += pkg
 		res.save(null)
+	}
+	
+	def private void generateStepProperty(EOperation op) {
+		val stepPropertyClass = EcoreFactory.eINSTANCE.createEClass
+			pkg.EClassifiers += stepPropertyClass
+			stepPropertyClass.name = op.EContainingClass.name + op.name.toFirstUpper + "Property"
+			stepPropertyClass.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = stepPropertySpecificClass
+				ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+					val targetClassifier = op.EContainingClass
+					EClassifier = targetClassifier
+					// Creating the <Target>Reference class if it does not exist yet
+					targetClassifier.elementReferenceClass
+					// Creating the <Target>Provider class if it does not exist yet
+					targetClassifier.elementProviderClass
+					// Creating the <Target>Query class if it does not exist yet
+					targetClassifier.elementQueryClass
+				]
+			]
+			
+			val getOperationEOperation = EcoreFactory.eINSTANCE.createEOperation
+			val getOperationAnnotation = EcoreFactory.eINSTANCE.createEAnnotation
+			getOperationEOperation.EAnnotations.add(getOperationAnnotation)
+			getOperationEOperation.name = "getOperation"
+			getOperationEOperation.lowerBound = 0
+			getOperationEOperation.upperBound = 1
+			getOperationEOperation.EType = EcorePackage.Literals.EOPERATION
+			getOperationAnnotation.source = GenModelPackage.eNS_URI
+			getOperationAnnotation.details.put("body", op.stringOperationLiteral)
+			stepPropertyClass.EOperations += getOperationEOperation
 	}
 	
 	def private void generateInputEvent(JvmOperation op, String eventName) {
