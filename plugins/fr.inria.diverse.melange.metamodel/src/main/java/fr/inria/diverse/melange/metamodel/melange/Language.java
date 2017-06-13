@@ -32,6 +32,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getEcl <em>Ecl</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getXmof <em>Xmof</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getFileExtension <em>File Extension</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.Language#getAnnotations <em>Annotations</em>}</li>
  * </ul>
  *
  * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getLanguage()
@@ -414,5 +415,21 @@ public interface Language extends NamedElement {
 	 * @generated
 	 */
 	void setFileExtension(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Annotations</b></em>' containment reference list.
+	 * The list contents are of type {@link fr.inria.diverse.melange.metamodel.melange.Annotation}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Annotations</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Annotations</em>' containment reference list.
+	 * @see fr.inria.diverse.melange.metamodel.melange.MelangePackage#getLanguage_Annotations()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Annotation> getAnnotations();
 
 } // Language

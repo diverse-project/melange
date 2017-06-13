@@ -197,15 +197,17 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cFileExtensionAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
 		private final RuleCall cFileExtensionSTRINGTerminalRuleCall_6_1_0 = (RuleCall)cFileExtensionAssignment_6_1.eContents().get(0);
 		private final Group cGroup_7 = (Group)cUnorderedGroup.eContents().get(7);
-		private final Group cGroup_7_0 = (Group)cGroup_7.eContents().get(0);
-		private final Keyword cExactTypeKeyword_7_0_0 = (Keyword)cGroup_7_0.eContents().get(0);
-		private final Assignment cExactTypeNameAssignment_7_0_1 = (Assignment)cGroup_7_0.eContents().get(1);
-		private final RuleCall cExactTypeNameValidIDParserRuleCall_7_0_1_0 = (RuleCall)cExactTypeNameAssignment_7_0_1.eContents().get(0);
-		private final Group cGroup_7_0_2 = (Group)cGroup_7_0.eContents().get(2);
-		private final Keyword cUriKeyword_7_0_2_0 = (Keyword)cGroup_7_0_2.eContents().get(0);
-		private final Assignment cExactTypeUriAssignment_7_0_2_1 = (Assignment)cGroup_7_0_2.eContents().get(1);
-		private final RuleCall cExactTypeUriSTRINGTerminalRuleCall_7_0_2_1_0 = (RuleCall)cExactTypeUriAssignment_7_0_2_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_7_1 = (Keyword)cGroup_7.eContents().get(1);
+		private final Keyword cExactTypeKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
+		private final Assignment cExactTypeNameAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
+		private final RuleCall cExactTypeNameValidIDParserRuleCall_7_1_0 = (RuleCall)cExactTypeNameAssignment_7_1.eContents().get(0);
+		private final Group cGroup_7_2 = (Group)cGroup_7.eContents().get(2);
+		private final Keyword cUriKeyword_7_2_0 = (Keyword)cGroup_7_2.eContents().get(0);
+		private final Assignment cExactTypeUriAssignment_7_2_1 = (Assignment)cGroup_7_2.eContents().get(1);
+		private final RuleCall cExactTypeUriSTRINGTerminalRuleCall_7_2_1_0 = (RuleCall)cExactTypeUriAssignment_7_2_1.eContents().get(0);
+		private final Group cGroup_8 = (Group)cUnorderedGroup.eContents().get(8);
+		private final Assignment cAnnotationsAssignment_8_0 = (Assignment)cGroup_8.eContents().get(0);
+		private final RuleCall cAnnotationsAnnotationParserRuleCall_8_0_0 = (RuleCall)cAnnotationsAssignment_8_0.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_8_1 = (Keyword)cGroup_8.eContents().get(1);
 		
 		//Language:
 		//	'language' name=ValidID ('inherits' operators+=Inherit ("," operators+=Inherit)*)? ('implements'
@@ -215,7 +217,8 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		//	operators+=Operator* & ('resource' resourceType=ResourceType (=> 'uri' resourceUri=STRING | 'setup'
 		//	xtextSetupRef=JvmTypeReference)?)? & ('xtext' xtext+=STRING (',' xtext+=STRING)*)? & ('sirius' sirius+=STRING (','
 		//	sirius+=STRING)*)? & ('ecl' ecl+=STRING (',' ecl+=STRING)*)? & ('xmof' xmof=STRING)? & ('fileExtension'
-		//	fileExtension=STRING)? & ('exactType' exactTypeName=ValidID (=> 'uri' exactTypeUri=STRING)?)?
+		//	fileExtension=STRING)? & ('exactType' exactTypeName=ValidID (=> 'uri' exactTypeUri=STRING)?)? &
+		//	annotations+=Annotation*
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 
@@ -225,7 +228,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		//resourceType=ResourceType (=> 'uri' resourceUri=STRING | 'setup' xtextSetupRef=JvmTypeReference)?)? & ('xtext'
 		//xtext+=STRING (',' xtext+=STRING)*)? & ('sirius' sirius+=STRING (',' sirius+=STRING)*)? & ('ecl' ecl+=STRING (','
 		//ecl+=STRING)*)? & ('xmof' xmof=STRING)? & ('fileExtension' fileExtension=STRING)? & ('exactType' exactTypeName=ValidID
-		//(=> 'uri' exactTypeUri=STRING)?)? '}'
+		//(=> 'uri' exactTypeUri=STRING)?)? & annotations+=Annotation* '}'
 		public UnorderedGroup getUnorderedGroup() { return cUnorderedGroup; }
 
 		//'language' name=ValidID ('inherits' operators+=Inherit ("," operators+=Inherit)*)? ('implements'
@@ -470,35 +473,77 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		//STRING
 		public RuleCall getFileExtensionSTRINGTerminalRuleCall_6_1_0() { return cFileExtensionSTRINGTerminalRuleCall_6_1_0; }
 
-		//('exactType' exactTypeName=ValidID (=> 'uri' exactTypeUri=STRING)?)? '}'
+		//('exactType' exactTypeName=ValidID (=> 'uri' exactTypeUri=STRING)?)?
 		public Group getGroup_7() { return cGroup_7; }
 
-		//('exactType' exactTypeName=ValidID (=> 'uri' exactTypeUri=STRING)?)?
-		public Group getGroup_7_0() { return cGroup_7_0; }
-
 		//'exactType'
-		public Keyword getExactTypeKeyword_7_0_0() { return cExactTypeKeyword_7_0_0; }
+		public Keyword getExactTypeKeyword_7_0() { return cExactTypeKeyword_7_0; }
 
 		//exactTypeName=ValidID
-		public Assignment getExactTypeNameAssignment_7_0_1() { return cExactTypeNameAssignment_7_0_1; }
+		public Assignment getExactTypeNameAssignment_7_1() { return cExactTypeNameAssignment_7_1; }
 
 		//ValidID
-		public RuleCall getExactTypeNameValidIDParserRuleCall_7_0_1_0() { return cExactTypeNameValidIDParserRuleCall_7_0_1_0; }
+		public RuleCall getExactTypeNameValidIDParserRuleCall_7_1_0() { return cExactTypeNameValidIDParserRuleCall_7_1_0; }
 
 		//(=> 'uri' exactTypeUri=STRING)?
-		public Group getGroup_7_0_2() { return cGroup_7_0_2; }
+		public Group getGroup_7_2() { return cGroup_7_2; }
 
 		//=> 'uri'
-		public Keyword getUriKeyword_7_0_2_0() { return cUriKeyword_7_0_2_0; }
+		public Keyword getUriKeyword_7_2_0() { return cUriKeyword_7_2_0; }
 
 		//exactTypeUri=STRING
-		public Assignment getExactTypeUriAssignment_7_0_2_1() { return cExactTypeUriAssignment_7_0_2_1; }
+		public Assignment getExactTypeUriAssignment_7_2_1() { return cExactTypeUriAssignment_7_2_1; }
 
 		//STRING
-		public RuleCall getExactTypeUriSTRINGTerminalRuleCall_7_0_2_1_0() { return cExactTypeUriSTRINGTerminalRuleCall_7_0_2_1_0; }
+		public RuleCall getExactTypeUriSTRINGTerminalRuleCall_7_2_1_0() { return cExactTypeUriSTRINGTerminalRuleCall_7_2_1_0; }
+
+		//annotations+=Annotation* '}'
+		public Group getGroup_8() { return cGroup_8; }
+
+		//annotations+=Annotation*
+		public Assignment getAnnotationsAssignment_8_0() { return cAnnotationsAssignment_8_0; }
+
+		//Annotation
+		public RuleCall getAnnotationsAnnotationParserRuleCall_8_0_0() { return cAnnotationsAnnotationParserRuleCall_8_0_0; }
 
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_7_1() { return cRightCurlyBracketKeyword_7_1; }
+		public Keyword getRightCurlyBracketKeyword_8_1() { return cRightCurlyBracketKeyword_8_1; }
+	}
+
+	public class AnnotationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.inria.diverse.melange.Melange.Annotation");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cAnnotationKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cKeyAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cKeySTRINGTerminalRuleCall_1_0 = (RuleCall)cKeyAssignment_1.eContents().get(0);
+		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cValueAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cValueSTRINGTerminalRuleCall_3_0 = (RuleCall)cValueAssignment_3.eContents().get(0);
+		
+		//Annotation:
+		//	'annotation' key=STRING ":" value=STRING;
+		@Override public ParserRule getRule() { return rule; }
+
+		//'annotation' key=STRING ":" value=STRING
+		public Group getGroup() { return cGroup; }
+
+		//'annotation'
+		public Keyword getAnnotationKeyword_0() { return cAnnotationKeyword_0; }
+
+		//key=STRING
+		public Assignment getKeyAssignment_1() { return cKeyAssignment_1; }
+
+		//STRING
+		public RuleCall getKeySTRINGTerminalRuleCall_1_0() { return cKeySTRINGTerminalRuleCall_1_0; }
+
+		//":"
+		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
+
+		//value=STRING
+		public Assignment getValueAssignment_3() { return cValueAssignment_3; }
+
+		//STRING
+		public RuleCall getValueSTRINGTerminalRuleCall_3_0() { return cValueSTRINGTerminalRuleCall_3_0; }
 	}
 
 	public class ExternalLanguageElements extends AbstractParserRuleElementFinder {
@@ -1580,6 +1625,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	private final ElementElements pElement;
 	private final TransformationDeclElements pTransformationDecl;
 	private final LanguageElements pLanguage;
+	private final AnnotationElements pAnnotation;
 	private final ExternalLanguageElements pExternalLanguage;
 	private final ResourceTypeElements eResourceType;
 	private final EcoreModelTypeElements pEcoreModelType;
@@ -1615,6 +1661,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		this.pElement = new ElementElements();
 		this.pTransformationDecl = new TransformationDeclElements();
 		this.pLanguage = new LanguageElements();
+		this.pAnnotation = new AnnotationElements();
 		this.pExternalLanguage = new ExternalLanguageElements();
 		this.eResourceType = new ResourceTypeElements();
 		this.pEcoreModelType = new EcoreModelTypeElements();
@@ -1705,7 +1752,8 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	//	operators+=Operator* & ('resource' resourceType=ResourceType (=> 'uri' resourceUri=STRING | 'setup'
 	//	xtextSetupRef=JvmTypeReference)?)? & ('xtext' xtext+=STRING (',' xtext+=STRING)*)? & ('sirius' sirius+=STRING (','
 	//	sirius+=STRING)*)? & ('ecl' ecl+=STRING (',' ecl+=STRING)*)? & ('xmof' xmof=STRING)? & ('fileExtension'
-	//	fileExtension=STRING)? & ('exactType' exactTypeName=ValidID (=> 'uri' exactTypeUri=STRING)?)?
+	//	fileExtension=STRING)? & ('exactType' exactTypeName=ValidID (=> 'uri' exactTypeUri=STRING)?)? &
+	//	annotations+=Annotation*
 	//	'}';
 	public LanguageElements getLanguageAccess() {
 		return pLanguage;
@@ -1713,6 +1761,16 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getLanguageRule() {
 		return getLanguageAccess().getRule();
+	}
+
+	//Annotation:
+	//	'annotation' key=STRING ":" value=STRING;
+	public AnnotationElements getAnnotationAccess() {
+		return pAnnotation;
+	}
+	
+	public ParserRule getAnnotationRule() {
+		return getAnnotationAccess().getRule();
 	}
 
 	//ExternalLanguage:
