@@ -29,8 +29,13 @@ Language:
 		('ecl' ecl+=STRING (',' ecl+=STRING)* )? &
 		('xmof' xmof=STRING)? &
 		('fileExtension' fileExtension=STRING)? &
-		('exactType' exactTypeName = ValidID (=> 'uri' exactTypeUri = STRING)?)?
+		('exactType' exactTypeName = ValidID (=> 'uri' exactTypeUri = STRING)?)? &
+		annotations+=(Annotation)*
 	'}'
+;
+
+Annotation:
+	'annotation' key=STRING ":" value=STRING
 ;
 
 ExternalLanguage:

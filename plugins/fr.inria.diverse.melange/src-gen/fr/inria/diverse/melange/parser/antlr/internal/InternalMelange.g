@@ -768,14 +768,14 @@ ruleLanguage returns [EObject current=null]
 					{ 
 	 				  getUnorderedGroupHelper().select(grammarAccess.getLanguageAccess().getUnorderedGroup(), 7);
 	 				}
-					({true}?=>((	otherlv_39='exactType' 
+					({true}?=>(	otherlv_39='exactType' 
     {
-    	newLeafNode(otherlv_39, grammarAccess.getLanguageAccess().getExactTypeKeyword_7_0_0());
+    	newLeafNode(otherlv_39, grammarAccess.getLanguageAccess().getExactTypeKeyword_7_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getLanguageAccess().getExactTypeNameValidIDParserRuleCall_7_0_1_0()); 
+	        newCompositeNode(grammarAccess.getLanguageAccess().getExactTypeNameValidIDParserRuleCall_7_1_0()); 
 	    }
 		lv_exactTypeName_40_0=ruleValidID		{
 	        if ($current==null) {
@@ -793,13 +793,13 @@ ruleLanguage returns [EObject current=null]
 )(((	'uri' 
 )=>	otherlv_41='uri' 
     {
-    	newLeafNode(otherlv_41, grammarAccess.getLanguageAccess().getUriKeyword_7_0_2_0());
+    	newLeafNode(otherlv_41, grammarAccess.getLanguageAccess().getUriKeyword_7_2_0());
     }
 )(
 (
 		lv_exactTypeUri_42_0=RULE_STRING
 		{
-			newLeafNode(lv_exactTypeUri_42_0, grammarAccess.getLanguageAccess().getExactTypeUriSTRINGTerminalRuleCall_7_0_2_1_0()); 
+			newLeafNode(lv_exactTypeUri_42_0, grammarAccess.getLanguageAccess().getExactTypeUriSTRINGTerminalRuleCall_7_2_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -813,9 +813,39 @@ ruleLanguage returns [EObject current=null]
 	    }
 
 )
-))?)?	otherlv_43='}' 
+))?))
+					{ 
+	 				  getUnorderedGroupHelper().returnFromSelection(grammarAccess.getLanguageAccess().getUnorderedGroup());
+	 				}
+ 				)
+			)  |
+
+			( 
+				{getUnorderedGroupHelper().canSelect(grammarAccess.getLanguageAccess().getUnorderedGroup(), 8)}?=>(
+					{ 
+	 				  getUnorderedGroupHelper().select(grammarAccess.getLanguageAccess().getUnorderedGroup(), 8);
+	 				}
+					({true}?=>((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getLanguageAccess().getAnnotationsAnnotationParserRuleCall_8_0_0()); 
+	    }
+		lv_annotations_43_0=ruleAnnotation		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getLanguageRule());
+	        }
+       		add(
+       			$current, 
+       			"annotations",
+        		lv_annotations_43_0, 
+        		"fr.inria.diverse.melange.Melange.Annotation");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)*	otherlv_44='}' 
     {
-    	newLeafNode(otherlv_43, grammarAccess.getLanguageAccess().getRightCurlyBracketKeyword_7_1());
+    	newLeafNode(otherlv_44, grammarAccess.getLanguageAccess().getRightCurlyBracketKeyword_8_1());
     }
 ))
 					{ 
@@ -833,6 +863,71 @@ ruleLanguage returns [EObject current=null]
 	}
 
 )
+;
+
+
+
+
+
+// Entry rule entryRuleAnnotation
+entryRuleAnnotation returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getAnnotationRule()); }
+	 iv_ruleAnnotation=ruleAnnotation 
+	 { $current=$iv_ruleAnnotation.current; } 
+	 EOF 
+;
+
+// Rule Annotation
+ruleAnnotation returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='annotation' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getAnnotationAccess().getAnnotationKeyword_0());
+    }
+(
+(
+		lv_key_1_0=RULE_STRING
+		{
+			newLeafNode(lv_key_1_0, grammarAccess.getAnnotationAccess().getKeySTRINGTerminalRuleCall_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getAnnotationRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"key",
+        		lv_key_1_0, 
+        		"org.eclipse.xtext.xbase.Xtype.STRING");
+	    }
+
+)
+)	otherlv_2=':' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getAnnotationAccess().getColonKeyword_2());
+    }
+(
+(
+		lv_value_3_0=RULE_STRING
+		{
+			newLeafNode(lv_value_3_0, grammarAccess.getAnnotationAccess().getValueSTRINGTerminalRuleCall_3_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getAnnotationRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"value",
+        		lv_value_3_0, 
+        		"org.eclipse.xtext.xbase.Xtype.STRING");
+	    }
+
+)
+))
 ;
 
 

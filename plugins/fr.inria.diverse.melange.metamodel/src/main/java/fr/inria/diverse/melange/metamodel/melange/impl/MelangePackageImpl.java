@@ -2,6 +2,7 @@
  */
 package fr.inria.diverse.melange.metamodel.melange.impl;
 
+import fr.inria.diverse.melange.metamodel.melange.Annotation;
 import fr.inria.diverse.melange.metamodel.melange.Aspect;
 import fr.inria.diverse.melange.metamodel.melange.ClassBinding;
 import fr.inria.diverse.melange.metamodel.melange.Element;
@@ -211,6 +212,13 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * @generated
 	 */
 	private EClass externalLanguageEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass annotationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -974,6 +982,15 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getLanguage_Annotations() {
+		return (EReference)languageEClass.getEStructuralFeatures().get(17);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getWeave() {
 		return weaveEClass;
 	}
@@ -1021,6 +1038,33 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 */
 	public EClass getExternalLanguage() {
 		return externalLanguageEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAnnotation() {
+		return annotationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAnnotation_Key() {
+		return (EAttribute)annotationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAnnotation_Value() {
+		return (EAttribute)annotationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1155,6 +1199,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		createEAttribute(languageEClass, LANGUAGE__ECL);
 		createEAttribute(languageEClass, LANGUAGE__XMOF);
 		createEAttribute(languageEClass, LANGUAGE__FILE_EXTENSION);
+		createEReference(languageEClass, LANGUAGE__ANNOTATIONS);
 
 		weaveEClass = createEClass(WEAVE);
 		createEReference(weaveEClass, WEAVE__ASPECT_TYPE_REF);
@@ -1164,6 +1209,10 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
 
 		externalLanguageEClass = createEClass(EXTERNAL_LANGUAGE);
+
+		annotationEClass = createEClass(ANNOTATION);
+		createEAttribute(annotationEClass, ANNOTATION__KEY);
+		createEAttribute(annotationEClass, ANNOTATION__VALUE);
 
 		// Create enums
 		resourceTypeEEnum = createEEnum(RESOURCE_TYPE);
@@ -1316,6 +1365,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		initEAttribute(getLanguage_Ecl(), ecorePackage.getEString(), "ecl", null, 0, -1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLanguage_Xmof(), ecorePackage.getEString(), "xmof", null, 0, 1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLanguage_FileExtension(), ecorePackage.getEString(), "fileExtension", null, 0, 1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLanguage_Annotations(), this.getAnnotation(), null, "annotations", null, 0, -1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(weaveEClass, Weave.class, "Weave", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWeave_AspectTypeRef(), theTypesPackage.getJvmTypeReference(), null, "aspectTypeRef", null, 0, 1, Weave.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1325,6 +1375,10 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(externalLanguageEClass, ExternalLanguage.class, "ExternalLanguage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(annotationEClass, Annotation.class, "Annotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAnnotation_Key(), theEcorePackage.getEString(), "key", null, 0, 1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAnnotation_Value(), theEcorePackage.getEString(), "value", null, 0, 1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(resourceTypeEEnum, ResourceType.class, "ResourceType");

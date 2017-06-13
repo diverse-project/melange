@@ -4,6 +4,7 @@
 package fr.inria.diverse.melange.serializer;
 
 import com.google.inject.Inject;
+import fr.inria.diverse.melange.metamodel.melange.Annotation;
 import fr.inria.diverse.melange.metamodel.melange.ClassBinding;
 import fr.inria.diverse.melange.metamodel.melange.ExternalLanguage;
 import fr.inria.diverse.melange.metamodel.melange.Import;
@@ -90,6 +91,9 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == MelangePackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case MelangePackage.ANNOTATION:
+				sequence_Annotation(context, (Annotation) semanticObject); 
+				return; 
 			case MelangePackage.CLASS_BINDING:
 				sequence_ClassMapping(context, (ClassBinding) semanticObject); 
 				return; 
@@ -398,6 +402,27 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     Annotation returns Annotation
+	 *
+	 * Constraint:
+	 *     (key=STRING value=STRING)
+	 */
+	protected void sequence_Annotation(ISerializationContext context, Annotation semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MelangePackage.Literals.ANNOTATION__KEY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MelangePackage.Literals.ANNOTATION__KEY));
+			if (transientValues.isValueTransient(semanticObject, MelangePackage.Literals.ANNOTATION__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MelangePackage.Literals.ANNOTATION__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAnnotationAccess().getKeySTRINGTerminalRuleCall_1_0(), semanticObject.getKey());
+		feeder.accept(grammarAccess.getAnnotationAccess().getValueSTRINGTerminalRuleCall_3_0(), semanticObject.getValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Operator returns Weave
 	 *     Weave returns Weave
 	 *
@@ -540,7 +565,7 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         (xmof=STRING | fileExtension=STRING)? 
+	 *         (xmof=STRING | fileExtension=STRING | annotations+=Annotation)? 
 	 *         (xtext+=STRING xtext+=STRING*)? 
 	 *         (sirius+=STRING sirius+=STRING*)? 
 	 *         (ecl+=STRING ecl+=STRING*)? 
