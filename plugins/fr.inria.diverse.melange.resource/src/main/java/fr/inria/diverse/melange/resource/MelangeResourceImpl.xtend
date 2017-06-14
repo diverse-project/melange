@@ -1,23 +1,24 @@
 package fr.inria.diverse.melange.resource
 
 import fr.inria.diverse.melange.adapters.EObjectAdapter
+import fr.inria.diverse.melange.metamodel.melange.Language
+import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
+import fr.inria.diverse.melange.resource.MelangeRegistry.LanguageDescriptor
+import fr.inria.diverse.melange.resource.loader.ModelCopier
+import java.util.HashSet
+import java.util.Set
+import org.eclipse.core.runtime.Platform
+import org.eclipse.emf.common.notify.Notification
+import org.eclipse.emf.common.notify.impl.AdapterImpl
 import org.eclipse.emf.common.util.AbstractTreeIterator
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.xtend.lib.annotations.Delegate
-import fr.inria.diverse.melange.resource.MelangeRegistry.LanguageDescriptor
-import org.eclipse.emf.common.notify.Notification
-import fr.inria.diverse.melange.resource.loader.ModelCopier
-import org.eclipse.emf.common.notify.impl.AdapterImpl
-import org.eclipse.core.runtime.Platform
-import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
-import fr.inria.diverse.melange.metamodel.melange.Language
-import java.util.Set
-import java.util.HashSet
 import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.xtend.lib.annotations.Delegate
 
 /**
  * This class wraps a resource and shift the types of the contained
@@ -32,12 +33,15 @@ class MelangeResourceImpl implements MelangeResource
 	Resource contentResource
 	
 	new(URI uri) {
-		// FIXME: Retrieve the currently-used one
-		val rs = new ResourceSetImpl
+		// FIXME: Retrieve the currently-used resourceset
+		this(new ResourceSetImpl,uri)
+	}
+
+	new (ResourceSet rs, URI uri) {
 		val query = uri.query
 		val SEPARATOR = "&|;"
 		val pairs = query?.split(SEPARATOR)
-		
+
 		expectedMt = pairs?.findFirst[startsWith("mt=")]?.substring(3)
 		expectedLang = pairs?.findFirst[startsWith("lang=")]?.substring(5)
 
@@ -100,7 +104,7 @@ class MelangeResourceImpl implements MelangeResource
 				return adapterCls.newInstance => [
 					adaptee = adaptedResource
 					parent = this
-					URI = org.eclipse.emf.common.util.URI.createURI("modelAsAdapted")
+					URI = URI::createURI("modelAsAdapted")
 					
 					// Emf Adapters on the ResourceAdapter can catch
 					// Notifications from the adaptee 
@@ -204,7 +208,7 @@ class MelangeResourceImpl implements MelangeResource
 	
 	private def Set<EPackage> loadXmofMM(String targetXmofURI) {
 		val expectedPkg = new HashSet<EPackage>()
-		val uri = org.eclipse.emf.common.util.URI.createURI(targetXmofURI.replaceFirst("platform:/resource","platform:/plugin"), true)
+		val uri = URI::createURI(targetXmofURI.replaceFirst("platform:/resource","platform:/plugin"), true)
 		val xmofRes = (new ResourceSetImpl).getResource(uri, true)
 		val expectedPkgCandidate = xmofRes.contents.filter(EPackage).toSet
 		expectedPkgCandidate.forEach[pkg |
@@ -250,7 +254,7 @@ class MelangeResourceImpl implements MelangeResource
 				val melangeFilePath = urls.nextElement.file
 				urls.nextElement.file
 				val rs = new ResourceSetImpl
-				val uri = org.eclipse.emf.common.util.URI.createURI("platform:/plugin/"+language.contributor.name+"/"+melangeFilePath)  
+				val uri = URI::createURI("platform:/plugin/"+language.contributor.name+"/"+melangeFilePath)  
 				val res = rs.getResource(uri, true) as Resource.Internal
 				val root = res.contents.head as ModelTypingSpace
 				val lang = root.elements.filter(Language).findFirst[languageID.endsWith("."+name)]
