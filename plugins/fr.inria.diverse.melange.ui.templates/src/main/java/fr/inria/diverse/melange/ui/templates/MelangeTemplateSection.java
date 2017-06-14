@@ -18,7 +18,7 @@ import java.util.*;
 import org.eclipse.core.runtime.*;
 import org.osgi.framework.Bundle;
 
-import fr.inria.diverse.commons.eclipse.pde.wizards.pages.pde.ui.templates.OptionTemplateSection;
+import org.gemoc.commons.eclipse.pde.wizards.pages.pde.ui.templates.OptionTemplateSection;
 
 /**
  * Common TemplateSection for templates applicable to K3 projects
