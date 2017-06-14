@@ -73,6 +73,8 @@ class MelangeResourceImpl implements MelangeResource
 	}
 
 	override getEObject(String uriFragment) {
+		if (contentResource === null)
+			doAdapt()
 		return contentResource.getEObject(uriFragment)
 	}
 
