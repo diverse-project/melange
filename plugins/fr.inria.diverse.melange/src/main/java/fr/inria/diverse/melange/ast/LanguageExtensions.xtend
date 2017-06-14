@@ -17,7 +17,6 @@ import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.PackageBinding
 import fr.inria.diverse.melange.metamodel.melange.Slice
 import fr.inria.diverse.melange.metamodel.melange.Weave
-import fr.inria.diverse.melange.utils.AspectCopier
 import fr.inria.diverse.melange.utils.AspectRenamer
 import fr.inria.diverse.melange.utils.RenamingRuleManager
 import java.util.List
@@ -71,7 +70,6 @@ class LanguageExtensions
 	@Inject extension EclipseProjectHelper
 	@Inject extension IQualifiedNameProvider
 	@Inject extension LanguageProcessor
-	@Inject AspectCopier copier
 	@Inject AspectCopier2 copier2
 	@Inject AspectRenamer renamer
 	@Inject JvmTypesBuilder typesBuilder
