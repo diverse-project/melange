@@ -23,12 +23,12 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
-import fr.inria.diverse.commons.eclipse.pde.manifest.ManifestChanger;
-import fr.inria.diverse.commons.eclipse.pde.wizards.pages.pde.AbstractNewProjectWizardWithTemplates;
-import fr.inria.diverse.commons.eclipse.pde.wizards.pages.pde.ui.IProjectContentWizard;
-import fr.inria.diverse.commons.eclipse.pde.wizards.pages.pde.ui.ProjectTemplateApplicationOperation;
-import fr.inria.diverse.commons.eclipse.resources.IFileUtils;
-import fr.inria.diverse.commons.eclipse.resources.IFolderUtils;
+import org.gemoc.commons.eclipse.pde.manifest.ManifestChanger;
+import org.gemoc.commons.eclipse.pde.wizards.pages.pde.AbstractNewProjectWizardWithTemplates;
+import org.gemoc.commons.eclipse.pde.wizards.pages.pde.ui.IProjectContentWizard;
+import org.gemoc.commons.eclipse.pde.wizards.pages.pde.ui.ProjectTemplateApplicationOperation;
+import org.gemoc.commons.eclipse.core.resources.IFileUtils;
+import org.gemoc.commons.eclipse.core.resources.IFolderUtils;
 import fr.inria.diverse.melange.ui.MelangeUiModule;
 import fr.inria.diverse.melange.ui.internal.MelangeActivator;
 import fr.inria.diverse.melange.ui.wizards.pages.NewMelangeProjectWizardFields;
