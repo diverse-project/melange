@@ -32,7 +32,8 @@ Require-Bundle: org.eclipse.xtext;bundle-version="[2.7.0,2.11.0)";visibility:=re
  fr.inria.diverse.melange.resource;bundle-version="0.1.0",
  org.eclipse.emf.transaction,
  fr.inria.diverse.k3.al.annotationprocessor.plugin,
- org.gemoc.commons.eclipse.pde;bundle-version="2.3.0"
+ org.gemoc.commons.eclipse.pde;bundle-version="2.3.0",
+ org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
@@ -53,3 +54,4 @@ Export-Package: fr.inria.diverse.melange,
  fr.inria.diverse.melange.typesystem,
  fr.inria.diverse.melange.utils,
  fr.inria.diverse.melange.validation
+
