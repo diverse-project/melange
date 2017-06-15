@@ -28,10 +28,10 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.BundleException;
 
-import org.gemoc.commons.eclipse.pde.manifest.ManifestChanger;
-import org.gemoc.commons.eclipse.pde.wizards.pages.pde.ui.BaseProjectWizardFields;
-import org.gemoc.commons.eclipse.pde.wizards.pages.pde.ui.templates.AbstractStringWithButtonOption;
-import org.gemoc.commons.eclipse.pde.wizards.pages.pde.ui.templates.TemplateOption;
+import org.eclipse.gemoc.commons.eclipse.pde.manifest.ManifestChanger;
+import org.eclipse.gemoc.commons.eclipse.pde.wizards.pages.pde.ui.BaseProjectWizardFields;
+import org.eclipse.gemoc.commons.eclipse.pde.wizards.pages.pde.ui.templates.AbstractStringWithButtonOption;
+import org.eclipse.gemoc.commons.eclipse.pde.wizards.pages.pde.ui.templates.TemplateOption;
 import fr.inria.diverse.melange.ui.templates.Activator;
 import fr.inria.diverse.melange.ui.templates.IHelpContextIds;
 import fr.inria.diverse.melange.ui.templates.MelangeTemplateMessages;

@@ -23,10 +23,10 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
-import org.gemoc.commons.eclipse.pde.manifest.ManifestChanger;
-import org.gemoc.commons.eclipse.pde.wizards.pages.pde.AbstractNewProjectWizardWithTemplates;
-import org.gemoc.commons.eclipse.pde.wizards.pages.pde.ui.IProjectContentWizard;
-import org.gemoc.commons.eclipse.pde.wizards.pages.pde.ui.ProjectTemplateApplicationOperation;
+import org.eclipse.gemoc.commons.eclipse.pde.manifest.ManifestChanger;
+import org.eclipse.gemoc.commons.eclipse.pde.wizards.pages.pde.AbstractNewProjectWizardWithTemplates;
+import org.eclipse.gemoc.commons.eclipse.pde.wizards.pages.pde.ui.IProjectContentWizard;
+import org.eclipse.gemoc.commons.eclipse.pde.wizards.pages.pde.ui.ProjectTemplateApplicationOperation;
 import org.gemoc.commons.eclipse.core.resources.IFileUtils;
 import org.gemoc.commons.eclipse.core.resources.IFolderUtils;
 import fr.inria.diverse.melange.ui.MelangeUiModule;

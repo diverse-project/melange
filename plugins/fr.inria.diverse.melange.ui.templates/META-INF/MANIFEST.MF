@@ -8,7 +8,7 @@ Require-Bundle: org.eclipse.core.runtime,
  fr.inria.diverse.melange.ui,
  org.eclipse.core.resources,
  org.eclipse.emf.common.ui,
- org.gemoc.commons.eclipse.pde
+ org.eclipse.gemoc.commons.eclipse.pde
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: fr.inria.diverse.melange.ui.templates,

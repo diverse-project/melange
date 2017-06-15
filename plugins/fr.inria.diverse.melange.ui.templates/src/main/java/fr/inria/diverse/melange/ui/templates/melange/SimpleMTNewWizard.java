@@ -12,9 +12,9 @@
 package fr.inria.diverse.melange.ui.templates.melange;
 
 
-import org.gemoc.commons.eclipse.pde.wizards.pages.pde.ui.BaseProjectWizardFields;
-import org.gemoc.commons.eclipse.pde.wizards.pages.pde.ui.templates.ITemplateSection;
-import org.gemoc.commons.eclipse.pde.wizards.pages.pde.ui.templates.NewProjectTemplateWizard;
+import org.eclipse.gemoc.commons.eclipse.pde.wizards.pages.pde.ui.BaseProjectWizardFields;
+import org.eclipse.gemoc.commons.eclipse.pde.wizards.pages.pde.ui.templates.ITemplateSection;
+import org.eclipse.gemoc.commons.eclipse.pde.wizards.pages.pde.ui.templates.NewProjectTemplateWizard;
 import fr.inria.diverse.melange.ui.templates.MelangeTemplateMessages;
 
 public class SimpleMTNewWizard extends NewProjectTemplateWizard {

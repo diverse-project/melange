@@ -25,7 +25,7 @@ Require-Bundle: fr.inria.diverse.melange;visibility:=reexport,
  org.antlr.runtime,
  org.eclipse.e4.ui.di;bundle-version="1.0.0",
  fr.inria.diverse.melange.lib;bundle-version="0.1.0",
- org.gemoc.commons.eclipse.pde;visibility:=reexport
+ org.eclipse.gemoc.commons.eclipse.pde;visibility:=reexport
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

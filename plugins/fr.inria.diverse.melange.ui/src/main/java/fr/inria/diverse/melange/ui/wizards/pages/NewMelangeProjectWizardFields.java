@@ -2,7 +2,7 @@ package fr.inria.diverse.melange.ui.wizards.pages;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 
-import org.gemoc.commons.eclipse.pde.wizards.pages.pde.ui.BaseProjectWizardFields;
+import org.eclipse.gemoc.commons.eclipse.pde.wizards.pages.pde.ui.BaseProjectWizardFields;
 
 public class NewMelangeProjectWizardFields extends BaseProjectWizardFields {
 	
