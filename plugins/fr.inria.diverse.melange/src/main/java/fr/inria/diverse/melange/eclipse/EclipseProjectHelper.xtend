@@ -32,9 +32,9 @@ import org.eclipse.xtext.util.MergeableManifest
 import org.eclipse.core.resources.IProjectDescription
 import org.eclipse.core.resources.ICommand
 import org.eclipse.core.runtime.SubMonitor
-import org.gemoc.commons.eclipse.pde.classpath.ClasspathHelper
+import org.eclipse.gemoc.commons.eclipse.pde.classpath.ClasspathHelper
 import org.eclipse.jdt.core.IJavaProject
-import org.gemoc.commons.eclipse.pde.classpath.BuildPropertiesHelper
+import org.eclipse.gemoc.commons.eclipse.pde.classpath.BuildPropertiesHelper
 
 /**
  * A collection of utilities around Eclipse's APIs to manage the creation,
