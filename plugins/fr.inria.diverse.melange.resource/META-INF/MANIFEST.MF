@@ -14,7 +14,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: fr.inria.diverse.melange.resource,
  fr.inria.diverse.melange.resource.loader
-Bundle-ClassPath: lib/dozer-standalone.jar,
- .
+Bundle-ClassPath: .
 Bundle-Activator: fr.inria.diverse.melange.resource.Activator
 
