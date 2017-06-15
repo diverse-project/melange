@@ -33,7 +33,7 @@
 <repository location="http://download.eclipse.org/modeling/emf/transaction/updates/releases/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
-<unit id="org.eclipse.gemoc.commons.feature.feature.group" version="2.3.0.201706151205"/>
+<unit id="org.eclipse.gemoc.commons.feature.feature.group" version="0.0.0"/>
 <repository location="https://ci.inria.fr/gemoc/job/gemoc-studio_commons/lastSuccessfulBuild/artifact/commons/releng/org.eclipse.gemoc.commons.repository/target/repository/"/>
 </location>
 </locations>
