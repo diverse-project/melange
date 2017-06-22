@@ -17,6 +17,7 @@ import simplefsmtest.fsmmt.fsm.FSM
 import java.io.File
 import org.eclipse.emf.ecore.plugin.EcorePlugin
 import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.emf.ecore.resource.impl.URIMappingRegistryImpl
 
 class MultipleResourceTest
 {
@@ -47,10 +48,12 @@ class MultipleResourceTest
 	
 	@Test
 	def void testDowncast() {
+		URIMappingRegistryImpl.INSTANCE.put(URI.createURI("platform:/resource/fr.inria.diverse.melange.tests/tests-inputs/models/Simple3.fsm"),URI.createURI("file:tests-inputs/models/Simple3.fsm"));
+		URIMappingRegistryImpl.INSTANCE.put(URI.createURI("platform:/resource/fr.inria.diverse.melange.tests/tests-inputs/models/Simple2.fsm"),URI.createURI("file:tests-inputs/models/Simple2.fsm"));
+		URIMappingRegistryImpl.INSTANCE.put(URI.createURI("platform:/resource/fr.inria.diverse.melange.tests/tests-inputs/models/Simple.fsm"),URI.createURI("file:tests-inputs/models/Simple.fsm"));
 		
-		val file = new File("..")
-		val path = URI.createFileURI(file.absolutePath)
-		EcorePlugin.getPlatformResourceMap().put("fr.inria.diverse.melange.tests",path)
+		val projects = EcorePlugin.workspaceRoot.projects;
+		val t = projects;
 		
 		val res = loadResource("melange:/resource/fr.inria.diverse.melange.tests/tests-inputs/models/Simple3.fsm?lang=simplefsmtest.TimedFsm")
 		assertTrue(res instanceof MelangeResourceImpl)
@@ -81,9 +84,9 @@ class MultipleResourceTest
 	
 	@Test
 	def void testDowncastAndModelType() {
-		val file = new File("..")
-		val path = URI.createFileURI(file.absolutePath)
-		EcorePlugin.getPlatformResourceMap().put("fr.inria.diverse.melange.tests",path)
+		URIMappingRegistryImpl.INSTANCE.put(URI.createURI("platform:/resource/fr.inria.diverse.melange.tests/tests-inputs/models/Simple3.fsm"),URI.createURI("file:tests-inputs/models/Simple3.fsm"));
+		URIMappingRegistryImpl.INSTANCE.put(URI.createURI("platform:/resource/fr.inria.diverse.melange.tests/tests-inputs/models/Simple2.fsm"),URI.createURI("file:tests-inputs/models/Simple2.fsm"));
+		URIMappingRegistryImpl.INSTANCE.put(URI.createURI("platform:/resource/fr.inria.diverse.melange.tests/tests-inputs/models/Simple.fsm"),URI.createURI("file:tests-inputs/models/Simple.fsm"));
 		
 		val res = loadResource("melange:/resource/fr.inria.diverse.melange.tests/tests-inputs/models/Simple3.fsm?lang=simplefsmtest.TimedFsm&mt=simplefsmtest.FsmMT")
 		assertTrue(res instanceof MelangeResourceImpl)
