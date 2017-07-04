@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Melange Resource
 Bundle-SymbolicName: fr.inria.diverse.melange.resource;singleton:=true
-Bundle-Version: 0.2.0.qualifier
+Bundle-Version: 0.2.1.qualifier
 Bundle-Vendor: Inria DiverSE
 Require-Bundle: org.eclipse.emf.ecore.xmi;bundle-version="2.10.1",
  org.eclipse.xtend.lib,

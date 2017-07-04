@@ -11,6 +11,7 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.AlternativeAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.GroupAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
@@ -22,6 +23,7 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected MelangeGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_ClassMapping___LeftCurlyBracketKeyword_3_0_RightCurlyBracketKeyword_3_2__q;
+	protected AbstractElementAlias match_EcoreModelType_Element_ExternalLanguage_Language___RightCurlyBracketKeyword_1_1_p_or_RightCurlyBracketKeyword_8_1_p_or___ExternalKeyword_1_0_RightCurlyBracketKeyword_7_1_a____q;
 	protected AbstractElementAlias match_EcoreModelType_RightCurlyBracketKeyword_1_1_a;
 	protected AbstractElementAlias match_EcoreModelType_RightCurlyBracketKeyword_1_1_p;
 	protected AbstractElementAlias match_ExternalLanguage_RightCurlyBracketKeyword_7_1_a;
@@ -43,6 +45,7 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (MelangeGrammarAccess) access;
 		match_ClassMapping___LeftCurlyBracketKeyword_3_0_RightCurlyBracketKeyword_3_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getClassMappingAccess().getLeftCurlyBracketKeyword_3_0()), new TokenAlias(false, false, grammarAccess.getClassMappingAccess().getRightCurlyBracketKeyword_3_2()));
+		match_EcoreModelType_Element_ExternalLanguage_Language___RightCurlyBracketKeyword_1_1_p_or_RightCurlyBracketKeyword_8_1_p_or___ExternalKeyword_1_0_RightCurlyBracketKeyword_7_1_a____q = new AlternativeAlias(false, true, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getElementAccess().getExternalKeyword_1_0()), new TokenAlias(true, true, grammarAccess.getExternalLanguageAccess().getRightCurlyBracketKeyword_7_1())), new TokenAlias(true, false, grammarAccess.getEcoreModelTypeAccess().getRightCurlyBracketKeyword_1_1()), new TokenAlias(true, false, grammarAccess.getLanguageAccess().getRightCurlyBracketKeyword_8_1()));
 		match_EcoreModelType_RightCurlyBracketKeyword_1_1_a = new TokenAlias(true, true, grammarAccess.getEcoreModelTypeAccess().getRightCurlyBracketKeyword_1_1());
 		match_EcoreModelType_RightCurlyBracketKeyword_1_1_p = new TokenAlias(true, false, grammarAccess.getEcoreModelTypeAccess().getRightCurlyBracketKeyword_1_1());
 		match_ExternalLanguage_RightCurlyBracketKeyword_7_1_a = new TokenAlias(true, true, grammarAccess.getExternalLanguageAccess().getRightCurlyBracketKeyword_7_1());
@@ -100,6 +103,8 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
 			if (match_ClassMapping___LeftCurlyBracketKeyword_3_0_RightCurlyBracketKeyword_3_2__q.equals(syntax))
 				emit_ClassMapping___LeftCurlyBracketKeyword_3_0_RightCurlyBracketKeyword_3_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_EcoreModelType_Element_ExternalLanguage_Language___RightCurlyBracketKeyword_1_1_p_or_RightCurlyBracketKeyword_8_1_p_or___ExternalKeyword_1_0_RightCurlyBracketKeyword_7_1_a____q.equals(syntax))
+				emit_EcoreModelType_Element_ExternalLanguage_Language___RightCurlyBracketKeyword_1_1_p_or_RightCurlyBracketKeyword_8_1_p_or___ExternalKeyword_1_0_RightCurlyBracketKeyword_7_1_a____q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_EcoreModelType_RightCurlyBracketKeyword_1_1_a.equals(syntax))
 				emit_EcoreModelType_RightCurlyBracketKeyword_1_1_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_EcoreModelType_RightCurlyBracketKeyword_1_1_p.equals(syntax))
@@ -144,6 +149,17 @@ public class MelangeSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     to=STRING (ambiguity) (rule end)
 	 */
 	protected void emit_ClassMapping___LeftCurlyBracketKeyword_3_0_RightCurlyBracketKeyword_3_2__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     ('}'+ | '}'+ | ('external' '}'*))?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) (rule start)
+	 */
+	protected void emit_EcoreModelType_Element_ExternalLanguage_Language___RightCurlyBracketKeyword_1_1_p_or_RightCurlyBracketKeyword_8_1_p_or___ExternalKeyword_1_0_RightCurlyBracketKeyword_7_1_a____q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

@@ -15,7 +15,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fr.inria.diverse.melange</groupId>
 	<artifactId>fr.inria.diverse.melange.releng.root</artifactId>
-	<version>0.2.0-SNAPSHOT</version>
+	<version>0.2.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Melange Root Build Manager</name>
 	
@@ -30,12 +30,12 @@
 
 	<properties>
 		<java.version>1.8</java.version>
-		<kermeta.version>3.2.0-SNAPSHOT</kermeta.version>
+		<kermeta.version>3.2.1-SNAPSHOT</kermeta.version>
 		<emf.version>2.11.0</emf.version>
 		<tycho.version>0.23.1</tycho.version>
 		<tycho-extras.version>0.23.1</tycho-extras.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<xtext.version>2.10.0</xtext.version>
+		<xtext.version>2.12.0</xtext.version>
 		<tycho.scmUrl>scm:git:https://github.com/diverse-project/melange.git</tycho.scmUrl>
 	</properties>
 

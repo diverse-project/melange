@@ -106,7 +106,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cXbaseTransformationParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		//TransformationDecl Transformation:
-		//	XbaseTransformation
+		//	XbaseTransformation;
 		@Override public ParserRule getRule() { return rule; }
 
 		//XbaseTransformation
@@ -834,7 +834,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		//EcoreModelType ModelType:
 		//	'modeltype' name=ValidID '{'
 		//	'syntax' ecoreUri=STRING & ('uri' mtUri=STRING)?
-		//	'}'
+		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 
 		//'modeltype' name=ValidID '{' 'syntax' ecoreUri=STRING & ('uri' mtUri=STRING)? '}'
@@ -1053,7 +1053,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		//PackageMapping PackageBinding:
 		//	from=STRING "to" to=STRING ("{"
 		//	classes+=ClassMapping*
-		//	"}")?
+		//	"}")?;
 		@Override public ParserRule getRule() { return rule; }
 
 		//from=STRING "to" to=STRING ("{" classes+=ClassMapping* "}")?
@@ -1107,7 +1107,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		//ClassMapping ClassBinding:
 		//	from=STRING "to" to=STRING ("{"
 		//	properties+=PropertyMapping*
-		//	"}")?
+		//	"}")?;
 		@Override public ParserRule getRule() { return rule; }
 
 		//from=STRING "to" to=STRING ("{" properties+=PropertyMapping* "}")?
@@ -1154,7 +1154,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cToSTRINGTerminalRuleCall_2_0 = (RuleCall)cToAssignment_2.eContents().get(0);
 		
 		//PropertyMapping PropertyBinding:
-		//	from=STRING "to" to=STRING
+		//	from=STRING "to" to=STRING;
 		@Override public ParserRule getRule() { return rule; }
 
 		//from=STRING "to" to=STRING
@@ -1251,7 +1251,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		//'withGenmodel'
 		public Keyword getWithGenmodelKeyword_2_0() { return cWithGenmodelKeyword_2_0; }
 
-		//(genmodelUris+=STRING (',' genmodelUris+=STRING)*)
+		//genmodelUris+=STRING (',' genmodelUris+=STRING)*
 		public Group getGroup_2_1() { return cGroup_2_1; }
 
 		//genmodelUris+=STRING
@@ -1308,7 +1308,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cGenmodelUrisSTRINGTerminalRuleCall_2_1_1_1_0 = (RuleCall)cGenmodelUrisAssignment_2_1_1_1.eContents().get(0);
 		
 		//ExternalImport Import:
-		//	'syntax' ecoreUri=STRING ('withGenmodel' (genmodelUris+=STRING (',' genmodelUris+=STRING)*))?
+		//	'syntax' ecoreUri=STRING ('withGenmodel' (genmodelUris+=STRING (',' genmodelUris+=STRING)*))?;
 		@Override public ParserRule getRule() { return rule; }
 
 		//'syntax' ecoreUri=STRING ('withGenmodel' (genmodelUris+=STRING (',' genmodelUris+=STRING)*))?
@@ -1329,7 +1329,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		//'withGenmodel'
 		public Keyword getWithGenmodelKeyword_2_0() { return cWithGenmodelKeyword_2_0; }
 
-		//(genmodelUris+=STRING (',' genmodelUris+=STRING)*)
+		//genmodelUris+=STRING (',' genmodelUris+=STRING)*
 		public Group getGroup_2_1() { return cGroup_2_1; }
 
 		//genmodelUris+=STRING
@@ -1503,7 +1503,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTargetLanguageLanguageQualifiedNameParserRuleCall_0_1 = (RuleCall)cTargetLanguageLanguageCrossReference_0.eContents().get(1);
 		
 		//Inherit Inheritance:
-		//	targetLanguage=[Language|QualifiedName]
+		//	targetLanguage=[Language|QualifiedName];
 		@Override public ParserRule getRule() { return rule; }
 
 		//targetLanguage=[Language|QualifiedName]
@@ -1544,7 +1544,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAspectTypeRefJvmTypeReferenceParserRuleCall_1_0 = (RuleCall)cAspectTypeRefAssignment_1.eContents().get(0);
 		
 		//AspectTypeRef Weave:
-		//	'with' aspectTypeRef=JvmTypeReference
+		//	'with' aspectTypeRef=JvmTypeReference;
 		@Override public ParserRule getRule() { return rule; }
 
 		//'with' aspectTypeRef=JvmTypeReference
@@ -1568,7 +1568,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAspectWildcardImportQualifiedNameWithWildcardParserRuleCall_1_0 = (RuleCall)cAspectWildcardImportAssignment_1.eContents().get(0);
 		
 		//AspectWildcard Weave:
-		//	'with' aspectWildcardImport=QualifiedNameWithWildcard
+		//	'with' aspectWildcardImport=QualifiedNameWithWildcard;
 		@Override public ParserRule getRule() { return rule; }
 
 		//'with' aspectWildcardImport=QualifiedNameWithWildcard
@@ -1735,7 +1735,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TransformationDecl Transformation:
-	//	XbaseTransformation
+	//	XbaseTransformation;
 	public TransformationDeclElements getTransformationDeclAccess() {
 		return pTransformationDecl;
 	}
@@ -1802,7 +1802,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	//EcoreModelType ModelType:
 	//	'modeltype' name=ValidID '{'
 	//	'syntax' ecoreUri=STRING & ('uri' mtUri=STRING)?
-	//	'}'
+	//	'}';
 	public EcoreModelTypeElements getEcoreModelTypeAccess() {
 		return pEcoreModelType;
 	}
@@ -1842,7 +1842,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	//PackageMapping PackageBinding:
 	//	from=STRING "to" to=STRING ("{"
 	//	classes+=ClassMapping*
-	//	"}")?
+	//	"}")?;
 	public PackageMappingElements getPackageMappingAccess() {
 		return pPackageMapping;
 	}
@@ -1854,7 +1854,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	//ClassMapping ClassBinding:
 	//	from=STRING "to" to=STRING ("{"
 	//	properties+=PropertyMapping*
-	//	"}")?
+	//	"}")?;
 	public ClassMappingElements getClassMappingAccess() {
 		return pClassMapping;
 	}
@@ -1864,7 +1864,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PropertyMapping PropertyBinding:
-	//	from=STRING "to" to=STRING
+	//	from=STRING "to" to=STRING;
 	public PropertyMappingElements getPropertyMappingAccess() {
 		return pPropertyMapping;
 	}
@@ -1896,7 +1896,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ExternalImport Import:
-	//	'syntax' ecoreUri=STRING ('withGenmodel' (genmodelUris+=STRING (',' genmodelUris+=STRING)*))?
+	//	'syntax' ecoreUri=STRING ('withGenmodel' (genmodelUris+=STRING (',' genmodelUris+=STRING)*))?;
 	public ExternalImportElements getExternalImportAccess() {
 		return pExternalImport;
 	}
@@ -1930,7 +1930,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Inherit Inheritance:
-	//	targetLanguage=[Language|QualifiedName]
+	//	targetLanguage=[Language|QualifiedName];
 	public InheritElements getInheritAccess() {
 		return pInherit;
 	}
@@ -1950,7 +1950,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AspectTypeRef Weave:
-	//	'with' aspectTypeRef=JvmTypeReference
+	//	'with' aspectTypeRef=JvmTypeReference;
 	public AspectTypeRefElements getAspectTypeRefAccess() {
 		return pAspectTypeRef;
 	}
@@ -1960,7 +1960,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AspectWildcard Weave:
-	//	'with' aspectWildcardImport=QualifiedNameWithWildcard
+	//	'with' aspectWildcardImport=QualifiedNameWithWildcard;
 	public AspectWildcardElements getAspectWildcardAccess() {
 		return pAspectWildcard;
 	}
@@ -1982,7 +1982,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	//XAssignment XExpression:
 	//	{XAssignment} feature=[types::JvmIdentifiableElement|FeatureCallID] OpSingleAssign value=XAssignment | XOrExpression
 	//	(=> ({XBinaryOperation.leftOperand=current} feature=[types::JvmIdentifiableElement|OpMultiAssign])
-	//	rightOperand=XAssignment)?
+	//	rightOperand=XAssignment)?;
 	public XbaseGrammarAccess.XAssignmentElements getXAssignmentAccess() {
 		return gaXbase.getXAssignmentAccess();
 	}
@@ -2015,7 +2015,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 
 	//XOrExpression XExpression:
 	//	XAndExpression (=> ({XBinaryOperation.leftOperand=current} feature=[types::JvmIdentifiableElement|OpOr])
-	//	rightOperand=XAndExpression)*
+	//	rightOperand=XAndExpression)*;
 	public XbaseGrammarAccess.XOrExpressionElements getXOrExpressionAccess() {
 		return gaXbase.getXOrExpressionAccess();
 	}
@@ -2036,7 +2036,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 
 	//XAndExpression XExpression:
 	//	XEqualityExpression (=> ({XBinaryOperation.leftOperand=current} feature=[types::JvmIdentifiableElement|OpAnd])
-	//	rightOperand=XEqualityExpression)*
+	//	rightOperand=XEqualityExpression)*;
 	public XbaseGrammarAccess.XAndExpressionElements getXAndExpressionAccess() {
 		return gaXbase.getXAndExpressionAccess();
 	}
@@ -2057,7 +2057,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 
 	//XEqualityExpression XExpression:
 	//	XRelationalExpression (=> ({XBinaryOperation.leftOperand=current} feature=[types::JvmIdentifiableElement|OpEquality])
-	//	rightOperand=XRelationalExpression)*
+	//	rightOperand=XRelationalExpression)*;
 	public XbaseGrammarAccess.XEqualityExpressionElements getXEqualityExpressionAccess() {
 		return gaXbase.getXEqualityExpressionAccess();
 	}
@@ -2079,7 +2079,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	//XRelationalExpression XExpression:
 	//	XOtherOperatorExpression (=> ({XInstanceOfExpression.expression=current} 'instanceof') type=JvmTypeReference |
 	//	=> ({XBinaryOperation.leftOperand=current} feature=[types::JvmIdentifiableElement|OpCompare])
-	//	rightOperand=XOtherOperatorExpression)*
+	//	rightOperand=XOtherOperatorExpression)*;
 	public XbaseGrammarAccess.XRelationalExpressionElements getXRelationalExpressionAccess() {
 		return gaXbase.getXRelationalExpressionAccess();
 	}
@@ -2100,7 +2100,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 
 	//XOtherOperatorExpression XExpression:
 	//	XAdditiveExpression (=> ({XBinaryOperation.leftOperand=current} feature=[types::JvmIdentifiableElement|OpOther])
-	//	rightOperand=XAdditiveExpression)*
+	//	rightOperand=XAdditiveExpression)*;
 	public XbaseGrammarAccess.XOtherOperatorExpressionElements getXOtherOperatorExpressionAccess() {
 		return gaXbase.getXOtherOperatorExpressionAccess();
 	}
@@ -2127,7 +2127,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 
 	//XAdditiveExpression XExpression:
 	//	XMultiplicativeExpression (=> ({XBinaryOperation.leftOperand=current} feature=[types::JvmIdentifiableElement|OpAdd])
-	//	rightOperand=XMultiplicativeExpression)*
+	//	rightOperand=XMultiplicativeExpression)*;
 	public XbaseGrammarAccess.XAdditiveExpressionElements getXAdditiveExpressionAccess() {
 		return gaXbase.getXAdditiveExpressionAccess();
 	}
@@ -2148,7 +2148,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 
 	//XMultiplicativeExpression XExpression:
 	//	XUnaryOperation (=> ({XBinaryOperation.leftOperand=current} feature=[types::JvmIdentifiableElement|OpMulti])
-	//	rightOperand=XUnaryOperation)*
+	//	rightOperand=XUnaryOperation)*;
 	public XbaseGrammarAccess.XMultiplicativeExpressionElements getXMultiplicativeExpressionAccess() {
 		return gaXbase.getXMultiplicativeExpressionAccess();
 	}
@@ -2169,7 +2169,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 
 	//XUnaryOperation XExpression:
 	//	{XUnaryOperation} feature=[types::JvmIdentifiableElement|OpUnary] operand=XUnaryOperation
-	//	| XCastedExpression
+	//	| XCastedExpression;
 	public XbaseGrammarAccess.XUnaryOperationElements getXUnaryOperationAccess() {
 		return gaXbase.getXUnaryOperationAccess();
 	}
@@ -2189,7 +2189,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XCastedExpression XExpression:
-	//	XPostfixOperation (=> ({XCastedExpression.target=current} 'as') type=JvmTypeReference)*
+	//	XPostfixOperation (=> ({XCastedExpression.target=current} 'as') type=JvmTypeReference)*;
 	public XbaseGrammarAccess.XCastedExpressionElements getXCastedExpressionAccess() {
 		return gaXbase.getXCastedExpressionAccess();
 	}
@@ -2199,7 +2199,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XPostfixOperation XExpression:
-	//	XMemberFeatureCall => ({XPostfixOperation.operand=current} feature=[types::JvmIdentifiableElement|OpPostfix])?
+	//	XMemberFeatureCall => ({XPostfixOperation.operand=current} feature=[types::JvmIdentifiableElement|OpPostfix])?;
 	public XbaseGrammarAccess.XPostfixOperationElements getXPostfixOperationAccess() {
 		return gaXbase.getXPostfixOperationAccess();
 	}
@@ -2226,7 +2226,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	//	feature=[types::JvmIdentifiableElement|IdOrSuper] (=> explicitOperationCall?='(' (memberCallArguments+=XShortClosure
 	//	| memberCallArguments+=XExpression (',' memberCallArguments+=XExpression)*)?
 	//	')')?
-	//	memberCallArguments+=XClosure?)*
+	//	memberCallArguments+=XClosure?)*;
 	public XbaseGrammarAccess.XMemberFeatureCallElements getXMemberFeatureCallAccess() {
 		return gaXbase.getXMemberFeatureCallAccess();
 	}
@@ -2238,7 +2238,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	//XPrimaryExpression XExpression:
 	//	XConstructorCall | XBlockExpression | XSwitchExpression | XSynchronizedExpression | XFeatureCall | XLiteral |
 	//	XIfExpression | XForLoopExpression | XBasicForLoopExpression | XWhileExpression | XDoWhileExpression |
-	//	XThrowExpression | XReturnExpression | XTryCatchFinallyExpression | XParenthesizedExpression
+	//	XThrowExpression | XReturnExpression | XTryCatchFinallyExpression | XParenthesizedExpression;
 	public XbaseGrammarAccess.XPrimaryExpressionElements getXPrimaryExpressionAccess() {
 		return gaXbase.getXPrimaryExpressionAccess();
 	}
@@ -2248,7 +2248,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XLiteral XExpression:
-	//	XCollectionLiteral | XClosure | XBooleanLiteral | XNumberLiteral | XNullLiteral | XStringLiteral | XTypeLiteral
+	//	XCollectionLiteral | XClosure | XBooleanLiteral | XNumberLiteral | XNullLiteral | XStringLiteral | XTypeLiteral;
 	public XbaseGrammarAccess.XLiteralElements getXLiteralAccess() {
 		return gaXbase.getXLiteralAccess();
 	}
@@ -2293,7 +2293,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	//	=> ((declaredFormalParameters+=JvmFormalParameter (',' declaredFormalParameters+=JvmFormalParameter)*)?
 	//	explicitSyntax?='|')?
 	//	expression=XExpressionInClosure
-	//	']'
+	//	']';
 	public XbaseGrammarAccess.XClosureElements getXClosureAccess() {
 		return gaXbase.getXClosureAccess();
 	}
@@ -2303,7 +2303,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XExpressionInClosure XExpression:
-	//	{XBlockExpression} (expressions+=XExpressionOrVarDeclaration ';'?)*
+	//	{XBlockExpression} (expressions+=XExpressionOrVarDeclaration ';'?)*;
 	public XbaseGrammarAccess.XExpressionInClosureElements getXExpressionInClosureAccess() {
 		return gaXbase.getXExpressionInClosureAccess();
 	}
@@ -2314,7 +2314,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 
 	//XShortClosure XExpression:
 	//	=> ({XClosure} (declaredFormalParameters+=JvmFormalParameter (',' declaredFormalParameters+=JvmFormalParameter)*)?
-	//	explicitSyntax?='|') expression=XExpression
+	//	explicitSyntax?='|') expression=XExpression;
 	public XbaseGrammarAccess.XShortClosureElements getXShortClosureAccess() {
 		return gaXbase.getXShortClosureAccess();
 	}
@@ -2324,7 +2324,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XParenthesizedExpression XExpression:
-	//	'(' XExpression ')'
+	//	'(' XExpression ')';
 	public XbaseGrammarAccess.XParenthesizedExpressionElements getXParenthesizedExpressionAccess() {
 		return gaXbase.getXParenthesizedExpressionAccess();
 	}
@@ -2336,7 +2336,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	//XIfExpression XExpression:
 	//	{XIfExpression}
 	//	'if' '(' if=XExpression ')'
-	//	then=XExpression (=> 'else' else=XExpression)?
+	//	then=XExpression (=> 'else' else=XExpression)?;
 	public XbaseGrammarAccess.XIfExpressionElements getXIfExpressionAccess() {
 		return gaXbase.getXIfExpressionAccess();
 	}
@@ -2350,7 +2350,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	//	'switch' (=> ('(' declaredParam=JvmFormalParameter ':') switch=XExpression ')'
 	//	| => (declaredParam=JvmFormalParameter ':')? switch=XExpression) '{'
 	//	cases+=XCasePart* ('default' ':' default=XExpression)?
-	//	'}'
+	//	'}';
 	public XbaseGrammarAccess.XSwitchExpressionElements getXSwitchExpressionAccess() {
 		return gaXbase.getXSwitchExpressionAccess();
 	}
@@ -2372,7 +2372,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	//XForLoopExpression XExpression:
 	//	=> ({XForLoopExpression}
 	//	'for' '(' declaredParam=JvmFormalParameter ':') forExpression=XExpression ')'
-	//	eachExpression=XExpression
+	//	eachExpression=XExpression;
 	public XbaseGrammarAccess.XForLoopExpressionElements getXForLoopExpressionAccess() {
 		return gaXbase.getXForLoopExpressionAccess();
 	}
@@ -2385,7 +2385,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	//	{XBasicForLoopExpression}
 	//	'for' '(' (initExpressions+=XExpressionOrVarDeclaration (',' initExpressions+=XExpressionOrVarDeclaration)*)? ';'
 	//	expression=XExpression? ';' (updateExpressions+=XExpression (',' updateExpressions+=XExpression)*)? ')'
-	//	eachExpression=XExpression
+	//	eachExpression=XExpression;
 	public XbaseGrammarAccess.XBasicForLoopExpressionElements getXBasicForLoopExpressionAccess() {
 		return gaXbase.getXBasicForLoopExpressionAccess();
 	}
@@ -2397,7 +2397,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	//XWhileExpression XExpression:
 	//	{XWhileExpression}
 	//	'while' '(' predicate=XExpression ')'
-	//	body=XExpression
+	//	body=XExpression;
 	public XbaseGrammarAccess.XWhileExpressionElements getXWhileExpressionAccess() {
 		return gaXbase.getXWhileExpressionAccess();
 	}
@@ -2410,7 +2410,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	//	{XDoWhileExpression}
 	//	'do'
 	//	body=XExpression
-	//	'while' '(' predicate=XExpression ')'
+	//	'while' '(' predicate=XExpression ')';
 	public XbaseGrammarAccess.XDoWhileExpressionElements getXDoWhileExpressionAccess() {
 		return gaXbase.getXDoWhileExpressionAccess();
 	}
@@ -2422,7 +2422,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	//XBlockExpression XExpression:
 	//	{XBlockExpression}
 	//	'{' (expressions+=XExpressionOrVarDeclaration ';'?)*
-	//	'}'
+	//	'}';
 	public XbaseGrammarAccess.XBlockExpressionElements getXBlockExpressionAccess() {
 		return gaXbase.getXBlockExpressionAccess();
 	}
@@ -2432,7 +2432,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XExpressionOrVarDeclaration XExpression:
-	//	XVariableDeclaration | XExpression
+	//	XVariableDeclaration | XExpression;
 	public XbaseGrammarAccess.XExpressionOrVarDeclarationElements getXExpressionOrVarDeclarationAccess() {
 		return gaXbase.getXExpressionOrVarDeclarationAccess();
 	}
@@ -2443,7 +2443,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 
 	//XVariableDeclaration XExpression:
 	//	{XVariableDeclaration} (writeable?='var' | 'val') (=> (type=JvmTypeReference name=ValidID) | name=ValidID) ('='
-	//	right=XExpression)?
+	//	right=XExpression)?;
 	public XbaseGrammarAccess.XVariableDeclarationElements getXVariableDeclarationAccess() {
 		return gaXbase.getXVariableDeclarationAccess();
 	}
@@ -2453,7 +2453,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//JvmFormalParameter types::JvmFormalParameter:
-	//	parameterType=JvmTypeReference? name=ValidID
+	//	parameterType=JvmTypeReference? name=ValidID;
 	public XbaseGrammarAccess.JvmFormalParameterElements getJvmFormalParameterAccess() {
 		return gaXbase.getJvmFormalParameterAccess();
 	}
@@ -2463,7 +2463,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//FullJvmFormalParameter types::JvmFormalParameter:
-	//	parameterType=JvmTypeReference name=ValidID
+	//	parameterType=JvmTypeReference name=ValidID;
 	public XbaseGrammarAccess.FullJvmFormalParameterElements getFullJvmFormalParameterAccess() {
 		return gaXbase.getFullJvmFormalParameterAccess();
 	}
@@ -2477,7 +2477,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	//	feature=[types::JvmIdentifiableElement|IdOrSuper] (=> explicitOperationCall?='(' (featureCallArguments+=XShortClosure
 	//	| featureCallArguments+=XExpression (',' featureCallArguments+=XExpression)*)?
 	//	')')?
-	//	featureCallArguments+=XClosure?
+	//	featureCallArguments+=XClosure?;
 	public XbaseGrammarAccess.XFeatureCallElements getXFeatureCallAccess() {
 		return gaXbase.getXFeatureCallAccess();
 	}
@@ -2512,7 +2512,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	//	typeArguments+=JvmArgumentTypeReference)* '>')? (=> explicitConstructorCall?='(' (arguments+=XShortClosure
 	//	| arguments+=XExpression (',' arguments+=XExpression)*)?
 	//	')')?
-	//	arguments+=XClosure?
+	//	arguments+=XClosure?;
 	public XbaseGrammarAccess.XConstructorCallElements getXConstructorCallAccess() {
 		return gaXbase.getXConstructorCallAccess();
 	}
@@ -2522,7 +2522,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XBooleanLiteral XExpression:
-	//	{XBooleanLiteral} ('false' | isTrue?='true')
+	//	{XBooleanLiteral} ('false' | isTrue?='true');
 	public XbaseGrammarAccess.XBooleanLiteralElements getXBooleanLiteralAccess() {
 		return gaXbase.getXBooleanLiteralAccess();
 	}
@@ -2532,7 +2532,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XNullLiteral XExpression:
-	//	{XNullLiteral} 'null'
+	//	{XNullLiteral} 'null';
 	public XbaseGrammarAccess.XNullLiteralElements getXNullLiteralAccess() {
 		return gaXbase.getXNullLiteralAccess();
 	}
@@ -2542,7 +2542,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XNumberLiteral XExpression:
-	//	{XNumberLiteral} value=Number
+	//	{XNumberLiteral} value=Number;
 	public XbaseGrammarAccess.XNumberLiteralElements getXNumberLiteralAccess() {
 		return gaXbase.getXNumberLiteralAccess();
 	}
@@ -2552,7 +2552,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XStringLiteral XExpression:
-	//	{XStringLiteral} value=STRING
+	//	{XStringLiteral} value=STRING;
 	public XbaseGrammarAccess.XStringLiteralElements getXStringLiteralAccess() {
 		return gaXbase.getXStringLiteralAccess();
 	}
@@ -2562,7 +2562,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XTypeLiteral XExpression:
-	//	{XTypeLiteral} 'typeof' '(' type=[types::JvmType|QualifiedName] arrayDimensions+=ArrayBrackets* ')'
+	//	{XTypeLiteral} 'typeof' '(' type=[types::JvmType|QualifiedName] arrayDimensions+=ArrayBrackets* ')';
 	public XbaseGrammarAccess.XTypeLiteralElements getXTypeLiteralAccess() {
 		return gaXbase.getXTypeLiteralAccess();
 	}
@@ -2572,7 +2572,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XThrowExpression XExpression:
-	//	{XThrowExpression} 'throw' expression=XExpression
+	//	{XThrowExpression} 'throw' expression=XExpression;
 	public XbaseGrammarAccess.XThrowExpressionElements getXThrowExpressionAccess() {
 		return gaXbase.getXThrowExpressionAccess();
 	}
@@ -2582,7 +2582,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//XReturnExpression XExpression:
-	//	{XReturnExpression} 'return' -> expression=XExpression?
+	//	{XReturnExpression} 'return' -> expression=XExpression?;
 	public XbaseGrammarAccess.XReturnExpressionElements getXReturnExpressionAccess() {
 		return gaXbase.getXReturnExpressionAccess();
 	}
@@ -2595,7 +2595,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	//	{XTryCatchFinallyExpression}
 	//	'try'
 	//	expression=XExpression (catchClauses+=XCatchClause+ (=> 'finally' finallyExpression=XExpression)?
-	//	| 'finally' finallyExpression=XExpression)
+	//	| 'finally' finallyExpression=XExpression);
 	public XbaseGrammarAccess.XTryCatchFinallyExpressionElements getXTryCatchFinallyExpressionAccess() {
 		return gaXbase.getXTryCatchFinallyExpressionAccess();
 	}
@@ -2606,7 +2606,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 
 	//XSynchronizedExpression XExpression:
 	//	=> ({XSynchronizedExpression}
-	//	'synchronized' '(') param=XExpression ')' expression=XExpression
+	//	'synchronized' '(') param=XExpression ')' expression=XExpression;
 	public XbaseGrammarAccess.XSynchronizedExpressionElements getXSynchronizedExpressionAccess() {
 		return gaXbase.getXSynchronizedExpressionAccess();
 	}
@@ -2645,10 +2645,10 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 		return getNumberAccess().getRule();
 	}
 
-	/// **
+	///**
 	// * Dummy rule, for "better" downwards compatibility, since GrammarAccess generates non-static inner classes, 
 	// * which makes downstream grammars break on classloading, when a rule is removed.
-	// * / StaticQualifier:
+	// */ StaticQualifier:
 	//	(ValidID '::')+;
 	public XbaseGrammarAccess.StaticQualifierElements getStaticQualifierAccess() {
 		return gaXbase.getStaticQualifierAccess();
@@ -2720,7 +2720,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//JvmArgumentTypeReference JvmTypeReference:
-	//	JvmTypeReference | JvmWildcardTypeReference
+	//	JvmTypeReference | JvmWildcardTypeReference;
 	public XtypeGrammarAccess.JvmArgumentTypeReferenceElements getJvmArgumentTypeReferenceAccess() {
 		return gaXtype.getJvmArgumentTypeReferenceAccess();
 	}
@@ -2751,7 +2751,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//JvmUpperBoundAnded JvmUpperBound:
-	//	'&' typeReference=JvmTypeReference
+	//	'&' typeReference=JvmTypeReference;
 	public XtypeGrammarAccess.JvmUpperBoundAndedElements getJvmUpperBoundAndedAccess() {
 		return gaXtype.getJvmUpperBoundAndedAccess();
 	}
@@ -2771,7 +2771,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//JvmLowerBoundAnded JvmLowerBound:
-	//	'&' typeReference=JvmTypeReference
+	//	'&' typeReference=JvmTypeReference;
 	public XtypeGrammarAccess.JvmLowerBoundAndedElements getJvmLowerBoundAndedAccess() {
 		return gaXtype.getJvmLowerBoundAndedAccess();
 	}
@@ -2856,7 +2856,7 @@ public class MelangeGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal ML_COMMENT:
-	//	'/ *'->'* /';
+	//	'/*'->'*/';
 	public TerminalRule getML_COMMENTRule() {
 		return gaXtype.getML_COMMENTRule();
 	} 
