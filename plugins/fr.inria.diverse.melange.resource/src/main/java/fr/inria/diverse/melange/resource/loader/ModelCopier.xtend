@@ -77,14 +77,19 @@ class ModelCopier {
 	 */
 	def Resource clone(Resource res) {
 
-		/*
-		 * create a new resource & fill it
-		 */
+		// Create a local resource set
 		val rs = new ResourceSetImpl
-		if(rs.resourceFactoryRegistry.extensionToFactoryMap.get("*") == null)
-			rs.resourceFactoryRegistry.extensionToFactoryMap.put("*", new XMIResourceFactoryImpl)
-			
+
+		// Prepare a unique URI for this adapted resource
 		val extendedURI = URI.createURI(sourceMM.head.nsURI + "/as/" + targetMM.head.nsURI + "/" + res.URI.toString)
+
+		// If there is no factory registered for handling this uri, we add a generic one
+		if (rs.getResourceFactoryRegistry().getFactory(extendedURI) == null) {
+			if (rs.resourceFactoryRegistry.extensionToFactoryMap.get("*") == null)
+				rs.resourceFactoryRegistry.extensionToFactoryMap.put("*", new XMIResourceFactoryImpl)
+		}
+
+		// Create the target resource
 		val extendedResource = rs.createResource(extendedURI)
 
 		/*
