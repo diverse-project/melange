@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+  <extension point="org.gemoc.gemoc_language_workbench.sequential.xdsml">
+    <XDSML_Definition name="org.gemoc.sample.MiniFSM" xdsmlFilePath="/org.gemoc.sample.minifsm/bin/org/gemoc/sample/MiniFSM.melange" modelLoader_class="org.gemoc.executionframework.extensions.sirius.modelloader.DefaultModelLoader" />
+  </extension>
+</plugin>

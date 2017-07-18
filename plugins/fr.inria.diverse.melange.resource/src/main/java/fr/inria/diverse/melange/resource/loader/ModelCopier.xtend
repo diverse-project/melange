@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2017 Inria and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     Inria - initial API and implementation
+ *******************************************************************************/
 package fr.inria.diverse.melange.resource.loader
 
 import fr.inria.diverse.melange.lib.EcoreExtensions
@@ -67,14 +77,19 @@ class ModelCopier {
 	 */
 	def Resource clone(Resource res) {
 
-		/*
-		 * create a new resource & fill it
-		 */
+		// Create a local resource set
 		val rs = new ResourceSetImpl
-		if (rs.resourceFactoryRegistry.extensionToFactoryMap.get("*") == null)
-			rs.resourceFactoryRegistry.extensionToFactoryMap.put("*", new XMIResourceFactoryImpl)
 
+		// Prepare a unique URI for this adapted resource
 		val extendedURI = URI.createURI(sourceMM.head.nsURI + "/as/" + targetMM.head.nsURI + "/" + res.URI.toString)
+
+		// If there is no factory registered for handling this uri, we add a generic one
+		if (rs.getResourceFactoryRegistry().getFactory(extendedURI) == null) {
+			if (rs.resourceFactoryRegistry.extensionToFactoryMap.get("*") == null)
+				rs.resourceFactoryRegistry.extensionToFactoryMap.put("*", new XMIResourceFactoryImpl)
+		}
+
+		// Create the target resource
 		val extendedResource = rs.createResource(extendedURI)
 
 		/*

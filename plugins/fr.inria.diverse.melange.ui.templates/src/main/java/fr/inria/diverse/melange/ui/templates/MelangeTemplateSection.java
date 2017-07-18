@@ -1,14 +1,13 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2009 IBM Corporation and others.
+ * Copyright (c) 2017 Inria and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *     IBM Corporation - initial API and implementation
+ *     Inria - initial API and implementation
  *******************************************************************************/
-
 package fr.inria.diverse.melange.ui.templates;
 
 import java.net.MalformedURLException;
@@ -18,7 +17,7 @@ import java.util.*;
 import org.eclipse.core.runtime.*;
 import org.osgi.framework.Bundle;
 
-import fr.inria.diverse.commons.eclipse.pde.wizards.pages.pde.ui.templates.OptionTemplateSection;
+import org.eclipse.gemoc.commons.eclipse.pde.wizards.pages.pde.ui.templates.OptionTemplateSection;
 
 /**
  * Common TemplateSection for templates applicable to K3 projects

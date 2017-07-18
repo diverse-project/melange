@@ -1,0 +1,11 @@
+package org.gemoc.sample
+
+language MiniFSM {
+	syntax "platform:/resource/org.gemoc.sample.minifsm.model/model/minifsm.ecore"
+
+	with org.gemoc.sample.minifsm.aspects.StateAspect
+	with org.gemoc.sample.minifsm.aspects.MiniStateMachineAspect
+	with org.gemoc.sample.minifsm.aspects.TransitionAspect
+
+
+}
