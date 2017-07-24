@@ -143,7 +143,7 @@ class EventManagerGenerator {
 	private def void processLanguage(Language l, IProgressMonitor m) {
 		val resSet = new ResourceSetImpl
 		val res = resSet.getResource(URI.createURI(l.scenarioEcoreUri), true)
-		ePackage = res.contents.head as EPackage
+		ePackage = (res.contents.head as EPackage).ESubpackages.findFirst[name == l.name + "Event"]
 		gatherEventMethods(l)
 		if (!inputEventToHandler.empty || !outputEventToHandler.empty) {
 			val qNameSegments = new ArrayList(inputEventToHandler.keySet.filterNull.head.fullyQualifiedName.segments)
@@ -364,7 +364,7 @@ class EventManagerGenerator {
 		val eventParameters = eventClass.eventHandlerParameters
 		val eventCondition = eventMethodToCondition.get(eventHandler)
 		return '''
-			private void handle«eventClassName»(EventInstance event) {
+			private void handle«eventClassName»(EventInstance _event) {
 				«eventParametersDeclaration»
 				«IF eventCondition != null»
 				if («eventHandlingClass».«eventCondition.name»(«eventParameters»)) {
@@ -397,7 +397,7 @@ class EventManagerGenerator {
 		val eventParametersDeclaration = eventClass.eventHandlerParametersDeclaration
 		val eventParameters = eventClass.eventHandlerParameters
 		return '''
-			private boolean canSend«eventClassName»(EventInstance event) {
+			private boolean canSend«eventClassName»(EventInstance _event) {
 				«eventParametersDeclaration»
 				return «eventHandlingClass».«eventHandlerName»(«eventParameters»);
 			}
@@ -412,7 +412,7 @@ class EventManagerGenerator {
 		'''
 			«val targetType = eventClass.EGenericSuperTypes.head.ETypeArguments.head.EClassifier»
 			«addType(targetType)»
-			final «targetType.name» target = («targetType.name») event.getParameters().get(ScenarioPackage.Literals.EVENT__TARGET_PROVIDER);
+			final «targetType.name» target = («targetType.name») _event.getParameters().get(ScenarioPackage.Literals.EVENT__TARGET_PROVIDER);
 			«IF !eventClass.EStructuralFeatures.empty»
 			«FOR i : 0..(eventClass.EStructuralFeatures.size - 1)»
 			«val f = eventClass.EStructuralFeatures.get(i)»
@@ -424,7 +424,7 @@ class EventManagerGenerator {
 					type.name
 				}
 				else f.EType.instanceClass.simpleName»
-			final «parameterType» «name» = («parameterType») event.getParameters().get(event.getOriginalEvent().eClass().getEStructuralFeatures().get(«i»));
+			final «parameterType» «name» = («parameterType») _event.getParameters().get(_event.getOriginalEvent().eClass().getEStructuralFeatures().get(«i»));
 			«ENDFOR»
 			«ENDIF»
 		'''
@@ -432,15 +432,10 @@ class EventManagerGenerator {
 
 	private def String getEventHandlerParameters(EClass eventClass) {
 		val parameters = new ArrayList
-		val targetType = eventClass.EGenericSuperTypes.head.ETypeArguments.head.EClassifier
-		parameters += '''(«targetType.name») target'''
+		parameters += '''target'''
 		eventClass.EStructuralFeatures.forEach[f|
 			val name = if (f.name.contains("Provider")) f.name.substring(0, f.name.indexOf("Provider")) else f.name
-			val parameterType =
-				if (f.EType instanceof EClass)
-					(f.EType as EClass).EGenericSuperTypes.head.ETypeArguments.head.EClassifier.name
-				else f.EType.instanceClass.simpleName
-			parameters += '''(«parameterType») «name»'''
+			parameters += '''«name»'''
 		]
 		parameters.join(", ")
 	}

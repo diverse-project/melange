@@ -24,6 +24,7 @@ import org.eclipse.emf.common.util.UniqueEList
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
+import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EReference
@@ -75,6 +76,10 @@ class EventExtensions {
 	
 	var EClass eventSpecificClass
 	
+	var EClass abstractPropertySpecificClass
+	
+	var EClass temporalPropertySpecificClass
+	
 	var EClass propertySpecificClass
 	
 	var EClass statePropertySpecificClass
@@ -92,6 +97,16 @@ class EventExtensions {
 	var Map<EClass, List<EClass>> propToFProps
 	
 	var EPackage pkg
+	
+	var EPackage eventPkg
+	
+	var EPackage propertyPkg
+	
+	var EPackage scenarioPkg
+	
+	var EPackage arbiterPkg
+	
+	var EPackage providerPkg
 	
 	var Set<GenPackage> refGenPackages
 	
@@ -162,10 +177,41 @@ class EventExtensions {
 		rtToQuery = new HashMap
 		propToFProps = new HashMap
 		basePkgs = resource.allContents.filter(EPackage).toSet
-		pkg = EcoreFactory.eINSTANCE.createEPackage
-		pkg.name = (l.name + "scenario").toLowerCase
-		pkg.nsPrefix = pkg.name
-		pkg.nsURI = l.externalPackageUri+"scenario/"
+		pkg = EcoreFactory.eINSTANCE.createEPackage => [
+			name = (l.name + "scenario").toLowerCase
+			nsPrefix = name
+			nsURI = l.externalPackageUri+"scenario/"
+		]
+		arbiterPkg = EcoreFactory.eINSTANCE.createEPackage => [
+			name = l.name + "Arbiter"
+			nsPrefix = name
+			nsURI = '''«l.externalPackageUri»scenario/«name»/'''
+			pkg.ESubpackages.add(it)
+		]
+		eventPkg = EcoreFactory.eINSTANCE.createEPackage => [
+			name = l.name + "Event"
+			nsPrefix = name
+			nsURI = '''«l.externalPackageUri»scenario/«name»/'''
+			pkg.ESubpackages.add(it)
+		]
+		propertyPkg = EcoreFactory.eINSTANCE.createEPackage => [
+			name = l.name + "Property"
+			nsPrefix = name
+			nsURI = '''«l.externalPackageUri»scenario/«name»/'''
+			pkg.ESubpackages.add(it)
+		]
+		providerPkg = EcoreFactory.eINSTANCE.createEPackage => [
+			name = l.name + "Provider"
+			nsPrefix = name
+			nsURI = '''«l.externalPackageUri»scenario/«name»/'''
+			pkg.ESubpackages.add(it)
+		]
+		scenarioPkg = EcoreFactory.eINSTANCE.createEPackage => [
+			name = l.name + "Scenario"
+			nsPrefix = name
+			nsURI = '''«l.externalPackageUri»scenario/«name»/'''
+			pkg.ESubpackages.add(it)
+		]
 		
 		val resSet = new ResourceSetImpl
 		val usedGenpkgRes = resSet.getResource(URI::createURI(l.externalGenmodelUri), true)
@@ -186,7 +232,7 @@ class EventExtensions {
 			]
 		]
 		
-		pkg.EClassifiers += eventSpecificClass
+		eventPkg.EClassifiers += eventSpecificClass
 		
 		val allEOperations = resource.allContents.filter(EOperation).toSet
 		val allStepEOperations = new HashSet
@@ -224,11 +270,25 @@ class EventExtensions {
 			}
 		]
 		
+		abstractPropertySpecificClass = EcoreFactory.eINSTANCE.createEClass => [
+			name = l.name + "AbstractProperty"
+			abstract = true
+			ESuperTypes += PropertyPackage.Literals.ABSTRACT_PROPERTY
+		]
+		
+		temporalPropertySpecificClass = EcoreFactory.eINSTANCE.createEClass => [
+			name = l.name + "TemporalProperty"
+			abstract = true
+			ESuperTypes += PropertyPackage.Literals.TEMPORAL_PROPERTY
+		]
+		temporalPropertySpecificClass.ESuperTypes += abstractPropertySpecificClass
+		
 		propertySpecificClass = EcoreFactory.eINSTANCE.createEClass => [
 			name = l.name + "Property"
 			abstract = true
 			ESuperTypes += PropertyPackage.Literals.PROPERTY
 		]
+		propertySpecificClass.ESuperTypes += abstractPropertySpecificClass
 		
 		statePropertySpecificClass = EcoreFactory.eINSTANCE.createEClass => [
 			name = l.name + "StateProperty"
@@ -264,9 +324,11 @@ class EventExtensions {
 		
 		allStepEOperations.forEach[op|op.generateStepProperty]
 		
-		pkg.EClassifiers += statePropertySpecificClass
-		pkg.EClassifiers += stepPropertySpecificClass
-		pkg.EClassifiers += propertySpecificClass
+		propertyPkg.EClassifiers += abstractPropertySpecificClass
+		propertyPkg.EClassifiers += temporalPropertySpecificClass
+		propertyPkg.EClassifiers += propertySpecificClass
+		propertyPkg.EClassifiers += statePropertySpecificClass
+		propertyPkg.EClassifiers += stepPropertySpecificClass
 		
 		l.runtimeRootPackage.allClasses.forEach[processRuntimeClass]
 		
@@ -276,12 +338,12 @@ class EventExtensions {
 		val scenarioFSMClass = EcoreFactory.eINSTANCE.createEClass
 		val scenarioFSMStateClass = EcoreFactory.eINSTANCE.createEClass
 		val scenarioFSMTransitionClass = EcoreFactory.eINSTANCE.createEClass
-		pkg.EClassifiers += scenarioClass
-		pkg.EClassifiers += scenarioElementClass
-		pkg.EClassifiers += eventOccurrenceClass
-		pkg.EClassifiers += scenarioFSMClass
-		pkg.EClassifiers += scenarioFSMStateClass
-		pkg.EClassifiers += scenarioFSMTransitionClass
+		scenarioPkg.EClassifiers += scenarioClass
+		scenarioPkg.EClassifiers += scenarioElementClass
+		scenarioPkg.EClassifiers += eventOccurrenceClass
+		scenarioPkg.EClassifiers += scenarioFSMClass
+		scenarioPkg.EClassifiers += scenarioFSMStateClass
+		scenarioPkg.EClassifiers += scenarioFSMTransitionClass
 		scenarioClass.name = l.name + "Scenario"
 		scenarioElementClass.name = l.name + "ScenarioElement"
 		eventOccurrenceClass.name = l.name + "EventOccurrence"
@@ -359,9 +421,9 @@ class EventExtensions {
 		val arbiterClass = EcoreFactory.eINSTANCE.createEClass
 		val arbiterStateClass = EcoreFactory.eINSTANCE.createEClass
 		val arbiterTransitionClass = EcoreFactory.eINSTANCE.createEClass
-		pkg.EClassifiers += arbiterClass
-		pkg.EClassifiers += arbiterStateClass
-		pkg.EClassifiers += arbiterTransitionClass
+		arbiterPkg.EClassifiers += arbiterClass
+		arbiterPkg.EClassifiers += arbiterStateClass
+		arbiterPkg.EClassifiers += arbiterTransitionClass
 		arbiterClass.name = l.name + "Arbiter"
 		arbiterStateClass.name = l.name + "ArbiterState"
 		arbiterTransitionClass.name = l.name + "ArbiterTransition"
@@ -399,6 +461,51 @@ class EventExtensions {
 			]
 		]
 		
+		val nextClass = EcoreFactory.eINSTANCE.createEClass
+		val untilClass = EcoreFactory.eINSTANCE.createEClass
+		val releaseClass = EcoreFactory.eINSTANCE.createEClass
+		val negationTemporalClass = EcoreFactory.eINSTANCE.createEClass
+		propertyPkg.EClassifiers += nextClass
+		propertyPkg.EClassifiers += untilClass
+		propertyPkg.EClassifiers += releaseClass
+		propertyPkg.EClassifiers += negationTemporalClass
+		nextClass.name = l.name + "NextProperty"
+		untilClass.name = l.name + "UntilProperty"
+		releaseClass.name = l.name + "ReleaseProperty"
+		negationTemporalClass.name = l.name + "NegationTemporalProperty"
+		
+		nextClass.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
+			EClassifier = PropertyPackage.Literals.NEXT_PROPERTY
+			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = abstractPropertySpecificClass
+			]
+		]
+		nextClass.ESuperTypes += temporalPropertySpecificClass
+		
+		untilClass.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
+			EClassifier = PropertyPackage.Literals.UNTIL_PROPERTY
+			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = abstractPropertySpecificClass
+			]
+		]
+		untilClass.ESuperTypes += temporalPropertySpecificClass
+		
+		releaseClass.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
+			EClassifier = PropertyPackage.Literals.RELEASE_PROPERTY
+			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = abstractPropertySpecificClass
+			]
+		]
+		releaseClass.ESuperTypes += temporalPropertySpecificClass
+		
+		negationTemporalClass.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
+			EClassifier = PropertyPackage.Literals.NEGATION_TEMPORAL_PROPERTY
+			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = temporalPropertySpecificClass
+			]
+		]
+		negationTemporalClass.ESuperTypes += temporalPropertySpecificClass
+		
 		val res = resSet.createResource(URI.createPlatformResourceURI(l.externalRuntimeName+".scenario/model/"+l.name+"Scenario.ecore", true))
 		res.contents += pkg
 		res.save(null)
@@ -406,7 +513,7 @@ class EventExtensions {
 	
 	def private void generateStepProperty(EOperation op) {
 		val stepPropertyClass = EcoreFactory.eINSTANCE.createEClass
-			pkg.EClassifiers += stepPropertyClass
+			propertyPkg.EClassifiers += stepPropertyClass
 			stepPropertyClass.name = op.EContainingClass.name + op.name.toFirstUpper + "Property"
 			stepPropertyClass.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
 				EClassifier = stepPropertySpecificClass
@@ -436,7 +543,7 @@ class EventExtensions {
 	
 	def private void generateInputEvent(JvmOperation op, String eventName) {
 		val params = op.parameters
-		pkg.EClassifiers += EcoreFactory.eINSTANCE.createEClass => [c|
+		eventPkg.EClassifiers += EcoreFactory.eINSTANCE.createEClass => [c|
 			c.name = eventName
 			// Creating the generic super type of the property and binding it
 			c.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
@@ -486,7 +593,7 @@ class EventExtensions {
 	}
 	
 	def private void generateOutputEvent(JvmOperation op, String eventName) {
-		pkg.EClassifiers += EcoreFactory.eINSTANCE.createEClass => [c|
+		eventPkg.EClassifiers += EcoreFactory.eINSTANCE.createEClass => [c|
 			c.name = eventName
 			// Creating the generic super type of the property and binding it
 			c.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
@@ -543,7 +650,7 @@ class EventExtensions {
 					]
 				]
 			]
-			pkg.EClassifiers += prov
+			providerPkg.EClassifiers += prov
 			return prov
 		])
 	}
@@ -562,7 +669,7 @@ class EventExtensions {
 					EClassifier = cls.elementProviderClass
 				]
 			]
-			pkg.EClassifiers += ref
+			providerPkg.EClassifiers += ref
 			return ref
 		])
 	}
@@ -587,7 +694,7 @@ class EventExtensions {
 					EClassifier = cls.elementProviderClass
 				]
 			]
-			pkg.EClassifiers += query
+			providerPkg.EClassifiers += query
 			return query
 		])
 	}
@@ -597,7 +704,7 @@ class EventExtensions {
 		if (!rtToProp.containsKey(runtimeClass)) {
 			val classProperty = EcoreFactory.eINSTANCE.createEClass
 			rtToProp.put(runtimeClass, classProperty)
-			pkg.EClassifiers += classProperty
+			propertyPkg.EClassifiers += classProperty
 			
 			classProperty.name = runtimeClass.name + "Property"
 			classProperty.abstract = true
@@ -626,9 +733,33 @@ class EventExtensions {
 				]
 			}
 			
+			// Creating the corresponding unary property
+			val negationProperty = EcoreFactory.eINSTANCE.createEClass
+			propertyPkg.EClassifiers += negationProperty
+			negationProperty.name = "Unary" + runtimeClass.name + "Property"
+			negationProperty.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = classProperty
+				ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+					EClassifier = runtimeClass
+				]
+			]
+			// Creating the generic super type of the property and binding it
+			negationProperty.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
+				EClassifier = PropertyPackage.Literals.UNARY_PROPERTY
+				ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+					EClassifier = classProperty
+					ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+						EClassifier = runtimeClass
+					]
+				]
+				ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+					EClassifier = runtimeClass
+				]
+			]
+			
 			// Creating the corresponding binary property
 			val binaryProperty = EcoreFactory.eINSTANCE.createEClass
-			pkg.EClassifiers += binaryProperty
+			propertyPkg.EClassifiers += binaryProperty
 			binaryProperty.name = "Binary" + runtimeClass.name + "Property"
 			binaryProperty.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
 				EClassifier = classProperty
@@ -662,8 +793,8 @@ class EventExtensions {
 			if (ref.containment && ref.EOpposite == null) {
 				val property = EcoreFactory.eINSTANCE.createEClass
 				result += property
-				pkg.EClassifiers += property
-				property.name = feature.EType.name + "ContainerProperty"
+				propertyPkg.EClassifiers += property
+				property.name = feature.EType.name + runtimeClass.name + "ContainerProperty"
 				property.addGetFeatureOperation(null)
 				property.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
 					// Creating the domain-specific 'ClassProperty' generic super type
@@ -691,7 +822,7 @@ class EventExtensions {
 		}
 		val property = EcoreFactory.eINSTANCE.createEClass
 		result += property
-		pkg.EClassifiers += property
+		propertyPkg.EClassifiers += property
 		property.name = runtimeClass.name + feature.name.toFirstUpper + "Property"
 		property.addGetFeatureOperation(feature)
 		property.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
@@ -702,14 +833,16 @@ class EventExtensions {
 				EClassifier = runtimeClass
 			]
 		]
-		
+		//TODO handle enums
 		if (isAttribute) {
-			property.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
-				EClassifier = (feature as EAttribute).attributePropertySuperType
-				ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
-					EClassifier = runtimeClass
+			if (!((feature as EAttribute).EType instanceof EEnum)) {
+				property.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
+					EClassifier = (feature as EAttribute).attributePropertySuperType
+					ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
+						EClassifier = runtimeClass
+					]
 				]
-			]
+			}
 		} else {
 			property.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
 				// Creating the multiplicity (many/single) generic super type
@@ -729,7 +862,6 @@ class EventExtensions {
 			]
 		}
 		
-		
 		return result
 	}
 	
@@ -743,7 +875,7 @@ class EventExtensions {
 	}
 	
 	private def EClass getAttributePropertySuperType(EAttribute attribute) {
-		val eType = attribute.getEType();
+		val eType = attribute.EType
 		if (eType == EcorePackage.Literals.EINT) {
 			if (attribute.many) return PropertyPackage.Literals.MANY_INTEGER_ATTRIBUTE_PROPERTY
 			return PropertyPackage.Literals.INTEGER_ATTRIBUTE_PROPERTY
