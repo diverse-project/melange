@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2017 Inria and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     Inria - initial API and implementation
+ *******************************************************************************/
 package fr.inria.diverse.melange.ui.wizards;
 
 import java.lang.reflect.InvocationTargetException;
@@ -23,12 +33,12 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
-import fr.inria.diverse.commons.eclipse.pde.manifest.ManifestChanger;
-import fr.inria.diverse.commons.eclipse.pde.wizards.pages.pde.AbstractNewProjectWizardWithTemplates;
-import fr.inria.diverse.commons.eclipse.pde.wizards.pages.pde.ui.IProjectContentWizard;
-import fr.inria.diverse.commons.eclipse.pde.wizards.pages.pde.ui.ProjectTemplateApplicationOperation;
-import fr.inria.diverse.commons.eclipse.resources.IFileUtils;
-import fr.inria.diverse.commons.eclipse.resources.IFolderUtils;
+import org.eclipse.gemoc.commons.eclipse.pde.manifest.ManifestChanger;
+import org.eclipse.gemoc.commons.eclipse.pde.wizards.pages.pde.AbstractNewProjectWizardWithTemplates;
+import org.eclipse.gemoc.commons.eclipse.pde.wizards.pages.pde.ui.IProjectContentWizard;
+import org.eclipse.gemoc.commons.eclipse.pde.wizards.pages.pde.ui.ProjectTemplateApplicationOperation;
+import org.eclipse.gemoc.commons.eclipse.core.resources.IFileUtils;
+import org.eclipse.gemoc.commons.eclipse.core.resources.IFolderUtils;
 import fr.inria.diverse.melange.ui.MelangeUiModule;
 import fr.inria.diverse.melange.ui.internal.MelangeActivator;
 import fr.inria.diverse.melange.ui.wizards.pages.NewMelangeProjectWizardFields;

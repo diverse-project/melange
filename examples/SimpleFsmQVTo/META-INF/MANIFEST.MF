@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: SimpleFsmQVTo Plug-in
-Bundle-SymbolicName: SimpleFsmQVTo
-Bundle-Version: 1.0.0
-Bundle-Vendor: 
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.m2m.qvt.oml,
- org.eclipse.m2m.qvt.oml.project

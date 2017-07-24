@@ -2,6 +2,7 @@
  */
 package fr.inria.diverse.melange.metamodel.melange.impl;
 
+import fr.inria.diverse.melange.metamodel.melange.Annotation;
 import fr.inria.diverse.melange.metamodel.melange.Aspect;
 import fr.inria.diverse.melange.metamodel.melange.Language;
 import fr.inria.diverse.melange.metamodel.melange.Mapping;
@@ -24,6 +25,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseEList;
@@ -56,6 +58,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getEcl <em>Ecl</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getXmof <em>Xmof</em>}</li>
  *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getFileExtension <em>File Extension</em>}</li>
+ *   <li>{@link fr.inria.diverse.melange.metamodel.melange.impl.LanguageImpl#getAnnotations <em>Annotations</em>}</li>
  * </ul>
  *
  * @generated
@@ -290,6 +293,16 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 	 * @ordered
 	 */
 	protected String fileExtension = FILE_EXTENSION_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAnnotations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Annotation> annotations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -683,6 +696,18 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Annotation> getAnnotations() {
+		if (annotations == null) {
+			annotations = new EObjectContainmentEList<Annotation>(Annotation.class, this, MelangePackage.LANGUAGE__ANNOTATIONS);
+		}
+		return annotations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -725,6 +750,8 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 				return ((InternalEList<?>)getMappings()).basicRemove(otherEnd, msgs);
 			case MelangePackage.LANGUAGE__SEMANTICS:
 				return ((InternalEList<?>)getSemantics()).basicRemove(otherEnd, msgs);
+			case MelangePackage.LANGUAGE__ANNOTATIONS:
+				return ((InternalEList<?>)getAnnotations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -772,6 +799,8 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 				return getXmof();
 			case MelangePackage.LANGUAGE__FILE_EXTENSION:
 				return getFileExtension();
+			case MelangePackage.LANGUAGE__ANNOTATIONS:
+				return getAnnotations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -844,6 +873,10 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 			case MelangePackage.LANGUAGE__FILE_EXTENSION:
 				setFileExtension((String)newValue);
 				return;
+			case MelangePackage.LANGUAGE__ANNOTATIONS:
+				getAnnotations().clear();
+				getAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -907,6 +940,9 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 			case MelangePackage.LANGUAGE__FILE_EXTENSION:
 				setFileExtension(FILE_EXTENSION_EDEFAULT);
 				return;
+			case MelangePackage.LANGUAGE__ANNOTATIONS:
+				getAnnotations().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -953,6 +989,8 @@ public class LanguageImpl extends NamedElementImpl implements Language {
 				return XMOF_EDEFAULT == null ? xmof != null : !XMOF_EDEFAULT.equals(xmof);
 			case MelangePackage.LANGUAGE__FILE_EXTENSION:
 				return FILE_EXTENSION_EDEFAULT == null ? fileExtension != null : !FILE_EXTENSION_EDEFAULT.equals(fileExtension);
+			case MelangePackage.LANGUAGE__ANNOTATIONS:
+				return annotations != null && !annotations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

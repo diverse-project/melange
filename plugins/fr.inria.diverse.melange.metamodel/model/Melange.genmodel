@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.inria.diverse.melange.metamodel/src/main/java"
-    modelPluginID="fr.inria.diverse.melange.metamodel" modelName="Melange" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2017 Inria and others.&#xA; * All rights reserved. This program and the accompanying materials&#xA; * are made available under the terms of the Eclipse Public License v1.0&#xA; * which accompanies this distribution, and is available at&#xA; * http://www.eclipse.org/legal/epl-v10.html&#xA; *&#xA; * Contributors:&#xA; *     Inria - initial API and implementation"
+    modelDirectory="/fr.inria.diverse.melange.metamodel/src/main/java" modelPluginID="fr.inria.diverse.melange.metamodel"
+    modelName="Melange" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
     usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types ../../org.eclipse.xtext.xbase/model/Xbase.genmodel#//xtype ../../org.eclipse.xtext.xbase/model/Xbase.genmodel#//xbase"
     operationReflection="true" importOrganizing="true">
@@ -33,6 +34,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Aspect/aspectedClass"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Aspect/ecoreFragment"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Melange.ecore#//Aspect/owningLanguage"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Aspect/source"/>
     </genClasses>
     <genClasses ecoreClass="Melange.ecore#//Inheritance"/>
     <genClasses ecoreClass="Melange.ecore#//Subtyping">
@@ -104,6 +106,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/ecl"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/xmof"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/fileExtension"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Language/annotations"/>
     </genClasses>
     <genClasses ecoreClass="Melange.ecore#//Weave">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Weave/aspectTypeRef"/>
@@ -113,5 +116,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//NamedElement/name"/>
     </genClasses>
     <genClasses ecoreClass="Melange.ecore#//ExternalLanguage"/>
+    <genClasses ecoreClass="Melange.ecore#//Annotation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Annotation/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Annotation/value"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -1285,13 +1285,22 @@ public interface MelangePackage extends EPackage {
 	int LANGUAGE__FILE_EXTENSION = NAMED_ELEMENT_FEATURE_COUNT + 16;
 
 	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANGUAGE__ANNOTATIONS = NAMED_ELEMENT_FEATURE_COUNT + 17;
+
+	/**
 	 * The number of structural features of the '<em>Language</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 17;
+	int LANGUAGE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 18;
 
 	/**
 	 * The number of operations of the '<em>Language</em>' class.
@@ -1530,6 +1539,15 @@ public interface MelangePackage extends EPackage {
 	int EXTERNAL_LANGUAGE__FILE_EXTENSION = LANGUAGE__FILE_EXTENSION;
 
 	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_LANGUAGE__ANNOTATIONS = LANGUAGE__ANNOTATIONS;
+
+	/**
 	 * The number of structural features of the '<em>External Language</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1548,6 +1566,52 @@ public interface MelangePackage extends EPackage {
 	int EXTERNAL_LANGUAGE_OPERATION_COUNT = LANGUAGE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.AnnotationImpl <em>Annotation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.AnnotationImpl
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getAnnotation()
+	 * @generated
+	 */
+	int ANNOTATION = 23;
+
+	/**
+	 * The feature id for the '<em><b>Key</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__KEY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__VALUE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Annotation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Annotation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.ResourceType <em>Resource Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1555,7 +1619,7 @@ public interface MelangePackage extends EPackage {
 	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getResourceType()
 	 * @generated
 	 */
-	int RESOURCE_TYPE = 23;
+	int RESOURCE_TYPE = 24;
 
 
 	/**
@@ -2375,6 +2439,17 @@ public interface MelangePackage extends EPackage {
 	EAttribute getLanguage_FileExtension();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link fr.inria.diverse.melange.metamodel.melange.Language#getAnnotations <em>Annotations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Annotations</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Language#getAnnotations()
+	 * @see #getLanguage()
+	 * @generated
+	 */
+	EReference getLanguage_Annotations();
+
+	/**
 	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.Weave <em>Weave</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2436,6 +2511,38 @@ public interface MelangePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getExternalLanguage();
+
+	/**
+	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.Annotation <em>Annotation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Annotation</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Annotation
+	 * @generated
+	 */
+	EClass getAnnotation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.Annotation#getKey <em>Key</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Key</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Annotation#getKey()
+	 * @see #getAnnotation()
+	 * @generated
+	 */
+	EAttribute getAnnotation_Key();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.diverse.melange.metamodel.melange.Annotation#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.Annotation#getValue()
+	 * @see #getAnnotation()
+	 * @generated
+	 */
+	EAttribute getAnnotation_Value();
 
 	/**
 	 * Returns the meta object for enum '{@link fr.inria.diverse.melange.metamodel.melange.ResourceType <em>Resource Type</em>}'.
@@ -3119,6 +3226,14 @@ public interface MelangePackage extends EPackage {
 		EAttribute LANGUAGE__FILE_EXTENSION = eINSTANCE.getLanguage_FileExtension();
 
 		/**
+		 * The meta object literal for the '<em><b>Annotations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LANGUAGE__ANNOTATIONS = eINSTANCE.getLanguage_Annotations();
+
+		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.WeaveImpl <em>Weave</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3171,6 +3286,32 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EClass EXTERNAL_LANGUAGE = eINSTANCE.getExternalLanguage();
+
+		/**
+		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.AnnotationImpl <em>Annotation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.inria.diverse.melange.metamodel.melange.impl.AnnotationImpl
+		 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getAnnotation()
+		 * @generated
+		 */
+		EClass ANNOTATION = eINSTANCE.getAnnotation();
+
+		/**
+		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ANNOTATION__KEY = eINSTANCE.getAnnotation_Key();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ANNOTATION__VALUE = eINSTANCE.getAnnotation_Value();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.ResourceType <em>Resource Type</em>}' enum.

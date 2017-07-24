@@ -1,24 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="fr.inria.diverse.melange.target-platform" sequenceNumber="38">
+<!--
+    Copyright (c) 2017 Inria and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+   
+    Contributors:
+        Inria - initial API and implementation
+ -->
+<?pde version="3.8"?><target name="fr.inria.diverse.melange.target-platform" sequenceNumber="42">
 <locations>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
-<unit id="org.eclipse.emf.ecoretools.registration.feature.feature.group" version="0.0.0"/>
-<unit id="fr.inria.diverse.commons.provisionner4eclipse.feature.feature.group" version="0.0.0"/>
-<unit id="fr.inria.diverse.commons.eclipse.feature.feature.group" version="0.0.0"/>
-<repository location="https://ci.inria.fr/diverse-commons/job/diverse-commons.eclipse.root/lastSuccessfulBuild/artifact/commons-eclipse/fr.inria.diverse.commons.eclipse.root/p2updatesite/target/repository/"/>
-</location>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
-<unit id="fr.inria.diverse.k3.feature.feature.group" version="0.0.0"/>
-<repository location="https://ci.inria.fr/k3al/job/k3.eclipse/lastSuccessfulBuild/artifact/k3.eclipse/fr.inria.diverse.k3.p2updatesite/target/site/"/>
-</location>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
-<unit id="org.eclipse.emf.compare.source.feature.group" version="0.0.0"/>
-<repository location="http://download.eclipse.org/modeling/emf/compare/updates/releases/latest"/>
-</location>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
-<unit id="org.eclipse.emf.transaction.sdk.feature.group" version="1.9.0.201506010221"/>
-<repository location="http://download.eclipse.org/modeling/emf/transaction/updates/releases/"/>
-</location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
 <unit id="org.eclipse.jdt.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.platform.feature.group" version="0.0.0"/>
@@ -36,7 +28,23 @@
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
 <unit id="org.eclipse.xtext.sdk.feature.group" version="0.0.0"/>
-<repository location="http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.10.0/"/>
+<repository location="http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.12.0/"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
+<unit id="org.eclipse.emf.compare.source.feature.group" version="0.0.0"/>
+<repository location="http://download.eclipse.org/modeling/emf/compare/updates/releases/latest"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
+<unit id="fr.inria.diverse.k3.feature.feature.group" version="0.0.0"/>
+<repository location="https://ci.inria.fr/k3al/job/k3.eclipse/lastSuccessfulBuild/artifact/k3.eclipse/fr.inria.diverse.k3.p2updatesite/target/site/"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
+<unit id="org.eclipse.emf.transaction.sdk.feature.group" version="1.9.0.201506010221"/>
+<repository location="http://download.eclipse.org/modeling/emf/transaction/updates/releases/"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
+<unit id="org.eclipse.gemoc.commons.feature.feature.group" version="0.0.0"/>
+<repository location="https://ci.inria.fr/gemoc/job/gemoc-studio_commons/lastSuccessfulBuild/artifact/commons/releng/org.eclipse.gemoc.commons.repository/target/repository/"/>
 </location>
 </locations>
 </target>

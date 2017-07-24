@@ -1,8 +1,8 @@
 package fr.inria.diverse.melange.utils
 
 import com.google.inject.Inject
-import fr.inria.diverse.event.commons.model.property.PropertyPackage
-import fr.inria.diverse.event.commons.model.scenario.ScenarioPackage
+import org.eclipse.gemoc.event.commons.model.property.PropertyPackage
+import org.eclipse.gemoc.event.commons.model.scenario.ScenarioPackage
 import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.metamodel.melange.Language

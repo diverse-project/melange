@@ -2,28 +2,26 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Melange
 Bundle-Vendor: Inria DiverSE
-Bundle-Version: 0.2.0.qualifier
+Bundle-Version: 0.2.1.qualifier
 Bundle-SymbolicName: fr.inria.diverse.melange;singleton:=true
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.xtext;bundle-version="[2.7.0,2.11.0)";visibility:=reexport,
- org.eclipse.xtext.xbase;bundle-version="[2.7.0,2.11.0)";resolution:=optional;visibility:=reexport,
- org.eclipse.xtext.generator;bundle-version="[2.7.0,2.11.0)";resolution:=optional,
+Require-Bundle: org.eclipse.xtext;bundle-version="[2.9.0,2.13.0)";visibility:=reexport,
+ org.eclipse.xtext.xbase;bundle-version="[2.9.0,2.13.0)";resolution:=optional;visibility:=reexport,
+ org.eclipse.xtext.generator;bundle-version="[2.9.0,2.13.0)";resolution:=optional,
  org.apache.commons.logging;bundle-version="1.0.4";resolution:=optional,
  org.eclipse.emf.codegen.ecore;resolution:=optional,
  org.eclipse.emf.mwe.utils;resolution:=optional,
  org.eclipse.emf.mwe2.launch;resolution:=optional,
- org.eclipse.xtext.util;bundle-version="[2.7.0,2.11.0)",
+ org.eclipse.xtext.util;bundle-version="[2.9.0,2.13.0)",
  org.eclipse.emf.ecore,
  org.eclipse.emf.common,
  org.antlr.runtime,
- org.eclipse.xtext.common.types;bundle-version="[2.7.0,2.11.0)",
- org.eclipse.xtext.xbase.lib;bundle-version="[2.7.0,2.11.0)",
+ org.eclipse.xtext.common.types;bundle-version="[2.9.0,2.13.0)",
+ org.eclipse.xtext.xbase.lib;bundle-version="[2.9.0,2.13.0)",
  org.eclipse.core.resources,
  org.eclipse.core.runtime,
- org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional,
  fr.inria.diverse.melange.lib;bundle-version="0.1.0",
  fr.inria.diverse.melange.metamodel;bundle-version="0.1.0",
- fr.inria.diverse.commons.asm;bundle-version="1.0.0",
  org.eclipse.jdt.core;bundle-version="3.10.0",
  org.eclipse.jdt.launching;bundle-version="3.7.101",
  org.eclipse.swt;bundle-version="3.103.1",
@@ -34,8 +32,9 @@ Require-Bundle: org.eclipse.xtext;bundle-version="[2.7.0,2.11.0)";visibility:=re
  fr.inria.diverse.melange.resource;bundle-version="0.1.0",
  org.eclipse.emf.transaction,
  fr.inria.diverse.k3.al.annotationprocessor.plugin,
- fr.inria.diverse.event.commons.model;bundle-version="2.3.0",
- fr.inria.diverse.commons.eclipse.pde;bundle-version="1.0.2"
+ org.eclipse.gemoc.commons.eclipse.pde;bundle-version="2.3.0",
+ org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional,
+ org.eclipse.gemoc.event.commons.model;bundle-version="2.3.0"
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
