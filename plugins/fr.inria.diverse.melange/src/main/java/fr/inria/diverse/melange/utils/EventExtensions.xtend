@@ -132,7 +132,7 @@ class EventExtensions {
 			modelDirectory = l.scenarioGenerationPath
 				.replaceFirst("platform:/resource", "").replaceFirst("..", "")
 			foreignModel += l.externalEcoreUri
-			usedGenPackages += (resSet.getResource(URI::createPlatformPluginURI("fr.inria.diverse.event.commons.model/model/property.genmodel", true), true).contents.head as GenModel).genPackages
+			usedGenPackages += (resSet.getResource(URI::createPlatformPluginURI("org.eclipse.gemoc.event.commons.model/model/property.genmodel", true), true).contents.head as GenModel).genPackages
 			modelName = l.name + "scenario"
 			modelPluginID = l.externalRuntimeName + ".scenario"
 			initialize(pkgs)

@@ -421,7 +421,7 @@ class DispatchOverrider {
 			fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager manager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
 			if (manager != null) {
 				«IF waitForEvents»
-				fr.inria.diverse.event.commons.model.IEventManager eventManager = fr.inria.diverse.event.commons.model.EventManagerRegistry.getInstance().findEventManager();
+				org.eclipse.gemoc.event.commons.model.IEventManager eventManager = org.eclipse.gemoc.event.commons.model.EventManagerRegistry.getInstance().findEventManager();
 				if (eventManager != null) {
 					eventManager.waitForEvents();
 				}
@@ -432,7 +432,7 @@ class DispatchOverrider {
 				manager.executeStep(_self,command,"«className»","«methodName»");
 				«ENDIF»
 			} else {
-				fr.inria.diverse.event.commons.model.IEventManager eventManager = fr.inria.diverse.event.commons.model.EventManagerRegistry.getInstance().findEventManager();
+				org.eclipse.gemoc.event.commons.model.IEventManager eventManager = org.eclipse.gemoc.event.commons.model.EventManagerRegistry.getInstance().findEventManager();
 				if (eventManager != null) {
 					«IF waitForEvents»
 					eventManager.waitForEvents();

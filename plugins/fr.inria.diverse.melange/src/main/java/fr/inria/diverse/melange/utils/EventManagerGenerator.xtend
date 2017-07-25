@@ -279,9 +279,9 @@ class EventManagerGenerator {
 			
 			import org.eclipse.emf.ecore.EClass;
 			
-			import fr.inria.diverse.event.commons.interpreter.event.AbstractEventManager;
-			import fr.inria.diverse.event.commons.model.EventInstance;
-			import fr.inria.diverse.event.commons.model.scenario.ScenarioPackage;
+			import org.eclipse.gemoc.event.commons.interpreter.event.AbstractEventManager;
+			import org.eclipse.gemoc.event.commons.model.EventInstance;
+			import org.eclipse.gemoc.event.commons.model.scenario.ScenarioPackage;
 			«FOR handler : inputEventToHandler.values.filterNull.toSet»
 			import «handler.declaringClass.name»;
 			«ENDFOR»
