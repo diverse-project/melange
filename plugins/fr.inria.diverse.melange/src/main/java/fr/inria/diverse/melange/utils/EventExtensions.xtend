@@ -220,16 +220,7 @@ class EventExtensions {
 		eventSpecificClass = EcoreFactory.eINSTANCE.createEClass => [c|
 			c.name = l.name + "Event"
 			c.abstract = true
-			val typeParameter = EcoreFactory.eINSTANCE.createETypeParameter => [
-				name = "T"
-			]
-			c.ETypeParameters += typeParameter
-			c.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
-				EClassifier = ScenarioPackage.Literals.EVENT
-				ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
-					ETypeParameter = typeParameter
-				]
-			]
+			c.ESuperTypes += ScenarioPackage.Literals.EVENT
 		]
 		
 		eventPkg.EClassifiers += eventSpecificClass
@@ -367,7 +358,6 @@ class EventExtensions {
 		scenarioElementClass.EGenericSuperTypes += scenarioElementGenericType
 		val eventTypeArgument = EcoreFactory.eINSTANCE.createEGenericType => [
 			EClassifier = eventSpecificClass
-			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType
 		]
 		val propertyTypeArgument = EcoreFactory.eINSTANCE.createEGenericType => [
 			EClassifier = propertySpecificClass
@@ -386,7 +376,6 @@ class EventExtensions {
 			]
 			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
 				EClassifier = eventSpecificClass
-				ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType
 			]
 			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
 				EClassifier = scenarioFSMStateClass
@@ -401,7 +390,6 @@ class EventExtensions {
 			EClassifier = ScenarioPackage.Literals.SCENARIO_FSM_STATE
 			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
 				EClassifier = eventSpecificClass
-				ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType
 			]
 			ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
 				EClassifier = scenarioFSMTransitionClass
@@ -546,17 +534,24 @@ class EventExtensions {
 		eventPkg.EClassifiers += EcoreFactory.eINSTANCE.createEClass => [c|
 			c.name = eventName
 			// Creating the generic super type of the property and binding it
-			c.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
-				EClassifier = eventSpecificClass
-				ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
-					val targetTypeName = params.head.parameterType.type.simpleName
-					val targetClassifier = basePkgs.findFirst[getEClassifier(targetTypeName) != null]?.getEClassifier(targetTypeName)
-					EClassifier = targetClassifier
-					// Creating the <Target>Reference class if it does not exist yet
-					targetClassifier.elementReferenceClass
-					// Creating the <Target>Query class if it does not exist yet
-					targetClassifier.elementQueryClass
-				]
+			c.ESuperTypes += eventSpecificClass
+			
+			params.head => [opParam|
+				val parameterTypeName = opParam.parameterType.type.simpleName
+				val parameterClassifier = basePkgs.findFirst[getEClassifier(parameterTypeName) != null]?.getEClassifier(parameterTypeName)
+				if (parameterClassifier != null) {
+					// Creating the <Parameter>Reference class if it does not exist yet
+					parameterClassifier.elementReferenceClass
+					// Creating the <Parameter>Query class if it does not exist yet
+					parameterClassifier.elementQueryClass
+					c.EStructuralFeatures += EcoreFactory.eINSTANCE.createEReference => [
+						EType = parameterClassifier.elementProviderClass
+						upperBound = 1
+						lowerBound = 1
+						containment = true
+						name = "targetProvider"
+					]
+				}
 			]
 			
 			params.tail.forEach[opParam|
@@ -578,7 +573,7 @@ class EventExtensions {
 						// Creating the <Parameter>Reference class if it does not exist yet
 						parameterClassifier.elementReferenceClass
 						// Creating the <Parameter>Query class if it does not exist yet
-						getElementQueryClass(parameterClassifier)
+						parameterClassifier.elementQueryClass
 						c.EStructuralFeatures += EcoreFactory.eINSTANCE.createEReference => [
 							EType = parameterClassifier.elementProviderClass
 							upperBound = 1
