@@ -64,7 +64,7 @@ class EventManagerGenerator {
 
 	private Map<EClass, Method> inputEventToHandler = new HashMap
 
-	private Map<EClass, Method> outputEventToHandler = new HashMap
+	private Map<EClass, Method> outputEventToEmitter = new HashMap
 
 	private Language language
 
@@ -107,7 +107,7 @@ class EventManagerGenerator {
 		source = newHashMap
 		eventMethodToCondition = newHashMap
 		inputEventToHandler = newHashMap
-		outputEventToHandler = newHashMap
+		outputEventToEmitter = newHashMap
 		initializeMethods = newArrayList
 		eventParameterTypes = newHashSet
 		elementReferences = newHashSet
@@ -155,7 +155,7 @@ class EventManagerGenerator {
 		val res = resSet.getResource(URI.createURI(l.scenarioEcoreUri), true)
 		ePackage = (res.contents.head as EPackage).ESubpackages.findFirst[name == l.name + "Event"]
 		gatherEventMethods(l)
-		if (!inputEventToHandler.empty || !outputEventToHandler.empty) {
+		if (!inputEventToHandler.empty || !outputEventToEmitter.empty) {
 			val qNameSegments = new ArrayList(inputEventToHandler.keySet.filterNull.head.fullyQualifiedName.segments)
 			qNameSegments.remove(qNameSegments.size - 1)
 			scenarioPackageString = l.externalRuntimeName + ".scenario." + qNameSegments.join(".")
@@ -185,18 +185,18 @@ class EventManagerGenerator {
 		]
 	}
 
-	private def boolean isInputEvent(Method m) {
+	private def boolean isEventHandler(Method m) {
 		val stepAnnotation = m.getAnnotation(Step)
 		if (stepAnnotation != null) {
-			return stepAnnotation.eventTriggerable
+			return stepAnnotation.eventHandler
 		}
 		return false
 	}
 
-	private def boolean isOutputEvent(Method m) {
+	private def boolean isEventEmitter(Method m) {
 		val stepAnnotation = m.getAnnotation(Step)
 		if (stepAnnotation != null) {
-			return stepAnnotation.outputEvent
+			return stepAnnotation.eventEmitter
 		}
 		return false
 	}
@@ -210,9 +210,9 @@ class EventManagerGenerator {
 	}
 
 	private def void processAspect(Class<?> aspect) {
-		val aspectInputEventHandlers = aspect.methods.filter[m|isInputEvent(m)]
+		val aspectEventHandlers = aspect.methods.filter[eventHandler]
 		
-		aspectInputEventHandlers.forEach[e|
+		aspectEventHandlers.forEach[e|
 			val conditionName = e.conditionName
 			if (conditionName != "") {
 				val conditionMethods = aspect.methods.filter[m|
@@ -224,7 +224,7 @@ class EventManagerGenerator {
 			}
 		]
 		
-		aspectInputEventHandlers.forEach [ m |
+		aspectEventHandlers.forEach [ m |
 			val eventName = '''«aspected.get(aspect).name.toFirstUpper»«m.name.toFirstUpper»Event'''
 			val eventClass = ePackage.findClassifier(eventName)
 			if (eventClass != null) {
@@ -232,13 +232,13 @@ class EventManagerGenerator {
 			}
 		]
 		
-		val aspectOutputEventHandlers = aspect.methods.filter[m|isOutputEvent(m)]
+		val aspectEventEmitters = aspect.methods.filter[eventEmitter]
 		
-		aspectOutputEventHandlers.forEach [ m |
+		aspectEventEmitters.forEach [m|
 			val eventName = '''«aspected.get(aspect).name.toFirstUpper»«m.name.toFirstUpper»Event'''
 			val eventClass = ePackage.findClassifier(eventName)
 			if (eventClass != null) {
-				outputEventToHandler.put(eventClass as EClass, m)
+				outputEventToEmitter.put(eventClass as EClass, m)
 			}
 		]
 	}
@@ -273,28 +273,28 @@ class EventManagerGenerator {
 
 	private def String generateImports() {
 		'''
-			import java.util.Collections;
 			import java.util.HashSet;
+			import java.util.List;
 			import java.util.Set;
 			
 			import org.eclipse.emf.ecore.EClass;
-			
 			import org.eclipse.gemoc.event.commons.interpreter.event.AbstractEventManager;
 			import org.eclipse.gemoc.event.commons.model.EventInstance;
-			import org.eclipse.gemoc.event.commons.model.scenario.ScenarioPackage;
+			import org.eclipse.gemoc.trace.commons.model.trace.Step;
+			import org.eclipse.gemoc.xdsmlframework.api.core.IExecutionEngine;
 			«FOR handler : inputEventToHandler.values.filterNull.toSet»
 			import «handler.declaringClass.name»;
+			«ENDFOR»
+			«FOR elementReference : elementReferences»
+			import «languagePackageString».«elementReference»;
 			«ENDFOR»
 			import «scenarioPackageString».«ePackage.name.toFirstUpper»Package;
 			import «scenarioPackageString».«ePackage.name.toFirstUpper»Factory;
 			«FOR event : inputEventToHandler.keySet.filterNull»
 			import «scenarioPackageString».«event.name»;
 			«ENDFOR»
-			«FOR event : outputEventToHandler.keySet.filterNull»
+			«FOR event : outputEventToEmitter.keySet.filterNull»
 			import «scenarioPackageString».«event.name»;
-			«ENDFOR»
-			«FOR elementReference : elementReferences»
-			import «scenarioPackageString».«elementReference»;
 			«ENDFOR»
 			«FOR parameterType : eventParameterTypes»
 			import «languagePackageString».«parameterType.fullyQualifiedName»;
@@ -312,7 +312,9 @@ class EventManagerGenerator {
 			«generateEventHandlers»
 			«generateEventConditions»
 			
+			«IF !outputEventToEmitter.empty»
 			«generateEventBuilders»
+			«ENDIF»
 		'''
 	}
 
@@ -460,27 +462,33 @@ class EventManagerGenerator {
 		'''
 	}
 	
-	private def void addElementReference(String className) {
+	private def addElementReference(String className) {
 		elementReferences.add(className)
+		className
 	}
 	
 	private def String generateEventBuilders() {
 		'''
 			@Override
-			protected EventInstance rebuildEvent(Object result, Object caller, String className, String methodName) {
-				«FOR entry : outputEventToHandler.entrySet SEPARATOR " else "»
-				«val targetTypeName = entry.getKey.EGenericSuperTypes.head.ETypeArguments.head.EClassifier.name»
-				if (className.equals("«targetTypeName»") && methodName.equals("«entry.getValue.name»")) {
-					final «entry.getKey.name» event = «ePackage.name.toFirstUpper»Factory.eINSTANCE.create«entry.getKey.name»();
-					event.setValue((String) result);
-					final «targetTypeName»Reference targetProvider = «ePackage.name.toFirstUpper»Factory.eINSTANCE.create«targetTypeName»Reference();
-					«addElementReference(targetTypeName + "Reference")»
-					targetProvider.setElement((«targetTypeName») caller);
-					event.setTargetProvider(targetProvider);
-					return new EventInstance(event, Collections.emptyMap());
+			public void stepExecuted(IExecutionEngine engine, Step<?> stepExecuted) {
+				final String className = stepExecuted.getMseoccurrence().getMse().getCaller().eClass().getName();
+				final String methodName = stepExecuted.getMseoccurrence().getMse().getAction().getName();
+				«FOR entry : outputEventToEmitter.entrySet SEPARATOR " else "»
+				«val eventType = entry.getKey»
+				«val eventTypeName = eventType.name»
+				«val sourceTypeName = entry.getKey.EStructuralFeatures.findFirst[name == "source"].EType.name»
+				if (className.equals("«sourceTypeName»") && methodName.equals("«entry.getValue.name»")) {
+					final «eventTypeName» event = «ePackage.name.toFirstUpper»Factory.eINSTANCE.create«eventTypeName»();
+					«IF !eventType.EStructuralFeatures.empty»
+					final List<Object> params = stepExecuted.getMseoccurrence().getParameters();
+					«FOR i : 0..(eventType.EStructuralFeatures.size - 1)»
+					«val f = eventType.EStructuralFeatures.get(i)»
+					event.set«f.name.toFirstUpper»((«f.EType.name.addElementReference») params.get(«i»));
+					«ENDFOR»
+					«ENDIF»
+					listeners.forEach(l -> l.eventReceived(event));
 				}
 				«ENDFOR»
-				return null;
 			}
 		'''
 	}

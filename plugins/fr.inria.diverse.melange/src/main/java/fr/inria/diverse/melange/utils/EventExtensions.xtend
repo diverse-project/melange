@@ -248,10 +248,10 @@ class EventExtensions {
 								allStepEOperations.add(eOperation)
 							}
 							// If it's an event handler, we create a new metaclass for this event
-							if (isInputEvent(op)) {
+							if (op.eventHandler) {
 								val eventName = a.aspectedClass.name.toFirstUpper + op.simpleName.toFirstUpper + "Event"
 								op.generateInputEvent(eventName)
-							} else if (isOutputEvent(op)) {
+							} else if (op.eventEmitter) {
 								val eventName = a.aspectedClass.name.toFirstUpper + op.simpleName.toFirstUpper + "Event"
 								op.generateOutputEvent(eventName)
 							}
@@ -588,44 +588,48 @@ class EventExtensions {
 	}
 	
 	def private void generateOutputEvent(JvmOperation op, String eventName) {
+		val params = op.parameters
 		eventPkg.EClassifiers += EcoreFactory.eINSTANCE.createEClass => [c|
 			c.name = eventName
 			// Creating the generic super type of the property and binding it
-			c.EGenericSuperTypes += EcoreFactory.eINSTANCE.createEGenericType => [
-				EClassifier = eventSpecificClass
-				ETypeArguments += EcoreFactory.eINSTANCE.createEGenericType => [
-					val targetTypeName = op.parameters.head.parameterType.type.simpleName
-					val targetClassifier = basePkgs.findFirst[getEClassifier(targetTypeName) != null]?.getEClassifier(targetTypeName)
-					EClassifier = targetClassifier
-					// Creating the <Target>Reference class if it does not exist yet
-					targetClassifier.elementReferenceClass
-				]
+			c.ESuperTypes += eventSpecificClass
+			
+			params.head => [opParam|
+				val parameterTypeName = opParam.parameterType.type.simpleName
+				val parameterClassifier = basePkgs.findFirst[getEClassifier(parameterTypeName) != null]?.getEClassifier(parameterTypeName)
+				if (parameterClassifier != null) {
+					c.EStructuralFeatures += EcoreFactory.eINSTANCE.createEReference => [
+						name = "source"
+						upperBound = 1
+						lowerBound = 1
+						EType = parameterClassifier
+						containment = false
+					]
+				}
 			]
 			
-			op.returnType => [retType|
-				val returnTypeName = retType.type.simpleName
-				if (returnTypeName == "String" || returnTypeName == "Integer" || returnTypeName == "Boolean") {
+			params.tail.forEach[opParam|
+				val parameterTypeName = opParam.parameterType.type.simpleName
+				if (parameterTypeName == "String" || parameterTypeName == "Integer" || parameterTypeName == "Boolean") {
 					c.EStructuralFeatures += EcoreFactory.eINSTANCE.createEAttribute => [
-						name = "value"
+						name = opParam.name.toFirstLower
 						lowerBound = 0
 						upperBound = 1
-						EType = switch (returnTypeName) {
+						EType = switch (parameterTypeName) {
 							case "String": EcorePackage.Literals.ESTRING
 							case "Integer": EcorePackage.Literals.EINT
 							case "Boolean": EcorePackage.Literals.EBOOLEAN
 						}
 					]
 				} else {
-					val returnClassifier = basePkgs.findFirst[getEClassifier(returnTypeName) != null]?.getEClassifier(returnTypeName)
-					if (returnClassifier != null) {
+					val parameterClassifier = basePkgs.findFirst[getEClassifier(parameterTypeName) != null]?.getEClassifier(parameterTypeName)
+					if (parameterClassifier != null) {
 						c.EStructuralFeatures += EcoreFactory.eINSTANCE.createEReference => [
-							// Creating the <Parameter>Reference class if it does not exist yet
-							returnClassifier.elementReferenceClass
-							EType = returnClassifier.elementProviderClass
-							lowerBound = 0
+							name = opParam.name.toFirstLower
 							upperBound = 1
-							containment = true
-							name = "valueProvider"
+							lowerBound = 1
+							EType = parameterClassifier
+							containment = false
 						]
 					}
 				}
@@ -1070,13 +1074,13 @@ class EventExtensions {
 	/**
 	 * Checks whether the given operation is an input event or not
 	 */
-	private def boolean isInputEvent(JvmOperation operation) {
+	private def boolean isEventHandler(JvmOperation operation) {
 		var result = false
 		val stepAnnotation = operation.annotations
 			.findFirst[a|a.annotation.qualifiedName == STEP_ANNOTATION_FQN]
 		if (stepAnnotation != null) {
 			val triggerableValue = stepAnnotation.values
-				.findFirst[v|v.valueName == "eventTriggerable"]
+				.findFirst[v|v.valueName == "eventHandler"]
 			result = switch triggerableValue {
 				JvmBooleanAnnotationValue: triggerableValue.values?.head
 				JvmCustomAnnotationValue: (triggerableValue.values.head as XBooleanLiteral).isTrue
@@ -1088,13 +1092,13 @@ class EventExtensions {
 	/**
 	 * Checks whether the given operation is an output event or not
 	 */
-	private def boolean isOutputEvent(JvmOperation operation) {
+	private def boolean isEventEmitter(JvmOperation operation) {
 		var result = false
 		val stepAnnotation = operation.annotations
 			.findFirst[a|a.annotation.qualifiedName == STEP_ANNOTATION_FQN]
 		if (stepAnnotation != null) {
 			val triggerableValue = stepAnnotation.values
-				.findFirst[v|v.valueName == "outputEvent"]
+				.findFirst[v|v.valueName == "eventEmitter"]
 			result = switch triggerableValue {
 				JvmBooleanAnnotationValue: triggerableValue.values?.head
 				JvmCustomAnnotationValue: (triggerableValue.values.head as XBooleanLiteral).isTrue

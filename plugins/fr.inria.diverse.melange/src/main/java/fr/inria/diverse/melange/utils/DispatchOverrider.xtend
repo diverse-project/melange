@@ -372,7 +372,7 @@ class DispatchOverrider {
 				"(" + cls.javaFqn + ")"+SELF_VAR_NAME)»)'''
 				
 					if (isStep) 
-						call = surroundWithStepCommandExecution(className, m.name , call, hasReturn, resultVar, m.shouldWaitForEvents, m.isOutput)
+						call = surroundWithStepCommandExecution(className, m.name , call, hasReturn, resultVar, m.shouldWaitForEvents)
 					 else if (hasReturn) 
 						call = '''«resultVar» = «call»'''
 						
@@ -399,14 +399,14 @@ class DispatchOverrider {
 		var String call = '''«PRIV_PREFIX + m.originalName»(_self_, «parameters»)'''
 		
 		if (isStep)
-			call = surroundWithStepCommandExecution(className, m.name , call, hasReturn, resultVar, m.shouldWaitForEvents, m.isOutput)
+			call = surroundWithStepCommandExecution(className, m.name , call, hasReturn, resultVar, m.shouldWaitForEvents)
 		else if (hasReturn)
 			call = '''«resultVar» = «call»'''
 		
 		return call + ";"
 	}
 	
-	private def String surroundWithStepCommandExecution(String className, String methodName, String code, boolean hasReturn, String resultVar, boolean waitForEvents, boolean isOutput) {
+	private def String surroundWithStepCommandExecution(String className, String methodName, String code, boolean hasReturn, String resultVar, boolean waitForEvents) {
 		return '''
 			fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
 				@Override
@@ -426,11 +426,7 @@ class DispatchOverrider {
 					eventManager.waitForEvents();
 				}
 				«ENDIF»
-				«IF isOutput»
-				manager.executeStep(_self,command,"«className»","«methodName»", true);
-				«ELSE»
 				manager.executeStep(_self,command,"«className»","«methodName»");
-				«ENDIF»
 			} else {
 				org.eclipse.gemoc.event.commons.model.IEventManager eventManager = org.eclipse.gemoc.event.commons.model.EventManagerRegistry.getInstance().findEventManager();
 				if (eventManager != null) {
@@ -466,11 +462,6 @@ class DispatchOverrider {
 	private def boolean shouldWaitForEvents(Method m) {
 		val a = m.getAnnotation(Step)
 		a != null && a.waitForEvents
-	}
-	
-	private def boolean isOutput(Method m) {
-		val a = m.getAnnotation(Step)
-		a != null && a.outputEvent
 	}
 	
 	private def void initSubClasses(Language lang){
