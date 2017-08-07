@@ -36,7 +36,7 @@
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
 <unit id="fr.inria.diverse.k3.feature.feature.group" version="0.0.0"/>
-<repository location="https://ci.inria.fr/k3al/job/k3.eclipse/lastSuccessfulBuild/artifact/k3.eclipse/fr.inria.diverse.k3.p2updatesite/target/site/"/>
+<repository location="http://www.kermeta.org/k3/update/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
 <unit id="org.eclipse.emf.transaction.sdk.feature.group" version="1.9.0.201506010221"/>
@@ -44,7 +44,7 @@
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
 <unit id="org.eclipse.gemoc.commons.feature.feature.group" version="0.0.0"/>
-<repository location="https://ci.inria.fr/gemoc/job/gemoc-studio_commons/lastSuccessfulBuild/artifact/commons/releng/org.eclipse.gemoc.commons.repository/target/repository/"/>
+<repository location="https://ci.eclipse.org/gemoc/job/gemoc-studio/job/master/lastSuccessfulBuild/artifact/gemoc-studio/gemoc_studio/releng/org.eclipse.gemoc.gemoc_studio.updatesite/target/repository/"/>
 </location>
 </locations>
 </target>
