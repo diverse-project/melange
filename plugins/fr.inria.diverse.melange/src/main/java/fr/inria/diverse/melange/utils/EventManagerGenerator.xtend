@@ -76,7 +76,7 @@ class EventManagerGenerator {
 
 	private String projectName
 
-	private String eventManagerClassName
+	private String behavioralAPIClassName
 
 	private String packageName
 
@@ -84,7 +84,9 @@ class EventManagerGenerator {
 
 	private String aspectsPackageString
 
-	private String scenarioPackageString
+//	private String scenarioPackageString
+
+	private String eventPackageString
 
 	private String languagePackageString
 	
@@ -112,7 +114,7 @@ class EventManagerGenerator {
 		eventParameterTypes = newHashSet
 		elementReferences = newHashSet
 		projectName = language.reactiveInterfaceName
-		eventManagerClassName = '''«language.name»EventManager'''
+		behavioralAPIClassName = '''«language.name»BehavioralAPI'''
 		packageName = language.reactiveInterfaceName
 
 		val ClassLoader loader = createClassLoader(melangeProject)
@@ -139,7 +141,7 @@ class EventManagerGenerator {
 		val extensionPoint = changer.addExtension("org.gemoc.gemoc_language_workbench.engine_addon")
 		val element = changer.addChild(extensionPoint, "Addon")
 		
-		changer.addAttribute(element, "Class", packageName + "." + eventManagerClassName)
+		changer.addAttribute(element, "Class", packageName + "." + behavioralAPIClassName)
 		changer.addAttribute(element, "Default", "false")
 		changer.addAttribute(element, "id", packageName)
 		changer.addAttribute(element, "Default", "false")
@@ -152,13 +154,16 @@ class EventManagerGenerator {
 	
 	private def void processLanguage(Language l, IProgressMonitor m) {
 		val resSet = new ResourceSetImpl
-		val res = resSet.getResource(URI.createURI(l.scenarioEcoreUri), true)
-		ePackage = (res.contents.head as EPackage).ESubpackages.findFirst[name == l.name + "Event"]
+//		val res = resSet.getResource(URI.createURI(l.scenarioEcoreUri), true)
+		val res = resSet.getResource(URI.createURI(l.eventEcoreUri), true)
+//		ePackage = (res.contents.head as EPackage).ESubpackages.findFirst[name == l.name + "Event"]
+		ePackage = res.contents.head as EPackage
 		gatherEventMethods(l)
 		if (!inputEventToHandler.empty || !outputEventToEmitter.empty) {
 			val qNameSegments = new ArrayList(inputEventToHandler.keySet.filterNull.head.fullyQualifiedName.segments)
 			qNameSegments.remove(qNameSegments.size - 1)
-			scenarioPackageString = l.externalRuntimeName + ".scenario." + qNameSegments.join(".")
+//			scenarioPackageString = l.externalRuntimeName + ".scenario." + qNameSegments.join(".")
+			eventPackageString = l.externalRuntimeName + ".event." + qNameSegments.join(".")
 			languagePackageString = l.externalRuntimeName
 			aspectsPackageString = l.aspectsNamespace + qNameSegments.join(".")
 			val sourceFolder = targetProject.allPackageFragmentRoots.findFirst [ p |
@@ -171,7 +176,7 @@ class EventManagerGenerator {
 			]
 			
 			sourceFolder.createPackageFragment(packageName, true, m)
-				.createCompilationUnit(eventManagerClassName + ".java", generateCode, true, m)
+				.createCompilationUnit(behavioralAPIClassName + ".java", generateCode, true, m)
 		}
 	}
 
@@ -264,7 +269,7 @@ class EventManagerGenerator {
 			
 			«generateImports»
 			
-			public class «language.name»EventManager extends AbstractEventManager {
+			public class «behavioralAPIClassName» implements IBehavioralAPI {
 			
 				«body»
 			}
@@ -274,27 +279,35 @@ class EventManagerGenerator {
 	private def String generateImports() {
 		'''
 			import java.util.HashSet;
-			import java.util.List;
+«««			import java.util.List;
 			import java.util.Set;
 			
 			import org.eclipse.emf.ecore.EClass;
-			import org.eclipse.gemoc.event.commons.interpreter.event.AbstractEventManager;
-			import org.eclipse.gemoc.event.commons.model.EventInstance;
+			import org.eclipse.gemoc.event.commons.interpreter.IBehavioralAPI;
+			import org.eclipse.gemoc.event.commons.interpreter.EventInstance;
+			«IF !outputEventToEmitter.empty»
 			import org.eclipse.gemoc.trace.commons.model.trace.Step;
 			import org.eclipse.gemoc.xdsmlframework.api.core.IExecutionEngine;
-			«FOR handler : inputEventToHandler.values.filterNull.toSet»
-			import «handler.declaringClass.name»;
+			«ENDIF»
+			«FOR handler : inputEventToHandler.values.filterNull.map[declaringClass].toSet»
+			import «handler.name»;
 			«ENDFOR»
 			«FOR elementReference : elementReferences»
 			import «languagePackageString».«elementReference»;
 			«ENDFOR»
-			import «scenarioPackageString».«ePackage.name.toFirstUpper»Package;
-			import «scenarioPackageString».«ePackage.name.toFirstUpper»Factory;
+«««			import «scenarioPackageString».«ePackage.name.toFirstUpper»Package;
+«««			import «scenarioPackageString».«ePackage.name.toFirstUpper»Factory;
+			import «eventPackageString».«ePackage.name.toFirstUpper»Package;
+			«IF !outputEventToEmitter.empty»
+			import «eventPackageString».«ePackage.name.toFirstUpper»Factory;
+			«ENDIF»
 			«FOR event : inputEventToHandler.keySet.filterNull»
-			import «scenarioPackageString».«event.name»;
+«««			import «scenarioPackageString».«event.name»;
+			import «eventPackageString».«event.name»;
 			«ENDFOR»
 			«FOR event : outputEventToEmitter.keySet.filterNull»
-			import «scenarioPackageString».«event.name»;
+«««			import «scenarioPackageString».«event.name»;
+			import «eventPackageString».«event.name»;
 			«ENDFOR»
 			«FOR parameterType : eventParameterTypes»
 			import «languagePackageString».«parameterType.fullyQualifiedName»;
@@ -312,32 +325,29 @@ class EventManagerGenerator {
 			«generateEventHandlers»
 			«generateEventConditions»
 			
-			«IF !outputEventToEmitter.empty»
-			«generateEventBuilders»
-			«ENDIF»
+«««			«IF !outputEventToEmitter.empty»
+«««			«generateEventBuilders»
+«««			«ENDIF»
 		'''
 	}
 
 	private def String generateCanSendEventMethod() {
 		'''
 			@Override
-			public boolean canSendEvent(Object input) {
-				if (input instanceof EventInstance) {
-					final EventInstance event = (EventInstance) input;
-					«FOR entry : inputEventToHandler.entrySet SEPARATOR " else"»
-					«val eventClass = entry.key»
-					«val eventHandler = entry.value»
-					«val eventClassName = eventClass.name»
-					if (event.getOriginalEvent() instanceof «eventClassName») {
-						«val eventCondition = eventMethodToCondition.get(eventHandler)»
-						«IF eventCondition == null»
-						return true;
-						«ELSE»
-						return canSend«eventClassName»(event);
-						«ENDIF»
-					}
-					«ENDFOR»
+			public boolean canSendEvent(EventInstance event) {
+				«FOR entry : inputEventToHandler.entrySet SEPARATOR " else"»
+				«val eventClass = entry.key»
+				«val eventHandler = entry.value»
+				«val eventClassName = eventClass.name»
+				if (event.getOriginalEvent() instanceof «eventClassName») {
+					«val eventCondition = eventMethodToCondition.get(eventHandler)»
+					«IF eventCondition == null»
+					return true;
+					«ELSE»
+					return canSend«eventClassName»(event);
+					«ENDIF»
 				}
+				«ENDFOR»
 				return false;
 			}
 		'''
@@ -346,7 +356,7 @@ class EventManagerGenerator {
 	private def String generateDispatch() {
 		'''
 			@Override
-			protected void dispatchEvent(EventInstance event) {
+			public void dispatchEvent(EventInstance event) {
 				«FOR eventHandler : inputEventToHandler.entrySet SEPARATOR " else"»
 					«val eventClassName = eventHandler.key.name»
 					if (event.getOriginalEvent() instanceof «eventClassName») {
@@ -416,24 +426,29 @@ class EventManagerGenerator {
 		'''
 	}
 
-	private def void addType(EClassifier type) {
+	private def EClassifier addType(EClassifier type) {
 		eventParameterTypes.add(type)
+		return type
 	}
 	
 	private def String getEventHandlerParametersDeclaration(EClass eventClass) {
 		'''
-			«IF !eventClass.EStructuralFeatures.empty»
-			«FOR i : 0..(eventClass.EStructuralFeatures.size - 1)»
-			«val f = eventClass.EStructuralFeatures.get(i)»
-			«val name = if (f.name.contains("Provider")) f.name.substring(0, f.name.indexOf("Provider")) else f.name»
+«««			«IF !eventClass.EStructuralFeatures.empty»
+			«IF !eventClass.EAllStructuralFeatures.empty»
+			«FOR i : 0..(eventClass.EAllStructuralFeatures.size - 1)»
+			«val f = eventClass.EAllStructuralFeatures.get(i)»
+«««			«val name = if (f.name.contains("Provider")) f.name.substring(0, f.name.indexOf("Provider")) else f.name»
+			«val name = f.name»
 			«val parameterType =
 				if (f.EType instanceof EClass) {
-					val type = (f.EType as EClass).EGenericSuperTypes.head.ETypeArguments.head.EClassifier
-					addType(type)
-					type.name
-				}
-				else f.EType.instanceClass.simpleName»
-			final «parameterType» «name» = («parameterType») _event.getParameters().get(_event.getOriginalEvent().eClass().getEStructuralFeatures().get(«i»));
+					addType(f.EType).name
+//					val type = (f.EType as EClass).EGenericSuperTypes.head.ETypeArguments.head.EClassifier
+//					addType(type)
+//					type.name
+				} else {
+					f.EType.instanceClass.simpleName
+				}»
+			final «parameterType» «name» = («parameterType») _event.getParameters().get(_event.getOriginalEvent().eClass().getEAllStructuralFeatures().get(«i»));
 			«ENDFOR»
 			«ENDIF»
 		'''
@@ -441,9 +456,12 @@ class EventManagerGenerator {
 
 	private def String getEventHandlerParameters(EClass eventClass) {
 		val parameters = new ArrayList
-		eventClass.EStructuralFeatures.forEach[f|
-			val name = if (f.name.contains("Provider")) f.name.substring(0, f.name.indexOf("Provider")) else f.name
-			parameters += '''«name»'''
+//		eventClass.EStructuralFeatures.forEach[f|
+//			val name = if (f.name.contains("Provider")) f.name.substring(0, f.name.indexOf("Provider")) else f.name
+//			parameters += '''«name»'''
+//		]
+		eventClass.EAllStructuralFeatures.forEach[f|
+			parameters += '''«f.name»'''
 		]
 		parameters.join(", ")
 	}
@@ -462,34 +480,34 @@ class EventManagerGenerator {
 		'''
 	}
 	
-	private def addElementReference(String className) {
-		elementReferences.add(className)
-		className
-	}
+//	private def addElementReference(String className) {
+//		elementReferences.add(className)
+//		className
+//	}
 	
-	private def String generateEventBuilders() {
-		'''
-			@Override
-			public void stepExecuted(IExecutionEngine engine, Step<?> stepExecuted) {
-				final String className = stepExecuted.getMseoccurrence().getMse().getCaller().eClass().getName();
-				final String methodName = stepExecuted.getMseoccurrence().getMse().getAction().getName();
-				«FOR entry : outputEventToEmitter.entrySet SEPARATOR " else "»
-				«val eventType = entry.getKey»
-				«val eventTypeName = eventType.name»
-				«val sourceTypeName = entry.getKey.EStructuralFeatures.findFirst[name == "source"].EType.name»
-				if (className.equals("«sourceTypeName»") && methodName.equals("«entry.getValue.name»")) {
-					final «eventTypeName» event = «ePackage.name.toFirstUpper»Factory.eINSTANCE.create«eventTypeName»();
-					«IF !eventType.EStructuralFeatures.empty»
-					final List<Object> params = stepExecuted.getMseoccurrence().getParameters();
-					«FOR i : 0..(eventType.EStructuralFeatures.size - 1)»
-					«val f = eventType.EStructuralFeatures.get(i)»
-					event.set«f.name.toFirstUpper»((«f.EType.name.addElementReference») params.get(«i»));
-					«ENDFOR»
-					«ENDIF»
-					listeners.forEach(l -> l.eventReceived(event));
-				}
-				«ENDFOR»
-			}
-		'''
-	}
+//	private def String generateEventBuilders() {
+//		'''
+//			@Override
+//			public void stepExecuted(IExecutionEngine engine, Step<?> stepExecuted) {
+//				final String className = stepExecuted.getMseoccurrence().getMse().getCaller().eClass().getName();
+//				final String methodName = stepExecuted.getMseoccurrence().getMse().getAction().getName();
+//				«FOR entry : outputEventToEmitter.entrySet SEPARATOR " else "»
+//				«val eventType = entry.getKey»
+//				«val eventTypeName = eventType.name»
+//				«val sourceTypeName = entry.getKey.EStructuralFeatures.findFirst[name == "source"].EType.name»
+//				if (className.equals("«sourceTypeName»") && methodName.equals("«entry.getValue.name»")) {
+//					final «eventTypeName» event = «ePackage.name.toFirstUpper»Factory.eINSTANCE.create«eventTypeName»();
+//					«IF !eventType.EAllStructuralFeatures.empty»
+//					final List<Object> params = stepExecuted.getMseoccurrence().getParameters();
+//					«FOR i : 0..(eventType.EStructuralFeatures.size - 1)»
+//					«val f = eventType.EStructuralFeatures.get(i)»
+//					event.set«f.name.toFirstUpper»((«f.EType.name.addElementReference») params.get(«i»));
+//					«ENDFOR»
+//					«ENDIF»
+//					listeners.forEach(l -> l.eventReceived(event));
+//				}
+//				«ENDFOR»
+//			}
+//		'''
+//	}
 }

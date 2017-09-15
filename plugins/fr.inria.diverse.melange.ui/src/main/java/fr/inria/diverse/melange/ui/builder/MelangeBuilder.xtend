@@ -192,11 +192,12 @@ class MelangeBuilder
 		toGenerate.forEach[l |
 			val sub = subMonitor.split(10)
 			sub.beginTask("Generating reactive interface for " + l.name, 10)
-			eclipseHelper.createEMFScenarioProject('''«l.externalRuntimeName».scenario''', l)
+//			eclipseHelper.createEMFScenarioProject('''«l.externalRuntimeName».scenario''', l)
+			eclipseHelper.createEMFEventProject('''«l.externalRuntimeName».event''', l)
 			l.createEcore
 			l.createGenmodelAndGenerateCode
 			sub.worked(5)
-			val p = eclipseHelper.createReactiveProject('''«l.externalRuntimeName».eventmanager''', l)
+			val p = eclipseHelper.createEventManagerProject('''«l.externalRuntimeName».eventmanager''', l)
 			l.generateEventManager(JavaCore.create(project),JavaCore.create(p),monitor)
 			sub.worked(5)
 		]

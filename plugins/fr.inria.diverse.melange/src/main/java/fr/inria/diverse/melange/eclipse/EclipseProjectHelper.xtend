@@ -381,7 +381,7 @@ class EclipseProjectHelper
 		return null
 	}
 	
-	def IProject createReactiveProject(String projectName, Language l) {
+	def IProject createEventManagerProject(String projectName, Language l) {
 		try {
 			// FIXME: Everything's hardcoded...
 			val project = createEclipseProject(
@@ -393,13 +393,13 @@ class EclipseProjectHelper
 				#["org.eclipse.gemoc.event.commons.interpreter",
 					"org.eclipse.gemoc.trace.commons.model",
 					"org.eclipse.gemoc.xdsmlframework.api",
-					l.externalRuntimeName + ".scenario"],
+					l.externalRuntimeName + ".event"],
 				#[projectName],
 				#[],
 				new NullProgressMonitor
 			)
 
-			log.debug('''Reactive interface EMF project «project» created.''')
+			log.debug('''Event manager EMF project «project» created.''')
 
 			return project
 		} catch (Exception e) {
