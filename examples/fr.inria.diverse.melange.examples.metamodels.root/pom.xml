@@ -17,6 +17,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
+		<module>../../releng/fr.inria.diverse.melange.target-platform</module>
 		<module>../fr.inria.diverse.melange.examples.metamodels.fsm</module>
 		<module>../fr.inria.diverse.melange.examples.metamodels.timedfsm</module>
 		<module>../fr.inria.diverse.melange.examples.metamodels.subpackages</module>
