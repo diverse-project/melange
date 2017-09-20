@@ -32,12 +32,6 @@
 		<module>../fr.inria.diverse.melange.examples.metamodels.simplefsm</module>
 	</modules>
 
-	<properties>
-		<emf.version>2.11.0</emf.version>
-		<tycho.version>0.23.1</tycho.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>1.8</java.version>
-	</properties>
         
 	<build>
 		<plugins>
