@@ -15,8 +15,7 @@ class MelangeFilesTemplates
 	def public static String getBuildProperties() {
 		return '''
 			source.. = src/,\
-			           src-gen/,\
-			           xtend-gen/
+			           src-gen/
 			bin.includes = plugin.xml,\
 			               META-INF/,\
 			               model-gen/,\
