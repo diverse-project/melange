@@ -390,7 +390,7 @@ class EclipseProjectHelper
 				#[JavaCore::BUILDER_ID,	PDE::MANIFEST_BUILDER_ID, PDE::SCHEMA_BUILDER_ID],
 				#["src"],
 				#[],
-				#["org.eclipse.gemoc.event.commons.interpreter",
+				#["org.eclipse.gemoc.executionframework.event.interpreter",
 					"org.eclipse.gemoc.trace.commons.model",
 					"org.eclipse.gemoc.xdsmlframework.api",
 					l.externalRuntimeName + ".event"],

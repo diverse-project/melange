@@ -283,8 +283,8 @@ class EventManagerGenerator {
 			import java.util.Set;
 			
 			import org.eclipse.emf.ecore.EClass;
-			import org.eclipse.gemoc.event.commons.interpreter.IBehavioralAPI;
-			import org.eclipse.gemoc.event.commons.interpreter.EventInstance;
+			import org.eclipse.gemoc.executionframework.event.interpreter.IBehavioralAPI;
+			import org.eclipse.gemoc.executionframework.event.interpreter.EventInstance;
 			«IF !outputEventToEmitter.empty»
 			import org.eclipse.gemoc.trace.commons.model.trace.Step;
 			import org.eclipse.gemoc.xdsmlframework.api.core.IExecutionEngine;

@@ -1,8 +1,6 @@
 package fr.inria.diverse.melange.utils
 
 import com.google.inject.Inject
-import org.eclipse.gemoc.event.commons.model.property.PropertyPackage
-import org.eclipse.gemoc.event.commons.model.scenario.ScenarioPackage
 import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.metamodel.melange.Language
@@ -36,6 +34,8 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
+import org.eclipse.gemoc.executionframework.event.model.property.PropertyPackage
+import org.eclipse.gemoc.executionframework.event.model.scenario.ScenarioPackage
 import org.eclipse.xtext.common.types.JvmBooleanAnnotationValue
 import org.eclipse.xtext.common.types.JvmCustomAnnotationValue
 import org.eclipse.xtext.common.types.JvmDeclaredType
