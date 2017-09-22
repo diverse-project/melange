@@ -40,7 +40,7 @@ import org.eclipse.xtext.generator.OutputConfigurationProvider
 import org.eclipse.xtext.resource.DerivedStateAwareResource
 import org.eclipse.xtext.ui.resource.XtextResourceSetProvider
 import org.eclipse.core.resources.IResource
-import fr.inria.diverse.melange.ast.NamingHelper
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 class MelangeBuilder
 {
@@ -54,7 +54,7 @@ class MelangeBuilder
 	@Inject extension ModelingElementExtensions
 	@Inject extension ModelTypeExtensions
 	@Inject extension EcoreExtensions
-	@Inject extension NamingHelper
+	@Inject extension IQualifiedNameProvider
 	@Inject DispatchOverrider dispatchWriter
 	@Inject EventManagerGenerator eventManagerGenerator
 	@Inject XtextResourceSetProvider rsProvider
