@@ -76,6 +76,7 @@ public class MelangeFactoryImpl extends EFactoryImpl implements MelangeFactory {
 			case MelangePackage.WEAVE: return createWeave();
 			case MelangePackage.EXTERNAL_LANGUAGE: return createExternalLanguage();
 			case MelangePackage.ANNOTATION: return createAnnotation();
+			case MelangePackage.IMPORT_DSL: return createImportDsl();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -299,6 +300,16 @@ public class MelangeFactoryImpl extends EFactoryImpl implements MelangeFactory {
 	public Annotation createAnnotation() {
 		AnnotationImpl annotation = new AnnotationImpl();
 		return annotation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ImportDsl createImportDsl() {
+		ImportDslImpl importDsl = new ImportDslImpl();
+		return importDsl;
 	}
 
 	/**

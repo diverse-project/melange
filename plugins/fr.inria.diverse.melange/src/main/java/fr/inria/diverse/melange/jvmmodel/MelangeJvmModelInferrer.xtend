@@ -29,11 +29,12 @@ import org.apache.log4j.Logger
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
-import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import fr.inria.diverse.melange.metamodel.melange.ExternalLanguage
+import org.eclipse.xtext.naming.IQualifiedNameConverter
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 /**
  * Entry point for the generation of a JVM model from which Xtext will
@@ -49,8 +50,9 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 	@Inject extension ModelingElementExtensions
 	@Inject extension ModelTypeExtensions
 	@Inject extension JvmTypesBuilder
-	@Inject extension IQualifiedNameProvider
 	@Inject extension NamingHelper
+	@Inject extension IQualifiedNameProvider
+	@Inject extension IQualifiedNameConverter
 
 	private static final Logger log = Logger.getLogger(MelangeJvmModelInferrer)
 
@@ -141,29 +143,29 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 			members += root.toMethod("doAdaptersRegistration", Void::TYPE.typeRef)[
 				body = '''
 					«FOR l : root.languages»
-						«LanguageDescriptor» «l.name.toFirstLower» = new «LanguageDescriptorImpl»(
+						«LanguageDescriptor» «l.name.toQualifiedName.lastSegment.toFirstLower» = new «LanguageDescriptorImpl»(
 							"«l.fullyQualifiedName»", "«l.documentation?.replace("\"", "'")?.replace("\n", " ")»", "«l.syntax.rootPackageUri»", "«l.exactType.fullyQualifiedName»"
 						);
 						«FOR mt : l.^implements»
 							«IF !(l instanceof ExternalLanguage && l.exactType == mt)»
-								«l.name.toFirstLower».addAdapter("«mt.fullyQualifiedName»", «l.syntax.adapterNameFor(mt)».class);
+								«l.name.toQualifiedName.lastSegment.toFirstLower».addAdapter("«mt.fullyQualifiedName»", «l.syntax.adapterNameFor(mt)».class);
 							«ENDIF»
 						«ENDFOR»
 						«MelangeRegistry».INSTANCE.getLanguageMap().put(
 							"«l.fullyQualifiedName»",
-							«l.name.toFirstLower»
+							«l.name.toQualifiedName.lastSegment.toFirstLower»
 						);
 					«ENDFOR»
 					«FOR mt : root.modelTypes»
-						«ModelTypeDescriptor» «mt.name.toFirstLower» = new «ModelTypeDescriptorImpl»(
+						«ModelTypeDescriptor» «mt.name.toQualifiedName.lastSegment.toFirstLower» = new «ModelTypeDescriptorImpl»(
 							"«mt.fullyQualifiedName»", "«mt.documentation»", "«mt.uri»"
 						);
 						«FOR superMt : mt.subtypingRelations»
-							«mt.name.toFirstLower».addSuperType("«superMt.superType.fullyQualifiedName»");
+							«mt.name.toQualifiedName.lastSegment.toFirstLower».addSuperType("«superMt.superType.fullyQualifiedName»");
 						«ENDFOR»
 						«MelangeRegistry».INSTANCE.getModelTypeMap().put(
 							"«mt.fullyQualifiedName»",
-							«mt.name.toFirstLower»
+							«mt.name.toQualifiedName.lastSegment.toFirstLower»
 						);
 					«ENDFOR»
 				'''

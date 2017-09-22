@@ -17,12 +17,12 @@ import fr.inria.diverse.melange.metamodel.melange.ModelType
 import java.io.IOException
 import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.ecore.EObject
-import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.util.internal.Stopwatches
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 /**
  * Infers the Java code supporting the definition of {@link ModelType}s
@@ -31,7 +31,6 @@ class ModelTypeInferrer
 {
 	@Inject extension JvmTypesBuilder
 	@Inject extension IQualifiedNameProvider
-	@Inject extension NamingHelper
 	@Inject extension ModelingElementExtensions
 
 	/**

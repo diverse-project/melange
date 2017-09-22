@@ -20,12 +20,13 @@ import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.util.internal.Stopwatches
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import fr.inria.diverse.melange.metamodel.melange.ExternalLanguage
+import org.eclipse.xtext.naming.IQualifiedNameConverter
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 /**
  * Generates the Java runtime support for each {@link Language}.
@@ -34,9 +35,10 @@ class LanguageInferrer
 {
 	@Inject extension ASTHelper
 	@Inject extension JvmTypesBuilder
-	@Inject extension IQualifiedNameProvider
 	@Inject extension NamingHelper
 	@Inject extension LanguageAdapterInferrer
+	@Inject extension IQualifiedNameProvider
+	@Inject extension IQualifiedNameConverter
 
 	/**
 	 * Generates a Java class whose name is the fully qualified name of the
@@ -86,7 +88,7 @@ class LanguageInferrer
 				val mtFqn = mt.fullyQualifiedName.toString
 				val adapName = l.syntax.adapterNameFor(mt)
 
-				members += l.toMethod('''to«mt.name»''', mtFqn.typeRef)[
+				members += l.toMethod('''to«mt.name.toQualifiedName.lastSegment»''', mtFqn.typeRef)[
 					body = '''
 						«adapName» adaptee = new «adapName»() ;
 						adaptee.setAdaptee(resource);

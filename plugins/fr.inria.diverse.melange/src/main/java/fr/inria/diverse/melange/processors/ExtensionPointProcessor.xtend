@@ -27,8 +27,8 @@ import org.eclipse.pde.internal.core.PDECore
 import org.eclipse.pde.internal.core.plugin.WorkspacePluginModel
 import org.eclipse.pde.internal.core.project.PDEProject
 import org.eclipse.xtext.documentation.IEObjectDocumentationProvider
-import org.eclipse.xtext.naming.IQualifiedNameProvider
 import fr.inria.diverse.melange.metamodel.melange.ExternalLanguage
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 /**
  * For each {@link ModelType}, creates the corresponding

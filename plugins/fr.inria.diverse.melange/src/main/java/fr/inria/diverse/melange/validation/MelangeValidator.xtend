@@ -37,6 +37,7 @@ import fr.inria.diverse.melange.metamodel.melange.Operator
 import fr.inria.diverse.melange.metamodel.melange.ExternalLanguage
 import fr.inria.diverse.melange.builder.ModelTypingSpaceBuilder
 import fr.inria.diverse.melange.builder.ImportBuilder
+import fr.inria.diverse.melange.metamodel.melange.ImportDsl
 
 class MelangeValidator extends AbstractMelangeValidator
 {
@@ -79,12 +80,13 @@ class MelangeValidator extends AbstractMelangeValidator
 
 	@Check
 	def void checkNameIsValid(Language l) {
-		if (l.name.nullOrEmpty || !Character.isUpperCase(l.name.charAt(0)))
-			error(
-				"Language name should start with an uppercase",
-				MelangePackage.Literals.NAMED_ELEMENT__NAME,
-				MelangeValidationConstants.LANGUAGE_NAME_INVALID
-			)
+		if(!(l instanceof ImportDsl))
+			if (l.name.nullOrEmpty || !Character.isUpperCase(l.name.charAt(0)))
+				error(
+					"Language name should start with an uppercase",
+					MelangePackage.Literals.NAMED_ELEMENT__NAME,
+					MelangeValidationConstants.LANGUAGE_NAME_INVALID
+				)
 	}
 
 	@Check
@@ -100,12 +102,13 @@ class MelangeValidator extends AbstractMelangeValidator
 
 	@Check
 	def void checkNameIsValid(ModelType mt) {
-		if (mt.name.nullOrEmpty || !Character.isUpperCase(mt.name.charAt(0)))
-			error(
-				"Model type name should start with an uppercase",
-				MelangePackage.Literals.NAMED_ELEMENT__NAME,
-				MelangeValidationConstants.MODELTYPE_NAME_INVALID
-			)
+		if(!(mt.extracted instanceof ImportDsl))
+			if (mt.name.nullOrEmpty || !Character.isUpperCase(mt.name.charAt(0)))
+				error(
+					"Model type name should start with an uppercase",
+					MelangePackage.Literals.NAMED_ELEMENT__NAME,
+					MelangeValidationConstants.MODELTYPE_NAME_INVALID
+				)
 	}
 
 	@Check

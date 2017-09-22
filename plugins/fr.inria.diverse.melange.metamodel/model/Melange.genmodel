@@ -1,124 +1,288 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2017 Inria and others.&#xA; * All rights reserved. This program and the accompanying materials&#xA; * are made available under the terms of the Eclipse Public License v1.0&#xA; * which accompanies this distribution, and is available at&#xA; * http://www.eclipse.org/legal/epl-v10.html&#xA; *&#xA; * Contributors:&#xA; *     Inria - initial API and implementation"
-    modelDirectory="/fr.inria.diverse.melange.metamodel/src/main/java" modelPluginID="fr.inria.diverse.melange.metamodel"
-    modelName="Melange" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
-    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types ../../org.eclipse.xtext.xbase/model/Xbase.genmodel#//xtype ../../org.eclipse.xtext.xbase/model/Xbase.genmodel#//xbase"
-    operationReflection="true" importOrganizing="true">
+<?xml version="1.0" encoding="ASCII"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2017 Inria and others.&#xA; * All rights reserved. This program and the accompanying materials&#xA; * are made available under the terms of the Eclipse Public License v1.0&#xA; * which accompanies this distribution, and is available at&#xA; * http://www.eclipse.org/legal/epl-v10.html&#xA; *&#xA; * Contributors:&#xA; *     Inria - initial API and implementation" modelDirectory="/fr.inria.diverse.melange.metamodel/src/main/java" modelPluginID="fr.inria.diverse.melange.metamodel" modelName="Melange" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
   <foreignModel>Melange.ecore</foreignModel>
-  <genPackages prefix="Melange" basePackage="fr.inria.diverse.melange.metamodel" disposableProviderFactory="true"
-      ecorePackage="Melange.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Melange.ecore#//ResourceType">
-      <genEnumLiterals ecoreEnumLiteral="Melange.ecore#//ResourceType/MELANGE"/>
-      <genEnumLiterals ecoreEnumLiteral="Melange.ecore#//ResourceType/EMF"/>
-      <genEnumLiterals ecoreEnumLiteral="Melange.ecore#//ResourceType/XTEXT"/>
+  <genPackages prefix="Melange" basePackage="fr.inria.diverse.melange.metamodel" disposableProviderFactory="true">
+    <ecorePackage href="Melange.ecore#/"/>
+    <genEnums typeSafeEnumCompatible="false">
+      <ecoreEnum href="Melange.ecore#//ResourceType"/>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="Melange.ecore#//ResourceType/MELANGE"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="Melange.ecore#//ResourceType/EMF"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="Melange.ecore#//ResourceType/XTEXT"/>
+      </genEnumLiterals>
     </genEnums>
-    <genClasses ecoreClass="Melange.ecore#//ModelTypingSpace">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//ModelTypingSpace/elements"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//ModelTypingSpace/imports"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//ModelTypingSpace/name"/>
+    <genClasses>
+      <ecoreClass href="Melange.ecore#//ModelTypingSpace"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//ModelTypingSpace/elements"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//ModelTypingSpace/imports"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//ModelTypingSpace/name"/>
+      </genFeatures>
     </genClasses>
-    <genClasses image="false" ecoreClass="Melange.ecore#//Element"/>
-    <genClasses ecoreClass="Melange.ecore#//Metamodel">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Melange.ecore#//Metamodel/owningLanguage"/>
+    <genClasses image="false">
+      <ecoreClass href="Melange.ecore#//Element"/>
     </genClasses>
-    <genClasses ecoreClass="Melange.ecore#//ModelType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//ModelType/subtypingRelations"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//ModelType/extracted"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//ModelType/mtUri"/>
+    <genClasses>
+      <ecoreClass href="Melange.ecore#//Metamodel"/>
+      <genFeatures property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//Metamodel/owningLanguage"/>
+      </genFeatures>
     </genClasses>
-    <genClasses image="false" ecoreClass="Melange.ecore#//Transformation"/>
-    <genClasses ecoreClass="Melange.ecore#//Aspect">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Aspect/aspectTypeRef"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Aspect/aspectedClass"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Aspect/ecoreFragment"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Melange.ecore#//Aspect/owningLanguage"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Aspect/source"/>
+    <genClasses>
+      <ecoreClass href="Melange.ecore#//ModelType"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//ModelType/subtypingRelations"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//ModelType/extracted"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//ModelType/mtUri"/>
+      </genFeatures>
     </genClasses>
-    <genClasses ecoreClass="Melange.ecore#//Inheritance"/>
-    <genClasses ecoreClass="Melange.ecore#//Subtyping">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Melange.ecore#//Subtyping/subType"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Subtyping/superType"/>
+    <genClasses image="false">
+      <ecoreClass href="Melange.ecore#//Transformation"/>
     </genClasses>
-    <genClasses ecoreClass="Melange.ecore#//XbaseTransformation">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//XbaseTransformation/body"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//XbaseTransformation/main"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//XbaseTransformation/parameters"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//XbaseTransformation/returnTypeRef"/>
+    <genClasses>
+      <ecoreClass href="Melange.ecore#//Aspect"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//Aspect/aspectTypeRef"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//Aspect/aspectedClass"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//Aspect/ecoreFragment"/>
+      </genFeatures>
+      <genFeatures property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//Aspect/owningLanguage"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//Aspect/source"/>
+      </genFeatures>
     </genClasses>
-    <genClasses image="false" ecoreClass="Melange.ecore#//ModelingElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//ModelingElement/ecoreUri"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//ModelingElement/genmodelUris"/>
+    <genClasses>
+      <ecoreClass href="Melange.ecore#//Inheritance"/>
     </genClasses>
-    <genClasses ecoreClass="Melange.ecore#//Mapping">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Mapping/rules"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Mapping/from"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Mapping/to"/>
+    <genClasses>
+      <ecoreClass href="Melange.ecore#//Subtyping"/>
+      <genFeatures property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//Subtyping/subType"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//Subtyping/superType"/>
+      </genFeatures>
     </genClasses>
-    <genClasses ecoreClass="Melange.ecore#//ClassBinding">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EAttribute Melange.ecore#//ClassBinding/from"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EAttribute Melange.ecore#//ClassBinding/to"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//ClassBinding/properties"/>
+    <genClasses>
+      <ecoreClass href="Melange.ecore#//XbaseTransformation"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//XbaseTransformation/body"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//XbaseTransformation/main"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//XbaseTransformation/parameters"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//XbaseTransformation/returnTypeRef"/>
+      </genFeatures>
     </genClasses>
-    <genClasses ecoreClass="Melange.ecore#//PropertyBinding">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//PropertyBinding/from"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//PropertyBinding/to"/>
+    <genClasses image="false">
+      <ecoreClass href="Melange.ecore#//ModelingElement"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//ModelingElement/ecoreUri"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//ModelingElement/genmodelUris"/>
+      </genFeatures>
     </genClasses>
-    <genClasses ecoreClass="Melange.ecore#//Operator">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Melange.ecore#//Operator/owningLanguage"/>
+    <genClasses>
+      <ecoreClass href="Melange.ecore#//Mapping"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//Mapping/rules"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//Mapping/from"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//Mapping/to"/>
+      </genFeatures>
     </genClasses>
-    <genClasses ecoreClass="Melange.ecore#//LanguageOperator">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//LanguageOperator/targetLanguage"/>
+    <genClasses>
+      <ecoreClass href="Melange.ecore#//ClassBinding"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//ClassBinding/from"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//ClassBinding/to"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//ClassBinding/properties"/>
+      </genFeatures>
     </genClasses>
-    <genClasses ecoreClass="Melange.ecore#//Import">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Import/ecoreUri"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Import/genmodelUris"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Import/mappingRules"/>
+    <genClasses>
+      <ecoreClass href="Melange.ecore#//PropertyBinding"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//PropertyBinding/from"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//PropertyBinding/to"/>
+      </genFeatures>
     </genClasses>
-    <genClasses ecoreClass="Melange.ecore#//Merge">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Merge/mappingRules"/>
+    <genClasses>
+      <ecoreClass href="Melange.ecore#//Operator"/>
+      <genFeatures property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//Operator/owningLanguage"/>
+      </genFeatures>
     </genClasses>
-    <genClasses ecoreClass="Melange.ecore#//Slice">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EAttribute Melange.ecore#//Slice/roots"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Slice/mappingRules"/>
+    <genClasses>
+      <ecoreClass href="Melange.ecore#//LanguageOperator"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//LanguageOperator/targetLanguage"/>
+      </genFeatures>
     </genClasses>
-    <genClasses ecoreClass="Melange.ecore#//PackageBinding">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//PackageBinding/from"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//PackageBinding/to"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//PackageBinding/classes"/>
+    <genClasses>
+      <ecoreClass href="Melange.ecore#//Import"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//Import/ecoreUri"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//Import/genmodelUris"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//Import/mappingRules"/>
+      </genFeatures>
     </genClasses>
-    <genClasses ecoreClass="Melange.ecore#//Language">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Language/operators"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Language/exactType"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Language/implements"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Language/requires"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Language/syntax"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/exactTypeName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/exactTypeUri"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/resourceType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/resourceUri"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Language/xtextSetupRef"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Language/mappings"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Melange.ecore#//Language/semantics"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/xtext"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/sirius"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/ecl"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/xmof"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Language/fileExtension"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Language/annotations"/>
+    <genClasses>
+      <ecoreClass href="Melange.ecore#//Merge"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//Merge/mappingRules"/>
+      </genFeatures>
     </genClasses>
-    <genClasses ecoreClass="Melange.ecore#//Weave">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Melange.ecore#//Weave/aspectTypeRef"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Weave/aspectWildcardImport"/>
+    <genClasses>
+      <ecoreClass href="Melange.ecore#//Slice"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//Slice/roots"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//Slice/mappingRules"/>
+      </genFeatures>
     </genClasses>
-    <genClasses image="false" ecoreClass="Melange.ecore#//NamedElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//NamedElement/name"/>
+    <genClasses>
+      <ecoreClass href="Melange.ecore#//PackageBinding"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//PackageBinding/from"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//PackageBinding/to"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//PackageBinding/classes"/>
+      </genFeatures>
     </genClasses>
-    <genClasses ecoreClass="Melange.ecore#//ExternalLanguage"/>
-    <genClasses ecoreClass="Melange.ecore#//Annotation">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Annotation/key"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Melange.ecore#//Annotation/value"/>
+    <genClasses>
+      <ecoreClass href="Melange.ecore#//Language"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//Language/operators"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//Language/exactType"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//Language/implements"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//Language/requires"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//Language/syntax"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//Language/exactTypeName"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//Language/exactTypeUri"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//Language/resourceType"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//Language/resourceUri"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//Language/xtextSetupRef"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//Language/mappings"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//Language/semantics"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//Language/xtext"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//Language/sirius"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//Language/ecl"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//Language/xmof"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//Language/fileExtension"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//Language/annotations"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="Melange.ecore#//Weave"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//Weave/aspectTypeRef"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//Weave/aspectWildcardImport"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses image="false">
+      <ecoreClass href="Melange.ecore#//NamedElement"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//NamedElement/name"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="Melange.ecore#//ExternalLanguage"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="Melange.ecore#//Annotation"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//Annotation/key"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Melange.ecore#//Annotation/value"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="Melange.ecore#//ImportDsl"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Melange.ecore#//ImportDsl/dsl"/>
+      </genFeatures>
     </genClasses>
   </genPackages>
+  <usedGenPackages href="../../org.eclipse.gemoc.dsl/model/generated/Dsl.genmodel#//dsl"/>
+  <usedGenPackages href="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"/>
+  <usedGenPackages href="../../org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types"/>
+  <usedGenPackages href="../../org.eclipse.xtext.xbase/model/Xbase.genmodel#//xtype"/>
+  <usedGenPackages href="../../org.eclipse.xtext.xbase/model/Xbase.genmodel#//xbase"/>
 </genmodel:GenModel>

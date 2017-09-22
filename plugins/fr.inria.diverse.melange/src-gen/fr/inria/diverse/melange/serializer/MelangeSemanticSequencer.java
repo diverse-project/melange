@@ -8,6 +8,7 @@ import fr.inria.diverse.melange.metamodel.melange.Annotation;
 import fr.inria.diverse.melange.metamodel.melange.ClassBinding;
 import fr.inria.diverse.melange.metamodel.melange.ExternalLanguage;
 import fr.inria.diverse.melange.metamodel.melange.Import;
+import fr.inria.diverse.melange.metamodel.melange.ImportDsl;
 import fr.inria.diverse.melange.metamodel.melange.Inheritance;
 import fr.inria.diverse.melange.metamodel.melange.Language;
 import fr.inria.diverse.melange.metamodel.melange.Mapping;
@@ -111,6 +112,9 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 					return; 
 				}
 				else break;
+			case MelangePackage.IMPORT_DSL:
+				sequence_ImportDsl(context, (ImportDsl) semanticObject); 
+				return; 
 			case MelangePackage.INHERITANCE:
 				sequence_Inherit(context, (Inheritance) semanticObject); 
 				return; 
@@ -515,15 +519,34 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         (operators+=Weave | xmof=STRING | fileExtension=STRING)? 
-	 *         (ecl+=STRING ecl+=STRING*)? 
 	 *         (xtext+=STRING xtext+=STRING*)? 
 	 *         (sirius+=STRING sirius+=STRING*)? 
+	 *         (ecl+=STRING ecl+=STRING*)? 
 	 *         (exactTypeName=ValidID exactTypeUri=STRING?)? 
 	 *         (name=ValidID (implements+=[ModelType|QualifiedName] implements+=[ModelType|QualifiedName]*)? operators+=ExternalImport)?
 	 *     )+
 	 */
 	protected void sequence_ExternalLanguage(ISerializationContext context, ExternalLanguage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Element returns ImportDsl
+	 *     ImportDsl returns ImportDsl
+	 *
+	 * Constraint:
+	 *     dsl=[Dsl|QualifiedName]
+	 */
+	protected void sequence_ImportDsl(ISerializationContext context, ImportDsl semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MelangePackage.Literals.IMPORT_DSL__DSL) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MelangePackage.Literals.IMPORT_DSL__DSL));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getImportDslAccess().getDslDslQualifiedNameParserRuleCall_1_0_1(), semanticObject.getDsl());
+		feeder.finish();
 	}
 	
 	
@@ -553,7 +576,7 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MelangePackage.Literals.LANGUAGE_OPERATOR__TARGET_LANGUAGE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getInheritAccess().getTargetLanguageLanguageQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(MelangePackage.Literals.LANGUAGE_OPERATOR__TARGET_LANGUAGE, false));
+		feeder.accept(grammarAccess.getInheritAccess().getTargetLanguageLanguageQualifiedNameParserRuleCall_0_1(), semanticObject.getTargetLanguage());
 		feeder.finish();
 	}
 	
@@ -568,8 +591,8 @@ public class MelangeSemanticSequencer extends XbaseSemanticSequencer {
 	 *         (xmof=STRING | fileExtension=STRING | annotations+=Annotation)? 
 	 *         (xtext+=STRING xtext+=STRING*)? 
 	 *         (sirius+=STRING sirius+=STRING*)? 
-	 *         (exactTypeName=ValidID exactTypeUri=STRING?)? 
 	 *         (ecl+=STRING ecl+=STRING*)? 
+	 *         (exactTypeName=ValidID exactTypeUri=STRING?)? 
 	 *         (resourceType=ResourceType (resourceUri=STRING | xtextSetupRef=JvmTypeReference)?)? 
 	 *         (
 	 *             name=ValidID 

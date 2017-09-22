@@ -31,4 +31,8 @@ class MelangeRuntimeModule extends fr.inria.diverse.melange.AbstractMelangeRunti
 	override bindIResourceValidator() {
 		return typeof(fr.inria.diverse.melange.validation.MelangeLocalResourceValidator)
 	}
+	
+	override bindIQualifiedNameProvider() {
+		return typeof(fr.inria.diverse.melange.utils.MelangeQualifiedNameProvider);
+	}
 }

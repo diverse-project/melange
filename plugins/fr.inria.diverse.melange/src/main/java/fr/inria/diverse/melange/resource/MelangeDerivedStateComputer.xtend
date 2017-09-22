@@ -29,6 +29,7 @@ import org.eclipse.xtext.util.internal.Stopwatches
 import org.eclipse.xtext.xbase.jvmmodel.JvmModelAssociator
 
 import static org.eclipse.xtext.util.internal.Stopwatches.*
+import fr.inria.diverse.melange.processors.ImportDslProcessor
 
 /**
  * A specialized {@link JvmModelAssociator} that is basically the entry point
@@ -55,11 +56,13 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 	 */
 	@Inject
 	new(
+		ImportDslProcessor d,
 		WildcardAspectResolver r,
 		LanguageProcessor l,
 		ExactTypeInferrer e,
 		TypingInferrer t
 	) {
+		processors += d
 		processors += r
 		processors += e
 		processors += l

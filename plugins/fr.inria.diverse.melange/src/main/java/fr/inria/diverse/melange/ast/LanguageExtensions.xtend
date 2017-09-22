@@ -39,7 +39,6 @@ import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.common.types.JvmUnknownTypeReference
 import org.eclipse.xtext.naming.IQualifiedNameConverter
-import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.validation.EObjectDiagnosticImpl
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
@@ -48,7 +47,6 @@ import com.google.common.collect.HashMultimap
 import com.google.common.collect.SetMultimap
 import fr.inria.diverse.melange.utils.AspectCopier2
 import java.util.Stack
-import fr.inria.diverse.melange.metamodel.melange.Mapping
 import fr.inria.diverse.melange.processors.LanguageProcessor
 import fr.inria.diverse.melange.metamodel.melange.ExternalLanguage
 import org.eclipse.core.resources.ResourcesPlugin
@@ -56,7 +54,6 @@ import org.eclipse.core.resources.IResourceVisitor
 import org.eclipse.core.resources.IResource
 import org.eclipse.core.runtime.CoreException
 import org.eclipse.core.resources.IFile
-import java.util.HashMap
 import org.eclipse.core.resources.IProject
 import java.util.HashSet
 import org.eclipse.emf.common.util.URI
@@ -64,6 +61,8 @@ import org.eclipse.core.runtime.Path
 import org.eclipse.core.runtime.IPath
 import org.apache.log4j.Logger
 import java.util.ArrayList
+import fr.inria.diverse.melange.metamodel.melange.ImportDsl
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 /**
  * A collection of utilities around {@link Language}s
@@ -76,12 +75,9 @@ class LanguageExtensions
 	@Inject extension NamingHelper
 	@Inject extension AspectExtensions aspectExtension
 	@Inject extension EcoreExtensions
-	@Inject extension IQualifiedNameConverter
 	@Inject extension EclipseProjectHelper
 	@Inject extension IQualifiedNameProvider
-	@Inject extension LanguageProcessor
 	@Inject AspectCopier2 copier2
-	@Inject AspectRenamer renamer
 	@Inject JvmTypesBuilder typesBuilder
 	@Inject JvmTypeReferenceBuilder.Factory builderFactory
 	@Inject MatchingHelper matchingHelper
@@ -415,7 +411,7 @@ class LanguageExtensions
 	 * if it is constructed from others {@link Language}s.  
 	 */
 	def boolean isGeneratedByMelange(Language l) {		
-		return !(l instanceof ExternalLanguage)
+		return !(l instanceof ExternalLanguage || l instanceof ImportDsl)
 	}
 
 	/**

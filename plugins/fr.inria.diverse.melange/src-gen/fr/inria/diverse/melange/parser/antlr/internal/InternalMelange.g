@@ -184,31 +184,41 @@ ruleElement returns [EObject current=null]
 )
     |
     { 
-        newCompositeNode(grammarAccess.getElementAccess().getEcoreModelTypeParserRuleCall_2()); 
+        newCompositeNode(grammarAccess.getElementAccess().getImportDslParserRuleCall_2()); 
     }
-    this_EcoreModelType_3=ruleEcoreModelType
+    this_ImportDsl_3=ruleImportDsl
     { 
-        $current = $this_EcoreModelType_3.current; 
+        $current = $this_ImportDsl_3.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getElementAccess().getTransformationDeclParserRuleCall_3()); 
+        newCompositeNode(grammarAccess.getElementAccess().getEcoreModelTypeParserRuleCall_3()); 
     }
-    this_TransformationDecl_4=ruleTransformationDecl
+    this_EcoreModelType_4=ruleEcoreModelType
     { 
-        $current = $this_TransformationDecl_4.current; 
+        $current = $this_EcoreModelType_4.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getElementAccess().getMappingParserRuleCall_4()); 
+        newCompositeNode(grammarAccess.getElementAccess().getTransformationDeclParserRuleCall_4()); 
     }
-    this_Mapping_5=ruleMapping
+    this_TransformationDecl_5=ruleTransformationDecl
     { 
-        $current = $this_Mapping_5.current; 
+        $current = $this_TransformationDecl_5.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getElementAccess().getMappingParserRuleCall_5()); 
+    }
+    this_Mapping_6=ruleMapping
+    { 
+        $current = $this_Mapping_6.current; 
         afterParserOrEnumRuleCall();
     }
 )
@@ -1387,6 +1397,46 @@ ruleExternalLanguage returns [EObject current=null]
 	}
 
 )
+;
+
+
+
+
+
+// Entry rule entryRuleImportDsl
+entryRuleImportDsl returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getImportDslRule()); }
+	 iv_ruleImportDsl=ruleImportDsl 
+	 { $current=$iv_ruleImportDsl.current; } 
+	 EOF 
+;
+
+// Rule ImportDsl
+ruleImportDsl returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='import-dsl' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getImportDslAccess().getImportDslKeyword_0());
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getImportDslRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getImportDslAccess().getDslDslCrossReference_1_0()); 
+	    }
+		ruleQualifiedName		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
 ;
 
 

@@ -1612,6 +1612,214 @@ public interface MelangePackage extends EPackage {
 	int ANNOTATION_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.ImportDslImpl <em>Import Dsl</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.ImportDslImpl
+	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getImportDsl()
+	 * @generated
+	 */
+	int IMPORT_DSL = 24;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT_DSL__NAME = LANGUAGE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Operators</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT_DSL__OPERATORS = LANGUAGE__OPERATORS;
+
+	/**
+	 * The feature id for the '<em><b>Exact Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT_DSL__EXACT_TYPE = LANGUAGE__EXACT_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Implements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT_DSL__IMPLEMENTS = LANGUAGE__IMPLEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Requires</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT_DSL__REQUIRES = LANGUAGE__REQUIRES;
+
+	/**
+	 * The feature id for the '<em><b>Syntax</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT_DSL__SYNTAX = LANGUAGE__SYNTAX;
+
+	/**
+	 * The feature id for the '<em><b>Exact Type Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT_DSL__EXACT_TYPE_NAME = LANGUAGE__EXACT_TYPE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Exact Type Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT_DSL__EXACT_TYPE_URI = LANGUAGE__EXACT_TYPE_URI;
+
+	/**
+	 * The feature id for the '<em><b>Resource Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT_DSL__RESOURCE_TYPE = LANGUAGE__RESOURCE_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Resource Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT_DSL__RESOURCE_URI = LANGUAGE__RESOURCE_URI;
+
+	/**
+	 * The feature id for the '<em><b>Xtext Setup Ref</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT_DSL__XTEXT_SETUP_REF = LANGUAGE__XTEXT_SETUP_REF;
+
+	/**
+	 * The feature id for the '<em><b>Mappings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT_DSL__MAPPINGS = LANGUAGE__MAPPINGS;
+
+	/**
+	 * The feature id for the '<em><b>Semantics</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT_DSL__SEMANTICS = LANGUAGE__SEMANTICS;
+
+	/**
+	 * The feature id for the '<em><b>Xtext</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT_DSL__XTEXT = LANGUAGE__XTEXT;
+
+	/**
+	 * The feature id for the '<em><b>Sirius</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT_DSL__SIRIUS = LANGUAGE__SIRIUS;
+
+	/**
+	 * The feature id for the '<em><b>Ecl</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT_DSL__ECL = LANGUAGE__ECL;
+
+	/**
+	 * The feature id for the '<em><b>Xmof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT_DSL__XMOF = LANGUAGE__XMOF;
+
+	/**
+	 * The feature id for the '<em><b>File Extension</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT_DSL__FILE_EXTENSION = LANGUAGE__FILE_EXTENSION;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT_DSL__ANNOTATIONS = LANGUAGE__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Dsl</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT_DSL__DSL = LANGUAGE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Import Dsl</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT_DSL_FEATURE_COUNT = LANGUAGE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Import Dsl</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT_DSL_OPERATION_COUNT = LANGUAGE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link fr.inria.diverse.melange.metamodel.melange.ResourceType <em>Resource Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1619,7 +1827,7 @@ public interface MelangePackage extends EPackage {
 	 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getResourceType()
 	 * @generated
 	 */
-	int RESOURCE_TYPE = 24;
+	int RESOURCE_TYPE = 25;
 
 
 	/**
@@ -2545,6 +2753,27 @@ public interface MelangePackage extends EPackage {
 	EAttribute getAnnotation_Value();
 
 	/**
+	 * Returns the meta object for class '{@link fr.inria.diverse.melange.metamodel.melange.ImportDsl <em>Import Dsl</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Import Dsl</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.ImportDsl
+	 * @generated
+	 */
+	EClass getImportDsl();
+
+	/**
+	 * Returns the meta object for the reference '{@link fr.inria.diverse.melange.metamodel.melange.ImportDsl#getDsl <em>Dsl</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Dsl</em>'.
+	 * @see fr.inria.diverse.melange.metamodel.melange.ImportDsl#getDsl()
+	 * @see #getImportDsl()
+	 * @generated
+	 */
+	EReference getImportDsl_Dsl();
+
+	/**
 	 * Returns the meta object for enum '{@link fr.inria.diverse.melange.metamodel.melange.ResourceType <em>Resource Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3312,6 +3541,24 @@ public interface MelangePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ANNOTATION__VALUE = eINSTANCE.getAnnotation_Value();
+
+		/**
+		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.impl.ImportDslImpl <em>Import Dsl</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.inria.diverse.melange.metamodel.melange.impl.ImportDslImpl
+		 * @see fr.inria.diverse.melange.metamodel.melange.impl.MelangePackageImpl#getImportDsl()
+		 * @generated
+		 */
+		EClass IMPORT_DSL = eINSTANCE.getImportDsl();
+
+		/**
+		 * The meta object literal for the '<em><b>Dsl</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IMPORT_DSL__DSL = eINSTANCE.getImportDsl_Dsl();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.diverse.melange.metamodel.melange.ResourceType <em>Resource Type</em>}' enum.
