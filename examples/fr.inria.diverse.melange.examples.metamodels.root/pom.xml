@@ -16,6 +16,13 @@
 	<version>0.2.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
+	<parent>
+		<relativePath>../../releng/fr.inria.diverse.melange.releng.root/pom.xml</relativePath>
+		<groupId>fr.inria.diverse.melange</groupId>
+		<artifactId>fr.inria.diverse.melange.releng.root</artifactId>
+		<version>0.2.1-SNAPSHOT</version>
+	</parent>
+
 	<modules>
 		<module>../fr.inria.diverse.melange.examples.metamodels.fsm</module>
 		<module>../fr.inria.diverse.melange.examples.metamodels.timedfsm</module>
@@ -25,12 +32,6 @@
 		<module>../fr.inria.diverse.melange.examples.metamodels.simplefsm</module>
 	</modules>
 
-	<properties>
-		<emf.version>2.11.0</emf.version>
-		<tycho.version>0.23.1</tycho.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>1.8</java.version>
-	</properties>
         
 	<build>
 		<plugins>

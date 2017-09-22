@@ -100,7 +100,7 @@ class MultipleResourceTest
 		
 		val res = loadResource("melange:/resource/fr.inria.diverse.melange.tests/tests-inputs/models/Simple3.fsm?lang=simplefsmtest.TimedFsm&mt=simplefsmtest.FsmMT")
 		assertTrue(res instanceof MelangeResourceImpl)
-		assertIsValid(res)
+//		assertIsValid(res)
 		assertIsFsmMT(res)
 		
 		val fsm3 = res.contents.head as FSM
