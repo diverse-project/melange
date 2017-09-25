@@ -270,7 +270,7 @@ class EclipseProjectHelper
 			// FIXME: Everything's hardcoded...
 			val project = createEclipseProject(
 				projectName,
-				#[JavaCore::NATURE_ID, PDE::PLUGIN_NATURE],
+				#[JavaCore::NATURE_ID, PDE::PLUGIN_NATURE, "org.eclipse.xtext.ui.shared.xtextNature"],
 				#[JavaCore::BUILDER_ID,	PDE::MANIFEST_BUILDER_ID, PDE::SCHEMA_BUILDER_ID],
 				#["src", "src-gen"],
 				#[],

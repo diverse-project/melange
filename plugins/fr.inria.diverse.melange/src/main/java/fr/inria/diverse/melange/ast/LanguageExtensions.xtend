@@ -10,13 +10,17 @@
  *******************************************************************************/
 package fr.inria.diverse.melange.ast
 
+import com.google.common.collect.HashMultimap
+import com.google.common.collect.SetMultimap
 import com.google.inject.Inject
 import fr.inria.diverse.melange.builder.ModelTypingSpaceBuilder
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.MatchingHelper
 import fr.inria.diverse.melange.metamodel.melange.Aspect
+import fr.inria.diverse.melange.metamodel.melange.ExternalLanguage
 import fr.inria.diverse.melange.metamodel.melange.Import
+import fr.inria.diverse.melange.metamodel.melange.ImportDsl
 import fr.inria.diverse.melange.metamodel.melange.Inheritance
 import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.LanguageOperator
@@ -27,42 +31,40 @@ import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.PackageBinding
 import fr.inria.diverse.melange.metamodel.melange.Slice
 import fr.inria.diverse.melange.metamodel.melange.Weave
-import fr.inria.diverse.melange.utils.AspectRenamer
+import fr.inria.diverse.melange.utils.AspectCopier2
 import fr.inria.diverse.melange.utils.RenamingRuleManager
+import java.util.ArrayList
+import java.util.HashSet
 import java.util.List
 import java.util.Set
+import java.util.Stack
+import org.apache.log4j.Logger
+import org.eclipse.core.resources.IFile
+import org.eclipse.core.resources.IProject
+import org.eclipse.core.resources.IResource
+import org.eclipse.core.resources.IResourceVisitor
+import org.eclipse.core.resources.ResourcesPlugin
+import org.eclipse.core.runtime.CoreException
+import org.eclipse.core.runtime.IPath
+import org.eclipse.core.runtime.Path
+import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.gemoc.dsl.Dsl
+import org.eclipse.gemoc.dsl.impl.DslFactoryImpl
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmTypeReference
 import org.eclipse.xtext.common.types.JvmUnknownTypeReference
-import org.eclipse.xtext.naming.IQualifiedNameConverter
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.validation.EObjectDiagnosticImpl
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
-import com.google.common.collect.HashMultimap
-import com.google.common.collect.SetMultimap
-import fr.inria.diverse.melange.utils.AspectCopier2
-import java.util.Stack
-import fr.inria.diverse.melange.processors.LanguageProcessor
-import fr.inria.diverse.melange.metamodel.melange.ExternalLanguage
-import org.eclipse.core.resources.ResourcesPlugin
-import org.eclipse.core.resources.IResourceVisitor
-import org.eclipse.core.resources.IResource
-import org.eclipse.core.runtime.CoreException
-import org.eclipse.core.resources.IFile
-import org.eclipse.core.resources.IProject
-import java.util.HashSet
-import org.eclipse.emf.common.util.URI
-import org.eclipse.core.runtime.Path
-import org.eclipse.core.runtime.IPath
-import org.apache.log4j.Logger
-import java.util.ArrayList
-import fr.inria.diverse.melange.metamodel.melange.ImportDsl
-import org.eclipse.xtext.naming.IQualifiedNameProvider
+import java.io.IOException
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.eclipse.emf.ecore.resource.Resource
 
 /**
  * A collection of utilities around {@link Language}s
@@ -759,7 +761,7 @@ class LanguageExtensions
 		
 		val ecoreProjects = originalEcores
 			.map[ecoreURI |
-				val URI uri = org.eclipse.emf.common.util.URI.createURI(ecoreURI);
+				val URI uri = URI.createURI(ecoreURI);
 				val String filePath = uri.toPlatformString(true);
 				if(filePath !== null){
 					val IPath path = new Path(filePath);
@@ -840,5 +842,41 @@ class LanguageExtensions
 	
 	def boolean isXmof(Language l){
 		return l instanceof ExternalLanguage && l.xmof !== null
+	}
+	
+	def Dsl toDsl(Language l) {
+		val dsl = DslFactoryImpl.eINSTANCE.createDsl
+		dsl.name = l.fullyQualifiedName.toString
+		dsl.abstractSyntax = DslFactoryImpl.eINSTANCE.createAbstractSyntax
+		dsl.semantic = DslFactoryImpl.eINSTANCE.createSemantic
+		
+		val ecore = DslFactoryImpl.eINSTANCE.createSimpleValue
+		ecore.name = "ecore"
+		ecore.values += l.syntax.ecoreUri
+		dsl.abstractSyntax.values += ecore
+		
+		val k3Aspects = DslFactoryImpl.eINSTANCE.createSimpleValue
+		k3Aspects.name = "k3"
+		l.semantics.forEach[asp |
+			k3Aspects.values += asp.aspectTypeRef.qualifiedName
+		]
+		dsl.semantic.values += k3Aspects
+		
+		return dsl
+	}
+	
+	def void createDsl(Language l) {
+		val uri = l.externalEcoreUri.replaceFirst("ecore$","dsl")
+		val resSet = new ResourceSetImpl
+		val res = resSet.createResource(URI::createURI(uri))
+		
+		res.contents += l.toDsl
+		
+		try {
+			val options = newHashMap
+			res.save(options)
+		} catch (IOException e) {
+			log.error("Error while serializing DSL file for" + l.fullyQualifiedName, e)
+		}
 	}
 }

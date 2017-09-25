@@ -161,6 +161,7 @@ class MelangeBuilder
 				l.addRequireBundleForAspects
 				subMonitor.worked(45)
 			}
+			l.createDsl
 			refreshProjects(res, project,  subMonitor)
 			waitForAutoBuild
 			subMonitor.worked(5)
