@@ -23,12 +23,12 @@ import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.ecore.InternalEObject
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.emf.ecore.xmi.XMLResource
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
-import org.eclipse.emf.ecore.InternalEObject
 
 /**
  * Helper to copy a model conform to a Metamodel into a model conform to another Metamodel.
@@ -96,7 +96,7 @@ class ModelCopier {
 		 * resolve proxies
 		 */
 		EcoreUtil.resolveAll(res)
-		
+
 		/*
 		 * copy EObjects & EAttributes values
 		 */
@@ -112,7 +112,7 @@ class ModelCopier {
 				}
 			}
 		]
-		
+
 		/*
 		 * copy references values
 		 */
@@ -156,17 +156,18 @@ class ModelCopier {
 
 		return copy
 	}
-	
+
 	private def EObject cloneAsProxy(EObject source) {
 		val EClass srcClass = source.eClass
 		val EClass trgClass = getTargetClass(srcClass)
 
 		val copy = EcoreUtil.create(trgClass)
-		
-		val extendedURI = URI.createURI(sourceMM.head.nsURI + "/as/" + targetMM.head.nsURI + "/" + source.eResource.URI.toString)
+
+		val extendedURI = URI.createURI(sourceMM.head.nsURI + "/as/" + targetMM.head.nsURI + "/" +
+			source.eResource.URI.toString)
 		val uri = extendedURI.appendFragment(source.eResource.getURIFragment(source))
 		(copy as InternalEObject).eSetProxyURI(uri)
-		
+
 		return copy
 	}
 
@@ -201,10 +202,10 @@ class ModelCopier {
 					val refVal = source.eGet(srcRef)
 					if (refVal instanceof EList<?>) {
 						val copy = new BasicEList
-						copy.addAll(refVal.map[getTargetObject(sourceRes,it as EObject)])
+						copy.addAll(refVal.map[getTargetObject(sourceRes, it as EObject)])
 						target.eSet(trgRef, copy)
 					} else if (refVal instanceof EObject) {
-						target.eSet(trgRef, getTargetObject(sourceRes,refVal))
+						target.eSet(trgRef, getTargetObject(sourceRes, refVal))
 					}
 				}
 			}
@@ -220,7 +221,7 @@ class ModelCopier {
 		else
 			return allClasses.findFirst[name == source.name + suffix]
 	}
-	
+
 	private def EObject getTargetObject(Resource sourceRes, EObject refObj) {
 		if (refObj.eResource != sourceRes) {
 			return cloneAsProxy(refObj)
@@ -229,5 +230,9 @@ class ModelCopier {
 		} else {
 			return refObj
 		}
+	}
+
+	public def getModelsMapping() {
+		return modelsMapping.immutableCopy
 	}
 }
