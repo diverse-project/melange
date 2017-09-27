@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtend.lib.annotations.Delegate
@@ -43,8 +44,11 @@ class MelangeResourceImpl implements MelangeResource {
 	Map<EObject, EObject> wrappedToContentMapping
 
 	new(URI uri) {
-		// FIXME: Retrieve the currently-used one
-		val rs = new ResourceSetImpl
+		// FIXME: Retrieve the currently-used resourceset
+		this(new ResourceSetImpl,uri)
+	}
+
+	new (ResourceSet rs, URI uri) {
 		val query = uri.query
 		val SEPARATOR = "&|;"
 		val pairs = query?.split(SEPARATOR)
@@ -112,7 +116,6 @@ class MelangeResourceImpl implements MelangeResource {
 					adaptee = adaptedResource
 					parent = this
 					URI = URI::createURI("modelAsAdapted")
-
 					// Emf Adapters on the ResourceAdapter can catch
 					// Notifications from the adaptee 
 					val proxyAdapter = new AdapterImpl() {
