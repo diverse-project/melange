@@ -421,10 +421,6 @@ class DispatchOverrider {
 			if (manager != null) {
 				manager.executeStep(_self,command,"«className»","«methodName»");
 			} else {
-				fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IEventManager eventManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.EventManagerRegistry.getInstance().findEventManager();
-				if (eventManager != null) {
-					eventManager.manageEvents();
-				}
 				command.execute();
 			}
 			«IF hasReturn»
