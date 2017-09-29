@@ -486,9 +486,11 @@ class AspectToEcore
 				if (stepAnnotation != null) {
 					val triggerableValue = stepAnnotation.values
 						.findFirst[v|v.valueName == "eventTriggerable"]
-					result = switch triggerableValue {
+					if (triggerableValue !== null) {
+						result = switch triggerableValue {
 						JvmBooleanAnnotationValue: triggerableValue.values?.head
 						JvmCustomAnnotationValue: (triggerableValue.values.head as XBooleanLiteral).isTrue
+						}
 					}
 				}
 		return result
