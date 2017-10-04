@@ -848,19 +848,21 @@ class LanguageExtensions
 		val dsl = DslFactoryImpl.eINSTANCE.createDsl
 		dsl.name = l.fullyQualifiedName.toString
 		dsl.abstractSyntax = DslFactoryImpl.eINSTANCE.createAbstractSyntax
-		dsl.semantic = DslFactoryImpl.eINSTANCE.createSemantic
 		
 		val ecore = DslFactoryImpl.eINSTANCE.createSimpleValue
 		ecore.name = "ecore"
 		ecore.values += l.syntax.ecoreUri
 		dsl.abstractSyntax.values += ecore
 		
-		val k3Aspects = DslFactoryImpl.eINSTANCE.createSimpleValue
-		k3Aspects.name = "k3"
-		l.semantics.forEach[asp |
-			k3Aspects.values += asp.aspectTypeRef.qualifiedName
-		]
-		dsl.semantic.values += k3Aspects
+		if(!l.semantics.isEmpty) {
+			dsl.semantic = DslFactoryImpl.eINSTANCE.createSemantic
+			val k3Aspects = DslFactoryImpl.eINSTANCE.createSimpleValue
+			k3Aspects.name = "k3"
+			l.semantics.forEach[asp |
+				k3Aspects.values += asp.aspectTypeRef.qualifiedName
+			]
+			dsl.semantic.values += k3Aspects
+		}
 		
 		return dsl
 	}
