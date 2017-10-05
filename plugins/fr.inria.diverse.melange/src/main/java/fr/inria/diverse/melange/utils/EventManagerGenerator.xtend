@@ -169,7 +169,7 @@ class EventManagerGenerator {
 	private def boolean isEvent(Method m) {
 		val stepAnnotation = m.getAnnotation(Step)
 		if (stepAnnotation != null) {
-			return stepAnnotation.eventTriggerable
+//			return stepAnnotation.eventTriggerable
 		}
 		return false
 	}

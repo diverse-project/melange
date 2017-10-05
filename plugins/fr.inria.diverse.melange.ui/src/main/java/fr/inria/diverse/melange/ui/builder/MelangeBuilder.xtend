@@ -175,7 +175,7 @@ class MelangeBuilder
 			sub.worked(5)
 			
 			sub.subTask("Generating event manager for " + l.name)
-			eventManagerGenerator.generateEventManager(l, JavaCore.create(project), monitor)
+//			eventManagerGenerator.generateEventManager(l, JavaCore.create(project), monitor)
 			sub.worked(5)
 			
 			l.createDsl
