@@ -161,7 +161,6 @@ class MelangeBuilder
 				l.addRequireBundleForAspects
 				subMonitor.worked(45)
 			}
-			l.createDsl
 			refreshProjects(res, project,  subMonitor)
 			waitForAutoBuild
 			subMonitor.worked(5)
@@ -178,6 +177,8 @@ class MelangeBuilder
 			sub.subTask("Generating event manager for " + l.name)
 			eventManagerGenerator.generateEventManager(l, JavaCore.create(project), monitor)
 			sub.worked(5)
+			
+			l.createDsl
 		]
 		
 		refreshProjects(res, project,  subMonitor)
