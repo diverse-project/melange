@@ -6,7 +6,7 @@
       <eType xsi:type="ecore:EClass" href="../../org.eclipse.xtext.xbase/model/Xtype.ecore#//XImportSection"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1">
-      <eType xsi:type="ecore:EDataType" href="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true"/>
@@ -17,7 +17,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="subtypingRelations" upperBound="-1" eType="//Subtyping" containment="true" eOpposite="//Subtyping/subType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extracted" eType="//Language" eOpposite="//Language/exactType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mtUri">
-      <eType xsi:type="ecore:EDataType" href="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Transformation" abstract="true" eSuperTypes="//NamedElement"/>
@@ -26,10 +26,10 @@
       <eType xsi:type="ecore:EClass" href="../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="aspectedClass" transient="true" derived="true">
-      <eType xsi:type="ecore:EClass" href="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ecoreFragment" containment="true">
-      <eType xsi:type="ecore:EClass" href="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"/>
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningLanguage" lowerBound="1" eType="//Language" eOpposite="//Language/semantics"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="//Weave"/>
@@ -63,7 +63,7 @@
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="genmodelUris" upperBound="-1">
-      <eType xsi:type="ecore:EDataType" href="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Mapping" eSuperTypes="//Element">
@@ -128,14 +128,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="requires" upperBound="-1" eType="//ModelType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="syntax" lowerBound="1" eType="//Metamodel" containment="true" eOpposite="//Metamodel/owningLanguage"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="exactTypeName">
-      <eType xsi:type="ecore:EDataType" href="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="exactTypeUri">
-      <eType xsi:type="ecore:EDataType" href="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="resourceType" eType="//ResourceType" defaultValueLiteral="MELANGE"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="resourceUri">
-      <eType xsi:type="ecore:EDataType" href="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="xtextSetupRef" containment="true">
       <eType xsi:type="ecore:EClass" href="../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference"/>
@@ -164,7 +164,7 @@
       <eType xsi:type="ecore:EClass" href="../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="aspectWildcardImport">
-      <eType xsi:type="ecore:EDataType" href="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="//Element">
@@ -175,10 +175,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="ExternalLanguage" eSuperTypes="//Language"/>
   <eClassifiers xsi:type="ecore:EClass" name="Annotation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key">
-      <eType xsi:type="ecore:EDataType" href="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value">
-      <eType xsi:type="ecore:EDataType" href="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ImportDsl" eSuperTypes="//Language">
