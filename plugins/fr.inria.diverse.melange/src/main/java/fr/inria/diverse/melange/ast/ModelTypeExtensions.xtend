@@ -59,7 +59,7 @@ class ModelTypeExtensions
 		val project = mt.eResource.project
 		
 		if(project === null){
-			println("Can't initialize exactType for " + mt.extracted.name + " (Eclipse environment required)")
+			log.warn("Can't initialize exactType for " + mt.extracted.name + " (Eclipse environment required)")
 			return null
 		}
 		
