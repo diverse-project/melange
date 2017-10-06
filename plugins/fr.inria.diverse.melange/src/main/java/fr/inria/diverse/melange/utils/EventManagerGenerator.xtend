@@ -163,12 +163,12 @@ class EventManagerGenerator {
 
 	private def boolean isInitialize(Method m) {
 		val initializeAnnotation = m.getAnnotation(InitializeModel)
-		return initializeAnnotation != null
+		return initializeAnnotation !== null
 	}
 
 	private def boolean isEvent(Method m) {
 		val stepAnnotation = m.getAnnotation(Step)
-		if (stepAnnotation != null) {
+		if (stepAnnotation !== null) {
 //			return stepAnnotation.eventTriggerable
 		}
 		return false
@@ -186,7 +186,7 @@ class EventManagerGenerator {
 		aspectEvents.forEach [ m |
 			val eventName = '''«aspected.get(aspect).name.toFirstUpper»«m.name.toFirstUpper»Event'''
 			val eventClass = language.syntax.findClassifier(eventName)
-			if (eventClass != null) {
+			if (eventClass !== null) {
 				eventToHandler.put(eventClass as EClass, m)
 			}
 		]
@@ -264,7 +264,7 @@ class EventManagerGenerator {
 					private def String flattenType(String typeName) {
 						val baseType = typeName.baseType.simpleName
 						val typeParameters = typeName.typeParameters.map[s|s.flattenType].reduce[s1, s2|s1 + s2]
-						return '''«baseType»«IF typeParameters != null»«typeParameters»«ENDIF»'''
+						return '''«baseType»«IF typeParameters !== null»«typeParameters»«ENDIF»'''
 					}
 					
 					private def boolean compareParameterizedTypes(String s1, String s2) {
@@ -391,7 +391,7 @@ class EventManagerGenerator {
 					«val eventClassName = eventClass.name»
 					if (event instanceof «eventClassName») {
 						«val eventCondition = eventMethodToCondition.get(eventHandler)»
-						«IF eventCondition == null»
+						«IF eventCondition === null»
 							return true;
 						«ELSE»
 							return canSend«eventClassName»((«eventClassName») event);
@@ -435,7 +435,7 @@ class EventManagerGenerator {
 		val eventCondition = eventMethodToCondition.get(eventHandler)
 		return '''
 			private void handle«eventClassName»(«eventClassName» event) {
-				«IF eventCondition != null»
+				«IF eventCondition !== null»
 				if («eventHandlingClass».«eventCondition.name»(«eventParameters»)) {
 					«eventHandlingClass».«eventHandlerName»(«eventParameters»);
 				}
@@ -451,7 +451,7 @@ class EventManagerGenerator {
 			«FOR entry : eventToHandler.entrySet»
 				«val eventClass = entry.key»
 				«val eventCondition = eventMethodToCondition.get(entry.value)»
-				«IF eventCondition != null»
+				«IF eventCondition !== null»
 					
 					«generateEventCondition(eventClass as EClass, eventCondition)»
 				«ENDIF»

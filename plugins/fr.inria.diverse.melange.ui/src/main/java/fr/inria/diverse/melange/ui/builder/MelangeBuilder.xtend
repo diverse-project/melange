@@ -23,7 +23,7 @@ import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.processors.ExtensionPointProcessor
 import fr.inria.diverse.melange.resource.MelangeDerivedStateComputer
 import fr.inria.diverse.melange.utils.DispatchOverrider
-import fr.inria.diverse.melange.utils.EventManagerGenerator
+//import fr.inria.diverse.melange.utils.EventManagerGenerator
 import org.apache.log4j.Logger
 import org.eclipse.core.resources.IProject
 import org.eclipse.core.resources.ResourcesPlugin
@@ -56,7 +56,7 @@ class MelangeBuilder
 	@Inject extension EcoreExtensions
 	@Inject extension IQualifiedNameProvider
 	@Inject DispatchOverrider dispatchWriter
-	@Inject EventManagerGenerator eventManagerGenerator
+//	@Inject EventManagerGenerator eventManagerGenerator
 	@Inject XtextResourceSetProvider rsProvider
 	private static final Logger log = Logger.getLogger(MelangeBuilder)
 

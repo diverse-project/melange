@@ -11,13 +11,11 @@
  
 package fr.inria.diverse.melange.processors
 
-import fr.inria.diverse.melange.metamodel.melange.ImportDsl
-import org.eclipse.gemoc.dsl.SimpleValue
-import fr.inria.diverse.melange.metamodel.melange.MelangeFactory
 import com.google.inject.Inject
+import fr.inria.diverse.melange.metamodel.melange.ImportDsl
+import fr.inria.diverse.melange.metamodel.melange.MelangeFactory
+import org.eclipse.gemoc.dsl.SimpleValue
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
-import org.eclipse.xtext.scoping.IScopeProvider
-import org.eclipse.xtext.naming.IQualifiedNameConverter
 
 /**
  * Initialise the wrapping Language with informations from the Dsl file
@@ -28,11 +26,11 @@ class ImportDslProcessor extends DispatchMelangeProcessor
 	@Inject
 	JvmTypeReferenceBuilder.Factory builderFactory
 	
-	@Inject
-	extension IQualifiedNameConverter
-	
-	@Inject
-	IScopeProvider scopeProvider
+//	@Inject
+//	extension IQualifiedNameConverter
+//	
+//	@Inject
+//	IScopeProvider scopeProvider
 	
 	def dispatch void preProcess(ImportDsl language, boolean isPreLinkingPhase) {
 		

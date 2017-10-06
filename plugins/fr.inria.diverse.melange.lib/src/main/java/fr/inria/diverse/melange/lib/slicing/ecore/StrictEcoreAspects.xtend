@@ -484,7 +484,7 @@ class orgeclipseemfecoreEReferenceAspect extends orgeclipseemfecoreEStructuralFe
 
 		if(_self.sliced) (_self.clonedElt as EReference).^resolveProxies = _self.^resolveProxies
 		
-		if(_self.sliced && _self.^EOpposite.clonedElt != null){
+		if(_self.sliced && _self.^EOpposite.clonedElt !== null){
 			(_self.clonedElt as EReference).^EOpposite = _self.^EOpposite.clonedElt as EReference
 		}
 		

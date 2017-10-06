@@ -27,8 +27,6 @@ import org.eclipse.ui.handlers.HandlerUtil
 import org.eclipse.xtext.resource.DerivedStateAwareResource
 import org.eclipse.xtext.ui.resource.XtextResourceSetProvider
 
-import static fr.inria.diverse.melange.ui.menu.CleanAll.*
-
 class CleanAll extends AbstractHandler {
 	@Inject XtextResourceSetProvider rsProvider
 	@Inject MelangeBuilder builder

@@ -11,30 +11,29 @@
 package fr.inria.diverse.melange.ui.outline
 
 import com.google.inject.Inject
+import fr.inria.diverse.melange.ast.ASTHelper
+import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
+import fr.inria.diverse.melange.lib.EcoreExtensions
+import fr.inria.diverse.melange.metamodel.melange.Inheritance
 import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
+import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.Transformation
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
 import org.eclipse.emf.ecore.EAnnotation
+import org.eclipse.emf.ecore.EAttribute
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EPackage
+import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.xtext.common.types.JvmTypeReference
+import org.eclipse.xtext.ui.IImageHelper
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
 import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode
-import org.eclipse.emf.ecore.EClass
-import fr.inria.diverse.melange.lib.EcoreExtensions
-import org.eclipse.emf.ecore.EReference
-import org.eclipse.emf.ecore.EAttribute
-import org.eclipse.emf.ecore.EOperation
-import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
-import fr.inria.diverse.melange.ast.LanguageExtensions
-import fr.inria.diverse.melange.ast.ASTHelper
-import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode
-import org.eclipse.xtext.ui.IImageHelper
-import fr.inria.diverse.melange.metamodel.melange.Inheritance
 
 class MelangeOutlineTreeProvider extends DefaultOutlineTreeProvider
 {
@@ -94,7 +93,7 @@ class MelangeOutlineTreeProvider extends DefaultOutlineTreeProvider
     def void _createNode(IOutlineNode parentNode, EPackage p){
         val mNode = createEObjectNode(parentNode, p)
         
-        val target = mNode.isInsideModelTypeOrAspect
+        mNode.isInsideModelTypeOrAspect
     }
     
     def void _createNode(IOutlineNode parentNode, EClass c){

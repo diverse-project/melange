@@ -84,8 +84,8 @@ class ModelCopier {
 		val extendedURI = URI.createURI(sourceMM.head.nsURI + "/as/" + targetMM.head.nsURI + "/" + res.URI.toString)
 
 		// If there is no factory registered for handling this uri, we add a generic one
-		if (rs.getResourceFactoryRegistry().getFactory(extendedURI) == null) {
-			if (rs.resourceFactoryRegistry.extensionToFactoryMap.get("*") == null)
+		if (rs.getResourceFactoryRegistry().getFactory(extendedURI) === null) {
+			if (rs.resourceFactoryRegistry.extensionToFactoryMap.get("*") === null)
 				rs.resourceFactoryRegistry.extensionToFactoryMap.put("*", new XMIResourceFactoryImpl)
 		}
 
@@ -106,7 +106,7 @@ class ModelCopier {
 			if (res instanceof XMLResource) {
 				if (extendedResource instanceof XMLResource) {
 					val objID = res.getID(obj)
-					if (objID != null && objID != "") {
+					if (objID !== null && objID != "") {
 						extendedResource.setID(image, objID)
 					}
 				}
@@ -187,7 +187,7 @@ class ModelCopier {
 
 			if (srcRef.changeable) {
 
-				val boolean opposite = srcRef.EOpposite != null
+				val boolean opposite = srcRef.EOpposite !== null
 				val boolean oppositeOneCollectionMax = opposite && (!srcRef.EOpposite.many || !srcRef.EOpposite.many)
 				val boolean oppositeBothCollectionsOneNotManaged = opposite && srcRef.many && srcRef.EOpposite.many &&
 					!managedReferences.contains(srcRef.EOpposite)

@@ -13,7 +13,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fr.inria.diverse.melange.tools</groupId>
 	<artifactId>fr.inria.diverse.melange.tools.root</artifactId>
-	<version>0.2.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<parent>
@@ -52,7 +51,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			<plugin>
 				<groupId>org.eclipse.xtend</groupId>
 				<artifactId>xtend-maven-plugin</artifactId>
-				<version>${xtext.version}</version>
 				<executions>
 					<execution>
 						<goals>

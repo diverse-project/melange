@@ -334,7 +334,7 @@ class PackageMergeMerger implements EcoreMerger {
 		receiving += copy
 
 		if(copy instanceof EClassifier)
-			if(copy.EPackage == null){
+			if(copy.EPackage === null){
 				val packageFqName = (merged as EClassifier).EPackage.uniqueId
 				val container = context.rootPackage.getOrCreate(packageFqName)
 				container.EClassifiers += (copy as EClassifier)
@@ -420,7 +420,7 @@ class PackageMergeMerger implements EcoreMerger {
 	 */
 	private def EPackage getRootPackage(ENamedElement element){
 		switch element {
-			case element.eContainer != null :
+			case element.eContainer !== null :
 				getRootPackage(element.eContainer as ENamedElement)
 			EPackage :
 				element as EPackage

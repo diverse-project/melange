@@ -280,7 +280,7 @@ class MelangeResourceImpl implements MelangeResource {
 		contentResource = wrappedResource
 		addToResourceSet(contentResource)
 
-		if (!wrappedResource.getContents().empty && !(expectedMt == null && expectedLang == null)) {
+		if (!wrappedResource.getContents().empty && !(expectedMt === null && expectedLang === null)) {
 
 			// 1 - Convert Language to Language
 			if (expectedLang !== null) {
@@ -297,7 +297,7 @@ class MelangeResourceImpl implements MelangeResource {
 	}
 
 	private def void addToResourceSet(Resource res) {
-		if (this.resourceSet != null && res != null) {
+		if (this.resourceSet !== null && res !== null) {
 			if (!this.resourceSet.resources.contains(res)) {
 				this.resourceSet.resources.add(res)
 			}

@@ -33,6 +33,7 @@ import fr.inria.diverse.melange.metamodel.melange.Slice
 import fr.inria.diverse.melange.metamodel.melange.Weave
 import fr.inria.diverse.melange.utils.AspectCopier2
 import fr.inria.diverse.melange.utils.RenamingRuleManager
+import java.io.IOException
 import java.util.ArrayList
 import java.util.HashSet
 import java.util.List
@@ -50,6 +51,7 @@ import org.eclipse.core.runtime.Path
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.gemoc.dsl.Dsl
 import org.eclipse.gemoc.dsl.impl.DslFactoryImpl
@@ -62,9 +64,6 @@ import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.validation.EObjectDiagnosticImpl
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
-import java.io.IOException
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.emf.ecore.resource.Resource
 
 /**
  * A collection of utilities around {@link Language}s
@@ -345,7 +344,7 @@ class LanguageExtensions
 
 	def String getExternalEcorePath(Language l) {
 		val project = l.eResource.project
-		if(project != null && l.externalRuntimeName == project.name) {
+		if(project !== null && l.externalRuntimeName == project.name) {
 			return '''../«l.externalRuntimeName»/model-gen/«l.name».ecore'''
 		} else {
 			return '''../«l.externalRuntimeName»/model/«l.name».ecore'''
@@ -354,7 +353,7 @@ class LanguageExtensions
 
 	def String getExternalGenmodelPath(Language l) {
 		val project = l.eResource.project
-		if(project != null && l.externalRuntimeName == project.name) {
+		if(project !== null && l.externalRuntimeName == project.name) {
 			return '''../«l.externalRuntimeName»/model-gen/«l.name».genmodel'''
 		} else {
 			return '''../«l.externalRuntimeName»/model/«l.name».genmodel'''
@@ -363,7 +362,7 @@ class LanguageExtensions
 
 	def String getExternalGenerationPath(Language l) {
 		val project = l.eResource.project
-		if(project != null && l.externalRuntimeName == project.name) {
+		if(project !== null && l.externalRuntimeName == project.name) {
 			return '''../«l.externalRuntimeName»/src-model-gen/'''
 		} else {
 			return '''../«l.externalRuntimeName»/src/'''
@@ -372,7 +371,7 @@ class LanguageExtensions
 
 	def String getExternalEcoreUri(Language l) {
 		val project = l.eResource.project
-		if(project != null && l.externalRuntimeName == project.name) {
+		if(project !== null && l.externalRuntimeName == project.name) {
 			return '''platform:/resource/«l.externalRuntimeName»/model-gen/«l.name».ecore'''
 		} else {
 			return '''platform:/resource/«l.externalRuntimeName»/model/«l.name».ecore'''			
@@ -381,7 +380,7 @@ class LanguageExtensions
 
 	def String getExternalGenmodelUri(Language l) {
 		val project = l.eResource.project
-		if(project != null && l.externalRuntimeName == project.name) {
+		if(project !== null && l.externalRuntimeName == project.name) {
 			return '''platform:/resource/«l.externalRuntimeName»/model-gen/«l.name».genmodel'''
 		} else {
 			return '''platform:/resource/«l.externalRuntimeName»/model/«l.name».genmodel'''			
@@ -724,7 +723,7 @@ class LanguageExtensions
 	}
 	
 	def String rename(String qualifiedClsName,  List<PackageBinding> rules){
-		if(qualifiedClsName == null || !qualifiedClsName.contains("."))
+		if(qualifiedClsName === null || !qualifiedClsName.contains("."))
 			return qualifiedClsName
 			
 		val pkgName = qualifiedClsName.substring(0,qualifiedClsName.lastIndexOf("."))

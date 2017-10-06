@@ -17,6 +17,7 @@ import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.Language
 import java.util.List
+import java.util.Set
 import org.apache.log4j.Logger
 import org.eclipse.core.resources.IProject
 import org.eclipse.core.resources.IResource
@@ -36,17 +37,14 @@ import org.eclipse.jdt.core.dom.ASTVisitor
 import org.eclipse.jdt.core.dom.CompilationUnit
 import org.eclipse.jface.text.Document
 import org.eclipse.text.edits.TextEdit
-import org.eclipse.xtext.naming.IQualifiedNameConverter
-import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.common.types.JvmDeclaredType
-import java.util.Set
+import org.eclipse.xtext.naming.IQualifiedNameConverter
 
 class AspectRenamer {
 	@Inject extension IQualifiedNameConverter
 	@Inject extension AspectExtensions
 	@Inject extension LanguageExtensions
 	@Inject extension ModelingElementExtensions
-	@Inject extension IQualifiedNameProvider
 
 	private static final Logger log = Logger.getLogger(AspectRenamer)
 	

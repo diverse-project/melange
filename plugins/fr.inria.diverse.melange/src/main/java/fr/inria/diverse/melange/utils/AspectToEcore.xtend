@@ -16,6 +16,7 @@ import fr.inria.diverse.melange.lib.EcoreExtensions
 import java.util.ArrayList
 import java.util.List
 import java.util.Set
+import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EPackage
@@ -32,7 +33,6 @@ import org.eclipse.xtext.common.types.JvmVisibility
 import org.eclipse.xtext.xbase.XBooleanLiteral
 import org.eclipse.xtext.xbase.XStringLiteral
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
-import org.eclipse.emf.ecore.util.EcoreUtil
 
 /**
  * Infers the minimal Ecore file (an {@link EPackage}) corresponding to the
@@ -195,9 +195,9 @@ class AspectToEcore
 					op.parameters.forEach[p|
 						val parameterTypeName = p.parameterType.type.simpleName
 						val parameterClassifier = basePkgs.findFirst[pkg|
-							pkg.getEClassifier(parameterTypeName) != null
+							pkg.getEClassifier(parameterTypeName) !== null
 						]?.getEClassifier(parameterTypeName)
-						if (parameterClassifier != null) {
+						if (parameterClassifier !== null) {
 							parameterClassifiers.add(parameterClassifier)
 						}
 					]
@@ -483,7 +483,7 @@ class AspectToEcore
 		var result = false
 				val stepAnnotation = operation.annotations
 					.findFirst[a|a.annotation.qualifiedName == STEP_ANNOTATION_FQN]
-				if (stepAnnotation != null) {
+				if (stepAnnotation !== null) {
 					val triggerableValue = stepAnnotation.values
 						.findFirst[v|v.valueName == "eventTriggerable"]
 					if (triggerableValue !== null) {

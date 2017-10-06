@@ -12,7 +12,6 @@ package fr.inria.diverse.melange.resource
 
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl
 
 class MelangeResourceFactoryImpl implements Resource.Factory
 {

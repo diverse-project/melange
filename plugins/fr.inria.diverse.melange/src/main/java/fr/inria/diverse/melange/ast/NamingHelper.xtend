@@ -10,6 +10,8 @@
  *******************************************************************************/
 package fr.inria.diverse.melange.ast
 
+import com.google.common.collect.HashMultimap
+import com.google.common.collect.SetMultimap
 import com.google.inject.Inject
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
@@ -22,6 +24,7 @@ import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EDataType
+import org.eclipse.emf.ecore.EFactory
 import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EReference
@@ -30,12 +33,6 @@ import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.naming.QualifiedName
-import java.util.List
-import com.google.common.collect.SetMultimap
-import com.google.common.collect.HashMultimap
-import org.eclipse.emf.ecore.EObject
-import fr.inria.diverse.melange.metamodel.melange.Language
-import fr.inria.diverse.melange.metamodel.melange.ImportDsl
 
 /**
  * A collection of utilities around naming conventions in Melange

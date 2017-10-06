@@ -27,13 +27,8 @@ import fr.inria.diverse.melange.metamodel.melange.ModelType
 class MelangeHyperlinkHelper extends XbaseHyperLinkHelper{
     
     override createHyperlinksByOffset(XtextResource resource, int offset, IHyperlinkAcceptor acceptor) {
-        
         val element = getEObjectAtOffsetHelper.resolveElementAt(resource, offset)
-        
 
-		val root = resource.parseResult.rootNode
-		val cursor = NodeModelUtils.findLeafNodeAtOffset(root,offset)
-        
         if (element instanceof Import) {            
             
             val uriConverter = resource.resourceSet.URIConverter

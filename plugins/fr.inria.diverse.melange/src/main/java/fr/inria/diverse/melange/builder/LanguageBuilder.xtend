@@ -201,7 +201,7 @@ class LanguageBuilder extends AbstractBuilder {
 			if(ref.EType instanceof EClass){
 				val opRef = (ref.EType as EClass).EAllReferences.findFirst[name == opRefName]
 				//TODO: should check opRef is tagged @Opposite
-				if(opRef !== null && opRef.EOpposite == null){
+				if(opRef !== null && opRef.EOpposite === null){
 					ref.EOpposite = opRef
 					opRef.EOpposite = ref
 				}

@@ -25,15 +25,14 @@ import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
 import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelingElement
+import java.util.HashMap
+import java.util.Map
 import java.util.Set
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
 import org.eclipse.emf.ecore.EPackage
+import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtext.naming.IQualifiedNameProvider
-import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
-import java.util.HashMap
-import java.util.Map
-import org.eclipse.emf.ecore.resource.Resource
 
 @Singleton
 class EPackageProvider
@@ -165,7 +164,7 @@ class EPackageProvider
 	
 	private def getPackageRegistry(Resource root) {
 		var res = dispatchPackages.get(root)
-		if(res == null){
+		if (res === null) {
 			res = HashMultimap.create
 			dispatchPackages.put(root,res)
 		}
@@ -174,7 +173,7 @@ class EPackageProvider
 	
 	private def getGenmodelRegistry(Resource root) {
 		var res = dispatchGenmodels.get(root)
-		if(res == null){
+		if (res === null) {
 			res = HashMultimap.create
 			dispatchGenmodels.put(root,res)
 		}
