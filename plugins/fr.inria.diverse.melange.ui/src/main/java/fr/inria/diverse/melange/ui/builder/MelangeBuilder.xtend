@@ -23,7 +23,6 @@ import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.processors.ExtensionPointProcessor
 import fr.inria.diverse.melange.resource.MelangeDerivedStateComputer
 import fr.inria.diverse.melange.utils.DispatchOverrider
-//import fr.inria.diverse.melange.utils.EventManagerGenerator
 import org.apache.log4j.Logger
 import org.eclipse.core.resources.IProject
 import org.eclipse.core.resources.ResourcesPlugin
@@ -56,7 +55,6 @@ class MelangeBuilder
 	@Inject extension EcoreExtensions
 	@Inject extension IQualifiedNameProvider
 	@Inject DispatchOverrider dispatchWriter
-//	@Inject EventManagerGenerator eventManagerGenerator
 	@Inject XtextResourceSetProvider rsProvider
 	private static final Logger log = Logger.getLogger(MelangeBuilder)
 
@@ -172,11 +170,7 @@ class MelangeBuilder
 		toGenerate.forEach[l |
 			sub.subTask("Rewrite dispatch for " + l.name)
 			dispatchWriter.overrideDispatch(l, JavaCore.create(project))
-			sub.worked(5)
-			
-			sub.subTask("Generating event manager for " + l.name)
-//			eventManagerGenerator.generateEventManager(l, JavaCore.create(project), monitor)
-			sub.worked(5)
+			sub.worked(10)
 			
 			l.createDsl
 		]
