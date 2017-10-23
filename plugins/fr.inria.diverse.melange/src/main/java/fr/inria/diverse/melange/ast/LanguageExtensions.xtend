@@ -431,10 +431,9 @@ class LanguageExtensions
 
 			if (gp.basePackage !== null && gp.basePackage.length > 0)
 				segments += gp.basePackage
-			if (gp.prefix !== null && gp.prefix.length > 0)
-				segments += gp.prefix
+			segments += gp.getEcorePackage.name
 
-			val fqn = QualifiedName::create(segments).toLowerCase.toString.replace(".", "/")
+			val fqn = QualifiedName::create(segments).toString.replace(".", "/")
 			if (
 				   project.getFile(l.externalEcorePath).exists
 				&& project.getFile(l.externalGenmodelPath).exists
