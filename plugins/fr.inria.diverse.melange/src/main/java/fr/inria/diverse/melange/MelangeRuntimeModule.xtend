@@ -13,6 +13,7 @@ package fr.inria.diverse.melange
 import org.eclipse.xtext.resource.IDerivedStateComputer
 import org.eclipse.xtext.xbase.compiler.XbaseCompiler
 import org.eclipse.xtext.xbase.typesystem.computation.SynonymTypesProvider
+import org.eclipse.xtext.parser.antlr.IReferableElementsUnloader
 
 class MelangeRuntimeModule extends fr.inria.diverse.melange.AbstractMelangeRuntimeModule
 {
@@ -34,5 +35,9 @@ class MelangeRuntimeModule extends fr.inria.diverse.melange.AbstractMelangeRunti
 	
 	override bindIQualifiedNameProvider() {
 		return typeof(fr.inria.diverse.melange.utils.MelangeQualifiedNameProvider);
+	}
+	
+	def Class<? extends IReferableElementsUnloader> bindIReferableElementsUnloader() {
+		return IReferableElementsUnloader.NullUnloader
 	}
 }
