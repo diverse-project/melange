@@ -237,6 +237,15 @@ public class MelangeSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MelangePackage.IMPORT_DSL: {
+				ImportDsl importDsl = (ImportDsl)theEObject;
+				T result = caseImportDsl(importDsl);
+				if (result == null) result = caseLanguage(importDsl);
+				if (result == null) result = caseNamedElement(importDsl);
+				if (result == null) result = caseElement(importDsl);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -598,6 +607,21 @@ public class MelangeSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAnnotation(Annotation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Import Dsl</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Import Dsl</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseImportDsl(ImportDsl object) {
 		return null;
 	}
 

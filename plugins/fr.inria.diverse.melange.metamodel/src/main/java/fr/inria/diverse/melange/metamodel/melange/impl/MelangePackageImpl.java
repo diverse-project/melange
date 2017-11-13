@@ -8,6 +8,7 @@ import fr.inria.diverse.melange.metamodel.melange.ClassBinding;
 import fr.inria.diverse.melange.metamodel.melange.Element;
 import fr.inria.diverse.melange.metamodel.melange.ExternalLanguage;
 import fr.inria.diverse.melange.metamodel.melange.Import;
+import fr.inria.diverse.melange.metamodel.melange.ImportDsl;
 import fr.inria.diverse.melange.metamodel.melange.Inheritance;
 import fr.inria.diverse.melange.metamodel.melange.Language;
 import fr.inria.diverse.melange.metamodel.melange.LanguageOperator;
@@ -39,6 +40,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.eclipse.gemoc.dsl.DslPackage;
 import org.eclipse.xtext.common.types.TypesPackage;
 
 import org.eclipse.xtext.xbase.XbasePackage;
@@ -225,6 +227,13 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass importDslEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum resourceTypeEEnum = null;
 
 	/**
@@ -274,6 +283,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		isInited = true;
 
 		// Initialize simple dependencies
+		DslPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
 		XtypePackage.eINSTANCE.eClass();
 		XbasePackage.eINSTANCE.eClass();
@@ -1072,6 +1082,24 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getImportDsl() {
+		return importDslEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getImportDsl_Dsl() {
+		return (EReference)importDslEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getResourceType() {
 		return resourceTypeEEnum;
 	}
@@ -1214,6 +1242,9 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		createEAttribute(annotationEClass, ANNOTATION__KEY);
 		createEAttribute(annotationEClass, ANNOTATION__VALUE);
 
+		importDslEClass = createEClass(IMPORT_DSL);
+		createEReference(importDslEClass, IMPORT_DSL__DSL);
+
 		// Create enums
 		resourceTypeEEnum = createEEnum(RESOURCE_TYPE);
 	}
@@ -1246,6 +1277,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 		XbasePackage theXbasePackage = (XbasePackage)EPackage.Registry.INSTANCE.getEPackage(XbasePackage.eNS_URI);
+		DslPackage theDslPackage = (DslPackage)EPackage.Registry.INSTANCE.getEPackage(DslPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -1268,6 +1300,7 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		weaveEClass.getESuperTypes().add(this.getOperator());
 		namedElementEClass.getESuperTypes().add(this.getElement());
 		externalLanguageEClass.getESuperTypes().add(this.getLanguage());
+		importDslEClass.getESuperTypes().add(this.getLanguage());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(modelTypingSpaceEClass, ModelTypingSpace.class, "ModelTypingSpace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1379,6 +1412,9 @@ public class MelangePackageImpl extends EPackageImpl implements MelangePackage {
 		initEClass(annotationEClass, Annotation.class, "Annotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAnnotation_Key(), theEcorePackage.getEString(), "key", null, 0, 1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAnnotation_Value(), theEcorePackage.getEString(), "value", null, 0, 1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(importDslEClass, ImportDsl.class, "ImportDsl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getImportDsl_Dsl(), theDslPackage.getDsl(), null, "dsl", null, 0, 1, ImportDsl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(resourceTypeEEnum, ResourceType.class, "ResourceType");

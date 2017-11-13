@@ -210,7 +210,7 @@ class ModelingElementExtensions
 		
 		return 
 			m.pkgs
-			.filter[ESuperPackage == null]
+			.filter[ESuperPackage === null]
 			.map[findClass(clsName)]
 			.filterNull
 			.head
@@ -227,7 +227,7 @@ class ModelingElementExtensions
 	def EClassifier findClassifier(ModelingElement m, String clsName) {
 		return
 			m.pkgs
-			.filter[ESuperPackage == null]
+			.filter[ESuperPackage === null]
 			.map[findClassifier(clsName)]
 			.filterNull
 			.head

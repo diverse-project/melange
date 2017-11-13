@@ -14,11 +14,15 @@ import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
+import fr.inria.diverse.melange.builder.ImportBuilder
+import fr.inria.diverse.melange.builder.ModelTypingSpaceBuilder
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.lib.MatchingHelper
 import fr.inria.diverse.melange.lib.ModelUtils
 import fr.inria.diverse.melange.metamodel.melange.Aspect
+import fr.inria.diverse.melange.metamodel.melange.ExternalLanguage
 import fr.inria.diverse.melange.metamodel.melange.Import
+import fr.inria.diverse.melange.metamodel.melange.ImportDsl
 import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.LanguageOperator
 import fr.inria.diverse.melange.metamodel.melange.MelangePackage
@@ -33,10 +37,6 @@ import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.validation.Check
-import fr.inria.diverse.melange.metamodel.melange.Operator
-import fr.inria.diverse.melange.metamodel.melange.ExternalLanguage
-import fr.inria.diverse.melange.builder.ModelTypingSpaceBuilder
-import fr.inria.diverse.melange.builder.ImportBuilder
 
 class MelangeValidator extends AbstractMelangeValidator
 {
@@ -79,12 +79,13 @@ class MelangeValidator extends AbstractMelangeValidator
 
 	@Check
 	def void checkNameIsValid(Language l) {
-		if (l.name.nullOrEmpty || !Character.isUpperCase(l.name.charAt(0)))
-			error(
-				"Language name should start with an uppercase",
-				MelangePackage.Literals.NAMED_ELEMENT__NAME,
-				MelangeValidationConstants.LANGUAGE_NAME_INVALID
-			)
+		if(!(l instanceof ImportDsl))
+			if (l.name.nullOrEmpty || !Character.isUpperCase(l.name.charAt(0)))
+				error(
+					"Language name should start with an uppercase",
+					MelangePackage.Literals.NAMED_ELEMENT__NAME,
+					MelangeValidationConstants.LANGUAGE_NAME_INVALID
+				)
 	}
 
 	@Check
@@ -100,12 +101,13 @@ class MelangeValidator extends AbstractMelangeValidator
 
 	@Check
 	def void checkNameIsValid(ModelType mt) {
-		if (mt.name.nullOrEmpty || !Character.isUpperCase(mt.name.charAt(0)))
-			error(
-				"Model type name should start with an uppercase",
-				MelangePackage.Literals.NAMED_ELEMENT__NAME,
-				MelangeValidationConstants.MODELTYPE_NAME_INVALID
-			)
+		if(!(mt.extracted instanceof ImportDsl))
+			if (mt.name.nullOrEmpty || !Character.isUpperCase(mt.name.charAt(0)))
+				error(
+					"Model type name should start with an uppercase",
+					MelangePackage.Literals.NAMED_ELEMENT__NAME,
+					MelangeValidationConstants.MODELTYPE_NAME_INVALID
+				)
 	}
 
 	@Check

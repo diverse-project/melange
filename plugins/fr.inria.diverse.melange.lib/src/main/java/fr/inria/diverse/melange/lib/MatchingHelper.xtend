@@ -126,12 +126,14 @@ class MatchingHelper
 					p("Done = " + ret, nesting)
 
 				return ret
-		} else if(mapping.namesMatch(clsA, clsB)){
+		} else if (mapping.namesMatch(clsA, clsB)){
 			if (presumedMatching.get(clsA) === null)
 				presumedMatching.put(clsA, newHashSet)
 			presumedMatching.get(clsA) += clsB
 
 			return true
+		} else {
+			return false
 		}
 	}
 	

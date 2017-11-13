@@ -11,7 +11,6 @@
 package fr.inria.diverse.melange.ui.labeling
 
 import com.google.inject.Inject
-import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.metamodel.melange.Aspect
 import fr.inria.diverse.melange.metamodel.melange.Inheritance
 import fr.inria.diverse.melange.metamodel.melange.Language
@@ -28,8 +27,6 @@ import org.eclipse.xtext.xbase.ui.labeling.XbaseLabelProvider
 
 class MelangeLabelProvider extends XbaseLabelProvider
 {
-	@Inject extension LanguageExtensions
-
 	@Inject
 	new(AdapterFactoryLabelProvider delegate) {
 		super(delegate)

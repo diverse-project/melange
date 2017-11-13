@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.EcoreFactory
 import org.eclipse.emf.ecore.EcorePackage
 import org.eclipse.emf.ecore.util.EcoreUtil
 import java.util.Set
+import org.eclipse.emf.ecore.EParameter
 
 class EcoreExtensions
 {
@@ -185,7 +186,7 @@ class EcoreExtensions
 	 */
 	def EClass findClass(EPackage pkg, String clsName) {
 		
-		if(clsName == null)
+		if(clsName === null)
 			return null
 		
 		if(clsName.contains(".")){
@@ -202,7 +203,7 @@ class EcoreExtensions
 	 */
 	def EClass findQualifiedClass(EPackage rootPkg, String qualifiedClsName) {
 		
-		if(qualifiedClsName == null || !qualifiedClsName.contains("."))
+		if(qualifiedClsName === null || !qualifiedClsName.contains("."))
 			return null
 		
 		val rootName = rootPkg.name
@@ -240,7 +241,7 @@ class EcoreExtensions
 	 */
 	def EClassifier findQualifiedClassifier(EPackage rootPkg, String qualifiedClsName) {
 		
-		if(qualifiedClsName == null || !qualifiedClsName.contains("."))
+		if(qualifiedClsName === null || !qualifiedClsName.contains("."))
 			return null
 		
 		val rootName = rootPkg.name
@@ -635,7 +636,7 @@ class EcoreExtensions
 			if (find !== null)
 				find
 			else{
-				val newCls =EcoreFactory.eINSTANCE.createEClass => [
+				val newCls = EcoreFactory.eINSTANCE.createEClass => [
 					name = dt.name
 				]
 				if(dt.isAspectSpecific)
@@ -657,6 +658,14 @@ class EcoreExtensions
 				if(attr.hasContainmentAnnotation)
 					featureReplacement.containment = true
 				EcoreUtil::replace(attr, featureReplacement)
+			}
+			else if(attr instanceof EOperation) {
+				val EOperation op = attr
+				op.EType = replacement
+			}
+			else if(attr instanceof EParameter) {
+				val EParameter param = attr
+				param.EType = replacement
 			}
 		]
 

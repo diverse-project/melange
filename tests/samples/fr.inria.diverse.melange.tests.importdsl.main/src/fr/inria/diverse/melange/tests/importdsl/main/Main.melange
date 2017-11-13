@@ -1,0 +1,3 @@
+package fr.inria.diverse.melange.tests.importdsl.main
+
+import-dsl fr.inria.diverse.melange.tests.FSM

@@ -14,30 +14,27 @@ import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.ASTHelper
 import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.ast.LanguageExtensions
-import fr.inria.diverse.melange.ast.ModelTypeExtensions
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.builder.LanguageBuilder
 import fr.inria.diverse.melange.builder.ModelTypingSpaceBuilder
+import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.metamodel.melange.Import
 import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.MelangeFactory
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
-import fr.inria.diverse.melange.metamodel.melange.ModelType
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.metamodel.melange.Weave
 import fr.inria.diverse.melange.utils.EPackageProvider
+import java.util.Set
 import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.EPackage
+import org.eclipse.emf.ecore.resource.ResourceSet
+import org.eclipse.emf.transaction.RecordingCommand
+import org.eclipse.emf.transaction.TransactionalEditingDomain
+import org.eclipse.emf.transaction.util.TransactionUtil
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
-import fr.inria.diverse.melange.lib.EcoreExtensions
-import org.eclipse.emf.ecore.EPackage
-import org.eclipse.emf.transaction.TransactionalEditingDomain
-import org.eclipse.emf.transaction.util.TransactionUtil
-import org.eclipse.emf.transaction.RecordingCommand
-import org.eclipse.emf.ecore.resource.ResourceSet
-import java.util.Set
-import fr.inria.diverse.melange.metamodel.melange.ExternalLanguage
 
 /**
  * Builds {@link Language}s by merging the various parts declared in each
@@ -117,7 +114,7 @@ class LanguageProcessor extends DispatchMelangeProcessor
 			val rs = language.eResource.resourceSet
 			val TransactionalEditingDomain ed = TransactionUtil.getEditingDomain(rs);
 			// If the resource set has an editing domain, we need a transactioon
-			if (ed != null && ed.commandStack != null) {
+			if (ed !== null && ed.commandStack !== null) {
 				val syntax_val = syntax
 				val RecordingCommand command = new RecordingCommand(ed) {
 					override protected doExecute() {

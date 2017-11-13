@@ -15,7 +15,14 @@ import com.google.common.io.CharStreams
 import com.google.inject.Inject
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import java.io.ByteArrayInputStream
+import java.io.File
+import java.io.InputStreamReader
+import java.net.URL
+import java.net.URLClassLoader
+import java.util.ArrayList
+import java.util.HashSet
 import java.util.List
+import java.util.Set
 import java.util.zip.ZipFile
 import org.eclipse.core.expressions.IEvaluationContext
 import org.eclipse.core.resources.IMarker
@@ -24,6 +31,7 @@ import org.eclipse.core.resources.IResource
 import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.core.runtime.NullProgressMonitor
 import org.eclipse.core.runtime.Path
+import org.eclipse.core.runtime.Platform
 import org.eclipse.core.runtime.jobs.Job
 import org.eclipse.debug.core.DebugPlugin
 import org.eclipse.debug.core.ILaunchManager
@@ -40,12 +48,22 @@ import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.EcorePackage
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.eclipse.jdt.core.IJavaProject
 import org.eclipse.jdt.core.JavaCore
 import org.eclipse.jdt.launching.IJavaLaunchConfigurationConstants
+import org.eclipse.jdt.launching.JavaRuntime
 import org.eclipse.jdt.ui.JavaUI
 import org.eclipse.jface.viewers.StructuredSelection
 import org.eclipse.jface.viewers.TreeViewer
+import org.eclipse.osgi.internal.framework.EquinoxBundle
+import org.eclipse.osgi.storage.BundleInfo.Generation
+import org.eclipse.pde.core.target.ITargetDefinition
+import org.eclipse.pde.core.target.ITargetLocation
+import org.eclipse.pde.core.target.ITargetPlatformService
+import org.eclipse.pde.core.target.LoadTargetDefinitionJob
 import org.eclipse.pde.internal.core.natures.PDE
+import org.eclipse.pde.internal.core.target.TargetPlatformService
+import org.eclipse.swt.widgets.Display
 import org.eclipse.ui.ISources
 import org.eclipse.ui.PlatformUI
 import org.eclipse.ui.commands.ICommandService
@@ -65,26 +83,7 @@ import org.eclipse.xtext.ui.editor.outline.impl.OutlinePage
 import org.eclipse.xtext.ui.editor.utils.EditorUtils
 import org.eclipse.xtext.ui.resource.XtextResourceSetProvider
 import org.junit.Assert
-import org.eclipse.swt.widgets.Display
-import org.eclipse.pde.core.target.ITargetPlatformService
-import org.eclipse.pde.core.target.ITargetDefinition
-import org.eclipse.core.runtime.Platform
-import java.util.List
-import org.eclipse.pde.core.target.ITargetLocation
-import java.util.ArrayList
-import java.util.Set
-import java.io.File
-import java.util.HashSet
-import org.eclipse.osgi.internal.framework.EquinoxBundle
-import org.eclipse.osgi.storage.BundleInfo.Generation
-import org.eclipse.core.runtime.jobs.Job
-import org.eclipse.pde.core.target.LoadTargetDefinitionJob
-import org.eclipse.pde.internal.core.target.TargetPlatformService
 import org.osgi.framework.Bundle
-import org.eclipse.jdt.core.IJavaProject
-import org.eclipse.jdt.launching.JavaRuntime
-import java.net.URL
-import java.net.URLClassLoader
 
 class WorkspaceTestHelper {
 	static final String MELANGE_CMD_GENERATE_ALL        = "fr.inria.diverse.melange.GenerateAll"
@@ -354,7 +353,7 @@ class WorkspaceTestHelper {
 			outputFile.create(new ByteArrayInputStream("".bytes), true, null)
 
 		val launch = newLaunchConfig.launch(ILaunchManager::RUN_MODE, null)
-		
+
 		val long TIMEOUT = 1000 * 60 * 5 // 5 minutes
 		val long startTime = System.currentTimeMillis();
 		while (!launch.isTerminated && System.currentTimeMillis() < (startTime + TIMEOUT)) {
@@ -366,7 +365,7 @@ class WorkspaceTestHelper {
 
 		outputFile.refreshLocal(IResource::DEPTH_ONE, null)
 
-		return CharStreams::toString(CharStreams::newReaderSupplier([outputFile.contents], Charsets::UTF_8))
+		return CharStreams::toString(new InputStreamReader(outputFile.contents, Charsets.UTF_8))
 	}
 
 	/**

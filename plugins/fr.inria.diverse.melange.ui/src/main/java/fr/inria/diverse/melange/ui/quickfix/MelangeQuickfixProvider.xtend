@@ -10,26 +10,26 @@
  *******************************************************************************/
 package fr.inria.diverse.melange.ui.quickfix
 
-import com.google.inject.Inject
-import fr.inria.diverse.melange.ast.LanguageExtensions
-import fr.inria.diverse.melange.ast.MetamodelExtensions
-import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
-import fr.inria.diverse.melange.lib.EcoreExtensions
-import fr.inria.diverse.melange.metamodel.melange.Language
-import fr.inria.diverse.melange.metamodel.melange.Metamodel
-import fr.inria.diverse.melange.validation.MelangeValidationConstants
-import org.eclipse.xtext.common.types.access.jdt.IJavaProjectProvider
-import org.eclipse.xtext.ui.editor.quickfix.Fix
-import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor
-import org.eclipse.xtext.validation.Issue
+//import com.google.inject.Inject
+//import fr.inria.diverse.melange.ast.LanguageExtensions
+//import fr.inria.diverse.melange.ast.MetamodelExtensions
+//import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
+//import fr.inria.diverse.melange.lib.EcoreExtensions
+//import fr.inria.diverse.melange.metamodel.melange.Language
+//import fr.inria.diverse.melange.metamodel.melange.Metamodel
+//import fr.inria.diverse.melange.validation.MelangeValidationConstants
+//import org.eclipse.xtext.common.types.access.jdt.IJavaProjectProvider
+//import org.eclipse.xtext.ui.editor.quickfix.Fix
+//import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor
+//import org.eclipse.xtext.validation.Issue
 import org.eclipse.xtext.xbase.ui.quickfix.XbaseQuickfixProvider
 
 class MelangeQuickfixProvider extends XbaseQuickfixProvider
 {
-	@Inject extension LanguageExtensions
-	@Inject extension MetamodelExtensions
-	@Inject extension EcoreExtensions
-	@Inject IJavaProjectProvider projectProvider
+//	@Inject extension LanguageExtensions
+//	@Inject extension MetamodelExtensions
+//	@Inject extension EcoreExtensions
+//	@Inject IJavaProjectProvider projectProvider
 
 //	@Fix(MelangeValidationConstants::METAMODEL_NO_EMF_RUNTIME)
 //	def void generateLocalRuntime(Issue issue, IssueResolutionAcceptor acceptor) {

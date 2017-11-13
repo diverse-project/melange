@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.4"?><plugin>
+  
+<extension point="fr.inria.diverse.melange.modeltype">
+    <modeltype id="fr.inria.diverse.melange.tests.FSMMT" uri="http://fr.inria.diverse.melange.tests.fsmmt/"/>
+  </extension>
+  <extension point="fr.inria.diverse.melange.language">
+    <language aspects="" entryPoints="" exactType="fr.inria.diverse.melange.tests.FSMMT" id="fr.inria.diverse.melange.tests.FSM" uri="http://fsm/">
+      <adapter class="fr.inria.diverse.melange.tests.fsm.adapters.fsmmt.FSMAdapter" modeltypeId="fr.inria.diverse.melange.tests.FSMMT"/>
+    </language>
+  </extension>
+</plugin>

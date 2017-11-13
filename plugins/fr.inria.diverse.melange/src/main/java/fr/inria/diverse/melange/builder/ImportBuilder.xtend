@@ -30,7 +30,7 @@ class ImportBuilder extends OperatorBuilder<Import> {
 	 * and apply the associated renaming rules.
 	 */
 	override make() {
-		model = modelUtils.loadAllPkgs(source.ecoreUri).filter[ESuperPackage == null].toSet
+		model = modelUtils.loadAllPkgs(source.ecoreUri).filter[ESuperPackage === null].toSet
 		model.forEach[applyRenaming(source.mappingRules)]
 	}
 }

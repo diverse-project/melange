@@ -10,6 +10,8 @@
  *******************************************************************************/
 package fr.inria.diverse.melange.ast
 
+import com.google.common.collect.HashMultimap
+import com.google.common.collect.SetMultimap
 import com.google.inject.Inject
 import fr.inria.diverse.melange.lib.EcoreExtensions
 import fr.inria.diverse.melange.metamodel.melange.Metamodel
@@ -22,6 +24,7 @@ import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EDataType
+import org.eclipse.emf.ecore.EFactory
 import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EReference
@@ -30,9 +33,6 @@ import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.naming.QualifiedName
-import java.util.List
-import com.google.common.collect.SetMultimap
-import com.google.common.collect.HashMultimap
 
 /**
  * A collection of utilities around naming conventions in Melange
@@ -173,7 +173,7 @@ class NamingHelper
 			.append("adapters")
 			.append(mt.fullyQualifiedName.lastSegment)
 			.toLowerCase
-			.append(mt.name + "AdaptersFactory")
+			.append(mt.name.toQualifiedName.lastSegment + "AdaptersFactory")
 			.normalize
 			.toString
 	}
@@ -188,7 +188,7 @@ class NamingHelper
 			.append("mappers")
 			.append(targetMT.fullyQualifiedName.lastSegment)
 			.toLowerCase
-			.append(targetMT.name + "MappersFactory")
+			.append(targetMT.name.toQualifiedName.lastSegment + "MappersFactory")
 			.normalize
 			.toString
 	}
@@ -228,7 +228,7 @@ class NamingHelper
 			.append("adapters")
 			.append(mt.fullyQualifiedName.lastSegment)
 			.toLowerCase
-			.append(mm.owningLanguage.name + "Adapter")
+			.append(mm.owningLanguage.name.toQualifiedName.lastSegment + "Adapter")
 			.normalize
 			.toString
 	}
@@ -255,7 +255,7 @@ class NamingHelper
 			mm.owningLanguage
 			.fullyQualifiedName
 			.append("adapters")
-			.append(superMM.owningLanguage.name)
+			.append(superMM.owningLanguage.name.toQualifiedName.lastSegment)
 			.toLowerCase
 			.append(cls.name + "Adapter")
 			.normalize
@@ -517,4 +517,18 @@ class NamingHelper
 
 		return res.toString
 	}
+	
+//	def QualifiedName getFullyQualifiedName(EObject obj) {
+//		
+//		if(obj instanceof ImportDsl) {
+//			return obj.name.toQualifiedName
+//			
+//		}
+//		else if(obj instanceof ModelType) {
+//			if(obj.extracted instanceof ImportDsl)
+//				return (obj.extracted.name + "MT").toQualifiedName
+//			
+//		}
+//		return nameProvider.getFullyQualifiedName(obj)
+//	}
 }

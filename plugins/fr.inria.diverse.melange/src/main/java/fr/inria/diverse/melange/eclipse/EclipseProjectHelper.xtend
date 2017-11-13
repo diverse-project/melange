@@ -24,9 +24,11 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 import org.apache.log4j.Logger
+import org.eclipse.core.resources.ICommand
 import org.eclipse.core.resources.IContainer
 import org.eclipse.core.resources.IFile
 import org.eclipse.core.resources.IProject
+import org.eclipse.core.resources.IProjectDescription
 import org.eclipse.core.resources.IResource
 import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.core.runtime.CoreException
@@ -34,17 +36,14 @@ import org.eclipse.core.runtime.IPath
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.core.runtime.NullProgressMonitor
 import org.eclipse.core.runtime.Path
+import org.eclipse.core.runtime.SubMonitor
 import org.eclipse.core.runtime.SubProgressMonitor
 import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.gemoc.commons.eclipse.pde.classpath.BuildPropertiesHelper
+import org.eclipse.gemoc.commons.eclipse.pde.classpath.ClasspathHelper
 import org.eclipse.jdt.core.JavaCore
 import org.eclipse.pde.internal.core.natures.PDE
 import org.eclipse.xtext.util.MergeableManifest
-import org.eclipse.core.resources.IProjectDescription
-import org.eclipse.core.resources.ICommand
-import org.eclipse.core.runtime.SubMonitor
-import org.eclipse.gemoc.commons.eclipse.pde.classpath.ClasspathHelper
-import org.eclipse.jdt.core.IJavaProject
-import org.eclipse.gemoc.commons.eclipse.pde.classpath.BuildPropertiesHelper
 
 /**
  * A collection of utilities around Eclipse's APIs to manage the creation,
@@ -270,7 +269,7 @@ class EclipseProjectHelper
 			// FIXME: Everything's hardcoded...
 			val project = createEclipseProject(
 				projectName,
-				#[JavaCore::NATURE_ID, PDE::PLUGIN_NATURE],
+				#[JavaCore::NATURE_ID, PDE::PLUGIN_NATURE, "org.eclipse.xtext.ui.shared.xtextNature"],
 				#[JavaCore::BUILDER_ID,	PDE::MANIFEST_BUILDER_ID, PDE::SCHEMA_BUILDER_ID],
 				#["src", "src-gen"],
 				#[],

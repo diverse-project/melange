@@ -20,7 +20,8 @@ Require-Bundle: fr.inria.diverse.melange.ui,
  org.eclipse.core.expressions,
  org.eclipse.jdt.ui,
  org.junit;bundle-version="4.11.0",
- org.eclipse.emf.compare;bundle-version="3.1.0"
+ org.eclipse.emf.compare;bundle-version="3.1.0",
+ org.eclipse.gemoc.dsl.ui
 Import-Package: org.hamcrest.core,
  org.junit;version="4.5.0",
  org.junit.runner;version="4.5.0"
