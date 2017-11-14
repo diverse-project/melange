@@ -337,29 +337,22 @@ class MelangeResourceImpl implements MelangeResource {
 
 			// 2 - Adapt Language to ModelType
 			if (expectedMt !== null) {
-				val result = contentResource.adaptResourceToMT(expectedMt)
-				contentResource = result
+				contentResource = contentResource.adaptResourceToMT(expectedMt)
 				addToResourceSet(contentResource)
 			}
 		}
 	}
 
 	private def void addToResourceSet(Resource res) {
-		val noRS = this.resourceSet !== null
-		val notNull = res !== null
-		if (noRS && notNull) {
-			val notExisting = !this.resourceSet.resources.contains(res)
-			if (notExisting) {
-				val withSameURI = this.resourceSet.resources.findFirst[it.URI.equals(res.URI)]
-				if (withSameURI !== null) {
+		if (this.resourceSet !== null && res !== null) {
+			if (!this.resourceSet.resources.contains(res)) {
+				if (this.resourceSet.resources.exists[it.URI.equals(res.URI)]) {
 					throw new Exception("INTERNAL ERROR: resource already loaded?!")
 				}
 				this.resourceSet.resources.add(res)
 				if (!this.resourceSet.resources.contains(res)) {
-					throw new Exception("INTERNAL ERROR: cannot load resource ?!")
+					throw new Exception("INTERNAL ERROR: cannot resource was not loaded?!")
 				}
-			} else {
-				println("test")
 			}
 		}
 	}
