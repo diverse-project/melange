@@ -222,11 +222,14 @@ class MelangeResourceImpl implements MelangeResource {
 		for (r : allRes) {
 			// Prepare the URI of the MelangeResource
 			var newMelangeURIString = r.URI.toString.replaceFirst("platform:/", "melange:/");
+			val separators = newLinkedList('?','&')
+
 			if (!expectedLang.isNullOrEmpty) {
-				newMelangeURIString = newMelangeURIString + "?lang=" + expectedLang
+				newMelangeURIString = newMelangeURIString + separators.head + "lang=" + expectedLang
+				separators.remove(0)
 			}
 			if (!expectedMt.isNullOrEmpty) {
-				newMelangeURIString = newMelangeURIString + "?mt=" + expectedMt
+				newMelangeURIString = newMelangeURIString + separators.head + "mt=" + expectedMt
 			}
 			val newMelangeURI = URI::createURI(newMelangeURIString)
 
