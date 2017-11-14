@@ -51,6 +51,11 @@ class MelangeResourceImpl implements MelangeResource {
 		this(new ResourceSetImpl, uri)
 	}
 
+	new(ResourceSet set, URI uri, ModelCopier copier) {
+		this(set, uri)
+		this.copier = copier
+	}
+
 	new(ResourceSet rs, URI uri) {
 		rs.resources.add(this)
 		val query = uri.query
@@ -62,11 +67,6 @@ class MelangeResourceImpl implements MelangeResource {
 
 		melangeUri = uri
 		wrappedResource = rs.getResource(MelangeResourceUtils.melangeToFallbackURI(uri), true) as Resource.Internal
-	}
-
-	new(ResourceSet set, URI uri, ModelCopier copier) {
-		this(set, uri)
-		this.copier = copier
 	}
 
 	override ResourceSet getResourceSet() {
@@ -229,13 +229,16 @@ class MelangeResourceImpl implements MelangeResource {
 				newMelangeURIString = newMelangeURIString + "?mt=" + expectedMt
 			}
 			val newMelangeURI = URI::createURI(newMelangeURIString)
-			// If the MelangeResource already exists, we reuse it
-			var existingMelangeResource = this.resourceSet.resources.findFirst[it.URI.equals(newMelangeURI)]
 
-			// Otherwise, we create it
-			if (existingMelangeResource === null) {
-				existingMelangeResource = new MelangeResourceImpl(this.resourceSet, newMelangeURI, copier)
-				addToResourceSet(existingMelangeResource)
+			// If the corresponding MelangeResource does exist yet, we create it 
+			if (this.resourceSet.resources.findFirst[it.URI.equals(newMelangeURI)] === null) {
+				val newMelangeResource = new MelangeResourceImpl(this.resourceSet, newMelangeURI, copier)
+				addToResourceSet(newMelangeResource)
+
+				// We perform the adaptation right away for 2 reasons:
+				// - at this point we already have the final resourceSet, so we can
+				// - the links between "contentResources" expect to find the results of the adaptation
+				newMelangeResource.doAdapt()
 			}
 		}
 		val result = copier.clone(res)
