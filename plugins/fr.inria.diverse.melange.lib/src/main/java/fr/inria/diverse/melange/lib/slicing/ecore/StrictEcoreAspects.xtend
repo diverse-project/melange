@@ -582,7 +582,7 @@ _self.^EGenericType?.reinit
 
 	}
 	
-	def boolean isEcoreDataTypeTyped(EDataType type){
+	def boolean isEcoreDataTypeTyped(EDataType type) {
 		return (type.name == "EBoolean" ||
 				type.name == "EString" ||
 				type.name == "EByte" ||
@@ -591,7 +591,21 @@ _self.^EGenericType?.reinit
 				type.name == "EInteger" ||
 				type.name == "EInt" ||
 				type.name == "ELong" ||
-				type.name == "EShort") &&
+				type.name == "EShort"||
+				type.name == "EByteArray" ||
+				type.name == "EBooleanObject" ||
+				type.name == "EByteObject" ||
+				type.name == "ECharacterObject" ||
+				type.name == "EDoubleObject" ||
+				type.name == "EFloatObject" ||
+				type.name == "EIntegerObject" ||
+				type.name == "ELongObject" ||
+				type.name == "EShortObject" ||
+				type.name == "EBigDecimal" ||
+				type.name == "EBigInteger" ||
+				type.name == "EDate" ||
+				type.name == "EJavaObject" ||
+				type.name == "EJavaClass") &&
 				type.EPackage.name == "ecore"
 	}
 }
