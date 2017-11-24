@@ -247,11 +247,12 @@ class ModelingElementExtensions
 		val res = resSet.createResource(URI::createURI(uri))
 		val rootPkgs = m.pkgs.filter[ESuperPackage === null]
 
-		if (baseUri !== null){
-			rootPkgs.forEach[initializeNsUriWith(baseUri)]
-		}
 
 		val copy = EcoreUtil::copyAll(m.pkgs.filter[ESuperPackage === null].toList)
+		
+		if (baseUri !== null){
+			copy.forEach[initializeNsUriWith(baseUri)]
+		}
 
 		if (m instanceof Metamodel) {
 			val toRemove = <EModelElement>newArrayList
