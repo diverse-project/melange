@@ -50,6 +50,10 @@ class EPackageProvider
 
 
 	def Set<EPackage> getPackages(ModelingElement m) {
+		
+		if(m === null)
+			return newHashSet
+		
 		val packages = getPackageRegistry(m.eResource)
 		if (!packages.containsKey(m.fqn)) {
 			if (m instanceof Metamodel) {
@@ -90,10 +94,18 @@ class EPackageProvider
 			}
 		}
 
-		return packages.get(m.fqn)
+		val res = packages.get(m.fqn)
+		if(res === null)
+			return newHashSet
+		else
+			return res
 	}
 
 	def Set<GenModel> getGenModels(ModelingElement m) {
+		
+		if(m === null)
+			return newHashSet
+		
 		val genmodels = getGenmodelRegistry(m.eResource)
 		if (!genmodels.containsKey(m.fqn)) {
 			// If it's an Xcore file, the genmodel can be found directly within it
@@ -128,7 +140,11 @@ class EPackageProvider
 			}
 		}
 
-		return genmodels.get(m.fqn)
+		val res = genmodels.get(m.fqn)
+		if(res === null)
+			return newHashSet
+		else
+			return res
 	}
 	
 	/**
