@@ -844,22 +844,22 @@ class LanguageExtensions
 	
 	def Dsl toDsl(Language l) {
 		val dsl = DslFactoryImpl.eINSTANCE.createDsl
-		dsl.name = l.fullyQualifiedName.toString
-		dsl.abstractSyntax = DslFactoryImpl.eINSTANCE.createAbstractSyntax
 		
-		val ecore = DslFactoryImpl.eINSTANCE.createSimpleValue
-		ecore.name = "ecore"
-		ecore.values += l.syntax.ecoreUri
-		dsl.abstractSyntax.values += ecore
+		dsl.name = l.fullyQualifiedName.toString
+		
+		val ecoreEntry = DslFactoryImpl.eINSTANCE.createEntry
+		ecoreEntry.key = "ecore"
+		ecoreEntry.value = l.syntax.ecoreUri
+		dsl.entries += ecoreEntry
 		
 		if(!l.semantics.isEmpty) {
-			dsl.semantic = DslFactoryImpl.eINSTANCE.createSemantic
-			val k3Aspects = DslFactoryImpl.eINSTANCE.createSimpleValue
-			k3Aspects.name = "k3"
-			l.semantics.forEach[asp |
-				k3Aspects.values += asp.aspectTypeRef.qualifiedName
-			]
-			dsl.semantic.values += k3Aspects
+			val k3Entry = DslFactoryImpl.eINSTANCE.createEntry
+			k3Entry.key = "k3"
+			k3Entry.value =
+				l.semantics
+				.map[asp | asp.aspectTypeRef.qualifiedName]
+				.join(",")
+			dsl.entries += k3Entry
 		}
 		
 		return dsl
