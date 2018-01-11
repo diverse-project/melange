@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *     Inria - initial API and implementation
  *******************************************************************************/
@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtend.lib.annotations.Delegate
+import org.eclipse.emf.common.notify.NotificationChain
 
 /**
  * This class wraps a resource and shift the types of the contained
@@ -43,14 +44,20 @@ class MelangeResourceImpl implements MelangeResource {
 	Resource contentResource
 	Map<EObject, EObject> wrappedToContentMapping
 	ModelCopier copier
-	
-		new(URI uri) {
+	ResourceSet rs
+
+	new(URI uri) {
 		// FIXME: Retrieve the currently-used resourceset
 		this(new ResourceSetImpl, uri)
 	}
 
+	new(ResourceSet set, URI uri, ModelCopier copier) {
+		this(set, uri)
+		this.copier = copier
+	}
 
-	new (ResourceSet rs, URI uri) {
+	new(ResourceSet rs, URI uri) {
+		rs.resources.add(this)
 		val query = uri.query
 		val SEPARATOR = "&|;"
 		val pairs = query?.split(SEPARATOR)
@@ -62,9 +69,20 @@ class MelangeResourceImpl implements MelangeResource {
 		wrappedResource = rs.getResource(MelangeResourceUtils.melangeToFallbackURI(uri), true) as Resource.Internal
 	}
 
-	new(ResourceSet set, URI uri, ModelCopier copier) {
-		this(set, uri)
-		this.copier = copier
+	override ResourceSet getResourceSet() {
+		return rs;
+	}
+
+	override NotificationChain basicSetResourceSet(ResourceSet resourceSet, NotificationChain notifications) {
+
+		// If this is called, it means the MelangeResource has just been put into a new ResourceSet
+		// Therefore, we must also move the proxied resources in the resourceset
+		if (wrappedResource !== null)
+			resourceSet.resources.add(wrappedResource)
+		if (contentResource !== null)
+			resourceSet.resources.add(contentResource)
+		this.rs = resourceSet
+		return notifications;
 	}
 
 	override Resource getWrappedResource() {
@@ -122,7 +140,7 @@ class MelangeResourceImpl implements MelangeResource {
 				return adapterCls.newInstance => [
 					adaptee = adaptedResource
 					parent = this
-					URI = URI::createURI("modelAsAdapted")
+					URI = URI::createURI(adaptedResource.URI + "_adaptedTo_" + modelType)
 					// Emf Adapters on the ResourceAdapter can catch
 					// Notifications from the adaptee 
 					val proxyAdapter = new AdapterImpl() {
@@ -138,8 +156,7 @@ class MelangeResourceImpl implements MelangeResource {
 			} catch (InstantiationException e) {
 				throw new MelangeResourceException('''Cannot instantiate adapter type «adapterCls»''', e)
 			} catch (IllegalAccessException e) {
-				throw new MelangeResourceException('''Cannot access adapter type «adapterCls»''',
-					e)
+				throw new MelangeResourceException('''Cannot access adapter type «adapterCls»''', e)
 			}
 		}
 
@@ -185,8 +202,7 @@ class MelangeResourceImpl implements MelangeResource {
 			if (copier === null)
 				copier = new ModelCopier(#[actualPkg].toSet, expectedPkg, xmofURI !== null)
 
-			return copier.recursiveClone(
-				adaptedResource)
+			return copier.recursiveClone(adaptedResource)
 		} else
 			// No typing hierarchy found
 			throw new MelangeResourceException('''«actualMt.identifier» cannot be transtyped to «expectedMt.identifier»''')
@@ -206,24 +222,30 @@ class MelangeResourceImpl implements MelangeResource {
 		for (r : allRes) {
 			// Prepare the URI of the MelangeResource
 			var newMelangeURIString = r.URI.toString.replaceFirst("platform:/", "melange:/");
+			val separators = newLinkedList('?','&')
+
 			if (!expectedLang.isNullOrEmpty) {
-				newMelangeURIString = newMelangeURIString + "?lang=" + expectedLang
-			} else if (!expectedMt.isNullOrEmpty) {
-				newMelangeURIString = newMelangeURIString + "?mt=" + expectedMt
+				newMelangeURIString = newMelangeURIString + separators.head + "lang=" + expectedLang
+				separators.remove(0)
+			}
+			if (!expectedMt.isNullOrEmpty) {
+				newMelangeURIString = newMelangeURIString + separators.head + "mt=" + expectedMt
 			}
 			val newMelangeURI = URI::createURI(newMelangeURIString)
-			// If the MelangeResource already exists, we reuse it
-			var existingMelangeResource = this.resourceSet.resources.findFirst[it.URI.equals(newMelangeURI)]
 
-			// Otherwise, we create it
-			if (existingMelangeResource === null) {
-				existingMelangeResource = new MelangeResourceImpl(this.resourceSet, newMelangeURI, copier)
-				addToResourceSet(existingMelangeResource)
+			// If the corresponding MelangeResource does exist yet, we create it 
+			if (this.resourceSet.resources.findFirst[it.URI.equals(newMelangeURI)] === null) {
+				val newMelangeResource = new MelangeResourceImpl(this.resourceSet, newMelangeURI, copier)
+				addToResourceSet(newMelangeResource)
+
+				// We perform the adaptation right away for 2 reasons:
+				// - at this point we already have the final resourceSet, so we can
+				// - the links between "contentResources" expect to find the results of the adaptation
+				newMelangeResource.doAdapt()
 			}
 		}
 		val result = copier.clone(res)
 		wrappedToContentMapping = copier.modelsMapping.immutableCopy
-		
 
 		return result
 	}
@@ -328,6 +350,9 @@ class MelangeResourceImpl implements MelangeResource {
 					throw new Exception("INTERNAL ERROR: resource already loaded?!")
 				}
 				this.resourceSet.resources.add(res)
+				if (!this.resourceSet.resources.contains(res)) {
+					throw new Exception("INTERNAL ERROR: cannot resource was not loaded?!")
+				}
 			}
 		}
 	}
