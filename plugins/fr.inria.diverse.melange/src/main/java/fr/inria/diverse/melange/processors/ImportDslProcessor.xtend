@@ -14,7 +14,6 @@ package fr.inria.diverse.melange.processors
 import com.google.inject.Inject
 import fr.inria.diverse.melange.metamodel.melange.ImportDsl
 import fr.inria.diverse.melange.metamodel.melange.MelangeFactory
-import org.eclipse.gemoc.dsl.SimpleValue
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
 /**
@@ -26,39 +25,28 @@ class ImportDslProcessor extends DispatchMelangeProcessor
 	@Inject
 	JvmTypeReferenceBuilder.Factory builderFactory
 	
-//	@Inject
-//	extension IQualifiedNameConverter
-//	
-//	@Inject
-//	IScopeProvider scopeProvider
-	
 	def dispatch void preProcess(ImportDsl language, boolean isPreLinkingPhase) {
-		
-//		val dslRef = language.eClass.EReferences.findFirst[name == "dsl"]
-//		val scope = scopeProvider.getScope(language,dslRef)
-//		val candidates = scope.getElements(language.name.toQualifiedName).toList
 		
 		val dsl = language.dsl
 		
-		val ecoreUris =
+		val ecoreUris = 
 			dsl
-			?.abstractSyntax
-			?.values
-			?.filter(SimpleValue)
-			?.filter[value | value.name == "ecore"]
+			?.entries
+			?.filter[entry | entry.key == "ecore"]
 			?.head
-			?.values
-		
-		val aspects =
+			?.value
+			?.split(",")
+			?.map[uri | uri.trim]
+			
+		val aspects = 
 			dsl
-			?.semantic
-			?.values
-			?.filter(SimpleValue)
-			?.filter[value | value.name == "k3"]
+			?.entries
+			?.filter[entry | entry.key == "k3"]
 			?.head
-			?.values
-
-
+			?.value
+			?.split(",")
+			?.map[uri | uri.trim]
+			
 		language.name = dsl.name
 		ecoreUris?.forEach[uri |
 			language.operators +=
