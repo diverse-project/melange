@@ -123,7 +123,7 @@ class MelangeBuilder
 			sub.beginTask("Generating runtime for " + l.name, 100)
 			if(l.externalRuntimeName != project.name){
 				sub.subTask("Creating new project for " + l.name)
-				eclipseHelper.createEMFRuntimeProject(l.externalRuntimeName, l)
+				eclipseHelper.createGemocLangEMFRuntimeProject(l.externalRuntimeName, l)
 				subMonitor.worked(5)
 				sub.subTask("Serializing Ecore description for " + l.name)
 				l.createExternalEcore
