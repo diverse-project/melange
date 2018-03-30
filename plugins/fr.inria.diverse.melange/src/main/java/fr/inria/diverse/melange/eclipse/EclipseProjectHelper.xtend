@@ -54,6 +54,8 @@ class EclipseProjectHelper
 {
 	@Inject extension LanguageExtensions
 	private static final Logger log = Logger.getLogger(EclipseProjectHelper)
+	
+	val String GEMOCNatureID = "org.eclipse.gemoc.execution.sequential.javaxdsml.ide.ui.GemocSequentialLanguageNature"
 
 	/**
 	 * Returns the {@link IProject} containing the Melange file pointed by
@@ -239,6 +241,7 @@ class EclipseProjectHelper
 	 * Additions to the usual Melange:
 	 * <ul>
 	 *   <li>Source folders: src-model-gen</li>
+	 *   <li>Nature: GEMOC Nature</li>
 	 * </ul>
 	 */
 	def void createEMFRuntimeInMelangeProject(IProject project, Language l, IProgressMonitor monitor){
@@ -252,13 +255,70 @@ class EclipseProjectHelper
 		
 		ClasspathHelper.addSourceEntry(project,"src-model-gen", subMonitor.split(10))
 		BuildPropertiesHelper.addMainJarSourceEntry(project,"src-model-gen", subMonitor.split(10))
+		
+		// add Gemoc nature to project because it will also contain the generated dsl file
+		if (!project.hasNature(GEMOCNatureID)) {
+			val IProjectDescription description = project.getDescription()
+			val String[] natures = description.getNatureIds()
+			val String[] newNatures = newArrayOfSize(natures.length + 1)
+			System.arraycopy(natures, 0, newNatures, 1, natures.length)
+			newNatures.set(0, GEMOCNatureID)
+			description.setNatureIds(newNatures)
+			project.setDescription(description, null)
+		}
 	}
 
 	/**
 	 * Creates a new Eclipse project named {@code projectName} for the
+	 * {@link Language} {@code l}. Acting as a GEMOC Language
+	 * <ul>
+	 *   <li>Natures: GEMOCSequentialLanguage, JAVA, PLUGIN, XText</li>
+	 *   <li>Builders: GEMOCSequentialBuilder, JAVA, MANIFEST, SCHEMA</li>
+	 *   <li>Source folders: src/src-gen</li>
+	 *   <li>Dependencies: Ecore, K3, Xbase</li>
+	 * </ul>
+	 */
+	def IProject createGemocLangEMFRuntimeProject(String projectName, Language l) {
+		try {
+			// FIXME: Everything's hardcoded...
+			val project = createEclipseProject(
+				projectName,
+				#[ GEMOCNatureID, 
+					JavaCore::NATURE_ID, PDE::PLUGIN_NATURE, "org.eclipse.xtext.ui.shared.xtextNature"
+				],
+				#[ GEMOCNatureID,
+					JavaCore::BUILDER_ID, PDE::MANIFEST_BUILDER_ID, PDE::SCHEMA_BUILDER_ID
+				],
+				#["src", "src-gen"],
+				#[],
+				#["org.eclipse.emf.ecore",
+				  "fr.inria.diverse.k3.al.annotationprocessor.plugin",
+				  "fr.inria.diverse.melange",
+				  "org.eclipse.xtext.xbase.lib"],
+//				#[basePkg, basePkg + ".impl", basePkg + ".util"],
+				if (l.hasCopiedAspects) #[l.aspectsNamespace] else #[],
+				#[],
+				new NullProgressMonitor
+			)
+
+			val modelFolder = project.getFolder("model")
+			modelFolder.create(false, true, null)
+
+			log.debug('''Runtime EMF project «project» created.''')
+
+			return project
+		} catch (Exception e) {
+			log.error("Unexpected exception while creating new runtime project", e)
+		}
+
+		return null
+	}
+	
+	/**
+	 * Creates a new Eclipse project named {@code projectName} for the
 	 * {@link Language} {@code l}.
 	 * <ul>
-	 *   <li>Natures: JAVA, PLUGIN</li>
+	 *   <li>Natures: JAVA, PLUGIN, XText</li>
 	 *   <li>Builders: JAVA, MANIFEST, SCHEMA</li>
 	 *   <li>Source folders: src/src-gen</li>
 	 *   <li>Dependencies: Ecore, K3, Xbase</li>
