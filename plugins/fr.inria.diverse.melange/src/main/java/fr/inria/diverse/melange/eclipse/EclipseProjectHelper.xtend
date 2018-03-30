@@ -54,6 +54,8 @@ class EclipseProjectHelper
 {
 	@Inject extension LanguageExtensions
 	private static final Logger log = Logger.getLogger(EclipseProjectHelper)
+	
+	val String GEMOCNatureID = "org.eclipse.gemoc.execution.sequential.javaxdsml.ide.ui.GemocSequentialLanguageNature"
 
 	/**
 	 * Returns the {@link IProject} containing the Melange file pointed by
@@ -239,6 +241,7 @@ class EclipseProjectHelper
 	 * Additions to the usual Melange:
 	 * <ul>
 	 *   <li>Source folders: src-model-gen</li>
+	 *   <li>Nature: GEMOC Nature</li>
 	 * </ul>
 	 */
 	def void createEMFRuntimeInMelangeProject(IProject project, Language l, IProgressMonitor monitor){
@@ -252,6 +255,17 @@ class EclipseProjectHelper
 		
 		ClasspathHelper.addSourceEntry(project,"src-model-gen", subMonitor.split(10))
 		BuildPropertiesHelper.addMainJarSourceEntry(project,"src-model-gen", subMonitor.split(10))
+		
+		// add Gemoc nature to project because it will also contain the generated dsl file
+		if (!project.hasNature(GEMOCNatureID)) {
+			val IProjectDescription description = project.getDescription()
+			val String[] natures = description.getNatureIds()
+			val String[] newNatures = newArrayOfSize(natures.length + 1)
+			System.arraycopy(natures, 0, newNatures, 1, natures.length)
+			newNatures.set(0, GEMOCNatureID)
+			description.setNatureIds(newNatures)
+			project.setDescription(description, null)
+		}
 	}
 
 	/**
@@ -269,10 +283,10 @@ class EclipseProjectHelper
 			// FIXME: Everything's hardcoded...
 			val project = createEclipseProject(
 				projectName,
-				#["org.eclipse.gemoc.execution.sequential.javaxdsml.ide.ui.GemocSequentialLanguageNature", 
+				#[ GEMOCNatureID, 
 					JavaCore::NATURE_ID, PDE::PLUGIN_NATURE, "org.eclipse.xtext.ui.shared.xtextNature"
 				],
-				#["org.eclipse.gemoc.execution.sequential.javaxdsml.ide.ui.GemocSequentialLanguageBuilder",
+				#[ GEMOCNatureID,
 					JavaCore::BUILDER_ID, PDE::MANIFEST_BUILDER_ID, PDE::SCHEMA_BUILDER_ID
 				],
 				#["src", "src-gen"],
