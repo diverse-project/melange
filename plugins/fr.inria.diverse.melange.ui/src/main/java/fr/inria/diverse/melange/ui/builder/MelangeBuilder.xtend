@@ -123,7 +123,12 @@ class MelangeBuilder
 			sub.beginTask("Generating runtime for " + l.name, 100)
 			if(l.externalRuntimeName != project.name){
 				sub.subTask("Creating new project for " + l.name)
-				eclipseHelper.createGemocLangEMFRuntimeProject(l.externalRuntimeName, l)
+				// if gemoc nature exist in the platform,
+				if (ResourcesPlugin.getWorkspace().getNatureDescriptor(EclipseProjectHelper.GEMOCNatureID) !== null) {
+					eclipseHelper.createGemocLangEMFRuntimeProject(l.externalRuntimeName, l)
+				} else {
+					eclipseHelper.createEMFRuntimeProject(l.externalRuntimeName, l)
+				}
 				subMonitor.worked(5)
 				sub.subTask("Serializing Ecore description for " + l.name)
 				l.createExternalEcore

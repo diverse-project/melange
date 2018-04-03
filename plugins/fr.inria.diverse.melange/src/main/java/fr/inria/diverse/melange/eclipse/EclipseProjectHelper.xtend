@@ -55,7 +55,7 @@ class EclipseProjectHelper
 	@Inject extension LanguageExtensions
 	private static final Logger log = Logger.getLogger(EclipseProjectHelper)
 	
-	val String GEMOCNatureID = "org.eclipse.gemoc.execution.sequential.javaxdsml.ide.ui.GemocSequentialLanguageNature"
+	public static final String GEMOCNatureID = "org.eclipse.gemoc.execution.sequential.javaxdsml.ide.ui.GemocSequentialLanguageNature"
 
 	/**
 	 * Returns the {@link IProject} containing the Melange file pointed by
@@ -256,8 +256,11 @@ class EclipseProjectHelper
 		ClasspathHelper.addSourceEntry(project,"src-model-gen", subMonitor.split(10))
 		BuildPropertiesHelper.addMainJarSourceEntry(project,"src-model-gen", subMonitor.split(10))
 		
+		// if gemoc nature exist in the platform,
 		// add Gemoc nature to project because it will also contain the generated dsl file
-		if (!project.hasNature(GEMOCNatureID)) {
+		if (ResourcesPlugin.getWorkspace().getNatureDescriptor(GEMOCNatureID) !== null &&
+			!project.hasNature(GEMOCNatureID)
+		) {
 			val IProjectDescription description = project.getDescription()
 			val String[] natures = description.getNatureIds()
 			val String[] newNatures = newArrayOfSize(natures.length + 1)
