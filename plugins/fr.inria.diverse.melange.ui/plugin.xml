@@ -711,23 +711,23 @@
                      visible="true">
                </separator>
                <command
+                     commandId="fr.inria.diverse.melange.GenerateInterfaces"
+                     label="1. Generate Interfaces"
+                     style="push">
+               </command>
+               <command
                      commandId="fr.inria.diverse.melange.GenerateLanguages"
-                     label="Generate Languages Runtime"
+                     label="2. Generate Languages Runtime"
                      style="push">
                </command>
                <command
                      commandId="fr.inria.diverse.melange.GenerateAdapters"
-                     label="Generate Adapters"
-                     style="push">
-               </command>
-               <command
-                     commandId="fr.inria.diverse.melange.GenerateInterfaces"
-                     label="Generate Interfaces"
+                     label="3. Generate Adapters"
                      style="push">
                </command>
                <command
                      commandId="fr.inria.diverse.melange.GeneratePluginXml"
-                     label="Generate Plugin.xml"
+                     label="4. Generate Plugin.xml"
                      style="push">
                </command>
             </menu>
