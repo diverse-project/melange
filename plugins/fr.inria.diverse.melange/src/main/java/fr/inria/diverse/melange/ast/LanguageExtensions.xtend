@@ -862,6 +862,13 @@ class LanguageExtensions
 			dsl.entries += k3Entry
 		}
 		
+		for (annot : l.annotations) {
+			val entry = DslFactoryImpl.eINSTANCE.createEntry
+			entry.key = annot.key
+			entry.value = annot.value
+			dsl.entries += entry
+		}
+
 		return dsl
 	}
 	
