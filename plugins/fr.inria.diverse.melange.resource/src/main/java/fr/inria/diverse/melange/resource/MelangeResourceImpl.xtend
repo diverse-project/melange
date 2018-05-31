@@ -57,7 +57,6 @@ class MelangeResourceImpl implements MelangeResource {
 	}
 
 	new(ResourceSet rs, URI uri) {
-		rs.resources.add(this)
 		val query = uri.query
 		val SEPARATOR = "&|;"
 		val pairs = query?.split(SEPARATOR)
@@ -67,6 +66,7 @@ class MelangeResourceImpl implements MelangeResource {
 
 		melangeUri = uri
 		wrappedResource = rs.getResource(MelangeResourceUtils.melangeToFallbackURI(uri), true) as Resource.Internal
+		rs.resources.add(this)
 	}
 
 	override ResourceSet getResourceSet() {
@@ -351,7 +351,7 @@ class MelangeResourceImpl implements MelangeResource {
 				}
 				this.resourceSet.resources.add(res)
 				if (!this.resourceSet.resources.contains(res)) {
-					throw new Exception("INTERNAL ERROR: cannot resource was not loaded?!")
+					throw new Exception("INTERNAL ERROR: resource was not loaded?!")
 				}
 			}
 		}
