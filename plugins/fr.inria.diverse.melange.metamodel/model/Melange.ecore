@@ -183,7 +183,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ImportDsl" eSuperTypes="//Language">
     <eStructuralFeatures xsi:type="ecore:EReference" name="dsl">
-      <eType xsi:type="ecore:EClass" href="../../org.eclipse.gemoc.dsl/model/generated/Dsl.ecore#//Dsl"/>
+      <eType xsi:type="ecore:EClass" href="../../org.eclipse.gemoc.dsl.model/model/Dsl.ecore#//Dsl"/>
     </eStructuralFeatures>
   </eClassifiers>
 </ecore:EPackage>

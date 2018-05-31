@@ -280,7 +280,7 @@
       </genFeatures>
     </genClasses>
   </genPackages>
-  <usedGenPackages href="../../org.eclipse.gemoc.dsl/model/generated/Dsl.genmodel#//dsl"/>
+  <usedGenPackages href="../../org.eclipse.gemoc.dsl.model/model/Dsl.genmodel#//dsl"/>
   <usedGenPackages href="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"/>
   <usedGenPackages href="../../org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types"/>
   <usedGenPackages href="../../org.eclipse.xtext.xbase/model/Xbase.genmodel#//xtype"/>
