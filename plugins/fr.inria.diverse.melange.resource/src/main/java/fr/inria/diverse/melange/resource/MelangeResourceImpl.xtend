@@ -11,15 +11,13 @@
 package fr.inria.diverse.melange.resource
 
 import fr.inria.diverse.melange.adapters.EObjectAdapter
-import fr.inria.diverse.melange.metamodel.melange.Language
-import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.resource.MelangeRegistry.LanguageDescriptor
 import fr.inria.diverse.melange.resource.loader.ModelCopier
 import java.util.HashSet
 import java.util.Map
 import java.util.Set
-import org.eclipse.core.runtime.Platform
 import org.eclipse.emf.common.notify.Notification
+import org.eclipse.emf.common.notify.NotificationChain
 import org.eclipse.emf.common.notify.impl.AdapterImpl
 import org.eclipse.emf.common.util.AbstractTreeIterator
 import org.eclipse.emf.common.util.URI
@@ -30,7 +28,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtend.lib.annotations.Delegate
-import org.eclipse.emf.common.notify.NotificationChain
 
 /**
  * This class wraps a resource and shift the types of the contained
@@ -222,7 +219,7 @@ class MelangeResourceImpl implements MelangeResource {
 		for (r : allRes) {
 			// Prepare the URI of the MelangeResource
 			var newMelangeURIString = r.URI.toString.replaceFirst("platform:/", "melange:/");
-			val separators = newLinkedList('?','&')
+			val separators = newLinkedList('?', '&')
 
 			if (!expectedLang.isNullOrEmpty) {
 				newMelangeURIString = newMelangeURIString + separators.head + "lang=" + expectedLang
@@ -295,29 +292,12 @@ class MelangeResourceImpl implements MelangeResource {
 	 * with an xmofURI
 	 */
 	private def String getXmofURI(String languageID) {
-		val language = Platform.extensionRegistry?.getConfigurationElementsFor("fr.inria.diverse.melange.language")?.
-			findFirst [ c |
-				c.getAttribute("id") == languageID
-			]
-
+		val language = MelangeRegistry.INSTANCE.getLanguageByIdentifier(languageID)
 		if (language !== null) {
-			val melangeBundle = Platform.getBundle(language.contributor.name)
-			val urls = melangeBundle.findEntries("/", "*.melange", true)
-			if (urls.hasMoreElements) {
-				val melangeFilePath = urls.nextElement.file
-				urls.nextElement.file
-				val rs = new ResourceSetImpl
-				val uri = URI::createURI("platform:/plugin/" + language.contributor.name + "/" + melangeFilePath)
-				val res = rs.getResource(uri, true) as Resource.Internal
-				val root = res.contents.head as ModelTypingSpace
-				val lang = root.elements.filter(Language).findFirst[languageID.endsWith("." + name)]
-
-				if (lang !== null)
-					return lang.xmof
-			}
+			return language.xmofURI
+		} else {
+			return null
 		}
-
-		return null
 	}
 
 	/**

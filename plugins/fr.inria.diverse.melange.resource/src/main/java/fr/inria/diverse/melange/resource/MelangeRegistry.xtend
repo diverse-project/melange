@@ -32,6 +32,7 @@ interface MelangeRegistry
 		def String getDescription()
 		def String getUri()
 		def String getExactType()
+		def String getXmofURI()
 		def Class<? extends ResourceAdapter> getAdapterFor(String mt)
 		def void addAdapter(String mt, Class<? extends ResourceAdapter> adap)
 	}

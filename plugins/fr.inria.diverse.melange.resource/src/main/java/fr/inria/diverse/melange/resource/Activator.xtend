@@ -56,7 +56,8 @@ class Activator implements BundleActivator
 				c.getAttribute("id"),
 				c.getAttribute("description"),
 				c.getAttribute("uri"),
-				c.getAttribute("exactType")
+				c.getAttribute("exactType"),
+				c.getAttribute("xmofURI")
 			) => [
 				c.getChildren("adapter").forEach[a |
 					addAdapter(

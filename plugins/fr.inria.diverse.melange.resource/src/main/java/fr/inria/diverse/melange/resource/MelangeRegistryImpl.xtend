@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *     Inria - initial API and implementation
  *******************************************************************************/
@@ -15,8 +15,7 @@ import java.util.List
 import java.util.Map
 import org.eclipse.xtend.lib.annotations.Accessors
 
-class MelangeRegistryImpl implements MelangeRegistry
-{
+class MelangeRegistryImpl implements MelangeRegistry {
 	Map<String, MelangeRegistry.LanguageDescriptor> languageMap = newHashMap
 	Map<String, MelangeRegistry.ModelTypeDescriptor> modelTypeMap = newHashMap
 
@@ -30,7 +29,6 @@ class MelangeRegistryImpl implements MelangeRegistry
 	}
 
 	private new() {
-		
 	}
 
 	override getLanguageMap() {
@@ -63,15 +61,17 @@ class MelangeRegistryImpl implements MelangeRegistry
 		String description
 		String uri
 		String exactType
+		String xmofURI
 		Map<String, Class<? extends ResourceAdapter>> adapters = newHashMap
 
-		new(String i, String d, String u, String e) {
+		new(String i, String d, String u, String e, String x) {
 			identifier = i
 			description = d
 			uri = u
 			exactType = e
+			xmofURI = x
 		}
-		
+
 		override getAdapterFor(String mt) {
 			return adapters.get(mt)
 		}
@@ -79,6 +79,11 @@ class MelangeRegistryImpl implements MelangeRegistry
 		override addAdapter(String mt, Class<? extends ResourceAdapter> adap) {
 			adapters.put(mt, adap)
 		}
+
+		override getXmofURI() {
+			return xmofURI
+		}
+
 	}
 
 	@Accessors

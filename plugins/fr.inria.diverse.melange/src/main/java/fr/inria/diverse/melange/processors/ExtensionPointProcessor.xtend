@@ -157,6 +157,11 @@ class ExtensionPointProcessor extends DispatchMelangeProcessor
 							)
 							changer.addAttribute(
 								languageTag,
+								"xmofURI",
+								l.xmof
+							)
+							changer.addAttribute(
+								languageTag,
 								"uri",
 								l.syntax.pkgs.head.nsURI
 							)

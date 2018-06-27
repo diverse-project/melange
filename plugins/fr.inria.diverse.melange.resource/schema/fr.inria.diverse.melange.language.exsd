@@ -98,6 +98,13 @@ It is a list of methods separated by semicolon
                </documentation>
             </annotation>
          </attribute>
+         <attribute name="xmofURI" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 
