@@ -74,10 +74,12 @@ class MelangeResourceImpl implements MelangeResource {
 
 		// If this is called, it means the MelangeResource has just been put into a new ResourceSet
 		// Therefore, we must also move the proxied resources in the resourceset
-		if (wrappedResource !== null)
-			resourceSet.resources.add(wrappedResource)
-		if (contentResource !== null)
-			resourceSet.resources.add(contentResource)
+		if (resourceSet !== null) {
+			if (wrappedResource !== null)
+				resourceSet.resources.add(wrappedResource)
+			if (contentResource !== null)
+				resourceSet.resources.add(contentResource)
+		}
 		this.rs = resourceSet
 		return notifications;
 	}
