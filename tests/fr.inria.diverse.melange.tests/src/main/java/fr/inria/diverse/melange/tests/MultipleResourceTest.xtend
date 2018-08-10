@@ -62,8 +62,8 @@ class MultipleResourceTest
 		URIMappingRegistryImpl.INSTANCE.put(URI.createURI("platform:/resource/fr.inria.diverse.melange.tests/tests-inputs/models/Simple2.fsm"),URI.createURI("file:tests-inputs/models/Simple2.fsm"));
 		URIMappingRegistryImpl.INSTANCE.put(URI.createURI("platform:/resource/fr.inria.diverse.melange.tests/tests-inputs/models/Simple.fsm"),URI.createURI("file:tests-inputs/models/Simple.fsm"));
 		
-		val projects = EcorePlugin.workspaceRoot.projects;
-		val t = projects;
+		//val projects = EcorePlugin.workspaceRoot.projects;
+		//val t = projects;
 		
 		val res = loadResource("melange:/resource/fr.inria.diverse.melange.tests/tests-inputs/models/Simple3.fsm?lang=simplefsmtest.TimedFsm")
 		assertTrue(res instanceof MelangeResourceImpl)
