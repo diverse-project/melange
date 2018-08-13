@@ -13,7 +13,6 @@ package fr.inria.diverse.melange.utils
 import com.google.inject.Inject
 import fr.inria.diverse.melange.ast.AspectExtensions
 import fr.inria.diverse.melange.lib.EcoreExtensions
-import java.util.ArrayList
 import java.util.List
 import java.util.Set
 import org.eclipse.emf.ecore.EAttribute
@@ -21,7 +20,6 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EcoreFactory
-import org.eclipse.xtext.common.types.JvmBooleanAnnotationValue
 import org.eclipse.xtext.common.types.JvmCustomAnnotationValue
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmEnumerationType
@@ -30,7 +28,6 @@ import org.eclipse.xtext.common.types.JvmGenericType
 import org.eclipse.xtext.common.types.JvmMember
 import org.eclipse.xtext.common.types.JvmOperation
 import org.eclipse.xtext.common.types.JvmVisibility
-import org.eclipse.xtext.xbase.XBooleanLiteral
 import org.eclipse.xtext.xbase.XStringLiteral
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 
@@ -224,7 +221,33 @@ class AspectToEcore
 
 			// If we can't infer a feature name, it's obviously really an operation
 			if (featureName === null) {
-				
+				inferAspectMethodsEcoreFragmentFromOperation(
+							aspect, aspCls, 
+							baseCls, 
+							aspPkg, basePkgs, aspTopPkg,
+							op)
+			} else if (!aspCls.EStructuralFeatures.exists[name == featureName]) {
+				//the operation has been identified has implementing a Structural feature
+			 	// create this feature if it doesn't exists yet in the class
+				inferAspectStructuralFeaturesEcoreFragmentFromOperation(
+							aspect, aspCls, 
+							baseCls, 
+							aspPkg, basePkgs, aspTopPkg,
+							featureName,
+							op)
+			}
+		]
+	}
+	
+	private def void inferAspectMethodsEcoreFragmentFromOperation(
+		JvmDeclaredType aspect,
+		EClass aspCls,
+		EClass baseCls,
+		EPackage aspPkg,
+		Set<EPackage> basePkgs,
+		EPackage aspTopPkg,
+		JvmOperation op
+	) {
 				val upperB = if (op.returnType.isList) -1 else 1
 				val realType =
 					if (op.returnType.isList)
@@ -293,7 +316,22 @@ class AspectToEcore
 						addAspectAnnotation
 					]
 				}
-			} else if (!aspCls.EStructuralFeatures.exists[name == featureName]) {
+	}
+	
+	/**
+	 * the operation has been identified has implementing a Structural feature
+	 * create this feature if it doesn't exists yet in the class
+	 */
+	private def void inferAspectStructuralFeaturesEcoreFragmentFromOperation(
+		JvmDeclaredType aspect,
+		EClass aspCls,
+		EClass baseCls,
+		EPackage aspPkg,
+		Set<EPackage> basePkgs,
+		EPackage aspTopPkg,
+		String featureName,
+		JvmOperation op
+	) {
 				val retType =
 					if (op.simpleName.startsWith("get") || op.parameters.size == 1)
 						op.returnType
@@ -343,8 +381,6 @@ class AspectToEcore
 								addContainmentAnnotation
 							unique = op.isUnique
 						]
-			}
-		]
 	}
 	
 	/**
