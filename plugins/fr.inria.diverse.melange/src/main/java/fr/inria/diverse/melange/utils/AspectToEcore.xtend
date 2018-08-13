@@ -67,6 +67,7 @@ class AspectToEcore
 	static final List<String> K3_PREFIXES =
 		#["_privk3", "super_"]
 	public static final String PROP_NAME = "AspectProperties"
+	public static final String SELF_PARAM_NAME = "_self"
 	
 	/**
 	 * Analyzes the aspect {@code aspect}, woven on the {@link EClass}
@@ -146,6 +147,7 @@ class AspectToEcore
 		
 		// "aspects" without @Aspect may have declared fields,
 		// so we parse them too
+		// additionally, this takes care of bug #123 too
 		aspect.declaredFields
 		.filter[
 			   visibility == JvmVisibility.PUBLIC
@@ -267,7 +269,12 @@ class AspectToEcore
 					op.parameters.forEach[p, i |
 						// Skip first generic _self argument
 						// only if @Aspect annotation present
-						if (!aspect.hasAspectAnnotation || i > 0) {
+						// makes sure this parameter is correctly named "_self" in a static operation
+						// otherwise this means that we are in the bug #123 case
+						if (i > 0 ||
+							(i == 0 && p.name != SELF_PARAM_NAME && !op.static) ||
+							!aspect.hasAspectAnnotation
+						) {
 							val pType = p.parameterType.type
 							val upperBP = if (p.parameterType.isList) -1 else 1
 							val realTypeP =
@@ -394,7 +401,7 @@ class AspectToEcore
 	 */
 	def String findFeatureNameFor(JvmDeclaredType type, JvmOperation op, JvmTypeReferenceBuilder typeRefBuilder) {
 		// @Aspect case 1
-		// ie. int getX() / void setX(int)
+		// ie. static int getX(_self) / static void setX(_self, int)
 		if (
 			(  op.simpleName.startsWith("get")
 			&& Character.isUpperCase(op.simpleName.charAt(3))
@@ -416,7 +423,7 @@ class AspectToEcore
 		)
 			return op.simpleName.substring(3, op.simpleName.length).toFirstLower
 		// @Aspect case 2
-		// eg. int x() / void x(int)
+		// eg. static int x(_self) / static void x(_self, int)
 		else if (
 			type.declaredOperations.exists[opp |
 				   opp !== op
@@ -441,6 +448,7 @@ class AspectToEcore
 			return op.simpleName
 		// No @Aspect (plain Java)
 		// we expect something in the line of getX() / setX()
+		// does also catch the case of bug #123
 		else if (
 			(  op.simpleName.startsWith("get")
 			&& Character.isUpperCase(op.simpleName.charAt(3))
