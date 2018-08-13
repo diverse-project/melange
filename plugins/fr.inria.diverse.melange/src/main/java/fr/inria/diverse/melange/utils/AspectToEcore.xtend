@@ -67,8 +67,6 @@ class AspectToEcore
 		"fr.inria.diverse.melange.annotation.Unique"
 	static final String OPPOSITE_ANNOTATION_FQN =
 		"fr.inria.diverse.melange.annotation.Opposite"
-	static final String STEP_ANNOTATION_FQN =
-		"fr.inria.diverse.k3.al.annotationprocessor.Step"
 	static final List<String> K3_PREFIXES =
 		#["_privk3", "super_"]
 	public static final String PROP_NAME = "AspectProperties"
@@ -226,38 +224,6 @@ class AspectToEcore
 
 			// If we can't infer a feature name, it's obviously really an operation
 			if (featureName === null) {
-				// If it's an event handler, we create a new metaclass for this event
-				if (isEvent(op)) {
-					val parameterClassifiers = new ArrayList
-					op.parameters.forEach[p|
-						val parameterTypeName = p.parameterType.type.simpleName
-						val parameterClassifier = basePkgs.findFirst[pkg|
-							pkg.getEClassifier(parameterTypeName) !== null
-						]?.getEClassifier(parameterTypeName)
-						if (parameterClassifier !== null) {
-							parameterClassifiers.add(parameterClassifier)
-						}
-					]
-					
-					val eventName = baseCls.name.toFirstUpper + op.simpleName.toFirstUpper + "Event"
-					
-					val evtCls = EcoreFactory.eINSTANCE.createEClass => [cls |
-						cls.name = eventName
-						cls.^abstract = false // TODO maybe it can be?
-						cls.^interface = false
-						
-						parameterClassifiers.forEach[p|
-							cls.EStructuralFeatures.add(EcoreFactory.eINSTANCE.createEReference => [ref|
-								ref.name = p.name.toFirstLower
-								ref.lowerBound = 0
-								ref.upperBound = 1
-								ref.EType = p
-							])
-						]
-					]
-					
-					aspPkg.EClassifiers += evtCls
-				}
 				
 				val upperB = if (op.returnType.isList) -1 else 1
 				val realType =
@@ -509,26 +475,6 @@ class AspectToEcore
 			return opRef?.value
 		}
 		null
-	}
-	
-	/**
-	 * Checks whether the given operation is an event or not
-	 */
-	private def boolean isEvent(JvmOperation operation) {
-		var result = false
-				val stepAnnotation = operation.annotations
-					.findFirst[a|a.annotation.qualifiedName == STEP_ANNOTATION_FQN]
-				if (stepAnnotation !== null) {
-					val triggerableValue = stepAnnotation.values
-						.findFirst[v|v.valueName == "eventTriggerable"]
-					if (triggerableValue !== null) {
-						result = switch triggerableValue {
-						JvmBooleanAnnotationValue: triggerableValue.values?.head
-						JvmCustomAnnotationValue: (triggerableValue.values.head as XBooleanLiteral).isTrue
-						}
-					}
-				}
-		return result
 	}
 
 	/**
