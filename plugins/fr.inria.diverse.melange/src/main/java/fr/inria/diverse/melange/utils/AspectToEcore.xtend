@@ -248,74 +248,74 @@ class AspectToEcore
 		EPackage aspTopPkg,
 		JvmOperation op
 	) {
-				val upperB = if (op.returnType.isList) -1 else 1
-				val realType =
-					if (op.returnType.isList)
-						op.returnType.containedElementsType
-					else
-						op.returnType.type
+		val upperB = if (op.returnType.isList) -1 else 1
+		val realType =
+			if (op.returnType.isList)
+				op.returnType.containedElementsType
+			else
+				op.returnType.type
 
-				val retCls =
-					if (realType.qualifiedName == aspCls.uniqueId)
-						aspCls
-					else
-						basePkgs.findClass(realType.qualifiedName)
-				if (!aspCls.EOperations.exists[name == op.simpleName]) {
-					aspCls.EOperations +=
-						EcoreFactory.eINSTANCE.createEOperation => [
-							name = op.simpleName
-							op.parameters.forEach[p, i |
-								// Skip first generic _self argument
-								// only if @Aspect annotation present
-								if (!aspect.hasAspectAnnotation || i > 0) {
-									val pType = p.parameterType.type
-									val upperBP = if (p.parameterType.isList) -1 else 1
-									val realTypeP =
-										if (p.parameterType.isList)
-											p.parameterType.containedElementsType
-										else
-											pType
-	
-									val attrCls =
-										if (realTypeP.qualifiedName == aspCls.uniqueId)
-											aspCls
-										else
-											basePkgs.findClass(realTypeP.qualifiedName)
-
-									EParameters +=
-										EcoreFactory.eINSTANCE.createEParameter => [pp |
-											pp.name = p.simpleName
-											pp.upperBound = upperBP
-											pp.EType =
-												if (attrCls !== null)
-													aspTopPkg.getOrCreateClass(attrCls.uniqueId)
-												else if (realTypeP instanceof JvmEnumerationType)
-													// FIXME: Ok for now, but we should also check literals values
-													aspTopPkg.getOrCreateEnum(realTypeP.simpleName,
-														realTypeP.literals.map[simpleName])
-												else
-													aspTopPkg.getOrCreateDataType(realTypeP.simpleName,
-														realTypeP.qualifiedName)
-										]
-								}
-							]
-
-						if (op.returnType.simpleName != "void" && op.returnType.simpleName !== "null") {
-							upperBound = upperB
-							EType =
-								if (retCls !== null)
-									aspTopPkg.getOrCreateClass(retCls.uniqueId)
-								else if (realType instanceof JvmEnumerationType)
-									// FIXME: Ok for now, but we should also check literals values
-									aspTopPkg.getOrCreateEnum(realType.simpleName,
-										realType.literals.map[simpleName])
+		val retCls =
+			if (realType.qualifiedName == aspCls.uniqueId)
+				aspCls
+			else
+				basePkgs.findClass(realType.qualifiedName)
+		if (!aspCls.EOperations.exists[name == op.simpleName]) {
+			aspCls.EOperations +=
+				EcoreFactory.eINSTANCE.createEOperation => [
+					name = op.simpleName
+					op.parameters.forEach[p, i |
+						// Skip first generic _self argument
+						// only if @Aspect annotation present
+						if (!aspect.hasAspectAnnotation || i > 0) {
+							val pType = p.parameterType.type
+							val upperBP = if (p.parameterType.isList) -1 else 1
+							val realTypeP =
+								if (p.parameterType.isList)
+									p.parameterType.containedElementsType
 								else
-									aspTopPkg.getOrCreateDataType(realType.simpleName,
-										realType.qualifiedName)
+									pType
+
+							val attrCls =
+								if (realTypeP.qualifiedName == aspCls.uniqueId)
+									aspCls
+								else
+									basePkgs.findClass(realTypeP.qualifiedName)
+
+							EParameters +=
+								EcoreFactory.eINSTANCE.createEParameter => [pp |
+									pp.name = p.simpleName
+									pp.upperBound = upperBP
+									pp.EType =
+										if (attrCls !== null)
+											aspTopPkg.getOrCreateClass(attrCls.uniqueId)
+										else if (realTypeP instanceof JvmEnumerationType)
+											// FIXME: Ok for now, but we should also check literals values
+											aspTopPkg.getOrCreateEnum(realTypeP.simpleName,
+												realTypeP.literals.map[simpleName])
+										else
+											aspTopPkg.getOrCreateDataType(realTypeP.simpleName,
+												realTypeP.qualifiedName)
+								]
 						}
-						addAspectAnnotation
 					]
+
+				if (op.returnType.simpleName != "void" && op.returnType.simpleName !== "null") {
+					upperBound = upperB
+					EType =
+						if (retCls !== null)
+							aspTopPkg.getOrCreateClass(retCls.uniqueId)
+						else if (realType instanceof JvmEnumerationType)
+							// FIXME: Ok for now, but we should also check literals values
+							aspTopPkg.getOrCreateEnum(realType.simpleName,
+								realType.literals.map[simpleName])
+						else
+							aspTopPkg.getOrCreateDataType(realType.simpleName,
+								realType.qualifiedName)
 				}
+				addAspectAnnotation
+			]
+		}
 	}
 	
 	/**
@@ -332,55 +332,55 @@ class AspectToEcore
 		String featureName,
 		JvmOperation op
 	) {
-				val retType =
-					if (op.simpleName.startsWith("get") || op.parameters.size == 1)
-						op.returnType
-					else
-						op.parameters.get(1).parameterType
-				val upperB = if (op.returnType.isList) -1 else 1
-				val realType =
-					if (op.returnType.isList)
-						retType.containedElementsType
-					else
-						retType.type
-						
-				val find =
-					if (realType.qualifiedName == aspCls.uniqueId)
-						aspCls
-					else
-						basePkgs.findClass(realType.qualifiedName)
-				if (find !== null)
-					// Create EReference
-					aspCls.EStructuralFeatures +=
-						EcoreFactory.eINSTANCE.createEReference => [
-							name = featureName
-							EType = aspTopPkg.getOrCreateClass(find.toQualifiedName)
-							upperBound = upperB
-							containment = op.isContainment
-							addAspectAnnotation
-							unique = op.isUnique
-							if(op.isOpposite){
-								addOppositeAnnotation(op.getOppositeValue)
-							}
-						]
-				else
-					aspCls.EStructuralFeatures +=
-						EcoreFactory.eINSTANCE.createEAttribute => [
-							name = featureName
-							EType =
-								if (realType instanceof JvmEnumerationType)
-									// FIXME: Ok for now, but we should also check literals values
-									aspTopPkg.getOrCreateEnum(realType.simpleName,
-										realType.literals.map[simpleName])
-								else
-									aspTopPkg.getOrCreateDataType(realType.simpleName,
-										realType.qualifiedName)
-							upperBound = upperB
-							addAspectAnnotation
-							if(op.isContainment)
-								addContainmentAnnotation
-							unique = op.isUnique
-						]
+		val retType =
+			if (op.simpleName.startsWith("get") || op.parameters.size == 1)
+				op.returnType
+			else
+				op.parameters.get(1).parameterType
+		val upperB = if (op.returnType.isList) -1 else 1
+		val realType =
+			if (op.returnType.isList)
+				retType.containedElementsType
+			else
+				retType.type
+				
+		val find =
+			if (realType.qualifiedName == aspCls.uniqueId)
+				aspCls
+			else
+				basePkgs.findClass(realType.qualifiedName)
+		if (find !== null)
+			// Create EReference
+			aspCls.EStructuralFeatures +=
+				EcoreFactory.eINSTANCE.createEReference => [
+					name = featureName
+					EType = aspTopPkg.getOrCreateClass(find.toQualifiedName)
+					upperBound = upperB
+					containment = op.isContainment
+					addAspectAnnotation
+					unique = op.isUnique
+					if(op.isOpposite){
+						addOppositeAnnotation(op.getOppositeValue)
+					}
+				]
+		else
+			aspCls.EStructuralFeatures +=
+				EcoreFactory.eINSTANCE.createEAttribute => [
+					name = featureName
+					EType =
+						if (realType instanceof JvmEnumerationType)
+							// FIXME: Ok for now, but we should also check literals values
+							aspTopPkg.getOrCreateEnum(realType.simpleName,
+								realType.literals.map[simpleName])
+						else
+							aspTopPkg.getOrCreateDataType(realType.simpleName,
+								realType.qualifiedName)
+					upperBound = upperB
+					addAspectAnnotation
+					if(op.isContainment)
+						addContainmentAnnotation
+					unique = op.isUnique
+					]
 	}
 	
 	/**
