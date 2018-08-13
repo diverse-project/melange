@@ -50,6 +50,10 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
  * with an {@link EAttribute} {@code foo} and an {@link EOperation} {@code foo}.
  */
 // FIXME: Duplicated code etc. this is so ugly
+// NOTE: due to https://github.com/diverse-project/melange/issues/123
+// the methods may not have been fully processed by K3 annotation processor
+// we need to be more clever when looking at method parameters, switch due to that will be 
+// commented with a "see #123"
 class AspectToEcore
 {
 	@Inject extension AspectExtensions
@@ -79,7 +83,7 @@ class AspectToEcore
 		EClass baseCls,
 		Set<EPackage> basePkgs
 	) {
-		val typeRefBuilder = typeRefBuilderFactory.create(aspect.eResource.resourceSet)
+		//val typeRefBuilder = typeRefBuilderFactory.create(aspect.eResource.resourceSet)
 		
 		// FIXME: should check aspPkg == basePkg?
 		val aspPkg = 
@@ -125,6 +129,26 @@ class AspectToEcore
 
 		aspPkg.EClassifiers += aspCls
 
+		// infer the fields of the given aspect class
+		inferAspectFieldsEcoreFragment(aspect, aspCls, basePkgs, aspTopPkg)
+		
+		// infers the methods of the given aspect class
+		inferAspectMethodsEcoreFragment(aspect, aspCls, baseCls, aspPkg, basePkgs, aspTopPkg)
+
+		return aspTopPkg
+	}
+	
+	
+	/**
+	 * infers the fields to be added in the ecore fragment
+	 */
+	private def void inferAspectFieldsEcoreFragment(
+		JvmDeclaredType aspect,
+		EClass aspCls,
+		Set<EPackage> basePkgs,
+		EPackage aspTopPkg
+	) {
+		
 		// "aspects" without @Aspect may have declared fields,
 		// so we parse them too
 		aspect.declaredFields
@@ -177,7 +201,20 @@ class AspectToEcore
 						unique = field.isUnique
 					]
 		]
-
+	}
+	
+	/**
+	 * infers the methods to be added in the ecore fragment
+	 */
+	private def void inferAspectMethodsEcoreFragment(
+		JvmDeclaredType aspect,
+		EClass aspCls,
+		EClass baseCls,
+		EPackage aspPkg,
+		Set<EPackage> basePkgs,
+		EPackage aspTopPkg
+	) {
+		val typeRefBuilder = typeRefBuilderFactory.create(aspect.eResource.resourceSet)
 		// Parses all the interesting public operations in the aspect
 		aspect.declaredOperations
 		.filter[
@@ -342,8 +379,6 @@ class AspectToEcore
 						]
 			}
 		]
-		
-		return aspTopPkg
 	}
 	
 	/**
@@ -504,7 +539,7 @@ class AspectToEcore
 	}
 
 	/**
-	 * Create a copy of the hierachy of sub-packages containing {@link baseCls}
+	 * Create a copy of the hierarchy of sub-packages containing {@link baseCls}
 	 * Return the deepest package
 	 */
 	private def EPackage copyPackage(EClass baseCls){
