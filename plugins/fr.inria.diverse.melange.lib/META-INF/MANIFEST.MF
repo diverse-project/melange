@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Melange Libraries
 Bundle-SymbolicName: fr.inria.diverse.melange.lib;singleton:=true
-Bundle-Version: 0.2.1.qualifier
+Bundle-Version: 0.2.2.qualifier
 Bundle-Vendor: Inria DiverSE
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.emf.ecore.xmi;bundle-version="2.9.1",
