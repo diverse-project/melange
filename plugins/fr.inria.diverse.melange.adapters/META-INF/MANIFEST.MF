@@ -9,4 +9,5 @@ Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtend.lib,
  org.eclipse.emf.ecore;bundle-version="2.10.2"
 Export-Package: fr.inria.diverse.melange.adapters
+Automatic-Module-Name: fr.inria.diverse.melange.adapters
 

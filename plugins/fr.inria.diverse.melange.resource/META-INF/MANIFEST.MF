@@ -16,4 +16,5 @@ Export-Package: fr.inria.diverse.melange.resource,
  fr.inria.diverse.melange.resource.loader
 Bundle-ClassPath: .
 Bundle-Activator: fr.inria.diverse.melange.resource.Activator
+Automatic-Module-Name: fr.inria.diverse.melange.resource
 

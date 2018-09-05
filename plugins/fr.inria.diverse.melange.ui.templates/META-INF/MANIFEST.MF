@@ -14,3 +14,4 @@ Bundle-ActivationPolicy: lazy
 Export-Package: fr.inria.diverse.melange.ui.templates,
  fr.inria.diverse.melange.ui.templates.melange
 Bundle-Vendor: Inria DiverSE
+Automatic-Module-Name: fr.inria.diverse.melange.ui.templates
