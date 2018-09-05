@@ -15,7 +15,7 @@
 		<relativePath>../fr.inria.diverse.melange.tests.root/pom.xml</relativePath>
 		<groupId>fr.inria.diverse.melange</groupId>
 		<artifactId>fr.inria.diverse.melange.tests.root</artifactId>
-		<version>0.2.1-SNAPSHOT</version>
+		<version>0.2.2-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>fr.inria.diverse.melange.tests.eclipse</artifactId>
