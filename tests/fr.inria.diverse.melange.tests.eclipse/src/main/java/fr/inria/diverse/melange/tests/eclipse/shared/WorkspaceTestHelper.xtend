@@ -345,7 +345,7 @@ class WorkspaceTestHelper {
 		val newLaunchConfig = type.newInstance(project, "RunMainTransfo")
 		newLaunchConfig.setAttribute(IJavaLaunchConfigurationConstants::ATTR_PROJECT_NAME, project.name)
 		newLaunchConfig.setAttribute(IJavaLaunchConfigurationConstants::ATTR_MAIN_TYPE_NAME, mainClass)
-		newLaunchConfig.setAttribute(IDebugUIConstants::ATTR_CAPTURE_IN_FILE, '''${workspace_loc:/«project.name»/«outputFileName»}''')
+		newLaunchConfig.setAttribute(IDebugUIConstants::ATTR_CAPTURE_IN_FILE, '''${workspace_loc:/«project.name»/«outputFileName»}'''.toString)
 		newLaunchConfig.doSave
 
 		val outputFile = project.getFile(outputFileName)
