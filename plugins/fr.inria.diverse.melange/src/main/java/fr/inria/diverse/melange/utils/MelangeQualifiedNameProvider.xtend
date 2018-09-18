@@ -30,11 +30,10 @@ class MelangeQualifiedNameProvider extends XbaseQualifiedNameProvider {
 	}
 	
 	def QualifiedName getFullyQualifiedName(ImportDsl lang) {
-		
-		if(lang.name !== null)
+		if(!lang.name.nullOrEmpty)
 			return lang.name.toQualifiedName
-		
-		val dslRef = lang.eClass.EReferences.findFirst[name == "dsl"]
+		val refs = lang.eClass.EReferences
+		val dslRef = refs.findFirst[name == "dsl"]
 		val node = NodeModelUtils.findNodesForFeature(lang,dslRef)
 		return node.head.text.toQualifiedName
 	}
