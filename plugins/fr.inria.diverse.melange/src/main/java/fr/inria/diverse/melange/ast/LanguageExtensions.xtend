@@ -873,7 +873,7 @@ class LanguageExtensions
 	}
 	
 	def void createDsl(Language l) {
-		val uri = l.externalEcoreUri.replaceFirst("ecore$","dsl")
+		val uri = '''platform:/resource/«l.externalRuntimeName»/«l.name».dsl'''
 		val resSet = new ResourceSetImpl
 		val res = resSet.createResource(URI::createURI(uri))
 		
