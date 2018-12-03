@@ -40,6 +40,7 @@ import org.eclipse.xtext.resource.DerivedStateAwareResource
 import org.eclipse.xtext.ui.resource.XtextResourceSetProvider
 import org.eclipse.core.resources.IResource
 import org.eclipse.xtext.naming.IQualifiedNameProvider
+import org.eclipse.gemoc.commons.eclipse.pde.classpath.BuildPropertiesHelper
 
 class MelangeBuilder
 {
@@ -124,10 +125,11 @@ class MelangeBuilder
 			if(l.externalRuntimeName != project.name){
 				sub.subTask("Creating new project for " + l.name)
 				// if gemoc nature exist in the platform,
+				var IProject newProject
 				if (ResourcesPlugin.getWorkspace().getNatureDescriptor(EclipseProjectHelper.GEMOCNatureID) !== null) {
-					eclipseHelper.createGemocLangEMFRuntimeProject(l.externalRuntimeName, l)
+					newProject = eclipseHelper.createGemocLangEMFRuntimeProject(l.externalRuntimeName, l)
 				} else {
-					eclipseHelper.createEMFRuntimeProject(l.externalRuntimeName, l)
+					newProject = eclipseHelper.createEMFRuntimeProject(l.externalRuntimeName, l)
 				}
 				subMonitor.worked(5)
 				sub.subTask("Serializing Ecore description for " + l.name)
@@ -145,6 +147,10 @@ class MelangeBuilder
 				subMonitor.worked(40)
 				sub.subTask("Updating dependencies for " + l.name)
 				eclipseHelper.addDependencies(project, #[l.externalRuntimeName])
+				BuildPropertiesHelper.addEntryInProperty(newProject, "bin.includes","plugin.xml",subMonitor)
+				BuildPropertiesHelper.addEntryInProperty(newProject, "bin.includes","plugin.properties",subMonitor)
+				BuildPropertiesHelper.addEntryInProperty(newProject, "bin.includes","model/",subMonitor)
+				BuildPropertiesHelper.addEntryInProperty(newProject, "bin.includes",l.name+".dsl",subMonitor)
 			} else {
 				// we will do almost the same work but in the current project 
 				sub.subTask("Creating EMFRuntime in current project for " + l.name)
@@ -162,6 +168,7 @@ class MelangeBuilder
 				sub.subTask("Copying aspects for " + l.name)
 				l.createExternalAspects
 				l.addRequireBundleForAspects
+				BuildPropertiesHelper.addEntryInProperty(project, "bin.includes",l.name+".dsl",subMonitor)
 				subMonitor.worked(45)
 			}
 			refreshProjects(res, project,  subMonitor)
