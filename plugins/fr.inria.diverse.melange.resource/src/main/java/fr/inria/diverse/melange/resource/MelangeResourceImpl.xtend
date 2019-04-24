@@ -74,14 +74,18 @@ class MelangeResourceImpl implements MelangeResource {
 	}
 
 	override NotificationChain basicSetResourceSet(ResourceSet resourceSet, NotificationChain notifications) {
-
-		// If this is called, it means the MelangeResource has just been put into a new ResourceSet
-		// Therefore, we must also move the proxied resources in the resourceset
-		if (wrappedResource !== null)
-			resourceSet.resources.add(wrappedResource)
-		if (contentResource !== null)
-			resourceSet.resources.add(contentResource)
-		this.rs = resourceSet
+		if (resourceSet === null) {
+			this.rs.resources.removeAll(this, wrappedResource, contentResource)
+			this.rs = null
+		} else {
+			// If this is called, it means the MelangeResource has just been put into a new ResourceSet
+			// Therefore, we must also move the proxied resources in the resourceset
+			if (wrappedResource !== null)
+				resourceSet.resources.add(wrappedResource)
+			if (contentResource !== null)
+				resourceSet.resources.add(contentResource)
+			this.rs = resourceSet
+		}
 		return notifications;
 	}
 
@@ -222,7 +226,7 @@ class MelangeResourceImpl implements MelangeResource {
 		for (r : allRes) {
 			// Prepare the URI of the MelangeResource
 			var newMelangeURIString = r.URI.toString.replaceFirst("platform:/", "melange:/");
-			val separators = newLinkedList('?','&')
+			val separators = newLinkedList('?', '&')
 
 			if (!expectedLang.isNullOrEmpty) {
 				newMelangeURIString = newMelangeURIString + separators.head + "lang=" + expectedLang
