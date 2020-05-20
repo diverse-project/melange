@@ -868,6 +868,22 @@ class LanguageExtensions
 			entry.value = annot.value
 			dsl.entries += entry
 		}
+		
+		if(l.ecl.isNullOrEmpty){
+			val metaprogEnry = DslFactoryImpl.eINSTANCE.createEntry
+			metaprogEnry.key = "metaprog"
+			metaprogEnry.value = "kermeta3"
+			dsl.entries += metaprogEnry
+		} else {
+			val eclEntry = DslFactoryImpl.eINSTANCE.createEntry
+			eclEntry.key = "ecl"
+			eclEntry.value = l.ecl.join(",")
+			dsl.entries += eclEntry
+			val metaprogEnry = DslFactoryImpl.eINSTANCE.createEntry
+			metaprogEnry.key = "metaprog"
+			metaprogEnry.value = "moccml"
+			dsl.entries += metaprogEnry
+		}
 
 		return dsl
 	}
