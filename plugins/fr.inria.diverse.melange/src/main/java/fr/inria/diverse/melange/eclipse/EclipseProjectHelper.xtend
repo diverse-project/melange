@@ -406,6 +406,9 @@ class EclipseProjectHelper
 			]
 
 			project.open(new SubProgressMonitor(monitor, 1))
+			createManifest(name, requiredBundles, exportedPackages, monitor, project)
+			createPluginXml(project, extensions, monitor)
+			createBuildProperties(project, srcFolders, monitor)
 			project.setDescription(description, new SubProgressMonitor(monitor, 1))
 
 			srcFolders.forEach[src |
@@ -429,9 +432,7 @@ class EclipseProjectHelper
 			javaProject.setRawClasspath(classpathEntries, new SubProgressMonitor(monitor, 1))
 			javaProject.setOutputLocation(binFolder.fullPath, new SubProgressMonitor(monitor, 1))
 
-			createManifest(name, requiredBundles, exportedPackages, monitor, project)
-			createPluginXml(project, extensions, monitor)
-			createBuildProperties(project, srcFolders, monitor)
+
 
 			return project
 		} catch (Exception e) {
