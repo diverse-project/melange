@@ -84,7 +84,7 @@ class LanguageExtensions
 	@Inject MatchingHelper matchingHelper
 	@Inject ModelTypingSpaceBuilder modelTypingSpaceBuilder
 	@Inject EclipseProjectHelper eclipseHelper
-	private static final Logger log = Logger.getLogger(LanguageExtensions)
+	static final Logger log = Logger.getLogger(LanguageExtensions)
 
 	static final String ASPECT_MAIN_ANNOTATION =
 		"fr.inria.diverse.k3.al.annotationprocessor.Main"
@@ -872,7 +872,7 @@ class LanguageExtensions
 		if(l.ecl.isNullOrEmpty){
 			val metaprogEnry = DslFactoryImpl.eINSTANCE.createEntry
 			metaprogEnry.key = "metaprog"
-			metaprogEnry.value = "kermeta3"
+			metaprogEnry.value = "org.eclipse.gemoc.metaprog.kermeta3"
 			dsl.entries += metaprogEnry
 		} else {
 			val eclEntry = DslFactoryImpl.eINSTANCE.createEntry
@@ -881,7 +881,7 @@ class LanguageExtensions
 			dsl.entries += eclEntry
 			val metaprogEnry = DslFactoryImpl.eINSTANCE.createEntry
 			metaprogEnry.key = "metaprog"
-			metaprogEnry.value = "moccml"
+			metaprogEnry.value = "org.eclipse.gemoc.metaprog.moccml"
 			dsl.entries += metaprogEnry
 		}
 
