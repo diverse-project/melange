@@ -42,7 +42,8 @@
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
 <unit id="org.eclipse.gemoc.commons.feature.feature.group" version="0.0.0"/>
-<repository location="http://download.eclipse.org/gemoc/updates/nightly/"/>
+<!--<repository location="http://download.eclipse.org/gemoc/updates/nightly/"/>-->
+<repository location="http://download.eclipse.org/gemoc/updates/releases/3.2.0"/>
 </location>
 </locations>
 </target>
