@@ -73,7 +73,7 @@ import org.eclipse.ui.internal.wizards.datatransfer.ZipLeveledStructureProvider
 import org.eclipse.ui.part.FileEditorInput
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage
 import org.eclipse.ui.wizards.datatransfer.ImportOperation
-import org.eclipse.xtext.junit4.ui.util.IResourcesSetupUtil
+import org.eclipse.xtext.ui.testing.util.IResourcesSetupUtil
 import org.eclipse.xtext.junit4.ui.util.JavaProjectSetupUtil
 import org.eclipse.xtext.resource.DerivedStateAwareResource
 import org.eclipse.xtext.ui.XtextProjectHelper

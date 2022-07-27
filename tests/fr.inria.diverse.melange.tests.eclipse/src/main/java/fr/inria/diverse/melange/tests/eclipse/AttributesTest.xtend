@@ -11,7 +11,7 @@
 package fr.inria.diverse.melange.tests.eclipse
 
 import com.google.inject.Inject
-import fr.inria.diverse.melange.MelangeUiInjectorProvider
+import fr.inria.diverse.melange.ui.tests.MelangeUiInjectorProvider
 import fr.inria.diverse.melange.ast.ModelingElementExtensions
 import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.ModelType
@@ -21,9 +21,9 @@ import java.util.List
 import org.eclipse.core.resources.IProject
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.xtext.junit4.AbstractXtextTests
-import org.eclipse.xtext.junit4.InjectWith
-import org.eclipse.xtext.junit4.XtextRunner
-import org.eclipse.xtext.junit4.ui.util.IResourcesSetupUtil
+import org.eclipse.xtext.testing.InjectWith
+import org.eclipse.xtext.testing.XtextRunner
+import org.eclipse.xtext.ui.testing.util.IResourcesSetupUtil
 import org.junit.After
 import org.junit.Before
 import org.junit.FixMethodOrder

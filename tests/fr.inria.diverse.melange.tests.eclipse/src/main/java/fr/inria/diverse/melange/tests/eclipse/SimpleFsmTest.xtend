@@ -12,7 +12,7 @@ package fr.inria.diverse.melange.tests.eclipse
 
 import com.google.common.base.Charsets
 import com.google.common.io.CharStreams
-import fr.inria.diverse.melange.MelangeUiInjectorProvider
+import fr.inria.diverse.melange.ui.tests.MelangeUiInjectorProvider
 import fr.inria.diverse.melange.tools.xtext.testing.OnlyIfUI
 import org.eclipse.core.resources.IMarker
 import org.eclipse.core.resources.IResource
@@ -27,9 +27,9 @@ import org.eclipse.jdt.core.JavaCore
 import org.eclipse.jdt.launching.IJavaLaunchConfigurationConstants
 import org.eclipse.pde.internal.core.natures.PDE
 import org.eclipse.xtext.junit4.AbstractXtextTests
-import org.eclipse.xtext.junit4.InjectWith
-import org.eclipse.xtext.junit4.XtextRunner
-import org.eclipse.xtext.junit4.ui.util.IResourcesSetupUtil
+import org.eclipse.xtext.testing.InjectWith
+import org.eclipse.xtext.testing.XtextRunner
+import org.eclipse.xtext.ui.testing.util.IResourcesSetupUtil
 import org.eclipse.xtext.junit4.ui.util.JavaProjectSetupUtil
 import org.eclipse.xtext.ui.XtextProjectHelper
 import org.junit.Test

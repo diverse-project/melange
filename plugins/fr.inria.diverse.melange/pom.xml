@@ -41,17 +41,14 @@
 						</fileset>
 						<!-- clean ui plugin as well -->
 						<fileset>
-							<directory>${basedir}/../${project.artifactId}.ui/src-gen</directory>
+							<directory>${basedir}/../${project.artifactId}.ide/src-gen</directory>
 						</fileset>
 						<fileset>
-							<directory>${basedir}/../${project.artifactId}.ui/src/main/xtend-gen</directory>
+							<directory>${basedir}/../${project.artifactId}.ui/src-gen</directory>
 						</fileset>
 						<!-- clean test fragment as well -->
 						<fileset>
 							<directory>${basedir}/../../tests/${project.artifactId}.tests/src-gen</directory>
-						</fileset>
-						<fileset>
-							<directory>${basedir}/../../tests/${project.artifactId}.tests/src/main/xtend-gen</directory>
 						</fileset>
 					</filesets>
 				</configuration>
@@ -60,7 +57,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.4.0</version>
+				<version>3.1.0</version>
 				<executions>
 					<execution>
 						<phase>generate-sources</phase>
@@ -70,22 +67,18 @@
 					</execution>
 				</executions>
 				<configuration>
-					  <argLine>-Xmx1024m</argLine>
-					  <argLine>-Xms1024m</argLine>
-					  <argLine>-XX:PermSize=512m</argLine>
-					  <argLine>-XX:MaxPermSize=1024m</argLine>
 					<includeProjectDependencies>false</includeProjectDependencies>
 					<includePluginDependencies>true</includePluginDependencies>
 					<cleanupDaemonThreads>false</cleanupDaemonThreads><!-- see https://bugs.eclipse.org/bugs/show_bug.cgi?id=475098#c3 -->
 					<mainClass>org.eclipse.emf.mwe2.launch.runtime.Mwe2Launcher</mainClass>
+					<classpathScope>compile</classpathScope>
 					<arguments>
 						<argument>file://${project.basedir}/src/main/java/fr/inria/diverse/melange/GenerateMelange.mwe2</argument>
-						<argument>
-							-p
-						</argument>
-						<argument>
+						<argument>-p</argument>
+						<argument>rootPath=/${project.basedir}/..</argument>
+						<!-- <argument>
 							runtimeProject=/${project.basedir}
-						</argument>
+						</argument>-->
 
 					</arguments>
 				</configuration>
@@ -113,7 +106,7 @@
 					<dependency>
 						<groupId>org.eclipse.emf</groupId>
 						<artifactId>org.eclipse.emf.mwe2.launch</artifactId>
-						<version>2.11.2</version>
+						<version>2.13.0</version>
 					</dependency>
 					<dependency>
 						<groupId>org.eclipse.xtext</groupId>
@@ -125,13 +118,6 @@
 			<plugin>
 				<groupId>org.eclipse.xtend</groupId>
 				<artifactId>xtend-maven-plugin</artifactId>
-				<configuration>
-					  <argLine>-Xmx1024m</argLine>
-					  <argLine>-Xms1024m</argLine>
-					  <argLine>-XX:PermSize=512m</argLine>
-					  <argLine>-XX:MaxPermSize=1024m</argLine>
-
-				</configuration>
 			</plugin>
 		</plugins>
         </build>

@@ -22,8 +22,8 @@ import fr.inria.diverse.melange.tests.common.MelangeTestsInjectorProvider
 import fr.inria.diverse.melange.tools.xtext.testing.XtextTest
 import fr.inria.diverse.melange.validation.MelangeValidationConstants
 import org.eclipse.emf.ecore.EClass
-import org.eclipse.xtext.junit4.InjectWith
-import org.eclipse.xtext.junit4.XtextRunner
+import org.eclipse.xtext.testing.InjectWith
+import org.eclipse.xtext.testing.XtextRunner
 import org.eclipse.xtext.junit4.validation.ValidationTestHelper
 import org.junit.Test
 import org.junit.runner.RunWith

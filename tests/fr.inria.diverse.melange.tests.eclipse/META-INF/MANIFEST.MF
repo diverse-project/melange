@@ -21,9 +21,15 @@ Require-Bundle: fr.inria.diverse.melange.ui,
  org.eclipse.jdt.ui,
  org.junit;bundle-version="4.11.0",
  org.eclipse.emf.compare;bundle-version="3.1.0",
- org.eclipse.gemoc.dsl.ui
+ org.eclipse.gemoc.dsl.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.xtext.xbase.testing,
+ org.eclipse.xtext.ui.testing,
+ org.eclipse.ui.workbench;resolution:=optional,
+ org.eclipse.xtext.testing
 Import-Package: org.hamcrest.core,
  org.junit;version="4.5.0",
  org.junit.runner;version="4.5.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: fr.inria.diverse.melange.tests.eclipse
+Export-Package: fr.inria.diverse.melange.ui.tests;x-internal=true

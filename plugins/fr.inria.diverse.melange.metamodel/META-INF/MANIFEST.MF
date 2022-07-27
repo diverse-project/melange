@@ -6,7 +6,7 @@ Bundle-Version: 0.2.2.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: Inria DiverSE
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: fr.inria.diverse.melange.metamodel.melange,
  fr.inria.diverse.melange.metamodel.melange.impl,
  fr.inria.diverse.melange.metamodel.melange.util

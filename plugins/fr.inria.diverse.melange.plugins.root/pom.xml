@@ -31,6 +31,7 @@
 		<module>../fr.inria.diverse.melange</module>
 		<module>../fr.inria.diverse.melange.adapters</module>
 		<module>../fr.inria.diverse.melange.resource</module>
+		<module>../fr.inria.diverse.melange.ide</module>
 		<module>../fr.inria.diverse.melange.ui</module>
 		<module>../fr.inria.diverse.melange.ui.templates</module>
 	</modules>
