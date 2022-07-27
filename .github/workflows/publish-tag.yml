@@ -26,26 +26,10 @@ jobs:
       uses: webfactory/ssh-agent@v0.5.4
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-    - name: ssh scp ssh pipelines
-      uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+    - name: ssh scp pipelines
       env:
         WELCOME: "ssh scp ssh pipelines"
         DEPLOYPATH: "/home/web/apache/sites/melange.inria.fr/htdocs/updatesite/nightly"
         LASTSSH: "Doing something after copying"
-      with:
-        host: melange.inria.fr
-        user: web-melange
-        connect_timeout: 10s
-        first_ssh: |
-          ls -lsa  $DEPLOYPATH 
-          export TODAY_UK=`date -Idate`
-          echo TODAY_UK = $TODAY_UK
-        #scp: |
-        #  'releng/fr.inria.diverse.melange.p2updatesite/target/site/*' => '${DEPLOYPATH}/update_${TODAY_UK}'
-        #  ./test/test1* => /home/github/test/test1/
-        #  ./test/test*.csv => "/home/github/test/test2/"
-        #last_ssh: |
-        #  echo $LASTSSH && 
-        #  (mkdir test1/test || true)
-        #  || ls -la
-          
+      run:
+        ssh -o StrictHostKeyChecking=accept-new web-melange@melange.inria.fr 'pwd && ls -lsa'
