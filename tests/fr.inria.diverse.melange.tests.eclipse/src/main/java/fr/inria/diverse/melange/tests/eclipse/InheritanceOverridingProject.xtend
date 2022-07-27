@@ -11,15 +11,15 @@
 package fr.inria.diverse.melange.tests.eclipse
 
 import com.google.inject.Inject
-import fr.inria.diverse.melange.MelangeUiInjectorProvider
+import fr.inria.diverse.melange.ui.tests.MelangeUiInjectorProvider
 import fr.inria.diverse.melange.tests.eclipse.shared.WorkspaceTestHelper
 import org.eclipse.core.resources.IResource
 import org.eclipse.core.resources.IncrementalProjectBuilder
 import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.xtext.junit4.AbstractXtextTests
-import org.eclipse.xtext.junit4.InjectWith
-import org.eclipse.xtext.junit4.XtextRunner
-import org.eclipse.xtext.junit4.ui.util.IResourcesSetupUtil
+import org.eclipse.xtext.testing.InjectWith
+import org.eclipse.xtext.testing.XtextRunner
+import org.eclipse.xtext.ui.testing.util.IResourcesSetupUtil
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -38,10 +38,10 @@ public class InheritanceOverridingProject extends AbstractXtextTests
 		helper.init
 		val project = helper.deployMelangeProject("InheritanceOverridingProject",
 			"tests-inputs/InheritanceOverridingProject.zip")
-		IResourcesSetupUtil::waitForAutoBuild
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 		ResourcesPlugin::workspace.root.refreshLocal(IResource::DEPTH_INFINITE, null)
 		project.build(IncrementalProjectBuilder::CLEAN_BUILD, null)
-		IResourcesSetupUtil::waitForAutoBuild
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 		helper.openEditor(MELANGE_FILE)
 	}
 
@@ -50,10 +50,10 @@ public class InheritanceOverridingProject extends AbstractXtextTests
 		println("testNoErrorsInWorkspace")
 		helper.assertFileExists(MELANGE_FILE)
 		helper.generateAll(MELANGE_FILE)
-		IResourcesSetupUtil::waitForAutoBuild
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 		ResourcesPlugin::workspace.root.refreshLocal(IResource::DEPTH_INFINITE, null)
 		helper.generateAdapters(MELANGE_FILE)
-		IResourcesSetupUtil::waitForAutoBuild
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 		ResourcesPlugin::workspace.root.refreshLocal(IResource::DEPTH_INFINITE, null)
 		helper.assertNoMarkers
 		println("testNoErrorsInWorkspace : DONE")

@@ -2,14 +2,14 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Melange Eclipse Tests
 Bundle-SymbolicName: fr.inria.diverse.melange.tests.eclipse;singleton:=true
-Bundle-Version: 0.2.2.qualifier
+Bundle-Version: 0.3.0.qualifier
 Bundle-ActivationPolicy: lazy
 Require-Bundle: fr.inria.diverse.melange.ui,
- org.eclipse.xtext.junit4;bundle-version="[2.12.0,2.22.0)",
- org.eclipse.xtext.generator;bundle-version="[2.12.0,2.22.0)",
- org.eclipse.xtext.xbase.junit;bundle-version="[2.12.0,2.22.0)",
+ org.eclipse.xtext.junit4;bundle-version="[2.12.0,3.0.0)",
+ org.eclipse.xtext.generator;bundle-version="[2.12.0,3.0.0)",
+ org.eclipse.xtext.xbase.junit;bundle-version="[2.12.0,3.0.0)",
  fr.inria.diverse.melange.metamodel;bundle-version="0.1.0",
- fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version="[3.1.0,3.3.0)",
+ fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version="[3.1.0,4.0.0)",
  fr.inria.diverse.melange.tests;bundle-version="0.1.0",
  fr.inria.diverse.melange.tools.xtext.testing;bundle-version="0.1.0",
  org.eclipse.jdt.core,
@@ -21,9 +21,15 @@ Require-Bundle: fr.inria.diverse.melange.ui,
  org.eclipse.jdt.ui,
  org.junit;bundle-version="4.11.0",
  org.eclipse.emf.compare;bundle-version="3.1.0",
- org.eclipse.gemoc.dsl.ui
+ org.eclipse.gemoc.dsl.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.xtext.xbase.testing,
+ org.eclipse.xtext.ui.testing,
+ org.eclipse.ui.workbench;resolution:=optional,
+ org.eclipse.xtext.testing
 Import-Package: org.hamcrest.core,
  org.junit;version="4.5.0",
  org.junit.runner;version="4.5.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: fr.inria.diverse.melange.tests.eclipse
+Export-Package: fr.inria.diverse.melange.ui.tests;x-internal=true

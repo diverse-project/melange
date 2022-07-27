@@ -11,13 +11,13 @@
 package fr.inria.diverse.melange.tests.common
 
 import com.google.inject.Guice
-import fr.inria.diverse.melange.MelangeInjectorProvider
 import fr.inria.diverse.melange.MelangeRuntimeModule
 import fr.inria.diverse.melange.MelangeStandaloneSetup
 import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.xtext.xbase.compiler.IGeneratorConfigProvider
 import org.eclipse.xtext.xbase.compiler.OnTheFlyJavaCompiler
 import org.eclipse.xtext.xbase.compiler.OnTheFlyJavaCompiler.EclipseRuntimeDependentJavaCompiler
+import fr.inria.diverse.melange.tests.MelangeInjectorProvider
 
 class MelangeTestsInjectorProvider extends MelangeInjectorProvider
 {

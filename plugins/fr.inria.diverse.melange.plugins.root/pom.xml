@@ -18,7 +18,7 @@
 		<relativePath>../../releng/fr.inria.diverse.melange.releng.root/pom.xml</relativePath>
 		<groupId>fr.inria.diverse.melange</groupId>
 		<artifactId>fr.inria.diverse.melange.releng.root</artifactId>
-		<version>0.2.2-SNAPSHOT</version>
+		<version>0.3.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>fr.inria.diverse.melange.plugins.root</artifactId>
@@ -31,6 +31,7 @@
 		<module>../fr.inria.diverse.melange</module>
 		<module>../fr.inria.diverse.melange.adapters</module>
 		<module>../fr.inria.diverse.melange.resource</module>
+		<module>../fr.inria.diverse.melange.ide</module>
 		<module>../fr.inria.diverse.melange.ui</module>
 		<module>../fr.inria.diverse.melange.ui.templates</module>
 	</modules>

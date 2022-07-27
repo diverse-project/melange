@@ -11,13 +11,13 @@
 package fr.inria.diverse.melange.tests.eclipse
 
 import com.google.inject.Inject
-import fr.inria.diverse.melange.MelangeUiInjectorProvider
+import fr.inria.diverse.melange.ui.tests.MelangeUiInjectorProvider
 import fr.inria.diverse.melange.tests.eclipse.shared.WorkspaceTestHelper
 import org.eclipse.core.resources.IProject
 import org.eclipse.xtext.junit4.AbstractXtextTests
-import org.eclipse.xtext.junit4.InjectWith
-import org.eclipse.xtext.junit4.XtextRunner
-import org.eclipse.xtext.junit4.ui.util.IResourcesSetupUtil
+import org.eclipse.xtext.testing.InjectWith
+import org.eclipse.xtext.testing.XtextRunner
+import org.eclipse.xtext.ui.testing.util.IResourcesSetupUtil
 import org.junit.After
 import org.junit.Before
 import org.junit.FixMethodOrder
@@ -52,9 +52,9 @@ public class MiniFsmTest extends AbstractXtextTests
 			helper.deployMelangeProject("fr.inria.diverse.minilang.interpreter","tests-inputs/minifsm/fr.inria.diverse.minilang.interpreter.zip")
 			melangeProject = helper.deployMelangeProject(PROJECT_NAME,"tests-inputs/minifsm/fr.inria.diverse.melange.fsm.zip")
 			
-			IResourcesSetupUtil::waitForAutoBuild
+			IResourcesSetupUtil::reallyWaitForAutoBuild
 			helper.cleanAll(MELANGE_FILE)
-			IResourcesSetupUtil::waitForAutoBuild
+			IResourcesSetupUtil::reallyWaitForAutoBuild
 			helper.openEditor(MELANGE_FILE)
 		} else {
 			melangeProject = helper.getProject(PROJECT_NAME)
@@ -68,8 +68,10 @@ public class MiniFsmTest extends AbstractXtextTests
 	
 	@Test
 	def void test0NoErrorsInWorkspace() {
+		IResourcesSetupUtil::fullBuild
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 		helper.generateAll(MELANGE_FILE)
-		IResourcesSetupUtil::waitForAutoBuild
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 		helper.assertNoMarkers
 		
 		helper.assertProjectExists(PROJECT_NAME)
@@ -86,7 +88,7 @@ public class MiniFsmTest extends AbstractXtextTests
 	@Test
 	def void test1Exec() {
 		createFiles
-		IResourcesSetupUtil::waitForAutoBuild
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 		helper.assertNoMarkers
 		
 		val expected = new String(Files.readAllBytes(Paths.get("tests-inputs/minifsm/output.txt")))

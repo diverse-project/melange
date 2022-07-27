@@ -14,36 +14,40 @@
 <unit id="org.eclipse.platform.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.pde.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.draw2d.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.emf.compare.source.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.emf.mwe2.launcher.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.emf.sdk.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.emf.transaction.sdk.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.xpand" version="0.0.0"/>
 <unit id="org.eclipse.xtend" version="0.0.0"/>
+<unit id="org.eclipse.xtext.sdk.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.xtend.typesystem.emf" version="0.0.0"/>
-<repository location="http://download.eclipse.org/releases/2020-03/"/>
+<repository location="http://download.eclipse.org/releases/2021-12/"/>
 </location>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
+<!--<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
 <unit id="org.eclipse.emf.mwe2.launcher.feature.group" version="0.0.0"/>
 <repository location="http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.11.2/"/>
-</location>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
+</location>-->
+<!--<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
 <unit id="org.eclipse.xtext.sdk.feature.group" version="0.0.0"/>
 <repository location="http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.21.0/"/>
-</location>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
+</location>-->
+<!--<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
 <unit id="org.eclipse.emf.compare.source.feature.group" version="0.0.0"/>
 <repository location="http://download.eclipse.org/modeling/emf/compare/updates/releases/latest"/>
-</location>
+</location>-->
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
 <unit id="fr.inria.diverse.k3.feature.feature.group" version="0.0.0"/>
 <repository location="http://www.kermeta.org/k3/update/"/>
 </location>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
+<!--<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
 <unit id="org.eclipse.emf.transaction.sdk.feature.group" version="1.9.0.201506010221"/>
 <repository location="http://download.eclipse.org/modeling/emf/transaction/updates/releases/"/>
-</location>
+</location>-->
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
 <unit id="org.eclipse.gemoc.commons.feature.feature.group" version="0.0.0"/>
 <!--<repository location="http://download.eclipse.org/gemoc/updates/nightly/"/>-->
-<repository location="http://download.eclipse.org/gemoc/updates/releases/3.2.0"/>
+<repository location="http://download.eclipse.org/gemoc/updates/releases/3.5.0"/>
 </location>
 </locations>
 </target>

@@ -12,7 +12,7 @@
 <feature
       id="fr.inria.diverse.melange.sdk"
       label="Melange SDK Feature"
-      version="0.2.2.qualifier"
+      version="0.3.0.qualifier"
       provider-name="Inria DiverSE">
 
    <plugin
@@ -59,6 +59,13 @@
 
    <plugin
          id="fr.inria.diverse.melange.adapters"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="fr.inria.diverse.melange.ide"
          download-size="0"
          install-size="0"
          version="0.0.0"

@@ -11,13 +11,13 @@
 package fr.inria.diverse.melange.tests.eclipse
 
 import com.google.inject.Inject
-import fr.inria.diverse.melange.MelangeUiInjectorProvider
+import fr.inria.diverse.melange.ui.tests.MelangeUiInjectorProvider
 import fr.inria.diverse.melange.tests.eclipse.shared.WorkspaceTestHelper
 import org.eclipse.core.resources.IProject
 import org.eclipse.xtext.junit4.AbstractXtextTests
-import org.eclipse.xtext.junit4.InjectWith
-import org.eclipse.xtext.junit4.XtextRunner
-import org.eclipse.xtext.junit4.ui.util.IResourcesSetupUtil
+import org.eclipse.xtext.testing.InjectWith
+import org.eclipse.xtext.testing.XtextRunner
+import org.eclipse.xtext.ui.testing.util.IResourcesSetupUtil
 import org.junit.After
 import org.junit.Before
 import org.junit.FixMethodOrder
@@ -54,7 +54,7 @@ public class AspectOverridingTest extends AbstractXtextTests
 			helper.deployMelangeProject("fr.inria.diverse.melange.test.overriding.model","tests-inputs/fr.inria.diverse.melange.test.overriding.model.zip")
 			helper.deployMelangeProject("fr.inria.diverse.melange.test.overriding.aspects","tests-inputs/fr.inria.diverse.melange.test.overriding.aspects.zip")
 			melangeProject = helper.deployMelangeProject(PROJECT_NAME,"tests-inputs/fr.inria.diverse.melange.test.overriding.main.zip")
-			IResourcesSetupUtil::waitForAutoBuild
+			IResourcesSetupUtil::reallyWaitForAutoBuild
 			helper.openEditor(MELANGE_FILE)
 		} else {
 			melangeProject = helper.getProject(PROJECT_NAME)
@@ -69,14 +69,14 @@ public class AspectOverridingTest extends AbstractXtextTests
 	@Test
 	def void test1GeneratedModelTypes() {
 		helper.generateInterfaces(MELANGE_FILE)
-		IResourcesSetupUtil::waitForAutoBuild
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 		//TODO: check generated files exist
 	}
 	
 	@Test
 	def void test2GeneratedLanguages() {
 		helper.generateLanguages(MELANGE_FILE)
-		IResourcesSetupUtil::waitForAutoBuild
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 		helper.assertNoMarkers
 	}
 
@@ -84,7 +84,7 @@ public class AspectOverridingTest extends AbstractXtextTests
 	@Test
 	def void test3GeneratedAdaptersCompile() {
 		helper.generateAdapters(MELANGE_FILE)
-		IResourcesSetupUtil::waitForAutoBuild
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 		helper.assertNoMarkers
 	}
 

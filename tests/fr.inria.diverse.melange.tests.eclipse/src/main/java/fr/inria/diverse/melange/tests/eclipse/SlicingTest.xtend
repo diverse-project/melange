@@ -11,12 +11,12 @@
 package fr.inria.diverse.melange.tests.eclipse
 
 import com.google.inject.Inject
-import fr.inria.diverse.melange.MelangeUiInjectorProvider
+import fr.inria.diverse.melange.ui.tests.MelangeUiInjectorProvider
 import fr.inria.diverse.melange.tests.eclipse.shared.WorkspaceTestHelper
 import org.eclipse.xtext.junit4.AbstractXtextTests
-import org.eclipse.xtext.junit4.InjectWith
-import org.eclipse.xtext.junit4.XtextRunner
-import org.eclipse.xtext.junit4.ui.util.IResourcesSetupUtil
+import org.eclipse.xtext.testing.InjectWith
+import org.eclipse.xtext.testing.XtextRunner
+import org.eclipse.xtext.ui.testing.util.IResourcesSetupUtil
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -41,7 +41,7 @@ public class SlicingTest extends AbstractXtextTests
 			helper.deployMelangeProject("fr.inria.diverse.melange.test.slicing.model", "tests-inputs/fr.inria.diverse.melange.test.slicing.model.zip")
 			helper.deployMelangeProject("fr.inria.diverse.melange.test.slicing.main", "tests-inputs/fr.inria.diverse.melange.test.slicing.main.zip")
 			
-			IResourcesSetupUtil::waitForAutoBuild
+			IResourcesSetupUtil::reallyWaitForAutoBuild
 			helper.openEditor(MELANGE_FILE)
 		}
 	}
@@ -49,7 +49,7 @@ public class SlicingTest extends AbstractXtextTests
 	@Test
 	def void testNoErrorsInWorkspace() {
 		helper.generateLanguages(MELANGE_FILE)
-		IResourcesSetupUtil::waitForAutoBuild
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 		helper.assertNoMarkers
 		
 		helper.assertProjectExists(PROJECT_1)

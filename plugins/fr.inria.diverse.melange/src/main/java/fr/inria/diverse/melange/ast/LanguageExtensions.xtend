@@ -64,6 +64,7 @@ import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.validation.EObjectDiagnosticImpl
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import org.eclipse.core.runtime.IConfigurationElement
 
 /**
  * A collection of utilities around {@link Language}s
@@ -873,7 +874,9 @@ class LanguageExtensions
 			val metaprogEnry = DslFactoryImpl.eINSTANCE.createEntry
 			metaprogEnry.key = "metaprog"
 			metaprogEnry.value = "org.eclipse.gemoc.metaprog.kermeta3"
-			dsl.entries += metaprogEnry
+			if(existMetaprogApproach(metaprogEnry.value)) {
+				dsl.entries += metaprogEnry
+			}
 		} else {
 			val eclEntry = DslFactoryImpl.eINSTANCE.createEntry
 			eclEntry.key = "ecl"
@@ -882,12 +885,23 @@ class LanguageExtensions
 			val metaprogEnry = DslFactoryImpl.eINSTANCE.createEntry
 			metaprogEnry.key = "metaprog"
 			metaprogEnry.value = "org.eclipse.gemoc.metaprog.moccml"
-			dsl.entries += metaprogEnry
+			if(existMetaprogApproach(metaprogEnry.value)) {
+				dsl.entries += metaprogEnry
+			}
 		}
 
 		return dsl
 	}
 	
+	def boolean existMetaprogApproach(String metaprogApproachName) {
+		var ArrayList<String> approachesList = new ArrayList<String>()
+		var exts = org.eclipse.core.runtime.Platform.getExtensionRegistry().getConfigurationElementsFor("org.eclipse.gemoc.gemoc_language_workbench.metaprog")
+				
+		for(IConfigurationElement elem : exts){
+			approachesList.add(elem.getAttribute("name"))
+		}
+		return approachesList.contains(metaprogApproachName)
+	}
 	def void createDsl(Language l) {
 		val uri = '''platform:/resource/«l.externalRuntimeName»/«l.name».dsl'''
 		val resSet = new ResourceSetImpl

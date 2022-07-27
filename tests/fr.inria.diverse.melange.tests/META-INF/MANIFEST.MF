@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Melange Tests
 Bundle-Vendor: DIVERSE
-Bundle-Version: 0.2.2.qualifier
+Bundle-Version: 0.3.0.qualifier
 Bundle-SymbolicName: fr.inria.diverse.melange.tests;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: fr.inria.diverse.melange.ui,
@@ -15,7 +15,7 @@ Require-Bundle: fr.inria.diverse.melange.ui,
  fr.inria.diverse.melange.examples.metamodels.timedfsm;bundle-version="0.1.0",
  fr.inria.diverse.melange.examples.metamodels.subpackages;bundle-version="0.1.0",
  fr.inria.diverse.melange.examples.metamodels.exhaustive;bundle-version="0.1.0",
- fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version="[3.1.0,3.3.0)",
+ fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version="[3.1.0,4.0.0)",
  fr.inria.diverse.melange.resource;bundle-version="0.1.0",
  fr.inria.diverse.melange.adapters;bundle-version="0.1.0",
  fr.inria.diverse.melange.lib;bundle-version="0.1.0",
@@ -23,9 +23,11 @@ Require-Bundle: fr.inria.diverse.melange.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.ui.workbench;resolution:=optional,
- org.objectweb.asm;bundle-version="[6.0.1,8.0.0)";resolution:=optional,
- org.eclipse.xtext.xbase.lib,
- org.eclipse.emf.compare;bundle-version="3.1.0"
+ org.objectweb.asm;bundle-version="[6.0.1,10.0.0)";resolution:=optional,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.emf.compare;bundle-version="3.1.0",
+ org.eclipse.xtext.xbase.testing,
+ org.eclipse.xtext.testing
 Import-Package: org.hamcrest.core,
  org.junit;version="4.5.0",
  org.junit.runner;version="4.5.0",

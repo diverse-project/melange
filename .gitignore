@@ -6,3 +6,4 @@ bin/
 .antlr-generator*.jar
 target/
 *._trace
+.tycho-consumer-pom.xml
