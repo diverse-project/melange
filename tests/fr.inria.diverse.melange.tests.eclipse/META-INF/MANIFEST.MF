@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Melange Eclipse Tests
 Bundle-SymbolicName: fr.inria.diverse.melange.tests.eclipse;singleton:=true
-Bundle-Version: 0.2.2.qualifier
+Bundle-Version: 0.3.0.qualifier
 Bundle-ActivationPolicy: lazy
 Require-Bundle: fr.inria.diverse.melange.ui,
  org.eclipse.xtext.junit4;bundle-version="[2.12.0,3.0.0)",
