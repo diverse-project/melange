@@ -28,9 +28,9 @@ jobs:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
     - name: ssh scp pipelines
       env:
-        DEPLOYSERVER: "melange.irisa.fr.fr"
+        DEPLOYSERVER: "melange.irisa.fr"
         DEPLOYPATH: "/home/web/apache/sites/melange.inria.fr/htdocs/updatesite/nightly"
         LASTSSH: "Doing something after copying"
       run: |
-        ping -w 5 ${DEPLOYSERVER}
+        ping -w 5 ${DEPLOYSERVER} || true
         ssh -vv -o StrictHostKeyChecking=accept-new web-melange@${DEPLOYSERVER} 'pwd && ls -lsa'
