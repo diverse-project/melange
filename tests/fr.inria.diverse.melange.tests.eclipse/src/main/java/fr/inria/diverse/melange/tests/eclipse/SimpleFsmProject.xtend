@@ -47,7 +47,7 @@ public class SimpleFsmProjectTest extends AbstractXtextTests
 			IResourcesSetupUtil::cleanWorkspace
 			melangeFsm = helper.deployMelangeProject("SimpleFsmProject",
 				"tests-inputs/SimpleFsmProject.zip")
-			IResourcesSetupUtil::waitForAutoBuild
+			IResourcesSetupUtil::reallyWaitForAutoBuild
 			helper.openEditor(MELANGE_FILE)
 		} else {
 			melangeFsm = helper.getProject(PROJECT_NAME)

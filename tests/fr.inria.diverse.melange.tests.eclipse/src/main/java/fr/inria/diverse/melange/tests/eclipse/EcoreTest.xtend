@@ -45,7 +45,7 @@ public class EcoreTest extends AbstractXtextTests
 			
 			melangeProject = helper.deployMelangeProject(PROJECT_NAME,"tests-inputs/fr.inria.diverse.melange.tests.ecore.main.zip")
 			
-			IResourcesSetupUtil::waitForAutoBuild
+			IResourcesSetupUtil::reallyWaitForAutoBuild
 			helper.openEditor(MELANGE_FILE)
 		} else {
 			melangeProject = helper.getProject(PROJECT_NAME)
@@ -60,7 +60,7 @@ public class EcoreTest extends AbstractXtextTests
 	@Test
 	def void test0NoErrorsInWorkspace() {
 		helper.generateAll(MELANGE_FILE)
-		IResourcesSetupUtil::waitForAutoBuild
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 		//Genmodel doesn't like generating EcoreMT.ecore
 //		helper.assertNoMarkers 
 		

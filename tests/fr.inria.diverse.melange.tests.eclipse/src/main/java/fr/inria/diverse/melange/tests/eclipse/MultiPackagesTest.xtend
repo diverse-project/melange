@@ -56,7 +56,7 @@ public class MultiPackagesTest extends AbstractXtextTests
 			helper.deployMelangeProject("fr.inria.diverse.melange.tests.multipkgs.model","tests-inputs/fr.inria.diverse.melange.tests.multipkgs.model.zip")
 			helper.deployMelangeProject("fr.inria.diverse.melange.tests.multipkgs.aspects","tests-inputs/fr.inria.diverse.melange.tests.multipkgs.aspects.zip")
 			melangeProject = helper.deployMelangeProject(PROJECT_NAME,"tests-inputs/fr.inria.diverse.melange.tests.multipkgs.main.zip")
-			IResourcesSetupUtil::waitForAutoBuild
+			IResourcesSetupUtil::reallyWaitForAutoBuild
 			helper.openEditor(MELANGE_FILE)
 		} else {
 			melangeProject = helper.getProject(PROJECT_NAME)
@@ -71,14 +71,14 @@ public class MultiPackagesTest extends AbstractXtextTests
 	@Test
 	def void test1GeneratedModelTypes() {
 		helper.generateInterfaces(MELANGE_FILE)
-		IResourcesSetupUtil::waitForAutoBuild
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 		//TODO: check generated files exist
 	}
 	
 	@Test
 	def void test2GeneratedLanguages() {
 		helper.generateLanguages(MELANGE_FILE)
-		IResourcesSetupUtil::waitForAutoBuild
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 		helper.assertNoMarkers
 	}
 
@@ -86,7 +86,7 @@ public class MultiPackagesTest extends AbstractXtextTests
 	@Test
 	def void test3GeneratedAdaptersCompile() {
 		helper.generateAdapters(MELANGE_FILE)
-		IResourcesSetupUtil::waitForAutoBuild
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 		helper.assertNoMarkers
 	}
 	

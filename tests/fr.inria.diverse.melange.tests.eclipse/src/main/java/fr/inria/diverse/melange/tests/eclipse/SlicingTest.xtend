@@ -41,7 +41,7 @@ public class SlicingTest extends AbstractXtextTests
 			helper.deployMelangeProject("fr.inria.diverse.melange.test.slicing.model", "tests-inputs/fr.inria.diverse.melange.test.slicing.model.zip")
 			helper.deployMelangeProject("fr.inria.diverse.melange.test.slicing.main", "tests-inputs/fr.inria.diverse.melange.test.slicing.main.zip")
 			
-			IResourcesSetupUtil::waitForAutoBuild
+			IResourcesSetupUtil::reallyWaitForAutoBuild
 			helper.openEditor(MELANGE_FILE)
 		}
 	}
@@ -49,7 +49,7 @@ public class SlicingTest extends AbstractXtextTests
 	@Test
 	def void testNoErrorsInWorkspace() {
 		helper.generateLanguages(MELANGE_FILE)
-		IResourcesSetupUtil::waitForAutoBuild
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 		helper.assertNoMarkers
 		
 		helper.assertProjectExists(PROJECT_1)

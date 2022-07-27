@@ -52,9 +52,9 @@ public class MiniFsmTest extends AbstractXtextTests
 			helper.deployMelangeProject("fr.inria.diverse.minilang.interpreter","tests-inputs/minifsm/fr.inria.diverse.minilang.interpreter.zip")
 			melangeProject = helper.deployMelangeProject(PROJECT_NAME,"tests-inputs/minifsm/fr.inria.diverse.melange.fsm.zip")
 			
-			IResourcesSetupUtil::waitForAutoBuild
+			IResourcesSetupUtil::reallyWaitForAutoBuild
 			helper.cleanAll(MELANGE_FILE)
-			IResourcesSetupUtil::waitForAutoBuild
+			IResourcesSetupUtil::reallyWaitForAutoBuild
 			helper.openEditor(MELANGE_FILE)
 		} else {
 			melangeProject = helper.getProject(PROJECT_NAME)
@@ -69,7 +69,7 @@ public class MiniFsmTest extends AbstractXtextTests
 	@Test
 	def void test0NoErrorsInWorkspace() {
 		helper.generateAll(MELANGE_FILE)
-		IResourcesSetupUtil::waitForAutoBuild
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 		helper.assertNoMarkers
 		
 		helper.assertProjectExists(PROJECT_NAME)
@@ -86,7 +86,7 @@ public class MiniFsmTest extends AbstractXtextTests
 	@Test
 	def void test1Exec() {
 		createFiles
-		IResourcesSetupUtil::waitForAutoBuild
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 		helper.assertNoMarkers
 		
 		val expected = new String(Files.readAllBytes(Paths.get("tests-inputs/minifsm/output.txt")))

@@ -46,7 +46,7 @@ public class SubPackagesTest extends AbstractXtextTests
 			
 			melangeProject = helper.deployMelangeProject(PROJECT_NAME,"tests-inputs/fr.inria.diverse.melange.test.subpackages.main.zip")
 			
-			IResourcesSetupUtil::waitForAutoBuild
+			IResourcesSetupUtil::reallyWaitForAutoBuild
 			helper.openEditor(MELANGE_FILE)
 		} else {
 			melangeProject = helper.getProject(PROJECT_NAME)
@@ -61,7 +61,7 @@ public class SubPackagesTest extends AbstractXtextTests
 	@Test
 	def void test0NoErrorsInWorkspace() {
 		helper.generateAll(MELANGE_FILE)
-		IResourcesSetupUtil::waitForAutoBuild
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 		helper.assertNoMarkers
 		
 		helper.assertProjectExists(PROJECT_NAME)

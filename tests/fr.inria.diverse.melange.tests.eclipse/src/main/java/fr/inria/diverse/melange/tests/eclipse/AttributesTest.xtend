@@ -55,7 +55,7 @@ public class AttributesTest extends AbstractXtextTests
 			melangeProject = helper.deployMelangeProject(PROJECT_NAME,"tests-inputs/fr.inria.diverse.melange.tests.attributes.main.zip")
 			helper.deployMelangeProject("fr.inria.diverse.melange.tests.attributes.aspects","tests-inputs/fr.inria.diverse.melange.tests.attributes.aspects.zip")
 			helper.deployMelangeProject("fr.inria.diverse.melange.tests.attributes.model","tests-inputs/fr.inria.diverse.melange.tests.attributes.model.zip")
-			IResourcesSetupUtil::waitForAutoBuild
+			IResourcesSetupUtil::reallyWaitForAutoBuild
 			helper.openEditor(MELANGE_FILE)
 		} else {
 			melangeProject = helper.getProject(PROJECT_NAME)
@@ -70,14 +70,14 @@ public class AttributesTest extends AbstractXtextTests
 	@Test
 	def void test1GeneratedModelTypes() {
 		helper.generateInterfaces(MELANGE_FILE)
-		IResourcesSetupUtil::waitForAutoBuild
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 		//TODO: check generated files exist
 	}
 	
 	@Test
 	def void test2GeneratedLanguages() {
 		helper.generateLanguages(MELANGE_FILE)
-		IResourcesSetupUtil::waitForAutoBuild
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 		helper.assertNoMarkers
 	}
 
@@ -85,7 +85,7 @@ public class AttributesTest extends AbstractXtextTests
 	@Test
 	def void test3GeneratedAdaptersCompile() {
 		helper.generateAdapters(MELANGE_FILE)
-		IResourcesSetupUtil::waitForAutoBuild
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 		helper.assertNoMarkers
 	}
 	

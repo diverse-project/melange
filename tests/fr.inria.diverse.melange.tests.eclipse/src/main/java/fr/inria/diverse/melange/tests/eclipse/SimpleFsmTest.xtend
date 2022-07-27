@@ -67,7 +67,7 @@ public class SimpleFsmTest extends AbstractXtextTests
 			createMelangeProject
 			createTestFiles
 			createRunOutputFile
-			IResourcesSetupUtil::waitForAutoBuild
+			IResourcesSetupUtil::reallyWaitForAutoBuild
 			helper.openEditor(MELANGE_FILE)
 		} else {
 			val project = helper.getProject(MELANGE_PROJECT)
