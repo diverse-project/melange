@@ -68,6 +68,8 @@ public class MiniFsmTest extends AbstractXtextTests
 	
 	@Test
 	def void test0NoErrorsInWorkspace() {
+		IResourcesSetupUtil::fullBuild
+		IResourcesSetupUtil::reallyWaitForAutoBuild
 		helper.generateAll(MELANGE_FILE)
 		IResourcesSetupUtil::reallyWaitForAutoBuild
 		helper.assertNoMarkers
