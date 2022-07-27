@@ -26,7 +26,8 @@ jobs:
         cache: maven
     - name: Build and Verify
       uses: GabrielBB/xvfb-action@v1  # use xvfb for UI tests
-      run: mvn -B verify --file releng/fr.inria.diverse.melange.releng.root/pom.xml
+      with:
+         run: mvn -B verify --file releng/fr.inria.diverse.melange.releng.root/pom.xml
     
     - name: Publish Test Report
         uses: mikepenz/action-junit-report@v3
