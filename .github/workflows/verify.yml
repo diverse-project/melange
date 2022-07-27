@@ -43,5 +43,5 @@ jobs:
       uses: actions/upload-artifact@v3
       if: always() # always run even if the previous step fails
       with:
-        name: archive-log
+        name: test-workbench-logs
         path: '**/.log'
