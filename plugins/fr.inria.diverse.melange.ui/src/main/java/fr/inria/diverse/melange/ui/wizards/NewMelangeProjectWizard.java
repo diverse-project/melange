@@ -90,7 +90,7 @@ public class NewMelangeProjectWizard extends AbstractNewProjectWizardWithTemplat
 					addNaturesToProject(project);
 					
 					configureProject(project, monitor);
-					
+					project.refreshLocal(IResource.DEPTH_INFINITE, monitor);
 					
 					// launch the template
 					
@@ -231,7 +231,9 @@ public class NewMelangeProjectWizard extends AbstractNewProjectWizardWithTemplat
     
     private void createSettingsResourcePrefs(IProject project, IProgressMonitor monitor) throws Exception {	    
     	IFolder settings = project.getFolder(".settings");
-    	settings.create(false, true, monitor);
+    	if(!settings.exists()) {
+    		settings.create(false, true, monitor);
+    	}
 	    
 	    String path = ".settings/org.eclipse.core.resources.prefs";
 		IContainer currentContainer = project;
