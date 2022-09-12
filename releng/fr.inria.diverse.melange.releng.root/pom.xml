@@ -33,7 +33,7 @@
 		<maven.compiler.release>11</maven.compiler.release>
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
-		<kermeta.version>3.2.1-SNAPSHOT</kermeta.version>
+		<kermeta.version>3.3.1-SNAPSHOT</kermeta.version>
 		<emf.version>2.11.0</emf.version>
 		<tycho.version>2.7.0</tycho.version>
 		<tycho-extras.version>2.7.0</tycho-extras.version>

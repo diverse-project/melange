@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.gemoc.commons.eclipse.pde.templates">
+         point="org.eclipse.gemoc.commons.eclipse.pde.ui.templates">
       <template
             class="fr.inria.diverse.melange.ui.templates.melange.SimpleMTTemplate"
             contributingId="fr.inria.diverse.melange.ui.templates.template1"
@@ -11,7 +11,7 @@
       </template>
    </extension>
    <extension
-         point="org.eclipse.gemoc.commons.eclipse.pde.projectContent">
+         point="org.eclipse.gemoc.commons.eclipse.pde.ui.projectContent">
       <wizard
             class="fr.inria.diverse.melange.ui.templates.melange.SimpleMTNewWizard"
             id="fr.inria.diverse.melange.ui.templates.projectContent.SimpleMT"

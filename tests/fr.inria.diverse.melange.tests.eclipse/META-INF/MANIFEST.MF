@@ -26,7 +26,8 @@ Require-Bundle: fr.inria.diverse.melange.ui,
  org.eclipse.xtext.xbase.testing,
  org.eclipse.xtext.ui.testing,
  org.eclipse.ui.workbench;resolution:=optional,
- org.eclipse.xtext.testing
+ org.eclipse.xtext.testing,
+ org.eclipse.gemoc.commons.eclipse.pde.ui;bundle-version="3.6.0"
 Import-Package: org.hamcrest.core,
  org.junit;version="4.5.0",
  org.junit.runner;version="4.5.0"
