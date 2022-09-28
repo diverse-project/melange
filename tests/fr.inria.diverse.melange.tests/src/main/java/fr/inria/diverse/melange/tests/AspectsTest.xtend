@@ -58,6 +58,7 @@ class AspectsTest
 		assertEquals(root.name, "aspectstest")
 		assertNotNull(root.imports)
 
+		assertTrue(false)
 		assertTrue(root.elements.get(0) instanceof Language)
 		assertTrue(root.elements.get(1) instanceof Language)
 		assertTrue(root.elements.get(2) instanceof Language)
