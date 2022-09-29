@@ -19,5 +19,5 @@ Main Features
 
 Build Status
 ------------
-[![Build Status](https://ci.inria.fr/k3al/buildStatus/icon?job=melange-master)](https://ci.inria.fr/k3al/job/melange-master)
+![Build Status](https://github.com/diverse-project/melange/actions/workflows/verify.yml/badge.svg)
 
