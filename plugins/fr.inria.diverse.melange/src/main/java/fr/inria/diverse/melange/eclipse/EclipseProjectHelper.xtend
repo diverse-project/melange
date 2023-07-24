@@ -37,7 +37,6 @@ import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.core.runtime.NullProgressMonitor
 import org.eclipse.core.runtime.Path
 import org.eclipse.core.runtime.SubMonitor
-import org.eclipse.core.runtime.SubProgressMonitor
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.gemoc.commons.eclipse.pde.classpath.BuildPropertiesHelper
 import org.eclipse.gemoc.commons.eclipse.pde.classpath.ClasspathHelper
@@ -53,7 +52,7 @@ import org.eclipse.xtext.util.MergeableManifest2
 class EclipseProjectHelper
 {
 	@Inject extension LanguageExtensions
-	private static final Logger log = Logger.getLogger(EclipseProjectHelper)
+	static final Logger log = Logger.getLogger(EclipseProjectHelper)
 	
 	public static final String GEMOCNatureID = "org.eclipse.gemoc.execution.sequential.javaxdsml.ide.ui.GemocSequentialLanguageNature"
 
@@ -382,14 +381,14 @@ class EclipseProjectHelper
 			var IPath previousProjectLocation = null
 			if (project.exists){
 				previousProjectLocation = project.location
-				project.delete(true, true, new SubProgressMonitor(monitor, 1))				
+				project.delete(true, true, SubMonitor.convert(monitor, 1))				
 			}
 
 			val javaProject = JavaCore::create(project)
 			val description = workspace.newProjectDescription(name)
 
 			description.location = previousProjectLocation
-			project.create(description, new SubProgressMonitor(monitor, 1))
+			project.create(description, SubMonitor.convert(monitor, 1))
 
 			val classpathEntries = newArrayList
 
@@ -405,18 +404,18 @@ class EclipseProjectHelper
 				description.newCommand => [builderName = buildName]
 			]
 
-			project.open(new SubProgressMonitor(monitor, 1))
+			project.open(SubMonitor.convert(monitor, 1))
 			createManifest(name, requiredBundles, exportedPackages, monitor, project)
 			createPluginXml(project, extensions, monitor)
 			createBuildProperties(project, srcFolders, monitor)
-			project.setDescription(description, new SubProgressMonitor(monitor, 1))
+			project.setDescription(description, SubMonitor.convert(monitor, 1))
 
 			srcFolders.forEach[src |
 				val container = project.getFolder(src)
 
 				try {
 					if (!container.exists)
-						container.create(false, true, new SubProgressMonitor(monitor, 1))
+						container.create(false, true, SubMonitor.convert(monitor, 1))
 
 					classpathEntries.add(0, JavaCore::newSourceEntry(container.fullPath))
 				} catch (CoreException e) {
@@ -428,9 +427,9 @@ class EclipseProjectHelper
 			classpathEntries += JavaCore::newContainerEntry(new Path("org.eclipse.pde.core.requiredPlugins"))
 
 			val binFolder = project.getFolder("bin")
-			binFolder.create(false, true, new SubProgressMonitor(monitor, 1))
-			javaProject.setRawClasspath(classpathEntries, new SubProgressMonitor(monitor, 1))
-			javaProject.setOutputLocation(binFolder.fullPath, new SubProgressMonitor(monitor, 1))
+			binFolder.create(false, true, SubMonitor.convert(monitor, 1))
+			javaProject.setRawClasspath(classpathEntries, SubMonitor.convert(monitor, 1))
+			javaProject.setOutputLocation(binFolder.fullPath, SubMonitor.convert(monitor, 1))
 
 
 
@@ -466,7 +465,7 @@ class EclipseProjectHelper
 		'''
 
 		val metaInf = project.getFolder("META-INF")
-		metaInf.create(false, true, new SubProgressMonitor(monitor, 1))
+		metaInf.create(false, true, SubMonitor.convert(monitor, 1))
 		createFile("MANIFEST.MF", metaInf, content, monitor)
 	}
 
