@@ -534,8 +534,8 @@ public abstract class AbstractMelangeSemanticSequencer extends XbaseSemanticSequ
 	 * Constraint:
 	 *     (
 	 *         (operators+=Weave | xmof=STRING | fileExtension=STRING)? 
-	 *         (ecl+=STRING ecl+=STRING*)? 
 	 *         (xtext+=STRING xtext+=STRING*)? 
+	 *         (ecl+=STRING ecl+=STRING*)? 
 	 *         (sirius+=STRING sirius+=STRING*)? 
 	 *         (exactTypeName=ValidID exactTypeUri=STRING?)? 
 	 *         (name=ValidID (implements+=[ModelType|QualifiedName] implements+=[ModelType|QualifiedName]*)? operators+=ExternalImport)?
@@ -612,9 +612,9 @@ public abstract class AbstractMelangeSemanticSequencer extends XbaseSemanticSequ
 	 * Constraint:
 	 *     (
 	 *         (xmof=STRING | fileExtension=STRING | annotations+=Annotation)? 
+	 *         (xtext+=STRING xtext+=STRING*)? 
 	 *         (ecl+=STRING ecl+=STRING*)? 
 	 *         (sirius+=STRING sirius+=STRING*)? 
-	 *         (xtext+=STRING xtext+=STRING*)? 
 	 *         (exactTypeName=ValidID exactTypeUri=STRING?)? 
 	 *         (resourceType=ResourceType (resourceUri=STRING | xtextSetupRef=JvmTypeReference)?)? 
 	 *         (

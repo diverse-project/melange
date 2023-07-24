@@ -43,7 +43,7 @@ import org.eclipse.gemoc.commons.eclipse.pde.classpath.BuildPropertiesHelper
 import org.eclipse.gemoc.commons.eclipse.pde.classpath.ClasspathHelper
 import org.eclipse.jdt.core.JavaCore
 import org.eclipse.pde.internal.core.natures.PDE
-import org.eclipse.xtext.util.MergeableManifest
+import org.eclipse.xtext.util.MergeableManifest2
 
 /**
  * A collection of utilities around Eclipse's APIs to manage the creation,
@@ -88,9 +88,9 @@ class EclipseProjectHelper
 
 			try {
 				input = manifestFile.contents
-				val manifest = new MergeableManifest(input)
+				val manifest = new MergeableManifest2(input)
 				val attrs = manifest.mainAttributes
-				val bundles = Splitter.on(",").omitEmptyStrings.trimResults.split(attrs.getValue("Require-Bundle"))
+				val bundles = Splitter.on(",").omitEmptyStrings.trimResults.split(attrs.get("Require-Bundle"))
 				return bundles.map[it.split(";").head]
 			} catch (Exception e) {
 				log.error("Couldn't retrieve MANIFEST.MF dependencies", e)
@@ -121,7 +121,7 @@ class EclipseProjectHelper
 				if (!manifestFile.isSynchronized(IResource.DEPTH_ZERO))
 					manifestFile.refreshLocal(IResource.DEPTH_ZERO, null)
 				input = manifestFile.contents
-				val manifest = new MergeableManifest(input)
+				val manifest = new MergeableManifest2(input)
 				manifest.addRequiredBundles(Sets::newHashSet(bundles))
 				val out = new ByteArrayOutputStream
 				output = new BufferedOutputStream(out)
@@ -158,7 +158,7 @@ class EclipseProjectHelper
 				if (!manifestFile.isSynchronized(IResource.DEPTH_ZERO))
 					manifestFile.refreshLocal(IResource.DEPTH_ZERO, null)
 				input = manifestFile.contents
-				val manifest = new MergeableManifest(input)
+				val manifest = new MergeableManifest2(input)
 				manifest.addExportedPackages(Sets::newHashSet(packages))
 				val out = new ByteArrayOutputStream
 				output = new BufferedOutputStream(out)
@@ -209,12 +209,12 @@ class EclipseProjectHelper
 				if (!manifestFile.isSynchronized(IResource.DEPTH_ZERO))
 					manifestFile.refreshLocal(IResource.DEPTH_ZERO, null)
 				input = manifestFile.contents
-				val manifest = new MergeableManifest(input)
+				val manifest = new MergeableManifest2(input)
 				// FIXME: Quick & Dirty ;)
-				var requiredBundles = manifest.getMainAttributes().get(MergeableManifest::REQUIRE_BUNDLE) as String
+				var requiredBundles = manifest.getMainAttributes().get(MergeableManifest2::REQUIRE_BUNDLE) as String
 				val regex = '''(?m)^ ?(«bundles.join("|")»).*$(?:\r?\n)?'''
 				val result = requiredBundles.replaceAll(regex, "") 
-				manifest.getMainAttributes().put(MergeableManifest::REQUIRE_BUNDLE, result.replaceFirst(",$", ""));
+				manifest.getMainAttributes().put(MergeableManifest2::REQUIRE_BUNDLE, result.replaceFirst(",$", ""));
 				val out = new ByteArrayOutputStream
 				output = new BufferedOutputStream(out)
 				manifest.write(output)
