@@ -30,15 +30,15 @@
 	</modules>
 
 	<properties>
-		<maven.compiler.release>11</maven.compiler.release>
-		<maven.compiler.source>11</maven.compiler.source>
-		<maven.compiler.target>11</maven.compiler.target>
+		<maven.compiler.release>17</maven.compiler.release>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
 		<kermeta.version>3.3.1-SNAPSHOT</kermeta.version>
 		<emf.version>2.11.0</emf.version>
-		<tycho.version>2.7.0</tycho.version>
-		<tycho-extras.version>2.7.0</tycho-extras.version>
+		<tycho.version>3.0.4</tycho.version>
+		<tycho-extras.version>3.0.4</tycho-extras.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<xtext.version>2.27.0</xtext.version>
+		<xtext.version>2.31.0</xtext.version>
 		<tycho.scmUrl>scm:git:https://github.com/diverse-project/melange.git</tycho.scmUrl>
 		<tycho.disableP2Mirrors>true</tycho.disableP2Mirrors>
 	</properties>
@@ -180,7 +180,7 @@
 		<repository>
 			<id>eclipse</id>
 			<layout>p2</layout>
-			<url>https://download.eclipse.org/releases/2022-06/</url>
+			<url>https://download.eclipse.org/releases/2023-06/</url>
 		</repository>
 		<repository>
 			<id>Xtext Update Site</id>
@@ -190,7 +190,7 @@
 		<repository>
 			<id>mwe</id>
 			<layout>p2</layout>
-			<url>https://download.eclipse.org/modeling/emft/mwe/updates/releases/2.13.0/</url>
+			<url>https://download.eclipse.org/modeling/emft/mwe/updates/releases/2.14.0/</url>
 		</repository>
 		<!-- <repository>
 			<id>mavenInriaSnapshot</id>
