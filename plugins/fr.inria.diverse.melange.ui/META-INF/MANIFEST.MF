@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Melange IDE
 Bundle-Vendor: Inria DiverSE
-Bundle-Version: 0.3.0.qualifier
+Bundle-Version: 0.4.0.qualifier
 Bundle-SymbolicName: fr.inria.diverse.melange.ui;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: fr.inria.diverse.melange;visibility:=reexport,
@@ -32,7 +32,7 @@ Require-Bundle: fr.inria.diverse.melange;visibility:=reexport,
 Import-Package: javax.annotation;version="1.3.5",
  org.apache.log4j,
  org.eclipse.xtext.xbase.lib
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: fr.inria.diverse.melange.ui,
  fr.inria.diverse.melange.ui.contentassist,
  fr.inria.diverse.melange.ui.internal,

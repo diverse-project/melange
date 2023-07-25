@@ -15,7 +15,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fr.inria.diverse.melange</groupId>
 	<artifactId>fr.inria.diverse.melange.releng.root</artifactId>
-	<version>0.3.0-SNAPSHOT</version>
+	<version>0.4.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Melange Root Build Manager</name>
 	
@@ -87,7 +87,7 @@
 				<artifactId>tycho-surefire-plugin</artifactId>
 				<version>${tycho.version}</version>
 				<configuration>
-					<argLine>-Xmx2048m -XX:MaxPermSize=1024m</argLine>
+					<argLine>-Xmx2048m</argLine>
 				</configuration>
 			</plugin>
 			<plugin>

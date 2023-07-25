@@ -1,12 +1,13 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
+Automatic-Module-Name: fr.inria.diverse.melange.examples.metamodels.timedfsm
 Bundle-Name: fr.inria.diverse.melange.examples.metamodels.timedfsm
 Bundle-SymbolicName: fr.inria.diverse.melange.examples.metamodels.timedfsm;singleton:=true
-Bundle-Version: 0.3.0.qualifier
+Bundle-Version: 0.4.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: DIVERSE
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: timedfsm.fsm,
  timedfsm.fsm.impl,
  timedfsm.fsm.util

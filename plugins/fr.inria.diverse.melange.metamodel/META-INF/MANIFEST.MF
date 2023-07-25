@@ -2,11 +2,11 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Melange Metamodel
 Bundle-SymbolicName: fr.inria.diverse.melange.metamodel;singleton:=true
-Bundle-Version: 0.3.0.qualifier
+Bundle-Version: 0.4.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: Inria DiverSE
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: fr.inria.diverse.melange.metamodel.melange,
  fr.inria.diverse.melange.metamodel.melange.impl,
  fr.inria.diverse.melange.metamodel.melange.util
