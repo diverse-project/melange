@@ -25,7 +25,7 @@ jobs:
         distribution: 'temurin'
     #    cache: maven
     - name: Build and Verify ⚒️🧪
-      uses: GabrielBB/xvfb-action@v1
+      uses: coactions/setup-xvfb@v1
       with:
          run: mvn -B clean verify --file releng/fr.inria.diverse.melange.releng.root/pom.xml
     
