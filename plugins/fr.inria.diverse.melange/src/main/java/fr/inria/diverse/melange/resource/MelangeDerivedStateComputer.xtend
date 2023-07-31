@@ -47,7 +47,7 @@ class MelangeDerivedStateComputer extends JvmModelAssociator
 	@Inject EPackageProvider provider
 	List<MelangeProcessor> processors = newArrayList
 
-	private static final Logger log = Logger.getLogger(MelangeDerivedStateComputer)
+	static final Logger log = Logger.getLogger(MelangeDerivedStateComputer)
 
 	/** 
 	 * The parameters of this constructor define the list of the processors and

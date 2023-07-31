@@ -58,36 +58,36 @@ class DispatchOverrider {
 	@Inject extension EcoreExtensions
 	@Inject extension LanguageExtensions
 	
-	private static final Logger log = Logger.getLogger(DispatchOverrider)
+	static final Logger log = Logger.getLogger(DispatchOverrider)
 	
 	/**
 	 * Link Language to its Aspects' Java classes
 	 */
-	private SetMultimap<Language, Class<?>> aspectsByLang = HashMultimap.create
+	SetMultimap<Language, Class<?>> aspectsByLang = HashMultimap.create
 	
 	/**
 	 * Link Aspect's Java class to aspected EClass
 	 */
-	private HashMap<Class<?>,EClass> aspected = new HashMap
+	HashMap<Class<?>,EClass> aspected = new HashMap
 	
 	/**
 	 * Link Java class to JDT class
 	 */
-	private HashMap<Class<?>,IType> source = new HashMap
+	HashMap<Class<?>,IType> source = new HashMap
 	
 	/**
 	 * Link aspected EClass to containing Language
 	 */
-	private HashMap<EClass,Language> eClassToLanguage = new HashMap
+	HashMap<EClass,Language> eClassToLanguage = new HashMap
 	
 	/**
 	 * Link EClass to all its subtyping EClasses
 	 */
-	private SetMultimap<EClass, EClass> subTypes = HashMultimap.create
+	SetMultimap<EClass, EClass> subTypes = HashMultimap.create
 	
-	private List<Pair<Aspect,List<PackageBinding>>> sourceRenaming
+	List<Pair<Aspect,List<PackageBinding>>> sourceRenaming
 	
-	private Language language
+	Language language
 	
 	def overrideDispatch(Language lang, IJavaProject melangeProject) {
 		

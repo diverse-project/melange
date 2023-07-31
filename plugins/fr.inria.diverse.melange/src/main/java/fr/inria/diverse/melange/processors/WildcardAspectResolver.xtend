@@ -33,7 +33,7 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 class WildcardAspectResolver extends DispatchMelangeProcessor
 {
 	@Inject JvmTypeReferenceBuilder.Factory builderFactory
-	private static final Logger log = Logger.getLogger(WildcardAspectResolver)
+	static final Logger log = Logger.getLogger(WildcardAspectResolver)
 
 	def dispatch void preProcess(Weave w, boolean preLinkingPhase) {
 		val typeRefBuilder = builderFactory.create(w.eResource.resourceSet)

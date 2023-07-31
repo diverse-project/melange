@@ -423,7 +423,7 @@ class PackageMergeMerger implements EcoreMerger {
 			case element.eContainer !== null :
 				getRootPackage(element.eContainer as ENamedElement)
 			EPackage :
-				element as EPackage
+				element
 			default :
 				null
 		}

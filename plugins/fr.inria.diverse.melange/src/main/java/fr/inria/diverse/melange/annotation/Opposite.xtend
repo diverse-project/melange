@@ -20,7 +20,7 @@ import java.lang.annotation.Target
  */
 @Target(ElementType::FIELD, ElementType::METHOD)
 @Retention(RetentionPolicy.SOURCE)
-public annotation Opposite
+annotation Opposite
 {
 	String value /* Name of the opposite reference */
 }

@@ -43,7 +43,7 @@ class MelangeOutlineTreeProvider extends DefaultOutlineTreeProvider
 	@Inject extension ASTHelper
 	
 	@Inject
-	private IImageHelper imageHelper;
+	IImageHelper imageHelper;
 
 	def boolean _isLeaf(Transformation t) {
 		return true

@@ -57,7 +57,7 @@ class MelangeBuilder
 	@Inject extension IQualifiedNameProvider
 	@Inject DispatchOverrider dispatchWriter
 	@Inject XtextResourceSetProvider rsProvider
-	private static final Logger log = Logger.getLogger(MelangeBuilder)
+	static final Logger log = Logger.getLogger(MelangeBuilder)
 
 	def void generateAll(Resource res, IProject project, IProgressMonitor monitor) {
 		monitor.beginTask("Generating all artifacts", 700)

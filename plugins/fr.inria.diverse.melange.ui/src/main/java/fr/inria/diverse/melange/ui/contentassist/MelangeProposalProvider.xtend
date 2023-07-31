@@ -40,12 +40,12 @@ import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
 
 class MelangeProposalProvider extends AbstractMelangeProposalProvider
 {
-	private static final String CONTENTASSIST_SYNTAX_ID = "fr.inria.diverse.melange.ui.contentassist_syntax"
-	private static final String CONTENTASSIST_OPERATOR_ID = "fr.inria.diverse.melange.ui.contentassist_operator"
-	private static final String CONTENTASSIST_ECL_ID = "fr.inria.diverse.melange.ui.contentassist_ecl"
+	static final String CONTENTASSIST_SYNTAX_ID = "fr.inria.diverse.melange.ui.contentassist_syntax"
+	static final String CONTENTASSIST_OPERATOR_ID = "fr.inria.diverse.melange.ui.contentassist_operator"
+	static final String CONTENTASSIST_ECL_ID = "fr.inria.diverse.melange.ui.contentassist_ecl"
 	
-	private List<String> lastFoundAspects = newArrayList
-	private final Image ASPECT_IMAGE
+	List<String> lastFoundAspects = newArrayList
+	final Image ASPECT_IMAGE
 	
 	new(){
 		val bundle = Platform.getBundle("fr.inria.diverse.melange.ui")

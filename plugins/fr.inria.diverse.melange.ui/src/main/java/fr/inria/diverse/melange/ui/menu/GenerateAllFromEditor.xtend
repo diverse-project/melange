@@ -29,7 +29,7 @@ import org.eclipse.xtext.ui.resource.XtextResourceSetProvider
 class GenerateAllFromEditor extends AbstractHandler {
 	@Inject MelangeBuilder builder
 	@Inject XtextResourceSetProvider rsProvider
-	private static final Logger log = Logger.getLogger(MelangeBuilder)
+	static final Logger log = Logger.getLogger(MelangeBuilder)
 
 	override execute(ExecutionEvent event) throws ExecutionException {
 		val shell = HandlerUtil.getActiveWorkbenchWindow(event).shell

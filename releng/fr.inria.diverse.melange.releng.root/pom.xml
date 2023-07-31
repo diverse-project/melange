@@ -63,6 +63,7 @@
 					</executions>
 					<configuration>
 						<outputDirectory>src/main/xtend-gen</outputDirectory>
+						<showEmptyDirWarning>false</showEmptyDirWarning>
 					</configuration>
 					<!--<dependencies>
 						<dependency>
