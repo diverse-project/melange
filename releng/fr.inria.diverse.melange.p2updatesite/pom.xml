@@ -25,6 +25,15 @@
 	<packaging>eclipse-repository</packaging>
 
 	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-p2-repository-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+				</configuration>
+			</plugin>
+		</plugins>
 		<pluginManagement>
 			<plugins>
 					<!-- Just to avoid further errors in Eclipse -->
