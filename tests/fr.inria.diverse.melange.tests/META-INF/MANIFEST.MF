@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Melange Tests
 Bundle-Vendor: DIVERSE
-Bundle-Version: 0.3.0.qualifier
+Bundle-Version: 0.4.0.qualifier
 Bundle-SymbolicName: fr.inria.diverse.melange.tests;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: fr.inria.diverse.melange.ui,
@@ -15,7 +15,7 @@ Require-Bundle: fr.inria.diverse.melange.ui,
  fr.inria.diverse.melange.examples.metamodels.timedfsm;bundle-version="0.1.0",
  fr.inria.diverse.melange.examples.metamodels.subpackages;bundle-version="0.1.0",
  fr.inria.diverse.melange.examples.metamodels.exhaustive;bundle-version="0.1.0",
- fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version="[3.1.0,4.0.0)",
+ fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version="[3.1.0,5.0.0)",
  fr.inria.diverse.melange.resource;bundle-version="0.1.0",
  fr.inria.diverse.melange.adapters;bundle-version="0.1.0",
  fr.inria.diverse.melange.lib;bundle-version="0.1.0",
@@ -35,7 +35,7 @@ Import-Package: org.hamcrest.core,
  org.junit.runner.notification;version="4.5.0",
  org.junit.runners;version="4.5.0",
  org.junit.runners.model;version="4.5.0"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: fr.inria.diverse.melange.tests,
  fr.inria.diverse.melange.tests.aspects.fsm,
  fr.inria.diverse.melange.tests.common,

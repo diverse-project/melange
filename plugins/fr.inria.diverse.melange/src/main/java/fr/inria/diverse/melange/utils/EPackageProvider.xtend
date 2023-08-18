@@ -45,8 +45,8 @@ class EPackageProvider
 	@Inject extension EclipseProjectHelper
 	@Inject extension IQualifiedNameProvider
 	
-	private Map<Resource,SetMultimap<String, EPackage>> dispatchPackages = new HashMap
-	private Map<Resource,SetMultimap<String, GenModel>> dispatchGenmodels = new HashMap
+	Map<Resource,SetMultimap<String, EPackage>> dispatchPackages = new HashMap
+	Map<Resource,SetMultimap<String, GenModel>> dispatchGenmodels = new HashMap
 
 
 	def Set<EPackage> getPackages(ModelingElement m) {

@@ -12,7 +12,7 @@ package fr.inria.diverse.melange.ui.wizards
 
 class MelangeFilesTemplates
 {
-	def public static String getBuildProperties() {
+	def static String getBuildProperties() {
 		return '''
 			source.. = src/,\
 			           src-gen/
@@ -23,7 +23,7 @@ class MelangeFilesTemplates
 		'''
 	}
 
-	def public static String getK3SLEStub(String pkgName, String ecoreUri, String mmName) {
+	def static String getK3SLEStub(String pkgName, String ecoreUri, String mmName) {
 		return '''
 			package «pkgName»
 
@@ -35,7 +35,7 @@ class MelangeFilesTemplates
 		'''
 	}
 
-	def	public static String getEclipseResourcePrefs() {
+	def	static String getEclipseResourcePrefs() {
 		return '''
 			eclipse.preferences.version=1
 			encoding/<project>=UTF-8

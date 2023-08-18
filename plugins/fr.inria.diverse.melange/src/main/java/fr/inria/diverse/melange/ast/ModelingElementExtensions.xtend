@@ -48,7 +48,7 @@ class ModelingElementExtensions
 	@Inject EPackageProvider registry
 	@Inject ModelUtils modelUtils
 
-	private static final Logger log = Logger.getLogger(ModelingElementExtensions)
+	static final Logger log = Logger.getLogger(ModelingElementExtensions)
 
 	/**
 	 * Returns all the {@link EPackage}s defined in {@code m}.

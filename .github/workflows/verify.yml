@@ -18,14 +18,18 @@ jobs:
     steps:
     - name: Checkout Code 📘
       uses: actions/checkout@v3
-    - name: Set up JDK 11 🍮
+    - name: Set up JDK 17 🍮
       uses: actions/setup-java@v3
       with:
-        java-version: '11'
+        java-version: '17'
         distribution: 'temurin'
     #    cache: maven
+    - name: Set up Maven  🍮
+      uses: stCarolas/setup-maven@v4.5
+      with:
+        maven-version: 3.9.3
     - name: Build and Verify ⚒️🧪
-      uses: GabrielBB/xvfb-action@v1
+      uses: coactions/setup-xvfb@v1
       with:
          run: mvn -B clean verify --file releng/fr.inria.diverse.melange.releng.root/pom.xml
     

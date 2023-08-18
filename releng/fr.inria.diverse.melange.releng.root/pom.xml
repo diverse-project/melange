@@ -15,7 +15,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fr.inria.diverse.melange</groupId>
 	<artifactId>fr.inria.diverse.melange.releng.root</artifactId>
-	<version>0.3.0-SNAPSHOT</version>
+	<version>0.4.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Melange Root Build Manager</name>
 	
@@ -30,15 +30,15 @@
 	</modules>
 
 	<properties>
-		<maven.compiler.release>11</maven.compiler.release>
-		<maven.compiler.source>11</maven.compiler.source>
-		<maven.compiler.target>11</maven.compiler.target>
+		<maven.compiler.release>17</maven.compiler.release>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
 		<kermeta.version>3.3.1-SNAPSHOT</kermeta.version>
 		<emf.version>2.11.0</emf.version>
-		<tycho.version>2.7.0</tycho.version>
-		<tycho-extras.version>2.7.0</tycho-extras.version>
+		<tycho.version>4.0.1</tycho.version>
+		<tycho-extras.version>4.0.1</tycho-extras.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<xtext.version>2.27.0</xtext.version>
+		<xtext.version>2.31.0</xtext.version>
 		<tycho.scmUrl>scm:git:https://github.com/diverse-project/melange.git</tycho.scmUrl>
 		<tycho.disableP2Mirrors>true</tycho.disableP2Mirrors>
 	</properties>
@@ -63,6 +63,7 @@
 					</executions>
 					<configuration>
 						<outputDirectory>src/main/xtend-gen</outputDirectory>
+						<showEmptyDirWarning>false</showEmptyDirWarning>
 					</configuration>
 					<!--<dependencies>
 						<dependency>
@@ -87,7 +88,7 @@
 				<artifactId>tycho-surefire-plugin</artifactId>
 				<version>${tycho.version}</version>
 				<configuration>
-					<argLine>-Xmx2048m -XX:MaxPermSize=1024m</argLine>
+					<argLine>-Xmx2048m</argLine>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -98,7 +99,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.0</version>
+				<version>3.11.0</version>
 				<configuration>
         			<release>8</release>
 				</configuration>
@@ -180,7 +181,7 @@
 		<repository>
 			<id>eclipse</id>
 			<layout>p2</layout>
-			<url>https://download.eclipse.org/releases/2022-06/</url>
+			<url>https://download.eclipse.org/releases/2023-06/</url>
 		</repository>
 		<repository>
 			<id>Xtext Update Site</id>
@@ -190,7 +191,7 @@
 		<repository>
 			<id>mwe</id>
 			<layout>p2</layout>
-			<url>https://download.eclipse.org/modeling/emft/mwe/updates/releases/2.13.0/</url>
+			<url>https://download.eclipse.org/modeling/emft/mwe/updates/releases/2.14.0/</url>
 		</repository>
 		<!-- <repository>
 			<id>mavenInriaSnapshot</id>

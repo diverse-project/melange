@@ -20,7 +20,7 @@ class MelangeRegistryImpl implements MelangeRegistry
 	Map<String, MelangeRegistry.LanguageDescriptor> languageMap = newHashMap
 	Map<String, MelangeRegistry.ModelTypeDescriptor> modelTypeMap = newHashMap
 
-	private static MelangeRegistry INSTANCE = MelangeRegistryImpl.getInstance()
+	static MelangeRegistry INSTANCE = MelangeRegistryImpl.getInstance()
 
 	synchronized static def MelangeRegistry getInstance() {
 		if (INSTANCE === null)

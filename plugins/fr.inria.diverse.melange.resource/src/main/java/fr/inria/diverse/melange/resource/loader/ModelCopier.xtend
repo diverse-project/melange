@@ -176,7 +176,7 @@ class ModelCopier {
 	 * Used to avoid copying opposite collection references both ways,
 	 * to keep element order.
 	 */
-	private Set<EReference> managedReferences = new HashSet
+	Set<EReference> managedReferences = new HashSet
 
 	private def void cloneReferences(EObject source, EObject target) {
 		val EClass srcClass = source.eClass
@@ -232,7 +232,7 @@ class ModelCopier {
 		}
 	}
 
-	public def getModelsMapping() {
+	def getModelsMapping() {
 		return modelsMapping.immutableCopy
 	}
 }

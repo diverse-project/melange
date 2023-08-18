@@ -18,13 +18,22 @@
 		<relativePath>../fr.inria.diverse.melange.releng.root/pom.xml</relativePath>
 		<groupId>fr.inria.diverse.melange</groupId>
 		<artifactId>fr.inria.diverse.melange.releng.root</artifactId>
-		<version>0.3.0-SNAPSHOT</version>
+		<version>0.4.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>fr.inria.diverse.melange.p2updatesite</artifactId>
-	<packaging>eclipse-update-site</packaging>
+	<packaging>eclipse-repository</packaging>
 
 	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-p2-repository-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+				</configuration>
+			</plugin>
+		</plugins>
 		<pluginManagement>
 			<plugins>
 					<!-- Just to avoid further errors in Eclipse -->

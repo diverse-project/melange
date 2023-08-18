@@ -24,7 +24,7 @@ import java.lang.annotation.Target
 @Target(ElementType::TYPE)
 @Active(XtextTestProcessor)
 @Retention(RetentionPolicy.SOURCE)
-public annotation XtextTest
+annotation XtextTest
 {
 	Class<?> rootType
 	String   inputFile
@@ -34,10 +34,10 @@ public annotation XtextTest
 
 class XtextTestProcessor extends AbstractClassProcessor
 {
-	private TypeReference rootType
-	private String inputFile
-	private boolean withValidation
-	private String[] ignoreSelfImplement
+	TypeReference rootType
+	String inputFile
+	boolean withValidation
+	String[] ignoreSelfImplement
 
 	override void doTransform(MutableClassDeclaration cls, extension TransformationContext ctx) {
 		val ann = cls.annotations.findFirst[annotationTypeDeclaration == XtextTest.newTypeReference.type]

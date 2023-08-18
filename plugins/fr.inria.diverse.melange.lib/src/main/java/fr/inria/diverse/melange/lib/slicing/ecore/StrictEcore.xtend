@@ -23,7 +23,7 @@ import static extension fr.inria.diverse.melange.lib.slicing.ecore.__SlicerAspec
 
 class StrictEcore{
 	val List<EModelElement> inputEModelElement
-	private val List<EObject> clonedElts = newArrayList
+	val List<EObject> clonedElts = newArrayList
 	public val boolean optionlowerTypes
 	val String nameExtension
 	public val boolean card1

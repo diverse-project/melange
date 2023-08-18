@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.preferences.IPreferencesService
  * provide something cleaner
  */
 class MelangePreferencesAccess {
-	static private final String PREFS_ID = "fr.inria.diverse.melange.ui"
+	static final String PREFS_ID = "fr.inria.diverse.melange.ui"
 	static MelangePreferencesAccess instance
 	IPreferencesService preferencesService
 	

@@ -31,7 +31,7 @@ class MetamodelExtensions
 	@Inject extension LanguageExtensions
 	@Inject extension ModelingElementExtensions
 
-	private static final Logger log = Logger.getLogger(MetamodelExtensions)
+	static final Logger log = Logger.getLogger(MetamodelExtensions)
 
 	/**
 	 * Checks whether the given {@link Metamodel} {@code mm} is well-formed,

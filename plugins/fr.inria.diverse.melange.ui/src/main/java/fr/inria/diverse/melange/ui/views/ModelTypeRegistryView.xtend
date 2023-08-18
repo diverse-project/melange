@@ -24,7 +24,7 @@ import org.eclipse.swt.widgets.Composite
 
 class ModelTypeRegistryView
 {
-	private static final String MODELTYPE_EXTENSION_ID = "fr.inria.diverse.melange.modeltype"
+	static final String MODELTYPE_EXTENSION_ID = "fr.inria.diverse.melange.modeltype"
 
 	TableViewer viewer
 

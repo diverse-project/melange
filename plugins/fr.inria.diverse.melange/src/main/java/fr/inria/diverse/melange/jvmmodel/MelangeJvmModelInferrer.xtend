@@ -54,7 +54,7 @@ class MelangeJvmModelInferrer extends AbstractModelInferrer
 	@Inject extension IQualifiedNameProvider
 	@Inject extension IQualifiedNameConverter
 
-	private static final Logger log = Logger.getLogger(MelangeJvmModelInferrer)
+	static final Logger log = Logger.getLogger(MelangeJvmModelInferrer)
 
 	/**
 	 * Generates all the Java code supporting languages, interfaces, and

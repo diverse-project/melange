@@ -49,7 +49,7 @@ class ModelTypeExtensions
 	@Inject MatchingHelper matchingHelper
 	@Inject EclipseProjectHelper helper
 
-	private static final Logger log = Logger.getLogger(ModelTypeExtensions)
+	static final Logger log = Logger.getLogger(ModelTypeExtensions)
 
 	/**
 	 * Returns the URI of the serialized Ecore of the {@link ModelType}

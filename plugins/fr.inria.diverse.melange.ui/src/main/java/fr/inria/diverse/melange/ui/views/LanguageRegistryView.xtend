@@ -24,7 +24,7 @@ import org.eclipse.swt.widgets.Composite
 
 class LanguageRegistryView
 {
-	private static final String LANGUAGE_EXTENSION_ID = "fr.inria.diverse.melange.language"
+	static final String LANGUAGE_EXTENSION_ID = "fr.inria.diverse.melange.language"
 
 	TableViewer viewer
 

@@ -4,7 +4,7 @@
 	<property environment="env"/>
 
 	<property name="env.WORKSPACE" location="."/>
-	<property name="updatesite.repository" location="${env.WORKSPACE}/releng/fr.inria.diverse.melange.p2updatesite/target/site"/>
+	<property name="updatesite.repository" location="${env.WORKSPACE}/releng/fr.inria.diverse.melange.p2updatesite/target/repository"/>
 	<property name="deploy.server" value="melange.inria.fr"/>
 	<property name="deploy.user" value="web-melange"/>
 	<property name="deploy.path" value="/home/web/apache/sites/melange.inria.fr/htdocs/updatesite/nightly"/>

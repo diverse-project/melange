@@ -30,7 +30,7 @@ import org.eclipse.xtext.ui.resource.XtextResourceSetProvider
 class CleanAll extends AbstractHandler {
 	@Inject XtextResourceSetProvider rsProvider
 	@Inject MelangeBuilder builder
-	private static final Logger log = Logger.getLogger(MelangeBuilder)
+	static final Logger log = Logger.getLogger(MelangeBuilder)
 
 	override execute(ExecutionEvent event) throws ExecutionException {
 		val shell = HandlerUtil.getActiveWorkbenchWindow(event).shell

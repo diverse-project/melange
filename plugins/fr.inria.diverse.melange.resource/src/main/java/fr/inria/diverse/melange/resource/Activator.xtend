@@ -21,9 +21,9 @@ import org.osgi.framework.BundleContext
 
 class Activator implements BundleActivator
 {
-	private static BundleContext context
-	private static final String LANGUAGE_EXTENSION_ID = "fr.inria.diverse.melange.language"
-	private static final String MODELTYPE_EXTENSION_ID = "fr.inria.diverse.melange.modeltype"
+	static BundleContext context
+	static final String LANGUAGE_EXTENSION_ID = "fr.inria.diverse.melange.language"
+	static final String MODELTYPE_EXTENSION_ID = "fr.inria.diverse.melange.modeltype"
 
 	def static BundleContext getContext() {
 		return context

@@ -37,13 +37,12 @@ import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.core.runtime.NullProgressMonitor
 import org.eclipse.core.runtime.Path
 import org.eclipse.core.runtime.SubMonitor
-import org.eclipse.core.runtime.SubProgressMonitor
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.gemoc.commons.eclipse.pde.classpath.BuildPropertiesHelper
 import org.eclipse.gemoc.commons.eclipse.pde.classpath.ClasspathHelper
 import org.eclipse.jdt.core.JavaCore
 import org.eclipse.pde.internal.core.natures.PDE
-import org.eclipse.xtext.util.MergeableManifest
+import org.eclipse.xtext.util.MergeableManifest2
 
 /**
  * A collection of utilities around Eclipse's APIs to manage the creation,
@@ -53,7 +52,7 @@ import org.eclipse.xtext.util.MergeableManifest
 class EclipseProjectHelper
 {
 	@Inject extension LanguageExtensions
-	private static final Logger log = Logger.getLogger(EclipseProjectHelper)
+	static final Logger log = Logger.getLogger(EclipseProjectHelper)
 	
 	public static final String GEMOCNatureID = "org.eclipse.gemoc.execution.sequential.javaxdsml.ide.ui.GemocSequentialLanguageNature"
 
@@ -88,9 +87,9 @@ class EclipseProjectHelper
 
 			try {
 				input = manifestFile.contents
-				val manifest = new MergeableManifest(input)
+				val manifest = new MergeableManifest2(input)
 				val attrs = manifest.mainAttributes
-				val bundles = Splitter.on(",").omitEmptyStrings.trimResults.split(attrs.getValue("Require-Bundle"))
+				val bundles = Splitter.on(",").omitEmptyStrings.trimResults.split(attrs.get("Require-Bundle"))
 				return bundles.map[it.split(";").head]
 			} catch (Exception e) {
 				log.error("Couldn't retrieve MANIFEST.MF dependencies", e)
@@ -121,7 +120,7 @@ class EclipseProjectHelper
 				if (!manifestFile.isSynchronized(IResource.DEPTH_ZERO))
 					manifestFile.refreshLocal(IResource.DEPTH_ZERO, null)
 				input = manifestFile.contents
-				val manifest = new MergeableManifest(input)
+				val manifest = new MergeableManifest2(input)
 				manifest.addRequiredBundles(Sets::newHashSet(bundles))
 				val out = new ByteArrayOutputStream
 				output = new BufferedOutputStream(out)
@@ -158,7 +157,7 @@ class EclipseProjectHelper
 				if (!manifestFile.isSynchronized(IResource.DEPTH_ZERO))
 					manifestFile.refreshLocal(IResource.DEPTH_ZERO, null)
 				input = manifestFile.contents
-				val manifest = new MergeableManifest(input)
+				val manifest = new MergeableManifest2(input)
 				manifest.addExportedPackages(Sets::newHashSet(packages))
 				val out = new ByteArrayOutputStream
 				output = new BufferedOutputStream(out)
@@ -209,12 +208,12 @@ class EclipseProjectHelper
 				if (!manifestFile.isSynchronized(IResource.DEPTH_ZERO))
 					manifestFile.refreshLocal(IResource.DEPTH_ZERO, null)
 				input = manifestFile.contents
-				val manifest = new MergeableManifest(input)
+				val manifest = new MergeableManifest2(input)
 				// FIXME: Quick & Dirty ;)
-				var requiredBundles = manifest.getMainAttributes().get(MergeableManifest::REQUIRE_BUNDLE) as String
+				var requiredBundles = manifest.getMainAttributes().get(MergeableManifest2::REQUIRE_BUNDLE) as String
 				val regex = '''(?m)^ ?(«bundles.join("|")»).*$(?:\r?\n)?'''
 				val result = requiredBundles.replaceAll(regex, "") 
-				manifest.getMainAttributes().put(MergeableManifest::REQUIRE_BUNDLE, result.replaceFirst(",$", ""));
+				manifest.getMainAttributes().put(MergeableManifest2::REQUIRE_BUNDLE, result.replaceFirst(",$", ""));
 				val out = new ByteArrayOutputStream
 				output = new BufferedOutputStream(out)
 				manifest.write(output)
@@ -382,14 +381,14 @@ class EclipseProjectHelper
 			var IPath previousProjectLocation = null
 			if (project.exists){
 				previousProjectLocation = project.location
-				project.delete(true, true, new SubProgressMonitor(monitor, 1))				
+				project.delete(true, true, SubMonitor.convert(monitor, 1))				
 			}
 
 			val javaProject = JavaCore::create(project)
 			val description = workspace.newProjectDescription(name)
 
 			description.location = previousProjectLocation
-			project.create(description, new SubProgressMonitor(monitor, 1))
+			project.create(description, SubMonitor.convert(monitor, 1))
 
 			val classpathEntries = newArrayList
 
@@ -405,18 +404,18 @@ class EclipseProjectHelper
 				description.newCommand => [builderName = buildName]
 			]
 
-			project.open(new SubProgressMonitor(monitor, 1))
+			project.open(SubMonitor.convert(monitor, 1))
 			createManifest(name, requiredBundles, exportedPackages, monitor, project)
 			createPluginXml(project, extensions, monitor)
 			createBuildProperties(project, srcFolders, monitor)
-			project.setDescription(description, new SubProgressMonitor(monitor, 1))
+			project.setDescription(description, SubMonitor.convert(monitor, 1))
 
 			srcFolders.forEach[src |
 				val container = project.getFolder(src)
 
 				try {
 					if (!container.exists)
-						container.create(false, true, new SubProgressMonitor(monitor, 1))
+						container.create(false, true, SubMonitor.convert(monitor, 1))
 
 					classpathEntries.add(0, JavaCore::newSourceEntry(container.fullPath))
 				} catch (CoreException e) {
@@ -428,9 +427,9 @@ class EclipseProjectHelper
 			classpathEntries += JavaCore::newContainerEntry(new Path("org.eclipse.pde.core.requiredPlugins"))
 
 			val binFolder = project.getFolder("bin")
-			binFolder.create(false, true, new SubProgressMonitor(monitor, 1))
-			javaProject.setRawClasspath(classpathEntries, new SubProgressMonitor(monitor, 1))
-			javaProject.setOutputLocation(binFolder.fullPath, new SubProgressMonitor(monitor, 1))
+			binFolder.create(false, true, SubMonitor.convert(monitor, 1))
+			javaProject.setRawClasspath(classpathEntries, SubMonitor.convert(monitor, 1))
+			javaProject.setOutputLocation(binFolder.fullPath, SubMonitor.convert(monitor, 1))
 
 
 
@@ -466,7 +465,7 @@ class EclipseProjectHelper
 		'''
 
 		val metaInf = project.getFolder("META-INF")
-		metaInf.create(false, true, new SubProgressMonitor(monitor, 1))
+		metaInf.create(false, true, SubMonitor.convert(monitor, 1))
 		createFile("MANIFEST.MF", metaInf, content, monitor)
 	}
 
