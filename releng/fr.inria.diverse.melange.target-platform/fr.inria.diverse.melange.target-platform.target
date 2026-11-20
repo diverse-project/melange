@@ -35,7 +35,7 @@
 </location>-->
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
 <unit id="fr.inria.diverse.k3.feature.feature.group" version="0.0.0"/>
-<repository location="http://www.kermeta.org/k3/update/"/>
+<repository location="https://kermeta.org/k3/update_2026_11_21/"/>
 </location>
 <!--<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
 <unit id="org.eclipse.emf.transaction.sdk.feature.group" version="1.9.0.201506010221"/>
