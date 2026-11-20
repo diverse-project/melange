@@ -547,7 +547,9 @@ class WorkspaceTestHelper {
 		 val url = path.toFile().toURI().toURL();
 		 urlList.add(url);
 		}
-		val parentClassLoader = project.getClass().getClassLoader();
+		// Use the test bundle class loader as parent so that platform classes (EMF, resources...)
+		// come from OSGi: a standalone copy of EMF cannot resolve platform:/resource URIs
+		val parentClassLoader = WorkspaceTestHelper.getClassLoader();
 		return new URLClassLoader(urlList, parentClassLoader);
 	}	
 }
