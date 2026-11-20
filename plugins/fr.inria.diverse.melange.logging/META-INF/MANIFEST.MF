@@ -4,6 +4,6 @@ Bundle-Name: Melange Logging
 Bundle-SymbolicName: fr.inria.diverse.melange.logging
 Bundle-Version: 0.4.0.qualifier
 Fragment-Host: org.apache.log4j;bundle-version="1.2.15"
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Bundle-Vendor: Inria DiverSE
 Automatic-Module-Name: fr.inria.diverse.melange.logging

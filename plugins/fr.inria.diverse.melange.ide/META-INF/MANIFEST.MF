@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: fr.inria.diverse.melange.ide
 Bundle-SymbolicName: fr.inria.diverse.melange.ide;singleton:=true
 Bundle-Version: 0.4.0.qualifier
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Bundle-ActivationPolicy: lazy
 Export-Package: fr.inria.diverse.melange.ide,
  fr.inria.diverse.melange.ide.contentassist.antlr,

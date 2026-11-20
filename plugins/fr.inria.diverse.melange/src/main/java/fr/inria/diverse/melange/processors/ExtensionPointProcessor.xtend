@@ -20,7 +20,7 @@ import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
 import fr.inria.diverse.melange.metamodel.melange.Language
 import fr.inria.diverse.melange.metamodel.melange.ModelTypingSpace
 import fr.inria.diverse.melange.utils.PluginXmlChanger
-import javax.inject.Inject
+import com.google.inject.Inject
 import org.apache.log4j.Logger
 import org.eclipse.core.runtime.CoreException
 import org.eclipse.pde.internal.core.PDECore

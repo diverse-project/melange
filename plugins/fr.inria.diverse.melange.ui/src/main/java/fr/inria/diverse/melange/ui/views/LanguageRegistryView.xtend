@@ -10,7 +10,7 @@
  *******************************************************************************/
 package fr.inria.diverse.melange.ui.views
 
-import javax.annotation.PostConstruct
+import jakarta.annotation.PostConstruct
 import org.eclipse.core.runtime.IConfigurationElement
 import org.eclipse.core.runtime.Platform
 import org.eclipse.e4.ui.di.Focus

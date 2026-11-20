@@ -19,7 +19,7 @@ import fr.inria.diverse.melange.metamodel.melange.ModelingElement
 import fr.inria.diverse.melange.metamodel.melange.Transformation
 import java.io.IOException
 import java.util.List
-import javax.inject.Inject
+import com.google.inject.Inject
 import org.eclipse.emf.common.util.Diagnostic
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.compare.EMFCompare
@@ -37,8 +37,8 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.Diagnostician
 import org.eclipse.xtext.util.IAcceptor
-import org.eclipse.xtext.xbase.compiler.CompilationTestHelper
-import org.eclipse.xtext.xbase.compiler.CompilationTestHelper.Result
+import org.eclipse.xtext.xbase.testing.CompilationTestHelper
+import org.eclipse.xtext.xbase.testing.CompilationTestHelper.Result
 import org.junit.Assert
 
 class MelangeTestHelper

@@ -11,7 +11,7 @@
 package fr.inria.diverse.melange.tests.eclipse
 
 import fr.inria.diverse.melange.ui.tests.MelangeUiInjectorProvider
-import org.eclipse.xtext.junit4.AbstractXtextTests
+import org.eclipse.xtext.testing.AbstractXtextTests
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.XtextRunner
 import org.junit.FixMethodOrder

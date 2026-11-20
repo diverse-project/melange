@@ -13,7 +13,7 @@ package fr.inria.diverse.melange.processors
 import fr.inria.diverse.melange.ast.LanguageExtensions
 import fr.inria.diverse.melange.eclipse.EclipseProjectHelper
 import fr.inria.diverse.melange.metamodel.melange.Language
-import javax.inject.Inject
+import com.google.inject.Inject
 
 /**
  * For each {@link Language} in the current Melange file, if its runtime is

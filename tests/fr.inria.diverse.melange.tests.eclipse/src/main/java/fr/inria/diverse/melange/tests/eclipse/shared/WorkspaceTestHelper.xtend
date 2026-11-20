@@ -61,7 +61,7 @@ import org.eclipse.pde.core.target.ITargetDefinition
 import org.eclipse.pde.core.target.ITargetLocation
 import org.eclipse.pde.core.target.ITargetPlatformService
 import org.eclipse.pde.core.target.LoadTargetDefinitionJob
-import org.eclipse.pde.internal.core.natures.PDE
+import org.eclipse.pde.internal.core.natures.PluginProject
 import org.eclipse.pde.internal.core.target.TargetPlatformService
 import org.eclipse.swt.widgets.Display
 import org.eclipse.ui.ISources
@@ -74,7 +74,7 @@ import org.eclipse.ui.part.FileEditorInput
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage
 import org.eclipse.ui.wizards.datatransfer.ImportOperation
 import org.eclipse.xtext.ui.testing.util.IResourcesSetupUtil
-import org.eclipse.xtext.junit4.ui.util.JavaProjectSetupUtil
+import org.eclipse.xtext.ui.testing.util.JavaProjectSetupUtil
 import org.eclipse.xtext.resource.DerivedStateAwareResource
 import org.eclipse.xtext.ui.XtextProjectHelper
 import org.eclipse.xtext.ui.editor.XtextEditor
@@ -118,10 +118,10 @@ class WorkspaceTestHelper {
 		JavaProjectSetupUtil::addSourceFolder(newProject, "src")
 		JavaProjectSetupUtil::addSourceFolder(newProject, "src-gen")
 		IResourcesSetupUtil::addNature(newProject.project, XtextProjectHelper::NATURE_ID)
-		IResourcesSetupUtil::addNature(newProject.project, PDE::PLUGIN_NATURE)
+		IResourcesSetupUtil::addNature(newProject.project, PluginProject::NATURE)
 		IResourcesSetupUtil::addBuilder(newProject.project, XtextProjectHelper::BUILDER_ID)
-		IResourcesSetupUtil::addBuilder(newProject.project, PDE::MANIFEST_BUILDER_ID)
-		IResourcesSetupUtil::addBuilder(newProject.project, PDE::SCHEMA_BUILDER_ID)
+		IResourcesSetupUtil::addBuilder(newProject.project, PluginProject::MANIFEST_BUILDER_ID)
+		IResourcesSetupUtil::addBuilder(newProject.project, PluginProject::SCHEMA_BUILDER_ID)
 		JavaProjectSetupUtil::addToClasspath(newProject,
 			JavaCore::newContainerEntry(new Path("org.eclipse.xtend.XTEND_CONTAINER")))
 		JavaProjectSetupUtil::addToClasspath(newProject,

@@ -15,8 +15,8 @@ import fr.inria.diverse.melange.MelangeRuntimeModule
 import fr.inria.diverse.melange.MelangeStandaloneSetup
 import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.xtext.xbase.compiler.IGeneratorConfigProvider
-import org.eclipse.xtext.xbase.compiler.OnTheFlyJavaCompiler
-import org.eclipse.xtext.xbase.compiler.OnTheFlyJavaCompiler.EclipseRuntimeDependentJavaCompiler
+import org.eclipse.xtext.xbase.testing.OnTheFlyJavaCompiler
+import org.eclipse.xtext.xbase.testing.OnTheFlyJavaCompiler.EclipseRuntimeDependentJavaCompiler
 import fr.inria.diverse.melange.tests.MelangeInjectorProvider
 
 class MelangeTestsInjectorProvider extends MelangeInjectorProvider

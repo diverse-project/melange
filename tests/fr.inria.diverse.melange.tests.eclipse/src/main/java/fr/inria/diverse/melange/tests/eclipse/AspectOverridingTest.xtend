@@ -14,7 +14,7 @@ import com.google.inject.Inject
 import fr.inria.diverse.melange.ui.tests.MelangeUiInjectorProvider
 import fr.inria.diverse.melange.tests.eclipse.shared.WorkspaceTestHelper
 import org.eclipse.core.resources.IProject
-import org.eclipse.xtext.junit4.AbstractXtextTests
+import org.eclipse.xtext.testing.AbstractXtextTests
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.XtextRunner
 import org.eclipse.xtext.ui.testing.util.IResourcesSetupUtil

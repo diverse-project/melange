@@ -149,7 +149,7 @@ class XtextTestProcessor extends AbstractClassProcessor
 			primarySourceElement = cls
 			addAnnotation(findTypeGlobally("com.google.inject.Inject").newAnnotationReference)
 			addAnnotation(findTypeGlobally("org.eclipse.xtext.xbase.lib.Extension").newAnnotationReference)
-			type = findTypeGlobally("org.eclipse.xtext.junit4.validation.ValidationTestHelper").newTypeReference
+			type = findTypeGlobally("org.eclipse.xtext.testing.validation.ValidationTestHelper").newTypeReference
 		]
 
 		// ValidationTestHelper
@@ -157,7 +157,7 @@ class XtextTestProcessor extends AbstractClassProcessor
 			primarySourceElement = cls
 			addAnnotation(findTypeGlobally("com.google.inject.Inject").newAnnotationReference)
 			addAnnotation(findTypeGlobally("org.eclipse.xtext.xbase.lib.Extension").newAnnotationReference)
-			type = findTypeGlobally("org.eclipse.xtext.xbase.compiler.CompilationTestHelper").newTypeReference
+			type = findTypeGlobally("org.eclipse.xtext.xbase.testing.CompilationTestHelper").newTypeReference
 		]
 
 		// ParseHelper
@@ -165,7 +165,7 @@ class XtextTestProcessor extends AbstractClassProcessor
 			primarySourceElement = cls
 			addAnnotation(findTypeGlobally("com.google.inject.Inject").newAnnotationReference)
 			addAnnotation(findTypeGlobally("org.eclipse.xtext.xbase.lib.Extension").newAnnotationReference)
-			type = newTypeReference("org.eclipse.xtext.junit4.util.ParseHelper", rootType)
+			type = newTypeReference("org.eclipse.xtext.testing.util.ParseHelper", rootType)
 		]
 
 		// Input sequence

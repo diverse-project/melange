@@ -25,12 +25,12 @@ import org.eclipse.debug.ui.IDebugUIConstants
 import org.eclipse.jdt.core.IJavaProject
 import org.eclipse.jdt.core.JavaCore
 import org.eclipse.jdt.launching.IJavaLaunchConfigurationConstants
-import org.eclipse.pde.internal.core.natures.PDE
-import org.eclipse.xtext.junit4.AbstractXtextTests
+import org.eclipse.pde.internal.core.natures.PluginProject
+import org.eclipse.xtext.testing.AbstractXtextTests
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.XtextRunner
 import org.eclipse.xtext.ui.testing.util.IResourcesSetupUtil
-import org.eclipse.xtext.junit4.ui.util.JavaProjectSetupUtil
+import org.eclipse.xtext.ui.testing.util.JavaProjectSetupUtil
 import org.eclipse.xtext.ui.XtextProjectHelper
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -115,10 +115,10 @@ public class SimpleFsmTest extends AbstractXtextTests
 		JavaProjectSetupUtil::addSourceFolder(melangeFsm, "src")
 		JavaProjectSetupUtil::addSourceFolder(melangeFsm, "src-gen")
 		IResourcesSetupUtil::addNature(melangeFsm.project, XtextProjectHelper::NATURE_ID)
-		IResourcesSetupUtil::addNature(melangeFsm.project, PDE::PLUGIN_NATURE)
+		IResourcesSetupUtil::addNature(melangeFsm.project, PluginProject::NATURE)
 		IResourcesSetupUtil::addBuilder(melangeFsm.project, XtextProjectHelper::BUILDER_ID)
-		IResourcesSetupUtil::addBuilder(melangeFsm.project, PDE::MANIFEST_BUILDER_ID)
-		IResourcesSetupUtil::addBuilder(melangeFsm.project, PDE::SCHEMA_BUILDER_ID)
+		IResourcesSetupUtil::addBuilder(melangeFsm.project, PluginProject::MANIFEST_BUILDER_ID)
+		IResourcesSetupUtil::addBuilder(melangeFsm.project, PluginProject::SCHEMA_BUILDER_ID)
 		JavaProjectSetupUtil::addToClasspath(melangeFsm, JavaCore::newContainerEntry(new Path("org.eclipse.xtend.XTEND_CONTAINER")))
 		JavaProjectSetupUtil::addToClasspath(melangeFsm, JavaCore::newContainerEntry(new Path("org.eclipse.pde.core.requiredPlugins")))
 
@@ -157,10 +157,10 @@ public class SimpleFsmTest extends AbstractXtextTests
 		JavaProjectSetupUtil::addSourceFolder(aspectsFsm, "src")
 		JavaProjectSetupUtil::addSourceFolder(aspectsFsm, "xtend-gen")
 		IResourcesSetupUtil::addNature(aspectsFsm.project, XtextProjectHelper::NATURE_ID)
-		IResourcesSetupUtil::addNature(aspectsFsm.project, PDE::PLUGIN_NATURE)
+		IResourcesSetupUtil::addNature(aspectsFsm.project, PluginProject::NATURE)
 		IResourcesSetupUtil::addBuilder(aspectsFsm.project, XtextProjectHelper::BUILDER_ID)
-		IResourcesSetupUtil::addBuilder(aspectsFsm.project, PDE::MANIFEST_BUILDER_ID)
-		IResourcesSetupUtil::addBuilder(aspectsFsm.project, PDE::SCHEMA_BUILDER_ID)
+		IResourcesSetupUtil::addBuilder(aspectsFsm.project, PluginProject::MANIFEST_BUILDER_ID)
+		IResourcesSetupUtil::addBuilder(aspectsFsm.project, PluginProject::SCHEMA_BUILDER_ID)
 		JavaProjectSetupUtil::addToClasspath(aspectsFsm, JavaCore::newContainerEntry(new Path("org.eclipse.xtend.XTEND_CONTAINER")))
 		JavaProjectSetupUtil::addToClasspath(aspectsFsm, JavaCore::newContainerEntry(new Path("org.eclipse.pde.core.requiredPlugins")))
 

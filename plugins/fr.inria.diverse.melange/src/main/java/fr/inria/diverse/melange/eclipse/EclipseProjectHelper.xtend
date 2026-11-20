@@ -39,9 +39,8 @@ import org.eclipse.core.runtime.Path
 import org.eclipse.core.runtime.SubMonitor
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.gemoc.commons.eclipse.pde.classpath.BuildPropertiesHelper
-import org.eclipse.gemoc.commons.eclipse.pde.classpath.ClasspathHelper
 import org.eclipse.jdt.core.JavaCore
-import org.eclipse.pde.internal.core.natures.PDE
+import org.eclipse.pde.internal.core.natures.PluginProject
 import org.eclipse.xtext.util.MergeableManifest2
 
 /**
@@ -243,6 +242,23 @@ class EclipseProjectHelper
 	 *   <li>Nature: GEMOC Nature</li>
 	 * </ul>
 	 */
+	/**
+	 * Adds {@code folderName} as a source folder of the Java {@code project}
+	 * if it is not already on its raw classpath.
+	 *
+	 * Replaces ClasspathHelper.addSourceEntry() from GEMOC commons which casts
+	 * the Java nature to IJavaProject, which fails with recent JDT versions.
+	 */
+	private def void addSourceEntry(IProject project, String folderName, IProgressMonitor monitor) {
+		val javaProject = JavaCore.create(project)
+		val newEntry = JavaCore.newSourceEntry(project.getFolder(folderName).fullPath)
+		val entries = newArrayList(javaProject.rawClasspath)
+		if (!entries.contains(newEntry)) {
+			entries += newEntry
+			javaProject.setRawClasspath(entries, monitor)
+		}
+	}
+
 	def void createEMFRuntimeInMelangeProject(IProject project, Language l, IProgressMonitor monitor){
 		val SubMonitor subMonitor = SubMonitor.convert(monitor, 100);
 		val srcModelGenFolder = project.getFolder("src-model-gen");
@@ -252,7 +268,7 @@ class EclipseProjectHelper
 		}
 		srcModelGenFolder.create(false, true, subMonitor.split(50))
 		
-		ClasspathHelper.addSourceEntry(project,"src-model-gen", subMonitor.split(10))
+		addSourceEntry(project,"src-model-gen", subMonitor.split(10))
 		BuildPropertiesHelper.addMainJarSourceEntry(project,"src-model-gen", subMonitor.split(10))
 		
 		// add Gemoc nature to project because it will also contain the generated dsl file
@@ -285,10 +301,10 @@ class EclipseProjectHelper
 			val project = createEclipseProject(
 				projectName,
 				#[ GEMOCNatureID, 
-					JavaCore::NATURE_ID, PDE::PLUGIN_NATURE, "org.eclipse.xtext.ui.shared.xtextNature"
+					JavaCore::NATURE_ID, PluginProject::NATURE, "org.eclipse.xtext.ui.shared.xtextNature"
 				],
 				#[ GEMOCNatureID,
-					JavaCore::BUILDER_ID, PDE::MANIFEST_BUILDER_ID, PDE::SCHEMA_BUILDER_ID
+					JavaCore::BUILDER_ID, PluginProject::MANIFEST_BUILDER_ID, PluginProject::SCHEMA_BUILDER_ID
 				],
 				#["src", "src-gen"],
 				#[],
@@ -330,8 +346,8 @@ class EclipseProjectHelper
 			// FIXME: Everything's hardcoded...
 			val project = createEclipseProject(
 				projectName,
-				#[JavaCore::NATURE_ID, PDE::PLUGIN_NATURE, "org.eclipse.xtext.ui.shared.xtextNature"],
-				#[JavaCore::BUILDER_ID,	PDE::MANIFEST_BUILDER_ID, PDE::SCHEMA_BUILDER_ID],
+				#[JavaCore::NATURE_ID, PluginProject::NATURE, "org.eclipse.xtext.ui.shared.xtextNature"],
+				#[JavaCore::BUILDER_ID,	PluginProject::MANIFEST_BUILDER_ID, PluginProject::SCHEMA_BUILDER_ID],
 				#["src", "src-gen"],
 				#[],
 				#["org.eclipse.emf.ecore",
@@ -543,8 +559,8 @@ class EclipseProjectHelper
 
 		val project = createEclipseProject(
 			projectName,
-			#[JavaCore::NATURE_ID, PDE::PLUGIN_NATURE],
-			#[JavaCore::BUILDER_ID,	PDE::MANIFEST_BUILDER_ID, PDE::SCHEMA_BUILDER_ID],
+			#[JavaCore::NATURE_ID, PluginProject::NATURE],
+			#[JavaCore::BUILDER_ID,	PluginProject::MANIFEST_BUILDER_ID, PluginProject::SCHEMA_BUILDER_ID],
 			#["src-gen"],
 			#[],
 			dependencies, // + copy dependency from originating project

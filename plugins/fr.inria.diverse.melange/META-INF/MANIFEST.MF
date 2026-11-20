@@ -7,7 +7,6 @@ Bundle-SymbolicName: fr.inria.diverse.melange;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext;bundle-version="[2.12.0,3.0.0)";visibility:=reexport,
  org.eclipse.xtext.xbase;bundle-version="[2.12.0,3.0.0)";resolution:=optional;visibility:=reexport,
- org.apache.commons.logging;bundle-version="1.0.4";resolution:=optional,
  org.eclipse.emf.codegen.ecore;resolution:=optional,
  org.eclipse.emf.mwe.utils;resolution:=optional,
  org.eclipse.emf.mwe2.launch;resolution:=optional,
@@ -37,7 +36,7 @@ Require-Bundle: org.eclipse.xtext;bundle-version="[2.12.0,3.0.0)";visibility:=re
  org.eclipse.xtext.xtext.generator;bundle-version="2.27.0";resolution:=optional
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Export-Package: fr.inria.diverse.melange,
  fr.inria.diverse.melange.annotation,
  fr.inria.diverse.melange.ast,

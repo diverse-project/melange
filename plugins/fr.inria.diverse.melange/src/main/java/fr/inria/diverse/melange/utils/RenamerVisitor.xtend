@@ -500,7 +500,8 @@ class RenamerVisitor extends ASTVisitor{
 			return rule.value
 		}
 		else{
-			val longestRule = rulesManager.allPackageRules.filter[isSubpackage(key,packageName)].sortBy[key.length].last
+			// Explicit call: on Java 21, ".last" binds to List.getLast() which throws on empty lists
+			val longestRule = org.eclipse.xtext.xbase.lib.IterableExtensions.last(rulesManager.allPackageRules.filter[isSubpackage(key,packageName)].sortBy[key.length])
 			if(longestRule !== null){
 				val prefix = longestRule.value
 				val sufix = packageName.substring(longestRule.key.length)

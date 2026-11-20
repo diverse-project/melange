@@ -16,7 +16,7 @@ import fr.inria.diverse.melange.tests.eclipse.shared.WorkspaceTestHelper
 import org.eclipse.core.resources.IResource
 import org.eclipse.core.resources.IncrementalProjectBuilder
 import org.eclipse.core.resources.ResourcesPlugin
-import org.eclipse.xtext.junit4.AbstractXtextTests
+import org.eclipse.xtext.testing.AbstractXtextTests
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.XtextRunner
 import org.eclipse.xtext.ui.testing.util.IResourcesSetupUtil

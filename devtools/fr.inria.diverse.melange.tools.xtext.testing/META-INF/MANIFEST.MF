@@ -6,5 +6,5 @@ Bundle-Version: 0.4.0.qualifier
 Export-Package: fr.inria.diverse.melange.tools.xtext.testing
 Require-Bundle: org.eclipse.xtend.lib,
  org.junit;bundle-version="4.11.0"
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Automatic-Module-Name: fr.inria.diverse.melange.tools.xtext.testing

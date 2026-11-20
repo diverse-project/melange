@@ -389,7 +389,7 @@ class EcoreExtensions
 				if(segments.get(0) != aspPkg.name){
 					//fqn is not in aspPkg's fragment so we put it inside the root package 
 					val newCls = EcoreFactory.eINSTANCE.createEClass => [cls |
-						cls.name = segments.last
+						cls.name = org.eclipse.xtext.xbase.lib.IterableExtensions.last(segments)
 					]
 					newCls.addAspectAnnotation
 					aspPkg.EClassifiers += newCls
@@ -409,7 +409,7 @@ class EcoreExtensions
 						last = newPack
 					}
 					val newCls = EcoreFactory.eINSTANCE.createEClass => [cls |
-						cls.name = segments.last
+						cls.name = org.eclipse.xtext.xbase.lib.IterableExtensions.last(segments)
 					]
 					newCls.addAspectAnnotation
 					last.EClassifiers += newCls
